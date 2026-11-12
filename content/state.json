@@ -3585,14 +3585,6 @@
       "skipped": true,
       "url": "https://blog.ja.playstation.com/2026/11/11/20261111-psplus-game-catalog-o/"
     },
-    "01f423e7f6c35c6d": {
-      "at": "2026-10-29T02:42:20.101669+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "score": 100,
-      "section": "science",
-      "slug": "hiroshima-u-ai-home-visit-nursing",
-      "url": "https://www.hiroshima-u.ac.jp/news/100962"
-    },
     "01f9bf41ed18d821": {
       "at": "2026-11-09T05:06:17.561777+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（審議会）",
@@ -7777,6 +7769,12 @@
       "slug": "hokuriku-electric-hokulink-leak",
       "url": "https://news.yahoo.co.jp/articles/1a2e6ef472c5df46ae574d193f1d60e20907ef27"
     },
+    "485e656a39c2c878": {
+      "at": "2026-11-12T02:59:04.932221+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（募集）",
+      "skipped": true,
+      "url": "https://j-net21.smrj.go.jp/news/bt5puv0000011gki.html"
+    },
     "4862314a29bc4e3b": {
       "at": "2026-11-11T04:18:17.139910+00:00",
       "costUsd": 0.0157,
@@ -11158,6 +11156,12 @@
       "reason": "イベント告知のみの資料です。開催概要と登壇者の一覧はありますが、新しい数字や分析結果がなく、読者の仕事・お金に直結する情報を確認できないため。",
       "skipped": true,
       "url": "https://www.nli-research.co.jp/topics_detail1/id=87268?site=nli"
+    },
+    "7899069c021e7431": {
+      "at": "2026-11-12T02:59:04.943855+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（アワード）",
+      "skipped": true,
+      "url": "https://j-net21.smrj.go.jp/news/bt5puv0000011ggy.html"
     },
     "78a1dbd86988d2bb": {
       "at": "2026-11-03T18:54:10.576716+00:00",
@@ -15800,6 +15804,17 @@
       "slug": "emperors-cup-2026-semifinal-schedule",
       "url": "https://www.jfa.jp/news/00037007/"
     },
+    "c1558f6b53760f76": {
+      "at": "2026-11-12T02:59:04.416823+00:00",
+      "costUsd": 0.0044,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "gemini-3.5-flash-lite",
+      "score": 90,
+      "section": "business",
+      "slug": "chusho-ma-kentei-2027",
+      "url": "https://j-net21.smrj.go.jp/news/bt5puv0000011dwh.html"
+    },
     "c163e5401c88db95": {
       "at": "2026-10-30T18:31:28.344172+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（会議）",
@@ -16311,14 +16326,6 @@
       "reason": "東京都の青山スタートアップアクセラレーションセンターで第23期・第4期プログラムの採択企業が決まったという案内です。採択企業の一覧が中心で、読者が申し込んだり使ったりできる制度・給付・料金の情報ではないため、対象外としました。",
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026110520"
-    },
-    "c9a193118dc8da7c": {
-      "at": "2026-10-29T02:42:04.076622+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "score": 100,
-      "section": "ai",
-      "slug": "ntt-tx-foresight-voice-mining-ai-navigation",
-      "url": "https://www.ntt-tx.co.jp/whatsnew/2026/261029.html"
     },
     "c9b79da91c9b9309": {
       "at": "2026-10-29T23:31:48.700986+00:00",
@@ -19751,6 +19758,12 @@
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026102908"
     },
+    "ff7dc34d495f1f23": {
+      "at": "2026-11-12T02:59:04.935250+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（採用）",
+      "skipped": true,
+      "url": "https://www.mhlw.go.jp/stf/kouseiroudoushou/saiyou/hijoukin/hj-jinzaikaihatsutoukatsukan04.html"
+    },
     "ffa019fe845f5dde": {
       "at": "2026-11-09T06:29:42.844737+00:00",
       "costUsd": 0.0152,
@@ -20567,42 +20580,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-10T15:32:15.790368+00:00",
-      "attempt": 1,
-      "id": "773234e7b2aca6b3",
-      "kind": "update",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "「GitHub Changelog（Copilot）は11月10日、」→ 元記事に発表日は書かれておらず、11月10日という日付は創作である",
-        "「Vercelに続き」「AI Gatewayの上乗せはありません」→ 確認済みの文脈のVercel情報に基づくため問題ないが、リードでは元記事の対象との区別が分かりにくい",
-        "「条件を満たす一部の大企業に限り」→ 元記事の「eligible enterprise customers」に対応する言い換えで、概ね正確"
-      ],
-      "score": 62,
-      "source": "github-changelog-copilot",
-      "title": "Claude Fable 5.2 in GitHub Copilot"
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-10T15:33:37.648899+00:00",
-      "attempt": 1,
-      "id": "3588ceed41552e46",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 100.8,
-        "avg_sentence": 44.8,
-        "long_share": 0.148,
-        "max_paragraph": 158,
-        "paragraphs": 12,
-        "sentences": 27
-      },
-      "score": 93,
-      "source": "openai-news",
-      "title": "Work at the Frontier: AI’s effect on freelance work"
-    },
     {
       "accepted": false,
       "at": "2026-11-10T15:34:31.914918+00:00",
@@ -28040,6 +28017,53 @@
         "見出しが48字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（ALC）",
         "読みやすさ: 文が長い（1文の平均 40.4字・60字超の文が 29% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-12T02:58:49.836274+00:00",
+      "attempt": 1,
+      "id": "c1558f6b53760f76",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 81.5,
+        "avg_sentence": 44.5,
+        "long_share": 0.273,
+        "max_paragraph": 183,
+        "paragraphs": 6,
+        "sentences": 11
+      },
+      "score": 90,
+      "source": "jnet21",
+      "title": "「中小企業M&A実務能力・倫理検定試験」来年1月実施",
+      "warnings": [
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
+        "読みやすさ: 文が長い（1文の平均 44.5字・60字超の文が 27% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-12T02:59:04.394999+00:00",
+      "attempt": 0,
+      "id": "c1558f6b53760f76",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 59.7,
+        "avg_sentence": 27.9,
+        "long_share": 0.0,
+        "max_paragraph": 103,
+        "paragraphs": 7,
+        "sentences": 15
+      },
+      "score": 90,
+      "source": "jnet21",
+      "title": "「中小企業M&A実務能力・倫理検定試験」来年1月実施",
+      "warnings": [
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
       ]
     }
   ],
