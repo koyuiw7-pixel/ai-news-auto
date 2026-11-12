@@ -15635,6 +15635,20 @@
       "skipped": true,
       "url": "https://aws.amazon.com/blogs/machine-learning/how-indegene-is-modernizing-and-scaling-enterprise-data-quality-in-life-sciences/"
     },
+    "b8785a000ca8f940": {
+      "at": "2026-11-12T13:53:32.759027+00:00",
+      "breaking": true,
+      "costUsd": 0.1019,
+      "foreignAi": true,
+      "intent": "breaking",
+      "major": true,
+      "mix": "enterprise_dev",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "score": 96,
+      "section": "ai",
+      "slug": "nvidia-ceo-transition-huang-resigns",
+      "url": "https://nvidianews.nvidia.com/news/nvidia-announces-ceo-transition"
+    },
     "b87dee658e56a539": {
       "at": "2026-10-30T06:12:30.053088+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（講演）",
@@ -21250,31 +21264,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-11T04:19:07.556495+00:00",
-      "attempt": 1,
-      "id": "08a655aae280f834",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 147.7,
-        "avg_sentence": 55.4,
-        "long_share": 0.5,
-        "max_paragraph": 159,
-        "paragraphs": 3,
-        "sentences": 8
-      },
-      "score": 88,
-      "source": "ntt-news",
-      "title": "日比谷からはじまる「光の街」づくりpowered by IOWN～「光の街」プレゼンテーションルームを開設予定～",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（HIBIYA・FORUM）",
-        "読みやすさ: 文が長い（1文の平均 55.4字・60字超の文が 50% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "読みやすさ: 段落が長い（平均 147.7字・最長 159字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-11T04:19:28.419131+00:00",
@@ -28807,6 +28796,29 @@
         "見出しが52字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（SAP・SQL・SLA）",
         "要点の1つ目（「Knowledge Catalogが6種のツール…」）が一番のニュースになっていない。題名・リードの1文目と同じ中心の事実（回答・財務数値・問題）を、リードとは違う言い方で1つ目に書く"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-12T13:53:32.738919+00:00",
+      "attempt": 1,
+      "id": "b8785a000ca8f940",
+      "kind": "ai",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 77.8,
+        "avg_sentence": 42.2,
+        "long_share": 0.125,
+        "max_paragraph": 123,
+        "paragraphs": 13,
+        "sentences": 24
+      },
+      "score": 96,
+      "source": "nvidia-newsroom",
+      "title": "NVIDIA Announces CEO Transition",
+      "warnings": [
+        "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す"
       ]
     }
   ],
