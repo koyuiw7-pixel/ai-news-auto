@@ -116,9 +116,14 @@ def host_slug(url: str) -> str:
     return re.sub(r"[^a-z0-9]+", "-", host).strip("-")[:40] or "official"
 
 
-def muse_disclaimer() -> str:
-    return ("本記事は公式発表をもとに、AIの書き手（Muse）が下書きし、サイソクの仕組みで公式ページとの事実確認・編集をして掲載したものです。"
+def muse_disclaimer(genre_slug: str = "") -> str:
+    text = ("本記事は公式発表をもとに、AIの書き手（Muse）が下書きし、サイソクの仕組みで公式ページとの事実確認・編集をして掲載したものです。"
             "制度・金額・期限は変わることがあります。手続きの前に、発表元の公式ページで最新の情報をご確認ください。")
+    # 投資・マネーの記事は短い免責文が必須（genre_focus.ADVICE_DISCLAIMER_MARK）。Muse の免責文に無く、
+    # 中身に関係なく門で落ちていた（2026-11-12「12月から変わること」v2・すかいらーくの株主優待など）
+    if genre_slug == "investment":
+        text += "特定の金融商品の売買をすすめるものではなく、投資助言ではありません。"
+    return text
 
 
 def pass_score(genre: str) -> int:
@@ -349,7 +354,7 @@ def build_article(path: Path, data: dict, fetched: list[dict]) -> tuple[str, dic
             continue
         record.update({
             "writer": "muse", "refreshMode": "editorial", "museFile": muse_format.nfc(path.name),
-            "disclaimer": muse_disclaimer(),
+            "disclaimer": muse_disclaimer(record.get("genreSlug") or ""),
             # 自動の書き直し（見出し・章の手直し・種類の型）の対象から外す（scripts/rewrite_types.py の refreshMode・section_polish の sectionsPolishedAt）
             "sectionsPolishedAt": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         })
