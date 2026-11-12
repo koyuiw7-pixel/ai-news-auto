@@ -140,6 +140,15 @@ class AcceptTest(unittest.TestCase):
         self.assertIsNotNone(acc({"body": "あ" * 1750}))
         self.assertIsNone(acc({"body": "あ" * 1820}))     # 1.3倍
 
+    def test_view_section_must_not_predict(self):
+        acc = ts.accept_for(100)
+        good = "あ" * 500 + "\n\n## サイソクの見方\n\n期限は前の制度より1か月早い。\n\n## まだ分からないこと\n- 未定"
+        self.assertIsNone(acc({"body": good}))
+        bad = "あ" * 500 + "\n\n## サイソクの見方\n\n産業競争力に影響を与える可能性があります。"
+        self.assertIn("予測", acc({"body": bad}))
+        # 見方の章の外の「可能性」は見ない（資料にある注意書きなど）
+        self.assertIsNone(acc({"body": "被害の可能性があります。" + "あ" * 500}))
+
     def test_stamp_moves_updated_at_and_keeps_title(self):
         a = art("a", 300, title="題名", searchTitle="検索の題名")
         new = dict(a, body="い" * 900)

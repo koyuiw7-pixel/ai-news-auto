@@ -246,13 +246,35 @@ def candidates(articles: list[dict], state: dict, now: datetime, retired: set[st
     return [r[-1] for r in rows], skipped
 
 
+# 「サイソクの見方」の章に書かせない言い方（資料に無い予測・見込み。2026-11-12 の1回目で「影響を与える可能性があります」が通った）
+VIEW_HEADING_RE = re.compile(r"(?m)^#{2,3}\s*サイソクの見方\s*$")
+SPECULATION_RE = re.compile(r"だろう|でしょう|見込まれ|期待され|可能性が(?:あ|高)|と予想|予測され|ではないか|はずです|に違いない|かもしれ|注目され")
+
+
+def need_chars(old_chars: int) -> int:
+    """厚くなったと言える本文の字数（+300字か1.3倍の多いほう）"""
+    return max(old_chars + 300, int(old_chars * 1.3))
+
+
+def view_section(body: str) -> str:
+    m = VIEW_HEADING_RE.search(body or "")
+    if not m:
+        return ""
+    rest = (body or "")[m.end():]
+    nxt = re.search(r"(?m)^#{2,3}\s", rest)
+    return rest[: nxt.start()] if nxt else rest
+
+
 def accept_for(old_chars: int):
-    """前より厚くなったか（品質ゲートの前に見る）。+300字か1.3倍の多いほう。水増しをさせないよう、字数の目標はプロンプトに書かない"""
-    need = max(old_chars + 300, int(old_chars * 1.3))
+    """前より厚くなったか・「サイソクの見方」に予測が無いか（品質ゲートの前に見る）。水増しをさせないよう、字数の目標はプロンプトに書かない"""
+    need = need_chars(old_chars)
 
     def _accept(rec: dict) -> str | None:
         n = chars(rec.get("body"))
         if n >= need:
+            if m := SPECULATION_RE.search(view_section(rec.get("body") or "")):
+                return (f"「サイソクの見方」に資料に無い予測・見込み・決まり文句（「{m.group(0)}」）があります。"
+                        "この記事の事実から言えること（前との違い・見落としやすい条件・だれに影響が大きいか）だけにしてください")
             return None
         return (f"本文が {n}字で、前の版（{old_chars}字）からほとんど厚くなっていません。資料にある数字・対象の条件・期限・窓口・"
                 f"判断の目安（〜の人は〜）を足してください。資料に無いこと・くり返し・一般論で長くしないこと")
@@ -372,6 +394,11 @@ def main() -> int:
             status, reason = classify(rep)
             record(state, slug, status, reason, now, before=before)
             log(f"   [keep] 今の版のまま（{STATUS_LABELS.get(status, status)}: {reason[:160]}）")
+        elif chars(new.get("body")) < need_chars(before):
+            # 書き出す前の後処理（中身のない章の削除など）で短くなった。前より厚いと言えないので保存しない
+            record(state, slug, "not-thicker", f"後処理のあと {chars(new.get('body'))}字（{need_chars(before)}字に届かない）", now, before=before)
+            log(f"   [keep] 今の版のまま（後処理のあと {chars(new.get('body'))}字で、厚くなったと言えない）")
+            new = None
         else:
             stamp(new, now, before)
             write_article(slug, new)
