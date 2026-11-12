@@ -837,11 +837,53 @@ def bad_expressions(text: str) -> list[str]:
     return out
 
 
+_OP_TOKEN_RE = re.compile(rf"({_OP_NUM})({_OP_UNIT})|([×x*÷/+\-−])")
+
+
+def _expression_ok(q: "Qty", verified: list[float], text: str) -> bool:
+    """「A＋B×2＝C」「C＋D＝E」のように式を書いた計算で、q がその答えになっていて、
+    式の数字がすべて確かめた数字・文にある小さな数（お金・割合でないもの）・前の式の答えのどれかで、
+    式の答えが合っているか（2026-11-12 障害基礎年金の正しい2段の計算が落ちていたため。台帳 A64 の続き）"""
+    t = nfkc(text or "")
+    if not t:
+        return False
+    known = list(verified)
+    for m in EXPR_RE.finditer(t):
+        got = _expr_value(m.group("left"))
+        want = parse_jp(m.group("right"))
+        if got is None or not want:
+            continue
+        # 端数は1円（1単位）か0.1%まで（四捨五入の分だけ）。それ以上ずれる式は答えとして認めない
+        if abs(got - want) > max(1.0, 0.001 * abs(want)):
+            continue
+        ok = True
+        for num, unit, op in _OP_TOKEN_RE.findall(m.group("left")):
+            if not num:
+                continue
+            v = parse_jp(num)
+            if any(abs(v - k) <= 1e-9 * max(1.0, abs(k)) for k in known):
+                continue
+            if unit not in ("円", "ドル", "%") and 0 < v <= SMALL_COUNT_MAX:
+                continue
+            ok = False
+            break
+        if not ok:
+            continue
+        known.append(want)
+        # 式の答えそのもの、またはそのあとの文で同じ答えを使ったところ
+        if abs(want - q.value) <= 1e-9 * max(1.0, abs(q.value)) and m.start() <= q.start:
+            return True
+    return False
+
+
 def derived(q: "Qty", verified: list[float], text: str = "") -> bool:
     """記事の数字 q が、「計算」「試算」と分かる書き方の文で、確かめた数字（verified）どうし（か、文にある小さな数）の
-    1回の足し算・引き算・かけ算・割り算、または同じ単位の数字の合計で出せるか"""
+    1回の足し算・引き算・かけ算・割り算、または同じ単位の数字の合計で出せるか。
+    式を書いた計算なら、2段の計算（A＋B×2）や前の式の答えを使う計算も、答えが合っていれば認める"""
     if not CALC_LABEL_RE.search(q.sentence or ""):
         return False
+    if text and _expression_ok(q, verified, text):
+        return True
     # 同じ文と、その直前（2文くらい）の数字を材料にする
     window = q.sentence
     if text:
