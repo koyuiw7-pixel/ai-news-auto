@@ -1,0 +1,195 @@
+{
+  "slug": "sompo-systems-knowledge-graph-ai-maintenance",
+  "sourceType": "web",
+  "sourceUrl": "https://cloud.google.com/blog/ja/products/ai-machine-learning/sompo-systems-streamlines-maintenance-through-knowledge-graphs-and-ai-development/",
+  "sourceName": "Google Cloud 公式ブログ（日本）",
+  "title": "基幹システムの影響調査、約1週間から1日以内へ　SOMPOシステムズがAIとグラフで検証",
+  "seoTitle": "SOMPOシステムズ：ナレッジグラフで保守を効率化",
+  "threadsPost": "基幹システムの保守に関わる開発者の人に、押さえておきたい話です。\n\nSOMPOシステムズが、Java化した基幹システムのコードをグラフにしました。\n影響調査は約1週間から1日以内に縮む見通しです。\n\n開発や保守で、AIに任せる範囲はどこまでなら許せますか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "line",
+      "question": "開発や保守で、AIに任せる範囲はどこまでなら許せますか？"
+    },
+    {
+      "pattern": "expert",
+      "question": "AIコーディングツール、仕事でふだん何を使っていますか？"
+    },
+    {
+      "pattern": "future",
+      "question": "システム保守の仕事は、これから減ると感じますか、形が変わると感じますか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "explainer",
+  "lede": "SOMPOシステムズが、基幹システムの影響調査を約1週間（40時間）から1日以内（4〜8時間）に縮められる見通しを得ました。コードをSpanner Graphでグラフにし、AIエージェントがたどる方法で、Google Cloudとの検証プログラムで確かめた結果です。AI開発環境は2026年10月から全社への展開が始まり、グラフの本番運用はこれから整える段階です。",
+  "description": "SOMPOシステムズは、損保ジャパンの基幹システムSOMPO-MIRAIのコードをSpanner Graphでグラフ化し、AIエージェントによる影響調査を約1週間から1日以内に縮められる見通しを得ました。",
+  "keywords": [
+    "SOMPOシステムズ",
+    "ナレッジグラフ",
+    "Spanner Graph",
+    "SOMPO-MIRAI",
+    "Cloud Workstations",
+    "Claude Code",
+    "影響調査",
+    "COBOL Java 刷新",
+    "AI駆動開発",
+    "Gemini platform"
+  ],
+  "tags": [
+    "生成AI",
+    "AIエージェント",
+    "Google Cloud",
+    "ナレッジグラフ",
+    "基幹システム"
+  ],
+  "highlights": [
+    "アプリ担当外の基盤エンジニアの影響調査が、約1週間（40時間）から1日以内（4〜8時間）に縮む見通し",
+    "JavaコードとデータディクショナリをSpanner Graphで1つのグラフにつなぎ、AIエージェントが探索する",
+    "AI開発環境は2026年10月から全社展開が始まり、すでに40チームで約330台が稼働"
+  ],
+  "timetable": [],
+  "verdict": null,
+  "workMoney": {
+    "relevance": "medium",
+    "points": [
+      "基幹システムの保守や開発に関わる人は、コードを先にグラフ化してAIに探索させる方法を参考にできます。",
+      "トークン（AIが文字を数える単位）の消費を抑える狙いも語られており、大規模コードでAIを使う費用を考える材料になります。",
+      "全社でAI開発環境を配るときは、セキュリティ基準を満たす構成を先に確かめる手順が参考になります。"
+    ]
+  },
+  "body": "この取り組みは、損保ジャパンの基幹システムの保守を担う開発者や基盤エンジニアに関係する話です。\n\nSOMPO-MIRAI は、損保ジャパンの個人向け保険商品を扱う基幹システム（会社の中核業務を支える仕組み）です。COBOL（古くからある業務用の言語）中心の旧来のアプリケーションを Java に刷新するプロジェクトとして、段階的にリリースされています。\n\n開発と保守を担うＳＯＭＰＯシステムズが、この大規模なコードの保守にAIを取り入れようとしています。Google Cloud Japan の公式ブログが、担当者への取材をもとに伝えました。\n\n## 影響調査は有識者の勘所に頼ってきた\n\n「この改修はどのプログラムまで影響するのか」。保守では、こうした問いに有識者の経験が答えてきました。\n\n有識者は経験から検索語を選び、ソースコードの grep（文字列検索）や設計書で影響範囲を絞り込みます。担当者は有識者に頼る場面が多くありました。アプリの構造を知らない基盤チームにとっては、コードを追うこと自体が負担でした。\n\n武井様は、損保業務のシステムは「情報システムの中でもいちばん難しいと言われる」と話します。商品の複雑さがそのままシステムに引き継がれるためです。\n\n## 影響調査は約40時間から4〜8時間に\n\nGoogle Cloud のエンジニアと短期間で集中的に検証する Tech Acceleration Program（TAP）で、SOMPO-MIRAI のあるサブシステムを題材にしました。\n\nJava コードの依存関係を Spanner Graph（Google Cloud のグラフデータベース機能）でグラフにしました。さらに、データ項目の定義をまとめたデータ ディクショナリとも結びつけています。\n\nコードがどのテーブルにアクセスし、その物理項目がディクショナリのどれに当たるかまで、グラフ上でつながります。さらに、論理モデルで何と呼ぶのかまでがつながります。\n\n結果は次のとおりです。\n\n- 従来: アプリ担当外の基盤エンジニアの影響調査に約1週間（40時間）\n- 今回: 1日以内（4〜8時間）に縮められる見通し\n\n参加したエンジニアのアンケートにも、1週間程度かかっていた調査が1日程度になると感じた、という声が寄せられました。基盤チームのメンバーが、過去にアプリの調査を頼まれた内容を自然言語で問いかけたところ、すぐに答えが返ってきたといいます。\n\nなお、これは「見通し」です。実運用で確定した数字ではありません。\n\n## 検索で済ませず、グラフにした理由\n\nAI駆動開発のトライアルでは、AIが質問のたびにコード全体を読みにいきました。中原様は、これではトークン（AIが文字を数える単位）を無駄に使うと話します。関係性をあらかじめ作って検索したほうが、量は少なくて済むという考えです。\n\n嶋﨑様は、単純な RAG（検索結果を渡して答えさせる方式）やファインチューニング（追加学習）では不十分だと説明しました。正確な依存関係を、ハルシネーション（AIがもっともらしい誤りを答えること）なく捉えられないためです。確実な事実としての関係をグラフに構造化し、AIに探索させる方式を採ったわけです。\n\nグラフ化には、Google Cloud 側が用意した Java の解析ツールを、Claude Code でカスタマイズして使いました。中原様は「あっという間にできました」と話しています。\n\n選んだ理由として、Spanner はメンテナンス フリーで、バージョンアップを考えなくてよい点が挙げられました。また、Cloud Workstations や Gemini platform（旧 Vertex AI）をすでに使っている点も理由です。\n\nTAP では Cloud Run や Spanner を実環境で動かせることも確かめています。\n\n## 40チーム約330台、AI開発環境は全社へ\n\nもう1つの柱が、AIを安全に使える開発環境です。Cloud Workstations（クラウド上の開発用の作業環境）を共通の開発環境にしました。\n\n金融機関には厳しいセキュリティ基準があります。ＳＯＭＰＯシステムズは、Cloud Workstations と Google Cloud の IAM（アクセス権の管理）や認証、VPC Service Controls などで基準を満たせると確かめました。その結果、社内の承認を得ました。\n\nAI提供元のAPIに直接接続すると、ガバナンスの手続きや検証に時間がかかります。Gemini platform 経由で使えば処理が Google Cloud の中にとどまります。\n\nそのため社内基準でも承認が得られた、と嶋﨑様は述べています。Claude のモデルは Gemini platform を経由して利用する構成で、Gemini などほかのモデルも同じ環境から選べます。\n\n展開の状況は次のとおりです。\n\n- 2026年6月から: 希望するチームに先行提供\n- 2026年9月中旬: 全社向けの説明会\n- 2026年10月: AI活用推進室が正式な組織として発足し、申請に応じてアカウントを払い出し\n- 現在: 40チームで約330台が稼働\n- 対象: SOMPO-MIRAI の Java、COBOL、VB、.NET の開発者まで拡大。目標は社員全員とパートナー\n\nGoogle Cloud の別の事例では、KDDI がAIアプリの応答時間を自動評価で38%短縮しています（[AIの応答が38%速く　KDDIの「Buffmee」が自動評価で目標達成](/articles/kddi-buffmee-rag-latency-38-percent)）。\n\n## まだ分からないこと\n\n- 変更の差分をグラフに取り込む仕組みは未整備で、今は取り込みにも時間がかかります。\n- 設計書などのドキュメントとソースの対応をどう取るかは、これからの検討事項です。\n\n## 開発環境を広げる側の課題と備え\n\n利用者からは、ハーネス（AIを動かす枠組み）の作り方や、自社のリポジトリ（ソースの保管場所）につなげられないかといった問い合わせが届いています。VB のチームは SOMPO-MIRAI とは別の場所にリポジトリを持つなど、つなぎ先はまだ一部に限られます。長く Eclipse を使ってきた Java の開発者には、VS Code の画面に慣れてもらう必要もあります。\n\n嶋﨑様のチームは、サンプル アプリを含むゴールデンパス（推奨の進め方）を用意し、説明会を重ねています。中原様は、分厚い開発標準やガイドラインを AI が読める形に圧縮する知識基盤も整えたいと話しています。",
+  "easy": "## ひとことで言うと\n\nSOMPOシステムズは、保険の基幹システムのコードをグラフという形に整理し、AIに調べさせる検証をしました。問題が起きたときの影響調査が、約1週間から1日以内に縮む見通しです。\n\n## コードを「地図」にしてAIに歩かせる\n\n基幹システムのコードは大規模で、どこに何が影響するかを知っているのは一部のベテランでした。\n\nそこでJavaコードの依存関係と、データ項目の定義集（データ ディクショナリ）を1つのグラフにつなぎました。グラフは、関係を線で結んだ地図のようなものです。AIエージェント（自分で手順を進めるAI）がこの地図をたどって調べます。\n\n結果として、アプリ担当外の基盤エンジニアが行う調査は、約40時間から4〜8時間に縮められる見通しです。\n\n## 開発環境も全社へ\n\nAIを安全に使える開発環境も整えました。2026年10月から全社への展開が始まっています。すでに40チームで約330台が動いています。\n\n一方で、コードの変更をグラフに取り込む仕組みなど、課題も残っています。",
+  "channel": "Google Cloud 公式ブログ（日本）",
+  "channelId": "",
+  "channelSlug": "google-cloud-blog-ja",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "ＳＯＭＰＯシステムズ：基幹システムコードの保守をナレッジグラフと AI 開発で大幅に効率化",
+  "publishedAt": "2026-11-12T01:00:00+00:00",
+  "generatedAt": "2026-11-12T01:07:44.187053+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/sompo-systems-knowledge-graph-ai-maintenance-ccedd688.jpg",
+  "model": "claude:sonnet",
+  "affiliates": [],
+  "newsType": "research",
+  "faq": [
+    {
+      "q": "ＳＯＭＰＯシステムズのAI活用推進室はどんな体制ですか？",
+      "a": "2026年10月に正式な組織として発足しました。AI for Strategy、AI for Dev、AI for Knowledge、AI for Biz の4チームで構成され、今回の3名は AI for Dev の担当です。"
+    },
+    {
+      "q": "ＳＯＭＰＯシステムズは以前からAIで開発の工数を減らしていましたか？",
+      "a": "あるプロジェクトで、Gemini 1.5 世代のモデルを使った Gemini Code Assist を実装と単体テストに使い、工数を20〜25%減らしました。この成果が社内での活用の訴えにつながっています。"
+    }
+  ],
+  "todayActions": [
+    "自社の保守で、影響調査に何時間かかっているかを担当ごとに洗い出す",
+    "AIが質問のたびにコード全体を読んでいないか、トークンの消費量を確認する",
+    "AI利用で社内のセキュリティ基準を満たす構成（クラウド内で閉じる等）を情報システム部門に確認する"
+  ],
+  "relatedSlugs": [
+    "kddi-buffmee-rag-latency-38-percent"
+  ],
+  "qualityScore": 88,
+  "factSources": [
+    {
+      "label": "過去記事",
+      "name": "サイソクの過去記事",
+      "url": "",
+      "checkedAt": "2026-11-07"
+    }
+  ],
+  "sourcePublishedAt": "2026-11-12T01:00:00+00:00",
+  "detectedAt": "2026-11-12T01:01:02+00:00",
+  "speedMinutes": 13,
+  "layout": "noir",
+  "summaryLine": "アプリ担当外の基盤エンジニアの影響調査が、約1週間（40時間）から1日以内（4〜8時間）に縮む見通し",
+  "insight": [
+    {
+      "text": "影響調査の4〜8時間は「見通し」の数字で、検証は SOMPO-MIRAI のあるサブシステムを題材にしたものです。",
+      "source": "https://cloud.google.com/blog/ja/products/ai-machine-learning/sompo-systems-streamlines-maintenance-through-knowledge-graphs-and-ai-development/"
+    },
+    {
+      "text": "AI提供元のAPIに直接つなぐとガバナンス手続きに時間がかかるため、Gemini platform経由で「Google Cloud の中に閉じて」使う形を選んだ。",
+      "source": "https://cloud.google.com/blog/ja/products/ai-machine-learning/sompo-systems-streamlines-maintenance-through-knowledge-graphs-and-ai-development/"
+    }
+  ],
+  "cause": {
+    "text": "影響調査は有識者の勘所に頼っていて、基盤チームにはコードを追うこと自体が負担だった。AIが質問のたびにコード全体を読むとトークンを無駄にするため、依存関係をグラフにしておく方式を選んだ。",
+    "status": "background",
+    "source": "https://cloud.google.com/blog/ja/products/ai-machine-learning/sompo-systems-streamlines-maintenance-through-knowledge-graphs-and-ai-development/"
+  },
+  "worries": [
+    {
+      "q": "社内の機密コードをAIに読ませても外に出ない？",
+      "a": "AI提供元のAPIに直接つなぐと社内基準の手続きに時間がかかるため、Gemini platform経由で使い、処理をGoogle Cloudの中にとどめる構成にした。Cloud Workstations、IAM、認証、VPC Service Controlsなどで基準を満たせると確かめ、社内の承認を得た。",
+      "source": "https://cloud.google.com/blog/ja/products/ai-machine-learning/sompo-systems-streamlines-maintenance-through-knowledge-graphs-and-ai-development/",
+      "action": "AIを社内で使うなら、クラウド内で閉じる構成が社内基準を満たすかを情報システム部門に確かめる"
+    },
+    {
+      "q": "影響調査は本当に1日で終わるようになる？",
+      "a": "TAPの検証で、基盤エンジニアの影響調査が約1週間（40時間）から1日以内（4〜8時間）に縮められる見通しが立った。参加者のアンケートでも1日程度になると感じたという声があった。",
+      "source": "https://cloud.google.com/blog/ja/products/ai-machine-learning/sompo-systems-streamlines-maintenance-through-knowledge-graphs-and-ai-development/",
+      "action": "影響調査に何時間かかっているかを担当ごとに洗い出し、短縮の効果を測る材料にする"
+    },
+    {
+      "q": "AIは誤った影響範囲を答えたりしない？",
+      "a": "単純なRAGやファインチューニングでは正確な依存関係をハルシネーションなく捉えられないため、依存関係を Spanner Graph で構造化し、AIにそのグラフをたどらせる方式を採った。",
+      "source": "https://cloud.google.com/blog/ja/products/ai-machine-learning/sompo-systems-streamlines-maintenance-through-knowledge-graphs-and-ai-development/",
+      "action": "AIの答えが実際のコードの依存関係に沿っているかを、担当者が確かめる習慣をつける"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "1日で済むのは見通し、まだ検証の数字",
+    "cause": "なぜ、AIとグラフを組み合わせたのか",
+    "worries": "社内のAI利用、安全性と使える時期は？"
+  },
+  "depthAt": "2026-11-12T01:09:43+00:00",
+  "bodyImages": [
+    {
+      "src": "https://ai-tech-express.jp/img/sompo-systems-knowledge-graph-ai-maintenance-fig1-464c2a62.jpg",
+      "width": 1200,
+      "height": 675,
+      "kind": "dense",
+      "credit": "Google Cloud",
+      "sourceUrl": "https://cloud.google.com/blog/ja/products/ai-machine-learning/sompo-systems-streamlines-maintenance-through-knowledge-graphs-and-ai-development/",
+      "original": "https://storage.googleapis.com/gweb-cloudblog-publish/images/01-spanner.max-1300x1300.png"
+    },
+    {
+      "src": "https://ai-tech-express.jp/img/sompo-systems-knowledge-graph-ai-maintenance-fig2-023cfb5a.jpg",
+      "width": 1200,
+      "height": 675,
+      "kind": "dense",
+      "credit": "Google Cloud",
+      "sourceUrl": "https://cloud.google.com/blog/ja/products/ai-machine-learning/sompo-systems-streamlines-maintenance-through-knowledge-graphs-and-ai-development/",
+      "original": "https://storage.googleapis.com/gweb-cloudblog-publish/images/03-workstations.max-1300x1300.png"
+    }
+  ],
+  "imageCredit": {
+    "kind": "official",
+    "org": "Google Cloud",
+    "provider": "Google Cloud 公式ブログ（日本）",
+    "sourceUrl": "https://cloud.google.com/blog/ja/products/ai-machine-learning/sompo-systems-streamlines-maintenance-through-knowledge-graphs-and-ai-development/",
+    "original": "https://storage.googleapis.com/gweb-cloudblog-publish/images/sompo_1.max-2500x2500.jpg",
+    "width": 1200,
+    "height": 591,
+    "at": "2026-11-12T01:11:25+00:00"
+  },
+  "heroOk": false,
+  "imageFocus": {
+    "x": 0.508,
+    "y": 0.544,
+    "box": [
+      0.084,
+      0.165,
+      0.931,
+      0.924
+    ],
+    "ar": 2.0305,
+    "src": "https://ai-tech-express.jp/img/sompo-systems-knowledge-graph-ai-maintenance-ccedd688.jpg"
+  }
+}
