@@ -12249,6 +12249,12 @@
       "skipped": true,
       "url": "https://www.ipa.go.jp/shiken/2026/cbt-202701-yotei.html"
     },
+    "8518d94902958f06": {
+      "at": "2026-11-12T07:59:44.532068+00:00",
+      "reason": "public-interest: 資料が短い 1098字",
+      "skipped": true,
+      "url": "https://www.tokyo-gas.co.jp/news/press/20261112-02.html"
+    },
     "852d5d7ce61f0e5a": {
       "at": "2026-11-01T18:15:54.421755+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -14416,6 +14422,17 @@
       "reason": "prefilter: 不動産の話題ではない",
       "skipped": true,
       "url": "https://lifull.com/news/51028/"
+    },
+    "a785bc3cfa32d5e7": {
+      "at": "2026-11-12T08:01:45.245741+00:00",
+      "costUsd": 0.0091,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "claude:sonnet",
+      "score": 88,
+      "section": "ai",
+      "slug": "knowledge-catalog-semantic-model-ga",
+      "url": "https://cloud.google.com/blog/ja/products/data-analytics/expanded-semantic-model-support-in-knowledge-catalog/"
     },
     "a795a8d1f44513ae": {
       "at": "2026-11-09T09:03:26.314967+00:00",
@@ -21097,57 +21114,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-11T04:18:08.599620+00:00",
-      "attempt": 0,
-      "id": "4862314a29bc4e3b",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 69.9,
-        "avg_sentence": 39.9,
-        "long_share": 0.036,
-        "max_paragraph": 107,
-        "paragraphs": 16,
-        "sentences": 28
-      },
-      "score": 88,
-      "source": "paypay",
-      "title": "PayPay銀行にお金を預けたまま、「PayPay」に必要な不足分だけ自動チャージして支払いと送金ができる！「PayPay残高連携」を提供開始",
-      "warnings": [
-        "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-11T04:18:52.124318+00:00",
-      "attempt": 1,
-      "id": "08a655aae280f834",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文「対象はNTTグループのプロジェクトに関心を持つ関係者などで」→ 元記事では対象はNTTグループ社員に限る完全招待制であり、関心のある関係者が対象とする記述はない。対象者の取り違え。",
-        "本文「NTT R&D FORUM 2026において一般向けに展示される予定」→ 元記事は「展示予定」としか書いておらず、一般向けに公開されるとは書かれていない。"
-      ],
-      "readability": {
-        "avg_paragraph": 151.0,
-        "avg_sentence": 64.7,
-        "long_share": 0.571,
-        "max_paragraph": 159,
-        "paragraphs": 3,
-        "sentences": 7
-      },
-      "score": 60,
-      "source": "ntt-news",
-      "title": "日比谷からはじまる「光の街」づくりpowered by IOWN～「光の街」プレゼンテーションルームを開設予定～",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（HIBIYA・FORUM）",
-        "読みやすさ: 文が長い（1文の平均 64.7字・60字超の文が 57% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "読みやすさ: 段落が長い（平均 151.0字・最長 159字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-11T04:19:07.556495+00:00",
@@ -28655,6 +28621,56 @@
       "warnings": [
         "初めて出たところで言い換えていない略語（JFA）",
         "読みやすさ: 文が長い（1文の平均 43.5字・60字超の文が 23% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-12T08:01:14.179876+00:00",
+      "attempt": 1,
+      "id": "a785bc3cfa32d5e7",
+      "kind": "ai",
+      "model": "claude:sonnet",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 116.4,
+        "avg_sentence": 46.6,
+        "long_share": 0.2,
+        "max_paragraph": 211,
+        "paragraphs": 16,
+        "sentences": 40
+      },
+      "score": 90,
+      "source": "google-cloud-blog-ja",
+      "title": "すでに信頼しているセマンティック モデルを接続する 1 つのコンテキスト グラフに基づく、エージェントのグラウンディング",
+      "warnings": [
+        "見出しが52字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（SAP・SQL・SLA）",
+        "要点の1つ目（「Knowledge Catalogが6種のツール…」）が一番のニュースになっていない。題名・リードの1文目と同じ中心の事実（回答・財務数値・問題）を、リードとは違う言い方で1つ目に書く"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-12T08:01:45.210015+00:00",
+      "attempt": 0,
+      "id": "a785bc3cfa32d5e7",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 94.2,
+        "avg_sentence": 42.8,
+        "long_share": 0.114,
+        "max_paragraph": 143,
+        "paragraphs": 20,
+        "sentences": 44
+      },
+      "score": 88,
+      "source": "google-cloud-blog-ja",
+      "title": "すでに信頼しているセマンティック モデルを接続する 1 つのコンテキスト グラフに基づく、エージェントのグラウンディング",
+      "warnings": [
+        "見出しが52字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（SAP・SQL・SLA）",
+        "要点の1つ目（「Knowledge Catalogが6種のツール…」）が一番のニュースになっていない。題名・リードの1文目と同じ中心の事実（回答・財務数値・問題）を、リードとは違う言い方で1つ目に書く"
       ]
     }
   ],
