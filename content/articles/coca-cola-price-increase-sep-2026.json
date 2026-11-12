@@ -62,13 +62,13 @@
   "videoTitle": "コカ・コーラの値上げ2026、9月1日出荷分から希望小売価格が最大18.7%上昇",
   "publishedAt": "2026-11-12T12:52:38.248668+00:00",
   "generatedAt": "2026-11-12T12:54:59.034749+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/coca-cola-price-increase-sep-2026-figure-7876c0c4.jpg",
   "model": "anthropic-api:claude-haiku-5-5",
   "affiliates": [],
   "newsType": "pricing",
   "todayActions": [
-    "よく買う商品の名前と今の店頭価格を、メモか写真で控えておく",
-    "9月以降に同じ商品の価格を見比べて、上がり幅を確かめる"
+    "対象の容器の種類を公式の発表文で見て、自分がよく買う商品が対象か確かめる",
+    "よく買う商品の今の店頭価格を、商品名と一緒にメモか写真で残しておく"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -91,5 +91,101 @@
   "qualityScore": 92,
   "detectedAt": "2026-11-12T12:55:53+00:00",
   "layout": "noir",
-  "summaryLine": "9月1日出荷分から、PETボトル・缶などの主要カテゴリー製品が値上げの対象になります。"
+  "summaryLine": "9月1日出荷分から、PETボトル・缶などの主要カテゴリー製品が値上げの対象になります。",
+  "insight": [
+    {
+      "text": "ニュースリリースの情報は発表日（2026年05月25日）現在のもので、最新の情報と異なる場合があると明記されています。",
+      "source": "https://www.ccbji.co.jp/news/detail.php?id=1850"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "コカ･コーラ ボトラーズジャパン ニュースリリース（価格改定に関するお知らせ）",
+      "url": "https://www.ccbji.co.jp/news/detail.php?id=1850",
+      "source": "https://www.ccbji.co.jp/news/detail.php?id=1850",
+      "howTo": [
+        "ニュース",
+        "ニュースリリース",
+        "価格改定に関するお知らせ"
+      ],
+      "note": "ニュースリリースに記載された情報は発表日現在のもので、最新の情報と異なる場合があるとされています。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "対象の容器の種類を公式の発表文で見て、自分がよく買う商品が対象か確かめる",
+      "source": "https://www.ccbji.co.jp/news/detail.php?id=1850",
+      "steps": [
+        "対象製品の欄で容器の種類を見る",
+        "「一部製品除く」の注意も読む",
+        "商品名の一覧はないので店頭で確かめる"
+      ],
+      "url": "https://www.ccbji.co.jp/news/detail.php?id=1850"
+    },
+    {
+      "action": "よく買う商品の今の店頭価格を、商品名と一緒にメモか写真で残しておく",
+      "source": "https://www.ccbji.co.jp/news/detail.php?id=1850",
+      "steps": [
+        "よく買う商品の名前を書き出す",
+        "それぞれの今の店頭価格と日付を書く",
+        "9月以降に同じ商品で価格を比べる"
+      ]
+    }
+  ],
+  "cause": {
+    "text": "原材料や資材、エネルギー価格の高騰に加え、為替相場の変動や国際情勢の影響などにより、事業活動にかかるコストの上昇が長期化しています。企業努力のみでは吸収することが困難なため、改めて価格改定を実施するとしています。",
+    "status": "stated",
+    "source": "https://www.ccbji.co.jp/news/detail.php?id=1850"
+  },
+  "worries": [
+    {
+      "q": "いつもの飲み物も値上がりする？",
+      "a": "対象はPETボトル製品（小型・中型・大型）、缶製品（缶、ボトル缶）、パウチ製品、ハンディパック製品、袋入り製品です。",
+      "source": "https://www.ccbji.co.jp/news/detail.php?id=1850",
+      "action": "よく買う商品の名前を書き出し、対象の容器かどうかを9月以降の店頭表示で確かめる。"
+    },
+    {
+      "q": "いつから値上がりするの？",
+      "a": "2026年9月1日（火）に出荷される分から新しい価格になります。改定日は「出荷ベース」と書かれています。",
+      "source": "https://www.ccbji.co.jp/news/detail.php?id=1850",
+      "action": "9月以降に、よく買う商品の店頭価格が変わったかを今の価格メモと比べて確かめる。"
+    },
+    {
+      "q": "どのくらい上がるの？",
+      "a": "メーカー希望小売価格で＋3.2〜18.7％の改定です。この数字は発表日現在の情報です。",
+      "source": "https://www.ccbji.co.jp/news/detail.php?id=1850",
+      "action": "よく買う商品を書き出し、9月以降に同じ商品の価格を比べて上がり幅を確かめる。"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "発表の数字は発表日時点のもの",
+    "cause": "なぜ値上げするのか、会社の説明",
+    "steps": "9月の前に、今の値段を控える",
+    "desk": "原文は公式サイトのニュースリリースで",
+    "worries": "うちの買う商品も上がる？いつから？"
+  },
+  "depthAt": "2026-11-12T13:07:24+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "最大18.7%",
+    "label": "9月1日出荷分から",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-12T13:12:13+00:00"
+  },
+  "imageFocus": {
+    "x": 0.461,
+    "y": 0.53,
+    "box": [
+      0.016,
+      0.06,
+      0.906,
+      1.0
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/coca-cola-price-increase-sep-2026-figure-7876c0c4.jpg"
+  }
 }

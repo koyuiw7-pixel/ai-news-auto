@@ -65,14 +65,13 @@
   "videoTitle": "ロッテの値上げ2026、雪見だいふくなどアイス35品とガム18品が最大16%",
   "publishedAt": "2026-11-12T12:59:24.996881+00:00",
   "generatedAt": "2026-11-12T13:00:24.176330+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/lotte-gum-ice-price-hike-2026-figure-5b95a107.jpg",
   "model": "anthropic-api:claude-haiku-5-5",
   "affiliates": [],
   "newsType": "pricing",
   "todayActions": [
-    "よく買うガムとアイスの、いまの店頭価格を控えておく（後で店ごとの差を比べられます）",
-    "買っているガムが、キシリトールやACUOなど対象のボトル・パウチに当たるか確かめる",
-    "雪見だいふくやクーリッシュなど、買っているアイスが出荷時期のどれに入るか確かめる"
+    "アイスの対象品が、出荷時期のどれに入るか一覧で確かめる",
+    "ガムの対象品が、ボトルやパウチに当たるか確かめる"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -107,5 +106,113 @@
   "detectedAt": "2026-11-12T13:01:36+00:00",
   "searchTitle": "ロッテのガムとアイス値上げ、いつから？　ガムは9月1日出荷分",
   "layout": "noir",
-  "summaryLine": "ロッテがガム18品とアイス35品の出荷価格を値上げ、ガムは9月1日出荷分から"
+  "summaryLine": "ロッテがガム18品とアイス35品の出荷価格を値上げ、ガムは9月1日出荷分から",
+  "insight": [
+    {
+      "text": "値上げ日は「2026年9月1日（火）弊社出荷分より」と書かれ、店頭の販売日ではなく、ロッテの出荷日が基準になっています。",
+      "source": "https://www.lotte.co.jp/info/news/detail/20260817165915.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "株式会社ロッテ「価格改定のお知らせ」（ガム・2026年8月18日発表）",
+      "url": "https://www.lotte.co.jp/info/news/detail/20260817165915.html",
+      "source": "https://www.lotte.co.jp/info/news/detail/20260817165915.html",
+      "howTo": [
+        "トップ",
+        "ニュースリリース",
+        "価格改定のお知らせ"
+      ],
+      "note": "対象品の一覧は「菓子価格改定商品」の欄にあります。"
+    },
+    {
+      "name": "株式会社ロッテ「価格改定のお知らせ」（アイス・2026年6月19日発表）",
+      "url": "https://www.lotte.co.jp/info/news/detail/20260619085706.html",
+      "source": "https://www.lotte.co.jp/info/news/detail/20260619085706.html",
+      "howTo": [
+        "トップ",
+        "ニュースリリース",
+        "価格改定のお知らせ"
+      ],
+      "note": "アイスの品目は「市販用アイスクリーム価格改定商品一覧表」にあります。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "アイスの対象品が、出荷時期のどれに入るか一覧で確かめる",
+      "source": "https://www.lotte.co.jp/info/news/detail/20260619085706.html",
+      "steps": [
+        "アイスの発表ページを開く",
+        "「市販用アイスクリーム価格改定商品一覧表」を開く",
+        "買っているアイスの品名と出荷時期を見る"
+      ],
+      "url": "https://www.lotte.co.jp/info/news/detail/20260619085706.html"
+    },
+    {
+      "action": "ガムの対象品が、ボトルやパウチに当たるか確かめる",
+      "source": "https://www.lotte.co.jp/info/news/detail/20260817165915.html",
+      "steps": [
+        "ロッテのニュースリリースで「価格改定のお知らせ」を開く",
+        "「菓子価格改定商品」の欄で買っているガムを探す"
+      ],
+      "url": "https://www.lotte.co.jp/info/news/detail/20260817165915.html"
+    }
+  ],
+  "cause": {
+    "text": "ロッテは、人件費・物流費・光熱費の高騰と、原料資材の価格が依然として高いことを理由にあげています。これまでの合理化や効率化でコスト増を吸収してきましたが、これ以上は難しいと説明しています。",
+    "status": "stated",
+    "source": "https://www.lotte.co.jp/info/news/detail/20260817165915.html"
+  },
+  "worries": [
+    {
+      "q": "ガムの値上げはいつから始まる？",
+      "a": "ガムは2026年9月1日（火）弊社出荷分より上がると書かれています。日付は店頭の販売日ではなく、ロッテの出荷日が基準です。",
+      "source": "https://www.lotte.co.jp/info/news/detail/20260817165915.html",
+      "action": "よく買うガムの店頭価格を今のうちに控えて、値上げ後と比べられるようにしておく。"
+    },
+    {
+      "q": "アイスはいつから上がるの？",
+      "a": "アイスは出荷時期が3回に分かれています。2026年7月1日（水）出荷分が2品、9月1日（火）出荷分が30品、10月1日（木）出荷分が3品です。",
+      "source": "https://www.lotte.co.jp/info/news/detail/20260619085706.html",
+      "action": "買っているアイスが、どの出荷時期の一覧に載っているか発表ページで確かめる。"
+    },
+    {
+      "q": "自分が買っている商品は対象になる？",
+      "a": "対象は、菓子18品（ガム）と市販用アイスクリーム35品です。対象の品目は、それぞれの発表の一覧で確かめられます。",
+      "source": "https://www.lotte.co.jp/info/news/detail/20260817165915.html",
+      "action": "買っているガムとアイスの品名を、発表ページの一覧と照らし合わせる。",
+      "actionSource": "https://www.lotte.co.jp/info/news/detail/20260619085706.html"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "ガムは「菓子」の欄で探す",
+    "cause": "なぜ値上げするのか、会社の説明",
+    "steps": "今日やる確認は、ガムとアイスで別のページ",
+    "desk": "発表ページの場所と、見る順番",
+    "worries": "いつから上がる？自分の商品は対象？"
+  },
+  "depthAt": "2026-11-12T13:06:18+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "ロッテのガム18品とアイス35品が値上げ",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-12T13:10:43+00:00"
+  },
+  "imageFocus": {
+    "x": 0.518,
+    "y": 0.42,
+    "box": [
+      0.062,
+      0.048,
+      0.975,
+      0.792
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/lotte-gum-ice-price-hike-2026-figure-5b95a107.jpg"
+  }
 }

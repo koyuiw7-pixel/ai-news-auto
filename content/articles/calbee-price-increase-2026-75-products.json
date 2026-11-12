@@ -72,13 +72,13 @@
   "videoTitle": "カルビーの値上げ2026、ポテトチップスなど75品を10月から約3〜15%",
   "publishedAt": "2026-11-12T12:49:55.460627+00:00",
   "generatedAt": "2026-11-12T12:51:03.452699+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/calbee-price-increase-2026-75-products-figure-ff008e13.jpg",
   "model": "anthropic-api:claude-haiku-5-5",
   "affiliates": [],
   "newsType": "pricing",
   "todayActions": [
-    "カルビー公式の「価格改定に関するお知らせ」PDFで、よく買う商品名が75品に入っているかを確かめる",
-    "いつもの店で、10月1日以降と11月2日以降の価格を見て、改定前の価格と比べる"
+    "よく買う商品が対象75品に入っているか、PDFの一覧表で確かめる",
+    "一覧表の改定日を確かめ、いつもの店の今の価格を控えて改定後と比べる"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -111,5 +111,101 @@
   "qualityScore": 92,
   "detectedAt": "2026-11-12T12:52:23+00:00",
   "searchTitle": "カルビー75品が順次値上げ　ポテトチップスなど想定3〜15%",
-  "layout": "noir"
+  "layout": "noir",
+  "insight": [
+    {
+      "text": "堅あげポテトの「白えび味 63g」は中部だけ、「九州しょうゆ 63g」は中四国・九州だけで売られる地域限定品です。一覧表の販売地域欄で確かめられます。",
+      "source": "https://www.calbee.co.jp/news/pdf/4246-74613.pdf"
+    },
+    {
+      "text": "前回（2026年6月1日納品分）のJagabee 3品は、店頭での想定改定率30%程度でした。今回の3〜15%程度とは幅が違います。",
+      "source": "https://www.calbee.co.jp/news/pdf/4193-09571.pdf"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "カルビー 価格改定に関するお知らせ（PDF）",
+      "url": "https://www.calbee.co.jp/news/pdf/4246-74613.pdf",
+      "source": "https://www.calbee.co.jp/news/pdf/4246-74613.pdf",
+      "note": "一覧表は別紙にあり、商品名・内容量・改定日・販売地域が載っています。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "よく買う商品が対象75品に入っているか、PDFの一覧表で確かめる",
+      "source": "https://www.calbee.co.jp/news/pdf/4246-74613.pdf",
+      "steps": [
+        "PDFの「改定一覧表」を開く",
+        "「ポテトチップス」などの商品群ごとに商品名を見る",
+        "内容量と販売地域も照らし合わせる"
+      ],
+      "url": "https://www.calbee.co.jp/news/pdf/4246-74613.pdf"
+    },
+    {
+      "action": "一覧表の改定日を確かめ、いつもの店の今の価格を控えて改定後と比べる",
+      "source": "https://www.calbee.co.jp/news/pdf/4246-74613.pdf",
+      "steps": [
+        "一覧表の「改定日（2026年）」欄を見る",
+        "改定日は10月1日か11月2日納品分",
+        "店で見た価格を日付つきで控える"
+      ],
+      "url": "https://www.calbee.co.jp/news/pdf/4246-74613.pdf"
+    }
+  ],
+  "cause": {
+    "text": "カルビーは「原材料やエネルギー価格等の上昇」を受けて、一部商品の価格改定を行うと発表しています。ポテトチップスや堅あげポテトなど75品が対象で、2026年10月1日納品分から順次実施されます。",
+    "status": "stated",
+    "source": "https://www.calbee.co.jp/news/pdf/4246-74613.pdf"
+  },
+  "worries": [
+    {
+      "q": "よく買うお菓子は値上げの対象に入っている？",
+      "a": "対象は75品で、ポテトチップス、堅あげポテト、かっぱえびせんなど9つの商品群です。対象の商品名は、公式の一覧表で確かめられます。",
+      "source": "https://www.calbee.co.jp/news/pdf/4246-74613.pdf",
+      "action": "いつも買う商品の名前と内容量を、PDFの一覧表と照らし合わせる"
+    },
+    {
+      "q": "どのくらい値上がりする？",
+      "a": "店頭での想定改定率は3〜15%程度で、これは店で実際に値上がりする割合の目安です。実際の価格はオープン価格なので、店ごとに決まります。",
+      "source": "https://www.calbee.co.jp/news/pdf/4246-74613.pdf",
+      "action": "いつも買う店の今の価格を控えておき、改定後の店頭価格と見比べる。買う回数も合わせて考える"
+    },
+    {
+      "q": "いつから値上がりする？",
+      "a": "一覧表では、miinoの5品は2026年10月1日納品分から、残りの70品は11月2日納品分からです。「納品」は、カルビーからお得意先の店へ商品が届くことを指します。",
+      "source": "https://www.calbee.co.jp/news/pdf/4246-74613.pdf",
+      "action": "一覧表の「改定日（2026年）」欄で、自分の商品が10月1日か11月2日かを確かめる"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "地域限定の味は、売られる地域が一覧表で分かる",
+    "cause": "なぜ値上げするのか、カルビーの説明",
+    "steps": "今日、まず確かめること",
+    "desk": "公式の一覧表は、どこで見られる？",
+    "worries": "よく買うお菓子は対象？値上がりはどのくらい？"
+  },
+  "depthAt": "2026-11-12T13:07:57+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "カルビー75品を順次値上げ",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-12T13:13:20+00:00"
+  },
+  "imageFocus": {
+    "x": 0.443,
+    "y": 0.422,
+    "box": [
+      0.022,
+      0.03,
+      0.863,
+      0.815
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/calbee-price-increase-2026-75-products-figure-ff008e13.jpg"
+  }
 }
