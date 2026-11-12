@@ -109,14 +109,6 @@
       "tries": 1,
       "url": "https://www.caa.go.jp/notice/entry/048095/"
     },
-    "531469c6637ace9b": {
-      "first": "2026-11-12T01:02:31.219405+00:00",
-      "next": "2026-11-12T04:02:31.219405+00:00",
-      "reason": "見出し・リード「第5期採択結果が決定」→ 元記事は採択事業者一覧（PDF）を公表したと書くのみで、採択件数や事業者・事業内容は本文に示されていない（見出しの約束が未達）; 本文「アカウントの発行には数週間かかる場合があるため」→ 電子申請マニュアルは通常1〜2週間、集中時は2週間以上としており、「数週間」は表現が強い; 判定行「提供状況=available 価格=上限500万〜1,000万円」→ ",
-      "title": "酒類事業者向け補助金の第５期採択事業者の決定",
-      "tries": 1,
-      "url": "https://www.nta.go.jp/taxes/sake/boshujoho/hojojigyo.htm#saitaku"
-    },
     "688f16e6a4687153": {
       "first": "2026-11-12T02:12:04.193482+00:00",
       "next": "2026-11-12T05:12:04.193482+00:00",
@@ -5935,6 +5927,12 @@
       "slug": "openai-security-sprint-bug-bounty",
       "url": "https://openai.com/index/preparing-our-next-security-sprint-to-harden-openai"
     },
+    "264696fa1ade7197": {
+      "at": "2026-11-12T04:20:56.481543+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（を開催）",
+      "skipped": true,
+      "url": "https://ppih.co.jp/news/pdf/1112TRU_Christmas_BF.pdf"
+    },
     "26a1d99188b16d7a": {
       "at": "2026-11-10T07:45:15.132315+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（を開催）",
@@ -7007,6 +7005,17 @@
       "section": "ai",
       "slug": "openai-acquire-pierre-computer-codex",
       "url": "https://openai.com/index/openai-to-acquire-pierre"
+    },
+    "3a87996ff6159f59": {
+      "at": "2026-11-12T04:21:40.926637+00:00",
+      "costUsd": 0.0054,
+      "intent": "query",
+      "mix": "other",
+      "model": "gemini-3.5-flash-lite",
+      "score": 86,
+      "section": "ai",
+      "slug": "ibm-japan-sap-cloud-erp-ai-services",
+      "url": "https://jp.newsroom.ibm.com/2026-11-12-IBM-Japan-Launches-Implementation-Services-to-Support-Migration-to-SAP-Cloud-ERP-SAP-S4HANA-Cloud-Public-Edition-Using-AI"
     },
     "3aad7e5fc8e70fed": {
       "at": "2026-11-12T01:19:45.544841+00:00",
@@ -8542,6 +8551,17 @@
       "reason": "quality: 公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください",
       "skipped": true,
       "url": "https://www.sony.jp/CorporateCruise/Press/202611/26-1106/?s_tc=jp_app_msa_headphone_261106_1"
+    },
+    "531469c6637ace9b": {
+      "at": "2026-11-12T04:19:55.962703+00:00",
+      "costUsd": 0.0147,
+      "intent": "neutral",
+      "mix": "money",
+      "model": "gemini-3.5-flash-lite",
+      "score": 88,
+      "section": "public",
+      "slug": "sake-subsidy-5th-results-jgrants",
+      "url": "https://www.nta.go.jp/taxes/sake/boshujoho/hojojigyo.htm#saitaku"
     },
     "53150e6d2c8e077a": {
       "at": "2026-11-11T09:20:47.642796+00:00",
@@ -12667,14 +12687,6 @@
       "skipped": true,
       "url": "https://www.boj.or.jp/research/research_data/cai/index.htm"
     },
-    "911b3d4994ebb534": {
-      "at": "2026-10-29T04:12:23.151083+00:00",
-      "model": "gemini-3.1-flash-lite",
-      "score": 100,
-      "section": "tech-gadget",
-      "slug": "kddi-l4s-autonomous-driving-shiojiri",
-      "url": "https://newsroom.kddi.com/news/detail/kddi_nr-1217_4791.html"
-    },
     "9129f77213f12cb2": {
       "at": "2026-11-10T02:05:00.232602+00:00",
       "costUsd": 0.0063,
@@ -13047,13 +13059,6 @@
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026110612"
-    },
-    "976f026c98b7ab3e": {
-      "at": "2026-10-29T04:11:55.257197+00:00",
-      "model": "gemini-3.1-flash-lite",
-      "reason": "quality: 「対象者 | 関係省庁（防衛省、警察庁、国土交通省など）」→元記事には関係省庁の具体的な名称は記載されていないため、創作にあたる。; 「会社員・学生：通勤や通学中に情報が流れた場合、まずは落ち着いて屋内に避難してください。」→元記事には具体的な避難行動の指示は含まれていないため、過度な補足である。; 「鉄道などの公共交通機関が一時停止する可能性もあります。」→元記事には記載がない",
-      "skipped": true,
-      "url": "https://www.kantei.go.jp/jp/105/discourse/20261029shiji.html"
     },
     "97799384bd944668": {
       "at": "2026-11-11T04:15:50.831388+00:00",
@@ -15416,6 +15421,17 @@
       "reason": "元データのPDFファイルが実質的なテキストを含んでおらず（バイナリデータの残骸のみ）、日本銀行の経済・物価情勢の展望に関する具体的な数値を抽出できないため。",
       "skipped": true,
       "url": "https://www.boj.or.jp/mopo/outlook/gor2610a.pdf"
+    },
+    "bbb48168b4a9726c": {
+      "at": "2026-11-12T04:20:55.899545+00:00",
+      "costUsd": 0.0091,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "gemini-3.5-flash-lite",
+      "score": 95,
+      "section": "real-estate",
+      "slug": "nomura-real-estate-partners-satisfaction-ranking-2026",
+      "url": "https://www.nomura-re-hd.co.jp/news/005798.html"
     },
     "bbbcf0a8218efdf4": {
       "at": "2026-10-30T10:31:14.418869+00:00",
@@ -18232,14 +18248,6 @@
       "skipped": true,
       "url": "https://www.mitsubishi-motors.com/jp/newsroom/newsrelease/2026/20261112_1.html"
     },
-    "e82c5b36285f7f3f": {
-      "at": "2026-10-29T04:11:35.400790+00:00",
-      "kind": "update",
-      "model": "gemini-3.1-flash-lite",
-      "score": 100,
-      "updated": "php-vulnerabilities-jpcert-alert-2026",
-      "url": "https://cloud.google.com/blog/ja/products/identity-security/responding-to-core-php-vulnerabilities-cve-2026-109618-cve-2026-109619/"
-    },
     "e866c3795cb085f8": {
       "at": "2026-11-08T09:33:17.668086+00:00",
       "model": "anthropic-api:claude-haiku-5-5",
@@ -20517,182 +20525,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-10T16:52:08.168744+00:00",
-      "attempt": 1,
-      "id": "a525fa830b85f106",
-      "kind": "update",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "「既存記事では、一部のサイバー防御担当者への提供から段階的に広げる予定でしたが」→ 元記事は、一部のサイバー防御担当者へ2週間前に提供したと述べるだけで、段階的に広げる予定だったとは書かれていない。確認済みの文脈にもこの予定はない。",
-        "「前回は一部の専門家向けでしたが」→ 元記事では、前回の提供先はFairwind Programを通じたサイバー防御担当者であり、「専門家」という一般的な表現は言い換えとして不正確。"
-      ],
-      "score": 72,
-      "source": "google-gemini-blog",
-      "title": "Gemini 4 Carbon is now available"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-10T17:12:14.596556+00:00",
-      "attempt": 1,
-      "id": "47ef8098f28e3a34",
-      "kind": "update",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "本文「Google AI プラン（Gemini）料金ページは11月11日、料金・プランの記載変更を公開しました」→ 元記事に公開日の11月11日は無く、差分の確認時刻は2026-11-10T17:11+00:00までなので、公開日を11月11日とするのは日付の創作である",
-        "リード「11月10日の差分では国・地域案内のモデル名がArgonからCarbonに変わりました」→ 差分の内容としては元記事と一致するが、本文の11月11日公開という日付と並ぶことで読者が変更日を誤認しうる"
-      ],
-      "score": 72,
-      "source": "watch-gemini-subscriptions",
-      "title": "Geminiの料金・プランのページが更新（プランの記載が変更）"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-10T17:12:44.478017+00:00",
-      "attempt": 1,
-      "id": "fc6b6a56df7b3650",
-      "kind": "update",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "「10月28日の発表時点では、一般向けは「できるだけ早く」とされていました」→ 元記事にも確認済みの文脈にも、10月28日の発表日や「できるだけ早く」という表現は無く、創作された日付と引用である",
-        "「今回、開発者、企業、研究者、一般利用者に広がりました」→ 元記事では一般利用者向けの提供は Google AI Ultra 契約者の展開（順次ロールアウト）に限られており、一般利用者すべてに提供されたようには読めるため言い過ぎ",
-        "タイトル「検索AIモードで利用可能に」→ 元記事では AI Mode in Search は Google AI Ultra 加入者へのロールアウトとされ、対象が限定されることが省かれている",
-        "「API、Google AI Studio、Gemini for business、Antigravityなどで利用できます」（リード）→ Antigravity は元記事で Ultra 加入者向けに展開中とされ、API と同列の一般提供のように読める",
-        "「複数のAIが分担して作業する機能も、試せる形で案内されています」→ 元記事は /swarm を preview として提供すると述べるのみで、試せる範囲や対象は書かれていない",
-        "「次点の外部モデルと比べてタスクあたりのコストは2倍以上低い」→ 元記事の「more than 2X lower cost per task」と一致するが、MKA の6倍超と並べると指標の違いが読者に伝わりにくい"
-      ],
-      "score": 62,
-      "source": "google-deepmind-blog",
-      "title": "Gemini 4 Carbon is now available"
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-10T17:19:47.278753+00:00",
-      "attempt": 1,
-      "id": "7737e173e31a5988",
-      "kind": "ai",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 93.8,
-        "avg_sentence": 39.3,
-        "long_share": 0.116,
-        "max_paragraph": 192,
-        "paragraphs": 18,
-        "sentences": 43
-      },
-      "score": 88,
-      "source": "claude-blog",
-      "title": "Introducing Claude Whiteboards, Claude Sheets, and Claude Data",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（CSV・CRM）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-10T18:22:25.117931+00:00",
-      "attempt": 1,
-      "id": "a798db89523c428e",
-      "kind": "ai",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [
-        "タイトル「対象の事業は米国」→ 元記事では米国限定はエージェント作成機能の条件で、Business Hub全体の登録対象が米国だとは書かれていない。対象者の取り違え。",
-        "本文「対象は事業者で、一般の利用者の使い方は変わりません」→ 元記事に一般利用者への影響の記載はなく、推測で断定している。",
-        "本文「ビジネスエージェント（自分で手順を進めるAI）」→ 元記事にない機能の説明を補っており、エージェントの性質を言い換えて断定している。",
-        "「商品情報を公開」（タイトル）→ 元記事は事業情報の更新の公開と商品フィードの接続であり、商品情報の公開とは表現が異なる。"
-      ],
-      "readability": {
-        "avg_paragraph": 74.8,
-        "avg_sentence": 41.6,
-        "long_share": 0.167,
-        "max_paragraph": 117,
-        "paragraphs": 10,
-        "sentences": 18
-      },
-      "score": 62,
-      "source": "watch-chatgpt-release-notes",
-      "title": "ChatGPT: Business Hub in ChatGPT",
-      "warnings": [
-        "見出しの書き方: 記号: かっこの直後に「、」",
-        "見出しが46字（目安40字以内）。一覧・カードでは前半だけを出す"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-10T18:22:51.733456+00:00",
-      "attempt": 1,
-      "id": "a798db89523c428e",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 71.9,
-        "avg_sentence": 39.9,
-        "long_share": 0.167,
-        "max_paragraph": 100,
-        "paragraphs": 10,
-        "sentences": 18
-      },
-      "score": 88,
-      "source": "watch-chatgpt-release-notes",
-      "title": "ChatGPT: Business Hub in ChatGPT",
-      "warnings": [
-        "見出しの書き方: 記号: かっこの直後に「、」",
-        "見出しが56字（目安40字以内）。一覧・カードでは前半だけを出す"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-10T18:39:44.980069+00:00",
-      "attempt": 1,
-      "id": "5ca4dc7b6d88cb31",
-      "kind": "ai",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 80.5,
-        "avg_sentence": 43.3,
-        "long_share": 0.038,
-        "max_paragraph": 128,
-        "paragraphs": 14,
-        "sentences": 26
-      },
-      "score": 88,
-      "source": "openai-news",
-      "title": "Introducing Businesses in ChatGPT",
-      "warnings": [
-        "見出しが60字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（EC）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-10T18:42:11.661241+00:00",
-      "attempt": 1,
-      "id": "96626834403c6444",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "題名で料金・価格を約束しているのに、本文に金額（円・ドル・無料など）が無い。元記事の金額を書くか、題名から料金の話を外す"
-      ],
-      "readability": {
-        "avg_paragraph": 140.2,
-        "avg_sentence": 70.1,
-        "long_share": 0.6,
-        "max_paragraph": 183,
-        "paragraphs": 5,
-        "sentences": 10
-      },
-      "score": null,
-      "source": "reddit-blog",
-      "title": "Introducing Reddit Reviews",
-      "warnings": [
-        "見出しが55字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
-        "読みやすさ: 文が長い（1文の平均 70.1字・60字超の文が 60% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": false,
       "at": "2026-11-10T19:02:20.708319+00:00",
@@ -28002,6 +27834,218 @@
       "warnings": [
         "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
         "読みやすさ: 文が長い（1文の平均 45.4字・60字超の文が 8% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-12T04:18:57.616291+00:00",
+      "attempt": 1,
+      "id": "531469c6637ace9b",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "判定行「申請はJグランツで受付中」→ 元記事では第5期は「公募期間終了」、令和8年度の第6期公募は10月8日〜28日で既に終了しており、受付中という記述は元資料と矛盾する。",
+        "判定行「上限500万〜1,000万円」→ 元資料では新市場開拓枠が上限500万円、海外展開枠が上限1,000万円（複数者では最大1,500万円）で、本文に無い価格範囲を不正確にまとめている。",
+        "「事業化状況報告書の提出期限は、令和8年9月27日と定められています」「期限内に報告を行う必要があります」→ 記事は2026年11月の発表なので、この期限は既に過ぎており、期限内の提出を求めるのは読者を誤らせる。",
+        "「発行までには通常1〜2週間程度かかります」→ 元資料では書類郵送申請の場合の目安であり、オンライン申請の条件が省かれている。"
+      ],
+      "readability": {
+        "avg_paragraph": 99.2,
+        "avg_sentence": 59.5,
+        "long_share": 0.267,
+        "max_paragraph": 164,
+        "paragraphs": 9,
+        "sentences": 15
+      },
+      "score": 55,
+      "source": "nta-news",
+      "title": "酒類事業者向け補助金の第５期採択事業者の決定",
+      "warnings": [
+        "見出しの書き方: 発表文の題名の言い直し（「〇〇が△△を発表」）。読者にとって何が変わるか（だれの・何が・いつから・いくら）を書く",
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
+        "読みやすさ: 文が長い（1文の平均 59.5字・60字超の文が 27% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-12T04:19:25.680976+00:00",
+      "attempt": 1,
+      "id": "531469c6637ace9b",
+      "kind": "broad",
+      "model": "strike:本文 2 文・判定カード",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 98.4,
+        "avg_sentence": 60.5,
+        "long_share": 0.308,
+        "max_paragraph": 164,
+        "paragraphs": 8,
+        "sentences": 13
+      },
+      "score": 88,
+      "source": "nta-news",
+      "title": "酒類事業者向け補助金の第５期採択事業者の決定",
+      "warnings": [
+        "見出しの書き方: 発表文の題名の言い直し（「〇〇が△△を発表」）。読者にとって何が変わるか（だれの・何が・いつから・いくら）を書く",
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
+        "読みやすさ: 文が長い（1文の平均 60.5字・60字超の文が 31% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-12T04:19:45.756793+00:00",
+      "attempt": 0,
+      "id": "531469c6637ace9b",
+      "kind": "broad",
+      "model": "",
+      "problems": [
+        "読みやすさ基準外のまま受理: 書き直し後の確認に不合格: 「発行までには通常1〜2週間程度かかります」→ 元資料では1〜2週間は「書類郵送申請の場合」の目安であり、オンライン申請を含む一般的な期間として書くのは範囲の取り違え。; 「無関係の事業者に影響はありません」→ 元記事・確認済みの文脈のどこにも書かれていない主張"
+      ],
+      "readability": {
+        "avg_paragraph": 98.4,
+        "avg_sentence": 60.5,
+        "long_share": 0.308,
+        "max_paragraph": 164,
+        "paragraphs": 8,
+        "sentences": 13
+      },
+      "score": 88,
+      "source": "nta-news",
+      "title": "酒類事業者向け補助金の第５期採択事業者の決定",
+      "warnings": [
+        "見出しの書き方: 発表文の題名の言い直し（「〇〇が△△を発表」）。読者にとって何が変わるか（だれの・何が・いつから・いくら）を書く",
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
+        "読みやすさ: 文が長い（1文の平均 60.5字・60字超の文が 31% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-12T04:20:28.679008+00:00",
+      "attempt": 1,
+      "id": "bbb48168b4a9726c",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "リード「今回の調査結果による入居者の個別契約や手続きへの影響はありません」→ 元記事に契約・手続きへの影響の有無についての記述はなく、根拠のない断定である。",
+        "本文「現在の管理契約や手続きなどが自動で切り替わることはありません」→ 元記事・確認済みの文脈に無い内容の創作である。",
+        "本文「今回のランキング結果に伴う、個別の管理規約や費用への直接的な変更はありません」→ 元記事に無い費用・規約への影響の否定で、創作にあたる。",
+        "本文「グループ内の総合力やこれまでの管理実績を背景に、入居者の満足度を高める取り組みを続けています」→ 元記事に該当する記述がなく、原因・取り組みを補った記述である。",
+        "本文末尾「（野村不動産ホールディングス公式発表、11/12確認、）」→ 出典表記の末尾に余分な読点があり、体裁が不正確である。"
+      ],
+      "readability": {
+        "avg_paragraph": 143.3,
+        "avg_sentence": 53.8,
+        "long_share": 0.125,
+        "max_paragraph": 186,
+        "paragraphs": 3,
+        "sentences": 8
+      },
+      "score": 62,
+      "source": "nomura-re",
+      "title": "「住まいサーフィン」 第18 回 管理会社満足度調査ランキング2026 ＜全体総合満足度＞3 年連続 17 度目の第1 位（野村不動産パートナーズ）",
+      "warnings": [
+        "要点の1つ目がリードの文の写し。一番のニュースを、リードとは違う言い方で書く",
+        "読みやすさ: 文が長い（1文の平均 53.8字・60字超の文が 12% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "読みやすさ: 段落が長い（平均 143.3字・最長 186字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-12T04:20:40.572105+00:00",
+      "attempt": 1,
+      "id": "bbb48168b4a9726c",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 98.3,
+        "avg_sentence": 49.2,
+        "long_share": 0.167,
+        "max_paragraph": 185,
+        "paragraphs": 3,
+        "sentences": 6
+      },
+      "score": 96,
+      "source": "nomura-re",
+      "title": "「住まいサーフィン」 第18 回 管理会社満足度調査ランキング2026 ＜全体総合満足度＞3 年連続 17 度目の第1 位（野村不動産パートナーズ）",
+      "warnings": [
+        "要点の1つ目がリードの文の写し。一番のニュースを、リードとは違う言い方で書く",
+        "読みやすさ: 文が長い（1文の平均 49.2字・60字超の文が 17% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-12T04:20:49.256966+00:00",
+      "attempt": 0,
+      "id": "bbb48168b4a9726c",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 74.0,
+        "avg_sentence": 42.3,
+        "long_share": 0.0,
+        "max_paragraph": 108,
+        "paragraphs": 4,
+        "sentences": 7
+      },
+      "score": 95,
+      "source": "nomura-re",
+      "title": "「住まいサーフィン」 第18 回 管理会社満足度調査ランキング2026 ＜全体総合満足度＞3 年連続 17 度目の第1 位（野村不動産パートナーズ）",
+      "warnings": [
+        "要点の1つ目がリードの文の写し。一番のニュースを、リードとは違う言い方で書く"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-12T04:21:17.556048+00:00",
+      "attempt": 1,
+      "id": "3a87996ff6159f59",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 135.8,
+        "avg_sentence": 61.7,
+        "long_share": 0.455,
+        "max_paragraph": 238,
+        "paragraphs": 5,
+        "sentences": 11
+      },
+      "score": 86,
+      "source": "ibm-newsroom-jp",
+      "title": "日本IBM、AIを活用してSAP® Cloud ERP（SAP S/4HANA® Cloud Public Edition）への移行を支援する導入サービスを提供",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（SAP・ECC・ABAP）",
+        "読みやすさ: 文が長い（1文の平均 61.7字・60字超の文が 46% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "読みやすさ: 段落が長い（平均 135.8字・最長 238字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-12T04:21:36.384453+00:00",
+      "attempt": 0,
+      "id": "3a87996ff6159f59",
+      "kind": "ai",
+      "model": "",
+      "problems": [
+        "読みやすさ基準外のまま受理: 書き直し後の確認に不合格: 判定欄の「価格=個別見積もり」→ 元記事に価格や見積もりの方式は書かれておらず、本文の「料金体系はまだ発表されていません」とも食い違うため創作である。; 「仕事・お金にどう活かせる」の「移行にかかる期間や工数の削減を見込めます」→ 元記事は30%削減を『目指す』"
+      ],
+      "readability": {
+        "avg_paragraph": 135.8,
+        "avg_sentence": 61.7,
+        "long_share": 0.455,
+        "max_paragraph": 238,
+        "paragraphs": 5,
+        "sentences": 11
+      },
+      "score": 86,
+      "source": "ibm-newsroom-jp",
+      "title": "日本IBM、AIを活用してSAP® Cloud ERP（SAP S/4HANA® Cloud Public Edition）への移行を支援する導入サービスを提供",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（SAP・ECC・ABAP）",
+        "読みやすさ: 文が長い（1文の平均 61.7字・60字超の文が 46% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "読みやすさ: 段落が長い（平均 135.8字・最長 238字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
       ]
     }
   ],
