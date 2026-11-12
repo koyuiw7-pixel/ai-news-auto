@@ -73,13 +73,14 @@
   "videoTitle": "MUJI Cardは2025年9月に変更　マイル廃止、100円で1ポイントに",
   "publishedAt": "2026-11-12T15:39:39.840745+00:00",
   "generatedAt": "2026-11-12T15:40:40.567586+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/muji-card-mile-to-points-2025-figure-f8c28a53.jpg",
   "model": "anthropic-api:claude-haiku-5-5",
   "affiliates": [],
   "newsType": "policy",
   "todayActions": [
-    "MUJIアプリとMUJI Cardを連携し、ポイントの残高と有効期限を確かめる",
-    "5月・12月に付く500ポイントは、獲得月から5ヵ月後の月末までに使う計画を立てる"
+    "店舗でお買い物のとき、MUJI Cardの裏面バーコードを見せてポイントを付けてもらう",
+    "5月・12月に付く500ポイントは、獲得月から5ヵ月後の月末までに使う予定を立てる",
+    "MUJIアプリの停止中の案内を、特設ページの「詳細はこちら」から確かめる"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -155,5 +156,146 @@
       "after": "廃止",
       "note": "廃止"
     }
-  ]
+  ],
+  "insight": [
+    {
+      "text": "無印良品の特設ページには「セキュリティ強化を行うため」とあり、MUJIアプリは「MUJI Members（会員証）バーコード表示以外の全サービス・機能停止」と案内されています。",
+      "source": "https://www.muji.com/jp/ja/service/goodprogram/"
+    },
+    {
+      "text": "移行したポイントは付与日が「2025年9月9日」に一律で更新され、有効期限は「2026年2月28日まで」に延びています。",
+      "source": "https://faq.muji.com/%E3%81%9F%E3%82%81%E3%81%A6%E3%81%84%E3%82%8B%E3%83%9D%E3%82%A4%E3%83%B3%E3%83%88%E3%82%84%E3%83%9E%E3%82%A4%E3%83%AB%E3%81%AF%E3%80%81MUJI%20GOOD%20PROGRAM%E9%96%8B%E5%A7%8B%E5%BE%8C%E3%82%82%E3%81%9D%E3%81%BE%E3%81%BE%E4%BD%BF%E3%81%88%E3%81%BE%E3%81%99%E3%81%8B%EF%BC%9F-68244280142e648727d5b6a6"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "クレディセゾン MUJI Cardのページ",
+      "url": "https://www.saisoncard.co.jp/creditcard/lineup/048/",
+      "source": "https://www.saisoncard.co.jp/creditcard/lineup/048/",
+      "note": "新規の申し込みは一時停止中と書かれています。特典や年会費は、このページで確かめられます。"
+    },
+    {
+      "name": "無印良品 MUJI GOOD PROGRAM特設ページ",
+      "url": "https://www.muji.com/jp/ja/service/goodprogram/",
+      "source": "https://www.muji.com/jp/ja/service/goodprogram/",
+      "note": "MUJIアプリとネットストアの一部停止について「詳細はこちら」の案内があります。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "店舗でお買い物のとき、MUJI Cardの裏面バーコードを見せてポイントを付けてもらう",
+      "source": "https://www.saisoncard.co.jp/creditcard/lineup/048/",
+      "steps": [
+        "レジでMUJI Cardを出す",
+        "裏面のバーコードを見せる",
+        "店舗でポイントが付与される"
+      ]
+    },
+    {
+      "action": "5月・12月に付く500ポイントは、獲得月から5ヵ月後の月末までに使う予定を立てる",
+      "source": "https://www.saisoncard.co.jp/creditcard/lineup/048/",
+      "steps": [
+        "カードの特典ページで有効期限を確かめる",
+        "付与月と期限月を書き留める",
+        "期限の前に無印良品で使う"
+      ],
+      "url": "https://www.saisoncard.co.jp/creditcard/lineup/048/"
+    },
+    {
+      "action": "MUJIアプリの停止中の案内を、特設ページの「詳細はこちら」から確かめる",
+      "source": "https://www.muji.com/jp/ja/service/goodprogram/",
+      "steps": [
+        "無印良品の特設ページを開く",
+        "「詳細はこちら」を押す",
+        "停止している内容と再開の案内を確かめる"
+      ],
+      "url": "https://www.muji.com/jp/ja/service/goodprogram/"
+    }
+  ],
+  "cause": {
+    "text": "会員プログラムのリニューアルにともない、2025年9月9日からMUJIマイルが「MUJI GOOD PROGRAM」のポイント制度へ変わりました。100円ごとに1ポイントが翌日に付く形です。",
+    "status": "background",
+    "source": "https://www.saisoncard.co.jp/customer-support/information/20250806/"
+  },
+  "worries": [
+    {
+      "q": "前に貯めたマイルは、どうなりましたか？",
+      "a": "ステージに届かなかった端数マイルは、1%分がポイントに換算され、2025年9月中に付与されました。小数点以下は繰り上げられます。",
+      "source": "https://faq.muji.com/%E6%96%B0%E3%81%97%E3%81%84%E4%BC%9A%E5%93%A1%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%A0%E3%81%AB%E5%88%87%E3%82%8A%E6%9B%BF%E3%82%8F%E3%82%8B%E3%81%BE%E3%81%A7%E3%81%AB%E3%81%9F%E3%82%81%E3%81%9FMUJI%E3%83%9E%E3%82%A4%E3%83%AB%E3%81%AF%E3%81%A9%E3%81%86%E3%81%AA%E3%82%8A%E3%81%BE%E3%81%99%E3%81%8B%EF%BC%9F-68243f5c80762a88f333cc72",
+      "action": "店舗でMUJI Cardの裏面バーコードを見せ、ポイントが付くか確かめる。",
+      "actionSource": "https://www.saisoncard.co.jp/creditcard/lineup/048/"
+    },
+    {
+      "q": "貯めたポイントの期限はいつまで？",
+      "a": "移行したポイントの有効期限は2026年2月28日までに延びました。新しく付くポイントは、獲得月から5ヵ月後の月末まで使えます。",
+      "source": "https://faq.muji.com/%E6%96%B0%E3%81%97%E3%81%84%E3%83%9D%E3%82%A4%E3%83%B3%E3%83%88%E5%88%B6%E5%BA%A6%E3%81%AE%E8%A9%B3%E7%B4%B0%E3%82%92%E6%95%99%E3%81%88%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%E3%80%82%E3%83%9D%E3%82%A4%E3%83%B3%E3%83%88%E3%81%AE%E3%81%9F%E3%82%81%E6%96%B9%E3%82%84%E4%BD%BF%E3%81%84%E6%96%B9%E3%81%AF%E3%81%A9%E3%81%86%E5%A4%89%E3%82%8F%E3%82%8A%E3%81%BE%E3%81%99%E3%81%8B%EF%BC%9F-682441178ac249a5e98a5500",
+      "action": "5月・12月に付くポイントは、獲得月から5ヵ月後の月末までに使う予定を立てる。",
+      "actionSource": "https://www.saisoncard.co.jp/creditcard/lineup/048/"
+    },
+    {
+      "q": "MUJI Cardの特典は今も続いていますか？",
+      "a": "年2回（5月・12月）の500ポイントプレゼントや、無印良品での永久不滅ポイント3倍などは、新しい制度になっても続くと案内されています。年会費は無料です。",
+      "source": "https://www.saisoncard.co.jp/customer-support/information/20250806/",
+      "action": "クレディセゾンの公式ページで、MUJI Cardの特典と年会費を確かめる。",
+      "actionSource": "https://www.saisoncard.co.jp/creditcard/lineup/048/"
+    },
+    {
+      "q": "MUJIアプリで残高が見えないのはなぜ？",
+      "a": "無印良品の特設ページには、セキュリティ強化を行うため、MUJIアプリは会員証のバーコード表示以外の全サービス・機能が停止中と書かれています。",
+      "source": "https://www.muji.com/jp/ja/service/goodprogram/",
+      "action": "特設ページの「詳細はこちら」から、停止中の内容と再開の案内を確かめる。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "新しくMUJI Cardを作るべき？",
+      "situation": "新しくMUJI Cardを作りたい",
+      "recommend": "今は申し込めないので、再開の案内を待つ",
+      "reason": "クレディセゾンのページに、MUJI Cardは申し込みを一時停止中と書かれています。今の制度では、ポイントは店舗での買い物で100円ごとに1ポイント付きます。",
+      "source": "https://www.saisoncard.co.jp/creditcard/lineup/048/"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "MUJIアプリは今、一部の機能が止まっている",
+    "cause": "なぜ変わった？ 制度の切り替え",
+    "steps": "今日、店舗と期限でまずやること",
+    "desk": "確かめるべき公式ページ",
+    "worries": "残高やポイントの期限、どうなる？",
+    "guide": "カードを新しく作るか迷ったときは"
+  },
+  "depthAt": "2026-11-12T16:15:00+00:00",
+  "updatedAt": "2026-11-12T16:15:00+00:00",
+  "updates": [
+    {
+      "at": "2026-11-12T16:15:00+00:00",
+      "kind": "facts",
+      "title": "公式の資料をもとに、「なるほどの要点」・「公式の窓口」・「今日やること」・「理由」・「よくある不安」・「判断の目安」を追記しました",
+      "sourceUrl": "https://www.saisoncard.co.jp/customer-support/information/20250806/",
+      "sourceName": "クレディセゾン「MUJI CardサービスおよびMUJI Card特約一部改定のお知らせ」（2025年8月6日発表）"
+    }
+  ],
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "100円",
+    "label": "買い物",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-12T16:17:23+00:00"
+  },
+  "imageFocus": {
+    "x": 0.391,
+    "y": 0.462,
+    "box": [
+      0.0,
+      0.03,
+      0.781,
+      0.893
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/muji-card-mile-to-points-2025-figure-f8c28a53.jpg"
+  },
+  "discoverCandidate": true
 }

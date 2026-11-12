@@ -76,8 +76,8 @@
   "affiliates": [],
   "newsType": "pricing",
   "todayActions": [
-    "2027年7月1日以降に指定席に乗る予定があれば、2027年6月30日までに購入する",
-    "2027年12月15日以降にグリーン車に乗る予定なら、新しい料金で予算を組む"
+    "7月以降に乗る指定席は、2027年6月30日までに購入しておくと改定前の料金になります。",
+    "2027年12月15日以降にグリーン車に乗るなら、新しい料金で予算を組む。"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -121,5 +121,98 @@
     ],
     "ar": 1.3333,
     "src": "https://ai-tech-express.jp/img/nozomi-reserved-seat-fare-hike-2027-c4187b8a.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "「S Wi-Fi for Biz」は、N700Sの8~10号車で2026年10月26日(月)以降順次始まり、9・10号車にも導入されます。",
+      "source": "https://www.westjr.co.jp/press/article/2026/10/16/items/261016_00_press_shinkansen_ryoukin.pdf"
+    },
+    {
+      "text": "東京・新大阪駅の待合室は2028年度、名古屋駅は2029年度、広島駅は2028年度以降（時期未定）に設置予定です。品川・新横浜・京都・小倉・博多は2027年12月15日です。",
+      "source": "https://www.westjr.co.jp/press/article/2026/10/16/items/261016_00_press_shinkansen_ryoukin.pdf"
+    },
+    {
+      "text": "座席の変更は、N700Aと、N700Sの8~10号車が対象です。数年以内に廃車予定の車両は除かれます。",
+      "source": "https://www.westjr.co.jp/press/article/2026/10/16/items/261016_00_press_shinkansen_ryoukin.pdf"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "7月以降に乗る指定席は、2027年6月30日までに購入しておくと改定前の料金になります。",
+      "source": "https://www.westjr.co.jp/press/article/2026/10/16/items/261016_00_press_shinkansen_ryoukin.pdf",
+      "steps": [
+        "指定席は購入日で決まります",
+        "2027年6月30日までに買えば改定前の料金",
+        "乗る日が7月1日以降でも同じです"
+      ],
+      "url": "https://www.westjr.co.jp/press/article/2026/10/16/items/261016_00_press_shinkansen_ryoukin.pdf"
+    },
+    {
+      "action": "2027年12月15日以降にグリーン車に乗るなら、新しい料金で予算を組む。",
+      "source": "https://www.westjr.co.jp/press/article/2026/10/16/items/261016_00_press_shinkansen_ryoukin.pdf",
+      "steps": [
+        "グリーン料金は乗車日で決まります",
+        "営業キロ別の表で新しい料金を確認",
+        "600キロまで8,400円、801キロ以上12,300円"
+      ],
+      "url": "https://www.westjr.co.jp/press/article/2026/10/16/items/261016_00_press_shinkansen_ryoukin.pdf"
+    }
+  ],
+  "cause": {
+    "text": "インフレで、安全性やサービスを保つためのコストが上がったことが理由です。グリーン料金は消費税率の改定に伴うものを除いて据え置いてきたため、サービス向上を理由に改めるとしています。",
+    "status": "background",
+    "source": "https://www.westjr.co.jp/press/article/2026/10/16/items/261016_00_press_shinkansen_ryoukin.pdf"
+  },
+  "worries": [
+    {
+      "q": "7月以降に乗るなら、今のうちに買うべき？",
+      "a": "指定席の料金は購入日で決まります。2027年6月30日までに買えば改定前の料金で、乗る日が7月1日以降でも同じです。",
+      "source": "https://www.westjr.co.jp/press/article/2026/10/16/items/261016_00_press_shinkansen_ryoukin.pdf",
+      "action": "7月以降に乗る指定席は、2027年6月30日までに購入しておくと改定前の料金になります。"
+    },
+    {
+      "q": "グリーン車は、いつから新しい料金になる？",
+      "a": "グリーン料金は乗車日で決まります。2027年12月14日までに乗れば今の料金で、12月15日以降に乗れば新しい料金です。買った日は関係ありません。",
+      "source": "https://www.westjr.co.jp/press/article/2026/10/16/items/261016_00_press_shinkansen_ryoukin.pdf",
+      "action": "12月15日以降に乗る予定なら、乗る日を基準に新しい料金で予算を組んでおく。"
+    },
+    {
+      "q": "「のぞみ」の自由席も、値上げの対象になる？",
+      "a": "「のぞみ」「みずほ」号の普通車自由席は、特急料金を改定しません。改定されるのは指定席特急料金とグリーン料金です。",
+      "source": "https://www.westjr.co.jp/press/article/2026/10/16/items/261016_00_press_shinkansen_ryoukin.pdf",
+      "action": "「のぞみ」「みずほ」にこだわらないなら、自由席も選択肢として混み具合と比べる。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "7月以降に乗る指定席は、いつ買うのが安い？",
+      "situation": "2027年7月以降に乗る予定が決まっている",
+      "recommend": "6月30日までに買えば改定前の料金で買える",
+      "reason": "指定席は購入日で決まるため、6月30日までに買えば、乗る日が7月以降でも改定前の料金のままです。東京―新大阪は現行14,720円、改定後15,420円（+700円）です。",
+      "source": "https://www.westjr.co.jp/press/article/2026/10/16/items/261016_00_press_shinkansen_ryoukin.pdf"
+    },
+    {
+      "question": "7月以降に乗る指定席は、いつ買うのが安い？",
+      "situation": "乗る日がまだ決まっていない",
+      "recommend": "急がなくてよい。買うなら新料金で予算を組む",
+      "reason": "7月1日以降に購入すると新しい料金になります。東京―新大阪は現行14,720円が15,420円になります（通常期・普通車指定席・おとな1名・片道）。",
+      "source": "https://www.westjr.co.jp/press/article/2026/10/16/items/261016_00_press_shinkansen_ryoukin.pdf"
+    },
+    {
+      "question": "グリーン車は、乗る日と買う日どちらで決まる？",
+      "situation": "2027年12月14日までに乗る予定がある",
+      "recommend": "今の料金のまま乗れる。急いで変える必要はない",
+      "reason": "グリーン料金は乗車日で決まります。12月14日までに乗れば今の料金で、買った日は関係ありません。12月15日以降の乗車は新しい料金です。",
+      "source": "https://www.westjr.co.jp/press/article/2026/10/16/items/261016_00_press_shinkansen_ryoukin.pdf"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "待合室やWi-Fiは、駅と車両で始まる時期が違う",
+    "cause": "なぜ値上げするのか、発表の理由",
+    "steps": "今日やること、買う日と乗る日で分ける",
+    "worries": "買った切符の料金は変わる？",
+    "guide": "指定席はいつ買うか、迷ったときの決め方"
+  },
+  "depthAt": "2026-11-12T16:12:28+00:00",
+  "discoverCandidate": true
 }
