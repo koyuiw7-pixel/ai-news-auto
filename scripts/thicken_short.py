@@ -323,6 +323,9 @@ def classify(rep: dict) -> tuple[str, str]:
 
 
 def write_article(slug: str, new: dict, articles_dir: Path = ARTICLES_DIR) -> None:
+    import editor_notes  # noqa: PLC0415 - 「（編集部注）」などの札の付いた AI の補足を残さない（2026-11-12）
+
+    editor_notes.strip_record(new)
     (articles_dir / f"{slug}.json").write_text(json.dumps(new, ensure_ascii=False, indent=2) + "\n", "utf-8")
 
 
