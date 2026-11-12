@@ -64,7 +64,7 @@
   "videoTitle": "子ども・子育て支援金は今いくら引かれている　2026年度は標準報酬月額の0.23%",
   "publishedAt": "2026-11-12T13:58:34.555936+00:00",
   "generatedAt": "2026-11-12T14:00:00.928927+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/child-support-levy-2026-payroll-figure-e100fe23.jpg",
   "model": "anthropic-api:claude-haiku-5-5",
   "affiliates": [],
   "newsType": "policy",
@@ -106,5 +106,129 @@
   "detectedAt": "2026-11-12T14:01:23+00:00",
   "searchTitle": "子ども・子育て支援金の本人負担は？　0.23%の半分",
   "layout": "noir",
-  "summaryLine": "子ども・子育て支援金は2026年4月分の保険料から集められ、5月の給与から引かれている。"
+  "summaryLine": "子ども・子育て支援金は2026年4月分の保険料から集められ、5月の給与から引かれている。",
+  "insight": [
+    {
+      "text": "国民健康保険においては、18歳以下の支援金均等割額の全額軽減措置が講じられます。国保に入っている子育て世帯は、この軽減の対象になります。",
+      "source": "https://www.mhlw.go.jp/content/12401000/001228302.pdf"
+    },
+    {
+      "text": "任意継続被保険者と日雇特例被保険者は、令和8年4月分（4月納付分）から0.23％が適用されます。一般被保険者は令和8年4月分（5月納付分）からです。",
+      "source": "https://www.kyoukaikenpo.or.jp/about/business/insurance_rate/003/index.html"
+    },
+    {
+      "text": "国民年金第1号被保険者の方が対象の育児期間中の保険料免除は、「令和8年10月分から実施」とされています。",
+      "source": "https://www.cfa.go.jp/assets/contents/node/basic_page/field_ref_resources/fb3dbb28-102a-4840-90a5-00ad2e0d117f/47e1295d/20260226policies-kodomokosodateshienkinseido-09.pdf"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "子ども・子育て支援金制度コールセンター",
+      "url": "https://www.cfa.go.jp/policies/kodomokosodateshienkinseido",
+      "source": "https://www.cfa.go.jp/policies/kodomokosodateshienkinseido",
+      "phone": "0120-303-272",
+      "hours": "9時から18時（日曜、祝日を除く）",
+      "note": "ページによって受付日の書き方が「平日」と「日曜、祝日を除く」で違うため、電話する前に受付日を確かめてください。"
+    },
+    {
+      "name": "全国健康保険協会 協会けんぽの子ども・子育て支援金率",
+      "url": "https://www.kyoukaikenpo.or.jp/about/business/insurance_rate/003/index.html",
+      "source": "https://www.kyoukaikenpo.or.jp/about/business/insurance_rate/003/index.html",
+      "howTo": [
+        "協会けんぽTOP",
+        "協会けんぽの事業",
+        "保険料率",
+        "協会けんぽの子ども・子育て支援金率について"
+      ],
+      "note": "一般被保険者は令和8年4月分（5月納付分）から、任意継続・日雇特例は令和8年4月分（4月納付分）から0.23％です。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "給与明細で標準報酬月額を確かめ、本人負担の目安を計算する",
+      "source": "https://www.cfa.go.jp/policies/kodomokosodateshienkinseido",
+      "steps": [
+        "給与明細の標準報酬月額を見つける",
+        "標準報酬月額に0.0023を掛ける",
+        "その半分が本人負担の目安"
+      ]
+    },
+    {
+      "action": "協会けんぽの人は、公式ページで支援金率0.23%と自分の納付月を確かめる",
+      "source": "https://www.kyoukaikenpo.or.jp/about/business/insurance_rate/003/index.html",
+      "steps": [
+        "協会けんぽTOPを開く",
+        "協会けんぽの事業から保険料率へ進む",
+        "子ども・子育て支援金率のページを見る"
+      ],
+      "url": "https://www.kyoukaikenpo.or.jp/about/business/insurance_rate/003/index.html"
+    }
+  ],
+  "cause": {
+    "text": "令和5年12月の「加速化プラン」で子育て支援を広げることになり、その財源の一部として集める制度です。令和8年度から始まります。",
+    "status": "background",
+    "source": "https://www.cfa.go.jp/assets/contents/node/basic_page/field_ref_resources/fb3dbb28-102a-4840-90a5-00ad2e0d117f/47e1295d/20260226policies-kodomokosodateshienkinseido-09.pdf"
+  },
+  "worries": [
+    {
+      "q": "給料から引かれる額は、いくらになる？",
+      "a": "本人負担は、給与明細の標準報酬月額に0.23%をかけ、その半分です。全加入者1人当たりの平均は2026年度に250円程度と見込まれ、給料が多い人ほど多く払う仕組みです。",
+      "source": "https://www.cfa.go.jp/policies/kodomokosodateshienkinseido",
+      "action": "給与明細の標準報酬月額に0.0023をかけ、その半分を計算して目安にする。"
+    },
+    {
+      "q": "国保に入っている子どもの分も引かれる？",
+      "a": "国民健康保険では、18歳以下の支援金均等割額の全額軽減措置が講じられます。ただし支援金額は市町村の条例で所得等に応じて決まり、徴収開始時期も市町村への問い合わせが必要です。",
+      "source": "https://www.mhlw.go.jp/content/12401000/001228302.pdf",
+      "action": "国保の人は、お住まいの市町村に支援金額と徴収開始時期を問い合わせる。",
+      "actionSource": "https://www.cfa.go.jp/policies/kodomokosodateshienkinseido"
+    },
+    {
+      "q": "子どもがいなくても支援金を払うの？",
+      "a": "はい。子どもの有無にかかわらず、医療保険に入っている人から集めます。独身の方や高齢者の方も含め、全世代と企業が支える仕組みとされています。",
+      "source": "https://www.cfa.go.jp/assets/contents/node/basic_page/field_ref_resources/fb3dbb28-102a-4840-90a5-00ad2e0d117f/47e1295d/20260226policies-kodomokosodateshienkinseido-09.pdf",
+      "action": "5月以降の給与明細で、医療保険料と一緒に引かれている支援金の額を確かめる。"
+    },
+    {
+      "q": "支援金のせいで、結局社会保険料の負担は増える？",
+      "a": "ページは、支援金の導入と同時に社会保障の歳出改革を行い、社会保険料の負担を軽減するため、支援金による負担は相殺される仕組みだと説明しています。",
+      "source": "https://www.cfa.go.jp/assets/contents/node/basic_page/field_ref_resources/fb3dbb28-102a-4840-90a5-00ad2e0d117f/47e1295d/20260226policies-kodomokosodateshienkinseido-09.pdf",
+      "action": "前年の給与明細と並べて、医療保険料の天引き額の変化を自分で確かめる。"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "国保・任意継続の人は、ここが違う",
+    "cause": "なぜ始まったのか、いま分かっていること",
+    "steps": "給与明細から自分の額を計算する",
+    "desk": "迷ったら、問い合わせ先はここ",
+    "worries": "いくら引かれる？子どもがいなくても払う？"
+  },
+  "todayActions": [
+    "給与明細で標準報酬月額を確かめ、本人負担の目安を計算する",
+    "協会けんぽの人は、公式ページで支援金率0.23%と自分の納付月を確かめる"
+  ],
+  "depthAt": "2026-11-12T14:27:53+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "子育て支援金、給与から引かれ始めた",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-12T14:31:55+00:00"
+  },
+  "imageFocus": {
+    "x": 0.427,
+    "y": 0.419,
+    "box": [
+      0.013,
+      0.065,
+      0.841,
+      0.774
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/child-support-levy-2026-payroll-figure-e100fe23.jpg"
+  }
 }

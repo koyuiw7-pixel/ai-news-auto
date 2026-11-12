@@ -64,13 +64,13 @@
   "videoTitle": "山崎製パンの値上げ2027、食パンは平均6.2%　2027年1月1日出荷分から",
   "publishedAt": "2026-11-12T14:01:59.807330+00:00",
   "generatedAt": "2026-11-12T14:03:51.740491+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/yamazaki-bread-price-hike-2027-figure-d26cd2fb.jpg",
   "model": "anthropic-api:claude-haiku-5-5",
   "affiliates": [],
   "newsType": "pricing",
   "todayActions": [
-    "いつも買うパンの名前が、本文の表に入っているか確かめる。",
-    "2027年1月以降に行きつけの店の棚の価格を見て、前と比べておく。"
+    "いつも買うパンの名前が、今回の発表の製品名に入っているかを確かめる",
+    "2027年1月以降に行きつけの店の棚の価格を見て、前と比べておく"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -144,5 +144,111 @@
       "after": "平均4.0%",
       "note": "今回のほうが低い"
     }
-  ]
+  ],
+  "insight": [
+    {
+      "text": "和洋菓子の欄には「苺のショートケーキ(2個入)」「5つに切ったロールケーキ」のように、個数や切り方まで書かれた製品名が並んでいます。同じ名前の商品でも、書き方の違いで対象かどうかを見分けられます。",
+      "source": "https://www.yamazakipan.co.jp/news/pdf/20261027.pdf"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "山崎製パン ニュースリリース",
+      "url": "https://www.yamazakipan.co.jp/news/index.html",
+      "source": "https://www.yamazakipan.co.jp/news/index.html",
+      "howTo": [
+        "HOME",
+        "ニュースリリース",
+        "製品価格一部改定のお知らせ（PDF：158KB）"
+      ],
+      "note": "このニュースリリースに掲載されている情報は発表日現在の情報で、発表日以降に変更される場合もあると書かれています。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "いつも買うパンの名前が、今回の発表の製品名に入っているかを確かめる",
+      "source": "https://www.yamazakipan.co.jp/news/pdf/20261027.pdf",
+      "steps": [
+        "製品価格一部改定のお知らせを開く",
+        "「主な対象製品及び改定率」の表を見る",
+        "食パン・菓子パン・和洋菓子の欄で製品名を探す"
+      ],
+      "url": "https://www.yamazakipan.co.jp/news/pdf/20261027.pdf"
+    },
+    {
+      "action": "2027年1月以降に行きつけの店の棚の価格を見て、前と比べておく",
+      "source": "https://www.yamazakipan.co.jp/news/pdf/20261027.pdf",
+      "steps": [
+        "1月以降に行きつけの店の棚を見る",
+        "対象の製品の今の値段をメモしておく"
+      ]
+    }
+  ],
+  "cause": {
+    "text": "10月から輸入小麦の政府売渡価格が12%引き上げられ、主要原料の小麦粉の値上げが実施されます。あわせて油脂類や包装材料などが高騰し、エネルギー費・物流費・人件費も上昇しています。",
+    "status": "stated",
+    "source": "https://www.yamazakipan.co.jp/news/pdf/20261027.pdf"
+  },
+  "worries": [
+    {
+      "q": "いつも買うパンは値上げの対象に入っている？",
+      "a": "一部の食パン、菓子パン、和菓子、洋菓子が対象です。食パンでは「ロイヤルブレッド」「超芳醇」「ふんわり食パン」「モーニングスター」など、菓子パンでは「ランチパック」「高級つぶあん」などが挙がっています。",
+      "source": "https://www.yamazakipan.co.jp/news/pdf/20261027.pdf",
+      "action": "いつも買う製品名が、発表の表の製品名と一致するかを見比べる"
+    },
+    {
+      "q": "店で買うと、いくら上がる？",
+      "a": "発表されているのは出荷価格の平均の改定率だけです。食パンは平均6.2%、菓子パンは平均4.3%、和菓子・洋菓子は平均4.0%です。",
+      "source": "https://www.yamazakipan.co.jp/news/pdf/20261027.pdf",
+      "action": "1月以降の行きつけの店の棚の価格を、今の値段と比べて確かめる"
+    },
+    {
+      "q": "前回の値上げは、どれくらいだった？",
+      "a": "前回は2026年7月1日出荷分から、対象製品の出荷価格を平均5.6%値上げしました。食パンは平均6.6%、菓子パンは平均5.0%、和菓子・洋菓子は平均6.4%でした。",
+      "source": "https://www.yamazakipan.co.jp/news/pdf/20260428.pdf",
+      "action": "前回と今回の改定率を比べて、買う区分の上がり幅を見る",
+      "actionSource": "https://www.yamazakipan.co.jp/news/pdf/20261027.pdf"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "1月以降も同じパンを買い続ける？",
+      "situation": "いつも買うパンが対象に入っている",
+      "recommend": "急がなくてよい。まず1月以降の棚の価格を確かめる",
+      "reason": "発表は出荷価格の平均の改定率で、店頭の値段は店が決めます。食パン平均6.2%、菓子パン平均4.3%の上がり幅は2027年1月1日出荷分からです。実際の負担は棚の価格で決まります。",
+      "source": "https://www.yamazakipan.co.jp/news/pdf/20261027.pdf"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "対象は製品名の書き方まで細かく書かれている",
+    "cause": "なぜ値上げするのか、いま分かっていること",
+    "steps": "今日確かめること、1月に見ること",
+    "desk": "発表の原文は、ここで確かめられる",
+    "worries": "いつものパンは値上げされる？",
+    "guide": "1月の棚を見てから、買い方を決める"
+  },
+  "depthAt": "2026-11-12T14:27:04+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "6.2%",
+    "label": "食パン平均",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-12T14:30:09+00:00"
+  },
+  "imageFocus": {
+    "x": 0.454,
+    "y": 0.515,
+    "box": [
+      0.013,
+      0.048,
+      0.894,
+      0.982
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/yamazaki-bread-price-hike-2027-figure-d26cd2fb.jpg"
+  }
 }
