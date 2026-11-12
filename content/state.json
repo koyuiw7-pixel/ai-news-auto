@@ -133,14 +133,6 @@
       "title": "自主改善の実施について （本田技研工業株式会社 フューエルフランジジョイント）",
       "tries": 1,
       "url": "http://www.mlit.go.jp/report/press/jidosha08_hh_005885.html"
-    },
-    "ca3380a47500c045": {
-      "first": "2026-11-12T06:24:20.504882+00:00",
-      "next": "2026-11-12T09:24:20.504882+00:00",
-      "reason": "読めなかった開示資料（https://www.digital.go.jp/assets/contents/node/basic_page/field_ref_resources/2c）があるのに「発表されていません」と書いている。資料を確かめられていないことは「未発表」と言い切らない（その文を消すか、「発表の本文では触れていません」のように確かめた範囲を書く）（A44）",
-      "title": "公的給付の支給等の迅速かつ確実な実施のための預貯金口座の登録等に関する法律施行規則の一部を改正する庁令案に係る意見募集を行います",
-      "tries": 1,
-      "url": "https://www.digital.go.jp/get-involved/procedure/2cfdcd95-421e-4153-b9b2-364cf503e63d"
     }
   },
   "major_tries": {},
@@ -210,6 +202,7 @@
     "bda4433a4e4cd6e4": "2026-11-09T19:01:05.896647+00:00",
     "bf1c6f819b5a4c90": "2026-11-10T18:21:06.372918+00:00",
     "c0175e2903dfd3b3": "2026-11-12T06:13:11.208041+00:00",
+    "c25678489237ce3a": "2026-11-12T15:20:53.201302+00:00",
     "c3b9ae34f152218c": "2026-11-11T07:16:52.117730+00:00",
     "c3e784ee53def147": "2026-11-10T09:36:51.365678+00:00",
     "c63d1aa22d52b881": "2026-11-09T10:02:58.007406+00:00",
@@ -8684,13 +8677,6 @@
       "slug": "korea-openshell-agentic-ai-security",
       "url": "https://blogs.nvidia.com/blog/korea-secure-agentic-ai/"
     },
-    "51f1b28efd92ae71": {
-      "at": "2026-10-29T15:23:59.080945+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: easy_markdown が短い（393字 / 基準 400字以上）",
-      "skipped": true,
-      "url": "https://www.tsr-net.co.jp/data/detail/1203386_1527.html"
-    },
     "51fd6bae6a94af5c": {
       "at": "2026-11-09T20:15:50.837174+00:00",
       "model": "anthropic-api:claude-haiku-5-5",
@@ -12721,13 +12707,6 @@
       "slug": "google-agent-compute-engine-governance",
       "url": "https://cloud.google.com/blog/ja/topics/ai-infrastructure/introducing-agent-compute-engine-and-expanded-agent-governance/"
     },
-    "8ccea7e89b703086": {
-      "at": "2026-10-29T15:09:34.200966+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: 本文が短い（1706字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; title の長さが不適切（67字 / 18〜64字）",
-      "skipped": true,
-      "url": "https://mistral.ai/news/mistral-large-4-oss/"
-    },
     "8ce241a7b20ca7b5": {
       "at": "2026-11-06T19:21:43.551305+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（セミナー）",
@@ -13205,13 +13184,6 @@
       "reason": "prefilter: 価値の薄いお知らせ（受賞）",
       "skipped": true,
       "url": "https://www.suntory.co.jp/news/article/2026/15170.html?rss=0000000029"
-    },
-    "948f28b89431d9b7": {
-      "at": "2026-10-29T15:22:25.276063+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: 本文が短い（1766字 / 基準 2500字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が「## ひとことで言うと」から始まっていない",
-      "skipped": true,
-      "url": "https://blog.google/innovation-and-ai/technology/health/google-ai-for-healthcare-professionals-certificate/"
     },
     "94c0d86d7009b3a6": {
       "at": "2026-10-29T18:13:12.615754+00:00",
@@ -16117,14 +16089,6 @@
       "skipped": true,
       "url": "https://www.digital.go.jp/policies/mynumber/private-business/info"
     },
-    "bf30529fb59df439": {
-      "at": "2026-10-29T15:11:47.175490+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "score": 100,
-      "section": "ai",
-      "slug": "geforce-now-phantom-blade-zero-update",
-      "url": "https://blogs.nvidia.com/blog/geforce-now-thursday-phantom-blade-zero/"
-    },
     "bf3d48bb2bb9b9e2": {
       "at": "2026-10-29T18:08:58.757731+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（職員）",
@@ -16326,7 +16290,7 @@
       "url": "https://www.gov-online.go.jp/article/202611/radio-3782.html"
     },
     "c25678489237ce3a": {
-      "at": "2026-11-12T15:05:59.506903+00:00",
+      "at": "2026-11-12T15:21:39.221769+00:00",
       "reason": "prefilter: サイトの主題外（エンタメのビジネス・テックの話題ではない。料金・決算・販売本数・AI・規約などがない）",
       "skipped": true,
       "url": "https://blog.ja.playstation.com/2026/11/12/20261112-vdf-title-announcement-o/"
@@ -16796,6 +16760,17 @@
       "section": "ai",
       "slug": "agent-distraction-stale-todo",
       "url": "https://developers.googleblog.com/agent-distraction/"
+    },
+    "ca3380a47500c045": {
+      "at": "2026-11-12T15:24:02.271685+00:00",
+      "costUsd": 0.0076,
+      "intent": "neutral",
+      "mix": "money",
+      "model": "gemini-3.5-flash",
+      "score": 92,
+      "section": "public",
+      "slug": "digital-agency-public-payment-account-rules",
+      "url": "https://www.digital.go.jp/get-involved/procedure/2cfdcd95-421e-4153-b9b2-364cf503e63d"
     },
     "ca4e56ac61b3b8df": {
       "at": "2026-11-11T03:29:08.687293+00:00",
@@ -19556,12 +19531,6 @@
       "slug": "nli-research-report-2026-11",
       "url": "https://www.nli-research.co.jp/topics_detail1/id=87285?site=nli"
     },
-    "f59bf79b2fc8831b": {
-      "at": "2026-10-29T15:23:59.616529+00:00",
-      "reason": "prefilter: 価値の薄いお知らせ（ランクイン）",
-      "skipped": true,
-      "url": "https://news.samsung.com/jp/samsung-ranks-no-5-in-interbrands-best-global-brands-2026?utm_source=rss&utm_medium=direct"
-    },
     "f5a0d7153ecc99c8": {
       "at": "2026-11-04T02:39:05.904361+00:00",
       "model": "openrouter:nvidia/nemotron-3.5-super-vl:free",
@@ -21295,55 +21264,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-11T04:51:55.300024+00:00",
-      "attempt": 1,
-      "id": "7ef3b2a69d793a00",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 46.9,
-        "avg_sentence": 32.2,
-        "long_share": 0.125,
-        "max_paragraph": 91,
-        "paragraphs": 11,
-        "sentences": 16
-      },
-      "score": 88,
-      "source": "google-ai-blog",
-      "title": "Introducing 3 new domains: .eat, .fly, and .here",
-      "warnings": [
-        "見出しが49字（目安40字以内）。一覧・カードでは前半だけを出す"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-11T05:01:56.933828+00:00",
-      "attempt": 1,
-      "id": "bb2d741d25208d58",
-      "kind": "broad",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [
-        "見出し「7〜9月累計は増収増益」→ 元記事の累計期間は2026年1〜9月（1月1日〜9月30日）で、7〜9月は誤り。期間の取り違えにあたる。",
-        "簡易版「円安が数字を押し上げた面があります」→ 元記事は為替の影響があったと述べるのみで、円安とは明記していない。為替レートの前提から推測した記述で、事実と区別されていない。"
-      ],
-      "readability": {
-        "avg_paragraph": 70.9,
-        "avg_sentence": 35.5,
-        "long_share": 0.023,
-        "max_paragraph": 114,
-        "paragraphs": 22,
-        "sentences": 44
-      },
-      "score": 72,
-      "source": "fast",
-      "title": "サントリー食品インターナショナル 2026年12月期 第３四半期決算短信〔IFRS〕（連結）",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（IFRS・BOSS・NOPE）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-11T05:02:21.512755+00:00",
@@ -28853,6 +28773,59 @@
       "warnings": [
         "初めて出たところで言い換えていない略語（XLSX・KB）",
         "読みやすさ: 文が長い（1文の平均 49.3字・60字超の文が 28% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-12T15:23:34.161683+00:00",
+      "attempt": 1,
+      "id": "ca3380a47500c045",
+      "kind": "broad",
+      "model": "gemini-3.5-flash",
+      "problems": [
+        "リード『すでに登録されている口座が自動的に消えたり変更されたりするわけではありません』→ 元記事は既存登録への影響について何も述べておらず、影響がないと断定する根拠がない",
+        "よくある質問『意見募集が2026年12月11日まで行われた後、正式な施行時期などが確定します』→ 施行時期の手順は元記事に書かれておらず、今後の流れを断定している",
+        "よくある質問『原則として誰でも意見を提出できます』→ 元記事は提出者の要件を『個人か法人・団体か』で示すのみで、『誰でも』とは書かれていない",
+        "『## サイソクの見方』『将来的に新規登録や変更時の本人確認がより厳格になる可能性があります』→ 廃止の方向性から推測した見方だが、対象範囲が未確定である点が十分に示されていない",
+        "『公金受取口座の登録内容やマイナポータルの設定状況に誤りがないか確認する』→ 元記事に無い作業を読者の行動として求めている（一般的な助言の範囲内だが根拠は薄い）"
+      ],
+      "readability": {
+        "avg_paragraph": 79.2,
+        "avg_sentence": 48.8,
+        "long_share": 0.231,
+        "max_paragraph": 162,
+        "paragraphs": 8,
+        "sentences": 13
+      },
+      "score": 70,
+      "source": "digital-agency",
+      "title": "公的給付の支給等の迅速かつ確実な実施のための預貯金口座の登録等に関する法律施行規則の一部を改正する庁令案に係る意見募集を行います",
+      "warnings": [
+        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "読みやすさ: 文が長い（1文の平均 48.8字・60字超の文が 23% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-12T15:23:55.143395+00:00",
+      "attempt": 1,
+      "id": "ca3380a47500c045",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 81.6,
+        "avg_sentence": 43.5,
+        "long_share": 0.133,
+        "max_paragraph": 156,
+        "paragraphs": 8,
+        "sentences": 15
+      },
+      "score": 92,
+      "source": "digital-agency",
+      "title": "公的給付の支給等の迅速かつ確実な実施のための預貯金口座の登録等に関する法律施行規則の一部を改正する庁令案に係る意見募集を行います",
+      "warnings": [
+        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す"
       ]
     }
   ],
