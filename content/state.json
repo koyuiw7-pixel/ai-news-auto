@@ -117,6 +117,14 @@
       "tries": 1,
       "url": "https://www.nta.go.jp/taxes/sake/boshujoho/hojojigyo.htm#saitaku"
     },
+    "688f16e6a4687153": {
+      "first": "2026-11-12T02:12:04.193482+00:00",
+      "next": "2026-11-12T05:12:04.193482+00:00",
+      "reason": "判定行の「価格=参加無料」→ 元記事に参加費・価格の記載はなく、無料とする根拠がない（価格の創作）; 本文「決済方法に応じてスクラッチカードの色が変わり、1等から3等のいずれかが当たります」→ 赤い画面のPayPay残高は4回に1回の確率であり、必ず当たるわけではないという条件が抜けている; 本文「国内の対象店舗やクレジットカード加盟店で」→ 元記事では海外でのオンライン決済も対象（※3）。対象範",
+      "title": "「超PayPay祭」が11月20日からスタート！",
+      "tries": 1,
+      "url": "https://about.paypay.ne.jp/pr/20261112/01/"
+    },
     "8c35f961e318ffbb": {
       "first": "2026-11-09T02:15:08.028371+00:00",
       "next": "2026-11-09T05:15:08.028371+00:00",
@@ -4728,14 +4736,6 @@
       "slug": "apple-ipados-macos-no-merge-ternus",
       "url": "https://gori.me/macbookpro/172049"
     },
-    "13199e1cbdfa06a8": {
-      "at": "2026-10-29T02:02:19.923589+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "score": 100,
-      "section": "science",
-      "slug": "riken-keystone-species-analysis",
-      "url": "https://www.riken.jp/press/2026/20261029_1/index.html"
-    },
     "131b86cc9cd34917": {
       "at": "2026-10-30T01:52:11.086948+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -6303,6 +6303,17 @@
       "skipped": true,
       "url": "https://www.jst.go.jp/pr/announce/20261111/index.html"
     },
+    "2c25781aa09a130c": {
+      "at": "2026-11-12T02:15:26.745869+00:00",
+      "costUsd": 0.0095,
+      "intent": "neutral",
+      "mix": "brand",
+      "model": "gemini-3.5-flash-lite",
+      "score": 88,
+      "section": "tech-gadget",
+      "slug": "povo-gacha-double-eleven-2026",
+      "url": "https://povo.jp/news/newsrelease/20261111_01/"
+    },
     "2c864d3cf06edb75": {
       "at": "2026-11-10T19:22:10.431623+00:00",
       "model": "anthropic-api:claude-haiku-5-5",
@@ -7522,6 +7533,12 @@
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026102906"
     },
+    "43feae2da3c8b4ec": {
+      "at": "2026-11-12T02:16:16.305659+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（を開催）",
+      "skipped": true,
+      "url": "https://www.pref.aichi.jp/press-release/zero-kisosannsennyatomi261108.html"
+    },
     "4430856536e9007c": {
       "at": "2026-10-29T15:08:25.181600+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -7794,6 +7811,17 @@
       "reason": "stale: 発表から50時間（48時間を超えた発表は通常の記事にしない）",
       "skipped": true,
       "url": "https://developer.nvidia.com/blog/configure-certify-and-operate-kubernetes-gpu-clusters-with-nvidia-dsx-os/"
+    },
+    "490dc8c40a84ed37": {
+      "at": "2026-11-12T02:10:56.547643+00:00",
+      "costUsd": 0.0068,
+      "intent": "query",
+      "mix": "other",
+      "model": "gemini-3.5-flash-lite",
+      "score": 92,
+      "section": "business",
+      "slug": "tsr-successor-absence-rate-2026",
+      "url": "https://www.tsr-net.co.jp/data/detail/1203434_1527.html"
     },
     "492e59f67d7a29e5": {
       "at": "2026-11-06T19:46:11.334280+00:00",
@@ -9068,12 +9096,31 @@
       "skipped": true,
       "url": "https://aws.amazon.com/jp/blogs/news/aws-nitro-sandboxes-hardware-enforced-workload-isolation-on-amazon-eks/"
     },
+    "5b3847551f6fdba9": {
+      "at": "2026-11-12T02:13:46.430039+00:00",
+      "kind": "update",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "score": 90,
+      "updated": "yonden-electricity-bill-relief-2027",
+      "url": "https://miraiz.chuden.co.jp/info/press/1218638_1938.html"
+    },
     "5b96453abdd94254": {
       "at": "2026-10-30T08:12:44.451065+00:00",
       "model": "gemini-3.5-flash-lite",
       "reason": "quality: 本文が短い（1514字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
       "skipped": true,
       "url": "https://www.suntory.co.jp/news/article/2026/15163.html?rss=0000000029"
+    },
+    "5bbb1c20026f6c35": {
+      "at": "2026-11-12T02:16:15.944242+00:00",
+      "costUsd": 0.0059,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "gemini-3.5-flash-lite",
+      "score": 92,
+      "section": "ai",
+      "slug": "salesforce-idc-marketscape-japan-ai-2026",
+      "url": "https://www.salesforce.com/jp/news/press-releases/2026/11/12/idc-marketscape-unified-ai-platforms-2026/"
     },
     "5bc32de92bc8933b": {
       "at": "2026-11-09T09:21:44.662438+00:00",
@@ -11016,6 +11063,17 @@
       "skipped": true,
       "url": "https://www.mhlw.go.jp/stf/shinngi_00023.html"
     },
+    "77684936399cdeca": {
+      "at": "2026-11-12T02:13:18.650490+00:00",
+      "costUsd": 0.0114,
+      "intent": "query",
+      "mix": "other",
+      "model": "gemini-3.5-flash-lite",
+      "score": 93,
+      "section": "tech-gadget",
+      "slug": "ipa-checkin-system-guideline",
+      "url": "https://www.ipa.go.jp/digital/architecture/guidelines/evacuee-data-checkin-system-guideline.html"
+    },
     "77db3705f153125d": {
       "at": "2026-10-29T18:13:41.962786+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（開催について）",
@@ -11778,6 +11836,12 @@
       "slug": "under-10m-yen-bankruptcy-october-2026",
       "url": "https://www.tsr-net.co.jp/data/detail/1203425_1527.html"
     },
+    "8370742c394a744c": {
+      "at": "2026-11-12T02:12:04.585478+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（委員会）",
+      "skipped": true,
+      "url": "https://www.mext.go.jp/a_menu/kaihatu/jishin/mext_00308.html"
+    },
     "8380e89917a98439": {
       "at": "2026-10-30T04:41:42.404579+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -11914,6 +11978,17 @@
       "reason": "quality: 本文が短い（1527字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が短い（248字 / 基準 400字以上）; 独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に",
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026102904"
+    },
+    "866d62483e667b43": {
+      "at": "2026-11-12T02:14:20.518003+00:00",
+      "costUsd": 0.0044,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "gemini-3.5-flash-lite",
+      "score": 88,
+      "section": "ai",
+      "slug": "sompo-ntt-physical-ai-caregiving",
+      "url": "https://group.ntt/jp/newsrelease/2026/11/12/261112b.html"
     },
     "869a145bada96b91": {
       "at": "2026-11-09T07:14:24.525588+00:00",
@@ -12447,6 +12522,12 @@
       "reason": "prefilter: 価値の薄いお知らせ（を開催）",
       "skipped": true,
       "url": "https://www.mof.go.jp/insideLink/20261105115434.html"
+    },
+    "8e7c2dde6ff32198": {
+      "at": "2026-11-12T02:12:04.596862+00:00",
+      "reason": "dedupe: 同じ出典URL",
+      "skipped": true,
+      "url": "https://www.docomo.ne.jp/info/news_release/2026/11/09_00.html?cid=CRP_INF_news_release_2026_11_09_00_from_RSS_news_release"
     },
     "8e811dafcc2d0858": {
       "at": "2026-10-29T03:01:46.246225+00:00",
@@ -13142,6 +13223,12 @@
       "skipped": true,
       "url": "https://www.mof.go.jp/jgbs/topics/gov_guaranteed_bonds/hu2033.htm"
     },
+    "9ab1a8b8922008d2": {
+      "at": "2026-11-12T02:10:56.900411+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（審議会）",
+      "skipped": true,
+      "url": "https://www.mof.go.jp/about_mof/councils/customs_foreign_exchange/sub-of_customs/proceedings_customs/proceedings/kana20261006.html"
+    },
     "9ab77893703db959": {
       "at": "2026-11-03T14:07:36.929604+00:00",
       "model": "anthropic-api:claude-opus-5-5",
@@ -13447,6 +13534,12 @@
       "reason": "prefilter: 価値の薄いお知らせ（講演）",
       "skipped": true,
       "url": "https://www.mext.go.jp/a_menu/kaihatu/jishin/mext_00305.html"
+    },
+    "9fd1647eaf08e49c": {
+      "at": "2026-11-12T02:16:16.299919+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（表彰）",
+      "skipped": true,
+      "url": "https://www.tokyu-fudosan-hd.co.jp/news/companies/pdf/e77df39f5845174705fa131814bede9167369fae.pdf"
     },
     "9fe9fe7024bfe729": {
       "at": "2026-11-05T13:19:39.664006+00:00",
@@ -13923,6 +14016,17 @@
       "reason": "quality: 公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください",
       "skipped": true,
       "url": "https://www.nikkei.com/article/DGXZQOFL300VDTQ6A031C2000000/"
+    },
+    "a69cdb2fc7dee248": {
+      "at": "2026-11-12T02:08:10.526182+00:00",
+      "costUsd": 0.0064,
+      "intent": "query",
+      "mix": "money",
+      "model": "gemini-3.5-flash",
+      "score": 82,
+      "section": "investment",
+      "slug": "ppih-tax-free-refund-fee-free",
+      "url": "https://ppih.co.jp/news/pdf/news_261005_refund.pdf"
     },
     "a6a9168641ac2eb4": {
       "at": "2026-11-11T02:46:02.489618+00:00",
@@ -15038,6 +15142,12 @@
       "slug": "amazon-bedrock-trust-and-safety-guide",
       "url": "https://aws.amazon.com/jp/blogs/news/designing-trust-and-safety-into-amazon-bedrock-powered-applications/"
     },
+    "b7480f5f44dfec76": {
+      "at": "2026-11-12T02:13:19.012585+00:00",
+      "reason": "dedupe: 同じ出典URL",
+      "skipped": true,
+      "url": "https://www.morinaga.co.jp/company/newsrelease/detail.php?no=3233"
+    },
     "b749fcda386da4a4": {
       "at": "2026-10-30T06:51:20.843102+00:00",
       "model": "gemini-3.1-flash-lite",
@@ -15149,6 +15259,12 @@
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・暮らしの交通/天気/値上げ/障害/給付/発売・日本のスポーツのどれでもない）",
       "skipped": true,
       "url": "https://www.maff.go.jp/j/press/nousan/kankyo/261111.html"
+    },
+    "b935032214b37b1c": {
+      "at": "2026-11-12T02:10:56.900465+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（審議会）",
+      "skipped": true,
+      "url": "https://www.mof.go.jp/about_mof/councils/customs_foreign_exchange/sub-of_customs/proceedings_tokusyu/proceedings/kanb20261019.html.html"
     },
     "b95c6de3a9285d8e": {
       "at": "2026-10-29T16:46:30.569757+00:00",
@@ -16314,6 +16430,17 @@
       "skipped": true,
       "url": "https://www.mhlw.go.jp/stf/kouseiroudoushou/saiyou/hijoukin/hj-ninki-seisakutoukatukan_ikuzi_00001.html"
     },
+    "cbc3e4c0f962713b": {
+      "at": "2026-11-12T02:10:10.057947+00:00",
+      "costUsd": 0.0059,
+      "intent": "query",
+      "mix": "other",
+      "model": "gemini-3.5-flash-lite",
+      "score": 85,
+      "section": "real-estate",
+      "slug": "tokyu-fudosan-shibuya-agreement",
+      "url": "https://www.tokyu-fudosan-hd.co.jp/news/companies/pdf/b541ea1e5a46017eedf69b76ab7dbf00202376ac.pdf"
+    },
     "cbc53cd1638de584": {
       "at": "2026-11-10T00:08:20.620977+00:00",
       "reason": "prefilter: お知らせ・統計の転載（statistics）",
@@ -17341,6 +17468,12 @@
       "skipped": true,
       "url": "https://www.nli-research.co.jp/topics_detail1/id=87230?site=nli"
     },
+    "dcd19fed6aef2a83": {
+      "at": "2026-11-12T02:16:16.311420+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（セミナー）",
+      "skipped": true,
+      "url": "https://www.jpx.co.jp/corporate/news/news-releases/6020/20261112-01.html"
+    },
     "dcd22a091147f4a3": {
       "at": "2026-11-02T02:11:27.375835+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -18128,6 +18261,12 @@
       "reason": "quality: 本文が短い（1324字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
       "skipped": true,
       "url": "https://s.kabutan.jp/news/n202610301494/"
+    },
+    "e827904c052f6898": {
+      "at": "2026-11-12T02:14:20.927372+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（受賞）",
+      "skipped": true,
+      "url": "https://www.mitsubishi-motors.com/jp/newsroom/newsrelease/2026/20261112_1.html"
     },
     "e82c5b36285f7f3f": {
       "at": "2026-10-29T04:11:35.400790+00:00",
@@ -20380,433 +20519,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-10T09:07:51.766005+00:00",
-      "attempt": 1,
-      "id": "c12d4d8a91c1ade2",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 53.2,
-        "avg_sentence": 35.5,
-        "long_share": 0.0,
-        "max_paragraph": 102,
-        "paragraphs": 4,
-        "sentences": 6
-      },
-      "score": 92,
-      "source": "jfa",
-      "title": "準決勝（12月27日(日)）キックオフ時間・会場、テレビ放送・配信 決定 天皇杯 JFA 第106回全日本サッカー選手権大会 #jfa #天皇杯",
-      "warnings": [
-        "本文が見出しで始まっている（最初の段落は見出しなしで、だれに関係するか・関係しない人はどうかを書く）",
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-10T09:44:57.923746+00:00",
-      "attempt": 1,
-      "id": "1ebed63e5815115a",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "リード「国際海事機関（IMO）は11月10日、…再任を決定しました」→ 元記事では再任が決定されたのは11月2日から6日までの第138回理事会で、11月10日は結果を公表した日であり、決定日の取り違えになっている。"
-      ],
-      "readability": {
-        "avg_paragraph": 115.6,
-        "avg_sentence": 57.8,
-        "long_share": 0.3,
-        "max_paragraph": 154,
-        "paragraphs": 5,
-        "sentences": 10
-      },
-      "score": 70,
-      "source": "mlit-press",
-      "title": "IMOがドミンゲス事務局長の再任を決定～国際海事機関（IMO）第138回理事会の開催結果概要～",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（IMO）",
-        "読みやすさ: 文が長い（1文の平均 57.8字・60字超の文が 30% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-10T09:45:09.837695+00:00",
-      "attempt": 1,
-      "id": "1ebed63e5815115a",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 115.6,
-        "avg_sentence": 57.8,
-        "long_share": 0.3,
-        "max_paragraph": 154,
-        "paragraphs": 5,
-        "sentences": 10
-      },
-      "score": 96,
-      "source": "mlit-press",
-      "title": "IMOがドミンゲス事務局長の再任を決定～国際海事機関（IMO）第138回理事会の開催結果概要～",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（IMO）",
-        "読みやすさ: 文が長い（1文の平均 57.8字・60字超の文が 30% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-10T09:45:26.690394+00:00",
-      "attempt": 0,
-      "id": "1ebed63e5815115a",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 67.0,
-        "avg_sentence": 40.2,
-        "long_share": 0.0,
-        "max_paragraph": 107,
-        "paragraphs": 9,
-        "sentences": 15
-      },
-      "score": 96,
-      "source": "mlit-press",
-      "title": "IMOがドミンゲス事務局長の再任を決定～国際海事機関（IMO）第138回理事会の開催結果概要～",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（IMO）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-10T10:45:02.536273+00:00",
-      "attempt": 1,
-      "id": "648331e2e6f4eac2",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "リード「個人の手続きや直接の負担額は変わりません」→ 元記事にない記述で、個人への影響がないという断定を裏付ける情報がない。",
-        "本文「個人の手続きや税率などが直接変わるものではありません」→ 元記事に書かれていない影響の有無の断定。",
-        "リード・タイトル「国の債務の合計が1,323兆円に」→ 1,323兆3,632億円は元記事の『合計』（国債及び借入金の合計）であり、政府保証債務（262,983億円）は含まれない。『国の債務などの合計』という書き方は政府保証債務も含むように読めて不正確。",
-        "「仕事・お金にどう活かせる」→ 個人の仕事や収入への直接的な影響はないと断定しているが、元記事に根拠がない。"
-      ],
-      "readability": {
-        "avg_paragraph": 99.5,
-        "avg_sentence": 56.9,
-        "long_share": 0.571,
-        "max_paragraph": 132,
-        "paragraphs": 4,
-        "sentences": 7
-      },
-      "score": 80,
-      "source": "mof",
-      "title": "国債及び借入金並びに政府保証債務現在高（令和8年9月末現在）",
-      "warnings": [
-        "見出しの書き方: 発表文の題名の言い直し（「〇〇が△△を発表」）。読者にとって何が変わるか（だれの・何が・いつから・いくら）を書く",
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
-        "読みやすさ: 文が長い（1文の平均 56.9字・60字超の文が 57% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-10T10:45:17.411494+00:00",
-      "attempt": 1,
-      "id": "648331e2e6f4eac2",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 92.5,
-        "avg_sentence": 52.9,
-        "long_share": 0.571,
-        "max_paragraph": 132,
-        "paragraphs": 4,
-        "sentences": 7
-      },
-      "score": 95,
-      "source": "mof",
-      "title": "国債及び借入金並びに政府保証債務現在高（令和8年9月末現在）",
-      "warnings": [
-        "見出しの書き方: 発表文の題名の言い直し（「〇〇が△△を発表」）。読者にとって何が変わるか（だれの・何が・いつから・いくら）を書く",
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
-        "読みやすさ: 文が長い（1文の平均 52.9字・60字超の文が 57% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-10T10:45:30.369158+00:00",
-      "attempt": 0,
-      "id": "648331e2e6f4eac2",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 65.2,
-        "avg_sentence": 40.8,
-        "long_share": 0.25,
-        "max_paragraph": 123,
-        "paragraphs": 5,
-        "sentences": 8
-      },
-      "score": 96,
-      "source": "mof",
-      "title": "国債及び借入金並びに政府保証債務現在高（令和8年9月末現在）",
-      "warnings": [
-        "見出しの書き方: 発表文の題名の言い直し（「〇〇が△△を発表」）。読者にとって何が変わるか（だれの・何が・いつから・いくら）を書く",
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
-        "読みやすさ: 文が長い（1文の平均 40.8字・60字超の文が 25% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-10T11:00:09.102426+00:00",
-      "attempt": 1,
-      "id": "a9726c2c2d82de58",
-      "kind": "update",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "score": 94,
-      "source": "boj",
-      "title": "金融政策決定会合における主な意見（10月29、30日開催分）"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-10T11:00:41.338922+00:00",
-      "attempt": 1,
-      "id": "4c9e0aba14246e1f",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "「購入手順や販売場所などの詳細な要領については、JFAの公式サイトにて案内されます」→ 元記事は『下記の要領にて』と概要へのリンクを示すのみで、販売場所への言及はなく、『販売場所』の案内は元記事にない内容。",
-        "「対象の対戦カードなどは、JFAの公式サイトを確認してください」（かんたん版）→ 元記事に対戦カード別の販売の区別はなく、対象カードという記述は元記事に裏付けがない。"
-      ],
-      "readability": {
-        "avg_paragraph": 119.3,
-        "avg_sentence": 51.1,
-        "long_share": 0.429,
-        "max_paragraph": 135,
-        "paragraphs": 3,
-        "sentences": 7
-      },
-      "score": 85,
-      "source": "jfa",
-      "title": "ラウンド16（4回戦）チケット販売概要決定 天皇杯 JFA 第106回全日本サッカー選手権大会 #jfa #天皇杯",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（JFA）",
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
-        "読みやすさ: 文が長い（1文の平均 51.1字・60字超の文が 43% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-10T11:00:54.904515+00:00",
-      "attempt": 1,
-      "id": "4c9e0aba14246e1f",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 116.3,
-        "avg_sentence": 49.9,
-        "long_share": 0.429,
-        "max_paragraph": 135,
-        "paragraphs": 3,
-        "sentences": 7
-      },
-      "score": 93,
-      "source": "jfa",
-      "title": "ラウンド16（4回戦）チケット販売概要決定 天皇杯 JFA 第106回全日本サッカー選手権大会 #jfa #天皇杯",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（JFA）",
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
-        "読みやすさ: 文が長い（1文の平均 49.9字・60字超の文が 43% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-10T11:01:04.272204+00:00",
-      "attempt": 0,
-      "id": "4c9e0aba14246e1f",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 70.2,
-        "avg_sentence": 40.1,
-        "long_share": 0.143,
-        "max_paragraph": 120,
-        "paragraphs": 4,
-        "sentences": 7
-      },
-      "score": 96,
-      "source": "jfa",
-      "title": "ラウンド16（4回戦）チケット販売概要決定 天皇杯 JFA 第106回全日本サッカー選手権大会 #jfa #天皇杯",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（JFA）",
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-10T11:37:51.288281+00:00",
-      "attempt": 1,
-      "id": "85a32fe1244f6425",
-      "kind": "update",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "本文「10月の届出時点では未定だった株数と価格の範囲が、今回示されました」→ 元記事にも確認済みの文脈にも10月に届出された日付は書かれておらず、「10月」は根拠のない日付である。"
-      ],
-      "score": 85,
-      "source": "anthropic-news",
-      "title": "Anthropic launches roadshow for proposed initial public offering"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-10T11:55:52.628820+00:00",
-      "attempt": 1,
-      "id": "611d1b632b07398d",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "「日本の財務省で片山大臣とベトナム財政大臣が面会」→ 元記事は面会の場所を示しておらず、「日本の財務省で」は元記事に無い創作",
-        "「今回の面会では、両国の経済分野における関係強化に向けた話し合いが行われています」→ 元記事は今後の二国間協力についての意見交換としか述べておらず、経済分野の関係強化を話し合ったとするのは言い過ぎ"
-      ],
-      "readability": {
-        "avg_paragraph": 75.5,
-        "avg_sentence": 50.3,
-        "long_share": 0.0,
-        "max_paragraph": 94,
-        "paragraphs": 2,
-        "sentences": 3
-      },
-      "score": 82,
-      "source": "mof",
-      "title": "片山大臣とベトナムのゴー・ヴァン・トゥアン財政大臣との面会（令和8年11月10日（火））",
-      "warnings": [
-        "読みやすさ: 文が長い（1文の平均 50.3字・60字超の文が 0% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-10T11:56:07.078692+00:00",
-      "attempt": 1,
-      "id": "611d1b632b07398d",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 76.0,
-        "avg_sentence": 50.7,
-        "long_share": 0.0,
-        "max_paragraph": 94,
-        "paragraphs": 2,
-        "sentences": 3
-      },
-      "score": 92,
-      "source": "mof",
-      "title": "片山大臣とベトナムのゴー・ヴァン・トゥアン財政大臣との面会（令和8年11月10日（火））",
-      "warnings": [
-        "読みやすさ: 文が長い（1文の平均 50.7字・60字超の文が 0% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-10T11:56:16.167875+00:00",
-      "attempt": 0,
-      "id": "611d1b632b07398d",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 76.0,
-        "avg_sentence": 38.0,
-        "long_share": 0.0,
-        "max_paragraph": 94,
-        "paragraphs": 2,
-        "sentences": 4
-      },
-      "score": 90,
-      "source": "mof",
-      "title": "片山大臣とベトナムのゴー・ヴァン・トゥアン財政大臣との面会（令和8年11月10日（火））"
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-10T12:08:11.496835+00:00",
-      "attempt": 1,
-      "id": "f8c1a7370c130fe5",
-      "kind": "ai",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 92.6,
-        "avg_sentence": 46.3,
-        "long_share": 0.143,
-        "max_paragraph": 141,
-        "paragraphs": 14,
-        "sentences": 28
-      },
-      "score": 90,
-      "source": "google-deepmind-blog",
-      "title": "Introducing AlphaProof Code: a breakthrough in verifying complex software at dep",
-      "warnings": [
-        "見出しが53字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "読みやすさ: 文が長い（1文の平均 46.3字・60字超の文が 14% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-10T12:08:31.643469+00:00",
-      "attempt": 0,
-      "id": "f8c1a7370c130fe5",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 92.7,
-        "avg_sentence": 43.3,
-        "long_share": 0.067,
-        "max_paragraph": 141,
-        "paragraphs": 14,
-        "sentences": 30
-      },
-      "score": 92,
-      "source": "google-deepmind-blog",
-      "title": "Introducing AlphaProof Code: a breakthrough in verifying complex software at dep",
-      "warnings": [
-        "見出しが53字（目安40字以内）。一覧・カードでは前半だけを出す"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-10T13:02:42.404301+00:00",
-      "attempt": 1,
-      "id": "02e4a20d191af380",
-      "kind": "ai",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [
-        "本文「一般の患者や個人の利用者の手続きは変わりません」→ 元記事に患者や個人利用者への影響の記載はなく、断定の根拠がない。",
-        "本文「AIが単独で最終判断をする形ではありません」→ 元記事は人の監督（human oversight）を置くとだけ書いており、単独判断でないとまでは述べていない。",
-        "かんたん版「使えるのは一部のパートナーだけです」→ 元記事は当初プレビュー提供でパートナーと並んで提供すると書くのみで、利用範囲を限定する記述はない。",
-        "本文「現時点で使えるのはプレビュー版の参加企業に限られ」→ 参加条件が未発表なのに、利用者を参加企業に限定するように読める。",
-        "今日やること「日本向けのGoogle AI Plusは月725円、Proは月2,900円」→ 確認済みの料金表と一致するが、Gemini for healthcareとは別の個人向けプランであり、記事の主題との関係が説明されていない。"
-      ],
-      "readability": {
-        "avg_paragraph": 85.7,
-        "avg_sentence": 47.1,
-        "long_share": 0.2,
-        "max_paragraph": 193,
-        "paragraphs": 11,
-        "sentences": 20
-      },
-      "score": 80,
-      "source": "google-blog-all",
-      "title": "Google Cloud launches Gemini for healthcare.",
-      "warnings": [
-        "見出しが58字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（HCA）",
-        "読みやすさ: 文が長い（1文の平均 47.1字・60字超の文が 20% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-10T13:02:59.791704+00:00",
@@ -27811,6 +27523,461 @@
       "title": "Apple、2026 Designers of Tomorrowの開催を発表",
       "warnings": [
         "見出しが52字（目安40字以内）。一覧・カードでは前半だけを出す"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-12T02:07:41.475868+00:00",
+      "attempt": 1,
+      "id": "a69cdb2fc7dee248",
+      "kind": "broad",
+      "model": "gemini-3.5-flash",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 172.5,
+        "avg_sentence": 76.7,
+        "long_share": 0.667,
+        "max_paragraph": 249,
+        "paragraphs": 4,
+        "sentences": 9
+      },
+      "score": 82,
+      "source": "ppih",
+      "title": "返金手数料無料で新免税制度のリファンド申請に対応 「SHOP SMART, SAVE MORE」 便利に買って、もっとお得に ～11月1日（日）より全国のPPI",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（PPIH）",
+        "1つの文を2つに割っている（「狙いがあります。また、店頭での免税会計処理が税込決済に一本化されることで、手続き」）。1文にまとめる",
+        "読みやすさ: 文が長い（1文の平均 76.7字・60字超の文が 67% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-12T02:08:03.855807+00:00",
+      "attempt": 0,
+      "id": "a69cdb2fc7dee248",
+      "kind": "broad",
+      "model": "",
+      "problems": [
+        "読みやすさ基準外のまま受理: 書き直し後の確認に不合格: 「国内の一般消費者の買い物に直接の影響はありません」→ 元記事・確認済みの文脈に無い影響の有無についての断定である。; 「手数料を原則無料にする」→ 元記事は「無料といたします※」で、「原則」という限定は元記事にない。"
+      ],
+      "readability": {
+        "avg_paragraph": 172.5,
+        "avg_sentence": 76.7,
+        "long_share": 0.667,
+        "max_paragraph": 249,
+        "paragraphs": 4,
+        "sentences": 9
+      },
+      "score": 82,
+      "source": "ppih",
+      "title": "返金手数料無料で新免税制度のリファンド申請に対応 「SHOP SMART, SAVE MORE」 便利に買って、もっとお得に ～11月1日（日）より全国のPPI",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（PPIH）",
+        "1つの文を2つに割っている（「狙いがあります。また、店頭での免税会計処理が税込決済に一本化されることで、手続き」）。1文にまとめる",
+        "読みやすさ: 文が長い（1文の平均 76.7字・60字超の文が 67% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-12T02:09:40.927857+00:00",
+      "attempt": 1,
+      "id": "cbc3e4c0f962713b",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 107.7,
+        "avg_sentence": 58.7,
+        "long_share": 0.455,
+        "max_paragraph": 146,
+        "paragraphs": 6,
+        "sentences": 11
+      },
+      "score": 88,
+      "source": "tokyu-fudosan",
+      "title": "渋谷区、東急不動産及びRSホールディングスが連携協定を締結 ～国内外の企業・投資家との連携を通じ、渋谷区の都市価値向上、国際競争力向上を推進～",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（RS）",
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
+        "読みやすさ: 文が長い（1文の平均 58.7字・60字超の文が 46% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-12T02:09:58.801074+00:00",
+      "attempt": 0,
+      "id": "cbc3e4c0f962713b",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 92.4,
+        "avg_sentence": 43.1,
+        "long_share": 0.0,
+        "max_paragraph": 136,
+        "paragraphs": 7,
+        "sentences": 15
+      },
+      "score": 85,
+      "source": "tokyu-fudosan",
+      "title": "渋谷区、東急不動産及びRSホールディングスが連携協定を締結 ～国内外の企業・投資家との連携を通じ、渋谷区の都市価値向上、国際競争力向上を推進～",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（RS）",
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-12T02:10:32.266257+00:00",
+      "attempt": 1,
+      "id": "490dc8c40a84ed37",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "「次いで和歌山県が71.40％、東京都が68.27％となっている」→ 元記事では東京都は前年2位から2026年は5位（68.27％）。3位として書くのは順位の取り違え",
+        "「会社を売却・譲渡の方針」「廃業・解散・整理」について「前年からそれぞれ微増した」→ 元記事では0.18→0.20％、0.61→0.76％（0.15ポイント上昇）と数値は合うが、「微増」は廃業の上昇幅の印象を弱めている（軽微）"
+      ],
+      "readability": {
+        "avg_paragraph": 100.3,
+        "avg_sentence": 43.6,
+        "long_share": 0.174,
+        "max_paragraph": 124,
+        "paragraphs": 10,
+        "sentences": 23
+      },
+      "score": 72,
+      "source": "tsr",
+      "title": "2026年「後継者不在率」 過去最高の62.64％ 不在率は伸び鈍化、「同族継承」から「外部招聘」へ",
+      "warnings": [
+        "見出しの書き方: 発表文の題名の言い直し（「〇〇が△△を発表」）。読者にとって何が変わるか（だれの・何が・いつから・いくら）を書く",
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-12T02:10:52.188981+00:00",
+      "attempt": 1,
+      "id": "490dc8c40a84ed37",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 104.3,
+        "avg_sentence": 41.7,
+        "long_share": 0.16,
+        "max_paragraph": 144,
+        "paragraphs": 10,
+        "sentences": 25
+      },
+      "score": 92,
+      "source": "tsr",
+      "title": "2026年「後継者不在率」 過去最高の62.64％ 不在率は伸び鈍化、「同族継承」から「外部招聘」へ",
+      "warnings": [
+        "見出しの書き方: 発表文の題名の言い直し（「〇〇が△△を発表」）。読者にとって何が変わるか（だれの・何が・いつから・いくら）を書く",
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-12T02:11:23.855186+00:00",
+      "attempt": 1,
+      "id": "688f16e6a4687153",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "判定行の「価格=参加無料」→ 元記事に参加費・価格の記載はなく、無料とする根拠がない（価格の創作）",
+        "本文「決済方法に応じてスクラッチカードの色が変わり、1等から3等のいずれかが当たります」→ 赤い画面のPayPay残高は4回に1回の確率であり、必ず当たるわけではないという条件が抜けている",
+        "本文「国内の対象店舗やクレジットカード加盟店で」→ 元記事では海外でのオンライン決済も対象（※3）。対象範囲が狭く書かれている",
+        "紹介プログラム「PayPayカードへの新規入会やクレジット設定、対象店舗での決済」→ 元記事の③は「対象店舗での決済」ではなく、PayPayクレジットまたはPayPayカードでの1回の決済が条件",
+        "「スマートフォンのタッチ決済を活用すると確実にあたりを引くことができます」（仕事・お金欄）→ Google Payは実店舗のタッチ決済のみが対象で、その他の条件もあるため、確実という言い方は言い過ぎ",
+        "「PayPayクーポン」→ 元記事は「配布予定」で、「順次配布されます」とするのは提供状況の言い過ぎ"
+      ],
+      "readability": {
+        "avg_paragraph": 144.0,
+        "avg_sentence": 54.0,
+        "long_share": 0.312,
+        "max_paragraph": 179,
+        "paragraphs": 6,
+        "sentences": 16
+      },
+      "score": 62,
+      "source": "paypay",
+      "title": "「超PayPay祭」が11月20日からスタート！",
+      "warnings": [
+        "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "読みやすさ: 文が長い（1文の平均 54.0字・60字超の文が 31% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "読みやすさ: 段落が長い（平均 144.0字・最長 179字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-12T02:12:33.476120+00:00",
+      "attempt": 1,
+      "id": "77684936399cdeca",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文「一般の住民や企業における日々の手続きや契約には直接の変更はありません」→ 元記事に記載のない影響の有無を断定しており、創作に近い。",
+        "かんたん版「災害時の混乱を防ぐための参考資料」→ 元記事は参考資料と述べるのみで、混乱防止という効果は書かれていない。言い過ぎ。",
+        "かんたん版「避難者の情報を集める」→ 元記事は「被災者情報」の収集・管理としており、対象の言い換えが不正確。",
+        "リード「自治体の防災担当者やシステム調達に関わる事業者は、仕様書を活用した要件整理を進めることになります」→ 利用者の行動を決まったことのように書いており、元記事にない断定。",
+        "タイトル「IPAが…公開」→ 元記事では経済産業省・NEDO・IPA DADCの共同発表であり、IPA単独の公開のように読める（本文のIPAなどの表記とはずれる）。"
+      ],
+      "readability": {
+        "avg_paragraph": 124.3,
+        "avg_sentence": 67.8,
+        "long_share": 0.545,
+        "max_paragraph": 222,
+        "paragraphs": 6,
+        "sentences": 11
+      },
+      "score": 80,
+      "source": "ipa",
+      "title": "「チェックインシステムに係る導入ガイドライン及び標準仕様書 Ver1.0」を公開しました",
+      "warnings": [
+        "見出しの書き方: 記号: かっこの直後に「、」",
+        "見出しが49字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（IPA・ER・OSS）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-12T02:12:50.866554+00:00",
+      "attempt": 1,
+      "id": "77684936399cdeca",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 118.5,
+        "avg_sentence": 71.1,
+        "long_share": 0.6,
+        "max_paragraph": 187,
+        "paragraphs": 6,
+        "sentences": 10
+      },
+      "score": 92,
+      "source": "ipa",
+      "title": "「チェックインシステムに係る導入ガイドライン及び標準仕様書 Ver1.0」を公開しました",
+      "warnings": [
+        "見出しの書き方: 記号: かっこの直後に「、」",
+        "見出しが57字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（IPA・ER・OSS）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-12T02:13:13.423688+00:00",
+      "attempt": 0,
+      "id": "77684936399cdeca",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 50.1,
+        "avg_sentence": 46.7,
+        "long_share": 0.133,
+        "max_paragraph": 63,
+        "paragraphs": 14,
+        "sentences": 15
+      },
+      "score": 93,
+      "source": "ipa",
+      "title": "「チェックインシステムに係る導入ガイドライン及び標準仕様書 Ver1.0」を公開しました",
+      "warnings": [
+        "見出しの書き方: 記号: かっこの直後に「、」",
+        "見出しが57字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（IPA・ER・OSS）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-12T02:13:46.420552+00:00",
+      "attempt": 1,
+      "id": "5b3847551f6fdba9",
+      "kind": "update",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "score": 90,
+      "source": "miraiz-chuden",
+      "title": "「電気・ガス料金支援」の実施に伴う電気料金および都市ガス料金の特別措置ならびに電気料金の特別措置の認可申請について"
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-12T02:14:03.223311+00:00",
+      "attempt": 1,
+      "id": "866d62483e667b43",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 156.0,
+        "avg_sentence": 66.9,
+        "long_share": 0.571,
+        "max_paragraph": 170,
+        "paragraphs": 3,
+        "sentences": 7
+      },
+      "score": 88,
+      "source": "ntt-news-ai",
+      "title": "SOMPOホールディングスとNTTがパートナーシップ協定を締結 ～介護分野におけるフィジカルAI社会実装にむけて～",
+      "warnings": [
+        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（SOMPO）",
+        "読みやすさ: 文が長い（1文の平均 66.9字・60字超の文が 57% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-12T02:14:20.510180+00:00",
+      "attempt": 0,
+      "id": "866d62483e667b43",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 99.2,
+        "avg_sentence": 45.1,
+        "long_share": 0.091,
+        "max_paragraph": 148,
+        "paragraphs": 5,
+        "sentences": 11
+      },
+      "score": 88,
+      "source": "ntt-news-ai",
+      "title": "SOMPOホールディングスとNTTがパートナーシップ協定を締結 ～介護分野におけるフィジカルAI社会実装にむけて～",
+      "warnings": [
+        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（SOMPO）",
+        "読みやすさ: 文が長い（1文の平均 45.1字・60字超の文が 9% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-12T02:14:47.044174+00:00",
+      "attempt": 1,
+      "id": "2c25781aa09a130c",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "タイトル「11月11日限定で提供」→ 元記事では販売期間は2026年11月11日10時から11月12日9時30分まで。11月11日だけの限定ではなく、期間の取り違えにあたる。",
+        "リード・本文は提供期間を正しく書いているため、タイトルと本文が食い違っている。"
+      ],
+      "readability": {
+        "avg_paragraph": 191.2,
+        "avg_sentence": 76.5,
+        "long_share": 0.8,
+        "max_paragraph": 255,
+        "paragraphs": 4,
+        "sentences": 10
+      },
+      "score": 70,
+      "source": "povo",
+      "title": "povo、11月11日にちなんで「povoガチャ スペシャル～ダブルイレブン～」を期間限定提供",
+      "warnings": [
+        "見出しが50字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "読みやすさ: 文が長い（1文の平均 76.5字・60字超の文が 80% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "読みやすさ: 段落が長い（平均 191.2字・最長 255字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-12T02:15:04.310091+00:00",
+      "attempt": 1,
+      "id": "2c25781aa09a130c",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 191.2,
+        "avg_sentence": 76.5,
+        "long_share": 0.8,
+        "max_paragraph": 255,
+        "paragraphs": 4,
+        "sentences": 10
+      },
+      "score": 88,
+      "source": "povo",
+      "title": "povo、11月11日にちなんで「povoガチャ スペシャル～ダブルイレブン～」を期間限定提供",
+      "warnings": [
+        "見出しが66字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "title の長さ（66字 / 目安 18〜64字）",
+        "読みやすさ: 文が長い（1文の平均 76.5字・60字超の文が 80% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-12T02:15:18.790205+00:00",
+      "attempt": 0,
+      "id": "2c25781aa09a130c",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 131.7,
+        "avg_sentence": 52.7,
+        "long_share": 0.267,
+        "max_paragraph": 191,
+        "paragraphs": 6,
+        "sentences": 15
+      },
+      "score": 88,
+      "source": "povo",
+      "title": "povo、11月11日にちなんで「povoガチャ スペシャル～ダブルイレブン～」を期間限定提供",
+      "warnings": [
+        "見出しが66字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "title の長さ（66字 / 目安 18〜64字）",
+        "読みやすさ: 文が長い（1文の平均 52.7字・60字超の文が 27% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-12T02:15:51.743429+00:00",
+      "attempt": 1,
+      "id": "5bbb1c20026f6c35",
+      "kind": "ai",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 166.0,
+        "avg_sentence": 71.1,
+        "long_share": 0.571,
+        "max_paragraph": 244,
+        "paragraphs": 6,
+        "sentences": 14
+      },
+      "score": 90,
+      "source": "salesforce-jp",
+      "title": "Salesforce、「IDC MarketScape: Japan Unified AI Platforms 2026 Vendor Assessment」で",
+      "warnings": [
+        "見出しが51字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（IDC・UCC）",
+        "読みやすさ: 文が長い（1文の平均 71.1字・60字超の文が 57% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-12T02:16:10.090463+00:00",
+      "attempt": 0,
+      "id": "5bbb1c20026f6c35",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 100.0,
+        "avg_sentence": 58.8,
+        "long_share": 0.471,
+        "max_paragraph": 175,
+        "paragraphs": 10,
+        "sentences": 17
+      },
+      "score": 92,
+      "source": "salesforce-jp",
+      "title": "Salesforce、「IDC MarketScape: Japan Unified AI Platforms 2026 Vendor Assessment」で",
+      "warnings": [
+        "見出しが51字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（IDC・UCC）",
+        "読みやすさ: 文が長い（1文の平均 58.8字・60字超の文が 47% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
       ]
     }
   ],
