@@ -70,7 +70,7 @@
   "videoTitle": "マイナンバーカードの電子証明書の有効期限と更新 発行から5回目の誕生日までで市区町村窓口で無料で更新できます",
   "publishedAt": "2026-11-12T06:38:45.914714+00:00",
   "generatedAt": "2026-11-12T06:40:27.701699+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/mynumber-electronic-certificate-renewal-figure-15c8a994.jpg",
   "model": "anthropic-api:claude-haiku-5-5",
   "affiliates": [],
   "newsType": "policy",
@@ -85,15 +85,13 @@
     }
   ],
   "todayActions": [
-    "券面の電子証明書の有効期限を確かめる。記入がなければマイナポータルで確認する",
-    "有効期限通知書が届いたら、「有効期限が到来するもの」欄で電子証明書の対象を確かめる",
-    "不明な点は、マイナンバー総合フリーダイヤル0120-95-0178（1番）に電話で確かめる"
+    "電子証明書の有効期限を、カード券面の記入欄かマイナポータルで確かめる",
+    "有効期限通知書の「有効期限が到来するもの」欄で、電子証明書が対象かを確かめる"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
   "museFile": "20261112-手続き-電子証明書の有効期限と更新.md",
   "sectionsPolishedAt": "2026-11-12T06:40:27+00:00",
-  "museDepthNotes": "なるほど: 署名用電子証明書は、住所・氏名・性別が変わると期限前でも無効になる。利用者証明用には総務省の同ページにその記載はなく、引っ越しや氏名変更の後にe-Taxで署名だけ止まるのはこの違いのためである（https://www.soumu.go.jp/kojinbango_card/kojinninshou-01.html）\nなるほど: 期限まで3か月未満になってから期限までに更新すると、新しい電子証明書の期限は発行日から6回目の誕生日まで設定される。少し早めに更新しても次の期限がその分短くはならない仕組みである（https://www.kojinbango-card.go.jp/card/renewal/）\nなるほど: 暗証番号は2種類で違う。署名用は6桁から16桁の英数字、利用者証明用は4桁の数字で、更新の窓口では入力が必要だが、忘れた場合はその窓口で再設定できる（総務省ページとマイナンバーカード総合サイト「更新手続きについて」）\n公式窓口: マイナンバーカード総合サイト（https://www.kojinbango-card.go.jp/card/renewal/）とマイナンバー総合フリーダイヤル（0120-95-0178）。たどり方は本文の窓口の見出しに書いた\nすぐにできること: カード券面の電子証明書の有効期限欄を見る／券面が空欄ならマイナポータルで確かめる／届いた有効期限通知書の「有効期限が到来するもの」欄を見る",
   "museSources": [
     {
       "url": "https://www.digital.go.jp/policies/mynumber/expiration-date",
@@ -134,5 +132,143 @@
   "detectedAt": "2026-11-12T06:40:38+00:00",
   "searchTitle": "マイナンバーカードの電子証明書はいつ切れる？　5回目の誕生日",
   "layout": "noir",
-  "summaryLine": "電子証明書は年齢に関わらず発行から5回目の誕生日で期限切れ。更新は市区町村窓口で無料"
+  "summaryLine": "電子証明書は年齢に関わらず発行から5回目の誕生日で期限切れ。更新は市区町村窓口で無料",
+  "insight": [
+    {
+      "text": "有効期限の3か月後の末日までに更新した場合は、再度のマイナ保険証の利用登録は必要ありません。",
+      "source": "https://www.digital.go.jp/policies/mynumber/expiration-date"
+    },
+    {
+      "text": "マイナンバー総合フリーダイヤルの1番（カードや電子証明書の問い合わせ）は、平日も土日祝も9：30～20：00で受け付けています。",
+      "source": "https://www.kojinbango-card.go.jp/contact/tel/"
+    },
+    {
+      "text": "代理人が更新する場合、照会書兼回答書に申請者が記入した暗証番号に誤りがあると、即日の更新はできません。",
+      "source": "https://www.kojinbango-card.go.jp/card/renewal/"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "マイナンバー総合フリーダイヤル",
+      "url": "https://www.kojinbango-card.go.jp/contact/tel/",
+      "source": "https://www.kojinbango-card.go.jp/contact/tel/",
+      "howTo": [
+        "メールや電話で問い合わせる",
+        "お電話でのお問い合わせ"
+      ],
+      "phone": "0120-95-0178",
+      "hours": "平日9：30～20：00、土日祝9：30～17：30（1番は平日・土日祝ともに9：30～20：00）"
+    },
+    {
+      "name": "更新手続きについて（マイナンバーカード総合サイト）",
+      "url": "https://www.kojinbango-card.go.jp/card/renewal/",
+      "source": "https://www.kojinbango-card.go.jp/card/renewal/",
+      "howTo": [
+        "マイナンバーカードについて",
+        "更新手続きについて"
+      ],
+      "note": "電子証明書の更新は住民登録のある市区町村窓口で行う。予約制の市区町村もあるので、事前に市区町村のホームページで確かめる。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "電子証明書の有効期限を、カード券面の記入欄かマイナポータルで確かめる",
+      "source": "https://www.digital.go.jp/policies/mynumber/expiration-date",
+      "steps": [
+        "カード券面の電子証明書の有効期限欄を見る",
+        "記入がなければマイナポータルにログインする",
+        "トップページから「マイナンバーカード」を選ぶ"
+      ],
+      "url": "https://www.digital.go.jp/policies/mynumber/expiration-date"
+    },
+    {
+      "action": "有効期限通知書の「有効期限が到来するもの」欄で、電子証明書が対象かを確かめる",
+      "source": "https://www.kojinbango-card.go.jp/card/renewal/",
+      "steps": [
+        "封筒の中の有効期限通知書を開く",
+        "「有効期限が到来するもの」欄を見る",
+        "電子証明書の記載があれば窓口での更新を準備する"
+      ],
+      "url": "https://www.kojinbango-card.go.jp/card/renewal/"
+    }
+  ],
+  "cause": {
+    "text": "電子証明書は、コンピュータの性能向上や暗証番号を読み解く技術の進歩で暗号の安全性が下がるおそれがあるため、発行から5回目の誕生日で期限が設定されています。",
+    "status": "background",
+    "source": "https://www.digital.go.jp/policies/mynumber/expiration-date"
+  },
+  "worries": [
+    {
+      "q": "期限が切れたら、マイナ保険証で病院にかかれなくなる？",
+      "a": "有効期限満了日が属する月の末日から3か月間は、マイナ保険証として使えます。",
+      "source": "https://www.digital.go.jp/policies/mynumber/expiration-date",
+      "action": "有効期限の3か月後の末日までに窓口で更新すれば、マイナ保険証の再登録は要りません。"
+    },
+    {
+      "q": "健康保険証がなく、更新もできなかったら受診できない？",
+      "a": "お手元に有効な健康保険証がなく、電子証明書の更新もしなかった場合は、申請なしで資格確認書が発行されます。更新できないままでも、この資格確認書で医療機関を受診できます。",
+      "source": "https://www.digital.go.jp/policies/mynumber/expiration-date",
+      "action": "保険証が手元にないなら、期限の前に市区町村窓口で電子証明書を更新しておく。"
+    },
+    {
+      "q": "e-Taxは期限が切れたらすぐ使えなくなる？",
+      "a": "電子証明書の有効期限が切れると、オンラインでの本人確認や電子申請などができなくなります。マイナポータルや確定申告の電子申告などの行政サービスも使えなくなります。",
+      "source": "https://www.digital.go.jp/policies/mynumber/expiration-date",
+      "action": "e-Taxを使う予定があれば、期限の前に窓口で電子証明書を更新する。"
+    },
+    {
+      "q": "暗証番号を忘れたら、更新できなくなる？",
+      "a": "電子証明書の更新には暗証番号の入力が必要ですが、暗証番号を忘れた場合は窓口で再設定できます。",
+      "source": "https://www.kojinbango-card.go.jp/card/renewal/",
+      "action": "暗証番号が分からないときは、更新に行く市区町村窓口で再設定の手続きをお願いする。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "電子申請をよく使うなら、いつ更新する？",
+      "situation": "e-Taxや電子申請をよく使う",
+      "recommend": "通知書が届いたら、期限より前に更新する",
+      "reason": "電子証明書の期限が切れると、e-Taxなどオンラインの手続きが止まります。更新は無料で、市区町村窓口で行えます（手数料は無料）。",
+      "source": "https://www.digital.go.jp/policies/mynumber/expiration-date"
+    },
+    {
+      "question": "電子申請はほとんど使わないなら、いつ更新する？",
+      "situation": "オンライン手続きはほとんど使わない",
+      "recommend": "急がなくてよい。期限が近づいたら窓口で更新する",
+      "reason": "更新できるのは期限の満了日までが3か月未満になった日からです。3か月未満になった日から期限までに更新すると、電子証明書の有効期限は発行日から6回目の誕生日までに設定されます。",
+      "source": "https://www.kojinbango-card.go.jp/card/renewal/"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "保険証の再登録がいらない条件",
+    "cause": "なぜ電子証明書は5年で切れるのか",
+    "steps": "今日までに確かめる2つのこと",
+    "desk": "問い合わせ先と、迷ったときの道順",
+    "worries": "期限が切れたら、保険や手続きはどうなる？",
+    "guide": "期限前に更新するか、迷ったときの決め方"
+  },
+  "depthAt": "2026-11-12T06:59:26+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "マイナンバーカードの電子証明書、5回目の誕生日で期限切れ",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-12T07:00:38+00:00"
+  },
+  "imageFocus": {
+    "x": 0.558,
+    "y": 0.407,
+    "box": [
+      0.125,
+      0.071,
+      0.991,
+      0.744
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/mynumber-electronic-certificate-renewal-figure-15c8a994.jpg"
+  }
 }
