@@ -189,3 +189,127 @@ def record_texts(record: dict) -> list[str]:
     out = [str(record.get(k) or "") for k in ("title", "seoTitle", "lede", "description", "summaryLine", "body", "easy", "threadsPost")]
     out += [str(h) for h in record.get("highlights") or []]
     return [t for t in out if t]
+
+
+# ---- もう始まった変更を「これから」と書いていないか（2026-11-12 の取り下げ。Muse の記事） ----
+# きっかけ: 2026-11-12 夜の Muse の値上げ記事7本（取り下げ haagen-dazs-price-increase-2026-march など）が、
+# 2026年2月〜10月に実施済みの値上げを「3月1日出荷分から改定します」「買い置きは2月中に」とこれからのこととして書いた。
+# 見ること（文字の照合だけ）:
+# 1. 過去の日付（年月日・年月・年なしの月日）と、これからの変化を言う語（値上げします・上がります・変わります・予定 など）が同じ文にある。
+#    年なしの月日は今年として、今日より前で150日以内のときだけ過去とみなす（11月の記事の「1月5日から」は来年の意味が多い）。
+#    年月だけ（「2026年10月から」）は、その月の末日が今日より前のときだけ過去とみなす。
+# 2. 過去に始まった変更の、その前の月に何かをすすめている（「2月中に買い置き」「2月28日までに申し込む」）。
+_FUTURE_CHANGE_RE = re.compile(
+    r"(?:値上げ|値下げ|改定|引き上げ|引き下げ|値上がり|適用|実施|開始|導入|廃止|変更)(?:します|されます|になります|されることになります)"
+    r"|(?:上がり|下がり|変わり|始まり|始め|終わり)ます(?!.{0,2}た)|引き上げられます|引き下げられます|予定です|予定となっています"
+)
+_CHANGE_NOUN_RE = re.compile(r"値上げ|値下げ|改定|引き上げ|引き下げ|変更|開始|導入|廃止|適用|施行|実施|から")
+_YMD_RE = re.compile(r"(20\d\d)年(\d{1,2})月(\d{1,2})日")
+_YM_RE = re.compile(r"(20\d\d)年(\d{1,2})月(?!\d|\s*\d{1,2}日)")
+_MD_RE = re.compile(r"(?<![年\d])(\d{1,2})月(\d{1,2})日")
+_BEFORE_ACT_RE = re.compile(r"(?<![年\d])(\d{1,2})月(?:中に|中の|末まで|(\d{1,2})日(?:まで|より前))")
+_ACT_RE = re.compile(r"買|済ませ|申し込|手続|決め|予約|注文|変更|送金|切り替")
+PAST_MD_DAYS = 150
+
+
+def _month_end(year: int, month: int) -> date:
+    return (date(year + (month == 12), month % 12 + 1, 1) - timedelta(days=1))
+
+
+def _past_dates(sentence: str, today: date) -> list[date]:
+    out: list[date] = []
+    for y, m, d in _YMD_RE.findall(sentence):
+        try:
+            when = date(int(y), int(m), int(d))
+        except ValueError:
+            continue
+        if when < today:
+            out.append(when)
+    for y, m in _YM_RE.findall(sentence):
+        try:
+            if _month_end(int(y), int(m)) < today:
+                out.append(date(int(y), int(m), 1))
+        except ValueError:
+            continue
+    for m, d in _MD_RE.findall(sentence):
+        try:
+            when = date(today.year, int(m), int(d))
+        except ValueError:
+            continue
+        if when < today and (today - when).days <= PAST_MD_DAYS:
+            out.append(when)
+    return out
+
+
+_PAREN_RE = re.compile(r"\([^()]{0,80}\)")
+_RANGE_END_RE = re.compile(r"(\d{1,2})月(\d{1,2})日(?:から|〜|~|-|－)(?:(\d{1,2})月)?(\d{1,2})日")
+_YEAR_RE = re.compile(r"(20\d\d)年|(令和)(\d{1,2}|元)年")
+
+
+def _has_future(sentence: str, today: date) -> bool:
+    """文に、今日以降の日付・来年以降の年があるか（あれば「これから」の書き方は正しい）"""
+    for y, era, num in _YEAR_RE.findall(sentence):
+        year = int(y) if y else _era_year(era, num)
+        if year > today.year:
+            return True
+    for y, m, d in _YMD_RE.findall(sentence):
+        try:
+            if date(int(y), int(m), int(d)) >= today:
+                return True
+        except ValueError:
+            continue
+    for y, m in _YM_RE.findall(sentence):
+        try:
+            if _month_end(int(y), int(m)) >= today:
+                return True
+        except ValueError:
+            continue
+    ends = [(m2 or m1, d2) for m1, _d1, m2, d2 in _RANGE_END_RE.findall(sentence)]
+    for m, d in _MD_RE.findall(sentence) + ends:
+        try:
+            when = date(today.year, int(m), int(d))
+        except ValueError:
+            continue
+        if when >= today or (today - when).days > PAST_MD_DAYS:
+            return True
+    return False
+
+
+def past_change(article_texts, today: date) -> list[str]:
+    """もう始まった変更を、これからのこととして書いている文の指摘（日本語）。空なら通す"""
+    article = _n("\n".join(article_texts) if isinstance(article_texts, (list, tuple)) else article_texts)
+    sentences = _sentences(article)
+    problems: list[str] = []
+    started: list[date] = []
+    for s in sentences:
+        if _EARLIER_RE.search(s):
+            continue
+        s = _PAREN_RE.sub("", s)  # かっこの中（確かめた日・曜日・出典）は見ない
+        past = _past_dates(s, today)
+        if not past:
+            continue
+        if _CHANGE_NOUN_RE.search(s):
+            started += past
+        if _FUTURE_CHANGE_RE.search(s) and not problems and not _has_future(s, today):
+            when = max(past)
+            problems.append(
+                f"もう始まった変更を、これからのこととして書いています（{_fmt(when)}は今日より前です）: 「{s[:70]}」。"
+                f"「{_fmt(when)}から〜になりました（今は〜）」のように今の状態として書き直し、"
+                "変わる前にやること（買い置き・前日までの手続きなど）は消してください。今の状態として読者に役立つことが無ければ、別の話題にしてください")
+    if started:
+        for s in sentences:
+            m = _BEFORE_ACT_RE.search(s)
+            if not m or not _ACT_RE.search(s):
+                continue
+            month = int(m.group(1))
+            if not 1 <= month <= 12:
+                continue
+            for when in started:
+                if date(when.year, month, 1) <= when and _month_end(when.year, month) < today:
+                    problems.append(
+                        f"もう過ぎた時期に何かをするようすすめています: 「{s[:70]}」（変更は{_fmt(when)}に始まっています）。この文は消してください")
+                    break
+            else:
+                continue
+            break
+    return problems

@@ -334,7 +334,8 @@ def build_article(path: Path, data: dict, fetched: list[dict]) -> tuple[str, dic
     # 出典の資料の日付・会議の回と、記事が書く出来事が合っているか（2026-11-10 の取り下げ。scripts/source_date.py）。
     # 下書きの時点で分かった食い違いは、最初の試行から直させる（公開前の門は下の試行の中で記事の JSON に当てる）
     today = datetime.now(JST).date()
-    if early := source_date.check([data["title"], data["body"]], fetched, today):
+    # もう始まった変更（実施済みの値上げなど）を「これから」と書いていないか（2026-11-12 の取り下げ7本。source_date.past_change）
+    if early := source_date.check([data["title"], data["body"]], fetched, today) + source_date.past_change([data["title"], data["body"]], today):
         prompt += "\n\n【出典の日付の注意（必ず直す）】\n" + "\n".join(f"- {p}" for p in early)
         log(f"   [muse] 出典の日付の注意: {early[0][:160]}")
     need = pass_score(data["genre"])
@@ -377,7 +378,8 @@ def build_article(path: Path, data: dict, fetched: list[dict]) -> tuple[str, dic
         own_view.ensure(record, source_text, context, log=log)
         # 記事の8つの基準（scripts/quality_bar.py）: 足りない点を1回だけ手直しする（下の事実確認を通す）。Muse の記事は基準では落とさない（記録だけ）
         quality_bar.ensure(record, source_text, context, log=log)
-        if dated := source_date.check(source_date.record_texts(record), fetched, today):
+        texts = source_date.record_texts(record) + [str(a) for a in record.get("todayActions") or []]
+        if dated := source_date.check(texts, fetched, today) + source_date.past_change(texts, today):
             problems = dated
             log(f"   [muse] 試行{attempt}: {dated[0][:160]}")
             continue
