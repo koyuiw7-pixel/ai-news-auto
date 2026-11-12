@@ -42,8 +42,7 @@
       "label": "使える場所",
       "value": "Microsoft Foundryポータル",
       "sources": [
-        "microsoft-foundry-agent-tutorial-azure",
-        "microsoft-foundry-agent-framework-customization"
+        "microsoft-foundry-agent-tutorial-azure"
       ]
     },
     {
@@ -97,19 +96,11 @@
     {
       "text": "利用に応じてAzureのAPI従量課金が発生します。",
       "sources": [
-        "microsoft-foundry-agent-framework-customization",
         "microsoft-foundry-model-router-update"
       ]
     }
   ],
-  "japan": [
-    {
-      "text": "日本国内のAzureアカウントから利用できます。",
-      "sources": [
-        "microsoft-foundry-agent-framework-customization"
-      ]
-    }
-  ],
+  "japan": [],
   "howto": [
     {
       "text": "ポータルサイトにアクセスし、Azureサブスクリプションを登録して始めます。",
@@ -120,7 +111,7 @@
     {
       "text": "チャット画面のボタンから直接VS Codeを開いてコードを編集できます。",
       "sources": [
-        "microsoft-foundry-agent-framework-customization"
+        "https://www.youtube.com/watch?v=FVYDyA1LcGI"
       ]
     }
   ],
@@ -128,7 +119,7 @@
     {
       "text": "チャット画面からワンクリックでVS Codeのコードへ直接飛べるようになりました。",
       "sources": [
-        "microsoft-foundry-agent-framework-customization"
+        "https://www.youtube.com/watch?v=FVYDyA1LcGI"
       ]
     }
   ],
@@ -158,7 +149,7 @@
       "q": "コードの編集方法は？",
       "a": "チャット画面のボタンから直接VS Codeを開いてエージェントのコードを編集できます。",
       "sources": [
-        "microsoft-foundry-agent-framework-customization"
+        "https://www.youtube.com/watch?v=FVYDyA1LcGI"
       ]
     }
   ],
@@ -177,11 +168,6 @@
       "date": "2026-10-29",
       "slug": "microsoft-copilot-harness-foundry",
       "event": "Copilot harnessの提供を開始"
-    },
-    {
-      "date": "2026-10-31",
-      "slug": "microsoft-foundry-agent-framework-customization",
-      "event": "VS Code連携機能の実演を公開"
     },
     {
       "date": "2026-11-07",
@@ -212,7 +198,6 @@
     "microsoft-foundry-agent-tutorial-azure",
     "microsoft-foundry-video-models-fal",
     "microsoft-foundry-agent-service-copilot-harness",
-    "microsoft-foundry-agent-framework-customization",
     "microsoft-copilot-harness-foundry-agent-builder",
     "microsoft-copilot-harness-foundry",
     "dotnet-11-rc2-python-arm64-foundry-browser-automation",
@@ -232,7 +217,6 @@
     "microsoft-foundry-agent-tutorial-azure",
     "microsoft-foundry-video-models-fal",
     "microsoft-foundry-agent-service-copilot-harness",
-    "microsoft-foundry-agent-framework-customization",
     "microsoft-copilot-harness-foundry",
     "dotnet-11-rc2-python-arm64-foundry-browser-automation",
     "microsoft-foundry-agent-guardrails-security",
@@ -245,5 +229,13 @@
   "primarySignature": "6d72a26846afa78e",
   "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-10-27T10:43:54+00:00",
-  "updatedAt": "2026-11-11T22:00:29+00:00"
+  "updatedAt": "2026-11-11T22:00:29+00:00",
+  "officialSources": {
+    "https://www.youtube.com/watch?v=FVYDyA1LcGI": {
+      "title": "Customize your agent from a Chat Window?",
+      "publisher": "Microsoft Developer の YouTube 公式チャンネル",
+      "kind": "video",
+      "checkedAt": "2026-11-12"
+    }
+  }
 }

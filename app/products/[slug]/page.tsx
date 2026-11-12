@@ -12,10 +12,12 @@ import {
   getAllProducts,
   getProduct,
   isListedProduct,
+  officialSourceOf,
   productHeading,
   productProfile,
   productSeoTitle,
   vendorLogo,
+  type OfficialSource,
   type ProductProfile,
   type Sourced,
 } from "@/lib/products";
@@ -100,11 +102,11 @@ export default async function ProductPage({ params }: Props) {
     <BrandImg image={logo} alt={logo.alt ?? product.companyName} width={Math.round(28 * ((logo.width ?? 360) / (logo.height ?? 161)))} height={28} className="h-7 w-auto" />
   ) : null;
 
-  // 出典の番号（ページに出てくる順）
+  // 出典の番号（ページに出てくる順）。出典は記事の slug か、公式の発表の URL（officialSources に題名があるもの）
   const order: string[] = [];
   const cite = (sources: string[]) =>
     sources
-      .filter((s) => getArticleSummary(s))
+      .filter((s) => getArticleSummary(s) || officialSourceOf(product, s))
       .map((s) => {
         if (!order.includes(s)) order.push(s);
         return order.indexOf(s) + 1;
@@ -118,7 +120,11 @@ export default async function ProductPage({ params }: Props) {
     howto: profile.howto.map((i) => cite(i.sources)),
     faq: profile.faq.map((i) => cite(i.sources)),
   };
-  const cited = order.map((s) => getArticleSummary(s)!);
+  const cited: Cited[] = order.map((s) => {
+    const article = getArticleSummary(s);
+    return article ? { article } : { url: s, official: officialSourceOf(product, s)! };
+  });
+  const hasOfficial = cited.some((c) => "official" in c);
   const latest = profile.latest;
   const howtos = howtosForProduct(product.slug);
   const related = product.related.filter((s) => isListedProduct(s)).map((s) => getProduct(s)!);
@@ -146,7 +152,11 @@ export default async function ProductPage({ params }: Props) {
       publisher: publisherJsonLd,
       publishingPrinciples: `${siteConfig.url}/editorial-policy`,
       about: { "@type": "Thing", name: product.name },
-      citation: cited.map((a) => ({ "@type": "NewsArticle", headline: a.title, url: `${siteConfig.url}/articles/${a.slug}` })),
+      citation: cited.map((c) =>
+        "article" in c
+          ? { "@type": "NewsArticle", headline: c.article.title, url: `${siteConfig.url}/articles/${c.article.slug}` }
+          : { "@type": "CreativeWork", name: c.official.title, url: c.url, publisher: { "@type": "Organization", name: c.official.publisher } },
+      ),
     },
     {
       "@context": "https://schema.org",
@@ -313,9 +323,10 @@ export default async function ProductPage({ params }: Props) {
           <ol className="border-l border-line-strong pl-5">
             {profile.timeline.map((item, index) => {
               const linked = Boolean(getArticleSummary(item.slug));
+              const official = !linked && item.url ? officialSourceOf(product, item.url) : undefined;
               const sameDay = index > 0 && profile.timeline[index - 1].date === item.date;
               return (
-                <li key={item.slug} className={`relative ${sameDay ? "mt-2" : index > 0 ? "mt-5" : ""}`}>
+                <li key={item.slug || item.url || `${item.date}-${index}`} className={`relative ${sameDay ? "mt-2" : index > 0 ? "mt-5" : ""}`}>
                   {!sameDay && (
                     <>
                       <span aria-hidden className="absolute -left-[25px] top-[7px] size-[9px] rounded-full border-2 border-paper bg-ink" />
@@ -329,6 +340,16 @@ export default async function ProductPage({ params }: Props) {
                     >
                       {item.event}
                     </Link>
+                  ) : official && item.url ? (
+                    <a
+                      href={item.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-0.5 block text-desc leading-[1.75] text-ink underline decoration-line-strong underline-offset-4 hover:text-accent hover:decoration-accent"
+                    >
+                      {item.event}
+                      <span className="ml-1 text-note text-muted">（{official.kind === "video" ? "公式の動画" : "公式の発表"}）</span>
+                    </a>
                   ) : (
                     <span className="mt-0.5 block text-desc leading-[1.75] text-ink">{item.event}</span>
                   )}
@@ -368,12 +389,12 @@ export default async function ProductPage({ params }: Props) {
       )}
 
       {cited.length > 0 && (
-        <Section id="refs" title="参考にした記事">
+        <Section id="refs" title={hasOfficial ? "参考にした記事と公式の発表" : "参考にした記事"}>
           <ol className="grid gap-2.5 text-note">
-            {cited.map((article, index) => (
-              <li key={article.slug} id={`ref-${index + 1}`} className="grid grid-cols-[2rem_1fr] scroll-mt-24">
+            {cited.map((c, index) => (
+              <li key={"article" in c ? c.article.slug : c.url} id={`ref-${index + 1}`} className="grid grid-cols-[2rem_1fr] scroll-mt-24">
                 <span className="index-num text-note leading-[1.9] text-muted">[{index + 1}]</span>
-                <ArticleLine article={article} />
+                {"article" in c ? <ArticleLine article={c.article} /> : <OfficialLine url={c.url} source={c.official} />}
               </li>
             ))}
           </ol>
@@ -466,6 +487,26 @@ function Refs({ numbers }: { numbers: number[] }) {
         </a>
       ))}
     </sup>
+  );
+}
+
+type Cited = { article: ArticleSummary } | { url: string; official: OfficialSource };
+
+/** 公式の発表（企業のページ・公式チャンネルの動画）への出典 */
+function OfficialLine({ url, source }: { url: string; source: OfficialSource }) {
+  return (
+    <span className="leading-[1.8]">
+      <span className="mr-2 text-meta text-muted">{source.kind === "video" ? "公式の動画" : "公式の発表"}</span>
+      <a
+        href={url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-ink underline decoration-line-strong underline-offset-4 hover:text-accent hover:decoration-accent"
+      >
+        {source.title}
+      </a>
+      <span className="ml-1 text-muted">（{source.publisher}）</span>
+    </span>
   );
 }
 

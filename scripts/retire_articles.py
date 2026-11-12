@@ -52,6 +52,9 @@
   転送: "redirect" に書いた親の記事（同じ話題の、残る記事）。名前の照合（redirect_ok）を通らなければ 410。
   python3 scripts/retire_articles.py --slugs plan.json          # 数えるだけ
   python3 scripts/retire_articles.py --slugs plan.json --apply  # 取り下げる
+  "replaced": true（2026-11-12 19:00 オーナー承認）: 製品ページの項目の出典を公式の発表の URL に差し替えたあとの一覧。
+  製品の記事一覧・発表の履歴・イベントや比較ガイドの関連記事・料金の早見表の参照は、付け替え・作り直しで外れるので守らない
+  （製品ページの項目の出典に残っている記事だけ守る）。取り下げたあとは scripts/pricing_table.py --rebuild で料金の早見表を作り直す
 
 検索から人が来ている記事は取り下げない（2026-11-06 オーナー決定・台帳 A46）: content/search_protected.json の記事は、
 どの区分（--noindex・--notice・--creator・通常）でも取り下げの対象から外し、「残す」の一覧に出す。apply() も最後の守りとして拒む。
@@ -386,20 +389,50 @@ KEEP_IF_LINKED_FROM = [
 KEEP_IF_LINKED_DIRS = ["content/products", "content/guides", "content/buying-guides", "content/howto"]
 
 
-def linked_from_kept_pages(slugs) -> dict[str, list[str]]:
-    """日程・ガイド・イベント・製品・比較・料金・訂正・次にやること のページが参照している記事 {slug: [ファイル]}"""
-    files = [ROOT / f for f in KEEP_IF_LINKED_FROM] + [p for d in KEEP_IF_LINKED_DIRS for p in sorted((ROOT / d).glob("*.json"))]
+# 参照の差し替えが済んだ一覧（"replaced": true。2026-11-12 19:00 オーナー承認「製品ページの出典の差し替えも進めて」）で、
+# 参照があっても取り下げてよいファイル: apply() が付け替える関連の並び（製品の記事一覧・発表の履歴、イベントの関連記事、
+# 比較ガイドの関連記事）と、記事から作り直す料金の早見表（scripts/pricing_table.py --rebuild）。
+# 製品ページの項目の出典（sources）に残っている記事は、差し替えが済んでいないので残す
+REWRITTEN_REFS = ["content/events.json", "content/pricing.json"]
+REWRITTEN_DIRS = ["content/products", "content/buying-guides"]
+
+
+def product_fact_sources() -> dict[str, list[str]]:
+    """製品ページの項目（概要・できること・料金・よくある質問など）の出典に使われている記事 {slug: [ファイル]}"""
+    out: dict[str, list[str]] = {}
+    for path in sorted((ROOT / "content" / "products").glob("*.json")):
+        data = _read(path)
+        for key in SOURCE_KEYS:
+            value = data.get(key)
+            for item in [value] if isinstance(value, dict) else (value or []):
+                for s in (item.get("sources") or []) if isinstance(item, dict) else []:
+                    out.setdefault(s, [])
+                    name = str(path.relative_to(ROOT))
+                    if name not in out[s]:
+                        out[s].append(name)
+    return out
+
+
+def linked_from_kept_pages(slugs, replaced: bool = False) -> dict[str, list[str]]:
+    """日程・ガイド・イベント・製品・比較・料金・訂正・次にやること のページが参照している記事 {slug: [ファイル]}。
+    replaced なら、付け替え・作り直しで外れる参照（REWRITTEN_REFS・REWRITTEN_DIRS）は数えず、製品ページの項目の出典だけを見る"""
+    froms = [f for f in KEEP_IF_LINKED_FROM if not (replaced and f in REWRITTEN_REFS)]
+    dirs = [d for d in KEEP_IF_LINKED_DIRS if not (replaced and d in REWRITTEN_DIRS)]
+    files = [ROOT / f for f in froms] + [p for d in dirs for p in sorted((ROOT / d).glob("*.json"))]
     texts = [(str(f.relative_to(ROOT)), f.read_text(encoding="utf-8")) for f in files if f.exists()]
+    facts = product_fact_sources() if replaced else {}
     out: dict[str, list[str]] = {}
     for slug in slugs:
         pat = re.compile(r"(?<![a-z0-9-])" + re.escape(slug) + r"(?![a-z0-9-])")
-        hits = [name for name, text in texts if pat.search(text)]
+        hits = [name for name, text in texts if pat.search(text)] + facts.get(slug, [])
         if hits:
             out[slug] = hits
     return out
 
 
-def plan_list(articles: list[dict], now: datetime, slugs: list[str], redirects: dict[str, str]) -> tuple[dict[str, dict], list[dict]]:
+def plan_list(
+    articles: list[dict], now: datetime, slugs: list[str], redirects: dict[str, str], replaced: bool = False
+) -> tuple[dict[str, dict], list[dict]]:
     """手で選んだ一覧（--slugs）の取り下げ計画（2026-11-12 オーナー承認・案B）。
     守るもの: 検索に表示があった記事（search_protected）・人が確かめた記事（Muse・編集部）・地震津波の速報・
     直近7日に SNS に出した記事・日程/ガイド/イベント/製品などのページが参照する記事・まとめ記事。
@@ -407,7 +440,7 @@ def plan_list(articles: list[dict], now: datetime, slugs: list[str], redirects: 
     by_slug = {a["slug"]: a for a in articles}
     protected = search_protected.protected_slugs()
     sns = recent_sns(now, everywhere=True)
-    linked = linked_from_kept_pages(slugs)
+    linked = linked_from_kept_pages(slugs, replaced)
     picked: dict[str, dict] = {}
     kept: list[dict] = []
     for slug in slugs:
@@ -592,7 +625,20 @@ def fix_product(data: dict) -> dict | None:
             return None  # 概要の出典が無い
         if isinstance(value, list):
             data[key] = [v for v in value if not (isinstance(v, dict) and "sources" in v and not v["sources"])]
-    data["timeline"] = [t for t in data.get("timeline") or [] if not isinstance(t, dict) or t.get("slug") != ""]
+    # 記事を取り下げた出来事でも、公式の発表の URL（officialSources にあるもの）があれば残す（2026-11-12 出典の差し替え）
+    official = data.get("officialSources") or {}
+    data["timeline"] = [
+        t for t in data.get("timeline") or []
+        if not isinstance(t, dict) or t.get("slug") != "" or (t.get("url") in official)
+    ]
+    # 使われなくなった公式の出典の題名は残さない
+    if official:
+        used = {s for key in SOURCE_KEYS for v in ([data.get(key)] if isinstance(data.get(key), dict) else (data.get(key) or []))
+                if isinstance(v, dict) for s in v.get("sources") or []}
+        used |= {t.get("url") for t in data["timeline"] if isinstance(t, dict)}
+        data["officialSources"] = {u: m for u, m in official.items() if u in used}
+        if not data["officialSources"]:
+            data.pop("officialSources")
     return data
 
 
@@ -844,7 +890,9 @@ def main() -> int:
     articles = load_articles()
     if args.slugs:
         spec = json.loads(args.slugs.read_text(encoding="utf-8"))
-        retired, kept = plan_list(articles, now, list(spec.get("retire") or []), dict(spec.get("redirect") or {}))
+        retired, kept = plan_list(
+            articles, now, list(spec.get("retire") or []), dict(spec.get("redirect") or {}), bool(spec.get("replaced"))
+        )
         print(f"[retire] 一覧 {len(spec.get('retire') or [])} 本のうち取り下げ {len(retired)} 本"
               f"（転送の候補 {sum(1 for e in retired.values() if e.get('redirect'))}）・残す {len(kept)} 本")
         for k in kept:

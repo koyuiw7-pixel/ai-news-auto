@@ -8,7 +8,6 @@
   "overview": {
     "text": "Daybreakは、OpenAIが開発したサイバーセキュリティ向けのAIモデルおよび支援プラットフォームです。脆弱性の調査や脅威への対応を自動化し、企業の防御担当者を支援します。ソフォスやCheck Pointなどの事例を通じて発表されました。",
     "sources": [
-      "openai-daybreak-check-point-vulnerability",
       "sophos-openai-daybreak-security-agent"
     ]
   },
@@ -17,7 +16,6 @@
       "label": "提供開始",
       "value": "2026年10月までに発表・展開",
       "sources": [
-        "openai-daybreak-check-point-vulnerability",
         "sophos-openai-daybreak-security-agent"
       ]
     },
@@ -32,28 +30,15 @@
       "label": "向いている人",
       "value": "政府系の防御担当やセキュリティ管理者",
       "sources": [
-        "gpt-56-cyber-aws-govcloud",
-        "openai-daybreak-check-point-vulnerability"
+        "gpt-56-cyber-aws-govcloud"
       ]
     }
   ],
   "capabilities": [
     {
-      "text": "数時間かかっていた脆弱性調査を数分に短縮します。",
-      "sources": [
-        "openai-daybreak-check-point-vulnerability"
-      ]
-    },
-    {
       "text": "脅威への平均対応時間を38分から89秒へ約96%削減します。",
       "sources": [
         "sophos-openai-daybreak-security-agent"
-      ]
-    },
-    {
-      "text": "AIがコードや設定の不備を分析し、攻撃の道筋を推論します。",
-      "sources": [
-        "openai-daybreak-check-point-vulnerability"
       ]
     },
     {
@@ -93,15 +78,13 @@
       "q": "誰に向いている？",
       "a": "企業のセキュリティ管理者や政府系の防御担当者に向いています。",
       "sources": [
-        "gpt-56-cyber-aws-govcloud",
-        "openai-daybreak-check-point-vulnerability"
+        "gpt-56-cyber-aws-govcloud"
       ]
     },
     {
       "q": "どのような効果がある？",
       "a": "脆弱性調査や脅威対応の時間を大幅に短縮できます。",
       "sources": [
-        "openai-daybreak-check-point-vulnerability",
         "sophos-openai-daybreak-security-agent"
       ]
     },
@@ -109,8 +92,7 @@
       "q": "安全性の対策は？",
       "a": "本人確認やアクセス管理の強化、人間の承認を組み合わせた設計になっています。",
       "sources": [
-        "gpt-56-cyber-aws-govcloud",
-        "openai-daybreak-check-point-vulnerability"
+        "gpt-56-cyber-aws-govcloud"
       ]
     },
     {
@@ -126,11 +108,6 @@
       "date": "2026-10-09",
       "slug": "sophos-openai-daybreak-security-agent",
       "event": "ソフォスがDaybreakで脅威対応時間を削減"
-    },
-    {
-      "date": "2026-10-27",
-      "slug": "openai-daybreak-check-point-vulnerability",
-      "event": "Check Pointの調査時間を短縮した事例を公開"
     }
   ],
   "related": [
@@ -143,13 +120,10 @@
     "openai-hacktron-vulnerability-partnership",
     "gpt-6-cyber-aligned-security-agents",
     "gpt-56-cyber-aws-govcloud",
-    "cisco-openai-cyber-defense",
     "openai-security-sprint-bug-bounty",
-    "openai-daybreak-check-point-vulnerability",
     "sophos-openai-daybreak-security-agent"
   ],
   "linkFrom": [
-    "openai-daybreak-check-point-vulnerability",
     "sophos-openai-daybreak-security-agent"
   ],
   "signature": "d4a06e6f40eba99d",

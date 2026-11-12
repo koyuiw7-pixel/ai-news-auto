@@ -9,7 +9,7 @@
     "text": "Project Suncatcherは、宇宙空間でAIの計算処理を行うGoogleの長期研究プロジェクトです。2026年9月に発表されました。",
     "sources": [
       "google-project-suncatcher-satellite-response",
-      "google-project-suncatcher-space-tpu"
+      "https://www.youtube.com/watch?v=o1JK79jszqo"
     ]
   },
   "facts": [
@@ -19,8 +19,7 @@
       "sources": [
         "google-project-suncatcher-satellite-response",
         "google-project-suncatcher-thermal-engineering",
-        "google-project-suncatcher-laser-1-6tbps",
-        "google-project-suncatcher-space-tpu"
+        "google-project-suncatcher-laser-1-6tbps"
       ]
     },
     {
@@ -29,8 +28,7 @@
       "sources": [
         "google-project-suncatcher-satellite-response",
         "google-project-suncatcher-thermal-engineering",
-        "google-project-suncatcher-laser-1-6tbps",
-        "google-project-suncatcher-space-tpu"
+        "google-project-suncatcher-laser-1-6tbps"
       ]
     },
     {
@@ -42,12 +40,6 @@
     }
   ],
   "capabilities": [
-    {
-      "text": "地上と比較して5倍から8倍の太陽光発電効率を獲得し、AI処理の電力に充てる。",
-      "sources": [
-        "google-project-suncatcher-space-tpu"
-      ]
-    },
     {
       "text": "移動する衛星間で双方向800Gbps、合計1.6Tbpsの超高速レーザー通信を行う。",
       "sources": [
@@ -96,15 +88,14 @@
       "q": "いつ発表された？",
       "a": "2026年9月にGoogleのムーンショットプロジェクトとして発表されました。",
       "sources": [
-        "google-project-suncatcher-space-tpu"
+        "https://www.youtube.com/watch?v=o1JK79jszqo"
       ]
     },
     {
       "q": "どんなチップが使われている？",
       "a": "Googleのデータセンター向けチップであるTPUが搭載されています。",
       "sources": [
-        "google-project-suncatcher-satellite-response",
-        "google-project-suncatcher-space-tpu"
+        "google-project-suncatcher-satellite-response"
       ]
     },
     {
@@ -112,13 +103,6 @@
       "a": "衛星間のレーザー通信実験で双方向合計1.6Tbpsを達成しています。",
       "sources": [
         "google-project-suncatcher-laser-1-6tbps"
-      ]
-    },
-    {
-      "q": "どのような軌道で運用される？",
-      "a": "ほぼ24時間太陽光を受け続けられる黎明・黄昏軌道に配備されます。",
-      "sources": [
-        "google-project-suncatcher-space-tpu"
       ]
     },
     {
@@ -132,8 +116,9 @@
   "timeline": [
     {
       "date": "2026-09-24",
-      "slug": "google-project-suncatcher-space-tpu",
-      "event": "GoogleがProject Suncatcherを発表"
+      "slug": "",
+      "event": "GoogleがProject Suncatcherを発表",
+      "url": "https://www.youtube.com/watch?v=o1JK79jszqo"
     },
     {
       "date": "2026-09-30",
@@ -160,17 +145,23 @@
   "articles": [
     "google-project-suncatcher-satellite-response",
     "google-project-suncatcher-thermal-engineering",
-    "google-project-suncatcher-laser-1-6tbps",
-    "google-project-suncatcher-space-tpu"
+    "google-project-suncatcher-laser-1-6tbps"
   ],
   "linkFrom": [
     "google-project-suncatcher-thermal-engineering",
-    "google-project-suncatcher-laser-1-6tbps",
-    "google-project-suncatcher-space-tpu"
+    "google-project-suncatcher-laser-1-6tbps"
   ],
   "signature": "0ac045d08e90eebe",
   "primarySignature": "0ac045d08e90eebe",
   "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-10-27T10:45:39+00:00",
-  "updatedAt": "2026-10-30T17:17:40+00:00"
+  "updatedAt": "2026-10-30T17:17:40+00:00",
+  "officialSources": {
+    "https://www.youtube.com/watch?v=o1JK79jszqo": {
+      "title": "Google’s latest moonshot to put machine learning in space",
+      "publisher": "Google の YouTube 公式チャンネル",
+      "kind": "video",
+      "checkedAt": "2026-11-12"
+    }
+  }
 }

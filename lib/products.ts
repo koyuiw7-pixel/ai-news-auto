@@ -37,8 +37,13 @@ import {
  *
  * ニュースは数日で読まれなくなるが、「〇〇とは」「料金」「日本で使える？」は長く検索される。
  * 中身はすべて自サイトの記事から取った事実で、項目ごとに出典の記事 slug を持つ。
+ * 出典の記事を取り下げたときは、その記事の元になった公式の発表（企業のページ・公式チャンネルの動画）の URL を
+ * sources に入れ、officialSources に題名などを書く（2026-11-12 オーナー承認「製品ページの出典の差し替えも進めて」）。
  */
 export type Sourced = { text: string; sources: string[] };
+
+/** 公式の発表（記事の代わりの出典）。checkedAt はその日に公式ページを取得して、項目の数字・名前があるのを確かめた日 */
+export type OfficialSource = { title: string; publisher: string; kind: "web" | "video"; checkedAt: string };
 
 export type Product = {
   slug: string;
@@ -56,7 +61,8 @@ export type Product = {
   howto: Sourced[];
   differences: Sourced[];
   faq: { q: string; a: string; sources: string[] }[];
-  timeline: { date: string; slug: string; event: string }[];
+  /** 発表の履歴。記事を取り下げた出来事は slug を空にし、url に公式の発表（officialSources にあるもの）を入れる */
+  timeline: { date: string; slug: string; event: string; url?: string }[];
   /** 関連する製品の slug */
   related: string[];
   /** 関係する記事（新しい順） */
@@ -66,7 +72,14 @@ export type Product = {
   createdAt: string;
   updatedAt: string;
   officialCheck?: { date: string; url: string; label: string };
+  /** sources に入れた公式の URL の題名など（キーは URL） */
+  officialSources?: Record<string, OfficialSource>;
 };
+
+/** 出典の URL が、この製品の公式の出典として登録されているか */
+export function officialSourceOf(product: Product, source: string): OfficialSource | undefined {
+  return source.startsWith("https://") ? product.officialSources?.[source] : undefined;
+}
 
 /** 自動再生成より優先する、公式資料で確認した編集部の訂正。 */
 function editorialCorrections(product: Product): Product {
@@ -233,7 +246,8 @@ export type ProductProfile = {
   startingPriceNote: string;
   rivals: ComparisonTable | null;
   japan: ProductJapan | null;
-  timeline: { date: string; slug: string; event: string }[];
+  /** 発表の履歴。記事を取り下げた出来事は slug を空にし、url に公式の発表（officialSources にあるもの）を入れる */
+  timeline: { date: string; slug: string; event: string; url?: string }[];
   faq: { q: string; a: string; sources: string[] }[];
   articles: ArticleSummary[];
   /** 題名に製品名が出てくる記事（「最新の関連記事」。少なければ関連記事全体） */
@@ -317,7 +331,9 @@ function japanOf(source: ProductSource | undefined): ProductJapan | null {
 
 /** 発表・更新の流れ（取り下げた記事は除く。記事の日付で並べる。無ければ関連記事の公開日で作る） */
 function timelineOf(product: Product, articles: ArticleSummary[], skip: string[]) {
-  const live = product.timeline.filter((t) => getArticleSummary(t.slug) && !skip.includes(t.slug));
+  const live = product.timeline.filter(
+    (t) => (getArticleSummary(t.slug) && !skip.includes(t.slug)) || (!t.slug && t.url && officialSourceOf(product, t.url)),
+  );
   if (live.length >= 2) return [...live].sort((a, b) => b.date.localeCompare(a.date));
   const seen = new Set(live.map((t) => t.slug));
   const extra = articles

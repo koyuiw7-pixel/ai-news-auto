@@ -1,13 +1,13 @@
 {
  "updatedAt": "2026-11-11T08:57:24.629000+00:00",
- "generatedAt": "2026-11-12T00:59:27+00:00",
+ "generatedAt": "2026-11-12T10:20:41+00:00",
  "stats": {
-  "articlesScanned": 1155,
-  "candidateArticles": 82,
-  "rowsVerified": 57,
-  "rowsRejected": 71,
-  "plans": 19,
-  "apis": 14
+  "articlesScanned": 1024,
+  "candidateArticles": 58,
+  "rowsVerified": 50,
+  "rowsRejected": 60,
+  "plans": 17,
+  "apis": 11
  },
  "items": [
   {
@@ -97,8 +97,8 @@
    "input": 2.0,
    "output": 10.0,
    "cachedInput": null,
-   "japan": "ok",
-   "status": "available",
+   "japan": "unknown",
+   "status": null,
    "free": null,
    "source": {
     "slug": "claude-fable-5-2-api-price",
@@ -106,7 +106,7 @@
     "publishedAt": "2026-11-09T19:01:47.522993+00:00",
     "quote": "| Claude Sonnet 5.5 | $2 | $10 | 約320円/約1,580円 |"
    },
-   "verdictSource": "ai-hack-claude-sonnet-5-5-gpt-6-1-sol",
+   "verdictSource": null,
    "confirmedIn": 1,
    "legacy": false
   },
@@ -247,8 +247,8 @@
    "input": 2,
    "output": 10,
    "cachedInput": null,
-   "japan": "ok",
-   "status": "available",
+   "japan": "unknown",
+   "status": "demo",
    "free": null,
    "source": {
     "slug": "openai-gpt-6-1-terra-announcement",
@@ -256,7 +256,7 @@
     "publishedAt": "2026-10-26T00:00:00+00:00",
     "quote": "| GPT-6.1 Sol(入力≤272K) | $2 | $10 | 約320円/約1,580円 |"
    },
-   "verdictSource": "ai-hack-claude-sonnet-5-5-gpt-6-1-sol",
+   "verdictSource": "devrev-self-service-agents",
    "confirmedIn": 1,
    "legacy": false
   },
@@ -284,81 +284,6 @@
    "verdictSource": "openai-gpt-6-1-terra-announcement",
    "confirmedIn": 2,
    "legacy": false
-  },
-  {
-   "id": "api-gpt5-6luna",
-   "kind": "api",
-   "vendor": "OpenAI",
-   "companySlug": "openai",
-   "product": "GPT-5.6 Luna",
-   "plan": null,
-   "currency": "USD",
-   "monthly": null,
-   "input": 0.15,
-   "output": 0.6,
-   "cachedInput": null,
-   "japan": "ok",
-   "status": "available",
-   "free": true,
-   "source": {
-    "slug": "openai-build-hour-gpt56-valuemaxxing",
-    "title": "GPT-5.6の活用術　トークン消費から価値最大化へ",
-    "publishedAt": "2026-07-24T19:47:16+00:00",
-    "quote": "- **GPT-5.6 Luna**: 入力 $0.15 / 出力 $0.60"
-   },
-   "verdictSource": "openai-chatgpt-gpt56-luna-no-limits",
-   "confirmedIn": 1,
-   "legacy": true
-  },
-  {
-   "id": "api-gpt5-6sol",
-   "kind": "api",
-   "vendor": "OpenAI",
-   "companySlug": "openai",
-   "product": "GPT-5.6 Sol",
-   "plan": null,
-   "currency": "USD",
-   "monthly": null,
-   "input": 3.0,
-   "output": 12.0,
-   "cachedInput": null,
-   "japan": "unknown",
-   "status": "limited",
-   "free": null,
-   "source": {
-    "slug": "chatgpt-work-for-sales-comprehensive-summary-matome",
-    "title": "ChatGPT Work for Salesまとめ　22本の発表から全機能を整理",
-    "publishedAt": "2026-09-07T17:15:32+00:00",
-    "quote": "現在のAPI料金体系(GPT-5.6 Solで入力$3.00/1Mトークン、出力$12.00/1Mトークン)で単純計算しても、1回のタスク実行に数千ドル規模のコストが発生することになります。"
-   },
-   "verdictSource": "model-ml-gpt-5-6-sol-finance-agent",
-   "confirmedIn": 2,
-   "legacy": true
-  },
-  {
-   "id": "api-gpt5-6terra",
-   "kind": "api",
-   "vendor": "OpenAI",
-   "companySlug": "openai",
-   "product": "GPT-5.6 Terra",
-   "plan": null,
-   "currency": "USD",
-   "monthly": null,
-   "input": 0.8,
-   "output": 2.4,
-   "cachedInput": null,
-   "japan": "unknown",
-   "status": null,
-   "free": null,
-   "source": {
-    "slug": "openai-build-hour-gpt56-valuemaxxing",
-    "title": "GPT-5.6の活用術　トークン消費から価値最大化へ",
-    "publishedAt": "2026-07-24T19:47:16+00:00",
-    "quote": "- **GPT-5.6 Terra**: 入力 $0.80 / 出力 $2.40"
-   },
-   "verdictSource": null,
-   "confirmedIn": 1,
-   "legacy": true
   },
   {
    "id": "plan-claude-free",
@@ -405,31 +330,6 @@
     "title": "Claude Whiteboards・Sheetsとは？料金と使い方",
     "publishedAt": "2026-11-09T15:00:00+00:00",
     "quote": "Proは月払いで$20です(Anthropic公式の料金ページ、11/10確認)。"
-   },
-   "verdictSource": null,
-   "confirmedIn": 1,
-   "legacy": false
-  },
-  {
-   "id": "plan-claude-enterprise",
-   "kind": "plan",
-   "vendor": "Anthropic",
-   "companySlug": "anthropic",
-   "product": "Claude",
-   "plan": "Enterprise",
-   "currency": "USD",
-   "monthly": 20,
-   "input": null,
-   "output": null,
-   "cachedInput": null,
-   "japan": "unknown",
-   "status": "limited",
-   "free": true,
-   "source": {
-    "slug": "supabase-mcp-claude-issued-auth",
-    "title": "Supabase MCPのClaude認証とは？設定と注意点",
-    "publishedAt": "2026-11-03T07:00:00+00:00",
-    "quote": "Claudeの料金は、Teamのスタンダードシートが年払いで1人あたり月$20、Enterpriseが年払いで1人あたり月$20(最低20シート)です(Anthropic公式の料金ページ、11/3確認)。"
    },
    "verdictSource": null,
    "confirmedIn": 1,
@@ -507,7 +407,7 @@
     "quote": "| Team(スタンダードシート) | $20/人・月(年払い) / $25/人・月(月払い) | 約4,340円(税込みの目安) | すべてのClaude 機能、さらにProより多い使用量 |"
    },
    "verdictSource": null,
-   "confirmedIn": 2,
+   "confirmedIn": 1,
    "legacy": false
   },
   {
@@ -708,31 +608,6 @@
    },
    "verdictSource": null,
    "confirmedIn": 3,
-   "legacy": false
-  },
-  {
-   "id": "plan-copilot-standalone",
-   "kind": "plan",
-   "vendor": "Microsoft",
-   "companySlug": "microsoft",
-   "product": "Copilot",
-   "plan": "Standalone",
-   "currency": "USD",
-   "monthly": 10,
-   "input": null,
-   "output": null,
-   "cachedInput": null,
-   "japan": "ok",
-   "status": "limited",
-   "free": null,
-   "source": {
-    "slug": "github-enterprise-includes-copilot",
-    "title": "GitHub EnterpriseにCopilotを標準内包　提供状況",
-    "publishedAt": "2026-10-28T15:50:00+00:00",
-    "quote": "- Copilot Standaloneの価格:月額10ドル(1ユーザーあたり)"
-   },
-   "verdictSource": null,
-   "confirmedIn": 1,
    "legacy": false
   },
   {

@@ -57,6 +57,10 @@ class EditorialPagesTest(unittest.TestCase):
                 self.assertFalse(products.non_answer(item["text"]), item["text"])
                 self.assertTrue(item["sources"], f"{slug}: 出典の記事が無い →「{item['text'][:30]}」")
                 for s in item["sources"]:
+                    # 取り下げた記事の代わりの公式の発表（2026-11-12 出典の差し替え）は、題名などが officialSources にあること
+                    if s.startswith("https://"):
+                        self.assertIn(s, data.get("officialSources") or {}, s)
+                        continue
                     self.assertTrue((ROOT / "content" / "articles" / f"{s}.json").exists(), s)
 
 
@@ -114,6 +118,34 @@ class SourcesTest(unittest.TestCase):
         for slug, word in (("codex", "Codex"), ("chatgpt-work", "ChatGPT Work")):
             for pid in sources[slug]["pricing"]["plans"]:
                 self.assertIn(word, limits[pid], f"{slug}: {pid} の公式の文言に {word} が無い")
+
+
+class OfficialSourcesTest(unittest.TestCase):
+    """製品ページの出典に入れた公式の URL は、officialSources に題名・発行元・種類・確かめた日があり、記事の出典と混ざらない"""
+
+    def test_every_official_url_is_described(self):
+        for path in sorted((ROOT / "content" / "products").glob("*.json")):
+            data = json.loads(path.read_text(encoding="utf-8"))
+            official = data.get("officialSources") or {}
+            used = set()
+            for key in ("overview", "capabilities", "pricing", "japan", "howto", "differences", "faq", "facts"):
+                value = data.get(key)
+                for item in [value] if isinstance(value, dict) else (value or []):
+                    for s in item.get("sources") or []:
+                        if s.startswith("http"):
+                            self.assertTrue(s.startswith("https://"), f"{path.stem}: {s}")
+                            self.assertIn(s, official, f"{path.stem}: 題名の無い公式の出典 {s}")
+                            used.add(s)
+            for t in data.get("timeline") or []:
+                if t.get("url"):
+                    self.assertEqual(t.get("slug"), "", f"{path.stem}: {t}")
+                    self.assertIn(t["url"], official, f"{path.stem}: {t}")
+                    used.add(t["url"])
+            for url, meta in official.items():
+                self.assertIn(url, used, f"{path.stem}: 使っていない公式の出典 {url}")
+                self.assertTrue(meta.get("title") and meta.get("publisher"), url)
+                self.assertIn(meta.get("kind"), ("web", "video"), url)
+                self.assertRegex(meta.get("checkedAt", ""), r"^\d{4}-\d{2}-\d{2}$", url)
 
 
 if __name__ == "__main__":
