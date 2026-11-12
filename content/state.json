@@ -14613,6 +14613,20 @@
       "slug": "sarashina3-2-translate-style-control",
       "url": "https://www.sbintuitions.co.jp/blog/entry/2026/11/05/163543"
     },
+    "a8d5fa7d24b3647f": {
+      "at": "2026-11-12T18:05:39.492104+00:00",
+      "breaking": true,
+      "costUsd": 0.1536,
+      "foreignAi": true,
+      "intent": "breaking",
+      "major": true,
+      "mix": "ai_consumer",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "score": 93,
+      "section": "ai",
+      "slug": "gemini-4-hydrogen-launch-pricing",
+      "url": "https://deepmind.google/blog/introducing-gemini-4-hydrogen/"
+    },
     "a8f9c4c3d8c63a92": {
       "at": "2026-11-02T10:51:32.933369+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -21333,85 +21347,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-11T05:23:10.219786+00:00",
-      "attempt": 1,
-      "id": "a289a1d58ce4aad3",
-      "kind": "broad",
-      "model": "gemini-3.7-flash",
-      "problems": [
-        "要点「中学校を含めた義務教育段階での完全無償化の法改正を国へ強く要求」→ 元資料の要請5は中学校を含む制度化（法改正）の実現に向けた「具体的な検討を進める」ことを求めるもので、法改正での実現や「完全」無償化を求めてはいない。",
-        "本文の5点目「中学校を含めた義務教育の給食費無償化を法改正で実現すること」→ 要請文は実現ではなく具体的な検討を進めることを求めており、要請内容を強めて書き換えている。",
-        "かんたん版「中学校も含めて給食費を無償化する法律を作るよう求めています」→ 元資料は法改正に向けた検討を求めるもので、法律の制定を求めた記載はない。",
-        "小見出し・本文「自治体の予算計画にも影響が出ています」→ 元資料では基準額変動による影響は「懸念される」とされており、既に影響が出ているという事実は確認できない。",
-        "本文「基準額と実際の仕入れ価格との差額が自治体財政を圧迫し続けています」→ 元資料は「圧迫することとなり」「懸念」として述べており、現在進行形で圧迫が生じているとの断定は言い過ぎ。元資料は仕入れ価格ではなく「食材費見込額」「実勢価格」と記す。",
-        "本文「副大臣に手渡しました」→ 元資料は要請を行ったとのみ記しており、手渡しという行為は確認できない（軽微な補足）。"
-      ],
-      "readability": {
-        "avg_paragraph": 93.1,
-        "avg_sentence": 54.3,
-        "long_share": 0.333,
-        "max_paragraph": 161,
-        "paragraphs": 7,
-        "sentences": 12
-      },
-      "score": 62,
-      "source": "city-yokohama",
-      "title": "【記者発表】「学校給食費の無償化に関する指定都市市長会緊急要請」について原澤 敦美 横浜市長が文部科学省に要請を行いました",
-      "warnings": [
-        "読みやすさ: 文が長い（1文の平均 54.3字・60字超の文が 33% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-11T05:30:17.863261+00:00",
-      "attempt": 1,
-      "id": "bd9342f2217520d0",
-      "kind": "ai",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 94.2,
-        "avg_sentence": 45.8,
-        "long_share": 0.216,
-        "max_paragraph": 160,
-        "paragraphs": 18,
-        "sentences": 37
-      },
-      "score": 88,
-      "source": "radar-official",
-      "title": "NVIDIAの設計基盤に対応した大規模データセンター向け冷却リファレンス・アーキテクチャを発表 | ニュースリリース | ダイキン工業株式会社",
-      "warnings": [
-        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（DAA・MW・NVL）",
-        "読みやすさ: 文が長い（1文の平均 45.8字・60字超の文が 22% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-11T05:30:41.840724+00:00",
-      "attempt": 0,
-      "id": "bd9342f2217520d0",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 91.2,
-        "avg_sentence": 37.7,
-        "long_share": 0.087,
-        "max_paragraph": 160,
-        "paragraphs": 19,
-        "sentences": 46
-      },
-      "score": 88,
-      "source": "radar-official",
-      "title": "NVIDIAの設計基盤に対応した大規模データセンター向け冷却リファレンス・アーキテクチャを発表 | ニュースリリース | ダイキン工業株式会社",
-      "warnings": [
-        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（DAA・MW・NVL）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-11T05:40:47.905028+00:00",
@@ -28910,6 +28845,82 @@
       "warnings": [
         "見出しが64字（目安40字以内）。一覧・カードでは前半だけを出す",
         "かんたん版に決まった型の見出し（「使ってみるには」）。中身の言葉にするか見出しを消す"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-12T18:04:04.391128+00:00",
+      "attempt": 1,
+      "id": "a8d5fa7d24b3647f",
+      "kind": "ai",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [
+        "元記事・確認済みの資料に無い画面の手順・メニュー名・ボタン名がある（「モデル選択画面」）。資料にある道順だけを書くか、「公式ヘルプの手順を確認してください」と書く"
+      ],
+      "readability": {
+        "avg_paragraph": 90.0,
+        "avg_sentence": 45.8,
+        "long_share": 0.193,
+        "max_paragraph": 187,
+        "paragraphs": 29,
+        "sentences": 57
+      },
+      "score": null,
+      "source": "google-deepmind-blog",
+      "title": "Introducing Gemini 4 Hydrogen",
+      "warnings": [
+        "見出しが55字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（SWE・HLE・MKA）",
+        "読みやすさ: 文が長い（1文の平均 45.8字・60字超の文が 19% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-12T18:04:49.523891+00:00",
+      "attempt": 1,
+      "id": "a8d5fa7d24b3647f",
+      "kind": "ai",
+      "model": "strike:本文 1 文・リード・判定カード",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 87.4,
+        "avg_sentence": 45.3,
+        "long_share": 0.185,
+        "max_paragraph": 148,
+        "paragraphs": 28,
+        "sentences": 54
+      },
+      "score": 93,
+      "source": "google-deepmind-blog",
+      "title": "Introducing Gemini 4 Hydrogen",
+      "warnings": [
+        "見出しが55字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（SWE・HLE・MKA）",
+        "読みやすさ: 文が長い（1文の平均 45.3字・60字超の文が 18% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-12T18:05:39.457591+00:00",
+      "attempt": 0,
+      "id": "a8d5fa7d24b3647f",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 72.0,
+        "avg_sentence": 41.0,
+        "long_share": 0.121,
+        "max_paragraph": 148,
+        "paragraphs": 33,
+        "sentences": 58
+      },
+      "score": 93,
+      "source": "google-deepmind-blog",
+      "title": "Introducing Gemini 4 Hydrogen",
+      "warnings": [
+        "見出しが55字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（SWE・HLE・MKA）"
       ]
     }
   ],

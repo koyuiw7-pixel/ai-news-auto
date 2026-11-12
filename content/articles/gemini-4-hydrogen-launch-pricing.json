@@ -1,0 +1,196 @@
+{
+  "slug": "gemini-4-hydrogen-launch-pricing",
+  "sourceType": "web",
+  "sourceUrl": "https://deepmind.google/blog/introducing-gemini-4-hydrogen/",
+  "sourceName": "Google DeepMind公式ブログ",
+  "title": "Gemini 4 Hydrogen、入力100万トークン1.5ドルで全世界に提供　Geminiアプリと検索でも",
+  "seoTitle": "Gemini 4 Hydrogenとは？料金と日本での使い方",
+  "threadsPost": "Geminiアプリや検索を毎日使う人に、知っておいてほしい話です。\n\nGoogleが新モデル「Gemini 4 Hydrogen」の提供を始めました。\nGeminiアプリのモデル選択と、Google検索で使えます。\n\n調べものや仕事で、AIの答えの速さと正確さ、どちらを重視しますか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "ab",
+      "question": "AIの答えは、速さと深い考察のどちらを重視しますか？"
+    },
+    {
+      "pattern": "count",
+      "question": "AIを仕事で使う時間は、1週間でどれくらいですか？"
+    },
+    {
+      "pattern": "price",
+      "question": "仕事のAIに、自分のお金で毎月いくらまで出せますか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "honest",
+  "lede": "API料金は入力100万トークンあたり1.5ドル、出力は7.5ドルで、提供は11月12日から全世界で順次始まっています。日本でのこのモデルの提供範囲はまだ発表されていないため、アプリのモデル選択で表示されるか確認するとよいでしょう。",
+  "description": "Google DeepMindが速さ重視のAIモデル「Gemini 4 Hydrogen」を公開。API料金は入力100万トークン1.5ドル、出力7.5ドル。Geminiアプリ・検索・Antigravityで順次提供。性能や安全面の数字を整理します。",
+  "keywords": [
+    "Gemini 4 Hydrogen",
+    "Gemini 4 Hydrogen 料金",
+    "Gemini 4 Hydrogen 日本",
+    "Gemini 4 Hydrogen 使い方",
+    "Gemini 4 Argon 比較",
+    "Google Antigravity Orchestrator",
+    "Gemini API 料金",
+    "Gemini 3.8 Flash 違い",
+    "Google 新AIモデル",
+    "AIコーディング"
+  ],
+  "tags": [
+    "生成AI",
+    "LLM",
+    "Gemini",
+    "Google DeepMind",
+    "AIエージェント",
+    "Antigravity"
+  ],
+  "highlights": [
+    "Gemini 4 Hydrogenは速さ重視のモデルで、Geminiアプリ・検索・APIなど幅広い窓口で提供が始まった",
+    "API料金は100万トークンの入力が1.5ドル、出力が7.5ドルで、コンテキスト全域が同一料金",
+    "指標ではArgonを上回る51対50。思考レベルは4段階で、最高のxhighでは54に伸びる"
+  ],
+  "timetable": [],
+  "verdict": null,
+  "workMoney": {
+    "relevance": "medium",
+    "points": [
+      "コードを書く開発者は、Gemini 3.8 Flashからの乗り換えで速度が2.5倍になると説明されています。",
+      "APIの料金は入力100万トークン1.5ドル、出力7.5ドルです。利用量を見積もる材料になります。",
+      "GeminiアプリやGoogleスプレッドシートで、文書作成や資料づくりの下書きを試せます。"
+    ]
+  },
+  "body": "Gemini 4 Hydrogenは、GeminiアプリやGoogle検索の利用者、そしてAPIで開発する人のための新しいAIモデルです。Google DeepMindの公式ブログによると、提供は11月12日から全世界で順次始まっています。日本でこのモデルがいつから使えるかは、まだ発表されていません。\n\nGeminiアプリ自体は日本で使えます（当サイトの確認：11/3）。ただ、今回の新モデルが日本のアプリに表示されるかは、画面で確かめる必要があります。\n\nHydrogenは、速く実行することに重きを置いたモデルです。公式ブログでは、難しい長期の推論は上位モデルの「Gemini 4 Carbon」と「Gemini 4 Argon」が得意だと位置づけています。Hydrogenはコード作成やエージェント（自分で手順を進めるAI）の日常作業向けです。\n\n## 入力100万トークン1.5ドル、料金は全域で同一\n\nAPI料金は、100万トークン（AIが文字を数える単位）あたり入力が1.5ドル、出力が7.5ドルです。\n\n円に直すと、入力は約239円、出力は約1,190円です（サイソク編集部の計算）。\n\n為替は次のとおりです（11/11確認）。\n\n- レート: 1ドル=159.23円\n- 基準: 2026年11月11日のECB参照レートによる目安\n\n料金は、100万トークンのコンテキストウィンドウ（一度に読める量）の全域で一定です。長い文書を読み込んでも、単価が上がりません。\n\nサイソクが10月に報じたところでは、Argonの料金は次のとおりでした（[Google、10月のAI発表をまとめ公開](/articles/google-ai-news-october-2026)）。\n\n- 入力: 2ドル\n- 出力: 10ドル\n\n**入力も出力も、Hydrogenのほうが安い。**\n\n| 比べること | Gemini 4 Argon | Gemini 4 Hydrogen | 有利なのは |\n|---|---|---|---|\n| 入力（100万トークン） | 2ドル | 1.5ドル | **Hydrogen** |\n| 出力（100万トークン） | 10ドル | 7.5ドル | **Hydrogen** |\n\n出典はサイソクの過去記事（11/3確認）と公式ブログです。\n\n一般向けのGeminiアプリの料金は、Google公式の料金ページによると、無料のほか、月額725円のGoogle AI Plusなどです（11/12確認）。Hydrogenの利用がどのプランまで含まれるかの詳細は、プランごとには示されていません。\n\n### Gemini（Google AI プラン）のプランと料金（公式の料金と円の目安）\n\n| プラン | 料金（公式） | 円の目安 | 主な上限・違い |\n| --- | --- | --- | --- |\n| 無料 | 0円/月 |  | Gmail、Google ドライブ、Google フォト共通で利用できる 15 GB のクラウド ストレージ |\n| Google AI Plus | 725円/月（月払い） |  | 無料版の 2 倍の使用量上限、Gmail、Google ドライブ、Google フォト共通で利用できる 400 GB のクラウド ストレージ |\n| Google AI Pro | 2,900円/月（月払い） |  | 無料版の 4 倍の使用量上限、Gmail、Google ドライブ、Google フォト共通で利用できる 5 TB のクラウド ストレージ |\n| Google AI Ultra（AI Pro の 5 倍） | 14,500円/月（月払い） |  | AI Pro の 5 倍の使用量上限 |\n| Google AI Ultra（AI Pro の 20 倍） | 32,000円/月（月払い） |  | AI Pro の 20 倍の使用量上限 |\n| Gemini Enterprise Business エディション | $21/人・月から | 約3,680円（税込みの目安） | ユーザー数: 最大 300 人 |\n| Gemini Enterprise Standard / Plus エディション | $30/人・月から | 約5,260円（税込みの目安） |  |\n\n出典：Gemini（Google AI プラン）の公式ページ（https://gemini.google/jp/subscriptions/?hl=ja）／確認日：2026-11-12\n\n円は、1ドル=159.23円（2026-11-11、ECB参照レート（ユーロ経由で計算））で計算した目安です。ドルのプランは消費税10%を足しています。実際の請求額は為替とカード会社の手数料で変わります。\n\n## Argonを指標で上回り、思考は4段階\n\nHydrogenは、外部機関Artificial Analysisの総合指標「Intelligence Index」で、標準の高い思考レベルでArgonを上回りました。スコアは51対50です。最高のxhighでは54に達します。\n\n思考レベルは低・中・高（標準）と、今回新設のxhighの4段階です。必要な推論の深さにだけ待ち時間と費用を払う設計だと、Googleは説明しています。\n\n前の速いモデル「Gemini 3.8 Flash」と比べた数字は次のとおりです。\n\n- 標準設定での作業完了は2.5倍速い\n- Terminal-Bench 4.1のスコアは18.2%から57%へ\n- 事実でない主張は5分の1以下に減った\n- 提携企業の初期テストでは、2〜2.8倍速く、トークン使用量は12〜23%減った\n\nこれらはGoogleの公表値で、測定条件の詳細は公式ブログとモデルカードで確かめられます。\n\n## コード作成では「必要な箇所だけ直す」\n\nコードの修正では、無関係なファイルを書き換えずに、ねらった箇所だけ直す設計だと説明しています。大きなコードの置き場では、ファイルの読み込みと検索を並行して一括で行います。\n\nバグを見つけて直す評価「SWE-sweep」では、同じ階層のモデルを上回ったとしています。\n\n業務向けの評価では、次の結果が示されています。\n\n- HLE-Diamondで58.8%、同じ階層のモデルでトップ\n- Vals Tax Agent Benchで52.3%、総合1位\n- Vals Legal Research Benchで55.8%、同率1位\n- Agent Arena（arena.aiの実戦型の評価）で5位\n\n資料や表計算、音声、動画を1つの報告書にまとめる作業では、入力100万トークンに加えて、最大100万トークンの出力ができます。\n\n新しい評価の結果は次のとおりでした。\n\n- MKA: 53.4%\n- Agents' Last Exam v1.1: 71.6%\n\n## Antigravityの新機能Orchestrator\n\nGoogle Antigravity（AIコーディングツール）には、新機能「Orchestrator」が加わりました。1つの作業の中で、CarbonとHydrogenのようにモデルを自動で切り替えます。\n\nTerminal-Bench 4.0では、Carbonに近い成功率を保ちながら、次のとおり変わったと説明しています。\n\n- 割り当ての消費は平均24%減\n- 完了は19%速まった\n\n並列で動かす場合は、Carbonが調整役を、Hydrogenが作業役と検証役を担えます。\n\nHydrogenは、Antigravityでは有料のGoogle AI ProとUltraの契約者が使えます。\n\n## Geminiアプリと検索で変わること\n\nGeminiアプリでは、口調や形式の指定を守ります。メールの下書きや文書の書き直しも、1回で使える水準に近づけるとしています。GmailやGoogleドライブ、AirtableやDropboxなどの連携アプリから情報を集めて、タスクを進めます。\n\nGoogle検索では、複数の要素が混ざった質問や誤字のある質問の意図をくみ取れるようになるとしています。回答は視覚的になります。クエリファンアウト（質問を複数に分けて調べる手法）を強化し、より広い範囲のリンクを示します。\n\nスプレッドシートで、金融データから予測シナリオに応じて動く試算モデルを作る機能が、従来より30%以上速いと説明されています。Gemini in Google Sheetsは、まずGoogle AI ProとUltraの契約者から提供されます。\n\n## 安全面の数字\n\n安全面では、Gemini 3.8 Flashとの比較が示されています。エージェント作業での踏み越えを最大81%、取りこぼしを最大79%減らしたとしています。\n\n権限の境界を越えようとする確率は最大で半分になりました。内部の誠実性評価では96.7%でした。\n\nプロンプトインジェクション（外部の文章に仕込まれた悪意ある指示）への強さは、Gray Swan IPI評価で2.3倍以上です。詳細はモデルカードで公開されています。\n\n## サイソクの見方：開発者は料金と速度を実測、一般の人はモデル選択画面を確認\n\n入力1.5ドル・出力7.5ドルは、Argonより安い料金です。Argonを指標で上回るとされるため、日常のコード作成で使う候補になりうるとみられます。ただ、指標はGoogleの公表値が中心で、自分の業務で同じ結果になるとは限りません。\n\n- APIで開発している人は、現在使っているモデルとHydrogenに同じ作業を投げ、速度とトークン使用量を比べるとよいでしょう。\n- AntigravityのProまたはUltraの契約者は、Orchestratorで作業が速くなるかを小さな案件で試すとよいでしょう。\n- 無料のGeminiアプリや検索を使うだけの人は、モデル選択に表示されるかを確かめるだけで十分です。\n\n## まだ分からないこと\n\n- 日本でのHydrogenの提供開始時期は、まだ発表されていません。\n- GeminiアプリのHydrogenが、無料版を含むどのプランでどこまで使えるかの上限は、まだ示されていません。\n\n## 開発者と管理者が確かめること\n\n開発者は、Hydrogenの4つの思考レベルを切り替えて、品質と待ち時間と費用のバランスを調整できます。詳しい仕様は、公式のモデルカードで確認できます。",
+  "easy": "## ひとことで言うと\n\nGoogleが、速さと手頃さを重視した新しいAIモデル「Gemini 4 Hydrogen」を公開しました。GeminiアプリやGoogle検索でも、順次使えるようになります。\n\n## 使える場所と料金\n\n開発者向けのAPIでは、AIが読む文字の量（トークン）100万個あたり、入力が1.5ドル、出力が7.5ドルです。円では入力が約239円、出力が約1,190円です（サイソク編集部の計算）。\n\n日本でこのモデルがいつ使えるかは、まだ発表されていません。\n\n## 何が変わったか\n\n前の速いモデル「Gemini 3.8 Flash」より、同じ作業を2.5倍の速さで終えられるとGoogleは説明しています。コード作成の指標では、スコアが18.2%から57%になりました。\n\nAIが考える深さは、低・中・高・最高の4段階から選べます。簡単な作業は浅く、難しい作業は深くと使い分けられます。\n\nGoogle検索では、複数の質問が混ざったり、誤字があったりしても、意図をくみ取れるようになるとしています。",
+  "channel": "Google DeepMind公式ブログ",
+  "channelId": "",
+  "channelSlug": "google-deepmind-blog",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "Introducing Gemini 4 Hydrogen",
+  "publishedAt": "2026-11-12T18:00:50+00:00",
+  "generatedAt": "2026-11-12T18:04:03.877228+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/gemini-4-hydrogen-launch-pricing-d7d9a1de.jpg",
+  "model": "anthropic-api:claude-sonnet-5-5",
+  "affiliates": [],
+  "newsType": "product",
+  "pricingProduct": "gemini",
+  "faq": [
+    {
+      "q": "Gemini 4 Hydrogenの思考レベルはどれを選べばよいですか？",
+      "a": "低・中・高（標準）・xhighの4段階があり、必要な推論の深さにだけ待ち時間と費用を払う設計です。標準は高で、xhighは今回新設されました。"
+    },
+    {
+      "q": "Gemini 4 Hydrogenは出力の長さに制限がありますか？",
+      "a": "入力は100万トークンで、出力も最大100万トークンです。PDFや表計算、音声、動画を1つの報告書にまとめる用途が挙げられています。"
+    },
+    {
+      "q": "Gemini 4 Hydrogenで、AI Studioのほかに試せる場所はありますか？",
+      "a": "有料枠のAndroid Studio、Gemini for businessのAPI、有料のGoogle AI ProとUltraの契約者向けのGoogle Antigravityでも使えます。"
+    }
+  ],
+  "relatedSlugs": [
+    "google-ai-news-october-2026"
+  ],
+  "qualityBar": {
+    "score": 7,
+    "missing": [
+      6
+    ],
+    "notes": {
+      "6": "言い換えの無い略語（SWE・HLE・MKA）"
+    },
+    "checkedAt": "2026-11-12T18:05:39+00:00",
+    "before": [
+      6
+    ],
+    "repaired": false
+  },
+  "qualityScore": 93,
+  "breaking": true,
+  "factSources": [
+    {
+      "label": "料金",
+      "name": "Google公式の料金ページ",
+      "url": "https://gemini.google/jp/subscriptions/?hl=ja",
+      "checkedAt": "2026-11-12"
+    },
+    {
+      "label": "過去記事",
+      "name": "サイソクの過去記事",
+      "url": "",
+      "checkedAt": "2026-11-03"
+    },
+    {
+      "label": "為替",
+      "name": "ECB参照レート（ユーロ経由で計算）",
+      "url": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml",
+      "checkedAt": "2026-11-11"
+    },
+    {
+      "label": "計算",
+      "name": "サイソク編集部の計算（元記事と上の資料の数字から）",
+      "url": "",
+      "checkedAt": ""
+    }
+  ],
+  "charts": [
+    {
+      "kind": "ladder",
+      "product": "gemini",
+      "afterHeading": "入力100万トークン1.5ドル、料金は全域で同一"
+    }
+  ],
+  "sourcePublishedAt": "2026-11-12T18:00:50+00:00",
+  "detectedAt": "2026-11-12T18:02:20+00:00",
+  "fastLane": true,
+  "speedMinutes": 8,
+  "layout": "noir",
+  "summaryLine": "Gemini 4 Hydrogenは速さ重視のモデルで、Geminiアプリ・検索・APIなど幅広い窓口で提供が始まった",
+  "bodyImages": [
+    {
+      "src": "https://ai-tech-express.jp/img/gemini-4-hydrogen-launch-pricing-fig1-47218128.jpg",
+      "width": 1200,
+      "height": 675,
+      "kind": "hero",
+      "credit": "Google DeepMind",
+      "sourceUrl": "https://deepmind.google/blog/introducing-gemini-4-hydrogen/",
+      "original": "https://storage.googleapis.com/gweb-uniblog-publish-prod/images/gemini-4-hydrogen__key-art__lockup__16-9.width-1300.jpg"
+    },
+    {
+      "src": "https://ai-tech-express.jp/img/gemini-4-hydrogen-launch-pricing-fig2-0f095623.jpg",
+      "width": 1200,
+      "height": 592,
+      "kind": "dense",
+      "credit": "Google DeepMind",
+      "sourceUrl": "https://deepmind.google/blog/introducing-gemini-4-hydrogen/",
+      "original": "https://storage.googleapis.com/gweb-uniblog-publish-prod/images/gemini-4-hydrogen_benchmarks_tab.width-2000.format-webp.webp"
+    }
+  ],
+  "imageCredit": {
+    "kind": "official",
+    "org": "Google DeepMind",
+    "provider": "Google DeepMind公式ブログ",
+    "sourceUrl": "https://deepmind.google/blog/introducing-gemini-4-hydrogen/",
+    "original": "https://storage.googleapis.com/gweb-uniblog-publish-prod/images/koray.width-600.format-webp.webp",
+    "width": 600,
+    "height": 600,
+    "at": "2026-11-12T18:05:50+00:00"
+  },
+  "heroOk": false,
+  "imageFocus": {
+    "x": 0.439,
+    "y": 0.5,
+    "box": [
+      0.0,
+      0.0,
+      0.878,
+      1.0
+    ],
+    "ar": 1.0,
+    "src": "https://ai-tech-express.jp/img/gemini-4-hydrogen-launch-pricing-d7d9a1de.jpg"
+  }
+}
