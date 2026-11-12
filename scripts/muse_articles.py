@@ -33,6 +33,7 @@ from urllib.parse import urlparse
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import muse_format  # noqa: E402
+import own_view  # noqa: E402
 import source_date  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -59,6 +60,8 @@ MUSE_DRAFT_NOTE = """
 次は、当サイトの記者が上の公式資料を読んで書いた原稿です。記事はこの原稿を土台にしてください。
 - body_markdown: 原稿の構成・見出し・文をできるだけそのまま使う。直すのは、資料と食い違う所、資料に無い事実（削る）、
   上の決まり（見出しの型・文の長さ・宣伝の言葉・自分で試したような書き方・出典の書き方）に合わない所だけ。新しい章や事実を足さない。
+  ただし「サイソクの見方」の章は例外（2026-11-12 オーナー）: 原稿にあれば残し、資料で裏づけられない所だけ直す。無ければ上の「サイソクの見方」の決まりで、
+  本文の事実だけを根拠に1章だけ足す。
 - title は原稿の題名を使う（決まりに合わないときだけ最小限に直す。「｜」は使わない）。
 - そのほかの欄（lede・description・highlights・easy_markdown・faq・today_actions・work_money・verdict・threads_post など）は、
   資料と原稿の両方にある事実だけで書く。
@@ -363,6 +366,9 @@ def build_article(path: Path, data: dict, fetched: list[dict]) -> tuple[str, dic
             problems = [f"公開前の門: {w.indexnow.PUBLISH_FEEDBACK[blocked]}"]
             log(f"   [muse] 試行{attempt}: {problems[0][:160]}")
             continue
+        # 「サイソクの見方」の章が無い・本文が薄い原稿は、事実確認の前に1回だけ足す（scripts/own_view.py。足したものも下の事実確認を通す）。
+        # Muse の記事は「落とす理由は嘘だけ」（2026-11-09 オーナー）なので、足せなくても章の有無・長さでは落とさない
+        own_view.ensure(record, source_text, context, log=log)
         if dated := source_date.check(source_date.record_texts(record), fetched, today):
             problems = dated
             log(f"   [muse] 試行{attempt}: {dated[0][:160]}")

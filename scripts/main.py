@@ -38,6 +38,7 @@ import news_types  # noqa: E402
 import article_style  # noqa: E402
 import public_interest  # noqa: E402  ミサイル・災害の記事の公式の安全情報のリンク（台帳 A39）
 import noir_layout  # noqa: E402  新しい記事の見た目（台帳 W36）
+import own_view  # noqa: E402  サイソクの見方の章と中身の下限（2026-11-12 オーナー）
 
 # --------------------------------------------------------------------------- #
 # 設定
@@ -480,7 +481,7 @@ def clean_verdict(raw: object) -> dict | None:
 VOICES: list[tuple[str, str]] = [
     ("explainer", "丁寧な解説記者。です・ます調で、背景から順に落ち着いて説明する。"),
     ("senpai", "詳しい先輩が同僚に説明するような、落ち着いたです・ます調。難しい言葉はすぐ言い換える。幼い言い方・一問一答にはしない。"),
-    ("honest", "落ち着いた解説記者。です・ます調で事実を解説したあと、確認済みの事実か計算済みの数字に基づく見方を1〜2文だけ「編集部の見方」として事実と分けて添える（根拠の無い感想は書かない）。"),
+    ("honest", "落ち着いた解説記者。です・ます調で事実を解説し、「サイソクの見方」の章では確認済みの事実か計算済みの数字だけを根拠に、読者の判断の目安をはっきり書く（根拠の無い感想は書かない）。"),
 ]
 
 
@@ -533,7 +534,7 @@ def generate_article(client, entry: dict) -> dict:
         ),
     )
     # 「仕事・お金にどう活かせる？」欄（scripts/persona.py）と Threads の書き出しの型（直近で使った型は避ける）
-    prompt += "\n\n" + persona.WORK_MONEY_FIELD + "\n\n" + threads_hooks.prompt_block()
+    prompt += "\n\n" + persona.WORK_MONEY_FIELD + own_view.prompt_block() + "\n\n" + threads_hooks.prompt_block()
     if entry.get("_feedback"):
         prompt += entry["_feedback"]  # 文体の門で落ちたときの作り直し（問題点を添える）
     voice_key, voice_text = pick_voice()
@@ -886,6 +887,15 @@ def style_gate(record: dict) -> list[str]:
     return quality.every_path_problems(record)
 
 
+def own_view_problems(record: dict) -> list[str]:
+    """動画の記事の「サイソクの見方」の章と中身の下限（作り直しの指示に使う。scripts/own_view.py）"""
+    need = own_view.needs(record)
+    out = own_view.view_problems(record) if need["view"] else []
+    if need["expand"]:
+        out.append(f"本文が{len(record.get('body') or '')}字と短い。動画にある事実（対象・条件・日付・金額・手順・前との違い）で、{own_view.EXPAND_BELOW}字以上を目安に説明を厚くする")
+    return out
+
+
 def write_article(record: dict) -> Path:
     record.pop("_facts", None)  # 品質ゲート用の中身（scripts/facts_bundle.py）は書き出さない
     # 見出しの書き方をそろえる（かっこ・区切り・会社名・西暦。LLM を使わない後処理。scripts/headline_normalize.py）
@@ -1152,20 +1162,27 @@ def main() -> int:
             state["failed"][video_id] = state["failed"].get(video_id, 0) + 1
             continue
 
-        # 文体の門（scripts/article_style.py。決まった型の見出し・幼い言い方・中身のない章など）。落ちたら問題点を添えて1回だけ作り直す
+        # 文体の門（scripts/article_style.py。決まった型の見出し・幼い言い方・中身のない章など）。落ちたら問題点を添えて1回だけ作り直す。
+        # 「サイソクの見方」の章が無い・本文が薄い（scripts/own_view.py。2026-11-12 オーナー）ときも、同じ1回の作り直しで足させる
         style = style_gate(record)
-        if style:
-            log(f"   [style] 不合格: {' | '.join(style[:3])[:300]} → 作り直します")
+        view = own_view_problems(record)
+        if style or view:
+            log(f"   [style] 不合格: {' | '.join((style + view)[:3])[:300]} → 作り直します")
             import quality  # noqa: PLC0415
 
-            entry["_feedback"] = quality.feedback_block(style)
+            entry["_feedback"] = quality.feedback_block(style + view)
+            first = record
             try:
                 data = generate_article(client, entry)
                 record = build_record(entry, data) if data.get("is_relevant", True) else None
             except Exception as error:  # noqa: BLE001
                 log(f"   [NG] 作り直しに失敗: {str(error)[:160]}")
                 record = None
+            if record is None and not style:
+                record = first  # 文体は合格の原稿。作り直せなかったら元の原稿で、下の中身の下限（own_view.hold_reason）で決める
             style = style_gate(record) if record else ["作り直しができなかった"]
+            if not style and (hold := own_view.hold_reason(record)):
+                style = [hold]
             if style:
                 log(f"   [skip] 文体の門に2回落ちたので公開しない: {' | '.join(style[:3])[:300]}")
                 state["processed"][video_id] = {"skipped": True, "reason": f"style-gate: {style[0]}"[:200],

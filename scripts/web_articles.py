@@ -54,6 +54,7 @@ import article_charts  # noqa: E402
 import dedupe  # noqa: E402
 import facts_bundle  # noqa: E402
 import fast_lane  # noqa: E402
+import own_view  # noqa: E402
 import rank_intent  # noqa: E402  検索で上位に出やすい話題を先に（台帳 A54）
 import pipeline_health  # noqa: E402
 import feeds  # noqa: E402
@@ -443,7 +444,7 @@ WEB_SOURCE_NOTE = """## 今回の取材対象（重要）
 - 数字の計算（割合・差・増減率・ペース・平均・円への換算）は自分でしない。計算した数字が要るときは、
   「計算済みの数字」の欄にあるものだけを表記どおり（「約」を含む）に使い、「（サイソク編集部の計算）」と添える。
 - 読者にとって重要で元記事から確認できない条件は、「〇〇はまだ発表されていません」と、何が未定かを主語にして1回だけ書く（「元記事には書かれていません」「言及なし」「確認できていません」とは書かない）。材料のない章は作らず、水増ししない。
-- 編集部の見方は、確認済みの事実を根拠にし、「編集部の見方」と明示して事実と区別する。根拠のない体験談・比較・推測は書かない。
+- 編集部の見方は「## サイソクの見方：…」の章にまとめ（決まりはプロンプトの「サイソクの見方」）、確認済みの事実を根拠にし、事実と区別して書く。根拠のない体験談・比較・推測は書かない。
 - 画面の道順（「設定 > 使用状況」）・メニュー名・ボタン名・英語の画面の文字（"Add source"）・番号つきの操作手順は、
   元記事か「確認済みの事実の束」（取りに行った公式ページ・当サイトのガイド）に書かれているものだけを書く。無ければ場所や手順を作らず、
   「公式ヘルプの手順を確認してください」と書く（根拠の無い手順は、プログラムがこの一文に置き換える）。
@@ -593,6 +594,7 @@ def build_broad_prompt(item: dict, text: str, genre, context: str = "", outline:
     )
     return (prompt + context + extra_fields_block(genre.slug) + "\n\n" + persona.WORK_MONEY_FIELD
             + public_interest.alcohol_prompt_note(item["title"])  # お酒の新商品の書き方（A56）
+            + own_view.prompt_block()  # サイソクの見方の章（2026-11-12 オーナー。scripts/own_view.py）
             + "\n\n" + m.threads_hooks.prompt_block())
 
 
@@ -883,6 +885,11 @@ def pre_gate(record: dict, source_text: str = "", context: str = "") -> None:
     quality.pre_gate_repair(record, source_text, log=log)
 
 
+def view_urgent(item: dict) -> bool:
+    """急ぐ記事（速報レーン・大きなニュース）。「サイソクの見方」の書き足し・中身の下限の保留をしない（scripts/own_view.py）"""
+    return bool(item.get("fast") or quality.MAJOR)
+
+
 def write_tier(tier: str) -> str:
     """本文を書く段の tier。通常（bulk）の記事も、本文は強い無料モデルから書く（llm.py の tier "write"）。
     軽量モデルは事実確認・手直しなど小さな作業（quality.CHECK_TIER）に残す"""
@@ -1060,6 +1067,7 @@ def build_trend_prompt(item: dict, fetched: list[dict], genre, context: str = ""
         genre_choices="\n".join(f"  - {g.slug}: {g.name}" for g in GENRES),
     )
     return (prompt + context + extra_fields_block(genre.slug) + "\n\n" + persona.WORK_MONEY_FIELD
+            + own_view.prompt_block()  # サイソクの見方の章（2026-11-12 オーナー。scripts/own_view.py）
             + "\n\n" + m.threads_hooks.prompt_block())
 
 
@@ -1114,6 +1122,7 @@ def build_prompt(item: dict, text: str, context: str = "", outline: str | None =
         genre_choices="\n".join(f"  - {g.slug}: {g.name}（{g.description[:48]}…）" for g in GENRES),
     )
     return (prompt + context + extra_fields_block(genre.slug) + "\n\n" + persona.WORK_MONEY_FIELD
+            + own_view.prompt_block()  # サイソクの見方の章（2026-11-12 オーナー。scripts/own_view.py）
             + "\n\n" + m.threads_hooks.prompt_block())
 
 
@@ -2480,6 +2489,11 @@ def main() -> int:
                 return ("skip", f"公開前の門: {indexnow.PUBLISH_FEEDBACK[blocked]}"), verdict
             log(f"   [gate] 公開前の門で不合格（{blocked}）")
             return None, gate_verdict(blocked)
+        # 中身の下限と「サイソクの見方」の章（2026-11-12 オーナー「公式の書き写しにしない」。scripts/own_view.py）。
+        # 速報・大きなニュース・速報レーン・お知らせ・注意喚起・災害は止めない
+        if hold := own_view.hold_reason(record, urgent=view_urgent(item)):
+            log(f"   [view] 出さない: {hold}")
+            return None, {**verdict, "ok": False, "soft": False, "problems": [hold]}
         record["qualityScore"] = verdict.get("score")
         return ("ok", record), verdict
 
@@ -2559,6 +2573,9 @@ def main() -> int:
                 blocked = publish_blocked(record)
                 if blocked and blocked not in indexnow.PUBLISH_RETRYABLE:
                     return "skip", None, model_name, f"公開前の門: {indexnow.PUBLISH_FEEDBACK[blocked]}"
+                if not blocked:
+                    # 「サイソクの見方」の章が無い・本文が薄い記事は、事実確認の前に1回だけ足す（足したものも下の事実確認を通す。scripts/own_view.py）
+                    own_view.ensure(record, source_text, context, urgent=view_urgent(item), log=log)
                 # ニュースの種類に必要な事実（決算の前年比・脆弱性の対象の版・製品の価格など）が、資料にあるのに本文に無い:
                 # 事実確認の前に、足りない事実を伝えて作り直す（最後の試行では作り直さず、記録だけして先へ進む。scripts/news_types.py）
                 missing = news_types.missing_facts(record.get("newsType") or "", record.get("body") or "", source_text) \
