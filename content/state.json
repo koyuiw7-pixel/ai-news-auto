@@ -119,7 +119,7 @@
     }
   },
   "major_tries": {
-    "0d26e4a5cdeecb80": 1,
+    "0d26e4a5cdeecb80": 2,
     "79164e476618c322": 2
   },
   "pi_reopened": {
@@ -20746,30 +20746,6 @@
   "quality_log": [
     {
       "accepted": true,
-      "at": "2026-11-11T01:48:41.103397+00:00",
-      "attempt": 1,
-      "id": "6211557ee4a00da2",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 113.1,
-        "avg_sentence": 49.5,
-        "long_share": 0.25,
-        "max_paragraph": 146,
-        "paragraphs": 7,
-        "sentences": 16
-      },
-      "score": 90,
-      "source": "toyota",
-      "title": "[トヨタイムズ記事] 【解説】トヨタの事業構造改革 持続的成長の展望は？",
-      "warnings": [
-        "見出しが47字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "読みやすさ: 文が長い（1文の平均 49.5字・60字超の文が 25% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
       "at": "2026-11-11T01:49:01.264321+00:00",
       "attempt": 0,
       "id": "6211557ee4a00da2",
@@ -28324,6 +28300,32 @@
       "title": "Isolate workloads with AWS Nitro Sandboxes - Amazon Elastic Compute Cloud",
       "warnings": [
         "見出しが48字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（EC・EKS・ECS）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-12T05:53:46.440966+00:00",
+      "attempt": 1,
+      "id": "0d26e4a5cdeecb80",
+      "kind": "ai",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [
+        "題名で料金・価格を約束しているのに、本文に金額（円・ドル・無料など）が無い。元記事の金額を書くか、題名から料金の話を外す"
+      ],
+      "readability": {
+        "avg_paragraph": 101.9,
+        "avg_sentence": 43.0,
+        "long_share": 0.178,
+        "max_paragraph": 186,
+        "paragraphs": 19,
+        "sentences": 45
+      },
+      "score": null,
+      "source": "radar-official",
+      "title": "Isolate workloads with AWS Nitro Sandboxes - Amazon Elastic Compute Cloud",
+      "warnings": [
+        "見出しが50字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（EC・EKS・ECS）"
       ]
     }
