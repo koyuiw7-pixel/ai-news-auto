@@ -304,6 +304,8 @@ function forEdge(response: Response, env: Env, immutable = false): Response {
     immutable && image ? "public, max-age=604800, s-maxage=604800, immutable" : image ? "public, max-age=604800, s-maxage=86400" : "public, max-age=0, s-maxage=86400",
   );
   copy.headers.set("x-saisoku-ver", deployVersion(env));
+  // 自社の確かめの内訳（render）はエッジに残さない
+  copy.headers.delete("server-timing");
   return copy;
 }
 
@@ -346,14 +348,39 @@ async function serveImage(request: Request, url: URL, env: Env, ctx: Ctx): Promi
   return request.method === "HEAD" ? new Response(null, { headers: response.headers }) : response;
 }
 
+/**
+ * 自社の確かめ（X-Saisoku-Internal: 1 か ?_internal=1）のときだけ、どこに何ミリ秒かかったかを Server-Timing で返す
+ * （base＝索引などの先読み・article＝記事 JSON の先読み・app＝Next の描画かキャッシュ読み出し。台帳 W43）。
+ * エッジのキャッシュには載せない（forEdge で外す）。scripts/cold_check.py が遅いページの内訳として出す
+ */
+function isInternal(request: Request, url: URL): boolean {
+  return request.headers.get("x-saisoku-internal") === "1" || url.searchParams.get("_internal") === "1";
+}
+
+function withTiming(response: Response, timing: string): Response {
+  const out = new Response(response.body, response);
+  out.headers.set("server-timing", timing);
+  return out;
+}
+
 /** 記事 JSON などを先読みしてから OpenNext（Next）で描く */
 async function render(request: Request, url: URL, env: Env, ctx: Ctx): Promise<Response> {
+  const started = Date.now();
+  const marks: string[] = [];
+  const mark = (name: string, since: number) => marks.push(`${name};dur=${Date.now() - since}`);
   // 静的ファイルは OpenNext/アセットに任せる（先読み不要）
   if (!url.pathname.startsWith("/_next/static/")) {
     try {
+      const baseAt = Date.now();
+      const cold = baseLoading === null;
       await loadBase(env);
+      mark(cold ? "base-cold" : "base", baseAt);
       const match = ARTICLE.exec(url.pathname);
-      if (match) await loadArticle(env, decodeURIComponent(match[1]));
+      const articleAt = Date.now();
+      if (match) {
+        await loadArticle(env, decodeURIComponent(match[1]));
+        mark("article", articleAt);
+      }
       // 記事デザイン案・新コンセプトの確認用ページ（?slug=。既定は app/article-preview/variants.ts・app/article-concept/page.tsx と同じ記事）
       if (url.pathname.startsWith("/article-preview/") || url.pathname === "/article-concept" || url.pathname.startsWith("/article-concept/")) {
         await loadArticle(env, url.searchParams.get("slug") || "openai-gpt-6-1-terra-announcement");
@@ -365,7 +392,12 @@ async function render(request: Request, url: URL, env: Env, ctx: Ctx): Promise<R
       return new Response("Service Unavailable", { status: 503, headers: { "Retry-After": "5" } });
     }
   }
-  return handler.fetch(request, env, ctx);
+  if (!isInternal(request, url)) return handler.fetch(request, env, ctx);
+  const appAt = Date.now();
+  const response = await handler.fetch(request, env, ctx);
+  mark("app", appAt);
+  mark("total", started);
+  return withTiming(response, marks.join(", "));
 }
 
 export default {
@@ -429,9 +461,11 @@ export default {
 
     const response = await render(request, url, env, ctx);
     if (edge && cacheKey && edgeCacheable(response)) {
+      const timing = response.headers.get("server-timing");
       const cached = forEdge(response, env, isImmutableImage(url));
       ctx.waitUntil(edge.put(cacheKey, cached.clone()));
       cached.headers.set("x-saisoku-edge", "miss");
+      if (timing) cached.headers.set("server-timing", timing);
       return cached;
     }
     return response;

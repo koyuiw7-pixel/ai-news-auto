@@ -70,8 +70,20 @@ def fetch(base: str, path: str, nonce: str | None = None) -> dict:
         "ttfb": round(ttfb, 2),
         "cache": headers.get("x-nextjs-cache", ""),
         "ver": headers.get("x-saisoku-ver", ""),
+        "timing": timing_of(headers.get("server-timing", "")),
         "error": "",
     }
+
+
+def timing_of(header: str) -> str:
+    """Worker の内訳（cloudflare/worker.ts の Server-Timing。自社の確かめのときだけ付く。台帳 W43）を短い文字にする。
+    例 'base-cold;dur=812, app;dur=95, total;dur=907' → 'base-cold 0.81・app 0.10'"""
+    parts = []
+    for item in header.split(","):
+        match = re.match(r"\s*([A-Za-z-]+)\s*;\s*dur=([\d.]+)", item)
+        if match and match.group(1) != "total":
+            parts.append(f"{match.group(1)} {float(match.group(2)) / 1000:.2f}")
+    return "・".join(parts)
 
 
 def sitemap_paths(xml: str, base: str) -> list[str]:
@@ -233,12 +245,12 @@ def check(args) -> int:
         f"- {len(results)} ページ・最大 {times[-1] if times else 0}秒・中央値 {median}秒・{args.limit}秒超え {sum(t > args.limit for t in times)} 本",
         f"- 落ちた {len(fails)} 本・注意 {len(warns)} 本",
         "",
-        "| ページ | 秒 | 状態 | キャッシュ | 判定 |",
-        "|---|---|---|---|---|",
+        "| ページ | 秒 | 状態 | キャッシュ | Worker の内訳（秒） | 判定 |",
+        "|---|---|---|---|---|---|",
     ]
     for r in sorted(results, key=lambda r: -r["ttfb"]):
         mark = {"fail": "✗ " + r["reason"], "warn": "△ " + r["reason"], "ok": "✓"}[r["verdict"]]
-        lines.append(f"| `{r['path']}` | {r['ttfb']} | {r['status'] or r['error']} | {r['cache'] or '-'} | {mark} |")
+        lines.append(f"| `{r['path']}` | {r['ttfb']} | {r['status'] or r['error']} | {r['cache'] or '-'} | {r.get('timing') or '-'} | {mark} |")
     report = "\n".join(lines)
     print(report, flush=True)
     summary = os.environ.get("GITHUB_STEP_SUMMARY")
