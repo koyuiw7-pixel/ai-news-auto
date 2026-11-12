@@ -458,7 +458,7 @@ def p8_natural(record: dict) -> str | None:
     if found := repeated(record):
         out.append(f"同じ文のくり返し（「{found[0][:30]}」）")
     heads = [h.strip() for h in re.findall(r"(?m)^#{2,3}\s+(.+?)\s*$", body)]
-    if bad := [h for h in heads if h in TEMPLATE_HEADS or re.match(r"^(?:自分の場合|判断の目安)", h)]:
+    if bad := [h for h in heads if h in TEMPLATE_HEADS or re.fullmatch(r"(?:自分の場合|判断の目安)(?:[（(][^）)]*[）)])?", h)]:
         out.append(f"決まった型の見出し（「{bad[0]}」）")
     return "・".join(out) or None
 
@@ -566,11 +566,11 @@ REPAIR_SCHEMA = {
 }
 LLM_POINTS = (1, 3, 5, 6, 8)  # LLM で手直しする点（2 は事実確認の門、4 は own_view、7 はプログラムで足す）
 _NUM_RE = re.compile(r"\d+(?:[.,]\d+)*")
-_CALC_RE = re.compile(r"(\d[\d,]*(?:\.\d+)?)\s*(万|億)?\s*[^\d×÷+＋\-−＝=\n]{0,8}?\s*([×÷+＋\-−])\s*(\d[\d,]*(?:\.\d+)?)\s*(万|億)?[^\d＝=\n]{0,8}?\s*[＝=]\s*約?\s*(\d[\d,]*(?:\.\d+)?)\s*(万|億)?")
+_CALC_RE = re.compile(r"(\d[\d,]*(?:\.\d+)?)\s*(万|億|%)?\s*[^\d×÷+＋\-−＝=\n]{0,8}?\s*([×÷+＋\-−])\s*(\d[\d,]*(?:\.\d+)?)\s*(万|億|%)?[^\d＝=\n]{0,8}?\s*[＝=]\s*約?\s*(\d[\d,]*(?:\.\d+)?)\s*(万|億|%)?")
 
 
 def _num(value: str, unit: str | None) -> float:
-    return float(value.replace(",", "")) * {"万": 1e4, "億": 1e8}.get(unit or "", 1)
+    return float(value.replace(",", "")) * {"万": 1e4, "億": 1e8, "%": 0.01}.get(unit or "", 1)
 
 
 def calc_results(text: str) -> tuple[set[str], list[str]]:
@@ -715,7 +715,8 @@ def ensure(record: dict, source_text: str, context: str = "", *, urgent: bool = 
             trial = {**record, "body": new_body, "lede": new_lede}
             after = check(trial, at_publish=True)
             added_nums = new_numbers(f"{new_lede}\n{new_body}", body, lede, source_text, context)
-            _, bad_calc = calc_results(new_body)
+            # 今の記事にもとからある計算は、事実確認の門が見る（ここでは手直しで新しく増えた計算だけ確かめる）
+            bad_calc = [c for c in calc_results(new_body)[1] if c not in calc_results(body)[1]]
             kept_view = own_view.view_section(new_body) == own_view.view_section(body)
             if len(new_body) < len(body) * 0.85:
                 notes.append(f"手直しで本文が短くなりすぎたので使わない（{len(body)}→{len(new_body)}字・{model}）")

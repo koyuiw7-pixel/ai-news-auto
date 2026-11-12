@@ -155,6 +155,9 @@ class CheckTest(unittest.TestCase):
         self.assertIn("決まり文句", qb.p8_natural(rec(body="今後の動向が注目されます。")))
         self.assertIsNone(qb.p8_natural(rec(body="12月の利率が0.2ポイント上がると注目されます。")))
         self.assertIn("型の見出し", qb.p8_natural(rec(body="## まとめ\n\n給付金は12月から増えます。")))
+        self.assertIn("型の見出し", qb.p8_natural(rec(body="## 判断の目安\n\n給付金は12月から増えます。")))
+        # 中身の言葉が続く見出しは型ではない（2026-11-12 本番の Muse の記事で誤って指摘した）
+        self.assertIsNone(qb.p8_natural(rec(body="## 判断の目安と、次に公式に出るもの\n\n給付金は12月から増えます。")))
         self.assertIn("くり返し", qb.p8_natural(rec(body="給付金は12月15日の振込から月400円増えることが決まりました。\n\n給付金は12月15日の振込から月400円増えることが決まりました。")))
         self.assertIn("使わない文字", qb.p8_natural(rec(title="給付金｜12月から")))
 
@@ -241,10 +244,22 @@ class RepairTest(unittest.TestCase):
         self.assertEqual((ok, bad), ({"4,800"}, []))
         ok, bad = qb.calc_results("月400円×12か月＝5,800円（サイソク編集部の計算）")
         self.assertTrue(bad)
+        # 割合（%）の計算（2026-11-12 本番: 「46万円×5%=23,000円」を間違いと見ていた）
+        self.assertEqual(qb.calc_results("46万円×5%=23,000円（サイソク編集部の計算）")[1], [])
         r = self.missing_case()
         wrong = "## 年金だけの人は年5,800円増える\n\n年金だけの人は、月400円×12か月＝5,800円です（サイソク編集部の計算）。\n\n収入がある人は、通知で確かめます。"
         qb.ensure(r, SOURCE + "5,800", log=lambda *_: None, generate=FakeLLM(self.patch(insert_markdown=wrong)))
         self.assertEqual(r["body"], NO_CASE_BODY)
+
+    def test_old_wrong_calculation_does_not_block_a_repair(self):
+        # もとの記事の計算は事実確認の門が見る。手直しで増えた計算だけを確かめる
+        body = NO_CASE_BODY.replace("問い合わせ先は", "月400円×12か月＝5,000円です（サイソク編集部の計算）。窓口の受付はWKSで確かめます。問い合わせ先は")
+        r = rec(body=body)
+        self.assertEqual(qb.check(r, at_publish=True)["missing"], [6])
+        fix = self.patch(replacements=[{"before": "窓口の受付はWKSで確かめます。", "after": "窓口の受付はWKS（受付の予約の仕組み）で確かめます。"}])
+        qb.ensure(r, SOURCE + " 5,000 WKS", log=lambda *_: None, generate=FakeLLM(fix))
+        self.assertTrue(r["qualityBar"]["repaired"])
+        self.assertIn("WKS（受付の予約の仕組み）", r["body"])
 
     def test_repair_that_touches_the_view_or_does_not_improve_is_not_used(self):
         r = self.missing_case()
