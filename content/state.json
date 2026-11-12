@@ -93,6 +93,14 @@
       "tries": 1,
       "url": "http://www.boj.or.jp/about/press/koen_2026/ko261112a.htm"
     },
+    "19f6d88c9d76c05e": {
+      "first": "2026-11-12T03:45:35.208854+00:00",
+      "next": "2026-11-12T06:45:35.208854+00:00",
+      "reason": "「予選を勝ち抜いた20チーム」→ 元記事は「全国各地から20チームが集結」とあるのみで、予選を勝ち抜いたとは書かれていない。; 「全試合の模様がYouTubeでライブ配信」→ 元記事は「大会の模様はYouTubeでライブ配信を予定」とするのみで、全試合が対象とは書かれていない。; 「現地に行けない方も無料で観戦できます」→ 元記事に観戦料や無料とする記述はなく、無料という条件は創作。; 「大きなボ",
+      "title": "第10回 パワーチェアフットボール チャンピオンシップ ジャパン 2026 supported by Jatcoを静岡で開催 #jfa",
+      "tries": 1,
+      "url": "https://www.jfa.jp/news/00037019/"
+    },
     "261ae4aceb078e02": {
       "first": "2026-11-11T01:35:22.123410+00:00",
       "next": "2026-11-11T04:35:22.123410+00:00",
@@ -7568,6 +7576,13 @@
       "reason": "quality: easy_markdown が短い（341字 / 基準 400字以上）",
       "skipped": true,
       "url": "https://www.ipa.go.jp/shiken/syllabus/henkou/2026/20260622.html"
+    },
+    "4590b89d7a40543d": {
+      "at": "2026-11-12T03:44:17.928329+00:00",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "reason": "followup quality: 本文「初版では価格履歴の表示期間として30日、90日、365日を紹介しました」→ 元記事に365日や「初版」の記述は無く、確認済みの文脈にも無い数字と経緯を書いている; 本文「Amazon ニュース（日本）は11月12日」→ 元記事に発表日の記載がなく、日付の根拠が確認できない; 要点「日本では過去約3か月分の価格履歴」→ 元記事は「過去最大約3か月分」とあり、",
+      "skipped": true,
+      "url": "https://www.aboutamazon.jp/news/retail/alexa-for-shopping-ai-assistant?utm_source=rss"
     },
     "4597e958ff890c16": {
       "at": "2026-11-10T05:33:20.785261+00:00",
@@ -19852,14 +19867,6 @@
       "url": "https://www.fsa.go.jp/policy/kyuminyokin/kyuminyokin.html",
       "writer": "muse"
     },
-    "muse-2f18c4b6e3": {
-      "at": "2026-11-12T03:38:34.257625+00:00",
-      "mix": "money",
-      "score": 92,
-      "slug": "child-allowance-payment-dates-by-city",
-      "url": "https://laws.e-gov.go.jp/law/346AC0000000073?occasion_date=20270615",
-      "writer": "muse"
-    },
     "muse-312de8d301": {
       "at": "2026-11-09T05:32:06.685686+00:00",
       "mix": "money",
@@ -20204,14 +20211,6 @@
       "url": "https://laws.e-gov.go.jp/law/338RJNJ09040000",
       "writer": "muse"
     },
-    "muse-8f0fdf14b8": {
-      "at": "2026-11-12T03:41:46.875522+00:00",
-      "mix": "other",
-      "score": 88,
-      "slug": "humidifier-type-electricity-cost-winter",
-      "url": "https://panasonic.jp/kashitsu/products/FE-KF07D.html",
-      "writer": "muse"
-    },
     "muse-939013074f": {
       "at": "2026-11-09T10:16:37.561161+00:00",
       "mix": "money",
@@ -20476,14 +20475,6 @@
       "url": "https://japan.kfc.co.jp/news_release/8191",
       "writer": "muse"
     },
-    "muse-f4ed2961e1": {
-      "at": "2026-11-12T03:32:03.423437+00:00",
-      "mix": "other",
-      "score": 93,
-      "slug": "e-tax-login-mynumber-card-vs-id",
-      "url": "https://www.e-tax.nta.go.jp/kojin/mycd_login.htm",
-      "writer": "muse"
-    },
     "muse-f556c07a36": {
       "at": "2026-11-11T00:24:12.961646+00:00",
       "mix": "other",
@@ -20531,60 +20522,33 @@
       "slug": "docomo-data-leak-what-to-do",
       "url": "https://www.docomo.ne.jp/info/notice/page/261106_00_m.html",
       "writer": "muse"
+    },
+    "muse-2f18c4b6e3": {
+      "at": "2026-11-12T03:38:34.257625+00:00",
+      "mix": "money",
+      "score": 92,
+      "slug": "child-allowance-payment-dates-by-city",
+      "url": "https://laws.e-gov.go.jp/law/346AC0000000073?occasion_date=20270615",
+      "writer": "muse"
+    },
+    "muse-8f0fdf14b8": {
+      "at": "2026-11-12T03:41:46.875522+00:00",
+      "mix": "other",
+      "score": 88,
+      "slug": "humidifier-type-electricity-cost-winter",
+      "url": "https://panasonic.jp/kashitsu/products/FE-KF07D.html",
+      "writer": "muse"
+    },
+    "muse-f4ed2961e1": {
+      "at": "2026-11-12T03:32:03.423437+00:00",
+      "mix": "other",
+      "score": 93,
+      "slug": "e-tax-login-mynumber-card-vs-id",
+      "url": "https://www.e-tax.nta.go.jp/kojin/mycd_login.htm",
+      "writer": "muse"
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-10T15:34:31.914918+00:00",
-      "attempt": 1,
-      "id": "96626834403c6444",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "題名で料金・価格を約束しているのに、本文に金額（円・ドル・無料など）が無い。元記事の金額を書くか、題名から料金の話を外す"
-      ],
-      "readability": {
-        "avg_paragraph": 140.0,
-        "avg_sentence": 63.6,
-        "long_share": 0.455,
-        "max_paragraph": 163,
-        "paragraphs": 5,
-        "sentences": 11
-      },
-      "score": null,
-      "source": "reddit-blog",
-      "title": "Introducing Reddit Reviews",
-      "warnings": [
-        "見出しが52字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "本文が見出しで始まっている（最初の段落は見出しなしで、だれに関係するか・関係しない人はどうかを書く）",
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-10T15:35:55.211206+00:00",
-      "attempt": 1,
-      "id": "fead6112027b4623",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 119.1,
-        "avg_sentence": 46.3,
-        "long_share": 0.278,
-        "max_paragraph": 201,
-        "paragraphs": 7,
-        "sentences": 18
-      },
-      "score": 92,
-      "source": "google-research-blog",
-      "title": "Exploring the world's languages with Language Explorer",
-      "warnings": [
-        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "読みやすさ: 文が長い（1文の平均 46.3字・60字超の文が 28% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-10T15:36:10.544803+00:00",
@@ -28019,6 +27983,48 @@
       "warnings": [
         "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
       ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-12T03:44:17.928299+00:00",
+      "attempt": 1,
+      "id": "4590b89d7a40543d",
+      "kind": "update",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "本文「初版では価格履歴の表示期間として30日、90日、365日を紹介しました」→ 元記事に365日や「初版」の記述は無く、確認済みの文脈にも無い数字と経緯を書いている",
+        "本文「Amazon ニュース（日本）は11月12日」→ 元記事に発表日の記載がなく、日付の根拠が確認できない",
+        "要点「日本では過去約3か月分の価格履歴」→ 元記事は「過去最大約3か月分」とあり、「最大」を落として期間を確定的に書いている"
+      ],
+      "score": 62,
+      "source": "about-amazon-jp",
+      "title": "AmazonのAIショッピングアシスタント「Alexa for Shopping」をご紹介、お客様一人ひとりに合わせたお買い物をサポート"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-12T03:45:11.319352+00:00",
+      "attempt": 1,
+      "id": "19f6d88c9d76c05e",
+      "kind": "broad",
+      "model": "gemini-3.6-flash",
+      "problems": [
+        "「予選を勝ち抜いた20チーム」→ 元記事は「全国各地から20チームが集結」とあるのみで、予選を勝ち抜いたとは書かれていない。",
+        "「全試合の模様がYouTubeでライブ配信」→ 元記事は「大会の模様はYouTubeでライブ配信を予定」とするのみで、全試合が対象とは書かれていない。",
+        "「現地に行けない方も無料で観戦できます」→ 元記事に観戦料や無料とする記述はなく、無料という条件は創作。",
+        "「大きなボールを蹴り合って」→ 元記事にボールの大きさの記述はない。",
+        "「対戦カードや配信スケジュールなどの詳細は…順次案内されます」→ 元記事は詳細を特設ページで案内とするのみで、「順次」は元記事にない表現。"
+      ],
+      "readability": {
+        "avg_paragraph": 71.8,
+        "avg_sentence": 44.2,
+        "long_share": 0.154,
+        "max_paragraph": 92,
+        "paragraphs": 8,
+        "sentences": 13
+      },
+      "score": 58,
+      "source": "jfa",
+      "title": "第10回 パワーチェアフットボール チャンピオンシップ ジャパン 2026 supported by Jatcoを静岡で開催 #jfa"
     }
   ],
   "short_text_retry": {},
