@@ -437,7 +437,7 @@ export default async function ProductPage({ params }: Props) {
       )}
 
       <p className="mt-14 border-t border-line pt-5 text-note leading-[1.9] text-muted">
-        料金は各社の公式料金ページ、日本での提供状況は公式の対応国・地域の案内で確認し、それぞれに確認日を付けています。機能と発表の履歴は、サイソクが公開した{articles.length}本の関連記事から整理しました。料金や提供条件は変わることがあるため、契約の前に公式ページもご確認ください。
+        料金は各社の公式料金ページ、日本での提供状況は公式の対応国・地域の案内で確認し、それぞれに確認日を付けています。機能と発表の履歴は、サイソクが公開した{articles.length}本の関連記事{hasOfficial || profile.timeline.some((t) => !t.slug && t.url) ? "と、企業の公式の発表（ページ・公式チャンネルの動画）" : ""}から整理しました。料金や提供条件は変わることがあるため、契約の前に公式ページもご確認ください。
         <Link href="/editorial-policy" className="ml-1 text-accent underline">
           編集方針
         </Link>
