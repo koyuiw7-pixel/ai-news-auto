@@ -119,7 +119,7 @@
     }
   },
   "major_tries": {
-    "79164e476618c322": 1
+    "79164e476618c322": 2
   },
   "pi_reopened": {
     "01bff59602ac637f": "2026-11-10T17:10:59.451283+00:00",
@@ -134,6 +134,7 @@
     "176bbd5bd3503561": "2026-11-12T01:16:54.395863+00:00",
     "1b2cb430dd85d0a6": "2026-11-09T09:18:59.972459+00:00",
     "1deba5c915b6d003": "2026-11-10T18:21:06.372918+00:00",
+    "1f6f3fce5d8d705c": "2026-11-12T05:34:57.226143+00:00",
     "23f45401d1673e55": "2026-11-11T09:14:54.412216+00:00",
     "2592c29864b9601b": "2026-11-09T09:18:59.972459+00:00",
     "27611e9c9997cbd4": "2026-11-10T18:21:06.372918+00:00",
@@ -3632,6 +3633,17 @@
       "skipped": true,
       "url": "https://www.soumu.go.jp/menu_news/s-news/01kanbo01_02001183.html"
     },
+    "02507845c854c6b8": {
+      "at": "2026-11-12T05:37:32.830146+00:00",
+      "costUsd": 0.0016,
+      "intent": "query",
+      "mix": "other",
+      "model": "gemini-3.6-flash",
+      "score": 90,
+      "section": "business",
+      "slug": "taxi-fuel-subsidy-period27-mlit",
+      "url": "http://www.mlit.go.jp/report/press/jidosha03_hh_000512.html"
+    },
     "025aa8357dbf4f9b": {
       "at": "2026-11-06T10:11:30.424147+00:00",
       "model": "claude:sonnet",
@@ -5490,7 +5502,7 @@
       "url": "https://www.asahibeer.co.jp/news/2026/1106_2.html"
     },
     "1f6f3fce5d8d705c": {
-      "at": "2026-11-12T05:23:23.930440+00:00",
+      "at": "2026-11-12T05:39:29.689364+00:00",
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・暮らしの交通/天気/値上げ/障害/給付/発売・日本のスポーツのどれでもない）",
       "skipped": true,
       "url": "https://www.riken.jp/press/2026/20261112_1/index.html"
@@ -5717,14 +5729,6 @@
       "reason": "stale: 発表から51時間（48時間を超えた発表は通常の記事にしない）",
       "skipped": true,
       "url": "https://blog.jetbrains.com/rust/2026/11/05/new-in-rustrover-2026-3/"
-    },
-    "22206107cdaed414": {
-      "at": "2026-10-29T05:32:00.492824+00:00",
-      "model": "gemini-3.1-flash-lite",
-      "score": 100,
-      "section": "business",
-      "slug": "household-savings-rate-discrepancy",
-      "url": "https://www.nli-research.co.jp/topics_detail1/id=87222?site=nli"
     },
     "227def68631bf3e2": {
       "at": "2026-11-11T01:51:52.222970+00:00",
@@ -6532,6 +6536,17 @@
       "section": "business",
       "slug": "cyberagent-fy2026-results-date",
       "url": "https://www.cyberagent.co.jp/news/detail/id=33973"
+    },
+    "308993e96d7eed87": {
+      "at": "2026-11-12T05:39:29.155464+00:00",
+      "costUsd": 0.0079,
+      "intent": "neutral",
+      "mix": "money",
+      "model": "gemini-3.5-flash-lite",
+      "score": 90,
+      "section": "public",
+      "slug": "soumu-fee-revision-2026",
+      "url": "https://www.soumu.go.jp/menu_news/s-news/01zaisei03_02000026.html"
     },
     "3090d38083de5252": {
       "at": "2026-11-07T19:52:10.046999+00:00",
@@ -8236,14 +8251,6 @@
       "reason": "prefilter: 価値の薄いお知らせ（を開催）",
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026110910"
-    },
-    "4de73cebe8f8701c": {
-      "at": "2026-10-29T05:35:07.037628+00:00",
-      "model": "gemini-3.1-flash-lite",
-      "score": 100,
-      "section": "business",
-      "slug": "cao-consumer-confidence-survey-oct-2026",
-      "url": "https://www.esri.cao.go.jp/jp/stat/shouhi/shouhi.html"
     },
     "4e0f50b93d30ce0a": {
       "at": "2026-10-30T04:01:33.939120+00:00",
@@ -11585,6 +11592,17 @@
       "skipped": true,
       "url": "https://www.mhlw.go.jp/stf/newpage_77300.html"
     },
+    "7dcdaed886f8ae2b": {
+      "at": "2026-11-12T05:41:55.757323+00:00",
+      "costUsd": 0.0116,
+      "intent": "neutral",
+      "mix": "life",
+      "model": "gemini-3.5-flash-lite",
+      "score": 95,
+      "section": "tech-gadget",
+      "slug": "softbank-digital-twin-disaster-prevention",
+      "url": "https://www.softbank.jp/sbnews/entry/2026/11/11/150000"
+    },
     "7de3a8e3b1290bff": {
       "at": "2026-10-30T01:12:00.752733+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -11652,6 +11670,17 @@
       "section": "ai",
       "slug": "google-new-domains-eat-fly-here",
       "url": "https://blog.google/products-and-platforms/products/registry/new-google-domains-eat-fly-here/"
+    },
+    "7ef9e9b86833c9b3": {
+      "at": "2026-11-12T05:40:27.042911+00:00",
+      "costUsd": 0.0064,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "gemini-3.5-flash-lite",
+      "score": 93,
+      "section": "real-estate",
+      "slug": "nomura-reals-estate-battery-storage-2026",
+      "url": "https://www.nomura-re-hd.co.jp/news/007778.html"
     },
     "7f0224778dbace49": {
       "at": "2026-11-11T12:31:27.894886+00:00",
@@ -11752,6 +11781,12 @@
       "reason": "愛知県の協議会（11月11日開催）の開催記録と会議資料の一覧で、議事録に当たるため対象外。市町村向けマニュアルの改訂案の段階で、読者個人の手続き・給付・料金は示されていない。",
       "skipped": true,
       "url": "https://www.pref.aichi.jp/soshiki/chiikifukushi/saigaifukushikouikisiennsuishinnkyougikai2.html"
+    },
+    "80a285c58e78c634": {
+      "at": "2026-11-12T05:39:29.683453+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（審議会）",
+      "skipped": true,
+      "url": "https://www.soumu.go.jp/menu_news/s-news/01kiban14_02000814.html"
     },
     "80b38ea7da372c49": {
       "at": "2026-11-11T05:44:48.675137+00:00",
@@ -14839,6 +14874,17 @@
       "skipped": true,
       "url": "https://www.kantei.go.jp/jp/tyoukanpress/202611/2_p.html"
     },
+    "b1e194f7b5fa4210": {
+      "at": "2026-11-12T05:38:23.426102+00:00",
+      "costUsd": 0.0074,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "gemini-3.5-flash-lite",
+      "score": 92,
+      "section": "business",
+      "slug": "nagano-otari-hotel-renovation-mlit",
+      "url": "http://www.mlit.go.jp/report/press/toshi05_hh_000535.html"
+    },
     "b2263e9f84127c76": {
       "at": "2026-10-30T18:03:10.966691+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -15855,6 +15901,12 @@
       "reason": "prefilter: 価値の薄いお知らせ（開催のお知らせ）",
       "skipped": true,
       "url": "https://www.mext.go.jp/b_menu/houdou/2026/mext_01696.html"
+    },
+    "c0175e2903dfd3b3": {
+      "at": "2026-11-12T05:36:53.000121+00:00",
+      "reason": "prefilter: サイトの主題外（エンタメのビジネス・テックの話題ではない。料金・決算・販売本数・AI・規約などがない）",
+      "skipped": true,
+      "url": "https://www.aboutamazon.jp/news/entertainment/audible-korean-content-winter-sonata?utm_source=rss"
     },
     "c052ad0d3462eff5": {
       "at": "2026-11-05T13:19:39.665419+00:00",
@@ -20691,305 +20743,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-11T01:08:11.612761+00:00",
-      "attempt": 1,
-      "id": "8c30e3c30eb946ca",
-      "kind": "update",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "score": 88,
-      "source": "google-japan-blog-all",
-      "title": "11 月の Pixel Drop：Gemini で毎日のタスクをもっとスマートに。Google Pixel Tag も新発売"
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-11T01:15:45.623506+00:00",
-      "attempt": 1,
-      "id": "52c1a0c9377c6505",
-      "kind": "ai",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 90.2,
-        "avg_sentence": 40.1,
-        "long_share": 0.133,
-        "max_paragraph": 191,
-        "paragraphs": 20,
-        "sentences": 45
-      },
-      "score": 85,
-      "source": "aws-ml-blog",
-      "title": "Introducing Kimi K3.1 Pro on Amazon Bedrock",
-      "warnings": [
-        "見出しが53字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（CAD）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-11T01:32:10.725378+00:00",
-      "attempt": 1,
-      "id": "651089247cac3781",
-      "kind": "update",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "score": 90,
-      "source": "watch-pricing-gemini-api",
-      "title": "Gemini APIの料金が変更: Gemini 4 Carbon なし → 0.1"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-11T01:32:33.520109+00:00",
-      "attempt": 1,
-      "id": "d378b7c52e4d5e84",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "body に投資助言・売買のすすめの言い回しがある（「押し目買い」）。一般的な情報と判断材料の提示に直す"
-      ],
-      "readability": {
-        "avg_paragraph": 158.7,
-        "avg_sentence": 59.5,
-        "long_share": 0.5,
-        "max_paragraph": 175,
-        "paragraphs": 3,
-        "sentences": 8
-      },
-      "score": null,
-      "source": "nli-research",
-      "title": "外国株への投資意欲が低下か？～2026年10月の投信動向～",
-      "warnings": [
-        "見出しが54字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "読みやすさ: 文が長い（1文の平均 59.5字・60字超の文が 50% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "読みやすさ: 段落が長い（平均 158.7字・最長 175字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-11T01:33:11.555875+00:00",
-      "attempt": 1,
-      "id": "d378b7c52e4d5e84",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 150.0,
-        "avg_sentence": 50.0,
-        "long_share": 0.222,
-        "max_paragraph": 171,
-        "paragraphs": 3,
-        "sentences": 9
-      },
-      "score": 90,
-      "source": "nli-research",
-      "title": "外国株への投資意欲が低下か？～2026年10月の投信動向～",
-      "warnings": [
-        "見出しが54字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "読みやすさ: 文が長い（1文の平均 50.0字・60字超の文が 22% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "読みやすさ: 段落が長い（平均 150.0字・最長 171字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-11T01:33:28.872175+00:00",
-      "attempt": 0,
-      "id": "d378b7c52e4d5e84",
-      "kind": "broad",
-      "model": "",
-      "problems": [
-        "読みやすさ基準外のまま受理: 書き直し後の確認に不合格: 「外国株式とバランス型の資金流入が大幅に減少」→ 元記事はファンド全体と外国株式ファンドの流入減少を述べるが、バランス型の資金流入が大幅に減ったとは書いていない。「バランス型」は見出しで疑問形（「低下？」）として出てくるだけで、大幅減少は元記事に無い。; 「外国"
-      ],
-      "readability": {
-        "avg_paragraph": 150.0,
-        "avg_sentence": 50.0,
-        "long_share": 0.222,
-        "max_paragraph": 171,
-        "paragraphs": 3,
-        "sentences": 9
-      },
-      "score": 90,
-      "source": "nli-research",
-      "title": "外国株への投資意欲が低下か？～2026年10月の投信動向～",
-      "warnings": [
-        "見出しが54字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "読みやすさ: 文が長い（1文の平均 50.0字・60字超の文が 22% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "読みやすさ: 段落が長い（平均 150.0字・最長 171字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-11T01:33:55.632243+00:00",
-      "attempt": 1,
-      "id": "fa8219932f263f4e",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 70.8,
-        "avg_sentence": 56.6,
-        "long_share": 0.4,
-        "max_paragraph": 129,
-        "paragraphs": 4,
-        "sentences": 5
-      },
-      "score": 94,
-      "source": "mof",
-      "title": "チェンマイ・イ二シアティブ（ＣＭＩＭ）契約書の改訂が発効しました",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（ASEAN・CMIM・RFF）",
-        "読みやすさ: 文が長い（1文の平均 56.6字・60字超の文が 40% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-11T01:34:07.087763+00:00",
-      "attempt": 0,
-      "id": "fa8219932f263f4e",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 68.8,
-        "avg_sentence": 45.8,
-        "long_share": 0.167,
-        "max_paragraph": 134,
-        "paragraphs": 4,
-        "sentences": 6
-      },
-      "score": 90,
-      "source": "mof",
-      "title": "チェンマイ・イ二シアティブ（ＣＭＩＭ）契約書の改訂が発効しました",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（ASEAN・CMIM・RFF）",
-        "読みやすさ: 文が長い（1文の平均 45.8字・60字超の文が 17% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-11T01:34:34.897469+00:00",
-      "attempt": 1,
-      "id": "d5da69fd4f90f6c5",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 95.2,
-        "avg_sentence": 59.5,
-        "long_share": 0.5,
-        "max_paragraph": 131,
-        "paragraphs": 5,
-        "sentences": 8
-      },
-      "score": 92,
-      "source": "soumu",
-      "title": "「第12回ロボット大賞」総務大臣賞の決定",
-      "warnings": [
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
-        "読みやすさ: 文が長い（1文の平均 59.5字・60字超の文が 50% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-11T01:34:52.052723+00:00",
-      "attempt": 0,
-      "id": "d5da69fd4f90f6c5",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 66.9,
-        "avg_sentence": 39.0,
-        "long_share": 0.083,
-        "max_paragraph": 92,
-        "paragraphs": 7,
-        "sentences": 12
-      },
-      "score": 88,
-      "source": "soumu",
-      "title": "「第12回ロボット大賞」総務大臣賞の決定",
-      "warnings": [
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-11T01:35:22.123303+00:00",
-      "attempt": 1,
-      "id": "261ae4aceb078e02",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "リード「消費者や事業者向けに、行政の取り組みや情報発信について意見を交わす場となります」→ 元記事は見出しと日付だけで、座談会の目的や対象者は書かれていない。創作である。",
-        "本文「現時点で参加費用は無料となっており、インターネット環境があれば自宅などから参加できます」→ 元記事に参加費・参加方法の記載はなく、無料・自宅から参加可能とする根拠がない。fatalな創作。",
-        "よくある質問「参加費は無料で、インターネット通信料を除いて費用は発生しません」→ 元記事・確認済みの文脈に無い価格条件の創作。",
-        "仕事・お金欄「直接的な金銭の授受や仕事の報酬が発生するものではありません」→ 元記事に無い金銭面の断定。",
-        "判定「価格=無料」→ 元記事に無い価格情報を根拠なく置いている。",
-        "リード「参加を希望する人は、公式サイトから事前に予約の手続きを行います」→ 予約受付の開始は元記事のとおりだが、予約の具体的な方法は元記事に書かれていない。"
-      ],
-      "readability": {
-        "avg_paragraph": 80.0,
-        "avg_sentence": 53.3,
-        "long_share": 0.0,
-        "max_paragraph": 100,
-        "paragraphs": 2,
-        "sentences": 3
-      },
-      "score": 12,
-      "source": "caa",
-      "title": "オンライン座談会(12月10日)の予約受付を開始しました",
-      "warnings": [
-        "読みやすさ: 文が長い（1文の平均 53.3字・60字超の文が 0% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-11T01:35:38.656900+00:00",
-      "attempt": 1,
-      "id": "595ec734cc5d0750",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 101.2,
-        "avg_sentence": 56.2,
-        "long_share": 0.444,
-        "max_paragraph": 138,
-        "paragraphs": 5,
-        "sentences": 9
-      },
-      "score": 85,
-      "source": "nli-research",
-      "title": "家事を誰が担うのか、これからの選択肢－高市首相の発言と家事支援サービスの国家資格化を機に考える",
-      "warnings": [
-        "見出しが52字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "読みやすさ: 文が長い（1文の平均 56.2字・60字超の文が 44% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-11T01:35:56.897167+00:00",
-      "attempt": 0,
-      "id": "595ec734cc5d0750",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 85.3,
-        "avg_sentence": 42.7,
-        "long_share": 0.083,
-        "max_paragraph": 121,
-        "paragraphs": 6,
-        "sentences": 12
-      },
-      "score": 85,
-      "source": "nli-research",
-      "title": "家事を誰が担うのか、これからの選択肢－高市首相の発言と家事支援サービスの国家資格化を機に考える",
-      "warnings": [
-        "見出しが52字（目安40字以内）。一覧・カードでは前半だけを出す"
-      ]
-    },
     {
       "accepted": false,
       "at": "2026-11-11T01:48:23.504235+00:00",
@@ -28244,6 +27997,337 @@
       "title": "【ビジネスブログ】法人スマホの購入・レンタル・SIMのみ～契約方法別の確認ポイント～",
       "warnings": [
         "初めて出たところで言い換えていない略語（SIM）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-12T05:36:19.947543+00:00",
+      "attempt": 1,
+      "id": "79164e476618c322",
+      "kind": "ai",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [
+        "サイソクが自分で試したように読める書き方がある（「筆者」）。サイソクは試していない。元記事の書き手が試した結果なら「〇〇（媒体名）の記者が試したところ」と誰が試したかを書く"
+      ],
+      "readability": {
+        "avg_paragraph": 87.2,
+        "avg_sentence": 41.5,
+        "long_share": 0.167,
+        "max_paragraph": 211,
+        "paragraphs": 20,
+        "sentences": 42
+      },
+      "score": null,
+      "source": "about-amazon",
+      "title": "How we built the agents that built AWS Emulator",
+      "warnings": [
+        "見出しが47字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（CLI・CC）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-12T05:37:32.798138+00:00",
+      "attempt": 1,
+      "id": "02507845c854c6b8",
+      "kind": "broad",
+      "model": "gemini-3.6-flash",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 71.3,
+        "avg_sentence": 42.8,
+        "long_share": 0.2,
+        "max_paragraph": 161,
+        "paragraphs": 6,
+        "sentences": 10
+      },
+      "score": 90,
+      "source": "mlit-press",
+      "title": "タクシー事業者に対する燃料価格激変緩和対策事業（第27期）を実施します～令和８年８月１日から９月30日の間のLPガスに係るコスト負担に対して支援を実施～",
+      "warnings": [
+        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（LP）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-12T05:37:55.842357+00:00",
+      "attempt": 1,
+      "id": "b1e194f7b5fa4210",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文「既存ホテルの大規模なリノベーション」→ 元記事は「既存ホテルのリノベーション」とあるだけで、「大規模」は元記事に無い誇張。",
+        "かんたん版「スキーシーズンを中心とした観光」→ 元記事は「冬季観光」としており、「スキー」は元記事・確認済みの文脈に無い補足。",
+        "本文「グリーンシーズン（夏期・秋期）」→ 元記事は「グリーンシーズン」のみで、夏期・秋期は補足の言い換え。"
+      ],
+      "readability": {
+        "avg_paragraph": 98.4,
+        "avg_sentence": 54.7,
+        "long_share": 0.556,
+        "max_paragraph": 124,
+        "paragraphs": 5,
+        "sentences": 9
+      },
+      "score": 88,
+      "source": "mlit-press",
+      "title": "長野県～大型ホテルをリノベーションする民間整備事業を国土交通大臣が認定～",
+      "warnings": [
+        "本文の最初の文がリードのくり返し。本文はリードに無い新しい事実から始める",
+        "読みやすさ: 文が長い（1文の平均 54.7字・60字超の文が 56% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-12T05:38:11.237598+00:00",
+      "attempt": 1,
+      "id": "b1e194f7b5fa4210",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 103.2,
+        "avg_sentence": 51.6,
+        "long_share": 0.5,
+        "max_paragraph": 124,
+        "paragraphs": 4,
+        "sentences": 8
+      },
+      "score": 88,
+      "source": "mlit-press",
+      "title": "長野県～大型ホテルをリノベーションする民間整備事業を国土交通大臣が認定～",
+      "warnings": [
+        "本文が見出しで始まっている（最初の段落は見出しなしで、だれに関係するか・関係しない人はどうかを書く）",
+        "読みやすさ: 文が長い（1文の平均 51.6字・60字超の文が 50% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-12T05:38:23.416210+00:00",
+      "attempt": 0,
+      "id": "b1e194f7b5fa4210",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 83.8,
+        "avg_sentence": 29.9,
+        "long_share": 0.0,
+        "max_paragraph": 120,
+        "paragraphs": 5,
+        "sentences": 14
+      },
+      "score": 92,
+      "source": "mlit-press",
+      "title": "長野県～大型ホテルをリノベーションする民間整備事業を国土交通大臣が認定～",
+      "warnings": [
+        "本文が見出しで始まっている（最初の段落は見出しなしで、だれに関係するか・関係しない人はどうかを書く）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-12T05:38:39.168348+00:00",
+      "attempt": 1,
+      "id": "308993e96d7eed87",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "読めなかった開示資料（https://www.soumu.go.jp/main_content/001100723.pdf）があるのに「発表されていません」と書いている。資料を確かめられていないことは「未発表」と言い切らない（その文を消すか、「発表の本文では触れていません」のように確かめた範囲を書く）（A44）"
+      ],
+      "readability": {
+        "avg_paragraph": 85.1,
+        "avg_sentence": 54.2,
+        "long_share": 0.364,
+        "max_paragraph": 146,
+        "paragraphs": 7,
+        "sentences": 11
+      },
+      "score": null,
+      "source": "soumu",
+      "title": "地方公共団体の手数料の標準に関する政令の一部を改正する政令案及び地方公共団体の手数料の標準に関する政令に規定する総務省令で定める金額等を定める省令の一部を改正す",
+      "warnings": [
+        "見出しの書き方: 発表文の題名の言い直し（「〇〇が△△を発表」）。読者にとって何が変わるか（だれの・何が・いつから・いくら）を書く",
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
+        "読みやすさ: 文が長い（1文の平均 54.2字・60字超の文が 36% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-12T05:38:56.083767+00:00",
+      "attempt": 1,
+      "id": "308993e96d7eed87",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 81.6,
+        "avg_sentence": 57.1,
+        "long_share": 0.4,
+        "max_paragraph": 146,
+        "paragraphs": 7,
+        "sentences": 10
+      },
+      "score": 88,
+      "source": "soumu",
+      "title": "地方公共団体の手数料の標準に関する政令の一部を改正する政令案及び地方公共団体の手数料の標準に関する政令に規定する総務省令で定める金額等を定める省令の一部を改正す",
+      "warnings": [
+        "見出しの書き方: 発表文の題名の言い直し（「〇〇が△△を発表」）。読者にとって何が変わるか（だれの・何が・いつから・いくら）を書く",
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
+        "読みやすさ: 文が長い（1文の平均 57.1字・60字超の文が 40% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-12T05:39:12.908748+00:00",
+      "attempt": 0,
+      "id": "308993e96d7eed87",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 76.1,
+        "avg_sentence": 41.0,
+        "long_share": 0.0,
+        "max_paragraph": 102,
+        "paragraphs": 7,
+        "sentences": 13
+      },
+      "score": 90,
+      "source": "soumu",
+      "title": "地方公共団体の手数料の標準に関する政令の一部を改正する政令案及び地方公共団体の手数料の標準に関する政令に規定する総務省令で定める金額等を定める省令の一部を改正す",
+      "warnings": [
+        "見出しの書き方: 発表文の題名の言い直し（「〇〇が△△を発表」）。読者にとって何が変わるか（だれの・何が・いつから・いくら）を書く",
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-12T05:40:03.833200+00:00",
+      "attempt": 1,
+      "id": "7ef9e9b86833c9b3",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 110.4,
+        "avg_sentence": 69.0,
+        "long_share": 0.5,
+        "max_paragraph": 168,
+        "paragraphs": 5,
+        "sentences": 8
+      },
+      "score": 92,
+      "source": "nomura-re",
+      "title": "全国４拠点の系統用蓄電所を取得し、系統用蓄電池事業へ本格参入 ― 再生可能エネルギーの普及拡大による電力系統の安定化に貢献 ―（野村不動産）",
+      "warnings": [
+        "見出しが47字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（MW）",
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-12T05:40:20.977777+00:00",
+      "attempt": 0,
+      "id": "7ef9e9b86833c9b3",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 98.5,
+        "avg_sentence": 39.4,
+        "long_share": 0.133,
+        "max_paragraph": 129,
+        "paragraphs": 6,
+        "sentences": 15
+      },
+      "score": 93,
+      "source": "nomura-re",
+      "title": "全国４拠点の系統用蓄電所を取得し、系統用蓄電池事業へ本格参入 ― 再生可能エネルギーの普及拡大による電力系統の安定化に貢献 ―（野村不動産）",
+      "warnings": [
+        "見出しが47字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（MW）",
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-12T05:41:14.202175+00:00",
+      "attempt": 1,
+      "id": "7dcdaed886f8ae2b",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "リード「今後は実際の災害時における迅速な安全確認への応用が期待されている」→ 元記事に実災害への応用の期待や展望は書かれておらず、根拠のない将来像の付け足しである。",
+        "かんたん版「建物の中身やひび割れをデジタル空間に再現」→ 元記事は建物の形状や状態を再現すると書いており、「中身」は元記事にない表現である。",
+        "本文「訓練で想定された判定結果に基づき…検証もあわせて実施された」→ 元記事は防災訓練の中での立ち入り可否の音声伝達として書いており、「検証」として別に実施されたとはしていない。",
+        "リード「11月11日」→ 元記事では実証は2026年6月29日、9月10日、11月11日の3回実施されたとあり、11月11日だけの実証と読める書き方は不正確である（訓練は11月11日）。"
+      ],
+      "readability": {
+        "avg_paragraph": 96.5,
+        "avg_sentence": 96.5,
+        "long_share": 0.833,
+        "max_paragraph": 123,
+        "paragraphs": 6,
+        "sentences": 6
+      },
+      "score": 82,
+      "source": "softbank-news",
+      "title": "防災分野にデジタルツインを活用して、被災した建物の応急危険度判定を遠隔から実施する技術を実証",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（ICT）",
+        "本文が見出しで始まっている（最初の段落は見出しなしで、だれに関係するか・関係しない人はどうかを書く）",
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-12T05:41:32.159118+00:00",
+      "attempt": 1,
+      "id": "7dcdaed886f8ae2b",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 96.8,
+        "avg_sentence": 96.8,
+        "long_share": 0.833,
+        "max_paragraph": 123,
+        "paragraphs": 6,
+        "sentences": 6
+      },
+      "score": 93,
+      "source": "softbank-news",
+      "title": "防災分野にデジタルツインを活用して、被災した建物の応急危険度判定を遠隔から実施する技術を実証",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（ICT）",
+        "本文が見出しで始まっている（最初の段落は見出しなしで、だれに関係するか・関係しない人はどうかを書く）",
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-12T05:41:51.300039+00:00",
+      "attempt": 0,
+      "id": "7dcdaed886f8ae2b",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 102.8,
+        "avg_sentence": 47.5,
+        "long_share": 0.231,
+        "max_paragraph": 134,
+        "paragraphs": 6,
+        "sentences": 13
+      },
+      "score": 95,
+      "source": "softbank-news",
+      "title": "防災分野にデジタルツインを活用して、被災した建物の応急危険度判定を遠隔から実施する技術を実証",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（ICT）",
+        "本文が見出しで始まっている（最初の段落は見出しなしで、だれに関係するか・関係しない人はどうかを書く）",
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
       ]
     }
   ],
