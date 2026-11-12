@@ -46,6 +46,13 @@
   python3 scripts/retire_articles.py --creator --apply
   python3 scripts/retire_articles.py --notice --apply --append out.md
 
+手で選んだ一覧の取り下げ（2026-11-12 オーナー承認・案B）: --slugs plan.json で、選んだ記事を取り下げる
+（作ってから7日以上・14日間の読者0・Search Console の過去3か月で表示0 の、薄い・主題外の記事）。
+  守る: 検索に表示があった記事・人が確かめた記事・地震津波・直近7日の SNS・日程/ガイド/イベント/製品/比較/料金/訂正/次にやること が参照する記事。
+  転送: "redirect" に書いた親の記事（同じ話題の、残る記事）。名前の照合（redirect_ok）を通らなければ 410。
+  python3 scripts/retire_articles.py --slugs plan.json          # 数えるだけ
+  python3 scripts/retire_articles.py --slugs plan.json --apply  # 取り下げる
+
 検索から人が来ている記事は取り下げない（2026-11-06 オーナー決定・台帳 A46）: content/search_protected.json の記事は、
 どの区分（--noindex・--notice・--creator・通常）でも取り下げの対象から外し、「残す」の一覧に出す。apply() も最後の守りとして拒む。
 守る記事が掃除の対象に当たったら、取り下げずに書き直す（scripts/search_protected.py に一覧の更新のしかた）。
@@ -89,6 +96,7 @@ NOINDEX_LABELS = {
     "creator-video": "他人の動画の要約",
     "wire": "プレスリリースの言い換え",
     "roundup-of-retired": "元記事がすべて取り下げになったまとめ",
+    "zero-search-zero-reader": "検索の表示も読者も0の、薄い・主題外の記事（2026-11-12 案B）",
 }
 NOTICE_LABELS = {f"notice-{k}": v for k, v in notice_gate.LABELS.items()}
 # 重複ではないが、はっきり近い記事があるもの（2026-11-03 に題名・本文を見て決めた）。転送先が残っていなければ 410
@@ -366,6 +374,71 @@ def plan_creator(articles: list[dict]) -> dict[str, dict]:
                 entry[key] = a[key]
         picked[a["slug"]] = entry
     return picked
+
+
+LIST_REASON = "zero-search-zero-reader"
+LIST_LABEL = "検索の表示も読者も0の、薄い・主題外の記事（2026-11-12 オーナー承認・案B）"
+# 一覧から外す（取り下げない）参照元: これらのページが記事を出典・関連に使っているなら、記事は残す（2026-11-12 案B）
+KEEP_IF_LINKED_FROM = [
+    "content/money-dates.json", "content/events.json", "content/pricing.json", "content/corrections.json",
+    "content/next_steps.json", "content/product_sources.json",
+]
+KEEP_IF_LINKED_DIRS = ["content/products", "content/guides", "content/buying-guides", "content/howto"]
+
+
+def linked_from_kept_pages(slugs) -> dict[str, list[str]]:
+    """日程・ガイド・イベント・製品・比較・料金・訂正・次にやること のページが参照している記事 {slug: [ファイル]}"""
+    files = [ROOT / f for f in KEEP_IF_LINKED_FROM] + [p for d in KEEP_IF_LINKED_DIRS for p in sorted((ROOT / d).glob("*.json"))]
+    texts = [(str(f.relative_to(ROOT)), f.read_text(encoding="utf-8")) for f in files if f.exists()]
+    out: dict[str, list[str]] = {}
+    for slug in slugs:
+        pat = re.compile(r"(?<![a-z0-9-])" + re.escape(slug) + r"(?![a-z0-9-])")
+        hits = [name for name, text in texts if pat.search(text)]
+        if hits:
+            out[slug] = hits
+    return out
+
+
+def plan_list(articles: list[dict], now: datetime, slugs: list[str], redirects: dict[str, str]) -> tuple[dict[str, dict], list[dict]]:
+    """手で選んだ一覧（--slugs）の取り下げ計画（2026-11-12 オーナー承認・案B）。
+    守るもの: 検索に表示があった記事（search_protected）・人が確かめた記事（Muse・編集部）・地震津波の速報・
+    直近7日に SNS に出した記事・日程/ガイド/イベント/製品などのページが参照する記事・まとめ記事。
+    redirects の転送先は、残る記事で、apply() の名前の照合（redirect_ok）を通ったときだけ 301（通らなければ 410）"""
+    by_slug = {a["slug"]: a for a in articles}
+    protected = search_protected.protected_slugs()
+    sns = recent_sns(now, everywhere=True)
+    linked = linked_from_kept_pages(slugs)
+    picked: dict[str, dict] = {}
+    kept: list[dict] = []
+    for slug in slugs:
+        a = by_slug.get(slug)
+        if not a:
+            continue
+        why = ""
+        if slug in protected:
+            why = PROTECTED_WHY
+        elif a.get("museFile") or a.get("refreshMode") == "editorial" or a.get("writer") == "muse" or a.get("review"):
+            why = "人が確かめた記事（Muse・編集部）"
+        elif a.get("disaster"):
+            why = "地震・津波の速報（短いのは設計どおり）"
+        elif slug in sns:
+            why = f"直近{SNS_KEEP_DAYS}日に SNS に出した"
+        elif isinstance(a.get("indexable"), bool) and a["indexable"]:
+            why = "手で「検索に出す」と決めた記事"
+        elif slug in linked:
+            why = "ほかのページが参照している（" + "・".join(linked[slug][:3]) + "）"
+        if why:
+            kept.append({"slug": slug, "title": a.get("title", ""), "reason": LIST_REASON, "why": why})
+            continue
+        entry = {"reason": LIST_REASON, "title": a.get("title", ""), "channel": a.get("channelSlug", "")}
+        for key in ("sourceUrl", "videoUrl"):
+            if a.get(key):
+                entry[key] = a[key]
+        picked[slug] = entry
+    for slug, target in redirects.items():
+        if slug in picked and target in by_slug and target not in picked:
+            picked[slug]["redirect"] = target
+    return picked, kept
 
 
 def report_notice(retired: dict[str, dict], kept: list[dict], before: int, after: int, path: Path) -> None:
@@ -752,6 +825,8 @@ def main() -> int:
     parser.add_argument("--notice", action="store_true", help="お知らせ・告知・統計の転載の記事を取り下げる（scripts/notice_gate.py）")
     parser.add_argument("--creator", action="store_true", help="他人の動画の要約の記事（CREATOR_CHANNELS）をすべて取り下げる（D3）")
     parser.add_argument("--append", type=Path, help="--noindex / --notice の一覧を Markdown の末尾に足す")
+    parser.add_argument("--slugs", type=Path,
+                        help='手で選んだ記事を取り下げる。JSON {"retire": [slug…], "redirect": {slug: 転送先}}（2026-11-12 案B）')
     args = parser.parse_args()
     now = datetime.now(timezone.utc)
     if args.resweep:
@@ -767,6 +842,19 @@ def main() -> int:
         print(f"[retire] 参照の付け替え: {json.dumps(apply({}, now), ensure_ascii=False)}")
         return 0
     articles = load_articles()
+    if args.slugs:
+        spec = json.loads(args.slugs.read_text(encoding="utf-8"))
+        retired, kept = plan_list(articles, now, list(spec.get("retire") or []), dict(spec.get("redirect") or {}))
+        print(f"[retire] 一覧 {len(spec.get('retire') or [])} 本のうち取り下げ {len(retired)} 本"
+              f"（転送の候補 {sum(1 for e in retired.values() if e.get('redirect'))}）・残す {len(kept)} 本")
+        for k in kept:
+            print(f"  残す {k['slug']}: {k['why']}")
+        if args.apply and retired:
+            stats = apply(retired, now)
+            again = apply({}, now)
+            stats["second_pass"] = again["articles_rewritten"] + again["data_rewritten"]
+            print(f"[retire] 実行: {json.dumps(stats, ensure_ascii=False)}")
+        return 0
     if args.creator:
         retired = plan_creator(articles)
         print(f"[retire] 全 {len(articles)} 本のうち、他人の動画の要約の取り下げ {len(retired)} 本")

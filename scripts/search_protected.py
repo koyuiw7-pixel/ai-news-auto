@@ -16,6 +16,8 @@
 
   python3 scripts/search_protected.py   # 守る記事の一覧と、記事が今あるかを表示
 
+2026-11-12（案B・オーナー承認）: content/search_impressions90.json（Search Console「ページ」過去3か月で表示が1回以上の記事）も守る。
+
 2026-11-09 オーナー承認（台帳 A68）: 検索に表示が1回でもあったページは取り下げない・転送しない。
   - 守る記事は content/search_protected.json に加えて、content/search_positions.json（Search Console の「ページ」と「検索語」を
     書き写した一覧。scripts/search_refresh.py が毎週の書き直しにも使う）で表示が1以上の記事すべて。
@@ -33,6 +35,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 PATH = ROOT / "content" / "search_protected.json"
 POSITIONS = ROOT / "content" / "search_positions.json"
+# Search Console「ページ」過去3か月で表示が1回以上あった記事（2026-11-12 書き出し。案Bの前に作った守りの一覧）
+IMPRESSIONS90 = ROOT / "content" / "search_impressions90.json"
 # 名前の照合で数えない、どこにでも出てくる語（会社名・一般語）。これだけでは「同じ疑問のページ」とは言えない
 COMMON_WORDS = {
     "ai", "the", "and", "for", "with", "new", "api", "app", "pro", "max", "mini", "plus", "beta", "google", "openai",
@@ -58,10 +62,15 @@ def positions_pages(path: Path = POSITIONS) -> dict[str, dict]:
     return {str(k): v for k, v in pages.items() if isinstance(v, dict)}
 
 
-def protected_slugs(path: Path = PATH, positions: Path = POSITIONS) -> set[str]:
-    """守る記事の slug（守る一覧 ＋ 検索に表示が1回でもあった記事。台帳 A46・A68）"""
+def protected_slugs(path: Path = PATH, positions: Path = POSITIONS, impressions90: Path | None = None) -> set[str]:
+    """守る記事の slug（守る一覧 ＋ 検索に表示が1回でもあった記事 ＋ 過去3か月に表示があった記事。台帳 A46・A68）"""
     keep = {str(s) for s in (load(path).get("articles") or {})}
     keep |= {slug for slug, row in positions_pages(positions).items() if int(row.get("impressions") or 0) >= 1}
+    # 既定の一覧を見るときだけ、3か月の一覧も足す（テストが別の一覧を渡したときは混ぜない）
+    if impressions90 is None and path == PATH:
+        impressions90 = IMPRESSIONS90
+    if impressions90 is not None:
+        keep |= {str(s) for s in (load(impressions90).get("articles") or [])}
     return keep
 
 
