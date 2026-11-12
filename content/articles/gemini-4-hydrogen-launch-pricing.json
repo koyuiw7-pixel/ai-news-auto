@@ -192,5 +192,113 @@
     ],
     "ar": 1.0,
     "src": "https://ai-tech-express.jp/img/gemini-4-hydrogen-launch-pricing-d7d9a1de.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "料金ページの無料プランの欄に「Includes Gemini 4 Hydrogen」とあり、Google AI Plusには「Access to Gemini 4 Hydrogen」と書かれています。",
+      "source": "https://gemini.google/jp/subscriptions/?hl=ja"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "Gemini（Google AI プラン）の料金ページ",
+      "url": "https://gemini.google/jp/subscriptions/?hl=ja",
+      "source": "https://gemini.google/jp/subscriptions/?hl=ja",
+      "note": "無料・Google AI Plus・Pro・Ultraの欄ごとに、Gemini 4 Hydrogenの記載があるか確認できます。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "料金ページで、自分のプランにHydrogenが含まれるかを確かめる",
+      "source": "https://gemini.google/jp/subscriptions/?hl=ja",
+      "steps": [
+        "料金ページを開く",
+        "無料やGoogle AI Plusなど、自分のプランの欄を見る",
+        "「Gemini 4 Hydrogen」の文言があるか確認する"
+      ],
+      "url": "https://gemini.google/jp/subscriptions/?hl=ja"
+    },
+    {
+      "action": "AI Studioで gemini-4-hydrogen を指定し、同じ作業を試す",
+      "source": "https://deepmind.google/blog/introducing-gemini-4-hydrogen/",
+      "steps": [
+        "AI Studioを開く",
+        "新しいチャットのリンクでmodel=gemini-4-hydrogenを使う",
+        "同じ作業の速さと料金を比べる"
+      ],
+      "url": "https://aistudio.google.com/prompts/new_chat?model=gemini-4-hydrogen"
+    }
+  ],
+  "cause": {
+    "text": "公式ブログでは、Hydrogenは速く実行することに重きを置いたモデルだと説明されています。難しい長期の推論は、上位モデルのGemini 4 CarbonとArgonが得意とされています。",
+    "status": "background",
+    "source": "https://deepmind.google/blog/introducing-gemini-4-hydrogen/"
+  },
+  "worries": [
+    {
+      "q": "無料のGeminiでもHydrogenは使えるの？",
+      "a": "料金ページの無料プランの欄に「Includes Gemini 4 Hydrogen」とあり、無料プランにもHydrogenが含まれると読めます。Google AI Plusには「Access to Gemini 4 Hydrogen」とあります。",
+      "source": "https://gemini.google/jp/subscriptions/?hl=ja",
+      "action": "Geminiアプリのモデル選択で、Hydrogenが表示されるかを自分の画面で確かめましょう。"
+    },
+    {
+      "q": "APIで使うと料金はいくらかかる？",
+      "a": "入力は100万トークンあたり1.5ドル、出力は7.5ドルです。100万トークンの文脈全域で料金は一定で、長い文書を読み込んでも単価は上がらないとされています。",
+      "source": "https://deepmind.google/blog/introducing-gemini-4-hydrogen/",
+      "action": "AI Studioで新しいチャットを開き、今使っているモデルと同じ作業を投げて料金と速さを比べましょう。"
+    },
+    {
+      "q": "Antigravityで使うには何のプランが必要？",
+      "a": "公式ブログによると、Google AntigravityでHydrogenを使えるのは、有料のGoogle AI ProとUltraの契約者です。Orchestratorも、この作業環境の新機能として紹介されています。",
+      "source": "https://deepmind.google/blog/introducing-gemini-4-hydrogen/",
+      "action": "Antigravityを使うなら、料金ページでAI ProかUltraの内容と月額を確かめてから契約を考えましょう。",
+      "actionSource": "https://gemini.google/jp/subscriptions/?hl=ja"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "アプリだけなら、有料プランに上げるべき？",
+      "situation": "アプリで試すだけで、使用量は足りている",
+      "recommend": "急がなくてよい",
+      "reason": "料金ページでは、無料プランの欄にも「Includes Gemini 4 Hydrogen」とあります。有料で増えるのは使用量上限とストレージで、Google AI Plusは月額725円（月払い）です。",
+      "source": "https://gemini.google/jp/subscriptions/?hl=ja"
+    },
+    {
+      "question": "アプリだけなら、有料プランに上げるべき？",
+      "situation": "無料版の使用量の上限に何度も当たる",
+      "recommend": "上限を見てから検討する価値がある",
+      "reason": "Google AI Plusは無料版の2倍、Google AI Proは4倍の使用量上限だと料金ページに書かれています。月額はPlusが725円、Proが2,900円（月払い、料金ページの表示）です。",
+      "source": "https://gemini.google/jp/subscriptions/?hl=ja"
+    },
+    {
+      "question": "API料金で、Hydrogenに替えるべき？",
+      "situation": "今はほかのモデルでAPIを使っている開発者",
+      "recommend": "同じ作業で試してから決めるとよい",
+      "reason": "Hydrogenの料金は入力100万トークン1.5ドル、出力7.5ドルです。速さや品質は公式ブログの数字なので、自分の作業で同じ結果になるかは試す必要があります。",
+      "source": "https://deepmind.google/blog/introducing-gemini-4-hydrogen/"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "無料プランにもHydrogenが入っている",
+    "cause": "なぜ速さ重視のモデルなのか",
+    "steps": "今日確かめられること",
+    "desk": "料金ページで確かめる場所",
+    "worries": "無料で使える？料金は？Antigravityは？",
+    "guide": "有料にするか迷ったら"
+  },
+  "todayActions": [
+    "料金ページで、自分のプランにHydrogenが含まれるかを確かめる",
+    "AI Studioで gemini-4-hydrogen を指定し、同じ作業を試す"
+  ],
+  "depthAt": "2026-11-12T18:37:21+00:00",
+  "updatedAt": "2026-11-12T18:37:21+00:00",
+  "updates": [
+    {
+      "at": "2026-11-12T18:37:21+00:00",
+      "kind": "facts",
+      "title": "公式の資料をもとに、「なるほどの要点」・「公式の窓口」・「今日やること」・「理由」・「よくある不安」・「判断の目安」を追記しました",
+      "sourceUrl": "https://deepmind.google/blog/introducing-gemini-4-hydrogen/",
+      "sourceName": "Google DeepMind公式ブログ"
+    }
+  ]
 }
