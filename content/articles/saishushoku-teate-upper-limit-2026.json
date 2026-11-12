@@ -69,7 +69,7 @@
   "newsType": "pricing",
   "todayActions": [
     "受給資格者証で基本手当日額と所定給付日数を確かめる",
-    "就職した日の翌日から1か月以内の申請期限を手帳に書いておく"
+    "就職日の翌日から1か月以内に支給申請書を出す"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -125,5 +125,118 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/saishushoku-teate-upper-limit-2026-figure-e51121b7.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "再就職手当に係る基本手当日額の上限は「令和9年7月31日までの額です」と書かれています。毎年8月1日に「毎月勤労統計」の平均給与額により改定されると説明されています。",
+      "source": "https://www.hellowork.mhlw.go.jp/doc/saishuushokuteate.pdf"
+    },
+    {
+      "text": "再就職手当を受けたあとに離職して失業状態になっても、「再就職手当分を除く残日数分を受給できる可能性」があると書かれています。",
+      "source": "https://www.hellowork.mhlw.go.jp/doc/saishuushokuteate.pdf"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "ハローワークの給付窓口",
+      "url": "https://www.hellowork.mhlw.go.jp/insurance/insurance_stepup.html",
+      "source": "https://www.hellowork.mhlw.go.jp/insurance/insurance_stepup.html",
+      "note": "ご質問は最寄りのハローワークまで。手続き方法が分からないときは給付窓口へ相談できます。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "受給資格者証で基本手当日額と所定給付日数を確かめる",
+      "source": "https://jsite.mhlw.go.jp/osaka-hellowork/kyushokusha/saishushoku_teate27.html",
+      "steps": [
+        "受給資格者証のオモテ面（写真の欄がない面）を見る",
+        "基本手当日額（19欄）と所定給付日数（20欄）を書き出す",
+        "分からない点は給付窓口へ相談する"
+      ],
+      "url": "https://jsite.mhlw.go.jp/osaka-hellowork/kyushokusha/saishushoku_teate27.html"
+    },
+    {
+      "action": "就職日の翌日から1か月以内に支給申請書を出す",
+      "source": "https://www.hellowork.mhlw.go.jp/doc/saishuushokuteate.pdf",
+      "steps": [
+        "支給申請書は就職した日の翌日から1か月以内に提出",
+        "提出は本人、代理の方、または郵送で行える",
+        "手続き方法が分からないときは給付窓口へ相談する"
+      ],
+      "url": "https://www.hellowork.mhlw.go.jp/doc/saishuushokuteate.pdf"
+    }
+  ],
+  "cause": {
+    "text": "上限額は、毎年8月1日に「毎月勤労統計」の平均給与額により改定されると書かれています。改定の基準になるのは、この平均給与額です。",
+    "status": "background",
+    "source": "https://www.hellowork.mhlw.go.jp/doc/saishuushokuteate.pdf"
+  },
+  "worries": [
+    {
+      "q": "今の残日数で70％か60％か、どう分かる？",
+      "a": "所定給付日数の3分の2以上の残日数があれば70％、3分の1以上なら60％です。計算式は基本手当日額×支給残日数×給付率で、1円未満は切り捨てられます。3分の1未満だと支給されません。",
+      "source": "https://www.hellowork.mhlw.go.jp/doc/saishuushokuteate.pdf",
+      "action": "受給資格者証で所定給付日数を確かめ、就職日の前日までに失業の認定を受けたうえで残日数を見る。"
+    },
+    {
+      "q": "古い案内にある6,570円で計算しても大丈夫？",
+      "a": "6,570円や5,310円は令和7年8月1日から令和8年7月31日までの額です。今の上限は60歳未満が6,745円、60歳以上65歳未満が5,454円です。",
+      "source": "https://www.hellowork.mhlw.go.jp/insurance/insurance_stepup.html",
+      "action": "計算は6,745円（60歳以上65歳未満は5,454円）の上限で行い、古い額は使わない。"
+    },
+    {
+      "q": "再就職先をすぐ辞めたら手当はどうなる？",
+      "a": "再就職手当を受けたあとに離職して失業状態になった場合、再就職手当分を除く残日数分を受給できる可能性があると書かれています。まずはハローワークに相談します。",
+      "source": "https://www.hellowork.mhlw.go.jp/doc/saishuushokuteate.pdf",
+      "action": "離職して失業状態になったら、まず最寄りのハローワークに相談し、残日数の扱いを確かめる。"
+    },
+    {
+      "q": "知人の紹介で決まった就職も対象になりますか？",
+      "a": "給付制限がない人は、待期期間が過ぎていれば知人の紹介や新聞広告の応募で就職しても対象です。給付制限がある人は、待期満了後1か月の間、ハローワークなどの紹介で就職する必要があります。",
+      "source": "https://www.hellowork.mhlw.go.jp/doc/saishuushokuteate.pdf",
+      "action": "離職理由による給付制限の有無をハローワークで確かめてから、就職先の探し方を決める。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "再就職手当を見据えて入社日をいつにするか",
+      "situation": "残日数が所定給付日数の3分の2の境目に近い",
+      "recommend": "入社日を決める前に、ハローワークで残日数を確かめる",
+      "reason": "所定給付日数270日の例では、残日数180日以上で給付率70％、90日以上で60％です。境目の前後で額が変わるため、入社日を決める前に残日数を確かめると判断しやすくなります。",
+      "source": "https://www.hellowork.mhlw.go.jp/doc/saishuushokuteate.pdf"
+    },
+    {
+      "question": "再就職手当を見据えて入社日をいつにするか",
+      "situation": "残日数が所定給付日数の3分の1未満",
+      "recommend": "再就職手当の対象かを確認してから就職を決める",
+      "reason": "残日数が所定給付日数の3分の1未満だと、再就職手当は支給されません。手当を前提に就職を決めず、ハローワークで対象かを確かめるとよいとページは案内しています。",
+      "source": "https://www.hellowork.mhlw.go.jp/insurance/insurance_stepup.html"
+    },
+    {
+      "question": "パートでも再就職手当の対象になる可能性は？",
+      "situation": "週の所定労働時間20時間以上、31日以上の雇用見込み",
+      "recommend": "契約の労働時間と雇用期間を確かめる",
+      "reason": "週20時間以上で31日以上の雇用見込みがあれば、原則として雇用保険に加入し、契約条件によっては対象になる可能性があるとされています。",
+      "source": "https://jsite.mhlw.go.jp/osaka-hellowork/kyushokusha/saishushoku_teate27.html"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "上限額は令和9年7月31日までの額です",
+    "cause": "上限が毎年変わる理由、いま分かっていること",
+    "steps": "今日やること、まず受給資格者証から",
+    "desk": "困ったときの相談先はどこ？",
+    "worries": "残日数や就職先の条件、どこが心配？",
+    "guide": "入社日をどう決めるか、迷ったときの考え方"
+  },
+  "depthAt": "2026-11-12T07:16:39+00:00",
+  "updatedAt": "2026-11-12T07:16:39+00:00",
+  "updates": [
+    {
+      "at": "2026-11-12T07:16:39+00:00",
+      "kind": "facts",
+      "title": "公式の資料をもとに、「なるほどの要点」・「公式の窓口」・「今日やること」・「理由」・「よくある不安」・「判断の目安」を追記しました",
+      "sourceUrl": "https://www.hellowork.mhlw.go.jp/insurance/insurance_stepup.html",
+      "sourceName": "ハローワークインターネットサービス「就職促進給付」"
+    }
+  ]
 }

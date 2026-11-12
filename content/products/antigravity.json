@@ -8,49 +8,72 @@
   "companyName": "Google",
   "category": "開発ツール",
   "overview": {
-    "text": "Antigravityは、AIエージェントにコードを書かせたりコマンドを実行させたりするGoogleの開発者向けツールです。",
+    "text": "Antigravityは、AIエージェントにコードを書かせたりコマンドを実行させたりするGoogleの開発者向けツールです。2026年8月に実行環境の「Antigravity 2.0」が公開されました。",
     "sources": [
-      "antigravity-google-cloud-developer-plugin"
+      "antigravity-google-cloud-developer-plugin",
+      "google-antigravity-2-desktop-ai-agents"
     ]
   },
-  "facts": [],
+  "facts": [
+    {
+      "label": "使える場所",
+      "value": "デスクトップアプリ、CLI、IDE",
+      "sources": [
+        "google-antigravity-2-desktop-ai-agents"
+      ]
+    },
+    {
+      "label": "向いている人",
+      "value": "クラウド開発者",
+      "sources": [
+        "antigravity-google-cloud-developer-plugin"
+      ]
+    }
+  ],
   "capabilities": [
     {
-      "text": "自然言語で指示した目標をエージェントが分け、複数のサブエージェントに並行して処理させることができます。",
+      "text": "自然言語の指示に基づき、AIエージェントが計画策定から実装、テストまでを自律的に行います。",
       "sources": [
-        "google-antigravity-autonomous-software-development"
+        "google-antigravity-2-desktop-ai-agents"
       ]
     },
     {
-      "text": "スマートフォンやブラウザから稼働中のエージェントを遠隔監視し、コードの承認やコマンドの実行許可を行えます。",
+      "text": "複数のAIエージェントを並行して実行・管理し、異なるプロジェクトを同時に進められます。",
       "sources": [
-        "google-deepmind-antigravity-remote-control"
+        "google-antigravity-2-desktop-ai-agents"
       ]
     },
     {
-      "text": "Google Cloud Developer プラグインを導入し、クラウド固有の知識や安全のための制限を加えることができます。",
+      "text": "Google Cloud Developerプラグインにより、クラウド固有の知識を用いた安全なコード生成が可能です。",
       "sources": [
         "antigravity-google-cloud-developer-plugin"
       ]
     },
     {
-      "text": "要件定義のインタビューモードや、実装計画に対する直接のコメント機能を利用できます。",
+      "text": "モバイル端末から稼働中のエージェントを監視し、コードレビューやコマンド実行の承認を行えます。",
+      "sources": [
+        "google-deepmind-antigravity-remote-control"
+      ]
+    }
+  ],
+  "pricing": [],
+  "japan": [
+    {
+      "text": "日本からも利用できます。",
       "sources": [
         "google-antigravity-2-desktop-ai-agents"
       ]
     }
   ],
-  "pricing": [],
-  "japan": [],
   "howto": [
     {
-      "text": "デスクトップアプリのほか、CLIや専用IDE、SDKなどが用意されています。",
+      "text": "デスクトップアプリのほか、CLIや専用IDEから利用を開始できます。",
       "sources": [
         "google-antigravity-2-desktop-ai-agents"
       ]
     },
     {
-      "text": "Google Cloud Developer プラグインは、マーケットプレイスから直接インストールできます。",
+      "text": "Google Cloud Developerプラグインはマーケットプレイスからインストール可能です。",
       "sources": [
         "antigravity-google-cloud-developer-plugin"
       ]
@@ -58,7 +81,7 @@
   ],
   "differences": [
     {
-      "text": "Antigravity 2.0では、複数の異なるAIエージェントを完全に並行して実行できるようになりました。",
+      "text": "2.0では複数のAIエージェントを並行して実行・管理できるようになりました。",
       "sources": [
         "google-antigravity-2-desktop-ai-agents"
       ]
@@ -66,24 +89,25 @@
   ],
   "faq": [
     {
-      "q": "誰に向いている？",
-      "a": "Google Cloudなどでシステムを作る開発者に向いています。",
-      "sources": [
-        "antigravity-google-cloud-developer-plugin"
-      ]
-    },
-    {
-      "q": "スマートフォンから操作できる？",
-      "a": "スマートフォンやブラウザから遠隔監視やコードの承認が行えます。",
+      "q": "スマホから操作できますか？",
+      "a": "はい、専用アプリやブラウザからエージェントの監視や承認が可能です。",
       "sources": [
         "google-deepmind-antigravity-remote-control"
       ]
     },
     {
-      "q": "どのように使い始める？",
-      "a": "デスクトップアプリやCLI、専用IDEなどから利用できます。",
+      "q": "誰に向いていますか？",
+      "a": "クラウド開発者や、開発プロセスの自動化を目指すエンジニアに向いています。",
       "sources": [
-        "google-antigravity-2-desktop-ai-agents"
+        "antigravity-google-cloud-developer-plugin",
+        "google-gemini-flash-eink-dashboard-glanceboard"
+      ]
+    },
+    {
+      "q": "安全性はどうですか？",
+      "a": "エージェントは必要最小限の権限で動き、課金や構成変更の前に利用者の同意を求めます。",
+      "sources": [
+        "antigravity-google-cloud-developer-plugin"
       ]
     }
   ],
@@ -101,7 +125,7 @@
     {
       "date": "2026-11-03",
       "slug": "antigravity-google-cloud-developer-plugin",
-      "event": "GoogleがAntigravity用プラグインを公開"
+      "event": "Google Cloud用プラグインを公開"
     }
   ],
   "related": [
@@ -128,9 +152,9 @@
     "google-deepmind-antigravity-remote-control",
     "google-antigravity-2-desktop-ai-agents"
   ],
-  "signature": "2aa25035da62d99c",
+  "signature": "bc4bbee665a651a7",
   "primarySignature": "f3a4121edff83ef9",
-  "model": "gemini-3.5-flash-lite",
+  "model": "gemini-3.1-flash-lite",
   "createdAt": "2026-10-27T10:45:54+00:00",
-  "updatedAt": "2026-11-09T06:58:03+00:00"
+  "updatedAt": "2026-11-12T07:14:39+00:00"
 }

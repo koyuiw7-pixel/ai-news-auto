@@ -142,9 +142,7 @@
       "url": "https://www.digital.go.jp/get-involved/procedure/2cfdcd95-421e-4153-b9b2-364cf503e63d"
     }
   },
-  "major_tries": {
-    "79164e476618c322": 4
-  },
+  "major_tries": {},
   "pi_reopened": {
     "01bff59602ac637f": "2026-11-10T17:10:59.451283+00:00",
     "0326445f62efbab9": "2026-11-10T18:21:06.372918+00:00",
@@ -221,6 +219,7 @@
     "d59119d08c91014e": "2026-11-11T18:50:54.383665+00:00",
     "d684a4d1111b95fb": "2026-11-10T18:21:06.372918+00:00",
     "d85d25074ac5ad46": "2026-11-11T06:18:54.989337+00:00",
+    "da38c64b9638bb2b": "2026-11-12T07:10:55.106500+00:00",
     "f423424e36ede3ad": "2026-11-09T01:30:49.435293+00:00",
     "f87a98fff6eb3eb5": "2026-11-09T09:18:59.972459+00:00",
     "ffe0526a36b01e3d": "2026-11-10T09:04:48.294575+00:00"
@@ -3764,6 +3763,17 @@
       "slug": "antigravity-google-cloud-developer-plugin",
       "url": "https://cloud.google.com/blog/topics/developers-practitioners/google-cloud-developer-plugin-now-available-in-antigravity-marketplace/"
     },
+    "03bdda997e0c3453": {
+      "at": "2026-11-12T07:14:20.436011+00:00",
+      "costUsd": 0.0137,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "gemini-3.1-flash-lite",
+      "score": 92,
+      "section": "sports",
+      "slug": "samurai-blue-brazil-match-preview",
+      "url": "https://www.jfa.jp/news/00037021/"
+    },
     "03e1600bde6a7d3a": {
       "at": "2026-11-03T00:51:13.945381+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（職員）",
@@ -3916,6 +3926,12 @@
       "section": "ai",
       "slug": "hinode-salesforce-agentforce-roleplay",
       "url": "https://www.salesforce.com/jp/news/press-releases/2026/11/10/hinode-customer-news/"
+    },
+    "08240fc4c5190e1e": {
+      "at": "2026-11-12T07:12:52.082903+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（入札）",
+      "skipped": true,
+      "url": "https://www.soumu.go.jp/main_sosiki/singi/kanmin/02shingi06_02001104.html"
     },
     "083cb61269f13ae1": {
       "at": "2026-11-06T13:16:14.835138+00:00",
@@ -5481,6 +5497,12 @@
       "section": "ai",
       "slug": "vercel-longcat-2-5-ai-gateway",
       "url": "https://vercel.com/changelog/longcat-2-5-now-available-on-ai-gateway"
+    },
+    "1e57c86e91dfb664": {
+      "at": "2026-11-12T07:12:52.082865+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（募集）",
+      "skipped": true,
+      "url": "https://www.env.go.jp/press/press_05859.html"
     },
     "1e833fbe344a0242": {
       "at": "2026-11-02T01:41:16.530957+00:00",
@@ -7183,6 +7205,12 @@
       "slug": "openai-acquire-pierre-computer-codex",
       "url": "https://openai.com/index/openai-to-acquire-pierre"
     },
+    "3a3130eb48f37d53": {
+      "at": "2026-11-12T07:12:52.082769+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（入札）",
+      "skipped": true,
+      "url": "https://www.soumu.go.jp/main_sosiki/singi/kanmin/02shingi06_02001106.html"
+    },
     "3a87996ff6159f59": {
       "at": "2026-11-12T04:21:40.926637+00:00",
       "costUsd": 0.0054,
@@ -8001,6 +8029,12 @@
       "reason": "stale: 発表から50時間（48時間を超えた発表は通常の記事にしない）",
       "skipped": true,
       "url": "https://developer.nvidia.com/blog/configure-certify-and-operate-kubernetes-gpu-clusters-with-nvidia-dsx-os/"
+    },
+    "490a1c7d99a4ec0b": {
+      "at": "2026-11-12T07:12:52.099987+00:00",
+      "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・暮らしの交通/天気/値上げ/障害/給付/発売・日本のスポーツのどれでもない）",
+      "skipped": true,
+      "url": "https://www.suntory.co.jp/news/article/2026/15174.html?rss=0000000029"
     },
     "490dc8c40a84ed37": {
       "at": "2026-11-12T02:10:56.547643+00:00",
@@ -11392,6 +11426,12 @@
       "reason": "prefilter: 扱わない話題（事件事故・ゴシップ・選挙・医療効果・噂）",
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026103001"
+    },
+    "79164e476618c322": {
+      "at": "2026-11-12T07:12:51.328321+00:00",
+      "reason": "major gave up x5: reject: サイソクが自分で試したように読める書き方がある（「筆者」）。サイソクは試していない。元記事の書き手が試した結果なら「〇〇（媒体名）の記者が試したところ」と誰が試したかを書く; 題名で料金・価格を約束しているのに、本文に金額（円・ドル・無料など）が無い。元記事の金額を書くか、題名から料金の話を外す",
+      "skipped": true,
+      "url": "https://www.aboutamazon.com/news/aws/how-autonomous-ai-agents-built-aws-emulator?utm_source=rss"
     },
     "7918ca98ce966dbe": {
       "at": "2026-10-31T14:01:20.280959+00:00",
@@ -17770,7 +17810,7 @@
       "url": "https://blog.jetbrains.com/ruby/2026/11/rubymine-2026-3-jetbrains-air-native-mode-for-wsl-and-dev-containers-and-more/"
     },
     "da38c64b9638bb2b": {
-      "at": "2026-11-12T06:49:23.856435+00:00",
+      "at": "2026-11-12T07:12:52.071097+00:00",
       "reason": "prefilter: サイトの主題外（エンタメのビジネス・テックの話題ではない。料金・決算・販売本数・AI・規約などがない）",
       "skipped": true,
       "url": "http://www.ntt-west.co.jp/news/2611/261112a.html"
@@ -21017,79 +21057,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-11T03:14:23.899481+00:00",
-      "attempt": 1,
-      "id": "f1f7e1ffb2ded8c5",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "リード「視聴に特別な手続きは必要なく、開始時間に合わせてABEMAの配信ページにアクセスすれば観戦できます」→ 元記事は無料生配信と発表しているだけで、視聴手続きや配信ページへのアクセス方法は書かれていないため、元記事に無い記述です。"
-      ],
-      "readability": {
-        "avg_paragraph": 80.5,
-        "avg_sentence": 53.7,
-        "long_share": 0.333,
-        "max_paragraph": 123,
-        "paragraphs": 4,
-        "sentences": 6
-      },
-      "score": 85,
-      "source": "jfa",
-      "title": "U-21日本代表 11月海外遠征2試合の配信が決定 #jfa #daihyo",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（JFA・ABEMA）",
-        "読みやすさ: 文が長い（1文の平均 53.7字・60字超の文が 33% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-11T03:14:38.897614+00:00",
-      "attempt": 1,
-      "id": "f1f7e1ffb2ded8c5",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 80.5,
-        "avg_sentence": 53.7,
-        "long_share": 0.333,
-        "max_paragraph": 123,
-        "paragraphs": 4,
-        "sentences": 6
-      },
-      "score": 97,
-      "source": "jfa",
-      "title": "U-21日本代表 11月海外遠征2試合の配信が決定 #jfa #daihyo",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（JFA・ABEMA）",
-        "読みやすさ: 文が長い（1文の平均 53.7字・60字超の文が 33% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-11T03:14:50.143463+00:00",
-      "attempt": 0,
-      "id": "f1f7e1ffb2ded8c5",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 82.0,
-        "avg_sentence": 41.0,
-        "long_share": 0.0,
-        "max_paragraph": 123,
-        "paragraphs": 4,
-        "sentences": 8
-      },
-      "score": 95,
-      "source": "jfa",
-      "title": "U-21日本代表 11月海外遠征2試合の配信が決定 #jfa #daihyo",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（JFA・ABEMA）"
-      ]
-    },
     {
       "accepted": false,
       "at": "2026-11-11T03:28:13.096488+00:00",
@@ -28588,6 +28555,81 @@
       "score": 93,
       "source": "morinaga",
       "title": "2027年3月期通期連結業績予想の修正に関するお知らせ"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-12T07:12:15.587861+00:00",
+      "attempt": 1,
+      "id": "79164e476618c322",
+      "kind": "ai",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [
+        "サイソクが自分で試したように読める書き方がある（「筆者」）。サイソクは試していない。元記事の書き手が試した結果なら「〇〇（媒体名）の記者が試したところ」と誰が試したかを書く",
+        "題名で料金・価格を約束しているのに、本文に金額（円・ドル・無料など）が無い。元記事の金額を書くか、題名から料金の話を外す"
+      ],
+      "readability": {
+        "avg_paragraph": 111.9,
+        "avg_sentence": 40.0,
+        "long_share": 0.048,
+        "max_paragraph": 162,
+        "paragraphs": 15,
+        "sentences": 42
+      },
+      "score": null,
+      "source": "about-amazon",
+      "title": "How we built the agents that built AWS Emulator",
+      "warnings": [
+        "見出しが48字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（CC）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-12T07:13:43.642635+00:00",
+      "attempt": 1,
+      "id": "03bdda997e0c3453",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 150.0,
+        "avg_sentence": 48.5,
+        "long_share": 0.206,
+        "max_paragraph": 224,
+        "paragraphs": 11,
+        "sentences": 34
+      },
+      "score": 92,
+      "source": "jfa",
+      "title": "【対戦チーム情報】ブラジル代表 新たなサイクルに踏み出したサッカー王国。イタリア人名将は新戦力の発掘を重視～MIZUHO BLUE CHALLENGE THE ",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（MIZUHO・THE・SERIES）",
+        "読みやすさ: 文が長い（1文の平均 48.5字・60字超の文が 21% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "読みやすさ: 段落が長い（平均 150.0字・最長 224字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-12T07:14:20.380021+00:00",
+      "attempt": 0,
+      "id": "03bdda997e0c3453",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 91.8,
+        "avg_sentence": 40.3,
+        "long_share": 0.098,
+        "max_paragraph": 189,
+        "paragraphs": 18,
+        "sentences": 41
+      },
+      "score": 92,
+      "source": "jfa",
+      "title": "【対戦チーム情報】ブラジル代表 新たなサイクルに踏み出したサッカー王国。イタリア人名将は新戦力の発掘を重視～MIZUHO BLUE CHALLENGE THE ",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（MIZUHO・THE・SERIES）"
+      ]
     }
   ],
   "short_text_retry": {},

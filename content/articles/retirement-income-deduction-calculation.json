@@ -72,15 +72,14 @@
   "affiliates": [],
   "newsType": "policy",
   "todayActions": [
-    "勤務先に「退職所得の受給に関する申告書」を出しているか、退職手続きの担当者に確かめる",
-    "勤続年数の1年未満の端数は切り上げて数え、20年を超えるかどうかを確かめる",
-    "不明な点は国税相談専用ダイヤル0570-00-5901（所得税は1番）に電話で確かめる"
+    "勤務先に「退職所得の受給に関する申告書」を出しているか、退職手続の担当者に確かめる",
+    "入社日と退職予定日から勤続年数を年と月まで数え、1年未満を切り上げて控除額を確かめる",
+    "不明な点は国税相談専用ダイヤル0570-00-5901に電話し、所得税の番号を選ぶ"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
   "museFile": "20261112-お金-退職所得控除はいくら.md",
   "sectionsPolishedAt": "2026-11-12T06:32:09+00:00",
-  "museDepthNotes": "なるほど：勤続年数の1年未満の端数は1年に切り上げます。国税庁タックスアンサーNo.1420の例1では、勤続年数10年2か月の人は勤続年数が11年になり（端数の2か月は1年に切上げ）、控除額は40万円×11年＝440万円とされています。退職日が数か月ずれるだけで控除額が40万円（勤続20年超なら70万円）変わることがあるため、自分の勤続期間は年と月まで確かめる価値があります。出典は国税庁タックスアンサーNo.1420 https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1420.htm\nなるほど：「退職所得の受給に関する申告書」を出すかどうかで、最初に引かれる税金の出方がまったく変わります。国税庁No.1420によると、提出している人は支払者が退職所得控除を反映した所得税額等を計算して源泉徴収するため原則として確定申告は不要ですが、提出していない人は退職金等の支払金額の20.42パーセントが源泉徴収され、確定申告で精算します。申告書は退職金を受け取る時までに勤務先へ出す書類なので、退職の手続きの早い段階で勤務先から受け取ってください。出典は同ページです。\nなるほど：勤続5年以下の退職金には、2分の1計算が全部には付かない場合があります。国税庁No.1420によると、短期退職手当等は、退職金の額から退職所得控除額を差し引いた額のうち300万円を超える部分については2分の1計算の適用がなく、役員等勤続年数が5年以下である人の特定役員退職手当等は2分の1計算自体がありません。勤続が短い方ほど、この記事の原則の式だけで税額を見積もらないでください。出典は同ページです。\n公式窓口：正式名称は国税庁です。制度の公式ページはタックスアンサーNo.1420「退職金を受け取ったとき（退職所得）」https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1420.htm 、電話相談は国税庁「国税に関するご相談について」https://www.nta.go.jp/taxes/shiraberu/sodan/denwa-sodan/case1.htm の案内する電話相談センター（国税相談専用ダイヤル0570-00-5901）です。たどり方は本文の窓口の見出しに書きました。",
   "museSources": [
     {
       "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1420.htm",
@@ -126,5 +125,127 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/retirement-income-deduction-calculation-figure-e67ff1d5.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "勤続10年2か月は11年として数えられ、控除額は40万円×11年＝440万円とされています。1年未満の端数は1年に切り上げるため、退職日が数か月ずれると控除額が変わります。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1420.htm"
+    },
+    {
+      "text": "「退職所得の受給に関する申告書」を提出していない人は、退職金等の支払金額の20.42パーセントが所得税額等として源泉徴収され、本人が確定申告で精算します。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1420.htm"
+    },
+    {
+      "text": "役員等勤続年数が5年以下の特定役員退職手当等は2分の1計算がありません。短期退職手当等は、控除後の額のうち300万円を超える部分に2分の1計算が適用されません。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1420.htm"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "国税庁 電話相談センター（国税相談専用ダイヤル）",
+      "url": "https://www.nta.go.jp/taxes/shiraberu/sodan/denwa-sodan/case1.htm",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/sodan/denwa-sodan/case1.htm",
+      "howTo": [
+        "ホーム",
+        "税について調べる",
+        "税の相談",
+        "国税に関するご相談について"
+      ],
+      "phone": "0570-00-5901（ナビダイヤル）",
+      "hours": "8時30分〜17時00分（土日祝日及び12月29日〜1月3日を除く）",
+      "note": "音声ガイダンスで「1」（所得税）を選ぶ。「050」から始まるIP電話などで使えないときは、所轄の税務署の代表電話番号にかけて「1」を選ぶ。スマートフォン等を手元に用意する。"
+    },
+    {
+      "name": "国税庁 タックスアンサー No.1420 退職金を受け取ったとき(退職所得)",
+      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1420.htm",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1420.htm",
+      "howTo": [
+        "ホーム",
+        "税について調べる",
+        "タックスアンサー（よくある税の質問）"
+      ]
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "勤務先に「退職所得の受給に関する申告書」を出しているか、退職手続の担当者に確かめる",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1420.htm",
+      "steps": [
+        "退職手続の担当者に提出済みか聞く",
+        "未提出なら「退職所得の受給に関する申告書」を出す",
+        "提出していない場合は20.42パーセント源泉徴収される"
+      ],
+      "url": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/gensen/annai/1648_37.htm"
+    },
+    {
+      "action": "入社日と退職予定日から勤続年数を年と月まで数え、1年未満を切り上げて控除額を確かめる",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1420.htm",
+      "steps": [
+        "入社日から退職予定日までの年と月を数える",
+        "1年未満の端数は1年に切り上げる",
+        "20年以下は40万円×年数で計算する"
+      ],
+      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1420.htm"
+    },
+    {
+      "action": "不明な点は国税相談専用ダイヤル0570-00-5901に電話し、所得税の番号を選ぶ",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/sodan/denwa-sodan/case1.htm",
+      "steps": [
+        "0570-00-5901にかける",
+        "音声ガイダンスで「1」（所得税）を選ぶ",
+        "受付は8時30分から17時00分まで"
+      ],
+      "url": "https://www.nta.go.jp/taxes/shiraberu/sodan/denwa-sodan/case1.htm"
+    }
+  ],
+  "worries": [
+    {
+      "q": "勤続年数は何か月単位まで数えるの？",
+      "a": "1年未満の端数は1年に切り上げます。例では勤続10年2か月を11年として数え、控除額は440万円とされています。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1420.htm",
+      "action": "入社日と退職日から年と月を数え、切り上げ後の年数で控除額を計算する。"
+    },
+    {
+      "q": "申告書を出していないと税金はどうなる？",
+      "a": "提出していない場合は、退職金等の支払金額の20.42パーセントが所得税額等として源泉徴収され、本人が確定申告で精算します。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1420.htm",
+      "action": "勤務先に「退職所得の受給に関する申告書」を出しているか確かめる。"
+    },
+    {
+      "q": "勤続20年を超えると控除はどう変わる？",
+      "a": "20年以下は40万円×勤続年数、20年超は800万円＋70万円×（勤続年数－20年）で計算します。勤続30年の場合は1,500万円です。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1420.htm",
+      "action": "勤続年数が20年前後なら、年と月を数えて上の式に当てはめてみる。"
+    },
+    {
+      "q": "勤続が短くても同じ計算でいい？",
+      "a": "短期退職手当等は、控除後の額のうち300万円を超える部分に2分の1計算がかからないことがあります。役員等の特定役員退職手当等は2分の1計算自体がありません。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1420.htm",
+      "action": "勤続5年以下なら、この式だけで税額を見積もらず、国税相談専用ダイヤルで確かめる。",
+      "actionSource": "https://www.nta.go.jp/taxes/shiraberu/sodan/denwa-sodan/case1.htm"
+    },
+    {
+      "q": "計算で分からないことはどこに聞けばいい？",
+      "a": "国税に関するご相談は、電話相談センター（国税相談専用ダイヤル 0570-00-5901）で受けています。受付は8時30分から17時00分です。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/sodan/denwa-sodan/case1.htm",
+      "action": "国税相談専用ダイヤルに電話し、音声ガイダンスで「1」（所得税）を選ぶ。"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "申告書と端数の数え方で手取りが変わる",
+    "steps": "今日確かめる3つのこと",
+    "desk": "分からないときの電話先",
+    "worries": "勤続年数と申告書、まず何を確かめる？"
+  },
+  "depthAt": "2026-11-12T07:15:53+00:00",
+  "updatedAt": "2026-11-12T07:15:53+00:00",
+  "updates": [
+    {
+      "at": "2026-11-12T07:15:53+00:00",
+      "kind": "facts",
+      "title": "公式の資料をもとに、「なるほどの要点」・「公式の窓口」・「今日やること」・「よくある不安」を追記しました",
+      "sourceUrl": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1420.htm",
+      "sourceName": "国税庁 タックスアンサー No.1420 退職金を受け取ったとき（退職所得）"
+    }
+  ]
 }
