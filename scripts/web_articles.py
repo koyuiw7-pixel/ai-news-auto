@@ -55,6 +55,7 @@ import dedupe  # noqa: E402
 import facts_bundle  # noqa: E402
 import fast_lane  # noqa: E402
 import own_view  # noqa: E402
+import quality_bar  # noqa: E402  記事の8つの基準（2026-11-12 オーナー「量を超える最高の記事」）
 import rank_intent  # noqa: E402  検索で上位に出やすい話題を先に（台帳 A54）
 import pipeline_health  # noqa: E402
 import feeds  # noqa: E402
@@ -595,6 +596,7 @@ def build_broad_prompt(item: dict, text: str, genre, context: str = "", outline:
     return (prompt + context + extra_fields_block(genre.slug) + "\n\n" + persona.WORK_MONEY_FIELD
             + public_interest.alcohol_prompt_note(item["title"])  # お酒の新商品の書き方（A56）
             + own_view.prompt_block()  # サイソクの見方の章（2026-11-12 オーナー。scripts/own_view.py）
+            + quality_bar.prompt_block()  # 記事の8つの基準（scripts/quality_bar.py）
             + "\n\n" + m.threads_hooks.prompt_block())
 
 
@@ -1068,6 +1070,7 @@ def build_trend_prompt(item: dict, fetched: list[dict], genre, context: str = ""
     )
     return (prompt + context + extra_fields_block(genre.slug) + "\n\n" + persona.WORK_MONEY_FIELD
             + own_view.prompt_block()  # サイソクの見方の章（2026-11-12 オーナー。scripts/own_view.py）
+            + quality_bar.prompt_block()  # 記事の8つの基準（scripts/quality_bar.py）
             + "\n\n" + m.threads_hooks.prompt_block())
 
 
@@ -1123,6 +1126,7 @@ def build_prompt(item: dict, text: str, context: str = "", outline: str | None =
     )
     return (prompt + context + extra_fields_block(genre.slug) + "\n\n" + persona.WORK_MONEY_FIELD
             + own_view.prompt_block()  # サイソクの見方の章（2026-11-12 オーナー。scripts/own_view.py）
+            + quality_bar.prompt_block()  # 記事の8つの基準（scripts/quality_bar.py）
             + "\n\n" + m.threads_hooks.prompt_block())
 
 
@@ -2494,6 +2498,11 @@ def main() -> int:
         if hold := own_view.hold_reason(record, urgent=view_urgent(item)):
             log(f"   [view] 出さない: {hold}")
             return None, {**verdict, "ok": False, "soft": False, "problems": [hold]}
+        # 記事の8つの基準（scripts/quality_bar.py）: 自動で手直ししても 1・3・5 が足りない暮らしとお金の記事は出さない。
+        # 速報・大きなニュース・速報レーン・災害は止めずに出し、あとで直す（repairLater）
+        if hold := quality_bar.hold_reason(record, urgent=view_urgent(item), verdict=verdict):
+            log(f"   [bar] 出さない: {hold}")
+            return None, {**verdict, "ok": False, "soft": False, "problems": [hold]}
         record["qualityScore"] = verdict.get("score")
         return ("ok", record), verdict
 
@@ -2576,6 +2585,8 @@ def main() -> int:
                 if not blocked:
                     # 「サイソクの見方」の章が無い・本文が薄い記事は、事実確認の前に1回だけ足す（足したものも下の事実確認を通す。scripts/own_view.py）
                     own_view.ensure(record, source_text, context, urgent=view_urgent(item), log=log)
+                    # 記事の8つの基準（scripts/quality_bar.py）: 足りない点を公式の資料の事実で1回だけ手直しする（下の事実確認をそのまま通す）
+                    quality_bar.ensure(record, source_text, context, urgent=view_urgent(item), log=log)
                 # ニュースの種類に必要な事実（決算の前年比・脆弱性の対象の版・製品の価格など）が、資料にあるのに本文に無い:
                 # 事実確認の前に、足りない事実を伝えて作り直す（最後の試行では作り直さず、記録だけして先へ進む。scripts/news_types.py）
                 missing = news_types.missing_facts(record.get("newsType") or "", record.get("body") or "", source_text) \

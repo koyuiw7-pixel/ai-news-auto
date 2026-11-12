@@ -91,6 +91,8 @@ def main() -> int:
             record["relatedSlugs"] = list(dict.fromkeys([args.base] + record.get("relatedSlugs", [])))
             # 意図して角度を変えた解説（scripts/story.py が重複にしない。ニュース用サイトマップには載せない）
             record["angleOf"] = args.base
+            # 記事の8つの基準（scripts/quality_bar.py）: 足りない点を1回だけ手直しし、下の事実確認を通す
+            w.quality_bar.ensure(record, text, archive.check_block(related), log=print)
             verdict = quality.evaluate(record, text, "ai", archive.check_block(related))
             print(f"[gate] {direction[:20]} 試行{attempt} accepted={verdict.get('ok')} score={verdict.get('score')} {verdict.get('problems', [])[:2]}")
             if verdict.get("soft"):
@@ -102,6 +104,9 @@ def main() -> int:
             blocked = w.publish_blocked(record)  # 検索に出せない記事は公開しない（公開前の門）
             if blocked:
                 verdict = {"ok": False, "problems": [f"公開前の門: {w.indexnow.PUBLISH_FEEDBACK[blocked]}"]}
+            if (verdict.get("ok") or verdict.get("soft")) and (hold := w.quality_bar.hold_reason(record, verdict=verdict)):
+                print(f"[bar] 出さない: {hold}")
+                break
             if verdict.get("ok") or verdict.get("soft"):
                 if why := deep_dive.sibling_problem(record.get("title") or "", role, base, deep_dive.all_articles()):
                     print(f"[skip] {record.get('title')}: {why}")

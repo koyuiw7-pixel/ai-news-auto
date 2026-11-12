@@ -39,6 +39,7 @@ import article_style  # noqa: E402
 import public_interest  # noqa: E402  ミサイル・災害の記事の公式の安全情報のリンク（台帳 A39）
 import noir_layout  # noqa: E402  新しい記事の見た目（台帳 W36）
 import own_view  # noqa: E402  サイソクの見方の章と中身の下限（2026-11-12 オーナー）
+import quality_bar  # noqa: E402  記事の8つの基準（2026-11-12 オーナー）
 
 # --------------------------------------------------------------------------- #
 # 設定
@@ -534,7 +535,7 @@ def generate_article(client, entry: dict) -> dict:
         ),
     )
     # 「仕事・お金にどう活かせる？」欄（scripts/persona.py）と Threads の書き出しの型（直近で使った型は避ける）
-    prompt += "\n\n" + persona.WORK_MONEY_FIELD + own_view.prompt_block() + "\n\n" + threads_hooks.prompt_block()
+    prompt += "\n\n" + persona.WORK_MONEY_FIELD + own_view.prompt_block() + quality_bar.prompt_block() + "\n\n" + threads_hooks.prompt_block()
     if entry.get("_feedback"):
         prompt += entry["_feedback"]  # 文体の門で落ちたときの作り直し（問題点を添える）
     voice_key, voice_text = pick_voice()
@@ -896,6 +897,15 @@ def own_view_problems(record: dict) -> list[str]:
     return out
 
 
+def bar_problems(record: dict) -> list[str]:
+    """動画の記事の8つの基準のうち、出さない理由になる点（暮らしとお金の 1・3・5。作り直しの指示に使う。scripts/quality_bar.py）"""
+    if not quality_bar.life(record) or not quality_bar.applies(record) or quality_bar.urgent_record(record):
+        return []
+    result = quality_bar.check(record, at_publish=True)
+    return [f"{quality_bar.POINTS[p]}が足りない（{result['notes'][p]}）。{quality_bar.POINT_HOWTO[p]}"
+            for p in quality_bar.HOLD_POINTS if p in result["missing"]]
+
+
 def write_article(record: dict) -> Path:
     record.pop("_facts", None)  # 品質ゲート用の中身（scripts/facts_bundle.py）は書き出さない
     # 見出しの書き方をそろえる（かっこ・区切り・会社名・西暦。LLM を使わない後処理。scripts/headline_normalize.py）
@@ -1165,7 +1175,7 @@ def main() -> int:
         # 文体の門（scripts/article_style.py。決まった型の見出し・幼い言い方・中身のない章など）。落ちたら問題点を添えて1回だけ作り直す。
         # 「サイソクの見方」の章が無い・本文が薄い（scripts/own_view.py。2026-11-12 オーナー）ときも、同じ1回の作り直しで足させる
         style = style_gate(record)
-        view = own_view_problems(record)
+        view = own_view_problems(record) + bar_problems(record)
         if style or view:
             log(f"   [style] 不合格: {' | '.join((style + view)[:3])[:300]} → 作り直します")
             import quality  # noqa: PLC0415
@@ -1181,7 +1191,7 @@ def main() -> int:
             if record is None and not style:
                 record = first  # 文体は合格の原稿。作り直せなかったら元の原稿で、下の中身の下限（own_view.hold_reason）で決める
             style = style_gate(record) if record else ["作り直しができなかった"]
-            if not style and (hold := own_view.hold_reason(record)):
+            if not style and (hold := own_view.hold_reason(record) or quality_bar.hold_reason(record)):
                 style = [hold]
             if style:
                 log(f"   [skip] 文体の門に2回落ちたので公開しない: {' | '.join(style[:3])[:300]}")
@@ -1189,6 +1199,9 @@ def main() -> int:
                                                  "at": datetime.now(timezone.utc).isoformat()}
                 continue
 
+        bar = quality_bar.check(record, at_publish=True)
+        quality_bar.stamp(record, bar)
+        log(f"   [bar] {quality_bar.summary_line(bar)}")
         import indexnow  # 遅延 import。検索に出せない記事は公開しない（公開前の門。2026-11-03 オーナー承認）
         blocked = None if os.environ.get("PUBLISH_GATE", "1") == "0" else indexnow.publish_block_reason(record)
         if blocked:

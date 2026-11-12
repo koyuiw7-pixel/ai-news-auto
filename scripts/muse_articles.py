@@ -34,6 +34,7 @@ from urllib.parse import urlparse
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import muse_format  # noqa: E402
 import own_view  # noqa: E402
+import quality_bar  # noqa: E402
 import source_date  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -369,6 +370,8 @@ def build_article(path: Path, data: dict, fetched: list[dict]) -> tuple[str, dic
         # 「サイソクの見方」の章が無い・本文が薄い原稿は、事実確認の前に1回だけ足す（scripts/own_view.py。足したものも下の事実確認を通す）。
         # Muse の記事は「落とす理由は嘘だけ」（2026-11-09 オーナー）なので、足せなくても章の有無・長さでは落とさない
         own_view.ensure(record, source_text, context, log=log)
+        # 記事の8つの基準（scripts/quality_bar.py）: 足りない点を1回だけ手直しする（下の事実確認を通す）。Muse の記事は基準では落とさない（記録だけ）
+        quality_bar.ensure(record, source_text, context, log=log)
         if dated := source_date.check(source_date.record_texts(record), fetched, today):
             problems = dated
             log(f"   [muse] 試行{attempt}: {dated[0][:160]}")
@@ -396,6 +399,9 @@ def build_article(path: Path, data: dict, fetched: list[dict]) -> tuple[str, dic
             f" {' | '.join((verdict.get('problems') or [])[:3])[:300]}")
         if verdict.get("ok") and score >= need:
             record["qualityScore"] = score
+            bar = quality_bar.check(record, verdict, at_publish=True)
+            quality_bar.stamp(record, bar, **{k: v for k, v in (record.get("qualityBar") or {}).items() if k in ("before", "repaired")})
+            log(f"   [bar] {quality_bar.summary_line(bar)}（Muse の記事は記録だけ）")
             w.finalize_facts(record, source_text)
             w.stamp_times(record, item, datetime.now(timezone.utc))
             # Muse の原稿のかんたん版は「ひとことで言うと」の要約だけになりやすく、記事ページでは要約の章を出さないため

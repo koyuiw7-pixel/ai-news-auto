@@ -430,6 +430,7 @@ def build(base: dict, angle: dict, fetched: list[dict]) -> tuple[str, dict | str
             continue
         # 「サイソクの見方」の章・中身の下限（2026-11-12 オーナー。scripts/own_view.py）: 足りなければ1回だけ足し、下の事実確認を通す
         w.own_view.ensure(record, source_text, context, log=log)
+        w.quality_bar.ensure(record, source_text, context, log=log)  # 記事の8つの基準（scripts/quality_bar.py）。1回だけ手直し
         verdict = quality.evaluate(record, source_text, kind, context, check_facts=True)
         if not verdict["ok"] and not verdict.get("soft") and quality.repairable(verdict):
             try:
@@ -447,6 +448,9 @@ def build(base: dict, angle: dict, fetched: list[dict]) -> tuple[str, dict | str
         log(f"   [deep] 試行{attempt}: {'合格' if verdict.get('ok') else '不合格'} score={score}（必要 {PASS_SCORE}）"
             f" {' | '.join((verdict.get('problems') or [])[:3])[:300]}")
         if verdict.get("ok") and score >= PASS_SCORE and (hold := w.own_view.hold_reason(record)):
+            return "reject", hold
+        if verdict.get("ok") and score >= PASS_SCORE and (hold := w.quality_bar.hold_reason(record, verdict=verdict)):
+            log(f"   [bar] 出さない: {hold}")
             return "reject", hold
         if verdict.get("ok") and score >= PASS_SCORE:
             if dup := title_duplicate(record.get("title") or "", base["slug"]):

@@ -401,9 +401,15 @@ def main() -> int:
             new = None
         else:
             stamp(new, now, before)
+            # 記事の8つの基準（scripts/quality_bar.py）: 書き直しの前と後の結果を記事と記録に残す（ここでは落とさない。記録だけ）
+            import quality_bar  # noqa: PLC0415
+
+            bar_before, bar = quality_bar.check(a)["missing"], quality_bar.check(new)
+            quality_bar.stamp(new, bar, before=bar_before)
+            log(f"   [bar] {bar_before} → {quality_bar.summary_line(bar)}")
             write_article(slug, new)
             after = chars(new.get("body"))
-            record(state, slug, DONE, "", now, before=before, after=after, model=str(rep.get("model") or ""))
+            record(state, slug, DONE, "", now, before=before, after=after, model=str(rep.get("model") or ""), bar=bar["missing"])
             done += 1
             log(f"   [OK] {before}字 → {after}字（{rep.get('model')} / score {rep.get('score')}）")
         results.append({"slug": slug, "before": before, "after": chars((new or {}).get("body")) if new else None,
