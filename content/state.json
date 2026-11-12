@@ -37,7 +37,7 @@
     "Oi9DHk57KeQ": 2,
     "UGLV3ufFZEw": 1,
     "UU_9ymJKm1w": 1,
-    "VZPAjGP3EH0": 1,
+    "VZPAjGP3EH0": 2,
     "VyowNv9wodk": 1,
     "X-uQwleiUwA": 1,
     "Xc6ERvZM1NY": 1,
@@ -8569,6 +8569,17 @@
       "slug": "nichiyu-trinka-recall-brake-switch",
       "url": "http://www.mlit.go.jp/report/press/jidosha08_hh_005886.html"
     },
+    "549ea1a34d6ba220": {
+      "at": "2026-11-12T00:22:41.842839+00:00",
+      "costUsd": 0.0071,
+      "intent": "neutral",
+      "mix": "life",
+      "model": "gemini-3.5-flash-lite",
+      "score": 86,
+      "section": "lifestyle",
+      "slug": "consumer-agency-bird-flu-info-2026",
+      "url": "https://www.caa.go.jp/notice/entry/048124/"
+    },
     "54a1ebf3c41048cd": {
       "at": "2026-11-02T06:51:37.734692+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -14696,6 +14707,12 @@
       "slug": "kindai-university-ai-camera-experiment",
       "url": "https://www.ntt-f.co.jp/news/2026/20261110-01.html"
     },
+    "b41a2ee8cf6bf46c": {
+      "at": "2026-11-12T00:22:42.448624+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（会議）",
+      "skipped": true,
+      "url": "https://www.nii.ac.jp/news/2026/1112.html"
+    },
     "b4214c53045ec78f": {
       "at": "2026-11-05T12:04:08.071678+00:00",
       "reason": "prefilter: 不動産の話題ではない",
@@ -20247,53 +20264,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-10T07:47:14.955604+00:00",
-      "attempt": 0,
-      "id": "a9a8b5c6220955a6",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 92.3,
-        "avg_sentence": 55.4,
-        "long_share": 0.2,
-        "max_paragraph": 114,
-        "paragraphs": 6,
-        "sentences": 10
-      },
-      "score": 85,
-      "source": "bleague",
-      "title": "2026-27シーズンのサラリーキャップ進捗および各選手の契約期間等の公開 RELEASE",
-      "warnings": [
-        "読みやすさ: 文が長い（1文の平均 55.4字・60字超の文が 20% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-10T08:02:47.132799+00:00",
-      "attempt": 1,
-      "id": "1fae385381550465",
-      "kind": "broad",
-      "model": "gemini-3.5-flash",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 134.0,
-        "avg_sentence": 53.6,
-        "long_share": 0.2,
-        "max_paragraph": 201,
-        "paragraphs": 4,
-        "sentences": 10
-      },
-      "score": 85,
-      "source": "mof",
-      "title": "片山財務大臣兼内閣府特命担当大臣閣議後記者会見の概要(令和8年11月10日(火曜日))",
-      "warnings": [
-        "読みやすさ: 文が長い（1文の平均 53.6字・60字超の文が 20% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "読みやすさ: 段落が長い（平均 134.0字・最長 201字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-10T08:03:05.615065+00:00",
@@ -27621,6 +27591,54 @@
         "見出しが46字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（HX・SVD・IHI）",
         "読みやすさ: 文が長い（1文の平均 58.4字・60字超の文が 33% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-12T00:22:11.352799+00:00",
+      "attempt": 1,
+      "id": "549ea1a34d6ba220",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 193.0,
+        "avg_sentence": 70.2,
+        "long_share": 0.636,
+        "max_paragraph": 258,
+        "paragraphs": 4,
+        "sentences": 11
+      },
+      "score": 85,
+      "source": "caa",
+      "title": "鳥インフルエンザに関する情報(2026年11月12日更新)",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（HP）",
+        "読みやすさ: 文が長い（1文の平均 70.2字・60字超の文が 64% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "読みやすさ: 段落が長い（平均 193.0字・最長 258字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-12T00:22:37.527991+00:00",
+      "attempt": 0,
+      "id": "549ea1a34d6ba220",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 78.6,
+        "avg_sentence": 41.4,
+        "long_share": 0.053,
+        "max_paragraph": 112,
+        "paragraphs": 10,
+        "sentences": 19
+      },
+      "score": 86,
+      "source": "caa",
+      "title": "鳥インフルエンザに関する情報(2026年11月12日更新)",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（HP）"
       ]
     }
   ],
