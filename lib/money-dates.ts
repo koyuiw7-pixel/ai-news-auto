@@ -10,11 +10,20 @@ import { isDistributionEligible } from "@/lib/indexing";
  */
 export type DateSource = { title: string; url: string };
 
+/** 一覧の表（値上げの商品・リコールの型番など）。表の中の値も公式の発表の文言どおりに入れる */
+export type DateTable = {
+  caption?: string;
+  columns: string[];
+  rows: string[][];
+};
+
 export type DateAnswer = {
   /** 答えの欄の見出し（例「2026年12月の年金の支給日」） */
   label: string;
   /** 一番知りたい答え（日付・金額）。最初の画面に出す */
   items: { label: string; value: string }[];
+  /** 答えが一覧のとき（値上げの商品・対象の型番など）。答えの欄の中、出典より前に出す */
+  table?: DateTable;
   note?: string;
   source: DateSource;
 };
@@ -34,6 +43,10 @@ export type MoneyDate = {
   answer: DateAnswer;
   /** この時刻（UTC）を過ぎたら答えの欄を差し替える（古い答えを出し続けない） */
   after?: { at: string; answer: DateAnswer };
+  /** 自分が当たるかの確かめ方（手順）。答えのすぐ後に出す */
+  howToCheck?: string[];
+  /** 答えの欄のほかの一覧（全部の型番・料金表など）。出典つき */
+  tables?: (DateTable & { heading: string; source: DateSource })[];
   facts: { label: string; value: string }[];
   answers: { q: string; a: string; sources?: DateSource[] }[];
   notes?: string[];

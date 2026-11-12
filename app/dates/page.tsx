@@ -5,9 +5,9 @@ import { currentAnswer, getAllMoneyDates } from "@/lib/money-dates";
 import { siteConfig } from "@/site.config";
 import { pageShareImage } from "@/lib/page-share";
 
-const TITLE = "暮らしとお金の日程　年金・児童手当・ボーナス・ふるさと納税はいつ？";
+const TITLE = "暮らしとお金の日程　支給日・期限・値上げ・制度の変更はいつから？";
 const DESCRIPTION =
-  "年金と児童手当の12月の支給、公務員の冬のボーナスの支給日、ふるさと納税の期限、年賀はがき、個人向け国債の募集、電気・ガス料金の支援など、暮らしとお金の「いつ・いくら」を公式の発表で確かめて1ページずつまとめています。";
+  "年金と児童手当の支給、確定申告の期間、携帯料金や食品の値上げ、タイヤやモバイルバッテリーのリコール、OTC類似薬の追加の負担、iDeCoの限度額など、暮らしとお金の「いつから・いくら・対象は」を公式の発表で確かめて1ページずつまとめています。";
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -21,6 +21,8 @@ export const metadata: Metadata = {
 /** 暮らしとお金の日程の一覧 */
 export default function MoneyDatesPage() {
   const all = getAllMoneyDates();
+  // 種類ごとにまとめる（JSON に最初に出てきた順）
+  const groups = [...all.reduce((map, entry) => map.set(entry.category, [...(map.get(entry.category) ?? []), entry]), new Map<string, typeof all>())];
   const jsonLd = [
     {
       "@context": "https://schema.org",
@@ -54,28 +56,29 @@ export default function MoneyDatesPage() {
         </p>
       </header>
 
-      <section aria-labelledby="list-heading" className="mt-10">
-        <QHeading id="list-heading">いつ・いくら？</QHeading>
-        <ul className="grid gap-3">
-          {all.map((entry) => {
-            const answer = currentAnswer(entry);
-            const first = answer.items[0];
-            return (
-              <li key={entry.slug}>
-                <Link href={`/dates/${entry.slug}`} className="group block rounded-xl border border-line px-4 py-3.5 hover:border-ink">
-                  <span className="text-meta font-bold text-muted">{entry.category}</span>
-                  <span className="mt-0.5 block text-[16px] font-bold leading-snug text-ink group-hover:underline">{entry.name}</span>
-                  {first && (
-                    <span className="mt-1 block text-note text-ink-soft">
-                      {first.label}：<strong className="font-bold text-ink">{first.value}</strong>
-                    </span>
-                  )}
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
-      </section>
+      {groups.map(([category, entries], g) => (
+        <section key={category} aria-labelledby={`list-${g}`} className="mt-10">
+          <QHeading id={`list-${g}`}>{category}</QHeading>
+          <ul className="grid gap-3">
+            {entries.map((entry) => {
+              const answer = currentAnswer(entry);
+              const first = answer.items[0];
+              return (
+                <li key={entry.slug}>
+                  <Link href={`/dates/${entry.slug}`} className="group block rounded-xl border border-line px-4 py-3.5 hover:border-ink">
+                    <span className="block text-[16px] font-bold leading-snug text-ink group-hover:underline">{entry.name}</span>
+                    {first && (
+                      <span className="mt-1 block text-note text-ink-soft">
+                        {first.label}：<strong className="font-bold text-ink">{first.value}</strong>
+                      </span>
+                    )}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </section>
+      ))}
 
       <p className="mt-8 text-note leading-[1.8] text-muted">
         上限額の計算は

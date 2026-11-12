@@ -31,7 +31,8 @@ Module._resolveFilename = function (request, parent, ...rest) {
 
 const raw = read('content/money-dates.json');
 const { dates } = JSON.parse(raw);
-const OFFICIAL = /^https:\/\/([a-z0-9-]+\.)*(go\.jp|japanpost\.jp|aboutamazon\.jp)\//;
+// 官公庁（go.jp・lg.jp）と、発表元の会社・団体の公式ドメインだけ（2026-11-12 ニッチの問いのページで発表元を追加）
+const OFFICIAL = /^https:\/\/([a-z0-9-]+\.)*(go\.jp|lg\.jp|japanpost\.jp|aboutamazon\.jp|docomo\.ne\.jp|bk\.mufg\.jp|giroj\.or\.jp|sompo-japan\.co\.jp|y-yokohama\.com|srigroup\.co\.jp|suntory\.co\.jp|fujiya-peko\.co\.jp|pietro\.co\.jp|otsukafoods\.co\.jp|pasconet\.co\.jp|housefoods-group\.com|ideco-koushiki\.jp)\//;
 
 test('日程ページのデータ: 出典は公式のページ、確認日あり、禁止の文字なし', () => {
   assert.ok(dates.length >= 6, '6ページ以上');
@@ -47,6 +48,12 @@ test('日程ページのデータ: 出典は公式のページ、確認日あり
     for (const url of urls) assert.match(url, OFFICIAL, `${d.slug}: 公式でない出典 ${url}`);
     assert.ok(!Number.isNaN(Date.parse(d.after?.at ?? '2026-01-01T00:00:00Z')), d.slug);
     assert.doesNotThrow(() => new RegExp(d.match), d.slug);
+    for (const t of [d.answer.table, ...(d.tables ?? [])].filter(Boolean)) {
+      assert.ok(t.columns.length >= 2 && t.rows.length > 0, `${d.slug}: 表が空`);
+      for (const row of t.rows) assert.equal(row.length, t.columns.length, `${d.slug}: 表の列の数が合わない ${row[0]}`);
+    }
+    for (const t of d.tables ?? []) assert.match(t.source.url, OFFICIAL, `${d.slug}: 表の出典が公式でない`);
+    for (const step of d.howToCheck ?? []) assert.ok(step.length > 10, `${d.slug}: 確かめ方が短すぎる`);
   }
 });
 
@@ -109,6 +116,9 @@ test('日程ページを実際に描く: 答え・出典・確認日が最初の
     const answer = lib.currentAnswer(d);
     for (const item of answer.items) assert.ok(head.includes(item.value), `${d.slug}: 答え「${item.value}」が最初の見出しより後`);
     assert.ok(head.includes(answer.source.title), `${d.slug}: 出典が最初の画面にない`);
+    // 一覧の答え（表）も最初の見出しより前に出す
+    for (const row of answer.table?.rows ?? []) assert.ok(head.includes(row[0]), `${d.slug}: 表の行「${row[0]}」が最初の見出しより後`);
+    if ((d.howToCheck ?? []).length > 0) assert.ok(text.includes('自分の場合はどう確かめる？'), `${d.slug}: 確かめ方の見出しがない`);
     assert.ok(head.includes(`確認日 ${d.verifiedAt.replaceAll('-', '/')}`), `${d.slug}: 確認日が最初の画面にない`);
     assert.doesNotMatch(text, /｜|ざっくり|undefined/);
   }

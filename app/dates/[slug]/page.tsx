@@ -13,6 +13,7 @@ import {
   moneyDateArticles,
   verifiedLabel,
   type DateSource,
+  type DateTable,
 } from "@/lib/money-dates";
 import { authorJsonLd, publisherJsonLd } from "@/lib/publisher";
 import { siteConfig } from "@/site.config";
@@ -114,6 +115,7 @@ export default async function MoneyDatePage({ params }: Props) {
             </div>
           ))}
         </dl>
+        {answer.table && <AnswerTable table={answer.table} className="mt-3" />}
         {answer.note && <p className="mt-2 text-note leading-[1.7] text-ink-soft">{answer.note}</p>}
         <p className="mt-2 text-meta leading-[1.7] text-muted">
           出典：
@@ -125,6 +127,23 @@ export default async function MoneyDatePage({ params }: Props) {
       </section>
 
       <p className="mt-5 text-desc leading-[1.85] text-ink-soft">{entry.lead}</p>
+
+      {(entry.howToCheck ?? []).length > 0 && (
+        <section aria-labelledby="check-heading" className="mt-10">
+          <QHeading id="check-heading">自分の場合はどう確かめる？</QHeading>
+          <ol className="grid list-decimal gap-2 pl-5 text-desc leading-[1.8] text-ink-soft marker:font-bold marker:text-ink">
+            {(entry.howToCheck ?? []).map((step) => <li key={step}>{step}</li>)}
+          </ol>
+        </section>
+      )}
+
+      {(entry.tables ?? []).map((t, i) => (
+        <section key={t.heading} aria-labelledby={`table-${i}`} className="mt-10">
+          <QHeading id={`table-${i}`}>{t.heading}</QHeading>
+          <AnswerTable table={t} />
+          <SourceLine sources={[t.source]} checked={checked} />
+        </section>
+      ))}
 
       <section aria-labelledby="facts-heading" className="mt-10">
         <QHeading id="facts-heading">何が決まっている？</QHeading>
@@ -237,5 +256,36 @@ function SourceLine({ sources, checked }: { sources: DateSource[]; checked: stri
       ))}
       （{checked}に確認）
     </p>
+  );
+}
+
+/** 一覧の表（スマホでは横にスクロールせず、列が多いときだけ枠の中で横に動かす） */
+function AnswerTable({ table, className = "" }: { table: DateTable; className?: string }) {
+  return (
+    <div className={`overflow-x-auto ${className}`}>
+      <table className="w-full border-collapse text-left text-note leading-snug">
+        {table.caption && <caption className="mb-1.5 text-left text-meta font-bold text-muted">{table.caption}</caption>}
+        <thead>
+          <tr>
+            {table.columns.map((col) => (
+              <th key={col} scope="col" className="whitespace-nowrap border-b-2 border-ink px-2 py-1.5 text-meta font-bold text-ink-soft first:pl-0">{col}</th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {table.rows.map((row, r) => (
+            <tr key={r} className="border-b border-line align-top">
+              {row.map((cell, c) =>
+                c === 0 ? (
+                  <th key={c} scope="row" className={`px-2 py-1.5 font-bold text-ink first:pl-0 ${cell.length <= 10 ? "whitespace-nowrap" : "min-w-[7em]"}`}>{cell}</th>
+                ) : (
+                  <td key={c} className="px-2 py-1.5 tabular-nums text-ink">{cell}</td>
+                ),
+              )}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 }
