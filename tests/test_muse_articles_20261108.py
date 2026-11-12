@@ -114,7 +114,8 @@ class PipelineTest(unittest.TestCase):
         self.assertNotIn("group: auto-article-pipeline", flow)
         # 今日の本数は記事づくりの回と同じ段の上限で数える
         self.assertIn("python scripts/ramp.py", flow)
-        self.assertIn('--daily-cap "${{ steps.ramp.outputs.web_daily_cap }}"', flow)
+        # 2026-11-12: Muse は自動の記事の本数に食われない別の上限（scripts/ramp.py の MUSE_DAILY_CAP）
+        self.assertIn('--daily-cap "${{ steps.ramp.outputs.muse_daily_cap || steps.ramp.outputs.web_daily_cap }}"', flow)
         self.assertIn("state/muse_articles.json", flow)
         self.assertIn("git add -A content", flow)  # 記事・content/state.json・消した入稿
         self.assertIn("scripts/git_safe_push.py", flow)

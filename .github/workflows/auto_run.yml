@@ -145,6 +145,8 @@ jobs:
           FAST_URL: ${{ inputs.fast_url }}
           FAST_META: ${{ inputs.fast_meta }}
           FAST_LANE_GH_TOKEN: ${{ github.token }}
+          # AdSense の審査の期間（11/12〜11/26）は海外の AI の発表を0本に（scripts/ramp.py の ADSENSE_REVIEW）
+          FOREIGN_AI_DAILY_CAP: ${{ steps.ramp.outputs.foreign_ai_cap || '1000' }}
           # 任意: 読み取りサービス（r.jina.ai）の鍵。openai.com の記事は直接読めないため、あると取りこぼしが減る
           JINA_API_KEY: ${{ secrets.JINA_API_KEY }}
           # Claude API のクレジットを月の予算いっぱいまで、段ごとのモデルで使う（速報・SNS・中心=Sonnet、ほか=Haiku。Opus は使わない。

@@ -40,9 +40,24 @@ def pick(table: list[tuple[str, int]], today: str) -> int:
 REVIEW_PERIOD = ("2026-11-03", "2026-11-06", 40)
 
 
+# 2026-11-12 AdSense の2回目の不承認（有用性の低いコンテンツ）を受けたオーナー決定「両方やっていいよ。ただ量を超えることができるレベルの最高の記事にする」:
+# 申し込み直し（11/26ごろ）までは、自動のニュース記事を1日30本までにし、暮らしとお金の記事だけにする（海外の AI の発表の自動の言い換えは止める）。
+# 速報・大きなニュースのレーンはこの上限の外（台帳 S41）。Muse の記事は自動の本数に食われないよう別の上限（MUSE_DAILY_CAP）
+ADSENSE_REVIEW = ("2026-11-12", "2026-11-27", 30)
+MUSE_DAILY_CAP = 200
+
+
+def in_adsense_review(today: str) -> bool:
+    start, until, _ = ADSENSE_REVIEW
+    return start <= today < until
+
+
 def review_cap(web: int, today: str) -> int:
     start, until, cap = REVIEW_PERIOD
-    return min(web, cap) if start <= today < until else web
+    web = min(web, cap) if start <= today < until else web
+    if in_adsense_review(today):
+        web = min(web, ADSENSE_REVIEW[2])
+    return web
 
 
 def broad_per_run(web: int) -> int:
@@ -93,7 +108,12 @@ def main() -> None:
     # 20分ごと（1日72回）に出すので、上限が大きい日は1回あたりの本数も増やす
     broad = os.environ.get("BROAD_MAX_PER_RUN_OVERRIDE") or str(broad_per_run(int(web)))
     ai = os.environ.get("AI_MAX_PER_RUN_OVERRIDE") or str(ai_per_run(int(web)))
-    lines = f"web_daily_cap={web}\nsns_per_day={sns}\nbroad_per_run={broad}\nai_per_run={ai}\n"
+    foreign_ai = "1000"
+    if in_adsense_review(today):
+        # 審査の期間: 1回2本まで・AI のレーンは止める・海外の AI の発表は0本（暮らしとお金だけ）
+        broad, ai, foreign_ai = str(min(int(broad), 2)), "0", "0"
+    lines = (f"web_daily_cap={web}\nsns_per_day={sns}\nbroad_per_run={broad}\nai_per_run={ai}\n"
+             f"foreign_ai_cap={foreign_ai}\nmuse_daily_cap={MUSE_DAILY_CAP}\n")
     if out:
         with open(out, "a", encoding="utf-8") as f:
             f.write(lines)

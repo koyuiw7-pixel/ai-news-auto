@@ -92,7 +92,7 @@ jobs:
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-        run: timeout 1800 python scripts/muse_articles.py --daily-cap "${{ steps.ramp.outputs.web_daily_cap }}" --max "${{ inputs.max || '6' }}" --budget 1500
+        run: timeout 1800 python scripts/muse_articles.py --daily-cap "${{ steps.ramp.outputs.muse_daily_cap || steps.ramp.outputs.web_daily_cap }}" --max "${{ inputs.max || '6' }}" --budget 1500
 
       # 公開した Muse の記事の写真（auto_run.yml の「Article images」と同じ。公式の写真 → だめなら話題に合う AI のイメージ・札つき）。
       # 記事づくりの回の --recent 40 でも拾うが、出す前に付けておく

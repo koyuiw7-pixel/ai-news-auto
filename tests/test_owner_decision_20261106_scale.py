@@ -28,7 +28,8 @@ class DailyTargetTest(unittest.TestCase):
         self.assertEqual(ramp.pick(ramp.WEB_RAMP, "2026-11-05"), 95)
         self.assertEqual(ramp.review_cap(ramp.pick(ramp.WEB_RAMP, "2026-11-06"), "2026-11-06"), 100)
         # 2026-11-09 オーナー「目標を妨げるルールは消そう」: 100本は最低ライン、上限は 200
-        for day in ("2026-11-09", "2026-11-26", "2026-12-31"):
+        # 2026-11-12〜11-26 は AdSense の審査の期間で30本（tests/test_adsense_review_20261112.py）。その前後は200本
+        for day in ("2026-11-09", "2026-11-27", "2026-12-31"):
             cap = ramp.review_cap(ramp.pick(ramp.WEB_RAMP, day), day)
             self.assertEqual(cap, ramp.WEB_CEILING, day)
             self.assertGreaterEqual(cap, 100, day)
