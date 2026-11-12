@@ -259,13 +259,22 @@ def is_followup(data: dict, name: str = "") -> bool:
     return bool(FOLLOWUP_RE.search(text))
 
 
+# 毎月の「〜月から変わること」のまとめ（2026-11-12 オーナー承認の定番）。まとめは最近の記事と同じ公式ページを出典に使うのが当たり前なので、
+# 続報と同じく「見出しがほぼ同じ（同じ記事の出し直し）」のときだけ重複にする
+ROUNDUP_RE = re.compile(r"[0-9０-９]{1,2}月から変わること|[0-9０-９]{4}年[0-9０-９]{1,2}月から変わること")
+
+
+def is_roundup(data: dict, name: str = "") -> bool:
+    return bool(ROUNDUP_RE.search(" ".join([name, data.get("title") or ""])))
+
+
 def duplicate_of(data: dict, name: str = "") -> str | None:
     import dedupe  # noqa: PLC0415
     import story  # noqa: PLC0415
 
     url = data["sources"][0]["url"]
     recent = dedupe.load_recent(DEDUPE_DAYS)
-    if is_followup(data, name):
+    if is_followup(data, name) or is_roundup(data, name):
         # 続報は同じ出典・同じ固有名詞が当たり前。見出しがほぼ同じ（同じ記事の出し直し）のときだけ重複にする
         grams = dedupe.bigrams(data["title"])
         for entry in recent.entries:
