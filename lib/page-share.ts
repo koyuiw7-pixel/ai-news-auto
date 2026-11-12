@@ -37,6 +37,7 @@ export const PAGE_SHARE = {
   events: { heading: "イベントの日程", lines: ["AI・テックの大きな発表会を日本時間で", "基調講演の時刻と発表の要点"], footer: "サイソクの行事ガイド" },
   choose: { heading: "選び方ガイド", lines: ["格安SIM・光回線・電気・保険の窓口など", "公式の情報で比べて選ぶ"], footer: "サイソクのガイド" },
   people: { heading: "人物のまとめ", lines: ["発表の場に立つ人の経歴と", "その人に関するニュース"], footer: "公式の発表で確かめた経歴" },
+  dates: { heading: "暮らしとお金の日程", lines: ["年金・手当・ボーナス・税の期限", "いつ・いくらを公式の発表で確かめて"], footer: "サイソクの日程ガイド" },
   roundups: { heading: "値上げ・障害・リコールの一覧", lines: ["暮らしに関わる発表を種類ごとに", "公式の発表をもとに毎日更新"], footer: "サイソクの一覧" },
   hub: { heading: "サイソクニュース", lines: ["発表元・話題・ジャンルごとの最新ニュース", "公式発表をもとに要点3つで"], footer: "最速で、要点だけ。" },
 } satisfies Record<string, PageShare>;

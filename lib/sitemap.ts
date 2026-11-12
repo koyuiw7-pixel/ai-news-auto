@@ -18,6 +18,7 @@ import { getAllGuides, guideArticles, isThinGuide } from "@/lib/guides";
 import { getAllHowtos } from "@/lib/howto";
 import { getIndexableBuyingGuides } from "@/lib/buying-guides";
 import { eventArticles, getAllEvents } from "@/lib/events";
+import { getAllMoneyDates } from "@/lib/money-dates";
 import { getPricing } from "@/lib/pricing";
 import { listedProducts, productProfile, supersedesGuide } from "@/lib/products";
 import { getAllPeople } from "@/lib/people";
@@ -159,6 +160,11 @@ export function sitemapEntries(): SitemapEntry[] {
       url: `${base}/roundups/${m.kind}/${month}`,
       lastModified: newestDate(monthEntries(m.kind, month).map((e) => e.at))
     }))),
+    // 暮らしとお金の日程。更新日は公式のページで確かめ直した日（verifiedAt）
+    ...(getAllMoneyDates().length > 0
+      ? [{ url: `${base}/dates`, lastModified: newestDate(getAllMoneyDates().map((d) => `${d.verifiedAt}T09:00:00+09:00`)) }]
+      : []),
+    ...getAllMoneyDates().map((d) => ({ url: `${base}/dates/${d.slug}`, lastModified: toDate(`${d.verifiedAt}T09:00:00+09:00`) })),
     { url: `${base}/events`, lastModified: newestOf(getAllEvents().flatMap((event) => eventArticles(event))) },
     // 行事のページは、その行事の記事のいちばん新しい日時（記事が無ければ書かない）
     ...getAllEvents().map((event) => ({

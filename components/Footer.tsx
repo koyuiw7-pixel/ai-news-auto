@@ -32,6 +32,7 @@ const REFERENCE_LINKS = [
     const found = lifeCompareGuide(slug);
     return found ? [{ href: found.href, label: `${guideShortName(found.guide)}の比較` }] : [];
   }),
+  { href: "/dates", label: "暮らしとお金の日程（支給日・期限）" },
   { href: "/guides/jidou-teate", label: "児童手当の金額と対象" },
   { href: "/guides/kogaku-ryoyohi", label: "高額療養費の上限額" },
   { href: "/products", label: "AIサービス図鑑" },

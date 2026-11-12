@@ -1,13 +1,15 @@
 import Link from "next/link";
 import type { ArticleSummary } from "@/lib/articles";
 import { eventForArticle, eventStatus } from "@/lib/events";
+import { moneyDateForArticle } from "@/lib/money-dates";
 import { isPricingSource } from "@/lib/pricing";
 
 const PRICE_RE = /\d/;
 const AI_PRODUCT_RE = /ChatGPT|GPT-|Claude|Opus|Sonnet|Fable|Gemini|Grok|Copilot|DeepSeek|Kimi|Llama|Mistral|API/i;
 
 /**
- * 記事から定番ページへの控えめな案内（料金の記事 → 早見表、イベント中の記事 → イベントページ）。
+ * 記事から定番ページへの控えめな案内（料金の記事 → 早見表、イベント中の記事 → イベントページ、
+ * 年金・手当・税の期限の記事 → 暮らしとお金の日程ページ）。
  * 当てはまるものが無ければ何も出さない。
  */
 export default function AssetLinks({ article }: { article: ArticleSummary }) {
@@ -16,7 +18,8 @@ export default function AssetLinks({ article }: { article: ArticleSummary }) {
     isPricingSource(article.slug) ||
     (article.genreSlug === "ai" && PRICE_RE.test(verdictPrice) && AI_PRODUCT_RE.test(`${article.title} ${verdictPrice}`));
   const event = eventForArticle(article);
-  if (!pricing && !event) return null;
+  const date = moneyDateForArticle(article);
+  if (!pricing && !event && !date) return null;
 
   const link = "font-bold text-ink underline decoration-line-strong underline-offset-[3px] hover:decoration-ink";
   return (
@@ -25,6 +28,13 @@ export default function AssetLinks({ article }: { article: ArticleSummary }) {
         <span>
           <Link href={`/events/${event.slug}`} className={link}>
             {event.nameJa}の{eventStatus(event) === "upcoming" ? "日程（日本時間）" : "発表内容まとめ"}
+          </Link>
+        </span>
+      )}
+      {date && (
+        <span>
+          <Link href={`/dates/${date.slug}`} className={link}>
+            {date.name}（いつ・いくら）
           </Link>
         </span>
       )}

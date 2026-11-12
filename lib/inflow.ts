@@ -30,7 +30,7 @@ const SLUG = /^[A-Za-z0-9][A-Za-z0-9_-]{0,160}$/;
 const TAG = /^[a-z0-9][a-z0-9_.-]{0,39}$/;
 
 /** 記事以外で数えるページの種類（/<種類>/<slug> → <種類>--<slug>。記事の slug には "--" が無いので重ならない） */
-export const LANDING_TYPES = ["guides", "tools", "events", "products"] as const;
+export const LANDING_TYPES = ["guides", "tools", "events", "products", "dates"] as const;
 
 const decodeSlug = (raw: string): string | null => {
   let slug = raw;
@@ -40,12 +40,12 @@ const decodeSlug = (raw: string): string | null => {
 
 /**
  * 数えるページ → 集計の名前。記事は slug、朝のまとめは digest-<YYYYMMDD>（state/threads_posted.json のキーと同じ）、トップは _home。
- * 製品ガイド・計算ツール・イベント・製品のページは guides--<slug> / tools--<slug> / events--<slug> / products--<slug>
+ * 製品ガイド・計算ツール・イベント・製品・お金の日程のページは guides--<slug> / tools--<slug> / events--<slug> / products--<slug> / dates--<slug>
  */
 export function pageKey(pathname: string): string | null {
   const article = /^\/articles\/([^/]+)\/?$/.exec(pathname);
   if (article) return decodeSlug(article[1]);
-  const landing = /^\/(guides|tools|events|products)\/([^/]+)\/?$/.exec(pathname);
+  const landing = /^\/(guides|tools|events|products|dates)\/([^/]+)\/?$/.exec(pathname);
   if (landing) {
     const slug = decodeSlug(landing[2]);
     return slug && !slug.includes("--") ? `${landing[1]}--${slug}` : null;

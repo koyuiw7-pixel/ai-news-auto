@@ -89,6 +89,7 @@ def latest_guide_timestamp(guide: dict) -> datetime | None:
 # scripts/pipeline_health.py --alert が 200/202 以外（403 鍵・422 ホスト・429 送りすぎ）なら issue で知らせる
 STATE_PATH = ROOT / "state" / "indexnow_sent.json"
 EVENTS_PATH = ROOT / "content" / "events.json"
+DATES_PATH = ROOT / "content" / "money-dates.json"
 TOPIC_LISTS_PATH = ROOT / "content" / "topic_lists.json"
 TOOLS_DIR = ROOT / "app" / "tools"
 LIB_DIR = ROOT / "lib"
@@ -184,6 +185,13 @@ def event_hashes() -> dict[str, str]:
     return {e["slug"]: _digest(e) for e in events or [] if isinstance(e, dict) and e.get("slug")}
 
 
+def date_hashes() -> dict[str, str]:
+    """暮らしとお金の日程（/dates/<slug>）。項目ごとの中身で指紋をとる"""
+    data = _read_json(DATES_PATH)
+    dates = data.get("dates") if isinstance(data, dict) else None
+    return {d["slug"]: _digest(d) for d in dates or [] if isinstance(d, dict) and d.get("slug")}
+
+
 def roundup_hashes() -> dict[str, str]:
     data = _read_json(TOPIC_LISTS_PATH)
     lists = data.get("lists") if isinstance(data, dict) else None
@@ -237,6 +245,7 @@ def collect_candidates(base: str, hours: int | None) -> list[tuple[str, str | No
     # お金の道具・イベント・横断の一覧は日時を持たないので、中身の指紋が変わったときだけ送る
     items += [(f"{base}/tools/{slug}", h, "tools") for slug, h in tool_hashes().items()]
     items += [(f"{base}/events/{slug}", h, "events") for slug, h in event_hashes().items()]
+    items += [(f"{base}/dates/{slug}", h, "dates") for slug, h in date_hashes().items()]
     items += [(f"{base}/roundups/{kind}", h, "roundups") for kind, h in roundup_hashes().items()]
     return items
 
@@ -255,7 +264,7 @@ def hub_urls(base: str, kinds: list[str]) -> list[str]:
             add(f"{base}/articles")
             if kind.startswith("genre:"):
                 add(f"{base}/genres/{kind[6:]}")
-        elif kind in ("guides", "events", "roundups"):
+        elif kind in ("guides", "events", "dates", "roundups"):
             add(f"{base}/{kind}")
     return hubs
 

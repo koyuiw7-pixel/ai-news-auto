@@ -37,6 +37,7 @@ class IndexNowFixture(unittest.TestCase):
         self.lib.mkdir()
         for attribute, value in [("HOWTO_DIR", self.guides), ("ARTICLES_DIR", self.articles), ("datetime", FixedDatetime),
                                  ("TOOLS_DIR", self.tools), ("LIB_DIR", self.lib), ("EVENTS_PATH", self.root / "events.json"),
+                                 ("DATES_PATH", self.root / "money-dates.json"),
                                  ("TOPIC_LISTS_PATH", self.root / "topic_lists.json"), ("STATE_PATH", self.root / "state" / "indexnow_sent.json")]:
             patcher = patch.object(indexnow, attribute, value)
             patcher.start()
@@ -219,9 +220,10 @@ class IndexNowChangedOnlyTest(IndexNowFixture):
         (self.lib / "calc-math.ts").write_text("m1")
         (self.root / "events.json").write_text(json.dumps({"events": [{"slug": "ces-2027", "name": "CES"}]}))
         (self.root / "topic_lists.json").write_text(json.dumps({"lists": {"price-hikes": [{"slug": "a"}]}}))
+        (self.root / "money-dates.json").write_text(json.dumps({"dates": [{"slug": "nenkin-december-2026", "name": "年金"}]}))
         urls = self.selected()
-        self.assertEqual(urls, [BASE + "/events", BASE + "/roundups", BASE + "/tools/furusato-limit",
-                                BASE + "/events/ces-2027", BASE + "/roundups/price-hikes"])
+        self.assertEqual(urls, [BASE + "/events", BASE + "/dates", BASE + "/roundups", BASE + "/tools/furusato-limit",
+                                BASE + "/events/ces-2027", BASE + "/dates/nenkin-december-2026", BASE + "/roundups/price-hikes"])
         state = self.sent_ok(urls, 202)
         self.assertEqual(indexnow.collect_urls(BASE, 12, state), [])
         # 計算の部品（lib/calc*）が変わったら道具を送り直す。イベント・一覧は変わっていないので送らない

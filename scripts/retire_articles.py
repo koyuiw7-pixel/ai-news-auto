@@ -107,6 +107,7 @@ PROTECTED_WHY = "検索から人が来ている（content/search_protected.json�
 # 参照を書き換えるデータ（記事以外）。状態の記録（content/state.json・llm_usage など）は画面に出ないので触らない
 DATA_FILES = [
     "content/events.json",
+    "content/money-dates.json",
     "content/weekly.json",
     "content/pricing.json",
 ]

@@ -3,14 +3,15 @@ import { getAllHowtos, getHowto } from "@/lib/howto";
 import { getAllEvents, getEvent, localDateRange } from "@/lib/events";
 import { getProduct, listedProducts } from "@/lib/products";
 import { getAllChooseGuides, getChooseGuide } from "@/lib/choose";
+import { currentAnswer, getAllMoneyDates, getMoneyDate } from "@/lib/money-dates";
 import { PAGE_SHARE, PAGE_SHARE_KEYS, type PageShare, type PageShareKey } from "@/lib/page-share";
 
 /**
  * ガイド・行事・製品・選び方ガイドの1ページずつのシェア画像（og:image。1200×630。SEO A15・2026-11-10）。
  * 形は lib/page-share.ts の固定ページと同じ（app/og/[key]/route.tsx がビルド時に描く。Workers では描かない）。
- * キーは「guide-<slug>」「event-<slug>」「product-<slug>」「choose-<slug>」。
+ * キーは「guide-<slug>」「event-<slug>」「product-<slug>」「choose-<slug>」「date-<slug>」。
  */
-const PREFIX = { guide: "guide-", event: "event-", product: "product-", choose: "choose-" } as const;
+const PREFIX = { guide: "guide-", event: "event-", product: "product-", choose: "choose-", date: "date-" } as const;
 export type ItemKind = keyof typeof PREFIX;
 
 /** 題名を「大きな見出し」と「下の1行」に分ける（？・全角の空白・、で。分けられなければ全部を見出しに） */
@@ -75,6 +76,18 @@ function chooseShare(slug: string): PageShare | undefined {
   return { heading, lines: [fitLine(rest || "公式の情報で比べる"), "料金・条件・向いている人"], footer: "サイソクの選び方ガイド" };
 }
 
+/** 暮らしとお金の日程（/dates/<slug>）。画像には名前と一番の答え（日付・金額）を出す */
+function dateShare(slug: string): PageShare | undefined {
+  const entry = getMoneyDate(slug);
+  if (!entry) return undefined;
+  const first = currentAnswer(entry).items[0];
+  return {
+    heading: entry.name,
+    lines: [first ? fitLine(`${first.label}：${first.value}`, 34) : "", "公式の発表で確かめた日付と金額"],
+    footer: "サイソクの日程ガイド",
+  };
+}
+
 /** キー → 画像の中身（固定ページ・1ページずつのどちらも） */
 export function shareFor(key: string): PageShare | undefined {
   if (key in PAGE_SHARE) return PAGE_SHARE[key as PageShareKey];
@@ -82,6 +95,7 @@ export function shareFor(key: string): PageShare | undefined {
   if (key.startsWith(PREFIX.event)) return eventShare(key.slice(PREFIX.event.length));
   if (key.startsWith(PREFIX.product)) return productShare(key.slice(PREFIX.product.length));
   if (key.startsWith(PREFIX.choose)) return chooseShare(key.slice(PREFIX.choose.length));
+  if (key.startsWith(PREFIX.date)) return dateShare(key.slice(PREFIX.date.length));
   return undefined;
 }
 
@@ -93,6 +107,7 @@ export function allShareKeys(): string[] {
     ...getAllEvents().map((e) => `${PREFIX.event}${e.slug}`),
     ...listedProducts().map((p) => `${PREFIX.product}${p.slug}`),
     ...getAllChooseGuides().map((g) => `${PREFIX.choose}${g.slug}`),
+    ...getAllMoneyDates().map((d) => `${PREFIX.date}${d.slug}`),
   ];
 }
 

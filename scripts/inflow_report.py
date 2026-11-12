@@ -48,7 +48,7 @@ SNS = ("threads", "x", "facebook", "bluesky", "instagram")
 # AI の回答から来た人（lib/inflow.ts の INFLOW_SOURCES と同じ名前）
 AI_SOURCES = ("chatgpt", "perplexity", "copilot", "gemini", "claude", "meta_ai", "deepseek", "grok")
 # 記事以外の入口（lib/inflow.ts の pageKey。<種類>--<slug>）
-PAGE_TYPES = {"guides": "ガイド", "tools": "計算ツール", "events": "イベント", "products": "製品"}
+PAGE_TYPES = {"guides": "ガイド", "tools": "計算ツール", "events": "イベント", "products": "製品", "dates": "お金の日程"}
 # 書き出しの型（state/threads_posted.json の opener → hook の順）。opener は 2026-11-03〜の1行目の呼びかけの言い回し
 HOOK_LABELS = {
     "check": "呼びかけ・要チェック", "good": "呼びかけ・朗報", "see": "呼びかけ・見てほしい", "know": "呼びかけ・知っておいて",
@@ -95,6 +95,10 @@ def landing_title(kind: str, slug: str) -> str:
             events = json.loads((ROOT / "content" / "events.json").read_text("utf-8")).get("events") or []
             event = next((e for e in events if e.get("slug") == slug), {})
             return str(event.get("title") or event.get("name") or slug)
+        if kind == "dates":
+            dates = json.loads((ROOT / "content" / "money-dates.json").read_text("utf-8")).get("dates") or []
+            entry = next((d for d in dates if d.get("slug") == slug), {})
+            return str(entry.get("name") or entry.get("title") or slug)
         data = json.loads((ROOT / "content" / kind / f"{slug}.json").read_text("utf-8"))
         return str(data.get("title") or data.get("name") or slug)
     except (OSError, ValueError, AttributeError):

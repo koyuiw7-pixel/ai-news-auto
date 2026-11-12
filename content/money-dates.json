@@ -1,0 +1,455 @@
+{
+  "note": "暮らしとお金の日程ページ（/dates/[slug]）。日付・金額は、確認日（verifiedAt）に公式ページで読んだものだけを手で入れる。公式に発表されていない日付は書かない（推測しない）。after は、その時刻を過ぎたら答えの欄を差し替える（古い答えを出し続けないため）。",
+  "dates": [
+    {
+      "slug": "nenkin-december-2026",
+      "category": "年金",
+      "name": "年金の12月の支給日",
+      "title": "年金の12月の支給日は12月15日（火）　10月分と11月分の2か月分",
+      "description": "2026年12月の年金の支給日は12月15日（火）です。支払われるのは10月分と11月分の2か月分。年金は偶数月の15日に支払われ、15日が土日・祝日なら直前の平日になります。日本年金機構の案内で確かめた日付です。",
+      "lead": "年金は原則として年6回、偶数月の15日に、前月までの2か月分がまとめて支払われます。2026年12月15日は火曜日なので、そのまま12月15日が支給日です。",
+      "keyDate": "2026-12-15",
+      "answer": {
+        "label": "2026年12月の年金の支給日",
+        "items": [
+          { "label": "支給日", "value": "12月15日（火）" },
+          { "label": "支払われる分", "value": "10月分と11月分" }
+        ],
+        "note": "15日が土日・祝日のときは、その直前の平日に支払われます。",
+        "source": { "title": "日本年金機構「年金はいつ支払われますか。」", "url": "https://www.nenkin.go.jp/section/faq/jukyu/uketori/uketori/shiharaiduki/20140421-01.html" }
+      },
+      "facts": [
+        { "label": "支給日の決まり", "value": "偶数月（2月・4月・6月・8月・10月・12月）の15日" },
+        { "label": "土日・祝日のとき", "value": "その直前の平日" },
+        { "label": "1回に支払われる額", "value": "前月までの2か月分" },
+        { "label": "口座で受け取る人", "value": "各支払日に、指定の口座に振り込まれる" }
+      ],
+      "answers": [
+        {
+          "q": "12月に振り込まれる年金は、何月分？",
+          "a": "10月分と11月分の2か月分です。日本年金機構によると、各支払月には原則としてその前月までの2か月分が支払われます（例：4月に支払われるのは2月分と3月分）。",
+          "sources": [{ "title": "日本年金機構「年金はいつ支払われますか。」", "url": "https://www.nenkin.go.jp/section/faq/jukyu/uketori/uketori/shiharaiduki/20140421-01.html" }]
+        },
+        {
+          "q": "ゆうちょ銀行の窓口で受け取る場合は？",
+          "a": "年金送金通知書に書かれたゆうちょ銀行（郵便局）の窓口で、各支払日から受け取れます。口座振込にしている場合は、各支払日に指定の口座に振り込まれます。",
+          "sources": [{ "title": "日本年金機構「年金はいつ支払われますか。」", "url": "https://www.nenkin.go.jp/section/faq/jukyu/uketori/uketori/shiharaiduki/20140421-01.html" }]
+        }
+      ],
+      "links": [
+        { "href": "/guides/nenkin-zeikin", "label": "年金にかかる税金の仕組み" },
+        { "href": "/guides/nenkin-kakutei", "label": "年金をもらう人の確定申告" },
+        { "href": "/dates/jidou-teate-december-2026", "label": "児童手当の12月の支給" }
+      ],
+      "articles": ["pension-child-allowance-payment-calendar", "pension-65-claim-procedure", "kakyu-nenkin-2026-amount", "basic-pension-full-amount-reiwa8"],
+      "match": "年金.{0,12}(支給日|支払日|振込日|偶数月)|(支給日|支払日|振込日).{0,12}年金",
+      "sources": [
+        { "title": "日本年金機構「年金はいつ支払われますか。」", "url": "https://www.nenkin.go.jp/section/faq/jukyu/uketori/uketori/shiharaiduki/20140421-01.html" }
+      ],
+      "verifiedAt": "2026-11-12"
+    },
+    {
+      "slug": "jidou-teate-december-2026",
+      "category": "子育て",
+      "name": "児童手当の12月の支給",
+      "title": "児童手当の12月の支給は10月分・11月分　1人月1万〜3万円、振込日は市区町村で確認",
+      "description": "児童手当は12月に10月分と11月分の2か月分が支給されます。月額は1人あたり3歳未満15,000円、3歳以上高校生年代まで10,000円、第3子以降30,000円。振込の日にちは、お住まいの市区町村（公務員は勤務先）の案内で確かめます。こども家庭庁の案内で確かめました。",
+      "lead": "児童手当は偶数月に、その前月までの2か月分がまとめて支給されます。12月に受け取るのは10月分と11月分です。こども家庭庁の案内には何日に振り込まれるかは書かれていないので、お住まいの市区町村（公務員は勤務先）の案内で確かめます。",
+      "keyDate": null,
+      "answer": {
+        "label": "12月の児童手当",
+        "items": [
+          { "label": "支給される月", "value": "12月（日にちは市区町村の案内で確認）" },
+          { "label": "支給される分", "value": "10月分と11月分" }
+        ],
+        "note": "月額は1人あたり3歳未満15,000円、3歳以上高校生年代まで10,000円、第3子以降は30,000円です。",
+        "source": { "title": "こども家庭庁「児童手当制度のご案内」", "url": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/annai" }
+      },
+      "facts": [
+        { "label": "支給月", "value": "2月・4月・6月・8月・10月・12月（偶数月）" },
+        { "label": "1回の支給", "value": "前月分までの2か月分" },
+        { "label": "3歳未満", "value": "1人あたり月15,000円（第3子以降は30,000円）" },
+        { "label": "3歳以上高校生年代まで", "value": "1人あたり月10,000円（第3子以降は30,000円）" },
+        { "label": "対象", "value": "18歳に達する日以後の最初の3月31日までの子を育てている人" }
+      ],
+      "answers": [
+        {
+          "q": "12月の児童手当はいくら振り込まれる？",
+          "a": "10月分と11月分の2か月分です。月額は1人あたり3歳未満が15,000円、3歳以上高校生年代までが10,000円、第3子以降が30,000円なので、たとえば3歳以上高校生年代までの子が1人（第1子）なら、12月は2か月分の20,000円です。",
+          "sources": [{ "title": "こども家庭庁「児童手当制度のご案内」", "url": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/annai" }]
+        },
+        {
+          "q": "児童手当の12月の振込日は何日？",
+          "a": "こども家庭庁の案内に書かれているのは支給する月（偶数月）までで、何日に振り込まれるかは書かれていません。児童手当は市区町村の認定を受けて支給され、公務員は勤務先から支給されます。振込日は、お住まいの市区町村（公務員は勤務先）の案内で確かめてください。",
+          "sources": [{ "title": "こども家庭庁「児童手当制度のご案内」", "url": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/annai" }]
+        },
+        {
+          "q": "「第3子以降」はどう数える？",
+          "a": "こども家庭庁によると、児童とその兄姉などのうち、年齢が上の子から数えて3人目以降の子が「第3子以降」です。数え方の詳しい資料は、こども家庭庁の案内ページにあります。",
+          "sources": [{ "title": "こども家庭庁「児童手当制度のご案内」", "url": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/annai" }]
+        }
+      ],
+      "links": [
+        { "href": "/guides/jidou-teate", "label": "児童手当の金額と対象" },
+        { "href": "/dates/nenkin-december-2026", "label": "年金の12月の支給日" }
+      ],
+      "articles": ["child-allowance-december-payment", "pension-child-allowance-payment-calendar", "child-allowance-third-child-monthly-30000", "child-allowance-eligibility-check"],
+      "match": "児童手当.{0,16}(12月|支給日|振込|偶数月)",
+      "sources": [
+        { "title": "こども家庭庁「児童手当制度のご案内」", "url": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/annai" }
+      ],
+      "verifiedAt": "2026-11-12"
+    },
+    {
+      "slug": "koumuin-winter-bonus-2026",
+      "category": "給与",
+      "name": "公務員の冬のボーナスの支給日",
+      "title": "公務員の冬のボーナスの支給日は12月10日（木）　国家公務員の決まりと夏の支給日",
+      "description": "国家公務員の冬のボーナス（期末手当・勤勉手当）の支給日は12月10日です。2026年は木曜日なので、そのまま12月10日に支給されます。人事院規則九―四〇（e-Gov法令検索）で確かめました。",
+      "lead": "国家公務員のボーナス（期末手当と勤勉手当）の支給日は、人事院規則で決まっています。冬は基準日が12月1日、支給日が12月10日です。支給日が土曜なら前日、日曜なら前々日に早まりますが、2026年12月10日は木曜日です。",
+      "keyDate": "2026-12-10",
+      "answer": {
+        "label": "国家公務員の冬のボーナス（2026年）",
+        "items": [
+          { "label": "支給日", "value": "12月10日（木）" },
+          { "label": "基準日", "value": "12月1日" }
+        ],
+        "note": "人事院規則九―四〇 第14条と別表第三の決まりです。地方公務員は、勤務先の自治体の定めで確かめてください。",
+        "source": { "title": "e-Gov法令検索「人事院規則九―四〇（期末手当及び勤勉手当）」", "url": "https://laws.e-gov.go.jp/law/338RJNJ09040000" }
+      },
+      "facts": [
+        { "label": "冬（12月期）", "value": "基準日12月1日、支給日12月10日" },
+        { "label": "夏（6月期）", "value": "基準日6月1日、支給日6月30日" },
+        { "label": "支給日が土曜のとき", "value": "前日（金曜）" },
+        { "label": "支給日が日曜のとき", "value": "前々日（金曜）" },
+        { "label": "対象の手当", "value": "期末手当と勤勉手当" }
+      ],
+      "answers": [
+        {
+          "q": "国家公務員の冬のボーナスはいつ支給される？",
+          "a": "12月10日です。人事院規則九―四〇の第14条で、期末手当と勤勉手当の支給日は別表第三の日と決められていて、基準日12月1日の支給日は12月10日です。2026年12月10日は木曜日なので、日にちはずれません。",
+          "sources": [{ "title": "e-Gov法令検索「人事院規則九―四〇（期末手当及び勤勉手当）」", "url": "https://laws.e-gov.go.jp/law/338RJNJ09040000" }]
+        },
+        {
+          "q": "支給日が土日に当たったらどうなる？",
+          "a": "同じ第14条で、支給日が日曜日に当たるときはその前々日、土曜日に当たるときはその前日と決められています。どちらも金曜日に早まります。",
+          "sources": [{ "title": "e-Gov法令検索「人事院規則九―四〇（期末手当及び勤勉手当）」", "url": "https://laws.e-gov.go.jp/law/338RJNJ09040000" }]
+        },
+        {
+          "q": "夏のボーナスの支給日は？",
+          "a": "基準日6月1日に対して、支給日は6月30日です（人事院規則九―四〇 別表第三）。",
+          "sources": [{ "title": "e-Gov法令検索「人事院規則九―四〇（期末手当及び勤勉手当）」", "url": "https://laws.e-gov.go.jp/law/338RJNJ09040000" }]
+        }
+      ],
+      "links": [
+        { "href": "/articles/winter-bonus-take-home-pay-table", "label": "冬のボーナスの手取りの早見表" }
+      ],
+      "articles": ["civil-servant-winter-bonus-date-2026", "winter-bonus-take-home-pay-table", "winter-bonus-take-home-pay-calculation", "bonus-social-insurance-standard-cap"],
+      "match": "公務員.{0,12}(ボーナス|期末手当|勤勉手当)|(冬|12月).{0,6}ボーナス",
+      "sources": [
+        { "title": "e-Gov法令検索「人事院規則九―四〇（期末手当及び勤勉手当）」（第14条・別表第三）", "url": "https://laws.e-gov.go.jp/law/338RJNJ09040000" }
+      ],
+      "verifiedAt": "2026-11-12"
+    },
+    {
+      "slug": "furusato-nozei-2026-deadline",
+      "category": "税金",
+      "name": "ふるさと納税（2026年分）の期限",
+      "title": "ふるさと納税2026年分の期限は12月31日　確定申告は2027年3月15日まで、ワンストップ特例の出し方",
+      "description": "2026年分のふるさと納税は、2026年1月〜12月に行った寄附が対象です。確定申告で控除を受ける人は2027年3月15日までに申告します。ワンストップ特例の申請書は寄附をする際に寄附先へ出し、内容が変わったら翌年1月10日までに届け出ます。総務省の案内で確かめました。",
+      "lead": "ふるさと納税は1月〜12月の寄附を1年分として扱います。2026年分に入れたい寄附は、12月31日までに行います。控除を受ける手続きは、確定申告か、5団体以内ならワンストップ特例のどちらかです。",
+      "keyDate": "2026-12-31",
+      "answer": {
+        "label": "ふるさと納税（2026年分）の期限",
+        "items": [
+          { "label": "2026年分の寄附", "value": "12月31日（木）まで" },
+          { "label": "確定申告", "value": "2027年3月15日（月）まで" },
+          { "label": "ワンストップ特例", "value": "寄附をする際に申請書を提出" }
+        ],
+        "note": "ワンストップ特例は、確定申告の不要な給与所得者などで、寄附先が5団体以内の人だけが使えます。",
+        "source": { "title": "総務省 ふるさと納税ポータルサイト「ふるさと納税の流れ」", "url": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/mechanism/procedure.html" }
+      },
+      "facts": [
+        { "label": "1年分の範囲", "value": "その年の1月〜12月に行った寄附" },
+        { "label": "確定申告", "value": "寄附をした翌年の3月15日までに、住所地の所轄の税務署へ" },
+        { "label": "ワンストップ特例の申請", "value": "寄附をする際に、寄附先の自治体へ申請書を提出" },
+        { "label": "特例の変更届", "value": "住所などが変わったら、翌年1月10日までに寄附先へ" },
+        { "label": "特例を使える人", "value": "確定申告の不要な給与所得者等で、寄附先が5団体以内" }
+      ],
+      "answers": [
+        {
+          "q": "2026年分のふるさと納税は、いつまでに寄附すればいい？",
+          "a": "12月31日までです。総務省のよくある質問では、確定申告は「当年の1月〜12月に行ったふるさと納税」について翌年の2月〜3月に行うと案内されています。年内の受付の時間は寄附先や申込先によって違うことがあるので、早めに申し込むと安心です。",
+          "sources": [{ "title": "総務省 ふるさと納税ポータルサイト「よくある質問」", "url": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/faq/" }]
+        },
+        {
+          "q": "確定申告はいつまで？",
+          "a": "ふるさと納税を行った翌年の3月15日までに、住所地の所轄の税務署に確定申告をします。2026年分なら2027年3月15日（月）までです。申告するときは、寄附を証明する書類（受領書）を付けます。",
+          "sources": [{ "title": "総務省 ふるさと納税ポータルサイト「ふるさと納税の流れ」", "url": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/mechanism/procedure.html" }]
+        },
+        {
+          "q": "ワンストップ特例の申請書はいつ出す？",
+          "a": "総務省は、ふるさと納税を行う際に、寄附先の各自治体へ申請書を出すよう案内しています。申請したあとに引っ越しなどで内容が変わったときは、寄附をした翌年の1月10日までに、寄附先の自治体へ変更届出書を出します。申請書の受付の締め切りは、寄附先の自治体の案内も確かめてください。",
+          "sources": [
+            { "title": "総務省 ふるさと納税ポータルサイト「ふるさと納税の流れ」", "url": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/mechanism/procedure.html" },
+            { "title": "総務省「制度改正について（ふるさと納税ワンストップ特例制度）」", "url": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/topics/20150401.html" }
+          ]
+        },
+        {
+          "q": "寄附先が6団体以上になったら？",
+          "a": "ワンストップ特例は使えないので、確定申告をします。ワンストップ特例は、寄附先が5団体以内の場合に限られます。",
+          "sources": [{ "title": "総務省 ふるさと納税ポータルサイト「ふるさと納税の流れ」", "url": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/mechanism/procedure.html" }]
+        }
+      ],
+      "links": [
+        { "href": "/tools/furusato-limit", "label": "ふるさと納税の上限額を計算する" },
+        { "href": "/guides/furusato-onestop", "label": "ワンストップ特例の条件" },
+        { "href": "/guides/furusato-kakutei", "label": "ふるさと納税の確定申告" }
+      ],
+      "articles": ["furusato-nozei-deadline-2026", "furusato-onestop-tokurei-kakutei", "furusato-nozei-limit-check"],
+      "match": "ふるさと納税.{0,16}(期限|締め切り|いつまで|12月31日|1月10日)",
+      "sources": [
+        { "title": "総務省 ふるさと納税ポータルサイト「ふるさと納税の流れ」", "url": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/mechanism/procedure.html" },
+        { "title": "総務省 ふるさと納税ポータルサイト「よくある質問」", "url": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/faq/" },
+        { "title": "総務省「制度改正について（ふるさと納税ワンストップ特例制度）」", "url": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/topics/20150401.html" }
+      ],
+      "verifiedAt": "2026-11-12"
+    },
+    {
+      "slug": "nengajo-2027",
+      "category": "暮らし",
+      "name": "2027年用年賀はがき",
+      "title": "2027年用年賀はがきは1枚85円、1月15日まで販売　元日に届くのは12月27日までの差し出し",
+      "description": "2027年用年賀はがきは2026年11月2日から2027年1月15日まで販売、無地は1枚85円です。年賀状の受付は12月20日（日）から、元日に届けるには12月27日（日）までに差し出します。日本郵便の発表で確かめました。",
+      "lead": "2027年用から、年賀状の受付開始が12月20日に、元日に届く差し出しの目安が12月27日に、それぞれ遅くなりました。はがきの販売も1月15日まで延びています。",
+      "keyDate": "2026-12-27",
+      "answer": {
+        "label": "2027年用年賀はがき",
+        "items": [
+          { "label": "料金（無地）", "value": "1枚85円" },
+          { "label": "元日に届く差し出し", "value": "12月27日（日）まで" },
+          { "label": "受付開始", "value": "12月20日（日）" }
+        ],
+        "note": "販売は2026年11月2日（月）9時から2027年1月15日（金）まで。12月19日以前に出した年賀状は、年内に届きます。",
+        "source": { "title": "日本郵便「2027（令和9）年用年賀はがき等の発行概要」（PDF）", "url": "https://files.japanpost.jp/assets/34d9d11432734cfaa759e78fe395b688/159168aef19d465baf3350d358e46fa9/20260831_02_06.pdf" }
+      },
+      "facts": [
+        { "label": "販売期間", "value": "2026年11月2日（月）9時〜2027年1月15日（金）" },
+        { "label": "無地の料金", "value": "1枚85円（10枚で850円）" },
+        { "label": "受付開始", "value": "12月20日（日）（昨年までは12月15日）" },
+        { "label": "元日に届く差し出し", "value": "12月27日（日）まで（昨年までは12月25日）" },
+        { "label": "三が日の配達", "value": "元日と1月3日（日）" },
+        { "label": "寄付金付絵入り年賀はがき", "value": "1枚につき5円が寄付金" }
+      ],
+      "answers": [
+        {
+          "q": "年賀状はいつまでに出せば元日に届く？",
+          "a": "12月27日（日）までに差し出せば、元日に届けるよう取り組むと日本郵便が案内しています。昨年までの目安は12月25日でした。三が日の配達は元日と1月3日（日）です。",
+          "sources": [{ "title": "日本郵便「2027（令和9）年用年賀はがき等の発行概要」（PDF）", "url": "https://files.japanpost.jp/assets/34d9d11432734cfaa759e78fe395b688/159168aef19d465baf3350d358e46fa9/20260831_02_06.pdf" }]
+        },
+        {
+          "q": "早く出しすぎるとどうなる？",
+          "a": "年賀状の受付は12月20日（日）からです。12月19日（土）以前に出した年賀状は、通常の郵便の日数で年内に届きます。元日に届けたいなら、12月20日から27日の間に出します。",
+          "sources": [{ "title": "日本郵便「2027（令和9）年用年賀はがき等の発行概要」（PDF）", "url": "https://files.japanpost.jp/assets/34d9d11432734cfaa759e78fe395b688/159168aef19d465baf3350d358e46fa9/20260831_02_06.pdf" }]
+        },
+        {
+          "q": "年賀はがきの値段はいくら？",
+          "a": "無地の年賀はがきは1枚85円です。郵便局のネットショップでは10枚セットが850円で、注文の受付は2027年1月13日（水）までです。寄付金付絵入り年賀はがきは、1枚につき5円が寄付金になります。",
+          "sources": [
+            { "title": "郵便局のネットショップ「2027年用年賀はがき 無地（10枚セット）」", "url": "https://www.shop.post.japanpost.jp/shop/g/gKT51187/" },
+            { "title": "日本郵便「2027（令和9）年用年賀はがき等の発行概要」（PDF）", "url": "https://files.japanpost.jp/assets/34d9d11432734cfaa759e78fe395b688/159168aef19d465baf3350d358e46fa9/20260831_02_06.pdf" }
+          ]
+        }
+      ],
+      "links": [],
+      "articles": ["nengajo-2027-accept-dates"],
+      "match": "年賀(状|はがき)",
+      "sources": [
+        { "title": "日本郵便「2027（令和9）年用年賀はがき等の発行概要」（2026年8月31日・PDF）", "url": "https://files.japanpost.jp/assets/34d9d11432734cfaa759e78fe395b688/159168aef19d465baf3350d358e46fa9/20260831_02_06.pdf" },
+        { "title": "郵便局のネットショップ「2027年用年賀はがき 無地（10枚セット）」", "url": "https://www.shop.post.japanpost.jp/shop/g/gKT51187/" }
+      ],
+      "verifiedAt": "2026-11-12"
+    },
+    {
+      "slug": "kojin-muke-kokusai",
+      "category": "お金",
+      "name": "個人向け国債の募集",
+      "title": "個人向け国債の11月募集は11月30日まで　発行は12月15日、固定5年は年2.17%",
+      "titleAfter": "個人向け国債の次の募集は12月7日から　11月募集の利率と発行日",
+      "description": "個人向け国債の11月募集は2026年11月9日〜30日、発行日は12月15日です。利率（年・税引前）は変動10年1.85%、固定5年2.17%、固定3年1.94%。次回の募集予定は12月7日〜30日。財務省のページで確かめました。",
+      "lead": "個人向け国債の11月募集（変動10年の第200回債、固定5年の第188回債、固定3年の第198回債）は、11月30日まで取扱金融機関で申し込めます。",
+      "keyDate": "2026-11-30",
+      "answer": {
+        "label": "個人向け国債の11月募集",
+        "items": [
+          { "label": "募集期間", "value": "11月9日（月）〜30日（月）" },
+          { "label": "発行日", "value": "12月15日（火）" },
+          { "label": "利率（年・税引前）", "value": "固定5年2.17%・固定3年1.94%・変動10年1.85%" }
+        ],
+        "note": "財務省の掲載は「令和8年11月6日現在」。変動10年の利率は半年ごとに変わります。",
+        "source": { "title": "財務省「現在募集中の個人向け国債・新窓販国債」", "url": "https://www.mof.go.jp/jgbs/individual/kojinmuke/recruitment/index.html" }
+      },
+      "after": {
+        "at": "2026-11-30T15:00:00Z",
+        "answer": {
+          "label": "個人向け国債の次の募集",
+          "items": [
+            { "label": "次回の募集予定", "value": "12月7日（月）〜30日（水）" },
+            { "label": "11月募集", "value": "11月30日で終了（発行日12月15日）" }
+          ],
+          "note": "12月募集の利率は、このページの確認日には財務省のページに載っていませんでした。最新の利率は財務省のページで確かめてください。",
+          "source": { "title": "財務省「現在募集中の個人向け国債・新窓販国債」", "url": "https://www.mof.go.jp/jgbs/individual/kojinmuke/recruitment/index.html" }
+        }
+      },
+      "facts": [
+        { "label": "変動10年（第200回債）", "value": "年1.85%（税引後1.4741725%）" },
+        { "label": "固定5年（第188回債）", "value": "年2.17%（税引後1.7291645%）" },
+        { "label": "固定3年（第198回債）", "value": "年1.94%（税引後1.5458890%）" },
+        { "label": "募集期間", "value": "2026年11月9日〜30日" },
+        { "label": "発行日", "value": "2026年12月15日" },
+        { "label": "利払日", "value": "毎年6月15日と12月15日" },
+        { "label": "募集価格", "value": "額面100円につき100円" },
+        { "label": "取扱金融機関", "value": "871機関" },
+        { "label": "次回の募集予定", "value": "2026年12月7日〜30日" }
+      ],
+      "answers": [
+        {
+          "q": "11月募集の利率はいくら？",
+          "a": "年率（税引前）で、固定5年（第188回債）が2.17%、固定3年（第198回債）が1.94%、変動10年（第200回債）が1.85%です。税引後はそれぞれ1.7291645%、1.5458890%、1.4741725%です。変動10年は、半年ごとに適用する利率が変わります。",
+          "sources": [{ "title": "財務省「現在募集中の個人向け国債・新窓販国債」", "url": "https://www.mof.go.jp/jgbs/individual/kojinmuke/recruitment/index.html" }]
+        },
+        {
+          "q": "途中で換金できる？",
+          "a": "発行後1年が経てば、いつでも国の買い取りで中途換金でき、元本割れはありません。ただし、直前2回分の各利子（税引前）相当額×0.79685が差し引かれます。発行後1年間は、原則として中途換金できません。",
+          "sources": [{ "title": "財務省「現在募集中の個人向け国債・新窓販国債」", "url": "https://www.mof.go.jp/jgbs/individual/kojinmuke/recruitment/index.html" }]
+        },
+        {
+          "q": "次の募集はいつ？",
+          "a": "財務省のページでは、次回の募集予定は2026年12月7日〜30日です。12月募集の利率は、このページの確認日（11月12日）にはまだ載っていませんでした。",
+          "sources": [{ "title": "財務省「現在募集中の個人向け国債・新窓販国債」", "url": "https://www.mof.go.jp/jgbs/individual/kojinmuke/recruitment/index.html" }]
+        }
+      ],
+      "notes": ["このページは、募集の日程と条件を公式の発表どおりに並べたものです。購入をすすめるものではありません。"],
+      "links": [
+        { "href": "/guides/nisa-start", "label": "NISAの始め方" }
+      ],
+      "articles": ["kojin-kokusai-november-2026-rates", "individual-jgb-october-2026", "mof-japan-individual-bonds-reform-2026"],
+      "match": "個人向け国債",
+      "sources": [
+        { "title": "財務省「現在募集中の個人向け国債・新窓販国債」（令和8年11月6日現在）", "url": "https://www.mof.go.jp/jgbs/individual/kojinmuke/recruitment/index.html" }
+      ],
+      "verifiedAt": "2026-11-12"
+    },
+    {
+      "slug": "denki-gas-subsidy-winter-2026",
+      "category": "電気・ガス",
+      "name": "電気・ガス料金の冬の支援",
+      "title": "電気・ガス料金の支援は12月使用分から2月使用分まで　1kWhあたりいくら安くなる？",
+      "description": "国の電気・ガス料金の支援は、2026年12月使用分から2027年2月使用分まで。家庭の電気（低圧）は12月使用分が1kWhあたり1.0円、1・2月使用分が4.5円、都市ガスは1㎥あたり4.0円と18.0円の値引きです。申請は要りません。資源エネルギー庁の特設ページで確かめました。",
+      "lead": "政府は冬の使用量が多くなる12月から2月の分について、電気・都市ガスの料金を値引きする支援を行います。値引きは電力・ガス会社が毎月の料金から自動で行うので、家庭での申請は要りません。",
+      "keyDate": null,
+      "answer": {
+        "label": "電気・ガス料金の支援（2026年度の冬）",
+        "items": [
+          { "label": "対象の期間", "value": "2026年12月使用分〜2027年2月使用分" },
+          { "label": "電気（家庭・低圧）", "value": "12月使用分1.0円、1・2月使用分4.5円（1kWhあたり）" },
+          { "label": "都市ガス", "value": "12月使用分4.0円、1・2月使用分18.0円（1㎥あたり）" }
+        ],
+        "note": "12月使用分とは、原則として12月中の検針日から1月中の検針日までの使用分です。プロパンガスは対象外です。",
+        "source": { "title": "資源エネルギー庁「電気・ガス料金支援」特設ページ", "url": "https://denkigas-gekihenkanwa.go.jp/" }
+      },
+      "facts": [
+        { "label": "電気・低圧（家庭）", "value": "12月使用分1.0円/kWh、2027年1・2月使用分4.5円/kWh" },
+        { "label": "電気・高圧（企業）", "value": "12月使用分0.5円/kWh、2027年1・2月使用分2.3円/kWh" },
+        { "label": "都市ガス", "value": "12月使用分4.0円/㎥、2027年1・2月使用分18.0円/㎥" },
+        { "label": "申請", "value": "不要（電力・ガス会社が料金から値引き）" },
+        { "label": "プロパンガス", "value": "対象外" },
+        { "label": "問い合わせ窓口", "value": "0120-013-305（平日9時〜17時）" }
+      ],
+      "answers": [
+        {
+          "q": "家の電気代はいくら安くなる？",
+          "a": "値引き単価に、その月の使用量を掛けた額です。家庭向けの低圧は、12月使用分が1kWhあたり1.0円、2027年1月・2月使用分が4.5円です。たとえば1か月400kWh使う家庭なら、12月使用分は400円、1月・2月使用分は1,800円ずつの値引きになります。",
+          "sources": [{ "title": "資源エネルギー庁「電気・ガス料金支援」特設ページ", "url": "https://denkigas-gekihenkanwa.go.jp/" }]
+        },
+        {
+          "q": "申請や手続きは必要？",
+          "a": "一般家庭は申請不要です。支援に参加している電力・ガス会社が、毎月の料金から使用量に応じて値引きします。資源エネルギー庁は、この値引きを名目に個人情報や手数料を求める不審な電話やメールがあるとして注意を呼びかけています。",
+          "sources": [{ "title": "資源エネルギー庁「電気・ガス料金支援」特設ページ", "url": "https://denkigas-gekihenkanwa.go.jp/" }]
+        },
+        {
+          "q": "「12月使用分」はいつの請求に出る？",
+          "a": "12月使用分は、原則として12月中の検針日から1月中の検針日までに使った分です。検針日は、契約している電力・ガス会社の明細で確かめてください。",
+          "sources": [{ "title": "資源エネルギー庁「電気・ガス料金支援」特設ページ", "url": "https://denkigas-gekihenkanwa.go.jp/" }]
+        }
+      ],
+      "links": [
+        { "href": "/roundups/price-hikes", "label": "電気・ガスなどの値上げの一覧" }
+      ],
+      "articles": ["electricity-bill-nov-2026-subsidy-ends", "tepco-energy-support-december", "yonden-electricity-bill-relief-2027"],
+      "match": "(電気|ガス).{0,10}(料金|代).{0,10}(支援|補助|値引き)",
+      "sources": [
+        { "title": "資源エネルギー庁「電気・ガス料金支援」特設ページ（電気・都市ガスをご利用するみなさまへ）", "url": "https://denkigas-gekihenkanwa.go.jp/" }
+      ],
+      "verifiedAt": "2026-11-12"
+    },
+    {
+      "slug": "amazon-black-friday-2026",
+      "category": "買い物",
+      "name": "Amazonブラックフライデー2026",
+      "title": "Amazonブラックフライデー2026はいつ？　11月開催、日程は11月19日午前に公開予定",
+      "description": "Amazonは2026年の「Amazon ブラックフライデー」を11月に開催すると発表しました。開催期間は11月19日（木）午前中に公開予定で、11月12日時点では未発表です。2025年は11月24日〜12月1日（先行セールは11月21日から）でした。",
+      "lead": "Amazonの公式ニュース（About Amazon）によると、2026年もブラックフライデーを11月に開催します。開催期間や目玉のセールは、11月19日（木）の午前中に公開されます。",
+      "keyDate": null,
+      "answer": {
+        "label": "Amazonブラックフライデー2026",
+        "items": [
+          { "label": "開催", "value": "2026年11月（日程は未発表）" },
+          { "label": "日程の公開", "value": "11月19日（木）午前中の予定" },
+          { "label": "2025年の日程", "value": "11月24日〜12月1日（先行セールは11月21日〜23日）" }
+        ],
+        "note": "2025年の日程は、Amazonが2025年11月14日に発表したものです。",
+        "source": { "title": "About Amazon「Amazon、2026年『Amazon ブラックフライデー』を開催」", "url": "https://www.aboutamazon.jp/news/retail/amazon-black-friday-2026" }
+      },
+      "after": {
+        "at": "2026-11-19T03:00:00Z",
+        "answer": {
+          "label": "Amazonブラックフライデー2026",
+          "items": [
+            { "label": "開催", "value": "2026年11月" },
+            { "label": "日程の公開", "value": "11月19日（木）午前中に公開と案内" },
+            { "label": "2025年の日程", "value": "11月24日〜12月1日（先行セールは11月21日〜23日）" }
+          ],
+          "note": "このページの確認日（11月12日）より後に発表された日程は、下の公式ページで確かめてください。",
+          "source": { "title": "About Amazon「Amazon、2026年『Amazon ブラックフライデー』を開催」", "url": "https://www.aboutamazon.jp/news/retail/amazon-black-friday-2026" }
+        }
+      },
+      "facts": [
+        { "label": "2026年の開催", "value": "11月（Amazonの発表）" },
+        { "label": "詳細の公開", "value": "11月19日（木）午前中の予定" },
+        { "label": "2025年の本番", "value": "11月24日（月・振替休日）0時〜12月1日（月）23時59分の8日間" },
+        { "label": "2025年の先行セール", "value": "11月21日（金）0時〜11月23日（日）23時59分" }
+      ],
+      "answers": [
+        {
+          "q": "Amazonブラックフライデー2026の開催期間は？",
+          "a": "11月12日時点では、開催期間は発表されていません。Amazonは11月に開催するとしていて、開催期間や注目のセール商品は11月19日（木）の午前中に公式ニュースのページで知らせると案内しています。",
+          "sources": [{ "title": "About Amazon「Amazon、2026年『Amazon ブラックフライデー』を開催」", "url": "https://www.aboutamazon.jp/news/retail/amazon-black-friday-2026" }]
+        },
+        {
+          "q": "去年（2025年）はいつだった？",
+          "a": "2025年の本番は11月24日（月・振替休日）0時から12月1日（月）23時59分までの8日間で、その前に11月21日（金）0時から23日（日）23時59分まで先行セールがありました。",
+          "sources": [{ "title": "About Amazon「Amazon、11月24日（月）から12月1日（月）まで開催する『Amazon ブラックフライデー』の注目の各種セールとキャンペーンを発表」", "url": "https://www.aboutamazon.jp/news/retail/amazon-black-friday-2025" }]
+        }
+      ],
+      "links": [],
+      "articles": ["amazon-black-friday-2026-japan"],
+      "match": "Amazon.{0,6}ブラックフライデー|ブラックフライデー.{0,12}Amazon",
+      "sources": [
+        { "title": "About Amazon「Amazon、2026年『Amazon ブラックフライデー』を開催」（2026年11月5日）", "url": "https://www.aboutamazon.jp/news/retail/amazon-black-friday-2026" },
+        { "title": "About Amazon「Amazon、11月24日（月）から12月1日（月）まで開催する『Amazon ブラックフライデー』の注目の各種セールとキャンペーンを発表」（2025年11月14日）", "url": "https://www.aboutamazon.jp/news/retail/amazon-black-friday-2025" }
+      ],
+      "verifiedAt": "2026-11-12"
+    }
+  ]
+}

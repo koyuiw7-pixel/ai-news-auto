@@ -38,6 +38,7 @@ const SOURCES = {
 } as const;
 
 const GUIDES = [
+  { href: "/dates/furusato-nozei-2026-deadline", label: "2026年分の期限（12月31日・確定申告・ワンストップ特例）" },
   { href: "/guides/furusato-how", label: "ふるさと納税のやり方" },
   { href: "/guides/furusato-limit", label: "上限額の仕組みと計算式" },
   { href: "/guides/furusato-onestop", label: "ワンストップ特例の条件" },
