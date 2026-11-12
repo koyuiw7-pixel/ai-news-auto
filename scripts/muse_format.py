@@ -85,6 +85,7 @@ def _parse(text: str) -> dict:
     head, body = m.group(1), m.group(2)
     data: dict = {"title": "", "genre": "", "sources": [], "notes": "", "body": body.strip()}
     lines = head.split("\n")
+    extra_notes: list[str] = []
     i = 0
     while i < len(lines):
         line = lines[i]
@@ -93,7 +94,10 @@ def _parse(text: str) -> dict:
             continue
         top = re.match(r"^([A-Za-z_]+):\s*(.*)$", line)
         if not top:
-            raise FormatError(f"先頭の項目の行が読めません（「{line.strip()[:40]}」）")
+            # 2026-11-12: 「何が変わる：…」のような日本語の行が先頭の項目に入って原稿ごと止まっていた（マクドナルド・ゆうパック・ヨコハマタイヤ）。
+            # 書き方の違いで落とさない（落とすのは嘘だけ）。サイトに出ないメモ（notes）の続きとして受け取る
+            extra_notes.append(line.strip())
+            continue
         key, value = top.group(1).lower(), top.group(2).strip()
         if value in ("|", ">", "|-", ">-"):
             block = []
@@ -122,6 +126,8 @@ def _parse(text: str) -> dict:
             data["sources"] = [{"url": s.get("url", ""), "name": s.get("name", ""), "facts": s.get("facts", "")} for s in items]
         elif key in ("title", "genre", "notes", "depth"):
             data[key] = _unquote(value)
+    if extra_notes:
+        data["notes"] = "\n".join([data["notes"], *extra_notes]).strip()
     return data
 
 
