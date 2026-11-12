@@ -362,6 +362,76 @@
    }
   ]
  },
+ "claude-interactive-connectors-open-apps": {
+  "at": "2026-11-12T00:59:17+00:00",
+  "hash": "59d44495ae8cb3d6",
+  "model": "gemini-3.5-flash-lite",
+  "rows": [
+   {
+    "currency": "USD",
+    "kind": "plan",
+    "monthlyPrice": 0,
+    "ok": true,
+    "plan": "Free",
+    "product": "Claude",
+    "quote": "| Free | $0/月 |  | 制限された使用量（5 時間ごと・毎週） |",
+    "vendor": "Anthropic"
+   },
+   {
+    "currency": "USD",
+    "kind": "plan",
+    "monthlyPrice": 20,
+    "ok": false,
+    "plan": "Pro",
+    "product": "Claude",
+    "quote": "| Pro | $17/月（年払い・一括$200） / $20/月（月払い） | 約3,480円（税込みの目安） | Free より多い使用量（5 時間ごと・毎週） |",
+    "reason": "比較表の行で製品が決まらない",
+    "vendor": "Anthropic"
+   },
+   {
+    "currency": "USD",
+    "kind": "plan",
+    "monthlyPrice": 100,
+    "ok": true,
+    "plan": "Max",
+    "product": "Claude",
+    "quote": "| Max | $100/月（月払い） | 約17,400円（税込みの目安） | Pro の 5 倍の使用量（5 時間ごと・毎週）、Claude Platform での開発に利用できる月額 $100 分の API クレジット |",
+    "vendor": "Anthropic"
+   },
+   {
+    "currency": "USD",
+    "kind": "plan",
+    "monthlyPrice": 200,
+    "ok": false,
+    "plan": "Ultra",
+    "product": "Claude",
+    "quote": "| Ultra | $200/月（月払い） | 約34,800円（税込みの目安） | 5 時間制限なし、Pro の 10 倍の使用量（毎週）、月額 $200 分の API クレジット（Max の $100 からアップグレード） |",
+    "reason": "比較表の行で製品が決まらない",
+    "vendor": "Anthropic"
+   },
+   {
+    "currency": "USD",
+    "kind": "plan",
+    "monthlyPrice": 25,
+    "ok": true,
+    "plan": "Team（スタンダードシート）",
+    "product": "Claude",
+    "quote": "| Team（スタンダードシート） | $20/人・月（年払い） / $25/人・月（月払い） | 約4,350円（税込みの目安） | すべてのClaude 機能、さらにProより多い使用量 |",
+    "vendor": "Anthropic"
+   },
+   {
+    "currency": "USD",
+    "kind": "plan",
+    "monthlyPrice": 125,
+    "ok": false,
+    "plan": "Team（プレミアムシート）",
+    "product": "Claude",
+    "quote": "| Team（プレミアムシート） | $100/人・月（年払い） / $125/人・月（月払い） | 約21,750円（税込みの目安） | スタンダードシートの5倍の使用量 |",
+    "reason": "比較表の行で製品が決まらない",
+    "vendor": "Anthropic"
+   }
+  ]
+ },
  "claude-personal-finance-beta": {
   "at": "2026-11-05T23:50:31+00:00",
   "hash": "fafecc6f606ebe52",
@@ -444,8 +514,8 @@
   "rows": []
  },
  "claude-whiteboards-sheets-data": {
-  "at": "2026-11-10T23:43:07+00:00",
-  "hash": "75f22059c737d853",
+  "at": "2026-11-12T00:59:21+00:00",
+  "hash": "7a96ed2cee8fcbf4",
   "model": "gemini-3.5-flash-lite",
   "rows": [
    {
@@ -455,7 +525,7 @@
     "ok": true,
     "plan": "Pro",
     "product": "Claude",
-    "quote": "Proは月払いで$20です（Anthropic公式の料金ページ、11/10確認）。円ではProが消費税込みで約3,470円です（サイソク編集部の計算）。",
+    "quote": "Proは月払いで$20です（Anthropic公式の料金ページ、11/10確認）。",
     "vendor": "Anthropic"
    },
    {
@@ -505,7 +575,7 @@
     "kind": "plan",
     "monthlyPrice": 25,
     "ok": true,
-    "plan": "Team（月払い）",
+    "plan": "Team",
     "product": "Claude",
     "quote": "| Team（スタンダードシート） | $20/人・月（年払い） / $25/人・月（月払い） | 約4,340円（税込みの目安） | すべてのClaude 機能、さらにProより多い使用量 |",
     "vendor": "Anthropic"
@@ -515,7 +585,7 @@
     "kind": "plan",
     "monthlyPrice": 125,
     "ok": false,
-    "plan": "Team（月払い）",
+    "plan": "Team",
     "product": "Claude",
     "quote": "| Team（プレミアムシート） | $100/人・月（年払い） / $125/人・月（月払い） | 約21,720円（税込みの目安） | スタンダードシートの5倍の使用量 |",
     "reason": "比較表の行で製品が決まらない",
@@ -606,6 +676,12 @@
    }
   ]
  },
+ "copilot-for-finance-skills-plugins": {
+  "at": "2026-11-12T00:59:18+00:00",
+  "hash": "1d21f7b2ce5ee783",
+  "model": "gemini-3.5-flash-lite",
+  "rows": []
+ },
  "copilot-in-sharepoint-october-2026": {
   "at": "2026-11-10T23:43:16+00:00",
   "hash": "e927a1b8a7fc326f",
@@ -644,9 +720,48 @@
   "model": "gemini-3.1-flash-lite",
   "rows": []
  },
+ "gemini-4-carbon-ai-gateway-half-price": {
+  "at": "2026-11-12T00:59:19+00:00",
+  "hash": "d5c6dcf1f3ec7537",
+  "model": "gemini-3.5-flash-lite",
+  "rows": [
+   {
+    "cachedInputPerM": null,
+    "currency": "USD",
+    "inputPerM": 2,
+    "kind": "api",
+    "monthlyPrice": null,
+    "ok": true,
+    "outputPerM": 10,
+    "plan": null,
+    "product": "Gemini 4 Argon",
+    "quote": "| Gemini 4 Argon | $2 | $10 | 約320円／約1,580円 |",
+    "vendor": "Google"
+   },
+   {
+    "cachedInputPerM": null,
+    "currency": "USD",
+    "inputPerM": 0.75,
+    "kind": "api",
+    "monthlyPrice": null,
+    "ok": true,
+    "outputPerM": 3.75,
+    "plan": null,
+    "product": "Gemini 3.8 Flash",
+    "quote": "| Gemini 3.8 Flash | $0.75 | $3.75 | 約120円／約590円 |",
+    "vendor": "Google"
+   }
+  ]
+ },
  "gemini-4-carbon-cybersecurity-model": {
   "at": "2026-11-10T23:43:11+00:00",
   "hash": "1486ffc08ac42ec8",
+  "model": "gemini-3.5-flash-lite",
+  "rows": []
+ },
+ "gemini-decisions-api-decision-1": {
+  "at": "2026-11-12T00:59:15+00:00",
+  "hash": "befe2b6e2280477f",
   "model": "gemini-3.5-flash-lite",
   "rows": []
  },
@@ -680,6 +795,24 @@
     "product": "Gemini Enterprise",
     "quote": "Googleの日本向け料金ページでは、Gemini EnterpriseのBusinessエディションは1ライセンス月額$21から、ADKで構築した独自エージェントを導入できるStandard / Plusエディションは1ライセンス月額$30からと案内されています。",
     "reason": "プラン名が1つに決まらない",
+    "vendor": "Google"
+   }
+  ]
+ },
+ "gemini-intelligence-japan-pixel-10": {
+  "at": "2026-11-12T00:59:22+00:00",
+  "hash": "e1e9bac55c6c532a",
+  "model": "gemini-3.5-flash-lite",
+  "rows": [
+   {
+    "currency": "JPY",
+    "kind": "plan",
+    "monthlyPrice": 2900,
+    "ok": false,
+    "plan": "Pro",
+    "product": "Google AI",
+    "quote": "Google AI Proは月2,900円です（Google公式の料金ページ、11/10確認）。",
+    "reason": "AIの製品名ではない",
     "vendor": "Google"
    }
   ]
@@ -775,75 +908,96 @@
   ]
  },
  "gemini-plans-daily-brief-added": {
-  "at": "2026-11-10T01:45:53+00:00",
-  "hash": "df0b32c36885cc7d",
+  "at": "2026-11-12T00:59:25+00:00",
+  "hash": "4625e9e1b775379a",
   "model": "gemini-3.5-flash-lite",
   "rows": [
    {
+    "cachedInputPerM": null,
     "currency": "JPY",
+    "inputPerM": null,
     "kind": "plan",
     "monthlyPrice": 0,
     "ok": true,
+    "outputPerM": null,
     "plan": "無料",
     "product": "Gemini",
     "quote": "| 無料 | 0円/月 |  | Gmail、Google ドライブ、Google フォト共通で利用できる 15 GB のクラウド ストレージ |",
     "vendor": "Google"
    },
    {
+    "cachedInputPerM": null,
     "currency": "JPY",
+    "inputPerM": null,
     "kind": "plan",
     "monthlyPrice": 725,
     "ok": true,
+    "outputPerM": null,
     "plan": "Google AI Plus",
     "product": "Gemini",
     "quote": "| Google AI Plus | 725円/月（月払い） |  | 無料版の 2 倍の使用量上限、Gmail、Google ドライブ、Google フォト共通で利用できる 400 GB のクラウド ストレージ |",
     "vendor": "Google"
    },
    {
+    "cachedInputPerM": null,
     "currency": "JPY",
+    "inputPerM": null,
     "kind": "plan",
     "monthlyPrice": 2900,
     "ok": true,
+    "outputPerM": null,
     "plan": "Google AI Pro",
     "product": "Gemini",
     "quote": "| Google AI Pro | 2,900円/月（月払い） |  | 無料版の 4 倍の使用量上限、Gmail、Google ドライブ、Google フォト共通で利用できる 5 TB のクラウド ストレージ |",
     "vendor": "Google"
    },
    {
+    "cachedInputPerM": null,
     "currency": "JPY",
+    "inputPerM": null,
     "kind": "plan",
     "monthlyPrice": 14500,
     "ok": true,
+    "outputPerM": null,
     "plan": "Google AI Ultra（AI Pro の 5 倍）",
     "product": "Gemini",
     "quote": "| Google AI Ultra（AI Pro の 5 倍） | 14,500円/月（月払い） |  | AI Pro の 5 倍の使用量上限 |",
     "vendor": "Google"
    },
    {
+    "cachedInputPerM": null,
     "currency": "JPY",
+    "inputPerM": null,
     "kind": "plan",
     "monthlyPrice": 32000,
     "ok": true,
+    "outputPerM": null,
     "plan": "Google AI Ultra（AI Pro の 20 倍）",
     "product": "Gemini",
     "quote": "| Google AI Ultra（AI Pro の 20 倍） | 32,000円/月（月払い） |  | AI Pro の 20 倍の使用量上限 |",
     "vendor": "Google"
    },
    {
+    "cachedInputPerM": null,
     "currency": "USD",
+    "inputPerM": null,
     "kind": "plan",
     "monthlyPrice": 21,
     "ok": true,
+    "outputPerM": null,
     "plan": "Business エディション",
     "product": "Gemini Enterprise",
     "quote": "| Gemini Enterprise Business エディション | $21/人・月から | 約3,650円（税込みの目安） | ユーザー数: 最大 300 人 |",
     "vendor": "Google"
    },
    {
+    "cachedInputPerM": null,
     "currency": "USD",
+    "inputPerM": null,
     "kind": "plan",
     "monthlyPrice": 30,
     "ok": false,
+    "outputPerM": null,
     "plan": "Standard / Plus エディション",
     "product": "Gemini Enterprise",
     "quote": "| Gemini Enterprise Standard / Plus エディション | $30/人・月から | 約5,210円（税込みの目安） |  |",
@@ -1142,6 +1296,66 @@
    }
   ]
  },
+ "google-ai-news-october-2026": {
+  "at": "2026-11-12T00:59:26+00:00",
+  "hash": "017e5088db2e57dc",
+  "model": "gemini-3.5-flash-lite",
+  "rows": [
+   {
+    "cachedInputPerM": null,
+    "currency": "JPY",
+    "inputPerM": null,
+    "kind": "plan",
+    "monthlyPrice": 2900,
+    "ok": false,
+    "outputPerM": null,
+    "plan": "Pro",
+    "product": "Google AI",
+    "quote": "日本向けのGoogle AI Proは月2,900円です（Google公式ページ、11/10確認）。",
+    "reason": "AIの製品名ではない",
+    "vendor": "Google"
+   },
+   {
+    "cachedInputPerM": null,
+    "currency": "USD",
+    "inputPerM": 2,
+    "kind": "api",
+    "monthlyPrice": null,
+    "ok": true,
+    "outputPerM": 10,
+    "plan": null,
+    "product": "Gemini 4 Argon",
+    "quote": "| Gemini 4 Argon | $2 | $10 | **Argon** |",
+    "vendor": "Google"
+   },
+   {
+    "cachedInputPerM": null,
+    "currency": "USD",
+    "inputPerM": 4,
+    "kind": "api",
+    "monthlyPrice": null,
+    "ok": true,
+    "outputPerM": 20,
+    "plan": null,
+    "product": "Claude Opus 5.5",
+    "quote": "| Claude Opus 5.5 | $4 | $20 | **Argonの約半額** |",
+    "vendor": "Anthropic"
+   },
+   {
+    "cachedInputPerM": null,
+    "currency": "USD",
+    "inputPerM": 10,
+    "kind": "api",
+    "monthlyPrice": null,
+    "ok": true,
+    "outputPerM": 50,
+    "plan": null,
+    "product": "GPT-6 Astra",
+    "quote": "| GPT-6 Astra（入力272K以下） | $10 | $50 | **Argonの約5分の1** |",
+    "vendor": "OpenAI"
+   }
+  ]
+ },
  "google-cloud-ai-october-2026-recap": {
   "at": "2026-11-03T01:15:00+00:00",
   "hash": "a33fe8480b2fee95",
@@ -1276,6 +1490,12 @@
     "vendor": "Anthropic"
    }
   ]
+ },
+ "kimi-k3-1-pro-highspeed-bedrock": {
+  "at": "2026-11-12T00:59:19+00:00",
+  "hash": "7ab9ee203aae3d49",
+  "model": "gemini-3.5-flash-lite",
+  "rows": []
  },
  "kimi-k3-open-frontier-intelligence-technical-report": {
   "at": "2026-10-27T10:53:59+00:00",

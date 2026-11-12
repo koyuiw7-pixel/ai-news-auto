@@ -1,13 +1,13 @@
 {
- "updatedAt": "2026-11-09T20:01:38.283874+00:00",
- "generatedAt": "2026-11-10T23:43:17+00:00",
+ "updatedAt": "2026-11-11T08:57:24.629000+00:00",
+ "generatedAt": "2026-11-12T00:59:27+00:00",
  "stats": {
-  "articlesScanned": 1038,
-  "candidateArticles": 75,
-  "rowsVerified": 49,
-  "rowsRejected": 66,
+  "articlesScanned": 1155,
+  "candidateArticles": 82,
+  "rowsVerified": 57,
+  "rowsRejected": 71,
   "plans": 19,
-  "apis": 12
+  "apis": 14
  },
  "items": [
   {
@@ -82,7 +82,7 @@
     "quote": "| Claude Opus 5.5 | $4 | $20 | 約630円/約3,170円 |"
    },
    "verdictSource": "claude-fast-mode-fable-5-2",
-   "confirmedIn": 1,
+   "confirmedIn": 2,
    "legacy": false
   },
   {
@@ -136,6 +136,56 @@
    "legacy": false
   },
   {
+   "id": "api-gemini3-8flash",
+   "kind": "api",
+   "vendor": "Google",
+   "companySlug": "google",
+   "product": "Gemini 3.8 Flash",
+   "plan": null,
+   "currency": "USD",
+   "monthly": null,
+   "input": 0.75,
+   "output": 3.75,
+   "cachedInput": null,
+   "japan": "unknown",
+   "status": null,
+   "free": null,
+   "source": {
+    "slug": "gemini-4-carbon-ai-gateway-half-price",
+    "title": "Gemini 4 Carbonとは？AI Gatewayでの使い方と料金",
+    "publishedAt": "2026-11-10T00:00:00+00:00",
+    "quote": "| Gemini 3.8 Flash | $0.75 | $3.75 | 約120円/約590円 |"
+   },
+   "verdictSource": null,
+   "confirmedIn": 1,
+   "legacy": false
+  },
+  {
+   "id": "api-gemini4argon",
+   "kind": "api",
+   "vendor": "Google",
+   "companySlug": "google",
+   "product": "Gemini 4 Argon",
+   "plan": null,
+   "currency": "USD",
+   "monthly": null,
+   "input": 2,
+   "output": 10,
+   "cachedInput": null,
+   "japan": "ok",
+   "status": "available",
+   "free": null,
+   "source": {
+    "slug": "gemini-4-carbon-ai-gateway-half-price",
+    "title": "Gemini 4 Carbonとは？AI Gatewayでの使い方と料金",
+    "publishedAt": "2026-11-10T00:00:00+00:00",
+    "quote": "| Gemini 4 Argon | $2 | $10 | 約320円/約1,580円 |"
+   },
+   "verdictSource": "google-ai-news-october-2026",
+   "confirmedIn": 2,
+   "legacy": false
+  },
+  {
    "id": "api-gpt6astra",
    "kind": "api",
    "vendor": "OpenAI",
@@ -151,13 +201,13 @@
    "status": "available",
    "free": null,
    "source": {
-    "slug": "openai-gpt-6-1-terra-announcement",
-    "title": "GPT-6.1 Terraとは？料金と使い方・性能を解説",
-    "publishedAt": "2026-10-26T00:00:00+00:00",
-    "quote": "| GPT-6 Astra(入力≤272K) | $10 | $50 | 約1,580円/約7,900円 |"
+    "slug": "google-ai-news-october-2026",
+    "title": "Google AI 10月発表まとめ　Gemini 4とは？",
+    "publishedAt": "2026-11-02T17:45:00+00:00",
+    "quote": "| GPT-6 Astra(入力272K以下) | $10 | $50 | **Argonの約5分の1** |"
    },
    "verdictSource": "openai-gpt6-astra-ultrafast-release",
-   "confirmedIn": 1,
+   "confirmedIn": 2,
    "legacy": false
   },
   {
@@ -326,22 +376,22 @@
    "status": "available",
    "free": true,
    "source": {
-    "slug": "claude-fast-mode-fable-5-2",
-    "title": "Claudeの料金ページ更新　Fable 5.2も高速モード対応",
-    "publishedAt": "2026-11-09T20:01:38.283874+00:00",
+    "slug": "claude-interactive-connectors-open-apps",
+    "title": "Claudeのインタラクティブコネクタとは？対応アプリと使い方",
+    "publishedAt": "2026-11-11T08:57:24.629000+00:00",
     "quote": "| Free | $0/月 | | 制限された使用量(5 時間ごと・毎週) |"
    },
-   "verdictSource": null,
-   "confirmedIn": 2,
+   "verdictSource": "claude-fast-mode-fable-5-2",
+   "confirmedIn": 3,
    "legacy": false
   },
   {
-   "id": "plan-claude-team",
+   "id": "plan-claude-pro",
    "kind": "plan",
    "vendor": "Anthropic",
    "companySlug": "anthropic",
    "product": "Claude",
-   "plan": "Team",
+   "plan": "Pro",
    "currency": "USD",
    "monthly": 20,
    "input": null,
@@ -351,10 +401,10 @@
    "status": "limited",
    "free": true,
    "source": {
-    "slug": "supabase-mcp-claude-issued-auth",
-    "title": "Supabase MCPのClaude認証とは？設定と注意点",
-    "publishedAt": "2026-11-03T07:00:00+00:00",
-    "quote": "Claudeの料金は、Teamのスタンダードシートが年払いで1人あたり月$20、Enterpriseが年払いで1人あたり月$20(最低20シート)です(Anthropic公式の料金ページ、11/3確認)。"
+    "slug": "claude-whiteboards-sheets-data",
+    "title": "Claude Whiteboards・Sheetsとは？料金と使い方",
+    "publishedAt": "2026-11-09T15:00:00+00:00",
+    "quote": "Proは月払いで$20です(Anthropic公式の料金ページ、11/10確認)。"
    },
    "verdictSource": null,
    "confirmedIn": 1,
@@ -386,31 +436,6 @@
    "legacy": false
   },
   {
-   "id": "plan-claude-pro",
-   "kind": "plan",
-   "vendor": "Anthropic",
-   "companySlug": "anthropic",
-   "product": "Claude",
-   "plan": "Pro",
-   "currency": "USD",
-   "monthly": 20,
-   "input": null,
-   "output": null,
-   "cachedInput": null,
-   "japan": "unknown",
-   "status": "limited",
-   "free": true,
-   "source": {
-    "slug": "claude-whiteboards-sheets-data",
-    "title": "Claude Whiteboards・Sheetsとは？料金と使い方",
-    "publishedAt": "2026-11-09T15:00:00+00:00",
-    "quote": "Proは月払いで$20です(Anthropic公式の料金ページ、11/10確認)。円ではProが消費税込みで約3,470円です(サイソク編集部の計算)。"
-   },
-   "verdictSource": null,
-   "confirmedIn": 1,
-   "legacy": false
-  },
-  {
    "id": "plan-claude-team",
    "kind": "plan",
    "vendor": "Anthropic",
@@ -426,9 +451,34 @@
    "status": "available",
    "free": true,
    "source": {
-    "slug": "claude-fast-mode-fable-5-2",
-    "title": "Claudeの料金ページ更新　Fable 5.2も高速モード対応",
-    "publishedAt": "2026-11-09T20:01:38.283874+00:00",
+    "slug": "claude-interactive-connectors-open-apps",
+    "title": "Claudeのインタラクティブコネクタとは？対応アプリと使い方",
+    "publishedAt": "2026-11-11T08:57:24.629000+00:00",
+    "quote": "| Team(スタンダードシート) | $20/人・月(年払い) / $25/人・月(月払い) | 約4,350円(税込みの目安) | すべてのClaude 機能、さらにProより多い使用量 |"
+   },
+   "verdictSource": "claude-fast-mode-fable-5-2",
+   "confirmedIn": 2,
+   "legacy": false
+  },
+  {
+   "id": "plan-claude-team",
+   "kind": "plan",
+   "vendor": "Anthropic",
+   "companySlug": "anthropic",
+   "product": "Claude",
+   "plan": "Team(月払い)",
+   "currency": "USD",
+   "monthly": 25,
+   "input": null,
+   "output": null,
+   "cachedInput": null,
+   "japan": "unknown",
+   "status": "limited",
+   "free": true,
+   "source": {
+    "slug": "claude-personal-finance-beta",
+    "title": "Claude Personal Financeとは？日本で使える？料金も",
+    "publishedAt": "2026-11-05T00:00:00+00:00",
     "quote": "| Team(スタンダードシート) | $20/人・月(年払い) / $25/人・月(月払い) | 約4,350円(税込みの目安) | すべてのClaude 機能、さらにProより多い使用量 |"
    },
    "verdictSource": null,
@@ -441,7 +491,7 @@
    "vendor": "Anthropic",
    "companySlug": "anthropic",
    "product": "Claude",
-   "plan": "Team(月払い)",
+   "plan": "Team",
    "currency": "USD",
    "monthly": 25,
    "input": null,
@@ -476,13 +526,13 @@
    "status": "available",
    "free": true,
    "source": {
-    "slug": "claude-fast-mode-fable-5-2",
-    "title": "Claudeの料金ページ更新　Fable 5.2も高速モード対応",
-    "publishedAt": "2026-11-09T20:01:38.283874+00:00",
-    "quote": "| Max | $100/月(月払い) | 約17,420円(税込みの目安) | Pro の 5 倍の使用量(5 時間ごと・毎週)、Claude Platform での開発に利用できる月額 $100 分の API クレジット |"
+    "slug": "claude-interactive-connectors-open-apps",
+    "title": "Claudeのインタラクティブコネクタとは？対応アプリと使い方",
+    "publishedAt": "2026-11-11T08:57:24.629000+00:00",
+    "quote": "| Max | $100/月(月払い) | 約17,400円(税込みの目安) | Pro の 5 倍の使用量(5 時間ごと・毎週)、Claude Platform での開発に利用できる月額 $100 分の API クレジット |"
    },
-   "verdictSource": null,
-   "confirmedIn": 3,
+   "verdictSource": "claude-fast-mode-fable-5-2",
+   "confirmedIn": 4,
    "legacy": false
   },
   {
