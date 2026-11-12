@@ -6,40 +6,27 @@
   "companyName": "NVIDIA",
   "category": "AIモデル",
   "overview": {
-    "text": "NemotronはNVIDIAが提供するAIモデル群です。2026年10月に新モデルやデータが発表されました。",
+    "text": "Nemotronは、NVIDIAが提供する特化型で効率的なAIエージェントを作るためのオープンなモデルやデータ群です。2026年10月から11月にかけて、音声認識モデルや個人情報検出用データなどが発表されました。",
     "sources": [
-      "nemotron-pii-japan-finance-datasets",
+      "korea-openshell-agentic-ai-security",
       "nvidia-nemotron-35-transcribe"
     ]
   },
   "facts": [
     {
-      "label": "料金",
-      "value": "オープンウェイト（無償公開）",
-      "sources": [
-        "nvidia-nemotron-35-transcribe"
-      ]
-    },
-    {
       "label": "提供開始",
-      "value": "2026年11月10日",
-      "sources": [
-        "nemotron-pii-japan-finance-datasets"
-      ]
-    },
-    {
-      "label": "日本での提供",
-      "value": "利用可能",
+      "value": "2026年10月・11月に順次公開",
       "sources": [
         "nemotron-pii-japan-finance-datasets",
         "nvidia-nemotron-35-transcribe"
       ]
     },
     {
-      "label": "使える場所",
-      "value": "Hugging Face、AWS",
+      "label": "日本での提供",
+      "value": "日本から利用可能",
       "sources": [
-        "nemotron-pii-japan-finance-datasets"
+        "nemotron-pii-japan-finance-datasets",
+        "nvidia-nemotron-35-transcribe"
       ]
     },
     {
@@ -53,31 +40,25 @@
   ],
   "capabilities": [
     {
-      "text": "日本語文書向けPII検出用データ10万件を提供。",
+      "text": "日本語文書向けの個人情報検出用データ10万件などを提供しています。",
       "sources": [
         "nemotron-pii-japan-finance-datasets"
       ]
     },
     {
-      "text": "金融向け合成ペルソナを900万件公開。",
+      "text": "金融版の合成ペルソナ900万件を活用できます。",
       "sources": [
         "nemotron-pii-japan-finance-datasets"
       ]
     },
     {
-      "text": "120B MoEでテキスト・画像・動画を統合処理。",
-      "sources": [
-        "https://aws.amazon.com/blogs/machine-learning/accelerate-agentic-ai-with-nvidia-nemotron-models-on-amazon-eks-and-sagemaker-hyperpod-eks/"
-      ]
-    },
-    {
-      "text": "40言語の音声文字起こしと話者識別を単一モデルで実現。",
+      "text": "40言語の文字起こしや31言語の翻訳、話者識別を1つのモデルで処理できます。",
       "sources": [
         "nvidia-nemotron-35-transcribe"
       ]
     },
     {
-      "text": "TensorRT Edge-LLMでNemotron-3.5 Lightningをエッジ実行。",
+      "text": "文章専用モデルなどを数コマンドで動かせます。",
       "sources": [
         "nvidia-tensorrt-edge-llm-edge-ai"
       ]
@@ -85,107 +66,70 @@
   ],
   "pricing": [
     {
-      "text": "モデルとデータはオープンウェイトで無償公開。",
+      "text": "音声認識モデルなどの重みやデータはオープンソースとして無償公開されています。",
       "sources": [
         "nvidia-nemotron-35-transcribe"
       ]
     },
     {
-      "text": "実行にはGPU環境が必要で、クラウド費用が別途発生。",
+      "text": "実行には対応するNVIDIA製GPU環境が必要です。",
       "sources": [
-        "nvidia-nemotron-35-transcribe",
-        "nvidia-tensorrt-edge-llm-edge-ai"
+        "nvidia-nemotron-35-transcribe"
       ]
     }
   ],
   "japan": [
     {
-      "text": "日本からHugging FaceやAWSで利用できます。",
+      "text": "Hugging Faceなどのプラットフォームにアクセスできる環境があれば、日本から利用できます。",
       "sources": [
-        "nemotron-pii-japan-finance-datasets"
-      ]
-    },
-    {
-      "text": "TensorRT Edge-LLMは日本でも使用可能です。",
-      "sources": [
-        "nvidia-tensorrt-edge-llm-edge-ai"
+        "nemotron-pii-japan-finance-datasets",
+        "nvidia-nemotron-35-transcribe"
       ]
     }
   ],
   "howto": [
     {
-      "text": "Hugging Faceでデータセットやモデルをダウンロード。",
+      "text": "データセットはHugging Faceで公開されています。",
       "sources": [
-        "nemotron-pii-japan-finance-datasets",
+        "nemotron-pii-japan-finance-datasets"
+      ]
+    },
+    {
+      "text": "音声認識モデルなどはHugging FaceやModelScopeを通じて提供されています。",
+      "sources": [
         "nvidia-nemotron-35-transcribe"
-      ]
-    },
-    {
-      "text": "AWSのEKSやSageMakerでモデルをデプロイ。",
-      "sources": [
-        "https://aws.amazon.com/blogs/machine-learning/accelerate-agentic-ai-with-nvidia-nemotron-models-on-amazon-eks-and-sagemaker-hyperpod-eks/"
-      ]
-    },
-    {
-      "text": "trtedgeコマンドでローカルにモデル取得し実行。",
-      "sources": [
-        "nvidia-tensorrt-edge-llm-edge-ai"
       ]
     }
   ],
   "differences": [
     {
-      "text": "Nemotron 3 Ultraと比べコストが約10分の1に削減。",
-      "sources": [
-        "nvidia-nemoclaw-agent-platform"
-      ]
-    },
-    {
-      "text": "Super VLは120B MoEで前世代より規模が大幅拡大。",
-      "sources": [
-        "https://aws.amazon.com/blogs/machine-learning/accelerate-agentic-ai-with-nvidia-nemotron-models-on-amazon-eks-and-sagemaker-hyperpod-eks/"
-      ]
-    },
-    {
-      "text": "Transcribeは1モデルで文字起こし・翻訳・話者識別を統合。",
+      "text": "Nemotron 3.5 Transcribeでは、文字起こしや話者識別、翻訳などを1つのモデルに統合しています。",
       "sources": [
         "nvidia-nemotron-35-transcribe"
-      ]
-    },
-    {
-      "text": "Edge-LLMは数コマンドでエッジデバイスに展開可能。",
-      "sources": [
-        "nvidia-tensorrt-edge-llm-edge-ai"
       ]
     }
   ],
   "faq": [
     {
       "q": "無料で使える？",
-      "a": "モデルとデータはオープンウェイトで無償です。ただし実行環境の費用は別です。",
+      "a": "モデルの重みなどはオープンソースとして無償公開されていますが、実行には対応するGPU環境が必要です。",
       "sources": [
         "nvidia-nemotron-35-transcribe"
       ]
     },
     {
-      "q": "どんなデータが提供されている？",
-      "a": "日本語PIIデータ10万件と金融ペルソナ900万件が公開されています。",
+      "q": "どんなデータを取得できる？",
+      "a": "日本語の個人情報検出用データ10万件や金融向け合成ペルソナ900万件などが提供されています。",
       "sources": [
         "nemotron-pii-japan-finance-datasets"
       ]
     },
     {
-      "q": "エッジデバイスで動かせますか？",
-      "a": "TensorRT Edge-LLMで数コマンドだけでエッジに展開できます。",
+      "q": "どこからダウンロードできる？",
+      "a": "Hugging FaceやModelScopeを通じて公開されています。",
       "sources": [
-        "nvidia-tensorrt-edge-llm-edge-ai"
-      ]
-    },
-    {
-      "q": "セキュリティはどう確保されていますか？",
-      "a": "OpenShellでサンドボックス化し、ポリシーでアクセスを制御します。",
-      "sources": [
-        "nvidia-nemoclaw-agent-platform"
+        "nemotron-pii-japan-finance-datasets",
+        "nvidia-nemotron-35-transcribe"
       ]
     }
   ],
@@ -196,14 +140,9 @@
       "event": "Nemotron 3.5 Transcribeを公開"
     },
     {
-      "date": "2026-10-31",
-      "slug": "nvidia-nemotron-halloween-monsterhouse",
-      "event": "MonsterHouseのローカル音声エージェントを公開"
-    },
-    {
       "date": "2026-11-10",
       "slug": "nemotron-pii-japan-finance-datasets",
-      "event": "日本語PIIデータと金融ペルソナを公開"
+      "event": "日本語の個人情報検出データ10万件を公開"
     }
   ],
   "related": [
@@ -226,17 +165,9 @@
     "nvidia-nemotron-halloween-monsterhouse",
     "nvidia-nemotron-35-transcribe"
   ],
-  "signature": "3b0618b9a237d451",
-  "primarySignature": "85044aeccd18f19c",
-  "model": "cloudflare:@cf/openai/gpt-oss-120b",
+  "signature": "f6a8de0263d8c0c9",
+  "primarySignature": "73aaa45fd74468c0",
+  "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-10-29T17:50:17+00:00",
-  "updatedAt": "2026-11-10T04:28:58+00:00",
-  "officialSources": {
-    "https://aws.amazon.com/blogs/machine-learning/accelerate-agentic-ai-with-nvidia-nemotron-models-on-amazon-eks-and-sagemaker-hyperpod-eks/": {
-      "title": "Accelerate agentic AI with NVIDIA Nemotron models on Amazon EKS and SageMaker HyperPod EKS",
-      "publisher": "AWS 公式ブログ",
-      "kind": "web",
-      "checkedAt": "2026-11-12"
-    }
-  }
+  "updatedAt": "2026-11-12T11:46:26+00:00"
 }

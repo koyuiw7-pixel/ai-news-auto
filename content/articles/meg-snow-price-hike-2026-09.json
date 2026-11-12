@@ -66,14 +66,13 @@
   "videoTitle": "雪印メグミルク2026年9月値上げ138品目、ネオソフト140gは10.0%",
   "publishedAt": "2026-07-29T15:00:00+00:00",
   "generatedAt": "2026-11-12T11:33:56.287761+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/meg-snow-price-hike-2026-09-figure-cfdcf473.jpg",
   "model": "anthropic-api:claude-haiku-5-5",
   "affiliates": [],
   "newsType": "pricing",
   "todayActions": [
-    "公式の別紙「2026年9月 価格改定 対象商品一覧表」で、よく買う商品が載っているかを確かめる",
-    "9月1日以降、いつも買う店でバターやチーズの値段が変わったかを見る",
-    "値上げ前にまとめ買いするなら、家で食べきれる量にとどめる"
+    "別紙PDFで、よく買うバターやマーガリンが対象に載っているかを確かめる",
+    "9月1日以降に、いつも買う店で同じ商品の値段が変わったかを見る"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -106,5 +105,109 @@
   "detectedAt": "2026-11-12T11:34:44+00:00",
   "searchTitle": "雪印メグミルク値上げ、9月1日から　138品目・最大10.0%",
   "layout": "noir",
-  "summaryLine": "雪印メグミルクが9月1日から家庭用138品目を値上げ、マーガリンは最大**10.0%**"
+  "summaryLine": "雪印メグミルクが9月1日から家庭用138品目を値上げ、マーガリンは最大**10.0%**",
+  "insight": [
+    {
+      "text": "オープン価格の商品は、参考として「メーカー出荷価格改定率+3.7%~+17.7%」と書かれています。ナチュレ 恵 megumiや牧場の朝ヨーグルトなどが対象で、改定後の希望小売価格は示されていません。",
+      "source": "https://www.meg-snow.com/files_publish/contents/35147/01.pdf"
+    },
+    {
+      "text": "改定額の欄が空欄の商品（例「雪印コーヒー 1000ml」「なめらかプリン 70g×3」）は、一覧に改定の数字が書かれていません。",
+      "source": "https://www.meg-snow.com/files_publish/contents/35147/01.pdf"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "雪印メグミルク 対象商品一覧表（別紙PDF）",
+      "url": "https://www.meg-snow.com/files_publish/contents/35147/01.pdf",
+      "source": "https://www.meg-snow.com/files_publish/contents/35147/01.pdf",
+      "howTo": [
+        "ニュースリリースTOP",
+        "詳細PDFはこちら"
+      ],
+      "note": "乳食品は希望小売価格（税別）の改定率、市販用の市乳商品は改定額（円、税別）で示されています。"
+    },
+    {
+      "name": "雪印メグミルク ニュースリリース（価格改定のお知らせ）",
+      "url": "https://www.meg-snow.com/news/detail/35147",
+      "source": "https://www.meg-snow.com/news/detail/35147"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "別紙PDFで、よく買うバターやマーガリンが対象に載っているかを確かめる",
+      "source": "https://www.meg-snow.com/files_publish/contents/35147/01.pdf",
+      "steps": [
+        "ニュースリリースの「詳細PDFはこちら」を押す",
+        "「部門」欄の「バター」「油脂」「プロセスチーズ」で探す",
+        "商品名と内容量が一致するかを見る"
+      ],
+      "url": "https://www.meg-snow.com/files_publish/contents/35147/01.pdf"
+    },
+    {
+      "action": "9月1日以降に、いつも買う店で同じ商品の値段が変わったかを見る",
+      "source": "https://www.meg-snow.com/news/detail/35147",
+      "steps": [
+        "いつも買う店の売り場で同じ商品の値札を見る",
+        "9月1日より前の値段と比べる",
+        "マーガリンは油脂の部門で改定率が大きい"
+      ]
+    }
+  ],
+  "cause": {
+    "text": "原材料価格や包装資材価格の上昇、人件費や物流コストの高騰が続く見通しで、企業努力で吸収できる範囲を超えたため価格改定を実施すると発表されています。",
+    "status": "stated",
+    "source": "https://www.meg-snow.com/news/detail/35147"
+  },
+  "worries": [
+    {
+      "q": "バターやチーズは、どのくらい上がるの？",
+      "a": "乳食品全体では改定率1.8%~10.0%です。バターは+2.4%~+3.7%、6Pチーズは+2.7%~+2.8%と別紙に書かれています。",
+      "source": "https://www.meg-snow.com/files_publish/contents/35147/01.pdf",
+      "action": "よく買う商品の名前と改定率を、別紙の一覧PDFで確かめましょう。"
+    },
+    {
+      "q": "マーガリンは、本当にそんなに上がるの？",
+      "a": "別紙では、ネオソフト 140gが+10.0%で、乳食品の中で最も大きい改定率です。ネオソフト 300gは+9.5%、ネオソフトハーフ 140gは+7.5%と書かれています。",
+      "source": "https://www.meg-snow.com/files_publish/contents/35147/01.pdf",
+      "action": "いつも使うマーガリンの商品名と内容量を、一覧PDFの油脂の欄で探しましょう。"
+    },
+    {
+      "q": "飲み物やデザートは、いくら上がるの？",
+      "a": "市販用の市乳商品は改定率2.1%~8.7%です。別紙では改定額（税別）で示され、雪印コーヒー 200mlは+5円、デザートの多くは+10円です。",
+      "source": "https://www.meg-snow.com/files_publish/contents/35147/01.pdf",
+      "action": "いつも買う飲み物やデザートが、一覧の改定額の欄に載っているかを見ましょう。"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "オープン価格の上がり幅は、ここに書いてある",
+    "cause": "なぜ値上げするのか、発表の理由",
+    "steps": "よく買う商品が対象か、先に確かめる",
+    "desk": "対象商品の一覧は、この表で探せる",
+    "worries": "バターやマーガリン、飲み物は何％上がる？"
+  },
+  "depthAt": "2026-11-12T11:48:06+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "雪印メグミルク、9月1日から138品目値上げ",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-12T11:50:04+00:00"
+  },
+  "imageFocus": {
+    "x": 0.453,
+    "y": 0.414,
+    "box": [
+      0.05,
+      0.054,
+      0.856,
+      0.774
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/meg-snow-price-hike-2026-09-figure-cfdcf473.jpg"
+  }
 }

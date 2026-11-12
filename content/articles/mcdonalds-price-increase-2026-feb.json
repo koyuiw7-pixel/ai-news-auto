@@ -72,13 +72,13 @@
   "videoTitle": "マクドナルド2026年の値上げ、ビッグマック単品500円に　2月25日から約6割の商品",
   "publishedAt": "2026-11-12T11:28:06.296242+00:00",
   "generatedAt": "2026-11-12T11:28:20.434223+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/mcdonalds-price-increase-2026-feb-figure-5dd4c1eb.jpg",
   "model": "anthropic-api:claude-haiku-5-5",
   "affiliates": [],
   "newsType": "pricing",
   "todayActions": [
-    "いつも頼む商品が一覧の対象かどうか、公式の「価格改定 対象商品例」で確かめる",
-    "行く店が特殊立地店舗などでないか、店頭か公式アプリで価格を確かめる"
+    "いつも頼む商品が価格改定の対象かを、対象商品例の一覧で確かめる",
+    "行く店が特殊立地店舗などかを、改定幅の確認ページで調べる"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -153,5 +153,150 @@
       "before": "570円／840円",
       "after": "580円／850円"
     }
-  ]
+  ],
+  "insight": [
+    {
+      "text": "店舗の所在地域や立地条件で、店頭価格や改定幅が異なる店舗（特殊立地店舗、特定店舗）があります。2月25日(水)以降の情報は、同日正午に反映予定です。",
+      "source": "https://www.mcdonalds.co.jp/company/news/2026/0224a/"
+    },
+    {
+      "text": "「セット500」は、デリバリーおよび一部の店舗では販売・実施しておりません。「マックデリバリー®」の改定幅も異なります。",
+      "source": "https://www.mcdonalds.co.jp/company/news/2026/0224a/"
+    },
+    {
+      "text": "「チョコフラッペ オレオ® クッキー」「マンゴースムージー」は、価格が据え置かれますが、一部店舗では販売していません。",
+      "source": "https://www.mcdonalds.co.jp/media_library/34903/file.pdf"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "価格改定 対象商品例（店頭価格）",
+      "url": "https://www.mcdonalds.co.jp/media_library/34903/file.pdf",
+      "source": "https://www.mcdonalds.co.jp/company/news/2026/0224a/",
+      "howTo": [
+        "ニュースリリース",
+        "価格改定と商品リニューアルのお知らせ"
+      ],
+      "note": "対象商品例は全商品の一覧ではありません。改定後の店頭価格が並んでいます。"
+    },
+    {
+      "name": "特殊立地店舗・特定店舗の改定幅の確認",
+      "url": "https://map.mcdonalds.co.jp/?g=2",
+      "source": "https://www.mcdonalds.co.jp/company/news/2026/0224a/",
+      "note": "店舗の所在地域や立地条件によって、改定幅が異なる店舗を確認できます。"
+    },
+    {
+      "name": "日本マクドナルド公式アプリ",
+      "url": "https://www.mcdonalds.co.jp/shop/mobile/",
+      "source": "https://www.mcdonalds.co.jp/media_library/34903/file.pdf",
+      "howTo": [
+        "お店・サービス",
+        "日本マクドナルド公式アプリ"
+      ],
+      "note": "店頭や公式サイトと合わせて、新しい価格を確認できます。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "いつも頼む商品が価格改定の対象かを、対象商品例の一覧で確かめる",
+      "source": "https://www.mcdonalds.co.jp/media_library/34903/file.pdf",
+      "steps": [
+        "ニュースリリースの※1の「こちら」を開く",
+        "「対象商品例（店頭価格）」で商品名を探す",
+        "「従来価格」と「新価格」を比べる"
+      ],
+      "url": "https://www.mcdonalds.co.jp/media_library/34903/file.pdf"
+    },
+    {
+      "action": "行く店が特殊立地店舗などかを、改定幅の確認ページで調べる",
+      "source": "https://www.mcdonalds.co.jp/company/news/2026/0224a/",
+      "steps": [
+        "ニュースリリースの※1の「改定幅が異なる店舗はこちら」を開く",
+        "店舗の所在地域や立地条件を確かめる",
+        "2月25日以降は同日正午に反映予定と確認する"
+      ],
+      "url": "https://map.mcdonalds.co.jp/?g=2"
+    }
+  ],
+  "cause": {
+    "text": "原材料費、エネルギーコスト、人件費上昇の長期化を受けたものと発表されています。引き続きお客様にご満足いただける店舗体験をご提供することが目的です。",
+    "status": "background",
+    "source": "https://www.mcdonalds.co.jp/company/news/2026/0224a/"
+  },
+  "worries": [
+    {
+      "q": "いつも頼むセットは値上げ対象？",
+      "a": "ビッグマックセットは750円から770円、ダブルチーズバーガーセットは700円から740円になります。ハンバーガーやマックチキンのセット500は据え置きです。",
+      "source": "https://www.mcdonalds.co.jp/media_library/34903/file.pdf",
+      "action": "いつも頼む商品を、対象商品例の新価格で確かめる。"
+    },
+    {
+      "q": "近所の店も同じ値段？",
+      "a": "店舗の所在地域や立地条件によって、店頭価格や改定幅が異なる店舗（特殊立地店舗、特定店舗）があります。店舗ごとの価格は、店頭、公式サイト、公式アプリで確認できます。",
+      "source": "https://www.mcdonalds.co.jp/company/news/2026/0224a/",
+      "action": "行く店の価格を店頭か公式アプリで確かめる。",
+      "actionSource": "https://www.mcdonalds.co.jp/media_library/34903/file.pdf"
+    },
+    {
+      "q": "デリバリーで頼むと値段はどうなる？",
+      "a": "マックデリバリーは改定幅が異なります。「セット500」は、デリバリーおよび一部の店舗では販売・実施しておりません。",
+      "source": "https://www.mcdonalds.co.jp/company/news/2026/0224a/",
+      "action": "デリバリーで頼む前に、注文したい商品の価格を公式サイトで確かめる。",
+      "actionSource": "https://www.mcdonalds.co.jp/media_library/34903/file.pdf"
+    },
+    {
+      "q": "安く済ませるなら何がある？",
+      "a": "「セット500」は、マックポークのセットが復活し、2種から3種に拡充されました。ハンバーガー、マックチキン、マックポークの3種から選べます。",
+      "source": "https://www.mcdonalds.co.jp/company/news/2026/0224a/",
+      "action": "安く済ませたいときは、店頭でセット500の取り扱いを確かめる。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "いつものビッグマックセットを続けるか迷う",
+      "situation": "ビッグマックセットをよく頼む",
+      "recommend": "急がなくてよい。負担の差を見て決めればよい",
+      "reason": "ビッグマックセットは税込750円から770円に改定されます。ハンバーガーやマックチキンのセット500は据え置きです。",
+      "source": "https://www.mcdonalds.co.jp/media_library/34903/file.pdf"
+    },
+    {
+      "question": "注文する商品が値上げ対象か分からない",
+      "situation": "いつも頼む商品が一覧にあるか迷っている",
+      "recommend": "一覧で確かめてから判断すればよい",
+      "reason": "対象商品例は全商品の一覧ではありません。店頭価格は2026年2月24日までと、2月25日からの価格が並んで示されています。",
+      "source": "https://www.mcdonalds.co.jp/media_library/34903/file.pdf"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "店によって値段が違う。デリバリーも別",
+    "cause": "なぜ値上げするのか、発表された理由",
+    "steps": "行く店の値段は今日のうちに確かめよう",
+    "desk": "値段を確かめる公式の窓口",
+    "worries": "ビッグマックは？近所の店は？",
+    "guide": "いつものセットを続けるか迷ったら"
+  },
+  "depthAt": "2026-11-12T11:48:35+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "500円",
+    "label": "ビッグマック単品",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-12T11:50:52+00:00"
+  },
+  "imageFocus": {
+    "x": 0.429,
+    "y": 0.429,
+    "box": [
+      0.031,
+      0.054,
+      0.828,
+      0.804
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/mcdonalds-price-increase-2026-feb-figure-5dd4c1eb.jpg"
+  }
 }

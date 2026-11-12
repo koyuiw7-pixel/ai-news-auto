@@ -75,13 +75,13 @@
   "videoTitle": "日本郵便ゆうパック、2026年10月1日から値上げ　関東から近畿は60サイズ1,090円",
   "publishedAt": "2026-11-12T11:35:08.711965+00:00",
   "generatedAt": "2026-11-12T11:36:24.150355+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/yupack-price-hike-oct-2026-figure-267db617.jpg",
   "model": "anthropic-api:claude-haiku-5-5",
   "affiliates": [],
   "newsType": "pricing",
   "todayActions": [
-    "よく使う発着地の運賃を、日本郵便の「国内の料金表」の荷物のページで確かめる",
-    "フリマアプリやネットショップの送料設定を、10月1日からの新しい運賃に合わせて見直す"
+    "よく使う発着地の運賃を、日本郵便の国内の料金表の荷物ページで確かめる",
+    "郵便局アプリで送り状を作成し、ゆうパックスマホ割で決済する"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -120,5 +120,134 @@
   "qualityScore": 88,
   "detectedAt": "2026-11-12T11:37:29+00:00",
   "layout": "noir",
-  "summaryLine": "ゆうパックの基本運賃が10月1日から平均約**10%**上がり、関東から近畿の60サイズは1,090円になる。"
+  "summaryLine": "ゆうパックの基本運賃が10月1日から平均約**10%**上がり、関東から近畿の60サイズは1,090円になる。",
+  "insight": [
+    {
+      "text": "改定後も、ゆうパックスマホ割で関東から近畿の60サイズは910円になる。改定前の990円より安くなると書かれている。",
+      "source": "https://www.post.japanpost.jp/service/send/domestic/delivery/yu-pack/"
+    },
+    {
+      "text": "クリックポストは郵便局窓口への差し出しから、郵便差出箱への投函に変わる。サイズ上限も3辺合計60cm・長辺34cm以内に変わる。",
+      "source": "https://files.japanpost.jp/assets/34d9d11432734cfaa759e78fe395b688/9f91670d385b45abb05aac0502c7acb8/20260703_02_01.pdf"
+    },
+    {
+      "text": "ゆうパックの料金表の「サイズ運賃」は、基本運賃から「－180円」となるのはゆうパックスマホ割の場合。割引は郵便局受取割引と継続利用割引を同時に使える。",
+      "source": "https://www.post.japanpost.jp/service/send/domestic/delivery/yu-pack/"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "日本郵便 お客様サービス相談センター",
+      "url": "https://www.post.japanpost.jp/send/domestic/charge/list/parcel.html",
+      "source": "https://files.japanpost.jp/assets/34d9d11432734cfaa759e78fe395b688/9f91670d385b45abb05aac0502c7acb8/20260703_02_01.pdf",
+      "howTo": [
+        "日本郵便トップ",
+        "送る",
+        "料金を計算する・調べる",
+        "国内の料金表",
+        "荷物"
+      ],
+      "phone": "0120-23-28-86",
+      "hours": "全日 8:00~21:00",
+      "note": "ガイダンスが流れたら「*」のあとに「1」を選択する。携帯電話からは0570-046-666（通話料はお客さま負担）。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "よく使う発着地の運賃を、日本郵便の国内の料金表の荷物ページで確かめる",
+      "source": "https://www.post.japanpost.jp/send/domestic/charge/list/parcel.html",
+      "steps": [
+        "日本郵便トップの「送る」を開く",
+        "「料金を計算する・調べる」を選ぶ",
+        "「国内の料金表」の「荷物」を開く",
+        "発着地の県名のリンクを押す"
+      ],
+      "url": "https://www.post.japanpost.jp/send/domestic/charge/list/parcel.html"
+    },
+    {
+      "action": "郵便局アプリで送り状を作成し、ゆうパックスマホ割で決済する",
+      "source": "https://www.post.japanpost.jp/service/send/domestic/delivery/yu-pack/",
+      "steps": [
+        "郵便局アプリを開く",
+        "送り状（あて名ラベル）を作成する",
+        "アプリ内で決済する"
+      ],
+      "url": "https://www.post.japanpost.jp/service/useful/app/post-office.html"
+    }
+  ],
+  "cause": {
+    "text": "日本郵便は、諸物価や人件費の上昇に伴うコストの増加が経営に大きな影響を与えているため、将来にわたって安定的な物流サービスを続けるために改定すると説明しています。",
+    "status": "stated",
+    "source": "https://files.japanpost.jp/assets/34d9d11432734cfaa759e78fe395b688/9f91670d385b45abb05aac0502c7acb8/20260703_02_01.pdf"
+  },
+  "worries": [
+    {
+      "q": "値上げで送料はどれくらい増える？",
+      "a": "関東から近畿あての60サイズは990円から1,090円、170サイズは3,750円から4,500円になります（いずれも税込）。ゆうパケットは厚さ1cm以内が250円から360円になります。",
+      "source": "https://files.japanpost.jp/assets/34d9d11432734cfaa759e78fe395b688/9f91670d385b45abb05aac0502c7acb8/20260703_02_01.pdf",
+      "action": "送る区間の運賃を料金表で確かめ、フリマアプリなどの送料設定を見直す。",
+      "actionSource": "https://www.post.japanpost.jp/send/domestic/charge/list/parcel.html"
+    },
+    {
+      "q": "割引を使えば差額を減らせる？",
+      "a": "ゆうパックスマホ割は基本運賃から180円引きで、関東から近畿あての60サイズは910円になります。郵便局受取割引（100円）と継続利用割引（10%）も使えます。",
+      "source": "https://www.post.japanpost.jp/service/send/domestic/delivery/yu-pack/",
+      "action": "郵便局アプリで送り状を作り、アプリ内で決済する。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "送る回数が少ないけど、対策は必要？",
+      "situation": "月に数個しか送らない",
+      "recommend": "急がなくてよい。料金表で運賃を確かめる程度で足りる",
+      "reason": "関東から近畿の60サイズなら差額は1個100円。料金表で確かめれば対応できる。",
+      "source": "https://www.post.japanpost.jp/send/domestic/charge/list/parcel.html"
+    },
+    {
+      "question": "ゆうパックスマホ割を使うべき？",
+      "situation": "毎月たくさん送る",
+      "recommend": "検討する価値がある",
+      "reason": "ゆうパックスマホ割は基本運賃から180円引き。継続利用割引（前月までの1年で10個以上発送で10%割引）と併用できる。",
+      "source": "https://www.post.japanpost.jp/service/send/domestic/delivery/yu-pack/"
+    },
+    {
+      "question": "薄い荷物はゆうパケットとクリックポストどちら？",
+      "situation": "厚さ1cm以内の本や衣類を送る",
+      "recommend": "サイズと投函方法が合うか確かめて比べる",
+      "reason": "ゆうパケットは一律360円（改定前は厚さ1cm以内250円）。クリックポストは240円（改定前185円）。クリックポストは郵便差出箱に投函できるものが条件。",
+      "source": "https://files.japanpost.jp/assets/34d9d11432734cfaa759e78fe395b688/9f91670d385b45abb05aac0502c7acb8/20260703_02_01.pdf"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "改定後も割引で910円、クリックポストは投函が条件に",
+    "cause": "なぜ値上げするのか、日本郵便の説明",
+    "steps": "今日できる、運賃と送料の見直し",
+    "desk": "運賃を調べるならここ",
+    "worries": "薄い荷物や送料は、どれくらい上がる？",
+    "guide": "送る回数に応じて、どう対策するか"
+  },
+  "depthAt": "2026-11-12T11:47:35+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "ゆうパック10月1日から値上げ",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-12T11:49:35+00:00"
+  },
+  "imageFocus": {
+    "x": 0.5,
+    "y": 0.423,
+    "box": [
+      0.059,
+      0.054,
+      0.941,
+      0.792
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/yupack-price-hike-oct-2026-figure-267db617.jpg"
+  }
 }
