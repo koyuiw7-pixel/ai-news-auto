@@ -102,7 +102,16 @@ class ParserTest(unittest.TestCase):
         argon = models["gemini-4-argon"]
         self.assertEqual((argon["input"], argon["output"], argon["cacheRead"]), (2, 10, 0.1))
         self.assertEqual(argon["scheduled"], [{"from": "2026-12-01", "input": 4, "output": 20, "cacheRead": 0.2}])
-        self.assertEqual(models["gemini-4-carbon"]["status"], "not_listed")
+        # Gemini 4 Carbon は 2026-11-11 から公式の料金ページに載った（写しは 2026-11-12 に取り直し）
+        carbon = models["gemini-4-carbon"]
+        self.assertNotIn("status", carbon)
+        self.assertEqual((carbon["input"], carbon["output"], carbon["cacheRead"]), (2, 10, 0.1))
+        self.assertEqual(carbon["scheduled"], [{"from": "2026-12-01", "input": 4, "output": 20, "cacheRead": 0.2}])
+        # 料金ページから Carbon の節が消えたら、作らずに「記載なし」にする
+        start = md.index('## Gemini 4 Carbon')
+        gone = md[:start] + md[md.index("\n## ", start + 1) + 1:]
+        missing = {m["id"]: m for m in w.extract_gemini_api({"pricing": gone}, TODAY)["models"]}
+        self.assertEqual(missing["gemini-4-carbon"]["status"], "not_listed")
         # 予定日を過ぎたら新しい価格が「今の価格」になる
         later = {m["id"]: m for m in w.extract_gemini_api({"pricing": md}, date(2026, 12, 1))["models"]}
         self.assertEqual((later["gemini-4-argon"]["input"], later["gemini-4-argon"]["output"]), (4, 20))

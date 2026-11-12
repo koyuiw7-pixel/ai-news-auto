@@ -361,11 +361,30 @@ def apply(path_in: Path, offset: int = 0, count: int = 0, dry_run: bool = False)
     return 0
 
 
+def canonical_names_problems(record: dict, new: str) -> list[str]:
+    """書き直した見出しが「とは」の決まりに合うか（合わない案は使わない）"""
+    import canonical_names  # noqa: PLC0415
+
+    return canonical_names.about_problems({**record, "title": new})
+
+
+def about_name_problems(record: dict) -> list[str]:
+    """「〜とは」の見出しの決まり（台帳 A68 ⑤: 名前を見出しの最初の20字以内と本文の最初の1文に）に合わないところ。
+    2026-11-11 ai-knowledge-spine-enterprise-strategy: 「…資産に変える「ナレッジ スパイン」とは」が門を通らずに公開された"""
+    import canonical_names  # noqa: PLC0415 - 必要なときだけ読む
+
+    out = canonical_names.about_problems(record)
+    if out:
+        out.append("名前を見出しの先頭に置いて「〇〇とは　答え」の形にするか、本文の最初の1文に名前が無ければ「とは」を使わない見出しにする")
+    return out
+
+
 def fix_one(record: dict) -> str | None:
     """書き方の不合格が残った見出しを1本だけ書き直す（記事を書き出す前。record をその場で書き換える）。
     直したら説明を返す。直せなければ None（機械でそろえた見出しのまま出す。品質ゲートの警告に残る）"""
     title = str(record.get("title") or "")
     problems = hn.title_problems(title) + hn.click_problems(record)  # 台帳 A50（速報は click_problems が空）
+    problems += about_name_problems(record)  # 台帳 A68 ⑤
     if not title or not problems or not record.get("slug"):
         return None
     try:
@@ -374,7 +393,7 @@ def fix_one(record: dict) -> str | None:
         return f"見出しの書き直しに失敗（{str(error)[:80]}）。そのまま出す"
     prop = got.get(record["slug"]) or {}
     new = hn.normalize_title(prop.get("title", ""), record)
-    if not new or (bad := check_title(record, new)):
+    if not new or (bad := check_title(record, new) + canonical_names_problems(record, new)):
         return f"見出しの書き直し案が不合格（{new} / {'; '.join(bad) if new else '空'}）。元の見出しのまま出す"
     # 記事に無い主張を足していないかを安いモデルでも確かめる（2026-11-07 台帳 A50。確かめられなければ元の見出しのまま）
     if ungrounded := llm_grounding_problems(record, new):

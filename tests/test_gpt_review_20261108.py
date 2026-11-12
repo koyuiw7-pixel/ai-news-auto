@@ -144,6 +144,18 @@ class ValidateTest(unittest.TestCase):
         self.assertEqual({k: v for k, v in new.items() if k not in ("title", "gptReview")},
                          {k: v for k, v in a.items() if k != "title"})
 
+    def test_stale_search_title_is_removed_after_rewrite(self):
+        # 2026-11-11 kyuden-discount-jan-mar-2027: 書き直しで本文から「手続き」が消え、searchTitle だけ古い言葉のまま残った
+        ok = {**article(), "searchTitle": "九州電力の電気料金、標準家庭で月367円値上げ"}
+        kept = g.apply_patch(ok, {"lede": ok["lede"] + "　"}, {}, NOW)
+        self.assertEqual(kept["searchTitle"], ok["searchTitle"])  # 記事の言葉のままなら残す
+        self.assertNotIn("searchTitle", kept["gptReview"])
+        stale = {**article(), "searchTitle": "九州電力の電気料金　手続き不要で割引"}
+        new = g.apply_patch(stale, {"lede": stale["lede"] + "　"}, {}, NOW)
+        self.assertNotIn("searchTitle", new)
+        self.assertIn("検索の題名", new["gptReview"]["searchTitle"])
+        self.assertEqual(stale["searchTitle"], "九州電力の電気料金　手続き不要で割引")  # 元の記事は書き換えない
+
 
 class ChatGPTTest(unittest.TestCase):
     def runner(self, answer: str, code: int = 0, stderr: str = ""):

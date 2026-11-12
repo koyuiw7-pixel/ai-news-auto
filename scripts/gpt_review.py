@@ -470,7 +470,25 @@ def apply_patch(article: dict, patch: dict, data: dict, now: datetime) -> dict:
         "fixes": [f for f in (data.get("fixes") or []) if isinstance(f, dict)][:8],
         "notes": str(data.get("notes") or "")[:400],
     }
+    if note := recheck_search_title(new):
+        new["gptReview"]["searchTitle"] = note
     return new
+
+
+def recheck_search_title(article: dict) -> str | None:
+    """書き直しで本文・リードから言葉が消えると、前に付けた searchTitle が記事に無い言葉の題名になる（台帳 A29）。
+    main.write_article と同じ search_title.revalidate で確かめ直し、合わなくなった値は外す（<title> は記事の題名に戻る）。
+    確かめられないときも外す（根拠のない題名を残さない）"""
+    if "searchTitle" not in article:
+        return None
+    _scripts_path()
+    try:
+        import search_title  # noqa: PLC0415
+
+        return search_title.revalidate(article)
+    except Exception as error:  # noqa: BLE001
+        value = article.pop("searchTitle", None)
+        return f"検索の題名を確かめられないので外した（{value} / {type(error).__name__}）"
 
 
 def dump(article: dict) -> str:

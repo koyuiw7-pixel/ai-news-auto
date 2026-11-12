@@ -60,6 +60,27 @@ class ClickTitleRulesTest(unittest.TestCase):
         main_src = (ROOT / "scripts" / "main.py").read_text("utf-8")
         self.assertIn("headline_normalize.click_problems(record)", main_src)
 
+    def test_about_title_without_leading_name_goes_to_fix_one(self):
+        """2026-11-11: 「…資産に変える「ナレッジ スパイン」とは」が書き出しの門を通った（台帳 A68 ⑤ は指示文だけだった）"""
+        body = "AIエージェントを業務に使う企業は、教訓を共有できます。\n\n「ナレッジ スパイン」は、教訓を保存・更新する共有システムです。"
+        rec = {"slug": "spine-x", "title": "AIエージェントを自社特有の資産に変える「ナレッジ スパイン」とは", "lede": "202社を調査しました。",
+               "highlights": [], "body": body}
+        self.assertTrue(rewrite_titles.about_name_problems(rec))
+        # 本文の最初の1文に名前が無いのに「とは」を残した案は採らない
+        with patch.object(rewrite_titles, "_ask", return_value={"spine-x": {"title": "「ナレッジ スパイン」とは　AIエージェントの教訓を共有、202社を調査", "seo_title": ""}}), \
+                patch.object(rewrite_titles, "llm_grounding_problems", return_value=[]):
+            self.assertIn("不合格", rewrite_titles.fix_one(dict(rec)))
+        # 「とは」を使わない案、または本文の最初の1文に名前があるときの名前が先の案は採る
+        with patch.object(rewrite_titles, "_ask", return_value={"spine-x": {"title": "AIエージェントの教訓を「ナレッジ スパイン」で共有　202社を調査", "seo_title": ""}}), \
+                patch.object(rewrite_titles, "llm_grounding_problems", return_value=[]):
+            self.assertIn("見出しを書き直した", rewrite_titles.fix_one(dict(rec)))
+        named = {**rec, "slug": "spine-y", "body": "「ナレッジ スパイン」は、教訓を保存・更新する共有システムです。"}
+        with patch.object(rewrite_titles, "_ask", return_value={"spine-y": {"title": "「ナレッジ スパイン」とは　AIエージェントの教訓を共有、202社を調査", "seo_title": ""}}), \
+                patch.object(rewrite_titles, "llm_grounding_problems", return_value=[]):
+            self.assertIn("見出しを書き直した", rewrite_titles.fix_one(named))
+        self.assertEqual(rewrite_titles.about_name_problems(named), [])
+        self.assertIn("rewrite_titles.about_name_problems(record)", (ROOT / "scripts" / "main.py").read_text("utf-8"))
+
     # ---- 書き直した見出しの根拠（2026-11-07 コーディネーター指摘: 例1が「個人情報が狙われる」を作り、事業者を事業所に変えた）
     SOUMU = {"slug": "soumu-x", "title": "総務省、事業者に不正アクセス対策の徹底を要請　AI悪用の侵入も指摘",
              "lede": "総務省は11月6日、事業者に不正アクセス対策の徹底を求める注意喚起を出しました。", "highlights": [],
