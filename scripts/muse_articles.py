@@ -4,7 +4,7 @@
 流れ（Muse には鍵を渡さない。Muse はオーナーの Mac のフォルダにファイルを置くだけ）:
   1. Mac: ~/Downloads/saisoku-articles/*.md → scripts/muse_articles_push.py が content/muse_inbox/ に入れて main に push（launchd で25分ごと）
   2. Actions（muse_inbox.yml。入稿の push ですぐ・30分ごとの予約でも。記事づくりの回とは別の列）: このスクリプトが content/muse_inbox/ を読む
-     - 形の確かめ（scripts/muse_format.py）→ 重複（直近7日の記事・同じ発表）→ 今日の本数（段の上限 WEB_STAGE_TARGET の中に数える）
+     - 形の確かめ（scripts/muse_format.py）→ 重複（直近7日の記事と見出し・固有名詞が重なる／同じ原稿の出し直し。出典の URL が同じだけでは重複にしない）→ 今日の本数（段の上限 WEB_STAGE_TARGET の中に数える）
      - 公式の出典ページを取りに行き（報道は出典にしない W31）、Muse の原稿を土台に、ふつうの記事と同じ型（リード・要点・かんたん版・
        FAQ・判定カード）に整える（本文は Muse の構成・文をできるだけ残し、資料と食い違う所・決まりに合わない所だけ直す）
      - ふつうの記事と同じ門: 公開前の門（薄い・お知らせ・報道・主題外）→ 品質の門（形＋公式ページとの事実確認）。
@@ -300,11 +300,74 @@ def is_roundup(data: dict, name: str = "") -> bool:
     return bool(ROUNDUP_RE.search(" ".join([name, data.get("title") or ""])))
 
 
+# 2026-11-13 オーナー「落とすのは嘘だけ」「とにかく数字」: 出典の URL が同じ、というだけでは重複にしない
+#（7日で37本が、話題は別なのに国税庁などの同じページを引いただけで落ちていた。点検 audit_20261113）。
+# 同じ出典を引く記事は、題名も似ているとき（同じ記事の出し直し）だけ止める。ふつうの重複（題名 0.5 以上）より低い境目にする。
+# 37本の実績: 本当の出し直しは 0.25〜0.47（ハウス食品・電気代 v3・出産手当金・国民年金・マイナ保険証）、別の話題は 0.22 以下
+SAME_SOURCE_JACCARD = 0.25
+STEM_SUFFIX_RE = re.compile(r"(?:[-_ ]r\d*|[-_ ]?v\d+|[-_ ]\d{3,4})+$", re.I)
+
+
+def topic_stem(name: str) -> tuple[str, str]:
+    """ファイル名 →（日付, 題名の幹）。出し直しの印（-r・v2・v2-0038）を外して比べる。形が違えば ("", "")"""
+    m = muse_format.NAME_RE.match(muse_format.nfc(name or ""))
+    if not m:
+        return "", ""
+    return m.group(1), STEM_SUFFIX_RE.sub("", m.group(3)).strip().lower()
+
+
+def _recent_articles(days: int) -> list[dict]:
+    import dedupe  # noqa: PLC0415
+
+    since = datetime.now(timezone.utc) - timedelta(days=days)
+    out = []
+    for path in sorted(dedupe.ARTICLES_DIR.glob("*.json")):
+        try:
+            row = json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, ValueError):
+            continue
+        when = dedupe._article_time(row) if isinstance(row, dict) else None  # noqa: SLF001
+        if when is None or when < since:
+            continue
+        row.setdefault("slug", path.stem)
+        out.append(row)
+    return out
+
+
+def _article_urls(row: dict) -> set[str]:
+    import dedupe  # noqa: PLC0415
+
+    urls = [row.get("sourceUrl")] + [s.get("url") for s in row.get("museSources") or [] if isinstance(s, dict)]
+    urls += [u.get("sourceUrl") for u in row.get("updates") or [] if isinstance(u, dict)]
+    return {dedupe._norm_url(str(u)) for u in urls if u}  # noqa: SLF001
+
+
+def resubmission_of(data: dict, name: str = "", articles: list[dict] | None = None) -> str | None:
+    """同じ記事の出し直しか（この7日の記事と比べる）。
+    1. 同じ日付・同じ題名の幹のファイル（v2・-r を外して同じ）から、もう記事が出ている
+    2. 一番の出典が同じ記事で、題名も似ている（SAME_SOURCE_JACCARD 以上）
+    出典が同じでも題名が別の話題なら None（別の疑問に答える記事として通す）"""
+    import dedupe  # noqa: PLC0415
+
+    rows = _recent_articles(DEDUPE_DAYS) if articles is None else articles
+    day, stem = topic_stem(name)
+    url = dedupe._norm_url(str((data.get("sources") or [{}])[0].get("url") or ""))  # noqa: SLF001
+    grams = dedupe.bigrams(data.get("title") or "")
+    for row in rows:
+        slug = str(row.get("slug") or "")
+        if stem and (day, stem) == topic_stem(str(row.get("museFile") or "")):
+            return f"同じ原稿の出し直し（{row.get('museFile')}）: {slug[:40]}"
+        if url and url in _article_urls(row):
+            score = dedupe.jaccard(grams, dedupe.bigrams(str(row.get("title") or "")))
+            if score >= SAME_SOURCE_JACCARD:
+                return f"同じ出典で見出しも類似（{score:.2f}）: {slug[:40]}"
+    return None
+
+
 def duplicate_of(data: dict, name: str = "") -> str | None:
     import dedupe  # noqa: PLC0415
     import story  # noqa: PLC0415
 
-    url = data["sources"][0]["url"]
     recent = dedupe.load_recent(DEDUPE_DAYS)
     if is_followup(data, name) or is_roundup(data, name):
         # 続報は同じ出典・同じ固有名詞が当たり前。見出しがほぼ同じ（同じ記事の出し直し）のときだけ重複にする
@@ -313,10 +376,14 @@ def duplicate_of(data: dict, name: str = "") -> str | None:
             if dedupe.jaccard(grams, entry["bigrams"]) >= dedupe.JACCARD_DUP:
                 return f"見出しがほぼ同じ: {entry['label'][:40]}"
         return None
-    if hit := recent.find(data["title"], url):
+    # 出典の URL は渡さない（URL が同じだけでは重複にしない。取り下げた記事の出典も、Muse が正しく書き直すのは止めない）。
+    # 見出しの類似・固有名詞の一致は今までどおり
+    if hit := recent.find(data["title"], ""):
+        return hit
+    if hit := resubmission_of(data, name):
         return hit
     try:
-        same = story.Recent(DEDUPE_DAYS).match(data["title"], url)
+        same = story.Recent(DEDUPE_DAYS).match(data["title"], "")
     except Exception:  # noqa: BLE001
         same = None
     return str(same[0] if isinstance(same, (tuple, list)) else same) if same else None
