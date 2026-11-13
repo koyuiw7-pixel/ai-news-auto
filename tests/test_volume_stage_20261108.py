@@ -63,7 +63,8 @@ class UpcomingDateTest(unittest.TestCase):
 class LateKeptAfterPageDateTest(unittest.TestCase):
     def test_generation_step_keeps_late_life_items(self):
         src = (ROOT / "scripts" / "web_articles.py").read_text("utf-8")
-        self.assertIn('if not major and not (item.get("late") and life_late_ok(item)):', src)
+        # 2026-11-13: 見送る古さは too_old（96時間。いま起きている話題は48時間）。late の暮らし・お金の候補は今までどおり残す
+        self.assertIn('if not major and too_old(item) and not (item.get("late") and life_late_ok(item)):', src)
 
 
 if __name__ == "__main__":

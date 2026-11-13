@@ -94,6 +94,13 @@ DEDUPE_DAYS = 5
 # 元の発表からこれ以上たったものは、通常のニュース記事にしない（scripts/story.py・lib/indexing.ts の48時間と同じ）。
 # 大きなニュースで、まだ記事が無いものだけは「速報ではない」と明記して作る（late。ニュース用サイトマップ・速報投稿に出さない）
 STALE_HOURS = 48
+# 2026-11-13 オーナー「とにかく数字」（点検 audit_20261113_pipeline: 48時間の決まりで7日に48件を見送り。検索で読まれた型は速さと関係が薄い）:
+# 速報でない通常のレーンは、発表から STALE_SKIP_HOURS（96時間）までは見送らず「速報ではない」形（late）で作る。
+# 48時間が守っていたもの（コードの注記で確かめた）は2つで、どちらも残す:
+#   1) ニュース用サイトマップ・速報投稿に古い発表を出さない（lib/indexing.ts NEWS_MAX_SOURCE_AGE_MS）→ 48時間を超えたら late の印を付ける
+#   2) 障害・情報流出・台風など「いま起きている」話題を終わってから書かない（台帳 A57 の注記）→ live_event は今までどおり48時間まで
+STALE_SKIP_HOURS = int(os.environ.get("STALE_SKIP_HOURS", "96"))
+LIVE_EVENT_WIDE = {"outage", "transport", "weather"}
 LATE_NOTE = (
     "\n\n# この発表の時期（必ず守る）\n"
     "この発表は{date}（日本時間）に公開されたもので、今日の速報ではありません。本文の冒頭近くで「{date}に発表された」と日付を書き、"
@@ -1286,8 +1293,28 @@ def cap_with_page_date(item: dict, page: dict | None) -> bool:
 
 
 def is_stale(item: dict) -> bool:
+    """発表から48時間を超えたか（超えたら速報ではない形 late で作る。ニュース用サイトマップ・速報投稿に出さない）"""
     age = source_age(item)
     return bool(age and age > timedelta(hours=STALE_HOURS))
+
+
+def live_event(item: dict) -> bool:
+    """障害・情報流出・注意喚起・交通の乱れ・天気など「いま起きている」話題か（終わってから書かないよう、48時間までしか作らない）"""
+    title = item.get("title") or ""
+    if (item.get("_mix") or news_mix.classify(item)) == "alert":
+        return True
+    return public_interest.wide_category(title, item.get("source_slug") or "") in LIVE_EVENT_WIDE
+
+
+def too_old(item: dict) -> bool:
+    """通常のレーンで見送る古さか: いま起きている話題は48時間、それ以外は STALE_SKIP_HOURS（96時間）を超えたとき"""
+    age = source_age(item)
+    limit = STALE_HOURS if live_event(item) else max(STALE_SKIP_HOURS, STALE_HOURS)
+    return bool(age and age > timedelta(hours=limit))
+
+
+def stale_limit(item: dict) -> int:
+    return STALE_HOURS if live_event(item) else max(STALE_SKIP_HOURS, STALE_HOURS)
 
 
 def source_header(item: dict) -> str:
@@ -2053,6 +2080,7 @@ def main() -> int:
     parser.add_argument("--fast-meta", default="", help="速報レーン: Worker が渡す JSON（id・title・source・publishedAt・detectedAt）")
     args = parser.parse_args()
     args.fast_url = [u.strip() for u in args.fast_url if u and u.strip()]
+    args.days = max(args.days, math.ceil(STALE_SKIP_HOURS / 24))  # 96時間までの発表を拾う（--days 3 のままだと72時間で切れる）
     fast_mode = bool(args.fast_url or fast_lane.parse_meta(args.fast_meta))
 
     llm._load_env_local()
@@ -2780,11 +2808,11 @@ def main() -> int:
         if is_stale(cand) and not cand.get("fast"):
             if not major and life_late_ok(cand):
                 cand["late"] = True  # 暮らし・お金の公式の発表は LIFE_LATE_HOURS まで「速報ではない」形で作る（台帳 A57）
-            elif not major:
+            elif not major and too_old(cand):
                 hours = int(source_age(cand).total_seconds() // 3600)
-                mark(state, cand, skipped=True, reason=f"stale: 発表から{hours}時間（{STALE_HOURS}時間を超えた発表は通常の記事にしない）")
-                return "drop", f"古い発表（{STALE_HOURS}時間超）"
-            cand["late"] = True  # 大きなニュースで記事がまだ無いものだけ、速報ではない形で作る
+                mark(state, cand, skipped=True, reason=f"stale: 発表から{hours}時間（{stale_limit(cand)}時間を超えた発表は通常の記事にしない）")
+                return "drop", f"古い発表（{stale_limit(cand)}時間超）"
+            cand["late"] = True  # 48時間を超えた発表（大きなニュース・96時間までの通常の発表）は、速報ではない形で作る
         # 同じ実行で先に扱った同じ話題: 本家の記事ができていれば続報へ、本家が再試行待ちなら次回へ
         act = in_run_action(cand)
         if act and act[0] == "ok":
@@ -2860,8 +2888,8 @@ def main() -> int:
             hours = int(source_age(item).total_seconds() // 3600)
             # 暮らし・お金・これから始まる日の発表（A57 ③・A58 ④）は、記事ページの日付で直したあとも7日までなら late の形で作る。
             # 2026-11-08 まではここで48時間の決まりを当て直していたため、候補の段で通した late の候補が全部ここで落ちていた
-            if not major and not (item.get("late") and life_late_ok(item)):
-                log(f"   [skip] 発表から{hours}時間たっている（{STALE_HOURS}時間を超えた発表は通常の記事にしない）")
+            if not major and too_old(item) and not (item.get("late") and life_late_ok(item)):
+                log(f"   [skip] 発表から{hours}時間たっている（{stale_limit(item)}時間を超えた発表は通常の記事にしない）")
                 mark(state, item, skipped=True, reason=f"stale: 発表から{hours}時間（記事ページの日付）")
                 run_status[item["id"]] = ("failed", feeds.source_rank(item))
                 return
