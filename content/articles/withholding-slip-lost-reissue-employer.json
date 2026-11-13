@@ -64,7 +64,7 @@
   "videoTitle": "源泉徴収票をなくした人は税務署でなく勤務先へ 辞めた会社でも再発行を頼めます",
   "publishedAt": "2026-11-13T06:11:28.181695+00:00",
   "generatedAt": "2026-11-13T06:14:04.722847+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/withholding-slip-lost-reissue-employer-figure-18916b47.jpg",
   "model": "anthropic-api:claude-haiku-5-5",
   "affiliates": [],
   "newsType": "policy",
@@ -75,8 +75,8 @@
     }
   ],
   "todayActions": [
-    "手元に前の勤務先の源泉徴収票があるかを確かめ、なければ給与・人事担当へ再発行を依頼する（必要な年分と受け取り方を伝える）",
-    "一度も受け取っていない場合は、勤務先へ交付を求めた記録（メールや電話のメモ）を残しておく"
+    "給与・人事担当へ、なくした年分と受け取り方を伝えて再発行を頼む",
+    "一度も受け取っていないなら、勤務先に交付を求めた記録を残しておく"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -148,5 +148,150 @@
   "relatedSlugs": [
     "withholding-slip-issue-deadline-japan"
   ],
-  "angleOf": "withholding-slip-issue-deadline-japan"
+  "angleOf": "withholding-slip-issue-deadline-japan",
+  "insight": [
+    {
+      "text": "国税相談専用ダイヤルは、携帯電話（定額制サービス契約者以外）だと132円／3分かかります。定額制サービス契約者は、定額制サービスの上限内であれば料金は発生しません（税込）。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/shirabekata/9200.htm"
+    },
+    {
+      "text": "税務署の総合窓口は原則9時から15時までです。ただし開庁時間内（8時30分から17時）に来署すれば各種手続は利用できるものの、可能な限り受付時間内に来署するよう求められています。",
+      "source": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/hotei/23100017.htm"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "税についての相談窓口（国税相談専用ダイヤル）",
+      "url": "https://www.nta.go.jp/taxes/shiraberu/shirabekata/9200.htm",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/shirabekata/9200.htm",
+      "howTo": [
+        "税の情報・手続・用紙",
+        "税について調べる",
+        "税についての上手な調べ方",
+        "税についての相談窓口"
+      ],
+      "phone": "0570-00-5901",
+      "hours": "8時30分〜17時00分（土日祝日及び12月29日〜1月3日を除く）",
+      "note": "音声ガイダンスで「2」源泉徴収、年末調整、支払調書を選ぶ。050で始まるIP電話などでは使えない場合があり、その時は所轄の税務署の代表電話にかけ、音声で「1」を選ぶ。"
+    },
+    {
+      "name": "源泉徴収票不交付の届出（所轄の税務署長へ提出）",
+      "url": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/hotei/23100017.htm",
+      "source": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/hotei/23100017.htm",
+      "howTo": [
+        "申告手続・用紙",
+        "申告・申請・届出等、用紙（手続の案内・様式）",
+        "税務手続の案内（税目別一覧）",
+        "F 法定調書関係",
+        "F5-4 源泉徴収票不交付の届出手続"
+      ],
+      "hours": "総合窓口は9時から15時まで（令和8年10月1日から）",
+      "note": "添付は給与支払明細書が保存されていればその写しと、勤務先に源泉徴収票の交付を求めたことが分かる書類等。e-Taxソフトで作成するか、書面で持参・送付する。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "給与・人事担当へ、なくした年分と受け取り方を伝えて再発行を頼む",
+      "source": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/hotei/23100017.htm",
+      "steps": [
+        "手元の書類で、なくした年分と勤務先名を確認する",
+        "勤務先の給与・人事担当へ連絡する",
+        "必要な年分と受け取り方（郵送か電子データか）を伝える",
+        "依頼した日と方法、相手の返事をメモに残す"
+      ]
+    },
+    {
+      "action": "一度も受け取っていないなら、勤務先に交付を求めた記録を残しておく",
+      "source": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/hotei/23100017.htm",
+      "steps": [
+        "勤務先に交付を求めた日時と方法をメモする",
+        "メールや電話の記録を保存する",
+        "交付期限を過ぎたら届出書を作成する",
+        "給与支払明細書の写しがあれば一緒に用意する"
+      ],
+      "url": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/hotei/23100017.htm"
+    }
+  ],
+  "cause": {
+    "text": "源泉徴収票は、給与を支払った勤務先が受給者全員に交付する書類です。交付期限は在職中の分が翌年1月31日まで、年の途中で退職した分が退職の日以後1か月以内と定められています。",
+    "status": "background",
+    "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/hotei/7411.htm"
+  },
+  "worries": [
+    {
+      "q": "なくした源泉徴収票は税務署で再発行してもらえますか",
+      "a": "もらえません。既に交付された源泉徴収票の再発行は、不交付の届出の対象外と国税庁が案内しています。再発行の相談先は、源泉徴収票を支払った勤務先です。",
+      "source": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/hotei/23100017.htm",
+      "action": "なくした源泉徴収票は、給与を支払った勤務先の給与・人事担当へ連絡し、必要な年分を伝えて再発行を頼む。",
+      "actionSource": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/hotei/7411.htm"
+    },
+    {
+      "q": "電子データでもらった源泉徴収票も紙で請求できる？",
+      "a": "電子交付をした場合でも、受給者から請求があるときは書面で交付しなければならないとされています。請求方法は決められておらず、電子メールや書面など適宜の方法で差し支えありません。",
+      "source": "https://www.nta.go.jp/publication/pamph/hotei/denshikofu-qa/answer.htm",
+      "action": "電子メールなど適宜の方法で、勤務先へ書面での交付を請求する。請求した日と方法は控えておく。"
+    },
+    {
+      "q": "転職先の年末調整に前の勤務先の分が必要です",
+      "a": "前の勤務先から交付を受けた源泉徴収票などで確認できないときは、年末調整はできず、確定申告で所得税の精算をすることになります。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2674.htm",
+      "action": "転職先の年末調整に間に合うよう、前の勤務先の給与・人事担当へ早めに再発行を依頼する。",
+      "actionSource": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/hotei/7411.htm"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "なくした源泉徴収票、どこに頼む？",
+      "situation": "受け取った後になくした",
+      "recommend": "勤務先へ再発行を依頼する",
+      "reason": "既に交付された分の再発行は不交付の届出の対象外です。交付義務は給与を支払った勤務先にあるため、再発行は勤務先へ頼みます。届出では再発行されません。",
+      "source": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/hotei/23100017.htm"
+    },
+    {
+      "question": "なくした源泉徴収票、どこに頼む？",
+      "situation": "一度も受け取っていない",
+      "recommend": "勤務先へ交付を求め、期限後は税務署へ届出を検討する",
+      "reason": "交付期限は在職中の分が翌年1月31日まで、中途退職は退職後1か月以内です。期限を過ぎても交付されなければ、源泉徴収票不交付の届出を期限経過後に随時出せます。",
+      "source": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/hotei/23100017.htm"
+    },
+    {
+      "question": "前の勤務先の分、年末調整で必要？",
+      "situation": "年末が近く、前の勤務先の源泉徴収票がない",
+      "recommend": "急ぎ前の勤務先へ再発行を依頼すると安心",
+      "reason": "前の勤務先から交付を受けた源泉徴収票などで金額と税額を確認できないと、年末調整はできず、確定申告で所得税を精算することになります。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2674.htm"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "電話代と窓口の時間、実は見落としやすい点",
+    "cause": "なぜ税務署ではなく勤務先なのか",
+    "steps": "今日は勤務先へ、何を伝えればいいか",
+    "desk": "電話や届出の窓口はどこ？",
+    "worries": "税務署で再発行できる？紙でもらえる？",
+    "guide": "再発行を頼むか、届出を出すか迷ったら"
+  },
+  "depthAt": "2026-11-13T06:36:23+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "源泉徴収票をなくしたら税務署ではなく勤務先へ",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-13T06:38:34+00:00"
+  },
+  "imageFocus": {
+    "x": 0.539,
+    "y": 0.521,
+    "box": [
+      0.087,
+      0.042,
+      0.991,
+      1.0
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/withholding-slip-lost-reissue-employer-figure-18916b47.jpg"
+  }
 }
