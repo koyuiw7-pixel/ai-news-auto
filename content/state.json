@@ -3611,6 +3611,17 @@
     }
   },
   "processed_web": {
+    "000514a000443392a6b2ff92472d94a95b275cb8": {
+      "at": "2026-11-13T13:07:27.527086+00:00",
+      "kind": "trend",
+      "model": "gemini-3.5-flash-lite",
+      "pressReport": true,
+      "score": 96,
+      "slug": "morita-shunya-samurai-japan-debut",
+      "trendKeyword": "森田駿哉",
+      "trendLane": true,
+      "url": "https://news.yahoo.co.jp/articles/8b9dbeaf73082a6bb479b3314c622c6afba9c2a6"
+    },
     "00183b004892f2d6": {
       "at": "2026-11-05T18:00:11.222800+00:00",
       "breaking": true,
@@ -20586,56 +20597,6 @@
   },
   "quality_log": [
     {
-      "accepted": true,
-      "at": "2026-11-11T09:23:21.417993+00:00",
-      "attempt": 1,
-      "id": "14eef01dc0f429cb",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 90.3,
-        "avg_sentence": 47.0,
-        "long_share": 0.2,
-        "max_paragraph": 171,
-        "paragraphs": 13,
-        "sentences": 25
-      },
-      "score": 92,
-      "source": "google-ai-blog",
-      "title": "Experience the art and legacy of Dr. Esther Mahlangu",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（BMW）",
-        "読みやすさ: 文が長い（1文の平均 47.0字・60字超の文が 20% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-11T09:23:39.776085+00:00",
-      "attempt": 0,
-      "id": "14eef01dc0f429cb",
-      "kind": "ai",
-      "model": "",
-      "problems": [
-        "読みやすさ基準外のまま受理: 読みやすさが改善しなかった（47.0→47.0字）"
-      ],
-      "readability": {
-        "avg_paragraph": 90.3,
-        "avg_sentence": 47.0,
-        "long_share": 0.2,
-        "max_paragraph": 171,
-        "paragraphs": 13,
-        "sentences": 25
-      },
-      "score": 92,
-      "source": "google-ai-blog",
-      "title": "Experience the art and legacy of Dr. Esther Mahlangu",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（BMW）",
-        "読みやすさ: 文が長い（1文の平均 47.0字・60字超の文が 20% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
       "accepted": false,
       "at": "2026-11-11T09:34:16.782377+00:00",
       "attempt": 1,
@@ -28177,6 +28138,53 @@
       "warnings": [
         "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（GO・FNN）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-13T13:07:18.353066+00:00",
+      "attempt": 1,
+      "id": "000514a000443392a6b2ff92472d94a95b275cb8",
+      "kind": "trend",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 70.8,
+        "avg_sentence": 47.2,
+        "long_share": 0.167,
+        "max_paragraph": 95,
+        "paragraphs": 4,
+        "sentences": 6
+      },
+      "score": 96,
+      "source": "trends",
+      "title": "森田駿哉",
+      "warnings": [
+        "本文が見出しで始まっている（最初の段落は見出しなしで、だれに関係するか・関係しない人はどうかを書く）",
+        "読みやすさ: 文が長い（1文の平均 47.2字・60字超の文が 17% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-13T13:07:27.510343+00:00",
+      "attempt": 0,
+      "id": "000514a000443392a6b2ff92472d94a95b275cb8",
+      "kind": "trend",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 72.5,
+        "avg_sentence": 32.2,
+        "long_share": 0.0,
+        "max_paragraph": 102,
+        "paragraphs": 4,
+        "sentences": 9
+      },
+      "score": 96,
+      "source": "trends",
+      "title": "森田駿哉",
+      "warnings": [
+        "本文が見出しで始まっている（最初の段落は見出しなしで、だれに関係するか・関係しない人はどうかを書く）"
       ]
     }
   ],
