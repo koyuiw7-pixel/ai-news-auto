@@ -46,6 +46,12 @@ REVIEW_PERIOD = ("2026-11-03", "2026-11-06", 40)
 ADSENSE_REVIEW = ("2026-11-12", "2026-11-27", 30)
 MUSE_DAILY_CAP = 200
 
+# 2026-11-13 オーナー「とにかく数字。それさえ出るなら結構なんでもいい」「注目する話題がとれていない」: 話題のレーン（急上昇の言葉 → 記事。
+# scripts/trend_lane.py）の本数。1回3本・1日20本まで。速報と同じく、上の審査の期間の「1日30本・暮らしとお金だけ」の外で数える
+# （processed_web の trendLane の印。scripts/pacing.py の live_today は数えない）。止めるときは変数 TREND_MAX_PER_RUN=0
+TREND_PER_RUN = 3
+TREND_DAILY_CAP = 20
+
 
 def in_adsense_review(today: str) -> bool:
     start, until, _ = ADSENSE_REVIEW
@@ -113,7 +119,8 @@ def main() -> None:
         # 審査の期間: 1回2本まで・AI のレーンは止める・海外の AI の発表は0本（暮らしとお金だけ）
         broad, ai, foreign_ai = str(min(int(broad), 2)), "0", "0"
     lines = (f"web_daily_cap={web}\nsns_per_day={sns}\nbroad_per_run={broad}\nai_per_run={ai}\n"
-             f"foreign_ai_cap={foreign_ai}\nmuse_daily_cap={MUSE_DAILY_CAP}\n")
+             f"foreign_ai_cap={foreign_ai}\nmuse_daily_cap={MUSE_DAILY_CAP}\n"
+             f"trend_per_run={TREND_PER_RUN}\ntrend_daily_cap={TREND_DAILY_CAP}\n")
     if out:
         with open(out, "a", encoding="utf-8") as f:
             f.write(lines)

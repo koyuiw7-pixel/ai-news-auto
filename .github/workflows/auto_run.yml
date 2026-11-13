@@ -175,7 +175,7 @@ jobs:
           python scripts/web_articles.py \
             --max "${{ vars.WEB_MAX_PER_RUN || steps.ramp.outputs.ai_per_run || '1' }}" \
             --max-broad "${{ steps.ramp.outputs.broad_per_run }}" \
-            --trends "${{ vars.TREND_MAX_PER_RUN || '1' }}" \
+            --trends "${{ vars.TREND_MAX_PER_RUN || steps.ramp.outputs.trend_per_run || '3' }}" \
             --daily-cap "${{ steps.ramp.outputs.web_daily_cap }}" \
             --days 3 --tier bulk
 
@@ -483,7 +483,7 @@ jobs:
             # いま検索で急上昇している言葉に当たった記事（searchTrend。台帳 A63）は待たずにデプロイして、
             # Google ニュースのサイトマップと IndexNow にすぐ載せる（SNS の速報投稿にはしない）
             TRENDING=$(git diff --cached --name-only --diff-filter=A -- 'content/articles/*.json' \
-              | xargs -r jq -r 'select((.searchTrend // "") != "") | .slug' | tr '\n' ' ')
+              | xargs -r jq -r 'select((.searchTrend // "") != "" or (.trendKeyword // "") != "") | .slug' | tr '\n' ' ')
             if [ -n "$TRENDING" ]; then
               echo "検索で急上昇している話題の記事: ${TRENDING}→ すぐデプロイします"
               DUE=1

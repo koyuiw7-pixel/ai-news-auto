@@ -80,8 +80,14 @@ class WebMajorLaneTest(unittest.TestCase):
         self.assertIn("mark(state, cand, skipped=True", head)
         # 通常の AI のレーン（上限の変数の渡し忘れに頼らない）と話題のレーン
         self.assertIn('if is_ai and news_mix.review_ai_blocks({**cand, "section": "ai"})', pick)
-        trend = src[src.index("        for q in queue:"):]
-        self.assertLess(trend.index("news_mix.review_ai_blocks("), trend.index("fetch_trend_sources(q)"))
+        # 話題のレーン（急上昇の言葉。2026-11-13 オーナー「注目する話題がとれていない」）は速報と同じ扱いで、この門の外:
+        # _pick は trend のとき、種類別の上限・審査の期間の門を通さない（事件・ゴシップ・選挙・お知らせの転載だけ見送る）
+        self.assertLess(pick.index("if trend:"), pick.index("elif not major:"))
+        trend_block = pick[pick.index("if trend:"):pick.index("elif not major:")]
+        self.assertIn("trend_prefilter(cand)", trend_block)
+        self.assertNotIn("review_ai_blocks(", trend_block)
+        trend = src[src.index("        for q in queue:"):src.index("        # 公式フィード（AI）と幅広い話題を、レーンごとに1本ずつ交互に処理する")]
+        self.assertNotIn("news_mix.review_ai_blocks(", trend)
         # 記事に速報の印を付ける判定と、作る前の見立ては同じ関数
         self.assertIn("if major and breaking_record(item):", src)
 

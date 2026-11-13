@@ -61,11 +61,16 @@ SAMPLES = [
     {"genreSlug": "lifestyle", "title": "人身事故による運転見合わせ"},
     {"genreSlug": "lifestyle", "title": "障害対応ツールの提供"},
     {"genreSlug": "public", "title": "子育て世帯への給付の申請受付"},
+    # 話題のレーンの記事（2026-11-13）は分野で外さない。うわさ・事件・訃報の題名は外す
+    {"genreSlug": "sports", "title": "ＮＢＡのウォリアーズが勝利", "trendKeyword": "ウォリアーズ"},
+    {"genreSlug": "entertainment", "title": "映画の予告編を公開　キャストも発表", "trendKeyword": "予告編"},
+    {"genreSlug": "entertainment", "title": "人気俳優の熱愛が発覚", "trendKeyword": "熱愛"},
 ]
 
 
 def _summary(article: dict, body_length: int, japan_value: bool) -> dict:
-    keys = ("slug", "type", "title", "seoTitle", "tags", "genreSlug", "channelSlug", "sourceType", "indexable", "verdict", "breaking", "newsType")
+    keys = ("slug", "type", "title", "seoTitle", "tags", "genreSlug", "channelSlug", "sourceType", "indexable", "verdict", "breaking", "newsType",
+            "trendKeyword")
     out = {k: article.get(k) for k in keys if article.get(k) is not None}
     out.setdefault("tags", [])
     out.setdefault("title", "")

@@ -29,11 +29,27 @@ LONG_JA = "これは本文です。" * 120  # 960字
 
 
 class TrendFromPressOffTest(unittest.TestCase):
-    def test_default_off_and_no_workflow_turns_it_on(self):
-        self.assertFalse(web_articles.TREND_FROM_PRESS)
-        for wf in (ROOT / ".github" / "workflows").glob("*.yml"):
-            text = wf.read_text("utf-8")
-            self.assertNotRegex(text, r"TREND_FROM_PRESS\s*[:=]\s*['\"]?1", wf.name)
+    def test_press_only_in_the_allowed_shape(self):
+        # 2026-11-13 オーナー「とにかく数字。それさえ出るなら結構なんでもいい」「注目する話題がとれていない」で改定:
+        # 話題のレーンは動かす。報道が出典の記事は「主要な報道機関の独立した2社以上・報道と明記」の形だけ（W31 の例外）。
+        # それ以外の報道が出典の話題の記事は、今までどおり書かない・公開しない
+        import indexnow
+        import public_interest as pi
+
+        self.assertTrue(web_articles.TREND_FROM_PRESS)
+        base = {"title": "ドコモで通信障害とNHKなど報道", "lede": "NHKなどが報じた。", "body": "## 何が報じられたか\n\nNHKによると、障害が起きた。",
+                "genreSlug": "public", "channelSlug": "trends", "trendKeyword": "ドコモ 障害", "pressReport": True,
+                "sourceUrl": "https://news.web.nhk/newsweb/na/nd-1"}
+        two = [{"url": "https://news.web.nhk/newsweb/na/nd-1"}, {"url": "https://www.asahi.com/articles/A1.html"}]
+        self.assertEqual(pi.press_source_problems({**base, "sources": two}), [])
+        self.assertIsNone(indexnow.publish_block_reason({**base, "sources": two}))
+        for bad in ({**base, "sources": two[:1]},                                                    # 1社だけ
+                    {**base, "sources": [two[0], {"url": "https://www3.nhk.or.jp/news/x"}]},          # 同じ報道機関の2本
+                    {**base, "sources": [two[0], {"url": "https://gori.me/x"}]},                       # 一覧に無い媒体が混ざる
+                    {**base, "sources": two, "pressReport": False},                                    # 報道の印が無い
+                    {**base, "sources": two, "lede": "障害が起きた。", "body": "## 障害\n\n障害が起きた。"}):  # 報道と書いていない
+            self.assertTrue(pi.press_source_problems(bad), bad)
+            self.assertEqual(indexnow.publish_block_reason(bad), "press", bad)
 
 
 class OfficialGameNewsTest(unittest.TestCase):

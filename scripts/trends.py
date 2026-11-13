@@ -419,6 +419,79 @@ def exclusion_reason(keyword: str, context_titles: list[str], yahoo_genre: str =
     return None
 
 
+# ---------------------------------------------------------------------------
+# 2026-11-13 オーナー「とにかく数字。それさえ出るなら結構なんでもいい」「注目する話題がとれていない」:
+# 話題のレーン（記事にする急上昇の言葉のキュー）は、サイトの軸の語が無くても拾う（スポーツ・エンタメ・政策・海外の話題も）。
+# 外すのは、確かめようのないうわさ・私人や事件の被害者にかかわる話・訃報・アダルト・ギャンブル・選挙と政党・センシティブな話題だけ。
+# 合図（state/trend_signals.json の axis / gossip）の付け方は今までどおり（classify_explain）
+# ---------------------------------------------------------------------------
+OPEN_EXCLUDE_RULES: dict[str, list[str]] = {
+    "うわさ・ゴシップ": [
+        r"熱愛", r"交際", r"破局", r"結婚", r"離婚", r"不倫", r"妊娠", r"出産", r"炎上", r"スキャンダル", r"ゴシップ", r"噂", r"うわさ",
+        r"リーク", r"考察", r"ネタバレ", r"匂わせ", r"激変", r"騒然", r"正体", r"謝罪", r"不祥事", r"活動休止", r"引退", r"整形",
+    ],
+    "事件・被害者": [
+        r"逮捕", r"容疑", r"送検", r"起訴", r"判決", r"裁判", r"事件", r"殺人", r"殺害", r"刺され", r"暴行", r"強盗", r"窃盗", r"横領",
+        r"遺体", r"行方不明", r"被害者", r"自殺", r"虐待", r"いじめ", r"わいせつ", r"盗撮", r"性的", r"ハラスメント", r"襲撃", r"実名", r"拘束",
+    ],
+    "訃報": [r"死去", r"訃報", r"追悼", r"悼む", r"亡くな", r"逝去"],
+    "アダルト・ギャンブル": [
+        r"アダルト", r"風俗", r"セクシー女優", r"AV女優", r"グラビア", r"カジノ", r"パチンコ", r"パチスロ", r"競馬", r"競輪", r"競艇",
+        r"ボートレース", r"オートレース", r"賭博", r"ブックメーカー", r"馬券", r"枠順", r"オッズ", r"新馬戦", r"騎手", r"厩舎", r"出走",
+        _w("G1"), r"GⅠ", r"女王杯", r"万馬券", _w("bet"), r"ベット",
+    ],
+    "選挙・政党": [
+        r"選挙", r"投票", r"議席", r"政党", r"自民", r"立憲", r"維新の会", r"国民民主", r"公明党", r"共産党", r"れいわ", r"参政党",
+        r"総裁選", r"党首", r"支持率", r"政局", r"皇室", r"衆院選", r"参院選", r"知事選", r"市長選", r"総選挙", r"補選", r"出馬", r"開票",
+    ],
+    "健康・宗教などセンシティブ": EXCLUDE_RULES["健康・宗教などセンシティブ"],
+}
+OPEN_GENRE_RULES: list[tuple[str, str]] = [
+    ("sports", r"野球|サッカー|Jリーグ|W杯|ワールドカップ|五輪|オリンピック|試合|選手|監督|優勝|大相撲|横綱|大関|力士|ゴルフ|テニス|"
+               r"ボクシング|ラグビー|フィギュア|マラソン|駅伝|日本シリーズ|侍ジャパン|投手|打者|球団|代表|場所|金星|MLB|NPB|NBA"),
+    ("entertainment", r"ドラマ|映画|アニメ|漫画|主演|出演|俳優|女優|歌手|声優|番組|新曲|アルバム|ライブ|コンサート|紅白|ゲーム|配信"),
+    ("business", r"決算|株価|上場|買収|提携|業績|売上|社長|企業|工場"),
+]
+
+
+def open_exclusion_reason(keyword: str, context_titles: list[str]) -> str | None:
+    """話題のレーンで扱わない理由（扱うなら None）。キーワードに当たれば除外、関連報道の見出しの半数以上に当たっても除外"""
+    kw = unicodedata.normalize("NFKC", keyword)
+    hit = _first_hit(OPEN_EXCLUDE_RULES, kw)
+    if hit:
+        return f"{hit[0]}（キーワードに「{hit[1]}」）"
+    titles = [unicodedata.normalize("NFKC", t) for t in context_titles if t]
+    if titles:
+        bad = [h for h in (_first_hit(OPEN_EXCLUDE_RULES, t) for t in titles) if h]
+        if len(bad) >= max(1, math.ceil(len(titles) / 2)):
+            return f"{'/'.join(sorted({h[0] for h in bad}))}（関連報道{len(bad)}/{len(titles)}本に「{'」「'.join(sorted({h[1] for h in bad}))}」）"
+    return None
+
+
+def open_genre(trend: dict) -> str:
+    """軸の語が無い話題のジャンル（スポーツ・エンタメ・ビジネス。どれでもなければ 社会・行政）"""
+    text = unicodedata.normalize("NFKC", " ".join([trend.get("title") or "", *[n.get("title") or "" for n in trend.get("news") or []],
+                                                   *list(trend.get("context") or [])]))
+    for slug, pattern in OPEN_GENRE_RULES:
+        if re.search(pattern, text):
+            return slug
+    return "public"
+
+
+def lane_pick(trend: dict) -> tuple[str | None, str]:
+    """話題のレーンのキューに入れるか。(ジャンル or None, 理由)"""
+    titles = [n["title"] for n in trend.get("news", [])] + list(trend.get("context", []))
+    if trend.get("yahoo_genre") == "エンタメ" and not titles:
+        return None, "除外: 関連報道の無いエンタメの話題（確かめようがない）"
+    ex = open_exclusion_reason(trend["title"], titles)
+    if ex:
+        return None, f"除外: {ex}"
+    genre, why = classify_explain(trend)
+    if genre:
+        return genre, why
+    return open_genre(trend), f"採用: 軸の語は無いが急上昇の話題（{why[:40]}）"
+
+
 def _axis_hits(rules: dict, text: str, ctx: str) -> list[str]:
     hits = []
     for p in rules["strong"]:
@@ -553,7 +626,8 @@ def collect(state: dict, limit: int = 10, trends: list[dict] | None = None,
     processed = state.get("processed_web", {}) or {}
     if trends is None:
         trends = fetch_trends() + fetch_yahoo_realtime()
-    kept = [(t, g) for t, g, _ in audit(trends) if g]
+    # 2026-11-13: 軸の語が無い話題も拾う（lane_pick。うわさ・事件・訃報・アダルト・ギャンブル・選挙は外す）
+    kept = [(t, g) for t, g in ((t, lane_pick(t)[0]) for t in trends) if g]
     kept.sort(key=lambda x: x[0]["traffic"], reverse=True)
 
     items, used_ids = [], set()
@@ -569,7 +643,7 @@ def collect(state: dict, limit: int = 10, trends: list[dict] | None = None,
                 log.append((trend["title"], f"関連報道が{len(sources)}本しかない"))
             continue
         # 集めた報道で改めて除外チェック（Yahoo 由来など、分類時に報道がなかった話題の保険）
-        ex = exclusion_reason(trend["title"], [s["title"] for s in sources])
+        ex = open_exclusion_reason(trend["title"], [s["title"] for s in sources])
         if ex:
             if log is not None:
                 log.append((trend["title"], f"関連報道で除外: {ex}"))
@@ -608,7 +682,7 @@ _ROOT = Path(__file__).resolve().parent.parent
 QUEUE_PATH = _ROOT / "state" / "trend_queue.json"  # content/ 以外なら Vercel の再デプロイが走らない
 STATE_PATH = _ROOT / "content" / "state.json"
 QUEUE_MAX_AGE = timedelta(hours=36)
-QUEUE_CAP = 30
+QUEUE_CAP = 60  # 2026-11-13: 軸の語が無い話題も入るので広げた（30 → 60）
 
 
 def _item_time(item: dict) -> datetime:
@@ -674,7 +748,7 @@ def enqueue(state: dict | None = None) -> tuple[int, int]:
         save_signals(raw)
     except Exception as error:  # noqa: BLE001 - 合図が書けなくても話題キューは止めない
         print(f"[trends] 合図の書き出しに失敗: {str(error)[:120]}", file=sys.stderr)
-    new = [{**i, "queued_at": now} for i in collect(skip_state, limit=10, trends=raw) if i["id"] not in queued]
+    new = [{**i, "queued_at": now} for i in collect(skip_state, limit=20, trends=raw) if i["id"] not in queued]
     save_queue(queue + new)
     return len(new), min(len(queue) + len(new), QUEUE_CAP)
 
@@ -768,7 +842,7 @@ def main() -> int:
           f"（{datetime.now(JST):%Y-%m-%d %H:%M} JST）")
     if not g:
         print("# Googleトレンド RSS が空でした。Yahoo!リアルタイム検索の補完だけで判定します。")
-    rows = audit(g + y)
+    rows = [(t, *lane_pick(t)) for t in g + y]
     for t, genre, why in rows:
         mark = "KEEP" if genre else "----"
         print(f"{mark} [{t['origin']:6}] {t['title']}  ({t['traffic_label']})  {why}")

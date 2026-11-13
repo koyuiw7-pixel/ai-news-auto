@@ -169,8 +169,16 @@ export function noindexReason(article: ArticleSummary): string | null {
   if (isZeroVisit(article.slug)) return "zero-visit";
   // 今まで検索に出していた主題（isFocus）はそのまま出す（ゆるめるだけで、出していた記事を外さない）
   // 地震・災害の記事は題名に「地震」などがあるのでつながる（scripts/indexnow.py は disaster も見る）
-  if (!lifeLink(article.title ?? "") && !isFocus(article)) return "no-life-link";
+  // 話題のレーンの記事（trendKeyword。2026-11-13）は分野で外さない（scripts/indexnow.py の trend_topic と同じ）
+  if (!lifeLink(article.title ?? "") && !isFocus(article) && !trendTopic(article)) return "no-life-link";
   return null;
+}
+
+const TREND_GOSSIP = new RegExp(rules.trendGossip.source, rules.trendGossip.flags);
+
+/** 話題のレーンの記事か（急上昇の言葉から作った記事。うわさ・事件・訃報の題名は除く。scripts/indexnow.py の trend_topic と同じ） */
+export function trendTopic(article: Pick<ArticleSummary, "title"> & { trendKeyword?: string }): boolean {
+  return Boolean(article.trendKeyword) && !TREND_GOSSIP.test((article.title ?? "").normalize("NFKC"));
 }
 
 const LIFE_MONEY = new RegExp(rules.lifeMoney.source, rules.lifeMoney.flags);

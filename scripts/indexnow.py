@@ -461,6 +461,17 @@ def life_link(title: str) -> bool:
     return bool(LIFE_GENERAL_RE.search(text))
 
 
+# 2026-11-13 オーナー「とにかく数字」「注目する話題がとれていない」: 話題のレーンの記事（trendKeyword。急上昇の言葉から作った記事）は、
+# 分野（スポーツの結果・エンタメ・政策など）で検索から外さない・公開を止めない。うわさ・事件・訃報の題名だけは今までどおり外す
+TREND_GOSSIP_RE = re.compile(r"熱愛|交際|結婚|離婚|破局|不倫|ゴシップ|スキャンダル|炎上|逮捕|容疑|死去|訃報")
+
+
+def trend_topic(article: dict) -> bool:
+    """話題のレーンの記事か（lib/indexing.ts の trendTopic と同じ）"""
+    title = unicodedata.normalize("NFKC", str(article.get("title") or ""))
+    return bool(article.get("trendKeyword")) and not TREND_GOSSIP_RE.search(title)
+
+
 def noindex_reason(article: dict, dups: set[str] | frozenset = frozenset()) -> str | None:
     """検索に出さない理由（出すなら None）。サイトの lib/indexing.ts の noindexReason と同じ"""
     if isinstance(article.get("indexable"), bool):
@@ -475,7 +486,7 @@ def noindex_reason(article: dict, dups: set[str] | frozenset = frozenset()) -> s
     if article.get("slug") in ZERO_VISIT:
         return "zero-visit"
     # 今まで検索に出していた主題（is_focus）はそのまま出す（ゆるめるだけで、出していた記事を外さない）
-    if not (article.get("disaster") or life_link(article.get("title") or "") or is_focus(article)):
+    if not (article.get("disaster") or life_link(article.get("title") or "") or is_focus(article) or trend_topic(article)):
         return "no-life-link"
     return None
 
@@ -530,7 +541,7 @@ PUBLISH_FEEDBACK = {
 def on_axis(article: dict) -> bool:
     """サイトの軸（暮らしとお金の「自分ごと」ニュース・台帳 A61）の上の記事か。検索に出す基準（noindex_reason）と同じ見方:
     地震・津波の速報・お金か暮らしにつながる題名（life_link）・今まで出していた主題（is_focus）"""
-    return bool(article.get("disaster") or life_link(article.get("title") or "") or is_focus(article))
+    return bool(article.get("disaster") or life_link(article.get("title") or "") or is_focus(article) or trend_topic(article))
 
 
 def publish_block_reason(article: dict) -> str | None:
@@ -592,6 +603,7 @@ def index_rules() -> dict:
         "lifeMoney": _js_regex(LIFE_MONEY_RE),
         "noLifeLink": _js_regex(NO_LIFE_LINK_RE),
         "lifeGeneral": _js_regex(LIFE_GENERAL_RE),
+        "trendGossip": _js_regex(TREND_GOSSIP_RE),
         "creatorChannels": sorted(CREATOR_CHANNELS),
         "focusGenres": sorted(FOCUS_GENRES),
         "aiTopic": _js_regex(AI_TOPIC),

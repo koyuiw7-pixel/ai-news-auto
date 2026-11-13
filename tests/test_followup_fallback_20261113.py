@@ -44,8 +44,8 @@ class FollowupFallbackTest(unittest.TestCase):
         self.assertIn('mark(state, item, skipped=True, reason=f"followup: 新しい事実なし', follow)
         # 門に落ちた追記は記事に書き込まない（書き込みは合格のあとだけ）
         self.assertLess(follow.index('return "new"'), follow.index("path.write_text("))
-        # 呼び出し側（公式の候補・話題）は new を新しい記事として作る
-        self.assertEqual(SRC.count('if outcome not in ("different", "new"):'), 2)
+        # 呼び出し側（公式の候補。話題のレーンで当たった公式の候補も同じ process_web を通る）は new を新しい記事として作る
+        self.assertEqual(SRC.count('if outcome not in ("different", "new"):'), 1)
         self.assertIn("prompt += FOLLOWUP_NEW_NOTE.format(", SRC)
         # 作り直した記事は通常の門（gated）を通り、題名がもとの記事とほぼ同じなら出さない
         web = SRC[SRC.index("    def process_web("):SRC.index("    try:\n        # 大きなニュース")]

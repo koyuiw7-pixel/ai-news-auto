@@ -54,7 +54,9 @@ def is_live(slug: str, articles_dir: Path | None = None) -> bool:
 def live_today(state: dict, now: datetime | None = None, articles_dir: Path | None = None) -> int:
     """1日の上限に数える本数: 今日作った記事のうち、いま公開中のもの。読者像から外れた一般の話題は数えない（別の上限）"""
     now = now or datetime.now(JST)
-    return sum(1 for _, v in _today_entries(state, now) if not v.get("offPersona") and is_live(v["slug"], articles_dir))
+    # 話題のレーンの記事（trendLane。2026-11-13）も数えない: 自分の上限（scripts/ramp.py の TREND_DAILY_CAP）で数える。速報と同じく審査の期間の30本の外
+    return sum(1 for _, v in _today_entries(state, now)
+               if not v.get("offPersona") and not v.get("trendLane") and is_live(v["slug"], articles_dir))
 
 
 def allowed_by(cap: int, now: datetime | None = None, night_share: float | None = None, lookahead_min: int | None = None) -> int:

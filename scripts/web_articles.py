@@ -83,6 +83,8 @@ import research_firms  # noqa: E402  調査会社・情報会社の記事は「�
 import rivals  # noqa: E402
 import story  # noqa: E402
 import trends  # noqa: E402
+import trend_lane  # noqa: E402  話題のレーン（急上昇の言葉 → 公式の出典 → 主要な報道機関2社以上。2026-11-13）
+import ramp  # noqa: E402  話題のレーンの1回・1日の本数（TREND_PER_RUN / TREND_DAILY_CAP）
 import ui_claims  # noqa: E402
 from genres import AI, ALL_GENRES, BROAD_GENRES, GENRES, GENRES_BY_SLUG, WEB_GENRES  # noqa: E402
 import genre_focus  # noqa: E402  投資・マネー／不動産／エンタメの扱う中身と1日の最低本数（2026-11-03）
@@ -706,8 +708,16 @@ def broad_prefilter(item: dict) -> str | None:
 # 話題のニュース（Googleトレンド → state/trend_queue.json）
 # --------------------------------------------------------------------------- #
 
-# 話題の記事（関連報道を出典にする）を作るか。W31 に合わせて既定は作らない（オーナーが決め直したら TREND_FROM_PRESS=1）
-TREND_FROM_PRESS = os.environ.get("TREND_FROM_PRESS", "0") == "1"
+# 2026-11-13 オーナー「とにかく数字。それさえ出るなら結構なんでもいい」「注目する話題がとれていない」: 話題のレーンを動かす（scripts/trend_lane.py）。
+# 急上昇の言葉ごとに 公式のフィードの候補 → 報道の記事の中の公式のリンク → 主要な報道機関2社以上 の順で出典を探して記事にする。
+# 止めるときは TREND_LANE=0（レーンごと）か TREND_FROM_PRESS=0（公式の出典がある話題だけ作り、報道だけの話題は作らない）
+TREND_LANE = os.environ.get("TREND_LANE", "1") != "0"
+# 公式の発表が無い話題を、主要な報道機関（public_interest.TREND_PRESS_OUTLETS）の独立した2社以上の報道で短い記事にするか。
+# W31 の例外はこの形だけ（2026-11-04〜11-12 は 0＝話題の記事を作らない、だった）
+TREND_FROM_PRESS = os.environ.get("TREND_FROM_PRESS", "1") == "1"
+# 報道が出典の話題の記事を検索に出さないようにする切り替え（既定は出す＝急上昇の言葉で検索から読者を呼ぶのが目的）。
+# Muse の道の「報道だけの記事」は検索に出さない作り（scripts/muse_articles.py）なので、そろえるときは TREND_PRESS_NOINDEX=1
+TREND_PRESS_NOINDEX = os.environ.get("TREND_PRESS_NOINDEX", "0") == "1"
 TREND_MIN_SOURCE_CHARS = 400
 TREND_MIN_SOURCES = 2
 TREND_MAX_SOURCES = 3
@@ -927,8 +937,8 @@ def pre_gate(record: dict, source_text: str = "", context: str = "") -> None:
 
 
 def view_urgent(item: dict) -> bool:
-    """急ぐ記事（速報レーン・大きなニュース）。「サイソクの見方」の書き足し・中身の下限の保留をしない（scripts/own_view.py）"""
-    return bool(item.get("fast") or quality.MAJOR)
+    """急ぐ記事（速報レーン・大きなニュース・話題のレーンの報道が出典の短い記事）。「サイソクの見方」の書き足し・中身の下限の保留をしない（scripts/own_view.py）"""
+    return bool(item.get("fast") or item.get("_press_report") or quality.MAJOR)
 
 
 def write_tier(tier: str) -> str:
@@ -1078,8 +1088,33 @@ def fetch_trend_sources(item: dict) -> list[dict]:
             continue
         if len(page["text"]) < TREND_MIN_SOURCE_CHARS:
             continue
-        got.append({**source, "text": page["text"][:TREND_SOURCE_CAP], "image": page.get("image")})
+        got.append({**source, "text": page["text"][:TREND_SOURCE_CAP], "image": page.get("image"),
+                    "links": page.get("links") or [], "page_title": page.get("title") or ""})
     return got
+
+
+def trend_prefilter(item: dict) -> str | None:
+    """話題のレーンで公式の候補を作らない理由（分野では止めない。事件・ゴシップ・選挙・医療効果・噂と、お知らせ・統計の転載だけ）"""
+    title = item.get("title") or ""
+    if HARD_EXCLUDE_RE.search(f"{title} {str(item.get('summary') or '')[:200]}") or ELECTION_RE.search(title):
+        return "扱わない話題（事件・ゴシップ・選挙・医療効果・噂）"
+    if notice_reason(item):
+        return f"お知らせ・統計の転載（{notice_reason(item)}）"
+    return None
+
+
+def trend_official_item(q: dict, url: str, page: dict) -> dict:
+    """報道の記事の中のリンクで見つけた公式のページを、公式の候補（フィードの項目と同じ形）にする"""
+    found = feeds.page_published(page)
+    host = urllib.parse.urlsplit(url).netloc.lower().removeprefix("www.")
+    section = q.get("genre") if q.get("genre") in GENRES_BY_SLUG and q.get("genre") != "ai" else "public"
+    return {
+        "id": feeds.item_id(url), "url": url, "title": (page.get("title") or "").strip() or q["title"],
+        "summary": str(page.get("description") or "")[:600], "content": "",
+        "published_at": found or q["published_at"], "published_guessed": found is None,
+        "source_name": source_links.site_name(url, host), "source_slug": "radar-official", "lang": "ja", "image": None,
+        "priority": 1, "section": section, "radar": True, "_page": page,
+    }
 
 
 def trend_source_name(fetched: list[dict]) -> str:
@@ -2167,12 +2202,17 @@ def main() -> int:
         # 救済モードでは、時刻ごとの配分（夜中に使い切らない）より止めないことを優先して1本は作る（1日の上限は守る）
         remaining, cap_reached = 1, False
         log("[rescue] 時刻ごとの配分には達していますが、救済モードなので1本は作ります（1日の上限は守る）")
-    if cap_reached and args.max_major <= 0 and not fast_mode:
+    if cap_reached and args.max_major <= 0 and not fast_mode and min(args.trends, ramp.TREND_DAILY_CAP - trend_lane.done_today(state)) <= 0:
         log(f"[info] 今日の公開中 {done_today} 本で{why}に達しています（上限 {args.daily_cap}）")
         return 0
     if cap_reached:
         log(f"[info] 今日の公開中 {done_today} 本で{why}に達しています（上限 {args.daily_cap}）。大きなニュースだけ確認します")
-    trend_limit = 0 if cap_reached else min(args.trends, remaining)
+    # 話題のレーンは1日の上限（審査の期間の30本）と時刻ごとの配分の外（速報と同じ扱い）。自分の上限（scripts/ramp.py）で止まる
+    trend_done = trend_lane.done_today(state)
+    trend_limit = 0 if (fast_mode or not TREND_LANE or args.only or args.source) else max(0, min(args.trends, ramp.TREND_DAILY_CAP - trend_done))
+    if args.trends > 0 and not fast_mode:
+        log(f"[trend] 話題のレーン: 今日 {trend_done} 本 / 1日の上限 {ramp.TREND_DAILY_CAP} 本 → この回 {trend_limit} 本まで"
+            f"{'' if TREND_FROM_PRESS else '（報道だけの話題は作らない設定）'}")
     ai_limit = 0 if cap_reached else (args.max if args.section in ("ai", "all") else 0)
     broad_limit = 0 if cap_reached else (args.max_broad if args.section in ("broad", "all") else 0)
     boost = 0 if cap_reached or fast_mode or args.only or args.source else pacing.behind_boost(args.daily_cap, done_today, ai_limit + broad_limit)
@@ -2271,11 +2311,6 @@ def main() -> int:
         if q.get("genre") in (None, "ai", "investment", "real-estate"):
             trend_index.add(q["title"])
     queue = []
-    if trend_limit > 0 and not TREND_FROM_PRESS:
-        # 話題の記事は関連報道を出典にして書く作りなので、W31（事実は公式の一次情報だけ）に合わせて止める（2026-11-04）。
-        # 急上昇の話題は state/trend_signals.json の合図として、公式の候補を先に回すのに使う（scripts/public_interest.py）
-        log("[info] 話題（Googleトレンド）の記事は報道が出典になるため作りません（W31）。合図として公式の候補の順番に使います")
-        trend_limit = 0
     if trend_limit > 0:
         queue = [
             q for q in all_queue
@@ -2314,13 +2349,13 @@ def main() -> int:
     if fast_mode:
         fast_items, fast_results = build_fast_items(args.fast_url, args.fast_meta, state, run_detected_at)
         args.max_major = len(fast_items)
-    elif (ai_limit > 0 or args.max_major > 0) and args.section in ("ai", "all"):
+    elif (ai_limit > 0 or args.max_major > 0 or trend_limit > 0) and args.section in ("ai", "all"):
         selected = [f for f in feeds.FEEDS if not args.source or f["slug"] in args.source]
         report = {}
         ai_items = usable(feeds.collect(args.days, state, selected, report=report)) if selected else []
         log(f"[feed-health] AI {json.dumps(feeds.report_totals(report), ensure_ascii=False, sort_keys=True)}")
         log_feed_errors("AI", report)
-    if not fast_mode and (broad_limit > 0 or (args.max_major > 0 and args.section in ("broad", "all"))):
+    if not fast_mode and (broad_limit > 0 or ((args.max_major > 0 or trend_limit > 0) and args.section in ("broad", "all"))):
         selected = [f for f in feeds.BROAD_FEEDS if not args.source or f["slug"] in args.source]
         report = {}
         # 暮らし・お金の公式の発表は LIFE_LATE_HOURS まで遡って拾う（台帳 A57）。それ以外は今までどおり --days まで
@@ -2368,6 +2403,10 @@ def main() -> int:
         if watch_items:
             log(f"[watch] 料金・プラン・リリースノートの新しい項目 {len(watch_items)} 件: {' / '.join(i['title'][:50] for i in watch_items)}")
         majors = watch_items + majors
+    # 話題のレーンが急上昇の言葉に当てる公式の候補（上限で止まっているレーンの候補も含む。大きなニュースの候補は先に処理される）
+    # 公式の一次情報（官公庁・会社自身）のフィードだけ。配信（PR TIMES など）・他社の告知・報道は当てない
+    trend_pool = [i for i in {i["id"]: i for i in ai_items + broad_items}.values()
+                  if feeds.feed_kind(i) in public_interest.PRIMARY_KINDS and not i.get("secondary") and not is_wire(i)] if trend_limit > 0 else []
     if not ai_limit:
         ai_items = []
     if not broad_limit:
@@ -2501,6 +2540,10 @@ def main() -> int:
 
     def total_created() -> int:
         return sum(created.values())
+
+    def lane_created() -> int:
+        """1回の上限（remaining）に数える本数。話題のレーンは自分の上限で数えるので除く"""
+        return sum(created.values()) - created["trend"]
 
     attempt_counter = [0]  # 生成（gated）に回した回数
     taken_counter = [0]    # 見送らずに手を付けた候補の数（本文の取得から）
@@ -2813,10 +2856,11 @@ def main() -> int:
 
     skip_counts: dict[str, int] = {}  # 見送りの理由ごとの件数（最後にまとめて出す。2026-11-06 「止まらない仕組み」台帳 A48）
 
-    def pick(cand: dict, is_ai: bool, major: bool = False):
+    def pick(cand: dict, is_ai: bool, major: bool = False, trend: bool = False):
         """候補を採るか決める。("take", target|None) / ("next", 理由)=今回は見送り（mark しない）/ ("drop", 理由)=mark 済み。
-        見送りは必ず1行ずつログに出し、理由ごとに数える（何も試さずに終わる回を見えるようにする）"""
-        action, found = _pick(cand, is_ai, major)
+        見送りは必ず1行ずつログに出し、理由ごとに数える（何も試さずに終わる回を見えるようにする）。
+        trend=True は話題のレーン（急上昇の言葉に当たった公式の候補）: 種類別の上限・審査の期間の「暮らしとお金だけ」・主題の足切りの外（速報と同じ扱い）"""
+        action, found = _pick(cand, is_ai, major, trend)
         if action != "take":
             why = str(found or "理由不明")
             key = why.split("（")[0].split(":")[0].strip()
@@ -2825,13 +2869,18 @@ def main() -> int:
             return action, None
         return action, found
 
-    def _pick(cand: dict, is_ai: bool, major: bool = False):
+    def _pick(cand: dict, is_ai: bool, major: bool = False, trend: bool = False):
         if major and news_mix.review_ai_blocks({**cand, "section": major_lane(cand)}, breaking=breaking_candidate(cand)):
             # 審査の期間: 大きなニュースの流れに乗る候補（リリースノートの見張り・発表から時間のたった発表）も、速報でなければ作らない。
             # 見張りの候補が残り続けて次の候補をふさがないよう、見送りの印を付ける
             mark(state, cand, skipped=True, reason=f"review: {news_mix.REVIEW_AI_REASON}"[:200])
             return "drop", news_mix.REVIEW_AI_REASON
-        if not major:
+        if trend:
+            # 話題のレーン: 分野・種類別の上限・審査の期間の門では止めない（news_mix.review_ai_blocks の breaking と同じ扱い）。
+            # 事件・ゴシップ・選挙と、お知らせ・統計の転載だけ見送る（印は付けない。ふつうのレーンの判定に任せる）
+            if reason := trend_prefilter(cand):
+                return "next", f"話題のレーン: {reason}"
+        elif not major:
             reason = prefilter(cand) if is_ai else broad_prefilter(cand)
             if reason:
                 mark(state, cand, skipped=True, reason=f"prefilter: {reason}")
@@ -2921,16 +2970,17 @@ def main() -> int:
             log(f"   [major] 作れなかった（{tries}/{major_max_runs(item)}）。processed にせず次の実行で再挑戦: {why[:120]}")
             run_status[item["id"]] = ("pending", item["id"])
 
-    def process_web(item: dict, lane: str, target, major: bool = False) -> None:
-        """公式フィード・配信の1件: 本文取得 → 生成前チェック → 続報 or 新しい記事"""
+    def process_web(item: dict, lane: str, target, major: bool = False, trend_term: str = "") -> None:
+        """公式フィード・配信の1件: 本文取得 → 生成前チェック → 続報 or 新しい記事。
+        trend_term は話題のレーン（急上昇の言葉に当たった公式の発表。本数は話題のレーンに数える）"""
         nonlocal rejected
         is_ai = lane == "ai"
         taken_counter[0] += 1
         seen_add(item)  # 同じ実行の中の似た候補も外す（または続報へ）
-        if not major:
+        if not major and not trend_term:
             per_feed[item["source_slug"]] = per_feed.get(item["source_slug"], 0) + 1
 
-        log(f"\n[{'fast' if item.get('fast') else ('major' if major else lane)}] {item['source_name']}: {item['title'][:90]}")
+        log(f"\n[{'fast' if item.get('fast') else ('major' if major else ('trend/' + lane if trend_term else lane))}] {item['source_name']}: {item['title'][:90]}")
         page = item.pop("_page", None)
         try:
             page = page or feeds.fetch_article_text(item["url"])
@@ -3001,6 +3051,9 @@ def main() -> int:
             prompt += public_interest.prompt_note(item["_public_interest"])  # 事件・災害・政治の書き方（台帳 A39）
         if item.get("_trend_hit"):
             prompt += public_interest.search_title_note(item["_trend_hit"])  # 検索されている言葉を題名に（台帳 A63）
+        if trend_term:
+            # 話題のレーン: 分野で対象外にしない・題名は検索される言葉＋読者が知りたいこと（scripts/trend_lane.py）
+            prompt += trend_lane.RELEVANT_NOTE + trend_lane.title_note(trend_term, item["id"])
         if item.get("release"):
             prompt += release_quality.prompt_note(item["release"])  # 発表時刻が決まった速報（統計・決算）の書き方（台帳 W35）
         follow_new = item.get("_followup_new")
@@ -3018,6 +3071,9 @@ def main() -> int:
                 rec["publicInterest"] = item["_public_interest"]  # 公共性の枠の印（1日の本数・門・安全情報のリンク。scripts/public_interest.py）
             if item.get("_trend_hit"):
                 rec["searchTrend"] = item["_trend_hit"]  # いま検索で急上昇している言葉（台帳 A63。すぐ公開して Google ニュースのサイトマップに載せる目印）
+            if trend_term:
+                rec["trendKeyword"] = trend_term  # 話題のレーンの記事（分野で検索から外さない。scripts/indexnow.py trend_topic）
+                rec["title"] = re.sub(r"\s*[｜|]\s*", "　", rec["title"]).strip()
             return rec
 
         started = time.time()
@@ -3088,15 +3144,20 @@ def main() -> int:
              **({"offPersona": True} if item.get("_off_persona") else {}),
              **({"major": True} if major else {}), **({"breaking": True} if record.get("breaking") else {}),
              **({"publicInterest": item["_public_interest"]} if item.get("_public_interest") else {}),
-             **({"foreignAi": True} if is_ai and is_foreign_ai(item) else {}),
-             mix=item.get("_mix") or news_mix.classify(item), costUsd=cost_usd, intent=rank_intent.intent_of(item))
-        if is_ai and not major and is_foreign_ai(item):
+             **({"foreignAi": True} if is_ai and is_foreign_ai(item) and not trend_term else {}),
+             # 話題のレーンの記事は、1日の上限・種類別の配分に数えない（trendLane の印。mix を空にする）
+             **({"trendLane": True, "kind": "trend", "trendKeyword": trend_term} if trend_term else {}),
+             mix="" if trend_term else (item.get("_mix") or news_mix.classify(item)), costUsd=cost_usd, intent=rank_intent.intent_of(item))
+        if is_ai and not major and not trend_term and is_foreign_ai(item):
             foreign_left[0] -= 1
-        mix_key = item.get("_mix") or news_mix.classify(item)
-        mix_counts[mix_key] = mix_counts.get(mix_key, 0) + 1
+        if not trend_term:
+            mix_key = item.get("_mix") or news_mix.classify(item)
+            mix_counts[mix_key] = mix_counts.get(mix_key, 0) + 1
         state["major_tries"].pop(item["id"], None)
         (state.get("gate_retry") or {}).pop(item["id"], None)
-        if item.get("_off_persona") and not major:
+        if trend_term:
+            created["trend"] += 1
+        elif item.get("_off_persona") and not major:
             created_off[0] += 1  # 読者像から外れた一般の話題は、1日の上限・この実行の本数に数えない
         else:
             created["major" if major else ("ai" if is_ai else "broad")] += 1
@@ -3126,69 +3187,185 @@ def main() -> int:
             # AI フィードの候補は ai レーン、幅広い話題のフィード（Apple 日本など）はそのセクションの形で作る
             process_web(item, major_lane(item), target, major=True)
 
-        # 話題は鮮度が命なので先に処理する
+        # ---- 話題のレーン（scripts/trend_lane.py。2026-11-13 オーナー「注目する話題がとれていない」）----
+        # 急上昇の言葉ごとに、公式のフィードの候補 → 報道の記事の中の公式のリンク → 主要な報道機関2社以上 の順で出典を探す。
+        # 話題は鮮度が命なので、ふつうのレーンより先に処理する。1日の上限（審査の期間の30本）・時刻ごとの配分の外（速報と同じ扱い）
+        trend_stats = {"considered": 0, "official": 0, "press": 0, "refreshed": 0}
+        trend_skips: dict[str, int] = {}
+        trend_made: list[str] = []
+        press_idx: list[dict] | None = None
+        covered = trend_lane.covered_terms() if trend_limit > 0 else {}
+        trend_recent = dedupe.load_recent(trend_lane.COVERED_DAYS) if trend_limit > 0 else dedupe.Index()
+        off_hosts = trend_lane.official_hosts(feeds, fast_lane.rules()) if trend_limit > 0 else set()
+
+        def pool_left() -> list[dict]:
+            return [i for i in trend_pool if i["id"] not in state["processed_web"] and i["id"] not in run_status]
+
+        def trend_skip(q: dict, why: str, final: bool = True) -> None:
+            """見送り。final=False は「まだ出典がそろわない」（次の回でもう一度だけ探す）"""
+            key = why.split("（")[0].split(":")[0].strip()
+            trend_skips[key] = trend_skips.get(key, 0) + 1
+            log(f"   [skip] {why[:200]}")
+            if final:
+                mark(state, q, skipped=True, reason=f"trend: {why}"[:200])
+                used_queue_ids.add(q["id"])
+                return
+            state["failed_web"][q["id"]] = state["failed_web"].get(q["id"], 0) + 1
+            if state["failed_web"][q["id"]] >= MAX_FAILURES:
+                used_queue_ids.add(q["id"])
+
+        def trend_official(q: dict, cand: dict, via: str) -> bool:
+            """公式の発表（cand）からその言葉の記事を作る。できたら True（既存の記事への公式の続報も「できた」に数える）"""
+            lane = major_lane(cand)
+            action, target = pick(cand, lane == "ai", trend=True)
+            if action != "take":
+                return False
+            cand["_trend_hit"] = q["title"]
+            before, updated_before = created["trend"], updated_count[0]
+            process_web(cand, lane, target, trend_term=q["title"])
+            status = run_status.get(cand["id"], ("",))
+            if created["trend"] > before and status[0] == "article":
+                trend_stats["official"] += 1
+                trend_made.append(f"公式（{via}・{cand['source_name']}）: {status[1]}")
+                mark(state, q, skipped=True, reason=f"trend: 公式の発表で記事にした（{status[1]}）"[:200])
+                used_queue_ids.add(q["id"])
+                covered[trend_lane.norm(q["title"])] = status[1]
+                return True
+            if updated_count[0] > updated_before and status[0] == "article":
+                trend_skip(q, f"公式の発表を既存の記事（{status[1]}）に続報として足した")
+                return True
+            return False
+
+        # 公式の発表を待っている報道の記事（awaitingOfficial）: 公式のフィードに発表が出ていたら、その発表を続報として足して待ちを外す
+        if trend_limit > 0 and trend_pool and not time_up():
+            for path, waiting in trend_lane.awaiting_official()[::-1][: trend_lane.REFRESH_PER_RUN]:
+                cand = trend_lane.feed_candidate(str(waiting["trendKeyword"]), pool_left())
+                if not cand or trend_prefilter(cand):
+                    continue
+                log(f"\n[trend] 公式の発表が出た可能性: 「{waiting['trendKeyword']}」→ {cand['source_name']}: {cand['title'][:60]}")
+                try:
+                    text = max([(feeds.fetch_article_text(cand["url"]).get("text") or ""), cand.get("content") or ""], key=len)
+                except Exception as error:  # noqa: BLE001
+                    log(f"   [warn] 公式のページの取得に失敗（{str(error)[:100]}）")
+                    continue
+                if len(text) < MIN_TEXT_CHARS:
+                    continue
+                seen_add(cand)
+                outcome = try_followup(cand, text, ("ok", path, waiting, f"公式の発表が出た（{waiting['trendKeyword']}）"))
+                cand.pop("_followup_new", None)  # 足せなかったときは、ふつうのレーンが新しい記事として判定する
+                if outcome == "updated":
+                    fresh = trend_lane.mark_official_found(json.loads(path.read_text("utf-8")), cand["url"])
+                    path.write_text(json.dumps(fresh, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+                    run_status[cand["id"]] = ("article", path.stem)
+                    trend_stats["refreshed"] += 1
+                    log(f"   [trend] 公式の発表で更新し、待ちの印を外しました: {path.stem}")
+
         for q in queue:
-            if created["trend"] >= trend_limit or total_created() >= remaining or time_up():
+            if created["trend"] >= trend_limit or time_up():
+                break
+            if trend_stats["considered"] >= trend_limit * trend_lane.CONSIDER_PER_SLOT:
                 break
             if llm.all_exhausted(args.tier):
                 break
-            # 審査の期間は、話題のレーンでも AI の欄の記事を作らない（暮らしとお金だけ。見送りの印は付けない）
-            if news_mix.review_ai_blocks({"section": GENRES_BY_SLUG.get(q.get("genre") or "", AI).slug, "lang": q.get("lang") or ""}):
-                log(f"\n[trend] [next] {q['title'][:60]} → {news_mix.REVIEW_AI_REASON}")
+            term = q["title"]
+            trend_stats["considered"] += 1
+            log(f"\n[trend] {term}（{q.get('genre')} / traffic {q.get('traffic', 0):,}）")
+            # 扱わない話題（うわさ・事件と被害者・訃報・アダルト・ギャンブル・選挙）。キューに入れたあとで決まりが変わった分の保険
+            if ex := trends.open_exclusion_reason(term, [s_.get("title") or "" for s_ in q.get("sources") or []]):
+                trend_skip(q, f"扱わない話題: {ex}")
                 continue
-            log(f"\n[trend] {q['title']}（{q.get('genre')} / traffic {q.get('traffic', 0):,}）")
-            target = followup_target(q["title"])
-            if target and target[0] == "defer":
-                log("   [skip] 続報の上限に達したため次回に回す")
+            # 直近7日に同じ言葉・同じ話題の記事がある
+            if slug_hit := covered.get(trend_lane.norm(term)):
+                trend_skip(q, f"重複: 同じ言葉の記事がある（{slug_hit}）")
                 continue
-            act = None if target else in_run_action({**q, "url": ""})
-            if act and act[0] == "ok":
-                target = act
-            elif act and act[0] == "defer":
-                log(f"   [defer] {act[1][:80]}")
+            if dup := (trend_recent.find(term) or recent.find(term)):
+                trend_skip(q, f"重複: {dup}")
                 continue
-            dup = None if target else ((act[1] if act else None) or recent.find(q["title"]))
-            if dup:
-                log(f"   [skip] 重複: {dup}")
-                mark(state, q, skipped=True, reason=f"dedupe: {dup}"[:200])
-                used_queue_ids.add(q["id"])
+            # 1) 公式のフィードの候補（会社・官公庁の発表）で、題名がこの言葉に当たるもの
+            cand = trend_lane.feed_candidate(term, pool_left())
+            if cand and trend_official(q, cand, "公式のフィード"):
                 continue
-            fetched = fetch_trend_sources(q)
-            if len(fetched) < TREND_MIN_SOURCES:
-                log(f"   [skip] 本文の取れた報道が {len(fetched)} 本")
-                mark(state, q, skipped=True, reason=f"trend sources {len(fetched)}")
-                used_queue_ids.add(q["id"])
-                continue
-            seen_add({**q, "url": ""})
-            source_text = "\n\n".join(f"【{s.get('source') or '報道'}】\n{s['text']}" for s in fetched)
-            if target:
-                pseudo = {
-                    "id": q["id"], "url": fetched[0]["url"], "title": fetched[0].get("title") or q["title"],
-                    "source_name": trend_source_name(fetched), "source_slug": "trends", "published_at": q["published_at"],
-                }
-                outcome = try_followup(pseudo, source_text, target)
-                if outcome not in ("different", "new"):
-                    if outcome != "fail" or state["failed_web"].get(q["id"], 0) >= MAX_FAILURES:
-                        used_queue_ids.add(q["id"])
+            if created["trend"] >= trend_limit or time_up():
+                break
+            # 2) 主要な報道機関の記事を読み、その中のリンクに公式のページがあれば、それを出典にする
+            if press_idx is None:
+                press_idx = trend_lane.press_index(trends._get)
+                log(f"   [press] 主要な報道機関の新しい見出し {len(press_idx)} 本を読みました")
+            fetched = fetch_trend_sources({"sources": trend_lane.press_candidates(q, press_idx)})
+            # 公式のリンクを探すためだけに、急上昇の一覧に付いていたほかの媒体の記事も読む（リンクを見るだけ。出典にはしない）
+            link_pages = fetched + fetch_trend_sources({"sources": trend_lane.link_only_sources(q)})
+            made = False
+            for url in trend_lane.official_links(link_pages, off_hosts):
+                if recent.has_url(url) or feeds.item_id(url) in state["processed_web"]:
                     continue
-            genre = GENRES_BY_SLUG.get(q.get("genre") or "", AI)
-            related = arch.related(q["title"], source_text, fetched[0]["url"], genre.slug)
-            context = archive.prompt_block(related) + japan_availability.prompt_block(q["title"], source_text)
+                try:
+                    page = feeds.fetch_article_text(url)
+                except Exception as error:  # noqa: BLE001
+                    log(f"   [warn] 公式のページの取得に失敗（{str(error)[:80]}）: {url[:80]}")
+                    continue
+                if not trend_lane.official_page_ok(term, page):
+                    continue
+                found = feeds.page_published(page)
+                if found and datetime.now(timezone.utc) - found > timedelta(days=trend_lane.COVERED_DAYS):
+                    continue  # 古い公式ページ（今回の話題の発表ではない）
+                if trend_official(q, trend_official_item(q, url, page), "報道の中の公式のリンク"):
+                    made = True
+                    break
+            if made:
+                continue
+            if created["trend"] >= trend_limit or time_up():
+                break
+            # 3) 公式の発表が見つからない: 主要な報道機関の独立した2社以上が同じ事実を伝えているときだけ、報道と明記した短い記事にする
+            if not TREND_FROM_PRESS:
+                trend_skip(q, "公式の発表が見つからない（報道だけの話題は作らない設定 TREND_FROM_PRESS=0）", final=False)
+                continue
+            chosen = trend_lane.independent(fetched)
+            if len(chosen) < public_interest.TREND_PRESS_MIN_OUTLETS:
+                trend_skip(q, f"公式の発表が見つからず、主要な報道機関の記事も{len(chosen)}社（独立した2社以上が必要）", final=False)
+                continue
+            agreed_ok, why = trend_lane.agreement(term, chosen)
+            if not agreed_ok:
+                trend_skip(q, f"報道の一致を確かめられない: {why}", final=False)
+                continue
+            chosen = trend_lane.agreed(term, chosen)
+            # 読んだ報道の見出しと書き出しで、扱わない話題（訃報・事件と被害者・うわさ・ギャンブル・選挙）をもう一度確かめる
+            if ex := trends.open_exclusion_reason(term, [f"{s_.get('title') or ''} {s_['text'][:200]}" for s_ in chosen]):
+                trend_skip(q, f"扱わない話題: {ex}")
+                continue
+            dup = next((d for s_ in chosen if (d := trend_recent.find(s_.get("title") or "", s_["url"]) or story_recent.match(s_.get("title") or "", s_["url"]))), None)
+            if dup:
+                trend_skip(q, f"重複: 報道の見出しと同じ話題の記事がある（{dup if isinstance(dup, str) else dup[0]}）")
+                continue
+            if act := in_run_action({**q, "title": chosen[0].get("title") or term, "url": ""}):
+                trend_skip(q, f"重複: この実行で扱った話題（{str(act[-1])[:60]}）")
+                continue
+            seen_add({**q, "title": chosen[0].get("title") or term, "url": ""})
+            q["_press_report"] = True
+            source_text = "\n\n".join(f"【{s_['source']}】{s_.get('title') or ''}\n{s_['text'][:trend_lane.PRESS_SOURCE_CAP]}" for s_ in chosen)
+            genre = GENRES_BY_SLUG.get(q.get("genre") or "", GENRES_BY_SLUG.get("public", AI))
+            related = arch.related(term, source_text, chosen[0]["url"], genre.slug)
+            context = archive.prompt_block(related)
             voice_key, voice_text = m.pick_voice()
             system = (
                 f"{m.SYSTEM_INSTRUCTION_BASE}\n\n{genre.persona}\n\n"
-                f"{TREND_SOURCE_NOTE.format(rules=trends.EDITORIAL_RULES)}\n\n{glossary.prompt_block()}\n\n## 今回の語り口\n{voice_text}"
+                f"{TREND_SOURCE_NOTE.format(rules=trend_lane.PRESS_RULES)}\n\n{glossary.prompt_block()}\n\n## 今回の語り口\n{voice_text}"
             )
-            if related:
-                log(f"   [context] 過去記事 {len(related)} 本: {', '.join(r['slug'] for r in related)}")
+            prompt = (build_trend_prompt(q, chosen, genre, context) + trend_lane.RELEVANT_NOTE
+                      + trend_lane.title_note(term, q["id"]) + trend_lane.press_note(chosen))
+
+            def build_press(data, model, q=q, chosen=chosen, voice_key=voice_key, related=related, term=term):
+                rec = attach_related(build_trend_record(q, chosen, data, model, voice_key), data, related)
+                trend_lane.press_fields(rec, term, chosen)
+                rec["title"] = re.sub(r"\s*[｜|]\s*", "　", rec["title"]).strip()
+                if problems := trend_lane.press_record_problems(rec):
+                    raise ValueError("報道が出典の記事の形: " + "; ".join(problems))
+                return rec
+
+            log(f"   [press] 公式の発表は見つからず。主要な報道機関 {len(chosen)} 社（{'・'.join(s_['source'] for s_ in chosen)}）の報道で短い記事にします")
             started = time.time()
             status, record, model_name, info = gated(
-                q, "trend", system, build_trend_prompt(q, fetched, genre, context), schema_for(TREND_SCHEMA, genre.slug), source_text,
-                lambda data, model, q=q, fetched=fetched, voice_key=voice_key, related=related: attach_related(
-                    build_trend_record(q, fetched, data, model, voice_key), data, related
-                ),
-                check_context_for(q["title"], source_text, related),
-                purpose=article_purpose(q, genre.slug),
+                q, "trend", system, prompt, schema_for(TREND_SCHEMA, genre.slug), source_text, build_press,
+                check_context_for(term, source_text, related), purpose=article_purpose(q, genre.slug),
             )
             if status == "fail":
                 if state["failed_web"].get(q["id"], 0) >= MAX_FAILURES:
@@ -3200,17 +3377,36 @@ def main() -> int:
                 mark(state, q, skipped=True, reason=f"{'quality: ' if status == 'reject' else ''}{info}"[:200], model=model_name)
                 rejected += status == "reject"
                 run_status[q["id"]] = ("failed", 2)
+                key = "品質ゲート不合格" if status == "reject" else "記事にしない判定"
+                trend_skips[key] = trend_skips.get(key, 0) + 1
                 continue
-            attach_charts(record)
+            if problems := trend_lane.press_record_problems(record):
+                # 門の手直しのあとに形が崩れた（報道の明記が消えた・出典が変わった）: 出さない
+                trend_skip(q, f"報道が出典の記事の形が崩れた: {problems[0]}")
+                run_status[q["id"]] = ("failed", 2)
+                continue
+            if TREND_PRESS_NOINDEX:
+                record["indexable"] = False  # 門を全部通ったあとに付ける（indexable の印は公開前の門を素通りさせるため）
             stamp_times(record, q, run_detected_at)
             path = m.write_article(record)
             recent.add(record["title"], record["sourceUrl"], record.get("keywords"))
+            trend_recent.add(record["title"], record["sourceUrl"], record.get("keywords"))
             story_recent.add(record)
             touched.add(record["slug"])
             run_status[q["id"]] = ("article", record["slug"])
-            mark(state, q, slug=record["slug"], model=model_name, kind="trend", score=record.get("qualityScore"))
+            covered[trend_lane.norm(term)] = record["slug"]
+            mark(state, q, slug=record["slug"], model=model_name, kind="trend", trendLane=True, pressReport=True, trendKeyword=term,
+                 score=record.get("qualityScore"))
             created["trend"] += 1
-            log(f"   [OK] {path.relative_to(m.ROOT)} ({len(record['body'])}字 / {model_name} / {time.time() - started:.0f}s)")
+            trend_stats["press"] += 1
+            trend_made.append(f"報道（{'・'.join(s_['source'] for s_ in chosen)}）: {record['slug']}「{record['title'][:50]}」")
+            log(f"   [OK trend 報道] {path.relative_to(m.ROOT)} ({len(record['body'])}字 / {model_name} / {time.time() - started:.0f}s)")
+        if args.trends > 0 and not fast_mode:
+            log(f"\n[trend] まとめ: キュー {len(queue)} 語 / 調べた {trend_stats['considered']} 語 → 記事 {created['trend']} 本"
+                f"（公式が出典 {trend_stats['official']} / 主要な報道機関2社以上 {trend_stats['press']}）/ 公式が出て更新 {trend_stats['refreshed']} 本"
+                f" / 見送り: {' / '.join(f'{k} {v}件' for k, v in sorted(trend_skips.items(), key=lambda kv: -kv[1])) or 'なし'}")
+            for line in trend_made:
+                log(f"[trend]   - {line}")
 
         # 公式フィード（AI）と幅広い話題を、レーンごとに1本ずつ交互に処理する
         order = lane_order(lanes, ai_last=news_mix.life_behind(mix_counts))
@@ -3232,13 +3428,13 @@ def main() -> int:
                     return cand, found
             return None, None
         while active:
-            if total_created() >= remaining or time_up() or rescue_exhausted():
+            if lane_created() >= remaining or time_up() or rescue_exhausted():
                 break
             if llm.all_exhausted(args.tier):
                 log("[info] すべてのモデルが無料枠の上限に達したため終了します")
                 break
             for lane in list(active):
-                if total_created() >= remaining or time_up() or llm.all_exhausted(args.tier) or rescue_exhausted():
+                if lane_created() >= remaining or time_up() or llm.all_exhausted(args.tier) or rescue_exhausted():
                     break
                 is_ai = lane == "ai"
                 if (is_ai and created["ai"] >= ai_limit) or (not is_ai and created["broad"] >= broad_limit):
@@ -3252,7 +3448,7 @@ def main() -> int:
                 process_web(item, lane, target)
                 # 優先レーンは1巡で2本まで試す（上限・時間は次の巡回の頭で確かめる）
                 for _ in range(lane_turns(lane) - 1):
-                    if total_created() >= remaining or time_up() or llm.all_exhausted(args.tier):
+                    if lane_created() >= remaining or time_up() or llm.all_exhausted(args.tier):
                         break
                     if created["broad"] >= broad_limit:
                         break
@@ -3292,8 +3488,8 @@ def main() -> int:
     log(f"[cost] この回の Claude API の費用 ${run_usd:.3f}（{run_detail}）")
     if not fast_mode and not args.only and not args.source:
         # 見張り: 候補があるのに 0 本の回を state/pipeline_health.json に数える（1回で次の回が救済モード、救済モードで2回続けて0本なら issue）
-        candidates = len(majors) + (len(queue) if trend_limit > 0 else 0) + (len(ai_items) if ai_limit > 0 else 0) \
-            + (len(broad_items) if broad_limit > 0 else 0)
+        # 話題のレーンのキューは数えない（出典がそろわない言葉が多く、0本でも「止まっている」ではない。2026-11-13）
+        candidates = len(majors) + (len(ai_items) if ai_limit > 0 else 0) + (len(broad_items) if broad_limit > 0 else 0)
         reason = last_problem[0]
         if llm.all_exhausted(args.tier):
             reason = "無料モデルも Claude API も使えない（無料枠切れ・API 停止） " + reason

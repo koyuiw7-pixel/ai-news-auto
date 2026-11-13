@@ -150,8 +150,8 @@ class HealthRescueTest(unittest.TestCase):
 
 class WebArticlesWiringTest(unittest.TestCase):
     def test_every_skip_is_logged_with_reason(self):
-        self.assertIn("def pick(cand: dict, is_ai: bool, major: bool = False):", WEB)
-        self.assertIn("action, found = _pick(cand, is_ai, major)", WEB)
+        self.assertIn("def pick(cand: dict, is_ai: bool, major: bool = False, trend: bool = False):", WEB)  # 2026-11-13 話題のレーン（trend）
+        self.assertIn("action, found = _pick(cand, is_ai, major, trend)", WEB)
         self.assertIn("skip_counts[key] = skip_counts.get(key, 0) + 1", WEB)
         self.assertIn("[skip] 見送りの内訳（この回）", WEB)
         # 理由の無い見送りを残さない

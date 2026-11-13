@@ -199,6 +199,56 @@ def muse_press_ok(record: dict) -> bool:
     return bool(muse_format.press_outlet(str(record.get("sourceUrl") or ""), str(record.get("sourceName") or "")))
 
 
+# --------------------------------------------------------------------------- #
+# 2026-11-13 オーナー「とにかく数字。それさえ出るなら結構なんでもいい」「注目する話題がとれていない」:
+# 急上昇の話題で公式の発表がまだ無いものだけ、主要な報道機関の報道を出典にした短い記事を通す（W31 の例外はこの形だけ）。
+#   - 出典は下の一覧の報道機関だけ。独立した2社以上（共同通信の配信を載せる 47NEWS・nordot は1社、NHK の2つのドメインも1社と数える）
+#   - 「NHKなどが報じた」と報道であることを書き、公式の発表として断定しない（pressReport の印・awaitingOfficial で公式が出たら更新）
+#   - それ以外の報道が出典の記事（ニュースブログ・レーダーの報道・一覧に無い媒体・1社だけ）は今までどおり書かない・公開しない
+# --------------------------------------------------------------------------- #
+TREND_PRESS_OUTLETS: dict[str, str] = {
+    "nhk.or.jp": "NHK", "news.web.nhk": "NHK",
+    "47news.jp": "共同通信", "nordot.app": "共同通信",
+    "jiji.com": "時事通信", "nikkei.com": "日本経済新聞", "asahi.com": "朝日新聞", "yomiuri.co.jp": "読売新聞",
+    "mainichi.jp": "毎日新聞", "reuters.com": "ロイター", "jp.reuters.com": "ロイター",
+    "bloomberg.com": "ブルームバーグ", "bloomberg.co.jp": "ブルームバーグ", "apnews.com": "AP通信",
+    "newsdig.tbs.co.jp": "TBS NEWS DIG", "news.tv-asahi.co.jp": "テレ朝NEWS", "news.ntv.co.jp": "日テレNEWS", "fnn.jp": "FNN",
+}
+TREND_PRESS_MIN_OUTLETS = 2
+PRESS_ATTRIBUTION_RE = re.compile(r"報じ|によると|が伝え|と伝え")
+
+
+def press_outlet(url: str) -> str | None:
+    """話題のレーンで出典にしてよい主要な報道機関の URL なら、その報道機関の名前（独立の数え方の単位）。違えば None"""
+    from urllib.parse import urlsplit  # noqa: PLC0415
+
+    try:
+        parts = urlsplit((url or "").strip())
+    except ValueError:
+        return None
+    if parts.scheme not in ("http", "https"):
+        return None
+    host = parts.netloc.lower().split(":")[0]
+    for base, name in TREND_PRESS_OUTLETS.items():
+        if host == base or host.endswith("." + base):
+            return name
+    return None
+
+
+def trend_press_ok(record: dict) -> bool:
+    """話題のレーンの、主要な報道機関2社以上を出典にした報道の記事か（W31 の例外の形を全部満たすか）"""
+    if record.get("channelSlug") != "trends" or record.get("pressReport") is not True or not record.get("trendKeyword"):
+        return False
+    sources = [s for s in record.get("sources") or [] if isinstance(s, dict)]
+    outlets = [press_outlet(str(s.get("url") or "")) for s in sources]
+    if not outlets or any(o is None for o in outlets) or len(set(outlets)) < TREND_PRESS_MIN_OUTLETS:
+        return False
+    if press_outlet(str(record.get("sourceUrl") or "")) is None:
+        return False
+    # 報道であることを本文とリードに書いている（公式の発表として断定しない）
+    return bool(PRESS_ATTRIBUTION_RE.search(f"{record.get('lede') or ''}\n{record.get('body') or ''}"))
+
+
 def press_source_problems(record: dict) -> list[str]:
     """（2026-11-04 W31 の全経路化）記事の出典が報道機関・ニュースブログ・話題の報道まとめ（trends）なら不合格。
     事実は官公庁・会社自身など公式の一次情報だけ。報道しか無い話題は、公式の発表が出るまで書かない。
@@ -208,6 +258,8 @@ def press_source_problems(record: dict) -> list[str]:
         return []
     channel = str(record.get("channelSlug") or "")
     url = str(record.get("sourceUrl") or "")
+    if trend_press_ok(record):
+        return []  # 話題のレーンの報道の記事（主要な報道機関2社以上・報道と明記。2026-11-13）
     if channel == "trends" or (channel.startswith("radar-") and channel != "radar-official") or is_press_url(url):
         return [f"報道機関の記事が出典（{channel or url[:60]}）。事実は公式の一次情報だけ（W31）。公式の発表が出てから書く"]
     return []
@@ -337,10 +389,24 @@ def query_terms(query: str) -> list[str]:
     return out
 
 
+LATIN_TERM_RE = re.compile(r"[\x20-\x7e]+")
+
+
+def contains_term(term: str, text: str) -> bool:
+    """語が文に出てくるか。英数字だけの語は、語の区切りで当てる（2026-11-13: 急上昇の「bet」が「Alphabet」に当たり、
+    関係の無い AlphaGenome 2 の記事に急上昇の印が付いた）。日本語を含む語は今までどおり部分一致"""
+    term = _nfkc(term).strip().lower()
+    low = _nfkc(text).lower()
+    if not term:
+        return False
+    if LATIN_TERM_RE.fullmatch(term):
+        return bool(re.search(rf"(?<![a-z0-9]){re.escape(term)}(?![a-z0-9])", low))
+    return term in low
+
+
 def _term_in(term: str, text: str) -> bool:
-    low = text.lower()
     for alt in QUERY_ALIASES.get(term.lower(), QUERY_ALIASES.get(term, (term,))):
-        if _nfkc(alt).lower() in low:
+        if contains_term(alt, text):
             return True
     return False
 
@@ -353,8 +419,8 @@ def trend_hit(title: str, signals: list[dict], source_name: str = "") -> dict | 
     head = _nfkc(title)
     for sig in signals:
         word = _nfkc(str(sig.get("title") or "")).strip()
-        if len(word) >= 2 and word in head:
-            return sig  # 語句まるごと（前からの当て方）
+        if len(word) >= 2 and contains_term(word, head):
+            return sig  # 語句まるごと（前からの当て方。英数字だけの語は語の区切りで当てる）
         terms = query_terms(word)
         if not terms:
             continue

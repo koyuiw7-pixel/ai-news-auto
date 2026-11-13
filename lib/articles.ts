@@ -199,6 +199,8 @@ export type Article = {
   angleOf?: string;
   /** 発表から48時間以上たってから作った記事（速報ではない。ニュース用サイトマップに載せない） */
   late?: boolean;
+  /** 話題のレーンの記事の急上昇の言葉（scripts/trend_lane.py。分野で検索から外さない） */
+  trendKeyword?: string;
   /** 公開前の事実確認の点数（100点満点） */
   qualityScore?: number;
   /** 続報の履歴（古い順） */
@@ -310,6 +312,7 @@ export type ArticleSummary = Pick<
   | "duplicateOf"
   | "angleOf"
   | "late"
+  | "trendKeyword"
   | "videoId"
   | "videoUrl"
   | "publishedAt"

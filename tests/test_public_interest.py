@@ -278,10 +278,14 @@ class PressSourceGateTest(unittest.TestCase):
         self.assertEqual(items, [])
         self.assertTrue(all(r["outcome"] == "skipped" for r in results.values()), results)
 
-    def test_trend_lane_is_off_by_default(self):
+    def test_trend_lane_press_articles_only_in_the_allowed_shape(self):
+        # 2026-11-13 オーナー「とにかく数字」「注目する話題がとれていない」: 話題のレーンは動かす。報道が出典の記事は
+        # 主要な報道機関の独立した2社以上・報道と明記の形だけ通す（tests/test_trend_lane_20261113.py が細かく確かめる）
         import web_articles as w
 
-        self.assertFalse(w.TREND_FROM_PRESS)
+        self.assertTrue(w.TREND_LANE)
+        self.assertTrue(w.TREND_FROM_PRESS)
+        self.assertTrue(pi.press_source_problems(self.rec(channelSlug="trends", sourceUrl="https://www3.nhk.or.jp/news/x")))
 
 
 class TuningTest(unittest.TestCase):

@@ -90,7 +90,7 @@ class OrderAndCapTest(unittest.TestCase):
 
     def test_pipeline_uses_the_mix(self):
         src = (ROOT / "scripts" / "web_articles.py").read_text("utf-8")
-        for needle in ("news_mix.order_key(", "news_mix.over_cap(", "mix=item.get(\"_mix\")"):
+        for needle in ("news_mix.order_key(", "news_mix.over_cap(", "(item.get(\"_mix\") or news_mix.classify(item))"):
             self.assertIn(needle, src)
 
 
