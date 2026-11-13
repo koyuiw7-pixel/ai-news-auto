@@ -129,10 +129,16 @@ jobs:
             python scripts/story.py mark --days 7 | tail -20
           fi
 
-      # デプロイの決め方は auto_run.yml の「Commit & push」と同じ（前回から55分以上ならいま出す。まだなら保留にして、記事づくりの回が出す）
+      # デプロイ: Muse の記事を公開した回（+1本以上）は、55分のまとめを待たずにすぐ出す（2026-11-13。Muse の記事は Threads に出す記事で、
+      # これまでは原稿から公開まで中央値21分・最大66分かかっていた。速報の回が待たずに出すのと同じ＝auto_run.yml の FORCE_DEPLOY）。
+      # ただしデプロイの回数（費用）を守るため、前回のデプロイ（だれの回でも。state/last_deploy）から15分たっていないときは保留にする
+      # （＝まとめのほかに増えるデプロイは15分に1回まで。保留の分は、記事づくりの回か次の Muse の回が出す）。
+      # すぐ出すときは state/last_deploy を今にするので、たまっていた自動の記事も一緒に公開される（HEAD をビルドする）
       - name: Commit & push
         if: ${{ steps.inbox.outputs.count != '0' }}
         id: commit
+        env:
+          MUSE_DEPLOY_GAP: "900"  # 秒。前回のデプロイからこれ以上たっていれば、Muse の公開はすぐデプロイする
         run: |
           echo "count=0" >> "$GITHUB_OUTPUT"
           echo "deploy=0" >> "$GITHUB_OUTPUT"
@@ -156,7 +162,7 @@ jobs:
           echo "count=${COUNT}" >> "$GITHUB_OUTPUT"
           if [ "$COUNT" != "0" ]; then
             MSG="chore(muse): Muse の記事を公開 (+${COUNT}本)"
-            if [ $((NOW - LAST)) -ge 3300 ]; then
+            if [ $((NOW - LAST)) -ge "$MUSE_DEPLOY_GAP" ]; then
               echo "$NOW" > state/last_deploy
               echo 0 > state/deploy_pending
               echo "deploy=1" >> "$GITHUB_OUTPUT"
@@ -185,5 +191,5 @@ jobs:
         run: |
           {
             echo "## Muse の入稿"
-            echo "- 入稿: ${{ steps.inbox.outputs.count }} 本 / 公開: ${{ steps.commit.outputs.count || '0' }} 本 / デプロイ: ${{ steps.commit.outputs.deploy || '0' }}"
+            echo "- 入稿: ${{ steps.inbox.outputs.count }} 本 / 公開: ${{ steps.commit.outputs.count || '0' }} 本 / デプロイ: ${{ steps.commit.outputs.deploy || '0' }}（1=すぐ出した・0=保留か公開なし）"
           } >> "$GITHUB_STEP_SUMMARY"
