@@ -1037,6 +1037,32 @@ def lift_score(record: dict, verdict: dict, need: int, source_text: str, kind: s
     return best
 
 
+# 出典の日付がこれより先なら「読み違い」とみなす（時計のずれ・日付だけのページの日本時間0時を許す幅）
+FUTURE_SOURCE_GRACE = timedelta(minutes=10)
+
+
+def source_published(value, now: datetime | None = None, url: str = "") -> tuple[datetime, bool]:
+    """出典のページから読めた日付 → (発表の時刻, 推定か)。
+    - 日付が無い・読めない（PDF など）: 今の時刻にして「推定」（発表の時刻としては記録しない。web_articles.stamp_times の published_guessed）
+    - 日付が今より先: 発表の日ではなく、ページに書かれた先の予定（公開日・発売日・締め切り）を読み違えたもの。今の時刻に丸めて「推定」にし、ログに残す。
+      2026-11-13: 映画の公式サイトのお知らせで、公開初日（12月4日）を発表の日として読み、記事の sourcePublishedAt・publishedAt が 12/3 になった"""
+    now = now or datetime.now(timezone.utc)
+    published = value
+    if isinstance(published, str):
+        try:
+            published = datetime.fromisoformat(published.replace("Z", "+00:00"))
+        except ValueError:
+            published = None
+    if not isinstance(published, datetime):
+        return now, True
+    if published.tzinfo is None:
+        published = published.replace(tzinfo=JST)
+    if published - now > FUTURE_SOURCE_GRACE:
+        log(f"[muse] 出典の日付が今より先（{published.isoformat()}）: 発表の時刻として使わず、今の時刻にする {url}")
+        return now, True
+    return published, False
+
+
 def build_article(path: Path, data: dict, fetched: list[dict], unread: list[str] | None = None,
                   deadline: float | None = None) -> tuple[str, dict | str]:
     """("ok", record) / ("reject", 理由) / ("error", 理由) / ("defer", 理由)。ふつうの記事と同じ型・同じ門。
@@ -1055,17 +1081,7 @@ def build_article(path: Path, data: dict, fetched: list[dict], unread: list[str]
     page = first["page"]
     if press_only:
         page = {**page, "image": None}  # 報道機関のページの写真は使わない
-    published = first.get("published")
-    if isinstance(published, str):
-        try:
-            published = datetime.fromisoformat(published.replace("Z", "+00:00"))
-        except ValueError:
-            published = None
-    guessed = not isinstance(published, datetime)
-    if guessed:
-        published = datetime.now(timezone.utc)  # 公式ページに日付が無い（PDF など）: 発表の時刻としては記録しない（stamp_times の published_guessed）
-    if published.tzinfo is None:
-        published = published.replace(tzinfo=JST)
+    published, guessed = source_published(first.get("published"), url=first.get("url") or "")
     item = {
         "id": file_id(path.name), "url": first["url"], "title": data["title"],
         "source_name": first.get("name") or first.get("title") or host_slug(first["url"]),
