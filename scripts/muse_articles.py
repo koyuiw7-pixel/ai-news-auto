@@ -5,7 +5,7 @@
   1. Mac: ~/Downloads/saisoku-articles/*.md → scripts/muse_articles_push.py が content/muse_inbox/ に入れて main に push（launchd で25分ごと）
   2. Actions（muse_inbox.yml。入稿の push ですぐ・30分ごとの予約でも。記事づくりの回とは別の列）: このスクリプトが content/muse_inbox/ を読む
      - 形の確かめ（scripts/muse_format.py）→ 重複（直近7日の記事と見出し・固有名詞が重なる／同じ原稿の出し直し。出典の URL が同じだけでは重複にしない）→ 今日の本数（段の上限 WEB_STAGE_TARGET の中に数える）
-     - 公式の出典ページを取りに行き（報道は出典にしない W31）、Muse の原稿を土台に、ふつうの記事と同じ型（リード・要点・かんたん版・
+     - 公式の出典ページを取りに行き（報道は、主要な報道機関の記事だけを報道の出典として使う。W31 の Muse の道の例外・2026-11-13）、Muse の原稿を土台に、ふつうの記事と同じ型（リード・要点・かんたん版・
        FAQ・判定カード）に整える（本文は Muse の構成・文をできるだけ残し、資料と食い違う所・決まりに合わない所だけ直す）
      - ふつうの記事と同じ門: 公開前の門（薄い・お知らせ・報道・主題外）→ 品質の門（形＋公式ページとの事実確認）。
        Muse の記事は事実確認の点数を MUSE_PASS_SCORE（手続きは PROCEDURE_PASS_SCORE）以上に限る
@@ -121,6 +121,28 @@ MUSE_UNREAD_NOTE = """
 - sources（出典の一覧）に、読めなかったページを並べない。
 """
 
+# 2026-11-13 オーナー承認（台帳 W31 の Muse の道だけの例外）: 主要な報道機関（muse_format.PRESS_ALLOWED）の記事を、報道の出典として使う。
+# 報道にしか無い事実は必ず報道として書かせ（press_problems が数字を機械で確かめる）、文は写させない（書き写しの門）
+MUSE_PRESS_NOTE = """
+
+# 報道機関の記事を資料に使うときの決まり（この原稿だけ。上の「報道を引いた所の書き方」に足す）
+上の資料のうち「【報道: 〇〇】」と書いた欄（{names}）は、報道機関の記事です。公式の発表ではありません。
+- 公式の資料（【報道】でない欄）で確かめられる事実は、公式の資料をもとに書く。公式の資料と報道が食い違うときは公式の資料を採る。
+- 報道の欄にしか無い事実・数字は、その文に必ず報道機関の名前を入れて「{first}によると」「{first}が報じた」と書く。
+  確定した事実として言い切らない。続く文も「〜という」「〜としている」と報道の内容として書く。
+- title・seo_title・lede・description・highlights・easy_markdown・faq・today_actions・work_money・threads_post など、すべての欄で同じ。
+- 報道の文を写さない。事実だけを自分の言葉で短くまとめる（1つの報道から使うのは要点だけ）。見出し・言い回し・構成をまねない。
+  報道の文を「」で長く引用しない。
+- 報道が伝える見通し・関係者の話・匿名の情報は「〜と報じている」と報道の内容として書き、サイソクの見方の根拠にしない。
+- sources（出典の一覧）には、公式の資料だけを並べる。
+"""
+MUSE_PRESS_ONLY_NOTE = """
+- この原稿には、読めた公式の資料がありません（報道だけ）。title・lede・threads_post には必ず報道機関の名前を入れる
+ （例:「〜と{first}が報じた」「{first}によると〜」）。本文も、報道が伝えた内容として書き、公式に確認された事実のように書かない。
+- 公式（会社・役所・本人）の発表やコメントが報道の中で紹介されているときは「{first}によると、〇〇は〜と発表した」と書く。
+- 「まだ分からないこと」の章に、公式の発表がまだ確認できていないことを書く。
+"""
+
 
 def log(message: str) -> None:
     print(message, flush=True)
@@ -157,9 +179,17 @@ def host_slug(url: str) -> str:
     return re.sub(r"[^a-z0-9]+", "-", host).strip("-")[:40] or "official"
 
 
-def muse_disclaimer(genre_slug: str = "") -> str:
-    text = ("本記事は公式発表をもとに、AIの書き手（Muse）が下書きし、サイソクの仕組みで公式ページとの事実確認・編集をして掲載したものです。"
-            "制度・金額・期限は変わることがあります。手続きの前に、発表元の公式ページで最新の情報をご確認ください。")
+def muse_disclaimer(genre_slug: str = "", press: list[str] | None = None, press_only: bool = False) -> str:
+    """press は使った報道機関の名前。press_only は公式の資料が無く、報道だけをもとにした記事（「公式発表をもとに」と名乗らない）"""
+    names = "・".join(dict.fromkeys(press or []))
+    if press_only and names:
+        text = (f"本記事は報道（{names}）をもとに、AIの書き手（Muse）が下書きし、サイソクの仕組みで報道の内容との照合・編集をして掲載した速報です。"
+                "公式の発表はまだ確認できていません。確認できしだい更新します。正確な情報は、元の報道と公式の発表をご確認ください。")
+    else:
+        text = ("本記事は公式発表をもとに、AIの書き手（Muse）が下書きし、サイソクの仕組みで公式ページとの事実確認・編集をして掲載したものです。"
+                "制度・金額・期限は変わることがあります。手続きの前に、発表元の公式ページで最新の情報をご確認ください。")
+        if names:
+            text += f"一部は報道（{names}）が伝えた内容で、本文に報道と書いています。"
     # 投資・マネーの記事は短い免責文が必須（genre_focus.ADVICE_DISCLAIMER_MARK）。Muse の免責文に無く、
     # 中身に関係なく門で落ちていた（2026-11-12「12月から変わること」v2・すかいらーくの株主優待など）
     if genre_slug == "investment":
@@ -264,12 +294,20 @@ def fetch_sources(sources: list[dict], skip_unreadable_first: bool = False, unre
     return out
 
 
+def _source_head(s: dict) -> str:
+    """出典の見出しの行。報道機関の記事（s["press"]）は、公式の資料と見分けが付くように書く"""
+    if s.get("press"):
+        return (f"【報道: {s['press']}】{s['url']}\n（報道機関の記事。公式の発表ではない。ここにしか無い事実は"
+                f"「{s['press']}によると」と報道として書く。文を写さない）")
+    return f"【{s.get('name') or s.get('title') or '公式'}】{s['url']}"
+
+
 def source_text_of(fetched: list[dict], title: str = "", cap: int = MULTI_SOURCE_CAP) -> str:
     """生成・事実確認に渡す出典の本文。出典が2本以上なら、全部の出典が事実確認（quality.source_cap）に入るよう1本ごとに長さを割り当て、
     長いページは記事の題名・書き手のメモ（sources[].facts）の言葉と数字・料金の行を優先して抜き出す（source_links.excerpt）。
     書き手のメモは「確かめる手がかり」として添えるだけで、根拠は下のページの本文（メモにしかない事実は創作扱いのまま）"""
     if len(fetched) <= 1:
-        return "\n\n".join(f"【{s.get('name') or s.get('title') or '公式'}】{s['url']}\n{s['text']}" for s in fetched)
+        return "\n\n".join(f"{_source_head(s)}\n{s['text']}" for s in fetched)
     import source_links  # noqa: PLC0415
 
     per = max(MIN_PER_SOURCE, cap // len(fetched) - 200)
@@ -279,7 +317,7 @@ def source_text_of(fetched: list[dict], title: str = "", cap: int = MULTI_SOURCE
         note = re.sub(r"\s+", " ", str(s.get("facts") or "")).strip()
         if len(body) > per:
             body = source_links.excerpt(body, f"{title} {s.get('name') or ''} {note}", cap=per)
-        head = f"【{s.get('name') or s.get('title') or '公式'}】{s['url']}"
+        head = _source_head(s)
         if note:
             head += f"\n（書き手のメモ。根拠ではない。下のページの本文にあるかで確かめる: {note[:NOTE_CAP]}）"
         parts.append(f"{head}\n{body}")
@@ -296,10 +334,151 @@ def check_file(path: Path) -> tuple[dict | None, list[str]]:
     problems = muse_format.problems(data, path.name)
     import public_interest  # noqa: PLC0415
 
-    for s in data.get("sources") or []:
-        if s.get("url") and public_interest.is_press_url(s["url"]):
-            problems.append(f"報道機関のページは出典にできません（{s['url'][:80]}）。公式の発表を出典にしてください")
+    # 2026-11-13: 主要な報道機関（muse_format.PRESS_ALLOWED。s["press"] の付いた出典）は報道の出典として使う。
+    # ほかの報道・ニュースブログは今までどおり出典にしない: ほかに出典があれば外して続け（落とす理由は嘘だけ）、それしか無ければ見送る
+    sources = data.get("sources") or []
+    other = [s for s in sources if s.get("url") and not s.get("press") and public_interest.is_press_url(s["url"])]
+    keep = [s for s in sources if s not in other]
+    if other and keep:
+        data["sources"] = keep
+        log(f"   [muse] 出典にできない報道のページを外しました: {' / '.join(s['url'][:60] for s in other[:3])}")
+    else:
+        for s in other:
+            problems.append(f"報道機関のページは出典にできません（{s['url'][:80]}）。公式の発表か、主要な報道機関（FORMAT.md の一覧）の記事を出典にしてください")
     return data, problems
+
+
+# ---- 報道機関の記事を出典に使った記事の確かめ（2026-11-13 オーナー承認・W31 の Muse の道だけの例外） ----
+PRESS_WORD_RE = re.compile(r"報道|報じ")
+PRESS_HEDGE_RE = re.compile(r"という|としている|としています|とされ|とのこと|と伝え|とみられ")
+# 報道の文と、記号・空白を除いてこの字数以上つづけて同じ所がある文は「写し」とみなす。ふつうの出典の門（quality.copied_sentences は
+# 文がまるごと同じで40字以上）より厳しく、文の一部でも見る（「NHKによると、」を頭に付けただけの写しを通さない）
+PRESS_COPY_MIN = 30
+_SENTENCE_SPLIT_RE = re.compile(r"(?<=[。！？])|\n")
+
+
+def press_copies(text: str, press_text: str, min_len: int = PRESS_COPY_MIN) -> list[str]:
+    """報道の文と min_len 字以上つづけて同じ所がある文（記号・空白は無視）"""
+    import quality  # noqa: PLC0415
+
+    src = quality._norm(press_text)  # noqa: SLF001
+    out = []
+    if len(src) < min_len:
+        return out
+    for sentence in _SENTENCE_SPLIT_RE.split(text or ""):
+        clean = quality._norm(re.sub(r"[#>*|`]", "", sentence))  # noqa: SLF001
+        if any(clean[i:i + min_len] in src for i in range(0, max(len(clean) - min_len + 1, 0))):
+            out.append(sentence.strip()[:50])
+    return out
+
+
+def press_sources(fetched: list[dict]) -> list[dict]:
+    return [s for s in fetched if s.get("press")]
+
+
+def press_names(fetched: list[dict]) -> list[str]:
+    return list(dict.fromkeys(s["press"] for s in press_sources(fetched)))
+
+
+def _press_named(text: str, names: list[str]) -> bool:
+    """文に、どこの報道かが書いてあるか（報道機関の名前か、「報道」「報じた」）"""
+    aliases = [a for n in names for a in muse_format.PRESS_ALIASES.get(n, (n,))]
+    return any(a in text for a in aliases) or bool(PRESS_WORD_RE.search(text))
+
+
+def _reader_fields(record: dict) -> list[tuple[str, str]]:
+    """（欄の名前, 文）。読者が読むすべての欄（題名・リード・要点・本文・かんたん版・FAQ・今日やること・仕事とお金・SNS の文）"""
+    out = [(k, str(record.get(k) or "")) for k in ("title", "seoTitle", "lede", "description", "summaryLine", "body", "easy",
+                                                    "threadsPost", "threadsHook")]
+    out += [("highlights", str(h)) for h in record.get("highlights") or []]
+    out += [("faq", f"{r.get('q', '')}\n{r.get('a', '')}") for r in record.get("faq") or [] if isinstance(r, dict)]
+    out += [("todayActions", str(a)) for a in record.get("todayActions") or []]
+    out += [("workMoney", str(p)) for p in (record.get("workMoney") or {}).get("points") or []]
+    return [(k, t) for k, t in out if t.strip()]
+
+
+def press_problems(record: dict, fetched: list[dict]) -> list[str]:
+    """報道機関の記事を出典に使った記事が、決まりどおりか（LLM なし）。問題の文のリスト（空なら合格）。
+    1. 報道にしか無い数字（公式の資料に無く、報道の記事にある金額・割合・件数）のある文に、報道機関の名前か「報道」「報じた」がある
+       （直前の文に名前があり、その文が「〜という」「〜としている」と続くのはよい。表・箇条書きの行は同じ段落に名前があればよい）
+    2. 報道の文を写していない（記号・空白を除いて PRESS_COPY_MIN 字以上つづけて同じ所がある文）
+    3. 公式の資料が無い記事（報道だけ）: 題名・リード・SNS の文に報道機関の名前があり、本文にも名前がある
+    報道にしか無い「数字でない事実」は機械では見分けられない（指示文と、事実確認の門で見る）"""
+    import calc_facts  # noqa: PLC0415
+
+    press = press_sources(fetched)
+    if not press:
+        return []
+    names = press_names(fetched)
+    official = [s for s in fetched if not s.get("press")]
+    press_text = "\n".join(s.get("full_text") or s.get("text") or "" for s in press)
+    press_values = calc_facts.values(press_text)
+    official_values = calc_facts.values("\n".join(s.get("full_text") or s.get("text") or "" for s in official))
+    first = names[0]
+    out: list[str] = []
+    bare: list[str] = []
+    for _field, text in _reader_fields(record):
+        for block in re.split(r"\n\s*\n", text):
+            prev = ""
+            for unit in _SENTENCE_SPLIT_RE.split(block):
+                unit = unit.strip()
+                if not unit:
+                    continue
+                nums = [q for q in calc_facts.extract(unit) if calc_facts.checkable(q)
+                        and calc_facts.supported(q, press_values) and not calc_facts.supported(q, official_values)]
+                row = unit[:1] in ("|", "-", "*", "・")
+                ok = (not nums or _press_named(unit, names) or (row and _press_named(block, names))
+                      or (bool(prev) and _press_named(prev, names) and bool(PRESS_HEDGE_RE.search(unit))))
+                if not ok and unit[:40] not in bare:
+                    bare.append(unit[:40])
+                prev = unit
+    if bare:
+        out.append(f"報道（{'・'.join(names)}）にしか無い数字を、報道と分かる形で書いていない（{'、'.join('「' + b + '」' for b in bare[:4])}）。"
+                   f"その文に「{first}によると」「{first}が報じた」と入れ、確定した事実として言い切らない")
+    copied = []
+    for field, text in _reader_fields(record):
+        if field in ("body", "easy", "lede", "description", "highlights", "threadsPost"):
+            copied += press_copies(text, press_text)
+    if copied:
+        out.append(f"報道の文をそのまま写している（{len(copied)}文。例「{copied[0][:40]}」）。事実だけを自分の言葉で短くまとめる")
+    if not official:
+        for field, label in (("title", "題名"), ("lede", "リード"), ("threadsPost", "SNS の文（threads_post）")):
+            text = str(record.get(field) or "")
+            if text.strip() and not _press_named(text, names):
+                out.append(f"公式の資料が無い記事（報道だけ）なのに、{label}に報道機関の名前が無い。「{first}によると」「{first}が報じた」と入れる")
+        if not any(a in str(record.get("body") or "") for n in names for a in muse_format.PRESS_ALIASES.get(n, (n,))):
+            out.append(f"本文に報道機関の名前（{first}）が無い。どこの報道かを書く")
+    return out
+
+
+PENDING_HEADING = "## まだ分からないこと"
+
+
+def mark_press(record: dict, fetched: list[dict], now: datetime | None = None) -> None:
+    """門を通った記事に、報道を出典に使った印を付ける（あとで公式の発表に差し替えられるように）。
+    - pressSources: 使った報道の記事。記事末の「確かめた資料」の札は「報道」にする（「Museの出典」と出さない）
+    - 公式の資料が無い記事: pressOnly・officialPending の印と、本文の「まだ分からないこと」に公式の発表が未確認であることを足す"""
+    press = press_sources(fetched)
+    if not press:
+        return
+    urls = {s["url"] for s in press}
+    record["pressSources"] = [{"url": s["url"], "name": s["press"]} for s in press]
+    for row in record.get("factSources") or []:
+        if isinstance(row, dict) and row.get("url") in urls:
+            row["label"] = "報道"
+    if not record.get("pressOnly"):
+        return
+    day = (now or datetime.now(JST)).astimezone(JST)
+    names = "・".join(press_names(fetched))
+    line = f"この記事は{names}の報道をもとにしています。公式の発表は{day.month}月{day.day}日の時点で確認できていません。確認できしだい更新します。"
+    body = str(record.get("body") or "").rstrip()
+    if PENDING_HEADING in body:
+        head, _, tail = body.partition(PENDING_HEADING)
+        section, sep, rest = tail.partition("\n## ")
+        body = f"{head}{PENDING_HEADING}{section.rstrip()}\n\n{line}\n{sep}{rest}" if sep else f"{head}{PENDING_HEADING}{section.rstrip()}\n\n{line}"
+    else:
+        body = f"{body}\n\n{PENDING_HEADING}\n\n{line}"
+    record["body"] = body.rstrip() + "\n"
 
 
 FOLLOWUP_RE = re.compile(r"続報|翌日|その後|2日目|二日目|第[0-9０-９一二三四五六七八九十]+報")
@@ -450,8 +629,14 @@ def build_article(path: Path, data: dict, fetched: list[dict], unread: list[str]
     import quality  # noqa: PLC0415
     import web_articles as w  # noqa: PLC0415
 
+    # 公式の出典を先に（報道は2番目以降）。読めた出典が報道だけなら、報道をもとにした速報として作る（press_only）
+    fetched = sorted(fetched, key=lambda s: bool(s.get("press")))
+    press = press_names(fetched)
+    press_only = bool(fetched[0].get("press"))
     first = fetched[0]
     page = first["page"]
+    if press_only:
+        page = {**page, "image": None}  # 報道機関のページの写真は使わない
     published = first.get("published")
     if isinstance(published, str):
         try:
@@ -469,13 +654,24 @@ def build_article(path: Path, data: dict, fetched: list[dict], unread: list[str]
         "source_slug": host_slug(first["url"]), "published_at": published, "image": first.get("image") or "",
         "muse": True, "published_guessed": guessed,
     }
+    if press_only:
+        # 今までの「報道が出典」の形に合わせる（web_articles の secondary: 指示文・免責文・発信元の札「報道」。lib/news-outlets.ts は
+        # channelSlug が radar-<報道機関のホスト> の記事を「出典（報道）」と表示する）
+        host = re.sub(r"^www\.", "", (urlparse(first["url"]).hostname or "").lower())
+        item.update({"source_name": first["press"], "source_slug": f"radar-{host}", "image": "", "secondary": True})
     source_text = source_text_of(fetched, data["title"])
     lane = LANE_BY_GENRE.get(data["genre"], "lifestyle")
     voice_key, voice_text = m.pick_voice()
+    # 報道の出典は、束の中でも報道機関の名前で呼ぶ（記事がその数字を使うとき、名前を書いたかを数字の門が見る）
+    extra = [{**s, "name": s["press"]} if s.get("press") else s for s in fetched[1:]]
     genre, system, prompt, schema, kind, context, bundle = w.compose_with_facts(item, source_text, lane, [], voice_text, page,
-                                                                                    extra_sources=fetched[1:])
+                                                                                    extra_sources=extra)
     prompt += MUSE_DRAFT_NOTE.format(title=data["title"], notes=data.get("notes") or "（なし）", body=data["body"])
     prompt += MUSE_DESK_NOTE  # 話題は編集部が決めた。落とすのは資料で確かめられないときだけ（2026-11-13）
+    if press:
+        prompt += MUSE_PRESS_NOTE.format(names="・".join(press), first=press[0])
+        if press_only:
+            prompt += MUSE_PRESS_ONLY_NOTE.format(first=press[0])
     if unread:
         prompt += MUSE_UNREAD_NOTE.format(urls="\n".join(f"- {u}" for u in unread[:MAX_UNREAD_LISTED]))
     # 出典の資料の日付・会議の回と、記事が書く出来事が合っているか（2026-11-10 の取り下げ。scripts/source_date.py）。
@@ -502,10 +698,14 @@ def build_article(path: Path, data: dict, fetched: list[dict], unread: list[str]
             continue
         record.update({
             "writer": "muse", "refreshMode": "editorial", "museFile": muse_format.nfc(path.name),
-            "disclaimer": muse_disclaimer(record.get("genreSlug") or ""),
+            "disclaimer": muse_disclaimer(record.get("genreSlug") or "", press, press_only),
             # 自動の書き直し（見出し・章の手直し・種類の型）の対象から外す（scripts/rewrite_types.py の refreshMode・section_polish の sectionsPolishedAt）
             "sectionsPolishedAt": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         })
+        if press_only:
+            # 報道だけをもとにした速報の印。検索には出さない（他社の記事の書き直しを検索に出さない＝台帳 W12・W17 と同じ考え。
+            # indexable を手で true にすれば出せる）。公式の発表が出たら officialPending を見て差し替える
+            record.update({"pressOnly": True, "officialPending": True, "indexable": False})
         mark_comparison(record, data)
         if (data.get("depth") or "").strip():
             # 一歩深くする欄の材料（scripts/depth_fields.py が公式ページで確かめてから使い、使ったら記事から外す。台帳 A66）
@@ -529,6 +729,11 @@ def build_article(path: Path, data: dict, fetched: list[dict], unread: list[str]
         if dated := source_date.check(texts, fetched, today) + source_date.past_change(texts, today):
             problems = dated
             log(f"   [muse] 試行{attempt}: {dated[0][:160]}")
+            continue
+        # 報道を出典に使った記事: 報道にしか無い数字が報道として書かれているか・報道の文を写していないか（LLM なし）
+        if unattributed := press_problems(record, fetched):
+            problems = unattributed
+            log(f"   [muse] 試行{attempt}: {unattributed[0][:160]}")
             continue
         verdict = quality.evaluate(record, source_text, kind, context, check_facts=True)
         # 2026-11-09 オーナー（台帳 A60 をすべての経路に）: ふつうの記事と同じく、形の指摘（資料に無い数字・電話番号など）も
@@ -560,7 +765,13 @@ def build_article(path: Path, data: dict, fetched: list[dict], unread: list[str]
             bar = quality_bar.check(record, verdict, at_publish=True)
             quality_bar.stamp(record, bar, **{k: v for k, v in (record.get("qualityBar") or {}).items() if k in ("before", "repaired")})
             log(f"   [bar] {quality_bar.summary_line(bar)}（Muse の記事は記録だけ）")
+            # その場の手直し・点数の手直しで文が変わったあとも、報道の書き方の決まりを守っているか
+            if unattributed := press_problems(record, fetched):
+                problems = unattributed
+                log(f"   [muse] 試行{attempt}: 手直しのあと {unattributed[0][:160]}")
+                continue
             w.finalize_facts(record, source_text)
+            mark_press(record, fetched)
             w.stamp_times(record, item, datetime.now(timezone.utc))
             # Muse の原稿のかんたん版は「ひとことで言うと」の要約だけになりやすく、記事ページでは要約の章を出さないため
             # 「かんたんに読む」が消えていた（2026-11-10）。本文だけを材料に作り直す（scripts/easy_version.py。

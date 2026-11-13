@@ -93,9 +93,14 @@ class PipelineTest(unittest.TestCase):
 
         with tempfile.TemporaryDirectory() as tmp:
             path = Path(tmp) / "20261108-お金-平均給与.md"
-            path.write_text(submission(url="https://www3.nhk.or.jp/news/html/x.html"), encoding="utf-8")
+            # 2026-11-13 オーナー承認: 主要な報道機関（NHK など。muse_format.PRESS_ALLOWED）は報道の出典として使える。
+            # ほかの報道・ニュースブログは今までどおり、LLM を使う前に見送る（tests/test_muse_press_sources_20261113.py）
+            path.write_text(submission(url="https://www.itmedia.co.jp/news/articles/x.html"), encoding="utf-8")
             _, problems = muse_articles.check_file(path)
             self.assertTrue(any("出典" in p for p in problems))
+            path.write_text(submission(url="https://japan.cnet.com/article/x/"), encoding="utf-8")
+            _, problems = muse_articles.check_file(path)
+            self.assertTrue(any("報道機関のページは出典にできません" in p for p in problems))
 
     def test_muse_articles_are_excluded_from_bulk_rewrites(self):
         import rewrite_types

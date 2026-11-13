@@ -188,10 +188,24 @@ def is_press_url(url: str) -> bool:
     return bool(host and OUTLET_HOST_RE.search(host))
 
 
+def muse_press_ok(record: dict) -> bool:
+    """Muse の入稿の道だけの例外（2026-11-13 オーナー承認）: 編集部が依頼した記事で、主要な報道機関（scripts/muse_format.py の
+    PRESS_ALLOWED）の記事だけを出典にし、報道として書いて札（pressOnly）を付けたもの。scripts/muse_articles.py だけがこの印を付ける。
+    自動の記事（writer が muse でない・印が無い）は今までどおり W31 で止める"""
+    if record.get("writer") != "muse" or record.get("pressOnly") is not True:
+        return False
+    import muse_format  # noqa: PLC0415
+
+    return bool(muse_format.press_outlet(str(record.get("sourceUrl") or ""), str(record.get("sourceName") or "")))
+
+
 def press_source_problems(record: dict) -> list[str]:
     """（2026-11-04 W31 の全経路化）記事の出典が報道機関・ニュースブログ・話題の報道まとめ（trends）なら不合格。
     事実は官公庁・会社自身など公式の一次情報だけ。報道しか無い話題は、公式の発表が出るまで書かない。
-    調査会社・情報会社（A37。東京商工リサーチなど）の自社データの記事はオーナーの決定どおり「報道」の札で扱い、ここでは止めない"""
+    調査会社・情報会社（A37。東京商工リサーチなど）の自社データの記事はオーナーの決定どおり「報道」の札で扱い、ここでは止めない。
+    2026-11-13: Muse の入稿の道で、主要な報道機関だけを出典に報道として書いた記事（muse_press_ok）は止めない"""
+    if muse_press_ok(record):
+        return []
     channel = str(record.get("channelSlug") or "")
     url = str(record.get("sourceUrl") or "")
     if channel == "trends" or (channel.startswith("radar-") and channel != "radar-official") or is_press_url(url):

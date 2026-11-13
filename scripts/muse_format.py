@@ -49,6 +49,37 @@ NOT_OFFICIAL_RE = re.compile(
     re.I,
 )
 
+# 2026-11-13 オーナー承認（台帳 W31 の Muse の道だけの例外）: 主要な報道機関の記事は、公式の出典に添える「2番目以降の出典」として使ってよい。
+# 使えるのはこの一覧のホストだけ（ほかの報道・ブログ・まとめは今までどおり出典にできない）。
+# 報道にしか無い事実は「〇〇によると」「〇〇が報じた」と報道として書く（scripts/muse_articles.py の press_problems が確かめる）
+PRESS_ALLOWED: tuple[tuple[str, str], ...] = (
+    ("news.web.nhk", "NHK"), ("nhk.or.jp", "NHK"),
+    ("kyodonews.jp", "共同通信"), ("kyodonews.net", "共同通信"), ("kyodo.co.jp", "共同通信"), ("47news.jp", "共同通信"), ("nordot.app", "共同通信"),
+    ("jiji.com", "時事通信"), ("nikkei.com", "日本経済新聞"), ("asahi.com", "朝日新聞"), ("yomiuri.co.jp", "読売新聞"), ("mainichi.jp", "毎日新聞"),
+    ("reuters.com", "ロイター"), ("bloomberg.com", "ブルームバーグ"), ("bloomberg.co.jp", "ブルームバーグ"), ("apnews.com", "AP通信"),
+    ("newsdig.tbs.co.jp", "TBS NEWS DIG"), ("news.tv-asahi.co.jp", "テレビ朝日"), ("news.ntv.co.jp", "日本テレビ"), ("fnn.jp", "FNN"),
+)
+# 本文で「どこの報道か」を示す呼び名（「毎日」「AP」だけのような、ふつうの言葉と紛れる短い呼び名は入れない）
+PRESS_ALIASES = {
+    "NHK": ("NHK",), "共同通信": ("共同通信", "共同"), "時事通信": ("時事通信", "時事"), "日本経済新聞": ("日本経済新聞", "日経"),
+    "朝日新聞": ("朝日新聞", "朝日"), "読売新聞": ("読売新聞", "読売"), "毎日新聞": ("毎日新聞",),
+    "ロイター": ("ロイター", "Reuters"), "ブルームバーグ": ("ブルームバーグ", "Bloomberg"), "AP通信": ("AP通信",),
+    "TBS NEWS DIG": ("TBS",), "テレビ朝日": ("テレビ朝日", "テレ朝", "ANN"), "日本テレビ": ("日本テレビ", "日テレ", "NNN"), "FNN": ("FNN", "フジテレビ"),
+}
+# いろいろな社の記事が載る配信の場（nordot）。出典の name に共同通信と書いてあるときだけ共同通信の記事として扱う
+PRESS_SHARED_HOSTS = {"nordot.app": "共同"}
+
+
+def press_outlet(url: str, name: str = "") -> str:
+    """出典に使ってよい主要な報道機関の URL なら、その名前（「NHK」「ロイター」）。違えば空"""
+    m = re.match(r"https?://([^/?#:]+)", (url or "").strip(), re.I)
+    host = (m.group(1) if m else "").lower()
+    for suffix, outlet in PRESS_ALLOWED:
+        if host == suffix or host.endswith("." + suffix):
+            need = PRESS_SHARED_HOSTS.get(suffix)
+            return outlet if not need or need in (name or "") else ""
+    return ""
+
 
 class FormatError(ValueError):
     """書式の誤り（Muse に返す理由の文）"""
@@ -165,14 +196,21 @@ def problems(data: dict, filename: str = "") -> list[str]:
     for s in sources:
         if (s.get("url") or "").startswith("http://"):
             s["url"] = "https://" + s["url"][len("http://"):]
-    official = [s for s in sources if not NOT_OFFICIAL_RE.search(s.get("url") or "")]
-    if official and len(official) < len(sources):
-        data["sources"] = sources = official
+    # 2026-11-13: 主要な報道機関（PRESS_ALLOWED）の記事は、報道の出典として残す（s["press"] に名前）。公式の出典を先に並べる
+    for s in sources:
+        if outlet := press_outlet(s.get("url") or "", s.get("name") or ""):
+            s["press"] = outlet
+        else:
+            s.pop("press", None)
+    official = [s for s in sources if not s.get("press") and not NOT_OFFICIAL_RE.search(s.get("url") or "")]
+    press = [s for s in sources if s.get("press")]
+    if (official or press) and (len(official) + len(press) < len(sources) or (official and press)):
+        data["sources"] = sources = official + press
     for s in sources:
         url = s.get("url") or ""
         if not url.startswith("https://"):
             out.append(f"出典の URL は https:// で始まる公式のページにしてください（「{url[:60]}」）")
-        elif NOT_OFFICIAL_RE.search(url):
+        elif NOT_OFFICIAL_RE.search(url) and not s.get("press"):
             out.append(f"報道・まとめ・SNS・プレスリリース配信のページは出典にできません。官公庁・会社自身の公式ページにしてください（{url[:80]}）")
         if not (s.get("facts") or "").strip():
             out.append(f"出典ごとに facts（どの数字がそのページのどこに書かれているか）を書いてください（{url[:60]}）")
@@ -193,7 +231,12 @@ FORMAT_MD = """# サイソク 記事の入稿の書式（Muse さん向け）
 
 1. 同じフォルダの **ledger.md** を読んでください。この7日にサイトに出た記事と、Muse さんが出した記事の結果が載っています。
    同じ話題（同じ発表・同じ数字）の記事は書かないでください。重複は自動で見送られます。
-2. 事実は **官公庁・自治体・会社自身の公式ページ（一次情報）だけ** から書きます。報道・まとめサイト・SNS・プレスリリース配信サイト・Wikipedia は出典にできません。
+2. 事実は **官公庁・自治体・会社自身の公式ページ（一次情報）** から書きます。まとめサイト・SNS・プレスリリース配信サイト・Wikipedia は出典にできません。
+   **報道は、次の主要な報道機関の記事だけ、2番目以降の出典として使えます（2026-11-13 から）**:
+   NHK・共同通信（47NEWS を含む）・時事通信・日本経済新聞・朝日新聞・読売新聞・毎日新聞・ロイター・ブルームバーグ・AP通信・TBS NEWS DIG・テレビ朝日・日本テレビ・FNN。
+   - 公式の出典を1件目に置きます。報道にしか無い事実は、文ごとに「NHKによると」「ロイターが報じた」と書き、確定した事実として言い切りません（題名・最初の段落も同じ）。
+   - 報道の文は写しません。事実だけを自分の言葉で短くまとめます。Yahoo!ニュースなどに載った転載ではなく、報道機関自身のページの URL を書いてください。
+   - 公式の発表がまだ無く、報道だけで書くときは、題名と最初の段落に報道機関の名前を入れてください。記事には「報道をもとにした速報」の札が付き、公式の発表が出たら更新します。
 3. 公式ページを自分で開いて、数字・日付・金額・条件をその場で確かめてから書いてください。ページに無いことは書きません。
 
 ## ファイル名
@@ -208,7 +251,7 @@ FORMAT_MD = """# サイソク 記事の入稿の書式（Muse さん向け）
 |---|---|
 | title | 記事の題名。目に留まって読みたくなる強い題名でよい（いちばん驚く本当の数字を先頭に・問いかけも可）。本文にない事実や言い過ぎはだめ。「｜」は使わない |
 | genre | 手続き・お金・値上げ・早見表・速報解説・暮らし・AI・テック・ビジネス のどれか1つ |
-| sources | 公式の出典。1〜10件（11件目以降は使いません）。1件目が一番の出典。各件に url（https://）・name（発信元の名前）・facts（どの数字がそのページのどこにあるか） |
+| sources | 公式の出典（主要な報道機関の記事は2件目以降に）。1〜10件（11件目以降は使いません）。1件目が一番の出典。各件に url（https://）・name（発信元の名前）・facts（どの数字がそのページのどこにあるか） |
 | notes | ひと言メモ。題材を選んだ理由と、確かめられなかった点（サイトには出ません） |
 
 本文（--- のあと）:
