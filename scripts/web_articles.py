@@ -1107,7 +1107,11 @@ def trend_official_item(q: dict, url: str, page: dict) -> dict:
     """報道の記事の中のリンクで見つけた公式のページを、公式の候補（フィードの項目と同じ形）にする"""
     found = feeds.page_published(page)
     host = urllib.parse.urlsplit(url).netloc.lower().removeprefix("www.")
-    section = q.get("genre") if q.get("genre") in GENRES_BY_SLUG and q.get("genre") != "ai" else "public"
+    section = q.get("genre") if q.get("genre") in GENRES_BY_SLUG and q.get("genre") != "ai" else None
+    if not section:
+        # 軸が AI・不明の言葉は、ページの題名と言葉からセクションを決める（ゲームの発売が「社会・行政」になっていた。2026-11-13 の初回）
+        guess = feeds.classify_section({"title": f"{page.get('title') or ''} {q['title']}", "summary": ""})
+        section = guess if guess in GENRES_BY_SLUG else "public"
     return {
         "id": feeds.item_id(url), "url": url, "title": (page.get("title") or "").strip() or q["title"],
         "summary": str(page.get("description") or "")[:600], "content": "",

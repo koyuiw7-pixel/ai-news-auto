@@ -226,6 +226,9 @@ class OfficialFirstTest(unittest.TestCase):
                                      {"title": "通信障害について", "text": "x" * 700, "description": "d"})
         self.assertEqual((item["source_slug"], item["section"], item["published_guessed"]), ("radar-official", "public", True))
         self.assertFalse(pi.press_source_problems({"channelSlug": item["source_slug"], "sourceUrl": item["url"]}))
+        game = w.trend_official_item({"id": "q2", "title": "vindictus defying fate ps5", "genre": "ai", "published_at": NOW},
+                                     "https://store.playstation.com/concept/10011300", {"title": "Vindictus: Defying Fate (PS5 ゲーム)", "text": "x" * 700})
+        self.assertEqual(game["section"], "entertainment")
 
 
 class TermMatchingTest(unittest.TestCase):
