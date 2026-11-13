@@ -130,7 +130,7 @@
     "3b2227e3b92d731d16c8620e8ecfba8e128ac4b7": 2,
     "3e400850a5ee2a01d3f5b0fc16c1fc1cb2cf554f": 2,
     "3faaa84ac83405077356c87328b7ba05db2e15da": 2,
-    "40153a89f46c1ff6062eaa9f4790bc6afb74d43b": 1,
+    "40153a89f46c1ff6062eaa9f4790bc6afb74d43b": 2,
     "43f46f039e8833524d75b8acaf6ca68df4c2dbed": 2,
     "479a62d99a0fd7834999ba08521fa7b7cafc6ef8": 2,
     "47d6794a078616521103fa6c8c50fec010d02b8b": 2,
@@ -203,11 +203,11 @@
     "9b0b7c058ad29387ff3831642dc5ac5dba071d28": 2,
     "9b372e9b8408d9dae9cea6aa489c845c8bffc87c": 2,
     "9d870fabf10eba3e85638e076136ef0b220bea5c": 2,
-    "9dbf250d4550effcfaa28e21daac7658b1986a02": 1,
+    "9dbf250d4550effcfaa28e21daac7658b1986a02": 2,
     "9e7a67145e366f470ef84c388dff06f93eeda92e": 2,
     "9f67fd9f1be9a5fe2299bb4e9df6740baa4fa3f7": 2,
     "9fa3d6685ceb63ce20ca25feed9521ff9493a9ce": 2,
-    "a0fd67b51b1301b8fa1a0385ad8e7c6a8b25801f": 1,
+    "a0fd67b51b1301b8fa1a0385ad8e7c6a8b25801f": 2,
     "a11ec2f23f7cf8d83e4132755ae57544be201b5c": 2,
     "a170820ef862a7fba3099d94bc117aa6063c9c22": 2,
     "a22234bae871d686125c6909bd184bc683dfa7f7": 2,
@@ -248,7 +248,7 @@
     "d490d6aff44d35e936d6ac09517adc3d1d395845": 2,
     "d8a0906d7fde102f7cbb927cbc31b68e3c71d62f": 2,
     "dccbca55dbc9f0362db489a86773f6fdb84120f8": 2,
-    "ddab3032552d8e2eaea58fd2590ac93d76448f9d": 1,
+    "ddab3032552d8e2eaea58fd2590ac93d76448f9d": 2,
     "df70bbbecfcbafffe5b2e7a411b835f92df9709c": 2,
     "e2291dca9f3931073012679943187f3c6c4ef590": 2,
     "e3cc429fcec1a4d386c213674b421a9c640b572d": 2,
@@ -4104,6 +4104,20 @@
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
       "skipped": true,
       "url": "https://www.riken.jp/press/2026/20261106_2/index.html"
+    },
+    "06a32aecf36b4ea3": {
+      "at": "2026-11-13T21:10:36.583387+00:00",
+      "costUsd": 0.0169,
+      "intent": "neutral",
+      "kind": "trend",
+      "mix": "",
+      "model": "gemini-3.5-flash",
+      "score": 90,
+      "section": "entertainment",
+      "slug": "robert-pattinson-james-bond-audition-dc-movies",
+      "trendKeyword": "ロバート・パティンソン",
+      "trendLane": true,
+      "url": "https://topics.smt.docomo.ne.jp/latestnews/keywords/16664143d6041390bb27110ddf2037d7b70d27ca99df4281497035b85b680443"
     },
     "06a6a6db73347aad": {
       "at": "2026-11-05T18:49:38.509464+00:00",
@@ -15303,6 +15317,12 @@
       "slug": "ispace-kddi-lunar-communication-network",
       "url": "https://newsroom.kddi.com/news/detail/kddi_nr-1243_4825.html"
     },
+    "b8280a099252680b98ad26cd8dfc8a67220b4053": {
+      "at": "2026-11-13T21:10:36.583551+00:00",
+      "reason": "trend: 公式の発表で記事にした（robert-pattinson-james-bond-audition-dc-movies）",
+      "skipped": true,
+      "url": "https://news.yahoo.co.jp/articles/d49fcea58a5cd7f9cf2ea504b620fb0974e794a7"
+    },
     "b82f1a0d261a71cb636378696b1eeddfe2ddcca6": {
       "at": "2026-11-13T09:36:30.992463+00:00",
       "kind": "trend",
@@ -20776,54 +20796,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-12T00:22:11.352799+00:00",
-      "attempt": 1,
-      "id": "549ea1a34d6ba220",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 193.0,
-        "avg_sentence": 70.2,
-        "long_share": 0.636,
-        "max_paragraph": 258,
-        "paragraphs": 4,
-        "sentences": 11
-      },
-      "score": 85,
-      "source": "caa",
-      "title": "鳥インフルエンザに関する情報(2026年11月12日更新)",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（HP）",
-        "読みやすさ: 文が長い（1文の平均 70.2字・60字超の文が 64% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "読みやすさ: 段落が長い（平均 193.0字・最長 258字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-12T00:22:37.527991+00:00",
-      "attempt": 0,
-      "id": "549ea1a34d6ba220",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 78.6,
-        "avg_sentence": 41.4,
-        "long_share": 0.053,
-        "max_paragraph": 112,
-        "paragraphs": 10,
-        "sentences": 19
-      },
-      "score": 86,
-      "source": "caa",
-      "title": "鳥インフルエンザに関する情報(2026年11月12日更新)",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（HP）"
-      ]
-    },
     {
       "accepted": false,
       "at": "2026-11-12T00:47:02.907589+00:00",
@@ -28366,6 +28338,55 @@
         "見出しが45字（目安40字以内）。一覧・カードでは前半だけを出す",
         "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
         "読みやすさ: 文が長い（1文の平均 64.3字・60字超の文が 59% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-13T21:10:01.637200+00:00",
+      "attempt": 1,
+      "id": "06a32aecf36b4ea3",
+      "kind": "broad",
+      "model": "gemini-3.5-flash",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 154.6,
+        "avg_sentence": 58.5,
+        "long_share": 0.459,
+        "max_paragraph": 327,
+        "paragraphs": 14,
+        "sentences": 37
+      },
+      "score": 90,
+      "source": "radar-official",
+      "title": "バットマン関連ニュース｜dメニューニュース（NTTドコモ）",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（CAGE・DC・PART）",
+        "読みやすさ: 文が長い（1文の平均 58.5字・60字超の文が 46% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "読みやすさ: 段落が長い（平均 154.6字・最長 327字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-13T21:10:36.540026+00:00",
+      "attempt": 0,
+      "id": "06a32aecf36b4ea3",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 104.2,
+        "avg_sentence": 46.6,
+        "long_share": 0.277,
+        "max_paragraph": 166,
+        "paragraphs": 21,
+        "sentences": 47
+      },
+      "score": 90,
+      "source": "radar-official",
+      "title": "バットマン関連ニュース｜dメニューニュース（NTTドコモ）",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（CAGE・DC・PART）",
+        "読みやすさ: 文が長い（1文の平均 46.6字・60字超の文が 28% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
       ]
     }
   ],
