@@ -102,7 +102,7 @@
     "10f4ea9bd14472fd07b7933c56966cb0394130ef": 2,
     "11fa6a3c5f57e1dcb1164da671a051ac3ddf20dc": 2,
     "13998d575f905c20bd705fc99d4f6c5f7660e834": 2,
-    "1731ace2ba6471e041e74dbbae2b484245868684": 1,
+    "1731ace2ba6471e041e74dbbae2b484245868684": 2,
     "17c508caca144e28c378d85980a2768129d23835": 2,
     "182a9bea17e7a049b14200aa954a8fbdc70ec788": 2,
     "18ef818a6bd4876bffac4c6cdb078df5326584b9": 2,
@@ -119,8 +119,8 @@
     "2fca045aa4a4b1f7963c81b2812d5827a0c295d8": 2,
     "30a87ba425eef94db9a0ab4571a09229f2e60658": 2,
     "319b4ba93dd7bedaf58f8dc08f01c50d422b0cd7": 2,
-    "345ffa93cd25c716ea5c82c19c1e12907085fd91": 1,
-    "35303cb9a9dd0d5449c620335164e2079f8be64d": 1,
+    "345ffa93cd25c716ea5c82c19c1e12907085fd91": 2,
+    "35303cb9a9dd0d5449c620335164e2079f8be64d": 2,
     "360635a1c2384ab150acba86540d337471a460e3": 2,
     "363c7f617b7b398afc489ddd899df732ec2c6b5d": 2,
     "37faef8cbb2971a139fec258446840241d3126fb": 2,
@@ -342,14 +342,6 @@
       "title": "楽天グループ株式会社2026年度第3四半期 決算ハイライトに関するお知らせ",
       "tries": 1,
       "url": "https://corp.rakuten.co.jp/news/press/2026/1113_01.html"
-    },
-    "aa687843ef0bc998": {
-      "first": "2026-11-13T16:33:37.096610+00:00",
-      "next": "2026-11-13T19:33:37.096610+00:00",
-      "reason": "記事の基準に足りない（自動で手直ししても残った）: 5.読者がすること（何を・どこで・期限）（することは書いてあるが、どこで（窓口・ページ）・いつまでが無い）",
-      "title": "インド消費者物価（26年10月）～総合ＣＰＩは6.1％に上昇、RBIの許容上限を超過",
-      "tries": 1,
-      "url": "https://www.nli-research.co.jp/topics_detail1/id=87343?site=nli"
     },
     "af8fcea84a6e869e": {
       "first": "2026-11-13T07:14:57.644188+00:00",
@@ -8403,6 +8395,14 @@
       "skipped": true,
       "url": "https://www.soumu.go.jp/menu_news/s-news/01shoubo01_02001280.html"
     },
+    "4d525ab74f95595e": {
+      "at": "2026-11-13T19:35:10.379982+00:00",
+      "costUsd": 0.0047,
+      "model": "anthropic-api:claude-haiku-5-5",
+      "reason": "街区のイベント開催報告（エリアマネジメントの地域交流イベント）で、読者が使う・買う・申し込む制度や製品ではなく、本文も事実の範囲が限られるため対象外。",
+      "skipped": true,
+      "url": "https://www.nomura-re-hd.co.jp/news/007779.html"
+    },
     "4d7b4ca569655ba4": {
       "at": "2026-11-10T08:04:48.980769+00:00",
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・暮らしの交通/天気/値上げ/障害/給付/発売・日本のスポーツのどれでもない）",
@@ -10190,6 +10190,17 @@
       "updated": "openai-images-2-6-gif-faster",
       "url": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes#entry-2026-11-04"
     },
+    "6689488fd7587d8d": {
+      "at": "2026-11-13T19:39:22.327351+00:00",
+      "costUsd": 0.0172,
+      "intent": "query",
+      "mix": "alert",
+      "model": "gemini-3.5-flash-lite",
+      "score": 90,
+      "section": "public",
+      "slug": "yokohama-denshishinsei-leak-2026",
+      "url": "https://www.city.yokohama.lg.jp/city-info/koho-kocho/press/somu/2026/1113denshishinsei.html"
+    },
     "66899d2f897c21b0": {
       "at": "2026-11-09T00:17:49.680483+00:00",
       "costUsd": 0.0083,
@@ -11523,6 +11534,14 @@
       "section": "real-estate",
       "slug": "tokyo-office-rent-nli-2026-q3",
       "url": "https://www.nli-research.co.jp/topics_detail1/id=87300?site=nli"
+    },
+    "7cb67bbacaae3980": {
+      "at": "2026-11-13T19:36:18.050794+00:00",
+      "costUsd": 0.0043,
+      "model": "anthropic-api:claude-haiku-5-5",
+      "reason": "船員法等の違反で処分を受けた船舶所有者の一覧を公表する行政の発表で、中身は個別事業者の処分の列挙が中心です。一般の働く人や家計の判断に直接つながる情報が少ないため対象外としました。",
+      "skipped": true,
+      "url": "http://www.mlit.go.jp/report/press/kaiji06_hh_000408.html"
     },
     "7cd5e10290710b74": {
       "at": "2026-11-09T14:24:41.236126+00:00",
@@ -14385,6 +14404,14 @@
       "score": 100,
       "updated": "nvidia-recovery-automated-training-recovery",
       "url": "https://developer.nvidia.com/blog/diagnose-distributed-ai-workload-failures-with-nvidia-attribution/"
+    },
+    "aa687843ef0bc998": {
+      "at": "2026-11-13T19:35:54.803150+00:00",
+      "costUsd": 0.0125,
+      "model": "anthropic-api:claude-haiku-5-5",
+      "reason": "quality: 記事の基準に足りない（自動で手直ししても残った）: 3.自分の場合（早見の表・計算・判断の目安）（早見の表・式つきの計算・「〜の人は〜」の判断の目安が無い）",
+      "skipped": true,
+      "url": "https://www.nli-research.co.jp/topics_detail1/id=87343?site=nli"
     },
     "aa9599aa55e9bb71": {
       "at": "2026-11-09T06:28:27.069191+00:00",
@@ -20753,110 +20780,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-12T00:07:27.908394+00:00",
-      "attempt": 1,
-      "id": "defa2bf0a3f60010",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 115.6,
-        "avg_sentence": 73.0,
-        "long_share": 0.474,
-        "max_paragraph": 225,
-        "paragraphs": 12,
-        "sentences": 19
-      },
-      "score": 92,
-      "source": "aws-japan-blog",
-      "title": "AWS re:Invent 2026 で見逃せないデジタル主権関連セッション",
-      "warnings": [
-        "見出しの書き方: 「〜とは？〜を解説」の決まり文句（「を解説」）。読む人が得る答え（対処法・期限・金額）を書く",
-        "見出しが56字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（AT・VPN）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-12T00:07:50.115784+00:00",
-      "attempt": 0,
-      "id": "defa2bf0a3f60010",
-      "kind": "ai",
-      "model": "",
-      "problems": [
-        "読みやすさ基準外のまま受理: 指示文の見出しが本文に混ざった（# 今の原稿の数値）"
-      ],
-      "readability": {
-        "avg_paragraph": 115.6,
-        "avg_sentence": 73.0,
-        "long_share": 0.474,
-        "max_paragraph": 225,
-        "paragraphs": 12,
-        "sentences": 19
-      },
-      "score": 92,
-      "source": "aws-japan-blog",
-      "title": "AWS re:Invent 2026 で見逃せないデジタル主権関連セッション",
-      "warnings": [
-        "見出しの書き方: 「〜とは？〜を解説」の決まり文句（「を解説」）。読む人が得る答え（対処法・期限・金額）を書く",
-        "見出しが56字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（AT・VPN）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-12T00:08:15.636939+00:00",
-      "attempt": 1,
-      "id": "3ca0a6da40dceb60",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 116.8,
-        "avg_sentence": 58.4,
-        "long_share": 0.333,
-        "max_paragraph": 189,
-        "paragraphs": 6,
-        "sentences": 12
-      },
-      "score": 85,
-      "source": "aws-japan-blog",
-      "title": "業務部門が自分で改善できる AI Ready Data を作る ― AI がどれだけ賢くなっても解決できないこと",
-      "warnings": [
-        "見出しが46字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（HX・SVD・IHI）",
-        "読みやすさ: 文が長い（1文の平均 58.4字・60字超の文が 33% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-12T00:08:41.519954+00:00",
-      "attempt": 0,
-      "id": "3ca0a6da40dceb60",
-      "kind": "ai",
-      "model": "",
-      "problems": [
-        "読みやすさ基準外のまま受理: 書き直し後の確認に不合格: リード「今後は部門ごとにプロダクトマネージャーを立て」→ 元記事はIHIの取り組みで業務部門からPMを立てたことを述べるのみで、部門ごとに立てる今後の計画は書かれていない。; 要点・本文「部門ごとにグラフのクラスタを分けています」→ 元記事はSVDでは部門ごとに"
-      ],
-      "readability": {
-        "avg_paragraph": 116.8,
-        "avg_sentence": 58.4,
-        "long_share": 0.333,
-        "max_paragraph": 189,
-        "paragraphs": 6,
-        "sentences": 12
-      },
-      "score": 85,
-      "source": "aws-japan-blog",
-      "title": "業務部門が自分で改善できる AI Ready Data を作る ― AI がどれだけ賢くなっても解決できないこと",
-      "warnings": [
-        "見出しが46字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（HX・SVD・IHI）",
-        "読みやすさ: 文が長い（1文の平均 58.4字・60字超の文が 33% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-12T00:22:11.352799+00:00",
@@ -28345,6 +28268,108 @@
       "title": "Microsoft365の大規模障害について",
       "warnings": [
         "読みやすさ: 文が長い（1文の平均 44.9字・60字超の文が 31% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-13T19:35:54.800327+00:00",
+      "attempt": 1,
+      "id": "aa687843ef0bc998",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 101.8,
+        "avg_sentence": 38.2,
+        "long_share": 0.031,
+        "max_paragraph": 143,
+        "paragraphs": 12,
+        "sentences": 32
+      },
+      "score": 93,
+      "source": "nli-research",
+      "title": "インド消費者物価（26年10月）～総合ＣＰＩは6.1％に上昇、RBIの許容上限を超過",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（CPI・RBI）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-13T19:38:15.543965+00:00",
+      "attempt": 1,
+      "id": "6689488fd7587d8d",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "元記事・確認済みの事実の束・計算済みの数字のどれにも無い数字がある（「ム、利用者メールアドレス11万件」）。元記事か束の数字に直すか、その文を削る。簡単な計算（かけ算・足し算など）をするなら、確かめた数字だけを使って式を書き「（サイソク編集部の計算）」と添える"
+      ],
+      "readability": {
+        "avg_paragraph": 136.6,
+        "avg_sentence": 64.3,
+        "long_share": 0.588,
+        "max_paragraph": 260,
+        "paragraphs": 8,
+        "sentences": 17
+      },
+      "score": null,
+      "source": "city-yokohama",
+      "title": "【記者発表】横浜市電子申請・届出システムが使用するメール送信サービスにおける利用者メールアドレスの漏えいについて",
+      "warnings": [
+        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
+        "読みやすさ: 文が長い（1文の平均 64.3字・60字超の文が 59% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-13T19:38:37.198171+00:00",
+      "attempt": 1,
+      "id": "6689488fd7587d8d",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 136.6,
+        "avg_sentence": 64.3,
+        "long_share": 0.588,
+        "max_paragraph": 260,
+        "paragraphs": 8,
+        "sentences": 17
+      },
+      "score": 90,
+      "source": "city-yokohama",
+      "title": "【記者発表】横浜市電子申請・届出システムが使用するメール送信サービスにおける利用者メールアドレスの漏えいについて",
+      "warnings": [
+        "見出しが45字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
+        "読みやすさ: 文が長い（1文の平均 64.3字・60字超の文が 59% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-13T19:39:14.002109+00:00",
+      "attempt": 0,
+      "id": "6689488fd7587d8d",
+      "kind": "broad",
+      "model": "",
+      "problems": [
+        "読みやすさ基準外のまま受理: 書き直し後の確認に不合格: 「対象期間の記載は、11月13日の発表で初めて示されました。」→ 11月3日の発表内容は元記事にもその他の確認済み資料にも載っておらず、対象期間が初めて示されたかどうかは確認できない。"
+      ],
+      "readability": {
+        "avg_paragraph": 136.6,
+        "avg_sentence": 64.3,
+        "long_share": 0.588,
+        "max_paragraph": 260,
+        "paragraphs": 8,
+        "sentences": 17
+      },
+      "score": 90,
+      "source": "city-yokohama",
+      "title": "【記者発表】横浜市電子申請・届出システムが使用するメール送信サービスにおける利用者メールアドレスの漏えいについて",
+      "warnings": [
+        "見出しが45字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
+        "読みやすさ: 文が長い（1文の平均 64.3字・60字超の文が 59% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
       ]
     }
   ],
