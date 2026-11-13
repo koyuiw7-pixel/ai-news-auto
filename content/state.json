@@ -7297,6 +7297,19 @@
       "skipped": true,
       "url": "https://www.env.go.jp/press/press_05798.html"
     },
+    "40e8002f36a0999f": {
+      "at": "2026-11-13T05:33:43.594321+00:00",
+      "breaking": true,
+      "costUsd": 0.137,
+      "intent": "breaking",
+      "major": true,
+      "mix": "other",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "score": 93,
+      "section": "investment",
+      "slug": "daiichi-life-group-interim-2027",
+      "url": "https://www.release.tdnet.info/inbs/140120261110572349.pdf"
+    },
     "416541329c8b23f2": {
       "at": "2026-11-04T03:01:26.969501+00:00",
       "reason": "stale: 発表から307時間（記事ページの日付）",
@@ -20562,56 +20575,6 @@
   "quality_log": [
     {
       "accepted": true,
-      "at": "2026-11-11T06:03:04.046085+00:00",
-      "attempt": 1,
-      "id": "ccf5c040b0fb4ce8",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 163.3,
-        "avg_sentence": 70.0,
-        "long_share": 0.571,
-        "max_paragraph": 200,
-        "paragraphs": 3,
-        "sentences": 7
-      },
-      "score": 88,
-      "source": "jpcert",
-      "title": "注意喚起: 2026年11月マイクロソフトセキュリティ更新プログラムに関する注意喚起 (公開)",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（CVE・JPCERT・CC）",
-        "本文が見出しで始まっている（最初の段落は見出しなしで、だれに関係するか・関係しない人はどうかを書く）",
-        "読みやすさ: 文が長い（1文の平均 70.0字・60字超の文が 57% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-11T06:03:19.148997+00:00",
-      "attempt": 0,
-      "id": "ccf5c040b0fb4ce8",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 100.6,
-        "avg_sentence": 50.3,
-        "long_share": 0.4,
-        "max_paragraph": 177,
-        "paragraphs": 5,
-        "sentences": 10
-      },
-      "score": 85,
-      "source": "jpcert",
-      "title": "注意喚起: 2026年11月マイクロソフトセキュリティ更新プログラムに関する注意喚起 (公開)",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（CVE・JPCERT・CC）",
-        "本文が見出しで始まっている（最初の段落は見出しなしで、だれに関係するか・関係しない人はどうかを書く）",
-        "読みやすさ: 文が長い（1文の平均 50.3字・60字超の文が 40% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
       "at": "2026-11-11T06:03:42.113435+00:00",
       "attempt": 1,
       "id": "fa230e731db14871",
@@ -28125,6 +28088,51 @@
         "見出しが59字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（NEXON・PS）"
       ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-13T05:33:13.124797+00:00",
+      "attempt": 1,
+      "id": "40e8002f36a0999f",
+      "kind": "broad",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [
+        "「第一ライフグループは、生命保険事業を中心とする持株会社です」→ 元記事に持株会社・事業内容の記述はなく、元記事に無い事実を書いている。",
+        "「有価証券の評価差額が前年同期のプラスからマイナスに変わったことが主な背景です」→ その他有価証券評価差額金の増減は元記事にあるが、包括利益減少の『主な背景』という因果は元記事に書かれておらず、推測として断定している。",
+        "「有価証券売却益が倍近くに」（見出し）→ 5,501億円は前年同期2,697億円の約2.04倍で、『倍近く』より『2倍超』が正確。言い回しの問題。",
+        "「保険料等収入は3兆5,503億円でした。前年同期は3兆3,309億円です」→ 元記事の3,330,997百万円は3兆3,310億円に四捨五入されるため、1億円の表記ずれ（切り捨てとしても許容範囲）。"
+      ],
+      "readability": {
+        "avg_paragraph": 76.3,
+        "avg_sentence": 32.7,
+        "long_share": 0.048,
+        "max_paragraph": 115,
+        "paragraphs": 18,
+        "sentences": 42
+      },
+      "score": 80,
+      "source": "fast",
+      "title": "第一ライフグループ 2027年３月期 第２四半期（中間期）決算短信〔日本基準〕(連結)"
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-13T05:33:43.498151+00:00",
+      "attempt": 1,
+      "id": "40e8002f36a0999f",
+      "kind": "broad",
+      "model": "strike:本文 2 文",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 72.3,
+        "avg_sentence": 32.5,
+        "long_share": 0.05,
+        "max_paragraph": 115,
+        "paragraphs": 18,
+        "sentences": 40
+      },
+      "score": 93,
+      "source": "fast",
+      "title": "第一ライフグループ 2027年３月期 第２四半期（中間期）決算短信〔日本基準〕(連結)"
     }
   ],
   "short_text_retry": {},
