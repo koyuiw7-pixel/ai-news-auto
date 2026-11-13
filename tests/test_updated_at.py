@@ -140,6 +140,25 @@ class Sitemap(unittest.TestCase):
         idx = (ROOT / "lib" / "article-index.mjs").read_text("utf-8")
         self.assertIn("updatedAt: trustedUpdatedAt(parsed)", idx)
 
+    def test_only_touch_updated_writes_article_updated_at(self):
+        """記事の updatedAt を書く自動の処理は scripts/updated_at.py だけ（2026-11-13: 履歴が無くても updatedAt を「最終更新」に出すようにしたので、
+        言い回し・章立て・かんたん版の作り直しが直接書くと、中身の変わらない更新日時が Google に出る）。
+        記事ではない記録（まとめの状態・ガイド・料金表・待ち行列）に書くスクリプトだけを名前で許す"""
+        import re
+        not_articles = {
+            "updated_at.py", "buying_guides.py", "deep_dive.py", "evergreen.py", "morning_digest.py", "muse_images.py", "muse_ingest.py",
+            "muse_queue.py", "muse_articles.py", "popular_articles.py", "pricing.py", "pricing_table.py", "products.py", "pricing_watch.py",
+            "sns_plan_actual.py", "threads_learn.py",
+        }
+        writes = re.compile(r"""\[["']updatedAt["']\]\s*=|["']updatedAt["']\s*:""")
+        offenders = sorted(p.name for p in (ROOT / "scripts").glob("*.py") if p.name not in not_articles and writes.search(p.read_text("utf-8")))
+        self.assertEqual([], offenders, "記事の updatedAt は updated_at.touch_updated で書く")
+        # 許した2つ（deep_dive・muse_articles）は状態ファイルの updatedAt だけで、記事の updatedAt は書かない
+        for name in ("deep_dive.py", "muse_articles.py"):
+            src = (ROOT / "scripts" / name).read_text("utf-8")
+            self.assertEqual(1, len(writes.findall(src)), name)
+            self.assertRegex(src, r'data\["updatedAt"\] = datetime\.now', name)
+
 
 if __name__ == "__main__":
     unittest.main()

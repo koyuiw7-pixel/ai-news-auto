@@ -6,8 +6,11 @@
       kind = "facts"（公式の資料から事実の欄を足した） / "correction"（誤りを直した） /
              "followup"（続報） / "refresh"（公式の資料を読み直して本文を書き直した。台帳 A68 の週1回の書き直し）
   - 言い回し・題名・章立て・見た目だけの直し（kind = "style" / "title" / "sections"）では、更新日時を動かさない。
-  - 表示側（lib/article-index.mjs の trustedUpdatedAt）は、更新履歴の無い updatedAt を「最終更新」として使わない。
+  - 表示側（lib/article-index.mjs の trustedUpdatedAt）は、2026-11-12 までの更新履歴の無い updatedAt を「最終更新」として使わない。
     11/04 に一括で押された43本のような、中身の変わらない更新日時を Google と読者に見せないため。
+  - 2026-11-13 から: 手で事実を足した・直したときは、updatedAt だけでも「最終更新」として出る（載せた時刻より10分を超えて新しいとき）。
+    だから、記事の updatedAt を書く自動の処理はここ（touch_updated）だけにする。言い回し・章立て・かんたん版の作り直しで
+    updatedAt を直接書かない（tests/test_updated_at.py の test_only_touch_updated_writes_article_updated_at が見張る）。
 
   python3 scripts/updated_at.py --backfill-depth          # 深掘りの欄を足した記事に、足した日時の更新履歴を付ける（表示だけ）
   python3 scripts/updated_at.py --backfill-depth --apply  # 書き込む

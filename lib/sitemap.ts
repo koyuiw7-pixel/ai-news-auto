@@ -113,7 +113,7 @@ export function sitemapEntries(): SitemapEntry[] {
     { url: `${base}/corrections`, lastModified: newestDate([STATIC_LASTMOD["/corrections"], ...corrections.map((c) => c.date)]) },
     ...articles.map((article) => ({
       url: `${base}/articles/${article.slug}`,
-      // 続報・事実を足した記事は最終更新日時（更新履歴のある updatedAt だけ。lib/article-index.mjs trustedUpdatedAt）
+      // 続報・事実を足した記事は最終更新日時（中身を直したときの updatedAt だけ。lib/article-index.mjs trustedUpdatedAt）
       lastModified: toDate(lastModifiedOf(article))
     })),
     ...getAllGenres()
