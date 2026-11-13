@@ -105,3 +105,11 @@ test("「いま話題」の欄は見出しの欄のすぐ下。リンクはサ�
   assert.match(strip, /<details>/);
   assert.match(strip, /data-home-zone="trending"/);
 });
+
+test("見出しの欄の名前はいつも「暮らしとお金の主なニュース」。すぐ下の「いま話題」の欄と言葉を重ねない（2026-11-14）", () => {
+  const page = fs.readFileSync(path.join(root, "app/page.tsx"), "utf8");
+  const headlines = fs.readFileSync(path.join(root, "components/HomeHeadlines.tsx"), "utf8");
+  assert.match(page, /<HomeHeadlines articles=\{headlines\} \/>/);
+  assert.doesNotMatch(page, /いま話題のニュース/);
+  assert.match(headlines, /label = "暮らしとお金の主なニュース"/);
+});

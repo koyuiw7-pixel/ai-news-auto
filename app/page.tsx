@@ -22,7 +22,7 @@ import { siteConfig } from "@/site.config";
 import { pageShareImage } from "@/lib/page-share";
 import { coverPath } from "@/lib/cover-path";
 import { containPhoto } from "@/lib/photo-fit";
-import { isLifeMoneyStory, pickHomeHeadlines, pickHomeLead, pickLifeMoney, pickTrendingStrip, STRIP_VISIBLE, viewsOf } from "@/lib/home-lead";
+import { pickHomeHeadlines, pickHomeLead, pickLifeMoney, pickTrendingStrip, STRIP_VISIBLE, viewsOf } from "@/lib/home-lead";
 import { alsoCoveredSentence } from "@/lib/coverage";
 import { guideShortName, lifeCompareGuide, type LifeCompareSlug } from "@/lib/buying-guides";
 
@@ -125,8 +125,8 @@ export default function HomePage() {
       <h1 className="sr-only">{siteConfig.siteName} 暮らしとお金の新しい動きが最速でわかる</h1>
       <div className="mx-auto max-w-[1240px] px-5 pb-8 pt-4 sm:px-8 sm:pt-10">
         <HomeHero lead={lead} popular={viewsOf(lead.slug) > 0} />
-        {/* 話題の記事（分野を問わない。lib/home-lead.ts の pickTrending）が後ろに並ぶ日は、見出しの名前も合わせる */}
-        <HomeHeadlines articles={headlines} label={headlines.some((a) => !isLifeMoneyStory(a)) ? "暮らしとお金・いま話題のニュース" : undefined} />
+        {/* 見出しの名前はいつも「暮らしとお金の主なニュース」。すぐ下に「いま話題」の欄があるので、名前に「いま話題」を重ねない（2026-11-14） */}
+        <HomeHeadlines articles={headlines} />
         <HomeTrendingStrip articles={trendingStrip} />
 
         {/* ストーリーの丸は見出しの下（暮らしとお金の丸が先。lib/stories.ts。2026-11-11 読者目線レビュー 1位・2位） */}
