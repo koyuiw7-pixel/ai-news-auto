@@ -413,41 +413,203 @@ def _reader_fields(record: dict) -> list[tuple[str, str]]:
     return [(k, t) for k, t in out if t.strip()]
 
 
-def press_problems(record: dict, fetched: list[dict]) -> list[str]:
-    """報道機関の記事を出典に使った記事が、決まりどおりか（LLM なし）。問題の文のリスト（空なら合格）。
-    1. 報道にしか無い数字（公式の資料に無く、報道の記事にある金額・割合・件数）のある文に、報道機関の名前か「報道」「報じた」がある
-       （直前の文に名前があり、その文が「〜という」「〜としている」と続くのはよい。表・箇条書きの行は同じ段落に名前があればよい）
-    2. 報道の文を写していない（記号・空白を除いて PRESS_COPY_MIN 字以上つづけて同じ所がある文）
-    3. 公式の資料が無い記事（報道だけ）: 題名・リード・SNS の文に報道機関の名前があり、本文にも名前がある
-    報道にしか無い「数字でない事実」は機械では見分けられない（指示文と、事実確認の門で見る）"""
+def _outlet_named(text: str, names: list[str]) -> bool:
+    """文に、この報道機関の名前（呼び名）があるか（「報道」「報じた」だけでは数えない）"""
+    return any(a in text for n in names for a in muse_format.PRESS_ALIASES.get(n, (n,)))
+
+
+def _press_ctx(fetched: list[dict]) -> dict | None:
+    """報道の出典の数字（どの報道機関の記事にあるか）と、公式の資料の数字。報道の出典が無ければ None"""
     import calc_facts  # noqa: PLC0415
 
     press = press_sources(fetched)
     if not press:
-        return []
+        return None
+    text_of = lambda s: s.get("full_text") or s.get("text") or ""  # noqa: E731
     names = press_names(fetched)
     official = [s for s in fetched if not s.get("press")]
-    press_text = "\n".join(s.get("full_text") or s.get("text") or "" for s in press)
-    press_values = calc_facts.values(press_text)
-    official_values = calc_facts.values("\n".join(s.get("full_text") or s.get("text") or "" for s in official))
+    press_text = "\n".join(text_of(s) for s in press)
+    return {
+        "names": names, "official": official, "press_text": press_text,
+        "press_values": calc_facts.values(press_text),
+        "official_values": calc_facts.values("\n".join(text_of(s) for s in official)),
+        "by_outlet": {n: calc_facts.values("\n".join(text_of(s) for s in press if s["press"] == n)) for n in names},
+    }
+
+
+def _press_only_numbers(unit: str, ctx: dict) -> list:
+    """文の中の、報道にしか無い数字（公式の資料に無く、報道の記事にある金額・割合・件数）"""
+    import calc_facts  # noqa: PLC0415
+
+    return [q for q in calc_facts.extract(unit) if calc_facts.checkable(q)
+            and calc_facts.supported(q, ctx["press_values"]) and not calc_facts.supported(q, ctx["official_values"])]
+
+
+def _carriers(nums: list, ctx: dict) -> list[str]:
+    """その数字が実際に載っている報道機関（出典の順）"""
+    import calc_facts  # noqa: PLC0415
+
+    return [n for n in ctx["names"] if any(calc_facts.supported(q, ctx["by_outlet"][n]) for q in nums)]
+
+
+def _press_unit_ok(unit: str, block: str, prev: str, nums: list, ctx: dict) -> bool:
+    """報道にしか無い数字のある文が、報道と分かる形か。
+    - その文に報道機関の名前か「報道」「報じた」がある
+    - 直前の文に名前があり、その文が「〜という」「〜としている」と続く
+    - 表・箇条書きの行は、同じ段落に名前か「報道」があればよい
+    - 2026-11-13: 同じ段落に、その数字が載っている報道機関の名前があればよい（段落をまたぐと数えない。見出しは別の段落）"""
+    names = ctx["names"]
+    if _press_named(unit, names) or (unit[:1] in ("|", "-", "*", "・") and _press_named(block, names)):
+        return True
+    if prev and _press_named(prev, names) and PRESS_HEDGE_RE.search(unit):
+        return True
+    return all(_outlet_named(block, _carriers([q], ctx)) for q in nums)
+
+
+# ---- 報道の名前の書き足し（2026-11-13 オーナー「落とすのは嘘だけ。書き方は自動で直す」） ----
+# 報道にしか無い数字は、主要な報道機関の記事で裏付けのある事実。名前が抜けているのは書き方の問題なので、作り直し・見送りの前に機械で足す。
+# 足す名前は、その数字が実際に載っている報道機関（2つまで）。文はほかを変えない。
+PRESS_OTHER_ATTRIBUTION_RE = re.compile(r"によると|によれば")  # ほかの発表元の話として書いた文は機械で直さない（発表元の取り違え。作り直しへ）
+PRESS_CONJ_RE = re.compile(r"(?:また|さらに|一方で|一方|ただし|ただ|なお|しかし|加えて|そのうえで|このため|そのため|たとえば|例えば|具体的には|実際に)、")
+PRESS_LEAD_RE = re.compile(r"\s*(?:[-*・>]\s*|\d+[.．)]\s+)?")
+# 欄ごとの長さの上限（全角換算。超えるなら足さず、今までどおり LLM の作り直しに任せる）。
+# title は Muse の題名の上限（muse_format.TITLE_MAX）、seoTitle は検索用の題名の全角30字、SNS は threads_post.MAX_CHARS・HOOK_MAX
+PRESS_FIELD_MAX = {"title": muse_format.TITLE_MAX, "seoTitle": 30, "summaryLine": 80, "description": 220, "lede": 400,
+                   "threadsPost": 480, "threadsHook": 34}
+PRESS_SHORT_FIELDS = ("title", "seoTitle", "summaryLine", "threadsHook")  # 文頭の「〇〇によると」が不自然な欄（かっこ書きで足す）
+
+
+def _em_width(text: str) -> float:
+    return sum(0.5 if ord(ch) < 0x80 else 1 for ch in text)
+
+
+def _attribute(raw: str, nums: list, ctx: dict, short: bool = False) -> str | None:
+    """報道にしか無い数字のある文 raw に、報道機関の名前を足した文。機械で直さない文は None。
+    - 「。」で終わる本文の文: 頭に「NHKによると、」（2社なら「NHKと時事通信によると、」）
+    - 見出し・表の行・題名・言い切らない短い句: 後ろに「（NHK）」「（NHK・時事通信）」「（NHKなどの報道）」"""
+    if PRESS_OTHER_ATTRIBUTION_RE.search(raw):
+        return None
+    who = _carriers(nums, ctx)
+    body = raw.rstrip()
+    tail = raw[len(body):]
+    heading = body.lstrip().startswith("#")
+    table = body.lstrip().startswith("|")
+    if not short and not heading and not table and body.endswith("。"):
+        label = "報道" if not who else "と".join(who[:2]) + ("など" if len(who) > 2 else "")
+        lead = PRESS_LEAD_RE.match(body).group(0)
+        rest = body[len(lead):]
+        conj = PRESS_CONJ_RE.match(rest)
+        head = conj.group(0) if conj else ""
+        return f"{lead}{head}{label}によると、{rest[len(head):]}{tail}"
+    paren = "（報道）" if not who else f"（{'・'.join(who)}）" if len(who) <= 2 else f"（{who[0]}などの報道）"
+    if table:
+        # 数字のあるセルの終わりに足す（見つからなければ最後のセル）
+        at = body.find(nums[0].text)
+        end = body.find("|", at) if at >= 0 else -1
+        if end < 0:
+            end = body.rfind("|") if body.endswith("|") and body.count("|") > 1 else len(body)
+        cell = body[:end]
+        return f"{cell.rstrip()}{paren}{cell[len(cell.rstrip()):]}{body[end:]}{tail}"
+    if body[-1:] in "。！？":
+        return f"{body[:-1]}{paren}{body[-1]}{tail}"
+    return f"{body}{paren}{tail}"
+
+
+def _press_walk(text: str, ctx: dict, repair: bool = False, short: bool = False) -> tuple[str, list[str], list[tuple[str, str]]]:
+    """文章を段落 → 文に分けて、報道にしか無い数字の文を見る。（直した文章, 名前の無い文, 直した所（前, 後））。
+    repair のときは名前の無い文に機械で名前を足す（足したあとの段落で、続く文を見る）"""
+    parts = re.split(r"(\n\s*\n)", text)
+    bare: list[str] = []
+    changes: list[tuple[str, str]] = []
+    for i in range(0, len(parts), 2):
+        lines = parts[i].split("\n")
+        prev = ""
+        for li, line in enumerate(lines):
+            units = re.split(r"(?<=[。！？])", line)
+            for ui, raw in enumerate(units):
+                unit = raw.strip()
+                if not unit:
+                    continue
+                nums = _press_only_numbers(unit, ctx)
+                if nums and not _press_unit_ok(unit, "\n".join(lines), prev, nums, ctx):
+                    fixed = _attribute(raw, nums, ctx, short) if repair else None
+                    if fixed and fixed != raw:
+                        units[ui] = fixed
+                        lines[li] = "".join(units)
+                        changes.append((unit, fixed.strip()))
+                        unit = fixed.strip()
+                    else:
+                        bare.append(unit[:40])
+                prev = unit
+        parts[i] = "\n".join(lines)
+    return "".join(parts), bare, changes
+
+
+def repair_press_attribution(record: dict, fetched: list[dict]) -> list[tuple[str, str, str]]:
+    """報道にしか無い数字に報道機関の名前が無い文へ、名前を機械で足す（LLM なし）。直した所（欄, 前, 後）を返し、record を書き換える。
+    長さの上限のある欄（題名・検索用の題名・SNS の文など）は、足すと上限を超えるなら変えない（今までどおり LLM の作り直しへ）。
+    数字そのもの・ほかの言葉は変えない。どの資料にも無い数字はここでは触らない（数字の門 quality.number_problems が今までどおり見る）"""
+    ctx = _press_ctx(fetched)
+    if not ctx:
+        return []
+    done: list[tuple[str, str, str]] = []
+
+    def fix(field: str, text: str) -> str:
+        if not text.strip():
+            return text
+        new, _bare, changes = _press_walk(text, ctx, repair=True, short=field in PRESS_SHORT_FIELDS)
+        limit = PRESS_FIELD_MAX.get(field)
+        if not changes or (limit and _em_width(new) > limit):
+            return text
+        done.extend((field, before, after) for before, after in changes)
+        return new
+
+    for field in ("title", "seoTitle", "lede", "description", "summaryLine", "body", "easy", "threadsPost", "threadsHook"):
+        if isinstance(record.get(field), str):
+            record[field] = fix(field, record[field])
+    for field in ("highlights", "todayActions"):
+        if isinstance(record.get(field), list):
+            record[field] = [fix(field, h) if isinstance(h, str) else h for h in record[field]]
+    points = (record.get("workMoney") or {}).get("points") if isinstance(record.get("workMoney"), dict) else None
+    if isinstance(points, list):
+        record["workMoney"]["points"] = [fix("workMoney", p) if isinstance(p, str) else p for p in points]
+    for row in record.get("faq") or []:
+        # 門は「問い＋答え」を1つの段落として見る（答えに名前があれば問いはよい）。同じ見方で直してから分け直す
+        if isinstance(row, dict) and isinstance(row.get("q"), str) and isinstance(row.get("a"), str) and "\n" not in row["q"]:
+            q, _, a = fix("faq", f"{row['q']}\n{row['a']}").partition("\n")
+            row["q"], row["a"] = q, a
+    if done:
+        record["pressAttributionRepairs"] = int(record.get("pressAttributionRepairs") or 0) + len(done)
+    return done
+
+
+def ensure_press_attribution(record: dict, fetched: list[dict]) -> list[str]:
+    """報道の書き方の門。先に名前の書き足し（機械）をしてから press_problems を見る。直した所は実行ログに前後を残す"""
+    for field, before, after in repair_press_attribution(record, fetched):
+        log(f"   [muse] 報道の名前を足した（{field}）: 「{before[:120]}」→「{after[:140]}」")
+    return press_problems(record, fetched)
+
+
+def press_problems(record: dict, fetched: list[dict]) -> list[str]:
+    """報道機関の記事を出典に使った記事が、決まりどおりか（LLM なし）。問題の文のリスト（空なら合格）。
+    1. 報道にしか無い数字（公式の資料に無く、報道の記事にある金額・割合・件数）のある文に、報道機関の名前か「報道」「報じた」がある
+       （直前の文に名前があり、その文が「〜という」「〜としている」と続くのはよい。表・箇条書きの行は同じ段落に名前があればよい。
+       同じ段落に、その数字が載っている報道機関の名前があるのもよい。段落をまたぐと数えない＝_press_unit_ok）
+    2. 報道の文を写していない（記号・空白を除いて PRESS_COPY_MIN 字以上つづけて同じ所がある文）
+    3. 公式の資料が無い記事（報道だけ）: 題名・リード・SNS の文に報道機関の名前があり、本文にも名前がある
+    報道にしか無い「数字でない事実」は機械では見分けられない（指示文と、事実確認の門で見る）。
+    名前が抜けているだけの文は、先に repair_press_attribution が機械で足す（ensure_press_attribution）"""
+    ctx = _press_ctx(fetched)
+    if not ctx:
+        return []
+    names, official, press_text = ctx["names"], ctx["official"], ctx["press_text"]
     first = names[0]
     out: list[str] = []
     bare: list[str] = []
     for _field, text in _reader_fields(record):
-        for block in re.split(r"\n\s*\n", text):
-            prev = ""
-            for unit in _SENTENCE_SPLIT_RE.split(block):
-                unit = unit.strip()
-                if not unit:
-                    continue
-                nums = [q for q in calc_facts.extract(unit) if calc_facts.checkable(q)
-                        and calc_facts.supported(q, press_values) and not calc_facts.supported(q, official_values)]
-                row = unit[:1] in ("|", "-", "*", "・")
-                ok = (not nums or _press_named(unit, names) or (row and _press_named(block, names))
-                      or (bool(prev) and _press_named(prev, names) and bool(PRESS_HEDGE_RE.search(unit))))
-                if not ok and unit[:40] not in bare:
-                    bare.append(unit[:40])
-                prev = unit
+        for b in _press_walk(text, ctx)[1]:
+            if b not in bare:
+                bare.append(b)
     if bare:
         out.append(f"報道（{'・'.join(names)}）にしか無い数字を、報道と分かる形で書いていない（{'、'.join('「' + b + '」' for b in bare[:4])}）。"
                    f"その文に「{first}によると」「{first}が報じた」と入れ、確定した事実として言い切らない")
@@ -810,8 +972,9 @@ def build_article(path: Path, data: dict, fetched: list[dict], unread: list[str]
             problems = dated
             log(f"   [muse] 試行{attempt}: {dated[0][:160]}")
             continue
-        # 報道を出典に使った記事: 報道にしか無い数字が報道として書かれているか・報道の文を写していないか（LLM なし）
-        if unattributed := press_problems(record, fetched):
+        # 報道を出典に使った記事: 報道にしか無い数字が報道として書かれているか・報道の文を写していないか（LLM なし）。
+        # 名前が抜けているだけの文は、先に機械で名前を足す（書き方の問題では作り直さない・落とさない。足した文も下の事実確認を通る）
+        if unattributed := ensure_press_attribution(record, fetched):
             problems = unattributed
             log(f"   [muse] 試行{attempt}: {unattributed[0][:160]}")
             continue
@@ -847,7 +1010,7 @@ def build_article(path: Path, data: dict, fetched: list[dict], unread: list[str]
             quality_bar.stamp(record, bar, **{k: v for k, v in (record.get("qualityBar") or {}).items() if k in ("before", "repaired")})
             log(f"   [bar] {quality_bar.summary_line(bar)}（Muse の記事は記録だけ）")
             # その場の手直し・点数の手直しで文が変わったあとも、報道の書き方の決まりを守っているか
-            if unattributed := press_problems(record, fetched):
+            if unattributed := ensure_press_attribution(record, fetched):
                 problems = unattributed
                 log(f"   [muse] 試行{attempt}: 手直しのあと {unattributed[0][:160]}")
                 continue

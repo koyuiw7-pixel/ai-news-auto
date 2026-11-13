@@ -274,7 +274,8 @@ class MarkPressTest(unittest.TestCase):
 DATA = {"title": "円相場が一時1ドル160円台とNHK報道、約2か月ぶりの円安水準", "genre": "お金", "notes": "", "body": "## 円安\n\n本文。"}
 GOOD = {"title": DATA["title"], "lede": "NHKによると、円相場は一時160円台まで値下がりしました。", "threadsPost": "NHKによると円が一時160円台に。",
         "body": "## 円安\n\nNHKによると、円相場は一時160円台まで値下がりしました。\n"}
-BAD = {**GOOD, "body": "## 円安\n\nNHKの報道が出ました。円相場は一時160円台まで値下がりしました。\n"}
+# 報道にしか無い数字を、役所の発表として書いた文（発表元の取り違え）。機械では名前を足さない（tests/test_muse_press_repair_20261113.py）
+BAD = {**GOOD, "body": "## 円安\n\n財務省によると、午後5時時点では159円81銭でした。\n"}
 
 
 def run_build(fetched: list[dict], drafts: list[dict]):
