@@ -87,16 +87,24 @@
     "zoohZ1BiHs0": 1
   },
   "failed_web": {
+    "0160cca0e3c443c7a624adf036f3be8e6ac4cb00": 1,
     "19582dcbd593ad2fb5b6436429dff3bbe781d9fa": 2,
     "2822203eaae0b1d5499748b858d3f07d205929cf": 2,
-    "28ad462be142daaa171f5b17da33f5e20b9bf105": 1,
-    "43f46f039e8833524d75b8acaf6ca68df4c2dbed": 1,
+    "28ad462be142daaa171f5b17da33f5e20b9bf105": 2,
+    "319b4ba93dd7bedaf58f8dc08f01c50d422b0cd7": 1,
+    "43f46f039e8833524d75b8acaf6ca68df4c2dbed": 2,
+    "60ac03aad0674399809c9c9c2654b45f09e5a769": 1,
     "6a085ae61e61c30362fc08d2f14cf4670cd55a6f": 2,
     "6ab7084ecd2527b0df9d501e8778ec035c886500": 2,
+    "770c7ac93e1f50d1206a8e48cc9e4b20eed34cbd": 1,
     "77b36a8fda3ac45819f3bb6602a1d2d823da1339": 2,
+    "79eb65745bb2c3d41e32be837f3ddd6f0246b52b": 1,
     "974cbd7a5cecef2b7b744d059e8f459d6792a654": 2,
+    "9b0b7c058ad29387ff3831642dc5ac5dba071d28": 1,
     "a170820ef862a7fba3099d94bc117aa6063c9c22": 2,
     "b77a8d4a33dcd908bcfadcd3a635e24a32dcd59c": 2,
+    "c9f6e91c97db22cee11169bacfa8530539301b72": 1,
+    "cbbafc7f230c30467136cea1f183e83244917e67": 1,
     "e3cc429fcec1a4d386c213674b421a9c640b572d": 2,
     "fa974d9a33a100a6a43663b8432472e7c74a3c59": 2
   },
@@ -3903,13 +3911,6 @@
       "skipped": true,
       "url": "https://www.suntory.co.jp/softdrink/news/pr/article/2026/SBF1746.html?rss=0000000029"
     },
-    "07bb381eca9ebf96": {
-      "at": "2026-10-30T05:53:35.358046+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "文部科学省によるコミュニティ・スクールに関する会議の開催案内であり、国民の暮らしや制度に直接的な変更をもたらす新制度の開始や料金改定等ではないため、対象外とします。",
-      "skipped": true,
-      "url": "https://www.mext.go.jp/b_menu/shingi/chousa/shougai/054/kaisai/mext_02480.html"
-    },
     "08058c08f6ecfb14": {
       "at": "2026-11-11T02:44:45.076884+00:00",
       "costUsd": 0.0055,
@@ -4569,6 +4570,12 @@
       "skipped": true,
       "url": "https://www.stat.go.jp/info/guide/public/houdou/pdf/ho261110.pdf"
     },
+    "1120ec4cd04ac3fe3c2684b9806d70b05ae92751": {
+      "at": "2026-11-13T05:49:49.763370+00:00",
+      "reason": "trend: 重複: 固有名詞＋見出しが類似（フィナンシャルグループ / 0.33）: smfg-interim-results-fy2027",
+      "skipped": true,
+      "url": "https://finance.yahoo.co.jp/news/detail/13957ff55ddd261b3e8d8bdb935670fb3ea57bb1"
+    },
     "113b61fb4ffd8543": {
       "at": "2026-11-02T14:52:12.361621+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -4645,6 +4652,20 @@
       "section": "ai",
       "slug": "apple-ipados-macos-no-merge-ternus",
       "url": "https://gori.me/macbookpro/172049"
+    },
+    "131e55b2f5a1b623": {
+      "at": "2026-11-13T06:09:12.132970+00:00",
+      "costUsd": 0.018,
+      "intent": "neutral",
+      "kind": "trend",
+      "mix": "",
+      "model": "gemini-3.5-flash-lite",
+      "score": 92,
+      "section": "public",
+      "slug": "nissan-skyline-news-summary",
+      "trendKeyword": "日産・スカイライン",
+      "trendLane": true,
+      "url": "https://topics.smt.docomo.ne.jp/latestnews/keywords/16a1b91020e054089b775004c53d7332ab2f1da0e435017ed674a9fd388d9d7c"
     },
     "13228f72a0867e23": {
       "at": "2026-11-12T15:55:32.294488+00:00",
@@ -5201,6 +5222,12 @@
       "section": "ai",
       "slug": "anthropic-s1a-amendment-ant-nasdaq",
       "url": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026068676/anthropicpbc-sx1ax1.htm"
+    },
+    "1b23d8369ba9f817972e9c8539cc1eeff29d038a": {
+      "at": "2026-11-13T06:09:12.133127+00:00",
+      "reason": "trend: 公式の発表で記事にした（nissan-skyline-news-summary）",
+      "skipped": true,
+      "url": "https://car.watch.impress.co.jp/docs/news/2155577.html"
     },
     "1b2c2dd52b0b36dc": {
       "at": "2026-11-06T11:26:22.264024+00:00",
@@ -5923,12 +5950,6 @@
       "slug": "openai-physical-engineering-ai",
       "url": "https://openai.com/index/accelerating-engineering-for-the-physical-world"
     },
-    "2718482522bd73ad": {
-      "at": "2026-10-30T05:53:35.358112+00:00",
-      "reason": "prefilter: 価値の薄いお知らせ（アワード）",
-      "skipped": true,
-      "url": "https://www.mhlw.go.jp/career-award/"
-    },
     "272f393bead73334": {
       "at": "2026-11-06T08:58:44.243362+00:00",
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
@@ -6327,13 +6348,6 @@
       "reason": "prefilter: 価値の薄いお知らせ（アワード）",
       "skipped": true,
       "url": "https://www.maff.go.jp/j/press/nousin/kouryu/261102.html"
-    },
-    "2f0f1fe3e901c32e": {
-      "at": "2026-10-30T05:54:26.203360+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: 本文が短い（1494字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が短い（389字 / 基準 400字以上）; 独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に",
-      "skipped": true,
-      "url": "https://www.mhlw.go.jp/topics/medias/c-med/2026/06/"
     },
     "2f1bd542dc1a2a03": {
       "at": "2026-11-04T11:03:07.267059+00:00",
@@ -7297,6 +7311,19 @@
       "skipped": true,
       "url": "https://www.env.go.jp/press/press_05798.html"
     },
+    "40e8002f36a0999f": {
+      "at": "2026-11-13T05:33:43.594321+00:00",
+      "breaking": true,
+      "costUsd": 0.137,
+      "intent": "breaking",
+      "major": true,
+      "mix": "other",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "score": 93,
+      "section": "investment",
+      "slug": "daiichi-life-group-interim-2027",
+      "url": "https://www.release.tdnet.info/inbs/140120261110572349.pdf"
+    },
     "416541329c8b23f2": {
       "at": "2026-11-04T03:01:26.969501+00:00",
       "reason": "stale: 発表から307時間（記事ページの日付）",
@@ -8165,13 +8192,6 @@
       "slug": "household-survey-2026-09-spending",
       "url": "https://www.stat.go.jp/data/kakei/sokuhou/tsuki/pdf/fies_mr.pdf?period=2026-09"
     },
-    "4f316fa5df84fa37": {
-      "at": "2026-10-30T05:53:40.596020+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "行政機関の危険業務従事者叙勲（消防関係）の人数変更に関する報道発表であり、国民の暮らしやお金に直接影響する新しい製品、サービス、制度、給付、研究成果のいずれにも該当しないため対象外としました。",
-      "skipped": true,
-      "url": "https://www.soumu.go.jp/menu_news/s-news/01shoubo01_02001301.html"
-    },
     "4f3b7c9dffa0995a": {
       "at": "2026-11-03T23:44:13.013560+00:00",
       "model": "anthropic-api:claude-sonnet-5-5",
@@ -8767,12 +8787,6 @@
       "reason": "followup style: 見出しが多すぎる（3個 / 本文1990字なら2個まで）。章をまとめて見出しを減らす",
       "skipped": true,
       "url": "https://blogs.nvidia.com/blog/geforce-now-thursday-hogwarts-legacy-dlss-5/"
-    },
-    "588b2b1e46b1c520": {
-      "at": "2026-10-30T05:54:26.203697+00:00",
-      "reason": "prefilter: 価値の薄いお知らせ（表彰）",
-      "skipped": true,
-      "url": "https://www.mhlw.go.jp/stf/newpage_76872.html"
     },
     "58a090b4c9116a8f": {
       "at": "2026-11-04T19:09:48.151092+00:00",
@@ -9421,12 +9435,6 @@
       "reason": "short text 272",
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026110212"
-    },
-    "61401816becf4736": {
-      "at": "2026-10-30T05:54:26.203429+00:00",
-      "reason": "prefilter: 価値の薄いお知らせ（募集）",
-      "skipped": true,
-      "url": "https://www.soumu.go.jp/menu_news/s-news/01gyosei14_02000129.html"
     },
     "6153609d9795b2fb": {
       "at": "2026-11-03T14:51:42.070809+00:00",
@@ -10692,6 +10700,12 @@
       "slug": "crimson-desert-enhanced-charting-the-unknown",
       "url": "https://news.xbox.com/ja-jp/2026/11/02/crimson-desert-charting-the-unknown/"
     },
+    "755ecc077c27cbb256aff369351c0c2df215ab00": {
+      "at": "2026-11-13T06:09:22.909352+00:00",
+      "reason": "trend: 扱わない話題: 訃報（関連報道2/2本に「亡くな」「死去」）",
+      "skipped": true,
+      "url": "https://news.yahoo.co.jp/expert/articles/7136bffbbc37e6af7b5f3030cbfb346c9d073d5a"
+    },
     "75679f5aa60bfcf8": {
       "at": "2026-11-04T15:13:12.356934+00:00",
       "breaking": true,
@@ -11620,12 +11634,6 @@
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
       "skipped": true,
       "url": "https://www.gov-online.go.jp/article/201404/entry-9030.html"
-    },
-    "82c166eb3403fd1d": {
-      "at": "2026-10-30T05:54:26.203641+00:00",
-      "reason": "prefilter: 価値の薄いお知らせ（募集）",
-      "skipped": true,
-      "url": "https://www.soumu.go.jp/menu_news/s-news/01ryutsu14_02000181.html"
     },
     "82d5e32da8b2fad037b61ea20d71e7757abe3f6e": {
       "at": "2026-10-31T16:01:29.827318+00:00",
@@ -12556,12 +12564,6 @@
       "slug": "google-health-ai-evaluation-framework",
       "url": "https://blog.google/innovation-and-ai/technology/health/evaluating-health-ai-at-scale/"
     },
-    "9263004f9bf0f500": {
-      "at": "2026-10-30T05:53:40.596151+00:00",
-      "reason": "prefilter: 価値の薄いお知らせ（議事）",
-      "skipped": true,
-      "url": "https://www.mext.go.jp/b_menu/shingi/chousa/koutou/136/gijiroku/mext_00004.html"
-    },
     "92955b5c8ebb0120": {
       "at": "2026-11-03T18:31:44.286402+00:00",
       "reason": "dedupe: 固有名詞が一致（agentic・era）: docker-blueprint-alliance-agent-baseline",
@@ -12622,13 +12624,6 @@
       "reason": "quality: 公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください",
       "skipped": true,
       "url": "https://eetimes.itmedia.co.jp/ee/articles/2611/02/news034.html"
-    },
-    "93e3a99db3614882": {
-      "at": "2026-10-30T05:53:29.926651+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: easy_markdown が短い（314字 / 基準 400字以上）",
-      "skipped": true,
-      "url": "https://www.soumu.go.jp/menu_news/s-news/01zeimu02_02000477.html"
     },
     "93f213c8b146306d": {
       "at": "2026-11-11T06:04:53.721335+00:00",
@@ -13023,12 +13018,6 @@
       "reason": "prefilter: 価値の薄いお知らせ（審議会）",
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026111224"
-    },
-    "9b04d2d292e06216": {
-      "at": "2026-10-30T05:53:17.494025+00:00",
-      "reason": "prefilter: 価値の薄いお知らせ（職員）",
-      "skipped": true,
-      "url": "https://www.mext.go.jp/b_menu/saiyou/sonota/1417284_00051.htm"
     },
     "9b3b0fa673706dad": {
       "at": "2026-11-11T02:03:43.930892+00:00",
@@ -14242,13 +14231,6 @@
       "reason": "prefilter: サイトの主題外（エンタメのビジネス・テックの話題ではない。料金・決算・販売本数・AI・規約などがない）",
       "skipped": true,
       "url": "https://blog.ja.playstation.com/2026/11/05/20261105-acv-post-launch-update-o/"
-    },
-    "ad3ed351c05b66a9": {
-      "at": "2026-10-30T05:54:15.414686+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: 本文が短い（1670字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-      "skipped": true,
-      "url": "https://www.mext.go.jp/a_menu/koutou/hutankeigen/mext_03668.html"
     },
     "ad614f81e42f72e5": {
       "at": "2026-11-13T02:59:45.159920+00:00",
@@ -15547,12 +15529,6 @@
       "skipped": true,
       "url": "http://www.boj.or.jp/paym/bond/mbond_list/mbond261105.pdf"
     },
-    "c07d7d7b4d6e0744": {
-      "at": "2026-10-30T05:54:26.203678+00:00",
-      "reason": "prefilter: 価値の薄いお知らせ（審議会）",
-      "skipped": true,
-      "url": "https://www.mhlw.go.jp/stf/newpage_76901.html"
-    },
     "c0aaac229fee24e1": {
       "at": "2026-11-06T18:26:28.164988+00:00",
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
@@ -15710,12 +15686,6 @@
       "reason": "元記事の本文に、売上高・利益・前年同期比・事業別や地域別の数字・次期見通しが含まれていません。抜き出されたのはメニューと決算発表の告知文だけで、決算の中身を伝える事実がないため記事にできません。決算の数字が確認できた時点で改めて作成します。",
       "skipped": true,
       "url": "https://www.nttdata.com/global/ja/news/release/2026/110400"
-    },
-    "c37e361ee3708196": {
-      "at": "2026-10-30T05:53:40.596135+00:00",
-      "reason": "prefilter: 価値の薄いお知らせ（募集）",
-      "skipped": true,
-      "url": "https://www.soumu.go.jp/menu_news/s-news/01gyosei01_02000380.html"
     },
     "c37f7c51d7b7e865": {
       "at": "2026-11-11T01:54:41.705082+00:00",
@@ -16587,12 +16557,6 @@
       "skipped": true,
       "url": "https://openai.com/index/fair-use-benefits-everyone"
     },
-    "d23275eef2e62dd3": {
-      "at": "2026-10-30T05:53:40.596084+00:00",
-      "reason": "prefilter: 価値の薄いお知らせ（オープン）",
-      "skipped": true,
-      "url": "https://www.mext.go.jp/b_menu/boshu/detail/mext_00571.html"
-    },
     "d2369c7efb100e6e": {
       "at": "2026-11-12T05:23:23.924857+00:00",
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・暮らしの交通/天気/値上げ/障害/給付/発売・日本のスポーツのどれでもない）",
@@ -16767,13 +16731,6 @@
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
       "skipped": true,
       "url": "https://www.mhlw.go.jp/stf/wp/hakusyo/shiinkyuumei/26/index.html"
-    },
-    "d50588a2942a381b": {
-      "at": "2026-10-30T05:53:56.669036+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: easy_markdown が「## ひとことで言うと」から始まっていない",
-      "skipped": true,
-      "url": "https://www.mhlw.go.jp/stf/newpage_77005.html"
     },
     "d50c89a051a23f7a": {
       "at": "2026-11-06T01:26:42.687578+00:00",
@@ -17625,12 +17582,6 @@
       "slug": "duolingo-ai-str-fix-bug-agent",
       "url": "https://blog.duolingo.com/ai-bug-fixing-agent/"
     },
-    "e06ce812ec7f92c2": {
-      "at": "2026-10-30T05:54:26.203665+00:00",
-      "reason": "prefilter: 扱わない話題（事件事故・ゴシップ・選挙・医療効果・噂）",
-      "skipped": true,
-      "url": "https://www.soumu.go.jp/menu_news/s-news/01gyosei17_02000276.html"
-    },
     "e07514077fe0fe08": {
       "at": "2026-11-06T12:36:36.948139+00:00",
       "model": "cloudflare:@cf/openai/gpt-oss-120b",
@@ -17677,12 +17628,6 @@
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026110202"
     },
-    "e12e0370f6709ae3": {
-      "at": "2026-10-30T05:53:17.494067+00:00",
-      "reason": "prefilter: 価値の薄いお知らせ（キャンペーン）",
-      "skipped": true,
-      "url": "https://www.mhlw.go.jp/stf/newpage_76722.html"
-    },
     "e1491c4239ea20a0": {
       "at": "2026-11-03T17:13:16.272485+00:00",
       "model": "anthropic-api:claude-sonnet-5-5",
@@ -17710,12 +17655,6 @@
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
       "skipped": true,
       "url": "https://www.morinaga.co.jp/company/newsrelease/detail.php?no=3228"
-    },
-    "e21aaecd917562cd": {
-      "at": "2026-10-30T05:53:40.596111+00:00",
-      "reason": "prefilter: 価値の薄いお知らせ（を開催）",
-      "skipped": true,
-      "url": "https://www.mhlw.go.jp/stf/newpage_77054.html"
     },
     "e2654f5d2f822277": {
       "at": "2026-11-04T08:04:11.849363+00:00",
@@ -19798,14 +19737,6 @@
       "url": "https://www.e-nexco.co.jp/news/important_info/2026/0317/00016041.html",
       "writer": "muse"
     },
-    "muse-56511b2596": {
-      "at": "2026-11-13T05:41:42.671256+00:00",
-      "mix": "other",
-      "score": 82,
-      "slug": "kogaku-ryoyohi-2026-08-limit",
-      "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/iryouhoken/juuyou/kougakuiryou/index.html?hl=ja-JP",
-      "writer": "muse"
-    },
     "muse-5771210477": {
       "at": "2026-11-10T09:03:57.934315+00:00",
       "mix": "other",
@@ -19828,14 +19759,6 @@
       "score": 93,
       "slug": "autumn-fire-prevention-2026-home-checks",
       "url": "https://www.fdma.go.jp/laws/tutatsu/items/2026_09_07_yobo1.pdf",
-      "writer": "muse"
-    },
-    "muse-590ba0e2c7": {
-      "at": "2026-11-13T05:55:50.356652+00:00",
-      "mix": "money",
-      "score": 88,
-      "slug": "furusato-nozei-deduction-timing",
-      "url": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/mechanism/deduction.html",
       "writer": "muse"
     },
     "muse-5dd7f56355": {
@@ -20046,14 +19969,6 @@
       "url": "https://www.nitorihd.co.jp/news/items/2b702dbe4d438f7fef74945d68e5bd27.pdf",
       "writer": "muse"
     },
-    "muse-860e2671d3": {
-      "at": "2026-11-13T05:59:34.860754+00:00",
-      "mix": "money",
-      "score": 86,
-      "slug": "furusato-receipt-lost-procedure",
-      "url": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/mechanism/procedure.html",
-      "writer": "muse"
-    },
     "muse-86c0b348bc": {
       "at": "2026-11-12T14:25:42.452491+00:00",
       "mix": "money",
@@ -20092,14 +20007,6 @@
       "score": 88,
       "slug": "humidifier-type-electricity-cost-winter",
       "url": "https://panasonic.jp/kashitsu/products/FE-KF07D.html",
-      "writer": "muse"
-    },
-    "muse-8f7e1d6701": {
-      "at": "2026-11-13T05:47:05.655708+00:00",
-      "mix": "money",
-      "score": 92,
-      "slug": "medical-expense-deduction-statement-guide",
-      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1120.htm",
       "writer": "muse"
     },
     "muse-8fa03b9861": {
@@ -20228,14 +20135,6 @@
       "score": 90,
       "slug": "retirement-income-deduction-calculation",
       "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1420.htm",
-      "writer": "muse"
-    },
-    "muse-abc0dc546b": {
-      "at": "2026-11-13T05:51:19.788124+00:00",
-      "mix": "money",
-      "score": 88,
-      "slug": "jr-east-fare-increase-2026",
-      "url": "https://www.jreast.co.jp/press/2025/20250801_ho03.pdf",
       "writer": "muse"
     },
     "muse-ad30c7e6c7": {
@@ -20414,14 +20313,6 @@
       "url": "https://www.courts.go.jp/saiban/syurui/syurui_kazi/kazi_06_13/index.html",
       "writer": "muse"
     },
-    "muse-d1af18a141": {
-      "at": "2026-11-13T05:53:08.107176+00:00",
-      "mix": "other",
-      "score": 92,
-      "slug": "nvidia-earnings-ceo-transition-orukan",
-      "url": "https://nvidianews.nvidia.com/news/nvidia-announces-ceo-transition",
-      "writer": "muse"
-    },
     "muse-d404017198": {
       "at": "2026-11-11T09:42:37.075736+00:00",
       "mix": "money",
@@ -20598,75 +20489,56 @@
       "url": "https://www.docomo.ne.jp/info/notice/page/261106_00_m.html",
       "writer": "muse"
     },
-    "1120ec4cd04ac3fe3c2684b9806d70b05ae92751": {
-      "at": "2026-11-13T05:49:49.763370+00:00",
-      "reason": "trend: 重複: 固有名詞＋見出しが類似（フィナンシャルグループ / 0.33）: smfg-interim-results-fy2027",
-      "skipped": true,
-      "url": "https://finance.yahoo.co.jp/news/detail/13957ff55ddd261b3e8d8bdb935670fb3ea57bb1"
-    },
-    "40e8002f36a0999f": {
-      "at": "2026-11-13T05:33:43.594321+00:00",
-      "breaking": true,
-      "costUsd": 0.137,
-      "intent": "breaking",
-      "major": true,
+    "muse-56511b2596": {
+      "at": "2026-11-13T05:41:42.671256+00:00",
       "mix": "other",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "score": 93,
-      "section": "investment",
-      "slug": "daiichi-life-group-interim-2027",
-      "url": "https://www.release.tdnet.info/inbs/140120261110572349.pdf"
+      "score": 82,
+      "slug": "kogaku-ryoyohi-2026-08-limit",
+      "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/iryouhoken/juuyou/kougakuiryou/index.html?hl=ja-JP",
+      "writer": "muse"
+    },
+    "muse-590ba0e2c7": {
+      "at": "2026-11-13T05:55:50.356652+00:00",
+      "mix": "money",
+      "score": 88,
+      "slug": "furusato-nozei-deduction-timing",
+      "url": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/mechanism/deduction.html",
+      "writer": "muse"
+    },
+    "muse-860e2671d3": {
+      "at": "2026-11-13T05:59:34.860754+00:00",
+      "mix": "money",
+      "score": 86,
+      "slug": "furusato-receipt-lost-procedure",
+      "url": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/mechanism/procedure.html",
+      "writer": "muse"
+    },
+    "muse-8f7e1d6701": {
+      "at": "2026-11-13T05:47:05.655708+00:00",
+      "mix": "money",
+      "score": 92,
+      "slug": "medical-expense-deduction-statement-guide",
+      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1120.htm",
+      "writer": "muse"
+    },
+    "muse-abc0dc546b": {
+      "at": "2026-11-13T05:51:19.788124+00:00",
+      "mix": "money",
+      "score": 88,
+      "slug": "jr-east-fare-increase-2026",
+      "url": "https://www.jreast.co.jp/press/2025/20250801_ho03.pdf",
+      "writer": "muse"
+    },
+    "muse-d1af18a141": {
+      "at": "2026-11-13T05:53:08.107176+00:00",
+      "mix": "other",
+      "score": 92,
+      "slug": "nvidia-earnings-ceo-transition-orukan",
+      "url": "https://nvidianews.nvidia.com/news/nvidia-announces-ceo-transition",
+      "writer": "muse"
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-11T06:03:42.113435+00:00",
-      "attempt": 1,
-      "id": "fa230e731db14871",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 85.6,
-        "avg_sentence": 47.6,
-        "long_share": 0.222,
-        "max_paragraph": 157,
-        "paragraphs": 5,
-        "sentences": 9
-      },
-      "score": 88,
-      "source": "yonden",
-      "title": "「電気・ガス料金支援」の実施に係る電気料金の負担軽減措置の認可申請について",
-      "warnings": [
-        "読みやすさ: 文が長い（1文の平均 47.6字・60字超の文が 22% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-11T06:04:00.355400+00:00",
-      "attempt": 0,
-      "id": "fa230e731db14871",
-      "kind": "broad",
-      "model": "",
-      "problems": [
-        "読みやすさ基準外のまま受理: 書き直し後の確認に不合格: タイトル「来年1月から実施」→ 低圧供給は2026年12月使用分から適用（元記事の適用時期）なので、開始時期の取り違えになっている; リード「2027年1月から3月まで…実施」→ 低圧は2026年12月使用分〜2027年2月使用分、高圧は2027年1月使用分〜3"
-      ],
-      "readability": {
-        "avg_paragraph": 85.6,
-        "avg_sentence": 47.6,
-        "long_share": 0.222,
-        "max_paragraph": 157,
-        "paragraphs": 5,
-        "sentences": 9
-      },
-      "score": 88,
-      "source": "yonden",
-      "title": "「電気・ガス料金支援」の実施に係る電気料金の負担軽減措置の認可申請について",
-      "warnings": [
-        "読みやすさ: 文が長い（1文の平均 47.6字・60字超の文が 22% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": false,
       "at": "2026-11-11T06:04:32.217688+00:00",
@@ -28179,6 +28051,54 @@
       "score": 93,
       "source": "fast",
       "title": "第一ライフグループ 2027年３月期 第２四半期（中間期）決算短信〔日本基準〕(連結)"
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-13T06:08:26.657454+00:00",
+      "attempt": 1,
+      "id": "131e55b2f5a1b623",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 155.1,
+        "avg_sentence": 48.5,
+        "long_share": 0.312,
+        "max_paragraph": 231,
+        "paragraphs": 10,
+        "sentences": 32
+      },
+      "score": 88,
+      "source": "radar-official",
+      "title": "スカイライン関連ニュース｜dメニューニュース（NTTドコモ）",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（GT・BNR）",
+        "読みやすさ: 文が長い（1文の平均 48.5字・60字超の文が 31% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "読みやすさ: 段落が長い（平均 155.1字・最長 231字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-13T06:09:02.239159+00:00",
+      "attempt": 0,
+      "id": "131e55b2f5a1b623",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 88.1,
+        "avg_sentence": 40.5,
+        "long_share": 0.162,
+        "max_paragraph": 175,
+        "paragraphs": 17,
+        "sentences": 37
+      },
+      "score": 92,
+      "source": "radar-official",
+      "title": "スカイライン関連ニュース｜dメニューニュース（NTTドコモ）",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（GT・BNR）"
+      ]
     }
   ],
   "short_text_retry": {},
