@@ -231,6 +231,31 @@ class OfficialFirstTest(unittest.TestCase):
         self.assertEqual(game["section"], "entertainment")
 
 
+class PublishedBeforeSectionFixTest(unittest.TestCase):
+    """45350f7a の前に公開した話題のレーンの記事（ゲームの発売が「社会・行政」・種類が「制度」だった）を、今の決め方の結果に直してある"""
+
+    def test_vindictus_article_has_the_section_the_fix_assigns(self):
+        import json
+        from pathlib import Path
+
+        import feeds
+        import news_types
+
+        path = Path(__file__).resolve().parents[1] / "content" / "articles" / "vindictus-defying-fate-ps5.json"
+        if not path.exists():
+            self.skipTest("記事が無い")
+        a = json.loads(path.read_text("utf-8"))
+        section = feeds.classify_section({"title": f"Vindictus: Defying Fate (PS5 ゲーム) {a['trendKeyword']}", "summary": ""})
+        genre = w.GENRES_BY_SLUG[section]
+        self.assertEqual((a["genreSlug"], a["genre"]), (genre.slug, genre.name))
+        self.assertEqual(a["genreSlug"], "entertainment")
+        self.assertEqual(a["newsType"], news_types.classify(a["title"], a["body"], url=a["sourceUrl"], genre=genre.slug))
+        self.assertNotEqual(a["newsType"], "policy")
+        self.assertEqual(a["disclaimer"], w.web_disclaimer(genre))
+        self.assertNotIn("官公庁", a["disclaimer"])
+        self.assertNotEqual((a.get("verdict") or {}).get("kind"), "public")  # 判定カードを「制度」の形で出さない
+
+
 class TermMatchingTest(unittest.TestCase):
     """1d: 英数字だけの語は語の区切りで当てる（「bet」が「Alphabet」に当たっていた）"""
 
