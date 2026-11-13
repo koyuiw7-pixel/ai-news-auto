@@ -703,9 +703,10 @@ def build_article(path: Path, data: dict, fetched: list[dict], unread: list[str]
             "sectionsPolishedAt": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         })
         if press_only:
-            # 報道だけをもとにした速報の印。検索には出さない（他社の記事の書き直しを検索に出さない＝台帳 W12・W17 と同じ考え。
-            # indexable を手で true にすれば出せる）。公式の発表が出たら officialPending を見て差し替える
-            record.update({"pressOnly": True, "officialPending": True, "indexable": False})
+            # 報道だけをもとにした速報の印。公式の発表が出たら officialPending を見て差し替える。
+            # 2026-11-13 オーナー「とにかく数字」: 話題のレーンの報道の記事（scripts/trend_lane.py）と同じく検索に出す・サイトマップに入れる。
+            # indexable の印は付けない（付けると公開前の門を素通りする）。ほかの Muse の記事と同じ門・同じ検索の基準（indexnow.noindex_reason）で見る
+            record.update({"pressOnly": True, "officialPending": True})
         mark_comparison(record, data)
         if (data.get("depth") or "").strip():
             # 一歩深くする欄の材料（scripts/depth_fields.py が公式ページで確かめてから使い、使ったら記事から外す。台帳 A66）

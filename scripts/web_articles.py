@@ -716,7 +716,7 @@ TREND_LANE = os.environ.get("TREND_LANE", "1") != "0"
 # W31 の例外はこの形だけ（2026-11-04〜11-12 は 0＝話題の記事を作らない、だった）
 TREND_FROM_PRESS = os.environ.get("TREND_FROM_PRESS", "1") == "1"
 # 報道が出典の話題の記事を検索に出さないようにする切り替え（既定は出す＝急上昇の言葉で検索から読者を呼ぶのが目的）。
-# Muse の道の「報道だけの記事」は検索に出さない作り（scripts/muse_articles.py）なので、そろえるときは TREND_PRESS_NOINDEX=1
+# Muse の道の「報道だけの記事」（scripts/muse_articles.py の pressOnly）も 2026-11-13 から同じく検索に出す。止めるときだけ TREND_PRESS_NOINDEX=1
 TREND_PRESS_NOINDEX = os.environ.get("TREND_PRESS_NOINDEX", "0") == "1"
 TREND_MIN_SOURCE_CHARS = 400
 TREND_MIN_SOURCES = 2

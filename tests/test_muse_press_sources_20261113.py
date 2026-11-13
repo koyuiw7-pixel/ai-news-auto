@@ -196,7 +196,7 @@ class EveryPathGateTest(unittest.TestCase):
     """public_interest.press_source_problems（全経路の門 W31）: Muse の道の印が付いた記事だけ通す"""
 
     REC = {"writer": "muse", "pressOnly": True, "sourceUrl": NHK, "sourceName": "NHK", "channelSlug": "radar-news.web.nhk",
-           "title": "円相場が一時160円台とNHK報道", "body": "## a\n\n本文", "indexable": False}
+           "title": "円相場が一時160円台とNHK報道", "body": "## a\n\n本文"}
 
     def test_muse_press_only_record_passes_every_path(self):
         self.assertTrue(pi.muse_press_ok(self.REC))
@@ -327,7 +327,8 @@ class BuildArticleTest(unittest.TestCase):
         self.assertEqual(seen["item"]["source_name"], "NHK")
         self.assertEqual(seen["item"]["image"], "")       # 報道機関のページの写真は使わない
         self.assertIsNone(seen["page"]["image"])
-        self.assertEqual((rec["pressOnly"], rec["officialPending"], rec["indexable"]), (True, True, False))
+        self.assertEqual((rec["pressOnly"], rec["officialPending"]), (True, True))
+        self.assertNotIn("indexable", rec)  # 検索に出す（話題のレーンの報道の記事と同じ。下の test_press_only_article_is_indexable_like_the_trend_lane）
         self.assertEqual(rec["pressSources"], [{"url": NHK, "name": "NHK"}])
         self.assertIn("公式の発表はまだ確認できていません", rec["disclaimer"])
         self.assertIn("投資助言ではありません", rec["disclaimer"])
@@ -339,6 +340,24 @@ class BuildArticleTest(unittest.TestCase):
         self.assertIn("報道の文を写さない", prompt)
         self.assertIn("読めた公式の資料がありません（報道だけ）", prompt)
         self.assertIn("title・lede・threads_post には必ず報道機関の名前を入れる", prompt)
+
+    def test_press_only_article_is_indexable_like_the_trend_lane(self):
+        """2026-11-13: 報道だけの Muse の記事も検索に出す・サイトマップに入る（話題のレーンと同じ）。札と印は残す"""
+        long_body = GOOD["body"] + "\n## 家計への影響\n\n" + "NHKによると、輸入品の値段に影響が出る見通しです。" * 30
+        (status, rec), _ = run_build(PRESS_ONLY, [{**GOOD, "body": long_body}])
+        self.assertEqual(status, "ok", rec)
+        self.assertNotIn("indexable", rec)
+        self.assertIsNone(indexnow.noindex_reason(rec))
+        self.assertTrue(indexnow.is_indexable(rec))
+        self.assertIsNone(indexnow.publish_block_reason(rec))  # 印で素通りではなく、ほかの Muse の記事と同じ門を通る
+        self.assertEqual((rec["pressOnly"], rec["officialPending"]), (True, True))
+        self.assertTrue(rec["channelSlug"].startswith("radar-"))  # 読者への札は「出典（報道）」のまま
+        self.assertIn("公式の発表はまだ確認できていません", rec["disclaimer"])
+        # ほかの報道が出典の記事は変えない: 自動の記事は今までどおり公開前の門で止まる
+        auto = {**rec, "writer": ""}
+        self.assertEqual(indexnow.publish_block_reason(auto), "press")
+        # 公開前の門と検索の基準は同じ軸を見る: 門を通った報道だけの記事は、軸の理由で検索から外れない
+        self.assertTrue(indexnow.on_axis(rec))
 
     def test_mixed_article_keeps_the_official_source_first(self):
         (status, rec), seen = run_build(list(reversed(MIXED)), [{**GOOD, "title": "円相場の動きと家計への影響"}])
