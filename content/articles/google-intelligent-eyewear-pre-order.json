@@ -98,8 +98,8 @@
   ],
   "todayActions": [
     "glasses.googleで、日本向けの案内が出ているか確認する",
-    "米国か韓国に行く予定があるなら、Warby ParkerかGentle Monsterの試着店舗を調べる",
-    "iPhoneかPixelか、手元のスマートフォンが対応機種に入るか確認する"
+    "warbyparker.comで、3つの型と価格を見比べる",
+    "Warby Parkerの店舗で、ガイド付きデモを申し込む"
   ],
   "qualityBar": {
     "score": 5,
@@ -163,5 +163,109 @@
     ],
     "ar": 1.7778,
     "src": "https://ai-tech-express.jp/img/google-intelligent-eyewear-pre-order-81c9a51f.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "Gemini Historyで、Geminiとのチャットを確認・削除し、設定を変えられます。アプリごとに、カメラとマイクを使う許可も選べます。",
+      "source": "https://blog.google/innovation-and-ai/technology/xr-ar/google-intelligent-eyewear-collections-pre-order/"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "glasses.google（インテリジェントアイウェアの案内）",
+      "url": "http://glasses.google/",
+      "source": "https://blog.google/innovation-and-ai/technology/xr-ar/google-intelligent-eyewear-collections-pre-order/",
+      "note": "予約や発売の案内は、Googleのこのサイトで詳しく確認できます。"
+    },
+    {
+      "name": "Warby Parker（Intelligent Eyewear）",
+      "url": "https://www.warbyparker.com/intelligent-eyewear",
+      "source": "https://blog.google/innovation-and-ai/technology/xr-ar/google-intelligent-eyewear-collections-pre-order/",
+      "note": "全商品をオンラインで買え、360以上の店舗でガイド付きデモを申し込めます。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "glasses.googleで、日本向けの案内が出ているか確認する",
+      "source": "https://blog.google/innovation-and-ai/technology/xr-ar/google-intelligent-eyewear-collections-pre-order/",
+      "steps": [
+        "glasses.googleを開く",
+        "日本向けの案内が出ているか見る"
+      ],
+      "url": "http://glasses.google/"
+    },
+    {
+      "action": "warbyparker.comで、3つの型と価格を見比べる",
+      "source": "https://blog.google/innovation-and-ai/technology/xr-ar/google-intelligent-eyewear-collections-pre-order/",
+      "steps": [
+        "warbyparker.comを開く",
+        "Intelligent Eyewearの型と価格を見る"
+      ],
+      "url": "https://www.warbyparker.com/intelligent-eyewear"
+    },
+    {
+      "action": "Warby Parkerの店舗で、ガイド付きデモを申し込む",
+      "source": "https://blog.google/innovation-and-ai/technology/xr-ar/google-intelligent-eyewear-collections-pre-order/",
+      "steps": [
+        "店舗でデモの予約を申し込む",
+        "360以上の店舗のどれかを選ぶ"
+      ]
+    }
+  ],
+  "cause": {
+    "text": "Googleは、外出中も手を使わずにGeminiの助けを受けられるよう、このメガネをWarby Parker、Gentle Monster、Samsungと共同で設計しました。",
+    "status": "background",
+    "source": "https://blog.google/innovation-and-ai/technology/xr-ar/google-intelligent-eyewear-collections-pre-order/"
+  },
+  "worries": [
+    {
+      "q": "カメラで撮った映像は、Geminiに残るの？",
+      "a": "カメラの映像はGeminiの履歴に保存されず、AIの学習や広告には使われないとされています。Geminiに渡す前に、周囲の人の顔は自動で隠す設計です。",
+      "source": "https://blog.google/innovation-and-ai/technology/xr-ar/google-intelligent-eyewear-collections-pre-order/",
+      "action": "Gemini Historyで、チャットの確認や削除、設定の変更ができることを使う前に確かめる。"
+    },
+    {
+      "q": "撮られていることは周りの人に分かる？",
+      "a": "写真や動画を撮るときは表示灯が点きます。表示灯を覆ったり無効にしたりすると、録画が止まる設計です。",
+      "source": "https://blog.google/innovation-and-ai/technology/xr-ar/google-intelligent-eyewear-collections-pre-order/",
+      "action": "人がいる場所では、電源を完全に切るスイッチを使えば普通のメガネとして使える。"
+    },
+    {
+      "q": "どのスマホと組み合わせて使える？",
+      "a": "Pixel、Samsungのスマートフォン、iPhoneと組み合わせて使えると案内されています。手元の機種が対象に入るかは、公式の案内で確かめられます。",
+      "source": "https://blog.google/innovation-and-ai/technology/xr-ar/google-intelligent-eyewear-collections-pre-order/",
+      "action": "手元のスマートフォンが、Pixel、Samsung、iPhoneのどれかを確認しておく。"
+    },
+    {
+      "q": "視覚に不安がある家族も使える？",
+      "a": "Guided Visionは、視覚障害や弱視の人、小さな文字を読みたい人、日用品を探したい人が対象と書かれています。Airaでは「Hey Gemini, open Aira Explorer」と言うと、訓練を受けた人間の通訳者につながります。",
+      "source": "https://blog.google/innovation-and-ai/technology/xr-ar/google-intelligent-eyewear-collections-pre-order/",
+      "action": "視覚の支援を使うなら、「Hey Gemini, open Aira Explorer」と話しかけて使い方を確かめる。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "日本で今すぐ予約や購入をする？",
+      "situation": "日本に住んでいて、日本向けの販売がまだ無い",
+      "recommend": "急がなくてよい",
+      "reason": "Gentle Monsterの販売地域は米国と韓国と書かれています。日本での販売はまだ発表されていないため、待っても買えるかは未定です。",
+      "source": "https://blog.google/innovation-and-ai/technology/xr-ar/google-intelligent-eyewear-collections-pre-order/"
+    },
+    {
+      "question": "米国や韓国で試着してから買いたい？",
+      "situation": "12月に米国か韓国へ行く予定がある",
+      "recommend": "試着店舗を調べておく価値がある",
+      "reason": "発売は12月10日です。試着は Gentle Monster、Warby Parker、Google Store の一部店舗でできます。Gentle Monsterの販売地域は米国と韓国です。",
+      "source": "https://blog.google/innovation-and-ai/technology/xr-ar/google-intelligent-eyewear-collections-pre-order/"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "カメラの映像と履歴、設定で見直せる",
+    "cause": "なぜこのメガネができたのか",
+    "steps": "今日、まず確かめたいこと",
+    "desk": "公式の確認先はここ",
+    "worries": "カメラの映像や周りの人は大丈夫？",
+    "guide": "日本で待つか、今買うか迷ったとき"
+  },
+  "depthAt": "2026-11-13T03:00:32+00:00"
 }
