@@ -169,14 +169,6 @@
       "tries": 1,
       "url": "https://developers.googleblog.com/catch-go-bugs-that-fuzzing-misses-with-gemini-and-a-constraint-solver/"
     },
-    "bf1537f4a0ba0146": {
-      "first": "2026-11-10T07:18:16.939386+00:00",
-      "next": "2026-11-10T10:18:16.939386+00:00",
-      "reason": "タイトル「NTT、投資有価証券の売却で特別利益を計上へ」→ 元記事（NTT公式の開示事項の経過PDFのタイトルのみ）に売却・特別利益の計上の具体的内容が一切なく、元記事と確認済みの文脈で裏付けられない; リード「NTTは11月10日、保有する投資有価証券の一部を売却し、特別利益を計上する見込みだと明らかにしました」→ 元記事は『投資有価証券の売却に関するお知らせ』という題名のみで、一部売却・特別利",
-      "title": "（開示事項の経過）投資有価証券の売却に関するお知らせ（PDF：112KB）",
-      "tries": 1,
-      "url": "https://group.ntt/jp/newsrelease/2026/11/10/261110a.html"
-    },
     "c2fb8647bc0db306": {
       "first": "2026-11-12T06:22:51.561304+00:00",
       "next": "2026-11-12T09:22:51.561304+00:00",
@@ -4280,6 +4272,19 @@
       "reason": "prefilter: 不動産の話題ではない",
       "skipped": true,
       "url": "https://www.tokyu-fudosan-hd.co.jp/news/companies/pdf/d5e7fa5a8d681a9b61127ef623a5574f6877227c.pdf"
+    },
+    "0ccbb3019957b07f": {
+      "at": "2026-11-13T07:28:06.365990+00:00",
+      "breaking": true,
+      "costUsd": 0.1407,
+      "intent": "breaking",
+      "major": true,
+      "mix": "jp_corp",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "score": 92,
+      "section": "investment",
+      "slug": "mufg-fy2027-h1-earnings",
+      "url": "https://www.release.tdnet.info/inbs/140120261112577371.pdf"
     },
     "0cefdd61504b8efc": {
       "at": "2026-11-12T16:11:44.115479+00:00",
@@ -19807,6 +19812,14 @@
       "url": "https://ahamo.com/plan",
       "writer": "muse"
     },
+    "muse-6909d2938d": {
+      "at": "2026-11-13T06:55:15.533161+00:00",
+      "mix": "other",
+      "score": 95,
+      "slug": "kouhaku-2026-debut-7-groups",
+      "url": "https://asobisystem.com/talent/cutiestreet/",
+      "writer": "muse"
+    },
     "muse-696b2cd7f1": {
       "at": "2026-11-08T05:30:23.038170+00:00",
       "mix": "money",
@@ -20013,6 +20026,14 @@
       "score": 92,
       "slug": "child-support-levy-2026-payroll",
       "url": "https://www.cfa.go.jp/policies/kodomokosodateshienkinseido",
+      "writer": "muse"
+    },
+    "muse-9292de7de8": {
+      "at": "2026-11-13T06:59:40.809735+00:00",
+      "mix": "alert",
+      "score": 88,
+      "slug": "microsoft-365-outage-november-13",
+      "url": "https://learn.microsoft.com/ja-jp/microsoft-365/enterprise/view-service-health",
       "writer": "muse"
     },
     "muse-939013074f": {
@@ -20502,50 +20523,9 @@
       "slug": "docomo-data-leak-what-to-do",
       "url": "https://www.docomo.ne.jp/info/notice/page/261106_00_m.html",
       "writer": "muse"
-    },
-    "muse-6909d2938d": {
-      "at": "2026-11-13T06:55:15.533161+00:00",
-      "mix": "other",
-      "score": 95,
-      "slug": "kouhaku-2026-debut-7-groups",
-      "url": "https://asobisystem.com/talent/cutiestreet/",
-      "writer": "muse"
-    },
-    "muse-9292de7de8": {
-      "at": "2026-11-13T06:59:40.809735+00:00",
-      "mix": "alert",
-      "score": 88,
-      "slug": "microsoft-365-outage-november-13",
-      "url": "https://learn.microsoft.com/ja-jp/microsoft-365/enterprise/view-service-health",
-      "writer": "muse"
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-11T06:23:34.053078+00:00",
-      "attempt": 0,
-      "id": "60a0ab1308517408",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 99.2,
-        "avg_sentence": 49.6,
-        "long_share": 0.375,
-        "max_paragraph": 127,
-        "paragraphs": 4,
-        "sentences": 8
-      },
-      "score": 88,
-      "source": "ipa",
-      "title": "IPAフォーラム2026アーカイブ動画および開催レポートを公開しました",
-      "warnings": [
-        "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（PKSHA）",
-        "本文が見出しで始まっている（最初の段落は見出しなしで、だれに関係するか・関係しない人はどうかを書く）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-11T06:24:02.638549+00:00",
@@ -28089,6 +28069,30 @@
         "見出しの書き方: 発表文の題名の言い直し（「〇〇が△△を発表」）。読者にとって何が変わるか（だれの・何が・いつから・いくら）を書く",
         "見出しが53字（目安40字以内）。一覧・カードでは前半だけを出す",
         "同じ数字が多い（「10ドル」が5回）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-13T07:28:06.300327+00:00",
+      "attempt": 1,
+      "id": "0ccbb3019957b07f",
+      "kind": "broad",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 78.3,
+        "avg_sentence": 34.8,
+        "long_share": 0.022,
+        "max_paragraph": 150,
+        "paragraphs": 20,
+        "sentences": 45
+      },
+      "score": 92,
+      "source": "fast",
+      "title": "三菱UFJフィナンシャル・グループ 2027年3月期 第2四半期（中間期）決算短信〔日本基準〕(連結)",
+      "warnings": [
+        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（UFJ）"
       ]
     }
   ],
