@@ -664,6 +664,14 @@ def reader_impact_notice(title: str, low_word: str) -> bool:
     return low_word in READER_IMPACT_SOFT_WORDS and bool(READER_IMPACT_RE.search(title))
 
 
+def winning_notice(title: str, source_name: str = "") -> bool:
+    """2026-11-13 オーナー「とにかく数字」: 検索で読まれた型は「価値の薄いお知らせ」に数えない（scripts/notice_gate.py の low_value_exempt）。
+    題名に当たった語がすべて、固有名詞＋（年/日付か金額・数）のキャンペーン・割引・プレゼント、締め切りつきの募集、受章者の一覧のどれか。
+    会議・審議会・委員会・開催の告知・啓発・ライトアップなど、ほかの語が1つでもあれば今までどおり見送る"""
+    words = [m_.group(0) for m_ in LOW_VALUE_RE.finditer(title)]
+    return bool(words) and all(notice_gate.low_value_exempt(title, w, source_name) for w in words)
+
+
 def broad_prefilter(item: dict) -> str | None:
     """幅広い話題の安い足切り。除外理由（文字列）か None"""
     title = item["title"]
@@ -672,7 +680,7 @@ def broad_prefilter(item: dict) -> str | None:
     if len(title) < 10:
         return "タイトルが短すぎる（一覧リンク等）"
     if (m_low := LOW_VALUE_RE.search(title)) and not outage_notice(title, m_low.group(0)) \
-            and not reader_impact_notice(title, m_low.group(0)):
+            and not reader_impact_notice(title, m_low.group(0)) and not winning_notice(title, item.get("source_name") or ""):
         return f"価値の薄いお知らせ（{m_low.group(0)}）"
     # お知らせ・告知・統計の転載（台帳 A26）。公開前の門で落ちるものは、書く前に見送る（LLM の費用を使わない）
     if notice_reason(item):
@@ -1241,6 +1249,7 @@ def prefilter(item: dict) -> str | None:
 def notice_reason(item: dict) -> str | None:
     """候補（フィードの項目）が、お知らせ・告知・統計の転載か（scripts/notice_gate.py。題名と出典だけで判断）"""
     return notice_gate.notice_reason({"title": item.get("title") or "", "channelSlug": item.get("source_slug") or "",
+                                      "sourceName": item.get("source_name") or "",
                                       "scheduledRelease": item.get("release")})
 
 

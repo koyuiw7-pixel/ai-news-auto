@@ -106,7 +106,9 @@ class GateTest(unittest.TestCase):
     def test_notice_candidates_are_dropped_before_writing(self):
         import web_articles as w  # noqa: PLC0415
 
-        self.assertTrue(w.prefilter({"title": "令和8年秋の褒章について", "source_slug": "mlit"}))
+        # 2026-11-13 オーナー「とにかく数字」: 年のある褒章の受章者の知らせは検索で読まれた型なので通す（scripts/notice_gate.py の winner_exempt）
+        self.assertIsNone(w.prefilter({"title": "令和8年秋の褒章について", "source_slug": "mlit"}))
+        self.assertTrue(w.prefilter({"title": "褒章の受章者について", "source_slug": "mlit"}))
         self.assertTrue(w.prefilter({"title": "製造たばこの小売定価の認可", "source_slug": "mof"}))
         self.assertIsNone(w.prefilter({"title": "OpenAIが新しいAIモデルを公開", "source_slug": "openai-news"}))
 

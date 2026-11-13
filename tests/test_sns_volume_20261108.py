@@ -136,6 +136,8 @@ class IndexRelaxTest(unittest.TestCase):
             if slug in ("coast-fire-guide-investment-balance", "covid19-bankruptcy-october-2026", "nli-electronic-waste-recycling-challenges",
                         "nli-ai-agent-explained", "eurozone-gdp-2026-q3-slowdown"):
                 continue  # 今の決まり（題名の「とは？」・調査会社の記事の免責文）に合わないので戻さない
+            if slug in ("reiwa-8-autumn-shoubo-houshou", "reiwa-8-culture-merit-recipients"):
+                continue  # 11/3 に薄い記事として取り下げた受章者の一覧。2026-11-13 から新しく作るのは通すが、取り下げた分は戻さない（戻すかはオーナーの判断）
             if slug == "biztex-executive-ai-1day-training":
                 continue  # 有料講習のプレスリリースの言い換え（A10）。前の転送先に BizteX・Claude Code が無く、転送を外した（2026-11-09 台帳 A68）
             self.assertFalse(indexnow.life_link(rec.get("title", "")), slug)
