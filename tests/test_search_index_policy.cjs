@@ -136,3 +136,12 @@ test('2026-11-08 台帳 A61: 検索に出さないのは重複・本文が無い
   assert.equal(lifeLink('NBAの試合結果'), false);
   assert.equal(noindexReason({ ...good, duplicate: true }), 'duplicate');
 });
+
+test('RSS・配信用のフィードには、重複の印が付いた記事を流さない（2026-11-13）', () => {
+  const fs = require('node:fs');
+  const path = require('node:path');
+  const read = (rel) => fs.readFileSync(path.join(__dirname, '..', rel), 'utf8');
+  assert.match(read('lib/indexing.ts'), /export function isDuplicateArticle\([^)]*\)[^{]*\{\s*return Boolean\(article\.duplicate\) \|\| Boolean\(article\.duplicateOf && article\.duplicateOf !== article\.slug\);/);
+  assert.match(read('app/feed.xml/route.ts'), /getAllArticles\(\)\s*\.filter\(\(article\) => !isDuplicateArticle\(article\)\)\s*\.slice\(0, 50\)/);
+  assert.match(read('lib/feeds.ts'), /\.filter\(isDistributionEligible\)[\s\S]{0,80}\.filter\(\(a\) => !isDuplicateArticle\(a\)\)/);
+});

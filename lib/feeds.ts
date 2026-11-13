@@ -1,4 +1,4 @@
-import { isDistributionEligible } from "@/lib/indexing";
+import { isDistributionEligible, isDuplicateArticle } from "@/lib/indexing";
 import { coverPath, getAllArticles, getArticle, sourceHref, sourceLabel, type ArticleSummary, type FullArticle } from "@/lib/articles";
 import { renderMarkdown } from "@/lib/markdown";
 import { isLiveArticleSlug } from "@/lib/retired";
@@ -91,6 +91,8 @@ export function pickFeedArticles({ limit, maxAgeDays }: { limit: number; maxAgeD
   const now = Date.now();
   return getAllArticles()
     .filter(isDistributionEligible)
+    // 重複の印が付いた記事（同じ発表の2本目）は流さない（2026-11-13）
+    .filter((a) => !isDuplicateArticle(a))
     .filter((a) => {
       const age = now - Date.parse(publishedOf(a));
       return age >= 0 && age < maxAgeDays * 86_400_000;

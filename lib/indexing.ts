@@ -299,6 +299,14 @@ export function listingRobots(articles: ArticleSummary[], path?: string) {
   return isListingIndexable(articles, path) ? {} : { robots: { index: false, follow: true } };
 }
 
+/**
+ * 重複の印が付いた記事か（記事 JSON の duplicateOf と、索引を作るときの予備の判定 duplicate。lib/article-index.mjs の markDuplicates）。
+ * 同じ発表の2本目なので、RSS・配信用のフィードには載せない（2026-11-13。代表の記事だけを流す）
+ */
+export function isDuplicateArticle(article: Pick<ArticleSummary, "slug" | "duplicateOf"> & { duplicate?: boolean }): boolean {
+  return Boolean(article.duplicate) || Boolean(article.duplicateOf && article.duplicateOf !== article.slug);
+}
+
 /** 外部配信・既存のメール等は、検索方針の変更による内容の急変を防ぎ従来基準を保持する。 */
 export function isDistributionEligible(article: ArticleSummary): boolean {
   if (typeof article.indexable === "boolean") return article.indexable;

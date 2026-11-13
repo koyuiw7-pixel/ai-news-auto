@@ -1,5 +1,6 @@
 import { articleTitle } from "@/lib/headline";
 import { getAllArticles } from "@/lib/articles";
+import { isDuplicateArticle } from "@/lib/indexing";
 import { getAllWeeks, weekPublishedAt } from "@/lib/weekly";
 import { isNewsOutletChannel } from "@/lib/news-outlets";
 import { siteConfig } from "@/site.config";
@@ -27,7 +28,10 @@ function escapeXml(value: string): string {
 }
 
 export function GET() {
-  const articles = getAllArticles().slice(0, 50);
+  // 重複の印が付いた記事（同じ発表の2本目。lib/indexing.ts の isDuplicateArticle）は流さない。代表の記事だけ（2026-11-13）
+  const articles = getAllArticles()
+    .filter((article) => !isDuplicateArticle(article))
+    .slice(0, 50);
 
   // 公開日はサイソクに載せた時刻（記事の構造化データ datePublished と同じ）。元の発表の時刻ではない
   const postedAt = (article: (typeof articles)[number]) => article.generatedAt || article.publishedAt;
