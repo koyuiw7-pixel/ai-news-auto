@@ -13014,6 +13014,19 @@
       "slug": "kuken-industries-drawing-search-openai",
       "url": "https://openai.com/index/kuken"
     },
+    "93373dced3e62ff9": {
+      "at": "2026-11-13T21:52:06.355378+00:00",
+      "costUsd": 0.1125,
+      "foreignAi": true,
+      "intent": "breaking",
+      "major": true,
+      "mix": "ai_consumer",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "score": 93,
+      "section": "ai",
+      "slug": "gemini-google-wallet-personal-finance",
+      "url": "https://blog.google/innovation-and-ai/products/gemini-app/google-wallet-gemini-app/"
+    },
     "9394a9d021ab21f9": {
       "at": "2026-11-10T06:58:44.617965+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（会議）",
@@ -20855,59 +20868,6 @@
   },
   "quality_log": [
     {
-      "accepted": false,
-      "at": "2026-11-12T01:02:56.103160+00:00",
-      "attempt": 1,
-      "id": "53de781ab1274c39",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "「> お酒は20歳になってから。飲酒運転は法律で禁止されています。」→ 元記事にないスローガン・発言を引用形式で掲載しており、誰の発言かも示されていない創作です。",
-        "「かんたん版」の「特別仕様車の展示」→ 元記事は「コラボレーションデザインを施した車両」としており、「特別仕様車」は元記事にない表現で、車両の性格を言い換えて強めています。"
-      ],
-      "readability": {
-        "avg_paragraph": 61.8,
-        "avg_sentence": 54.9,
-        "long_share": 0.444,
-        "max_paragraph": 158,
-        "paragraphs": 8,
-        "sentences": 9
-      },
-      "score": 62,
-      "source": "nissan",
-      "title": "日産自動車とキリンビール、横浜ものづくり共創プロジェクトを開始",
-      "warnings": [
-        "見出しが46字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（KICKS・ROCK・CREEK）",
-        "読みやすさ: 文が長い（1文の平均 54.9字・60字超の文が 44% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-12T01:03:16.939430+00:00",
-      "attempt": 1,
-      "id": "53de781ab1274c39",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 58.2,
-        "avg_sentence": 47.6,
-        "long_share": 0.364,
-        "max_paragraph": 158,
-        "paragraphs": 9,
-        "sentences": 11
-      },
-      "score": 93,
-      "source": "nissan",
-      "title": "日産自動車とキリンビール、横浜ものづくり共創プロジェクトを開始",
-      "warnings": [
-        "見出しが46字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（KICKS・ROCK・CREEK）",
-        "読みやすさ: 文が長い（1文の平均 47.6字・60字超の文が 36% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
       "accepted": true,
       "at": "2026-11-12T01:03:31.927892+00:00",
       "attempt": 0,
@@ -28431,6 +28391,58 @@
         "見出しが50字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（LGWAN）",
         "読みやすさ: 文が長い（1文の平均 64.4字・60字超の文が 50% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-13T21:51:44.267842+00:00",
+      "attempt": 1,
+      "id": "93373dced3e62ff9",
+      "kind": "ai",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [
+        "本文「日本の利用者の画面や料金は今のところ変わりません」→ 元記事・確認済みの文脈に、日本の画面や料金が変わらないという記述はなく、根拠のない断定である",
+        "「この連携が有料プランだけか、無料でも使えるかなど」→ 元記事は「All Gemini app users in the U.S.」と対象を明記しており、無料利用者が対象かが未発表とするのは元記事との説明のずれがある",
+        "「1,000ドル」の換算→ 元記事の例文の金額を日本円に換算しているが、読者にとっての意味づけが弱く、計算自体は「サイソク編集部の計算」と明記されており正しい"
+      ],
+      "readability": {
+        "avg_paragraph": 96.9,
+        "avg_sentence": 44.0,
+        "long_share": 0.136,
+        "max_paragraph": 136,
+        "paragraphs": 10,
+        "sentences": 22
+      },
+      "score": 82,
+      "source": "google-ai-blog",
+      "title": "Connect Google Wallet to Gemini for personal finance insights",
+      "warnings": [
+        "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "答えになっていない見出し（「日本の利用者は：Geminiは使えるが、連携は未発表」）。未定のことは「## まだ分からないこと」に1行で書き、章は作らない"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-13T21:52:06.325361+00:00",
+      "attempt": 1,
+      "id": "93373dced3e62ff9",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 95.5,
+        "avg_sentence": 43.4,
+        "long_share": 0.136,
+        "max_paragraph": 136,
+        "paragraphs": 10,
+        "sentences": 22
+      },
+      "score": 93,
+      "source": "google-ai-blog",
+      "title": "Connect Google Wallet to Gemini for personal finance insights",
+      "warnings": [
+        "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "答えになっていない見出し（「日本の利用者は：Geminiは使えるが、連携は未発表」）。未定のことは「## まだ分からないこと」に1行で書き、章は作らない"
       ]
     }
   ],
