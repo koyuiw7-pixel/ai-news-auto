@@ -59,6 +59,12 @@ jobs:
         if: ${{ steps.inbox.outputs.count != '0' }}
         run: pip install -r requirements.txt imageio-ffmpeg
 
+      # 出典が PDF のとき、表の数字を落とさないよう poppler の pdftotext を入れる（scripts/pdf_text.py・台帳 W35。無くても pypdf で読む）
+      - name: Install poppler
+        if: ${{ steps.inbox.outputs.count != '0' }}
+        continue-on-error: true
+        run: (command -v pdftotext || (sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils)) >/dev/null && pdftotext -v 2>&1 | head -1
+
       # 今日の上限（auto_run.yml の「Decide today's limits」と同じ決め方。同じ変数を読む）
       - name: Decide today's limits
         if: ${{ steps.inbox.outputs.count != '0' }}

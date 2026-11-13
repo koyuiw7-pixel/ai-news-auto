@@ -107,6 +107,20 @@ MUSE_DESK_NOTE = """
 - sources（出典の一覧）の決まりは変わらない。報道機関の記事の URL は出典に並べない。
 """
 
+# 2026-11-13: 1件目の出典（PDF・JavaScript で描くページなど）が読めなくても、ほかに読めた公式の出典があれば、それだけで記事にする
+#（7日で6本が、記事の中身でなく取得の失敗で落ちていた）。読めなかったページにしか無い事実は書かせない。事実確認・数字の門は読めた資料だけで見る
+MUSE_UNREAD_NOTE = """
+
+# 読めなかった出典（この原稿だけの決まり）
+記者が挙げた出典のうち、次のページは読めませんでした。上の資料には入っていません。
+{urls}
+- 原稿の事実・数字・日付のうち、上の資料（読めた出典）で確かめられないものは書かない（削る）。読めなかったページを根拠にしない。
+  題名・lede・highlights・threads_post も同じ。
+- 削ったあとも、記事の中心の事実が上の資料で確かめられるなら記事にする（短くなってよい）。
+  中心の事実が確かめられないなら is_relevant を false にし、skip_reason に「どの事実が確かめられなかったか」を書く。
+- sources（出典の一覧）に、読めなかったページを並べない。
+"""
+
 
 def log(message: str) -> None:
     print(message, flush=True)
@@ -216,12 +230,14 @@ def register_today(state: dict, fid: str, record: dict) -> None:
 MULTI_SOURCE_CAP = 26000  # quality.MULTI_SOURCE_CAP と同じ（出典が何本もある記事の事実確認に渡す長さ）
 MIN_PER_SOURCE = 1800  # 1本あたりの最低の長さ（料金・プランの行が残るように）
 NOTE_CAP = 300  # 書き手のメモ（sources[].facts）を出典の見出しに添える長さ
+MAX_UNREAD_LISTED = 10
 
 
 def fetch_sources(sources: list[dict], skip_unreadable_first: bool = False, unread: list[str] | None = None) -> list[dict]:
     """[{url, name, title, text, full_text, image, published, page}]。1件目（一番の出典）が読めなければ空。
-    skip_unreadable_first（比較・選び方の記事）: 製品ごとに公式ページを挙げるので、1件目が読めなくても次に読めた出典を一番にする
-    （2026-11-09: スマホと光回線の記事が、1件目の ahamo のページを読めなかっただけで落ちた）。
+    skip_unreadable_first: 1件目が読めなくても次に読めた出典を一番にする
+    （2026-11-09: スマホと光回線の記事が、1件目の ahamo のページを読めなかっただけで落ちた。2026-11-13 から入稿の全ジャンルで使う）。
+    PDF は feeds.fetch_article_text が文字を取り出す（pdftotext → pypdf → 読み取りサービス → API の順。scripts/pdf_text.py）。
     unread に読めなかった出典の URL を入れる（落としたときの理由に書く）"""
     import feeds  # noqa: PLC0415
 
@@ -427,8 +443,8 @@ def lift_score(record: dict, verdict: dict, need: int, source_text: str, kind: s
     return best
 
 
-def build_article(path: Path, data: dict, fetched: list[dict]) -> tuple[str, dict | str]:
-    """("ok", record) / ("reject", 理由)。ふつうの記事と同じ型・同じ門"""
+def build_article(path: Path, data: dict, fetched: list[dict], unread: list[str] | None = None) -> tuple[str, dict | str]:
+    """("ok", record) / ("reject", 理由)。ふつうの記事と同じ型・同じ門。unread は読めなかった出典の URL（そこにしか無い事実は書かせない）"""
     import llm  # noqa: PLC0415
     import main as m  # noqa: PLC0415
     import quality  # noqa: PLC0415
@@ -460,6 +476,8 @@ def build_article(path: Path, data: dict, fetched: list[dict]) -> tuple[str, dic
                                                                                     extra_sources=fetched[1:])
     prompt += MUSE_DRAFT_NOTE.format(title=data["title"], notes=data.get("notes") or "（なし）", body=data["body"])
     prompt += MUSE_DESK_NOTE  # 話題は編集部が決めた。落とすのは資料で確かめられないときだけ（2026-11-13）
+    if unread:
+        prompt += MUSE_UNREAD_NOTE.format(urls="\n".join(f"- {u}" for u in unread[:MAX_UNREAD_LISTED]))
     # 出典の資料の日付・会議の回と、記事が書く出来事が合っているか（2026-11-10 の取り下げ。scripts/source_date.py）。
     # 下書きの時点で分かった食い違いは、最初の試行から直させる（公開前の門は下の試行の中で記事の JSON に当てる）
     today = datetime.now(JST).date()
@@ -604,13 +622,13 @@ def process(args) -> int:
             finish("waiting", f"今日の記事の本数（{args.daily_cap}本）がいっぱいなので、次の日に回します")
             continue
         unread: list[str] = []
-        fetched = fetch_sources(data["sources"], skip_unreadable_first=data["genre"] == COMPARISON_GENRE, unread=unread)
+        # 1件目が読めなくても、読めた公式の出典があれば進む（2026-11-13。読めなかったページにしか無い事実は build_article が書かせない）
+        fetched = fetch_sources(data["sources"], skip_unreadable_first=True, unread=unread)
         if not fetched:
-            finish("rejected", "1件目の出典（公式ページ）を読めませんでした。URL が正しいか、ログインなしで開けるページかを確かめてください"
-                   if data["genre"] != COMPARISON_GENRE else "出典（公式ページ）を1本も読めませんでした。URL が正しいか、ログインなしで開けるページかを確かめてください")
+            finish("rejected", "出典（公式ページ）を1本も読めませんでした。URL が正しいか、ログインなしで開けるページかを確かめてください")
             rejected += 1
             continue
-        status, out = build_article(path, data, fetched)
+        status, out = build_article(path, data, fetched, unread=unread)
         if status == "reject" and unread:
             out = f"{out}\n読めなかった出典（ここにだけ書かれた事実は確かめられません。読める公式ページに替えるか、その記述を外してください）: " + " / ".join(unread[:5])
         if status == "error":

@@ -56,7 +56,9 @@ def test_comparison_uses_next_readable_source_when_first_fails(monkeypatch):
     assert unread == ["https://a.jp/"]
 
 
-def test_other_genres_still_need_the_first_source(monkeypatch):
+def test_default_still_needs_the_first_source(monkeypatch):
+    """fetch_sources の既定は今までどおり（2026-11-13 から入稿の回は全ジャンルで skip_unreadable_first=True を渡す。
+    tests/test_muse_unread_source_20261113.py）"""
     _fake_feeds(monkeypatch, {"https://a.jp/"})
     sources = [{"url": "https://a.jp/"}, {"url": "https://b.jp/"}]
     assert muse_articles.fetch_sources(sources) == []
