@@ -22,7 +22,7 @@ function load(file) {
   mod._compile(compiled, file);
   return mod.exports;
 }
-const { relatedArticles, nextReads, similarity, isDisasterArticle } = load(path.join(root, "lib/related.ts"));
+const { relatedArticles, nextReads, similarity, isDisasterArticle, topicCluster } = load(path.join(root, "lib/related.ts"));
 const { companyOf } = load(path.join(root, "lib/companies.ts"));
 const company = (a) => companyOf(a).slug;
 
@@ -136,4 +136,67 @@ test("[A10] 出典 URL の比べ方は索引（article-index.mjs）と同じ（?
     "https://www.jma.go.jp/bosai/map.html#contents=earthquake_map",
   ]) assert.equal(urlKey(url), index.urlKey(url), url);
   assert.notEqual(urlKey("https://x.jp/a.pdf?period=2026-08"), urlKey("https://x.jp/a.pdf?period=2026-09"));
+});
+
+// 同じ話題の束（lib/related.ts の topicCluster。2026-11-13 オーナー「Googleからの流入対策」）
+test("束: 紅白の3本は互いに結ぶ。「紅白」だけ重なる別の商品の記事は入れない", () => {
+  const at = "2026-11-13T05:00:00Z";
+  const list = art({ slug: "kohaku-list", title: "紅白歌合戦2026 出場歌手41組の一覧　初出場は7組", genreSlug: "lifestyle", tags: ["年末年始", "テレビ"], keywords: ["紅白歌合戦2026", "紅白 出場歌手"], generatedAt: at });
+  const debut = art({ slug: "kohaku-debut", title: "紅白歌合戦2026、初出場7組の一覧と代表曲", genreSlug: "lifestyle", tags: ["テレビ", "年末年始", "音楽"], keywords: ["紅白歌合戦2026", "紅白 初出場"], generatedAt: at });
+  const changes = art({ slug: "kohaku-changes", title: "紅白の出場41組、去年から20組が入れ替わる", genreSlug: "entertainment", tags: ["テレビ", "大みそか", "音楽"], keywords: ["紅白 出場歌手", "紅白歌合戦2026"], generatedAt: at });
+  const drink = art({ slug: "horoyoi", title: "ほろよい「紅白スパークリング」1月5日発売", genreSlug: "lifestyle", tags: ["食品", "飲料"], keywords: ["ほろよい"], generatedAt: at });
+  const pool = [list, debut, changes, drink, ...filler];
+  assert.deepEqual(slugs(topicCluster(list, pool, 3, company)).sort(), ["kohaku-changes", "kohaku-debut"]);
+  assert.deepEqual(slugs(topicCluster(debut, pool, 3, company)).sort(), ["kohaku-changes", "kohaku-list"]);
+  assert.deepEqual(slugs(topicCluster(changes, pool, 3, company)).sort(), ["kohaku-debut", "kohaku-list"]);
+  assert.deepEqual(slugs(topicCluster(drink, pool, 3, company)), []);
+  // 「次に読むならこれ」の先頭に「同じ話題の記事」として出る
+  const next = nextReads(list, pool, company, 3, now);
+  assert.deepEqual(next.slice(0, 2).map((x) => x.article.slug).sort(), ["kohaku-changes", "kohaku-debut"]);
+  assert.ok(next.slice(0, 2).every((x) => x.reason === "同じ話題の記事"));
+});
+
+test("束: 出典 URL が同じでも別の記事（NVIDIA の CEO 退任と決算）は結ぶ。同じ会社の別の発表・14日より古い記事・重複の印のある記事は入れない", () => {
+  const url = "https://nvidianews.nvidia.com/news/nvidia-announces-ceo-transition";
+  const ceo = art({ slug: "nv-ceo", title: "NVIDIAのフアンCEOが即日退任　決算は17日予定どおり", genreSlug: "ai", tags: ["NVIDIA", "人事", "決算"], keywords: ["NVIDIA CEO"], sourceUrl: url, generatedAt: "2026-11-12T13:00:00Z" });
+  const earn = art({ slug: "nv-earn", title: "NVIDIA決算は11月18日朝　CEO交代後の初決算", genreSlug: "investment", tags: ["投資信託", "決算", "NVIDIA"], keywords: ["NVIDIA 決算"], sourceUrl: url, generatedAt: "2026-11-13T05:00:00Z" });
+  const robot = art({ slug: "nv-robot", title: "NVIDIA、ロボット向けAI「GR00T 2」を公開", genreSlug: "ai", tags: ["NVIDIA", "ロボティクス"], keywords: ["GR00T 2"], generatedAt: "2026-11-09T05:00:00Z" });
+  const old = art({ slug: "nv-old", title: "NVIDIAのフアンCEOが基調講演", genreSlug: "ai", tags: ["NVIDIA"], keywords: ["NVIDIA CEO"], generatedAt: "2026-10-20T05:00:00Z" });
+  const copy = art({ slug: "nv-dup", title: "NVIDIAのCEOが退任", genreSlug: "ai", tags: ["NVIDIA"], keywords: ["NVIDIA CEO"], duplicateOf: "nv-ceo", generatedAt: "2026-11-12T14:00:00Z" });
+  const others = Array.from({ length: 12 }, (_, i) => art({ title: `NVIDIA、新しい開発ツール${i}を公開`, genreSlug: "ai", tags: ["NVIDIA"], keywords: [`ツール${i}`], generatedAt: "2026-09-01T00:00:00Z" }));
+  const pool = [ceo, earn, robot, old, copy, ...others, ...filler];
+  assert.deepEqual(slugs(topicCluster(earn, pool, 3, company)), ["nv-ceo"]);
+  assert.deepEqual(slugs(topicCluster(ceo, pool, 3, company)), ["nv-earn"]);
+  assert.deepEqual(slugs(topicCluster(robot, pool, 3, company)), []);
+  assert.equal(nextReads(earn, pool, company, 3, now)[0].article.slug, "nv-ceo");
+});
+
+test("束: 記事ページの「この話の続き」は、次にやることが何本あっても束の記事が入る位置に置く（今までの見た目・ノワールの両方）", () => {
+  for (const file of ["app/articles/[slug]/page.tsx", "components/noir/noirArticlePage.tsx"]) {
+    const src = fs.readFileSync(path.join(root, file), "utf8");
+    assert.match(src, /\.slice\(0, 1\), clusterReads, topicReads\.slice\(2\)/, file);
+  }
+  assert.match(fs.readFileSync(path.join(root, "lib/articles.ts"), "utf8"), /topicCluster\(article, getAllArticles\(\), limit, companySlugOf\)/);
+});
+
+test("束: 実データで紅白の3本と NVIDIA の2本が互いに出る", () => {
+  const dir = path.join(root, "content/articles");
+  const need = [
+    ["nhk-kohaku-2026-41-performers", "kouhaku-2026-debut-7-groups", "kohaku-2026-singers-changes-list"],
+    ["nvidia-earnings-ceo-transition-orukan", "nvidia-ceo-transition-huang-resigns"],
+  ];
+  if (!need.flat().every((slug) => fs.existsSync(path.join(dir, `${slug}.json`)))) return;
+  const real = fs
+    .readdirSync(dir)
+    .filter((f) => f.endsWith(".json"))
+    .map((f) => ({ tags: [], keywords: [], ...JSON.parse(fs.readFileSync(path.join(dir, f), "utf8")) }));
+  for (const group of need) {
+    // あとで重複の印が付いた記事は束から外れるので、その組は確かめない
+    if (group.some((slug) => real.find((x) => x.slug === slug).duplicateOf)) continue;
+    for (const slug of group) {
+      const a = real.find((x) => x.slug === slug);
+      const got = slugs(topicCluster(a, real, 3, company));
+      for (const other of group) if (other !== slug) assert.ok(got.includes(other), `${slug} → ${other}（${got.join(",")}）`);
+    }
+  }
 });

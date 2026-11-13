@@ -108,6 +108,8 @@ export type NoirPageContext = {
   nextReads: Any;
   /** 同じ話題の記事（多め。上の2本を「この話の続き」、残りを本文直後の「次に読む記事」に。2026-11-10） */
   storyReads?: { article: ArticleSummary; reason: string }[];
+  /** 同じ話題の束（lib/related.ts の topicCluster。「この話の続き」に必ず入れる） */
+  clusterReads?: { article: ArticleSummary; reason: string }[];
   related: ArticleSummary[];
   crumbs: { href: string; label: string }[];
   reviewedLabel: string | null | undefined;
@@ -149,7 +151,7 @@ export function noirArticlePage(ctx: NoirPageContext) {
     shopLink, buyingGuide, chooseGuide, readNextInline, readNextRail, inlineRead, mainArticle,
     guideLinks, moneyLink, calc, calcInline, calcBox, priceBox, workMoney, verdict, cardKind, todayActions, articleFaq,
     howto, guide, product, nextReads, crumbs, reviewedLabel, ChooseGuideNote, CompareLink, actionAd,
-    funnel, compareInline, compareEnd, storyReads = [],
+    funnel, compareInline, compareEnd, storyReads = [], clusterReads = [],
   } = ctx;
   // 記事に合う PR だけ出す（2026-11-10 オーナー承認）。話題が当たらずジャンルの既定の広告（fallback-*）になった商品枠は、ノワールの記事では出さない
   // （年金生活者支援給付金の記事に証券会社が出ていた）。合う話題は scripts/a8_import.py の ACTION_ADS（life-*）で足す
@@ -175,7 +177,7 @@ export function noirArticlePage(ctx: NoirPageContext) {
   // 同じ話題で別の疑問に答える記事（SEO A17。元の記事 ⇄ 角度の記事）を先に2本、次にやることを1本、残りを順に
   const storyTop = mergeStoryReads(
     article,
-    [topicReads.slice(0, 2), stepReads.slice(0, 1), topicReads.slice(2), stepReads.slice(1), reads, inlineRead ? [{ article: inlineRead, reason: "同じ話題の記事" }] : []],
+    [topicReads.slice(0, 2), stepReads.slice(0, 1), clusterReads, topicReads.slice(2), stepReads.slice(1), reads, inlineRead ? [{ article: inlineRead, reason: "同じ話題の記事" }] : []],
     3,
   );
   const depth = depthOf(article);

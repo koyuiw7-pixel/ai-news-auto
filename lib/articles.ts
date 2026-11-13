@@ -8,7 +8,7 @@ import type { Verdict } from "@/lib/verdict";
 import type { WorkMoney } from "@/lib/work-money";
 import { buildIndex, derivedOf, INDEX_VERSION, isArticleLike, withDefaults } from "@/lib/article-index.mjs";
 import { companyOf } from "@/lib/companies";
-import { nextReads, relatedArticles } from "@/lib/related";
+import { nextReads, relatedArticles, topicCluster } from "@/lib/related";
 
 export type TimetableItem = {
   time: string;
@@ -559,6 +559,16 @@ function safeDecode(value: string): string {
 }
 
 /** ジャンル一覧（記事が1本でもあるものだけ） */
+/**
+ * ジャンルと同じ名前のタグ（「スポーツ」「暮らし・生活」など）のとき、そのジャンルの slug。無ければ null。
+ * /tags/スポーツ と /genres/sports は題名も中身もほぼ同じ一覧になるので、タグのほうは検索に出さず、canonical をジャンルへ向ける
+ * （サイトマップにも載せない。2026-11-13 の点検で題名が同じページが5組あった）
+ */
+export function genreTwinOfTag(tag: string): string | null {
+  const slug = tagSlug(getTagLabel(tag));
+  return getAllGenres().find((genre) => tagSlug(genre.label) === slug)?.slug ?? null;
+}
+
 export function getAllGenres(): Facet[] {
   const map = new Map<string, Facet>();
   for (const article of getAllArticles()) {
@@ -663,4 +673,12 @@ export type NextRead = { article: ArticleSummary; reason: string };
  */
 export function getNextReads(article: ArticleSummary, companySlugOf: (a: ArticleSummary) => string, limit = 3): NextRead[] {
   return nextReads(article, getAllArticles(), companySlugOf, limit);
+}
+
+/**
+ * 同じ話題の束（14日以内・題名に同じ強い手がかり。lib/related.ts の topicCluster）。記事ページの「この話の続き」に必ず出す
+ * （紅白の3本・NVIDIA の CEO 退任と決算を互いに結ぶ。2026-11-13）
+ */
+export function getTopicCluster(article: ArticleSummary, companySlugOf: (a: ArticleSummary) => string, limit = 2): NextRead[] {
+  return topicCluster(article, getAllArticles(), limit, companySlugOf).map((item) => ({ article: item, reason: "同じ話題の記事" }));
 }

@@ -69,6 +69,7 @@ import {
   getArticle,
   getArticleSummary,
   getNextReads,
+  getTopicCluster,
   getRelatedArticles,
   isVideo,
   isWeb,
@@ -377,9 +378,11 @@ export default async function ArticlePage({ params }: Props) {
   });
   const topic = topicPages(article, storyAll);
   const topicReads = [...(topic.parent ? [{ article: topic.parent, reason: "この話題の全体の解説" }] : []), ...topic.pages.map((a) => ({ article: a, reason: "同じ話題で別の疑問に答える記事" }))];
+  const clusterReads = getTopicCluster(article, (a) => companyOf(a).slug);
   const storyTop = mergeStoryReads(
     article,
-    [topicReads.slice(0, 2), storySteps.slice(0, 1), topicReads.slice(2), storySteps.slice(1), nextReads, inlineRead ? [{ article: inlineRead, reason: "同じ話題の記事" }] : []],
+    // 同じ話題の束（lib/related.ts の topicCluster）は、次にやることが何本あっても必ず入る位置に置く（2026-11-13）
+    [topicReads.slice(0, 2), storySteps.slice(0, 1), clusterReads, topicReads.slice(2), storySteps.slice(1), nextReads, inlineRead ? [{ article: inlineRead, reason: "同じ話題の記事" }] : []],
     3,
   );
 
@@ -459,6 +462,7 @@ export default async function ArticlePage({ params }: Props) {
       funnel, compareInline, compareEnd,
       // 同じ話題の記事を多めに（上の2本は「この話の続き」、残りは本文直後の「次に読む記事」。2026-11-10）
       storyReads: getNextReads(article, (a) => companyOf(a).slug, 5),
+      clusterReads,
     });
   }
 
