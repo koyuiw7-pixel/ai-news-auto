@@ -57,6 +57,14 @@
    "tries": 2,
    "why": "品質ゲートに合格しなかった（今の版のまま）（元記事・確認済みの資料に無い画面の手順・メニュー名・ボタン名がある（「ホームページの統計ページ」）。資料にある道順だけを書くか、「公式ヘルプの手順を確認してください」と書く）"
   },
+  "bousai-symposium-2026-online-issue": {
+   "at": "2026-11-13T17:22:23+00:00",
+   "before": 402,
+   "gateTries": 1,
+   "status": "gate-failed",
+   "tries": 1,
+   "why": "品質ゲートに合格しなかった（今の版のまま）（読めなかった開示資料（https://www.bousai.go.jp/common2026/pdf/pamphlet.pdf）があるのに「発表されていません」と書いている。資料を確かめられていないことは「未発表」と言い切らない（その文を消）"
+  },
   "building-digital-synth-with-google-gemini": {
    "at": "2026-11-12T05:52:06+00:00",
    "before": 1473,
@@ -120,13 +128,27 @@
    "tries": 0,
    "why": "別の切り口の記事（親の記事と同じ資料）"
   },
-  "cmim-agreement-revision-2026": {
-   "at": "2026-11-13T08:44:32+00:00",
-   "before": 459,
-   "gateTries": 1,
-   "status": "not-thicker",
+  "china-trade-statistics-october-2026": {
+   "after": 953,
+   "at": "2026-11-13T17:22:23+00:00",
+   "bar": [
+    3,
+    4,
+    6
+   ],
+   "before": 513,
+   "model": "gemini-3.5-flash-lite",
+   "status": "thickened",
    "tries": 1,
-   "why": "後処理のあと 587字（759字に届かない）"
+   "why": ""
+  },
+  "cmim-agreement-revision-2026": {
+   "at": "2026-11-13T17:22:23+00:00",
+   "before": 459,
+   "gateTries": 2,
+   "status": "gate-failed",
+   "tries": 2,
+   "why": "品質ゲートに合格しなかった（今の版のまま）（元記事・確認済みの事実の束・計算済みの数字のどれにも無い数字がある（「| 日本 | 384億ドル」、「| 韓国 | 192億ドル」、「EAN10カ国 | 合計240億ドル」）。元記事か束の数字に直すか、その文を削る。簡単な計算（かけ算・足し）"
   },
   "dbj-government-guaranteed-bond-93": {
    "at": "2026-11-12T17:44:23+00:00",
@@ -135,6 +157,13 @@
    "status": "not-thicker",
    "tries": 2,
    "why": "後処理のあと 553字（627字に届かない）"
+  },
+  "defense-budget-sdf-pay-raise-law": {
+   "at": "2026-11-13T17:22:23+00:00",
+   "before": 720,
+   "status": "skipped",
+   "tries": 0,
+   "why": "まとめの記事（元の資料が1本ではない）"
   },
   "digital-dx": {
    "at": "2026-11-12T05:52:06+00:00",
@@ -196,20 +225,27 @@
    "why": "後処理のあと 519字（682字に届かない）"
   },
   "emperor-cup-round16-tickets-2026": {
-   "at": "2026-11-13T08:44:32+00:00",
+   "at": "2026-11-13T17:22:23+00:00",
    "before": 459,
-   "gateTries": 1,
-   "status": "not-thicker",
-   "tries": 1,
-   "why": "品質ゲートに合格しなかった（今の版のまま）"
+   "gateTries": 2,
+   "status": "gate-failed",
+   "tries": 2,
+   "why": "品質ゲートに合格しなかった（今の版のまま）（「優勝まで残り6日、決勝は元日」（見出し）→ 元記事・確認済みの文脈に「残り6日」を示す根拠がなく、決勝は2027年1月1日で、元記事の日付と合わない数字を作っている。）"
   },
   "emperors-cup-2026-semifinal-schedule": {
-   "at": "2026-11-13T08:44:32+00:00",
+   "after": 1223,
+   "at": "2026-11-13T17:22:23+00:00",
+   "bar": [
+    1,
+    5,
+    6
+   ],
    "before": 484,
    "gateTries": 1,
-   "status": "gate-failed",
-   "tries": 1,
-   "why": "品質ゲートに合格しなかった（今の版のまま）（リード『具体的なキックオフ時間は、今後の勝ち上がりによって決定されます』→ 元記事では両試合の時間（放送・配信の時間枠）がすでに決定して発表されており、『時間は未定』は発表内容と矛盾する）"
+   "model": "anthropic-api:claude-sonnet-5-5",
+   "status": "thickened",
+   "tries": 2,
+   "why": ""
   },
   "employment-insurance-rate-fy2026": {
    "at": "2026-11-12T05:52:06+00:00",
@@ -275,6 +311,13 @@
    "tries": 2,
    "why": ""
   },
+  "gta-6-ps5-preload-start": {
+   "at": "2026-11-13T17:22:23+00:00",
+   "before": 1262,
+   "status": "skipped",
+   "tries": 0,
+   "why": "まとめの記事（元の資料が1本ではない）"
+  },
   "hokuriku-electric-hokulink-leak": {
    "at": "2026-11-12T05:52:06+00:00",
    "before": 1115,
@@ -290,12 +333,12 @@
    "why": "人が確かめた記事（Muse・編集部）"
   },
   "horoyoi-kohaku-sparkling-january-release": {
-   "at": "2026-11-13T08:44:32+00:00",
+   "at": "2026-11-13T17:22:23+00:00",
    "before": 451,
-   "gateTries": 1,
-   "status": "not-thicker",
-   "tries": 1,
-   "why": "後処理のあと 741字（751字に届かない）"
+   "gateTries": 2,
+   "status": "gate-failed",
+   "tries": 2,
+   "why": "品質ゲートに合格しなかった（今の版のまま）（「前から売っている商品の値段が変わるわけではありません」→ 元記事・確認済みの文脈のどこにも、既存商品の価格が変わらないという記述がない。価格に関する創作である。）"
   },
   "icloud-outage-resolved-nov-2026": {
    "at": "2026-11-12T05:52:06+00:00",
@@ -371,12 +414,15 @@
    "why": "まとめの記事（元の資料が1本ではない）"
   },
   "kirin-honshibori-apple-2026": {
-   "at": "2026-11-13T08:44:32+00:00",
+   "after": 950,
+   "at": "2026-11-13T17:22:23+00:00",
+   "bar": [],
    "before": 488,
    "gateTries": 1,
-   "status": "not-thicker",
-   "tries": 1,
-   "why": "品質ゲートに合格しなかった（今の版のまま）"
+   "model": "anthropic-api:claude-sonnet-5-5",
+   "status": "thickened",
+   "tries": 2,
+   "why": ""
   },
   "kogaku-ryoyohi-2026-08-limit": {
    "at": "2026-11-13T08:44:32+00:00",
@@ -463,6 +509,13 @@
    "tries": 0,
    "why": "人が確かめた記事（Muse・編集部）"
   },
+  "medical-welfare-news-update": {
+   "at": "2026-11-13T17:22:23+00:00",
+   "before": 773,
+   "status": "skipped",
+   "tries": 0,
+   "why": "まとめの記事（元の資料が1本ではない）"
+  },
   "microsoft-foundry-agent-optimizer-guide": {
    "at": "2026-11-12T05:52:06+00:00",
    "before": 1431,
@@ -476,6 +529,13 @@
    "status": "skipped",
    "tries": 0,
    "why": "公式の発表の資料が無い（動画などが元）"
+  },
+  "microsoft-research-focus-edition-98": {
+   "at": "2026-11-13T17:22:23+00:00",
+   "before": 660,
+   "status": "skipped",
+   "tries": 0,
+   "why": "まとめの記事（元の資料が1本ではない）"
   },
   "minimum-wage-2026-prefectures": {
    "at": "2026-11-12T05:52:06+00:00",
@@ -492,12 +552,17 @@
    "why": "人が確かめた記事（Muse・編集部）"
   },
   "mlit-gaiko-kaiun-kentoukai-3": {
-   "at": "2026-11-13T08:44:32+00:00",
+   "after": 993,
+   "at": "2026-11-13T17:22:23+00:00",
+   "bar": [
+    3
+   ],
    "before": 442,
    "gateTries": 1,
-   "status": "not-thicker",
-   "tries": 1,
-   "why": "品質ゲートに合格しなかった（今の版のまま）"
+   "model": "gemini-3.5-flash-lite",
+   "status": "thickened",
+   "tries": 2,
+   "why": ""
   },
   "mof-debt-balance-202609": {
    "after": 1530,
@@ -513,6 +578,16 @@
    "tries": 2,
    "why": ""
   },
+  "mof-disaster-food-bank-donation": {
+   "after": 1613,
+   "at": "2026-11-13T17:22:23+00:00",
+   "bar": [],
+   "before": 518,
+   "model": "anthropic-api:claude-sonnet-5-5",
+   "status": "thickened",
+   "tries": 1,
+   "why": ""
+  },
   "mof-securities-transactions-october-2026": {
    "after": 718,
    "at": "2026-11-12T17:44:23+00:00",
@@ -526,6 +601,26 @@
    "status": "thickened",
    "tries": 2,
    "why": ""
+  },
+  "mof-trade-statistics-sep-2026": {
+   "after": 1384,
+   "at": "2026-11-13T17:22:23+00:00",
+   "bar": [
+    1,
+    6
+   ],
+   "before": 511,
+   "model": "anthropic-api:claude-sonnet-5-5",
+   "status": "thickened",
+   "tries": 1,
+   "why": ""
+  },
+  "morita-shunya-samurai-japan-debut": {
+   "at": "2026-11-13T17:22:23+00:00",
+   "before": 307,
+   "status": "skipped",
+   "tries": 0,
+   "why": "まとめの記事（元の資料が1本ではない）"
   },
   "nagano-otari-hotel-renovation-mlit": {
    "after": 1254,
@@ -594,13 +689,32 @@
    "tries": 1,
    "why": ""
   },
+  "north-korea-flag-ratio-change": {
+   "at": "2026-11-13T17:22:23+00:00",
+   "before": 670,
+   "status": "skipped",
+   "tries": 0,
+   "why": "まとめの記事（元の資料が1本ではない）"
+  },
+  "npa-fake-app-site-sms": {
+   "at": "2026-11-13T17:22:23+00:00",
+   "before": 935,
+   "status": "skipped",
+   "tries": 0,
+   "why": "まとめの記事（元の資料が1本ではない）"
+  },
   "ntt-west-line-repair-notification": {
-   "at": "2026-11-13T08:44:32+00:00",
+   "after": 1358,
+   "at": "2026-11-13T17:22:23+00:00",
+   "bar": [
+    8
+   ],
    "before": 497,
    "gateTries": 1,
-   "status": "gate-failed",
-   "tries": 1,
-   "why": "品質ゲートに合格しなかった（今の版のまま）（「判定: 提供状況=limited 価格=無料」→ 元記事に料金・無料に関する記述はなく、「価格=無料」は元記事に無い事実である。）"
+   "model": "anthropic-api:claude-sonnet-5-5",
+   "status": "thickened",
+   "tries": 2,
+   "why": ""
   },
   "nvidia-earnings-ceo-transition-orukan": {
    "at": "2026-11-13T08:44:32+00:00",
@@ -644,6 +758,13 @@
    "tries": 2,
    "why": ""
   },
+  "ozumo-kyushu-basho-day-6-results": {
+   "at": "2026-11-13T17:22:23+00:00",
+   "before": 495,
+   "status": "skipped",
+   "tries": 0,
+   "why": "まとめの記事（元の資料が1本ではない）"
+  },
   "pension-day-2026-nenkin-net-check": {
    "at": "2026-11-13T08:44:32+00:00",
    "before": 1365,
@@ -666,12 +787,19 @@
    "why": "別の切り口の記事（親の記事と同じ資料）"
   },
   "pension-system-standardization-mhlw": {
-   "at": "2026-11-13T08:44:32+00:00",
+   "at": "2026-11-13T17:22:23+00:00",
    "before": 452,
    "gateTries": 1,
-   "status": "not-thicker",
-   "tries": 1,
-   "why": "品質ゲートに合格しなかった（今の版のまま）"
+   "status": "not-newsworthy",
+   "tries": 2,
+   "why": "記事にする価値なしと判定（会議の資料ページで、議事次第（開会・議事・閉会）の項目名だけが載っている。国民年金システム標準化研究会ワーキングチーム第2回（令和8年10月20日開催）の資料本）"
+  },
+  "pokemon-go-sendai-event-850k": {
+   "at": "2026-11-13T17:22:23+00:00",
+   "before": 965,
+   "status": "skipped",
+   "tries": 0,
+   "why": "まとめの記事（元の資料が1本ではない）"
   },
   "pokka-sapporo-drink-price-hike-2027": {
    "at": "2026-11-13T08:44:32+00:00",
@@ -736,13 +864,25 @@
    "tries": 0,
    "why": "重複（別の記事に転送・代表がある）"
   },
+  "samurai-blue-stadium-guide": {
+   "at": "2026-11-13T17:22:23+00:00",
+   "before": 696,
+   "status": "skipped",
+   "tries": 0,
+   "why": "まとめの記事（元の資料が1本ではない）"
+  },
   "sanyo-shinkansen-hikari-railstar-extra-train": {
-   "at": "2026-11-13T08:44:32+00:00",
+   "after": 1050,
+   "at": "2026-11-13T17:22:23+00:00",
+   "bar": [
+    1
+   ],
    "before": 449,
    "gateTries": 1,
-   "status": "not-thicker",
-   "tries": 1,
-   "why": "品質ゲートに合格しなかった（今の版のまま）"
+   "model": "anthropic-api:claude-sonnet-5-5",
+   "status": "thickened",
+   "tries": 2,
+   "why": ""
   },
   "sapporo-nov11-cold-morning-weather": {
    "at": "2026-11-12T05:52:06+00:00",
@@ -757,6 +897,13 @@
    "status": "skipped",
    "tries": 0,
    "why": "公式の発表の資料が無い（動画などが元）"
+  },
+  "soumu-ict-economics-r8-01": {
+   "at": "2026-11-13T17:22:23+00:00",
+   "before": 504,
+   "status": "not-newsworthy",
+   "tries": 1,
+   "why": "記事にする価値なしと判定（総務省の研究会の開催ページ（日時・議題・配布資料の一覧）で、制度・手続き・給付・料金・規制の中身が無い。会議の開催案内・議事録にあたり、このジャンルの対象外。）"
   },
   "suntory-kinmugi-hojun-sales-plan-raised": {
    "after": 1784,
@@ -861,6 +1008,20 @@
    "tries": 1,
    "why": ""
   },
+  "yamaguchi-fg-ehime-bank-partnership": {
+   "at": "2026-11-13T17:22:23+00:00",
+   "before": 230,
+   "status": "skipped",
+   "tries": 0,
+   "why": "まとめの記事（元の資料が1本ではない）"
+  },
+  "ye-toothpaste-sheet-lot-6c26-recall": {
+   "at": "2026-11-13T17:22:23+00:00",
+   "before": 1232,
+   "status": "skipped",
+   "tries": 0,
+   "why": "人が確かめた記事（Muse・編集部）"
+  },
   "year-end-tax-adjustment-refund-december": {
    "at": "2026-11-12T05:52:06+00:00",
    "before": 1341,
@@ -869,12 +1030,12 @@
    "why": "人が確かめた記事（Muse・編集部）"
   },
   "yoyogi-park-fountain-renewal": {
-   "at": "2026-11-13T08:44:32+00:00",
+   "at": "2026-11-13T17:22:23+00:00",
    "before": 401,
-   "gateTries": 1,
-   "status": "gate-failed",
-   "tries": 1,
-   "why": "品質ゲートに合格しなかった（今の版のまま）（判定欄の「価格=無料」→ 元記事にも確認済みの文脈にも、噴水の利用料金に関する記述がなく、無料という事実の根拠がない。）"
+   "gateTries": 2,
+   "status": "not-thicker",
+   "tries": 2,
+   "why": "後処理のあと 613字（701字に届かない）"
   },
   "yucho-atm-familymart-end-2027": {
    "at": "2026-11-12T17:44:23+00:00",
@@ -916,6 +1077,12 @@
    "thickened": 5,
    "tried": 15,
    "usd": 0.087
+  },
+  {
+   "at": "2026-11-13T17:22:23+00:00",
+   "thickened": 8,
+   "tried": 15,
+   "usd": 1.3027
   }
  ]
 }
