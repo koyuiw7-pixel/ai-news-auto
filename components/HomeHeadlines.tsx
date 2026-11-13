@@ -7,13 +7,13 @@ import { displayHeadline } from "@/lib/headline";
  * スマホの最初の画面に見出しが主役の1本しかなかった（Yahoo!ニュースは6本）。日経電子版のスマホのように、細い線で区切った太字の見出しだけを並べる。
  * 記事は lib/home-lead.ts の pickHomeHeadlines（分野・題名・読まれた回数で決める）
  */
-export default function HomeHeadlines({ articles }: { articles: ArticleSummary[] }) {
+export default function HomeHeadlines({ articles, label = "暮らしとお金の主なニュース" }: { articles: ArticleSummary[]; label?: string }) {
   if (articles.length === 0) return null;
   return (
     <section aria-labelledby="top-headlines-heading" data-home-zone="headlines" className="mt-4 sm:mt-10">
       <h2 id="top-headlines-heading" className="flex items-center gap-2 text-note font-bold text-ink">
         <span aria-hidden className="h-4 w-[3px] rounded-full bg-live" />
-        暮らしとお金の主なニュース
+        {label}
       </h2>
       <ul className="mt-1 sm:mt-3 sm:grid sm:grid-cols-2 sm:gap-x-8 lg:grid-cols-3">
         {articles.map((article) => (

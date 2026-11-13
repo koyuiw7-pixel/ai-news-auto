@@ -97,6 +97,8 @@ export type Article = {
   comparisonTopic?: string;
   /** Muse の原稿のファイル名（「20261109-比較-…md」。scripts/muse_articles.py） */
   museFile?: string;
+  /** 書き手（"muse" は Muse に頼んで書いた記事。scripts/muse_articles.py が付ける） */
+  writer?: string;
   /** まとめ記事が統合した元記事（type === "roundup" のとき）。
    *  web 記事（話題のニュース・続報あり）では {title, url, source} の出典一覧が入るが、画面では使わない */
   sources?: RoundupSource[];
@@ -313,6 +315,7 @@ export type ArticleSummary = Pick<
   | "angleOf"
   | "late"
   | "trendKeyword"
+  | "writer"
   | "videoId"
   | "videoUrl"
   | "publishedAt"
