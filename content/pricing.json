@@ -1,12 +1,12 @@
 {
  "updatedAt": "2026-11-12T20:11:35.955353+00:00",
- "generatedAt": "2026-11-12T23:53:18+00:00",
+ "generatedAt": "2026-11-13T23:51:55+00:00",
  "stats": {
-  "articlesScanned": 1050,
-  "candidateArticles": 64,
-  "rowsVerified": 63,
-  "rowsRejected": 81,
-  "plans": 19,
+  "articlesScanned": 1137,
+  "candidateArticles": 67,
+  "rowsVerified": 66,
+  "rowsRejected": 84,
+  "plans": 20,
   "apis": 10
  },
  "items": [
@@ -195,19 +195,19 @@
    "currency": "USD",
    "monthly": null,
    "input": 0.1,
-   "output": 0.5,
+   "output": null,
    "cachedInput": null,
    "japan": "partial",
    "status": "limited",
    "free": null,
    "source": {
-    "slug": "openai-gpt-6-1-terra-announcement",
-    "title": "GPT-6.1 Terraとは？料金と使い方・性能を解説",
-    "publishedAt": "2026-10-26T00:00:00+00:00",
-    "quote": "| GPT-6 Luna(入力≤272K) | $0.10 | $0.50 | 約16円/約79円 |"
+    "slug": "amplitude-wave-openai-product-improvements",
+    "title": "Amplitude「Wave」とは？製品改善を1〜2日に",
+    "publishedAt": "2026-11-12T20:00:00+00:00",
+    "quote": "OpenAI APIの標準料金は、入力100万トークンあたりGPT-6.1 Solが$2、GPT-6 Lunaが$0.10です(OpenAI公式の料金ページ、11/13確認)。"
    },
    "verdictSource": "openai-announces-decisions-api-gpt6-luna",
-   "confirmedIn": 1,
+   "confirmedIn": 2,
    "legacy": false
   },
   {
@@ -220,19 +220,19 @@
    "currency": "USD",
    "monthly": null,
    "input": 2,
-   "output": 10,
+   "output": null,
    "cachedInput": null,
    "japan": "unknown",
    "status": "demo",
    "free": null,
    "source": {
-    "slug": "openai-gpt-6-1-terra-announcement",
-    "title": "GPT-6.1 Terraとは？料金と使い方・性能を解説",
-    "publishedAt": "2026-10-26T00:00:00+00:00",
-    "quote": "| GPT-6.1 Sol(入力≤272K) | $2 | $10 | 約320円/約1,580円 |"
+    "slug": "amplitude-wave-openai-product-improvements",
+    "title": "Amplitude「Wave」とは？製品改善を1〜2日に",
+    "publishedAt": "2026-11-12T20:00:00+00:00",
+    "quote": "OpenAI APIの標準料金は、入力100万トークンあたりGPT-6.1 Solが$2、GPT-6 Lunaが$0.10です(OpenAI公式の料金ページ、11/13確認)。"
    },
    "verdictSource": "devrev-self-service-agents",
-   "confirmedIn": 1,
+   "confirmedIn": 2,
    "legacy": false
   },
   {
@@ -341,31 +341,6 @@
    "vendor": "Anthropic",
    "companySlug": "anthropic",
    "product": "Claude",
-   "plan": "Team",
-   "currency": "USD",
-   "monthly": 25,
-   "input": null,
-   "output": null,
-   "cachedInput": null,
-   "japan": "unknown",
-   "status": "limited",
-   "free": true,
-   "source": {
-    "slug": "claude-meetings-google-meet-beta",
-    "title": "Claude Meetingsとは？使い方と対象プラン",
-    "publishedAt": "2026-11-12T20:11:35.955353+00:00",
-    "quote": "料金は、Teamがスタンダードシートで1人あたり月$20(年払い)または$25(月払い)、Enterpriseは1人あたり月$20(年払い、最低20シート)です(Anthropic公式の料金ページ、11/12確認)。Claude Meetingsの追加料金の有無は、まだ発表されていません。"
-   },
-   "verdictSource": null,
-   "confirmedIn": 2,
-   "legacy": false
-  },
-  {
-   "id": "plan-claude-team",
-   "kind": "plan",
-   "vendor": "Anthropic",
-   "companySlug": "anthropic",
-   "product": "Claude",
    "plan": "Team(スタンダード)",
    "currency": "USD",
    "monthly": 25,
@@ -383,6 +358,31 @@
    },
    "verdictSource": null,
    "confirmedIn": 1,
+   "legacy": false
+  },
+  {
+   "id": "plan-claude-team",
+   "kind": "plan",
+   "vendor": "Anthropic",
+   "companySlug": "anthropic",
+   "product": "Claude",
+   "plan": "Team",
+   "currency": "USD",
+   "monthly": 25,
+   "input": null,
+   "output": null,
+   "cachedInput": null,
+   "japan": "unknown",
+   "status": "limited",
+   "free": true,
+   "source": {
+    "slug": "claude-meetings-google-meet-beta",
+    "title": "Claude Meetingsとは？使い方と対象プラン",
+    "publishedAt": "2026-11-12T20:11:35.955353+00:00",
+    "quote": "料金は、Teamがスタンダードシートで1人あたり月$20(年払い)または$25(月払い)、Enterpriseは1人あたり月$20(年払い、最低20シート)です(Anthropic公式の料金ページ、11/12確認)。Claude Meetingsの追加料金の有無は、まだ発表されていません。"
+   },
+   "verdictSource": null,
+   "confirmedIn": 2,
    "legacy": false
   },
   {
@@ -430,6 +430,31 @@
     "title": "Gemini Daily Briefとは？AI Plus・Proの料金",
     "publishedAt": "2026-11-04T01:11:29.558002+00:00",
     "quote": "| 無料 | 0円/月 | | Gmail、Google ドライブ、Google フォト共通で利用できる 15 GB のクラウド ストレージ |"
+   },
+   "verdictSource": null,
+   "confirmedIn": 1,
+   "legacy": false
+  },
+  {
+   "id": "plan-gemini-business",
+   "kind": "plan",
+   "vendor": "Google",
+   "companySlug": "google",
+   "product": "Gemini",
+   "plan": "Business",
+   "currency": "USD",
+   "monthly": 21,
+   "input": null,
+   "output": null,
+   "cachedInput": null,
+   "japan": "unknown",
+   "status": "limited",
+   "free": true,
+   "source": {
+    "slug": "gemini-factory-partner-solutions",
+    "title": "Gemini factoryとは：パートナー開発支援",
+    "publishedAt": "2026-11-10T17:00:00+00:00",
+    "quote": "法人向けのGemini Enterpriseは、Businessエディションが1ライセンス月額21ドルからで、ユーザー数は最大300人です。"
    },
    "verdictSource": null,
    "confirmedIn": 1,
