@@ -1,0 +1,246 @@
+{
+  "slug": "gemini-factory-partner-solutions",
+  "sourceType": "web",
+  "sourceUrl": "https://cloud.google.com/blog/topics/partners/inside-the-gemini-factory-accelerating-partner-solutions/",
+  "sourceName": "Google Cloud公式ブログ",
+  "title": "Google Gemini、外部ソフトを数日で組み込む支援　「Gemini factory」に東京も",
+  "seoTitle": "Gemini factoryとは：パートナー開発支援",
+  "threadsPost": "Geminiを仕事で使う会社の担当者に、知っておいてほしい話です。\n\nGoogle Cloudが、外部ソフト会社向けの開発支援「Gemini factory」を進めています。\nGemini上で動く連携を、数日で本番に近づける狙いです。\n\n自社で使う業務ソフトがGeminiから呼べたら、どの作業を最初に任せたいですか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "plain",
+      "question": "自社の業務ソフトがGeminiから呼べたら、どの作業を最初に任せたいですか？"
+    },
+    {
+      "pattern": "tradeoff",
+      "question": "外部ツールとAIをつなぐとき、便利さと情報管理のどちらを優先しますか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "senpai",
+  "lede": "Geminiの画面から外部ソフト会社のサービスを呼び出せる連携を、数日で作る支援プログラム「Gemini factory」が進んでいます。会場には東京も含まれ、資金面の支援や Google Cloud Marketplace への掲載支援も付きます。一般の利用者がすぐ使える新機能ではなく、Geminiに載るパートナー製品が増えていく動きです。",
+  "description": "Google Cloudの「Gemini factory」は、外部ソフト会社がGemini向け連携を数日で作り、Marketplaceに載せるまでを支援します。東京を含む7都市で開催。構成の選び方と支援内容をまとめます。",
+  "keywords": [
+    "Google Gemini",
+    "Gemini factory",
+    "Gemini Enterprise",
+    "MCP",
+    "A2A",
+    "Google Cloud Marketplace",
+    "Antigravity",
+    "ISV",
+    "AIエージェント",
+    "パートナー連携"
+  ],
+  "tags": [
+    "Gemini",
+    "Google Cloud",
+    "生成AI",
+    "AIエージェント",
+    "MCP"
+  ],
+  "highlights": [
+    "Gemini factoryは、外部ソフト会社がGemini向け連携を数日で作る共創プログラムで、東京でも開催",
+    "連携の作り方はMCP、スキル、プラグイン、A2Aエージェントの4種類から選ぶ",
+    "開発費を補う初期クレジット、Marketplace掲載、共同マーケティング支援が段階的に付く"
+  ],
+  "timetable": [],
+  "verdict": {
+    "status": "limited",
+    "japan": "unknown",
+    "price": "不明",
+    "free": null,
+    "audience": "ソフト会社",
+    "take": "自社ソフトをGeminiにつなぎたい会社は、東京での開催予定をGoogle Cloudに確認するとよいでしょう。",
+    "judgedAt": "2026-11-13T08:15:01.249589+00:00"
+  },
+  "workMoney": {
+    "relevance": "medium",
+    "points": [
+      "Geminiを社内で使う情報システム担当者は、自社の業務ソフトが連携対象になるか、取引先ベンダーに確認できます。",
+      "Gemini Enterprise Businessは1人月額21ドルから、Standard / Plusは30ドルからです（Google公式、11/13確認）。",
+      "ソフト会社の開発担当者は、東京などの開催地で支援を受ける道があります。申込方法はまだ発表されていません。"
+    ]
+  },
+  "body": "2026年11月11日（日本時間）に公開されたGoogle Cloud公式ブログ（11月10日付）によると、外部ソフト会社がGemini向けの連携を短期間で作るための支援「Gemini factory」が進んでいます。\n\n今回の発表で、Geminiの個人向けプランの料金や使い方は変わりません。関係するのは、Geminiを業務で使う企業の担当者と、自社製品をGeminiにつなぎたいソフト会社です。\n\nGemini factoryは、Google Cloudの専門家が外部ソフト会社（ISV）の開発チームと並んで作業し、Geminiの中で動く機能を作る共創プログラムです。\n\n## 東京を含む7都市で開催、狙いは「数日」\n\n会場はサンフランシスコ、ニューヨーク、サニーベール、ロンドン、パリ、テルアビブ、東京です。目標は、白紙の状態から Google Cloud Marketplace（企業向けのソフト販売の場）に載るエージェント型の製品まで、最短で進めることです。\n\n支援の柱は3つあります。\n\n- MCPコネクタ、スキル、プラグイン、自律エージェントのうち、どの構成が合うかを選ぶ\n- 最初の用途から本番に近い連携まで、数カ月ではなく数日で進める\n- 資金面の支援と販売支援で、顧客への展開を早める\n\n## 連携の作り方は4種類\n\n公式ブログは、以前の企業向けAIでは外部連携が独立したエージェントになり、社員が作業の流れを離れる必要があったと説明しています。今回は4つの部品を組み合わせて使う設計です。\n\n- MCPコネクタ: 外部のAPI（アプリから呼び出す仕組み）や検索、データ操作を、Geminiが呼べる道具として登録する土台です。\n- 宣言型スキル（.md）: Markdown形式の設定ファイルで、分野ごとの指示、守るべき制約、複数手順の流れをGeminiに教えます。\n- プラグイン: コネクタとスキルを1つにまとめた形です。IT管理者が管理し、Geminiの利用者が呼び出します。\n- A2Aエージェント: 独自のアルゴリズムや規制対応の流れを持つ会社向けです。パートナー側の隔離された環境で動き、Geminiからは呼び出し可能なコネクタに見えます。公式ブログは、知的財産の保護や処理順序の固定、改ざんできない監査記録につながると説明しています。\n\n多くの連携は、Cloud Runなどに置いたリモートMCPコネクタにスキルを重ね、プラグインにまとめる形です。閉じたモデルや厳密な実行順序が必要なときは、Agent Development Kit（ADK）とA2Aを使います。\n\n## AI開発環境「Antigravity」で作業を短縮\n\n開発には、AI中心の開発環境「Antigravity」を使います。用意されたRapid Agent Development（RAD）スキルで、用途の仕様から構成の雛形、MCPコネクタ、スキルの作成、事前の自動検証までを進めます。\n\n利用者側では、MCPアプリによって画面を移らずにGeminiの中で視覚的な表示を受け取れます。Google Workspaceなど他の連携にも出力をつなげられます。\n\n## 開発費の補助から掲載、販促まで\n\nGemini factoryは、試作で終わらず商用化までつなぐ設計だと説明されています。\n\n| 段階 | 支援の中身 |\n|---|---|\n| 作る | 開発や移植費用を補う初期クレジット、利用に応じた性能クレジット、技術者の支援 |\n| 公開 | Google Cloud Marketplaceへの掲載。請求や調達もまとめる |\n| 広げる | 共同マーケティング、広報素材、成績上位パートナー向けの資金付き販促 |\n\n利用者は、Geminiの標準的なOAuthやDynamic Client Registration、手持ちライセンスの持ち込み（BYOL）の流れで連携にアクセスします。パートナーは裏側のデータやツールを自社の環境内に置けます。掲載された製品は「AI Solution Finder」で探せます。\n\n## 紹介された事例\n\n公式ブログは、以前「Agent Factory」と呼んでいた参加組から、9社が数日で成果を出したと紹介しています。そのうち4社は次のとおりです。\n\n- Aily Labs: 経営判断向けの予測と提案をするエージェント\n- FlowX: 資本市場の契約書類を突き合わせ、食い違いを検出するエージェント\n- Klarvant: 証明書やメールの安全性など、外部から見える状態を分析するエージェント\n- NextLM: 受注しやすい取引先候補を順位づけする営業エージェント。NextLMは初期の設計図から動くエージェントまで24時間未満だったと述べています\n\n## Geminiの料金と日本での使い方\n\n法人向けのGemini Enterpriseは、Businessエディションが1人月額21ドルから（約3,690円、税込みの目安。ユーザー数は最大300人）、Standard / Plusが30ドルから（約5,270円）です。料金はGoogle公式の料金ページ（11/13確認）、為替は2026年11月12日のECB参照レートで計算しています。個人向けGeminiアプリは日本で使えます（当サイトの確認：11/3）。Gemini factoryの成果物に別料金がかかるかはまだ発表されていません。\n\n## サイソクの見方：担当者は連携の対応状況を先に聞くとよい\n\nGeminiにMCPコネクタやプラグインとして外部ソフトが並べば、社員が別画面へ移る手間が減ると考えられます。今回の発表は、そのための供給側の仕組みです。\n\n判断の目安は次のとおりです。\n\n- 社内にGemini Enterpriseを入れている、または検討中なら、使っている業務ソフトのベンダーにGemini向け連携の予定を聞く\n- 自社がソフト会社なら、東京を含む開催地の参加方法をGoogle Cloudに確認する\n- 個人でGeminiアプリを使うだけなら、今のところ何もする必要はない\n\n## まだ分からないこと\n\n- 東京での開催日や参加の申込方法は発表されていません。\n- 初期クレジットの金額や参加条件は発表されていません。\n- 日本のパートナー製品が Google Cloud Marketplace にいつ載るかは発表されていません。",
+  "easy": "## ひとことで言うと\n\nGoogle Cloudが、外部のソフト会社がGeminiの中で動く機能を素早く作れるよう支援しています。一般の人がすぐ使える新機能ではなく、Geminiにつながる業務ソフトが増えるための仕組みです。\n\n## 何をする取り組みか\n\n2026年11月10日付のGoogle Cloud公式ブログによると、この取り組みは「Gemini factory」と呼ばれます。サンフランシスコ、ニューヨーク、サニーベール、ロンドン、パリ、テルアビブ、東京で、Googleの専門家がソフト会社と並んで開発します。\n\n目標は、最初の案から実際に使える連携まで、数カ月ではなく数日で進めることです。完成した製品は Google Cloud Marketplace（企業向けのソフト販売の場）に載せられます。\n\n## 利用する会社にとっては\n\n従業員は、別の画面に移らず、Geminiの中で外部サービスを使えるようになります。管理者は、まとめて設定や管理ができます。\n\n導入事例として、意思決定を支援するAily Labs、書類の突き合わせをするFlowXなど9社が紹介されています。\n\n日本の個人利用者の料金や使い方は、今回の発表では変わりません。Geminiアプリは日本で使えます（当サイトの確認：11/3）。",
+  "channel": "Google Cloud公式ブログ",
+  "channelId": "",
+  "channelSlug": "google-cloud-blog",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "Inside the Gemini factory: Accelerating partner solutions",
+  "publishedAt": "2026-11-10T17:00:00+00:00",
+  "generatedAt": "2026-11-13T08:15:01.249574+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/gemini-factory-partner-solutions-6923d4d1.jpg",
+  "model": "claude:sonnet",
+  "affiliates": [],
+  "newsType": "explainer",
+  "faq": [
+    {
+      "q": "Gemini factoryのクレジットは何に使えますか？",
+      "a": "公式ブログでは、開発や移植の費用を補う初期クレジットと、規模拡大時の利用に応じた性能クレジットが挙げられています。運用時の推論費用の補助にも使えるとされています。"
+    },
+    {
+      "q": "Gemini factoryの掲載製品はどこで探せますか？",
+      "a": "Google Cloud Marketplaceに掲載され、AI Solution Finderにも載ります。MCPコネクタ、プラグイン、エージェントを探せ、IT管理者がGeminiで設定や管理をできます。"
+    }
+  ],
+  "todayActions": [
+    "使っている業務ソフトが AI Solution Finder に載っているか探す",
+    "Gemini Enterpriseの導入を考えるなら、営業担当者に問い合わせる"
+  ],
+  "searchTrend": "google gemini",
+  "trendKeyword": "google gemini",
+  "qualityBar": {
+    "score": 8,
+    "missing": [],
+    "notes": {},
+    "checkedAt": "2026-11-13T08:15:40+00:00",
+    "before": [],
+    "repaired": false
+  },
+  "qualityScore": 88,
+  "late": true,
+  "factSources": [
+    {
+      "label": "料金",
+      "name": "Google公式の料金ページ",
+      "url": "https://gemini.google/jp/subscriptions/?hl=ja",
+      "checkedAt": "2026-11-13"
+    }
+  ],
+  "sourcePublishedAt": "2026-11-10T17:00:00+00:00",
+  "detectedAt": "2026-11-13T08:02:58+00:00",
+  "layout": "noir",
+  "summaryLine": "Gemini factoryは、外部ソフト会社がGemini向け連携を数日で作る共創プログラムで、東京でも開催",
+  "sectionsPolishedAt": "2026-11-13T08:16:37+00:00",
+  "insight": [
+    {
+      "text": "Gemini EnterpriseのBusinessエディションは「小規模の企業やチームに最適。IT 部門による設定は不要です」と案内されています。",
+      "source": "https://gemini.google/jp/subscriptions/?hl=ja"
+    },
+    {
+      "text": "掲載されたパートナー製品は「AI Solution Finder」で探せると、公式ブログは説明しています。使っている業務ソフトが対応しているか、ここで探せます。",
+      "source": "https://cloud.google.com/blog/topics/partners/inside-the-gemini-factory-accelerating-partner-solutions/"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "Gemini Enterprise エディションの営業担当者に問い合わせる",
+      "url": "https://cloud.google.com/contact/gemini-enterprise",
+      "source": "https://cloud.google.com/contact/gemini-enterprise",
+      "howTo": [
+        "Gemini Enterprise",
+        "お問い合わせ"
+      ],
+      "note": "フォームには「ビジネスニーズと課題を説明する」欄があり、会社名・部署・従業員数などを入力します。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "使っている業務ソフトが AI Solution Finder に載っているか探す",
+      "source": "https://cloud.google.com/blog/topics/partners/inside-the-gemini-factory-accelerating-partner-solutions/",
+      "steps": [
+        "AI Solution Finder を開く",
+        "使っている業務ソフトの名前で検索する",
+        "MCPコネクタやプラグインの掲載を見る"
+      ],
+      "url": "https://aisolutionfinder.withgoogle.com/"
+    },
+    {
+      "action": "Gemini Enterpriseの導入を考えるなら、営業担当者に問い合わせる",
+      "source": "https://cloud.google.com/contact/gemini-enterprise",
+      "steps": [
+        "お問い合わせのページを開く",
+        "ビジネスニーズと課題を説明する欄に書く",
+        "会社名や従業員数などを入力する"
+      ],
+      "url": "https://cloud.google.com/contact/gemini-enterprise"
+    }
+  ],
+  "cause": {
+    "text": "以前の企業向けAIでは、外部連携が独立したエージェントになり、社員が作業の流れを離れる必要がありました。今回は、Geminiの中で動く連携を作る設計にしたと公式ブログは説明しています。",
+    "status": "background",
+    "source": "https://cloud.google.com/blog/topics/partners/inside-the-gemini-factory-accelerating-partner-solutions/"
+  },
+  "worries": [
+    {
+      "q": "個人でGeminiを使っていると、料金は変わりますか？",
+      "a": "料金ページには、Google AI Plusが月725円、Google AI Proが月2,900円、Google AI Ultraが最小で月14,500円と書かれています。",
+      "source": "https://gemini.google/jp/subscriptions/?hl=ja",
+      "action": "今の料金を確かめるなら、使っているプランの料金ページで円の表示を見る"
+    },
+    {
+      "q": "うちの業務ソフトはGeminiとつながるの？",
+      "a": "Geminiには、パートナーが作ったMCPコネクタ、スキル、プラグインなどで外部ソフトを呼び出せる仕組みがあります。掲載された製品はAI Solution Finderで探せると説明されています。",
+      "source": "https://cloud.google.com/blog/topics/partners/inside-the-gemini-factory-accelerating-partner-solutions/",
+      "action": "使っている業務ソフトのベンダーに、Gemini向けの連携の提供予定を聞く"
+    },
+    {
+      "q": "社内のデータは外部のソフト会社に渡るの？",
+      "a": "公式ブログによると、パートナーは裏側のセキュリティ、データ、独自のツールを自社の環境内で管理します。利用者はGeminiの標準的なOAuthなどの流れで接続します。",
+      "source": "https://cloud.google.com/blog/topics/partners/inside-the-gemini-factory-accelerating-partner-solutions/",
+      "action": "連携を使う前に、ベンダーにどのデータへアクセスするかを確かめる"
+    },
+    {
+      "q": "Businessの料金はいくらから？",
+      "a": "料金ページには、Gemini EnterpriseのBusinessエディションは1ライセンスあたり月額21ドルからと書かれています。",
+      "source": "https://gemini.google/jp/subscriptions/?hl=ja",
+      "action": "導入を考えるなら、Businessのトライアルの画面で料金と条件を確かめる"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "個人でGeminiを使うだけなら、何か変えるべき？",
+      "situation": "個人で Gemini アプリを使っている",
+      "recommend": "今のところ急ぐ必要はない",
+      "reason": "今回の発表は、企業向けに外部ソフトの連携を増やす仕組みです。個人向けプランについては、このブログでは触れていません。",
+      "source": "https://cloud.google.com/blog/topics/partners/inside-the-gemini-factory-accelerating-partner-solutions/"
+    },
+    {
+      "question": "Gemini Enterpriseの導入を今すぐ決める？",
+      "situation": "社内で業務に使う導入を検討している",
+      "recommend": "急がなくてよい。まず料金と条件を確かめる",
+      "reason": "Businessは1ライセンス月額21ドルからで、小規模のチーム向けと案内されています。連携したい業務ソフトが対応しているかは、別に確かめる必要があります。",
+      "source": "https://gemini.google/jp/subscriptions/?hl=ja"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "Businessは小規模チーム向け、設定は不要",
+    "cause": "なぜGeminiの中で連携させるのか",
+    "steps": "業務ソフトが対応しているか確かめる手順",
+    "desk": "導入や相談はどこに聞けばいい？",
+    "worries": "料金や社内データは大丈夫？",
+    "guide": "今すぐ動くべきか、迷ったときの考え方"
+  },
+  "depthAt": "2026-11-13T08:17:23+00:00",
+  "imageCredit": {
+    "kind": "official",
+    "org": "Google Cloud",
+    "provider": "Google Cloud公式ブログ",
+    "sourceUrl": "https://cloud.google.com/blog/topics/partners/inside-the-gemini-factory-accelerating-partner-solutions/",
+    "original": "https://storage.googleapis.com/gweb-cloudblog-publish/images/Partners.max-2500x2500.jpg",
+    "width": 1200,
+    "height": 591,
+    "at": "2026-11-13T08:19:50+00:00",
+    "imageKind": "hero"
+  },
+  "heroOk": false,
+  "imageFocus": {
+    "x": 0.385,
+    "y": 0.471,
+    "box": [
+      0.0,
+      0.0,
+      0.769,
+      0.943
+    ],
+    "ar": 2.0305,
+    "src": "https://ai-tech-express.jp/img/gemini-factory-partner-solutions-6923d4d1.jpg"
+  }
+}
