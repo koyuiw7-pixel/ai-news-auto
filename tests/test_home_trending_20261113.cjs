@@ -80,3 +80,28 @@ test("索引は書き手（writer）を持つ（Muse の記事の判定に使う
   assert.match(src, /writer: a\.writer \|\| \(a\.museFile \? "muse" : undefined\)/);
   assert.match(fs.readFileSync(path.join(root, "app/page.tsx"), "utf8"), /pickHomeHeadlines\(all, new Set\(\[lead\.slug\]\), 6\)/);
 });
+
+test("「いま話題」の欄: 話題の記事を1記事1行で新しい順に全部。上の欄に出た記事は重ねない。3本に満たない日は出さない", () => {
+  const strip = home.pickTrendingStrip(all, new Set(["kohaku-list"]), now).map((a) => a.slug);
+  // money-* は話題の印が無い。紅白は話題ごとにまとめず、入れ替わりの記事も1行
+  assert.deepEqual(strip, []);
+  const muse = money.map((a) => ({ ...a, writer: "muse" }));
+  const withMuse = [sumo, ...muse, kohakuChanges, kohakuList, aiNews, oldTrend];
+  const full = home.pickTrendingStrip(withMuse, new Set(["kohaku-list"]), now).map((a) => a.slug);
+  assert.deepEqual(full, ["sumo", "money-0", "money-1", "kohaku-changes", "money-2", "money-3", "money-4", "money-5", "money-6", "money-7"]);
+  assert.ok(!full.includes("old-trend") && !full.includes("ai-news") && !full.includes("kohaku-list"));
+  assert.equal(new Set(full).size, full.length);
+  assert.deepEqual(home.pickTrendingStrip([sumo, kohakuChanges], new Set(), now), []);
+  const many = Array.from({ length: 80 }, (_, i) => art(`m-${i}`, { title: `値上げの話${i}`, genreSlug: "lifestyle", writer: "muse", generatedAt: hoursAgo(i / 4) }));
+  assert.equal(home.pickTrendingStrip(many, new Set(), now).length, home.STRIP_MAX);
+});
+
+test("「いま話題」の欄は見出しの欄のすぐ下。リンクはサーバーで出す <a>（クライアントだけの部品にしない）", () => {
+  const page = fs.readFileSync(path.join(root, "app/page.tsx"), "utf8");
+  assert.match(page, /<HomeHeadlines[^\n]+\n\s*<HomeTrendingStrip articles=\{trendingStrip\} \/>/);
+  const strip = fs.readFileSync(path.join(root, "components/HomeTrendingStrip.tsx"), "utf8");
+  assert.doesNotMatch(strip, /"use client"/);
+  assert.match(strip, /href=\{`\/articles\/\$\{article\.slug\}`\}/);
+  assert.match(strip, /<details>/);
+  assert.match(strip, /data-home-zone="trending"/);
+});

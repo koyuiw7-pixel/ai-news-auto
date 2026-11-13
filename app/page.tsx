@@ -3,6 +3,7 @@ import Link from "next/link";
 import CompanyMark from "@/components/CompanyMark";
 import HomeHero from "@/components/HomeHero";
 import HomeHeadlines from "@/components/HomeHeadlines";
+import HomeTrendingStrip from "@/components/HomeTrendingStrip";
 import HomeAssets from "@/components/HomeAssets";
 import CompanyChips from "@/components/CompanyChips";
 import NewsHub from "@/components/NewsHub";
@@ -21,7 +22,7 @@ import { siteConfig } from "@/site.config";
 import { pageShareImage } from "@/lib/page-share";
 import { coverPath } from "@/lib/cover-path";
 import { containPhoto } from "@/lib/photo-fit";
-import { isLifeMoneyStory, pickHomeHeadlines, pickHomeLead, pickLifeMoney, viewsOf } from "@/lib/home-lead";
+import { isLifeMoneyStory, pickHomeHeadlines, pickHomeLead, pickLifeMoney, pickTrendingStrip, STRIP_VISIBLE, viewsOf } from "@/lib/home-lead";
 import { alsoCoveredSentence } from "@/lib/coverage";
 import { guideShortName, lifeCompareGuide, type LifeCompareSlug } from "@/lib/buying-guides";
 
@@ -84,7 +85,10 @@ export default function HomePage() {
   // 主役のすぐ下は暮らしとお金の列（写真のある記事だけ）。AI の新着はその下（AI は脇役。台帳 A61）
   // スマホの最初の画面に、暮らしとお金の見出しを文字だけで並べる（2026-11-11 読者目線レビュー 2位。Yahoo!ニュースは最初の画面に6本）
   const headlines = pickHomeHeadlines(all, new Set([lead.slug]), 6);
-  const lifeMoney = pickLifeMoney(all, new Set([lead.slug, ...headlines.map((a) => a.slug)]), NEWS_SIZE);
+  // 「いま話題」の欄（話題の記事を1記事1行で全部。上の主役・見出しに出た記事は二重に並べない。lib/home-lead.ts の pickTrendingStrip）
+  const trendingStrip = pickTrendingStrip(all, new Set([lead.slug, ...headlines.map((a) => a.slug)]));
+  // 写真の列には、「いま話題」の最初から見えている記事を重ねて出さない（トップからたどれる記事を増やす）
+  const lifeMoney = pickLifeMoney(all, new Set([lead.slug, ...headlines.map((a) => a.slug), ...trendingStrip.slice(0, STRIP_VISIBLE).map((a) => a.slug)]), NEWS_SIZE);
   const timeline = ai.filter((a) => a.slug !== lead.slug).slice(0, TIMELINE_SIZE);
   const roundups = ai.filter((a) => a.type === "roundup" && a.slug !== lead.slug).slice(0, 5);
 
@@ -123,6 +127,7 @@ export default function HomePage() {
         <HomeHero lead={lead} popular={viewsOf(lead.slug) > 0} />
         {/* 話題の記事（分野を問わない。lib/home-lead.ts の pickTrending）が後ろに並ぶ日は、見出しの名前も合わせる */}
         <HomeHeadlines articles={headlines} label={headlines.some((a) => !isLifeMoneyStory(a)) ? "暮らしとお金・いま話題のニュース" : undefined} />
+        <HomeTrendingStrip articles={trendingStrip} />
 
         {/* ストーリーの丸は見出しの下（暮らしとお金の丸が先。lib/stories.ts。2026-11-11 読者目線レビュー 1位・2位） */}
         {bundles.length > 0 && (

@@ -175,3 +175,24 @@ export function pickHomeHeadlines(all: ArticleSummary[], exclude: Set<string>, l
     .slice(0, limit - read.length);
   return [...read, ...fresh, ...trending];
 }
+
+/** 「いま話題」の欄: 開かなくても見える本数と、欄に出す本数の上限 */
+export const STRIP_VISIBLE = 10;
+export const STRIP_MAX = 60;
+/** これより少ない日は欄を出さない */
+export const STRIP_MIN = 3;
+
+/**
+ * トップの「いま話題」の欄に並べる記事（2026-11-13 オーナー「Googleからの流入対策をもっと」）。
+ * 話題の記事（isTrendingFresh。話題のレーン・Muse に頼んだ記事で、載せて24時間以内）を、話題ごとではなく記事ごとに1行ずつ、新しい順に全部。
+ * すぐ上の主役・見出しの欄に出ている記事（exclude）は二重に並べない。こうして話題の記事はどれもトップから1回で開ける。
+ * STRIP_MIN 本に満たない日は空（欄を出さない）
+ */
+export function pickTrendingStrip(all: ArticleSummary[], exclude: Set<string>, now: number = Date.now()): ArticleSummary[] {
+  const seen = new Set<string>();
+  const rows = all
+    .filter((a) => isTrendingFresh(a, now) && !exclude.has(a.slug) && !seen.has(a.slug) && Boolean(seen.add(a.slug)))
+    .sort(newestFirst)
+    .slice(0, STRIP_MAX);
+  return rows.length >= STRIP_MIN ? rows : [];
+}
