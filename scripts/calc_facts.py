@@ -803,71 +803,169 @@ def block(computed: list[Computed]) -> str:
 
 CALC_LABEL_RE = re.compile(r"計算|試算")
 _OP_NUM = r"\d[\d,]*(?:\.\d+)?[兆億万千]?(?:\d[\d,]*[億万千]?)*"
-_OP_UNIT = r"(?:円|ドル|人|か月|ヶ月|カ月|か所|カ所|月|年|回|件|本|枚|台|日|時間|分|%|倍|口|社|個|世帯|歳)?"
+# 数字のあとの単位。「円/kWh」のような「〜あたり」の書き方も単位に含める（「/」を割り算と読まない）
+_OP_UNIT = (r"(?:円|ドル|人|か月|ヶ月|カ月|ヵ月|か所|カ所|月|年|回|件|本|枚|台|日|時間|分|%|倍|口|社|個|世帯|歳"
+            r"|kWh|m3|リットル|杯|品|点|食|泊|名|株|通|週)?(?:/[A-Za-z][A-Za-z0-9]{0,3})?")
+_OPERAND = rf"\(*(?:{_OP_NUM}){_OP_UNIT}\)*"
+# 「A×B＝C」「A÷12≒月C」「A＋(B−C)×1%＝約C」。答えの前の「約・月・年・合計」などは読み飛ばす（2026-11-13）
 EXPR_RE = re.compile(
-    rf"(?P<left>(?:{_OP_NUM}){_OP_UNIT}(?:\s*[×x*÷/+\-−]\s*(?:{_OP_NUM}){_OP_UNIT})+)\s*=\s*(?:約)?(?P<right>{_OP_NUM}){_OP_UNIT}"
+    rf"(?P<left>{_OPERAND}(?:\s*[×x*÷/+\-−]\s*{_OPERAND})+)\s*(?P<eq>=|≒)\s*(?P<pre>(?:約|およそ|月額|年額|合計|月|年|計){{0,2}})\s*"
+    rf"(?P<right>{_OP_NUM})(?P<runit>{_OP_UNIT})"
 )
 SMALL_COUNT_MAX = 1000  # 「2人」「12か月」のような数（お金・割合でないもの）は、文にあれば計算の材料にしてよい
+_OP_TOKEN_RE = re.compile(rf"({_OP_NUM})({_OP_UNIT})|([×x*÷/+\-−])|([()])")
+_OPS = {"×": "*", "x": "*", "÷": "/", "−": "-"}
+
+
+def _expr_eval(left: str, percent_as_fraction: bool = False) -> float | None:
+    """式の左辺の値。percent_as_fraction: 「5%」を 0.05 として計算する（46万円×5% ＝ 23,000円）"""
+    expr = []
+    for num, unit, op, par in _OP_TOKEN_RE.findall(left):
+        if num:
+            value = repr(parse_jp(num))
+            expr.append(f"({value}/100)" if percent_as_fraction and unit.startswith("%") else value)
+        elif op:
+            expr.append(_OPS.get(op, op))
+        elif par:
+            expr.append(par)
+    try:
+        return float(eval("".join(expr), {"__builtins__": {}}, {}))  # noqa: S307 - 数字と + - * / ( ) だけ
+    except Exception:  # noqa: BLE001
+        return None
 
 
 def _expr_value(left: str) -> float | None:
-    tokens = re.findall(rf"({_OP_NUM}){_OP_UNIT}|([×x*÷/+\-−])", left)
-    expr = []
-    for num, op in tokens:
-        if num:
-            expr.append(repr(parse_jp(num)))
-        elif op:
-            expr.append({"×": "*", "x": "*", "÷": "/", "−": "-"}.get(op, op))
-    try:
-        return float(eval("".join(expr), {"__builtins__": {}}, {}))  # noqa: S307 - 数字と + - * / だけ
-    except Exception:  # noqa: BLE001
+    return _expr_eval(left)
+
+
+def _percent_multiplied(left: str) -> bool:
+    """割合（%）が、かけ算・割り算の相手になっているか（「46万円×5%」「5%×46万円」）。足し算・引き算だけ（「10%＋5%」）は False"""
+    tokens = [(num, unit, op) for num, unit, op, par in _OP_TOKEN_RE.findall(left) if num or op]
+    for i, (num, unit, _) in enumerate(tokens):
+        if not num or not unit.startswith("%"):
+            continue
+        near = [tokens[j][2] for j in (i - 1, i + 1) if 0 <= j < len(tokens)]
+        if any(op in ("×", "x", "*", "÷", "/") for op in near):
+            return True
+    return False
+
+
+def _expr_candidates(m: re.Match) -> list[float]:
+    """式の左辺の値の候補（答えと同じ表し方にそろえたもの）。
+    - 割合がかけ算・割り算の相手のときは、割合として計算した値だけ（「46万円×5%＝23,000円」は合う。「＝2,300円」は合わない）
+    - 答えが割合のとき（「2,500円÷50万円＝0.5%」）は 100 倍して比べる
+    - 割合どうしの足し算・引き算（「10%＋5%＝15%」）と、割合の無い式は、数字のままの値も候補にする"""
+    left = m.group("left")
+    as_fraction = _expr_eval(left, percent_as_fraction=True)
+    if as_fraction is None:
+        return []
+    out = [as_fraction * 100 if m.group("runit").startswith("%") else as_fraction]
+    if not _percent_multiplied(left):
+        plain = _expr_eval(left)
+        if plain is not None:
+            out.append(plain)
+    return out
+
+
+def expressions(text: str):
+    """文章の中の式（EXPR_RE の一致）を順に返す。「A＝B＋C＝D」のように続く式は、B から始まる式としても読む"""
+    pos = 0
+    while m := EXPR_RE.search(text, pos):
+        yield m
+        pos = m.start("right") if _TAIL_RE.match(text, m.end()) else m.end()
+
+
+_TAIL_RE = re.compile(rf"(?:[ \t]*[×x*÷/+\-−][ \t]*{_OPERAND})+")
+
+
+def _middle_step(text: str, m: re.Match) -> tuple[str, float] | None:
+    """「A＋(B−C)×1%＝85,800円＋7,140円＝92,940円」の真ん中のように、「＝」の右がまた式になっているとき（右の式の文字列, その値）。
+    このときの「＝」の右の最初の数字（85,800円）は答えとは限らないので、左辺は右の式の値とも比べる
+    （「1,000円＋200円＝1,200円＋300円＝1,500円」のように、答えに続けて足していく書き方もあるので、どちらかに合えばよい）"""
+    tail = _TAIL_RE.match(text, m.end())
+    if not tail:
         return None
+    right = text[m.start("right"):tail.end()]
+    value = _expr_eval(right, percent_as_fraction=True)
+    return (right, value) if value is not None else None
 
 
 def bad_expressions(text: str) -> list[str]:
     """「A×B＝C」のように書いた式で、計算が合わないもの（式の文字列）"""
     out = []
-    for m in EXPR_RE.finditer(nfkc(text or "")):
-        got = _expr_value(m.group("left"))
+    t = nfkc(text or "")
+    for m in expressions(t):
+        got = _expr_candidates(m)
         want = parse_jp(m.group("right"))
-        if got is None or want == 0:
+        if not got or want == 0:
             continue
-        if abs(got - want) > 0.011 * max(abs(want), 1e-9):
+        wants = [want] + ([middle[1]] if (middle := _middle_step(t, m)) else [])
+        if all(abs(g - w) > 0.011 * max(abs(w), 1e-9) for g in got for w in wants):
             out.append(m.group(0))
     return out
 
 
-_OP_TOKEN_RE = re.compile(rf"({_OP_NUM})({_OP_UNIT})|([×x*÷/+\-−])")
+def _answer_matches(m: re.Match, got: float, want: float) -> bool:
+    """式の値 got が、書かれた答え want と合うか。
+    端数は1円（1単位）か0.1%まで。小数の答え（0.5%）はその桁の中、「21万円」のような書き方は表示の桁での切り捨て・四捨五入、
+    「約」「≒」の付いた答えは1%まで。それ以上ずれる式は答えとして認めない"""
+    diff = abs(got - want)
+    step = display_step(m.group("right"))
+    if diff <= max(1.0 if step >= 1 else step * 0.999, 0.001 * abs(want)):
+        return True
+    approx = m.group("eq") == "≒" or bool(re.search(r"約|およそ", m.group("pre") or ""))
+    if approx and diff <= 0.011 * abs(want):
+        return True
+    return step > 1 and display_match(want, step, approx, got)
+
+
+def _is_known(value: float, known: list[float]) -> bool:
+    return any(abs(value - k) <= 1e-9 * max(1.0, abs(k)) for k in known)
+
+
+def _operands_known(left: str, known: list[float]) -> bool:
+    """式の材料が全部、確かめた数字か、文にある小さな数（お金・割合・1単位あたりの金額でないもの）か"""
+    for num, unit, _op, _par in _OP_TOKEN_RE.findall(left):
+        if not num:
+            continue
+        v = parse_jp(num)
+        if _is_known(v, known):
+            continue
+        if not unit.startswith(("円", "ドル", "%")) and 0 < v <= SMALL_COUNT_MAX:
+            continue
+        return False
+    return True
 
 
 def _expression_ok(q: "Qty", verified: list[float], text: str) -> bool:
     """「A＋B×2＝C」「C＋D＝E」のように式を書いた計算で、q がその答えになっていて、
     式の数字がすべて確かめた数字・文にある小さな数（お金・割合でないもの）・前の式の答えのどれかで、
-    式の答えが合っているか（2026-11-12 障害基礎年金の正しい2段の計算が落ちていたため。台帳 A64 の続き）"""
+    式の答えが合っているか（2026-11-12 障害基礎年金の正しい2段の計算が落ちていたため。台帳 A64 の続き）。
+    2026-11-13: 割合（3,000万円×0.7%＝21万円）・かっこ・「≒」「＝月」「＝約」の書き方も読む。合わない式は今までどおり認めない"""
     t = nfkc(text or "")
     if not t:
         return False
     known = list(verified)
-    for m in EXPR_RE.finditer(t):
-        got = _expr_value(m.group("left"))
+    for m in expressions(t):
+        got = _expr_candidates(m)
         want = parse_jp(m.group("right"))
-        if got is None or not want:
+        if not got or not want:
             continue
-        # 端数は1円（1単位）か0.1%まで（四捨五入の分だけ）。それ以上ずれる式は答えとして認めない
-        if abs(got - want) > max(1.0, 0.001 * abs(want)):
+        if (middle := _middle_step(t, m)) and not any(_answer_matches(m, g, want) for g in got):
+            # 「左辺＝P＋Q＝答え」の真ん中: 左辺が確かめた数字だけの式で、P＋Q（か P−Q）と合い、片方が分かっている数字なら、
+            # もう片方は計算で決まる数字（途中の答え）として次の式の材料にしてよい
+            parts = [(parse_jp(n), u) for n, u, _o, _p in _OP_TOKEN_RE.findall(middle[0]) if n]
+            ops = [o for _n, _u, o, _p in _OP_TOKEN_RE.findall(middle[0]) if o]
+            if (len(parts) == 2 and ops in (["+"], ["-"], ["−"]) and _operands_known(m.group("left"), known)
+                    and any(abs(g - middle[1]) <= max(1.0, 0.001 * abs(middle[1])) for g in got)
+                    and sum(1 for v, _u in parts if _is_known(v, known)) == 1):
+                known += [v for v, _u in parts]
+                if m.start() <= q.start and any(abs(v - q.value) <= 1e-9 * max(1.0, abs(q.value)) for v, _u in parts):
+                    return True
             continue
-        ok = True
-        for num, unit, op in _OP_TOKEN_RE.findall(m.group("left")):
-            if not num:
-                continue
-            v = parse_jp(num)
-            if any(abs(v - k) <= 1e-9 * max(1.0, abs(k)) for k in known):
-                continue
-            if unit not in ("円", "ドル", "%") and 0 < v <= SMALL_COUNT_MAX:
-                continue
-            ok = False
-            break
-        if not ok:
+        if not any(_answer_matches(m, g, want) for g in got):
+            continue
+        if not _operands_known(m.group("left"), known):
             continue
         known.append(want)
         # 式の答えそのもの、またはそのあとの文で同じ答えを使ったところ
@@ -876,12 +974,34 @@ def _expression_ok(q: "Qty", verified: list[float], text: str) -> bool:
     return False
 
 
+PARAGRAPH_CAP = 1500
+
+
+def _labelled_block(q: "Qty", text: str) -> bool:
+    """q のある段落（空行で区切ったまとまり。表・箇条書きはすぐ次の段落まで）に「計算」「試算」と書いてあるか。
+    式を何行も並べて、最後に1回だけ「（サイソク編集部の計算）」と添える書き方のため"""
+    t = nfkc(text or "")
+    if not t or q.start > len(t):
+        return False
+    start = t.rfind("\n\n", 0, q.start)
+    start = 0 if start < 0 else start + 2
+    end = t.find("\n\n", q.end)
+    end = len(t) if end < 0 else end
+    line_start = t.rfind("\n", 0, q.start) + 1
+    if t[line_start:line_start + 2].lstrip()[:1] in ("|", "-", "*", "・"):
+        nxt = t.find("\n\n", end + 2)
+        end = len(t) if nxt < 0 else nxt
+    block = t[max(start, q.start - PARAGRAPH_CAP):min(end, q.end + PARAGRAPH_CAP)]
+    return bool(CALC_LABEL_RE.search(block))
+
+
 def derived(q: "Qty", verified: list[float], text: str = "") -> bool:
     """記事の数字 q が、「計算」「試算」と分かる書き方の文で、確かめた数字（verified）どうし（か、文にある小さな数）の
     1回の足し算・引き算・かけ算・割り算、または同じ単位の数字の合計で出せるか。
     式を書いた計算なら、2段の計算（A＋B×2）や前の式の答えを使う計算も、答えが合っていれば認める"""
     if not CALC_LABEL_RE.search(q.sentence or ""):
-        return False
+        # 式を書いた計算だけは、同じ段落に「計算」とあればよい（式が合い、材料が確かめた数字のときだけ。2026-11-13）
+        return bool(text) and _labelled_block(q, text) and _expression_ok(q, verified, text)
     if text and _expression_ok(q, verified, text):
         return True
     # 同じ文と、その直前（2文くらい）の数字を材料にする
