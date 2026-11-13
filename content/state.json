@@ -9351,6 +9351,20 @@
       "skipped": true,
       "url": "https://www.nli-research.co.jp/topics_detail1/id=87278?site=nli"
     },
+    "5bf4951adbe9698d": {
+      "at": "2026-11-13T15:54:00.652734+00:00",
+      "breaking": true,
+      "costUsd": 0.1148,
+      "foreignAi": true,
+      "intent": "breaking",
+      "major": true,
+      "mix": "ai_consumer",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "score": 85,
+      "section": "ai",
+      "slug": "chatgpt-wallet-agentic-payments",
+      "url": "https://openai.com/index/introducing-chatgpt-wallet"
+    },
     "5c4576623088d079": {
       "at": "2026-11-04T04:36:09.003305+00:00",
       "breaking": true,
@@ -20111,6 +20125,14 @@
       "url": "https://global.nissannews.com/ja-JP/releases/261105-01-j",
       "writer": "muse"
     },
+    "muse-8c54080fc7": {
+      "at": "2026-11-13T15:34:49.361551+00:00",
+      "mix": "money",
+      "score": 92,
+      "slug": "tax-refund-2021-deadline-2026",
+      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2030.htm",
+      "writer": "muse"
+    },
     "muse-8f0fdf14b8": {
       "at": "2026-11-12T03:41:46.875522+00:00",
       "mix": "other",
@@ -20263,6 +20285,14 @@
       "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2523.htm",
       "writer": "muse"
     },
+    "muse-a205624926": {
+      "at": "2026-11-13T15:36:13.994450+00:00",
+      "mix": "alert",
+      "score": 92,
+      "slug": "ye-toothpaste-sheet-lot-6c26-recall",
+      "url": "https://www.info.pmda.go.jp/rgo/MainServlet?recallno=2-13030",
+      "writer": "muse"
+    },
     "muse-a34401e231": {
       "at": "2026-11-09T10:39:51.945210+00:00",
       "mix": "money",
@@ -20309,6 +20339,14 @@
       "score": 92,
       "slug": "marutaka-carbon-heater-recall-dms-091-wh",
       "url": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036096&screenkbn=06",
+      "writer": "muse"
+    },
+    "muse-b02afc7b1b": {
+      "at": "2026-11-13T15:41:50.575019+00:00",
+      "mix": "life",
+      "score": 93,
+      "slug": "hair-kirara-recall-lot-check",
+      "url": "https://www.info.pmda.go.jp/rgo/MainServlet?recallno=2-13032",
       "writer": "muse"
     },
     "muse-b292e3f8a8": {
@@ -20694,60 +20732,9 @@
       "slug": "docomo-data-leak-what-to-do",
       "url": "https://www.docomo.ne.jp/info/notice/page/261106_00_m.html",
       "writer": "muse"
-    },
-    "muse-8c54080fc7": {
-      "at": "2026-11-13T15:34:49.361551+00:00",
-      "mix": "money",
-      "score": 92,
-      "slug": "tax-refund-2021-deadline-2026",
-      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2030.htm",
-      "writer": "muse"
-    },
-    "muse-a205624926": {
-      "at": "2026-11-13T15:36:13.994450+00:00",
-      "mix": "alert",
-      "score": 92,
-      "slug": "ye-toothpaste-sheet-lot-6c26-recall",
-      "url": "https://www.info.pmda.go.jp/rgo/MainServlet?recallno=2-13030",
-      "writer": "muse"
-    },
-    "muse-b02afc7b1b": {
-      "at": "2026-11-13T15:41:50.575019+00:00",
-      "mix": "life",
-      "score": 93,
-      "slug": "hair-kirara-recall-lot-check",
-      "url": "https://www.info.pmda.go.jp/rgo/MainServlet?recallno=2-13032",
-      "writer": "muse"
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-11T16:02:55.731141+00:00",
-      "attempt": 1,
-      "id": "39585ac01d2043c6",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "元記事の文をそのまま書き写している（2文。例「prompt: 'A blue ceramic vase with wildflowers on a」）。自分の言葉で要約する"
-      ],
-      "readability": {
-        "avg_paragraph": 129.3,
-        "avg_sentence": 43.1,
-        "long_share": 0.296,
-        "max_paragraph": 202,
-        "paragraphs": 9,
-        "sentences": 27
-      },
-      "score": null,
-      "source": "vercel-changelog",
-      "title": "MiniMax H3 Image and Highspeed now available on AI Gateway",
-      "warnings": [
-        "見出しが52字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "材料の無い章がある（日本での提供は、まだ発表されていません）。表示では隠す",
-        "初めて出たところで言い換えていない略語（JPEG・PNG）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-11T16:03:16.612157+00:00",
@@ -28287,6 +28274,29 @@
       "title": "システム障害に伴うメール受信不具合のお知らせ",
       "warnings": [
         "見出しが51字（目安40字以内）。一覧・カードでは前半だけを出す"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-13T15:54:00.615931+00:00",
+      "attempt": 1,
+      "id": "5bf4951adbe9698d",
+      "kind": "ai",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 93.1,
+        "avg_sentence": 40.7,
+        "long_share": 0.125,
+        "max_paragraph": 151,
+        "paragraphs": 14,
+        "sentences": 32
+      },
+      "score": 85,
+      "source": "openai-news",
+      "title": "Introducing ChatGPT Wallet",
+      "warnings": [
+        "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す"
       ]
     }
   ],
