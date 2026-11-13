@@ -72,14 +72,13 @@
   "videoTitle": "NEWTのブラックフライデーはいつから　11月14日12時開始、価格とクーポンの条件",
   "publishedAt": "2026-11-13T09:42:34.477141+00:00",
   "generatedAt": "2026-11-13T09:44:48.733734+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/newt-black-friday-2026-sale-figure-650bce67.jpg",
   "model": "anthropic-api:claude-haiku-5-5",
   "affiliates": [],
   "newsType": "product",
   "todayActions": [
     "11月14日12時の販売前に、特設ページで狙うツアーをお気に入りに入れておく",
-    "クーポンは予約のときにしか使えないため、予約前に受け取って利用条件を確かめる",
-    "ホテルは予約前に「プラン詳細」で、キャンセル料の条件を確かめる"
+    "11月14日12時に、第1弾のセールツアーから行き先と日程を選んで予約に進む"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -99,5 +98,127 @@
   "detectedAt": "2026-11-13T09:45:16+00:00",
   "searchTitle": "NEWTのブラックフライデー　先着セールは11月14日12時から",
   "layout": "noir",
-  "summaryLine": "NEWTのブラックフライデーは11月14日12時から、先着セールツアーの販売が始まります。"
+  "summaryLine": "NEWTのブラックフライデーは11月14日12時から、先着セールツアーの販売が始まります。",
+  "insight": [
+    {
+      "text": "先着の組数はツアーごとに違い、ソウルは150組、セブやホノルルは100組、パリは50組と書かれています。",
+      "source": "https://newt.net/sale-teaser"
+    },
+    {
+      "text": "ツアーの価格は「2名1室 / おとな1名あたり（燃油込み）」で、ツアーごとに幅があります。「この日程が特におトク」の日付も並んで表示されています。",
+      "source": "https://newt.net/sale-teaser"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "NEWT BLACK FRIDAY特設ページ",
+      "url": "https://newt.net/sale-teaser",
+      "source": "https://newt.net/sale-teaser",
+      "note": "第1弾から第6弾までの日時と内容が載っています"
+    },
+    {
+      "name": "NEWT セール",
+      "url": "https://newt.net/sale?gnav=sale",
+      "source": "https://newt.net/tour/search?highlightedTourId=292151&destinationId=59&destinationIds=59&airportId=9&adults=2&rooms=1&orderBy=RECOMMENDED",
+      "howTo": [
+        "NEWT海外旅行・国内旅行",
+        "セール"
+      ]
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "11月14日12時の販売前に、特設ページで狙うツアーをお気に入りに入れておく",
+      "source": "https://newt.net/sale-teaser",
+      "steps": [
+        "特設ページを開く",
+        "第1弾 11/14(土) 12時のセールツアーを見る",
+        "気になるツアーをお気に入りに入れる"
+      ],
+      "url": "https://newt.net/sale-teaser"
+    },
+    {
+      "action": "11月14日12時に、第1弾のセールツアーから行き先と日程を選んで予約に進む",
+      "source": "https://newt.net/sale-teaser",
+      "steps": [
+        "特設ページの第1弾「セールツアー」を開く",
+        "「販売スタート」の表示があるツアーを選ぶ",
+        "2名1室 / おとな1名あたりの価格を確かめる"
+      ],
+      "url": "https://newt.net/sale-teaser"
+    }
+  ],
+  "cause": {
+    "text": "公式ページでは今回の販売を「年に一度の、トクベツな14日間」と案内しており、11月14日（土）12時にセールが始まります。",
+    "status": "background",
+    "source": "https://newt.net/sale-teaser"
+  },
+  "worries": [
+    {
+      "q": "セールはいつから始まる？",
+      "a": "第1弾は11/14(土) 12時にセールツアーの販売が始まり、第2弾は同日20時に目玉ツアーが追加販売されます。第3弾のクーポン利用は11/15(日) 12時からです。",
+      "source": "https://newt.net/sale-teaser",
+      "action": "11月14日12時に特設ページを開けるよう、前もって気になるツアーを確かめておく"
+    },
+    {
+      "q": "クーポンはどこで使える？",
+      "a": "第3弾は11/15(日) 12時からの「NEWTの日」クーポン、第5弾は海外ホテル予約に使える先着クーポン、第6弾は国内ホテル予約に使える先着クーポンと書かれています。",
+      "source": "https://newt.net/sale-teaser",
+      "action": "クーポンを使う予定があれば、利用できる予約の種類を特設ページで確かめてから予約に進む"
+    },
+    {
+      "q": "セールの価格はどのくらい違う？",
+      "a": "ソウル3日間は￥19,800〜￥94,200、ホノルル5日間は￥139,800〜￥546,800と、行き先で大きく違います。価格は2名1室 / おとな1名あたり（燃油込み）です。",
+      "source": "https://newt.net/sale-teaser",
+      "action": "行き先と日程を決め、特設ページで2名1室 / おとな1名あたりの価格を比べる"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "先着セールで予約する？クーポンを待つ？",
+      "situation": "行き先と日程が決まっていて、先着セールに出ているツアーがある",
+      "recommend": "11月14日12時の販売開始に合わせて予約を検討する",
+      "reason": "先着セールは販売開始が11月14日12時で、組数は先着順です。クーポンは11月15日12時から使えると書かれていますが、対象ツアーの詳細はこのページにはありません。",
+      "source": "https://newt.net/sale-teaser"
+    },
+    {
+      "question": "先着セールとクーポン、いつ決める？",
+      "situation": "まだ行き先や日程が決まっていない",
+      "recommend": "急がず、特設ページで弾ごとの内容を確かめてから決める",
+      "reason": "第2弾の目玉ツアー追加は11/14 20時、第3弾のクーポン開始は11/15 12時と、時刻が分かれています。各弾の日時を見比べてから決められます。",
+      "source": "https://newt.net/sale-teaser"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "2名1室の価格と先着の組数を先に見る",
+    "cause": "今回のセールは何が特別？",
+    "steps": "12時の販売前に今やること",
+    "desk": "予約の入口はどこ？",
+    "worries": "行き先の価格やクーポンは？",
+    "guide": "先着セールかクーポンか、迷ったら"
+  },
+  "depthAt": "2026-11-13T10:14:36+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "NEWTのブラックフライデー、11月14日12時から先着セール",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-13T10:16:42+00:00"
+  },
+  "imageFocus": {
+    "x": 0.52,
+    "y": 0.414,
+    "box": [
+      0.062,
+      0.036,
+      0.978,
+      0.792
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/newt-black-friday-2026-sale-figure-650bce67.jpg"
+  }
 }

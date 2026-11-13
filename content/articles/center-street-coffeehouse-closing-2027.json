@@ -67,13 +67,13 @@
   "videoTitle": "センターストリート・コーヒーハウスはいつまで　2027年6月30日閉店と予約の取り方",
   "publishedAt": "2026-11-13T09:45:39.348460+00:00",
   "generatedAt": "2026-11-13T09:45:49.830963+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/center-street-coffeehouse-closing-2027-figure-f7765470.jpg",
   "model": "anthropic-api:claude-haiku-5-5",
   "affiliates": [],
   "newsType": "product",
   "todayActions": [
-    "行きたい日を決め、利用日の1カ月前10:00に東京ディズニーリゾート・アプリからプライオリティ・シーティングを申し込む",
-    "メニューごとの販売期間を公式メニューページで確認する"
+    "利用日の1カ月前10:00に、アプリか予約サイトでプライオリティ・シーティングを申し込む",
+    "当日に空きを狙うなら、オンラインは9:00から、店頭は10:00から申し込む"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -118,5 +118,116 @@
   "qualityScore": 100,
   "detectedAt": "2026-11-13T09:47:12+00:00",
   "layout": "noir",
-  "summaryLine": "東京ディズニーランドのコーヒー店「センターストリート・コーヒーハウス」が、2027年6月30日（水）で営業を終える。"
+  "summaryLine": "東京ディズニーランドのコーヒー店「センターストリート・コーヒーハウス」が、2027年6月30日（水）で営業を終える。",
+  "insight": [
+    {
+      "text": "当日枠はオンラインで毎日9:00から受け付け、空席がある場合は店頭で10:00から受け付けます。",
+      "source": "https://www.tokyodisneyresort.jp/tdr/guide/app_service/priorityseating.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "プライオリティ・シーティング（レストランの優先案内サービス）",
+      "url": "https://www.tokyodisneyresort.jp/tdr/guide/app_service/priorityseating.html",
+      "source": "https://www.tokyodisneyresort.jp/tdr/guide/app_service/priorityseating.html",
+      "howTo": [
+        "HOME",
+        "パークの楽しみ方ガイド",
+        "アプリを使ってパークを快適に楽しもう",
+        "プライオリティ・シーティング（レストランの優先案内サービス）"
+      ],
+      "hours": "前日まで：ご利用希望日の1ヵ月前10:00～ご利用日前日20:59／当日枠：9:00～",
+      "note": "5名様以上で利用すると席が離れることがあります。予約時間を過ぎるとキャンセル扱いになる場合があります。"
+    },
+    {
+      "name": "センターストリート・コーヒーハウス 店舗メニュー",
+      "url": "https://www.tokyodisneyresort.jp/tdl/restaurant/food/306/",
+      "source": "https://www.tokyodisneyresort.jp/tdl/restaurant/food/306/",
+      "howTo": [
+        "HOME",
+        "東京ディズニーランド",
+        "メニュー/レストラン",
+        "店舗メニュー"
+      ],
+      "note": "販売期間は予定で、予告なく変わる場合があります。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "利用日の1カ月前10:00に、アプリか予約サイトでプライオリティ・シーティングを申し込む",
+      "source": "https://www.tokyodisneyresort.jp/tdr/guide/app_service/priorityseating.html",
+      "steps": [
+        "東京ディズニーリゾート・アプリを開く",
+        "プライオリティ・シーティングから申し込む",
+        "受付は前日20:59まで"
+      ],
+      "url": "https://reserve.tokyodisneyresort.jp/restaurant/list/"
+    },
+    {
+      "action": "当日に空きを狙うなら、オンラインは9:00から、店頭は10:00から申し込む",
+      "source": "https://www.tokyodisneyresort.jp/tdr/guide/app_service/priorityseating.html",
+      "steps": [
+        "オンラインの当日枠を9:00に確認する",
+        "空席がなければ店頭へ直接行く",
+        "店頭では10:00から受け付け"
+      ],
+      "url": "https://www.tokyodisneyresort.jp/tdr/guide/app_service/priorityseating.html"
+    }
+  ],
+  "worries": [
+    {
+      "q": "閉店前に行きたいけど、いつ予約すればいい？",
+      "a": "プライオリティ・シーティングの受付は利用日の1カ月前10:00から前日20:59までです。予約時間を過ぎるとキャンセル扱いになる場合があるので、時間に合わせて店へ行く必要があります。",
+      "source": "https://www.tokyodisneyresort.jp/tdr/guide/app_service/priorityseating.html",
+      "action": "利用日の1カ月前の10:00に、東京ディズニーリゾート・アプリで申し込む画面を開く"
+    },
+    {
+      "q": "当日思い立っても入れる？",
+      "a": "当日枠はオンラインで毎日9:00から受け付け、空席がある場合は店頭で10:00から受け付けます。予約は朝食・昼食・夕食の時間帯ごとに1回までです。",
+      "source": "https://www.tokyodisneyresort.jp/tdr/guide/app_service/priorityseating.html",
+      "action": "当日は9:00にオンラインの当日枠を確認し、空きがなければ店頭へ行く"
+    },
+    {
+      "q": "大人数で行っても一緒に座れる？",
+      "a": "一度に申し込めるのは8名までです。5名以上で利用すると席が離れることがあり、9名以上は2つのグループに分けてそれぞれのアカウントで申し込みます。",
+      "source": "https://www.tokyodisneyresort.jp/tdr/guide/app_service/priorityseating.html",
+      "action": "同行者が多い場合は、8名までの申し込みか、2グループに分けて申し込むかを決める"
+    },
+    {
+      "q": "食べたいメニューはいつまで注文できる？",
+      "a": "ステーキプレート、スペシャルデザートセット、スーベニアプレート（プラス）は2026年12月25日までの販売です。ラッシー（ストロベリー）は2027年6月30日までです。販売期間は予定で、予告なく変わる場合があります。",
+      "source": "https://www.tokyodisneyresort.jp/tdl/restaurant/food/306/",
+      "action": "食べたいメニューの販売期間を、店舗メニューのページで確認しておく"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "当日の空席は9時と10時で受付が違う",
+    "steps": "申し込みはいつ、どこからする？",
+    "desk": "公式の申し込み先と注意点",
+    "worries": "期間限定メニューや人数は大丈夫？"
+  },
+  "depthAt": "2026-11-13T10:13:57+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "センターストリート・コーヒーハウス、2027年6月30日に閉店",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": false,
+    "at": "2026-11-13T10:15:51+00:00"
+  },
+  "imageFocus": {
+    "x": 0.537,
+    "y": 0.413,
+    "box": [
+      0.094,
+      0.077,
+      0.981,
+      0.75
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/center-street-coffeehouse-closing-2027-figure-f7765470.jpg"
+  }
 }

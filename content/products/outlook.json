@@ -1,0 +1,148 @@
+{
+  "slug": "outlook",
+  "name": "Outlook",
+  "aliases": [],
+  "company": "microsoft",
+  "companyName": "Microsoft",
+  "category": "アプリ・サービス",
+  "overview": {
+    "text": "Outlookは、マイクロソフトが提供するメールなどのクラウドサービスです。2026年11月に、なりすましの脆弱性の修正プログラムや、世界的な障害の発生が発表されました。",
+    "sources": [
+      "outlook-email-outage-status",
+      "microsoft-365-outage-november-13",
+      "outlook-vulnerability-november-2026"
+    ]
+  },
+  "facts": [
+    {
+      "label": "日本での提供",
+      "value": "日本でも広い範囲で影響を確認",
+      "sources": [
+        "outlook-email-outage-status",
+        "microsoft-365-outage-november-13"
+      ]
+    },
+    {
+      "label": "使える場所",
+      "value": "アメリカや日本などの広い範囲",
+      "sources": [
+        "outlook-email-outage-status",
+        "microsoft-365-outage-november-13"
+      ]
+    }
+  ],
+  "capabilities": [
+    {
+      "text": "メールの送受信機能やサービスを利用できます。",
+      "sources": [
+        "outlook-email-outage-status",
+        "microsoft-365-outage-november-13"
+      ]
+    },
+    {
+      "text": "配信できないメッセージはサーバー側で最大24時間保持され、再試行が続きます。",
+      "sources": [
+        "outlook-email-outage-status"
+      ]
+    },
+    {
+      "text": "期限を迎えたメールは順次配信不能として送信者に差し戻されます。",
+      "sources": [
+        "outlook-email-outage-status"
+      ]
+    }
+  ],
+  "pricing": [],
+  "japan": [
+    {
+      "text": "アメリカや日本などの広い範囲で障害の影響が確認されています。",
+      "sources": [
+        "outlook-email-outage-status",
+        "microsoft-365-outage-november-13"
+      ]
+    },
+    {
+      "text": "政府の情報システム基盤でも支障が生じています。",
+      "sources": [
+        "microsoft-365-outage-november-13"
+      ]
+    }
+  ],
+  "howto": [
+    {
+      "text": "Windows Updateなどを使ってセキュリティ更新プログラムを適用します。",
+      "sources": [
+        "outlook-vulnerability-november-2026"
+      ]
+    },
+    {
+      "text": "手動で確認する場合は、[スタート]から[設定]、[Windows Update]を選択します。",
+      "sources": [
+        "outlook-vulnerability-november-2026"
+      ]
+    }
+  ],
+  "differences": [],
+  "faq": [
+    {
+      "q": "障害中に送ったメールは消えますか？",
+      "a": "サーバー側で最大24時間保持され、再試行が続きます。24時間たっても届かなければ送信者に差し戻されます。",
+      "sources": [
+        "outlook-email-outage-status"
+      ]
+    },
+    {
+      "q": "障害中はメールを送り直したほうがいいですか？",
+      "a": "あわてて全部を送り直す必要はありません。配信不能の通知が来た分だけ送り直します。",
+      "sources": [
+        "outlook-email-outage-status"
+      ]
+    },
+    {
+      "q": "自分の環境か障害かを切り分けるには？",
+      "a": "別の回線や別の端末からOutlookを開いてみてください。どちらでもつながらなければサービス側の障害の可能性が高くなります。",
+      "sources": [
+        "microsoft-365-outage-november-13"
+      ]
+    },
+    {
+      "q": "脆弱性への対策はどのように行いますか？",
+      "a": "Windows Updateなどを使って更新プログラムを適用してください。",
+      "sources": [
+        "outlook-vulnerability-november-2026"
+      ]
+    }
+  ],
+  "timeline": [
+    {
+      "date": "2026-11-11",
+      "slug": "outlook-vulnerability-november-2026",
+      "event": "Outlookのなりすまし脆弱性が確認"
+    },
+    {
+      "date": "2026-11-13",
+      "slug": "outlook-email-outage-status",
+      "event": "Microsoft 365でメールの障害が発生"
+    }
+  ],
+  "related": [
+    "azure-sql",
+    "work-iq",
+    "copilot-cowork",
+    "github-copilot"
+  ],
+  "articles": [
+    "outlook-email-outage-status",
+    "microsoft-365-outage-november-13",
+    "outlook-vulnerability-november-2026"
+  ],
+  "linkFrom": [
+    "outlook-email-outage-status",
+    "outlook-vulnerability-november-2026"
+  ],
+  "signature": "a1b318e60d2afff9",
+  "primarySignature": "93fea70b8a207a66",
+  "model": "gemini-3.5-flash-lite",
+  "createdAt": "2026-11-13T10:12:46+00:00",
+  "updatedAt": "2026-11-13T10:12:46+00:00"
+}

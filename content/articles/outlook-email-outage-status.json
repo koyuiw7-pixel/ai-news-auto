@@ -73,9 +73,8 @@
     }
   ],
   "todayActions": [
-    "送信トレイを確認し、メールが残っていないか確かめる。",
-    "受信トレイで「配信不能」の通知が来ていないか検索する。",
-    "通知が来ていないメールは、復旧後に届く可能性があるため送り直さない。"
+    "受信トレイで「配信不能」の通知が来ていないか検索する",
+    "管理者は、Microsoft 365 管理センターでサービス正常性を確認する"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -145,5 +144,92 @@
     "provider": "Cloudflare Workers AI",
     "relevant": true,
     "at": "2026-11-13T09:53:25+00:00"
-  }
+  },
+  "insight": [
+    {
+      "text": "配信不能の通知は、公式ページでは「配信不能レポート」と書かれ、NDRやバウンス メッセージとも呼ばれます。受信トレイを探すときの言葉に使えます。",
+      "source": "https://learn.microsoft.com/ja-jp/defender-office-365/connectors-mail-flow-intelligence"
+    },
+    {
+      "text": "保留中のメールはキューに24時間残り、15分ごとに再試行されます。再試行は、相手のメールシステムが返したエラーの種類によって決まります。",
+      "source": "https://learn.microsoft.com/vi-vn/office365/servicedescriptions/exchange-online-protection-service-description/exchange-online-protection-limits"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "サービスの状態ページ",
+      "url": "https://status.cloud.microsoft",
+      "source": "https://learn.microsoft.com/ja-jp/microsoft-365/enterprise/view-service-health",
+      "howTo": [
+        "管理センターにサインインできない場合",
+        "サービスの状態ページ"
+      ],
+      "note": "管理センターにサインインできない場合でも、テナントにログインできない既知の問題を確認できます。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "受信トレイで「配信不能」の通知が来ていないか検索する",
+      "source": "https://learn.microsoft.com/ja-jp/defender-office-365/connectors-mail-flow-intelligence",
+      "steps": [
+        "受信トレイを開く",
+        "検索欄に「配信不能」と入力する",
+        "「NDR」「バウンス」の言葉でも探す"
+      ]
+    },
+    {
+      "action": "管理者は、Microsoft 365 管理センターでサービス正常性を確認する",
+      "source": "https://learn.microsoft.com/ja-jp/microsoft-365/enterprise/view-service-health",
+      "steps": [
+        "管理センターで「正常性」を開く",
+        "「サービス正常性」を選ぶ",
+        "問題のタイトルを選び詳細を見る"
+      ],
+      "url": "https://learn.microsoft.com/ja-jp/microsoft-365/enterprise/view-service-health"
+    }
+  ],
+  "worries": [
+    {
+      "q": "障害中に送ったメールは、消えてしまう？",
+      "a": "コネクタ経由で配信できないメッセージは、Microsoft 365のキューに入れられます。Microsoft 365は、メッセージごとに24時間配信を再試行し続けます。",
+      "source": "https://learn.microsoft.com/ja-jp/defender-office-365/connectors-mail-flow-intelligence",
+      "action": "受信トレイで「配信不能」の通知を検索し、通知が来ていないかを確かめる。"
+    },
+    {
+      "q": "24時間を過ぎたら、もう届かないの？",
+      "a": "キューに入ったメッセージは24時間残り、15分ごとに再試行されます。24時間後は期限切れになり、配信不能レポートで元の送信者に返されます。",
+      "source": "https://learn.microsoft.com/ja-jp/defender-office-365/connectors-mail-flow-intelligence",
+      "action": "期限切れで返された分の通知だけを見て、送り直す分を決める。"
+    },
+    {
+      "q": "届かなかったかどうかは、どこで分かる？",
+      "a": "配信不能レポートは、NDRやバウンス メッセージとも呼ばれます。24時間の期限が切れたメッセージは、この報告で元の送信者に返されます。",
+      "source": "https://learn.microsoft.com/ja-jp/defender-office-365/connectors-mail-flow-intelligence",
+      "action": "送信者に、配信不能の通知が届いていないか確認してもらう。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "通知が来ていないメールは、送り直すべき？",
+      "situation": "24時間以内で、通知がまだ来ていない",
+      "recommend": "急ぎでなければ送り直さず、待つ",
+      "reason": "保留中のメールは24時間、15分ごとに再試行されます。24時間以内なら、待っている間に届く可能性があります。",
+      "source": "https://learn.microsoft.com/vi-vn/office365/servicedescriptions/exchange-online-protection-service-description/exchange-online-protection-limits"
+    },
+    {
+      "question": "通知が来ていないメールは、送り直すべき？",
+      "situation": "24時間を過ぎても通知が来ない",
+      "recommend": "送信者に配信不能の通知が来ていないか確認してもらう",
+      "reason": "24時間後に期限切れになったメールは、配信不能レポートで送信者に返されます。通知の有無で、届いたかどうかの手がかりになります。",
+      "source": "https://learn.microsoft.com/ja-jp/defender-office-365/connectors-mail-flow-intelligence"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "配信不能の通知は、NDRとも呼ばれる",
+    "steps": "通知を探す前に、まず確かめること",
+    "desk": "公式の状況確認は、サービスの状態ページで",
+    "worries": "障害中のメールは消える？24時間の境目",
+    "guide": "送り直すか待つか、迷ったときの決め方"
+  },
+  "depthAt": "2026-11-13T10:13:31+00:00"
 }
