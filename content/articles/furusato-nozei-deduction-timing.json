@@ -66,13 +66,13 @@
   "videoTitle": "ふるさと納税の控除はいつ・どの税金から引かれるか ワンストップ特例は翌年6月以降の住民税だけ、確定申告は所得税の還付が先に来る",
   "publishedAt": "2026-11-13T05:53:12.568550+00:00",
   "generatedAt": "2026-11-13T05:54:43.277522+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/furusato-nozei-deduction-timing-figure-ae0c3a1e.jpg",
   "model": "anthropic-api:claude-haiku-5-5",
   "affiliates": [],
   "newsType": "policy",
   "todayActions": [
-    "寄附先が5団体以内で確定申告をしないなら、寄附のときに寄附先ごとにワンストップ特例の申請書を提出する。",
-    "確定申告をする人は、寄附先が出す受領書を保管し、確定申告書の「住民税に関する事項」欄にも寄附金額を書く。"
+    "寄附先が5団体以内なら、寄附のときに寄附先ごとに特例の申請書を出す",
+    "確定申告をする人は、住民税に関する事項の欄にも寄附金額を書いてから提出する"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -126,5 +126,151 @@
   "layout": "noir",
   "summaryLine": "ワンストップ特例は控除の全額が翌年度の住民税から引かれ、所得税からの控除は行われません。",
   "duplicateOf": "furusato-nozei-limit-check",
-  "duplicateReason": "同じ出典URL"
+  "duplicateReason": "同じ出典URL",
+  "insight": [
+    {
+      "text": "ワンストップ特例は、払込取扱票の「ふるさと納税ワンストップ特例の申請書の送付を希望します。」欄にチェックを入れただけでは完了せず、寄附先から送られる申請書への記入と提出が必要です。",
+      "source": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/faq/"
+    },
+    {
+      "text": "確定申告書の「住民税に関する事項」の「都道府県、市区町村への寄附（特例控除対象）」欄が空だと、住民税の控除が受けられないことがあります。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1155.htm"
+    },
+    {
+      "text": "還付の目安は、e-Taxで提出した還付申告が3週間程度、2月・3月の確定申告期間中は1か月から1か月半程度です。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/shinkoku/qa/11.htm"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "国税庁 タックスアンサー No.1155 ふるさと納税（寄附金控除）",
+      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1155.htm",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1155.htm",
+      "howTo": [
+        "ホーム",
+        "税について調べる",
+        "タックスアンサー（よくある税の質問）"
+      ],
+      "note": "確定申告書第二表の「寄附金控除に関する事項」欄と「住民税に関する事項」欄の両方に金額を書く。"
+    },
+    {
+      "name": "国税庁 確定申告期に多いお問合せ事項Q＆A（税金の還付）",
+      "url": "https://www.nta.go.jp/taxes/shiraberu/shinkoku/qa/11.htm",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/shinkoku/qa/11.htm",
+      "howTo": [
+        "税について調べる",
+        "所得税（確定申告書等作成コーナー）",
+        "確定申告期に多いお問合せ事項Q＆A"
+      ],
+      "note": "還付金の処理状況は、e-Taxソフト（WEB版）から確認できます。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "寄附先が5団体以内なら、寄附のときに寄附先ごとに特例の申請書を出す",
+      "source": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/faq/",
+      "steps": [
+        "払込取扱票の「ワンストップ特例の申請書の送付を希望します。」欄にチェック",
+        "寄附先から届く申請書に必要事項を記入する",
+        "記入した申請書を寄附先団体へ提出する"
+      ],
+      "url": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/mechanism/procedure.html"
+    },
+    {
+      "action": "確定申告をする人は、住民税に関する事項の欄にも寄附金額を書いてから提出する",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1155.htm",
+      "steps": [
+        "確定申告書第二表の「寄附金控除に関する事項」欄に寄附先名と金額を書く",
+        "「住民税に関する事項」の「都道府県、市区町村への寄附（特例控除対象）」欄にも金額を書く",
+        "寄附先が出す受領書を添付して提出する"
+      ],
+      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1155.htm"
+    }
+  ],
+  "cause": {
+    "text": "ワンストップ特例は、確定申告が不要な給与所得者などが寄附先5団体以内で、確定申告なしに控除を受けられる仕組みとして平成27年4月1日に始まりました。所得税からの控除は行われず、全額が翌年度の住民税から減ります。",
+    "status": "background",
+    "source": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/topics/20150401.html"
+  },
+  "worries": [
+    {
+      "q": "ワンストップ特例を使えば、もう何もしなくていい？",
+      "a": "寄附のときに寄附先ごとに申請書を提出すれば、確定申告は不要です。ただし払込票のチェックだけでは完了せず、寄附先から送られる申請書に記入して提出する必要があります。",
+      "source": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/faq/",
+      "action": "寄附先から送られた申請書に必要事項を記入し、寄附先団体へ提出します。チェックだけでは完了しません。"
+    },
+    {
+      "q": "引っ越したら、ワンストップ特例の手続きは必要？",
+      "a": "申請後に転居など申請書の内容が変わったら、寄附を行った翌年の1月10日までに寄附先の自治体へ変更届出書を提出します。提出済みの申請書の内容に変更があった場合が対象です。",
+      "source": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/topics/20150401.html",
+      "action": "引っ越したら、寄附先の自治体に変更届出書を出す（寄附の翌年1月10日まで）"
+    },
+    {
+      "q": "確定申告で住民税の控除が漏れたらどうなる？",
+      "a": "確定申告書の「住民税に関する事項」の寄附金欄が空だと、住民税の控除が受けられないことがあります。所得税の確定申告書は個人住民税の申告書も兼ねています。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1155.htm",
+      "action": "確定申告書の「住民税に関する事項」欄にも寄附金額を必ず書いてから提出する"
+    },
+    {
+      "q": "還付はいつごろ口座に戻ってくる？",
+      "a": "e-Taxで提出した還付申告は3週間程度で処理されます。2月・3月の確定申告期間中は、おおむね1か月から1か月半程度とされています。訂正申告や書類不備があると対象外になります。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/shinkoku/qa/11.htm",
+      "action": "e-Taxソフト（WEB版）のマイページ「還付・納税関係」で還付金の処理状況を確かめる"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "ワンストップ特例と確定申告、どちらにする？",
+      "situation": "寄附先が5団体以内で、確定申告の予定がない",
+      "recommend": "ワンストップ特例を検討する価値がある",
+      "reason": "所得税からの控除は行われず、控除の全額が翌年6月以降に支払う住民税から減ります。還付は受けられません。確定申告の手間はなくなります。",
+      "source": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/topics/20150401.html"
+    },
+    {
+      "question": "ワンストップ特例と確定申告、どちらにする？",
+      "situation": "寄附先が6団体以上、または医療費控除などで確定申告をする",
+      "recommend": "確定申告で控除を受ける",
+      "reason": "確定申告が必要です。ワンストップ特例の申請をしていても、申請した分も含めて寄附金控除を計算します。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1155.htm"
+    },
+    {
+      "question": "早く還付を受けたいなら、どちらが合う？",
+      "situation": "寄附した年の所得税の還付を待てる",
+      "recommend": "確定申告を検討する価値がある",
+      "reason": "確定申告なら寄附した年の所得税から控除（還付）されます。還付は源泉徴収などで納めた所得税の範囲で、収入や他の控除の状況によります。",
+      "source": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/mechanism/procedure.html"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "寄附のときのチェックだけでは特例は完了しない",
+    "cause": "ワンストップ特例はどんな仕組みか",
+    "steps": "寄附のときと確定申告のときに押さえること",
+    "desk": "公式ページで確かめる窓口と道順",
+    "worries": "申請の抜けや還付の遅れ、住民税は大丈夫？",
+    "guide": "特例か確定申告か、迷ったときの決め方"
+  },
+  "depthAt": "2026-11-13T06:24:20+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "ふるさと納税の控除、ワンストップ特例は翌年6月以降の住民税だけ",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-13T06:28:18+00:00"
+  },
+  "imageFocus": {
+    "x": 0.511,
+    "y": 0.383,
+    "box": [
+      0.078,
+      0.065,
+      0.944,
+      0.702
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/furusato-nozei-deduction-timing-figure-ae0c3a1e.jpg"
+  }
 }

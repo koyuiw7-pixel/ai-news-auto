@@ -64,7 +64,7 @@
   "videoTitle": "ふるさと納税 寄附金受領証明書をなくしたら ワンストップ特例の人は原則不要、確定申告の人は寄附先自治体へ再発行を依頼",
   "publishedAt": "2026-11-13T05:55:52.494332+00:00",
   "generatedAt": "2026-11-13T05:58:12.320043+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/furusato-receipt-lost-procedure-figure-7833266d.jpg",
   "model": "anthropic-api:claude-haiku-5-5",
   "affiliates": [],
   "newsType": "policy",
@@ -75,8 +75,9 @@
     }
   ],
   "todayActions": [
-    "ふるさと納税の受領書が手元にあるか、寄附先と寄附した年を書き出す",
-    "確定申告をする予定なら、3月15日までの期限を手帳やカレンダーに入れる"
+    "寄附先が5団体以内か、確定申告をするかを先に確かめ、受領書の再発行を寄附先へ問い合わせる",
+    "特定事業者の年間証明書で代えられるか、国税庁のページで確かめる",
+    "ふるさと納税専用の振込用紙で寄附したなら、払込票控（半券）が残っているか探す"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -141,5 +142,159 @@
   "layout": "noir",
   "summaryLine": "ワンストップ特例の人は受領証明書の提出が原則不要。確定申告の人は添付が必要",
   "duplicateOf": "furusato-onestop-tokurei-kakutei",
-  "duplicateReason": "同じ出典URL"
+  "duplicateReason": "同じ出典URL",
+  "insight": [
+    {
+      "text": "確定申告で寄附ごとの受領書に代えて、年間寄附額を記載した「寄附金控除に関する証明書」を添付できます。電子データはXML形式で、PDF形式は不可です。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/shinkoku/kakutei/koujyo/kifukin.htm"
+    },
+    {
+      "text": "ワンストップ特例を申請した後に確定申告をすると、特例の申請は無効になります。その場合、特例の申請をした分も含めて寄附金控除額を計算する必要があります。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1155.htm"
+    },
+    {
+      "text": "ふるさと納税専用の振込用紙や納付書で寄附したときは、払込票控（振込用紙の半券）が確定申告の寄附の証明書類になる場合があります。",
+      "source": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/mechanism/procedure.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "総務省 ふるさと納税の流れ",
+      "url": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/mechanism/procedure.html",
+      "source": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/mechanism/procedure.html",
+      "howTo": [
+        "ふるさと納税ポータルサイト",
+        "ふるさと納税のしくみ",
+        "ふるさと納税の流れ"
+      ],
+      "note": "申請書は寄附先の自治体によって異なることがあります。受領書の発行や申込方法も自治体によって異なるため、寄附先へ確かめてください。"
+    },
+    {
+      "name": "国税庁 タックスアンサー No.1155 ふるさと納税(寄附金控除)",
+      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1155.htm",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1155.htm",
+      "howTo": [
+        "税について調べる",
+        "タックスアンサー（よくある税の質問）"
+      ],
+      "note": "確定申告をするとワンストップ特例の申請が無効になる注意が書かれています。"
+    },
+    {
+      "name": "国税庁 ふるさと納税に係る寄附金控除に関する証明書等について",
+      "url": "https://www.nta.go.jp/taxes/shiraberu/shinkoku/kakutei/koujyo/kifukin.htm",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/shinkoku/kakutei/koujyo/kifukin.htm",
+      "howTo": [
+        "税について調べる",
+        "所得税（確定申告書等作成コーナー）"
+      ],
+      "note": "証明書の記載事項、電子データの形式（XML形式）、特定事業者の一覧が書かれています。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "寄附先が5団体以内か、確定申告をするかを先に確かめ、受領書の再発行を寄附先へ問い合わせる",
+      "source": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/mechanism/procedure.html",
+      "steps": [
+        "ワンストップ特例の申請書を出したか確かめる",
+        "寄附先が6団体以上なら確定申告が必要",
+        "寄附先の自治体に受領書の再発行を問い合わせる"
+      ],
+      "url": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/mechanism/procedure.html"
+    },
+    {
+      "action": "特定事業者の年間証明書で代えられるか、国税庁のページで確かめる",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/shinkoku/kakutei/koujyo/kifukin.htm",
+      "steps": [
+        "国税庁長官が指定した特定事業者の一覧を見る",
+        "証明書は特定事業者が発行する",
+        "電子データはXML形式が必要で、PDFは不可"
+      ],
+      "url": "https://www.nta.go.jp/taxes/shiraberu/shinkoku/kakutei/koujyo/kifukin.htm"
+    },
+    {
+      "action": "ふるさと納税専用の振込用紙で寄附したなら、払込票控（半券）が残っているか探す",
+      "source": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/mechanism/procedure.html",
+      "steps": [
+        "ふるさと納税専用の振込用紙か納付書で寄附したか確かめる",
+        "払込票控（振込用紙の半券）を探す",
+        "確定申告の寄附の証明書類になる場合がある"
+      ],
+      "url": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/mechanism/procedure.html"
+    }
+  ],
+  "cause": {
+    "text": "ふるさと納税では、寄附の証明として寄附ごとの受領書を発行し、確定申告で添付する決まりです。令和3年分以後の確定申告では、年間寄附額を記載した証明書で代えられるようになりました。",
+    "status": "background",
+    "source": "https://www.nta.go.jp/taxes/shiraberu/shinkoku/kakutei/koujyo/kifukin.htm"
+  },
+  "worries": [
+    {
+      "q": "受領書をなくすと、確定申告はできなくなる？",
+      "a": "確定申告では寄附を証明する書類（受領書）を添付します。見つからなければ寄附先の自治体へ問い合わせてください。受領書に代わるものとして、年間寄附額を記載した証明書を添付できる場合があります。",
+      "source": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/mechanism/procedure.html",
+      "action": "寄附先の自治体に受領書の再発行を問い合わせ、年間証明書で代えられるかも確かめる",
+      "actionSource": "https://www.nta.go.jp/taxes/shiraberu/shinkoku/kakutei/koujyo/kifukin.htm"
+    },
+    {
+      "q": "ワンストップ特例を申請したら、なくしても手続きは要らない？",
+      "a": "ワンストップ特例を使う人は確定申告書に添える場面がないため、なくしても原則として手続きは止まりません。ただし後から確定申告をすると特例の申請は無効になり、受領書か年間証明書が必要になります。",
+      "source": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/mechanism/procedure.html",
+      "action": "寄附先が5団体以内か、確定申告をする予定があるかを、まず書き出して確かめる"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "確定申告をするか、ワンストップ特例のままか？",
+      "situation": "寄附先が5団体以内で、確定申告が不要な給与所得者",
+      "recommend": "そのまま特例で進めてよい",
+      "reason": "ワンストップ特例では所得税からの控除はなく、全額が翌年度の住民税の減額で控除されます。受領書をなくしただけでは、手続きは要りません。",
+      "source": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/mechanism/procedure.html"
+    },
+    {
+      "question": "確定申告をするか、ワンストップ特例のままか？",
+      "situation": "寄附先が6団体以上、または医療費控除などで確定申告をする",
+      "recommend": "確定申告で寄附金控除を受ける",
+      "reason": "6団体以上に寄附した場合や確定申告をする場合は、ふるさと納税の金額を含めて確定申告が必要です。特例の申請は無効になります。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1155.htm"
+    },
+    {
+      "question": "受領書が届かないとき、どうする？",
+      "situation": "確定申告の期限までに受領書が届きそうにない",
+      "recommend": "年間証明書で代えられるかを確かめる",
+      "reason": "令和3年分以後の確定申告では、年間寄附額を記載した証明書を添付できます。電子データはXML形式が必要で、PDFは不可です。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/shinkoku/kakutei/koujyo/kifukin.htm"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "証明の代わりになる紙と、特例が無効になる条件",
+    "cause": "受領書の代わりが認められたのはなぜ",
+    "steps": "今日、何を確かめればいいか",
+    "desk": "問い合わせ先と、ページの場所",
+    "worries": "なくした受領書、手続きは要る？",
+    "guide": "確定申告かワンストップ特例か、迷ったら"
+  },
+  "depthAt": "2026-11-13T06:23:40+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "ふるさと納税の受領証明書をなくしたら",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-13T06:26:53+00:00"
+  },
+  "imageFocus": {
+    "x": 0.45,
+    "y": 0.419,
+    "box": [
+      0.056,
+      0.065,
+      0.844,
+      0.774
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/furusato-receipt-lost-procedure-figure-7833266d.jpg"
+  }
 }

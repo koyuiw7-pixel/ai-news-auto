@@ -87,24 +87,28 @@
     "zoohZ1BiHs0": 1
   },
   "failed_web": {
-    "0160cca0e3c443c7a624adf036f3be8e6ac4cb00": 1,
+    "0160cca0e3c443c7a624adf036f3be8e6ac4cb00": 2,
     "19582dcbd593ad2fb5b6436429dff3bbe781d9fa": 2,
     "2822203eaae0b1d5499748b858d3f07d205929cf": 2,
     "28ad462be142daaa171f5b17da33f5e20b9bf105": 2,
-    "319b4ba93dd7bedaf58f8dc08f01c50d422b0cd7": 1,
+    "319b4ba93dd7bedaf58f8dc08f01c50d422b0cd7": 2,
     "43f46f039e8833524d75b8acaf6ca68df4c2dbed": 2,
-    "60ac03aad0674399809c9c9c2654b45f09e5a769": 1,
+    "60ac03aad0674399809c9c9c2654b45f09e5a769": 2,
     "6a085ae61e61c30362fc08d2f14cf4670cd55a6f": 2,
     "6ab7084ecd2527b0df9d501e8778ec035c886500": 2,
-    "770c7ac93e1f50d1206a8e48cc9e4b20eed34cbd": 1,
+    "770c7ac93e1f50d1206a8e48cc9e4b20eed34cbd": 2,
     "77b36a8fda3ac45819f3bb6602a1d2d823da1339": 2,
-    "79eb65745bb2c3d41e32be837f3ddd6f0246b52b": 1,
+    "79eb65745bb2c3d41e32be837f3ddd6f0246b52b": 2,
     "974cbd7a5cecef2b7b744d059e8f459d6792a654": 2,
-    "9b0b7c058ad29387ff3831642dc5ac5dba071d28": 1,
+    "9b0b7c058ad29387ff3831642dc5ac5dba071d28": 2,
     "a170820ef862a7fba3099d94bc117aa6063c9c22": 2,
+    "a22234bae871d686125c6909bd184bc683dfa7f7": 1,
     "b77a8d4a33dcd908bcfadcd3a635e24a32dcd59c": 2,
-    "c9f6e91c97db22cee11169bacfa8530539301b72": 1,
-    "cbbafc7f230c30467136cea1f183e83244917e67": 1,
+    "be6af38c4511de86cc465a80e2b7b926c5ffd8fe": 1,
+    "c6d5ab6a7a02b562a3611a256470cec8324a6774": 1,
+    "c9f6e91c97db22cee11169bacfa8530539301b72": 2,
+    "cbbafc7f230c30467136cea1f183e83244917e67": 2,
+    "d40f84253675d75f9845bd485000d4a354b94278": 1,
     "e3cc429fcec1a4d386c213674b421a9c640b572d": 2,
     "fa974d9a33a100a6a43663b8432472e7c74a3c59": 2
   },
@@ -3708,6 +3712,12 @@
       "slug": "taxi-fuel-subsidy-period27-mlit",
       "url": "http://www.mlit.go.jp/report/press/jidosha03_hh_000512.html"
     },
+    "0256765dd91f3481": {
+      "at": "2026-11-13T06:22:32.557729+00:00",
+      "reason": "dedupe: 見出しが類似（0.60）: フェアレディZ関連ニュース｜dメニューニュース（NTTドコモ）",
+      "skipped": true,
+      "url": "https://topics.smt.docomo.ne.jp/latestnews/keywords/872d6c8d7ed381a88327c1c41fcf148922bfac985496236fe9d55af34c411929"
+    },
     "025aa8357dbf4f9b": {
       "at": "2026-11-06T10:11:30.424147+00:00",
       "model": "claude:sonnet",
@@ -4653,6 +4663,20 @@
       "slug": "apple-ipados-macos-no-merge-ternus",
       "url": "https://gori.me/macbookpro/172049"
     },
+    "131e55b2f5a1b623": {
+      "at": "2026-11-13T06:09:12.132970+00:00",
+      "costUsd": 0.018,
+      "intent": "neutral",
+      "kind": "trend",
+      "mix": "",
+      "model": "gemini-3.5-flash-lite",
+      "score": 92,
+      "section": "public",
+      "slug": "nissan-skyline-news-summary",
+      "trendKeyword": "日産・スカイライン",
+      "trendLane": true,
+      "url": "https://topics.smt.docomo.ne.jp/latestnews/keywords/16a1b91020e054089b775004c53d7332ab2f1da0e435017ed674a9fd388d9d7c"
+    },
     "13228f72a0867e23": {
       "at": "2026-11-12T15:55:32.294488+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（アワード）",
@@ -5208,6 +5232,12 @@
       "section": "ai",
       "slug": "anthropic-s1a-amendment-ant-nasdaq",
       "url": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026068676/anthropicpbc-sx1ax1.htm"
+    },
+    "1b23d8369ba9f817972e9c8539cc1eeff29d038a": {
+      "at": "2026-11-13T06:09:12.133127+00:00",
+      "reason": "trend: 公式の発表で記事にした（nissan-skyline-news-summary）",
+      "skipped": true,
+      "url": "https://car.watch.impress.co.jp/docs/news/2155577.html"
     },
     "1b2c2dd52b0b36dc": {
       "at": "2026-11-06T11:26:22.264024+00:00",
@@ -9918,12 +9948,6 @@
       "skipped": true,
       "url": "https://www.mhlw.go.jp/stf/newpage_77319.html"
     },
-    "6864a2aec530cc56": {
-      "at": "2026-10-30T06:13:05.561602+00:00",
-      "reason": "prefilter: 価値の薄いお知らせ（会議）",
-      "skipped": true,
-      "url": "https://www.digital.go.jp/policies/electronic_invoice/global-activities"
-    },
     "688f16e6a4687153": {
       "at": "2026-11-12T05:22:25.548680+00:00",
       "costUsd": 0.0138,
@@ -10680,6 +10704,12 @@
       "slug": "crimson-desert-enhanced-charting-the-unknown",
       "url": "https://news.xbox.com/ja-jp/2026/11/02/crimson-desert-charting-the-unknown/"
     },
+    "755ecc077c27cbb256aff369351c0c2df215ab00": {
+      "at": "2026-11-13T06:09:22.909352+00:00",
+      "reason": "trend: 扱わない話題: 訃報（関連報道2/2本に「亡くな」「死去」）",
+      "skipped": true,
+      "url": "https://news.yahoo.co.jp/expert/articles/7136bffbbc37e6af7b5f3030cbfb346c9d073d5a"
+    },
     "75679f5aa60bfcf8": {
       "at": "2026-11-04T15:13:12.356934+00:00",
       "breaking": true,
@@ -10971,13 +11001,6 @@
       "reason": "元記事のPDFがバイナリデータとOCR処理の不備により実質的な経済指標のデータが読み取れず、記事として構成できる十分な事実確認ができないため。",
       "skipped": true,
       "url": "https://www.boj.or.jp/mopo/mpmdeci/mpr_2026/k261030b.pdf"
-    },
-    "792b349685b03dc3": {
-      "at": "2026-10-30T06:12:49.236533+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: 本文が短い（1507字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; 独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる",
-      "skipped": true,
-      "url": "https://www.mhlw.go.jp/kinkyu/151106.html"
     },
     "795e28e95614c988": {
       "at": "2026-11-08T01:45:54.051501+00:00",
@@ -11708,13 +11731,6 @@
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
       "skipped": true,
       "url": "https://www.maff.go.jp/j/press/syouan/douei/261106.html"
-    },
-    "84ba605ae7c4de87": {
-      "at": "2026-10-30T06:13:05.036566+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: 本文が短い（1503字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が短い（358字 / 基準 400字以上）; easy_markdown が「## ひとことで言うと」から始まっていない",
-      "skipped": true,
-      "url": "https://www.soumu.go.jp/menu_news/s-news/01kiban06_02000143.html"
     },
     "84d6e3eaec4fdab1": {
       "at": "2026-11-05T16:46:40.467358+00:00",
@@ -12506,13 +12522,6 @@
       "reason": "prefilter: サイトの主題外（エンタメのビジネス・テックの話題ではない。料金・決算・販売本数・AI・規約などがない）",
       "skipped": true,
       "url": "https://www.nintendo.com/jp/topics/article/b1972348-4cb5-4c66-994c-0f78076f1e24"
-    },
-    "91bb2960b5507835371cfe597ccd14fcdb4a5069": {
-      "at": "2026-10-30T06:11:40.148617+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: 「4,389円の『トゥームレイダー IV-VI リマスター』」→元記事内に価格の記載はありません。",
-      "skipped": true,
-      "url": "https://news.yahoo.co.jp/articles/b75ce6c7ecac74b46f42c5d540c8417612a107d5"
     },
     "91c4f1a6ea32acba": {
       "at": "2026-11-10T03:33:06.095459+00:00",
@@ -13962,13 +13971,6 @@
       "skipped": true,
       "url": "http://www.mlit.go.jp/report/press/port02_hh_000238.html"
     },
-    "a8a878b3129862cf": {
-      "at": "2026-10-30T06:13:16.132671+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: 本文が短い（1248字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が短い（369字 / 基準 400字以上）",
-      "skipped": true,
-      "url": "https://www.mhlw.go.jp/topics/medias/shika_iryou/2026/06/"
-    },
     "a8c2c68b354dec77": {
       "at": "2026-11-05T09:45:10.228165+00:00",
       "mix": "other",
@@ -14212,6 +14214,14 @@
       "skipped": true,
       "url": "https://blog.google/products-and-platforms/products/search/gemini-4-hydrogen-search-upgrade/"
     },
+    "ad85fa02f6a318b0": {
+      "at": "2026-11-13T06:22:31.750609+00:00",
+      "costUsd": 0.0214,
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 本文「前回の7代目フェアレディZは2024年8月に受注停止となり」→ 確認済みの文脈では7代目の受注停止は2022年8月（2024年モデルの一時受注停止は2023年8月）。年を取り違えている; タイトル・本文の「改良版スカイライン」→ 元記事は「新型スカイライン」登場の噂を「!?」付きで伝えるのみで、改良版と断定できる根拠がない; 本文「今回のマイナーチェンジ版も注文が集中すると",
+      "skipped": true,
+      "url": "https://topics.smt.docomo.ne.jp/latestnews/keywords/497140b0c57cb58483621ef86b2d9bc2e3770fb262e1b5fb2906737adc9ef3b2"
+    },
     "ada1526998a7b4d4": {
       "at": "2026-11-06T06:58:18.937344+00:00",
       "breaking": true,
@@ -14353,14 +14363,6 @@
       "section": "business",
       "slug": "amazon-black-friday-2026-japan",
       "url": "https://www.aboutamazon.jp/news/retail/amazon-black-friday-2026?utm_source=rss"
-    },
-    "afb1d0948e79346c": {
-      "at": "2026-10-30T06:13:36.048015+00:00",
-      "model": "gemini-3.1-flash-lite",
-      "score": 100,
-      "section": "public",
-      "slug": "fire-disaster-research-grants-2026",
-      "url": "https://www.soumu.go.jp/menu_news/s-news/01shoubo01_02001300.html"
     },
     "afd1a5f826bde508": {
       "at": "2026-11-11T08:18:18.136365+00:00",
@@ -15013,12 +15015,6 @@
       "slug": "nvidia-ceo-transition-huang-resigns",
       "url": "https://nvidianews.nvidia.com/news/nvidia-announces-ceo-transition"
     },
-    "b87dee658e56a539": {
-      "at": "2026-10-30T06:12:30.053088+00:00",
-      "reason": "prefilter: 価値の薄いお知らせ（講演）",
-      "skipped": true,
-      "url": "https://www.fsa.go.jp/inter/etc/20261030-2/20261030.html"
-    },
     "b899de252968df59": {
       "at": "2026-11-02T16:52:12.072031+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -15453,12 +15449,6 @@
       "slug": "devrev-self-service-agents",
       "url": "https://openai.com/index/devrev-enterprise-self-service"
     },
-    "bf2ae4b67817f277": {
-      "at": "2026-10-30T06:12:30.053101+00:00",
-      "reason": "prefilter: 価値の薄いお知らせ（を掲載しました）",
-      "skipped": true,
-      "url": "https://www.digital.go.jp/policies/mynumber/private-business/info"
-    },
     "bf895ca3bdfe6537": {
       "at": "2026-11-02T16:02:19.195181+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（会議）",
@@ -15824,13 +15814,6 @@
       "section": "ai",
       "slug": "alexa-for-shopping-text-to-shop",
       "url": "https://www.aboutamazon.com/news/retail/alexa-for-shopping-text-to-shop?utm_source=rss"
-    },
-    "c67ca313b240bcd406c01c3b192862c775d53459": {
-      "at": "2026-10-30T06:11:54.409511+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: 本文が短い（1096字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が短い（296字 / 基準 400字以上）; 独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に",
-      "skipped": true,
-      "url": "https://finance.yahoo.co.jp/news/detail/65b4a0a7e70edecc612197f989383681afde2351"
     },
     "c68901677305edbf": {
       "at": "2026-11-11T08:20:38.772196+00:00",
@@ -16649,13 +16632,6 @@
       "reason": "prefilter: 価値の薄いお知らせ（会議）",
       "skipped": true,
       "url": "https://www.mhlw.go.jp/stf/newpage_77198.html"
-    },
-    "d460f1a1fdc5a6e4": {
-      "at": "2026-10-30T06:12:36.878827+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "文部科学省によるいじめ対策・不登校支援等推進事業の一般競争入札（事業者公募・入札公告）に関する情報であり、国民向けの直接的な新制度やサービス・給付の開始ではなく、調達公告であるため対象外とします。",
-      "skipped": true,
-      "url": "https://www.mext.go.jp/b_menu/boshu/mext_00085.html"
     },
     "d4a519ceb606885a": {
       "at": "2026-11-12T00:31:19.960870+00:00",
@@ -17657,13 +17633,6 @@
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026111109"
     },
-    "e30d6cc077fe7638": {
-      "at": "2026-10-30T06:12:30.053038+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: 本文が短い（1490字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が短い（326字 / 基準 400字以上）; 独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に",
-      "skipped": true,
-      "url": "https://www.jfa.jp/news/00036961/"
-    },
     "e30de0a3f25d85bd": {
       "at": "2026-11-10T06:55:40.506021+00:00",
       "reason": "prefilter: 不動産の話題ではない",
@@ -18279,14 +18248,6 @@
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
       "skipped": true,
       "url": "https://www.gov-online.go.jp/press_conferences/prime_minister/202610/video-327119.html"
-    },
-    "edcaaa64958b4e3e": {
-      "at": "2026-10-30T06:12:16.696871+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "score": 100,
-      "section": "ai",
-      "slug": "aws-inter-bee-2026-preview",
-      "url": "https://aws.amazon.com/jp/blogs/news/jpmne-interbee2026-aws-introduction/"
     },
     "ee2555cc16099e14": {
       "at": "2026-11-05T10:43:12.084298+00:00",
@@ -20191,14 +20152,6 @@
       "url": "https://www.mhlw.go.jp/stf/newpage_77211.html",
       "writer": "muse"
     },
-    "muse-b924c5e4e9": {
-      "at": "2026-11-13T06:16:31.866449+00:00",
-      "mix": "money",
-      "score": 92,
-      "slug": "withholding-slip-lost-reissue-employer",
-      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/hotei/7411.htm",
-      "writer": "muse"
-    },
     "muse-b9ca90c72c": {
       "at": "2026-11-12T06:38:38.851327+00:00",
       "mix": "money",
@@ -20519,61 +20472,16 @@
       "url": "https://www.docomo.ne.jp/info/notice/page/261106_00_m.html",
       "writer": "muse"
     },
-    "131e55b2f5a1b623": {
-      "at": "2026-11-13T06:09:12.132970+00:00",
-      "costUsd": 0.018,
-      "intent": "neutral",
-      "kind": "trend",
-      "mix": "",
-      "model": "gemini-3.5-flash-lite",
+    "muse-b924c5e4e9": {
+      "at": "2026-11-13T06:16:31.866449+00:00",
+      "mix": "money",
       "score": 92,
-      "section": "public",
-      "slug": "nissan-skyline-news-summary",
-      "trendKeyword": "日産・スカイライン",
-      "trendLane": true,
-      "url": "https://topics.smt.docomo.ne.jp/latestnews/keywords/16a1b91020e054089b775004c53d7332ab2f1da0e435017ed674a9fd388d9d7c"
-    },
-    "1b23d8369ba9f817972e9c8539cc1eeff29d038a": {
-      "at": "2026-11-13T06:09:12.133127+00:00",
-      "reason": "trend: 公式の発表で記事にした（nissan-skyline-news-summary）",
-      "skipped": true,
-      "url": "https://car.watch.impress.co.jp/docs/news/2155577.html"
-    },
-    "755ecc077c27cbb256aff369351c0c2df215ab00": {
-      "at": "2026-11-13T06:09:22.909352+00:00",
-      "reason": "trend: 扱わない話題: 訃報（関連報道2/2本に「亡くな」「死去」）",
-      "skipped": true,
-      "url": "https://news.yahoo.co.jp/expert/articles/7136bffbbc37e6af7b5f3030cbfb346c9d073d5a"
+      "slug": "withholding-slip-lost-reissue-employer",
+      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/hotei/7411.htm",
+      "writer": "muse"
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-11T06:04:32.217688+00:00",
-      "attempt": 1,
-      "id": "f0cd214204837748",
-      "kind": "ai",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "題名で「日本で使えるか」を約束しているのに、本文に日本での提供・使い方の説明が無い。答えるか、題名から外す",
-        "題名で料金・価格を約束しているのに、本文に金額（円・ドル・無料など）が無い。元記事の金額を書くか、題名から料金の話を外す"
-      ],
-      "readability": {
-        "avg_paragraph": 98.8,
-        "avg_sentence": 49.4,
-        "long_share": 0.417,
-        "max_paragraph": 145,
-        "paragraphs": 6,
-        "sentences": 12
-      },
-      "score": null,
-      "source": "ntt-news-ai",
-      "title": "フォーティエンスコンサルティング、AIガバナンス診断サービスを提供開始",
-      "warnings": [
-        "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "読みやすさ: 文が長い（1文の平均 49.4字・60字超の文が 42% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": false,
       "at": "2026-11-11T06:05:17.058569+00:00",
@@ -28106,6 +28014,35 @@
       "title": "スカイライン関連ニュース｜dメニューニュース（NTTドコモ）",
       "warnings": [
         "初めて出たところで言い換えていない略語（GT・BNR）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-13T06:22:02.902834+00:00",
+      "attempt": 1,
+      "id": "ad85fa02f6a318b0",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "本文「前回の7代目フェアレディZは2024年8月に受注停止となり」→ 確認済みの文脈では7代目の受注停止は2022年8月（2024年モデルの一時受注停止は2023年8月）。年を取り違えている",
+        "タイトル・本文の「改良版スカイライン」→ 元記事は「新型スカイライン」登場の噂を「!?」付きで伝えるのみで、改良版と断定できる根拠がない",
+        "本文「今回のマイナーチェンジ版も注文が集中するとみられる」→ 元記事・確認済みの文脈に無い見通しを事実のように書いている",
+        "タイトルの「スカイライン」の最新動向→ 本文はスカイラインについて「発表されていない」と述べるのみで、タイトルの約束に対する具体的内容が乏しい"
+      ],
+      "readability": {
+        "avg_paragraph": 96.8,
+        "avg_sentence": 60.5,
+        "long_share": 0.5,
+        "max_paragraph": 156,
+        "paragraphs": 5,
+        "sentences": 8
+      },
+      "score": 62,
+      "source": "radar-official",
+      "title": "フェアレディZ関連ニュース｜dメニューニュース（NTTドコモ）",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（GT・GAINER・TANAX）",
+        "読みやすさ: 文が長い（1文の平均 60.5字・60字超の文が 50% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
       ]
     }
   ],
