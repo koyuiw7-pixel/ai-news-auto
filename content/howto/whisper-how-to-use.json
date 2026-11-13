@@ -1,0 +1,127 @@
+{
+  "slug": "whisper-how-to-use",
+  "kind": "ai-tool",
+  "tool": "whisper",
+  "toolName": "Whisper",
+  "company": "openai",
+  "intent": "使い方",
+  "keyword": "whisper 使い方",
+  "title": "Whisperの使い方：pipで導入し、コマンド1行で文字起こし",
+  "seoTitle": "Whisperの使い方：pipで導入し1行で文字起こし",
+  "description": "Whisperは、音声を文字に変えるOpenAIのオープンソースの音声認識モデルです。pipでインストールし、ffmpegを入れたうえで、コマンド1行から文字起こしできます。日本語の音声は --language Japanese で指定します。",
+  "conclusion": [
+    "Whisperは、pipで導入し、ffmpegを入れてから、コマンド1行で音声ファイルを文字起こしできます。",
+    "コードとモデルの重みはMIT Licenseで公開されており、手元のパソコンで動かせます。",
+    "日本語の音声は --language Japanese を付けると文字起こしできます。モデルは turbo が既定です。",
+    "英語への翻訳をしたいときは turbo ではなく medium か large を使います。"
+  ],
+  "intro": "Whisperは、OpenAIが2022年9月に公開した音声認識（音声を文字にする技術）のモデルです。このページでは、パソコンへの導入から、音声ファイルの文字起こし、日本語の指定、Pythonからの利用までを順に説明します。公式ページ（OpenAIの紹介ページとGitHub）の記載だけを根拠にしています。",
+  "steps": [
+    {
+      "title": "Pythonとffmpegを用意する",
+      "body": "Whisperは Python 上で動きます。公式ページでは Python 3.8〜3.11 と、新しめの PyTorch で互換性が見込まれると書かれています。音声を読み込むには ffmpeg も必要です。Ubuntu や Debian なら sudo apt install ffmpeg、MacOS なら Homebrew で brew install ffmpeg、Windows なら Chocolatey か Scoop で入れられます。"
+    },
+    {
+      "title": "pipでWhisperを入れる",
+      "body": "ターミナルやコマンドプロンプトで pip install -U openai-whisper を実行します。-U は、すでに入っている場合に最新版へ更新する指定です。公式ページでは、pip install git+https://github.com/openai/whisper.git で最新のコミットを入れる方法も案内されています。"
+    },
+    {
+      "title": "モデルのサイズを知る",
+      "body": "Whisperには tiny、base、small、medium、large、turbo の6つのモデルがあります。サイズが大きいほど精度と引き換えに処理は遅くなります。turbo は large-v3 を最適化したモデルで、large より速く処理できると公式ページに書かれています。"
+    },
+    {
+      "title": "音声ファイルを文字起こしする",
+      "body": "ターミナルで whisper audio.mp3 --model turbo と入力します。audio.flac や audio.wav のように、複数のファイルを並べて指定することもできます。全オプションは whisper --help で確認できます。"
+    },
+    {
+      "title": "日本語の音声を指定する",
+      "body": "日本語の音声は --language Japanese を付けます。公式ページには whisper japanese.wav --language Japanese という例が載っています。対応する言語の一覧は tokenizer.py で確認できます。"
+    },
+    {
+      "title": "Pythonから呼び出す",
+      "body": "Pythonでは whisper.load_model('turbo') でモデルを読み込み、model.transcribe('audio.mp3') を実行します。結果の文章は result['text'] で取り出せます。transcribe() は30秒の窓をずらしながら音声を処理すると説明されています。"
+    }
+  ],
+  "pricing": [],
+  "freeTier": [
+    "ソフトウェアは MIT License で公開されており、pip で入れて手元の環境で実行できます。",
+    "モデルは tiny から large まで6サイズあり、処理速度と精度のバランスを選べます。",
+    "日本語を含む多言語の文字起こしに対応しています。日本語は --language Japanese で指定します。",
+    "英語以外の音声を英語に翻訳する機能があります。翻訳には turbo 以外のモデルを使います。",
+    "英語専用の .en モデル（tiny.en、base.en、small.en、medium.en）もあり、英語だけを扱う場合に向いています。",
+    "処理の速さは言語、話す速さ、ハードウェアによって大きく変わると公式ページに書かれています。"
+  ],
+  "japan": {
+    "answer": "日本語の音声を扱えます（言語指定）",
+    "body": "日本国内での提供状況や、日本語の問い合わせ窓口は、公式ページでは案内されていません。一方、日本語の音声は --language Japanese を付けて文字起こしできることが、GitHubの例で示されています。Whisperは手元のパソコンに導入して使うソフトウェアです。円での支払いについては、公式ページに料金の記載がありません。"
+  },
+  "tips": [
+    {
+      "title": "ffmpegが入っていないとエラーになる",
+      "body": "音声ファイルを読み込むには ffmpeg が必要です。インストールできていないと、文字起こしの前の段階で止まります。先に ffmpeg が使える状態かを確かめてから、Whisperを実行するとよいでしょう。"
+    },
+    {
+      "title": "pip installでエラーが出る場合がある",
+      "body": "tiktoken に対応する事前ビルド済みのパッケージがない環境では、Rust の開発環境が必要になることがあります。公式ページには、PATH の設定や setuptools-rust の導入方法も案内されています。"
+    },
+    {
+      "title": "社外秘や個人情報の音声は確認してから使う",
+      "body": "会議や面談の録音には、社外秘や個人情報が含まれることがあります。社内のルールや契約を確認してから、文字起こしに使うとよいでしょう。"
+    },
+    {
+      "title": "翻訳には turbo を使わない",
+      "body": "turbo は翻訳のタスクで学習されていないと、公式ページに書かれています。翻訳をするときは medium か large を選びます。turbo で --task translate を指定しても、元の言語のまま返されます。"
+    }
+  ],
+  "faq": [
+    {
+      "q": "Whisperは無料で使える？",
+      "a": "Whisperのコードとモデルの重みは、MIT License で公開されています。pipで導入し、手元のパソコンで文字起こしできます。ライセンスの条件は、GitHubのLICENSEファイルで確認できます。"
+    },
+    {
+      "q": "日本語の音声も文字起こしできる？",
+      "a": "できます。whisper japanese.wav --language Japanese のように、--language Japanese を付けて指定します。多言語のモデルは、日本語を含む多言語の文字起こしに対応しています。"
+    },
+    {
+      "q": "英語以外の音声を英語に翻訳できる？",
+      "a": "できます。--task translate を付けて、medium か large を使うと、翻訳の結果がもっとも良いと公式ページに書かれています。turbo は翻訳には使わない方がよいとされています。"
+    },
+    {
+      "q": "Whisperはどうやってインストールする？",
+      "a": "pip を使います。pip install -U openai-whisper で導入できます。音声を読むための ffmpeg は、別にインストールが必要です。"
+    }
+  ],
+  "workMoney": {
+    "relevance": "high",
+    "points": [
+      "会議や取材の録音を文字にし、議事録の下書きを作るときに使えます。",
+      "英語の動画や講義の音声を、英語のテキストにする作業に使えます。",
+      "業務の音声を入れる前に、短い音声でモデルの精度と処理時間を確かめるとよいでしょう。"
+    ]
+  },
+  "match": "Whisper|文字起こし",
+  "products": [],
+  "related": [],
+  "sources": [
+    {
+      "url": "https://openai.com/ja-JP/index/whisper/",
+      "title": "Whisper が登場",
+      "checkedAt": "2026-11-13T10:24:12+09:00"
+    },
+    {
+      "url": "https://github.com/openai/whisper",
+      "title": "GitHub - openai/whisper: Robust Speech Recognition via Large-Scale Weak Supervision",
+      "checkedAt": "2026-11-13T10:24:12+09:00"
+    }
+  ],
+  "sourceHash": "923359c70de782cf",
+  "fact": {
+    "score": 84,
+    "model": "anthropic-api:claude-haiku-5-5"
+  },
+  "model": "anthropic-api:claude-haiku-5-5",
+  "promptVersion": 1,
+  "createdAt": "2026-11-13T10:24:12+09:00",
+  "updatedAt": "2026-11-13T10:24:12+09:00",
+  "checkedAt": "2026-11-13T10:24:12+09:00"
+}
