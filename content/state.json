@@ -4504,12 +4504,6 @@
       "skipped": true,
       "url": "https://www.softbank.jp/sbnews/entry/20261030_01"
     },
-    "0f9461fda21cb1f7": {
-      "at": "2026-10-30T04:21:34.815568+00:00",
-      "reason": "followup: 新しい事実なし（nvidia-meta-muse-partnership-expansion）",
-      "skipped": true,
-      "url": "https://blogs.nvidia.co.jp/blog/nvidia-and-meta-to-expand-collaboration-on-muse-and-muse-family-of-models-amid-robust-growth/"
-    },
     "0f96046d6930ed3b": {
       "at": "2026-11-09T09:21:44.670621+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（オープン）",
@@ -12594,13 +12588,6 @@
       "skipped": true,
       "url": "https://www.nintendo.com/jp/topics/article/b1972348-4cb5-4c66-994c-0f78076f1e24"
     },
-    "919a93a7bb387b8c": {
-      "at": "2026-10-30T04:21:56.177506+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "元記事のPDFデータが暗号化またはバイナリ抽出状態であり、経済・物価情勢の展望に関する具体的なテキストや統計数値を確認できないため。",
-      "skipped": true,
-      "url": "http://www.boj.or.jp/mopo/outlook/gor2610a.pdf"
-    },
     "91bb2960b5507835371cfe597ccd14fcdb4a5069": {
       "at": "2026-10-30T06:11:40.148617+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -16527,14 +16514,6 @@
       "skipped": true,
       "url": "https://www.cyberagent.co.jp/news/detail/id=33994"
     },
-    "cf750d0c8feca53f": {
-      "at": "2026-10-30T04:22:10.696193+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "score": 100,
-      "section": "lifestyle",
-      "slug": "maff-food-culture-support-2026",
-      "url": "https://www.maff.go.jp/j/press/shokuhin/kikaku/261030.html"
-    },
     "cf84cd549efc3d58": {
       "at": "2026-11-11T02:55:40.964206+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（セミナー）",
@@ -19141,6 +19120,19 @@
       "slug": "affinity-for-ipad-canva-release",
       "url": "https://news.mynavi.jp/article/20261103-5246117/"
     },
+    "f97a761cfa2c6db3": {
+      "at": "2026-11-13T04:31:56.715467+00:00",
+      "breaking": true,
+      "costUsd": 0.1377,
+      "intent": "breaking",
+      "major": true,
+      "mix": "jp_corp",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "score": 91,
+      "section": "investment",
+      "slug": "smfg-interim-results-fy2027",
+      "url": "https://www.release.tdnet.info/inbs/140120261005546013.pdf"
+    },
     "f982f2ac2c70ee95": {
       "at": "2026-11-05T11:22:23.937305+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（講座）",
@@ -20675,31 +20667,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-11T06:02:01.947382+00:00",
-      "attempt": 1,
-      "id": "8e98701c063bfd2d",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 73.5,
-        "avg_sentence": 49.0,
-        "long_share": 0.167,
-        "max_paragraph": 143,
-        "paragraphs": 4,
-        "sentences": 6
-      },
-      "score": 92,
-      "source": "meti-press",
-      "title": "再生可能エネルギー特別措置法に基づき、納付金を納付しない電気事業者を公表します",
-      "warnings": [
-        "見出しの書き方: 発表文の題名の言い直し（「〇〇が△△を発表」）。読者にとって何が変わるか（だれの・何が・いつから・いくら）を書く",
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
-        "読みやすさ: 文が長い（1文の平均 49.0字・60字超の文が 17% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-11T06:02:18.243577+00:00",
@@ -28247,6 +28214,29 @@
       "score": 88,
       "source": "tdb",
       "title": "アンケート 社内イベントに関する企業の動向アンケート アフターコロナの社内イベント 「年賀状」「社員旅行」「新年会・忘年会」の減少幅大きく ～働き方・意識の変化"
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-13T04:31:56.597138+00:00",
+      "attempt": 1,
+      "id": "f97a761cfa2c6db3",
+      "kind": "broad",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 81.2,
+        "avg_sentence": 32.8,
+        "long_share": 0.043,
+        "max_paragraph": 195,
+        "paragraphs": 19,
+        "sentences": 47
+      },
+      "score": 91,
+      "source": "fast",
+      "title": "三井住友フィナンシャルグループ 2027年3月期 第2四半期(中間期)決算短信〔日本基準〕(連結)",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（SMFG）"
+      ]
     }
   ],
   "short_text_retry": {},
