@@ -87,17 +87,18 @@
     "zoohZ1BiHs0": 1
   },
   "failed_web": {
-    "19582dcbd593ad2fb5b6436429dff3bbe781d9fa": 1,
-    "2822203eaae0b1d5499748b858d3f07d205929cf": 1,
+    "19582dcbd593ad2fb5b6436429dff3bbe781d9fa": 2,
+    "2822203eaae0b1d5499748b858d3f07d205929cf": 2,
     "28ad462be142daaa171f5b17da33f5e20b9bf105": 1,
-    "6a085ae61e61c30362fc08d2f14cf4670cd55a6f": 1,
-    "6ab7084ecd2527b0df9d501e8778ec035c886500": 1,
-    "77b36a8fda3ac45819f3bb6602a1d2d823da1339": 1,
-    "974cbd7a5cecef2b7b744d059e8f459d6792a654": 1,
-    "a170820ef862a7fba3099d94bc117aa6063c9c22": 1,
-    "b77a8d4a33dcd908bcfadcd3a635e24a32dcd59c": 1,
-    "e3cc429fcec1a4d386c213674b421a9c640b572d": 1,
-    "fa974d9a33a100a6a43663b8432472e7c74a3c59": 1
+    "43f46f039e8833524d75b8acaf6ca68df4c2dbed": 1,
+    "6a085ae61e61c30362fc08d2f14cf4670cd55a6f": 2,
+    "6ab7084ecd2527b0df9d501e8778ec035c886500": 2,
+    "77b36a8fda3ac45819f3bb6602a1d2d823da1339": 2,
+    "974cbd7a5cecef2b7b744d059e8f459d6792a654": 2,
+    "a170820ef862a7fba3099d94bc117aa6063c9c22": 2,
+    "b77a8d4a33dcd908bcfadcd3a635e24a32dcd59c": 2,
+    "e3cc429fcec1a4d386c213674b421a9c640b572d": 2,
+    "fa974d9a33a100a6a43663b8432472e7c74a3c59": 2
   },
   "gate_retry": {
     "261ae4aceb078e02": {
@@ -204,7 +205,6 @@
     "6a1520fe1ed55314": "2026-11-10T18:21:06.372918+00:00",
     "6aae2ae24b4d535b": "2026-11-12T16:10:56.906216+00:00",
     "709ccf094f875d5a": "2026-11-10T02:48:53.350891+00:00",
-    "70a840a0a8aff058": "2026-11-09T05:41:05.167572+00:00",
     "73d77dd7173afb73": "2026-11-10T07:40:50.551385+00:00",
     "74bc77e289b0d220": "2026-11-10T09:04:48.294575+00:00",
     "780c080a98a4dbd4": "2026-11-10T02:03:09.291270+00:00",
@@ -4568,6 +4568,12 @@
       "reason": "prefilter: 価値の薄いお知らせ（講座）",
       "skipped": true,
       "url": "https://www.stat.go.jp/info/guide/public/houdou/pdf/ho261110.pdf"
+    },
+    "1120ec4cd04ac3fe3c2684b9806d70b05ae92751": {
+      "at": "2026-11-13T05:49:49.763370+00:00",
+      "reason": "trend: 重複: 固有名詞＋見出しが類似（フィナンシャルグループ / 0.33）: smfg-interim-results-fy2027",
+      "skipped": true,
+      "url": "https://finance.yahoo.co.jp/news/detail/13957ff55ddd261b3e8d8bdb935670fb3ea57bb1"
     },
     "113b61fb4ffd8543": {
       "at": "2026-11-02T14:52:12.361621+00:00",
@@ -18652,14 +18658,6 @@
       "reason": "followup quality: 本文「OpenAI公式ブログは11月9日、…」→ 元記事・確認済みの文脈に公開日の記載がなく、11月9日は創作された日付である; タイトル「停止に加え一時停止も対象に」→ 「対象に」は後から追加されたという変更の主張だが、元記事にはそうした変更の記述がない（一時停止を含むことは元記事にある）; 本文「既存の記事と比べると…新たに示されています」→ 確認済みの文脈",
       "skipped": true,
       "url": "https://openai.com/index/control-room"
-    },
-    "f38d31ba51354487": {
-      "at": "2026-10-30T05:36:50.166011+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "score": 100,
-      "section": "science",
-      "slug": "qst-hyperpolarized-mri-liver-pon",
-      "url": "https://www.qst.go.jp/site/press/20261030.html"
     },
     "f3a3fc028a84123e": {
       "at": "2026-11-10T09:07:57.676452+00:00",
