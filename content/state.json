@@ -92,18 +92,21 @@
     "0d8f923d51084cf4ed66194835ff8a99e20a5a70": 2,
     "19582dcbd593ad2fb5b6436429dff3bbe781d9fa": 2,
     "2160a2b050672bd9d99287175d9d0901d5c9f002": 2,
-    "2287735f1d21ace9c8b2dc086fc3f71379fdad56": 1,
+    "2287735f1d21ace9c8b2dc086fc3f71379fdad56": 2,
     "2822203eaae0b1d5499748b858d3f07d205929cf": 2,
     "28ad462be142daaa171f5b17da33f5e20b9bf105": 2,
-    "30a87ba425eef94db9a0ab4571a09229f2e60658": 1,
+    "30a87ba425eef94db9a0ab4571a09229f2e60658": 2,
     "319b4ba93dd7bedaf58f8dc08f01c50d422b0cd7": 2,
+    "3b2227e3b92d731d16c8620e8ecfba8e128ac4b7": 1,
     "43f46f039e8833524d75b8acaf6ca68df4c2dbed": 2,
-    "485562db598c04b51b14687e4246103f09f6f4e2": 1,
+    "485562db598c04b51b14687e4246103f09f6f4e2": 2,
     "4a41facb5f689cdb60e7f5ac6288cbda9acf3bd6": 2,
     "4de683fb64a1f28338880541b5e037cd5608d0d2": 2,
-    "5242baaf341dc96f8d0d5e1630dc1687fe129bb9": 1,
+    "5242baaf341dc96f8d0d5e1630dc1687fe129bb9": 2,
+    "5672f798162758e9e6d77ca7d0e1f90fd3ac8074": 1,
     "579f792e6159ba10d00f565ce31b9ccd683000ca": 2,
-    "5b4c1cab0fa6e72c64de5bff44d09afff748fce0": 1,
+    "5b3d024cdf4bb2d8f5d3117c531da8f9242dd052": 1,
+    "5b4c1cab0fa6e72c64de5bff44d09afff748fce0": 2,
     "60ac03aad0674399809c9c9c2654b45f09e5a769": 2,
     "6a085ae61e61c30362fc08d2f14cf4670cd55a6f": 2,
     "6ab7084ecd2527b0df9d501e8778ec035c886500": 2,
@@ -112,7 +115,7 @@
     "77b36a8fda3ac45819f3bb6602a1d2d823da1339": 2,
     "79eb65745bb2c3d41e32be837f3ddd6f0246b52b": 2,
     "7e035393eb5798bfde8a69a755d0e6fa68d58cc2": 2,
-    "94b6ad35a37976e8b8ecd27a539d2a38d9c78718": 1,
+    "94b6ad35a37976e8b8ecd27a539d2a38d9c78718": 2,
     "974cbd7a5cecef2b7b744d059e8f459d6792a654": 2,
     "9b0b7c058ad29387ff3831642dc5ac5dba071d28": 2,
     "9e7a67145e366f470ef84c388dff06f93eeda92e": 2,
@@ -133,7 +136,8 @@
     "d40f84253675d75f9845bd485000d4a354b94278": 2,
     "e3cc429fcec1a4d386c213674b421a9c640b572d": 2,
     "ef732af380f6095584a115d4a58e9d26d54a84cb": 2,
-    "f09667001c58453e444a99e31a381a2f395bb10d": 1,
+    "f09667001c58453e444a99e31a381a2f395bb10d": 2,
+    "f615f4305539ff27a65055c7da6312b55374d6d2": 1,
     "fa974d9a33a100a6a43663b8432472e7c74a3c59": 2
   },
   "gate_retry": {
@@ -4003,14 +4007,6 @@
       "skipped": true,
       "url": "https://corp.moneyforward.com/news/info/20261105-mf-press-1/"
     },
-    "0872902dfeb6a015": {
-      "at": "2026-10-30T08:31:58.769136+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "score": 100,
-      "section": "public",
-      "slug": "mhlw-cybersecurity-alert-2026",
-      "url": "https://www.mhlw.go.jp/stf/kinkyu/20261030.html"
-    },
     "08753915d32c2977": {
       "at": "2026-11-09T07:15:42.329646+00:00",
       "costUsd": 0.015,
@@ -4566,6 +4562,20 @@
       "reason": "quality: 本文が短い（1748字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026103006"
+    },
+    "10379432e7afb3ea": {
+      "at": "2026-11-13T08:15:45.145211+00:00",
+      "costUsd": 0.0078,
+      "intent": "neutral",
+      "kind": "trend",
+      "mix": "",
+      "model": "claude:sonnet",
+      "score": 88,
+      "section": "ai",
+      "slug": "gemini-factory-partner-solutions",
+      "trendKeyword": "google gemini",
+      "trendLane": true,
+      "url": "https://cloud.google.com/blog/topics/partners/inside-the-gemini-factory-accelerating-partner-solutions/"
     },
     "10561e1ed9cf2d8e": {
       "at": "2026-11-07T19:52:10.046640+00:00",
@@ -5675,13 +5685,6 @@
       "reason": "quality: 公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください",
       "skipped": true,
       "url": "https://eetimes.itmedia.co.jp/ee/articles/2611/02/news047.html"
-    },
-    "21cf65643bdcaa21": {
-      "at": "2026-10-30T08:31:03.946410+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "国際基準設定主体に関する会議のプレスリリース公表であり、国民の具体的な手続きや給付、料金などに直接関わる話題ではないため。",
-      "skipped": true,
-      "url": "https://www.fsa.go.jp/inter/etc/20261030/20261030.html"
     },
     "21efe9d9333210ec": {
       "at": "2026-11-05T10:14:28.898341+00:00",
@@ -7011,13 +7014,6 @@
       "skipped": true,
       "url": "https://www.cfa.go.jp/press/944d3758-23fc-427e-8c38-120cc81d84be"
     },
-    "3accf3bc15497543": {
-      "at": "2026-10-30T08:31:28.764872+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: 本文が短い（1666字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が短い（361字 / 基準 400字以上）",
-      "skipped": true,
-      "url": "https://www.digital.go.jp/resources/govdashboard/account_registration_status"
-    },
     "3af0ef7d790a050b": {
       "at": "2026-11-05T16:34:20.814883+00:00",
       "model": "cloudflare:@cf/openai/gpt-oss-120b",
@@ -7056,6 +7052,20 @@
       "reason": "prefilter: 価値の薄いお知らせ（表彰）",
       "skipped": true,
       "url": "https://www.kirinholdings.com/jp/newsroom/release/2026/1105_02.html"
+    },
+    "3c239f0819a571d7": {
+      "at": "2026-11-13T08:13:57.904093+00:00",
+      "costUsd": 0.0212,
+      "intent": "query",
+      "kind": "trend",
+      "mix": "",
+      "model": "gemini-3.5-flash-lite",
+      "score": 88,
+      "section": "lifestyle",
+      "slug": "famima-touken-ranbu-2026-campaign",
+      "trendKeyword": "ファミマ 刀剣 乱舞",
+      "trendLane": true,
+      "url": "https://www.family.co.jp/company/news_releases/2026/20261113_02.html"
     },
     "3c32b51ee61f5260": {
       "at": "2026-11-11T05:21:22.836933+00:00",
@@ -7330,6 +7340,19 @@
       "section": "investment",
       "slug": "daiichi-life-group-interim-2027",
       "url": "https://www.release.tdnet.info/inbs/140120261110572349.pdf"
+    },
+    "40f133427a6b3677": {
+      "at": "2026-11-13T08:04:51.356039+00:00",
+      "costUsd": 0.0019,
+      "intent": "neutral",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "score": 88,
+      "section": "real-estate",
+      "slug": "lifull-homes-line-comsbi-leak",
+      "url": "https://lifull.com/news/51097/"
     },
     "416541329c8b23f2": {
       "at": "2026-11-04T03:01:26.969501+00:00",
@@ -10578,6 +10601,12 @@
       "skipped": true,
       "url": "https://www.jst.go.jp/pr/announce/20261104/index.html"
     },
+    "745b4f05b513977d570883acbccb354aaefa1ef7": {
+      "at": "2026-11-13T08:15:45.145417+00:00",
+      "reason": "trend: 公式の発表で記事にした（gemini-factory-partner-solutions）",
+      "skipped": true,
+      "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-hydrogen/"
+    },
     "74684824c71b8449": {
       "at": "2026-10-30T09:31:34.741298+00:00",
       "kind": "update",
@@ -10915,6 +10944,12 @@
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・暮らしの交通/天気/値上げ/障害/給付/発売・日本のスポーツのどれでもない）",
       "skipped": true,
       "url": "https://www.fsa.go.jp/ordinary/chuui/highrisk.html"
+    },
+    "780ce5159ab0ff3d713500c156ada4258bc7e759": {
+      "at": "2026-11-13T08:38:01.533168+00:00",
+      "reason": "trend: 扱わない話題: 事件・被害者（関連報道2/3本に「逮捕」）",
+      "skipped": true,
+      "url": "https://news.yahoo.co.jp/articles/78021b7e58056eb5ea64be1894b35f6622e1de59"
     },
     "78155d2d3708df63": {
       "at": "2026-11-10T07:19:17.495185+00:00",
@@ -12238,13 +12273,6 @@
       "section": "investment",
       "slug": "resona-hd-fy2027-interim-results",
       "url": "https://www.release.tdnet.info/inbs/140120261110571070.pdf"
-    },
-    "8d5c737c495043c1": {
-      "at": "2026-10-30T08:31:43.288757+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: easy_markdown が短い（397字 / 基準 400字以上）",
-      "skipped": true,
-      "url": "https://www.niandc.co.jp/news/20261030_78501/"
     },
     "8d6a841a4915bd8c": {
       "at": "2026-11-07T10:06:40.537593+00:00",
@@ -14301,6 +14329,12 @@
       "updated": "gemini-plans-daily-brief-added",
       "url": "https://gemini.google/us/subscriptions/?hl=en#entry-2026-11-10-8f3836"
     },
+    "aec44ec8f9eb0b592c6e4769f7b0aacb40b4c2dc": {
+      "at": "2026-11-13T08:13:57.904255+00:00",
+      "reason": "trend: 公式の発表で記事にした（famima-touken-ranbu-2026-campaign）",
+      "skipped": true,
+      "url": "https://www.family.co.jp/company/news_releases/2026/20261113_02.html"
+    },
     "aed3abb70e617f48": {
       "at": "2026-11-09T06:49:48.681482+00:00",
       "reason": "stale: 発表から4471時間（記事ページの日付）",
@@ -15285,13 +15319,6 @@
       "slug": "apple-crush-ad-mottainai-study",
       "url": "https://www.hiroshima-u.ac.jp/news/101167"
     },
-    "bcbf10246dc16651": {
-      "at": "2026-10-30T08:31:14.868873+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: 本文が短い（1419字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が短い（293字 / 基準 400字以上）",
-      "skipped": true,
-      "url": "http://www.boj.or.jp/mopo/mpmdeci/mpr_2026/mpr261030b.pdf"
-    },
     "bcdf43741b494410": {
       "at": "2026-11-02T04:51:32.466941+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -16181,6 +16208,12 @@
       "reason": "prefilter: 価値の薄いお知らせ（審議会）",
       "skipped": true,
       "url": "https://www.mhlw.go.jp/stf/newpage_77343.html"
+    },
+    "ccc3595820548dab": {
+      "at": "2026-11-13T08:04:53.401829+00:00",
+      "reason": "public-interest: 資料が短い 626字",
+      "skipped": true,
+      "url": "https://www.jrkyushu.co.jp/common/inc/news/newtopics/__icsFiles/afieldfile/2026/11/13/20261113_Regarding_the_Email_Address_Leak_Due_to_Unauthorized_Access.pdf"
     },
     "ccd7601ccafccd22": {
       "at": "2026-11-12T02:31:42.687035+00:00",
@@ -20487,65 +20520,6 @@
       "slug": "docomo-data-leak-what-to-do",
       "url": "https://www.docomo.ne.jp/info/notice/page/261106_00_m.html",
       "writer": "muse"
-    },
-    "10379432e7afb3ea": {
-      "at": "2026-11-13T08:15:45.145211+00:00",
-      "costUsd": 0.0078,
-      "intent": "neutral",
-      "kind": "trend",
-      "mix": "",
-      "model": "claude:sonnet",
-      "score": 88,
-      "section": "ai",
-      "slug": "gemini-factory-partner-solutions",
-      "trendKeyword": "google gemini",
-      "trendLane": true,
-      "url": "https://cloud.google.com/blog/topics/partners/inside-the-gemini-factory-accelerating-partner-solutions/"
-    },
-    "3c239f0819a571d7": {
-      "at": "2026-11-13T08:13:57.904093+00:00",
-      "costUsd": 0.0212,
-      "intent": "query",
-      "kind": "trend",
-      "mix": "",
-      "model": "gemini-3.5-flash-lite",
-      "score": 88,
-      "section": "lifestyle",
-      "slug": "famima-touken-ranbu-2026-campaign",
-      "trendKeyword": "ファミマ 刀剣 乱舞",
-      "trendLane": true,
-      "url": "https://www.family.co.jp/company/news_releases/2026/20261113_02.html"
-    },
-    "40f133427a6b3677": {
-      "at": "2026-11-13T08:04:51.356039+00:00",
-      "costUsd": 0.0019,
-      "intent": "neutral",
-      "major": true,
-      "mix": "alert",
-      "model": "claude:sonnet",
-      "publicInterest": "breach",
-      "score": 88,
-      "section": "real-estate",
-      "slug": "lifull-homes-line-comsbi-leak",
-      "url": "https://lifull.com/news/51097/"
-    },
-    "745b4f05b513977d570883acbccb354aaefa1ef7": {
-      "at": "2026-11-13T08:15:45.145417+00:00",
-      "reason": "trend: 公式の発表で記事にした（gemini-factory-partner-solutions）",
-      "skipped": true,
-      "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-hydrogen/"
-    },
-    "aec44ec8f9eb0b592c6e4769f7b0aacb40b4c2dc": {
-      "at": "2026-11-13T08:13:57.904255+00:00",
-      "reason": "trend: 公式の発表で記事にした（famima-touken-ranbu-2026-campaign）",
-      "skipped": true,
-      "url": "https://www.family.co.jp/company/news_releases/2026/20261113_02.html"
-    },
-    "ccc3595820548dab": {
-      "at": "2026-11-13T08:04:53.401829+00:00",
-      "reason": "public-interest: 資料が短い 626字",
-      "skipped": true,
-      "url": "https://www.jrkyushu.co.jp/common/inc/news/newtopics/__icsFiles/afieldfile/2026/11/13/20261113_Regarding_the_Email_Address_Leak_Due_to_Unauthorized_Access.pdf"
     }
   },
   "quality_log": [

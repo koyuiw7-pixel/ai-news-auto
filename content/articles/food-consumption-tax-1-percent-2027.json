@@ -79,9 +79,8 @@
   "affiliates": [],
   "newsType": "policy",
   "todayActions": [
-    "参議院の議案審議情報で、法案が今どの段階にあるかを確かめる",
-    "内閣官房のページで、法案の概要資料と要綱を読む",
-    "支援金の金額と対象が示されるまでは、家計の見直しを急がない"
+    "内閣官房のページで、法案の概要資料と要綱のPDFを開いて読む",
+    "国税庁のパンフレットで、対象品目と経過措置の扱いを確かめる"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -226,5 +225,118 @@
     "relevant": true,
     "at": "2026-11-13T08:03:33+00:00",
     "reused": true
-  }
+  },
+  "insight": [
+    {
+      "text": "一体資産は、税抜1万円以下で食品の価額の占める割合が2/3以上なら、全体が税率1%の対象になります。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/zeimokubetsu/shohi/keigenzeiritsu/pdf/0026008-127_pamphlet.pdf"
+    },
+    {
+      "text": "令和9年2月1日から5月31日までは、税率8%か1%での総額表示をしておくことが認められます。実際の支払額と誤認させない掲示などが条件です。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/zeimokubetsu/shohi/keigenzeiritsu/pdf/0026008-127_pamphlet.pdf"
+    },
+    {
+      "text": "イートインかテイクアウトかは、「イートインコーナーを利用する場合はお申し出ください。」などの掲示で顧客に意思確認して判定できます。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/zeimokubetsu/shohi/keigenzeiritsu/pdf/0026008-127_pamphlet.pdf"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "内閣官房ホームページ「飲食料品に係る消費税率の引下げ」及び「給付付き税額控除」について",
+      "url": "https://www.cas.go.jp/jp/seisaku/shouhizei_zeigakukoujo/index.html",
+      "source": "https://www.cas.go.jp/jp/seisaku/shouhizei_zeigakukoujo/index.html",
+      "note": "法案の概要資料（PDF）、要綱（PDF）、法律案・理由（PDF）が載っています。"
+    },
+    {
+      "name": "消費税軽減税率・インボイスコールセンター（消費税軽減税率・インボイス制度電話相談センター）",
+      "url": "https://www.nta.go.jp/taxes/shiraberu/zeimokubetsu/shohi/keigenzeiritsu/04-1.htm",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shohi/6102.htm",
+      "howTo": [
+        "タックスアンサー（よくある税の質問）",
+        "No.6102 消費税の軽減税率制度",
+        "お問い合わせ先"
+      ],
+      "note": "消費税の軽減税率制度に関する一般的なご質問やご相談を受け付けています。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "内閣官房のページで、法案の概要資料と要綱のPDFを開いて読む",
+      "source": "https://www.cas.go.jp/jp/seisaku/shouhizei_zeigakukoujo/index.html",
+      "steps": [
+        "ページ中の「NEW！」の項目を開く",
+        "「概要資料（PDF／233KB）」を開く",
+        "「要綱（PDF／298KB）」を開く"
+      ],
+      "url": "https://www.cas.go.jp/jp/seisaku/shouhizei_zeigakukoujo/index.html"
+    },
+    {
+      "action": "国税庁のパンフレットで、対象品目と経過措置の扱いを確かめる",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/zeimokubetsu/shohi/keigenzeiritsu/pdf/0026008-127_pamphlet.pdf",
+      "steps": [
+        "「1.対象品目と適用税率」を読む",
+        "「2.税率変更に伴う経過的な取扱い」を読む"
+      ],
+      "url": "https://www.nta.go.jp/taxes/shiraberu/zeimokubetsu/shohi/keigenzeiritsu/pdf/0026008-127_pamphlet.pdf"
+    }
+  ],
+  "cause": {
+    "text": "政府は、社会保障国民会議の中間とりまとめを踏まえ、中低所得の現役勤労者の負担を軽くし「働き控え」を緩和するため、所得に連動した給付を令和11年度から導入するとしています。そのつなぎとして、令和9年4月1日から2年間、飲食料品の税率を1%にします。",
+    "status": "background",
+    "source": "https://www.cas.go.jp/jp/seisaku/shouhizei_zeigakukoujo/index.html"
+  },
+  "worries": [
+    {
+      "q": "税率1%はいつからいつまで続く？",
+      "a": "令和9年4月1日から令和11年3月31日までの2年間、飲食料品に係る消費税率が1%（国・地方合計）に引き下げられます。期間中に行われる飲食料品の販売が対象です。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/zeimokubetsu/shohi/keigenzeiritsu/pdf/0026008-127_pamphlet.pdf",
+      "action": "カレンダーに令和11年3月31日を書き込み、その後の税率は改めて公式情報で確かめる"
+    },
+    {
+      "q": "外食やテイクアウトも1%になる？",
+      "a": "店内で飲食する外食は税率10%のままです。テイクアウトや出前・宅配は飲食料品の販売として1%になります。ケータリングは原則10%です。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/zeimokubetsu/shohi/keigenzeiritsu/pdf/0026008-127_pamphlet.pdf",
+      "action": "店で食べるか持ち帰るかで税率が変わるため、レジでの確認や店内の掲示を見ておく"
+    },
+    {
+      "q": "値札の税率表示は、2月から5月に混ざる？",
+      "a": "令和9年2月1日から5月31日までは、税率8%か1%での総額表示をしておくことが認められます。新旧税率の混在による表示も認められますが、実際の支払額と誤認させない掲示などが条件です。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/zeimokubetsu/shohi/keigenzeiritsu/pdf/0026008-127_pamphlet.pdf",
+      "action": "値札に書かれた税率や総額を確かめ、レジで請求された金額が合っているかを見る"
+    },
+    {
+      "q": "支援金はいつから、どんな仕組みになる？",
+      "a": "税率1%相当分の範囲内で、就業者負担軽減支援金を令和9年度に先行導入するとされています。令和11年度からは、所得に応じて税額を控除したり給付したりする仕組みを本格的に導入する方針です。",
+      "source": "https://www.cas.go.jp/jp/seisaku/shouhizei_zeigakukoujo/index.html",
+      "action": "支援金の対象や金額が発表されたら、内閣官房のページで正式な内容を確かめておく"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "免税事業者で飲食料品を売る店は、課税事業者を選ぶべき？",
+      "situation": "免税事業者で、仕入れの税額が売上の税額より大きい",
+      "recommend": "急ぐ必要はなく、仕入れと売上の税額を比べてから決める",
+      "reason": "仕入れの税額が大きいと還付を受けられる可能性があります。ただし課税事業者になるには事前に届出書が必要で、原則として2年間は課税事業者として申告します。令和9年4月1日の属する課税期間中に届け出る特例もあります。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/zeimokubetsu/shohi/keigenzeiritsu/pdf/0026008-127_pamphlet.pdf"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "1%になるかは、商品の中身と売り方で決まる",
+    "cause": "なぜ税率を下げるのか、いま分かっていること",
+    "steps": "今すぐ見られる公式ページの確かめ方",
+    "desk": "税率や法案の疑問は、どこで聞けるか",
+    "worries": "店での支払いや支援金は、どうなる？",
+    "guide": "事業者は課税事業者を選ぶか、迷ったときは"
+  },
+  "depthAt": "2026-11-13T08:41:51+00:00",
+  "updatedAt": "2026-11-13T08:41:51+00:00",
+  "updates": [
+    {
+      "at": "2026-11-13T08:41:51+00:00",
+      "kind": "facts",
+      "title": "公式の資料をもとに、「なるほどの要点」・「公式の窓口」・「今日やること」・「理由」・「よくある不安」・「判断の目安」を追記しました",
+      "sourceUrl": "https://www.cas.go.jp/jp/seisaku/shouhizei_zeigakukoujo/index.html",
+      "sourceName": "内閣官房「飲食料品に係る消費税率の引下げ」及び「給付付き税額控除」について"
+    }
+  ]
 }

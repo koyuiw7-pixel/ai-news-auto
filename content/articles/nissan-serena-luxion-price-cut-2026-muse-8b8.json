@@ -83,8 +83,9 @@
   "affiliates": [],
   "newsType": "pricing",
   "todayActions": [
-    "日産のWEBカタログ（https://www3.nissan.co.jp/vehicles/new/serena.html）で、検討中のグレードの新価格を確かめる",
-    "販売店で、新価格を前提にした見積もりを取り直す"
+    "日産のWEBカタログで、検討中のグレードの新価格を確かめる",
+    "セルフ見積りで、新価格のグレードを選んで見積もりを作る",
+    "販売店に見積り依頼を出し、新価格を前提にした見積もりを取り直す"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -135,5 +136,132 @@
     "provider": "Cloudflare Workers AI",
     "relevant": true,
     "at": "2026-11-13T08:27:41+00:00"
-  }
+  },
+  "insight": [
+    {
+      "text": "車両本体価格には、税金（消費税を除く）、自賠責保険、販売諸費用、オプション価格、付属品価格などは含まれていません。",
+      "source": "https://www3.nissan.co.jp/vehicles/new/serena.html"
+    },
+    {
+      "text": "AUTECHの全車、AUTECH SPORTS SPECとAUTECH LINEの全車、ハイウェイスターVベースのマルチベッドなどに、アダプティブLEDヘッドライトシステムが標準装備されました。",
+      "source": "https://global.nissannews.com/ja-JP/releases/261105-01-j"
+    },
+    {
+      "text": "各車両の工場出荷時期の目処は、Webカタログ内の「各車両の工場出荷時期の目処について」で確かめられます。",
+      "source": "https://www3.nissan.co.jp/vehicles/new/serena.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "日産 セレナ Webカタログ",
+      "url": "https://www3.nissan.co.jp/vehicles/new/serena.html",
+      "source": "https://www3.nissan.co.jp/vehicles/new/serena.html",
+      "note": "セルフ見積りで見積もりを作れます。見積り価格はご参考価格です。"
+    },
+    {
+      "name": "日産 セレナ 価格・グレード",
+      "url": "https://www3.nissan.co.jp/vehicles/new/serena/specifications.html",
+      "source": "https://www3.nissan.co.jp/vehicles/new/serena.html",
+      "howTo": [
+        "TOP",
+        "価格・グレード"
+      ],
+      "note": "価格は販売会社が独自に決めており、くわしくは販売会社に問い合わせるよう書かれています。"
+    },
+    {
+      "name": "AUTECH セレナ Webカタログ",
+      "url": "https://www.autech.co.jp/sv/serena_autech/index.html",
+      "source": "https://global.nissannews.com/ja-JP/releases/261105-01-j",
+      "note": "AUTECHとAUTECH SPORTS SPECの仕様と価格が見られます。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "日産のWEBカタログで、検討中のグレードの新価格を確かめる",
+      "source": "https://www3.nissan.co.jp/vehicles/new/serena.html",
+      "steps": [
+        "セレナのWEBカタログを開く",
+        "「価格・グレード」を開く",
+        "検討中のグレードの価格を見る"
+      ],
+      "url": "https://www3.nissan.co.jp/vehicles/new/serena/specifications.html"
+    },
+    {
+      "action": "セルフ見積りで、新価格のグレードを選んで見積もりを作る",
+      "source": "https://www3.nissan.co.jp/vehicles/new/serena.html",
+      "steps": [
+        "Webカタログで「セルフ見積り」を開く",
+        "好きなグレードとオプションを選ぶ",
+        "表示される見積り価格は参考価格"
+      ],
+      "url": "https://www3.nissan.co.jp/vehicles/new/serena/sim.html"
+    },
+    {
+      "action": "販売店に見積り依頼を出し、新価格を前提にした見積もりを取り直す",
+      "source": "https://www3.nissan.co.jp/vehicles/new/serena.html",
+      "steps": [
+        "「販売店に見積り依頼」を開く",
+        "新価格のグレードで見積もりを頼む",
+        "諸費用とオプションを含めた総額を確かめる"
+      ],
+      "url": "https://www3.nissan.co.jp/MYPAGE/VIRTUAL-SHOWROOM"
+    }
+  ],
+  "cause": {
+    "text": "日産は、「プロパイロット2.0」をはじめとした充実の先進装備を身近にお楽しみいただけるように、価格を引き下げたと発表しています。寒い日の快適性を高める装備も標準になりました。",
+    "status": "background",
+    "source": "https://global.nissannews.com/ja-JP/releases/261105-01-j"
+  },
+  "worries": [
+    {
+      "q": "値下げは最上級のLUXIONだけ？ほかのグレードは変わる？",
+      "a": "最上級「LUXION」を20万1,300円引き下げたと書かれています。「ハイウェイスターV」には、アダプティブLEDヘッドライトシステムが標準装備されました。新価格は一覧の価格表に載っています。",
+      "source": "https://global.nissannews.com/ja-JP/releases/261105-01-j",
+      "action": "検討中のグレードの新価格を、日産のWEBカタログの価格・グレードのページで確かめ、見積もりに使う",
+      "actionSource": "https://www3.nissan.co.jp/vehicles/new/serena.html"
+    },
+    {
+      "q": "本体価格だけで、買うお金の総額がわかる？",
+      "a": "いいえ。車両本体価格には、税金（消費税を除く）、自賠責保険、販売諸費用、オプション価格などは含まれていないと書かれています。",
+      "source": "https://www3.nissan.co.jp/vehicles/new/serena.html",
+      "action": "見積もりを取るときは、税金・自賠責保険・販売諸費用・オプションを含めた総額を販売店に確かめる"
+    },
+    {
+      "q": "AUTECHなどの特装車も、安全装備は変わった？",
+      "a": "AUTECHの全車、AUTECH SPORTS SPECとAUTECH LINEの全車、ハイウェイスターVベースのマルチベッドなどに、アダプティブLEDヘッドライトシステムが標準装備になったと書かれています。",
+      "source": "https://global.nissannews.com/ja-JP/releases/261105-01-j",
+      "action": "特装車を検討するなら、AUTECHのWEBカタログで、車種ごとの仕様と価格を確かめる"
+    },
+    {
+      "q": "Black Editionは何人乗りで、どこが違う？",
+      "a": "2列目にキャプテンシートを採用した7人乗りです。ブラックを基調にした内外装で、ベースはハイウェイスターVのe-POWERとe-4ORCEです。",
+      "source": "https://global.nissannews.com/ja-JP/releases/261105-01-j",
+      "action": "Black Editionを候補にするなら、家族の乗車人数で7人乗りが必要かを先に決める"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "LUXIONの見積もりは、取り直したほうがいい？",
+      "situation": "LUXIONを候補にしている",
+      "recommend": "新価格で見積もり直すとよい",
+      "reason": "LUXIONは20万1,300円引き下げられ、e-POWER LUXIONは4,797,100円（税込）になりました。ただし本体価格には諸費用やオプションが含まれないため、見積りの総額で比べるとよいです。",
+      "source": "https://global.nissannews.com/ja-JP/releases/261105-01-j"
+    },
+    {
+      "question": "Black Editionの差額は、払う価値がある？",
+      "situation": "7人乗りや専用の内外装が必要か迷う",
+      "recommend": "7人乗りと内外装が必要かで決める",
+      "reason": "Black Editionのe-POWERは3,932,500円、ハイウェイスターVのe-POWERは3,822,500円（税込）です。Black Editionは7人乗りで、ブラック基調の専用内外装です。この比較は本体価格だけで、諸費用は含まれません。",
+      "source": "https://global.nissannews.com/ja-JP/releases/261105-01-j"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "本体価格に入らない費用もあるって知ってた？",
+    "cause": "値下げの理由は、先進装備を身近にすること",
+    "steps": "新価格は、グレードを決めてから確かめる",
+    "desk": "新価格と見積もりを確かめる公式ページ",
+    "worries": "値下げ後の価格や装備は、どこが変わった？",
+    "guide": "LUXIONか、Black Editionか迷ったとき"
+  },
+  "depthAt": "2026-11-13T08:39:44+00:00"
 }
