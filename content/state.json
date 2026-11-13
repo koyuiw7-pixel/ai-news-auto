@@ -86,7 +86,19 @@
     "z_sXLlLVUls": 1,
     "zoohZ1BiHs0": 1
   },
-  "failed_web": {},
+  "failed_web": {
+    "19582dcbd593ad2fb5b6436429dff3bbe781d9fa": 1,
+    "2822203eaae0b1d5499748b858d3f07d205929cf": 1,
+    "28ad462be142daaa171f5b17da33f5e20b9bf105": 1,
+    "6a085ae61e61c30362fc08d2f14cf4670cd55a6f": 1,
+    "6ab7084ecd2527b0df9d501e8778ec035c886500": 1,
+    "77b36a8fda3ac45819f3bb6602a1d2d823da1339": 1,
+    "974cbd7a5cecef2b7b744d059e8f459d6792a654": 1,
+    "a170820ef862a7fba3099d94bc117aa6063c9c22": 1,
+    "b77a8d4a33dcd908bcfadcd3a635e24a32dcd59c": 1,
+    "e3cc429fcec1a4d386c213674b421a9c640b572d": 1,
+    "fa974d9a33a100a6a43663b8432472e7c74a3c59": 1
+  },
   "gate_retry": {
     "261ae4aceb078e02": {
       "first": "2026-11-11T01:35:22.123410+00:00",
@@ -4224,13 +4236,6 @@
       "skipped": true,
       "url": "https://www.soumu.go.jp/menu_news/s-news/01cyber01_02000001_00310.html"
     },
-    "0c5e0ff6475dedc5": {
-      "at": "2026-10-30T05:21:51.010243+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: 本文が短い（1653字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）",
-      "skipped": true,
-      "url": "https://www.maff.go.jp/j/press/nousan/engei/261030.html"
-    },
     "0c6ee60017e73383": {
       "at": "2026-11-05T13:27:08.357470+00:00",
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
@@ -4782,12 +4787,6 @@
       "section": "ai",
       "slug": "esther-mahlangu-google-arts-culture-veo",
       "url": "https://blog.google/company-news/outreach-and-initiatives/arts-culture/esther-mahlangu/"
-    },
-    "150442e45e5b7996": {
-      "at": "2026-10-30T05:21:28.250002+00:00",
-      "reason": "prefilter: 価値の薄いお知らせ（委員会）",
-      "skipped": true,
-      "url": "https://www.caa.go.jp/notice/entry/047978/"
     },
     "1518f82e6c28ebe0": {
       "at": "2026-11-04T15:34:28.836212+00:00",
@@ -7105,13 +7104,6 @@
       "slug": "ihi-aws-ai-ready-data-svd-architecture",
       "url": "https://aws.amazon.com/jp/blogs/news/%E6%A5%AD%E5%8B%99%E9%83%A8%E9%96%80%E3%81%8C%E8%87%AA%E5%88%86%E3%81%A7%E6%94%B9%E5%96%84%E3%81%A7%E3%81%8D%E3%82%8B-ai-ready-data-%E3%82%92%E4%BD%9C%E3%82%8B-%E2%80%95-ai-%E3%81%8C%E3%81%A9%E3%82%8C/"
     },
-    "3cb550be35eb2430": {
-      "at": "2026-10-30T05:22:04.333351+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: 本文が短い（1303字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が短い（325字 / 基準 400字以上）",
-      "skipped": true,
-      "url": "https://blog.ja.playstation.com/2026/10/30/20261030-psvr2-monthly-release-roundup-s/"
-    },
     "3cc34ce62f35ac76": {
       "at": "2026-11-09T06:54:37.226751+00:00",
       "costUsd": 0.0054,
@@ -7502,14 +7494,6 @@
       "reason": "prefilter: 価値の薄いお知らせ（開催について）",
       "skipped": true,
       "url": "https://www.fsc.go.jp/senmon/nouyaku/annai/nouyaku_annai_dai1_senmon_55.html"
-    },
-    "45d97802e5e10632": {
-      "at": "2026-10-30T05:22:17.204086+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "score": 100,
-      "section": "science",
-      "slug": "riken-quantum-state-smoothing",
-      "url": "https://www.riken.jp/press/2026/20261030_2/index.html"
     },
     "45dc27e1a62d379a": {
       "at": "2026-10-30T10:12:09.204926+00:00",
@@ -8275,6 +8259,20 @@
       "reason": "prefilter: 価値の薄いお知らせ（委員会）",
       "skipped": true,
       "url": "https://www.env.go.jp/press/press_05818.html"
+    },
+    "510ed7cb96f91db6": {
+      "at": "2026-11-13T05:22:18.739200+00:00",
+      "costUsd": 0.0091,
+      "intent": "neutral",
+      "kind": "trend",
+      "mix": "",
+      "model": "gemini-3.5-flash-lite",
+      "score": 88,
+      "section": "public",
+      "slug": "vindictus-defying-fate-ps5",
+      "trendKeyword": "vindictus defying fate ps5",
+      "trendLane": true,
+      "url": "https://store.playstation.com/concept/10011300"
     },
     "5122bb9d928b5a06": {
       "at": "2026-11-02T21:19:01.491128+00:00",
@@ -10883,6 +10881,12 @@
       "section": "tech-gadget",
       "slug": "ipa-checkin-system-guideline",
       "url": "https://www.ipa.go.jp/digital/architecture/guidelines/evacuee-data-checkin-system-guideline.html"
+    },
+    "77a80fe6239aafdf5fbadd8339b2e9cce45e1c6e": {
+      "at": "2026-11-13T05:22:18.739378+00:00",
+      "reason": "trend: 公式の発表で記事にした（vindictus-defying-fate-ps5）",
+      "skipped": true,
+      "url": "https://blog.playstation.com/2026/11/12/vindictus-defying-fate-comes-to-ps5-next-year/"
     },
     "77ee6635842aa72a": {
       "at": "2026-10-30T10:32:10.073894+00:00",
@@ -20558,60 +20562,6 @@
   "quality_log": [
     {
       "accepted": true,
-      "at": "2026-11-11T06:02:18.243577+00:00",
-      "attempt": 0,
-      "id": "8e98701c063bfd2d",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 74.2,
-        "avg_sentence": 42.4,
-        "long_share": 0.0,
-        "max_paragraph": 146,
-        "paragraphs": 4,
-        "sentences": 7
-      },
-      "score": 85,
-      "source": "meti-press",
-      "title": "再生可能エネルギー特別措置法に基づき、納付金を納付しない電気事業者を公表します",
-      "warnings": [
-        "見出しの書き方: 発表文の題名の言い直し（「〇〇が△△を発表」）。読者にとって何が変わるか（だれの・何が・いつから・いくら）を書く",
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-11T06:02:46.697150+00:00",
-      "attempt": 1,
-      "id": "ccf5c040b0fb4ce8",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "リード「Outlookなどで悪用が確認された脆弱性」→ 元記事は悪用が確認されているのはCVE-2026-124194（Outlookのなりすまし）のみで、「など」に当たる他製品の悪用は書かれていない",
-        "仕事・お金の欄「Outlookを利用しているすべてのビジネスパーソンに影響します」→ 元記事は対象を限定しており、全員が影響を受けるとは書かれていない（言い過ぎ）",
-        "仕事・お金の欄「認証情報が盗まれると社内システムへの不正アクセスにつながる恐れがある」→ 元記事に無い推測で、出典の注記もない",
-        "かんたん版「パスワードなどの認証情報」→ 元記事は「認証情報」とだけ書いており、パスワードは記事側の補足（軽微）"
-      ],
-      "readability": {
-        "avg_paragraph": 163.3,
-        "avg_sentence": 70.0,
-        "long_share": 0.571,
-        "max_paragraph": 200,
-        "paragraphs": 3,
-        "sentences": 7
-      },
-      "score": 72,
-      "source": "jpcert",
-      "title": "注意喚起: 2026年11月マイクロソフトセキュリティ更新プログラムに関する注意喚起 (公開)",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（CVE・JPCERT・CC）",
-        "本文が見出しで始まっている（最初の段落は見出しなしで、だれに関係するか・関係しない人はどうかを書く）",
-        "読みやすさ: 文が長い（1文の平均 70.0字・60字超の文が 57% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
       "at": "2026-11-11T06:03:04.046085+00:00",
       "attempt": 1,
       "id": "ccf5c040b0fb4ce8",
@@ -28125,6 +28075,55 @@
       "title": "三井住友フィナンシャルグループ 2027年3月期 第2四半期(中間期)決算短信〔日本基準〕(連結)",
       "warnings": [
         "初めて出たところで言い換えていない略語（SMFG）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-13T05:21:54.708101+00:00",
+      "attempt": 1,
+      "id": "510ed7cb96f91db6",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 136.3,
+        "avg_sentence": 54.5,
+        "long_share": 0.333,
+        "max_paragraph": 182,
+        "paragraphs": 6,
+        "sentences": 15
+      },
+      "score": 93,
+      "source": "radar-official",
+      "title": "vindictus defying fate ps5",
+      "warnings": [
+        "見出しが59字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（NEXON・PS）",
+        "読みやすさ: 文が長い（1文の平均 54.5字・60字超の文が 33% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-13T05:22:17.560311+00:00",
+      "attempt": 0,
+      "id": "510ed7cb96f91db6",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 82.4,
+        "avg_sentence": 43.4,
+        "long_share": 0.053,
+        "max_paragraph": 139,
+        "paragraphs": 10,
+        "sentences": 19
+      },
+      "score": 88,
+      "source": "radar-official",
+      "title": "vindictus defying fate ps5",
+      "warnings": [
+        "見出しが59字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（NEXON・PS）"
       ]
     }
   ],
