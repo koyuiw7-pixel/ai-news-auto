@@ -88,11 +88,15 @@
   },
   "failed_web": {
     "0160cca0e3c443c7a624adf036f3be8e6ac4cb00": 2,
+    "0d8f923d51084cf4ed66194835ff8a99e20a5a70": 1,
     "19582dcbd593ad2fb5b6436429dff3bbe781d9fa": 2,
+    "2160a2b050672bd9d99287175d9d0901d5c9f002": 1,
     "2822203eaae0b1d5499748b858d3f07d205929cf": 2,
     "28ad462be142daaa171f5b17da33f5e20b9bf105": 2,
     "319b4ba93dd7bedaf58f8dc08f01c50d422b0cd7": 2,
     "43f46f039e8833524d75b8acaf6ca68df4c2dbed": 2,
+    "4a41facb5f689cdb60e7f5ac6288cbda9acf3bd6": 1,
+    "4de683fb64a1f28338880541b5e037cd5608d0d2": 1,
     "60ac03aad0674399809c9c9c2654b45f09e5a769": 2,
     "6a085ae61e61c30362fc08d2f14cf4670cd55a6f": 2,
     "6ab7084ecd2527b0df9d501e8778ec035c886500": 2,
@@ -103,14 +107,17 @@
     "9b0b7c058ad29387ff3831642dc5ac5dba071d28": 2,
     "a170820ef862a7fba3099d94bc117aa6063c9c22": 2,
     "a22234bae871d686125c6909bd184bc683dfa7f7": 2,
-    "a4ccc83453b1648014d6f0b33b7b98c26f1853fd": 1,
+    "a4ccc83453b1648014d6f0b33b7b98c26f1853fd": 2,
     "b77a8d4a33dcd908bcfadcd3a635e24a32dcd59c": 2,
     "be6af38c4511de86cc465a80e2b7b926c5ffd8fe": 2,
+    "c13bbe86281276749fc60b483f6ab5dab8bc8b1c": 1,
     "c6d5ab6a7a02b562a3611a256470cec8324a6774": 2,
     "c9f6e91c97db22cee11169bacfa8530539301b72": 2,
     "cbbafc7f230c30467136cea1f183e83244917e67": 2,
+    "d339d693518b3bc481133f2031772d300aecfd3d": 1,
     "d40f84253675d75f9845bd485000d4a354b94278": 2,
     "e3cc429fcec1a4d386c213674b421a9c640b572d": 2,
+    "ef732af380f6095584a115d4a58e9d26d54a84cb": 1,
     "fa974d9a33a100a6a43663b8432472e7c74a3c59": 2
   },
   "gate_retry": {
@@ -154,6 +161,14 @@
       "tries": 1,
       "url": "https://www.tepco.co.jp/press/release/2026/pdf4/261112j0101.pdf"
     },
+    "af8fcea84a6e869e": {
+      "first": "2026-11-13T07:14:57.644188+00:00",
+      "next": "2026-11-13T10:14:57.644188+00:00",
+      "reason": "サイソクが自分で試したように読める書き方がある（「サイソクの見方：ファジングのテスト」）。サイソクは試していない。元記事の書き手が試した結果なら「〇〇（媒体名）の記者が試したところ」と誰が試したかを書く",
+      "title": "Catch Go bugs that fuzzing misses with Gemini and a constraint solver",
+      "tries": 1,
+      "url": "https://developers.googleblog.com/catch-go-bugs-that-fuzzing-misses-with-gemini-and-a-constraint-solver/"
+    },
     "bf1537f4a0ba0146": {
       "first": "2026-11-10T07:18:16.939386+00:00",
       "next": "2026-11-10T10:18:16.939386+00:00",
@@ -171,11 +186,7 @@
       "url": "http://www.mlit.go.jp/report/press/jidosha08_hh_005885.html"
     }
   },
-  "major_tries": {
-    "20f83829a634e250": 1,
-    "3c369e10ec8cf23b": 1,
-    "b7ce81743d8d7962": 1
-  },
+  "major_tries": {},
   "pi_reopened": {
     "01bff59602ac637f": "2026-11-10T17:10:59.451283+00:00",
     "0326445f62efbab9": "2026-11-10T18:21:06.372918+00:00",
@@ -4382,12 +4393,6 @@
       "skipped": true,
       "url": "https://www.kantei.go.jp/jp/pages/20261104choukan_teigen.html"
     },
-    "0e4d5c218a333d03": {
-      "at": "2026-10-30T07:11:06.566512+00:00",
-      "reason": "prefilter: 価値の薄いお知らせ（出張）",
-      "skipped": true,
-      "url": "https://www.maff.go.jp/j/press/yusyutu_kokusai/chiiki/261030.html"
-    },
     "0e4e3a1587c5b8f1": {
       "at": "2026-11-11T02:03:43.921081+00:00",
       "reason": "prefilter: サイトの主題外（エンタメのビジネス・テックの話題ではない。料金・決算・販売本数・AI・規約などがない）",
@@ -5767,14 +5772,6 @@
       "reason": "prefilter: 価値の薄いお知らせ（公募）",
       "skipped": true,
       "url": "https://www.mhlw.go.jp/stf/newpage_77232.html"
-    },
-    "23ac914e0e3febaf": {
-      "at": "2026-10-30T06:51:53.376953+00:00",
-      "model": "gemini-3.1-flash-lite",
-      "score": 100,
-      "section": "public",
-      "slug": "digital-agency-pmh-medical-subsidy",
-      "url": "https://www.digital.go.jp/policies/health/public-medical-hub"
     },
     "23b94c697622500f": {
       "at": "2026-11-09T22:08:22.723838+00:00",
@@ -8662,6 +8659,12 @@
       "skipped": true,
       "url": "https://j-net21.smrj.go.jp/news/bt5puv00000111u3.html"
     },
+    "55da2857edd8995b5513fce50678c05eebdbda55": {
+      "at": "2026-11-13T07:12:24.936432+00:00",
+      "reason": "trend: 公式の発表で記事にした（jfa-mizuho-blue-dream-school-saga）",
+      "skipped": true,
+      "url": "https://news.yahoo.co.jp/articles/41678b6aff6bf49201ce482f421ae95384248ae2"
+    },
     "560e605b35cb6e35": {
       "at": "2026-11-07T00:39:32.752253+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（キャンペーン）",
@@ -9278,6 +9281,19 @@
       "reason": "quality: easy_markdown が短い（396字 / 基準 400字以上）",
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026103009"
+    },
+    "5fbdb3b82c2d9bf9": {
+      "at": "2026-11-13T07:05:25.803955+00:00",
+      "costUsd": 0.0015,
+      "intent": "query",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "score": 92,
+      "section": "investment",
+      "slug": "smtb-fleekdrive-email-leak",
+      "url": "https://www.smtb.jp/-/media/tb/about/corporate/release/pdf/261113.pdf"
     },
     "5feb45d9615ab3e6": {
       "at": "2026-11-03T00:31:19.170852+00:00",
@@ -10307,6 +10323,19 @@
       "slug": "aws-sap-agentic-ai-series",
       "url": "https://aws.amazon.com/jp/blogs/news/your-cfo-wants-sap-ai-results-next-quarter-heres-where-to-start/"
     },
+    "6f39573d63aa0f7b": {
+      "at": "2026-11-13T07:04:42.926491+00:00",
+      "costUsd": 0.0027,
+      "intent": "neutral",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "score": 92,
+      "section": "public",
+      "slug": "fsa-securities-unauthorized-trading",
+      "url": "https://www.fsa.go.jp/ordinary/chuui/chuui_phishing.html"
+    },
     "6f9832433932a9cb": {
       "at": "2026-11-02T01:21:04.861459+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -11096,6 +11125,20 @@
       "reason": "quality: タイトル「AWSのSAP運用基盤でモデル保守期間が半減」→ 元記事でSAP運用基盤（BasisPilot）はToyota Motor North Americaの事例で、半減という数値は元記事にない。半減が書かれているのは、ニッセイ情報テクノロジーの法人向け通知帳票改修案件（6名6か月→4名3か月の見込み）であり、タイトルの主題と取り違えている。; 要点「個人保険基幹系システムの",
       "skipped": true,
       "url": "https://aws.amazon.com/jp/blogs/news/weekly-genai-20261102/"
+    },
+    "7b709967bc49a4ad": {
+      "at": "2026-11-13T07:12:24.936221+00:00",
+      "costUsd": 0.0076,
+      "intent": "neutral",
+      "kind": "trend",
+      "mix": "",
+      "model": "gemini-3.5-flash-lite",
+      "score": 93,
+      "section": "sports",
+      "slug": "jfa-mizuho-blue-dream-school-saga",
+      "trendKeyword": "みずほ",
+      "trendLane": true,
+      "url": "https://www.jfa.jp/news/00037026/"
     },
     "7b72718fd57b6bd9": {
       "at": "2026-11-03T01:26:19.222023+00:00",
@@ -13678,14 +13721,6 @@
       "slug": "openai-linux-kernel-vulnerability-ai",
       "url": "https://openai.com/index/a-thousand-fewer-paths-to-root"
     },
-    "a505f7dd029a9adb": {
-      "at": "2026-10-30T06:51:02.214123+00:00",
-      "kind": "update",
-      "model": "gemini-3.5-flash-lite",
-      "score": 100,
-      "updated": "caa-recall-accident-report-202610",
-      "url": "https://www.caa.go.jp/notice/entry/047983/"
-    },
     "a5178b512e07b30a": {
       "at": "2026-11-09T02:13:52.081943+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（移転）",
@@ -14937,13 +14972,6 @@
       "reason": "dedupe: 同じ出典URL",
       "skipped": true,
       "url": "https://www.morinaga.co.jp/company/newsrelease/detail.php?no=3233"
-    },
-    "b749fcda386da4a4": {
-      "at": "2026-10-30T06:51:20.843102+00:00",
-      "model": "gemini-3.1-flash-lite",
-      "reason": "quality: 「今年で3回目となる記念日『自由の日』のイベントが開始されました」→元記事には「今年で3回目を迎える」との記述はあるが、イベントが「開始された」という明示的な記述はない（配布は祝祭終了時）。; 「配信サービス | PlayStation Plus ゲームカタログ」→元記事の注釈には「ゲームカタログで配信中のため」とあるが、表形式で断定的に記載するのは誤解を招く可能性がある。; 「",
-      "skipped": true,
-      "url": "https://blog.ja.playstation.com/2026/10/30/20261030-helldivers2-in-game-event-reveal-o/"
     },
     "b77a103ad566ce07": {
       "at": "2026-11-10T04:23:36.124936+00:00",
@@ -16670,14 +16698,6 @@
       "slug": "myojo-megami-sapporo-black-shoyu-2026",
       "url": "https://www.nissin.com/jp/news/13989/"
     },
-    "d4c7b707664f4813": {
-      "at": "2026-10-30T07:11:44.359904+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "score": 100,
-      "section": "business",
-      "slug": "toyota-waymo-autonomous-taxi-2027",
-      "url": "https://global.toyota/jp/newsroom/corporate/44960910.html"
-    },
     "d4e692b6f066d42f": {
       "at": "2026-11-06T08:58:44.242875+00:00",
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
@@ -17010,13 +17030,6 @@
       "reason": "prefilter: 価値の薄いお知らせ（を開催）",
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/10/2026103003"
-    },
-    "da267ffdca032156": {
-      "at": "2026-10-30T07:11:31.858568+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: easy_markdown が短い（370字 / 基準 400字以上）; easy_markdown が「## ひとことで言うと」から始まっていない",
-      "skipped": true,
-      "url": "https://www.fsa.go.jp/common/about/research/20261030/20261030.html"
     },
     "da2a962c46f1dd4a": {
       "at": "2026-11-07T19:52:10.047564+00:00",
@@ -18335,13 +18348,6 @@
       "skipped": true,
       "url": "https://newsroom.arm.com/blog/arm-stmicroelectronics-embedded-compute-physical-ai"
     },
-    "f07042d19f879aaf": {
-      "at": "2026-10-30T07:11:18.096753+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: 本文が短い（1689字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; 独自の価値が無い。「## これまでの流れ」（過去記事の文脈がある場合）・元記事の数値の Markdown 比較表（比べるものがある場合）・「## 自分に関係ある？」（150字以上で立場別に具体的に）のどれかを入れる",
-      "skipped": true,
-      "url": "http://global.nissannews.com/ja-JP/releases/261030-01-j"
-    },
     "f0802b5a72b396be": {
       "at": "2026-11-11T06:27:22.796747+00:00",
       "costUsd": 0.0061,
@@ -18644,6 +18650,14 @@
       "section": "sports",
       "slug": "jfa-beach-soccer-asia-cup-2026",
       "url": "https://www.jfa.jp/news/00036969/"
+    },
+    "f5dfecef9636850e": {
+      "at": "2026-11-13T07:18:49.873045+00:00",
+      "costUsd": 0.0182,
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 記事の基準に足りない（自動で手直ししても残った）: 5.読者がすること（何を・どこで・期限）（読者がすること（何を・どこで・期限）も「手続きは不要」も無い）",
+      "skipped": true,
+      "url": "https://blog.google/authors/koray-kavukcuoglu/"
     },
     "f61a06ff1934df84": {
       "at": "2026-11-02T04:11:30.178023+00:00",
@@ -19793,14 +19807,6 @@
       "url": "https://ahamo.com/plan",
       "writer": "muse"
     },
-    "muse-6909d2938d": {
-      "at": "2026-11-13T06:55:15.533161+00:00",
-      "mix": "other",
-      "score": 95,
-      "slug": "kouhaku-2026-debut-7-groups",
-      "url": "https://asobisystem.com/talent/cutiestreet/",
-      "writer": "muse"
-    },
     "muse-696b2cd7f1": {
       "at": "2026-11-08T05:30:23.038170+00:00",
       "mix": "money",
@@ -20007,14 +20013,6 @@
       "score": 92,
       "slug": "child-support-levy-2026-payroll",
       "url": "https://www.cfa.go.jp/policies/kodomokosodateshienkinseido",
-      "writer": "muse"
-    },
-    "muse-9292de7de8": {
-      "at": "2026-11-13T06:59:40.809735+00:00",
-      "mix": "alert",
-      "score": 88,
-      "slug": "microsoft-365-outage-november-13",
-      "url": "https://learn.microsoft.com/ja-jp/microsoft-365/enterprise/view-service-health",
       "writer": "muse"
     },
     "muse-939013074f": {
@@ -20504,209 +20502,25 @@
       "slug": "docomo-data-leak-what-to-do",
       "url": "https://www.docomo.ne.jp/info/notice/page/261106_00_m.html",
       "writer": "muse"
+    },
+    "muse-6909d2938d": {
+      "at": "2026-11-13T06:55:15.533161+00:00",
+      "mix": "other",
+      "score": 95,
+      "slug": "kouhaku-2026-debut-7-groups",
+      "url": "https://asobisystem.com/talent/cutiestreet/",
+      "writer": "muse"
+    },
+    "muse-9292de7de8": {
+      "at": "2026-11-13T06:59:40.809735+00:00",
+      "mix": "alert",
+      "score": 88,
+      "slug": "microsoft-365-outage-november-13",
+      "url": "https://learn.microsoft.com/ja-jp/microsoft-365/enterprise/view-service-health",
+      "writer": "muse"
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-11T06:07:20.931267+00:00",
-      "attempt": 0,
-      "id": "4c66ceea359c156e",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 76.0,
-        "avg_sentence": 38.0,
-        "long_share": 0.071,
-        "max_paragraph": 139,
-        "paragraphs": 7,
-        "sentences": 14
-      },
-      "score": 93,
-      "source": "ntt-news-ai",
-      "title": "コミュニケーションポータル「ProgOffice® Enterprise」に、SMSの不適切送信を未然防止する「SMS誤送信防止AI」機能を追加",
-      "warnings": [
-        "見出しが57字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（SMS・NG）",
-        "本文が見出しで始まっている（最初の段落は見出しなしで、だれに関係するか・関係しない人はどうかを書く）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-11T06:07:43.600123+00:00",
-      "attempt": 1,
-      "id": "3d25b172f40d8a6f",
-      "kind": "ai",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "題名で料金・価格を約束しているのに、本文に金額（円・ドル・無料など）が無い。元記事の金額を書くか、題名から料金の話を外す"
-      ],
-      "readability": {
-        "avg_paragraph": 93.4,
-        "avg_sentence": 46.7,
-        "long_share": 0.312,
-        "max_paragraph": 146,
-        "paragraphs": 8,
-        "sentences": 16
-      },
-      "score": null,
-      "source": "aws-japan-blog",
-      "title": "Kiro の「Approve for me」のご紹介",
-      "warnings": [
-        "見出しが45字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（IDE・CLI）",
-        "読みやすさ: 文が長い（1文の平均 46.7字・60字超の文が 31% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-11T06:21:05.513873+00:00",
-      "attempt": 1,
-      "id": "b8c092e554a77e02",
-      "kind": "broad",
-      "model": "gemini-flash-latest",
-      "problems": [
-        "元記事・確認済みの事実の束・計算済みの数字のどれにも無い数字がある（「税込540円は1包あたり180円」）。元記事か束の数字に直すか、その文を削る。簡単な計算（かけ算・足し算など）をするなら、確かめた数字だけを使って式を書き「（サイソク編集部の計算）」と添える"
-      ],
-      "readability": {
-        "avg_paragraph": 50.0,
-        "avg_sentence": 50.0,
-        "long_share": 0.167,
-        "max_paragraph": 81,
-        "paragraphs": 12,
-        "sentences": 12
-      },
-      "score": null,
-      "source": "nomura-re",
-      "title": "「メガロスプロテインコーヒー カフェオレ」に、気軽に試せる便利な3包入りが新登場 11月10日（火）よりナチュラルローソンで先行販売開始 ～1杯でたんぱく質約6",
-      "warnings": [
-        "読みやすさ: 文が長い（1文の平均 50.0字・60字超の文が 17% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-11T06:22:12.447322+00:00",
-      "attempt": 1,
-      "id": "6fba96bf2fae0445",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "リード「現在、既存の社債や預金口座の条件が自動的に変更されることはありません」→ 元記事・確認済みの文脈のどこにも書かれていない主張で、根拠なく断定している。",
-        "本文「個人の預金や既存の投資商品への直接的な影響はありません」→ 元記事に無い影響の有無の断定。",
-        "仕事・お金の欄「直接の影響は小さいです」→ 元記事に無い評価で、上の断定と同じ根拠不足。",
-        "本文「日本政策投資銀行は政策金融機関として、長期的な資金調達のために定期的に社債を発行しています」→ 一般的な背景だが、編集部注の明示がなく出典も無い。"
-      ],
-      "readability": {
-        "avg_paragraph": 97.3,
-        "avg_sentence": 58.4,
-        "long_share": 0.4,
-        "max_paragraph": 139,
-        "paragraphs": 3,
-        "sentences": 5
-      },
-      "score": 76,
-      "source": "mof",
-      "title": "第93回株式会社日本政策投資銀行社債に対する政府保証の付与",
-      "warnings": [
-        "読みやすさ: 文が長い（1文の平均 58.4字・60字超の文が 40% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-11T06:22:22.954651+00:00",
-      "attempt": 1,
-      "id": "6fba96bf2fae0445",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 70.0,
-        "avg_sentence": 70.0,
-        "long_share": 0.667,
-        "max_paragraph": 93,
-        "paragraphs": 3,
-        "sentences": 3
-      },
-      "score": 96,
-      "source": "mof",
-      "title": "第93回株式会社日本政策投資銀行社債に対する政府保証の付与",
-      "warnings": [
-        "読みやすさ: 文が長い（1文の平均 70.0字・60字超の文が 67% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-11T06:22:32.083083+00:00",
-      "attempt": 0,
-      "id": "6fba96bf2fae0445",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 53.3,
-        "avg_sentence": 40.0,
-        "long_share": 0.0,
-        "max_paragraph": 82,
-        "paragraphs": 3,
-        "sentences": 4
-      },
-      "score": 95,
-      "source": "mof",
-      "title": "第93回株式会社日本政策投資銀行社債に対する政府保証の付与"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-11T06:22:45.982626+00:00",
-      "attempt": 1,
-      "id": "60a0ab1308517408",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "元記事・確認済みの資料に無い画面の手順・メニュー名・ボタン名がある（「フォーラム特設ページ」）。資料にある道順だけを書くか、「公式ヘルプの手順を確認してください」と書く"
-      ],
-      "readability": {
-        "avg_paragraph": 99.2,
-        "avg_sentence": 56.7,
-        "long_share": 0.429,
-        "max_paragraph": 129,
-        "paragraphs": 4,
-        "sentences": 7
-      },
-      "score": null,
-      "source": "ipa",
-      "title": "IPAフォーラム2026アーカイブ動画および開催レポートを公開しました",
-      "warnings": [
-        "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（PKSHA）",
-        "本文が見出しで始まっている（最初の段落は見出しなしで、だれに関係するか・関係しない人はどうかを書く）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-11T06:23:15.301982+00:00",
-      "attempt": 1,
-      "id": "60a0ab1308517408",
-      "kind": "broad",
-      "model": "strike:よくある質問・今日やること",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 97.5,
-        "avg_sentence": 55.7,
-        "long_share": 0.429,
-        "max_paragraph": 129,
-        "paragraphs": 4,
-        "sentences": 7
-      },
-      "score": 88,
-      "source": "ipa",
-      "title": "IPAフォーラム2026アーカイブ動画および開催レポートを公開しました",
-      "warnings": [
-        "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（PKSHA）",
-        "本文が見出しで始まっている（最初の段落は見出しなしで、だれに関係するか・関係しない人はどうかを書く）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-11T06:23:34.053078+00:00",
@@ -28071,6 +27885,210 @@
         "見出しが46字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（FG）",
         "同じ数字が多い（「100円」が6回）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-13T07:04:42.885110+00:00",
+      "attempt": 1,
+      "id": "6f39573d63aa0f7b",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 71.9,
+        "avg_sentence": 35.9,
+        "long_share": 0.088,
+        "max_paragraph": 128,
+        "paragraphs": 17,
+        "sentences": 34
+      },
+      "score": 92,
+      "source": "fsa",
+      "title": "「インターネット取引サービスへの不正アクセス・不正取引にご注意ください」のページを更新しました。",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（SMS・IP）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-13T07:05:17.201163+00:00",
+      "attempt": 1,
+      "id": "5fbdb3b82c2d9bf9",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 84.8,
+        "avg_sentence": 44.9,
+        "long_share": 0.176,
+        "max_paragraph": 170,
+        "paragraphs": 9,
+        "sentences": 17
+      },
+      "score": 92,
+      "source": "smtb",
+      "title": "当社の委託先が利用したメール配信システムへの不正アクセスについて",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（JFA・STORE・GMO）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-13T07:12:00.124670+00:00",
+      "attempt": 1,
+      "id": "7b709967bc49a4ad",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 121.1,
+        "avg_sentence": 60.6,
+        "long_share": 0.438,
+        "max_paragraph": 158,
+        "paragraphs": 8,
+        "sentences": 16
+      },
+      "score": 93,
+      "source": "jfa",
+      "title": "サッカーを通じて子どもたちの健康とみらいへの挑戦に貢献するプログラム JFA×〈みずほ〉「BLUE DREAM みらいスクール」を佐賀県で初開催 #jfa",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（SAGA・JFA・SSG）",
+        "読みやすさ: 文が長い（1文の平均 60.6字・60字超の文が 44% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "読みやすさ: 段落が長い（平均 121.1字・最長 158字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-13T07:12:17.597426+00:00",
+      "attempt": 0,
+      "id": "7b709967bc49a4ad",
+      "kind": "broad",
+      "model": "",
+      "problems": [
+        "読みやすさ基準外のまま受理: 見出しの数・階層が変わった（3→3個）"
+      ],
+      "readability": {
+        "avg_paragraph": 121.1,
+        "avg_sentence": 60.6,
+        "long_share": 0.438,
+        "max_paragraph": 158,
+        "paragraphs": 8,
+        "sentences": 16
+      },
+      "score": 93,
+      "source": "jfa",
+      "title": "サッカーを通じて子どもたちの健康とみらいへの挑戦に貢献するプログラム JFA×〈みずほ〉「BLUE DREAM みらいスクール」を佐賀県で初開催 #jfa",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（SAGA・JFA・SSG）",
+        "読みやすさ: 文が長い（1文の平均 60.6字・60字超の文が 44% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "読みやすさ: 段落が長い（平均 121.1字・最長 158字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-13T07:14:16.595941+00:00",
+      "attempt": 1,
+      "id": "af8fcea84a6e869e",
+      "kind": "ai",
+      "model": "claude:sonnet",
+      "problems": [
+        "サイソクが自分で試したように読める書き方がある（「サイソクの見方：ファジングのテスト」）。サイソクは試していない。元記事の書き手が試した結果なら「〇〇（媒体名）の記者が試したところ」と誰が試したかを書く"
+      ],
+      "readability": {
+        "avg_paragraph": 138.5,
+        "avg_sentence": 43.6,
+        "long_share": 0.151,
+        "max_paragraph": 219,
+        "paragraphs": 23,
+        "sentences": 73
+      },
+      "score": null,
+      "source": "google-developers-blog",
+      "title": "Catch Go bugs that fuzzing misses with Gemini and a constraint solver",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（RISC・TOML・HTTP）",
+        "読みやすさ: 段落が長い（平均 138.5字・最長 219字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-13T07:17:50.496162+00:00",
+      "attempt": 1,
+      "id": "f5dfecef9636850e",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "リード『出力が10万トークンあたり10ドル』→ 出力単価は100万トークンあたり10ドルが正しく、本文・表と矛盾する（数値の取り違え）",
+        "『実世界での複雑なプログラミング作業』→ 元記事は『real-world coding』とあるのみで、「複雑な」は元記事にない補足",
+        "『今日やること』の一時チャットの欄の確認は、確認済みの文脈にはあるが Argon の発表内容とは無関係な話題で、見出しの問いへの答えを薄めている",
+        "日本での提供開始日が未発表という点は、元記事に日本への言及がないため『発表されていない』として扱えるが、根拠の出典が示されていない"
+      ],
+      "readability": {
+        "avg_paragraph": 131.4,
+        "avg_sentence": 65.7,
+        "long_share": 0.591,
+        "max_paragraph": 178,
+        "paragraphs": 11,
+        "sentences": 22
+      },
+      "score": 62,
+      "source": "radar-official",
+      "title": "Koray Kavukcuoglu",
+      "warnings": [
+        "見出しの書き方: 発表文の題名の言い直し（「〇〇が△△を発表」）。読者にとって何が変わるか（だれの・何が・いつから・いくら）を書く",
+        "見出しが53字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "同じ数字が多い（「10ドル」が5回）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-13T07:18:17.762836+00:00",
+      "attempt": 1,
+      "id": "f5dfecef9636850e",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 131.1,
+        "avg_sentence": 65.5,
+        "long_share": 0.591,
+        "max_paragraph": 178,
+        "paragraphs": 11,
+        "sentences": 22
+      },
+      "score": 93,
+      "source": "radar-official",
+      "title": "Koray Kavukcuoglu",
+      "warnings": [
+        "見出しの書き方: 発表文の題名の言い直し（「〇〇が△△を発表」）。読者にとって何が変わるか（だれの・何が・いつから・いくら）を書く",
+        "見出しが53字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "同じ数字が多い（「10ドル」が5回）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-13T07:18:49.869358+00:00",
+      "attempt": 0,
+      "id": "f5dfecef9636850e",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 65.7,
+        "avg_sentence": 38.5,
+        "long_share": 0.172,
+        "max_paragraph": 142,
+        "paragraphs": 17,
+        "sentences": 29
+      },
+      "score": 92,
+      "source": "radar-official",
+      "title": "Koray Kavukcuoglu",
+      "warnings": [
+        "見出しの書き方: 発表文の題名の言い直し（「〇〇が△△を発表」）。読者にとって何が変わるか（だれの・何が・いつから・いくら）を書く",
+        "見出しが53字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "同じ数字が多い（「10ドル」が5回）"
       ]
     }
   ],
