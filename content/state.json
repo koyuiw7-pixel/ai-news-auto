@@ -90,10 +90,11 @@
     "0160cca0e3c443c7a624adf036f3be8e6ac4cb00": 2,
     "0187ebd8136138e9dd6260926b0bf8b46008ccf3": 2,
     "03420de086a09dc3ad89fe6317c3521ef0077ba8": 2,
+    "036b93df554c7fca82002aea66d22297d8850351": 1,
     "0a3265efa76ac3808f8bd09c0aafeb1716a9dd0a": 2,
-    "0b86d134992a6d501b8b793e236a39c2fc5099e8": 1,
+    "0b86d134992a6d501b8b793e236a39c2fc5099e8": 2,
     "0cb16dd13c8ee52577652ceda839c1316cd1f6ab": 2,
-    "0ccaee537db7bf809c3741a75929c8442fff8f03": 1,
+    "0ccaee537db7bf809c3741a75929c8442fff8f03": 2,
     "0d31f2134ae54734815ddd75c70d49e5deabbd6f": 2,
     "0d8f923d51084cf4ed66194835ff8a99e20a5a70": 2,
     "10f4ea9bd14472fd07b7933c56966cb0394130ef": 2,
@@ -122,7 +123,7 @@
     "4a41facb5f689cdb60e7f5ac6288cbda9acf3bd6": 2,
     "4de683fb64a1f28338880541b5e037cd5608d0d2": 2,
     "4df91a5a063d45c0fc27fa705792e0998764e045": 2,
-    "4e9420671917a1292d60e55c5626b1e785027dd5": 1,
+    "4e9420671917a1292d60e55c5626b1e785027dd5": 2,
     "4eab6a156403901911cb987b5fca67d461efb0ae": 2,
     "50ed98d89f7218ff269faca4483a09f41cfb284b": 2,
     "5242baaf341dc96f8d0d5e1630dc1687fe129bb9": 2,
@@ -131,7 +132,7 @@
     "5672f798162758e9e6d77ca7d0e1f90fd3ac8074": 2,
     "579f792e6159ba10d00f565ce31b9ccd683000ca": 2,
     "587152f3a1540bade48c9e5f947bd20c9e38de56": 2,
-    "58f19986234fb825bbd4eca5db64f64afe6d35c8": 1,
+    "58f19986234fb825bbd4eca5db64f64afe6d35c8": 2,
     "5b3d024cdf4bb2d8f5d3117c531da8f9242dd052": 2,
     "5b4c1cab0fa6e72c64de5bff44d09afff748fce0": 2,
     "60ac03aad0674399809c9c9c2654b45f09e5a769": 2,
@@ -168,6 +169,7 @@
     "9b372e9b8408d9dae9cea6aa489c845c8bffc87c": 2,
     "9e7a67145e366f470ef84c388dff06f93eeda92e": 2,
     "9f67fd9f1be9a5fe2299bb4e9df6740baa4fa3f7": 2,
+    "9fa3d6685ceb63ce20ca25feed9521ff9493a9ce": 1,
     "a11ec2f23f7cf8d83e4132755ae57544be201b5c": 2,
     "a170820ef862a7fba3099d94bc117aa6063c9c22": 2,
     "a22234bae871d686125c6909bd184bc683dfa7f7": 2,
@@ -175,7 +177,7 @@
     "aa0517b1ae632803a6e805b212b8c7fccca6a173": 2,
     "aa43be8c131ee6d30dafc31621472d8dc2dac8da": 2,
     "acc82e21338a4d87334b36c0d9c34d2c63bf3917": 2,
-    "ad8320170f2aa43d5c3d6c8488ddbde8868f1dc5": 1,
+    "ad8320170f2aa43d5c3d6c8488ddbde8868f1dc5": 2,
     "b393ad682bb8e3c0479a0386855e8140768ade12": 2,
     "b5a5db93d7fb94bcb6373df55b56095e774041c0": 2,
     "b77a8d4a33dcd908bcfadcd3a635e24a32dcd59c": 2,
@@ -6351,6 +6353,13 @@
       "reason": "prefilter: 価値の薄いお知らせ（会議）",
       "skipped": true,
       "url": "https://www.mhlw.go.jp/stf/newpage_77059.html"
+    },
+    "2bd53aa92b6c6ce2df630ca3419fca94076e2d61": {
+      "at": "2026-11-13T12:18:57.538100+00:00",
+      "model": "gemini-3.5-flash",
+      "reason": "quality: 元記事・確認済みの資料に無い画面の手順・メニュー名・ボタン名がある（「設定画面」）。資料にある道順だけを書くか、「公式ヘルプの手順を確認してください」と書く",
+      "skipped": true,
+      "url": "https://news.web.nhk/newsweb/na/nd-20261112de75046"
     },
     "2beb40c18b92349f": {
       "at": "2026-11-02T12:31:13.235453+00:00",
@@ -18132,13 +18141,6 @@
       "skipped": true,
       "url": "https://www.nomura-re-hd.co.jp/news/005005.html"
     },
-    "ec2079a5cdf6ce4a": {
-      "at": "2026-10-30T12:17:55.401449+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: 本文が短い（1586字 / 基準 1800字以上）。元記事の事実を使って各章を具体的に書き足す（推測で水増ししない）; easy_markdown が短い（306字 / 基準 400字以上）",
-      "skipped": true,
-      "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/kenkou/kekkaku-kansenshou01/houdou.html"
-    },
     "ec2f34ec5f6ac583": {
       "at": "2026-11-02T19:34:42.589607+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -18366,13 +18368,6 @@
       "reason": "quality: 題名で「日本で使えるか」を約束しているのに、本文に日本での提供・使い方の説明が無い。答えるか、題名から外す; 題名で料金・価格を約束しているのに、本文に金額（円・ドル・無料など）が無い。元記事の金額を書くか、題名から料金の話を外す",
       "skipped": true,
       "url": "https://www.fortience.com/company/newsroom/20261111/"
-    },
-    "f0ec3df44a077b68": {
-      "at": "2026-10-30T12:17:35.301108+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "reason": "厚生労働省による定点当たり報告数の推移の定期的な統計データ更新であり、個別の制度変更や具体的な読者向けのアクションを伴わないため対象外とします。",
-      "skipped": true,
-      "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/houkokusuunosuii_00007.html"
     },
     "f1280b003fab5afa": {
       "at": "2026-11-07T15:34:50.720431+00:00",
@@ -20558,30 +20553,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-11T09:20:21.519664+00:00",
-      "attempt": 1,
-      "id": "a289a1d58ce4aad3",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 82.4,
-        "avg_sentence": 52.5,
-        "long_share": 0.273,
-        "max_paragraph": 133,
-        "paragraphs": 7,
-        "sentences": 11
-      },
-      "score": 88,
-      "source": "city-yokohama",
-      "title": "【記者発表】「学校給食費の無償化に関する指定都市市長会緊急要請」について原澤 敦美 横浜市長が文部科学省に要請を行いました",
-      "warnings": [
-        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "読みやすさ: 文が長い（1文の平均 52.5字・60字超の文が 27% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-11T09:20:42.328045+00:00",
@@ -28144,6 +28115,32 @@
         "見出しの書き方: 発表文の題名の言い直し（「〇〇が△△を発表」）。読者にとって何が変わるか（だれの・何が・いつから・いくら）を書く",
         "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（JR・GREEN・BOBOS）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-13T12:18:40.236349+00:00",
+      "attempt": 1,
+      "id": "2bd53aa92b6c6ce2df630ca3419fca94076e2d61",
+      "kind": "trend",
+      "model": "gemini-3.5-flash",
+      "problems": [
+        "元記事・確認済みの資料に無い画面の手順・メニュー名・ボタン名がある（「設定画面」）。資料にある道順だけを書くか、「公式ヘルプの手順を確認してください」と書く"
+      ],
+      "readability": {
+        "avg_paragraph": 72.0,
+        "avg_sentence": 48.0,
+        "long_share": 0.222,
+        "max_paragraph": 107,
+        "paragraphs": 6,
+        "sentences": 9
+      },
+      "score": null,
+      "source": "trends",
+      "title": "ユナイテッド・スーパーマーケット・ホールディングス",
+      "warnings": [
+        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "読みやすさ: 文が長い（1文の平均 48.0字・60字超の文が 22% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
       ]
     }
   ],
