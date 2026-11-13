@@ -141,7 +141,8 @@ class RetireNoindexPlan(unittest.TestCase):
     def test_duplicates_redirect_to_the_keeper(self):
         articles = [
             article("keeper", sourceUrl="https://example.test/same", body=JAPAN_BODY + "長い"),
-            article("copy", sourceUrl="https://example.test/same/", title="別の題名"),
+            # 予備の判定は、出典URLが同じで題名も似ている記事だけを重複にする（2026-11-13。別の切り口の記事は重複にしない）
+            article("copy", sourceUrl="https://example.test/same/", title="OpenAIが新しいAIモデルを公開"),
             article("marked", duplicateOf="keeper", title="さらに別の題名"),
         ]
         picked, _ = self.plan(articles)

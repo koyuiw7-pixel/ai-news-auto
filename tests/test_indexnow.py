@@ -162,8 +162,10 @@ class IndexNowGuideSelectionTest(IndexNowFixture):
     def test_duplicates_keep_longest(self):
         arts = [{"slug": "a", "title": "同じ 題名", "body": "x" * 10},
                 {"slug": "b", "title": "同じ題名", "body": "x" * 20},
-                {"slug": "c", "title": "別", "sourceUrl": "u", "body": "x"},
-                {"slug": "d", "title": "別2", "sourceUrl": "u", "body": "xx"}]
+                {"slug": "c", "title": "新しい料金プランを発表", "sourceUrl": "u", "body": "x"},
+                {"slug": "d", "title": "新しい料金プランを発表へ", "sourceUrl": "u", "body": "xx"},
+                # 2026-11-13: 出典が同じでも題名の切り口が違えば重複にしない
+                {"slug": "e", "title": "社長が退任", "sourceUrl": "u", "body": "x"}]
         self.assertEqual(indexnow.duplicate_slugs(arts), {"a", "c"})
 
     def test_distribution_policy_unchanged(self):

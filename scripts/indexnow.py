@@ -366,22 +366,41 @@ def _is_disaster_slug(slug: str) -> bool:
     return bool(re.match(r"(?:quake|tsunami)-", str(slug or "")))
 
 
+# 予備の判定で、出典 URL が同じ2本を「同じ切り口」とみなす題名の類似度（文字バイグラムの重なり。scripts/story.py の SAME_URL_SIM・
+# lib/article-index.mjs の SAME_URL_TITLE_SIM と同じ）。2026-11-13: 同じ公式のページから別のことを書いた記事（NVIDIA の「CEO退任」と
+# 「決算は11月18日」、医療費控除の「明細書」と「10万円の壁」）を重複にしない
+SAME_URL_TITLE_SIM = 0.3
+
+
+def _title_bigrams(key: str) -> set[str]:
+    return {key[i:i + 2] for i in range(len(key) - 1)} if len(key) > 1 else ({key} if key else set())
+
+
+def _bigram_sim(a: set[str], b: set[str]) -> float:
+    return len(a & b) / len(a | b) if a and b else 0.0
+
+
 def duplicate_slugs(articles: list[dict]) -> set[str]:
     """重複記事（lib/article-index.mjs の markDuplicates と同じ）。
-    1. duplicateOf（scripts/story.py が付ける）  2. 予備: 同じ題名・出典URLのうち代表以外（本文の長い方、同じなら先に載った方が代表）"""
+    1. duplicateOf（scripts/story.py が付ける）
+    2. 予備: 同じ題名の記事と、出典URLが同じで題名も似ている記事（SAME_URL_TITLE_SIM 以上）のうち代表以外
+       （本文の長い方、同じなら先に載った方が代表）"""
     keep: set[str] = set()
+    by_url: dict[str, list[set[str]]] = {}
     out: set[str] = {a.get("slug", "") for a in articles if a.get("duplicateOf") and a.get("duplicateOf") != a.get("slug")}
     items = [a for a in articles if a.get("type") != "roundup" and a.get("slug") not in out and not a.get("angleOf")]
     items.sort(key=lambda a: a.get("generatedAt", ""))
     items.sort(key=lambda a: -len(a.get("body", "")))
     for a in items:
-        keys = ["t:" + TITLE_NOISE.sub("", a.get("title", "")).lower()]
-        if a.get("sourceUrl") and not _is_disaster_slug(a.get("slug", "")):
-            keys.append("u:" + _url_key(a["sourceUrl"]))
-        if any(k in keep for k in keys):
+        title = TITLE_NOISE.sub("", a.get("title", "")).lower()
+        grams = _title_bigrams(title)
+        url = _url_key(a["sourceUrl"]) if a.get("sourceUrl") and not _is_disaster_slug(a.get("slug", "")) else ""
+        if ("t:" + title) in keep or any(_bigram_sim(grams, g) >= SAME_URL_TITLE_SIM for g in by_url.get(url, ())):
             out.add(a.get("slug", ""))
         else:
-            keep.update(keys)
+            keep.add("t:" + title)
+            if url:
+                by_url.setdefault(url, []).append(grams)
     return out
 
 

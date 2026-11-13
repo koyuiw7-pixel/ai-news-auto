@@ -169,8 +169,11 @@ class DuplicateSourceKeyTest(unittest.TestCase):
             {"slug": "quake-2", "title": "千葉県で震度4", "sourceUrl": self.JMA, "body": "x" * 800, "generatedAt": "2"},
             {"slug": "notes-a", "title": "Claude の新しい API", "sourceUrl": f"{self.NOTES}#entry-2026-11-03", "body": "x" * 900, "generatedAt": "1"},
             {"slug": "notes-b", "title": "Claude の別の更新", "sourceUrl": f"{self.NOTES}#entry-2026-11-05", "body": "x" * 800, "generatedAt": "2"},
-            {"slug": "utm-a", "title": "発表A", "sourceUrl": "https://example.com/news/a?utm_source=x", "body": "x" * 900, "generatedAt": "1"},
-            {"slug": "utm-b", "title": "発表A の言い換え", "sourceUrl": "https://example.com/news/a/", "body": "x" * 800, "generatedAt": "2"},
+            {"slug": "utm-a", "title": "A社が新しい料金プランを発表", "sourceUrl": "https://example.com/news/a?utm_source=x", "body": "x" * 900, "generatedAt": "1"},
+            {"slug": "utm-b", "title": "A社、新しい料金プランを発表へ", "sourceUrl": "https://example.com/news/a/", "body": "x" * 800, "generatedAt": "2"},
+            # 2026-11-13: 同じ出典でも題名の切り口が違う記事（CEO の退任と決算の日程）は重複にしない
+            {"slug": "angle-a", "title": "B社のCEOが即日退任　後任は暫定", "sourceUrl": "https://example.com/news/b", "body": "x" * 900, "generatedAt": "1"},
+            {"slug": "angle-b", "title": "B社の決算は11月18日朝　投資信託の4.8%に響く日", "sourceUrl": "https://example.com/news/b", "body": "x" * 800, "generatedAt": "2"},
         ]
 
     def test_python_keeps_period_and_entry(self):

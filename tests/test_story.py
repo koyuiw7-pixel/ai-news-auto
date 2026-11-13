@@ -89,7 +89,8 @@ class SameStoryTest(unittest.TestCase):
         self.assertIsNone(same(a, c))
 
     def test_angle_article_is_not_duplicate(self):
-        base = art("base", "OpenAIが新AIモデル「GPT-6.1 Terra」", "2026-10-27T01:00:00+00:00", sourceUrl="https://openai.com/index/t")
+        # 代表は本文の長い方（2026-11-13。同じ長さなら新しい方なので、先の記事を長くしておく）
+        base = art("base", "OpenAIが新AIモデル「GPT-6.1 Terra」", "2026-10-27T01:00:00+00:00", sourceUrl="https://openai.com/index/t", body=BODY + "本文" * 50)
         angle = art("angle", "ChatGPTの「GPT-6.1 Terra」は誰が使える？プラン別に整理", "2026-10-27T02:00:00+00:00", sourceUrl="https://openai.com/index/t/",
                     relatedSlugs=["base"], body=BODY + "\n[元記事](/articles/base)")
         dup = art("dup", "OpenAIの新モデル GPT-6.1 Terra が登場", "2026-10-27T03:00:00+00:00", sourceUrl="https://openai.com/index/t")
@@ -138,13 +139,17 @@ class SamePublisherNearDuplicateTest(unittest.TestCase):
     """同じ発信元が近い時刻に出した似た発表（2026-11-03 の点検で見つかった国交省の「秋の叙勲」と「秋の褒章」）"""
 
     def test_same_ministry_same_day(self):
-        a = art("mlit-medals", "国土交通省、令和8年秋の褒章受章者を発表 伝達式は11月18日に開催へ", "2026-11-02T16:31:00+00:00",
+        a = art("mlit-medals", "国土交通省、令和8年秋の褒章受章者を発表 伝達式を開催へ", "2026-11-02T16:31:00+00:00",
                 genreSlug="business", ch="mlit", keywords=["国土交通省", "褒章", "令和8年秋", "受章者", "伝達式"],
                 sourceUrl="http://www.mlit.go.jp/report/press/kanbo03_hh_000427.html", videoTitle="令和８年秋の褒章について")
-        b = art("mlit-decoration", "国交省、令和8年秋の叙勲受章者292名を発表 11月26日に伝達式を開催", "2026-11-02T20:12:00+00:00",
+        b = art("mlit-decoration", "国交省、令和8年秋の叙勲受章者292名を発表 伝達式を開催", "2026-11-02T20:12:00+00:00",
                 genreSlug="business", ch="mlit", keywords=["国土交通省", "秋の叙勲", "受章者", "令和8年", "伝達式"],
                 sourceUrl="http://www.mlit.go.jp/report/press/kanbo03_hh_000428.html", videoTitle="令和８年秋の叙勲について")
         self.assertTrue((same(b, a) or "").startswith("同じ発信元の似た発表"))
+        # 2026-11-13: 題名の中心の日付が食い違う（11月18日の伝達式と11月26日の伝達式）なら別の出来事
+        a2 = {**a, "title": "国土交通省、令和8年秋の褒章受章者を発表 伝達式は11月18日に開催へ"}
+        b2 = {**b, "title": "国交省、令和8年秋の叙勲受章者292名を発表 11月26日に伝達式を開催"}
+        self.assertIsNone(same(b2, a2))
 
     def test_different_products_or_episodes_are_not_duplicates(self):
         mac = art("mac", "Appleが「M6」搭載の新14インチMacBook Proを発表、最大24時間駆動", "2026-10-28T10:00:00+00:00",

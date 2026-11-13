@@ -6,7 +6,12 @@ duplicateOf を読むだけにする（判定を TypeScript と Python で二重
 
 同じ話題とみなす条件（どれか1つ。比べるのは「サイソクに載せた時刻」か「元の発表の時刻」が5日以内の記事だけ）:
   1. 出典 URL が同じ（クエリ・utm・末尾の /・www・言語の段（/ja-jp/ など）を除いて比べる。
-     openai.com/blog/X → /index/X のような既知の転送も同じにする。YouTube は動画 ID で比べる）
+     openai.com/blog/X → /index/X のような既知の転送も同じにする。YouTube は動画 ID で比べる）で、切り口も同じ
+     （2026-11-13: 題名の類似度 0.3 以上か keywords の重なり 0.3 以上。同じ公式のページから別のことを書いた記事
+     〔医療費控除の「明細書の書き方」と「10万円の壁」、NVIDIA の「CEO退任」と「決算は11月18日」〕は重複にしない。
+     生成前の候補の確認（candidate=True）は今までどおり出典 URL だけで見る＝同じ発表から自動でもう1本作らない）
+  0. 題名の中心の日付が食い違う記事（「決算は11月18日」と「17日に退任」のように、両方の題名に日付があり1つも合わない）は、
+     出典・会社・製品名が同じでも別の出来事として扱う（題名がまったく同じ・ほぼ同じ〔類似度 0.6 以上〕ときを除く）
   2. 正規化した題名が同じ
   3. 同じ会社（radar の entities）で、
      a. 題名に同じ「名前＋版数」の製品名（genie4・gemini4carbon など）がある
@@ -31,12 +36,15 @@ duplicateOf を読むだけにする（判定を TypeScript と Python で二重
   - 2026-11-10（台帳 A71）: 読者がやることのガイド（家族の分・対象の確かめ方・やること。題名か、本文の見出しの3本以上で見る）も
     別の役割。ドコモの流出で「今日やるのは明細とdアカウントの確認」「家族の回線はどうなる」が発表の記事の重複にされ、
     前日いちばん読まれた記事が検索から外れていた。役割の違う同じ出典の記事には mark が angleOf を付ける（予備の判定から外す）。
-代表（canonical）: 同じ話題のうち、ほかの理由で検索から外れない記事の中で最初に載せたもの（無ければ最初の記事）。
+代表（canonical）: 同じ話題のうち、ほかの理由で検索から外れない記事の中でいちばん強いページ（2026-11-13 オーナー「とにかく数字」）:
+  検索に表示があった記事（scripts/search_protected.py。台帳 A46・A68）→ Muse が書いた記事（writer == "muse"）→ 本文が長い → 出典が多い → 新しい の順（keeper_rank）。先に載せただけの薄い自動記事を代表にしない。
   手動で indexable: true にした記事は代表にし、印を付けない。まとめ記事（roundup）・地震の記事は対象外。
-一度付けた duplicateOf は、--recompute を付けない限り外さない（代表が入れ替わって検索のページが揺れないように）。
+一度付けた duplicateOf は、--recompute を付けない限り外さない（検索のページが揺れないように）。ただし代表が入れ替わったとき
+（新しく強い記事ができた）は、新しい代表の印を外し、前の代表を指していた印を新しい代表へ付け替える（canonical を重複の記事へ向けない）。
 
   python3 scripts/story.py mark --dry-run        # 全記事を調べて、付ける印を表示するだけ
   python3 scripts/story.py mark                  # 印を付ける（直近 --days 日に載せた記事だけ見直す。0=全記事）
+  python3 scripts/story.py mark --days 14 --recompute   # 直近14日に載せた記事の印だけ付け直す（外れたものは消す。手で付けた印は残す）
   python3 scripts/story.py check "題名" [--url URL] [--keywords a,b]   # 候補が直近5日の記事と同じ話題か
 """
 
@@ -63,6 +71,10 @@ SIM_STRONG = 0.6
 SIM_WITH_TOKEN = 0.2
 SIM_RARE = 0.35
 KW_OVERLAP = 0.3
+# 1. 出典 URL が同じ記事を「切り口も同じ」とみなす題名の類似度・keywords の重なり（2026-11-13。同じ出典の記事 47 組を見て決めた:
+# 別の切り口の記事は題名 0.03〜0.29、同じ発表の言い換えは 0.31・0.43）
+SAME_URL_SIM = 0.3
+SAME_URL_KW = 0.3
 # 4. 同じ発信元が近い時刻に出した似た記事
 SAME_PUBLISHER_GAP = timedelta(hours=12)
 SAME_PUBLISHER_SIM = 0.3
@@ -287,6 +299,29 @@ def split_drop(a: Story, b: Story) -> bool:
                 and abs(a.src - b.src) <= timedelta(hours=6) and not (a.keys & b.keys))
 
 
+TITLE_DATE_RE = re.compile(r"(?:(\d{1,2})月)?(\d{1,2})日(?!間|目|以内|以上|未満|分|連続|ごと|おき|に1|あたり)")
+
+
+def title_dates(title: str) -> set[tuple[int, int]]:
+    """題名に書いた日付 {(月, 日)}（月が無ければ 0）。「3日間」「15日以内」のような期間は数えない"""
+    t = unicodedata.normalize("NFKC", str(title or ""))
+    return {(int(m.group(1) or 0), int(m.group(2))) for m in TITLE_DATE_RE.finditer(t)}
+
+
+def date_conflict(a: Story, b: Story) -> bool:
+    """両方の題名に日付があり、1つも合わない（別の日の出来事を中心にした記事。月の無い日付は日だけで比べる）"""
+    da, db = title_dates(a.title), title_dates(b.title)
+    if not da or not db:
+        return False
+    return not any(x[1] == y[1] and (x[0] == y[0] or not x[0] or not y[0]) for x in da for y in db)
+
+
+def same_angle(a: Story, b: Story) -> bool:
+    """出典が同じ2本が、同じ切り口（同じことを中心に書いた記事）か。題名か keywords が似ているときだけ同じ切り口とみなす。
+    元の題名（videoTitle・originalTitle）は出典が同じなら同じになるので、ここでは見ない"""
+    return title_sim(a, b) >= SAME_URL_SIM or dedupe.jaccard(a.kw, b.kw) >= SAME_URL_KW
+
+
 def same_story(a: Story, b: Story, df: dict[str, int], window: timedelta = WINDOW, candidate: bool = False,
                ignore_role: bool = False) -> str | None:
     """同じ話題なら理由、違えば None。
@@ -297,10 +332,16 @@ def same_story(a: Story, b: Story, df: dict[str, int], window: timedelta = WINDO
         return None
     if not ignore_role and a.role != b.role and not split_drop(a, b):
         return None
-    if a.keys & b.keys:
-        return "同じ出典URL"
     if title_key(a.title) and title_key(a.title) == title_key(b.title):
         return "同じ題名"
+    # 題名の中心の日付が食い違う記事は別の出来事（2026-11-13。生成前の候補は題名が英語の元の題名なので見ない）
+    # 役割違いの記事を結ぶ相手を探すとき（ignore_role）も今までどおり出典 URL だけで見る
+    if not candidate and not ignore_role and date_conflict(a, b) and title_sim(a, b) < SIM_STRONG:
+        return None
+    # 生成前の候補は出典 URL だけで見る（同じ発表から自動でもう1本作らない）。載せた記事どうしは切り口も同じときだけ。
+    # 切り口が違うときは、出典が別の記事と同じように下の判定（製品名・固有名詞・題名の類似）へ進む
+    if a.keys & b.keys and (candidate or ignore_role or same_angle(a, b)):
+        return "同じ出典URL"
     if a.genre and b.genre and a.genre != b.genre:
         return None  # 投資の解説の中で AI に触れた、など
     if a.ents and b.ents and not (a.ents & b.ents):
@@ -385,6 +426,32 @@ def _other_noindex(data: dict) -> str | None:
     return indexnow.noindex_reason({k: v for k, v in data.items() if k not in ("duplicateOf",)})
 
 
+def source_count(data: dict) -> int:
+    """記事が根拠にした出典の数（Muse の記事は museSources、ほかは出典 URL と続報の出典）"""
+    muse = data.get("museSources")
+    if isinstance(muse, list) and muse:
+        return len(muse)
+    urls = {str(data.get("sourceUrl") or "")} | {str(u.get("sourceUrl") or "") for u in (data.get("updates") or []) if isinstance(u, dict)}
+    return len(urls - {""})
+
+
+def keeper_rank(story: "Story") -> tuple:
+    """代表にする強さ（大きいほど強い）: Muse の記事 → 本文が長い → 出典が多い → 新しい"""
+    d = story.data
+    return (d.get("writer") == "muse", len(str(d.get("body") or "")), source_count(d),
+            (story.gen or datetime.min.replace(tzinfo=timezone.utc)).timestamp(), story.slug)
+
+
+def _search_protected() -> set[str]:
+    """検索に表示があった記事の slug（読めなければ空）"""
+    try:
+        import search_protected  # noqa: PLC0415
+
+        return search_protected.protected_slugs()
+    except Exception:  # noqa: BLE001 一覧が読めなくても印付けは止めない
+        return set()
+
+
 def eligible(data: dict) -> bool:
     if data.get("type") == "roundup" or data.get("disaster") or data.get("quakeEventId"):
         return False
@@ -415,17 +482,23 @@ def plan(stories: list[Story], df: dict[str, int], recheck_since: datetime | Non
         else:
             groups.append([(s, "")])
     out: dict[str, tuple[str, str]] = {}
+    protected = _search_protected() if any(len(g) > 1 for g in groups) else set()
     for g in groups:
         if len(g) < 2:
             continue
         members = [x for x, _ in g]
         manual = [x for x in members if x.data.get("indexable") is True]
-        # すでに代表として扱われている記事（duplicateOf の無い先の記事）を動かさない
-        keeper = manual[0] if manual else next((x for x in members if _other_noindex(x.data) is None), members[0])
+        # 代表はいちばん強いページ（keeper_rank）。ほかの理由で検索から外れる記事は、ほかに候補があれば代表にしない
+        # 検索に表示があった記事（content/search_protected.json ほか。台帳 A46・A68「転送しない」）は、いちばん先に代表にする
+        pool = [x for x in members if _other_noindex(x.data) is None] or members
+        keeper = manual[0] if manual else max(pool, key=lambda x: (x.slug in protected, *keeper_rank(x)))
+        # 見直す期間に載せた記事が1本も無い話題は、今の印のまま動かさない（古い話題の代表を入れ替えない）
+        if recheck_since and not any(x.gen and x.gen >= recheck_since for x in members):
+            keeper = next((x for x in members if not x.data.get("duplicateOf") and x.data.get("indexable") is not False), keeper)
         for x, why in g:
             if x is keeper or x.data.get("indexable") is True:
                 continue
-            if recheck_since and x.gen and x.gen < recheck_since and not x.data.get("duplicateOf"):
+            if recheck_since and x.gen and x.gen < recheck_since and not x.data.get("duplicateOf") and keeper.gen and keeper.gen < recheck_since:
                 continue
             out[x.slug] = (keeper.slug, why or same_story(x, keeper, df) or "同じ話題")
     return out
@@ -452,7 +525,8 @@ def mark(dry_run: bool = False, days: int = 0, recompute: bool = False) -> dict[
     rows = [rows[i] for i in order]
     df = doc_freq(stories)
     since = datetime.now(timezone.utc) - timedelta(days=days) if days else None
-    result = plan(stories, df, None if recompute else since)
+    # --recompute と --days を両方付けたら、直近 days 日に載せた記事の印だけ付け直す（古い話題の代表は動かさない）
+    result = plan(stories, df, since)
     by_slug = {d["slug"]: (p, d) for p, d in rows}
     changed = 0
     for slug, (keep, why) in sorted(result.items()):
@@ -460,16 +534,31 @@ def mark(dry_run: bool = False, days: int = 0, recompute: bool = False) -> dict[
         print(f"[dup] {slug} → {keep}（{why}）")
         if data.get("duplicateOf") == keep:
             continue
-        if data.get("duplicateOf") and not recompute:
-            continue  # 前に付けた印を保つ
+        # 前に付けた印を保つ。ただし前の代表が今は重複の側（代表が入れ替わった）なら、新しい代表へ付け替える
+        if data.get("duplicateOf") and not recompute and data["duplicateOf"] not in result:
+            continue
         changed += 1
         if not dry_run:
             data["duplicateOf"] = keep
             data["duplicateReason"] = why[:120]
             path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    # 代表になった記事に前の印が残っていたら外す（代表が重複の印を持つと、canonical が互いを向く）
+    for keep in sorted({k for k, _ in result.values()}):
+        path, data = by_slug[keep]
+        if data.get("duplicateOf") and keep not in result:
+            print(f"[keep] {keep}（代表にした。前の印 {data['duplicateOf']} を外す）")
+            changed += 1
+            # dry-run でも下の「外れた印」の集計に二重に出さない
+            data.pop("duplicateOf", None)
+            data.pop("duplicateReason", None)
+            if not dry_run:
+                path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     if recompute:
-        for path, data in rows:
-            if data.get("duplicateOf") and data["slug"] not in result:
+        for (path, data), s in zip(rows, stories):
+            if since and not (s.gen and s.gen >= since):
+                continue
+            # 手で付けた印（理由 duplicateReason が無い。例: 障害の復旧の記事を代表にした）は外さない
+            if data.get("duplicateOf") and data["slug"] not in result and data.get("duplicateReason"):
                 print(f"[undup] {data['slug']}（同じ話題の判定から外れた）")
                 changed += 1
                 if not dry_run:

@@ -64,7 +64,7 @@ class GuideRoleTest(unittest.TestCase):
 
 class GuideIsNotDuplicateTest(unittest.TestCase):
     def test_guides_are_not_duplicates_of_the_news(self):
-        news = art("news", "ドコモの顧客情報最大約30万件流出　My docomoは緊急メンテナンス中")
+        news = art("news", "ドコモの顧客情報最大約30万件流出　My docomoは緊急メンテナンス中", body=NEWS_BODY + "本文" * 50)
         todo = art("todo", "ドコモ情報流出、最大30万件　今日やるのは明細とdアカウントの確認", hours=26)
         family = art("family", "ドコモ流出は最大30万件　一部は法定代理人の情報も含む", hours=42, body=FAMILY_BODY)
         again = art("again", "ドコモの顧客情報が最大約30万件流出　緊急メンテナンス続く", hours=30)
@@ -74,7 +74,7 @@ class GuideIsNotDuplicateTest(unittest.TestCase):
         self.assertEqual(("news", "同じ出典URL"), result["again"])  # 同じ疑問（ニュース）どうしは今までどおり重複
 
     def test_same_guide_twice_is_still_a_duplicate(self):
-        a = art("a", "ドコモ情報流出　今日やるのは明細とdアカウントの確認", hours=1)
+        a = art("a", "ドコモ情報流出　今日やるのは明細とdアカウントの確認", hours=1, body=NEWS_BODY + "本文" * 50)
         b = art("b", "ドコモ流出、今やることは明細の確認とパスワード変更", hours=3)
         self.assertEqual({"b": ("a", "同じ出典URL")}, plan_of(a, b))
 
