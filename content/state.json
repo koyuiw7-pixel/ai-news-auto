@@ -14019,6 +14019,19 @@
       "slug": "bleague-2026-27-salary-cap-contract",
       "url": "https://www.bleague.jp/news_detail/id=667333"
     },
+    "a9a99cbc2313f85a": {
+      "at": "2026-11-13T06:44:27.566107+00:00",
+      "breaking": true,
+      "costUsd": 0.1379,
+      "intent": "breaking",
+      "major": true,
+      "mix": "jp_corp",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "score": 80,
+      "section": "investment",
+      "slug": "japan-post-bank-interim-results-fy2027",
+      "url": "https://www.release.tdnet.info/inbs/140120261112576332.pdf"
+    },
     "a9ba99b8846683ac": {
       "at": "2026-11-04T11:22:08.295559+00:00",
       "reason": "prefilter: お知らせ・統計の転載（statistics）",
@@ -20469,61 +20482,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-11T06:06:02.450010+00:00",
-      "attempt": 0,
-      "id": "c18f9bb2ab653aaf",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 92.1,
-        "avg_sentence": 44.0,
-        "long_share": 0.13,
-        "max_paragraph": 143,
-        "paragraphs": 11,
-        "sentences": 23
-      },
-      "score": 92,
-      "source": "ipa",
-      "title": "【DXSQUARE】新着記事「DSSを道しるべにデジタル人材像を刷新。 座学と実践で全社的なAI活用を加速する」を公開しました",
-      "warnings": [
-        "見出しが47字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（AX・IPA・DSS）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-11T06:06:23.105986+00:00",
-      "attempt": 1,
-      "id": "4c66ceea359c156e",
-      "kind": "ai",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "「判定: ... ひとこと=導入企業は管理画面から設定可能です」→ 元記事は、管理画面でできるのはNG検知状況の確認と可視化であり、送信禁止・警告の設定を管理画面で行うとは書いていない。設定場所を創作している。",
-        "「かんたん版」の「うっかりミスによる個人情報の漏えいを防ぐことができます」→ 元記事は「防ぐ仕組み」「低減」と述べており、防止を断定する言い過ぎ。",
-        "「対象はAndroidスマートフォンを利用している企業です」→ 元記事は機能がAndroidに対応すると述べるだけで、対象を企業に限定する記述はないため、言い換えが不正確。",
-        "「金融や保険業界など...想定しています」→ 元記事は金融・保険でのSMS利用を背景として述べており、機能の対象業種を公式に想定しているとは書かれていない。軽い言い過ぎ。",
-        "「提供状況=limited」→ 元記事は2026年11月19日から提供開始とし、限定提供とは書いていない。意味の不明な判定語で、読者に誤解を与える。"
-      ],
-      "readability": {
-        "avg_paragraph": 86.5,
-        "avg_sentence": 47.2,
-        "long_share": 0.182,
-        "max_paragraph": 142,
-        "paragraphs": 6,
-        "sentences": 11
-      },
-      "score": 72,
-      "source": "ntt-news-ai",
-      "title": "コミュニケーションポータル「ProgOffice® Enterprise」に、SMSの不適切送信を未然防止する「SMS誤送信防止AI」機能を追加",
-      "warnings": [
-        "見出しが55字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（SMS・NG）",
-        "本文が見出しで始まっている（最初の段落は見出しなしで、だれに関係するか・関係しない人はどうかを書く）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-11T06:07:07.622450+00:00",
@@ -28026,6 +27984,61 @@
       "source": "fast",
       "title": "日本郵政 2027年３月期 第２四半期（中間期）決算短信〔日本基準〕(連結)",
       "warnings": [
+        "初めて出たところで言い換えていない略語（FX）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-13T06:44:00.416899+00:00",
+      "attempt": 1,
+      "id": "a9a99cbc2313f85a",
+      "kind": "broad",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [
+        "元記事・確認済みの事実の束・計算済みの数字のどれにも無い数字がある（「純利益は前年同期の約2.7倍」）。元記事か束の数字に直すか、その文を削る。簡単な計算（かけ算・足し算など）をするなら、確かめた数字だけを使って式を書き「（サイソク編集部の計算）」と添える"
+      ],
+      "readability": {
+        "avg_paragraph": 75.5,
+        "avg_sentence": 32.8,
+        "long_share": 0.0,
+        "max_paragraph": 113,
+        "paragraphs": 20,
+        "sentences": 46
+      },
+      "score": null,
+      "source": "fast",
+      "title": "ゆうちょ銀行 2027年３月期第２四半期（中間期）決算短信〔日本基準〕(連結)",
+      "warnings": [
+        "見出しが45字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（FX）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-13T06:44:27.428869+00:00",
+      "attempt": 1,
+      "id": "a9a99cbc2313f85a",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "「配当予想が74円から99円になった」（サイソクの見方）→ 74円は2026年3月期の実績配当で、直近の配当予想の金額ではない。元記事は修正前の予想額を示していないため、予想の修正幅として書くのは誤り。",
+        "「金利のある環境で預かった貯金への支払いが増えた」（サイソクの見方）→ 金利環境に関する記述は元記事にも確認済みの文脈にもなく、根拠のない推測を事実のように書いている。",
+        "「日本の利用者の手続きは変わらず」（見出し）→ 本文の該当部分は配当と通期予想の説明で、手続きについての記述がなく、見出しが内容を裏付けていない。",
+        "「株式取得のあと、ゆうちょ銀行は松井証券の議決権の約20%を持ちます」（本文）→ 元記事は「約20%を保有する予定」であり、取得前の断定的な表現になっている（予定である点を明記すべき）。"
+      ],
+      "readability": {
+        "avg_paragraph": 74.8,
+        "avg_sentence": 33.0,
+        "long_share": 0.0,
+        "max_paragraph": 113,
+        "paragraphs": 19,
+        "sentences": 43
+      },
+      "score": 80,
+      "source": "fast",
+      "title": "ゆうちょ銀行 2027年３月期第２四半期（中間期）決算短信〔日本基準〕(連結)",
+      "warnings": [
+        "見出しが45字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（FX）"
       ]
     }
