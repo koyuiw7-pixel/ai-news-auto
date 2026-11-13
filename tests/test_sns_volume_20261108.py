@@ -111,10 +111,11 @@ class IndexRelaxTest(unittest.TestCase):
         self.assertEqual(indexnow.noindex_reason({**a, "body": "短い"}), "no-body")
         self.assertEqual(indexnow.noindex_reason({**a, "duplicateOf": "y"}), "duplicate")
         self.assertIsNone(indexnow.noindex_reason({**a, "channelSlug": "prtimes"}))
-        self.assertEqual(indexnow.noindex_reason({**a, "title": "レイカーズが開幕戦に勝利", "genreSlug": "sports"}), "no-life-link")
+        # 2026-11-13 オーナー「とにかく数字」: 公開した記事は題名の語で検索から外さない（軸から外れた話題は公開前の門で止める）
+        self.assertIsNone(indexnow.noindex_reason({**a, "title": "レイカーズが開幕戦に勝利", "genreSlug": "sports"}))
         self.assertIsNone(indexnow.noindex_reason({**a, "title": "レイカーズ戦のチケットを12月に発売", "genreSlug": "sports"}))
         self.assertIsNone(indexnow.noindex_reason({**a, "title": "『新作RPG』の新モードは月額500円", "genreSlug": "entertainment"}))
-        self.assertEqual(indexnow.noindex_reason({**a, "title": "『新作RPG』の新キャラクターを紹介", "genreSlug": "entertainment"}), "no-life-link")
+        self.assertIsNone(indexnow.noindex_reason({**a, "title": "『新作RPG』の新キャラクターを紹介", "genreSlug": "entertainment"}))
 
     def test_publish_gate_keeps_its_old_basis(self):
         a = {"slug": "x", "title": "サンゴリアス 新ジャージーデザイン決定のお知らせ", "genreSlug": "lifestyle", "channelSlug": "suntory", "body": self.BODY * 2}

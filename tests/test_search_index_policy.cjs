@@ -120,14 +120,14 @@ test('A10: 速報・お知らせ・注意喚起・ミサイル・災害は本文
   assert.equal(focusReason({ ...good, bodyLength: 900, genreSlug: 'public', title: '障害者手帳のアプリ' }), 'thin');
 });
 
-test('2026-11-08 台帳 A61: 検索に出さないのは重複・本文が無い・お金にも暮らしにもつながらない話題だけ（scripts/indexnow.py の noindex_reason と同じ）', () => {
+test('2026-11-08 台帳 A61: 検索に出さないのは重複・本文が無い記事だけ（2026-11-13 から題名の語では外さない。scripts/indexnow.py の noindex_reason と同じ）', () => {
   assert.equal(noindexReason({ ...good, bodyLength: 900 }), null);
   assert.equal(noindexReason({ ...good, bodyLength: 150 }), 'no-body');
   assert.equal(noindexReason({ ...good, hasJapanValue: false }), null);
   assert.equal(noindexReason({ ...good, genreSlug: 'lifestyle', title: '新作ラテが期間限定で発売' }), null);
   assert.equal(noindexReason({ ...good, genreSlug: 'lifestyle', title: '釣八の塩さばフィーレに原産地表示違反' }), null);
-  assert.equal(noindexReason({ ...good, genreSlug: 'entertainment', title: 'ツイステの歌唱曲のスペシャルPV特設サイトが公開' }), 'no-life-link');
-  assert.equal(noindexReason({ ...good, genreSlug: 'sports', title: 'レイカーズが開幕戦に勝利' }), 'no-life-link');
+  assert.equal(noindexReason({ ...good, genreSlug: 'entertainment', title: 'ツイステの歌唱曲のスペシャルPV特設サイトが公開' }), null);
+  assert.equal(noindexReason({ ...good, genreSlug: 'sports', title: 'レイカーズが開幕戦に勝利' }), null);
   assert.equal(noindexReason({ ...good, genreSlug: 'sports', title: 'レイカーズ戦のチケットを12月に発売' }), null);
   assert.equal(lifeLink('NBAの試合結果'), false);
   assert.equal(noindexReason({ ...good, duplicate: true }), 'duplicate');

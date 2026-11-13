@@ -11,7 +11,8 @@ import listGuard from "../content/list_pages_protected.json";
  * Google に見せる記事を選ぶ（サイトでは全記事を読める。noindex でも一覧・内部リンクには残す）。
  * scripts/indexnow.py の is_indexable と同じ基準にしておくこと。
  *
- * 検索に出す条件（手動指定 indexable が最優先。まとめ記事は常に対象）:
+ * 検索に出す条件は noindexReason（下）。2026-11-13 から、公開した記事は 手動の指定・本文なし・重複・14日間訪問0 以外すべて検索に出す。
+ * 下の 1〜4 は 2026-11-08 までの基準（focusReason。説明・集計用で、robots には使わない）:
  *  1. プレスリリース配信サービスではない。個人・他媒体の YouTube チャンネルの要約記事ではない（CREATOR_CHANNELS）
  *  2. 本文が THIN_BODY 文字以上（薄い要約を出さない）
  *  3. 読者像（scripts/persona.py）の話題: AI・テック（ジャンル ai / tech-gadget、または題名・タグにAI関連語）／
@@ -156,8 +157,8 @@ export const NO_BODY: number = rules.noBody;
 
 /**
  * 検索に出さない理由（出すなら null）。scripts/indexnow.py の noindex_reason と同じ。
- * 2026-11-08 オーナー承認（台帳 A61）: 出さないのは本当の重複（duplicateOf）・本文が無い記事・お金にも暮らしにもつながらない話題だけ。
- * 主題外・日本の読者向けの章が無い・短い公式のお知らせ・配信・動画の要約でも、お金か暮らしにつながれば検索に出す。
+ * 2026-11-13 オーナー「とにかく数字」（台帳 A61）: 公開した記事は検索に出す。出さないのは 手動の指定（indexable: false）・
+ * 本文が無い記事・本当の重複（duplicateOf）・14日間訪問0の一覧の記事だけ。題名の語・主題・日本の読者向けの章・本文の長さでは外さない。
  */
 export function noindexReason(article: ArticleSummary): string | null {
   if (typeof article.indexable === "boolean") return article.indexable ? null : "manual";
@@ -167,10 +168,9 @@ export function noindexReason(article: ArticleSummary): string | null {
   if (article.duplicate || (article.duplicateOf && article.duplicateOf !== article.slug)) return "duplicate";
   // 14日間訪問0の記事（content/noindex_zero_visit.json。2026-11-10 オーナー承認。記事は消さない）
   if (isZeroVisit(article.slug)) return "zero-visit";
-  // 今まで検索に出していた主題（isFocus）はそのまま出す（ゆるめるだけで、出していた記事を外さない）
-  // 地震・災害の記事は題名に「地震」などがあるのでつながる（scripts/indexnow.py は disaster も見る）
-  // 話題のレーンの記事（trendKeyword。2026-11-13）は分野で外さない（scripts/indexnow.py の trend_topic と同じ）
-  if (!lifeLink(article.title ?? "") && !isFocus(article) && !trendTopic(article)) return "no-life-link";
+  // 2026-11-13 オーナー「とにかく数字」: 公開した記事は検索に出す。題名の語（lifeLink）・主題（isFocus）では外さない
+  // （紅白の出場歌手一覧・年賀状の引受日の記事が、題名に軸の語が無いだけで検索から外れていた）。
+  // 軸から外れた話題は公開前の門（scripts/indexnow.py の publish_block_reason）で止める
   return null;
 }
 

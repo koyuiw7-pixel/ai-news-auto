@@ -417,7 +417,7 @@ def is_focus(article: dict) -> bool:
 NO_BODY = 200  # これより短い本文は「本文が無い」として検索に出さない（字数。公式の短いお知らせは 800字ほどあるので当たらない）
 
 # 2026-11-08 オーナー決定（台帳 A61）: サイトの軸は「暮らしとお金の『自分ごと』ニュース」（あなたのお金と暮らしに、何が変わる？）。
-# 検索に出す・取り下げた記事を戻すの基準は「お金か暮らしにつながる話題か」を題名で見る（エンタメ・ゲーム・スポーツも、値段・料金・
+# 公開前の門（on_axis）・取り下げた記事を戻すの基準は「お金か暮らしにつながる話題か」を題名で見る（検索に出す基準では 2026-11-13 から見ない）。（エンタメ・ゲーム・スポーツも、値段・料金・
 # 発売日・チケット・サブスク・サービスの話なら出す）。出さないのは、お金にも暮らしにもつながらない話題（ゴシップだけ・ゲームの物語や
 # キャラクターだけ・海外のリーグの試合結果など）だけ。1) お金の語が題名にあればつながる 2) 無ければ、つながらない話題の語で外す
 # 3) それも無ければ、暮らし・サービス・仕事の語でつながる 4) どれも無ければつながらない
@@ -473,7 +473,8 @@ def trend_topic(article: dict) -> bool:
 
 
 def noindex_reason(article: dict, dups: set[str] | frozenset = frozenset()) -> str | None:
-    """検索に出さない理由（出すなら None）。サイトの lib/indexing.ts の noindexReason と同じ"""
+    """検索に出さない理由（出すなら None）。サイトの lib/indexing.ts の noindexReason と同じ。
+    出さないのは 手動の指定（manual）・本文が無い（no-body）・本当の重複（duplicate）・14日間訪問0の一覧（zero-visit）だけ"""
     if isinstance(article.get("indexable"), bool):
         return None if article["indexable"] else "manual"
     if article.get("type") == "roundup":
@@ -485,9 +486,9 @@ def noindex_reason(article: dict, dups: set[str] | frozenset = frozenset()) -> s
     # 14日間訪問0の記事（content/noindex_zero_visit.json。2026-11-10 オーナー承認。公開したまま・広告なし）
     if article.get("slug") in ZERO_VISIT:
         return "zero-visit"
-    # 今まで検索に出していた主題（is_focus）はそのまま出す（ゆるめるだけで、出していた記事を外さない）
-    if not (article.get("disaster") or life_link(article.get("title") or "") or is_focus(article) or trend_topic(article)):
-        return "no-life-link"
+    # 2026-11-13 オーナー「とにかく数字」: 公開した記事は検索に出す。題名の語（life_link）・主題（is_focus）では外さない
+    # （紅白の出場歌手一覧・年賀状の引受日の記事が、題名に軸の語が無いだけで検索から外れていた）。
+    # 軸から外れた話題は公開前の門（publish_block_reason の off-focus）で止める。公開した後に検索からだけ外すことはしない
     return None
 
 
@@ -539,8 +540,9 @@ PUBLISH_FEEDBACK = {
 
 
 def on_axis(article: dict) -> bool:
-    """サイトの軸（暮らしとお金の「自分ごと」ニュース・台帳 A61）の上の記事か。検索に出す基準（noindex_reason）と同じ見方:
-    地震・津波の速報・お金か暮らしにつながる題名（life_link）・今まで出していた主題（is_focus）"""
+    """サイトの軸（暮らしとお金の「自分ごと」ニュース・台帳 A61）の上の記事か。公開前の門（publish_block_reason）だけが使う
+    （2026-11-13 から検索に出す基準 noindex_reason は題名の語を見ない）:
+    地震・津波の速報・お金か暮らしにつながる題名（life_link）・今まで出していた主題（is_focus）・話題のレーン（trend_topic）"""
     return bool(article.get("disaster") or life_link(article.get("title") or "") or is_focus(article) or trend_topic(article))
 
 

@@ -122,10 +122,11 @@ class IndexNowGuideSelectionTest(IndexNowFixture):
         ]
         for article in cases:
             (self.articles / (article["slug"] + ".json")).write_text(json.dumps(article))
-        # 2026-11-08（台帳 A61）: ai-short は題名の無い ai-long と同じ題名の重複として外れる。主題外でお金・暮らしにつながらない話題・配信の題名の無いものも外れる
+        # 2026-11-08（台帳 A61）: ai-short は題名の無い ai-long と同じ題名の重複として外れる。配信の題名の無いものも同じ重複で外れる。
+        # 2026-11-13 オーナー「とにかく数字」: 公開した記事は題名の語・主題で検索から外さない（game も送る）
         # 2026-11-10（seo A2・LLMO-A3）: 入口は変わった記事のジャンル（ai-long は ai なので /genres/ai）
-        self.assertEqual(self.selected(), [BASE, BASE + "/articles", BASE + "/genres/ai",
-                                           BASE + "/articles/ai-long"])
+        self.assertEqual(self.selected(), [BASE, BASE + "/articles", BASE + "/genres/ai", BASE + "/genres/entertainment",
+                                           BASE + "/articles/ai-long", BASE + "/articles/game"])
 
     def test_search_policy_reasons(self):
         long = "a" * 2000

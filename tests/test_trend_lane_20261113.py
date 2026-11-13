@@ -373,12 +373,14 @@ class CapsAndExemptionTest(unittest.TestCase):
     def test_axis_gate_lets_trend_topics_through(self):
         base = {"body": "## a\n\n" + "あ" * 2000, "genreSlug": "sports", "channelSlug": "nhk", "sourceUrl": "https://www.japan-sports.or.jp/x"}
         off = {**base, "title": "ＮＢＡのウォリアーズが勝利"}
-        self.assertEqual(indexnow.noindex_reason(off), "no-life-link")
+        # 2026-11-13: 検索に出す基準は題名の語を見ない。軸から外れた話題は公開前の門（off-focus）で止める
+        self.assertEqual(indexnow.publish_block_reason(off), "off-focus")
+        self.assertIsNone(indexnow.noindex_reason(off))
         self.assertIsNone(indexnow.noindex_reason({**off, "trendKeyword": "ウォリアーズ"}))
         self.assertIsNone(indexnow.publish_block_reason({**off, "trendKeyword": "ウォリアーズ"}))
-        self.assertEqual(indexnow.noindex_reason({**base, "genreSlug": "entertainment", "title": "人気俳優の熱愛が発覚", "trendKeyword": "熱愛"}),
-                         "no-life-link")
-        self.assertIn("trendTopic(article)", (ROOT / "lib" / "indexing.ts").read_text("utf-8"))
+        self.assertEqual(indexnow.publish_block_reason({**base, "genreSlug": "entertainment", "title": "人気俳優の熱愛が発覚", "trendKeyword": "熱愛"}),
+                         "off-focus")
+        self.assertIn("export function trendTopic(", (ROOT / "lib" / "indexing.ts").read_text("utf-8"))
         self.assertIn("trendKeyword: a.trendKeyword || undefined", (ROOT / "lib" / "article-index.mjs").read_text("utf-8"))
 
 

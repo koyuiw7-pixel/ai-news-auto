@@ -71,7 +71,8 @@ class AxisTraffic(unittest.TestCase):
             with self.subTest(title=title):
                 self.assertFalse(indexnow.life_link(title))
                 self.assertEqual(indexnow.publish_block_reason(article(title)), "off-focus")
-                self.assertEqual(indexnow.noindex_reason(article(title)), "no-life-link")
+                # 2026-11-13: 検索に出す基準は題名の語を見ない（公開前の門で止める。公開した記事は検索に出す）
+                self.assertIsNone(indexnow.noindex_reason(article(title)))
 
     def test_gossip_word_beats_traffic_word(self):
         # ゴシップ・物語・試合結果の語は、暮らしの語より先に見る（順番は変えない）
