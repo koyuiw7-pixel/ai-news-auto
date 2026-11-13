@@ -56,14 +56,13 @@
   "videoTitle": "トヨタ9万5,927台のリコールは2026年11月13日に始まっています",
   "publishedAt": "2026-11-13T03:27:57.401682+00:00",
   "generatedAt": "2026-11-13T03:30:15.258635+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/toyota-lexus-airbag-recall-5904-figure-abd01bc8.jpg",
   "model": "anthropic-api:claude-haiku-5-5",
   "affiliates": [],
   "newsType": "security",
   "todayActions": [
-    "車検証の「車台番号」欄を控え、トヨタの「リコール等情報対象車両検索」で確かめる",
-    "対象なら、トヨタ販売店かレクサス販売店へ来店日時を予約する（修理は無料）",
-    "分からないときは、トヨタお客様相談センター（0800-700-7700、9〜17時）へ問い合わせる"
+    "車検証の車台番号を控え、トヨタの対象車両検索で対象かを確かめる",
+    "対象なら、ご愛用車取り扱い販売店へ来店日時を予約する（修理は無料）"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -104,5 +103,154 @@
   "qualityScore": 85,
   "detectedAt": "2026-11-13T03:30:55+00:00",
   "layout": "noir",
-  "summaryLine": "トヨタ車**7万6,593台**とレクサス車1万9,334台の計9万5,927台（サイソク編集部の計算）が助手席エアバッグのリコール対象、修理は11月13日から始まっています。"
+  "summaryLine": "トヨタ車**7万6,593台**とレクサス車1万9,334台の計9万5,927台（サイソク編集部の計算）が助手席エアバッグのリコール対象、修理は11月13日から始まっています。",
+  "insight": [
+    {
+      "text": "レクサス車の対象は、平成17年から平成24年に生産したIS250、IS250C、IS350、IS350C、IS F、SC430の一部車両です。トヨタ車とは製作期間と車種が違います。",
+      "source": "https://lexus.jp/recall/2026/recall_261112.html"
+    },
+    {
+      "text": "「対象車の含まれる車台番号の範囲」には、対象とならない車両も含まれます。範囲に入るかどうかだけでは判断できません。",
+      "source": "https://lexus.jp/recall/2026/recall_261112.html"
+    },
+    {
+      "text": "車台番号は「-」（ハイフン）の前後の番号を、それぞれの入力欄に分けて入れます。",
+      "source": "https://www.toyota.co.jp/recall-search/dc/search"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "トヨタ リコール等情報（カローラなどのリコール）",
+      "url": "https://toyota.jp/recall/2026/1112_3.html",
+      "source": "https://toyota.jp/recall/2026/1112_3.html",
+      "howTo": [
+        "トヨタ リコール等情報",
+        "2026年",
+        "カローラなどのリコール"
+      ],
+      "note": "対象かは「リコール等情報対象車両検索」でご確認いただけます。来店日時は最寄りのご愛用車取り扱い販売店へ問い合わせます。"
+    },
+    {
+      "name": "トヨタお客様相談センター",
+      "url": "https://www.toyota.co.jp/recall-search/dc/search",
+      "source": "https://www.toyota.co.jp/recall-search/dc/search",
+      "howTo": [
+        "該当するリコール等の内容と実施状況の検索",
+        "お問い合わせ先"
+      ],
+      "phone": "0800－700－7700",
+      "hours": "9:00～17:00（長期連休などの当社指定日を除く）",
+      "note": "自動車検査証（車検証）をご用意いただくとスムーズな対応が可能です。"
+    },
+    {
+      "name": "レクサスインフォメーションデスク",
+      "url": "https://lexus.jp/recall/2026/recall_261112.html",
+      "source": "https://www.toyota.co.jp/recall-search/dc/search",
+      "howTo": [
+        "LEXUS",
+        "リコール等情報",
+        "リコール・改善対策情報"
+      ],
+      "phone": "0800-500-5577",
+      "hours": "9:00～17:00（長期連休などの当社指定日を除く）",
+      "note": "レクサス車のリコールに関するご質問は、こちらへお問い合わせください。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "車検証の車台番号を控え、トヨタの対象車両検索で対象かを確かめる",
+      "source": "https://www.toyota.co.jp/recall-search/dc/search",
+      "steps": [
+        "車検証の車台番号欄の記載を確認する",
+        "車台番号を半角英数字で入力する",
+        "ハイフンの前と後ろを別の入力欄に入れる",
+        "「検索」ボタンを押して結果を見る"
+      ],
+      "url": "https://www.toyota.co.jp/recall-search/dc/search"
+    },
+    {
+      "action": "対象なら、ご愛用車取り扱い販売店へ来店日時を予約する（修理は無料）",
+      "source": "https://toyota.jp/recall/2026/1112_3.html",
+      "steps": [
+        "トヨタ車は最寄りのご愛用車取り扱い販売店へ",
+        "レクサス車はご愛用車取り扱い販売店へ",
+        "来店日時をご予約いただく",
+        "修理日時が希望に添えない場合もある"
+      ],
+      "url": "https://toyota.jp/recall/2026/1112_3.html"
+    }
+  ],
+  "cause": {
+    "text": "助手席用エアバッグのインフレータで、ガス発生剤の吸湿防止が不十分だったため、温度と湿度の変化を繰り返すうちにガス発生剤が劣化することがあります。エアバッグ展開時に、インフレータ容器が破損するおそれがあります。",
+    "status": "stated",
+    "source": "https://toyota.jp/recall/2026/1112_3.html"
+  },
+  "worries": [
+    {
+      "q": "自分の車が対象かどうか、どう確かめればいい？",
+      "a": "車検証の車台番号を、リコール等情報対象車両検索に入力すると確認できます。ハイフンの前と後ろで入力欄が分かれています。",
+      "source": "https://www.toyota.co.jp/recall-search/dc/search",
+      "action": "車検証の車台番号を控え、対象車両検索で入力して確かめる。"
+    },
+    {
+      "q": "レクサス車も同じ方法で確かめられる？",
+      "a": "レクサス車も、リコール等情報対象車両検索でご確認いただけます。ただし、車台番号の範囲に入っても対象とならない車両が含まれると注意書きがあります。",
+      "source": "https://lexus.jp/recall/2026/recall_261112.html",
+      "action": "車台番号の範囲に入ったら、販売店に確認してから予約する。"
+    },
+    {
+      "q": "修理には費用がかかる？",
+      "a": "修理は無料です。トヨタ販売店かレクサス販売店で、来店日時を予約して点検・修理を受けます。",
+      "source": "https://lexus.jp/recall/2026/recall_261112.html",
+      "action": "対象だと分かったら、販売店に来店日時を予約する。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "対象だと分かったら、修理はいつ受ける？",
+      "situation": "自分の車が対象と分かった",
+      "recommend": "早めに点検・修理を受けるのがおすすめ",
+      "reason": "トヨタもレクサスも、お早めに点検・修理を受けるよう案内しています。修理は無料です。修理日時が希望に添えない場合もあります。",
+      "source": "https://toyota.jp/recall/2026/1112_3.html"
+    },
+    {
+      "question": "対象だと分かったら、修理はいつ受ける？",
+      "situation": "対象ではないと分かった",
+      "recommend": "この修理の予約は不要",
+      "reason": "検索で対象外と出た車は、このリコールの修理対象になりません。車台番号の範囲に入っても対象外の車があるため、検索結果で確かめます。",
+      "source": "https://www.toyota.co.jp/recall-search/dc/search"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "レクサスは対象車種と製作期間が別になっている",
+    "cause": "なぜエアバッグの部品が傷むのか",
+    "steps": "今日、車台番号で対象かを確かめる手順",
+    "desk": "困ったときの問い合わせ先",
+    "worries": "修理は無料？前に直した車も対象？",
+    "guide": "対象と分かったあと、修理をいつ受けるか"
+  },
+  "depthAt": "2026-11-13T03:50:57+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "トヨタ・レクサス車にエアバッグのリコール",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-13T03:53:01+00:00"
+  },
+  "imageFocus": {
+    "x": 0.517,
+    "y": 0.42,
+    "box": [
+      0.078,
+      0.054,
+      0.956,
+      0.786
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/toyota-lexus-airbag-recall-5904-figure-abd01bc8.jpg"
+  }
 }
