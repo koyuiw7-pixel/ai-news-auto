@@ -6,10 +6,10 @@
   "companyName": "OpenAI",
   "category": "AIモデル",
   "overview": {
-    "text": "Daybreakは、OpenAIが提供するサイバーセキュリティ向けの共同開発プログラムです。セキュリティ運用の自動化や脆弱性の検証を行うため、各種の防御担当者に向けて展開されています。",
+    "text": "Daybreakは、脆弱性の自動発見や修正コードの生成を行うOpenAIのセキュリティ自動化基盤です。サイバー攻撃を防ぐ防御側の能力を高める目的で開発され、2026年11月に発表されました。",
     "sources": [
-      "sophos-openai-daybreak-security-agent",
-      "gpt-56-cyber-aws-govcloud"
+      "openai-daybreak-gpt6-cyber-launch",
+      "sophos-openai-daybreak-security-agent"
     ]
   },
   "facts": [
@@ -17,62 +17,63 @@
       "label": "提供開始",
       "value": "一部で提供中",
       "sources": [
-        "sophos-openai-daybreak-security-agent"
+        "openai-daybreak-gpt6-cyber-launch"
       ]
     },
     {
       "label": "日本での提供",
-      "value": "条件付き（MDR経由など）",
+      "value": "条件付き",
       "sources": [
-        "sophos-openai-daybreak-security-agent"
+        "openai-daybreak-gpt6-cyber-launch"
       ]
     },
     {
       "label": "使える場所",
-      "value": "Amazon Bedrock等",
+      "value": "管理画面、APIなど",
       "sources": [
-        "gpt-56-cyber-aws-govcloud"
+        "openai-daybreak-gpt6-cyber-launch"
       ]
     },
     {
       "label": "向いている人",
-      "value": "防御側の組織や研究者",
+      "value": "開発者、企業のセキュリティ担当者",
       "sources": [
-        "gpt-6-cyber-aligned-security-agents",
-        "gpt-56-cyber-aws-govcloud"
+        "openai-daybreak-gpt6-cyber-launch",
+        "sophos-openai-daybreak-security-agent"
       ]
     }
   ],
   "capabilities": [
     {
-      "text": "ソフォスのMDRサービスにおいて、脅威への平均対応時間を38分から89秒へ96%削減しました。",
+      "text": "攻撃者の視点で自社システムに模擬攻撃を行い、悪用可能な脆弱性を自動で検出できます。",
       "sources": [
+        "openai-daybreak-gpt6-cyber-launch"
+      ]
+    },
+    {
+      "text": "検出された脆弱性を分析し、修正用のプログラムコードを作成してテストまで自動で実行します。",
+      "sources": [
+        "openai-daybreak-gpt6-cyber-launch"
+      ]
+    },
+    {
+      "text": "導入企業の検証では、脅威への平均対応時間を38分から89秒へ96%削減しました。",
+      "sources": [
+        "openai-daybreak-gpt6-cyber-launch",
         "sophos-openai-daybreak-security-agent"
       ]
     },
     {
-      "text": "セキュリティ業務に特化してセーフティガードレールを緩和し、高度なマルウェア解析を実現します。",
+      "text": "Linuxカーネルの解析で948件の脆弱性と修正パッチを自動生成しました。",
       "sources": [
-        "sophos-openai-daybreak-security-agent"
-      ]
-    },
-    {
-      "text": "Daybreak Red経由で最先端モデルへのアクセスが拡大されています。",
-      "sources": [
-        "openai-hacktron-vulnerability-partnership"
-      ]
-    },
-    {
-      "text": "重要なサービスやデジタル基盤を守る最前線の防御担当者に、6か月で10億ドル分の補助付き利用枠が用意されています。",
-      "sources": [
-        "openai-security-sprint-bug-bounty"
+        "openai-daybreak-gpt6-cyber-launch"
       ]
     }
   ],
   "pricing": [],
   "japan": [
     {
-      "text": "ソフォスのMDRサービスを国内の正規代理店等を通じて契約し、恩恵を受けることができます。",
+      "text": "ソフォスの日本法人や国内の正規代理店を通じてMDRサービスを利用できます。",
       "sources": [
         "sophos-openai-daybreak-security-agent"
       ]
@@ -80,47 +81,66 @@
   ],
   "howto": [
     {
-      "text": "Amazon Bedrockなどの対応環境で利用します。",
+      "text": "管理画面や開発ツール、APIを通じて利用できます。",
       "sources": [
-        "gpt-56-cyber-aws-govcloud"
+        "openai-daybreak-gpt6-cyber-launch"
       ]
     },
     {
-      "text": "利用にはDaybreak Redの承認と、AWS側での利用設定の両方が必要です。",
+      "text": "企業向けの個別問い合わせ窓口やウェイトリストから提供されます。",
+      "sources": [
+        "openai-daybreak-gpt6-cyber-launch"
+      ]
+    },
+    {
+      "text": "AWS GovCloud環境ではAmazon Bedrock経由で利用できます。",
       "sources": [
         "gpt-56-cyber-aws-govcloud"
       ]
     }
   ],
-  "differences": [],
+  "differences": [
+    {
+      "text": "従来モデルでは難しかった複雑な攻撃経路の作成が可能になりました。",
+      "sources": [
+        "openai-daybreak-gpt6-cyber-launch"
+      ]
+    },
+    {
+      "text": "GPT-6 Cyberは脆弱性発見の試験で前世代モデルを上回る成績を記録しました。",
+      "sources": [
+        "openai-daybreak-gpt6-cyber-launch",
+        "gpt-6-cyber-aligned-security-agents"
+      ]
+    }
+  ],
   "faq": [
     {
-      "q": "誰に向いている？",
-      "a": "承認を受けた政府系のセキュリティチームや企業のIT部門など、防御担当者に向いています。",
+      "q": "個人でも使えますか？",
+      "a": "企業やエンジニア向けの基盤システムとして提供されます。",
       "sources": [
-        "sophos-openai-daybreak-security-agent",
-        "gpt-56-cyber-aws-govcloud"
+        "openai-daybreak-gpt6-cyber-launch"
       ]
     },
     {
-      "q": "データはモデルの学習に使われる？",
-      "a": "Amazon Bedrock上のDaybreak Redでは、推論のデータはモデルの学習に使われません。",
+      "q": "どのようなモデルが使われますか？",
+      "a": "サイバーセキュリティに特化したGPT-6 Cyberなどが組み込まれています。",
       "sources": [
-        "gpt-56-cyber-aws-govcloud"
+        "openai-daybreak-gpt6-cyber-launch"
       ]
     },
     {
-      "q": "どのような仕組みで動く？",
-      "a": "自律型エージェントが計画・実行・観察のループを回し、調査プロセスを自動化します。",
+      "q": "どのような仕組みで動作しますか？",
+      "a": "模擬攻撃を行うDaybreak Red Teamなどで構成されます。",
       "sources": [
-        "sophos-openai-daybreak-security-agent"
+        "openai-daybreak-gpt6-cyber-launch"
       ]
     },
     {
-      "q": "利用に必要な手続きは？",
-      "a": "OpenAIのDaybreak Redの承認と、AWSでの利用設定の両方が必要です。",
+      "q": "どのようなツールと連携できますか？",
+      "a": "GitHubなどのコード管理サービスと連携させて運用できます。",
       "sources": [
-        "gpt-56-cyber-aws-govcloud"
+        "openai-daybreak-gpt6-cyber-launch"
       ]
     }
   ],
@@ -129,15 +149,21 @@
       "date": "2026-10-09",
       "slug": "sophos-openai-daybreak-security-agent",
       "event": "ソフォスがOpenAI Daybreakを採用"
+    },
+    {
+      "date": "2026-11-13",
+      "slug": "openai-daybreak-gpt6-cyber-launch",
+      "event": "OpenAIがDaybreakを発表"
     }
   ],
   "related": [
-    "gpt-6",
-    "gpt-5-6",
     "chatgpt",
-    "codex"
+    "gpt-5-6",
+    "codex",
+    "amazon-bedrock"
   ],
   "articles": [
+    "openai-daybreak-gpt6-cyber-launch",
     "openai-hacktron-vulnerability-partnership",
     "gpt-6-cyber-aligned-security-agents",
     "gpt-56-cyber-aws-govcloud",
@@ -145,11 +171,12 @@
     "sophos-openai-daybreak-security-agent"
   ],
   "linkFrom": [
+    "openai-daybreak-gpt6-cyber-launch",
     "sophos-openai-daybreak-security-agent"
   ],
-  "signature": "86e9f15d025432a9",
-  "primarySignature": "adfc734e6defe8c7",
+  "signature": "aef032d3b149197c",
+  "primarySignature": "3a36b1d89ba45c1f",
   "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-11-03T05:32:40+00:00",
-  "updatedAt": "2026-11-12T12:33:52+00:00"
+  "updatedAt": "2026-11-13T00:10:42+00:00"
 }
