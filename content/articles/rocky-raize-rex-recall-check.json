@@ -65,8 +65,8 @@
   "affiliates": [],
   "newsType": "security",
   "todayActions": [
-    "車台番号が、A201S・A201A・A201Fのどの範囲に入るかを確かめる",
-    "ダイハツ車なら、お客様コールセンター（0800-500-0182）に電話で確かめる",
+    "車台番号が、ロッキー・ライズ・レックスの範囲に入るかを確かめる",
+    "ダイハツ車なら、お客様コールセンターに電話して対象かを確かめる",
     "トヨタ車、スバル車は、各社の公式サイトで窓口の番号を確かめる"
   ],
   "angleOf": "daihatsu-rocky-raize-rex-recall",
@@ -123,5 +123,105 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/rocky-raize-rex-recall-check-figure-328b646c.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "届出番号は「5901」で、国土交通省の「リコール届出一覧表」に載っています。窓口へ伝えると話が早く進みます。",
+      "source": "https://www.mlit.go.jp/report/press/content/002045207.pdf"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "ダイハツ工業 お客様コールセンター",
+      "url": "https://www.mlit.go.jp/report/press/content/002045207.pdf",
+      "source": "https://www.mlit.go.jp/report/press/content/002045207.pdf",
+      "phone": "0800-500-0182",
+      "note": "範囲に入る車にも対象外の車が含まれるため、窓口で最終確認する。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "車台番号が、ロッキー・ライズ・レックスの範囲に入るかを確かめる",
+      "source": "https://www.mlit.go.jp/report/press/content/002045207.pdf",
+      "steps": [
+        "型式5BA-A201S・A201A・A201Fで車種を見分ける",
+        "車台番号が範囲の間に入るか見る"
+      ],
+      "url": "https://www.mlit.go.jp/report/press/content/002045207.pdf"
+    },
+    {
+      "action": "ダイハツ車なら、お客様コールセンターに電話して対象かを確かめる",
+      "source": "https://www.mlit.go.jp/report/press/content/002045207.pdf",
+      "steps": [
+        "範囲に入ったら、電話する",
+        "0800-500-0182にかける",
+        "車台番号を伝えて対象か聞く"
+      ],
+      "url": "https://www.mlit.go.jp/report/press/content/002045207.pdf"
+    },
+    {
+      "action": "トヨタ車、スバル車は、各社の公式サイトで窓口の番号を確かめる",
+      "source": "https://www.mlit.go.jp/report/press/content/002045207.pdf",
+      "steps": [
+        "範囲に入ったら、各社の公式サイトを開く",
+        "窓口の番号を探す"
+      ]
+    }
+  ],
+  "cause": {
+    "text": "オルタネータ（発電機）のダンパ機構付プーリで、エンジン始動時の入力トルクに対する設計検討が不十分でした。そのため内部のスプリングが折損することがあります。",
+    "status": "stated",
+    "source": "https://www.mlit.go.jp/report/press/content/002045207.pdf"
+  },
+  "worries": [
+    {
+      "q": "自分の車が対象かは、どうやって確かめる？",
+      "a": "車台番号の英字と数字の並びが、ロッキー・ライズ・レックスの範囲に収まるかで確かめられます。ただし範囲に入る車にも対象外の車が含まれるため、最終的には各社の窓口で確認するよう発表されています。",
+      "source": "https://www.mlit.go.jp/report/press/content/002045207.pdf",
+      "action": "車台番号が範囲に入るか見て、入ったらダイハツなら0800-500-0182に電話して確かめる"
+    },
+    {
+      "q": "通知がまだ届かないけど、対象か知るには？",
+      "a": "使用者にはダイレクトメールなどで通知されると発表されています。範囲に入った車は、通知を待つより先に窓口に電話すると、対象かを直接確かめられます。",
+      "source": "https://www.mlit.go.jp/report/press/content/002045207.pdf",
+      "action": "範囲に入る車なら、通知を待たずに窓口へ電話して確かめる"
+    },
+    {
+      "q": "この不具合で、どんな危険があるの？",
+      "a": "異音が出たり、発電不良で警告灯が点いたりすることがあります。最悪の場合、プーリがロックして低速時にエンストし、再始動できなくなるおそれがあります。事故は報告されていません。",
+      "source": "https://www.mlit.go.jp/report/press/content/002045207.pdf",
+      "action": "異音が出たり発電の警告灯が点いたりしたら、そのまま使い続けず、窓口に相談する。"
+    },
+    {
+      "q": "直すときは、どんな作業をするの？",
+      "a": "全車両で、発電機のプーリを対策品に交換するとともに、エンジン制御コンピュータのプログラムを修正します。届出の改善措置として示されています。",
+      "source": "https://www.mlit.go.jp/report/press/content/002045207.pdf",
+      "action": "対象と分かったら、窓口に連絡して、交換の手続きや日程がどうなるかを確かめる。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "範囲に入ったら、すぐ電話するべき？",
+      "situation": "車台番号が範囲に入った",
+      "recommend": "通知を待たず、電話で確かめるとよい",
+      "reason": "通知を待つより先に窓口に電話すると、自分の車が対象かを直接確かめられます。ただし通知が届く時期は、まだ発表されていません。",
+      "source": "https://www.mlit.go.jp/report/press/content/002045207.pdf"
+    },
+    {
+      "question": "トヨタ車・スバル車の窓口はどこ？",
+      "situation": "トヨタ車かスバル車に乗っている",
+      "recommend": "各社の公式サイトで窓口の番号を確かめる",
+      "reason": "各社のインターネットホームページに、リコールの情報が掲載されると発表されています。窓口の番号は、そこで確かめられます。",
+      "source": "https://www.mlit.go.jp/report/press/content/002045207.pdf"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "届出番号5901で、リコールの届出を探せる",
+    "cause": "なぜ起きた？分かっていること",
+    "steps": "車台番号が範囲に入るか、まず見る",
+    "desk": "電話する先は、車の会社と国のどこか",
+    "worries": "対象か分からない、通知はいつ？",
+    "guide": "通知を待つか、先に電話するか"
+  },
+  "depthAt": "2026-11-13T01:36:58+00:00"
 }
