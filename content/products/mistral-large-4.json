@@ -6,22 +6,37 @@
   "companyName": "Mistral AI",
   "category": "AIモデル",
   "overview": {
-    "text": "Mistral Large 4は、フランスのMistral AIが開発した新しい大規模AIモデルです。文章や画像の理解に優れ、プログラム作成やセキュリティ調査に対応しています。2026年10月6日にパブリックプレビューが発表されました。",
+    "text": "Mistral Large 4は、仏Mistral AIが発表した最上位のAIモデルです。総パラメーター約1兆のオープンウェイトモデルとして、2026年10月に公開プレビューが始まりました。",
     "sources": [
+      "mistral-studio-agents-workflows-apps",
       "mistral-large-4-preview"
     ]
   },
   "facts": [
     {
+      "label": "料金",
+      "value": "入力0.7ドル、出力2.1ドル",
+      "sources": [
+        "mistral-large-4-preview"
+      ]
+    },
+    {
       "label": "提供開始",
-      "value": "2026年10月6日（プレビュー）",
+      "value": "2026年10月6日",
+      "sources": [
+        "mistral-large-4-preview"
+      ]
+    },
+    {
+      "label": "使える場所",
+      "value": "Mistral Studioなど",
       "sources": [
         "mistral-large-4-preview"
       ]
     },
     {
       "label": "向いている人",
-      "value": "開発者やシステムを守る人",
+      "value": "開発者・企業",
       "sources": [
         "mistral-large-4-preview"
       ]
@@ -29,48 +44,55 @@
   ],
   "capabilities": [
     {
-      "text": "文章だけでなく画像も理解するネイティブなマルチモーダルモデルです。",
+      "text": "総パラメーター数約1兆で、実際の処理に使うアクティブパラメーターは520億です。",
       "sources": [
         "mistral-large-4-preview"
       ]
     },
     {
-      "text": "1Mトークンのコンテキストウィンドウに対応しています。",
+      "text": "文字と画像をまとめて扱うマルチモーダルモデルで、16億パラメーターの視覚エンコーダーを備えています。",
       "sources": [
         "mistral-large-4-preview"
       ]
     },
     {
-      "text": "1兆パラメータのうち稼働時は約490億のMoEモデルとして動作します。",
+      "text": "コーディング、サイバー防御、複雑な文書の読み解きを行います。",
       "sources": [
+        "mistral-studio-agents-workflows-apps",
         "mistral-large-4-preview"
       ]
     },
     {
-      "text": "GmailやSlackなど657の業務を試すテストで59.9%を記録しました。",
+      "text": "構造化出力、関数呼び出し、文書への質問応答などをサポートします。",
       "sources": [
         "mistral-large-4-preview"
       ]
     }
   ],
-  "pricing": [],
-  "japan": [
+  "pricing": [
     {
-      "text": "発表の時点では、日本での提供について案内はありません。",
+      "text": "入力は100万トークンあたり0.7ドルです。",
+      "sources": [
+        "mistral-large-4-preview"
+      ]
+    },
+    {
+      "text": "キャッシュされた入力は100万トークンあたり0.07ドルです。",
+      "sources": [
+        "mistral-large-4-preview"
+      ]
+    },
+    {
+      "text": "出力は100万トークンあたり2.1ドルです。",
       "sources": [
         "mistral-large-4-preview"
       ]
     }
   ],
+  "japan": [],
   "howto": [
     {
-      "text": "Mistral Studioのプレビュー版APIから利用できます。",
-      "sources": [
-        "mistral-large-4-preview"
-      ]
-    },
-    {
-      "text": "Hugging Faceなどでモデルウェイトが公開されています。",
+      "text": "Mistral StudioのAPIで今日から試せます。",
       "sources": [
         "mistral-large-4-preview"
       ]
@@ -79,29 +101,30 @@
   "differences": [],
   "faq": [
     {
-      "q": "モデルウェイトは公開されていますか？",
-      "a": "Hugging Faceなどで一般公開されています。",
+      "q": "いつから使えますか？",
+      "a": "2026年10月6日に公開プレビューが始まりました。",
       "sources": [
         "mistral-large-4-preview"
       ]
     },
     {
-      "q": "どのようなハードウェアで学習されましたか？",
-      "a": "NVIDIA Grace Blackwell GPU 3,800基を使用して学習されました。",
+      "q": "誰が開発しましたか？",
+      "a": "仏Mistral AIが開発しました。",
+      "sources": [
+        "mistral-studio-agents-workflows-apps",
+        "mistral-large-4-preview"
+      ]
+    },
+    {
+      "q": "どこで学習されましたか？",
+      "a": "欧州にあるMistral AI自社のデータセンターで学習されました。",
       "sources": [
         "mistral-large-4-preview"
       ]
     },
     {
-      "q": "対応している推論フレームワークは何ですか？",
-      "a": "TransformersやvLLM、Llama.cppなどに対応しています。",
-      "sources": [
-        "mistral-large-4-preview"
-      ]
-    },
-    {
-      "q": "ビジョンエンコーダーには何が使われていますか？",
-      "a": "16億パラメータのPixtralが組み込まれています。",
+      "q": "どのような学習設備が使われましたか？",
+      "a": "NVIDIA Grace Blackwell GPU 3,800基が使われました。",
       "sources": [
         "mistral-large-4-preview"
       ]
@@ -111,7 +134,7 @@
     {
       "date": "2026-10-06",
       "slug": "mistral-large-4-preview",
-      "event": "Mistral Large 4のパブリックプレビューを開始"
+      "event": "Mistral Large 4の公開プレビューを開始"
     }
   ],
   "related": [],
@@ -122,9 +145,9 @@
   "linkFrom": [
     "mistral-large-4-preview"
   ],
-  "signature": "4172f1e55e547b69",
+  "signature": "89f18eb25d047082",
   "primarySignature": "4172f1e55e547b69",
   "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-11-01T13:17:12+00:00",
-  "updatedAt": "2026-11-03T11:21:24+00:00"
+  "updatedAt": "2026-11-13T11:32:02+00:00"
 }

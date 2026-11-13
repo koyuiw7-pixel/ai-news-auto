@@ -6,10 +6,9 @@
   "companyName": "OpenAI",
   "category": "AIモデル",
   "overview": {
-    "text": "GPT-6.1 Solは、推論の力と信頼性のバランスが取れたAIモデルです。OpenAIによって提供されています。2026年10月までに発表されています。",
+    "text": "GPT-6.1 Solは、OpenAIが提供するAIモデルです。複雑なコーディングやデータの調査などで活用されています。",
     "sources": [
-      "devrev-self-service-agents",
-      "coderabbit-secure-gpt-6-1-sol-security",
+      "amplitude-wave-openai-product-improvements",
       "gpt-6-1-terra-sol-astra-comparison"
     ]
   },
@@ -18,46 +17,68 @@
       "label": "料金",
       "value": "入力100万トークン2ドルなど",
       "sources": [
+        "amplitude-wave-openai-product-improvements",
         "devrev-self-service-agents"
       ]
     },
     {
-      "label": "向いている人",
-      "value": "複雑なコーディングを求める人",
+      "label": "使える場所",
+      "value": "APIなど",
       "sources": [
+        "devrev-self-service-agents",
+        "gpt-6-1-terra-sol-astra-comparison"
+      ]
+    },
+    {
+      "label": "向いている人",
+      "value": "開発チームや複雑な処理が必要な人",
+      "sources": [
+        "amplitude-wave-openai-product-improvements",
         "gpt-6-1-terra-sol-astra-comparison"
       ]
     }
   ],
   "capabilities": [
     {
-      "text": "DevRevのAIエージェントに利用され、顧客や社員の依頼を最後まで処理します。",
+      "text": "改善機会の管理や、コードやデータの深い調査を行えます。",
+      "sources": [
+        "amplitude-wave-openai-product-improvements"
+      ]
+    },
+    {
+      "text": "顧客や社員の依頼を最後まで処理するAIエージェントの動きを支えます。",
       "sources": [
         "devrev-self-service-agents"
       ]
     },
     {
-      "text": "CodeRabbitのセキュリティ調査のエージェントの主力モデルとして使われています。",
+      "text": "セキュリティの脆弱性の検証から修正案の作成まで行えます。",
       "sources": [
         "coderabbit-secure-gpt-6-1-sol-security"
       ]
     },
     {
-      "text": "プルリクエストのレビューやDeep Scan、連携リポジトリの調査を行います。",
+      "text": "最難関のコーディングなど複雑なプログラミングに対応します。",
       "sources": [
-        "coderabbit-secure-gpt-6-1-sol-security"
+        "gpt-6-1-terra-sol-astra-comparison"
       ]
     }
   ],
   "pricing": [
     {
-      "text": "OpenAIのAPI料金は、100万トークンあたり入力が2ドル、出力が10ドルです。",
+      "text": "APIの料金は、入力が100万トークンあたり2ドル、出力が10ドルです。",
       "sources": [
         "devrev-self-service-agents"
       ]
     },
     {
-      "text": "入力が27.2万トークンを超えるときは、入力4ドル・出力15ドルになります。",
+      "text": "入力が27.2万トークンを超えるときは、入力4ドル、出力15ドルになります。",
+      "sources": [
+        "gpt-6-1-terra-sol-astra-comparison"
+      ]
+    },
+    {
+      "text": "キャッシュ入力料金は100万トークンあたり0.1ドルです。",
       "sources": [
         "gpt-6-1-terra-sol-astra-comparison"
       ]
@@ -66,21 +87,22 @@
   "japan": [],
   "howto": [
     {
-      "text": "OpenAIのAPIから呼び出して利用できます。",
+      "text": "OpenAIのAPIを利用してアプリから呼び出すことができます。",
       "sources": [
-        "devrev-self-service-agents"
+        "devrev-self-service-agents",
+        "gpt-6-1-terra-sol-astra-comparison"
       ]
     }
   ],
   "differences": [
     {
-      "text": "GPT-6.1 Terraと比べると、Terraは速さとコスト重視のモデルとなっています。",
+      "text": "新モデルのGPT-6.1 Terraと比べると、Solは複雑なプログラミングに向いています。",
       "sources": [
         "gpt-6-1-terra-sol-astra-comparison"
       ]
     },
     {
-      "text": "API料金はGPT-6.1 Terraの2倍で、GPT-6 Astraの半額にあたります。",
+      "text": "料金はTerraの2倍で、Astraより安価に利用できます。",
       "sources": [
         "gpt-6-1-terra-sol-astra-comparison"
       ]
@@ -88,33 +110,25 @@
   ],
   "faq": [
     {
-      "q": "いつから使える？",
-      "a": "CodeRabbitやDevRevのサービスなどで活用されています。",
+      "q": "どのような用途に向いていますか？",
+      "a": "複雑なプログラミングや、データやコードの深い調査に向いています。",
       "sources": [
-        "devrev-self-service-agents",
-        "coderabbit-secure-gpt-6-1-sol-security"
+        "amplitude-wave-openai-product-improvements",
+        "gpt-6-1-terra-sol-astra-comparison"
       ]
     },
     {
-      "q": "GPT-6.1 Terraとの違いは？",
-      "a": "Terraは速さとコストを重視しており、Solは複雑なコーディング向けの位置づけです。",
+      "q": "GPT-6.1 Terraとの違いは何ですか？",
+      "a": "Terraは速さとコストを重視し、Solは複雑なコーディングに向いています。",
       "sources": [
         "gpt-6-1-terra-sol-astra-comparison"
       ]
     },
     {
-      "q": "安全性はどう確保されている？",
-      "a": "隔離したサンドボックス環境で検証し、修正案は人が見て承認する仕組みになっています。",
+      "q": "どのようなセキュリティ調査に使えますか？",
+      "a": "脆弱性の検証から修正案の作成まで行えます。",
       "sources": [
         "coderabbit-secure-gpt-6-1-sol-security"
-      ]
-    },
-    {
-      "q": "誰に向いている？",
-      "a": "複雑なプログラミングや、システム全体に及ぶセキュリティ調査を行う開発者に向いています。",
-      "sources": [
-        "coderabbit-secure-gpt-6-1-sol-security",
-        "gpt-6-1-terra-sol-astra-comparison"
       ]
     }
   ],
@@ -122,21 +136,22 @@
     {
       "date": "2026-10-26",
       "slug": "coderabbit-secure-gpt-6-1-sol-security",
-      "event": "CodeRabbitがセキュリティ調査の主力に採用"
+      "event": "CodeRabbitが主力に採用"
     },
     {
       "date": "2026-11-04",
       "slug": "devrev-self-service-agents",
-      "event": "DevRevの顧客対応AIの強化に採用"
+      "event": "DevRevの顧客対応AIを強化"
     }
   ],
   "related": [
+    "codex",
     "gpt-6-astra",
     "gpt-6-1-terra",
-    "codex",
     "gpt-6"
   ],
   "articles": [
+    "amplitude-wave-openai-product-improvements",
     "devrev-self-service-agents",
     "coderabbit-secure-gpt-6-1-sol-security",
     "gpt-6-1-terra-sol-astra-comparison"
@@ -145,9 +160,9 @@
     "devrev-self-service-agents",
     "coderabbit-secure-gpt-6-1-sol-security"
   ],
-  "signature": "50a22dc2726281da",
+  "signature": "d10a22958b5141a0",
   "primarySignature": "774c23abd8f0c1fe",
   "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-11-09T13:51:47+00:00",
-  "updatedAt": "2026-11-09T13:51:47+00:00"
+  "updatedAt": "2026-11-13T11:31:51+00:00"
 }

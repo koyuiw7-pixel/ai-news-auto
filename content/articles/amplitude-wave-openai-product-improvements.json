@@ -1,0 +1,276 @@
+{
+  "slug": "amplitude-wave-openai-product-improvements",
+  "sourceType": "web",
+  "sourceUrl": "https://openai.com/business/customer-stories/amplitude",
+  "sourceName": "OpenAI公式ブログ",
+  "title": "OpenAIモデルで製品改善が1〜2日に　Amplitudeの「Wave」は従来の約1カ月から短縮",
+  "seoTitle": "Amplitude「Wave」とは？製品改善を1〜2日に",
+  "threadsPost": "プロダクト開発に関わる人に、押さえておきたい話です。\n\nAmplitudeの「Wave」は、改善点の発見から実装の指示、効果測定までを担うAIエージェントです。\n同社は、改善の公開が約1カ月から1〜2日になると見積もっています。\n\n製品改善の案出しから公開まで、いまどのくらいかかっていますか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "count",
+      "question": "製品改善の案出しから公開まで、いまどのくらいかかっていますか？"
+    },
+    {
+      "pattern": "line",
+      "question": "改善の実装をAIに任せるなら、どこまでなら任せられますか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "explainer",
+  "lede": "Amplitudeの製品改善エージェント「Wave」を使うと、改善の公開までが従来の約1カ月から1〜2日に縮むと同社は見積もっています。自社ホームページの提案カードを個人向けに変えた実験では、カード経由のメッセージ送信が1日後に対照群比で160%増えました。Waveは開発ツール「Codex」など向けの実装計画も作りますが、日本での提供や料金はまだ発表されていません。",
+  "description": "Amplitudeの「Wave」はOpenAIのモデルで製品の改善点を見つけ、Codexなどに実装を任せて効果まで測ります。公開までの期間は約1カ月から1〜2日に。モデルの使い分けと評価結果を整理します。",
+  "keywords": [
+    "OpenAI",
+    "Amplitude",
+    "Wave",
+    "GPT-6.1 Sol",
+    "GPT-6 Luna",
+    "Codex",
+    "AIエージェント",
+    "製品改善",
+    "プロダクト分析",
+    "GPT-Image-2.5 Flare"
+  ],
+  "tags": [
+    "OpenAI",
+    "AIエージェント",
+    "Codex",
+    "GPT-6.1 Sol",
+    "事例"
+  ],
+  "highlights": [
+    "Amplitudeの「Wave」は、製品改善の公開を約1カ月から1〜2日に縮める見込みと同社は説明",
+    "自社ホームページの実験で、提案カード経由の送信が1日後に対照群比160%増",
+    "GPT-6.1 Solは調査エージェントの評価で5点満点中4.06点、他の3モデルは3.62〜2.94点"
+  ],
+  "timetable": [],
+  "verdict": {
+    "status": "limited",
+    "japan": "unknown",
+    "price": "不明",
+    "free": null,
+    "audience": "開発チーム",
+    "take": "自社でも調査用と軽作業用でモデルを分けて比べ、Waveは日本での提供発表を待つとよいでしょう。",
+    "judgedAt": "2026-11-13T11:31:04.514252+00:00"
+  },
+  "workMoney": {
+    "relevance": "medium",
+    "points": [
+      "プロダクト担当や開発者は、改善の発見から効果測定までを1つの流れにした事例として参考にできます。",
+      "Waveはベータ版で、料金と日本での提供はまだ発表されていません。",
+      "モデルを作業ごとに使い分けてコストを抑える考え方は、自社のAI活用でも応用できます。"
+    ]
+  },
+  "body": "対象は、自社のプロダクトを改善する企業のチームです。Amplitudeの「Wave」はベータ版（正式公開前の試用版）で、すでに複数の業種の顧客が使っています。日本での提供や料金は、まだ発表されていません。\n\nWaveは、製品の改善点を自分から見つけて提案するAIエージェント（自分で手順を進めるAI）です。Amplitudeは、Waveの約80%をOpenAIのモデルが支えていると説明しています。\n\n## 改善点の発見から効果測定まで\n\nOpenAIの公式ブログによると、チームはWaveに対象の製品領域と、改善したい目標や指標を渡します。Waveは、Amplitudeの分析データ、画面操作の録画、顧客の声、コードをまとめて調べます。そのうえで改善の機会を見つけ、優先順位をつけ、解決策を考えます。\n\n改善案が固まると、技術計画と合格条件をつけて、「Codex」などのコーディングエージェント（コードを書いて作業を進めるAI）に直接送れます。実装後は成果を追跡し、その結果を次の改善に生かします。\n\nAmplitudeは、改善の公開までが約1カ月から1〜2日に縮むと見積もっています。\n\n## 自社サイトの実験で、提案カードの送信が160%増\n\nAmplitudeは、自社ホームページでWaveを試しました。対象は、AIエージェントとの会話を始めるための汎用の提案カードです。\n\nWaveは、100件の画面録画を調べました。80人が自分で質問を打ち込み、カードを選んだのは12人でした。\n\nWaveは、直近のグラフやダッシュボード、直前に見ていたページに合わせてカードを個人向けにする案を出しました。自由入力は残し、個人向けの材料がないときは汎用のカードを出す、という計画もつけました。短い確認のあと、チームは実装をコーディングエージェントに渡し、A/Bテスト（同じ画面を2つに分けて、どちらが効くかを比べる実験）をしました。\n\n実験の結果、カード経由のメッセージ送信は、1日後に対照群（変更を加えなかった側）比で160%増えました。同社の上級エンジニア、Eric Carlson氏は「目立たない変更でも機能の利用が思わぬ形で伸びる例」と説明しています。\n\n## 作業ごとにモデルを使い分ける\n\nWaveは、作業の重さに応じてOpenAIの3つのモデルを使い分けています。\n\n- GPT-6.1 Sol：改善機会の管理と、コードやデータの深い調査\n- GPT-6 Luna：コードの走査や小さな評価チェックなど、回数の多い低コストの作業\n- GPT-Image-2.5 Flare：画面録画のスクリーンショットを参考に、製品の完成イメージ（モックアップ）を作る\n\nAmplitudeは、品質・応答の速さ（遅延）・コストを作業ごとに評価して、モデルを割り当てています。\n\n**調査ではGPT-6.1 Solが最高点、データ分析では僅差で2位。**\n\n調査を担う「Opportunity Investigator」の評価では、GPT-6.1 Solは5点満点中4.06点でした。ほかの3モデルは3.62、3.52、2.94点です。5つの評価基準すべてで首位となり、調査時間の中央値も54分で最短でした。モデルのコストは$1.34（約214円、サイソク編集部の計算）です。\n\nデータ分析を担う「Data Science Agent」の評価では、GPT-6.1 Solは100点満点中67.5点で、別の有力モデルの69.3点をわずかに下回りました。1回の処理あたりのモデルコストは$1.28（約204円）で、相手の$2.63（約420円）より51%低くなりました（円換算はサイソク編集部の計算）。ツール利用の規約の順守、推定と不確かさの扱い、根拠の裏づけの3項目では、GPT-6.1 Solの得点が上でした。\n\nモックアップの作成では、OpenAIの画像生成モデルが、ワイヤーフレーム（画面の設計図）の評価で100点満点中80.3点でした。別の画像生成モデルは63.9点です。15件の改善機会で、伝わりやすさや文字の読みやすさなどを見た評価です。\n\n## 人が確認する範囲を選べる\n\nWaveは、調べた結果に、修正案・技術計画・合格条件をつけて提案します。自動化の度合いは、チームが決められます。多くのチームはバグ修正をそのままコーディングエージェントに送り、新機能や大きな変更は人が確認します。\n\n顧客が公開した実験・フラグ・ガイドのうち、4件に1件はWaveが機会を見つけた当日に公開されました。半数は4日未満、3件に2件は1週間以内です。\n\nOpenAIは過去にも、CodeRabbitがセキュリティ調査の主力に「GPT-6.1 Sol」を採用した事例を紹介しています（[CodeRabbitが「GPT-6.1 Sol」をセキュリティ調査の主力に採用](/articles/coderabbit-secure-gpt-6-1-sol-security)）。\n\n## 評価の数字を並べると、GPT-6.1 Solは調査とコストで強い\n\n| 評価 | GPT-6.1 Sol | 比べた相手 |\n|---|---|---|\n| Opportunity Investigator（5点満点の総合） | 4.06点 | 3.62点、3.52点、2.94点（別の3モデル） |\n| Opportunity Investigator（モデルのコスト） | $1.34（約214円） | 比較の記載なし |\n| Data Science Agent（100点満点） | 67.5点 | 69.3点（別の有力モデル） |\n| Data Science Agent（1回あたりのモデルコスト） | $1.28（約204円） | $2.63（約420円） |\n| ワイヤーフレーム評価（100点満点） | 80.3点（OpenAIの画像生成モデル） | 63.9点（別の画像生成モデル） |\n\n表の円換算は、サイソク編集部が1ドル=159.70円（2026-11-12、ECB参照レート）で計算した目安です。\n\n## サイソクの見方：モデルの使い分けは、日本のチームにも応用できる\n\nWaveの事例で参考になるのは、すべてを高性能モデルに任せず、作業ごとに分けている点です。Data Science Agentの評価では、GPT-6.1 Solは得点が約2点低い一方、コストは$1.28と、相手の$2.63より安くなりました。回数の多い作業にはGPT-6 Lunaを使っています。\n\nAPIの料金は、GPT-6.1 Solが入力100万トークンあたり$2、GPT-6 Lunaが$0.10です（OpenAI公式の料金ページ、11/13確認）。トークンとは、AIが文字を数える単位です。\n\n判断の目安は次のとおりです。\n\n- 自社のプロダクト分析や改善にAIを使いたいなら、まず調査用と軽作業用でモデルを分け、品質とコストを比べる\n- Waveそのものを試したいなら、日本での提供と料金の発表を待つ\n- 数値は、Amplitudeが自社の評価で出した結果です。自社の環境では条件が変わるため、同じ結果になるとは限りません\n\n## まだ分からないこと\n\n- Waveの料金と、日本で使えるかどうかはまだ発表されていません。\n- ベータ版から一般提供に移る時期はまだ決まっていません。\n- 「1〜2日」は、Amplitudeによる見積もりです。\n",
+  "easy": "## ひとことで言うと\n\nAmplitudeの「Wave」は、製品の改善点を見つけ、実装をAIに任せ、効果まで測るAIエージェントです。同社は、改善の公開が約1カ月から1〜2日になると見積もっています。\n\n## 何をするAIか\n\nWaveは、利用データや画面操作の録画、顧客の声、コードをまとめて調べます。そのうえで、直すべき点を見つけて優先順位をつけます。\n\n改善案ができると、技術的な計画と合格条件をつけて、Codexなどのコーディングエージェント（プログラムを書くAI）に渡せます。\n\n## 自社サイトでの実験\n\nAmplitudeは自社のホームページで試しました。AIとの会話を始める提案カードが、ほとんど使われていないことをWaveが見つけました。100件の録画のうち、80人は自分で質問を入力し、カードを選んだのは12人でした。\n\nそこでカードを個人向けに変える案を出し、実験したところ、カード経由の送信が1日後に対照群比で160%増えました。\n\n## 人が確認する範囲\n\n多くのチームは、バグ修正をそのままコーディングエージェントに送ります。新機能や大きな変更は、人が確認してから進めます。Waveは現在ベータ版です。料金や日本での提供はまだ発表されていません。",
+  "channel": "OpenAI公式ブログ",
+  "channelId": "",
+  "channelSlug": "openai-news",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "How Amplitude ships product improvements in 1–2 days with OpenAI",
+  "publishedAt": "2026-11-12T20:00:00+00:00",
+  "generatedAt": "2026-11-13T11:31:04.514239+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/amplitude-wave-openai-product-improvements-1ab28518.jpg",
+  "model": "claude:sonnet",
+  "affiliates": [],
+  "newsType": "explainer",
+  "faq": [
+    {
+      "q": "Amplitudeの「Wave」が使うOpenAIのモデルのAPI料金は？",
+      "a": "OpenAIの料金ページ（11/13確認）では、GPT-6.1 Solは入力100万トークンあたり$2、出力$10です。GPT-6 Lunaは入力$0.10、出力$0.50です。いずれも入力が272K以下の場合です。"
+    },
+    {
+      "q": "Waveが作った実装計画を渡せるCodexは無料で使える？",
+      "a": "Codexは、FreeとGoを含むChatGPTの各プランに含まれ、無料版には使用量の上限があります。クラウドでタスクを動かすCodex Cloudは、Plus、Pro、Businessなどが対象です（サイソクのCodexガイド、11/9確認）。"
+    }
+  ],
+  "todayActions": [
+    "調査用と軽作業用のモデルの単価を、料金ページで比べる",
+    "まとめて処理する作業が、Batchの半額料金に合うかを確かめる"
+  ],
+  "relatedSlugs": [
+    "coderabbit-secure-gpt-6-1-sol-security"
+  ],
+  "searchTrend": "openai",
+  "trendKeyword": "openai",
+  "qualityBar": {
+    "score": 8,
+    "missing": [],
+    "notes": {},
+    "checkedAt": "2026-11-13T11:31:30+00:00",
+    "before": [
+      6
+    ],
+    "repaired": true
+  },
+  "qualityScore": 92,
+  "factSources": [
+    {
+      "label": "料金",
+      "name": "OpenAI公式の料金ページ",
+      "url": "https://developers.openai.com/api/docs/pricing",
+      "checkedAt": "2026-11-13"
+    },
+    {
+      "label": "計算",
+      "name": "サイソク編集部の計算（元記事と上の資料の数字から）",
+      "url": "",
+      "checkedAt": ""
+    }
+  ],
+  "sourcePublishedAt": "2026-11-12T20:00:00+00:00",
+  "detectedAt": "2026-11-13T11:28:54+00:00",
+  "layout": "noir",
+  "summaryLine": "Amplitudeの「Wave」は、製品改善の公開を約1カ月から1〜2日に縮める見込みと同社は説明",
+  "sectionsPolishedAt": "2026-11-13T11:32:08+00:00",
+  "insight": [
+    {
+      "text": "gpt-6.1-solの料金は処理方式で変わります。Batchは入力$1.00・出力$5.00で標準の半分、Fastは入力$4.00・出力$20.00で標準の2倍です。",
+      "source": "https://developers.openai.com/api/docs/pricing"
+    },
+    {
+      "text": "料金ページには「Priority processing」は2026年7月30日に「Fast mode」へ改名されたと書かれています。古い名前で探すと見つからないかもしれません。",
+      "source": "https://developers.openai.com/api/docs/pricing"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "OpenAI API 料金ページ（Pricing）",
+      "url": "https://developers.openai.com/api/docs/pricing",
+      "source": "https://developers.openai.com/api/docs/pricing",
+      "howTo": [
+        "Home",
+        "Pricing"
+      ],
+      "note": "料金は1Mトークン（100万トークン）あたりで書かれ、標準・Batch・Fast・Ultrafastで表が分かれています。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "調査用と軽作業用のモデルの単価を、料金ページで比べる",
+      "source": "https://developers.openai.com/api/docs/pricing",
+      "steps": [
+        "料金ページの「Standard」の表を開く",
+        "gpt-6.1-solとgpt-6-lunaの入力・出力単価を見る",
+        "数字を、作業ごとの回数と並べて見比べる"
+      ],
+      "url": "https://developers.openai.com/api/docs/pricing"
+    },
+    {
+      "action": "まとめて処理する作業が、Batchの半額料金に合うかを確かめる",
+      "source": "https://developers.openai.com/api/docs/pricing",
+      "steps": [
+        "料金ページの「Batch」の表を開く",
+        "gpt-6.1-solの入力$1.00・出力$5.00を確認する",
+        "標準の$2.00・$10.00と比べて決める"
+      ],
+      "url": "https://developers.openai.com/api/docs/pricing"
+    }
+  ],
+  "cause": {
+    "text": "Amplitudeの説明では、Waveが分析データ・画面録画・顧客の声・コードをまとめて調べ、改善の機会を見つけて実装までつなげるため、公開までの期間が1〜2日に縮むと見積もられています。",
+    "status": "background",
+    "source": "https://openai.com/business/customer-stories/amplitude"
+  },
+  "worries": [
+    {
+      "q": "AIの料金は、使い方で高くなったりしない？",
+      "a": "料金は処理の方式で変わります。gpt-6.1-solの標準料金は入力100万トークンあたり$2.00・出力$10.00で、Batchは入力$1.00・出力$5.00、Fast modeは入力$4.00・出力$20.00と書かれています。",
+      "source": "https://developers.openai.com/api/docs/pricing",
+      "action": "料金ページで、使う処理方式（標準・Batch・Fast）ごとの単価を確かめてから、回数の多い作業を任せる。"
+    },
+    {
+      "q": "AIに任せると、品質は落ちないの？",
+      "a": "Amplitudeは品質・速さ・コストを作業ごとに評価してモデルを割り当てています。調査ではgpt-6.1-solが5点満点で4.06点と最高でしたが、データ分析では100点満点で67.5点と、別モデルの69.3点をわずかに下回りました。",
+      "source": "https://openai.com/business/customer-stories/amplitude",
+      "action": "Amplitudeのように、作業ごとに品質・速さ・コストを比べてから、モデルを割り当てる。"
+    },
+    {
+      "q": "改善案をコーディングエージェントに直接送っても大丈夫？",
+      "a": "Waveは技術計画と合格条件をつけてCodexなどに送れます。ただ、多くのチームはバグ修正だけを直接送り、新機能や大きな変更は人が確認していると書かれています。",
+      "source": "https://openai.com/business/customer-stories/amplitude",
+      "action": "新機能や大きな変更は、送る前に人が計画と合格条件を確認し、バグ修正と分けて扱う。"
+    },
+    {
+      "q": "Waveを使うと、本当に成果は出るの？",
+      "a": "Amplitudeの自社ホームページの実験では、提案カード経由のメッセージ送信が1日後に対照群比で160%増えたと報告されています。ただし1社の1つの画面の結果です。",
+      "source": "https://openai.com/business/customer-stories/amplitude",
+      "action": "効果を見るときは、変えたグループと変えないグループに分けて、同じ期間で比べる。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "軽作業と調査で、同じモデルを使い続ける？",
+      "situation": "回数の多い軽作業と、深い調査が両方ある",
+      "recommend": "作業ごとに分けて、品質と料金を比べる価値がある",
+      "reason": "gpt-6-lunaは入力100万トークンあたり$0.10、gpt-6.1-solは$2.00で、料金ページ上の差は約20倍です。Lunaで足りるかは作業の品質しだいで、料金だけでは決まりません。",
+      "source": "https://developers.openai.com/api/docs/pricing"
+    },
+    {
+      "question": "Batchの半額料金を使うか、標準のまま？",
+      "situation": "結果をすぐに使わなくてよい作業がある",
+      "recommend": "急ぎでないかを確かめてから決めればよい",
+      "reason": "料金ページでは、gpt-6.1-solのBatchは入力$1.00・出力$5.00で、標準の$2.00・$10.00の半分です。Fast modeは標準の2倍なので、速さと料金のどちらを優先するかで決まります。",
+      "source": "https://developers.openai.com/api/docs/pricing"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "料金は処理の方式で大きく変わる",
+    "cause": "なぜ1〜2日に縮まるのか",
+    "steps": "今日は料金表でモデルの単価を比べる",
+    "desk": "料金は公式の料金ページで確かめる",
+    "worries": "料金は高くならない？品質は？",
+    "guide": "モデルを分けるか、そのままにするか"
+  },
+  "depthAt": "2026-11-13T11:32:53+00:00",
+  "bodyImages": [
+    {
+      "src": "https://ai-tech-express.jp/img/amplitude-wave-openai-product-improvements-fig1-189bd426.jpg",
+      "width": 1200,
+      "height": 686,
+      "kind": "dense",
+      "credit": "OpenAI",
+      "sourceUrl": "https://openai.com/business/customer-stories/amplitude",
+      "original": "https://images.ctfassets.net/kftzwdyauwt9/5q4zQSZmcazshBiDoz6eYi/5829c86583afd51cbcd1a68dd4a88d8e/image2.png?w=3840&q=90&fm=webp"
+    },
+    {
+      "src": "https://ai-tech-express.jp/img/amplitude-wave-openai-product-improvements-fig2-272aa8d1.jpg",
+      "width": 1200,
+      "height": 981,
+      "kind": "dense",
+      "credit": "OpenAI",
+      "sourceUrl": "https://openai.com/business/customer-stories/amplitude",
+      "original": "https://images.ctfassets.net/kftzwdyauwt9/3LjZcXouhYtaCOBh1oGfTt/9dc30c9597dbff3dd6174b34b4c907c6/amplitude-wave-personalized-suggestions.png?w=3840&q=90&fm=webp"
+    }
+  ],
+  "imageCredit": {
+    "kind": "official",
+    "org": "OpenAI",
+    "provider": "OpenAI公式ブログ",
+    "sourceUrl": "https://openai.com/business/customer-stories/amplitude",
+    "original": "https://images.ctfassets.net/kftzwdyauwt9/7xyAtQVA8C5CZGHW7aQidr/a71aedc6e0ed7395f081f75411af6d03/amplitude-wave-seo.png?w=1600&h=900&fit=fill",
+    "width": 1200,
+    "height": 675,
+    "at": "2026-11-13T11:33:10+00:00",
+    "imageKind": "hero"
+  },
+  "heroOk": false,
+  "imageFocus": {
+    "x": 0.45,
+    "y": 0.492,
+    "box": [
+      0.059,
+      0.117,
+      0.841,
+      0.867
+    ],
+    "ar": 1.7778,
+    "src": "https://ai-tech-express.jp/img/amplitude-wave-openai-product-improvements-1ab28518.jpg"
+  }
+}
