@@ -68,9 +68,8 @@
   "affiliates": [],
   "newsType": "general",
   "todayActions": [
-    "今日中に結論が要る連絡は、メールを待たずに電話で伝える。",
-    "会議が開けない場合の代わりの連絡方法を、参加者へ先に伝えておく。",
-    "管理者は、管理センターの「正常性」で障害の状態が変わったかを確かめる。"
+    "管理者は「サービス正常性」で、障害の状態が変わったかを確かめる",
+    "管理センターにサインインできないときは、サービスの状態ページで既知の問題を見る"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -169,5 +168,102 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/microsoft-365-outage-november-13-figure-e6edc0ef.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "管理者がサービス正常性のメール通知に登録すると、状態の変化が届きます。メールアドレスは最大2つまで指定できます。",
+      "source": "https://learn.microsoft.com/ja-jp/microsoft-365/enterprise/view-service-health"
+    },
+    {
+      "text": "メールが送受信できない障害は「アクティブ インシデント」として表示され、調査・軽減・解決確認の更新がサービス正常性に出ます。",
+      "source": "https://learn.microsoft.com/ja-jp/microsoft-365/enterprise/view-service-health"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "Microsoft 365 管理センター",
+      "url": "https://admin.microsoft.com",
+      "source": "https://learn.microsoft.com/ja-jp/microsoft-365/enterprise/view-service-health",
+      "howTo": [
+        "Microsoft 365 管理センター",
+        "正常性",
+        "サービス正常性"
+      ],
+      "note": "表示できるのは、サービス サポート管理者とヘルプデスク管理者ロールが割り当てられた人です。"
+    },
+    {
+      "name": "サービスの状態ページ",
+      "url": "https://status.cloud.microsoft",
+      "source": "https://learn.microsoft.com/ja-jp/microsoft-365/enterprise/view-service-health",
+      "note": "管理センターにサインインできないときに使い、テナントにログインできない既知の問題を確認できます。"
+    },
+    {
+      "name": "@MSFT365status（X）",
+      "url": "https://x.com/MSFT365Status",
+      "source": "https://learn.microsoft.com/ja-jp/microsoft-365/enterprise/view-service-health",
+      "howTo": [
+        "X (Twitter)",
+        "@MSFT365status"
+      ],
+      "note": "登録すると、特定の障害の情報を確認できます。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "管理者は「サービス正常性」で、障害の状態が変わったかを確かめる",
+      "source": "https://learn.microsoft.com/ja-jp/microsoft-365/enterprise/view-service-health",
+      "steps": [
+        "admin.microsoft.comにサインインする",
+        "左のメニューで「正常性」>「サービス正常性」を選ぶ",
+        "「Microsoft が取り組んでいるアクティブな問題」を見る"
+      ],
+      "url": "https://admin.microsoft.com"
+    },
+    {
+      "action": "管理センターにサインインできないときは、サービスの状態ページで既知の問題を見る",
+      "source": "https://learn.microsoft.com/ja-jp/microsoft-365/enterprise/view-service-health",
+      "steps": [
+        "ブラウザで status.cloud.microsoft を開く",
+        "テナントにログインできない既知の問題を確認する"
+      ],
+      "url": "https://status.cloud.microsoft"
+    }
+  ],
+  "worries": [
+    {
+      "q": "障害が直ったかは、どこで確かめればいい？",
+      "a": "サービス正常性の状態が「サービスの復元」に変わると、原因が特定され、対応策でサービスが正常な状態に戻ったことが確認された状態を示します。",
+      "source": "https://learn.microsoft.com/ja-jp/microsoft-365/enterprise/view-service-health",
+      "action": "管理センターの「サービス正常性」で、障害の状態が「サービスの復元」に変わったかを確かめる。"
+    },
+    {
+      "q": "管理者は、障害の連絡をメールで受け取れる？",
+      "a": "受け取れます。サービス正常性のメール通知に登録すると、インシデントや警告の状態変更の通知が届きます。メールアドレスは最大2つまで指定でき、通知するサービスも選べます。",
+      "source": "https://learn.microsoft.com/ja-jp/microsoft-365/enterprise/view-service-health",
+      "action": "管理センターの「Emailのカスタマイズ」で、サービス正常性のメール通知を設定する。"
+    },
+    {
+      "q": "管理センターにログインできないときは、どうする？",
+      "a": "サービスの状態ページで、テナントにログインできない既知の問題を確認できます。また、X（Twitter）の@MSFT365statusに登録すると、特定の障害の情報を確認できます。",
+      "source": "https://learn.microsoft.com/ja-jp/microsoft-365/enterprise/view-service-health",
+      "action": "ログインできない場合は、サービスの状態ページ（status.cloud.microsoft）で既知の問題を確かめる。"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "管理者はメール通知で状態の変化を受け取れる",
+    "steps": "管理センターで復旧の状態を確かめる",
+    "desk": "管理者が確認する公式の窓口",
+    "worries": "復旧はいつ分かる？連絡はどうする？"
+  },
+  "depthAt": "2026-11-13T07:34:05+00:00",
+  "updatedAt": "2026-11-13T07:34:05+00:00",
+  "updates": [
+    {
+      "at": "2026-11-13T07:34:05+00:00",
+      "kind": "facts",
+      "title": "公式の資料をもとに、「なるほどの要点」・「公式の窓口」・「今日やること」・「よくある不安」を追記しました",
+      "sourceUrl": "https://learn.microsoft.com/ja-jp/microsoft-365/enterprise/view-service-health",
+      "sourceName": "Microsoft Learn「サービス正常性を表示する」"
+    }
+  ]
 }
