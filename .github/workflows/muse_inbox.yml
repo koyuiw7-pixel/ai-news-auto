@@ -5,6 +5,8 @@ name: Muse Inbox
 # 2026-11-09 オーナー「100本/日は必須」: これまで auto_run.yml の記事づくりの回の中で動いていた（1回およそ14分）ため、
 # 記事づくりの回が長くなり1時間あたりの回数が減っていた。別のワークフロー（別の concurrency）に分けて、記事づくりの回と並んで動かす。
 #   - 起動: Mac が content/muse_inbox/ に push したとき（すぐ）＋ 予約（30分ごと・取りこぼしの拾い）＋ 手動
+#   - 順番: 急ぎ（genre が速報解説・「急ぎ: はい」の印）→ 日付の新しい順（scripts/muse_articles.py の order_inbox。2026-11-13）。
+#     1回で終わらなかった入稿があれば、予約（12分・42分）を待たずに次の回をすぐ呼ぶ（下の「Run again for the rest」）
 #   - 今日の本数: content/state.json の processed_web に入れる（scripts/pacing.py の live_today。段の上限 WEB_STAGE_TARGET の中に数える）
 #   - push: scripts/git_safe_push.py（記事づくりの回と同じ。state の JSON は項目ごとに3方向マージ・新しい記事は必ず残す）
 on:
@@ -23,7 +25,7 @@ on:
 
 permissions:
   contents: write
-  actions: write  # 公開の回に deploy_cloudflare.yml を呼ぶ
+  actions: write  # 公開の回に deploy_cloudflare.yml を呼ぶ・入稿が残った回に次の回（このワークフロー）を呼ぶ
 
 # Muse の回どうしは重ねない（同じ入稿を二重に記事にしないため）。記事づくりの回（auto-article-pipeline）とは別の列
 concurrency:
@@ -99,6 +101,21 @@ jobs:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: timeout 1800 python scripts/muse_articles.py --daily-cap "${{ steps.ramp.outputs.muse_daily_cap || steps.ramp.outputs.web_daily_cap }}" --max "${{ inputs.max || '6' }}" --budget 1500
+
+      # 入稿の残りを数える（2026-11-13）。この回で1本以上片づき（公開・見送りで入稿から消えた）、まだ残っていれば、次の回をすぐ呼ぶ。
+      # 1本も片づかなかった回は呼ばない（今日の本数がいっぱい・LLM が使えないときに、回が回り続けないように）。
+      # push の前に数える（push の段は main を取り込むので、そのあいだに届いた新しい入稿が混ざる。新しい入稿は push のきっかけで別に動く）
+      - name: Count remaining
+        if: ${{ steps.inbox.outputs.count != '0' }}
+        id: left
+        run: |
+          BEFORE="${{ steps.inbox.outputs.count }}"
+          AFTER=$(ls content/muse_inbox/*.md 2>/dev/null | wc -l | tr -d ' ')
+          DONE=$((BEFORE - AFTER))
+          echo "remaining=${AFTER}" >> "$GITHUB_OUTPUT"
+          echo "processed=${DONE}" >> "$GITHUB_OUTPUT"
+          if [ "$AFTER" -gt 0 ] && [ "$DONE" -gt 0 ]; then echo "again=1" >> "$GITHUB_OUTPUT"; else echo "again=0" >> "$GITHUB_OUTPUT"; fi
+          echo "Muse の入稿: 片づいた ${DONE} 本 / 残り ${AFTER} 本"
 
       # 公開した Muse の記事の写真（auto_run.yml の「Article images」と同じ。公式の写真 → だめなら話題に合う AI のイメージ・札つき）。
       # 記事づくりの回の --recent 40 でも拾うが、出す前に付けておく
@@ -186,10 +203,21 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: gh workflow run deploy_cloudflare.yml --ref main
 
+      # 入稿が残っているとき: 予約（12分・42分）を待たずに次の回を呼ぶ（2026-11-13。話題の記事は1時間ごとに価値が下がる）。
+      # concurrency（muse-inbox・cancel-in-progress: false）があるので、呼んだ回はこの回が終わってから始まる（重ならない・取り消さない）。
+      # push に失敗した回（上の段が失敗）はここまで来ない＝呼ばない。1本も片づかなかった回も呼ばない（again=0）ので、回り続けない
+      - name: Run again for the rest
+        if: ${{ steps.left.outputs.again == '1' }}
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run muse_inbox.yml --ref main -f max="${{ inputs.max || '6' }}"
+
       - name: Summary
         if: always()
         run: |
           {
             echo "## Muse の入稿"
+            echo "- 入稿の残り: ${{ steps.left.outputs.remaining || '0' }} 本 / 次の回をすぐ呼んだ: ${{ steps.left.outputs.again || '0' }}（1=呼んだ）"
             echo "- 入稿: ${{ steps.inbox.outputs.count }} 本 / 公開: ${{ steps.commit.outputs.count || '0' }} 本 / デプロイ: ${{ steps.commit.outputs.deploy || '0' }}（1=すぐ出した・0=保留か公開なし）"
           } >> "$GITHUB_STEP_SUMMARY"

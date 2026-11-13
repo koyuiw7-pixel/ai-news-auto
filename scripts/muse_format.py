@@ -4,7 +4,7 @@
 標準ライブラリだけで動く（オーナーの Mac の scripts/muse_articles_push.py と、GitHub Actions の scripts/muse_articles.py の両方が使う）。
 書式は ~/Downloads/saisoku-articles/FORMAT.md（正本はこのファイルの FORMAT_MD）。
 
-ファイル: 「YYYYMMDD-ジャンル-短い題名.md」。先頭に --- で囲んだ項目（title / genre / sources / notes）、そのあとに本文（Markdown）。
+ファイル: 「YYYYMMDD-ジャンル-短い題名.md」。先頭に --- で囲んだ項目（title / genre / sources / notes。急ぐ記事は「急ぎ: はい」の1行も）、そのあとに本文（Markdown）。
   ---
   title: 会社員の平均給与は487万円　国税庁の2025年分の調査
   genre: お金
@@ -41,6 +41,21 @@ BODY_MIN = 1800  # 地の文の字数（見出し・記号を除く）。公開�
 BODY_MAX = 9000
 MAX_SOURCES = 10
 NAME_RE = re.compile(r"^(\d{8})-([^-]+)-(.+)\.md$")
+# 2026-11-13: 急ぎの印。先頭の項目（または notes の中）に「急ぎ: はい」と1行書いた原稿は、入稿の列の先頭で審査する
+#（scripts/muse_articles.py の order_inbox。genre が URGENT_GENRES の原稿も同じ扱い）。話題の記事は1時間ごとに価値が下がるため
+URGENT_GENRES = ("速報解説",)
+URGENT_LINE_RE = re.compile(r"(?im)^[ \t]*(?:急ぎ|至急|urgent)[ \t]*[:：][ \t]*(.*?)[ \t]*$")
+URGENT_YES_RE = re.compile(r"^[「\"']?(?:はい|yes|true|1|急ぎ|至急|○|〇|◯)", re.I)
+
+
+def urgent_line(text: str) -> bool:
+    """「急ぎ: はい」の行があるか（「急ぎ: いいえ」は急ぎにしない）"""
+    return any(URGENT_YES_RE.match(m.group(1)) for m in URGENT_LINE_RE.finditer(text or ""))
+
+
+def is_urgent(data: dict) -> bool:
+    """急ぎの印の付いた原稿か（先頭の項目の「急ぎ: はい」。notes の中に書いてあっても同じ）"""
+    return bool(data.get("urgent")) or urgent_line(str(data.get("notes") or ""))
 # 出典にしない URL（報道・まとめ・SNS・検索。事実は公式の一次情報だけ・台帳 W31）。正確な判定は Actions 側で public_interest.is_press_url も使う
 NOT_OFFICIAL_RE = re.compile(
     r"(news\.yahoo|yahoo\.co\.jp/news|nikkei\.com|asahi\.com|mainichi\.jp|yomiuri\.co\.jp|sankei\.com|nhk\.or\.jp|jiji\.com|kyodonews|"
@@ -122,6 +137,11 @@ def _parse(text: str) -> dict:
         line = lines[i]
         i += 1
         if not line.strip() or line.lstrip().startswith("#"):
+            continue
+        if URGENT_LINE_RE.match(line):
+            # 急ぎの印（「急ぎ: はい」）。メモには入れない
+            if urgent_line(line):
+                data["urgent"] = True
             continue
         top = re.match(r"^([A-Za-z_]+):\s*(.*)$", line)
         if not top:
@@ -253,6 +273,20 @@ FORMAT_MD = """# サイソク 記事の入稿の書式（Muse さん向け）
 | genre | 手続き・お金・値上げ・早見表・速報解説・暮らし・AI・テック・ビジネス のどれか1つ |
 | sources | 公式の出典（主要な報道機関の記事は2件目以降に）。1〜10件（11件目以降は使いません）。1件目が一番の出典。各件に url（https://）・name（発信元の名前）・facts（どの数字がそのページのどこにあるか） |
 | notes | ひと言メモ。題材を選んだ理由と、確かめられなかった点（サイトには出ません） |
+| 急ぎ | （任意）時間がたつと価値が下がる記事（いま話題のニュース・今日の発表）は、`急ぎ: はい` と1行書いてください。ほかの原稿より先に審査します |
+
+### 審査の順番（2026-11-13 から）
+
+1. 急ぎの原稿（`急ぎ: はい` と書いた原稿と、genre が「速報解説」の原稿）
+2. ファイル名の日付が新しい原稿（今日の原稿が先。前の日の原稿の出し直しはそのあと）
+
+急ぎの原稿は次のように書きます（title などと同じ、先頭の `---` の中に1行）。何でも急ぎにすると順番の意味がなくなるので、本当に急ぐ記事だけにしてください。
+
+```
+title: 消費税の法案が衆院を通過　いつから何が変わるか
+genre: お金
+急ぎ: はい
+```
 
 本文（--- のあと）:
 - 決まりは「嘘をつかない」だけです。数字・金額・日付・対象は、出典の公式ページにあるものだけを書いてください（計算した数字は計算したと分かるように）。

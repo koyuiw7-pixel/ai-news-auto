@@ -25,6 +25,7 @@ import hashlib
 import json
 import os
 import re
+import subprocess
 import sys
 import time
 from datetime import datetime, timedelta, timezone
@@ -51,6 +52,13 @@ MAX_ATTEMPTS = 2
 SCORE_REPAIR_MIN = 80  # これ以上で合格点に届かないときだけ直す（もっと低い原稿は作り直しの試行へ）
 SCORE_REPAIR_ROUNDS = 2
 KEEP_RESULTS = 300
+# 2026-11-13: 入稿の順番は「急ぎ → 日付の新しい順」（order_inbox）。これまではファイル名の順で、前の日の原稿の出し直し10本のうしろに
+# 今日の話題の原稿（消費税の法案・X の機能・NVIDIA の決算日）が並んでいた。1回が25分を超えるので、うしろの原稿は次の回まで待つことになる。
+# 1本の原稿が使える時間は、1回の時間（--budget）の DRAFT_BUDGET_SHARE まで（うしろに原稿が待っているときだけ）。
+# 超えたら手直し・作り直しをやめて次の回に回す（見送りにはしない）。MAX_DEFERS 回回した原稿は、次の回に時間の区切りなしで最後まで審査する
+DRAFT_BUDGET_SHARE = 0.4
+MAX_DEFERS = 2
+DEFER_REASON = "この原稿に使える時間（1回の4割）を使い切りました。ほかの原稿を先に進めて、次の回にもう一度試します"
 # Muse のジャンル → サイトのレーン（書き方の人物像。最終のジャンルは build_web_record が中身で決め直す）
 LANE_BY_GENRE = {
     "手続き": "public", "お金": "public", "早見表": "public", "値上げ": "lifestyle", "暮らし": "lifestyle",
@@ -588,12 +596,66 @@ def duplicate_of(data: dict, name: str = "") -> str | None:
     return str(same[0] if isinstance(same, (tuple, list)) else same) if same else None
 
 
+def inbox_commit_times() -> dict[str, int]:
+    """入稿のファイル名 → いまの入稿がコミットされた時刻（秒）。git の履歴が手元にあるときだけ（1回の git log。無ければ空）。
+    Actions の checkout は浅い（最新の1コミットだけ）ので、そこではどのファイルも同じ時刻になり、順番は日付で決まる"""
+    try:
+        out = subprocess.run(["git", "-c", "core.quotepath=false", "log", "--since=30.days.ago", "--diff-filter=A", "--name-only",
+                              "--format=@%ct", "--", "content/muse_inbox"], cwd=ROOT, capture_output=True, text=True, timeout=20)
+    except (OSError, subprocess.SubprocessError):
+        return {}
+    if out.returncode != 0:
+        return {}
+    times: dict[str, int] = {}
+    stamp = 0
+    for line in out.stdout.splitlines():
+        line = line.strip()
+        if line.startswith("@") and line[1:].isdigit():
+            stamp = int(line[1:])
+        elif line:
+            times.setdefault(muse_format.nfc(Path(line).name), stamp)  # 新しい順に出るので、最初に見えたものがいまの入稿
+    return times
+
+
+def order_inbox(files: list[Path], results: dict | None = None, times: dict[str, int] | None = None) -> list[tuple[Path, str]]:
+    """入稿を審査する順に並べる。[(ファイル, 理由)]。
+    1. 急ぎ（genre が速報解説・「急ぎ: はい」の印）  2. 前の回に時間切れで回した原稿はその組のうしろ
+    3. ファイル名の日付が新しい順（前の日の原稿の出し直しはうしろ）  4. 入稿（コミット）の新しい順  5. 名前の順"""
+    items = (results or {}).get("items") or {}
+    times = inbox_commit_times() if times is None else times
+    rows = []
+    for path in files:
+        name = muse_format.nfc(path.name)
+        named = muse_format.NAME_RE.match(name)
+        date = int(named.group(1)) if named else 0
+        try:
+            data = muse_format.parse(path.read_text("utf-8"))
+        except (OSError, UnicodeDecodeError, muse_format.FormatError):
+            data = {}
+        genre = data.get("genre") or (named.group(2) if named else "")
+        urgent = "急ぎの印" if muse_format.is_urgent(data) else (genre if genre in muse_format.URGENT_GENRES else "")
+        deferred = int((items.get(name) or {}).get("deferred") or 0)
+        why = f"急ぎ（{urgent}）" if urgent else f"日付 {date or 'なし'}"
+        if deferred:
+            why += f"・前の回から持ち越し{deferred}回"
+        rows.append(((0 if urgent else 1, 1 if deferred else 0, -date, -int(times.get(name) or 0), name), path, why))
+    rows.sort(key=lambda row: row[0])
+    return [(path, why) for _, path, why in rows]
+
+
+def order_line(queue: list[tuple[Path, str]]) -> str:
+    """この回の順番と理由（Actions のログで確かめるための1行）"""
+    return "[muse] 審査の順番（急ぎ → 日付の新しい順 → 入稿の新しい順）: " + " / ".join(
+        f"{i}. {muse_format.nfc(path.name)[:48]}［{why}］" for i, (path, why) in enumerate(queue, 1))
+
+
 def score_objections(verdict: dict) -> list[str]:
     """校閲（事実確認）が挙げた指摘。合格（70点以上）のとき quality.evaluate は problems を空にするので、fact から取る"""
     return [str(p).strip() for p in ((verdict.get("fact") or {}).get("problems") or []) if str(p).strip()]
 
 
-def lift_score(record: dict, verdict: dict, need: int, source_text: str, kind: str, context) -> tuple[dict, dict]:
+def lift_score(record: dict, verdict: dict, need: int, source_text: str, kind: str, context,
+               deadline: float | None = None) -> tuple[dict, dict]:
     """事実確認は通った（創作・矛盾なし）が、点数が Muse の合格点に少し届かない原稿を、校閲の指摘の文だけ直して確かめ直す。
     最大 SCORE_REPAIR_ROUNDS 回。直すのは quality.surgical_fix（指摘の文を資料どおりに直すか削る。書き足さない → 同じ門でもう一度事実確認）。
     返すのは、いちばん点の高かった（record, verdict）。合格点に届いたかは呼ぶ側が score で見る（合格点は下げない）"""
@@ -605,6 +667,9 @@ def lift_score(record: dict, verdict: dict, need: int, source_text: str, kind: s
         score = now.get("score") or 0
         todo = score_objections(now)
         if not now.get("ok") or score >= need or score < SCORE_REPAIR_MIN or not todo:
+            break
+        if deadline and time.time() > deadline:
+            log(f"   [muse] 点数の手直し{round_no}: この原稿に使える時間を超えたので、ここでやめます（次の回にもう一度）")
             break
         try:
             fixed, info = quality.surgical_fix(current, source_text, kind, todo, context)
@@ -622,8 +687,11 @@ def lift_score(record: dict, verdict: dict, need: int, source_text: str, kind: s
     return best
 
 
-def build_article(path: Path, data: dict, fetched: list[dict], unread: list[str] | None = None) -> tuple[str, dict | str]:
-    """("ok", record) / ("reject", 理由)。ふつうの記事と同じ型・同じ門。unread は読めなかった出典の URL（そこにしか無い事実は書かせない）"""
+def build_article(path: Path, data: dict, fetched: list[dict], unread: list[str] | None = None,
+                  deadline: float | None = None) -> tuple[str, dict | str]:
+    """("ok", record) / ("reject", 理由) / ("error", 理由) / ("defer", 理由)。ふつうの記事と同じ型・同じ門。
+    unread は読めなかった出典の URL（そこにしか無い事実は書かせない）。
+    deadline（time.time() の秒）を過ぎたら、手直し・作り直しをやめて "defer"（見送りにせず、次の回にもう一度）"""
     import llm  # noqa: PLC0415
     import main as m  # noqa: PLC0415
     import quality  # noqa: PLC0415
@@ -683,7 +751,10 @@ def build_article(path: Path, data: dict, fetched: list[dict], unread: list[str]
         log(f"   [muse] 出典の日付の注意: {early[0][:160]}")
     need = pass_score(data["genre"])
     problems: list[str] = []
+    cut_short = False  # 時間切れで点数の手直しを途中でやめた
     for attempt in range(1, MAX_ATTEMPTS + 1):
+        if attempt > 1 and deadline and time.time() > deadline:
+            return "defer", DEFER_REASON
         try:
             draft, model_name = llm.generate_json(system, prompt + (quality.feedback_block(problems) if problems else ""), schema,
                                                   temperature=0.3, max_output_tokens=32768, tier=w.write_tier("bulk"), purpose="core")
@@ -757,8 +828,9 @@ def build_article(path: Path, data: dict, fetched: list[dict], unread: list[str]
         score = verdict.get("score") or 0
         if verdict.get("ok") and SCORE_REPAIR_MIN <= score < need:
             # 合格点に少し届かない: 落とさず、校閲の指摘の文だけ直して確かめ直す（2026-11-13。合格点は変えない）
-            record, verdict = lift_score(record, verdict, need, source_text, kind, context)
+            record, verdict = lift_score(record, verdict, need, source_text, kind, context, deadline=deadline)
             score = verdict.get("score") or 0
+            cut_short = bool(deadline and time.time() > deadline and score < need)
         log(f"   [muse] 試行{attempt}: {'合格' if verdict.get('ok') else '不合格'} score={score}（必要 {need}）"
             f" {' | '.join((verdict.get('problems') or [])[:3])[:300]}")
         if verdict.get("ok") and score >= need:
@@ -785,6 +857,8 @@ def build_article(path: Path, data: dict, fetched: list[dict], unread: list[str]
         if verdict.get("ok") and score < need:
             # 校閲の指摘の中身も渡す（作り直しの指示と、Muse に返す理由の両方に。点数だけでは何を直せばよいか分からない）
             problems = [f"公式ページとの事実確認の点数が {score} 点（Muse の記事は {need} 点以上）"] + score_objections(verdict) + problems
+    if cut_short:
+        return "defer", DEFER_REASON  # 手直しを時間切れでやめた原稿は、点数だけで見送りにしない
     return "reject", "品質の門で不合格: " + " / ".join(problems[:4])[:600]
 
 
@@ -797,11 +871,14 @@ def process(args) -> int:
         log("[muse] 入稿はありません")
         return 0
     results = load_results()
+    # 急ぎ → 日付の新しい順（2026-11-13。ファイル名の順だと、前の日の原稿の出し直しが今日の話題の原稿より先になる）
+    queue = order_inbox(files, results)
+    log(order_line(queue))
     state = m.load_state()
     state.setdefault("processed_web", {})
-    published = rejected = 0
+    published = rejected = deferred = 0
     started = time.time()
-    for path in files:
+    for index, (path, _why) in enumerate(queue):
         name = muse_format.nfc(path.name)
         if published >= args.max or time.time() - started > args.budget:
             log(f"[muse] この回はここまで（残りは次の回）: {name}")
@@ -833,6 +910,10 @@ def process(args) -> int:
         if args.daily_cap and pacing.live_today(state) >= args.daily_cap:
             finish("waiting", f"今日の記事の本数（{args.daily_cap}本）がいっぱいなので、次の日に回します")
             continue
+        # 1本の原稿が使える時間（うしろに原稿が待っているときだけ。何度も回した原稿は区切りなしで最後まで）
+        defers = int((results["items"].get(name) or {}).get("deferred") or 0)
+        limited = index < len(queue) - 1 and defers < MAX_DEFERS
+        extra = {"deadline": time.time() + args.budget * DRAFT_BUDGET_SHARE} if limited else {}
         unread: list[str] = []
         # 1件目が読めなくても、読めた公式の出典があれば進む（2026-11-13。読めなかったページにしか無い事実は build_article が書かせない）
         fetched = fetch_sources(data["sources"], skip_unreadable_first=True, unread=unread)
@@ -840,7 +921,7 @@ def process(args) -> int:
             finish("rejected", "出典（公式ページ）を1本も読めませんでした。URL が正しいか、ログインなしで開けるページかを確かめてください")
             rejected += 1
             continue
-        status, out = build_article(path, data, fetched, unread=unread)
+        status, out = build_article(path, data, fetched, unread=unread, **extra)
         if status == "reject" and unread:
             out = f"{out}\n読めなかった出典（ここにだけ書かれた事実は確かめられません。読める公式ページに替えるか、その記述を外してください）: " + " / ".join(unread[:5])
         if status == "error":
@@ -848,6 +929,14 @@ def process(args) -> int:
             results["items"][name] = {"status": "waiting", "reason": str(out), "at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
                                       "title": data["title"]}
             break
+        if status == "defer":
+            # 時間の持ち分を使い切った: 見送りにせず入稿に残し、うしろの原稿へ進む（次の回はその組のうしろに並ぶ）
+            log(f"   [muse] {out}（入稿はそのまま残します・{defers + 1}回目）")
+            results["items"][name] = {"status": "waiting", "reason": str(out), "at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+                                      "title": data["title"], "deferred": defers + 1}
+            save_results(results)
+            deferred += 1
+            continue
         if status != "ok":
             finish("rejected", str(out))
             rejected += 1
@@ -860,7 +949,8 @@ def process(args) -> int:
         log(f"   [muse] 公開へ: {target.relative_to(ROOT)}（score {record.get('qualityScore')}）")
     m.save_state(state)
     save_results(results)
-    log(f"\n[muse] 公開 {published} 本 / 見送り {rejected} 本")
+    left = len(list(INBOX.glob("*.md")))
+    log(f"\n[muse] 公開 {published} 本 / 見送り {rejected} 本 / 次の回に回した {deferred} 本 / 入稿の残り {left} 本")
     return 0
 
 
