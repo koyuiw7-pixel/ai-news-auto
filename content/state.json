@@ -19036,6 +19036,19 @@
       "skipped": true,
       "url": "https://j-net21.smrj.go.jp/news/bt5puv00000118aa.html"
     },
+    "f4d9cc7769bf3770": {
+      "at": "2026-11-13T01:04:18.113427+00:00",
+      "costUsd": 0.1269,
+      "foreignAi": true,
+      "intent": "breaking",
+      "major": true,
+      "mix": "other",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "score": 85,
+      "section": "ai",
+      "slug": "pokemon-future-ishihara-app-store",
+      "url": "https://apps.apple.com/jp/story/id1861698108"
+    },
     "f5001d451409d444": {
       "at": "2026-11-05T05:11:33.149507+00:00",
       "breaking": true,
@@ -20852,56 +20865,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-11T05:59:45.849087+00:00",
-      "attempt": 1,
-      "id": "a85b9afbcf2d5798",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "題名が料金・価格の話なのに、リードと本文に金額が無い。公式の金額を書くか、題名から料金の話を外す"
-      ],
-      "readability": {
-        "avg_paragraph": 89.2,
-        "avg_sentence": 51.0,
-        "long_share": 0.143,
-        "max_paragraph": 179,
-        "paragraphs": 4,
-        "sentences": 7
-      },
-      "score": null,
-      "source": "nli-research",
-      "title": "景気ウォッチャー調査2026年10月～食料品の値上げが景況感を下押しし、現状判断DIは6ヵ月ぶりに低下～",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（DI）",
-        "読みやすさ: 文が長い（1文の平均 51.0字・60字超の文が 14% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-11T06:00:13.149901+00:00",
-      "attempt": 1,
-      "id": "a85b9afbcf2d5798",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 88.0,
-        "avg_sentence": 50.3,
-        "long_share": 0.143,
-        "max_paragraph": 174,
-        "paragraphs": 4,
-        "sentences": 7
-      },
-      "score": 95,
-      "source": "nli-research",
-      "title": "景気ウォッチャー調査2026年10月～食料品の値上げが景況感を下押しし、現状判断DIは6ヵ月ぶりに低下～",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（DI）",
-        "読みやすさ: 文が長い（1文の平均 50.3字・60字超の文が 14% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-11T06:00:26.476183+00:00",
@@ -28428,6 +28391,55 @@
       "warnings": [
         "見出しが63字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（ZDR・HIPAA・CMEK）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-13T01:03:54.700982+00:00",
+      "attempt": 1,
+      "id": "f4d9cc7769bf3770",
+      "kind": "ai",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 87.8,
+        "avg_sentence": 45.2,
+        "long_share": 0.143,
+        "max_paragraph": 127,
+        "paragraphs": 18,
+        "sentences": 35
+      },
+      "score": 88,
+      "source": "radar-official",
+      "title": "進化し続けるポケモンの未来 - App Store",
+      "warnings": [
+        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（GO・GPS・AR）",
+        "読みやすさ: 文が長い（1文の平均 45.2字・60字超の文が 14% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-13T01:04:18.074470+00:00",
+      "attempt": 0,
+      "id": "f4d9cc7769bf3770",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 88.8,
+        "avg_sentence": 40.0,
+        "long_share": 0.075,
+        "max_paragraph": 134,
+        "paragraphs": 18,
+        "sentences": 40
+      },
+      "score": 85,
+      "source": "radar-official",
+      "title": "進化し続けるポケモンの未来 - App Store",
+      "warnings": [
+        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（GO・GPS・AR）"
       ]
     }
   ],
