@@ -46,6 +46,10 @@ DEDUPE_DAYS = 7
 MUSE_PASS_SCORE = 80  # ふつうのニュースの記事（quality.PASS_SCORE 70）より高く。人の目を通らない書き手なので
 PROCEDURE_PASS_SCORE = 90  # 税・年金・行政の手続き（evergreen.py の PROCEDURE_PASS_SCORE と同じ）
 MAX_ATTEMPTS = 2
+# 2026-11-13: 合格点（手続き90点）に少し届かない原稿は落とさず、校閲の指摘の文だけを直して確かめ直す（合格点は変えない）。
+# 7日で22本が点数だけで落ち、13本は88点だった。しかも作り直しには「点数が足りない」としか伝わっていなかった（指摘の中身が渡っていなかった）
+SCORE_REPAIR_MIN = 80  # これ以上で合格点に届かないときだけ直す（もっと低い原稿は作り直しの試行へ）
+SCORE_REPAIR_ROUNDS = 2
 KEEP_RESULTS = 300
 # Muse のジャンル → サイトのレーン（書き方の人物像。最終のジャンルは build_web_record が中身で決め直す）
 LANE_BY_GENRE = {
@@ -389,6 +393,40 @@ def duplicate_of(data: dict, name: str = "") -> str | None:
     return str(same[0] if isinstance(same, (tuple, list)) else same) if same else None
 
 
+def score_objections(verdict: dict) -> list[str]:
+    """校閲（事実確認）が挙げた指摘。合格（70点以上）のとき quality.evaluate は problems を空にするので、fact から取る"""
+    return [str(p).strip() for p in ((verdict.get("fact") or {}).get("problems") or []) if str(p).strip()]
+
+
+def lift_score(record: dict, verdict: dict, need: int, source_text: str, kind: str, context) -> tuple[dict, dict]:
+    """事実確認は通った（創作・矛盾なし）が、点数が Muse の合格点に少し届かない原稿を、校閲の指摘の文だけ直して確かめ直す。
+    最大 SCORE_REPAIR_ROUNDS 回。直すのは quality.surgical_fix（指摘の文を資料どおりに直すか削る。書き足さない → 同じ門でもう一度事実確認）。
+    返すのは、いちばん点の高かった（record, verdict）。合格点に届いたかは呼ぶ側が score で見る（合格点は下げない）"""
+    import quality  # noqa: PLC0415
+
+    best = (record, verdict)
+    for round_no in range(1, SCORE_REPAIR_ROUNDS + 1):
+        current, now = best
+        score = now.get("score") or 0
+        todo = score_objections(now)
+        if not now.get("ok") or score >= need or score < SCORE_REPAIR_MIN or not todo:
+            break
+        try:
+            fixed, info = quality.surgical_fix(current, source_text, kind, todo, context)
+        except Exception as error:  # noqa: BLE001 - 直す段が使えなくても、作り直しの試行は続ける
+            log(f"   [muse] 点数の手直し{round_no}: 失敗（{str(error)[:80]}）")
+            break
+        if fixed is None:
+            log(f"   [muse] 点数の手直し{round_no}: 直せず（{str(info)[:160]}）")
+            break
+        new_score = info.get("score") or 0
+        log(f"   [muse] 点数の手直し{round_no}: {score} → {new_score} 点（必要 {need}）")
+        if new_score <= score:
+            break
+        best = (fixed, info)
+    return best
+
+
 def build_article(path: Path, data: dict, fetched: list[dict]) -> tuple[str, dict | str]:
     """("ok", record) / ("reject", 理由)。ふつうの記事と同じ型・同じ門"""
     import llm  # noqa: PLC0415
@@ -493,6 +531,10 @@ def build_article(path: Path, data: dict, fetched: list[dict]) -> tuple[str, dic
                 record, verdict = polished, info
             verdict = {**verdict, "ok": verdict.get("ok") or verdict.get("soft")}
         score = verdict.get("score") or 0
+        if verdict.get("ok") and SCORE_REPAIR_MIN <= score < need:
+            # 合格点に少し届かない: 落とさず、校閲の指摘の文だけ直して確かめ直す（2026-11-13。合格点は変えない）
+            record, verdict = lift_score(record, verdict, need, source_text, kind, context)
+            score = verdict.get("score") or 0
         log(f"   [muse] 試行{attempt}: {'合格' if verdict.get('ok') else '不合格'} score={score}（必要 {need}）"
             f" {' | '.join((verdict.get('problems') or [])[:3])[:300]}")
         if verdict.get("ok") and score >= need:
@@ -511,7 +553,8 @@ def build_article(path: Path, data: dict, fetched: list[dict]) -> tuple[str, dic
             return "ok", record
         problems = list(verdict.get("problems") or [])
         if verdict.get("ok") and score < need:
-            problems = [f"公式ページとの事実確認の点数が {score} 点（Muse の記事は {need} 点以上）"] + problems
+            # 校閲の指摘の中身も渡す（作り直しの指示と、Muse に返す理由の両方に。点数だけでは何を直せばよいか分からない）
+            problems = [f"公式ページとの事実確認の点数が {score} 点（Muse の記事は {need} 点以上）"] + score_objections(verdict) + problems
     return "reject", "品質の門で不合格: " + " / ".join(problems[:4])[:600]
 
 
