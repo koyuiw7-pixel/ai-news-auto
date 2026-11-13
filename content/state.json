@@ -131,7 +131,7 @@
     "3e400850a5ee2a01d3f5b0fc16c1fc1cb2cf554f": 2,
     "3faaa84ac83405077356c87328b7ba05db2e15da": 2,
     "40153a89f46c1ff6062eaa9f4790bc6afb74d43b": 2,
-    "432f5d83dcba731fbb206efeca928b9cea8a3975": 1,
+    "432f5d83dcba731fbb206efeca928b9cea8a3975": 2,
     "43f46f039e8833524d75b8acaf6ca68df4c2dbed": 2,
     "479a62d99a0fd7834999ba08521fa7b7cafc6ef8": 2,
     "47d6794a078616521103fa6c8c50fec010d02b8b": 2,
@@ -183,7 +183,7 @@
     "7718530c7556ede79f70033137f084ede30123bb": 2,
     "77b36a8fda3ac45819f3bb6602a1d2d823da1339": 2,
     "79eb65745bb2c3d41e32be837f3ddd6f0246b52b": 2,
-    "7b3c2d8f97577c84f63be769823c81e6c237e98f": 1,
+    "7b3c2d8f97577c84f63be769823c81e6c237e98f": 2,
     "7b6d55260ae01da3b8a4fd65c4c485e4d166c72c": 2,
     "7ce150f45a6d5c360127e73083aa6ed9e3fb5e7b": 2,
     "7d3dbcbbc4dfdc9862f08bc9dffb9564ea62c0b9": 2,
@@ -216,7 +216,7 @@
     "a38b1462c9b48c8a223139595f6507e2710f203d": 2,
     "a4ccc83453b1648014d6f0b33b7b98c26f1853fd": 2,
     "a5eb0797c7c06cee88e21ff8658573c708c57cfe": 2,
-    "a6db2f6e413a2e620439884e645df29f691ab552": 1,
+    "a6db2f6e413a2e620439884e645df29f691ab552": 2,
     "a8c4799733468c66e4f03f3847ee5c9da8a58b80": 2,
     "aa0517b1ae632803a6e805b212b8c7fccca6a173": 2,
     "aa43be8c131ee6d30dafc31621472d8dc2dac8da": 2,
@@ -4274,6 +4274,17 @@
       "slug": "gemini-robotics-er-2-google-cloud",
       "url": "https://cloud.google.com/blog/ja/products/ai-machine-learning/gemini-robotics-embodied-reasoning-2-is-now-available-on-google-cloud/"
     },
+    "08da68245310bd6c": {
+      "at": "2026-11-13T21:28:32.130574+00:00",
+      "costUsd": 0.0146,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "score": 92,
+      "section": "business",
+      "slug": "medical-device-ceo-matching-2026",
+      "url": "https://j-net21.smrj.go.jp/news/bt5puv0000011k73.html"
+    },
     "08dd1a671577c6b8": {
       "at": "2026-11-11T02:08:37.280629+00:00",
       "costUsd": 0.0104,
@@ -7642,6 +7653,12 @@
       "reason": "dedupe: 固有名詞が一致（open・source）: nvidia-open-source-6g-research-tools",
       "skipped": true,
       "url": "https://blogs.nvidia.com/blog/open-source-openshell-infrastructure/"
+    },
+    "406d353e39e3c8e4": {
+      "at": "2026-11-13T21:23:45.224992+00:00",
+      "reason": "review: AdSense の審査の期間は海外の AI の発表を自動で記事にしない（速報だけ。scripts/news_mix.py review_ai_blocks）",
+      "skipped": true,
+      "url": "https://openai.com/chatgpt/pricing/#entry-2026-11-14-3ca870"
     },
     "408d83e364fa3424": {
       "at": "2026-11-05T18:23:10.492398+00:00",
@@ -11385,6 +11402,12 @@
       "skipped": true,
       "url": "https://www3.jitec.ipa.go.jp/JitesCbt/html/openinfo/pass.html"
     },
+    "7a0372201ed2341c": {
+      "at": "2026-11-13T21:27:07.666108+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（を開催）",
+      "skipped": true,
+      "url": "https://j-net21.smrj.go.jp/news/bt5puv0000011kat.html"
+    },
     "7a23190ffe485a96": {
       "at": "2026-11-06T19:42:20.591039+00:00",
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
@@ -12179,6 +12202,12 @@
       "section": "ai",
       "slug": "sompo-ntt-physical-ai-caregiving",
       "url": "https://group.ntt/jp/newsrelease/2026/11/12/261112b.html"
+    },
+    "868a2fb19246c54f": {
+      "at": "2026-11-13T21:27:07.665567+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（周年）",
+      "skipped": true,
+      "url": "http://global.nissannews.com/ja-JP/releases/261113-01-j"
     },
     "869a145bada96b91": {
       "at": "2026-11-09T07:14:24.525588+00:00",
@@ -19485,14 +19514,6 @@
       "url": "https://www.tepco.co.jp/disaster/teiden.html",
       "writer": "muse"
     },
-    "muse-03bdc97c9f": {
-      "at": "2026-11-13T21:23:50.755661+00:00",
-      "mix": "other",
-      "score": 90,
-      "slug": "kojin-kokusai-plus-dec-2026",
-      "url": "https://www.mof.go.jp/jgbs/individual/kojinmuke/main/schedule/",
-      "writer": "muse"
-    },
     "muse-0476873034": {
       "at": "2026-11-12T12:44:51.083985+00:00",
       "mix": "money",
@@ -20059,14 +20080,6 @@
       "score": 92,
       "slug": "yucho-atm-familymart-end-2027",
       "url": "https://www.jp-bank.japanpost.jp/aboutus/press/2026/pdf/pr26100601.pdf",
-      "writer": "muse"
-    },
-    "muse-761118e248": {
-      "at": "2026-11-13T21:25:24.593168+00:00",
-      "mix": "other",
-      "score": 90,
-      "slug": "nenga-2027-acceptance-dec-20",
-      "url": "https://files.japanpost.jp/assets/34d9d11432734cfaa759e78fe395b688/c8522c2928d44bdfaab8446822ec6348/20260831_02_01.pdf",
       "writer": "muse"
     },
     "muse-769176d031": {
@@ -20813,74 +20826,24 @@
       "url": "https://www.docomo.ne.jp/info/notice/page/261106_00_m.html",
       "writer": "muse"
     },
-    "406d353e39e3c8e4": {
-      "at": "2026-11-13T21:23:45.224992+00:00",
-      "reason": "review: AdSense の審査の期間は海外の AI の発表を自動で記事にしない（速報だけ。scripts/news_mix.py review_ai_blocks）",
-      "skipped": true,
-      "url": "https://openai.com/chatgpt/pricing/#entry-2026-11-14-3ca870"
+    "muse-03bdc97c9f": {
+      "at": "2026-11-13T21:23:50.755661+00:00",
+      "mix": "other",
+      "score": 90,
+      "slug": "kojin-kokusai-plus-dec-2026",
+      "url": "https://www.mof.go.jp/jgbs/individual/kojinmuke/main/schedule/",
+      "writer": "muse"
+    },
+    "muse-761118e248": {
+      "at": "2026-11-13T21:25:24.593168+00:00",
+      "mix": "other",
+      "score": 90,
+      "slug": "nenga-2027-acceptance-dec-20",
+      "url": "https://files.japanpost.jp/assets/34d9d11432734cfaa759e78fe395b688/c8522c2928d44bdfaab8446822ec6348/20260831_02_01.pdf",
+      "writer": "muse"
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-12T00:47:02.907589+00:00",
-      "attempt": 1,
-      "id": "50ac86895fbba3e4",
-      "kind": "broad",
-      "model": "gemini-3.5-flash",
-      "problems": [
-        "本文「これまでに三重県や兵庫県、福岡県など計13府県が認定を受けています」→ 元記事の参考リストの認定自治体は12府県（三重・滋賀・大阪・奈良・岡山・福岡・千葉・神奈川・兵庫・鳥取・鹿児島・沖縄）で、「計13府県」は元記事と合わない数字である。",
-        "「登録から3年が経過すると、全国で通常の保育士として勤務できるようになる」→ 「3年」という期間は元記事にも確認済みの文脈にも書かれておらず、根拠の無い具体的な数値である。FAQや「かんたん版」の「数年間」「一定期間」も同じ制度説明に基づく未確認の記述である。",
-        "「対象の自治体内で保育士として勤務できます」「合格直後は試験を実施した自治体内でのみ」→ 勤務範囲の条件は元記事に書かれておらず、確認できない制度説明である。",
-        "「各県における具体的な試験日程や募集要項は、今後それぞれの自治体から順次発表されます」→ 発表時期の見通しは元記事に無く、断定的な予告になっている。",
-        "「具体例な受験申請期間」→ 誤字で文意が通らない。"
-      ],
-      "readability": {
-        "avg_paragraph": 145.8,
-        "avg_sentence": 60.8,
-        "long_share": 0.5,
-        "max_paragraph": 182,
-        "paragraphs": 5,
-        "sentences": 12
-      },
-      "score": 62,
-      "source": "cfa-news",
-      "title": "報道発表 地域限定保育士試験実施方法書の認定について掲載しました",
-      "warnings": [
-        "読みやすさ: 文が長い（1文の平均 60.8字・60字超の文が 50% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "読みやすさ: 段落が長い（平均 145.8字・最長 182字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-12T00:48:51.190295+00:00",
-      "attempt": 1,
-      "id": "c70eda6dcacdd9dd",
-      "kind": "broad",
-      "model": "gemini-3.6-flash",
-      "problems": [
-        "仕事・お金にどう活かせる？欄の「将来的な不妊治療や再生医療の精度を高める基礎研究として注目されます」→ 元記事に不妊治療や再生医療への言及はなく、応用先を書き足している。",
-        "本文の「LC3が核内に蓄積することで、ラミンB1…核膜から分解・除去され」→ 元記事では「分解」の関与は示唆にとどまり、LC3の蓄積による除去も示唆とされているが、断定的に書いている。",
-        "リードの「不可欠だと分かりました」→ 元記事は「重要」「必要」としており、「不可欠」は言い過ぎ。",
-        "本文の「人工的に核を硬く固定した胚」→ 元記事は分子デバイスで核の硬さを人工的に制御したとしており、「固定」は言い換えとして不正確。"
-      ],
-      "readability": {
-        "avg_paragraph": 125.2,
-        "avg_sentence": 62.6,
-        "long_share": 0.6,
-        "max_paragraph": 137,
-        "paragraphs": 5,
-        "sentences": 10
-      },
-      "score": 75,
-      "source": "jst",
-      "title": "細胞核の新たな機能を発見～核の軟らかさが受精後の遺伝子の目覚めを助け、マウス初期胚の発生を支える～",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（DNA・LC・ZGA）",
-        "読みやすさ: 文が長い（1文の平均 62.6字・60字超の文が 60% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "読みやすさ: 段落が長い（平均 125.2字・最長 137字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-12T00:49:15.294555+00:00",
@@ -28413,6 +28376,50 @@
         "初めて出たところで言い換えていない略語（CAGE・DC・PART）",
         "読みやすさ: 文が長い（1文の平均 46.6字・60字超の文が 28% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
       ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-13T21:28:11.172367+00:00",
+      "attempt": 1,
+      "id": "08da68245310bd6c",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 147.0,
+        "avg_sentence": 51.9,
+        "long_share": 0.353,
+        "max_paragraph": 201,
+        "paragraphs": 6,
+        "sentences": 17
+      },
+      "score": 92,
+      "source": "jnet21",
+      "title": "12の国・地域の海外企業と日本の中小企業をマッチング 医療機器CEO商談会開催",
+      "warnings": [
+        "読みやすさ: 文が長い（1文の平均 51.9字・60字超の文が 35% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "読みやすさ: 段落が長い（平均 147.0字・最長 201字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-13T21:28:32.115108+00:00",
+      "attempt": 0,
+      "id": "08da68245310bd6c",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 68.2,
+        "avg_sentence": 42.2,
+        "long_share": 0.19,
+        "max_paragraph": 129,
+        "paragraphs": 13,
+        "sentences": 21
+      },
+      "score": 92,
+      "source": "jnet21",
+      "title": "12の国・地域の海外企業と日本の中小企業をマッチング 医療機器CEO商談会開催"
     }
   ],
   "short_text_retry": {},
