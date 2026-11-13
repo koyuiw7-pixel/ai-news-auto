@@ -409,6 +409,30 @@ def sns_likely(item: dict) -> bool:
     return bool(tp.BROAD.search(text)) and not tp.NICHE.search(text)
 
 
+def breaking_record(item: dict) -> bool:
+    """大きなニュースの流れで作った記事を速報にするか。
+    速報レーンの記事は Worker が主要企業の公式発表と判定したものなので、必ず速報にする（公開したらすぐ SNS へ）。
+    通常の収集から来たものは、発表から12時間以内のときだけ速報にする（古い発表に【速報】を付けない）"""
+    fresh = bool(item.get("published_at")) and item["published_at"] > datetime.now(timezone.utc) - timedelta(hours=12)
+    # レーダーの話題は、公式ページの日付で発表から12時間以内と分かったときだけ速報（見出しの時刻では速報にしない）
+    radar_ok = not item.get("radar") or (fresh and not item.get("published_guessed"))
+    # 公共性の枠はミサイル・災害（官公庁の発表）だけ速報にする（scripts/public_interest.py の breaking_ok。S2・S15）
+    pi_breaking = bool(item.get("_public_interest")) and public_interest.breaking_ok(item, feeds.feed_kind(item))
+    return bool(((is_breaking(item) and fresh) or (pi_breaking and fresh) or (item.get("fast") and radar_ok))
+                and not item.get("late") and not item.get("watch"))
+
+
+def breaking_candidate(item: dict) -> bool:
+    """作る前の見立て: この候補は速報の扱いか（審査の期間の門 news_mix.review_ai_blocks の外にする）。
+    速報レーン（fast）の候補は、日付の確かめが本文を読んだあとになるので、ここではいつも速報の扱いにして止めない"""
+    return bool(item.get("fast")) or breaking_record(item)
+
+
+def major_lane(item: dict) -> str:
+    """大きなニュースを作るレーン: AI フィードの候補は ai、幅広い話題のフィード（Apple 日本など）はそのセクション"""
+    return item.get("section") if item.get("source_slug") not in AI_SLUGS and item.get("section") in GENRES_BY_SLUG else "ai"
+
+
 def article_purpose(item: dict, lane: str, major: bool = False) -> str:
     """Claude API のどの段で書くか（llm.API_TIERS）。速報・SNS・読者像の中心=Sonnet、ほか=Haiku（予算で上下する。Opus は使わない）"""
     if major and item.get("_public_interest") and not public_interest.breaking_ok(item, feeds.feed_kind(item)):
@@ -2718,6 +2742,11 @@ def main() -> int:
         return action, found
 
     def _pick(cand: dict, is_ai: bool, major: bool = False):
+        if major and news_mix.review_ai_blocks({**cand, "section": major_lane(cand)}, breaking=breaking_candidate(cand)):
+            # 審査の期間: 大きなニュースの流れに乗る候補（リリースノートの見張り・発表から時間のたった発表）も、速報でなければ作らない。
+            # 見張りの候補が残り続けて次の候補をふさがないよう、見送りの印を付ける
+            mark(state, cand, skipped=True, reason=f"review: {news_mix.REVIEW_AI_REASON}"[:200])
+            return "drop", news_mix.REVIEW_AI_REASON
         if not major:
             reason = prefilter(cand) if is_ai else broad_prefilter(cand)
             if reason:
@@ -2732,6 +2761,8 @@ def main() -> int:
                 return "next", f"今日の種類別の上限（{cand.get('_mix') or news_mix.classify(cand)}）"  # 企業向け・開発者向けの海外の発表は今日の上限まで（見送りの印は付けない。台帳 A41）
             if news_mix.review_blocks(cand):
                 return "next", "AdSense の審査の期間は暮らしとお金の記事だけ（scripts/ramp.py ADSENSE_REVIEW）"
+            if is_ai and news_mix.review_ai_blocks({**cand, "section": "ai"}):
+                return "next", news_mix.REVIEW_AI_REASON  # 審査の期間は上限の変数（FOREIGN_AI_DAILY_CAP）の渡し忘れに頼らず、同じ門で止める
             if is_ai and is_foreign_ai(cand) and foreign_left[0] <= 0:
                 return "next", f"海外の AI の発表の今日の上限（{FOREIGN_AI_DAILY_CAP}本）"  # 海外の AI の発表は今日の上限まで（見送りの印は付けない。台帳 A47）
             if not is_ai and cand.get("section") == "sports" and sports_today(state) >= persona.SPORTS_DAILY_CAP:
@@ -2943,13 +2974,7 @@ def main() -> int:
         # 速報（scripts/breaking_post.py がデプロイ直後に SNS へ出す）。
         # 速報レーンの記事は Worker が主要企業の公式発表と判定したものなので、必ず速報にする（公開したらすぐ SNS へ）
         # 通常の収集から来たものは、発表から12時間以内のときだけ速報にする（古い発表に【速報】を付けない）
-        fresh = item.get("published_at") and item["published_at"] > datetime.now(timezone.utc) - timedelta(hours=12)
-        # レーダーの話題は、公式ページの日付で発表から12時間以内と分かったときだけ速報（見出しの時刻では速報にしない）
-        radar_ok = not item.get("radar") or (fresh and not item.get("published_guessed"))
-        # 公共性の枠はミサイル・災害（官公庁の発表）だけ速報にする（scripts/public_interest.py の breaking_ok。S2・S15）
-        pi_breaking = bool(item.get("_public_interest")) and public_interest.breaking_ok(item, feeds.feed_kind(item))
-        if major and ((is_breaking(item) and fresh) or (pi_breaking and fresh) or (item.get("fast") and radar_ok)) \
-                and not item.get("late") and not item.get("watch"):
+        if major and breaking_record(item):
             record["breaking"] = True
         if item.get("late"):
             record["late"] = True
@@ -3002,8 +3027,7 @@ def main() -> int:
             if action != "take":
                 continue
             # AI フィードの候補は ai レーン、幅広い話題のフィード（Apple 日本など）はそのセクションの形で作る
-            lane = item.get("section") if item["source_slug"] not in AI_SLUGS and item.get("section") in GENRES_BY_SLUG else "ai"
-            process_web(item, lane, target, major=True)
+            process_web(item, major_lane(item), target, major=True)
 
         # 話題は鮮度が命なので先に処理する
         for q in queue:
@@ -3011,6 +3035,10 @@ def main() -> int:
                 break
             if llm.all_exhausted(args.tier):
                 break
+            # 審査の期間は、話題のレーンでも AI の欄の記事を作らない（暮らしとお金だけ。見送りの印は付けない）
+            if news_mix.review_ai_blocks({"section": GENRES_BY_SLUG.get(q.get("genre") or "", AI).slug, "lang": q.get("lang") or ""}):
+                log(f"\n[trend] [next] {q['title'][:60]} → {news_mix.REVIEW_AI_REASON}")
+                continue
             log(f"\n[trend] {q['title']}（{q.get('genre')} / traffic {q.get('traffic', 0):,}）")
             target = followup_target(q["title"])
             if target and target[0] == "defer":

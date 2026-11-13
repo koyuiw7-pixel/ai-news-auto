@@ -228,6 +228,28 @@ def review_blocks(item: dict, today: str | None = None) -> bool:
     return not indexnow.life_link(str(item.get("title") or ""))
 
 
+def review_ai_blocks(item: dict, breaking: bool = False, today: str | None = None) -> bool:
+    """審査の期間に、海外の AI の発表の自動の記事を作らないか（作らないなら True）。どの自動の経路も通す1つの門。
+    2026-11-13: 上の review_blocks と海外 AI の1日の上限（0本）は web_articles の通常のレーンだけが見ていたため、
+    大きなニュースの流れに乗るリリースノートの見張り（page_watch）・発表から時間のたった大きなニュース・動画の経路（main.py）・
+    話題のレーン・まとめ（roundup.py）から、速報でない海外の AI の記事が夜のあいだに出ていた。
+    速報（breaking）は止めない（台帳 S41）。Muse の記事（muse_articles.py）はこの門を通さない。
+    item: section か genreSlug（AI の欄か）と、lang か source_slug / channelSlug（発信元の言語）"""
+    import ramp  # noqa: PLC0415
+
+    if breaking:
+        return False
+    today = today or datetime.now(JST).strftime("%Y-%m-%d")
+    if not ramp.in_adsense_review(today):
+        return False
+    if str(item.get("section") or item.get("genreSlug") or "") != "ai":
+        return False
+    return not is_japanese_item(item)
+
+
+REVIEW_AI_REASON = "AdSense の審査の期間は海外の AI の発表を自動で記事にしない（速報だけ。scripts/news_mix.py review_ai_blocks）"
+
+
 def summary(counts: dict[str, int]) -> str:
     share = life_share(counts)
     parts = [f"暮らし・お金 {0 if share is None else round(share * 100)}%（めやす {round(float(CONFIG.get('life_min_share') or 0.6) * 100)}%以上）"]

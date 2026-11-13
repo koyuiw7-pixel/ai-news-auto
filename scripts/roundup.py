@@ -353,6 +353,15 @@ def build_record(topic: str, data: dict, members: list[dict]) -> dict:
     }
 
 
+def review_skips(cluster, by_slug: dict[str, dict]) -> bool:
+    """AdSense の審査の期間に、このまとめを自動で作らないか（海外の AI の発表の記事だけを束ねたまとめ。
+    scripts/news_mix.py の review_ai_blocks。2026-11-13）"""
+    import news_mix  # noqa: PLC0415
+
+    members = [by_slug[s] for s in cluster.slugs if s in by_slug]
+    return bool(members) and all(news_mix.review_ai_blocks({**a, "section": a.get("genreSlug") or cluster.genre_slug}) for a in members)
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--max", type=int, default=1, help="1回で生成する最大まとめ数")
@@ -367,6 +376,9 @@ def main() -> int:
 
     pending = []
     for cluster in clusters:
+        if review_skips(cluster, by_slug):
+            log(f"  - [見送り] 「{cluster.key}」 審査の期間は海外の AI の発表のまとめを作らない")
+            continue
         current_hash = members_hash(cluster.slugs)
         old = existing.get(cluster.key)
         if old and old.get("membersHash") == current_hash and not args.force:

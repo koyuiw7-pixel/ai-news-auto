@@ -171,6 +171,16 @@ def parse_feed(channel: Channel) -> list[dict]:
     return entries
 
 
+def review_skips(entry: dict) -> bool:
+    """AdSense の審査の期間に、この動画を自動で記事にしないか（海外の AI の公式チャンネルの動画。scripts/news_mix.py の review_ai_blocks）。
+    2026-11-13: 動画の経路はこの門を通っておらず、6時間ごとの回で OpenAI の動画の記事が出ていた。
+    動画の経路には速報の扱いが無いので、期間中は海外の AI の動画を0本にする（--video で1本を指定した手動の実行は止めない）"""
+    import news_mix  # noqa: PLC0415
+
+    channel = entry["channel"]
+    return news_mix.review_ai_blocks({"section": channel.genre.slug, "source_slug": channel.slug, "lang": getattr(channel, "lang", "")})
+
+
 def collect_candidates(
     channels: list[Channel], lookback_days: int, state: dict
 ) -> list[dict]:
@@ -204,6 +214,9 @@ def collect_candidates(
                 continue
             age_h = (datetime.now(timezone.utc) - published_at).total_seconds() / 3600
             if channel.genre.slug in NEWS_GENRES and age_h > NEWS_MAX_AGE_HOURS:
+                continue
+            if review_skips(entry):
+                log(f"  [除外] 審査の期間は海外の AI の発表を記事にしない: {entry['title'][:44]}")
                 continue
             entry["published_at"] = published_at
             candidates.append(entry)
