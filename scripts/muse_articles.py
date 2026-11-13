@@ -177,6 +177,14 @@ def save_results(data: dict) -> None:
     RESULTS.write_text(json.dumps(data, ensure_ascii=False, indent=2, sort_keys=True) + "\n", encoding="utf-8")
 
 
+def index_status(record: dict) -> str:
+    """公開のログに出す「検索に出すか・出さない理由」（scripts/indexnow.py の index_status_line。2026-11-13:
+    注文した記事が気づかないまま noindex で出ないように、公開のたびに見えるようにする）"""
+    import indexnow  # noqa: PLC0415
+
+    return indexnow.index_status_line(record)
+
+
 def file_id(name: str) -> str:
     return "muse-" + hashlib.sha1(muse_format.nfc(name).encode("utf-8")).hexdigest()[:10]
 
@@ -947,6 +955,7 @@ def process(args) -> int:
         published += 1
         finish("published", "", record)
         log(f"   [muse] 公開へ: {target.relative_to(ROOT)}（score {record.get('qualityScore')}）")
+        log(f"   [muse] {index_status(record)}")
     m.save_state(state)
     save_results(results)
     left = len(list(INBOX.glob("*.md")))

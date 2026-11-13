@@ -531,7 +531,9 @@ def mark(dry_run: bool = False, days: int = 0, recompute: bool = False) -> dict[
     changed = 0
     for slug, (keep, why) in sorted(result.items()):
         path, data = by_slug[slug]
-        print(f"[dup] {slug} → {keep}（{why}）")
+        # Muse の記事・話題のレーンの記事が検索から外れるときは、ログで目立たせる（2026-11-13）
+        ordered = data.get("writer") == "muse" or data.get("trendKeyword") or data.get("searchTrend")
+        print(f"[dup] {slug} → {keep}（{why}）" + ("【注意: Muse・話題の記事が重複になり、検索から外れます】" if ordered else ""))
         if data.get("duplicateOf") == keep:
             continue
         # 前に付けた印を保つ。ただし前の代表が今は重複の側（代表が入れ替わった）なら、新しい代表へ付け替える

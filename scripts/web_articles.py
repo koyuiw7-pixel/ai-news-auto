@@ -3171,6 +3171,9 @@ def main() -> int:
             f"score {record.get('qualityScore')} / {model_name} / ${cost_usd:.3f} / {time.time() - started:.0f}s"
             f"{' / 過去記事 ' + str(len(record['relatedSlugs'])) + '本' if record.get('relatedSlugs') else ''})"
         )
+        # 話題のレーンの記事は、検索に出るか（出ないなら理由）を公開のときに見えるようにする（2026-11-13）
+        if trend_term or record.get("searchTrend"):
+            log(f"   [trend] {indexnow.index_status_line(record)}")
         if item.get("fast"):
             log(f"   [fast] {latency_note(record)}（公開はこのあとのデプロイ・約3分）")
 
@@ -3391,6 +3394,7 @@ def main() -> int:
                 continue
             if TREND_PRESS_NOINDEX:
                 record["indexable"] = False  # 門を全部通ったあとに付ける（indexable の印は公開前の門を素通りさせるため）
+                record["noindexNote"] = "TREND_PRESS_NOINDEX=1（報道が出典の話題の記事を検索に出さない切り替え）"
             stamp_times(record, q, run_detected_at)
             path = m.write_article(record)
             recent.add(record["title"], record["sourceUrl"], record.get("keywords"))
@@ -3405,6 +3409,7 @@ def main() -> int:
             trend_stats["press"] += 1
             trend_made.append(f"報道（{'・'.join(s_['source'] for s_ in chosen)}）: {record['slug']}「{record['title'][:50]}」")
             log(f"   [OK trend 報道] {path.relative_to(m.ROOT)} ({len(record['body'])}字 / {model_name} / {time.time() - started:.0f}s)")
+            log(f"   [trend] {indexnow.index_status_line(record)}")
         if args.trends > 0 and not fast_mode:
             log(f"\n[trend] まとめ: キュー {len(queue)} 語 / 調べた {trend_stats['considered']} 語 → 記事 {created['trend']} 本"
                 f"（公式が出典 {trend_stats['official']} / 主要な報道機関2社以上 {trend_stats['press']}）/ 公式が出て更新 {trend_stats['refreshed']} 本"

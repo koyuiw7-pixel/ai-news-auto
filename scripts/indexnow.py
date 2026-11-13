@@ -511,6 +511,23 @@ def noindex_reason(article: dict, dups: set[str] | frozenset = frozenset()) -> s
     return None
 
 
+NOINDEX_LABELS = {
+    "manual": "手動の指定 indexable: false",
+    "no-body": f"本文が無い（{NO_BODY}字未満）",
+    "duplicate": "同じ出来事・同じ切り口の記事の重複（代表の記事を検索に出す）",
+    "zero-visit": "14日間訪問0の一覧",
+}
+
+
+def index_status_line(article: dict, dups: set[str] | frozenset = frozenset()) -> str:
+    """公開のログに出す1行（検索に出すか・出さない理由）。2026-11-13: 注文した記事・話題の記事が、気づかないまま
+    noindex で出ることがあった（紅白の出場歌手一覧）。重複の印（scripts/story.py mark）は公開の後に付くので、ここでは今の記事だけで見る"""
+    reason = noindex_reason(article, dups)
+    if reason is None:
+        return "検索: 出す（index）"
+    return f"検索: 出さない（noindex・理由 {reason}＝{NOINDEX_LABELS.get(reason, reason)}）"
+
+
 def focus_reason(article: dict, dups: set[str] | frozenset = frozenset()) -> str | None:
     """2026-11-08 までの検索の基準（主題・日本の読者向け・本文の長さ）。今は公開前の門（publish_block_reason）だけが使う"""
     if isinstance(article.get("indexable"), bool):
