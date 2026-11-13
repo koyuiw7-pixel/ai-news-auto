@@ -141,6 +141,8 @@ MUSE_PRESS_NOTE = """
 - title・seo_title・lede・description・highlights・easy_markdown・faq・today_actions・work_money・threads_post など、すべての欄で同じ。
 - 報道の文を写さない。事実だけを自分の言葉で短くまとめる（1つの報道から使うのは要点だけ）。見出し・言い回し・構成をまねない。
   報道の文を「」で長く引用しない。
+- 人や組織（首相・大臣・会社・役所など）の発言そのものは、だれが述べたかを同じ文に書けば「」で引用してよい
+  （例:「首相は「…」と答弁した」。1つ120字まで・記事全体で3つまで）。報道機関が書いた説明の文は「」に入れても引用にならない。
 - 報道が伝える見通し・関係者の話・匿名の情報は「〜と報じている」と報道の内容として書き、サイソクの見方の根拠にしない。
 - sources（出典の一覧）には、公式の資料だけを並べる。
 """
@@ -388,6 +390,175 @@ def press_copies(text: str, press_text: str, min_len: int = PRESS_COPY_MIN) -> l
     return out
 
 
+# ---- 発言の引用は写しに数えない（2026-11-13。消費税減税法案の記事が、首相の国会答弁の引用で見送りになった） ----
+# 人や組織の発言を「」『』に入れ、だれが述べたかを書いた引用は、報道機関の文の写しではない（同じ発言は報道にもそのまま載る）。
+# 引用として扱うのは、①同じ文に「〜は「…」と述べた／答弁した／としている」「〜によると「…」」の形がある ②引用だけの文で、同じ段落の
+# 直前・直後の文に発言の動詞（「こう答弁した」など）がある、のどちらか。1つ QUOTE_EXEMPT_CHARS 字まで・記事全体で QUOTE_EXEMPT_MAX 個まで
+# （引用を並べただけの記事にさせない）。それを超えた引用・だれの発言か書いていない引用は、今までどおり写しの門で見る。
+QUOTE_EXEMPT_MAX = 3
+QUOTE_EXEMPT_CHARS = 120
+QUOTE_MASK = "「〓」"  # 引用を外した跡（前後の字がつながって、別の写しに見えないようにする）
+_QUOTE_SPAN_RE = re.compile(r"「[^「」]*」|『[^『』]*』")
+_SPEECH = (r"(?:述べ|答弁|説明|話し|語っ|語り|発表|コメント|強調|指摘|表明|明言|発言|回答|答え|訴え|主張|明らかにし|示し|書い|記し|投稿し)")
+_QUOTE_AFTER_RE = re.compile(rf"\s*(?:など)?と(?!いう)(?:[^。！？\n「」『』]{{0,12}}?{_SPEECH}|している|しています|した|しました)")
+_QUOTE_BEFORE_RE = re.compile(r"によると|によれば")
+_QUOTE_NEAR_RE = re.compile(rf"{_SPEECH}|によると|によれば")
+_PARAGRAPH_SPLIT_RE = re.compile(r"(\n[ \t　]*\n)")
+_MARK_BASE = 0xE000  # 私用領域の字を、引用の置き場の印に使う
+
+
+def _is_mark(ch: str) -> bool:
+    return _MARK_BASE <= ord(ch) < 0xF800
+
+
+def _has_copy(text: str, src: str, min_len: int) -> bool:
+    import quality  # noqa: PLC0415
+
+    clean = quality._norm(text)  # noqa: SLF001
+    return any(clean[i:i + min_len] in src for i in range(0, max(len(clean) - min_len + 1, 0)))
+
+
+def mask_exempt_quotes(text: str, press_text: str, used: list[str], min_len: int = PRESS_COPY_MIN) -> str:
+    """だれの発言かを書いた引用（報道の文と min_len 字以上重なるもの）を QUOTE_MASK に置きかえた文を返す。
+    used は、この記事でもう例外にした引用（記号・空白を除いた形）。同じ引用がリードと本文の両方にあっても1つと数える。
+    QUOTE_EXEMPT_MAX 個を超えた引用・QUOTE_EXEMPT_CHARS 字を超える引用・だれの発言か書いていない引用は、そのまま残す"""
+    import quality  # noqa: PLC0415
+
+    text = text or ""
+    src = quality._norm(press_text)  # noqa: SLF001
+    found = _QUOTE_SPAN_RE.findall(text)
+    if not found or len(src) < min_len or len(found) > 0x1800 or any(_is_mark(c) for c in text):
+        return text
+    marks: dict[str, str] = {}
+
+    def stash(match: re.Match) -> str:
+        mark = chr(_MARK_BASE + len(marks))
+        marks[mark] = match.group(0)
+        return mark
+
+    masked = _QUOTE_SPAN_RE.sub(stash, text)
+    keep: dict[str, str] = {}
+    for paragraph in _PARAGRAPH_SPLIT_RE.split(masked):
+        sentences = [x for x in _SENTENCE_SPLIT_RE.split(paragraph) if x and x.strip()]
+        for k, sentence in enumerate(sentences):
+            for pos, ch in enumerate(sentence):
+                if ch not in marks:
+                    continue
+                inner = marks[ch][1:-1].strip()
+                if len(inner) > QUOTE_EXEMPT_CHARS or not _has_copy(inner, src, min_len):
+                    continue
+                attributed = bool(_QUOTE_AFTER_RE.match(sentence, pos + 1) or _QUOTE_BEFORE_RE.search(sentence[:pos]))
+                if not attributed and not quality._norm("".join(c for c in sentence if c not in marks)):  # noqa: SLF001
+                    # 引用だけの文: 同じ段落の直前・直後の文が、だれが述べたかを書いている
+                    near = sentences[max(k - 1, 0):k] + sentences[k + 1:k + 2]
+                    attributed = any(_QUOTE_NEAR_RE.search("".join(c for c in n if c not in marks)) for n in near)
+                if not attributed:
+                    continue
+                key = quality._norm(inner)  # noqa: SLF001
+                if key not in used:
+                    if len(used) >= QUOTE_EXEMPT_MAX:
+                        continue
+                    used.append(key)
+                keep[ch] = inner
+    return "".join(QUOTE_MASK if c in keep else marks.get(c, c) for c in masked)
+
+
+def press_copy_hits(text: str, press_text: str, min_len: int = PRESS_COPY_MIN) -> list[tuple[str, list[str]]]:
+    """（写しのある文, その文の中で報道の文と min_len 字以上つづけて同じ所）。同じ所は記事の文字のまま返す（手直しの段に渡す）"""
+    import quality  # noqa: PLC0415
+
+    src = quality._norm(press_text)  # noqa: SLF001
+    out: list[tuple[str, list[str]]] = []
+    if len(src) < min_len:
+        return out
+    for sentence in _SENTENCE_SPLIT_RE.split(text or ""):
+        if not _has_copy(re.sub(r"[#>*|`]", "", sentence), src, min_len):
+            continue
+        chars: list[str] = []
+        index: list[int] = []
+        for i, ch in enumerate(sentence):
+            if ch in "#>*|`":
+                continue
+            for n in quality._norm(ch):  # noqa: SLF001
+                chars.append(n)
+                index.append(i)
+        flat = "".join(chars)
+        covered = [False] * len(flat)
+        for i in range(0, len(flat) - min_len + 1):
+            if flat[i:i + min_len] in src:
+                covered[i:i + min_len] = [True] * min_len
+        spans, i = [], 0
+        while i < len(flat):
+            if not covered[i]:
+                i += 1
+                continue
+            j = i
+            while j + 1 < len(flat) and covered[j + 1]:
+                j += 1
+            spans.append(sentence[index[i]:index[j] + 1].strip())
+            i = j + 1
+        out.append((sentence.strip(), spans or [sentence.strip()]))
+    return out
+
+
+PRESS_COPY_FIELDS = ("body", "lede", "description", "easy", "highlights", "threadsPost")
+
+
+def press_copy_scan(record: dict, press_text: str) -> tuple[list[tuple[str, str, list[str]]], list[str]]:
+    """記事の写しの確かめ。（[(欄, 写しのある文, 同じ所)], 例外にした発言の引用）。発言の引用（mask_exempt_quotes）を外してから見る"""
+    used: list[str] = []
+    exempt: list[str] = []
+    hits: list[tuple[str, str, list[str]]] = []
+    fields = _reader_fields(record)
+    for name in PRESS_COPY_FIELDS:
+        for field, text in fields:
+            if field != name:
+                continue
+            before = len(used)
+            masked = mask_exempt_quotes(text, press_text, used)
+            exempt += used[before:]
+            hits += [(field, sentence, spans) for sentence, spans in press_copy_hits(masked, press_text)]
+    return hits, exempt
+
+
+PRESS_COPY_FIX = ("報道の文と{n}字以上つづけて同じ所がある（「{span}」）。この部分だけを、事実はそのままに自分の言葉で言い換える"
+                  "（数字・日付・固有名詞は変えない。ほかの文は変えない。書き足さない）")
+PRESS_COPY_FIX_MAX = 8
+
+
+def repair_press_copies(record: dict, fetched: list[dict], source_text: str, kind: str, context,
+                        deadline: float | None = None) -> tuple[dict, dict | None]:
+    """報道の文と同じ所（発言の引用を除く）を、作り直し・見送りの前に、その所だけ言い換えさせる（2026-11-13「落とすのは嘘だけ。書き方は自動で直す」）。
+    機械では言い換えない。lift_score と同じ quality.surgical_fix（指摘の所だけ直す → 同じ門でもう一度事実確認）に、同じ所をそのまま渡す。
+    返すのは (記事, 直したあとの事実確認の結果)。直す所が無い・直せなかったときは (元の記事, None)。まだ同じ所が残るかは呼ぶ側が press_problems で見る"""
+    import quality  # noqa: PLC0415
+
+    ctx = _press_ctx(fetched)
+    if not ctx:
+        return record, None
+    hits, _exempt = press_copy_scan(record, ctx["press_text"])
+    spans = list(dict.fromkeys(re.sub(r"[「」『』]", "", span)[:200] for _f, _s, found in hits for span in found))
+    if not spans:
+        return record, None
+    if deadline and time.time() > deadline:
+        log("   [muse] 写しの手直し: この原稿に使える時間を超えたので、手直しをしません")
+        return record, None
+    todo = [PRESS_COPY_FIX.format(n=PRESS_COPY_MIN, span=span) for span in spans[:PRESS_COPY_FIX_MAX]]
+    try:
+        fixed, info = quality.surgical_fix(record, source_text, kind, todo, context)
+    except Exception as error:  # noqa: BLE001 - 直す段が使えなくても、作り直しの試行は続ける
+        log(f"   [muse] 写しの手直し: 失敗（{str(error)[:80]}）")
+        return record, None
+    if fixed is None:
+        log(f"   [muse] 写しの手直し: 直せず（{str(info)[:160]}）")
+        return record, None
+    left = [span for _f, _s, found in press_copy_scan(fixed, ctx["press_text"])[0] for span in found]
+    for span in spans[:PRESS_COPY_FIX_MAX]:
+        log(f"   [muse] 写しの手直し: 報道と同じ所を言い換えた「{span[:80]}」")
+    log(f"   [muse] 写しの手直し: {len(spans)} か所 → 残り {len(left)} か所（{str(info.get('fixed_by'))[:60]}）")
+    return fixed, info
+
+
 def press_sources(fetched: list[dict]) -> list[dict]:
     return [s for s in fetched if s.get("press")]
 
@@ -583,10 +754,20 @@ def repair_press_attribution(record: dict, fetched: list[dict]) -> list[tuple[st
     return done
 
 
+def add_press_names(record: dict, fetched: list[dict]) -> int:
+    """名前の書き足し（repair_press_attribution）をして、直した所を実行ログに前後で残す。足した数を返す"""
+    done = repair_press_attribution(record, fetched)
+    for field, before, after in done:
+        log(f"   [muse] 報道の名前を足した（{field}）: 「{before[:120]}」→「{after[:140]}」")
+    return len(done)
+
+
 def ensure_press_attribution(record: dict, fetched: list[dict]) -> list[str]:
     """報道の書き方の門。先に名前の書き足し（機械）をしてから press_problems を見る。直した所は実行ログに前後を残す"""
-    for field, before, after in repair_press_attribution(record, fetched):
-        log(f"   [muse] 報道の名前を足した（{field}）: 「{before[:120]}」→「{after[:140]}」")
+    add_press_names(record, fetched)
+    if ctx := _press_ctx(fetched):
+        for quote in press_copy_scan(record, ctx["press_text"])[1]:
+            log(f"   [muse] 発言の引用は写しに数えない: 「{quote[:QUOTE_EXEMPT_CHARS]}」")
     return press_problems(record, fetched)
 
 
@@ -595,7 +776,8 @@ def press_problems(record: dict, fetched: list[dict]) -> list[str]:
     1. 報道にしか無い数字（公式の資料に無く、報道の記事にある金額・割合・件数）のある文に、報道機関の名前か「報道」「報じた」がある
        （直前の文に名前があり、その文が「〜という」「〜としている」と続くのはよい。表・箇条書きの行は同じ段落に名前があればよい。
        同じ段落に、その数字が載っている報道機関の名前があるのもよい。段落をまたぐと数えない＝_press_unit_ok）
-    2. 報道の文を写していない（記号・空白を除いて PRESS_COPY_MIN 字以上つづけて同じ所がある文）
+    2. 報道の文を写していない（記号・空白を除いて PRESS_COPY_MIN 字以上つづけて同じ所がある文）。だれの発言かを書いた「」の引用は
+       先に外してから見る（mask_exempt_quotes。1つ120字まで・記事全体で3つまで）
     3. 公式の資料が無い記事（報道だけ）: 題名・リード・SNS の文に報道機関の名前があり、本文にも名前がある
     報道にしか無い「数字でない事実」は機械では見分けられない（指示文と、事実確認の門で見る）。
     名前が抜けているだけの文は、先に repair_press_attribution が機械で足す（ensure_press_attribution）"""
@@ -613,12 +795,10 @@ def press_problems(record: dict, fetched: list[dict]) -> list[str]:
     if bare:
         out.append(f"報道（{'・'.join(names)}）にしか無い数字を、報道と分かる形で書いていない（{'、'.join('「' + b + '」' for b in bare[:4])}）。"
                    f"その文に「{first}によると」「{first}が報じた」と入れ、確定した事実として言い切らない")
-    copied = []
-    for field, text in _reader_fields(record):
-        if field in ("body", "easy", "lede", "description", "highlights", "threadsPost"):
-            copied += press_copies(text, press_text)
+    copied = [sentence[:50] for _field, sentence, _spans in press_copy_scan(record, press_text)[0]]
     if copied:
-        out.append(f"報道の文をそのまま写している（{len(copied)}文。例「{copied[0][:40]}」）。事実だけを自分の言葉で短くまとめる")
+        out.append(f"報道の文をそのまま写している（{len(copied)}文。例「{copied[0][:40]}」）。事実だけを自分の言葉で短くまとめる"
+                   f"（発言の引用は、だれが述べたかを同じ文に書いて「」に入れる。1つ{QUOTE_EXEMPT_CHARS}字まで・{QUOTE_EXEMPT_MAX}つまで）")
     if not official:
         for field, label in (("title", "題名"), ("lede", "リード"), ("threadsPost", "SNS の文（threads_post）")):
             text = str(record.get(field) or "")
@@ -974,11 +1154,18 @@ def build_article(path: Path, data: dict, fetched: list[dict], unread: list[str]
             continue
         # 報道を出典に使った記事: 報道にしか無い数字が報道として書かれているか・報道の文を写していないか（LLM なし）。
         # 名前が抜けているだけの文は、先に機械で名前を足す（書き方の問題では作り直さない・落とさない。足した文も下の事実確認を通る）
+        # 報道の文と30字以上同じ所（発言の引用を除く）は、作り直しの前に、その所だけ言い換えさせる（quality.surgical_fix。事実確認も通る）
+        checked = None
+        if press:
+            add_press_names(record, fetched)  # 名前の書き足しを先に（言い換えの段が事実確認をするので）
+            record, checked = repair_press_copies(record, fetched, source_text, kind, context, deadline=deadline)
+            if checked is not None and add_press_names(record, fetched):
+                checked = None  # 言い換えのあとに名前を足した: 下で事実確認をやり直す
         if unattributed := ensure_press_attribution(record, fetched):
             problems = unattributed
             log(f"   [muse] 試行{attempt}: {unattributed[0][:160]}")
             continue
-        verdict = quality.evaluate(record, source_text, kind, context, check_facts=True)
+        verdict = checked or quality.evaluate(record, source_text, kind, context, check_facts=True)
         # 2026-11-09 オーナー（台帳 A60 をすべての経路に）: ふつうの記事と同じく、形の指摘（資料に無い数字・電話番号など）も
         # 作り直さずその場で直す（LLM の手直し → だめなら指摘の文をプログラムで削って門をもう一度。quality.surgical_fix）
         if not verdict["ok"] and not verdict.get("soft") and quality.repairable(verdict):
