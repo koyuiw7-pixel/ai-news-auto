@@ -6,17 +6,23 @@
   "companyName": "OpenAI",
   "category": "アプリ・サービス",
   "overview": {
-    "text": "ChatGPT Proは、OpenAIが提供する月額プランです。2026年10月下旬から11月上旬にかけて、APIクレジットの特典や利用枠に関する情報が発表されました。",
+    "text": "ChatGPT Proは、OpenAIが提供するAIサービスです。2026年11月時点で、3つの利用段階やAPI利用枠を利用できるプランとして提供されています。",
     "sources": [
       "chatgpt-pro-monthly-api-credits",
-      "chatgpt-codex-shared-usage-limits",
       "chatgpt-pro-business-api-credits-benefit"
     ]
   },
   "facts": [
     {
       "label": "料金",
-      "value": "月100ドルから",
+      "value": "月額100ドルから",
+      "sources": [
+        "chatgpt-pro-monthly-api-credits"
+      ]
+    },
+    {
+      "label": "使える場所",
+      "value": "アプリ・APIなど",
       "sources": [
         "chatgpt-pro-monthly-api-credits"
       ]
@@ -32,48 +38,57 @@
   ],
   "capabilities": [
     {
-      "text": "月額プランに応じて、毎月100ドルから最大500ドル分のAPIクレジットが利用できます。",
+      "text": "Pro 100・200・500の3つの利用段階から選ぶことができます。",
+      "sources": [
+        "chatgpt-pro-monthly-api-credits"
+      ]
+    },
+    {
+      "text": "毎月最大500ドル分のAPI利用枠（クレジット）が付きます。",
       "sources": [
         "chatgpt-pro-monthly-api-credits",
         "chatgpt-pro-business-api-credits-benefit"
       ]
     },
     {
-      "text": "GPT-6 Astraによる推論機能が利用できます。",
+      "text": "GPT-5.6 Solなどのモデルを無制限で利用できます。",
       "sources": [
         "chatgpt-pro-monthly-api-credits"
       ]
     },
     {
-      "text": "常に動くエージェント「Dot」が使えます。",
+      "text": "12月からは、ChatGPTとCodexの利用枠が1つの枠に共通化されます。",
       "sources": [
-        "chatgpt-pro-monthly-api-credits"
-      ]
-    },
-    {
-      "text": "画像の作成が不正利用防止の範囲内で無制限になります。",
-      "sources": [
-        "chatgpt-pro-monthly-api-credits"
+        "chatgpt-codex-shared-usage-limits"
       ]
     }
   ],
   "pricing": [
     {
-      "text": "Proプランの月額は100ドルからです。",
+      "text": "Pro 100は月額100ドルで、100ドル分のAPI利用枠が付きます。",
       "sources": [
-        "chatgpt-pro-monthly-api-credits"
+        "chatgpt-pro-monthly-api-credits",
+        "chatgpt-pro-business-api-credits-benefit"
       ]
     },
     {
-      "text": "Pro 100は月100ドル、Pro 200は月200ドル、Pro 500は月500ドルです。",
+      "text": "Pro 200は月額200ドルで、200ドル分のAPI利用枠が付きます。",
       "sources": [
-        "chatgpt-pro-monthly-api-credits"
+        "chatgpt-pro-monthly-api-credits",
+        "chatgpt-pro-business-api-credits-benefit"
+      ]
+    },
+    {
+      "text": "Pro 500は月額500ドルで、500ドル分のAPI利用枠が付きます。",
+      "sources": [
+        "chatgpt-pro-monthly-api-credits",
+        "chatgpt-pro-business-api-credits-benefit"
       ]
     }
   ],
   "japan": [
     {
-      "text": "日本向けの料金ページでも同じプランが公開されています。",
+      "text": "日本向けの料金ページでもProプランが公開されています。",
       "sources": [
         "chatgpt-pro-monthly-api-credits"
       ]
@@ -81,7 +96,13 @@
   ],
   "howto": [
     {
-      "text": "Proのアカウントにログインし、「設定」の「請求」から受け取り手続きを行います。",
+      "text": "料金ページからプランを選択して加入します。",
+      "sources": [
+        "chatgpt-pro-monthly-api-credits"
+      ]
+    },
+    {
+      "text": "設定の請求画面からAPIクレジットの受け取り手続きを行います。",
       "sources": [
         "chatgpt-pro-business-api-credits-benefit"
       ]
@@ -89,30 +110,38 @@
   ],
   "differences": [
     {
-      "text": "Plusには毎月のAPIクレジット特典は付与されません。",
+      "text": "Plusプランとは異なり、毎月のAPI利用枠が含まれています。",
       "sources": [
+        "chatgpt-pro-monthly-api-credits",
         "chatgpt-pro-business-api-credits-benefit"
       ]
     }
   ],
   "faq": [
     {
-      "q": "PlusプランでもAPIクレジットがもらえますか？",
-      "a": "PlusはAPIクレジット特典の対象外です。",
+      "q": "APIクレジットを受け取る条件は？",
+      "a": "有料契約が7日以上有効であり、受取り手続きを行う必要があります。",
       "sources": [
         "chatgpt-pro-business-api-credits-benefit"
       ]
     },
     {
-      "q": "APIクレジットは翌月に繰り越せますか？",
-      "a": "請求期間の終了時に失効し、翌期間には繰り越されません。",
+      "q": "利用枠が上限に達したときはどうなる？",
+      "a": "回復を待つ、上位のプランに変える、クレジットを買うの3つの選択肢があります。",
       "sources": [
-        "chatgpt-pro-business-api-credits-benefit"
+        "chatgpt-codex-shared-usage-limits"
       ]
     },
     {
-      "q": "対象になるための契約期間の条件はありますか？",
-      "a": "対象の有料プランが7日以上有効であることが必要です。",
+      "q": "買い物機能は誰でも使える？",
+      "a": "当面は米国のPro契約者（18歳以上）で、米国発行の対象カードを持つ人が対象です。",
+      "sources": [
+        "chatgpt-wallet-agentic-payments"
+      ]
+    },
+    {
+      "q": "APIクレジットを使い切った後はどうなる？",
+      "a": "無料クレジットが先に使われ、使い切った後は購入済みのクレジットが使われます。",
       "sources": [
         "chatgpt-pro-business-api-credits-benefit"
       ]
@@ -122,12 +151,12 @@
     {
       "date": "2026-10-29",
       "slug": "chatgpt-pro-business-api-credits-benefit",
-      "event": "Pro契約者へのAPIクレジット特典を案内"
+      "event": "APIクレジット特典の提供を開始"
     },
     {
       "date": "2026-11-03",
       "slug": "chatgpt-pro-monthly-api-credits",
-      "event": "月額API利用枠の金額を明記"
+      "event": "月額API利用枠を料金ページに明記"
     }
   ],
   "related": [
@@ -137,6 +166,7 @@
     "gpt-6-1-terra"
   ],
   "articles": [
+    "chatgpt-wallet-agentic-payments",
     "chatgpt-pro-monthly-api-credits",
     "chatgpt-codex-shared-usage-limits",
     "chatgpt-pro-business-api-credits-benefit"
@@ -145,9 +175,9 @@
     "chatgpt-pro-monthly-api-credits",
     "chatgpt-pro-business-api-credits-benefit"
   ],
-  "signature": "ce3bca3bf2fe9fef",
+  "signature": "c626f1b16cef32f2",
   "primarySignature": "7bcc5b5576ad13dc",
   "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-11-02T18:44:39+00:00",
-  "updatedAt": "2026-11-04T05:23:15+00:00"
+  "updatedAt": "2026-11-13T16:38:29+00:00"
 }

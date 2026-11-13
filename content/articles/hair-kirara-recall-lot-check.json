@@ -60,8 +60,8 @@
   "affiliates": [],
   "newsType": "product",
   "todayActions": [
-    "手元のヘアキララの容器に書かれたロット番号を、63ロットの一覧と照らし合わせる",
-    "対象なら使用を止め、購入先か品質管理部（03-4530-6092、9時から18時）に連絡する"
+    "手元のヘアキララの容器に書かれたロット番号を、回収概要の対象ロット一覧と照らし合わせる",
+    "対象ロットなら使用を止め、購入先か品質管理部に連絡して回収の手続きを聞く"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -127,5 +127,118 @@
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/hair-kirara-recall-lot-check-figure-7ab78eaa.jpg"
   },
-  "discoverCandidate": true
+  "discoverCandidate": true,
+  "insight": [
+    {
+      "text": "回収概要には、製造販売業者の許可の種類「化粧品製造販売業」と許可番号「13C0X11324」も書かれています。会社を確かめる材料として、ページに載っている番号です。",
+      "source": "https://www.info.pmda.go.jp/rgo/MainServlet?recallno=2-13032"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "株式会社HappyLifeBio 品質管理部",
+      "url": "https://www.info.pmda.go.jp/rgo/MainServlet?recallno=2-13032",
+      "source": "https://www.info.pmda.go.jp/rgo/MainServlet?recallno=2-13032",
+      "phone": "03-4530-6092",
+      "hours": "9:00‐18:00（土曜祝日および当社休業日を除く）",
+      "note": "回収概要の製造販売業者の所在地は東京都東久留米市本町1丁目4-43-1F。"
+    },
+    {
+      "name": "消費者庁 リコール情報サイト",
+      "url": "https://www.recall.caa.go.jp/",
+      "source": "https://www.recall.caa.go.jp/",
+      "howTo": [
+        "リコール情報サイトトップページ",
+        "一覧を見る"
+      ]
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "手元のヘアキララの容器に書かれたロット番号を、回収概要の対象ロット一覧と照らし合わせる",
+      "source": "https://www.info.pmda.go.jp/rgo/MainServlet?recallno=2-13032",
+      "steps": [
+        "容器や外箱のロット番号を確認",
+        "「Tak」か「Fak」で始まる6文字を見る",
+        "回収概要の対象ロット一覧と1文字ずつ比べる"
+      ],
+      "url": "https://www.info.pmda.go.jp/rgo/MainServlet?recallno=2-13032"
+    },
+    {
+      "action": "対象ロットなら使用を止め、購入先か品質管理部に連絡して回収の手続きを聞く",
+      "source": "https://www.info.pmda.go.jp/rgo/MainServlet?recallno=2-13032",
+      "steps": [
+        "使用を止める",
+        "購入先の店舗か通販の購入履歴を確認",
+        "購入先が分からなければ03-4530-6092へ（9時から18時）"
+      ],
+      "url": "https://www.info.pmda.go.jp/rgo/MainServlet?recallno=2-13032"
+    }
+  ],
+  "cause": {
+    "text": "グリチルリチン酸2Kの配合濃度が、洗い流さない化粧品の配合範囲を超えるロットが確認されたためです。化粧品の基準に適合しないため、同じ工程で作られたロットを全て自主回収します。",
+    "status": "stated",
+    "source": "https://www.info.pmda.go.jp/rgo/MainServlet?recallno=2-13032"
+  },
+  "worries": [
+    {
+      "q": "私のヘアキララは回収の対象になりますか？",
+      "a": "回収概要には、販売名ヘアキララの対象ロットが一覧で書かれています。容器などに書かれたロット番号が、この一覧にあれば対象です。",
+      "source": "https://www.info.pmda.go.jp/rgo/MainServlet?recallno=2-13032",
+      "action": "容器や外箱のロット番号を、回収概要の対象ロット一覧と1文字ずつ照らし合わせる。"
+    },
+    {
+      "q": "体に影響はありますか？痒みや赤みが出たら？",
+      "a": "配合量は範囲を超えているものの極端な逸脱はなく、濃度超過分による痒みや赤みのような反応が出る可能性はあるとしています。重篤な健康被害のおそれはまず考えられず、現在までに健康被害の報告はないとしています。",
+      "source": "https://www.info.pmda.go.jp/rgo/MainServlet?recallno=2-13032",
+      "action": "痒みや赤みが出たら、製造販売業者の品質管理部（03-4530-6092、9時から18時）に相談する。"
+    },
+    {
+      "q": "問い合わせ先はどこで、電話は何時まで？",
+      "a": "担当は株式会社HappyLifeBio品質管理部で、電話は03-4530-6092です。受付時間は9:00‐18:00で、土曜祝日および当社休業日を除くとしています。",
+      "source": "https://www.info.pmda.go.jp/rgo/MainServlet?recallno=2-13032",
+      "action": "9時から18時の間に03-4530-6092へ電話し、手元のロット番号を伝えて対象か確かめる。"
+    },
+    {
+      "q": "いつ買ったヘアキララが対象になりますか？",
+      "a": "回収概要の出荷時期は2024年02月13日から2025年12月4日です。回収開始は令和8年10月06日、回収概要は令和8年11月9日作成とされています。",
+      "source": "https://www.info.pmda.go.jp/rgo/MainServlet?recallno=2-13032",
+      "action": "買った時期だけで判断せず、まずは容器のロット番号を対象ロット一覧と照らし合わせて確かめる。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "対象ロットの番号が一覧にあったら、使い続けてよい？",
+      "situation": "番号が一覧にあり、肌に変化はない",
+      "recommend": "使用を止めて、購入先に連絡する",
+      "reason": "回収理由は配合量が配合範囲を超えたことです。使用を止めても、返金の金額と方法は発表されていません。痒みや赤みの反応が出る可能性もあるとしています。",
+      "source": "https://www.info.pmda.go.jp/rgo/MainServlet?recallno=2-13032"
+    },
+    {
+      "question": "対象ロットの番号が一覧にあったら、使い続けてよい？",
+      "situation": "番号が一覧にない、肌に変化もない",
+      "recommend": "今回の回収の対象外。不安なら窓口に番号を伝える",
+      "reason": "回収概要の対象は一覧に書かれたロットです。一覧にない番号は、この回収の対象として書かれていません。確かめたいときは担当の品質管理部に番号を伝えられます。",
+      "source": "https://www.info.pmda.go.jp/rgo/MainServlet?recallno=2-13032"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "回収概要に載っている会社の許可番号",
+    "cause": "なぜ回収になったのか、分かっていること",
+    "steps": "対象かどうか、今すぐ確かめる手順",
+    "desk": "問い合わせ先と、電話できる時間",
+    "worries": "番号、体への影響、問い合わせ先は？",
+    "guide": "使い続けるか、止めるか迷ったときの決め方"
+  },
+  "depthAt": "2026-11-13T16:41:17+00:00",
+  "updatedAt": "2026-11-13T16:41:17+00:00",
+  "updates": [
+    {
+      "at": "2026-11-13T16:41:17+00:00",
+      "kind": "facts",
+      "title": "公式の資料をもとに、「なるほどの要点」・「公式の窓口」・「今日やること」・「理由」・「よくある不安」・「判断の目安」を追記しました",
+      "sourceUrl": "https://www.info.pmda.go.jp/rgo/MainServlet?recallno=2-13032",
+      "sourceName": "PMDA「医薬品等の回収に関する情報」ヘアキララ回収概要（株式会社HappyLifeBio、令和8年11月9日作成）"
+    }
+  ]
 }

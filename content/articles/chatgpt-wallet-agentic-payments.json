@@ -67,8 +67,8 @@
       "個人は当面対象外ですが、将来の上限額設定による自動購入に備え、カード特典の扱いを知っておけます。"
     ]
   },
-  "body": "米国のChatGPT Proの契約者（18歳以上）で、米国発行の対象カードを持つ人は、今回の機能を使えます。日本の利用者への提供時期はまだ発表されていません。ChatGPT Walletは、AIエージェント（自分で手順を進めるAI）が利用者に代わって支払うための仕組みです。\n\nOpenAIの公式ブログによると、ChatGPT Walletは2026年11月13日から、決済サービス「dots」で順次提供が始まりました。American Express、Mastercard、Visaと共同で作られています。\n\n## カード番号を渡さず、購入ごとに生体認証\n\n利用者はカードを1度登録します。その後は、支払い情報を入力し直さずに購入を承認できます。\n\n購入の前に、利用者は商品、合計額、使うカードを確認します。承認はFace IDや指紋認証などの確認で行います。承認のたびに、利用者がAIに許可した購入の記録が残ります。\n\n承認後は、決済ネットワークが支払いトークン（実際のカード情報の代わりになる番号）を発行します。カード番号、セキュリティコード、有効期限の形をしています。請求は選んだカードに届き、店やAIに本物のカード情報は渡りません。\n\nOpenAIは「Users keep their card’s existing rewards」と述べ、カードの特典と、商品の不良など対象となる返金対応（紛争処理）が維持されるとしています。\n\n## 日本で使えるか、料金はいくらか\n\n対象は18歳以上で、ChatGPT Proに加入し、米国発行の対象カードを持つ人です。日本での提供はまだ発表されていません。ChatGPT自体は日本で使えます（当サイトの確認：11/3）。\n\nPro 100は月額100ドル、Pro 200は200ドル、Pro 500は500ドルです。Walletの追加料金は発表されていません（OpenAI公式の料金ページ、11/13確認）。\n\n## 将来は上限額を決めて任せる構想\n\n現在は購入ごとの承認が前提です。OpenAIは今後、利用者が支出の上限、購入の種類、期間を決め、事前に承認しておく形を想定しています。その場合も、生体認証や承認記録といった安全策を強化するとしています。\n\nChatGPTは週に約12億人が使い、商品の調べものや比較にも使われています。OpenAIは、その先の購入まで支援する位置づけだと説明しています。\n\nOpenAIは11月に、事業者向けの「Businesses in ChatGPT」も始めています（[ChatGPTに事業者の公式プロフィール](/articles/businesses-in-chatgpt-business-agents)）。\n\n## サイソクの見方：個人は様子見、事業者は今から準備\n\n対象が米国のPro契約者に限られるため、日本の個人利用者が今すぐ使える機会はないとみられます。月額100〜500ドルの契約が前提になる点も、広がり方に影響すると考えられます。\n\n- 日本の個人なら、提供地域の拡大が発表されるまで待つ。\n- 海外向けにネット販売をしているなら、AIエージェントが誤ってブロックされないか、早めに確認する。\n\n## まだ分からないこと\n\n- 米国以外への提供時期はまだ発表されていません。\n- Pro以外のプランへの拡大時期はまだ決まっていません。\n- 上限額を決めて任せる機能の開始時期はまだ発表されていません。\n\n## 事業者がすること\n\nOpenAIは「Commerce Partner Playbook」で、自社サイトの対応方法を公開しました。主な項目は次のとおりです。\n\n- 商品情報を正しく表示するため、ChatGPTで事業者として登録し、確認後に最新の価格と在庫の商品フィードを登録する\n- CDN（配信網）やファイアウォールで、Web Bot Authによる署名つきリクエストを認識できるようにする\n- 決済・不正検知の事業者と、AIによる正当な購入を認識する方法を確認する\n- プラグインやWebMCPのツールで、在庫確認やカード操作をAIに提供する\n\nWalletの支払いトークンは既存の決済画面で使えますが、不正検知で拒否される場合があります。OpenAIはForter、Riskified、Sardine、Signifydと、Adyen、Checkout.com、Stripeと連携を進めています。ブラウザ操作ではプラグインや商品フィードは不要です。",
-  "easy": "## ひとことで言うと\n\nChatGPTのAIが、あなたのカード番号を知らないまま買い物の支払いをできる仕組み「ChatGPT Wallet」が始まりました。今は米国のChatGPT Pro契約者だけが対象です。\n\n## 仕組み\n\nカードは最初に1回登録します。買い物のたびに、商品・合計額・使うカードを確認し、顔認証か指紋認証で承認します。\n\n支払いには、実際のカード情報の代わりになる使い捨てのような番号（トークン）が使われます。店やAIは本物のカード番号を受け取りません。\n\n## 対象と注意点\n\n対象は18歳以上のChatGPT Pro契約者で、米国発行の対象カードが必要です。日本での提供はまだ発表されていません。\n\nカードの特典や、商品の不良など対象となる返金対応は、今までどおり使えるとOpenAIは説明しています。",
+  "body": "米国のChatGPT Proの契約者（18歳以上）で、米国発行の対象カードを持つ人は、今回の機能を使えます。日本の利用者への提供時期はまだ発表されていません。ChatGPT Walletは、AIエージェント（自分で手順を進めるAI）が利用者に代わって支払うための仕組みです。\n\nOpenAIの公式ブログによると、ChatGPT Walletは2026年11月13日から、決済サービス「dots」で順次提供が始まりました。American Express、Mastercard、Visaと共同で作られています。\n\n## カード番号を渡さず、購入ごとに生体認証\n\n利用者はカードを1度登録します。その後は、支払い情報を入力し直さずに購入を承認できます。\n\n購入の前に、利用者は商品、合計額、使うカードを確認します。承認はFace IDや指紋認証などの確認で行います。承認のたびに、利用者がAIに許可した購入の記録が残ります。\n\n承認後は、決済ネットワークが支払いトークン（実際のカード情報の代わりになる番号）を発行します。カード番号、セキュリティコード、有効期限の形をしています。請求は選んだカードに届き、店やAIに本物のカード情報は渡りません。\n\nOpenAIは「Users keep their card’s existing rewards」と述べ、カードの特典と、商品の不良など対象となる返金対応（紛争処理）が維持されるとしています。\n\n## 日本で使えるか、料金はいくらか\n\n対象は18歳以上で、ChatGPT Proに加入し、米国発行の対象カードを持つ人です。日本での提供はまだ発表されていません。ChatGPT自体は日本で使えます（当サイトの確認：11/3）。Pro 100は月額100ドル、Pro 200は200ドル、Pro 500は500ドルです。Walletの追加料金は発表されていません（OpenAI公式の料金ページ、11/13確認）。\n\n## 将来は上限額を決めて任せる構想\n\n現在は購入ごとの承認が前提です。OpenAIは今後、利用者が支出の上限、購入の種類、期間を決め、事前に承認しておく形を想定しています。その場合も、生体認証や承認記録といった安全策を強化するとしています。\n\nChatGPTは週に約12億人が使い、商品の調べものや比較にも使われています。OpenAIは、その先の購入まで支援する位置づけだと説明しています。\n\nOpenAIは11月に、事業者向けの「Businesses in ChatGPT」も始めています（[ChatGPTに事業者の公式プロフィール](/articles/businesses-in-chatgpt-business-agents)）。\n\n## サイソクの見方：個人は様子見、事業者は今から準備\n\n対象が米国のPro契約者に限られるため、日本の個人利用者が今すぐ使える機会はないとみられます。月額100〜500ドルの契約が前提になる点も、広がり方に影響すると考えられます。\n\n- 日本の個人なら、提供地域の拡大が発表されるまで待つ。\n- 海外向けにネット販売をしているなら、AIエージェントが誤ってブロックされないか、早めに確認する。\n\n## まだ分からないこと\n\n- 米国以外への提供時期はまだ発表されていません。\n- Pro以外のプランへの拡大時期はまだ決まっていません。\n- 上限額を決めて任せる機能の開始時期はまだ発表されていません。\n\n## 事業者がすること\n\nOpenAIは「Commerce Partner Playbook」で、自社サイトの対応方法を公開しました。主な項目は次のとおりです。\n\n- 商品情報を正しく表示するため、ChatGPTで事業者として登録し、確認後に最新の価格と在庫の商品フィードを登録する\n- CDN（配信網）やファイアウォールで、Web Bot Authによる署名つきリクエストを認識できるようにする\n- 決済・不正検知の事業者と、AIによる正当な購入を認識する方法を確認する\n- プラグインやWebMCPのツールで、在庫確認やカード操作をAIに提供する\n\nWalletの支払いトークンは既存の決済画面で使えますが、不正検知で拒否される場合があります。OpenAIはForter、Riskified、Sardine、Signifydと、Adyen、Checkout.com、Stripeと連携を進めています。ブラウザ操作ではプラグインや商品フィードは不要です。",
+  "easy": "## ひとことで言うと\n\nChatGPTのAIが、あなたのカード番号を知らないまま買い物の支払いをできる仕組み「ChatGPT Wallet」が始まりました。今は米国のChatGPT Pro契約者だけが対象です。\n\n## 仕組み\n\nカードは最初に1回登録します。買い物のたびに、商品・合計額・使うカードを確認し、顔認証か指紋認証で承認します。\n\n支払いには、実際のカード情報の代わりになる使い捨てのような番号（トークン）が使われます。店やAIは本物のカード番号を受け取りません。\n\n## 対象と注意点\n\n対象は18歳以上のChatGPT Pro契約者で、米国発行の対象カードが必要です。日本での提供はまだ発表されていません。カードの特典や、商品の不良など対象となる返金対応は、今までどおり使えるとOpenAIは説明しています。",
   "channel": "OpenAI公式ブログ",
   "channelId": "",
   "channelSlug": "openai-news",
@@ -80,7 +80,7 @@
   "videoTitle": "Introducing ChatGPT Wallet",
   "publishedAt": "2026-11-13T15:00:00+00:00",
   "generatedAt": "2026-11-13T15:53:38.264011+00:00",
-  "thumbnail": "https://images.ctfassets.net/kftzwdyauwt9/2xTvIZkcQhKk3VNFioQ4CR/4efb84a6adbddb41311f6b18158fad8b/introducing-chatgpt-wallet-social.png?w=1600&h=900&fit=fill",
+  "thumbnail": "https://ai-tech-express.jp/img/chatgpt-wallet-agentic-payments-e324ea62.jpg",
   "model": "anthropic-api:claude-sonnet-5-5",
   "affiliates": [],
   "newsType": "product",
@@ -95,9 +95,8 @@
     }
   ],
   "todayActions": [
-    "自社でネット販売をしているなら、CDNやファイアウォールがWeb Bot Auth署名つきの要求を拒否していないか確認する",
-    "事業者はChatGPT内で自社を登録し、最新の価格と在庫の商品フィードを用意する",
-    "個人は日本への提供がまだ未定のため、OpenAIの公式ブログで提供地域の追加を確認する"
+    "自社サイトのCDNやファイアウォールが、AIエージェントの購入を誤って遮断していないか確認する",
+    "決済・不正検知の事業者と、AIによる正当な購入を認識する方法を確認する"
   ],
   "relatedSlugs": [
     "businesses-in-chatgpt-business-agents"
@@ -134,14 +133,128 @@
   "summaryLine": "AIがカード番号を知らずに支払う「ChatGPT Wallet」が始動。購入ごとに顔認証などの確認が必須です",
   "imageFocus": {
     "x": 0.558,
-    "y": 0.614,
+    "y": 0.606,
     "box": [
       0.116,
-      0.228,
+      0.211,
       1.0,
       1.0
     ],
     "ar": 1.7778,
-    "src": "https://images.ctfassets.net/kftzwdyauwt9/2xTvIZkcQhKk3VNFioQ4CR/4efb84a6adbddb41311f6b18158fad8b/introducing-chatgpt-wallet-social.png?w=1600&h=900&fit=fill"
-  }
+    "src": "https://ai-tech-express.jp/img/chatgpt-wallet-agentic-payments-e324ea62.jpg"
+  },
+  "sectionTitles": {
+    "body": {
+      "日本で使えるか、料金はいくらか": "Walletは日本未発表、Pro契約が前提"
+    }
+  },
+  "sectionsPolishedAt": "2026-11-13T16:38:40+00:00",
+  "insight": [
+    {
+      "text": "ブラウザ経由の利用では、プラグインや商品フィードは必要ないとされています。事業者側は、Web Bot Authの署名つきリクエストを認識できるよう、CDNやファイアウォールを設定します。",
+      "source": "https://openai.com/index/introducing-chatgpt-wallet"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "Commerce Partner Playbook（OpenAI開発者向け資料）",
+      "url": "https://developers.openai.com/commerce",
+      "source": "https://openai.com/index/introducing-chatgpt-wallet",
+      "note": "CDNやファイアウォールの設定、決済・不正検知の事業者との確認方法など、事業者向けの対応が書かれています。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "自社サイトのCDNやファイアウォールが、AIエージェントの購入を誤って遮断していないか確認する",
+      "source": "https://openai.com/index/introducing-chatgpt-wallet",
+      "steps": [
+        "Commerce Partner Playbookを開く",
+        "CDNまたはファイアウォールで、Web Bot Authの署名つきリクエストを認識できるか確かめる",
+        "一般的なセキュリティ設定がChatGPTエージェントを遮断していないか見る"
+      ],
+      "url": "https://developers.openai.com/commerce"
+    },
+    {
+      "action": "決済・不正検知の事業者と、AIによる正当な購入を認識する方法を確認する",
+      "source": "https://openai.com/index/introducing-chatgpt-wallet",
+      "steps": [
+        "Commerce Partner Playbookを開く",
+        "決済や不正検知を担当する事業者に、AIの購入の認識方法を問い合わせる"
+      ],
+      "url": "https://developers.openai.com/commerce"
+    }
+  ],
+  "worries": [
+    {
+      "q": "カード番号はAIやお店に渡るの？",
+      "a": "渡りません。承認後に決済ネットワークが支払いトークンを発行し、実際のカード情報の代わりになります。店やAIに本物のカード情報は渡らないとされています。",
+      "source": "https://openai.com/index/introducing-chatgpt-wallet",
+      "action": "購入前に商品・合計額・使うカードを自分で確認してから、顔認証や指紋で承認する"
+    },
+    {
+      "q": "勝手に買い物されないか心配",
+      "a": "購入のたびに、Face IDや指紋などの確認で利用者が承認する必要があります。承認のたびに、利用者がAIに許可した購入の記録が残ります。",
+      "source": "https://openai.com/index/introducing-chatgpt-wallet",
+      "action": "承認のたびに残る購入の記録を見て、自分が許可した内容と合っているか確かめる"
+    },
+    {
+      "q": "買ったものが不良品のとき、返金は大丈夫？",
+      "a": "対象となる場合、カードの特典と、商品の不良などに対する紛争処理（返金対応）は維持されるとOpenAIは述べています。購入は利用者と事業者が直接行います。",
+      "source": "https://openai.com/index/introducing-chatgpt-wallet",
+      "action": "商品が不良だった場合は、購入先の店と直接やり取りする"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "ChatGPT Walletを使うか、待つか迷っている",
+      "situation": "日本に住み、ChatGPT Proに加入している",
+      "recommend": "急がなくてよい。提供地域の発表を待つ",
+      "reason": "対象は米国のChatGPT Pro契約者で、米国発行の対象カードを持つ人だけです。日本での提供時期は、まだ発表されていません。",
+      "source": "https://openai.com/index/introducing-chatgpt-wallet"
+    },
+    {
+      "question": "ChatGPT Walletを使うか、待つか迷っている",
+      "situation": "ChatGPT Plusに加入している",
+      "recommend": "Pro加入が前提のため、今は利用できない",
+      "reason": "対象はChatGPT Pro subscribersに限られています。Plusの料金は月額20ドル（ヘルプページの記載）ですが、Walletの対象にはなりません。",
+      "source": "https://openai.com/index/introducing-chatgpt-wallet"
+    },
+    {
+      "question": "ネット販売で、AIの購入を遮断しないか確認する？",
+      "situation": "海外向けにネット販売をしている事業者",
+      "recommend": "早めに確認する価値がある",
+      "reason": "Playbookでは、CDNやファイアウォールがWeb Bot Auth署名つきのリクエストを認識できるか確認するよう案内されています。決済の拒否が起きる場合もあります。",
+      "source": "https://openai.com/index/introducing-chatgpt-wallet"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "ブラウザ購入ならプラグインは要らない",
+    "steps": "お店側が今すぐ確かめること",
+    "desk": "OpenAIの事業者向け資料はどこ？",
+    "worries": "カードや返金、日本で使えるかは大丈夫？",
+    "guide": "使うか待つか、迷ったときの決め方"
+  },
+  "depthAt": "2026-11-13T16:40:11+00:00",
+  "updatedAt": "2026-11-13T16:40:11+00:00",
+  "updates": [
+    {
+      "at": "2026-11-13T16:40:11+00:00",
+      "kind": "facts",
+      "title": "公式の資料をもとに、「なるほどの要点」・「公式の窓口」・「今日やること」・「よくある不安」・「判断の目安」を追記しました",
+      "sourceUrl": "https://openai.com/index/introducing-chatgpt-wallet",
+      "sourceName": "OpenAI公式ブログ"
+    }
+  ],
+  "imageCredit": {
+    "kind": "official",
+    "org": "OpenAI",
+    "provider": "OpenAI公式ブログ",
+    "sourceUrl": "https://openai.com/index/introducing-chatgpt-wallet",
+    "original": "https://images.ctfassets.net/kftzwdyauwt9/2xTvIZkcQhKk3VNFioQ4CR/4efb84a6adbddb41311f6b18158fad8b/introducing-chatgpt-wallet-social.png?w=1600&h=900&fit=fill",
+    "width": 1200,
+    "height": 675,
+    "at": "2026-11-13T16:47:49+00:00",
+    "imageKind": "banner"
+  },
+  "heroOk": false
 }
