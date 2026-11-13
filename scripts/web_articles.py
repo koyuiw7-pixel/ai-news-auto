@@ -1270,6 +1270,37 @@ RESEARCH_SOURCE_NOTE = """## 今回の元記事は調査会社・情報会社の
 - {name}の推計・見立ては「{name}の推計では」と添え、元記事に無い数字・発言は作らない。"""
 
 
+# 2026-11-13 オーナー「とにかく数字」「注目する話題がとれていない」（点検 audit_20261113: 続報の追記が門に落ちて話題ごと消えたのが7日で47件。
+# 「Gemini 4 Carbon is now available」「Introducing Claude Fable 5.2」などの新しいモデルの発表が記事なしになっていた）:
+# 続報の追記（既存の記事への書き足し）が門に落ちたら、話題を捨てずに新しい動きの記事として作り直す。
+# 追記を公開中の記事に書き込まないのは今までどおり（門は緩めない）。新しい記事は通常の門（事実確認・公開前の門）を通る。
+# 重複を増やさないよう、発表の題名が既存の記事の題名とほぼ同じ（dedupe の「見出しが類似」）なら作り直さない
+FOLLOWUP_NEW_NOTE = (
+    "\n\n## この記事の位置づけ（必ず守る）\n"
+    "この発表は、すでに公開している記事「{title}」の続きの動きです。同じ内容をくり返す記事にしない。\n"
+    "- 題名とリードは、今回の発表で新しく分かったこと（{facts}）を中心にする。既存の記事と同じ題名・同じ切り口にしない。\n"
+    "- これまでの経緯は1〜2文にとどめ、今回の資料にある事実だけを書く（資料に無いことは書かない）。"
+)
+
+
+def followup_fallback_ok(item_title: str, article: dict) -> tuple[bool, str]:
+    """続報の追記が門に落ちた候補を、新しい記事として作り直してよいか（見出しの重複の門）。(可否, だめな理由)"""
+    grams = dedupe.bigrams(item_title or "")
+    for key in ("title", "videoTitle"):
+        other = str(article.get(key) or "")
+        if not other:
+            continue
+        score = dedupe.jaccard(grams, dedupe.bigrams(other))
+        if score >= dedupe.JACCARD_DUP:
+            return False, f"既存の記事と見出しが類似（{score:.2f}）"
+    return True, ""
+
+
+def same_headline(record: dict, article: dict) -> bool:
+    """作り直した記事の題名が、もとの記事の題名とほぼ同じか（同じなら出さない）"""
+    return dedupe.jaccard(dedupe.bigrams(str(record.get("title") or "")), dedupe.bigrams(str(article.get("title") or ""))) >= dedupe.JACCARD_DUP
+
+
 def research_firm(item: dict) -> str:
     """元記事が調査会社・情報会社の記事なら会社名（違えば空）"""
     return research_firms.firm_name(item.get("source_slug", ""), item.get("url", ""))
@@ -2705,8 +2736,20 @@ def main() -> int:
         return "reject", None, model_name, reason
 
     def try_followup(item: dict, text: str, target: tuple) -> str:
-        """既存記事に続報を足す。戻り値: updated / no_new / different / reject / fail（different なら新しい記事として作る）"""
+        """既存記事に続報を足す。戻り値: updated / no_new / different / new / reject / fail
+        （different＝別の話題、new＝続報の追記が門に落ちたので新しい動きの記事として作り直す。どちらも呼び出し側が新しい記事を作る）"""
         _, path, article, why = target
+
+        def fallback_new(reason: str, new_facts: str) -> bool:
+            """追記が門に落ちた: 話題を捨てず、新しい記事として作り直すか（見出しの重複の門を通るときだけ）"""
+            ok, dup_why = followup_fallback_ok(item["title"], article)
+            if not ok:
+                log(f"   [followup] 追記は不合格。新しい記事にもしない（{dup_why}）")
+                return False
+            item["_followup_new"] = {"slug": path.stem, "title": str(article.get("title") or ""), "facts": new_facts[:200]}
+            log(f"   [followup] 追記は不合格（{reason[:120]}）。話題を捨てず、新しい動きの記事として作り直します")
+            return True
+
         log(f"   [followup] 続報候補: {path.stem}（{why}）")
         try:
             check = followup.check_same_topic(article, item, text)
@@ -2744,6 +2787,8 @@ def main() -> int:
         log(f"   [gate] 続報 {'合格' if not problems else '不合格'} score={score} {('/ ' + ' | '.join(problems[:3])[:300]) if problems else ''}")
         log_quality(state, item, "update", verdict, 1, not problems, model_name or "")
         if problems:
+            if fallback_new("; ".join(problems), check["summary_of_new_facts"]):
+                return "new"
             mark(state, item, skipped=True, reason=f"followup quality: {'; '.join(problems)}"[:200], model=model_name)
             return "reject"
         record = followup.apply_update(article, data, item)
@@ -2754,6 +2799,8 @@ def main() -> int:
         section_gate.apply(record)
         if added := quality.added_problems(article, record):
             log(f"   [gate] 続報の書き足しが門に落ちたので書き込みません: {' | '.join(added[:3])[:300]}")
+            if fallback_new("; ".join(added), check["summary_of_new_facts"]):
+                return "new"
             mark(state, item, skipped=True, reason=f"followup style: {'; '.join(added)}"[:200], model=model_name)
             return "reject"
         path.write_text(json.dumps(record, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
@@ -2931,7 +2978,7 @@ def main() -> int:
             wire_attempts[0] += 1
         if target:
             outcome = try_followup(item, text, target)
-            if outcome != "different":
+            if outcome not in ("different", "new"):
                 if major and outcome == "fail":
                     major_retry(item, "続報の処理に失敗")
                 elif outcome == "updated":
@@ -2956,6 +3003,10 @@ def main() -> int:
             prompt += public_interest.search_title_note(item["_trend_hit"])  # 検索されている言葉を題名に（台帳 A63）
         if item.get("release"):
             prompt += release_quality.prompt_note(item["release"])  # 発表時刻が決まった速報（統計・決算）の書き方（台帳 W35）
+        follow_new = item.get("_followup_new")
+        if follow_new:
+            # 続報の追記が門に落ちた話題: 新しい動きの記事として作る（2026-11-13）
+            prompt += FOLLOWUP_NEW_NOTE.format(title=follow_new["title"][:80], facts=follow_new["facts"] or "今回の発表の中身")
 
         def build(data, model, item=item, page=page, voice_key=voice_key, genre=genre, related=related, bundle=bundle):
             if str(data.get("genre", "")).strip() not in GENRES_BY_SLUG:
@@ -3008,6 +3059,15 @@ def main() -> int:
                 mark(state, item, skipped=True, reason=f"{'quality: ' if status == 'reject' else ''}{info}"[:200], model=model_name,
                      **({"costUsd": cost_usd} if cost_usd else {}))
             return
+        if follow_new:
+            if same_headline(record, {"title": follow_new["title"]}):
+                # 作り直した記事の題名が、もとの記事とほぼ同じ: 重複になるので出さない（見出しの重複の門）
+                log(f"   [skip] 作り直した記事の題名が既存の記事（{follow_new['slug']}）とほぼ同じなので出しません")
+                mark(state, item, skipped=True, reason=f"dedupe: 続報の作り直しが既存の記事と同じ見出し（{follow_new['slug']}）"[:200], model=model_name)
+                run_status[item["id"]] = ("failed", feeds.source_rank(item))
+                return
+            record["followupOf"] = follow_new["slug"]  # もとの記事（続報の追記が門に落ちたので新しい記事にした印）
+            record["relatedSlugs"] = list(dict.fromkeys([follow_new["slug"], *(record.get("relatedSlugs") or [])]))[:6]
         # 速報（scripts/breaking_post.py がデプロイ直後に SNS へ出す）。
         # 速報レーンの記事は Worker が主要企業の公式発表と判定したものなので、必ず速報にする（公開したらすぐ SNS へ）
         # 通常の収集から来たものは、発表から12時間以内のときだけ速報にする（古い発表に【速報】を付けない）
@@ -3107,7 +3167,7 @@ def main() -> int:
                     "source_name": trend_source_name(fetched), "source_slug": "trends", "published_at": q["published_at"],
                 }
                 outcome = try_followup(pseudo, source_text, target)
-                if outcome != "different":
+                if outcome not in ("different", "new"):
                     if outcome != "fail" or state["failed_web"].get(q["id"], 0) >= MAX_FAILURES:
                         used_queue_ids.add(q["id"])
                     continue
