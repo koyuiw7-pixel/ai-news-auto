@@ -67,14 +67,13 @@
   "videoTitle": "冬の電気・ガス代補助は2026年12月使用分から　1・2月は電気1kWhあたり4.5円引き",
   "publishedAt": "2026-11-13T00:25:49.485458+00:00",
   "generatedAt": "2026-11-13T00:27:09.563323+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/winter-electricity-gas-subsidy-2026-figure-dfd0c611.jpg",
   "model": "anthropic-api:claude-haiku-5-5",
   "affiliates": [],
   "newsType": "policy",
   "todayActions": [
-    "利用明細で、電気（kWh）と都市ガス（㎥）の使用量を確かめる",
-    "特設サイトの「2026年12月分使用量入力」欄に、12月分の使用量を入れてみる",
-    "個人情報や手数料を求める電話には応じず、0120-013-305に相談する"
+    "ご利用明細の使用量を計算ページに入れて、12月分の値引きの目安を確かめる",
+    "支援を行っている事業者一覧で、契約している電力会社・ガス会社が対象かを確かめる"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -98,5 +97,110 @@
   "detectedAt": "2026-11-13T00:27:29+00:00",
   "searchTitle": "電気・都市ガスの支援はいくら？　1・2月は1kWhあたり4.5円",
   "layout": "noir",
-  "summaryLine": "電気・都市ガスの料金支援が、2026年12月使用分から2027年2月使用分まで実施されます。"
+  "summaryLine": "電気・都市ガスの料金支援が、2026年12月使用分から2027年2月使用分まで実施されます。",
+  "insight": [
+    {
+      "text": "トップページの「支援を行っている事業者一覧」で、契約している電力会社・ガス会社が支援を行っているかを確かめられます。",
+      "source": "https://denkigas-gekihenkanwa.go.jp/"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "電気・ガス料金支援 お問い合わせ窓口",
+      "url": "https://denkigas-gekihenkanwa.go.jp/",
+      "source": "https://denkigas-gekihenkanwa.go.jp/",
+      "phone": "0120-013-305",
+      "hours": "平日9:00～17:00",
+      "note": "受託事業者は株式会社ＪＴＢです。不審な電話やメールには対応せず、こちらへご相談ください。"
+    },
+    {
+      "name": "支援を行っている事業者一覧",
+      "url": "https://denkigas-gekihenkanwa.go.jp/adopt",
+      "source": "https://denkigas-gekihenkanwa.go.jp/"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "ご利用明細の使用量を計算ページに入れて、12月分の値引きの目安を確かめる",
+      "source": "https://denkigas-gekihenkanwa.go.jp/",
+      "steps": [
+        "ご利用明細で電気（kWh）と都市ガス（㎥）の使用量を確かめる",
+        "トップページの「月々の値引き額の計算はこちら」を開く",
+        "「2026年12月分使用量入力」欄に使用量を入力する",
+        "2027年1月分・2月分の使用量が自動で表示される"
+      ],
+      "url": "https://denkigas-gekihenkanwa.go.jp/"
+    },
+    {
+      "action": "支援を行っている事業者一覧で、契約している電力会社・ガス会社が対象かを確かめる",
+      "source": "https://denkigas-gekihenkanwa.go.jp/",
+      "steps": [
+        "トップページの「支援を行っている事業者一覧」を開く",
+        "契約している電力会社・ガス会社の名前を探す"
+      ],
+      "url": "https://denkigas-gekihenkanwa.go.jp/adopt"
+    }
+  ],
+  "cause": {
+    "text": "中東情勢を踏まえた「緊急的激変緩和措置」の今後の対応を示した令和8年10月29日の高市総理大臣の記者会見で、冬の需要期に使用量が多くなる12月から2月の電気・ガス料金への支援を実施することとされました。",
+    "status": "background",
+    "source": "https://denkigas-gekihenkanwa.go.jp/"
+  },
+  "worries": [
+    {
+      "q": "申請は必要？手続きはある？",
+      "a": "一般家庭および年間契約量1,000万㎥未満の企業等は、申請などの手続きは不要です。本制度を利用している事業者が、毎月の料金から使用量に応じて値引きを行います。",
+      "source": "https://denkigas-gekihenkanwa.go.jp/",
+      "action": "申請は不要なので、個人情報や手数料を求められたら応じず、窓口0120-013-305に相談する"
+    },
+    {
+      "q": "電話で個人情報を聞かれたら答えていい？",
+      "a": "本事業による値引きについて、個人情報（生年月日、住所、家族構成等）や手数料を求める不審な電話や、経済産業省・資源エネルギー庁を騙った不審なメールが送られてくる事案が発生しています。値引きに個人情報や手数料が求められることはありません。",
+      "source": "https://denkigas-gekihenkanwa.go.jp/",
+      "action": "不審な電話やメールには対応せず、窓口0120-013-305へ相談する。個人情報は伝えない"
+    },
+    {
+      "q": "いくら安くなるのか知りたい",
+      "a": "値引き単価は、電気（低圧）が2026年12月使用分で1.0円/kWh、2027年1・2月使用分で4.5円/kWhです。都市ガスは12月分が4.0円/㎥、1・2月分が18.0円/㎥で、単価に月々の使用量を掛けると値引き額が出ます。",
+      "source": "https://denkigas-gekihenkanwa.go.jp/",
+      "action": "ご利用明細の使用量を、トップページの計算ページに入れて目安額を確かめる"
+    },
+    {
+      "q": "1月・2月の使用量はどう扱われる？",
+      "a": "寒さが厳しい1・2月分は、12月より約2割多い使用量が自動で表示されます。実際の使用量が分かる場合は、ご自身で1月と2月の使用量を変更できます。",
+      "source": "https://denkigas-gekihenkanwa.go.jp/",
+      "action": "1月・2月の使用量が分かるなら、計算ページの数字を実際の使用量に書き換えて確かめる"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "値引きの対象か、契約会社を確かめる方法",
+    "cause": "なぜ冬だけ値引きがあるのか",
+    "steps": "今日、12月分の使用量を入れて確かめる",
+    "desk": "困ったときの相談先と電話番号",
+    "worries": "申請は要る？不審な電話は？"
+  },
+  "depthAt": "2026-11-13T00:43:35+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "1kWh",
+    "label": "2027年1・2月使用分",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-13T00:44:20+00:00"
+  },
+  "imageFocus": {
+    "x": 0.434,
+    "y": 0.456,
+    "box": [
+      0.022,
+      0.042,
+      0.847,
+      0.869
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/winter-electricity-gas-subsidy-2026-figure-dfd0c611.jpg"
+  }
 }
