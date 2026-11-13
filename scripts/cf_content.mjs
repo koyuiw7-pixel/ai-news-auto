@@ -68,10 +68,23 @@ fs.writeFileSync(path.join(OUT, "retired.json"), fs.existsSync("content/retired.
 }
 
 let count = 0;
+// 載せた・直したばかりの記事（48時間以内）の一覧。cloudflare/worker.ts が、前の版の写しを返さずその場で今の版を出す記事を決めるのに使う
+// （cloudflare/edge-cache.ts の isRecentArticlePath・articleTouchedAt と同じ決まり）
+const RECENT_MS = 48 * 3_600_000;
+const buildNow = Date.now();
+const recent = {};
 for (const name of fs.readdirSync("content/articles").filter((n) => n.endsWith(".json"))) {
   fs.copyFileSync(path.join("content/articles", name), path.join(OUT, "articles", name));
   count++;
+  try {
+    const a = JSON.parse(fs.readFileSync(path.join("content/articles", name), "utf8"));
+    const times = [a.generatedAt || a.publishedAt, a.updatedAt].map((iso) => Date.parse(iso ?? "")).filter((t) => !Number.isNaN(t));
+    const at = times.length ? Math.min(Math.max(...times), buildNow) : 0;
+    if (a.slug && buildNow - at <= RECENT_MS) recent[a.slug] = at;
+  } catch {}
 }
+fs.writeFileSync(path.join(OUT, "recent.json"), JSON.stringify({ builtAt: buildNow, articles: recent }));
+console.log(`[cf_content] ${Object.keys(recent).length} recent articles -> recent.json`);
 console.log(`[cf_content] ${count} articles, ${Object.keys(files).length} files -> ${OUT}`);
 
 // ビルド時に作った ISR のキャッシュを静的アセットへ（open-next.config.ts の kvOverAssets が読む）

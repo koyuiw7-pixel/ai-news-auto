@@ -71,9 +71,38 @@ export function edgeCacheKeyUrl(url: URL, codeHash: string): string {
  */
 export type EdgeHitDecision = "fresh" | "stale" | "render";
 
-export function edgeHitDecision(pathname: string, cachedVersion: string | null, currentVersion: string, immutable = false): EdgeHitDecision {
+export function edgeHitDecision(pathname: string, cachedVersion: string | null, currentVersion: string, immutable = false, recentArticle = false): EdgeHitDecision {
   if (immutable || cachedVersion === currentVersion) return "fresh";
-  return mustBeCurrent(pathname) ? "render" : "stale";
+  return mustBeCurrent(pathname) || recentArticle ? "render" : "stale";
+}
+
+/** 載せた・直したばかりの記事として扱う長さ（48時間） */
+export const RECENT_ARTICLE_MS = 48 * 3_600_000;
+
+/** 記事ページ（/articles/<slug>）の slug。一覧（/articles・/articles/page/2）・カバー画像は対象外 */
+export function articlePageSlug(pathname: string): string | null {
+  const match = /^\/articles\/([A-Za-z0-9][A-Za-z0-9_-]*)\/?$/.exec(pathname);
+  return match ? match[1] : null;
+}
+
+/**
+ * 載せてから・中身を直してから48時間以内の記事ページか（2026-11-13 オーナー「Googleからの流入対策をもっと」）。
+ * こういう記事は、前のデプロイで描いた古い版を返さず、その場で今の版を出す（edgeHitDecision の recentArticle）。
+ * デプロイのたびに各地のエッジで1回ずつ古い版（追記の前の本文・新しい関連記事の無いページ）が出て、検索のロボットがそれを受け取ることがあった。
+ * 新しい記事はビルドのときに描いてあるので、その場で出しても速い。48時間を過ぎた記事は今までどおり（古い版をすぐ返して裏で作り直す）。
+ * recent は scripts/cf_content.mjs が作る一覧（slug → 載せた・直した時刻のミリ秒）
+ */
+export function isRecentArticlePath(pathname: string, recent: Record<string, number> | null | undefined, now: number): boolean {
+  const slug = articlePageSlug(pathname);
+  if (!slug || !recent) return false;
+  const at = recent[slug];
+  return typeof at === "number" && now - at <= RECENT_ARTICLE_MS;
+}
+
+/** 記事 JSON から、載せた時刻と直した時刻の新しいほう（ミリ秒。読めなければ 0）。先の日付はビルドの時刻に丸める */
+export function articleTouchedAt(article: { generatedAt?: string; publishedAt?: string; updatedAt?: string }, buildNow: number): number {
+  const times = [article.generatedAt || article.publishedAt, article.updatedAt].map((iso) => Date.parse(iso ?? "")).filter((t) => !Number.isNaN(t));
+  return times.length ? Math.min(Math.max(...times), buildNow) : 0;
 }
 
 /**

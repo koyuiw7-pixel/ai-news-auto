@@ -113,3 +113,33 @@ test("記事ページ: 記事 JSON を待たずに Next へ渡し、キャッシ
   const set = config.slice(config.indexOf("set: async"), config.indexOf("delete:"));
   assert.match(set, /if \(isNotFoundEntry\(value\)\) return;/);
 });
+
+// 載せて・直して48時間以内の記事ページは、前の版を返さずその場で今の版を出す（2026-11-13）
+test("新しい記事ページ: 前の版の写しは返さず描き直す。48時間を過ぎた記事・一覧にない記事は今までどおり", () => {
+  const { isRecentArticlePath, articlePageSlug, articleTouchedAt, RECENT_ARTICLE_MS } = loaded.exports;
+  const now = Date.parse("2026-11-13T10:00:00Z");
+  const recent = { "new-one": now - 3_600_000, "edge": now - RECENT_ARTICLE_MS, "old-one": now - RECENT_ARTICLE_MS - 1 };
+  assert.equal(isRecentArticlePath("/articles/new-one", recent, now), true);
+  assert.equal(isRecentArticlePath("/articles/new-one/", recent, now), true);
+  assert.equal(isRecentArticlePath("/articles/edge", recent, now), true);
+  assert.equal(isRecentArticlePath("/articles/old-one", recent, now), false);
+  assert.equal(isRecentArticlePath("/articles/unknown", recent, now), false);
+  assert.equal(isRecentArticlePath("/articles/new-one", null, now), false);
+  for (const p of ["/articles", "/articles/page/2", "/cover/new-one", "/card/new-one", "/products/new-one"]) assert.equal(articlePageSlug(p), null, p);
+  assert.equal(edgeHitDecision("/articles/new-one", "old", "new", false, true), "render");
+  assert.equal(edgeHitDecision("/articles/new-one", "new", "new", false, true), "fresh");
+  assert.equal(edgeHitDecision("/articles/old-one", "old", "new", false, false), "stale");
+  // 載せた時刻と直した時刻の新しいほう。先の日付はビルドの時刻に丸める
+  assert.equal(articleTouchedAt({ generatedAt: "2026-11-01T00:00:00Z", updatedAt: "2026-11-13T09:00:00Z" }, now), Date.parse("2026-11-13T09:00:00Z"));
+  assert.equal(articleTouchedAt({ publishedAt: "2026-12-03T00:00:00Z" }, now), now);
+  assert.equal(articleTouchedAt({}, now), 0);
+});
+
+test("Worker は新しい記事の一覧（recent.json）を見て決め、ビルドがその一覧を作る", () => {
+  const worker = fs.readFileSync(path.join(root, "cloudflare/worker.ts"), "utf8");
+  assert.match(worker, /decision === "stale" && articlePageSlug\(url\.pathname\) && isRecentArticlePath\(url\.pathname, await loadRecent\(env\), Date\.now\(\)\)\) decision = "render"/);
+  assert.match(worker, /\/_content\/recent\.json/);
+  const build = fs.readFileSync(path.join(root, "scripts/cf_content.mjs"), "utf8");
+  assert.match(build, /recent\.json/);
+  assert.match(build, /RECENT_MS = 48 \* 3_600_000/);
+});

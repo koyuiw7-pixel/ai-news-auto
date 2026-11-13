@@ -12,7 +12,7 @@ import { flushHeld, handlePush, type PushEnv } from "./push";
 import { handleAff, type AffEnv } from "./aff";
 import { serveVideo } from "./video";
 import { handleReview, type ReviewEnv } from "./review";
-import { edgeCacheKeyUrl, edgeHitDecision, isInternalRequest } from "./edge-cache";
+import { articlePageSlug, edgeCacheKeyUrl, edgeHitDecision, isInternalRequest, isRecentArticlePath } from "./edge-cache";
 // @ts-ignore ビルド時に生成される（scripts/cf_content.mjs。JS・CSS のファイル名の組のハッシュ）
 import codeInfo from "../.open-next/saisoku-code.json";
 
@@ -132,6 +132,25 @@ function loadRetiredLists(env: Env): Promise<RetiredLists> {
     return empty();
   });
   return retiredLoading;
+}
+
+/**
+ * 載せた・直したばかりの記事の一覧（/_content/recent.json。scripts/cf_content.mjs が作る。slug → 時刻のミリ秒）。
+ * 前の版の写しが見つかった記事ページのときだけ読む（isolate ごとに1回）。読めなければ今までどおり（古い版を返して裏で作り直す）
+ */
+let recentLoading: Promise<Record<string, number>> | null = null;
+
+function loadRecent(env: Env): Promise<Record<string, number>> {
+  recentLoading ??= (async () => {
+    const res = await asset(env, "/_content/recent.json");
+    if (!res.ok) return {};
+    return ((await res.json()) as { articles?: Record<string, number> }).articles ?? {};
+  })().catch((error) => {
+    recentLoading = null;
+    console.error("[worker] recent list failed", String(error));
+    return {};
+  });
+  return recentLoading;
 }
 
 async function loadRetired(env: Env): Promise<Map<string, RetiredEntry>> {
@@ -474,7 +493,9 @@ export default {
     const edge = cacheKey ? (caches as unknown as { default: Cache }).default : null;
     if (edge && cacheKey) {
       const hit = await edge.match(cacheKey);
-      const decision = hit ? edgeHitDecision(url.pathname, hit.headers.get("x-saisoku-ver"), deployVersion(env), isImmutableImage(url)) : null;
+      let decision = hit ? edgeHitDecision(url.pathname, hit.headers.get("x-saisoku-ver"), deployVersion(env), isImmutableImage(url)) : null;
+      // 載せて・直して48時間以内の記事ページも、前の版は返さずその場で今の版を出す（cloudflare/edge-cache.ts の isRecentArticlePath）
+      if (decision === "stale" && articlePageSlug(url.pathname) && isRecentArticlePath(url.pathname, await loadRecent(env), Date.now())) decision = "render";
       // 前のデプロイで描いたトップ・一覧・サイトマップ・フィード: 古い版は返さず、ここでその場で描き直す（新しい記事がすぐ載る）。
       // 描き直しが 5xx のときだけ、古い版を返す（エラーよりよい）
       if (hit && decision === "render") {
