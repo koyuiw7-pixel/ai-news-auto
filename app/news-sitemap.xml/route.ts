@@ -11,7 +11,7 @@ const escapeXml = (value: string) =>
 /**
  * Google ニュース用サイトマップ。直近2日以内に公開した記事だけを載せる（Google の仕様）。
  * ビルドは記事が増えるたびに走るので、常に新しい記事が並ぶ。
- * 載せる基準は lib/indexing.ts の newsSitemapReason（重複・角度違いの解説・まとめ・元の発表から48時間以上たった記事は載せない）。
+ * 載せる基準は lib/indexing.ts の newsSitemapReason（重複・まとめ・元の発表から48時間以上たった記事は載せない。別の角度の解説は、載せて48時間以内なら載せる）。
  * 公開日は最初に載せた時刻（generatedAt）のまま。続報は lastmod にだけ反映する。
  * news:name は Google ニュースの媒体名（サイト名＝WebSite 構造化データの name）と一致させる。
  */

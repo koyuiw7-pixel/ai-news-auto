@@ -236,13 +236,15 @@ export function sourceTimeOf(article: Pick<ArticleSummary, "sourcePublishedAt" |
 
 /**
  * ニュース用サイトマップに載せないときの理由（載せるなら null）。scripts/indexnow.py の news_reason と同じ。
+ * 載せないのは: 検索に出さない記事・まとめ・遅れて作った記事（late）・載せて48時間を過ぎた記事・元の発表から48時間を超えて作った記事。
  * 公開日は最初に載せた時刻（generatedAt。続報や書き直しで変えない）。
  */
 export function newsSitemapReason(article: ArticleSummary, now = Date.now()): string | null {
   const reason = noindexReason(article);
   if (reason) return reason;
   if (article.type === "roundup") return "roundup";
-  if (article.angleOf) return "angle";
+  // 別の角度の解説（angleOf）も、載せて48時間以内なら載せる（2026-11-13 オーナー「Googleからの流入対策をもっと」。
+  // 元の記事とは題名も中身も違う独立した記事で、検索にも出している。古い発表から作った記事は下の late・stale-source で今までどおり外す）
   if (article.late) return "late";
   const published = Date.parse(article.generatedAt || article.publishedAt || "");
   if (!Number.isFinite(published) || now - published >= NEWS_WINDOW_MS) return "old";

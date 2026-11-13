@@ -126,7 +126,11 @@ class NewsSitemapTest(unittest.TestCase):
         self.assertEqual(self.reason(sourcePublishedAt="2026-10-29T00:00:00+00:00"), "stale-source")
         self.assertEqual(self.reason(gen="2026-10-30T00:00:00+00:00"), "old")
         self.assertEqual(self.reason(duplicateOf="b"), "duplicate")
-        self.assertEqual(self.reason(angleOf="b"), "angle")
+        # 別の角度の解説は、載せて48時間以内なら載せる（2026-11-13）。古い発表から作った・遅れて作った解説は載せない
+        self.assertIsNone(self.reason(angleOf="b", pub="2026-11-02T05:00:00+00:00"))
+        self.assertEqual(self.reason(angleOf="b", gen="2026-10-30T00:00:00+00:00"), "old")
+        self.assertEqual(self.reason(angleOf="b", sourcePublishedAt="2026-10-29T00:00:00+00:00"), "stale-source")
+        self.assertEqual(self.reason(angleOf="b", late=True), "late")
         self.assertEqual(self.reason(late=True), "late")
         self.assertEqual(self.reason(type="roundup"), "roundup")
 

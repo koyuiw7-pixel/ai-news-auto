@@ -711,8 +711,7 @@ def news_reason(article: dict, dups: set[str] | frozenset = frozenset(), now: da
         return reason
     if article.get("type") == "roundup":
         return "roundup"
-    if article.get("angleOf"):
-        return "angle"
+    # 別の角度の解説（angleOf）も、載せて48時間以内なら載せる（2026-11-13。古い発表から作った記事は late・stale-source で外す）
     if article.get("late"):
         return "late"
     now = now or datetime.now(timezone.utc)

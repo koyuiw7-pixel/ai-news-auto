@@ -94,7 +94,11 @@ test('ニュース用サイトマップは元の発表から48時間以内・重
   assert.equal(newsSitemapReason({ ...fresh, sourcePublishedAt: '2026-10-29T00:00:00Z' }, now), 'stale-source');
   assert.equal(newsSitemapReason({ ...fresh, generatedAt: '2026-10-30T00:00:00Z' }, now), 'old');
   assert.equal(newsSitemapReason({ ...fresh, duplicateOf: 'y' }, now), 'duplicate');
-  assert.equal(newsSitemapReason({ ...fresh, angleOf: 'y' }, now), 'angle');
+  // 別の角度の解説は、載せて48時間以内なら載せる（2026-11-13）。古い発表から作った・遅れて作った解説は今までどおり載せない
+  assert.equal(newsSitemapReason({ ...fresh, angleOf: 'y' }, now), null);
+  assert.equal(newsSitemapReason({ ...fresh, angleOf: 'y', generatedAt: '2026-10-30T00:00:00Z' }, now), 'old');
+  assert.equal(newsSitemapReason({ ...fresh, angleOf: 'y', sourcePublishedAt: '2026-10-29T00:00:00Z' }, now), 'stale-source');
+  assert.equal(newsSitemapReason({ ...fresh, angleOf: 'y', late: true }, now), 'late');
   assert.equal(newsSitemapReason({ ...fresh, late: true }, now), 'late');
   assert.equal(newsSitemapReason({ ...fresh, type: 'roundup' }, now), 'roundup');
 });
