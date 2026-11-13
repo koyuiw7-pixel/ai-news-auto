@@ -1,5 +1,13 @@
 {
  "articles": {
+  "26th-japan-venture-awards-startups": {
+   "at": "2026-11-13T22:51:41+00:00",
+   "before": 571,
+   "gateTries": 1,
+   "status": "not-thicker",
+   "tries": 1,
+   "why": "後処理のあと 634字（871字に届かない）"
+  },
   "ajinomoto-household-price-hike-2026-dec": {
    "at": "2026-11-12T17:44:23+00:00",
    "before": 1396,
@@ -49,6 +57,22 @@
    "tries": 0,
    "why": "公式の発表の資料が無い（動画などが元）"
   },
+  "bleague-2026-27-salary-cap-contract": {
+   "after": 1206,
+   "at": "2026-11-13T22:51:41+00:00",
+   "bar": [
+    1,
+    3,
+    5,
+    6,
+    7
+   ],
+   "before": 537,
+   "model": "gemini-3.5-flash-lite",
+   "status": "thickened",
+   "tries": 1,
+   "why": ""
+  },
   "boj-deposits-by-depositor-2026-09": {
    "at": "2026-11-12T17:44:23+00:00",
    "before": 317,
@@ -58,12 +82,18 @@
    "why": "品質ゲートに合格しなかった（今の版のまま）（元記事・確認済みの資料に無い画面の手順・メニュー名・ボタン名がある（「ホームページの統計ページ」）。資料にある道順だけを書くか、「公式ヘルプの手順を確認してください」と書く）"
   },
   "bousai-symposium-2026-online-issue": {
-   "at": "2026-11-13T17:22:23+00:00",
+   "after": 1756,
+   "at": "2026-11-13T22:51:41+00:00",
+   "bar": [
+    1,
+    6
+   ],
    "before": 402,
    "gateTries": 1,
-   "status": "gate-failed",
-   "tries": 1,
-   "why": "品質ゲートに合格しなかった（今の版のまま）（読めなかった開示資料（https://www.bousai.go.jp/common2026/pdf/pamphlet.pdf）があるのに「発表されていません」と書いている。資料を確かめられていないことは「未発表」と言い切らない（その文を消）"
+   "model": "anthropic-api:claude-sonnet-5-5",
+   "status": "thickened",
+   "tries": 2,
+   "why": ""
   },
   "building-digital-synth-with-google-gemini": {
    "at": "2026-11-12T05:52:06+00:00",
@@ -149,6 +179,13 @@
    "status": "gate-failed",
    "tries": 2,
    "why": "品質ゲートに合格しなかった（今の版のまま）（元記事・確認済みの事実の束・計算済みの数字のどれにも無い数字がある（「| 日本 | 384億ドル」、「| 韓国 | 192億ドル」、「EAN10カ国 | 合計240億ドル」）。元記事か束の数字に直すか、その文を削る。簡単な計算（かけ算・足し）"
+  },
+  "daihatsu-rocky-raize-rex-recall-table": {
+   "at": "2026-11-13T22:51:41+00:00",
+   "before": 1040,
+   "status": "skipped",
+   "tries": 0,
+   "why": "別の切り口の記事（親の記事と同じ資料）"
   },
   "dbj-government-guaranteed-bond-93": {
    "at": "2026-11-12T17:44:23+00:00",
@@ -254,6 +291,20 @@
    "tries": 0,
    "why": "人が確かめた記事（Muse・編集部）"
   },
+  "empress-cup-48-kickoff": {
+   "after": 1090,
+   "at": "2026-11-13T22:51:41+00:00",
+   "bar": [
+    3,
+    5,
+    6
+   ],
+   "before": 553,
+   "model": "gemini-3.5-flash-lite",
+   "status": "thickened",
+   "tries": 1,
+   "why": ""
+  },
   "flavos-refund-eligibility-check": {
    "at": "2026-11-12T05:52:06+00:00",
    "before": 580,
@@ -279,6 +330,51 @@
    "at": "2026-11-12T05:52:06+00:00",
    "before": 375,
    "model": "gemini-3.5-flash-lite",
+   "status": "thickened",
+   "tries": 1,
+   "why": ""
+  },
+  "foreign-stock-fund-inflow-october-2026": {
+   "at": "2026-11-13T22:51:41+00:00",
+   "before": 572,
+   "gateTries": 1,
+   "status": "gate-failed",
+   "tries": 1,
+   "why": "品質ゲートに合格しなかった（今の版のまま）（body に投資助言・売買のすすめの言い回しがある（「押し目買い」）。一般的な情報と判断材料の提示に直す）"
+  },
+  "fujiya-country-maam-snow-middle-pack": {
+   "after": 987,
+   "at": "2026-11-13T22:51:41+00:00",
+   "bar": [
+    6
+   ],
+   "before": 523,
+   "model": "anthropic-api:claude-sonnet-5-5",
+   "status": "thickened",
+   "tries": 1,
+   "why": ""
+  },
+  "futsal-japan-morocco-game2-loss": {
+   "after": 942,
+   "at": "2026-11-13T22:51:41+00:00",
+   "bar": [
+    3,
+    5
+   ],
+   "before": 580,
+   "model": "gemini-3.5-flash-lite",
+   "status": "thickened",
+   "tries": 1,
+   "why": ""
+  },
+  "gamba-osaka-youth-promotion-2026": {
+   "after": 1330,
+   "at": "2026-11-13T22:51:41+00:00",
+   "bar": [
+    6
+   ],
+   "before": 562,
+   "model": "anthropic-api:claude-sonnet-5-5",
    "status": "thickened",
    "tries": 1,
    "why": ""
@@ -340,12 +436,34 @@
    "tries": 2,
    "why": "品質ゲートに合格しなかった（今の版のまま）（「前から売っている商品の値段が変わるわけではありません」→ 元記事・確認済みの文脈のどこにも、既存商品の価格が変わらないという記述がない。価格に関する創作である。）"
   },
+  "house-foods-price-revision-2027": {
+   "at": "2026-11-13T22:51:41+00:00",
+   "before": 546,
+   "gateTries": 1,
+   "status": "gate-failed",
+   "tries": 1,
+   "why": "品質ゲートに合格しなかった（今の版のまま）（元記事・確認済みの事実の束・計算済みの数字のどれにも無い数字がある（「 | 427円 | **56円」、「 | 625円 | **116円」、「 | 118円 | **23円」）。元記事か束の数字に直すか、その文を削る。簡単な計算（かけ算・）"
+  },
   "icloud-outage-resolved-nov-2026": {
    "at": "2026-11-12T05:52:06+00:00",
    "before": 1067,
    "status": "skipped",
    "tries": 0,
    "why": "人が確かめた記事（Muse・編集部）"
+  },
+  "inflation-bankruptcies-october-2026": {
+   "after": 1046,
+   "at": "2026-11-13T22:51:41+00:00",
+   "bar": [
+    3,
+    5,
+    6
+   ],
+   "before": 558,
+   "model": "gemini-3.5-flash-lite",
+   "status": "thickened",
+   "tries": 1,
+   "why": ""
   },
   "intelligent-terminal-local-120b-llm": {
    "at": "2026-11-12T05:52:06+00:00",
@@ -361,6 +479,16 @@
    "status": "gate-failed",
    "tries": 2,
    "why": "品質ゲートに合格しなかった（今の版のまま）（body に投資助言・売買のすすめの言い回しがある（「押し目買い」）。一般的な情報と判断材料の提示に直す）"
+  },
+  "ipa-forum-2026-archive-release": {
+   "after": 1683,
+   "at": "2026-11-13T22:51:41+00:00",
+   "bar": [],
+   "before": 576,
+   "model": "anthropic-api:claude-sonnet-5-5",
+   "status": "thickened",
+   "tries": 1,
+   "why": ""
   },
   "japan-cpi-september-2026-green-tea": {
    "at": "2026-11-12T05:52:06+00:00",
@@ -564,6 +692,14 @@
    "tries": 2,
    "why": ""
   },
+  "mlit-port-co2-reduction-wg-2026": {
+   "at": "2026-11-13T22:51:41+00:00",
+   "before": 548,
+   "gateTries": 1,
+   "status": "gate-failed",
+   "tries": 1,
+   "why": "品質ゲートに合格しなかった（今の版のまま）（「行政・研究所側4人」→ 元資料の構成メンバーでは行政・研究所側は酒井、仙﨑、川端の3人で、人数が合わない）"
+  },
   "mof-debt-balance-202609": {
    "after": 1530,
    "at": "2026-11-12T17:44:23+00:00",
@@ -758,6 +894,18 @@
    "tries": 2,
    "why": ""
   },
+  "outlook-vulnerability-november-2026": {
+   "after": 936,
+   "at": "2026-11-13T22:51:41+00:00",
+   "bar": [
+    6
+   ],
+   "before": 571,
+   "model": "gemini-3.5-flash-lite",
+   "status": "thickened",
+   "tries": 1,
+   "why": ""
+  },
   "ozumo-kyushu-basho-day-6-results": {
    "at": "2026-11-13T17:22:23+00:00",
    "before": 495,
@@ -857,6 +1005,13 @@
    "tries": 0,
    "why": "人が確かめた記事（Muse・編集部）"
   },
+  "salary-raise-sdf-nagoya-report": {
+   "at": "2026-11-13T22:51:41+00:00",
+   "before": 654,
+   "status": "skipped",
+   "tries": 0,
+   "why": "まとめの記事（元の資料が1本ではない）"
+  },
   "salesforce-agentforce-coworker-growth-features": {
    "at": "2026-11-12T05:52:06+00:00",
    "before": 915,
@@ -917,12 +1072,38 @@
    "tries": 1,
    "why": ""
   },
+  "suntory-tokucha-w-supplement": {
+   "after": 1307,
+   "at": "2026-11-13T22:51:41+00:00",
+   "bar": [
+    1,
+    6
+   ],
+   "before": 569,
+   "model": "anthropic-api:claude-sonnet-5-5",
+   "status": "thickened",
+   "tries": 1,
+   "why": ""
+  },
   "tax-refund-filing-from-jan-1": {
    "at": "2026-11-12T05:52:06+00:00",
    "before": 1385,
    "status": "skipped",
    "tries": 0,
    "why": "人が確かめた記事（Muse・編集部）"
+  },
+  "tokyo-jafda-bicycle-safety-agreement": {
+   "after": 972,
+   "at": "2026-11-13T22:51:41+00:00",
+   "bar": [
+    1,
+    8
+   ],
+   "before": 540,
+   "model": "gemini-3.5-flash-lite",
+   "status": "thickened",
+   "tries": 1,
+   "why": ""
   },
   "tsunelog-vol27-beach-soccer": {
    "after": 780,
@@ -972,6 +1153,13 @@
    "status": "skipped",
    "tries": 0,
    "why": "公式の発表の資料が無い（動画などが元）"
+  },
+  "us-airport-flight-suspension-outage": {
+   "at": "2026-11-13T22:51:41+00:00",
+   "before": 428,
+   "status": "skipped",
+   "tries": 0,
+   "why": "まとめの記事（元の資料が1本ではない）"
   },
   "v7-go-gpt-5-6-integration-context-graph": {
    "at": "2026-11-12T05:52:06+00:00",
@@ -1083,6 +1271,12 @@
    "thickened": 8,
    "tried": 15,
    "usd": 1.3027
+  },
+  {
+   "at": "2026-11-13T22:51:41+00:00",
+   "thickened": 11,
+   "tried": 15,
+   "usd": 0.992
   }
  ]
 }
