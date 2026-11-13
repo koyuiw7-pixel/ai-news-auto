@@ -3,8 +3,14 @@
   "type": "roundup",
   "newsType": "event",
   "roundupKey": "ChatGPT Work",
-  "membersHash": "febdd60d09a09398",
+  "membersHash": "701a3291634afb0f",
   "sources": [
+    {
+      "slug": "openai-daybreak-gpt6-cyber-launch",
+      "title": "脆弱性の対応時間を96%削減　OpenAIの自動修復基盤「Daybreak」",
+      "publishedAt": "2026-11-12T22:37:14+00:00",
+      "channel": "OpenAI"
+    },
     {
       "slug": "kimi-k3-1-pro-highspeed-bedrock",
       "title": "BedrockでKimi K3.1 Pro Highspeed提供　出力速度はProの2〜3倍",
@@ -342,90 +348,79 @@
       "channel": "OpenAI"
     }
   ],
-  "title": "ChatGPT Workで何が変わるのか　全自動化からデータ分析・オフィス統合まで全機能まとめ",
-  "seoTitle": "ChatGPT Work全機能まとめ：データ自動分析から画面操作まで",
-  "threadsPost": "業務でChatGPTを使っている人に、知っておいてほしい話です。\n\nChatGPT Workにデータの自動分析やPC操作など多くの新機能が追加されました。\n従来モデルより50%以上安く使える最新モデルの提供も始まっています。\n\n毎日のデスクワークで、一番時間を減らしたい作業は何ですか？",
+  "title": "ChatGPT Workで何が変わる？GPT-6と自律型エージェントの全機能・導入効果まとめ",
+  "seoTitle": "ChatGPT Work全機能まとめ：GPT-6とエージェント連携の決定版",
+  "threadsPost": "ChatGPTを仕事で使う人に、知っておいてほしい話です。\n\nOpenAIは企業向け基盤「ChatGPT Work」と次世代モデル群の機能を拡充しました。\n自然言語でのデータ分析や書類修正、障害対応までAIが自動でこなします。\n\n職場で生成AIを使うようになって、1週間でどれくらい時間が浮きましたか？",
   "threadsHook": "callout",
   "threadsQuestions": [
     {
-      "pattern": "plain",
-      "question": "毎日のデスクワークで、一番時間を減らしたい作業は何ですか？"
-    },
-    {
-      "pattern": "future",
-      "question": "データ分析や書類作成、これからどこまでAIに任せたいですか？"
+      "pattern": "count",
+      "question": "職場で生成AIを使うようになって、1週間でどれくらい時間が浮きましたか？"
     },
     {
       "pattern": "ab",
-      "question": "定型業務の自動化なら、速度重視と費用重視のどちらを選びますか？"
+      "question": "会議で伝わるのは、きれいなスライドと動く試作品のどちらだと感じますか？"
+    },
+    {
+      "pattern": "price",
+      "question": "仕事で使うAIに、自分のお金で毎月いくらまでなら出せますか？"
     }
   ],
   "threadsStyle": 3,
-  "lede": "ChatGPT Workは、社内データの自動分析から文書の編集、画面操作までをこなす総合的な業務基盤へ進化しました。作業時間を最大90%短縮する自律エージェントのほか、従来より50%以上安いモデル「GPT-6.1 Terra」の投入により、費用を抑えた大量処理が可能になります。まずは自社のデータ接続環境と利用権限を確かめ、どの業務から自動化を始めるか検証を進めてみてください。",
-  "description": "ChatGPT Workの全機能を徹底解説。社内データの自動分析、Microsoft 365やFigmaとの連携、画面操作エージェント「dot」、最新モデルGPT-6.1 Terraのコスト比較まで、複数記事から見えてきた活用法をまとめました。",
+  "lede": "企業向け基盤「ChatGPT Work」と次世代モデル「GPT-6」シリーズの展開により、業務の自動化範囲が書類作成からデータ分析、サイバーセキュリティ対応まで大きく広がりました。定型業務の応答時間を最大96%削減する自律型エージェント「Daybreak」や、従来の半額以下で扱える「GPT-6.1 Terra」など、実務向けの選択肢が揃っています。自社の契約プランとアクセス権限を確認し、無料枠や既存のPlus・Proプランから順次検証を進めることが求められます。",
+  "description": "企業向けプラットフォーム「ChatGPT Work」とGPT-6ファミリー、各種AIエージェントの全機能を網羅。ダッシュボード自動生成やWord連携、セキュリティ基盤「Daybreak」、新モデル「GPT-6.1 Terra」の料金・性能・導入手順を詳しく解説します。",
   "keywords": [
     "ChatGPT Work",
+    "GPT-6",
     "OpenAI",
     "GPT-6.1 Terra",
-    "GPT-6 Astra",
-    "AIエージェント",
-    "データ分析自動化",
-    "Microsoft 365連携",
-    "Amazon Bedrock",
+    "Daybreak",
     "Codex",
-    "社内AI活用"
+    "AIエージェント",
+    "Amazon Bedrock",
+    "GPT-6 Astra",
+    "APIクレジット"
   ],
   "tags": [
     "ChatGPT",
     "OpenAI",
-    "生成AI",
-    "業務効率化",
-    "AWS"
+    "GPT-6",
+    "AIエージェント",
+    "ChatGPT Work"
   ],
   "highlights": [
-    "ChatGPT Workが進化し、データ分析から文書編集、画面操作までを一体でこなせる業務基盤になりました。",
-    "処理速度を向上させた新モデルや、従来の半額以下で使えるモデルの追加で選択肢が広がっています。",
-    "常時稼働するAIエージェントの導入により、複雑な調査やアプリ開発の時間を大幅に減らせます。"
+    "企業向け「ChatGPT Work」とGPT-6エコシステムにより、書類編集から自動分析まで業務が高速化します。",
+    "セキュリティ基盤「Daybreak」では、対応時間を96%削減し障害原因の特定や修正パッチ生成を自動化。",
+    "新モデル「GPT-6.1 Terra」は従来比50%安い単価で提供され、PC操作や日常事務のコストを抑えます。"
   ],
   "timetable": [],
-  "body": "OpenAIが展開する法人・ビジネス向けAI環境「ChatGPT Work」は、単なる文章回答ツールから、社内システムやデスクトップアプリと連携して自律的に働く業務基盤へと急速に変化しています。\n\nこれまでの生成AI導入では、チャット画面と業務ツールの間を人間が手作業で行き来する必要がありました。しかし、一連の機能拡張によって、データベースからの自動採掘、ダッシュボードの構築、Microsoft 365上での文書編集、さらにはパソコン画面の直接操作までが単一の環境に統合されつつあります。\n\n企業が現場に導入するうえでは、能力だけでなく処理速度やAPI単価を含めた運用コストの評価が重要です。最新のGPT-6ファミリーへの刷新や、AWS（Amazon Web Services）基盤との連携も含め、全貌を整理します。\n\n## 統合された主要機能とモデルの全体像\n\n複数の発表を通して明かされたChatGPT Workおよび周辺技術の主要機能を、対象環境と成果の数値とともに一覧にまとめました。\n\n| 機能・ツール名 | 主な役割と処理内容 | 対象プラン・接続環境 | 費用・速度の特徴 | 主な成果・定量的効果 | 発表発表 |\n|---|---|---|---|---|---|\n| **Data Agent（データエージェント）** | セマンティックレイヤーと連携し、自然言語指示からSQL生成、データ分析、ダッシュボード構築を実行 | ChatGPT Work / Enterprise | 自律思考（約8分）による高品質分析 | 新規作成率97.9%等の要因特定、作業時間ゼロ化 | [データエージェント追加](/articles/chatgpt-work-data-agent-launch) |\n| **ダッシュボード自動生成・編集** | 経営KPIやファンネル分析の可視化、ノーコードでのグラフ変更やドリルダウン分析 | ChatGPT Work | プロンプトから数秒〜数分で生成 | 専門知識なしで自作・カスタマイズが可能 | [ダッシュボード編集デモ](/articles/chatgpt-work-tailor-dashboards-demo) |\n| **ChatGPT for Word / Excel / PowerPoint** | オフィスアプリ内での文書生成、テンプレート適用、変更履歴と連動した校正 | Free含む全プラン（Solは限定プレビュー） | ビジネス向けにSolの無料プレビュー提供 | 契約書交渉メモから差分付き自動改訂 | [Word版の提供開始](/articles/chatgpt-for-microsoft-word-available) |\n| **dot / persistent cloud agent** | クラウドおよびローカルPC上で常時稼働し、障害調査、バグ修正、Slack連携を自律処理 | ChatGPT Pro / Business / Enterprise | モバイルおよび音声通話からの操作対応 | 障害一次対応の自動化、夜間待機の負担軽減 | [障害自動復旧デモ](/articles/openai-codex-production-monitoring-demo) |\n| **GPT-6.1 Terra** | 日常のデスクワーク、画像読み取り、PC操作に特化したコストパフォーマンスモデル | Plus / Pro / Enterprise / Edu / API | API価格はSol比50%安、タスク完了速度3倍 | 誤答率を53.6%から16.7%へ低減 | [GPT-6.1 Terra発表](/articles/openai-gpt-6-1-terra-announcement) |\n| **GPT-6 Astra（Ultrafast）** | 最高峰の推論モデル。Figma連携によるUI自動構築や3Dアセットのリアルタイム生成 | Work / Enterprise / API / Bedrock | Ultrafastモードで最大8倍高速化 | 2時間以上の自律設計、Figmaで10画面構築 | [GPT-6 Astra超高速推論](/articles/openai-gpt6-astra-ultrafast-release) |\n| **Admin API & Insights** | 組織全体のAI利用状況の分析、グループごとのコスト上限設定、PowerPoint報告書の自動作成 | ChatGPT Work / Enterprise | 用途限定鍵（Scoped Keys）で安全管理 | 年間11万ドル以上のコスト削減シミュレーション | [Admin API公開](/articles/openai-chatgpt-work-admin-api) |\n| **Agent Plugins 1.0** | 共通マニフェスト（plugin.json）による、ChatGPTやCursor間でのプラグイン共通化 | オープン規格（OpenAI、AWS、GitHub等） | 仕様利用は無料 | プラットフォームごとの重複開発を廃止 | [オープン規格発表](/articles/openai-announces-agent-plugins-open-standard) |\n\n## 日付順に見る機能拡張の歩み\n\n2026年7月以降、どのようなペースで技術が蓄積されてきたかを時系列で追うと、OpenAIが「単体チャット」から「企業向けインフラ」へと軸足を迅速に移してきたことが分かります。\n\n| 年月日 | 発表された主なアップデート・事例 | 運用のポイント | 出典 |\n|---|---|---|---|\n| 2026-07-23 | ChatGPT WorkのAdmin API公開およびEnterprise順次展開 | 組織全体の利用制御と管理作業の自動化がスタート | [Admin API公開](/articles/openai-chatgpt-work-admin-api) |\n| 2026-08-06 | エージェント向け共通規格「Agent Plugins 1.0」発表 / 定期実行機能のデモ | 他社ツールとの相互運用性とルーティンワークの自動化を提示 | [オープン規格発表](/articles/openai-announces-agent-plugins-open-standard) |\n| 2026-08-25 | GPT-5.6 Lunaの提供とテキストチャット利用制限の撤廃 | 日常的な対話処理のコストと枠を解放 | [制限撤廃](/articles/openai-chatgpt-gpt56-luna-no-limits) |\n| 2026-09-03 | 次世代フラグシップモデル「GPT-6 Astra」の正式発表 | PC自動操作（Computer Use）と高度なエンジニアリング能力の統合 | [GPT-6 Astra発表](/articles/openai-announces-gpt-6-astra) |\n| 2026-09-17 | 「ChatGPT for Word」等Microsoft 365アプリ統合の提供開始 | 普段の執筆・編集画面にAIを直接呼び出す環境を整備 | [Word版の提供開始](/articles/chatgpt-for-microsoft-word-available) |\n| 2026-09-18 | ChatGPT Work内でのData Agentおよびダッシュボード自動生成を実演 | データサイエンティスト依存からの脱却と自律分析の実現 | [データエージェント追加](/articles/chatgpt-work-data-agent-launch) |\n| 2026-09-29 | GPT-6 Astra向けの超高速推論「Ultrafast」オプション投入 | CodexやAPIでの待ち時間を最大8分の1に短縮 | [GPT-6 Astra超高速推論](/articles/openai-gpt6-astra-ultrafast-release) |\n| 2026-10-07 | DevDay 2026にて「Decisions API」「Plugin Extensions」等を発表 | UIの動的生成や応答速度100ms未満の超高速判定を可能に | [Decisions API発表](/articles/openai-announces-decisions-api-gpt6-luna) |\n| 2026-10-16 | クラウド上で完全自動実行する「チームタスク」機能を公開 | ローカル端末の電源オフでも動く部署共有の自動化を実現 | [チームタスク追加](/articles/chatgpt-team-tasks-recurring-cloud-automation) |\n| 2026-10-26 | 日常業務向け「GPT-6.1 Terra」の発表とAmazon Bedrockへの提供 | 業務精度を高めつつ、コストを旧モデルの半額に抑制 | [GPT-6.1 Terra発表](/articles/openai-gpt-6-1-terra-announcement) |\n| 2026-11-02 | ChatGPT Pro契約者への毎月最大500ドルのAPIクレジット付与を明記 | チャット契約と開発者向けAPI利用の接続を補強 | [Pro APIクレジット](/articles/chatgpt-pro-monthly-api-credits) |\n\n## 複数記事の横断で判明した運用のリアル\n\n一連の記事群を並べて比較することで、単一のニュース発表だけでは見えにくい実運用上の重要な変化と課題が浮かび上がります。\n\n### 最適モデルの選定軸はトークン単価からタスク単価へ\nDevDay 2026の解説において、OpenAIは「100万トークンあたりのリストプライス」だけで評価する誤りを指摘しています。単価が安いモデルを使っても、推論の失敗や再試行が増えれば最終的な費用は高くなります。最も重い処理には最上位の「GPT-6 Astra」、複雑なコーディングには「GPT-6.1 Sol」、日常の定型業務や画像読み込みには半額の「GPT-6.1 Terra」、超高速な意思決定ルーティングには100ms未満で動く「Decisions API（GPT-6 Luna）」を割り当てる設計が推奨されています。\n\n### AWS環境と自社データガバナンスとの融合\nAmazon Bedrock上でGPT-6.1 TerraやKimi K3.1 Proが利用可能になった点や、AWS GovCloud向けに安全性を高めた「GPT-5.6 Cyber」が提供されたことは、エンタープライズにとって大きな意味を持ちます。ChatGPT Workのインターフェースを使いつつ、裏側のデータ処理や請求を既存のAWS環境（データ境界内）に閉じ込める選択肢が整備されました。\n\n### ガードレール緩和とセキュリティのトレードオフ\nソフォス（Sophos）の「Daybreak」事例やGovCloudの導入事例にあるように、高度なサイバー攻撃の解析やマルウェア調査では、通常のAIガードレールが邪魔になる場面があります。これに対し、特定の承認済み組織には制限を緩和したモデルを提供する動きが進む一方、本人確認やアクセス監視を徹底する厳格なガバナンス構造が不可欠になっています。\n\n## 主要な発表の個別解説\n\n### コストを半減させた日常業務モデル「GPT-6.1 Terra」\nオフィスワークやPC操作、画像の読み取りに最適化された最新モデルです。標準API価格が従来の半額（入力1ドル/100万トークン）に抑えられており、誤答率が従来の53.6%から16.7%へ大きく改善しています。\n詳細: [OpenAI、新AIモデル「GPT-6.1 Terra」を発表　API料金は半分、速度は3倍以上に](/articles/openai-gpt-6-1-terra-announcement)\n\n### 企業データを自動分析する「Data Agent」\n社内のセマンティックレイヤー（定義情報）を参照し、自然言語の指示からクエリを組み立て、レポート作成やダッシュボードの編集までを自律処理します。分析プロセスのSQLコードも完全に開示されるため、透明性を保った意思決定が可能です。\n詳細: [OpenAIが「ChatGPT Work」にデータエージェントを追加　分析からダッシュボード構築まで自動化](/articles/chatgpt-work-data-agent-launch)\n\n### 障害対応や調査を常時こなす「dot」\n専用のクラウド環境とローカルPC双方にアクセス権を持つ持続型エージェントです。夜間にシステム障害が発生した際も、自律的にログをトリアージし、スマートフォン上の操作だけで修正プルリクエストの確認まで完了できます。\n詳細: [OpenAI、夜間の障害対応を自動で行うAIエージェント「dot」のデモを公開](/articles/openai-dot-on-call-agent-demo)\n\n### オフィスソフト内で直接動作する「ChatGPT for Word」\nMicrosoft Wordの作業領域にChatGPTが統合され、添付されたテンプレートに合わせたレイアウト変更や、交渉メモに基づく契約条項の改訂を変更履歴付きで自動実行します。\n詳細: [OpenAI、Word内で使える「ChatGPT for Word」を提供開始　変更履歴やコメントと連動](/articles/chatgpt-for-microsoft-word-available)\n\n### 開発者ツールのUI拡張を支える「Plugin Extensions」と「MCP」\nModel Context Protocol（MCP）を基盤とし、ChatGPTのサイドバーや画面右側のパネルにFigmaや独自ツールなどの外部インターフェースを直接組み込める機能です。双方向の操作が画面内で完結します。\n詳細: [OpenAIがChatGPT向け「Plugin Extensions」を発表　サイドバーに独自UIを追加](/articles/openai-chatgpt-plugin-extensions-mcp)\n\n## まだ分からないこと\n\n- ChatGPT Pro契約者に付与されるAPIクレジットの使い切り後の挙動や、翌月への繰り越し条件は公表されていません。\n- GPT-6.1 Terraおよびdot機能の日本国内向けローカライズや、日本円建て専用料金の提供予定はまだ発表されていません。\n- 画面自動操作（Computer Use）を実行する際のエージェントに対する詳細な権限管理ガイドラインは、まだ明示されていません。\n- 無料プランユーザーへのGPT-6.1 TerraやIntelligent UIの完全な展開スケジュールは決定していません。",
-  "easy": "## ひとことで言うと\n\nChatGPT Workは、会社のデータを分析したり、書類を作ったり、パソコンの画面を操作したりする作業をまとめて任せられるビジネス向けの仕組みです。\n\n## 何ができるようになったか\n\n会社のデータとつなぐことで、言葉で指示するだけで表やグラフを数分で作ってくれます。また、Microsoft WordやExcelなどのソフトの中でAIを直接呼び出せるようになり、契約書のチェックや形式の修正も自動で進みます。\n\nさらに、費用が従来の半分以下で動作も速い新しいAIモデルが追加されたため、毎日の定型作業を予算を抑えながら効率化できます。",
-  "channel": "56本の記事から編集部が統合",
+  "body": "ChatGPTを企業や業務向けに活用するための統合プラットフォーム「ChatGPT Work」および、次世代基盤「GPT-6」ファミリーをめぐる動向が相次いで発表されました。これらは単なるテキストの生成にとどまらず、PC画面の自律操作、データ分析ダッシュボードの自動構築、社内システムの不具合自動修正までを包含する包括的なAIエージェント基盤へと進化しています。\n\n個人でChatGPTの無料版やPlusプランを利用している場合、画面や契約が自動的にすべて切り替わるわけではありません。対象は法人向けの「ChatGPT Work」「ChatGPT Enterprise」、あるいは各種APIやAmazon Bedrockなどを経由して開発を行うチームです。既存の単発チャット利用にとどまっているユーザーには直接の変更はありませんが、業務ラインへ組み込むことで強力な作業代行環境を構築できます。\n\n## プラットフォームと基盤モデルの機能一覧\n\n今回の展開では、目的や処理負荷に応じてモデルやエージェント機能が細かく体系化されました。主要なコンポーネントとそれぞれの役割は以下の通りです。\n\n| コンポーネント / 機能名 | 主な役割・機能 | 対象プラン・提供窓口 | 主な実績・仕様 | 明らかになった発表 |\n|---|---|---|---|---|\n| **ChatGPT Work** | 企業向け業務自動化・共有環境。自然言語での分析やアプリ操作 | Enterprise / 有料向け | ダッシュボード自動生成、定期レポート作成 | [ChatGPT WorkをEnterpriseプランで順次提供](/articles/openai-chatgpt-work-enterprise-rollout) |\n| **GPT-6 Astra** | フラグシップのフロンティアモデル。PC操作や複合推論に特化 | Plus, Pro, Enterprise, API, Bedrock | 画面操作、3D制作、Ultrafastモード対応 | [新AIモデル「GPT-6 Astra」を発表](/articles/openai-announces-gpt-6-astra) |\n| **GPT-6.1 Terra** | 日常業務・大量処理向けのバランス型モデル | Plus, Pro, Enterprise, Edu, API | API単価はSolの半額。速度3倍以上 | [「GPT-6.1 Terra」は誰が使える？](/articles/chatgpt-gpt-6-1-terra-plans-guide) |\n| **GPT-6.1 Sol** | 複雑なコーディングや高度な設計に特化した上位モデル | Plus, Pro, Enterprise, API | 難度の高い開発課題に対応 | [新AI「GPT-6.1 Terra」は何が違う？](/articles/gpt-6-1-terra-sol-astra-comparison) |\n| **GPT-6 Luna / 5.6 Luna** | 軽量・高速な日常処理・ルーティング向けモデル | Free, Go, API | 応答100ms未満、テキストチャット無制限 | [「GPT-5.6 Luna」を提供開始](/articles/openai-chatgpt-gpt56-luna-no-limits) |\n| **Daybreak** | 防御特化セキュリティ基盤（Red Team / Defense Factory） | 企業向け個別のウェイトリスト / GovCloud | 脅威対応時間を96%削減（38分→89秒） | [自動修復基盤「Daybreak」](/articles/openai-daybreak-gpt6-cyber-launch) |\n| **dot / dots** | 常時稼働型クラウドエージェント。不具合調査や業務代行 | Pro, Business Premium | Slack連携、モバイル操作、オンコール対応 | [AIエージェント「dot」の実演動画](/articles/openai-dot-bug-hunting-codex) |\n| **Codex** | プログラミング支援および自律開発エージェント | 有料プラン / API | 障害自動復旧、PR作成、プロトタイピング | [「Codex」の障害自動復旧デモ](/articles/openai-codex-production-monitoring-demo) |\n| **Plugin Extensions** | ChatGPT画面内に独自UIやサイドパネルを追加する仕組み | 開発者向けベータ | MCP（Model Context Protocol）準拠 | [「Plugin Extensions」を発表](/articles/openai-chatgpt-plugin-extensions-mcp) |\n| **Decisions API** | 選択肢をミリ秒単位で高速決定するマルチモーダルAPI | 開発者向けプレビュー | 処理速度が従来比約10倍（100ms未満） | [「Decisions API」を発表](/articles/openai-announces-decisions-api-gpt6-luna) |\n\n## タイムライン：機能拡充とアップデートのあゆみ\n\n2026年7月以降、OpenAIおよびパートナー企業から発表された主な更新を日付順に整理しました。\n\n| 年月日 | 発表・更新内容 | 出典・関連情報 |\n|---|---|---|\n| 2026年7月23日 | 「ChatGPT Work」をEnterpriseで順次提供開始。デスクトップ版ChatGPT Voice公開 | [ChatGPT Work提供](/articles/openai-chatgpt-work-enterprise-rollout) / [デスクトップ版Voice](/articles/openai-chatgpt-voice-desktop-gpt-live) |\n| 2026年7月24日 | Gamma社がプレゼン生成へのOpenAI技術統合とCodex活用事例を公表 | [Gamma CEOが語る](/articles/gamma-ceo-openai-innovation-velocity) |\n| 2026年8月6日 | ChatGPT Workの定期実行機能および「Agent Plugins 1.0」オープン規格発表 | [定期実行機能](/articles/chatgpt-work-scheduled-metrics-report) / [Agent Plugins 1.0](/articles/openai-announces-agent-plugins-open-standard) |\n| 2026年8月24日 | ChatGPT Workの音声PC操作デモを公開 | [音声PC操作デモ](/articles/openai-chatgpt-work-voice-agent) |\n| 2026年8月25日 | 「GPT-5.6 Luna」搭載に伴いテキストチャットの利用制限を撤廃 | [GPT-5.6 Luna利用制限撤廃](/articles/openai-chatgpt-gpt56-luna-no-limits) |\n| 2026年8月29日 | 「ChatGPT Images」による漫画レイアウト・文字描画デモを公開 | [漫画生成デモ](/articles/openai-chatgpt-images-manga-generation) |\n| 2026年9月3日 | 次世代フラグシップモデル「GPT-6 Astra」を発表 | [GPT-6 Astra発表](/articles/openai-announces-gpt-6-astra) |\n| 2026年9月11日 | 音声対話API「GPT-Live-1」提供開始。1分あたり5セントから | [GPT-Live-1提供開始](/articles/openai-gpt-live-1-api-launch) |\n| 2026年9月16日 | 管理画面向け分析機能（Insights / Outcomes / Admin API）を拡張 | [管理画面投資対効果分析](/articles/openai-chatgpt-admin-console-insights-outcomes) |\n| 2026年9月17日 | 「ChatGPT for Word」提供開始。米Jump TradingによるAstra長期稼働事例発表 | [ChatGPT for Word](/articles/chatgpt-for-microsoft-word-available) / [Jump Trading事例](/articles/openai-gpt6-astra-jump-trading-agents) |\n| 2026年9月18日 | ChatGPT Workに「Data Agent」追加。ダッシュボード自動生成デモを公開 | [Data Agent追加](/articles/chatgpt-work-data-agent-launch) / [ダッシュボード自動生成](/articles/chatgpt-work-dashboard-generation) |\n| 2026年9月23日 | 「ChatGPT Voice」にツール連携機能を追加 | [ChatGPT Voice更新](/articles/openai-chatgpt-voice-update-gpt6-astra) |\n| 2026年9月29日 | GPT-6 Astraに超高速推論「Ultrafast」を追加 | [Astra Ultrafast](/articles/openai-gpt6-astra-ultrafast-release) |\n| 2026年10月1日 | 常時稼働型エージェント「dots」の最新実機デモを公開 | [dots実機デモ](/articles/openai-dots-agent-demo) |\n| 2026年10月6日 | 高速判定API「Decisions API」を発表 | [Decisions API発表](/articles/openai-announces-decisions-api-gpt6-luna) |\n| 2026年10月7日 | DevDay 2026にて「Intelligent UI」「Plugin Extensions」「コスト削減手法」を発表 | [Intelligent UI](/articles/openai-announces-gpt6-with-intelligent-ui) / [コスト最適化](/articles/openai-devday-2026-cost-optimization) |\n| 2026年10月9日 | ソフォスが「Daybreak」で対応時間96%削減を発表。モバイル版dot設定開始 | [ソフォス事例](/articles/sophos-openai-daybreak-security-agent) / [モバイル版dot](/articles/chatgpt-mobile-dot-setup) |\n| 2026年10月16日 | ChatGPTに「チームタスク」追加。自律障害対応エージェントdotのデモ公開 | [チームタスク](/articles/chatgpt-team-tasks-recurring-cloud-automation) / [障害対応エージェント](/articles/openai-dot-on-call-agent-demo) |\n| 2026年10月26日 | 「GPT-6.1 Terra」発表。Amazon Bedrockで提供開始、各プランへ即日ロールアウト | [GPT-6.1 Terra発表](/articles/openai-gpt-6-1-terra-announcement) / [Bedrock提供](/articles/openai-gpt-61-terra-amazon-bedrock) |\n| 2026年10月28日 | ChatGPT Pro/Business利用者に毎月APIクレジット付与を発表 | [Pro/Business APIクレジット](/articles/chatgpt-pro-business-api-credits-benefit) |\n| 2026年11月12日 | サイバーセキュリティ自動修復基盤「Daybreak」を発表 | [Daybreak発表](/articles/openai-daybreak-gpt6-cyber-launch) |\n\n## 統合による主要な変化と見落としがちな論点\n\n一連の発表を横断して見ると、単に新しいAIモデルが登場しただけでなく、運用の「コスト概念」と「AIの役割」が根底から変化していることが分かります。\n\n**単価から「タスク完了あたりの費用」へのシフト**\nDevDay 2026の講演では、AIのコスト評価軸を「100万トークンあたりの価格」から「1つの仕事を完遂するまでの総費用（タスク単価）」へ移すアプローチが示されました。単価の安いモデルを使っても、失敗してやり直したり指示が何度も往復したりすれば総額は上がります。最新の「GPT-6.1 Terra」は、画面操作や画像理解などの日常業務を最上位モデルの10分の1の単価かつ3倍の速度で処理するため、業務全体のコスト削減に貢献します。\n\n**「会話相手」から「自律実行エージェント」へ**\n自律型エージェント「dot」や「Daybreak」の登場により、AIは画面越しに質問へ答える存在から、クラウド上で24時間監視や不具合修正を行う実働部隊へと移行しました。例えばソフォスの事例では、従来38分かかっていた脅威対応が89秒まで短縮されました。人間が画面に張り付くことなく、AIが裏側で一次調査とパッチ作成を完了させ、最終承認のみを人間が行う「Plan-Execute-Observe」の運用が確立しつつあります。\n\n**データ境界とマルチクラウドでの選択肢**\nAWS GovCloudでの「GPT-5.6 Cyber」提供や、Amazon Bedrockでの「GPT-6.1 Terra」の提供に見られるように、機密データを自社のセキュリティ境界内にとどめたまま最新モデルを呼び出す環境が整いました。データの保持を行わない「ゼロデータ保持」や「暗黙的・明示的なプロンプトキャッシュ」を活用することで、コストを抑えつつ安全にエンタープライズ運用を行うことが可能です。\n\n## 注目すべき主要発表の詳細\n\n主要なトピックの要点は以下の通りです。詳細は各記事の解説を参照してください。\n\n* **脆弱性の自動検出と修正基盤「Daybreak」**\n模擬攻撃を行う「Red Team」と修正コードを作成する「Defense Factory」で構成され、サイバー特化AI「GPT-6 Cyber」を搭載。Linuxカーネルの解析で948件の権限昇格脆弱性を自動生成・修復するなど運用コストを激減させます。\n詳細: [脆弱性の対応時間を96%削減 OpenAIの自動修復基盤「Daybreak」](/articles/openai-daybreak-gpt6-cyber-launch)\n* **日常業務に特化した「GPT-6.1 Terra」**\n文章作成や画像読み取り、PC操作を高速かつ割安にこなすモデル。API標準単価は入力100万トークンあたり1ドル、出力5ドルで、既存モデルの半額に設定されています。\n詳細: [OpenAI、新AIモデル「GPT-6.1 Terra」を発表 API料金は半分、速度は3倍以上に](/articles/openai-gpt-6-1-terra-announcement)\n* **ProおよびBusiness契約者への毎月APIクレジット付与**\nChatGPTの有料プラン契約者に対し、連携したAPI組織で使えるクレジットが定期付与されます。Pro 100で毎月100ドル分、Business Premiumで席あたり100ドル分（上限500ドル）などが適用されます。\n詳細: [OpenAI、ChatGPT Pro・Business契約者にAPIクレジット 金額はプランと席数で変動](/articles/chatgpt-pro-business-api-credits-benefit)\n* **自然言語でダッシュボードを自動構築する「ChatGPT Work」**\n社内のデータ基盤（セマンティックレイヤー）と接続し、プロンプトひとつでファンネル分析やKPIグラフを含むダッシュボードを即座に自動作成。定期実行スケジュールやSlack通知にも対応します。\n詳細: [OpenAIが「ChatGPT Work」にデータエージェントを追加 分析からダッシュボード構築まで自動化](/articles/chatgpt-work-data-agent-launch)\n* **Wordなどの文書内で直接働く「ChatGPT for Word」**\nMicrosoft Wordの作業画面内にサイドバーとして常駐し、契約書のフォーマット修正や変更履歴（Tracked Changes）と連動した自動改訂、リスクチェックコメントの挿入を行えます。\n詳細: [OpenAI、Word内で使える「ChatGPT for Word」を提供開始 変更履歴やコメントと連動](/articles/chatgpt-for-microsoft-word-available)\n\n## まだ分からないこと\n\n* 「Daybreak」や「dot」の日本国内向け個別サポート窓口および詳細な従量課金体系はまだ発表されていません。\n* 「GPT-6.1 Terra」などの最新モデルが、無料プラン向けへ展開される時期はまだ発表されていません。\n* AIエージェントが自律生成した修正パッチや自動作成ツールの著作権・ライセンスに関する詳細規定はまだ発表されていません。\n\n## 今後の確認事項と準備すべきアプローチ\n\n企業や開発者が最新のエコシステムを活用するためには、以下の点を確認・準備しておく必要があります。\n\n1. **契約プランとAPI連携の確認**: 社内のChatGPT契約（Pro / Team / Enterprise）において、提供されているAPIクレジット特典やチームタスク機能が有効化されているか設定画面で確認します。\n2. **データ基盤（セマンティックレイヤー）の整理**: 「ChatGPT Work」のデータエージェントやダッシュボード生成を活用するため、社内の社内用語や指標の定義（データコンテキスト）をあらかじめドキュメントやデータウェアハウス上で整理しておきます。\n3. **人間による承認運用の確立**: 安全性基盤「Daybreak」やAIプログラミングツール「Codex」を本番環境へ導入する際は、AIに修正からテストまでを行わせたうえで、最終的な本番適用（プルリクエストの承認）は人間が判断する運用ルールを定めておきます。",
+  "easy": "## ひとことで言うと\n\n「ChatGPT Work」と新モデル「GPT-6」の登場により、AIは会話の相手から、仕事の作業を代わりに進める助手へと進化しました。\n\n## 何ができるようになる？\n\n仕事の書類づくりやデータの分析、パソコンの操作、システムの不具合調査まで、AIに指示を出すだけで裏側で作業を進めてくれます。最新モデルの「GPT-6.1 Terra」を使えば、従来の半分以下の費用で速く作業をこなせます。\n\n## どう試せばいい？\n\nChatGPT PlusやProなどの有料プランを使っていれば、追加料金なしで新しいモデルを試せます。社内で使う場合は、管理者が接続設定や権限の確認を行うことで、安全に仕事へ取り入れられます。",
+  "channel": "57本の記事から編集部が統合",
   "channelId": "",
-  "channelSlug": "aws-ml-blog",
+  "channelSlug": "openai",
   "genre": "AI・テクノロジー",
   "genreSlug": "ai",
   "disclaimer": "本記事は元動画の映像・音声をAIが解析して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
-  "videoId": "",
-  "videoUrl": "",
-  "videoTitle": "ChatGPT Work 関連の56本",
-  "publishedAt": "2026-11-11T01:07:19+00:00",
-  "generatedAt": "2026-11-12T23:45:38.916535+00:00",
-  "thumbnail": "https://ai-tech-express.jp/img/kimi-k3-1-pro-highspeed-bedrock-c5b390ef.jpg",
+  "videoId": "YmxpxJZvm4M",
+  "videoUrl": "https://www.youtube.com/watch?v=YmxpxJZvm4M",
+  "videoTitle": "ChatGPT Work 関連の57本",
+  "publishedAt": "2026-11-12T22:37:14+00:00",
+  "generatedAt": "2026-11-13T12:03:49.221688+00:00",
+  "thumbnail": "https://i.ytimg.com/vi/YmxpxJZvm4M/maxresdefault.jpg",
   "model": "gemini-3.5-flash",
   "affiliates": [],
-  "depthAt": "2026-11-12T23:45:57+00:00",
-  "imageCredit": {
-    "kind": "official",
-    "org": "AWS",
-    "provider": "AWS Machine Learning Blog",
-    "sourceUrl": "https://aws.amazon.com/blogs/machine-learning/introducing-kimi-k3-1-pro-on-amazon-bedrock/",
-    "original": "https://d2908q01vomqb2.cloudfront.net/f1f836cb4ea6efb2a0b1b99f41ad8b103eff4b59/2026/11/02/ML-22229-featured-image.png",
-    "width": 1152,
-    "height": 576,
-    "at": "2026-11-11T01:16:18+00:00",
-    "imageKind": "banner"
-  },
+  "depthAt": "2026-11-13T12:04:07+00:00",
   "imageFocus": {
-    "x": 0.501,
-    "y": 0.643,
+    "x": 0.489,
+    "y": 0.636,
     "box": [
-      0.037,
-      0.287,
-      0.966,
-      1.0
+      0.009,
+      0.372,
+      0.969,
+      0.9
     ],
-    "ar": 2.0,
-    "src": "https://ai-tech-express.jp/img/kimi-k3-1-pro-highspeed-bedrock-c5b390ef.jpg"
+    "ar": 1.7778,
+    "src": "https://i.ytimg.com/vi/YmxpxJZvm4M/maxresdefault.jpg"
   }
 }

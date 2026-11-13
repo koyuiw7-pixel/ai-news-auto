@@ -8,7 +8,7 @@
   "companyName": "OpenAI",
   "category": "アプリ・サービス",
   "overview": {
-    "text": "ChatGPT Workは、デスクトップアプリや社内データと連携して自律的に業務をこなす法人向けAI環境です。米OpenAIが2026年7月にEnterpriseプラン向けに順次提供を開始しました。",
+    "text": "ChatGPT Workは、自然言語の分析やアプリの自律操作ができる企業向けプラットフォームです。OpenAIによって、Enterpriseプラン向けに2026年7月23日から順次提供が開始されました。",
     "sources": [
       "chatgpt-work-complete-guide-features-matome",
       "openai-chatgpt-work-enterprise-rollout"
@@ -17,25 +17,24 @@
   "facts": [
     {
       "label": "提供開始",
-      "value": "2026年7月",
+      "value": "2026年7月23日",
       "sources": [
-        "chatgpt-work-complete-guide-features-matome",
-        "openai-chatgpt-work-enterprise-rollout"
+        "chatgpt-work-complete-guide-features-matome"
       ]
     },
     {
       "label": "日本での提供",
-      "value": "Enterprise契約で利用可能",
+      "value": "日本からも利用できます",
       "sources": [
+        "gilbert-tobin-chatgpt-work-case",
         "openai-chatgpt-work-enterprise-rollout"
       ]
     },
     {
-      "label": "向いている人",
-      "value": "法人の導入担当者やビジネス職",
+      "label": "使える場所",
+      "value": "Web、デスクトップ、モバイル",
       "sources": [
-        "gilbert-tobin-chatgpt-work-case",
-        "openai-chatgpt-work-voice-agent"
+        "openai-chatgpt-work-enterprise-rollout"
       ]
     }
   ],
@@ -47,34 +46,29 @@
       ]
     },
     {
-      "text": "音声やテキストの指示でメールやファイルを探索し、数秒〜数分で分析結果をまとめます。",
+      "text": "音声やテキストの指示でメールやファイルを探索し、データの比較や分析を行います。",
       "sources": [
         "openai-chatgpt-work-voice-agent"
       ]
     },
     {
-      "text": "データエージェント機能により、SQLの生成やデータ分析、Slackへの自動共有を実行できます。",
-      "sources": [
-        "chatgpt-work-data-agent-launch"
-      ]
-    },
-    {
-      "text": "グラフの種類変更やテキスト直接編集などのノーコードカスタマイズが可能です。",
+      "text": "ダッシュボード上のテキストやグラフの形式を直感的なUI操作で直接編集できます。",
       "sources": [
         "chatgpt-work-tailor-dashboards-demo"
       ]
     }
   ],
-  "pricing": [],
-  "japan": [
+  "pricing": [
     {
-      "text": "ChatGPT Enterpriseを契約している組織のユーザーであれば利用できます。",
+      "text": "Enterpriseプランに含まれる機能としてロールアウトされています。",
       "sources": [
         "openai-chatgpt-work-enterprise-rollout"
       ]
-    },
+    }
+  ],
+  "japan": [
     {
-      "text": "日本語でのプロンプト入力やレポート生成に完全対応しています。",
+      "text": "Enterpriseプランの組織のユーザーであれば日本からも利用できます。",
       "sources": [
         "openai-chatgpt-work-enterprise-rollout"
       ]
@@ -82,42 +76,54 @@
   ],
   "howto": [
     {
+      "text": "Enterpriseプランを契約している組織のユーザーである必要があります。",
+      "sources": [
+        "openai-chatgpt-work-enterprise-rollout"
+      ]
+    },
+    {
       "text": "デスクトップアプリやモバイルアプリを最新バージョンにアップデートして利用します。",
       "sources": [
         "openai-chatgpt-work-enterprise-rollout"
       ]
     }
   ],
-  "differences": [],
-  "faq": [
+  "differences": [
     {
-      "q": "誰に向いている？",
-      "a": "法人の導入担当者やビジネス職、データ分析を行う担当者に向いています。",
+      "text": "従来のチャット型AIと異なり、PCのデスクトップ環境や外部アプリを自律的に操作します。",
       "sources": [
-        "gilbert-tobin-chatgpt-work-case",
         "openai-chatgpt-work-voice-agent"
       ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "無料プランでも使えますか？",
+      "a": "対象は法人向けのEnterpriseプランや有料向けとなっています。",
+      "sources": [
+        "chatgpt-work-complete-guide-features-matome",
+        "openai-chatgpt-work-enterprise-rollout"
+      ]
     },
     {
-      "q": "どんな端末で使える？",
-      "a": "Webブラウザ版、WindowsやmacOSのデスクトップアプリ、iOSやAndroidのモバイルアプリで使えます。",
+      "q": "いつから提供されていますか？",
+      "a": "2026年7月23日からEnterpriseプランで順次提供されています。",
+      "sources": [
+        "chatgpt-work-complete-guide-features-matome"
+      ]
+    },
+    {
+      "q": "どのような端末で使えますか？",
+      "a": "Webブラウザ、デスクトップアプリ、モバイルアプリで利用可能です。",
       "sources": [
         "openai-chatgpt-work-enterprise-rollout"
       ]
     },
     {
-      "q": "データの安全性は？",
-      "a": "企業向けプランのため、入力されたデータがモデルの学習に利用されることはありません。",
+      "q": "セキュリティはどうなっていますか？",
+      "a": "企業向けプランのため、入力データがモデルの学習に利用されることはありません。",
       "sources": [
         "openai-chatgpt-work-enterprise-rollout"
-      ]
-    },
-    {
-      "q": "どのような分析ができる？",
-      "a": "セマンティックレイヤーと連携し、自然言語の指示からSQL実行やダッシュボードの自動生成ができます。",
-      "sources": [
-        "chatgpt-work-dashboard-generation",
-        "chatgpt-work-data-agent-launch"
       ]
     }
   ],
@@ -125,27 +131,12 @@
     {
       "date": "2026-07-24",
       "slug": "openai-chatgpt-work-enterprise-rollout",
-      "event": "ChatGPT Workを順次提供開始"
+      "event": "ChatGPT WorkをEnterpriseで順次提供開始"
     },
     {
-      "date": "2026-08-24",
-      "slug": "openai-chatgpt-work-voice-agent",
-      "event": "音声でPCを操作するデモを公開"
-    },
-    {
-      "date": "2026-09-18",
-      "slug": "chatgpt-work-dashboard-generation",
-      "event": "ダッシュボード自動生成を実演"
-    },
-    {
-      "date": "2026-09-18",
-      "slug": "chatgpt-work-data-agent-launch",
-      "event": "データエージェントを追加"
-    },
-    {
-      "date": "2026-11-12",
-      "slug": "gilbert-tobin-chatgpt-work-case",
-      "event": "法律事務所での活用事例を発表"
+      "date": "2026-11-13",
+      "slug": "chatgpt-work-complete-guide-features-matome",
+      "event": "定期実行機能およびAgent Plugins 1.0発表"
     }
   ],
   "related": [
@@ -155,8 +146,8 @@
     "gpt-6"
   ],
   "articles": [
-    "gilbert-tobin-chatgpt-work-case",
     "chatgpt-work-complete-guide-features-matome",
+    "gilbert-tobin-chatgpt-work-case",
     "chatgpt-codex-shared-usage-limits",
     "openai-gpt-6-astra-comprehensive-guide-matome",
     "openai-chatgpt-voice-update-gpt6-astra",
@@ -172,8 +163,8 @@
     "openai-chatgpt-work-enterprise-rollout"
   ],
   "linkFrom": [
-    "gilbert-tobin-chatgpt-work-case",
     "chatgpt-work-complete-guide-features-matome",
+    "gilbert-tobin-chatgpt-work-case",
     "chatgpt-work-dashboard-generation",
     "chatgpt-work-tailor-dashboards-demo",
     "openai-chatgpt-work-data-agent-scale",
@@ -184,9 +175,9 @@
     "openai-chatgpt-work-admin-api",
     "openai-chatgpt-work-enterprise-rollout"
   ],
-  "signature": "0f4ffce7abbd8f05",
-  "primarySignature": "e926f036d9ccc736",
+  "signature": "bf6912c10fa09316",
+  "primarySignature": "0db4cef7860b885a",
   "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-10-27T10:34:50+00:00",
-  "updatedAt": "2026-11-12T23:45:48+00:00"
+  "updatedAt": "2026-11-13T12:03:58+00:00"
 }
