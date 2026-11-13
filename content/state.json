@@ -91,6 +91,8 @@
     "0187ebd8136138e9dd6260926b0bf8b46008ccf3": 2,
     "03420de086a09dc3ad89fe6317c3521ef0077ba8": 2,
     "036b93df554c7fca82002aea66d22297d8850351": 2,
+    "0882adbb24ee9e786158a3f436828988fd6b8c79": 1,
+    "0a09193ce7cf95efd9b10105b14b25a7a06343cb": 1,
     "0a3265efa76ac3808f8bd09c0aafeb1716a9dd0a": 2,
     "0b86d134992a6d501b8b793e236a39c2fc5099e8": 2,
     "0cb16dd13c8ee52577652ceda839c1316cd1f6ab": 2,
@@ -103,6 +105,7 @@
     "18ef818a6bd4876bffac4c6cdb078df5326584b9": 2,
     "19582dcbd593ad2fb5b6436429dff3bbe781d9fa": 2,
     "1a7642219fa60314d3cd99e2c303429a8b953875": 2,
+    "1a8dc75e0b4fd9010ff3286d3c89fe4a593caf3c": 1,
     "1d751ca62f89670db41a90eac317205271ae07b0": 2,
     "2160a2b050672bd9d99287175d9d0901d5c9f002": 2,
     "2287735f1d21ace9c8b2dc086fc3f71379fdad56": 2,
@@ -125,6 +128,7 @@
     "485562db598c04b51b14687e4246103f09f6f4e2": 2,
     "4a41facb5f689cdb60e7f5ac6288cbda9acf3bd6": 2,
     "4b89efcffa47812ea28a9717bf36267f055bb22d": 2,
+    "4ba244e31fe54ce150baf42db44e6883e45fba95": 1,
     "4de683fb64a1f28338880541b5e037cd5608d0d2": 2,
     "4df91a5a063d45c0fc27fa705792e0998764e045": 2,
     "4e9420671917a1292d60e55c5626b1e785027dd5": 2,
@@ -162,10 +166,12 @@
     "7d3dbcbbc4dfdc9862f08bc9dffb9564ea62c0b9": 2,
     "7d601991e33d9c44b9aa984a8bb470e456015295": 2,
     "7e035393eb5798bfde8a69a755d0e6fa68d58cc2": 2,
+    "7ef862703d3a4b83bc192563dfee7610d6f08df7": 1,
     "83d93179493cf461a143956d961d77f587be89ee": 2,
     "89a7ead54ac388701c0dee085744c704ce27685f": 2,
     "8a16921b5055266738dbba73be7dab3991c05bf8": 2,
-    "8aa105368fa557be41bd644ef4e527b3351a7e2c": 1,
+    "8aa105368fa557be41bd644ef4e527b3351a7e2c": 2,
+    "8fbc2f706640e3e14e04195c85b14c71d7a1597b": 1,
     "9322b3529376b98b84233769de379c73cafd4e35": 2,
     "94b6ad35a37976e8b8ecd27a539d2a38d9c78718": 2,
     "9720fce3bac4ddf92a32558c7e25a89e237cd265": 2,
@@ -209,6 +215,7 @@
     "e48b053aabcb72e971a39a715fdc0acc21538d70": 2,
     "e4ca02389669cc0081cea6049a414f5e9fec14aa": 2,
     "e5671259cb354cda64baf9181788d87bf911911a": 2,
+    "e81609c817edab64b9db115437f5f808f68b777a": 1,
     "e8cdd2e9d88c4e60c9dae196fcfd5f8a6145a7cc": 2,
     "eabf898cae34494261b3698d25a805d2cacae210": 2,
     "ef732af380f6095584a115d4a58e9d26d54a84cb": 2,
@@ -217,7 +224,9 @@
     "f615f4305539ff27a65055c7da6312b55374d6d2": 2,
     "f686f8f90502329ff4ea5d3e0e238da5a0a070bf": 2,
     "fa8d92ef4d850c80520bfaca41f2dfa513dc486c": 2,
-    "fa974d9a33a100a6a43663b8432472e7c74a3c59": 2
+    "fa974d9a33a100a6a43663b8432472e7c74a3c59": 2,
+    "fdd3388fce3e35a2e6631cf25c90f5acf24e12a9": 1,
+    "fe2278f9da97d590747623f9cfba97b74e09eefd": 1
   },
   "gate_retry": {
     "0a2391266d2b02e5": {
@@ -7790,6 +7799,12 @@
       "slug": "ai-dlc-mbk-wellness-bottleneck",
       "url": "https://aws.amazon.com/jp/blogs/news/mbk-wellness-ai-dlc-workshop/"
     },
+    "469c856ce55e4add033b7559fa5603acf37c0314": {
+      "at": "2026-11-13T15:26:10.486273+00:00",
+      "reason": "trend: 報道が出典の記事の形が崩れた: 題名が報道の内容を確定した事実のように言い切っている（「〜と報道」「NHKなど」「〜か」のいずれかを入れる）",
+      "skipped": true,
+      "url": "https://news.yahoo.co.jp/articles/d65a000e3cd8b1c93a97e54743512f5817c9dad7"
+    },
     "46ecb159c1535b09": {
       "at": "2026-11-10T12:38:09.396410+00:00",
       "model": "claude:sonnet",
@@ -8676,6 +8691,17 @@
       "section": "ai",
       "slug": "nvidia-tensorrt-edge-llm-edge-ai",
       "url": "https://developer.nvidia.com/blog/run-ai-models-for-edge-application-development-with-just-a-few-commands/"
+    },
+    "52edad5aed8f70e2": {
+      "at": "2026-11-13T15:28:03.068404+00:00",
+      "costUsd": 0.0117,
+      "intent": "neutral",
+      "mix": "money",
+      "model": "gemini-3.1-flash-lite",
+      "score": 92,
+      "section": "investment",
+      "slug": "jp-bank-employee-stock-plan",
+      "url": "https://www.jp-bank.japanpost.jp/aboutus/press/2026/abt_prs_id002136.html"
     },
     "52f82050390d0a0b": {
       "at": "2026-11-04T15:47:30.497716+00:00",
@@ -10187,14 +10213,6 @@
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・暮らしの交通/天気/値上げ/障害/給付/発売・日本のスポーツのどれでもない）",
       "skipped": true,
       "url": "https://www.mext.go.jp/b_menu/daijin/detail/mext_00750.html"
-    },
-    "691aeb39c4445330": {
-      "at": "2026-10-30T15:21:39.707682+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "score": 100,
-      "section": "ai",
-      "slug": "nvidia-agentic-ai-extraterrestrial-search",
-      "url": "https://blogs.nvidia.com/blog/ai-joins-the-search-for-extraterrestrial-signals/"
     },
     "6950870614b43cf4": {
       "at": "2026-11-11T06:38:44.556494+00:00",
@@ -12486,6 +12504,17 @@
       "reason": "quality: 元記事・確認済みの事実の束・計算済みの数字のどれにも無い数字がある（「、1,000gへ増量して1,580円」、「チキン(丸鶏)**:本体2,980円」、「:本体2,980円(税込3,218.40円」、「:本体1,980円(税込2,138.40円」、「キン(1本980円、2本1,880円」）。元記事か束の数字に直すか、その文を削る。簡単な計算（かけ算・足し算など）をするなら、確かめ",
       "skipped": true,
       "url": "https://www.aeon.info/news/release_115616/"
+    },
+    "8e1a91ab974f3439be35e53f201451f14c1b75ee": {
+      "at": "2026-11-13T15:24:34.493160+00:00",
+      "kind": "trend",
+      "model": "gemini-3.5-flash",
+      "pressReport": true,
+      "score": 92,
+      "slug": "north-korea-flag-ratio-change",
+      "trendKeyword": "北 朝鮮 国旗",
+      "trendLane": true,
+      "url": "https://news.yahoo.co.jp/articles/f91086542868d11f12287cf67b26af3b70583a5e"
     },
     "8e292e711633c8da": {
       "at": "2026-11-03T00:51:42.152950+00:00",
@@ -20577,215 +20606,6 @@
   "quality_log": [
     {
       "accepted": false,
-      "at": "2026-11-11T09:34:16.782377+00:00",
-      "attempt": 1,
-      "id": "b8c092e554a77e02",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "かんたん版「これまではまとまった量の商品が中心でしたが、今回の3包入りによって、初めての人でも気軽に試せるようになりました」→ 元記事と確認済みの文脈では、ブラックの3包入りは既にバラエティショップやコンビニ等で販売されている。3包入りが今回初めて登場したかのような説明は矛盾する。",
-        "本文「少量から買いたい人に選ばれてきました」→ 元記事は「手に取っていただきやすい商品となっています」としており、「選ばれてきた」は言い過ぎ。",
-        "本文「卵約1個分の量を無理なく取り入れることができます」→ 元記事は「卵約1個分のたんぱく質を簡単に摂取することが出来ます」としており、「無理なく」は補足された表現。",
-        "今日やること「1箱30包入り（税込3,980円）と今回の3包入り（税込540円）を1包あたりで比べてから買う」→ 元記事に1包あたりの価格は書かれていない。比較を勧める助言としては妥当だが、比較の結果を示す数字は無い。",
-        "リード・要点の「ナチュラルローソン各店で」→ 元記事は「ナチュラルローソン各店にて（※一部店舗での取り扱いとなります）」としており、本文の「一部の店舗」と表現が揃っていない。"
-      ],
-      "readability": {
-        "avg_paragraph": 198.0,
-        "avg_sentence": 79.2,
-        "long_share": 0.8,
-        "max_paragraph": 249,
-        "paragraphs": 4,
-        "sentences": 10
-      },
-      "score": 80,
-      "source": "nomura-re",
-      "title": "「メガロスプロテインコーヒー カフェオレ」に、気軽に試せる便利な3包入りが新登場 11月10日（火）よりナチュラルローソンで先行販売開始 ～1杯でたんぱく質約6",
-      "warnings": [
-        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "読みやすさ: 文が長い（1文の平均 79.2字・60字超の文が 80% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "読みやすさ: 段落が長い（平均 198.0字・最長 249字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-11T09:34:37.317428+00:00",
-      "attempt": 1,
-      "id": "b8c092e554a77e02",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 203.5,
-        "avg_sentence": 81.4,
-        "long_share": 0.8,
-        "max_paragraph": 251,
-        "paragraphs": 4,
-        "sentences": 10
-      },
-      "score": 92,
-      "source": "nomura-re",
-      "title": "「メガロスプロテインコーヒー カフェオレ」に、気軽に試せる便利な3包入りが新登場 11月10日（火）よりナチュラルローソンで先行販売開始 ～1杯でたんぱく質約6",
-      "warnings": [
-        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "読みやすさ: 文が長い（1文の平均 81.4字・60字超の文が 80% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "読みやすさ: 段落が長い（平均 203.5字・最長 251字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-11T09:34:52.280948+00:00",
-      "attempt": 0,
-      "id": "b8c092e554a77e02",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 186.6,
-        "avg_sentence": 66.6,
-        "long_share": 0.643,
-        "max_paragraph": 294,
-        "paragraphs": 5,
-        "sentences": 14
-      },
-      "score": 92,
-      "source": "nomura-re",
-      "title": "「メガロスプロテインコーヒー カフェオレ」に、気軽に試せる便利な3包入りが新登場 11月10日（火）よりナチュラルローソンで先行販売開始 ～1杯でたんぱく質約6",
-      "warnings": [
-        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "読みやすさ: 文が長い（1文の平均 66.6字・60字超の文が 64% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "読みやすさ: 段落が長い（平均 186.6字・最長 294字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-11T11:26:31.502155+00:00",
-      "attempt": 1,
-      "id": "b2f355d4f86e33ca",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "タイトル「防災や健康分野で導入広がる」→ 元記事は防災・健康分野を事例として紹介しているだけで、これらの分野で導入が広がっているという傾向や件数は示していない。",
-        "本文「都市インフラの維持管理、環境やエネルギー分野の対策」→ 元記事の「都市・インフラ、環境・エネルギー分野における取組」を超えて「維持管理」「対策」という具体的な内容を補っている。",
-        "本文「行政運営の効率化につながるシステム導入」→ 元記事に無い「システム導入」という具体的な形態を付け加えている。",
-        "本文「被災地の支援や健康への関心を高める取り組みなど、現場のニーズに即したサービスが導入されています」→ 元記事は事例紹介であり、「現場のニーズに即した」という評価は元記事に無い。"
-      ],
-      "readability": {
-        "avg_paragraph": 128.2,
-        "avg_sentence": 64.1,
-        "long_share": 0.375,
-        "max_paragraph": 166,
-        "paragraphs": 4,
-        "sentences": 8
-      },
-      "score": 62,
-      "source": "tokyo-metro",
-      "title": "令和8年度第2四半期におけるスタートアップとの官民協働の取組状況 被災地支援や健康への関心づくりなど、現場での活用事例を紹介",
-      "warnings": [
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
-        "読みやすさ: 文が長い（1文の平均 64.1字・60字超の文が 38% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "読みやすさ: 段落が長い（平均 128.2字・最長 166字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-11T15:13:32.153420+00:00",
-      "attempt": 1,
-      "id": "e879c6fc35d4933f",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 94.9,
-        "avg_sentence": 47.5,
-        "long_share": 0.167,
-        "max_paragraph": 183,
-        "paragraphs": 12,
-        "sentences": 24
-      },
-      "score": 90,
-      "source": "google-deepmind-blog",
-      "title": "AlphaGenome 2: Deciphering how cells read DNA to better understand disease",
-      "warnings": [
-        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（DNA・IBD・ETS）",
-        "読みやすさ: 文が長い（1文の平均 47.5字・60字超の文が 17% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-11T15:13:54.670790+00:00",
-      "attempt": 0,
-      "id": "e879c6fc35d4933f",
-      "kind": "ai",
-      "model": "",
-      "problems": [
-        "読みやすさ基準外のまま受理: 読みやすさが改善しなかった（47.5→45.9字）"
-      ],
-      "readability": {
-        "avg_paragraph": 94.9,
-        "avg_sentence": 47.5,
-        "long_share": 0.167,
-        "max_paragraph": 183,
-        "paragraphs": 12,
-        "sentences": 24
-      },
-      "score": 90,
-      "source": "google-deepmind-blog",
-      "title": "AlphaGenome 2: Deciphering how cells read DNA to better understand disease",
-      "warnings": [
-        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（DNA・IBD・ETS）",
-        "読みやすさ: 文が長い（1文の平均 47.5字・60字超の文が 17% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-11T15:15:12.295869+00:00",
-      "attempt": 1,
-      "id": "819d0c1ccd00d40c",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 100.3,
-        "avg_sentence": 50.2,
-        "long_share": 0.292,
-        "max_paragraph": 154,
-        "paragraphs": 12,
-        "sentences": 24
-      },
-      "score": 88,
-      "source": "google-cloud-blog",
-      "title": "New survey finds enterprises trapped between legacy software and AI modernizatio",
-      "warnings": [
-        "読みやすさ: 文が長い（1文の平均 50.2字・60字超の文が 29% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-11T15:15:34.976804+00:00",
-      "attempt": 0,
-      "id": "819d0c1ccd00d40c",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 60.0,
-        "avg_sentence": 48.0,
-        "long_share": 0.24,
-        "max_paragraph": 100,
-        "paragraphs": 20,
-        "sentences": 25
-      },
-      "score": 82,
-      "source": "google-cloud-blog",
-      "title": "New survey finds enterprises trapped between legacy software and AI modernizatio",
-      "warnings": [
-        "読みやすさ: 文が長い（1文の平均 48.0字・60字超の文が 24% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": false,
       "at": "2026-11-11T15:27:27.585407+00:00",
       "attempt": 1,
       "id": "b971dd88507174df",
@@ -28164,6 +27984,209 @@
       "title": "森田駿哉",
       "warnings": [
         "本文が見出しで始まっている（最初の段落は見出しなしで、だれに関係するか・関係しない人はどうかを書く）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-13T15:24:00.025564+00:00",
+      "attempt": 1,
+      "id": "8e1a91ab974f3439be35e53f201451f14c1b75ee",
+      "kind": "trend",
+      "model": "gemini-3.5-flash",
+      "problems": [
+        "「中央左寄りの赤い五角星」→ 元記事は「赤い五角星」とだけ書いており、星の位置は元記事に無い創作的な補足である。",
+        "「対外宣伝サイト「ネナラ」でその全文を公開」→ 元記事（日経）は「ウェブサイト「ネナラ（わが国）」で公開」と書いており、対外宣伝サイトという性格づけは元記事に無い。",
+        "「まだ分からないこと」の「全面的に差し替えられる時期」→ 元記事に言及は無いが「発表されていない」という記述なので問題にはしないが、「基本のデザイン構成を変えずに規格の数値のみを改定した点が今回の特徴」は元記事の範囲を超えた編集部の解釈として断定的である。",
+        "「正恩氏独自の体制を象徴する施策の一環とみられています」→ 元記事は韓国メディアの分析として伝えており、記事は分析の出どころを示さずに事実寄りに書いている。"
+      ],
+      "readability": {
+        "avg_paragraph": 95.8,
+        "avg_sentence": 57.5,
+        "long_share": 0.3,
+        "max_paragraph": 174,
+        "paragraphs": 6,
+        "sentences": 10
+      },
+      "score": 82,
+      "source": "trends",
+      "title": "北 朝鮮 国旗",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（NEWS）",
+        "読みやすさ: 文が長い（1文の平均 57.5字・60字超の文が 30% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-13T15:24:20.140253+00:00",
+      "attempt": 1,
+      "id": "8e1a91ab974f3439be35e53f201451f14c1b75ee",
+      "kind": "trend",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 96.8,
+        "avg_sentence": 60.5,
+        "long_share": 0.375,
+        "max_paragraph": 130,
+        "paragraphs": 5,
+        "sentences": 8
+      },
+      "score": 95,
+      "source": "trends",
+      "title": "北 朝鮮 国旗",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（NEWS）",
+        "work_money（「仕事・お金にどう活かせる？」欄）が無い",
+        "読みやすさ: 文が長い（1文の平均 60.5字・60字超の文が 38% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-13T15:24:34.476967+00:00",
+      "attempt": 0,
+      "id": "8e1a91ab974f3439be35e53f201451f14c1b75ee",
+      "kind": "trend",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 72.4,
+        "avg_sentence": 39.0,
+        "long_share": 0.0,
+        "max_paragraph": 113,
+        "paragraphs": 7,
+        "sentences": 13
+      },
+      "score": 92,
+      "source": "trends",
+      "title": "北 朝鮮 国旗",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（NEWS）",
+        "work_money（「仕事・お金にどう活かせる？」欄）が無い"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-13T15:25:36.108487+00:00",
+      "attempt": 1,
+      "id": "469c856ce55e4add033b7559fa5603acf37c0314",
+      "kind": "trend",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "タイトル「2戦連続アーチ」→ 元記事は9回のソロ本塁打を1試合分として報じており、2戦連続に言及する記述は無い（創作）",
+        "タイトル「初スタメン」→ 元記事に宗山選手の初スタメンだとする記述は無い（創作）",
+        "本文は「2番ショートとしてスタメン起用」とあるのみで、初スタメンの根拠が本文にも無い"
+      ],
+      "readability": {
+        "avg_paragraph": 107.6,
+        "avg_sentence": 59.8,
+        "long_share": 0.333,
+        "max_paragraph": 131,
+        "paragraphs": 5,
+        "sentences": 9
+      },
+      "score": 55,
+      "source": "trends",
+      "title": "宗山 塁",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（TBS・NEWS・DIG）",
+        "読みやすさ: 文が長い（1文の平均 59.8字・60字超の文が 33% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-13T15:25:50.903235+00:00",
+      "attempt": 1,
+      "id": "469c856ce55e4add033b7559fa5603acf37c0314",
+      "kind": "trend",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 107.6,
+        "avg_sentence": 59.8,
+        "long_share": 0.333,
+        "max_paragraph": 131,
+        "paragraphs": 5,
+        "sentences": 9
+      },
+      "score": 92,
+      "source": "trends",
+      "title": "宗山 塁",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（TBS・NEWS・DIG）",
+        "work_money（「仕事・お金にどう活かせる？」欄）が無い",
+        "読みやすさ: 文が長い（1文の平均 59.8字・60字超の文が 33% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-13T15:26:10.483298+00:00",
+      "attempt": 0,
+      "id": "469c856ce55e4add033b7559fa5603acf37c0314",
+      "kind": "trend",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 67.2,
+        "avg_sentence": 33.6,
+        "long_share": 0.062,
+        "max_paragraph": 134,
+        "paragraphs": 8,
+        "sentences": 16
+      },
+      "score": 90,
+      "source": "trends",
+      "title": "宗山 塁",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（TBS・NEWS・DIG）",
+        "work_money（「仕事・お金にどう活かせる？」欄）が無い"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-13T15:27:23.493948+00:00",
+      "attempt": 1,
+      "id": "52edad5aed8f70e2",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 135.8,
+        "avg_sentence": 59.0,
+        "long_share": 0.478,
+        "max_paragraph": 320,
+        "paragraphs": 10,
+        "sentences": 23
+      },
+      "score": 88,
+      "source": "jp-bank",
+      "title": "従業員向け株式給付制度の導入及び株式給付信託（J-ESOP）に係る信託拠出に伴う自己株式の処分に関するお知らせ",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（ESOP）",
+        "読みやすさ: 文が長い（1文の平均 59.0字・60字超の文が 48% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "読みやすさ: 段落が長い（平均 135.8字・最長 320字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-13T15:27:53.806089+00:00",
+      "attempt": 0,
+      "id": "52edad5aed8f70e2",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 87.2,
+        "avg_sentence": 39.9,
+        "long_share": 0.057,
+        "max_paragraph": 154,
+        "paragraphs": 16,
+        "sentences": 35
+      },
+      "score": 92,
+      "source": "jp-bank",
+      "title": "従業員向け株式給付制度の導入及び株式給付信託（J-ESOP）に係る信託拠出に伴う自己株式の処分に関するお知らせ",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（ESOP）"
       ]
     }
   ],
