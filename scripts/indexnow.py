@@ -597,6 +597,10 @@ def publish_block_reason(article: dict) -> str | None:
     reason = focus_reason(article)
     if reason == "off-focus" and on_axis(article):
         return None
+    # 編集部が話題を決めて依頼した記事（Muse）と話題のレーンの記事は、話題の分野（主題外）では止めない。
+    # 2026-11-13 オーナー「とにかく数字」「注目する話題がとれていない」。モペット・ブックオフのフェアが題名の語で止まった
+    if reason == "off-focus" and (article.get("writer") == "muse" or article.get("trendLane") or article.get("pressReport")):
+        return None
     return reason if reason in PUBLISH_BLOCK else None
 
 
