@@ -8,6 +8,7 @@ import {
   getArticlesByChannel,
   getArticlesByGenre,
   getArticlesByTag,
+  genreTwinOfTag,
   lastModifiedOf,
   tagSlug,
   type ArticleSummary,
@@ -214,7 +215,8 @@ export function sitemapEntries(): SitemapEntry[] {
       lastModified: newestOf(articles.filter((a) => companyOf(a).slug === company.slug))
     })),
     ...getAllTags()
-      .filter((tag) => liveTags.has(tag.slug) && (tagArticleCounts.get(tag.slug) ?? 0) >= 2 && isListingIndexable(getArticlesByTag(tag.slug), `/tags/${tag.slug}`))
+      // ジャンルと同じ名前のタグは載せない（ページは noindex・canonical はジャンルの一覧。lib/articles.ts の genreTwinOfTag）
+      .filter((tag) => liveTags.has(tag.slug) && (tagArticleCounts.get(tag.slug) ?? 0) >= 2 && !genreTwinOfTag(tag.slug) && isListingIndexable(getArticlesByTag(tag.slug), `/tags/${tag.slug}`))
       .map((tag) => ({
       url: `${base}/tags/${encodeURIComponent(tag.slug)}`,
       lastModified: newestOf(getArticlesByTag(tag.slug).filter(isIndexable))

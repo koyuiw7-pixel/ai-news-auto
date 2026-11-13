@@ -561,7 +561,6 @@ function safeDecode(value: string): string {
   }
 }
 
-/** ジャンル一覧（記事が1本でもあるものだけ） */
 /**
  * ジャンルと同じ名前のタグ（「スポーツ」「暮らし・生活」など）のとき、そのジャンルの slug。無ければ null。
  * /tags/スポーツ と /genres/sports は題名も中身もほぼ同じ一覧になるので、タグのほうは検索に出さず、canonical をジャンルへ向ける
@@ -572,6 +571,7 @@ export function genreTwinOfTag(tag: string): string | null {
   return getAllGenres().find((genre) => tagSlug(genre.label) === slug)?.slug ?? null;
 }
 
+/** ジャンル一覧（記事が1本でもあるものだけ） */
 export function getAllGenres(): Facet[] {
   const map = new Map<string, Facet>();
   for (const article of getAllArticles()) {

@@ -3,7 +3,7 @@ import { articleTitle } from "@/lib/headline";
 import { notFound } from "next/navigation";
 import ArticleCard from "@/components/ArticleCard";
 import Pagination from "@/components/Pagination";
-import { getArticlesByTag, getTagLabel, tagSlug } from "@/lib/articles";
+import { genreTwinOfTag, getArticlesByTag, getTagLabel, tagSlug } from "@/lib/articles";
 import { listingRobots } from "@/lib/indexing";
 import { pageHref, pageSuffix, paginate } from "@/lib/paginate";
 
@@ -13,15 +13,17 @@ export function tagMetadata(tag: string, page: number): Metadata {
   const articles = getArticlesByTag(tag);
   const genres = [...new Set(articles.map((a) => a.genre))].join("・");
   const base = `/tags/${encodeURIComponent(tagSlug(label))}`;
+  const twin = genreTwinOfTag(tag);
 
   // 題名は毎回変わらない形（本数は説明文だけ）。説明文は新しい記事2本の題名から（SEO A20）
   const newest = articles.slice(0, 2).map((a) => `「${articleTitle(a)}」`).join("");
   return {
     title: `${label}の最新ニュース・解説記事${pageSuffix(page)}`,
     description: `${label}の新しい記事は${newest}など${articles.length}本。${genres}の話題を、公式発表などをもとに要点・数字・注意点までまとめています。`,
-    alternates: { canonical: pageHref(base, page) },
+    // ジャンルと同じ名前のタグ（/tags/スポーツ と /genres/sports）は、ジャンルの一覧を正式なページにする（題名が同じページを作らない。2026-11-13）
+    alternates: { canonical: twin ? pageHref(`/genres/${twin}`, 1) : pageHref(base, page) },
     // 検索対象の記事が少ない薄いタグは検索対象から外す
-    ...listingRobots(articles, `/tags/${tagSlug(label)}`),
+    ...(twin ? { robots: { index: false, follow: true } } : listingRobots(articles, `/tags/${tagSlug(label)}`)),
   };
 }
 

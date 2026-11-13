@@ -148,6 +148,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         slug: article.slug,
         duplicateOf: article.duplicateOf && getArticleSummary(article.duplicateOf) ? article.duplicateOf : undefined,
       }),
+      // RSS の場所（ページごとの alternates は layout の指定を引き継がないので、ここにも書く。記事ページの head に RSS の案内が出ていなかった。2026-11-13）
+      types: { "application/rss+xml": "/feed.xml" },
     },
     // 薄くなりやすい記事はサイトでは読めるが、検索には出さない（lib/indexing.ts）
     ...(isIndexable({ ...article, duplicate: getArticleSummary(article.slug)?.duplicate }) ? {} : { robots: { index: false, follow: true } }),
