@@ -68,14 +68,13 @@
   "videoTitle": "46品目が2027年2月から値上げ、ヤクルトのタフマンは税別153円から175円に",
   "publishedAt": "2026-11-14T21:17:43.134772+00:00",
   "generatedAt": "2026-11-14T21:18:36.764670+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/yakult-46-items-price-hike-2027-figure-f443423f.jpg",
   "model": "anthropic-api:claude-haiku-5-5",
   "affiliates": [],
   "newsType": "pricing",
   "todayActions": [
-    "冷蔵庫や棚にあるヤクルト系の飲料と乾麺の本数を数え、普段の1か月の消費量と比べる",
-    "自分がよく買う商品が、公式発表の価格改定商品一覧（46品）に入っているかを確かめる",
-    "分からない点は、ヤクルトお客さま相談センター（0120-11-8960、10時から16時、土・日・祝日などを除く）に問い合わせる"
+    "公式発表の価格改定商品一覧で、よく買う商品が46品に入っているかを確かめる",
+    "改定日の2027年2月1日(月)を確かめ、自分の商品の改定率から差額を把握する"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -133,5 +132,118 @@
   "detectedAt": "2026-11-14T21:20:01+00:00",
   "searchTitle": "ヤクルト46品が値上げ　2027年2月から、タフマンは175円",
   "layout": "noir",
-  "summaryLine": "ヤクルト本社が清涼飲料36品と食品10品、計46品を2027年2月1日から値上げ。税別で3〜**21％**上がります。"
+  "summaryLine": "ヤクルト本社が清涼飲料36品と食品10品、計46品を2027年2月1日から値上げ。税別で3〜**21％**上がります。",
+  "insight": [
+    {
+      "text": "本物の発表の表記は「ヤクルト麵許皆伝」（麵の字）。一覧で商品名を探すときは、麺ではなく麵の字で検索すると見つけやすい。",
+      "source": "https://www.yakult.co.jp/maintenance/news/pdf/20261113_16.pdf"
+    },
+    {
+      "text": "佐賀の神埼シリーズでも、「佐賀の神埼そば」だけは130円から140円（8%）。うどん・そうめん・ひやむぎ・中めんは120円から140円（17%）。",
+      "source": "https://www.yakult.co.jp/maintenance/news/pdf/20261113_16.pdf"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "ヤクルト本社 価格改定商品一覧(46品)",
+      "url": "https://www.yakult.co.jp/maintenance/news/pdf/20261113_16.pdf",
+      "source": "https://www.yakult.co.jp/maintenance/news/pdf/20261113_16.pdf",
+      "note": "46品すべての現行価格と改定後価格が一覧に載っている。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "公式発表の価格改定商品一覧で、よく買う商品が46品に入っているかを確かめる",
+      "source": "https://www.yakult.co.jp/maintenance/news/pdf/20261113_16.pdf",
+      "steps": [
+        "価格改定商品一覧のPDFを開く",
+        "商品名と内容量が一致する行を探す",
+        "現行価格と改定後価格を見比べる"
+      ],
+      "url": "https://www.yakult.co.jp/maintenance/news/pdf/20261113_16.pdf"
+    },
+    {
+      "action": "改定日の2027年2月1日(月)を確かめ、自分の商品の改定率から差額を把握する",
+      "source": "https://www.yakult.co.jp/maintenance/news/pdf/20261113_16.pdf",
+      "steps": [
+        "価格改定商品一覧で改定率の欄を見る",
+        "改定後の価格から現行価格を引く",
+        "差額を1か月の本数で計算する"
+      ],
+      "url": "https://www.yakult.co.jp/maintenance/news/pdf/20261113_16.pdf"
+    }
+  ],
+  "cause": {
+    "text": "原材料費・物流費・人件費・燃料費などのコストが高騰しています。生産の合理化やオペレーションの効率化でコスト増を吸収してきましたが、企業努力で吸収できる範囲を超えたため、価格を改定するとしています。",
+    "status": "stated",
+    "source": "https://www.yakult.co.jp/maintenance/news/pdf/20261113_16.pdf"
+  },
+  "worries": [
+    {
+      "q": "自分がよく買う商品も値上げの対象？",
+      "a": "46品の一覧に載っている商品が対象です。改定は一部商品を除くとされています。一覧にはタフマンやミルージュ、佐賀の神埼シリーズなどが載っています。",
+      "source": "https://www.yakult.co.jp/maintenance/news/pdf/20261113_16.pdf",
+      "action": "価格改定商品一覧で、自分の商品の名前と内容量が載っているかを探す。"
+    },
+    {
+      "q": "いつから値段が上がる？",
+      "a": "2027年2月1日(月)の改定日から、メーカー希望小売価格（税別）が上がります。改定率は+3〜21%です。",
+      "source": "https://www.yakult.co.jp/maintenance/news/pdf/20261113_16.pdf",
+      "action": "手帳などに2027年2月1日(月)の改定日を書き留め、そこまでに買う量を考える。"
+    },
+    {
+      "q": "どれくらい値上がりする？",
+      "a": "改定率は商品によって違い、+3〜21%です。ミルージュ500mlは165円から200円（21%）、ヤクルト蕃爽麗茶2000mlは660円から680円（3%）です。",
+      "source": "https://www.yakult.co.jp/maintenance/news/pdf/20261113_16.pdf",
+      "action": "一覧で自分の商品の現行価格と改定後価格を見比べ、差額を計算する。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "今のうちに買い置きしておくべき？",
+      "situation": "毎週よく買う商品がある",
+      "recommend": "普段の消費量の範囲で前倒しを考えてもよい",
+      "reason": "改定日は2027年2月1日(月)で、税別の希望小売価格が3〜21%上がると発表されています。現行と改定後の価格は一覧で確かめられます。買い置きは普段の消費量の範囲にとどまります。",
+      "source": "https://www.yakult.co.jp/maintenance/news/pdf/20261113_16.pdf"
+    },
+    {
+      "question": "今のうちに買い置きしておくべき？",
+      "situation": "たまにしか買わない",
+      "recommend": "急がなくてよい",
+      "reason": "改定日は2027年2月1日(月)からです。一覧で自分の商品の現行価格と改定後価格を確かめてから、買う量を考えれば足ります。",
+      "source": "https://www.yakult.co.jp/maintenance/news/pdf/20261113_16.pdf"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "一覧の表記と、佐賀の神埼そばの上げ幅",
+    "cause": "なぜ値上げするのか、発表の理由",
+    "steps": "今日の確認は一覧と自分の商品の照合から",
+    "desk": "価格の一覧は公式発表で確かめられる",
+    "worries": "自分の商品は対象？いつから上がる？",
+    "guide": "買い置きするか、急がないか迷ったら"
+  },
+  "depthAt": "2026-11-14T21:35:18+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "153円",
+    "label": "タフマン",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-14T21:35:56+00:00"
+  },
+  "imageFocus": {
+    "x": 0.449,
+    "y": 0.465,
+    "box": [
+      0.022,
+      0.048,
+      0.875,
+      0.881
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/yakult-46-items-price-hike-2027-figure-f443423f.jpg"
+  }
 }
