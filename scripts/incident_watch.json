@@ -1,0 +1,63 @@
+{
+  "_doc": "「自分は対象か」の事故（情報流出・リコール/回収・大きな障害）の見張り（scripts/incident_watch.py・台帳 W44）。discovery は見つけるためだけの発信元（記事の出典にしない。会社の名前と事故の種類を取り出し、会社自身のお知らせを探して出典にする）。official=true の発信元は項目の URL そのものが公式の一次情報（適時開示の PDF）。消費者庁のリコール情報の項目のページは本文が短いので出典にはせず、見つけるためだけに使う（major_only=全国で知られた名前だけ）。どれも 2026-11-14 に取得できること（HTTP 200・項目が読める）を確かめた。min_scale は情報流出の件数の下限（これ以上なら1つの発信元だけでも拾う）。min_scale_multi は2つ以上の発信元が伝えたときの下限。どちらにも届かず、主要な名前（major_names）にも当たらなければ見送る。name_groups は同じ会社の別の呼び名（先頭が代表）。max_age_days は遡って拾う古さ（発表から。まだ記事が無いときだけ）。covered_days は同じ事故の記事があるかを見る日数。daily_max は1日に速報レーンへ回す数の安全上限（暴走よけ。通常の記事の上限・審査の期間の門とは別枠）。per_dispatch は1回の速報レーンに渡す数（auto_run.yml は3件まで）。redispatch_minutes たっても結果が無ければ起こし直す（max_dispatches 回まで）。major_names は全国で売られている・使われている名前（食品の回収と、件数が分からない事故を拾う目安）。backfill は取りこぼしを1回だけ拾い直す一覧（--backfill のときだけ読む）",
+  "min_scale": 100000,
+  "min_scale_multi": 10000,
+  "max_age_days": 14,
+  "covered_days": 21,
+  "daily_max": 30,
+  "per_dispatch": 3,
+  "max_dispatches": 3,
+  "redispatch_minutes": 45,
+  "official_tries": 4,
+  "discovery": [
+    { "slug": "scan-netsecurity", "name": "ScanNetSecurity", "url": "https://scan.netsecurity.ne.jp/rss/index.rdf" },
+    { "slug": "security-next", "name": "Security NEXT", "url": "https://www.security-next.com/feed" },
+    { "slug": "piyolog", "name": "piyolog", "url": "https://piyolog.hatenadiary.jp/rss", "max_items": 15 },
+    { "slug": "cybersecurity-jp", "name": "サイバーセキュリティ.com", "url": "https://cybersecurity-jp.com/feed" },
+    { "slug": "rocket-boys", "name": "セキュリティ対策Lab", "url": "https://rocket-boys.co.jp/feed/" },
+    { "slug": "itmedia-security", "name": "ITmedia NEWS セキュリティ", "url": "https://rss.itmedia.co.jp/rss/2.0/news_security.xml" },
+    { "slug": "prtimes-incident", "name": "PR TIMES（事故の語だけ）", "url": "https://prtimes.jp/index.rdf" },
+    { "slug": "tdnet-recent", "name": "適時開示（TDnet の新着・事故の語だけ）", "url": "https://webapi.yanoshin.jp/webapi/tdnet/list/recent.rss", "official": true, "title_split": ":" },
+    { "slug": "caa-recall-all", "name": "消費者庁 リコール情報サイト（全分類）", "url": "https://www.recall.caa.go.jp/", "type": "html", "link_re": "/result/detail\\.php\\?rcl=\\d+", "kind": "recall", "major_only": true }
+  ],
+  "types": {
+    "breach": {
+      "label": "情報流出",
+      "genre": "public",
+      "re": "不正アクセス|情報(?:が|の)?(?:漏えい|漏洩|流出)|漏えい|漏洩|流出|不正ログイン|不正侵入|侵害被害|リスト型攻撃|ランサムウェア|サイバー攻撃|個人情報.{0,12}(?:紛失|持ち出し|閲覧)",
+      "anchor_re": "不正アクセス|漏えい|漏洩|流出|不正ログイン|サイバー攻撃|個人情報.{0,20}お(?:詫|わ)び|お(?:詫|わ)び.{0,20}個人情報"
+    },
+    "recall": { "label": "回収", "genre": "lifestyle", "re": "リコール|自主回収|商品(?:の)?回収|製品(?:の)?回収|回収(?:の|に関する)?お(?:知らせ|詫び|願い)|返金／回収|交換／回収|回収命令|使用中止", "anchor_re": "リコール|回収|使用中止" },
+    "outage": {
+      "label": "障害",
+      "genre": "public",
+      "re": "システム障害|通信障害|接続障害|障害が発生|つながりにくい|利用できない状況|ATM.{0,10}(?:利用|使え)",
+      "anchor_re": "障害|つながりにくい|利用できない"
+    }
+  },
+  "exclude_re": "脆弱性|アップデート|パッチ|セキュリティ更新|修正版|ウェビナー|セミナー|無料相談|調査結果|レポート|ランキング|対策(?:サービス|製品|ソフト|ツール)|提供開始|とは[？?]|解説|インタビュー|に聞いた|偽サイト|偽アプリ|フィッシングの報告|訓練|演習|米[A-Z国]|調査|相次ぐ|続出|過去最多|恐喝|懸念|体制強化|続く恐れ",
+  "not_official_hosts": [ "hatenadiary.jp", "hatenadiary.com", "hatenablog.com", "hatenablog.jp", "yahoo.co.jp", "bit.ly", "goo.gl", "t.co", "iid.co.jp", "netsecurity.ne.jp", "security-next.com", "cybersecurity-jp.com", "rocket-boys.co.jp", "itmedia.co.jp", "prtimes.jp", "yanoshin.jp", "cyberhoken-jp.com", "securityagent.jp", "secureonline.co.jp", "axisjp.co.jp", "nikkeibp.co.jp", "mynavi.jp", "impress.co.jp", "wwdjapan.com", "bengo4.com", "en-japan.com", "techlion.jp", "tsujileaks.com", "event.nikkei.com", "apple.com", "microsoft.com", "google.co.jp", "amazon.co.jp", "ipa.go.jp", "nict.go.jp", "jpcert.or.jp", "ppc.go.jp", "npa.go.jp", "nisc.go.jp" ],
+  "major_names": [ "無印良品", "良品計画", "ノジマ", "ヤマダ", "ビックカメラ", "ヨドバシ", "ニトリ", "イオン", "セブン", "ローソン", "ファミリーマート", "ユニクロ", "しまむら", "ドコモ", "KDDI", "au", "ソフトバンク", "楽天", "LINE", "ヤフー", "メルカリ", "PayPay", "三菱UFJ", "三井住友", "みずほ", "りそな", "ゆうちょ", "日本郵便", "JR", "ANA", "JAL", "全日空", "日本航空", "ソラシドエア", "スカイマーク", "ピーチ", "トヨタ", "ホンダ", "日産", "スズキ", "ダイハツ", "マツダ", "SUBARU", "スバル", "三菱自動車", "ヤマハ", "パナソニック", "ソニー", "シャープ", "日立", "東芝", "ダイキン", "アイリスオーヤマ", "任天堂", "資生堂", "花王", "ライオン", "コーセー", "小林製薬", "ロート", "大正製薬", "武田", "明治", "森永", "グリコ", "ロッテ", "カルビー", "山崎製パン", "ヤマザキ", "不二家", "モンテール", "日清", "味の素", "キユーピー", "カゴメ", "ハウス食品", "ニッスイ", "マルハニチロ", "日本ハム", "伊藤ハム", "サントリー", "キリン", "アサヒ", "サッポロ", "コカ・コーラ", "伊藤園", "雪印", "すき家", "吉野家", "松屋", "マクドナルド", "スシロー", "くら寿司", "スターバックス", "ミスタードーナツ", "ダイソー", "セリア", "西松屋", "アカチャンホンポ", "ピジョン", "コンビ", "アップリカ", "IKEA", "イケア", "コストコ", "業務スーパー", "神戸物産", "生協", "コープ", "JTB", "HIS", "クラブツーリズム", "近畿日本ツーリスト", "じゃらん", "リクルート", "ベネッセ", "アイスタイル", "@cosme", "ZOZO", "Amazon", "アマゾン", "東京ガス", "東京電力", "関西電力", "NHK", "マイナンバー", "マイナポータル", "年金機構", "ブックオフ", "ゲオ", "TSUTAYA", "セガ", "カプコン", "スクウェア・エニックス", "バンダイ", "タカラトミー", "マネックス", "SBI", "野村", "大和証券", "ネットマイル", "シェアフル", "タイミー" ],
+  "name_groups": [
+    [ "良品計画", "無印良品", "MUJI" ],
+    [ "アイスタイル", "@cosme", "アットコスメ" ],
+    [ "SUBARU", "スバル" ],
+    [ "ノジマ", "ノジマオンライン" ],
+    [ "NTTドコモ", "ドコモ", "docomo" ],
+    [ "セブン-イレブン", "セブンイレブン", "7NOW" ],
+    [ "日本航空", "JAL" ],
+    [ "全日本空輸", "ANA", "全日空" ]
+  ],
+  "backfill": [
+    { "name": "良品計画", "aliases": [ "無印良品", "MUJI" ], "kind": "breach", "home": "https://www.ryohin-keikaku.jp/news/", "official": "https://www.ryohin-keikaku.jp/news/articles/2026_1104_02" },
+    { "name": "クラブツーリズム", "kind": "breach", "home": "https://www.club-tourism.co.jp/", "official": "https://www.club-tourism.co.jp/jpn/news/2026/1031/" },
+    { "name": "アイスタイル", "aliases": [ "@cosme", "アットコスメ" ], "kind": "breach", "home": "https://www.istyle.co.jp/news/", "official": "https://www.istyle.co.jp/news/info/2026/11/1102.html" },
+    { "name": "ソラシドエア", "kind": "breach", "home": "https://www.solaseedair.jp/", "official": "https://www.solaseedair.jp/info/2026/11/post-20260912.html" },
+    { "name": "SUBARU", "aliases": [ "スバル" ], "kind": "breach", "home": "https://www.subaru.co.jp/", "official": "https://www.subaru.co.jp/pdf/info/2026_1106_2026-11-06-135049.pdf" },
+    { "name": "シェアフル", "kind": "breach", "home": "https://sharefull.com/information/", "official": "https://sharefull.com/information/9480/" },
+    { "name": "ノジマ", "kind": "breach", "home": "https://www.nojima.co.jp/" },
+    { "name": "ネットマイル", "kind": "breach", "home": "https://www.netmile.co.jp/", "discovery": "https://scan.netsecurity.ne.jp/article/2026/11/13/56773.html" },
+    { "name": "モンテール", "kind": "recall", "home": "https://www.monteur.co.jp/" },
+    { "name": "資生堂", "kind": "breach", "home": "https://corp.shiseido.com/jp/", "discovery": "https://www.security-next.com/192582" }
+  ]
+}

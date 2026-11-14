@@ -62,6 +62,7 @@ import feeds  # noqa: E402
 import followup  # noqa: E402
 import glossary  # noqa: E402
 import indexnow  # noqa: E402  検索に出せない記事は公開しない（公開前の門）
+import incident_watch  # noqa: E402  「自分は対象か」の事故の見張り（情報流出・リコール。台帳 W44）
 import japan_availability  # noqa: E402
 import labels  # noqa: E402  ジャンル・タグの付け間違いを直す（台帳 A30）
 import llm  # noqa: E402
@@ -427,8 +428,10 @@ def breaking_record(item: dict) -> bool:
     radar_ok = not item.get("radar") or (fresh and not item.get("published_guessed"))
     # 公共性の枠はミサイル・災害（官公庁の発表）だけ速報にする（scripts/public_interest.py の breaking_ok。S2・S15）
     pi_breaking = bool(item.get("_public_interest")) and public_interest.breaking_ok(item, feeds.feed_kind(item))
+    # 事故の見張り（scripts/incident_watch.py・台帳 W44）の記事は、速報レーンですぐ作ってすぐ公開するが、SNS の【速報】にはしない
+    # （公共性の枠の決まりと同じ: 速報の投稿はミサイル・災害だけ）
     return bool(((is_breaking(item) and fresh) or (pi_breaking and fresh) or (item.get("fast") and radar_ok))
-                and not item.get("late") and not item.get("watch"))
+                and not item.get("late") and not item.get("watch") and not item.get("_incident"))
 
 
 def breaking_candidate(item: dict) -> bool:
@@ -1998,7 +2001,12 @@ def build_fast_items(urls: list[str], meta_raw: str, state: dict, now: datetime)
         key = str(meta.get("id") or iid)
         detected = fast_lane.parse_time(meta.get("detectedAt")) or now
         base = {"url": url, "title": str(meta.get("title") or "")[:200], "source": meta.get("source", ""), "detectedAt": _iso(detected)}
-        if not fast_lane.allowed_url(url, manual=manual):
+        # 事故の見張り（scripts/incident_watch.py・台帳 W44）が見つけた会社自身のお知らせ。登録外の会社のサイト・PDF でも、
+        # 公式の一次情報のドメイン（手動の速報と同じ決まり。報道・配信・SNS・ブログは不可）なら受け付ける
+        incident = meta.get("incident") if isinstance(meta.get("incident"), dict) and meta["incident"].get("kind") else None
+        if incident and not incident_watch.official_candidate(url):
+            incident = None  # 見つけるための発信元（専門メディア・まとめ）・報道・配信の URL は、事故の見張りの依頼でも受け付けない
+        if not fast_lane.allowed_url(url, manual=manual or bool(incident)):
             log(f"[fast] 対象外の URL のため処理しません: {url}")
             results[key] = {**base, "outcome": "skipped", "reason": "対象外のURL"}
             continue
@@ -2067,6 +2075,11 @@ def build_fast_items(urls: list[str], meta_raw: str, state: dict, now: datetime)
         item["published_at"] = published or detected
         item["published_guessed"] = published is None
         item.update({"fast": True, "fast_key": key, "detected_at": detected})
+        if incident:
+            # 「自分は対象か」の形で書く・公共性の枠（情報流出・リコール）の門と書き方を当てる・SNS の【速報】にはしない
+            item["_incident"] = incident
+            if incident["kind"] in ("breach", "recall"):
+                item["_public_interest"] = incident["kind"]
         if release:
             item["release"] = release
         # 新製品・ゲームの公式（rules の genre）は、そのジャンルの形で作る
@@ -3060,6 +3073,8 @@ def main() -> int:
             prompt += trend_lane.RELEVANT_NOTE + trend_lane.title_note(trend_term, item["id"])
         if item.get("release"):
             prompt += release_quality.prompt_note(item["release"])  # 発表時刻が決まった速報（統計・決算）の書き方（台帳 W35）
+        if item.get("_incident"):
+            prompt += incident_watch.prompt_note(item["_incident"])  # 「自分は対象か」の形（対象の条件の表 → 窓口 → 今やること → 経緯。台帳 W44）
         follow_new = item.get("_followup_new")
         if follow_new:
             # 続報の追記が門に落ちた話題: 新しい動きの記事として作る（2026-11-13）
@@ -3073,6 +3088,9 @@ def main() -> int:
                 rec["scheduledRelease"] = item["release"]  # 公開前の門（release_quality.release_problems）とお知らせの門の例外に使う
             if item.get("_public_interest"):
                 rec["publicInterest"] = item["_public_interest"]  # 公共性の枠の印（1日の本数・門・安全情報のリンク。scripts/public_interest.py）
+            if item.get("_incident"):
+                inc = item["_incident"]  # 事故の見張りの記事の印（発表 → 検知 → 公開の時間の記録に使う。scripts/incident_watch.py）
+                rec["incident"] = {"key": str(inc.get("key") or ""), "kind": str(inc.get("kind") or ""), "name": str(inc.get("name") or "")}
             if item.get("_trend_hit"):
                 rec["searchTrend"] = item["_trend_hit"]  # いま検索で急上昇している言葉（台帳 A63。すぐ公開して Google ニュースのサイトマップに載せる目印）
             if trend_term:

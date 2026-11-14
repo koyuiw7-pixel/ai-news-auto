@@ -1,0 +1,81 @@
+name: Incident watch
+# 「自分は対象か」の事故（情報流出・リコール/回収・大きな障害）の見張り（2026-11-14 オーナー「全然最速でもない」・台帳 W44）。
+# 無印良品（MUJI Card 約109万件）の発表を10日間取りこぼした。会社自身の「お知らせ」はどの発信元の一覧にも無かったため、
+# 見つけるためだけの発信元（セキュリティの専門メディア・適時開示・PR TIMES の事故の語・消費者庁のリコール情報。scripts/incident_watch.json）の
+# 見出しから会社と事故の種類を取り出し、その会社自身のお知らせ（公式の一次情報）を探して、速報レーン（auto_run.yml の fast_url）に回す。
+# 公式のお知らせが無いときは話題のレーン（主要な報道機関2社以上・報道と明記）に回す。Claude・Gemini は使わない（正規表現と取得だけ）。
+# GitHub の schedule はこのリポジトリでは大きく遅れる・飛ぶので、確かに動くほかの workflow（Cloudflare の watchdog が約15〜20分ごとに起こす
+# Auto Article Pipeline・記事を足すたびのデプロイ）が始まるたびにも起動する（release_watch.yml と同じ形）。
+# 取りこぼしの拾い直しは、手動の起動で backfill=1（scripts/incident_watch.json の backfill の一覧を1回だけ見る）
+run-name: ${{ github.event_name == 'workflow_dispatch' && format('Incident watch（手動{0}{1}）', inputs.backfill == '1' && '・拾い直し' || '', inputs.dry_run == '1' && '・試し' || '') || 'Incident watch' }}
+
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+  workflow_run:
+    workflows: ["Auto Article Pipeline", "Deploy to Cloudflare Workers"]
+    types: [requested]
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      backfill:
+        description: "1=取りこぼしの一覧（incident_watch.json の backfill）も拾い直す"
+        required: false
+        default: "0"
+      dry_run:
+        description: "1=何を回すかだけ出す（速報レーンを起こさない・記録もしない）"
+        required: false
+        default: "0"
+
+permissions:
+  contents: write  # state/incident_watch.json（待ち・結果・時刻の記録）と話題キュー
+  actions: write   # 速報レーン（auto_run.yml）を起こし、その実行の状態を見る
+
+concurrency:
+  group: incident-watch
+  cancel-in-progress: false
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: main
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      # PDF のお知らせ（会社の「お詫びとお知らせ」は PDF が多い）の文字を読む
+      - name: Install PDF reader
+        run: pip install -q "pypdf>=5.0,<7" "cryptography>=42"
+
+      - name: Watch incidents
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          ARGS=""
+          if [ "${{ inputs.backfill || '0' }}" = "1" ]; then ARGS="$ARGS --backfill"; fi
+          if [ "${{ inputs.dry_run || '0' }}" = "1" ]; then ARGS="$ARGS --dry-run"; fi
+          python scripts/incident_watch.py run $ARGS
+
+      # 記録（state/incident_watch.json）と話題キューを main に足す。待っている間に main が進んでいても衝突しないよう、最新に足し直す
+      - name: Commit state
+        if: ${{ (inputs.dry_run || '0') != '1' }}
+        run: |
+          if [ -z "$(git status --porcelain state/incident_watch.json state/trend_queue.json)" ]; then exit 0; fi
+          cp state/incident_watch.json "$RUNNER_TEMP/incident_watch.json"
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for i in 1 2 3 4 5; do
+            git fetch origin main && git reset --hard origin/main
+            cp "$RUNNER_TEMP/incident_watch.json" state/incident_watch.json
+            python scripts/incident_watch.py apply-press || true
+            git add state/incident_watch.json state/trend_queue.json
+            if git diff --cached --quiet; then exit 0; fi
+            git commit -m "chore(incident): 事故の見張りの記録を更新"
+            git push origin HEAD:main && exit 0
+            echo "push に失敗しました。リトライ $i/5"
+            sleep 5
+          done
+          echo "::warning::事故の見張りの記録を push できませんでした（次の回でやり直します）"
