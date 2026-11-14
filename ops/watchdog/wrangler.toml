@@ -47,5 +47,7 @@ SNS_EXTRA_ENABLED = "1"
 SNS_EXTRA_DRY_RUN = "0"
 
 # Buffer監視だけを読み取り確認し、35分以上未起動なら読み取り専用workflowを起動。
-BUFFER_MONITOR_WATCHDOG_ENABLED = "1"
+# 2026-11-14 オーナー了承: 自動投稿は11/10から止めているので、40分ごとの起動を止める（1日約60回のBuffer呼び出しを節約）。
+# 見張りは buffer_delivery_monitor.yml の1日2回（9:12・20:12）だけ残す。戻すときは "1"。
+BUFFER_MONITOR_WATCHDOG_ENABLED = "0"
 BUFFER_MONITOR_WATCHDOG_DRY_RUN = "0"
