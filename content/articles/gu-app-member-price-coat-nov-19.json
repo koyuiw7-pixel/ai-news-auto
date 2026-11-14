@@ -62,14 +62,14 @@
   "videoTitle": "GUのアプリ会員特別価格、2026年11月19日まで コートが2,000円引き",
   "publishedAt": "2026-11-14T12:32:25.086279+00:00",
   "generatedAt": "2026-11-14T12:33:30.514305+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/gu-app-member-price-coat-nov-19-figure-6df9f6c1.jpg",
   "model": "anthropic-api:claude-haiku-5-5",
   "affiliates": [],
   "newsType": "research",
   "todayActions": [
-    "GUアプリで会員登録が済んでいるか、先に確かめる。LINE登録だけでは対象外です。",
-    "欲しい商品の商品ページで、特別価格の期限（11/18か11/19）を確かめる。",
-    "店舗で買うなら、アプリの会員証を用意してから店舗在庫を検索する。"
+    "ジーユーアプリで会員証を出せるかを確かめ、未登録なら会員登録を済ませる。",
+    "欲しいコートの商品ページで、特別価格の期限が11/18か11/19かを確かめる。",
+    "店舗で買うなら、店舗在庫の検索条件を指定してサイズがあるか確かめる。"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -113,5 +113,159 @@
   "detectedAt": "2026-11-14T12:33:41+00:00",
   "searchTitle": "GUアプリ会員特別価格は11月19日まで　コート2,000円引き",
   "layout": "noir",
-  "summaryLine": "GUの公式オンラインストアで、アプリ会員特別価格が11月19日（木）まで適用されています。"
+  "summaryLine": "GUの公式オンラインストアで、アプリ会員特別価格が11月19日（木）まで適用されています。",
+  "insight": [
+    {
+      "text": "返品はオンラインストアのみ可で、ジーユー店舗では不可と書かれています。店舗レジで支払った場合のみ購入店舗で返品できます。受付期限は出荷日を含む30日以内です。",
+      "source": "https://www.gu-global.com/jp/ja/products/E361691-000/00?colorDisplayCode=31"
+    },
+    {
+      "text": "電話でのお問い合わせは予約制で、ページには「現在、電話予約サービスをご利用いただくことはできません」と出ています。",
+      "source": "https://faq.gu-global.com/contactus/FRCS_Call_Reservation_Articles_GU?a=-662261748"
+    },
+    {
+      "text": "カスタマーセンターのトップには「システム障害による影響について（11/14更新）」という重要なお知らせが出ています。",
+      "source": "https://faq.gu-global.com/"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "ジーユーカスタマーセンター",
+      "url": "https://faq.gu-global.com/articles/Knowledge/100001926",
+      "source": "https://faq.gu-global.com/articles/Knowledge/100001926",
+      "howTo": [
+        "ジーユーカスタマーサービス",
+        "お問い合わせ",
+        "電話でお問い合わせ"
+      ],
+      "phone": "0120 856 452",
+      "hours": "9:00~17:00（年中無休）",
+      "note": "電話でのお問い合わせは予約にて承っていると書かれています。チャットサポートは24時間受付です。"
+    },
+    {
+      "name": "ジーユー オンラインストア コート一覧",
+      "url": "https://www.gu-global.com/jp/ja/women/outer/coat",
+      "source": "https://www.gu-global.com/jp/ja/women/outer/coat",
+      "howTo": [
+        "WOMEN",
+        "アウター",
+        "コート"
+      ],
+      "note": "一覧には「11/18まで」と表示される商品があります。店舗在庫は「店舗選択」から検索できます。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "ジーユーアプリで会員証を出せるかを確かめ、未登録なら会員登録を済ませる。",
+      "source": "https://faq.gu-global.com/articles/Knowledge/100001926",
+      "steps": [
+        "ジーユーアプリを開く",
+        "会員証をご提示できる状態か確かめる"
+      ],
+      "url": "https://faq.gu-global.com/articles/Knowledge/100001926"
+    },
+    {
+      "action": "欲しいコートの商品ページで、特別価格の期限が11/18か11/19かを確かめる。",
+      "source": "https://www.gu-global.com/jp/ja/women/outer/coat",
+      "steps": [
+        "コート一覧で商品名を開く",
+        "価格欄の「11/18まで」の表示を見る"
+      ],
+      "url": "https://www.gu-global.com/jp/ja/women/outer/coat"
+    },
+    {
+      "action": "店舗で買うなら、店舗在庫の検索条件を指定してサイズがあるか確かめる。",
+      "source": "https://www.gu-global.com/jp/ja/women/outer/coat",
+      "steps": [
+        "コート一覧で「店舗選択」を開く",
+        "在庫の検索条件で指定店舗在庫も含むを選ぶ"
+      ],
+      "url": "https://www.gu-global.com/jp/ja/women/outer/coat"
+    }
+  ],
+  "cause": {
+    "text": "この特別価格はジーユーアプリの会員だけが使える限定価格です。公式LINEとお友だち登録しても対象にはならず、店舗では会員証をアプリから出す仕組みです。",
+    "status": "background",
+    "source": "https://faq.gu-global.com/articles/Knowledge/100001926"
+  },
+  "worries": [
+    {
+      "q": "LINEに登録しただけで安くなりますか？",
+      "a": "なりません。ジーユー公式LINEとお友だち登録しても、アプリ会員限定価格の対象にはなりません。限定価格を使うには、ジーユーアプリから会員証を提示する必要があります。",
+      "source": "https://faq.gu-global.com/articles/Knowledge/100001926",
+      "action": "まだアプリを入れていないなら、ジーユーアプリをダウンロードして会員登録を済ませる。"
+    },
+    {
+      "q": "店舗でも同じ特別価格で買えますか？",
+      "a": "店舗で特別価格を使うには、ジーユーアプリから会員証を出す必要があります。LINEでは会員証を表示できないため、アプリのダウンロードが必要だと案内されています。",
+      "source": "https://faq.gu-global.com/articles/Knowledge/100001926",
+      "action": "店舗へ行く前に、ジーユーアプリの会員証を開ける状態にしておく。"
+    },
+    {
+      "q": "期限は11月18日と19日、どちらが本当？",
+      "a": "トップページでは11/19(木)までと表示され、コートの一覧などには11/18までと表示されています。両方の表示があるため、買う商品の商品ページで期限を確かめるのが確実です。",
+      "source": "https://www.gu-global.com/jp/ja/women/outer/coat",
+      "action": "欲しい商品の商品ページを開き、価格欄の期限表示を確かめる。"
+    },
+    {
+      "q": "店舗で買うとき、サイズがあるか確かめられる？",
+      "a": "商品一覧では「店舗選択」で指定店舗在庫も含めて検索できると書かれています。在庫の検索条件では、オンラインストア在庫、指定店舗在庫、その両方を選べます。",
+      "source": "https://www.gu-global.com/jp/ja/women/outer/coat",
+      "action": "店舗選択で行きたい店を選び、在庫の検索条件で指定店舗在庫も含むを選ぶ。"
+    },
+    {
+      "q": "店で買って合わなかったら返品できる？",
+      "a": "ジーユー店舗では返品できず、返品はオンラインストアのみ可と書かれています。店舗レジで支払った場合は購入店舗で返品できます。受付期限は出荷日を含む30日以内です。",
+      "source": "https://www.gu-global.com/jp/ja/products/E361691-000/00?colorDisplayCode=31",
+      "action": "店舗で買う場合は返品できない前提で、試着してから決める。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "店舗で買うか、オンラインで買うか迷う",
+      "situation": "サイズが店にあるか知りたい",
+      "recommend": "店舗在庫を検索してから決めるとよい",
+      "reason": "店舗在庫は一覧の「店舗選択」から指定店舗在庫も含めて確かめられます。返品はオンラインストアのみ可で、店舗では不可と書かれています。",
+      "source": "https://www.gu-global.com/jp/ja/women/outer/coat"
+    },
+    {
+      "question": "コートを今買うか、期限まで待つか迷う",
+      "situation": "特別価格の期限が近いと気になる",
+      "recommend": "急がなくてよいが、期限は早めに確かめる",
+      "reason": "トップでは11/19(木)までと表示され、一覧には11/18までと出ている商品があります。どちらでも期限は近いため、商品ページで表示を見てから決めるとよいです。",
+      "source": "https://www.gu-global.com/jp/ja/women/outer/coat"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "店舗で買うと返品はできるのか",
+    "cause": "特別価格がアプリ会員だけの理由",
+    "steps": "今日先に確かめる3つのこと",
+    "desk": "買う前に見る公式の窓口と一覧",
+    "worries": "LINEや期限、店舗で買うときの心配",
+    "guide": "店で買うかオンラインで買うか迷ったら"
+  },
+  "depthAt": "2026-11-14T12:51:23+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "GUのアプリ会員特別価格、2026年11月19日まで",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-14T12:52:24+00:00"
+  },
+  "imageFocus": {
+    "x": 0.54,
+    "y": 0.413,
+    "box": [
+      0.109,
+      0.065,
+      0.972,
+      0.762
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/gu-app-member-price-coat-nov-19-figure-6df9f6c1.jpg"
+  }
 }
