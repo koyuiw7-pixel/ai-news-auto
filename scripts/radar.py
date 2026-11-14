@@ -799,6 +799,36 @@ def open_issue(title: str, body: str) -> str:
     return github("/issues", "POST", {"title": title, "body": body, "labels": ["missed-news"]})["html_url"]
 
 
+def incident_rows(gaps: list[dict], stories: list[dict]) -> list[dict]:
+    """見逃しチェックの話題（他社だけの話題・記事が無い大きなニュース）を、事故の見張りに渡す形にする（見出し1つ＝1行。同じ話題のほかの社の見出しも渡す）"""
+    rows = []
+    for g in gaps:
+        rows.append({"title": g["title"], "url": g["url"], "source": sorted(g["outlets"])[0] if g.get("outlets") else "他社",
+                     "published": None if g.get("undated") else g.get("published")})
+        for other in g.get("also") or []:
+            rows.append({"title": other["title"], "url": other["url"], "source": other.get("outlet") or "他社",
+                         "published": None if g.get("undated") else g.get("published")})
+    for s in stories:
+        rows.append({"title": s["title"], "url": s["url"], "source": s.get("source") or "他社", "published": s.get("published")})
+    return rows
+
+
+def incident_section(gaps: list[dict], stories: list[dict], now: datetime, enqueue=None) -> str:
+    """Issue の「事故の見張りに回した話題」の章（回したもの・回せなかったものと理由）。失敗しても見逃しチェックは止めない"""
+    try:
+        if enqueue is None:
+            import incident_watch  # noqa: PLC0415
+
+            enqueue = incident_watch.enqueue_external
+        lines = enqueue(incident_rows(gaps, stories), now)
+    except Exception as error:  # noqa: BLE001
+        return f"\n### 事故の見張りに回した話題\n\n- 回せませんでした（{str(error)[:120]}）\n"
+    if not lines:
+        return ""
+    return ("\n### 事故の見張りに回した話題（情報流出・回収・障害。自分は対象かを調べる人が多い型）\n\n"
+            "会社自身のお知らせが見つかったものは、次の見張りの回（数分以内）が速報レーンを起こします。\n\n" + "\n".join(lines) + "\n")
+
+
 def missed(args) -> int:
     now = datetime.now(timezone.utc)
     items, errors = gather(args.hours, now)
@@ -815,6 +845,10 @@ def missed(args) -> int:
                 report += "\n取得できなかった他社の見出し: " + " / ".join(e[:60] for e in derrors) + "\n"
         except Exception as error:  # noqa: BLE001
             report += f"\n他社との突き合わせに失敗: {str(error)[:120]}\n"
+    # 「自分は対象か」の事故（情報流出・回収・障害）の見出しは、一覧に並べるだけにせず、事故の見張り（scripts/incident_watch.py・台帳 W44）に
+    # 入れる: 会社自身のお知らせを探し、見つかれば速報レーンへ、無ければ話題のレーン（報道2社以上）へ。Issue には回した結果を書く
+    if args.request and (gaps or stories):
+        report += incident_section(gaps, stories, now)
     print(report)
     summary = os.environ.get("GITHUB_STEP_SUMMARY")
     if summary:
