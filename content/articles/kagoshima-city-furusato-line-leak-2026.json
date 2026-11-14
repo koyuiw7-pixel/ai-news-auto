@@ -60,8 +60,8 @@
   "affiliates": [],
   "newsType": "policy",
   "todayActions": [
-    "市からのLINEメッセージで、自分のどの情報が漏れたかを確かめる",
-    "届いたか分からない人は、担当課（099-803-9782）へ電話で問い合わせる"
+    "市から届いたLINEメッセージで、自分の情報のどの項目が漏れたかを確かめる",
+    "LINEが届いたか分からないときは、担当課へ電話で問い合わせる"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -139,5 +139,86 @@
     "relevant": true,
     "at": "2026-11-14T08:25:55+00:00",
     "reused": true
-  }
+  },
+  "officialDesk": [
+    {
+      "name": "鹿児島市ふるさと納税・シティプロモーション戦略課",
+      "url": "https://www.city.kagoshima.lg.jp/soumu/soumu/soumu/documents/roueikouhyou35.pdf",
+      "source": "https://www.city.kagoshima.lg.jp/soumu/soumu/soumu/documents/roueikouhyou35.pdf",
+      "phone": "099-803-9782"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "市から届いたLINEメッセージで、自分の情報のどの項目が漏れたかを確かめる",
+      "source": "https://www.city.kagoshima.lg.jp/soumu/soumu/soumu/documents/roueikouhyou35.pdf",
+      "steps": [
+        "市から届いたLINEメッセージを開く",
+        "漏えいした項目を確かめる（氏名、生年月日、性別等）",
+        "「等」に何が含まれるかは未発表と分かっておく"
+      ]
+    },
+    {
+      "action": "LINEが届いたか分からないときは、担当課へ電話で問い合わせる",
+      "source": "https://www.city.kagoshima.lg.jp/soumu/soumu/soumu/documents/roueikouhyou35.pdf",
+      "steps": [
+        "電話番号099-803-9782にかける",
+        "担当は鹿児島市ふるさと納税・シティプロモーション戦略課",
+        "個別公表のPDFで担当課と連絡先を確かめる"
+      ],
+      "url": "https://www.city.kagoshima.lg.jp/soumu/soumu/soumu/documents/roueikouhyou35.pdf"
+    }
+  ],
+  "cause": {
+    "text": "市の公表では、LINE配信ツール「COMSBI」の運営事業者である株式会社ソニックムーブへの第三者による不正アクセスが原因です。侵入の手口について、市はまだ詳しく示していません。",
+    "status": "stated",
+    "source": "https://www.city.kagoshima.lg.jp/soumu/soumu/soumu/documents/roueikouhyou35.pdf"
+  },
+  "worries": [
+    {
+      "q": "自分の情報も漏れたのかな？",
+      "a": "対象は公式LINEの友だち登録者の情報で、漏えいしたのは氏名、生年月日、性別等とされています。公表された件数は231件です。",
+      "source": "https://www.city.kagoshima.lg.jp/soumu/soumu/soumu/documents/roueikouhyou35.pdf",
+      "action": "公式LINEに登録しているか確かめ、届いた市からのLINEメッセージで対象の項目を見る"
+    },
+    {
+      "q": "偽の連絡が来ても見分けられる？",
+      "a": "送信元の名前やメールアドレスだけで真偽を判断するのは困難とされています。リンク先の見た目でも判断しにくいため、リンクを安易に開かないことが勧められています。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "action": "届いた連絡のリンクは開かず、担当課の電話番号099-803-9782に確認する",
+      "actionSource": "https://www.city.kagoshima.lg.jp/soumu/soumu/soumu/documents/roueikouhyou35.pdf",
+      "general": true
+    },
+    {
+      "q": "名前や生年月日を使った詐欺が来る？",
+      "a": "フィッシングは、実在の企業をかたって偽のメールやSMSで偽サイトに誘導し、IDやパスワードなどを盗む手口です。情報を盗まれると、アカウントを乗っ取られることがあります。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "action": "メールやSMSのリンクは押さず、公式サイトをブックマークして正しいサイトから入る",
+      "general": true
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "LINEが届いていないとき、どうする？",
+      "situation": "友だち登録しているが届いていない",
+      "recommend": "担当課に電話で確かめる",
+      "reason": "担当は鹿児島市ふるさと納税・シティプロモーション戦略課で、電話は099-803-9782です。公表の対象は友だち登録者の情報とされています。",
+      "source": "https://www.city.kagoshima.lg.jp/soumu/soumu/soumu/documents/roueikouhyou35.pdf"
+    },
+    {
+      "question": "公式LINEに登録していなければ心配ない？",
+      "situation": "公式LINEに登録していない",
+      "recommend": "急がなくてよい",
+      "reason": "公表の対象は「友だち登録者」の情報で、件数は231件と書かれています。登録していない人は、この公表の対象としては示されていません。",
+      "source": "https://www.city.kagoshima.lg.jp/soumu/soumu/soumu/documents/roueikouhyou35.pdf"
+    }
+  ],
+  "depthHeadings": {
+    "cause": "なぜ漏れたのか、いま分かっていること",
+    "steps": "市のLINEで、自分の情報が対象か確かめる",
+    "desk": "届いたか分からないときの電話窓口",
+    "worries": "自分の情報や詐欺はどこまで心配？",
+    "guide": "届いていない人が迷ったときの決め方"
+  },
+  "depthAt": "2026-11-14T08:40:39+00:00"
 }

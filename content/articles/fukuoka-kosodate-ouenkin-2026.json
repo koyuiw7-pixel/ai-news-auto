@@ -77,9 +77,9 @@
     }
   ],
   "todayActions": [
-    "他県で国の手当を受けて福岡県へ転入した人は、令和8年12月28日（消印有効）までに特設サイトから申請する。",
-    "県内で受けたのに通知が届かないなら、コールセンター（092-401-1685）へ問い合わせる。",
-    "電話などで口座情報を聞かれたら、応じずに県の窓口へ自分から確認する。"
+    "県内で受けたのに通知が届かないなら、コールセンターへ電話する",
+    "他県で受けて転入した人は、特設サイトで12月28日（消印有効）までに申請する",
+    "通知の振込先を確かめ、違えば約1週間以内に変更手続きをする"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -126,5 +126,136 @@
     "relevant": true,
     "at": "2026-11-14T08:25:01+00:00",
     "reused": true
-  }
+  },
+  "insight": [
+    {
+      "text": "転居などで支給通知が戻ると、福岡県子育て応援金は支給されないと県が明記しています。引っ越した人は、通知が手元に届いているかを確かめてください。",
+      "source": "https://www.pref.fukuoka.lg.jp/contents/fukuoka-kosodate-ouenkin.html"
+    },
+    {
+      "text": "申請書に記載する連絡先に誤りがあり、連絡が取れない状況が発生しているとされています。提出の前に、記載誤りがないか改めて確認をお願いしています。",
+      "source": "https://www.pref.fukuoka.lg.jp/contents/fukuoka-kosodate-ouenkin.html"
+    },
+    {
+      "text": "振込名義人の相違や支店統合に伴う支店コード、口座番号の相違で、振込不能が多く発生しています。支給通知に記載の振込先は十分に確認するよう求められています。",
+      "source": "https://www.pref.fukuoka.lg.jp/contents/fukuoka-kosodate-ouenkin.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "福岡県子育て応援金特設サイト",
+      "url": "https://fukuokaken-kosodate-ouenkin.jp/index.html",
+      "source": "https://www.pref.fukuoka.lg.jp/contents/fukuoka-kosodate-ouenkin.html",
+      "note": "転入者の申請はこのサイトから行います。申請期限は令和8年12月28日（消印有効）で、申請時にマイナンバーカードなど6点を準備します。"
+    },
+    {
+      "name": "福岡県子育て応援金コールセンター",
+      "url": "https://www.pref.fukuoka.lg.jp/contents/fukuoka-kosodate-ouenkin.html",
+      "source": "https://www.pref.fukuoka.lg.jp/contents/fukuoka-kosodate-ouenkin.html",
+      "howTo": [
+        "テーマから探す",
+        "健康・福祉・子育て",
+        "子ども・青少年",
+        "子育て支援"
+      ],
+      "phone": "092‐401-1685",
+      "hours": "平日午前9時から午後6時まで",
+      "note": "県内市町村から国の手当を受けたのに通知が届かない場合や、振込先などで不明な点があるときに問い合わせます。口座情報を電話で聞くことはないとされています。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "県内で受けたのに通知が届かないなら、コールセンターへ電話する",
+      "source": "https://www.pref.fukuoka.lg.jp/contents/fukuoka-kosodate-ouenkin.html",
+      "steps": [
+        "福岡県子育て応援金コールセンターに電話する",
+        "電話番号は092‐401-1685",
+        "受付は平日午前9時から午後6時まで"
+      ],
+      "url": "https://www.pref.fukuoka.lg.jp/contents/fukuoka-kosodate-ouenkin.html"
+    },
+    {
+      "action": "他県で受けて転入した人は、特設サイトで12月28日（消印有効）までに申請する",
+      "source": "https://www.pref.fukuoka.lg.jp/contents/fukuoka-kosodate-ouenkin.html",
+      "steps": [
+        "福岡県子育て応援金特設サイトを開く",
+        "申請期限は令和8年12月28日（消印有効）",
+        "マイナンバーカードなど6点を用意する"
+      ],
+      "url": "https://fukuokaken-kosodate-ouenkin.jp/index.html"
+    },
+    {
+      "action": "通知の振込先を確かめ、違えば約1週間以内に変更手続きをする",
+      "source": "https://www.pref.fukuoka.lg.jp/contents/fukuoka-kosodate-ouenkin.html",
+      "steps": [
+        "通知の振込名義人と口座番号を確認する",
+        "変更はQRコードか特設サイトから行う",
+        "手続きは到着見込日から約1週間"
+      ],
+      "url": "https://fukuokaken-kosodate-ouenkin.jp/index.html"
+    }
+  ],
+  "cause": {
+    "text": "国の「物価高対応子育て応援手当」に県が独自に上乗せして支給する応援金です。物価高騰で食費や光熱費など子育て世帯の家計負担が大きくなっていることが背景にあります。",
+    "status": "background",
+    "source": "https://www.pref.fukuoka.lg.jp/contents/fukuoka-kosodate-ouenkin.html"
+  },
+  "worries": [
+    {
+      "q": "引っ越したら応援金は受け取れなくなる？",
+      "a": "転居などで支給通知が返戻されている場合は、福岡県子育て応援金は支給されないと書かれています。通知が手元に届いているかを確かめてください。",
+      "source": "https://www.pref.fukuoka.lg.jp/contents/fukuoka-kosodate-ouenkin.html",
+      "action": "引っ越した人は、支給通知が手元に届いているかを確認する。"
+    },
+    {
+      "q": "県内で受け取った場合、申請は必要？",
+      "a": "県内の市町村から国の手当を受けた人は原則として手続き不要です。支給通知が届いていれば、辞退の連絡がない限り自動で振り込まれます。",
+      "source": "https://www.pref.fukuoka.lg.jp/contents/fukuoka-kosodate-ouenkin.html",
+      "action": "支給通知が届いているか確認し、辞退や記載変更がある場合だけ手続きする。"
+    },
+    {
+      "q": "通知が届かない場合はどうすればいい？",
+      "a": "県内市町村から国の手当を受けているのに通知が届いていない場合は、コールセンターへ問い合わせるよう書かれています。",
+      "source": "https://www.pref.fukuoka.lg.jp/contents/fukuoka-kosodate-ouenkin.html",
+      "action": "通知が届いていないなら、平日午前9時から午後6時の間にコールセンター（092‐401-1685）へ電話する。"
+    },
+    {
+      "q": "振込先の口座を間違えると、どうなる？",
+      "a": "振込名義人の相違や支店統合に伴う支店コード、口座番号の違いで、振込不能が多く発生していると書かれています。通知記載の振込先を十分に確認するよう呼びかけられています。",
+      "source": "https://www.pref.fukuoka.lg.jp/contents/fukuoka-kosodate-ouenkin.html",
+      "action": "支給通知の振込名義人・支店コード・口座番号を、通帳と照らし合わせて確認する。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "他県から転入した場合、申請は必要？",
+      "situation": "他県で受けて福岡県に転入した",
+      "recommend": "期限までに申請する必要がある",
+      "reason": "申請型のため、期限は令和8年12月28日（消印有効）です。申請時には6点の書類を準備します。手続きをしないと支給の対象になりません。",
+      "source": "https://www.pref.fukuoka.lg.jp/contents/fukuoka-kosodate-ouenkin.html"
+    },
+    {
+      "question": "通知の振込先は変えるべき？",
+      "situation": "通知の振込先と口座に違いがある",
+      "recommend": "違いがあれば期限内に変更手続きをする",
+      "reason": "変更手続きは支給通知の到着見込日から約1週間以内に行います。手続きをすると支給は約1カ月遅れる見込みです。",
+      "source": "https://www.pref.fukuoka.lg.jp/contents/fukuoka-kosodate-ouenkin.html"
+    },
+    {
+      "question": "支給通知が届かないとき、どうする？",
+      "situation": "県内で受けたのに通知が来ない",
+      "recommend": "コールセンターに問い合わせる",
+      "reason": "県内市町村から国の手当を受けているのに通知が届かない場合は、コールセンターへ問い合わせるとページにあります。通知が戻っていた場合は支給されない点も確認してください。",
+      "source": "https://www.pref.fukuoka.lg.jp/contents/fukuoka-kosodate-ouenkin.html"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "通知が戻ると、応援金は受け取れない",
+    "cause": "なぜ始まった？物価高と子育て世帯",
+    "steps": "今日やること、どこで何をする？",
+    "desk": "問い合わせ先と申請の入口",
+    "worries": "通知や口座は大丈夫？よくある不安",
+    "guide": "申請するか、通知を確かめるかの決め方"
+  },
+  "depthAt": "2026-11-14T08:40:09+00:00"
 }
