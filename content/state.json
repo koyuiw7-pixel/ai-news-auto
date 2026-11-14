@@ -12348,9 +12348,16 @@
       "url": "https://www.ipa.go.jp/shiken/2026/cbt-202701-yotei.html"
     },
     "8518d94902958f06": {
-      "at": "2026-11-14T03:59:46.482921+00:00",
-      "reason": "public-interest: 資料が短い 1098字",
-      "skipped": true,
+      "at": "2026-11-14T04:33:15.503594+00:00",
+      "costUsd": 0.0017,
+      "intent": "breaking",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "score": 88,
+      "section": "public",
+      "slug": "tokyo-gas-arara-email-leak",
       "url": "https://www.tokyo-gas.co.jp/news/press/20261112-02.html"
     },
     "852d5d7ce61f0e5a": {
@@ -21295,31 +21302,6 @@
   "quality_log": [
     {
       "accepted": true,
-      "at": "2026-11-12T02:14:03.223311+00:00",
-      "attempt": 1,
-      "id": "866d62483e667b43",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 156.0,
-        "avg_sentence": 66.9,
-        "long_share": 0.571,
-        "max_paragraph": 170,
-        "paragraphs": 3,
-        "sentences": 7
-      },
-      "score": 88,
-      "source": "ntt-news-ai",
-      "title": "SOMPOホールディングスとNTTがパートナーシップ協定を締結 ～介護分野におけるフィジカルAI社会実装にむけて～",
-      "warnings": [
-        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（SOMPO）",
-        "読みやすさ: 文が長い（1文の平均 66.9字・60字超の文が 57% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
       "at": "2026-11-12T02:14:20.510180+00:00",
       "attempt": 0,
       "id": "866d62483e667b43",
@@ -28833,6 +28815,30 @@
       "title": "モンテールの回収に関するお知らせ",
       "warnings": [
         "初めて出たところで言い換えていない略語（TH・JAN）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-14T04:33:03.859860+00:00",
+      "attempt": 1,
+      "id": "8518d94902958f06",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 73.6,
+        "avg_sentence": 36.8,
+        "long_share": 0.125,
+        "max_paragraph": 168,
+        "paragraphs": 12,
+        "sentences": 24
+      },
+      "score": 88,
+      "source": "fast",
+      "title": "当社委託先のメール配信サービスへの不正アクセスによるお客さま情報の流出について | ニュース | 東京ガス",
+      "warnings": [
+        "見出しが46字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（IP）"
       ]
     }
   ],
