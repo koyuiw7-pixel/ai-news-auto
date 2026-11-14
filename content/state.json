@@ -4461,6 +4461,19 @@
       "skipped": true,
       "url": "https://jp.toyota-racing-newsroom.com/blog/wec/artikel/2026-6-hours-of-monza-race/text"
     },
+    "0a67c39c91022a97": {
+      "at": "2026-11-14T03:57:43.079066+00:00",
+      "costUsd": 0.0074,
+      "intent": "breaking",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "score": 92,
+      "section": "public",
+      "slug": "monex-account-opening-data-leak",
+      "url": "https://info.monex.co.jp/press/pdf/press2026_11_13_monex_pr.pdf"
+    },
     "0a75d9a203d884d7": {
       "at": "2026-11-10T02:14:52.618559+00:00",
       "reason": "dedupe: 同じ出典URL",
@@ -7619,6 +7632,19 @@
       "section": "ai",
       "slug": "ihi-aws-ai-ready-data-svd-architecture",
       "url": "https://aws.amazon.com/jp/blogs/news/%E6%A5%AD%E5%8B%99%E9%83%A8%E9%96%80%E3%81%8C%E8%87%AA%E5%88%86%E3%81%A7%E6%94%B9%E5%96%84%E3%81%A7%E3%81%8D%E3%82%8B-ai-ready-data-%E3%82%92%E4%BD%9C%E3%82%8B-%E2%80%95-ai-%E3%81%8C%E3%81%A9%E3%82%8C/"
+    },
+    "3cafb7e7e15fc4dc": {
+      "at": "2026-11-14T03:55:38.811910+00:00",
+      "costUsd": 0.005,
+      "intent": "breaking",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "score": 93,
+      "section": "public",
+      "slug": "netmile-unauthorized-access-leak",
+      "url": "https://global-assets.irdirect.jp/pdf/menu_file/4482/20261102152018_7983.pdf"
     },
     "3cc34ce62f35ac76": {
       "at": "2026-11-09T06:54:37.226751+00:00",
@@ -18504,6 +18530,19 @@
       "skipped": true,
       "url": "https://www.boj.or.jp/about/release_2026/rel261030a.htm"
     },
+    "ea0d96ab4092d753": {
+      "at": "2026-11-14T03:56:28.733047+00:00",
+      "costUsd": 0.0017,
+      "intent": "breaking",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "score": 88,
+      "section": "public",
+      "slug": "keyuca-email-leak-arara-message",
+      "url": "https://www.kawajun.co.jp/news/keyuca/notification-of-unauthorized-access-20261111-2/"
+    },
     "ea431217fca2f5c3": {
       "at": "2026-11-11T02:33:48.733038+00:00",
       "model": "anthropic-api:claude-haiku-5-5",
@@ -21128,138 +21167,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-12T01:38:31.774349+00:00",
-      "attempt": 1,
-      "id": "190ff25ec1dd2f84",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "「台湾が3,818億円で全体の17.3%を占め、初の首位に立ちました」→ 元記事は台湾が今期首位に立ったと書くのみで、「初の」首位とは書かれていない（前期首位の有無は元記事に無い）。",
-        "「物価の影響に加え、多くの主要市場で旅行支出そのものが増加していることが全体の押し上げにつながりました」→ 元記事は国内の宿泊料の動きは小幅で、単価上昇は物価だけでは説明しきれないとしており、物価の影響を前面に出す書き方は元記事と趣旨が異なる。",
-        "「欧米からの旅行者が下支えする構造」（仕事・お金欄）→ 元記事で下支えを挙げたのは主に韓国・台湾・香港などの近隣市場で、欧米は横ばい程度であり、欧米が下支えしたとする記述は言い過ぎ。"
-      ],
-      "readability": {
-        "avg_paragraph": 122.5,
-        "avg_sentence": 58.3,
-        "long_share": 0.429,
-        "max_paragraph": 160,
-        "paragraphs": 10,
-        "sentences": 21
-      },
-      "score": 85,
-      "source": "nli-research",
-      "title": "インバウンド消費の動向（2026年7-9月期）－客数減でも消費額は7-9月期最高、台湾が首位に立つ「主役交代」",
-      "warnings": [
-        "同じ数字が多い（「1人」が5回）",
-        "読みやすさ: 文が長い（1文の平均 58.3字・60字超の文が 43% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "読みやすさ: 段落が長い（平均 122.5字・最長 160字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-12T01:38:51.586396+00:00",
-      "attempt": 1,
-      "id": "190ff25ec1dd2f84",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 126.1,
-        "avg_sentence": 57.3,
-        "long_share": 0.409,
-        "max_paragraph": 185,
-        "paragraphs": 10,
-        "sentences": 22
-      },
-      "score": 90,
-      "source": "nli-research",
-      "title": "インバウンド消費の動向（2026年7-9月期）－客数減でも消費額は7-9月期最高、台湾が首位に立つ「主役交代」",
-      "warnings": [
-        "同じ数字が多い（「1人」が6回）",
-        "読みやすさ: 文が長い（1文の平均 57.3字・60字超の文が 41% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "読みやすさ: 段落が長い（平均 126.1字・最長 185字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-12T01:39:23.342335+00:00",
-      "attempt": 0,
-      "id": "190ff25ec1dd2f84",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 61.4,
-        "avg_sentence": 34.8,
-        "long_share": 0.033,
-        "max_paragraph": 146,
-        "paragraphs": 17,
-        "sentences": 30
-      },
-      "score": 92,
-      "source": "nli-research",
-      "title": "インバウンド消費の動向（2026年7-9月期）－客数減でも消費額は7-9月期最高、台湾が首位に立つ「主役交代」",
-      "warnings": [
-        "同じ数字が多い（「1人」が6回）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-12T01:40:12.859887+00:00",
-      "attempt": 1,
-      "id": "657cfa792b136170",
-      "kind": "ai",
-      "model": "claude:sonnet",
-      "problems": [
-        "本文「個人が普段使うサービスに変更はありません」→ 元記事・確認済みの文脈に無い主張で、変更の有無は確認できない。",
-        "本文「対象は、AWSやほかのクラウド、オンプレミスで自社のシステムを運用している企業のセキュリティ担当者や開発者です」→ 元記事は対象者を明示しておらず、読者層の断定は根拠が薄い。",
-        "編集部の見方「年に数回の外部診断に頼っていた企業が、リリースごとに試す選択肢を持てます」→ 元記事に無い利用実態の前提を置いており、解釈として区別しきれていない。",
-        "判定欄「東京リージョンで$50/時の従量課金」→ 元記事は「タスク時間あたり$50」で、「/時」という表記は時間単位の誤解を招きやすい。"
-      ],
-      "readability": {
-        "avg_paragraph": 103.3,
-        "avg_sentence": 48.8,
-        "long_share": 0.25,
-        "max_paragraph": 223,
-        "paragraphs": 17,
-        "sentences": 36
-      },
-      "score": 85,
-      "source": "aws-japan-blog",
-      "title": "【開催報告 & 資料公開】Claude Mythos 時代の AWS セキュリティ対策 ～ AWS Security Agent ご紹介 ～",
-      "warnings": [
-        "見出しの書き方: 記号: かっこの直後に「、」",
-        "見出しが54字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（WAF・SHIP）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-12T01:40:34.765225+00:00",
-      "attempt": 1,
-      "id": "657cfa792b136170",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 107.6,
-        "avg_sentence": 48.9,
-        "long_share": 0.242,
-        "max_paragraph": 223,
-        "paragraphs": 15,
-        "sentences": 33
-      },
-      "score": 90,
-      "source": "aws-japan-blog",
-      "title": "【開催報告 & 資料公開】Claude Mythos 時代の AWS セキュリティ対策 ～ AWS Security Agent ご紹介 ～",
-      "warnings": [
-        "見出しの書き方: 記号: かっこの直後に「、」",
-        "見出しが54字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（WAF・SHIP）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-12T01:41:06.576447+00:00",
@@ -28681,6 +28588,134 @@
       "score": 62,
       "source": "radar-official",
       "title": "オーストラリア関連ニュース｜dメニューニュース（NTTドコモ）"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-14T03:55:21.250482+00:00",
+      "attempt": 1,
+      "id": "3cafb7e7e15fc4dc",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "「ネットマイルまたは「すぐたま」の会員だった人は、氏名やメールアドレスが漏れた可能性があります」→ 元記事は不正アクセスを「ネットマイル」のシステム環境に限定しており、「すぐたま」会員の情報が漏れた可能性には触れていない（すぐたまはサイト停止の対象として書かれているのみ）。対象者の取り違えにあたる。",
+        "仕事・お金の欄の「ネットマイルやすぐたまの会員だった人は、氏名とメールアドレスが漏れた可能性があります」→ 同じく「すぐたま」会員を対象に含めており、元記事に根拠がない。",
+        "「発表に載っている問合せ先は、株主・投資家向けの専務取締役CFOの電話番号」→ 元記事は問合せ先として記載しているのみで、「株主・投資家向け」という用途は書かれていない。",
+        "今日やること「届くメールの内容を確認する」→ 元記事は通知の時期・方法を明らかにしておらず、メールで届くことを前提にしている。"
+      ],
+      "readability": {
+        "avg_paragraph": 78.2,
+        "avg_sentence": 43.0,
+        "long_share": 0.15,
+        "max_paragraph": 116,
+        "paragraphs": 11,
+        "sentences": 20
+      },
+      "score": 72,
+      "source": "fast",
+      "title": "ネットマイル」における不正アクセスによる個人情報漏洩の可能性に関するお知らせ",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（SMS・IR）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-14T03:55:38.791782+00:00",
+      "attempt": 1,
+      "id": "3cafb7e7e15fc4dc",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 77.4,
+        "avg_sentence": 42.5,
+        "long_share": 0.15,
+        "max_paragraph": 116,
+        "paragraphs": 11,
+        "sentences": 20
+      },
+      "score": 93,
+      "source": "fast",
+      "title": "ネットマイル」における不正アクセスによる個人情報漏洩の可能性に関するお知らせ",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（SMS・IR）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-14T03:56:21.234239+00:00",
+      "attempt": 1,
+      "id": "ea0d96ab4092d753",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 63.3,
+        "avg_sentence": 38.5,
+        "long_share": 0.13,
+        "max_paragraph": 167,
+        "paragraphs": 14,
+        "sentences": 23
+      },
+      "score": 88,
+      "source": "fast",
+      "title": "アララ社の不正アクセスによるケユカオンラインショップメールマガジン 会員様メールアドレスの流出に関するお詫びとお願い | 河淳株式会社（KAWAJUN、カワジュ"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-14T03:57:08.939570+00:00",
+      "attempt": 1,
+      "id": "0a67c39c91022a97",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "タイトル「免許証画像1,592件」→ 元記事では1,592件は「本人確認書類等の画像データ」で、マイナンバーカード表面・運転免許証の表裏・セルフィー画像を含む。免許証だけの数ではないため、対象の内容を取り違えている。",
+        "本文「すでに口座を持つ人のログインや通常の売買には影響がなく、手続きも必要ありません」→ 元記事は影響がないとしているが、「手続きが必要ない」とは書かれていない。",
+        "本文「2019年10月16日以降にマネックス証券でオンライン口座開設を申し込んだ人は、メールアドレスが漏れた可能性があります」→ 元記事では「最初の手続きとして登録されたメールアドレス」が対象で、申込全体ではない。範囲がやや広い。",
+        "本文「外部委託先が担当」「口座開設を代行する外部委託先のシステム」（かんたん版）→ 元記事は「一部の口座開設システムを運営・管理する外部委託先」とあり、「代行」は言い換えとして不正確。",
+        "サイソクの見方「漏れたおそれがある情報の大半は、最大113万件のメールアドレス」→ 種類の異なる件数（メール最大113万件と画像1,592件）を比べて『大半』と言い切っている。",
+        "サイソクの見方「本人確認書類を撮影して提出した人は…窓口に問い合わせて確かめる方法があります」→ 元記事に、窓口で対象かどうかを確認できるとの記載はない。"
+      ],
+      "readability": {
+        "avg_paragraph": 82.0,
+        "avg_sentence": 39.6,
+        "long_share": 0.069,
+        "max_paragraph": 145,
+        "paragraphs": 14,
+        "sentences": 29
+      },
+      "score": 72,
+      "source": "fast",
+      "title": "外部委託先が運営・管理する一部の口座開設システムへの不正アクセスによる個人情報漏えいに関するお詫びとお知らせ",
+      "warnings": [
+        "見出しが48字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（SMS・PHS）",
+        "「可能性があります」が多い（3か所以上）。根拠のある事実だけを書く"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-14T03:57:35.244907+00:00",
+      "attempt": 1,
+      "id": "0a67c39c91022a97",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 80.1,
+        "avg_sentence": 38.7,
+        "long_share": 0.103,
+        "max_paragraph": 140,
+        "paragraphs": 14,
+        "sentences": 29
+      },
+      "score": 92,
+      "source": "fast",
+      "title": "外部委託先が運営・管理する一部の口座開設システムへの不正アクセスによる個人情報漏えいに関するお詫びとお知らせ",
+      "warnings": [
+        "見出しが51字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（SMS・PHS）",
+        "「可能性があります」が多い（3か所以上）。根拠のある事実だけを書く"
+      ]
     }
   ],
   "short_text_retry": {},
