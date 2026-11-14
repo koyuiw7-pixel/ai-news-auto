@@ -264,7 +264,7 @@
     "a6e54cf58fa1179ecd6dfda7710059c53aabb9d9": 2,
     "a8c4799733468c66e4f03f3847ee5c9da8a58b80": 2,
     "aa0517b1ae632803a6e805b212b8c7fccca6a173": 2,
-    "aa306911776148bc688db54fc1b8d0027b6a93c0": 1,
+    "aa306911776148bc688db54fc1b8d0027b6a93c0": 2,
     "aa43be8c131ee6d30dafc31621472d8dc2dac8da": 2,
     "acc82e21338a4d87334b36c0d9c34d2c63bf3917": 2,
     "ad25f3aee3e4e8484198d212437a01d82af911ba": 2,
@@ -12277,6 +12277,17 @@
       "slug": "government-education-loan-guide-2026",
       "url": "https://www.gov-online.go.jp/article/201512/entry-8156.html"
     },
+    "857dce60afbbdecdc3883b512558dc890c2d48ea": {
+      "at": "2026-11-14T02:25:10.739249+00:00",
+      "kind": "trend",
+      "model": "gemini-3.5-flash-lite",
+      "pressReport": true,
+      "score": 95,
+      "slug": "kyoto-school-lunch-fee-issue",
+      "trendKeyword": "給食費",
+      "trendLane": true,
+      "url": "https://www.asahi.com/sp/articles/photo/AS20261113003592.html"
+    },
     "85a32fe1244f6425": {
       "at": "2026-11-10T11:37:51.288313+00:00",
       "model": "anthropic-api:claude-haiku-5-5",
@@ -17722,6 +17733,12 @@
       "skipped": true,
       "url": "https://www.gov-online.go.jp/press_conferences/minister_of_state/202611/video-327169.html"
     },
+    "deeb29ee11b7670cabc3b8a1c6d11b875166900b": {
+      "at": "2026-11-14T02:25:13.266298+00:00",
+      "reason": "trend: 重複: 固有名詞が一致（ポケモン・ワイルドエリア）: pokemon-go-sendai-event-850k",
+      "skipped": true,
+      "url": "https://www.pokemon.com/us/news/gigantamax-duraludon-debuts-in-pokemon-go-wild-area-global-event"
+    },
     "deep-13c591a510": {
       "angleOf": "daihatsu-rocky-raize-rex-recall",
       "at": "2026-11-13T01:22:11.115974+00:00",
@@ -21030,77 +21047,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-12T01:19:44.976418+00:00",
-      "attempt": 0,
-      "id": "2853afcf73ff129e",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 102.2,
-        "avg_sentence": 40.9,
-        "long_share": 0.0,
-        "max_paragraph": 134,
-        "paragraphs": 4,
-        "sentences": 10
-      },
-      "score": 88,
-      "source": "suntory",
-      "title": "「金麦〈豊潤〉」2026年販売計画を120万ケース(※1)に上方修正",
-      "warnings": [
-        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-12T01:36:52.725730+00:00",
-      "attempt": 1,
-      "id": "7c8601a1e81fd58a",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 119.0,
-        "avg_sentence": 56.4,
-        "long_share": 0.474,
-        "max_paragraph": 178,
-        "paragraphs": 9,
-        "sentences": 19
-      },
-      "score": 80,
-      "source": "nli-research",
-      "title": "東京オフィス賃料は一段と上昇。REIT市場は調整色が強まる。－不動産クォータリー・レビュー2026年第３四半期",
-      "warnings": [
-        "読みやすさ: 文が長い（1文の平均 56.4字・60字超の文が 47% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-12T01:37:19.082192+00:00",
-      "attempt": 0,
-      "id": "7c8601a1e81fd58a",
-      "kind": "broad",
-      "model": "",
-      "problems": [
-        "読みやすさ基準外のまま受理: 書き直し後の確認に不合格: 本文「年初来の騰落率は、9月末時点で15%に達しています」→ 元記事は「▲15％」（下落）。符号が抜けており、上昇したように読める数値の取り違えです。; タイトル・見出し「東京のオフィス賃料が過去最高水準に」→ 元記事で最高水準とされるのは東京駅周辺の大型ビルの"
-      ],
-      "readability": {
-        "avg_paragraph": 119.0,
-        "avg_sentence": 56.4,
-        "long_share": 0.474,
-        "max_paragraph": 178,
-        "paragraphs": 9,
-        "sentences": 19
-      },
-      "score": 80,
-      "source": "nli-research",
-      "title": "東京オフィス賃料は一段と上昇。REIT市場は調整色が強まる。－不動産クォータリー・レビュー2026年第３四半期",
-      "warnings": [
-        "読みやすさ: 文が長い（1文の平均 56.4字・60字超の文が 47% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": false,
       "at": "2026-11-12T01:38:00.348055+00:00",
@@ -28595,6 +28541,79 @@
       "warnings": [
         "初めて出たところで言い換えていない略語（NEWS）"
       ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-14T02:24:30.065217+00:00",
+      "attempt": 1,
+      "id": "857dce60afbbdecdc3883b512558dc890c2d48ea",
+      "kind": "trend",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "リード「市教育委員会が詳しい原因を調べています」→ 元記事は市教委が「原因は不明」としたとのみ書いており、原因の調査中とは書かれていない（かんたん版も同様）",
+        "本文「関係者の間や市教育委員会で調査が進められています」「詳しい経緯や背景について引き続き調査が行われています」→ 元記事に調査継続の記述が無く、確認できない内容を加えている",
+        "今日やること「給与明細で照らし合わせる」→ 元記事に無い手順だが、一般的な行動の助言として許容範囲",
+        "仕事・お金にどう活かせる「直接の仕事や個人の収支に影響する話題ではありません」→ 読者への関係を正直に示しており問題なし"
+      ],
+      "readability": {
+        "avg_paragraph": 135.8,
+        "avg_sentence": 67.9,
+        "long_share": 0.625,
+        "max_paragraph": 233,
+        "paragraphs": 4,
+        "sentences": 8
+      },
+      "score": 80,
+      "source": "trends",
+      "title": "給食費",
+      "warnings": [
+        "読みやすさ: 文が長い（1文の平均 67.9字・60字超の文が 62% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "読みやすさ: 段落が長い（平均 135.8字・最長 233字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-14T02:24:46.538561+00:00",
+      "attempt": 1,
+      "id": "857dce60afbbdecdc3883b512558dc890c2d48ea",
+      "kind": "trend",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 123.2,
+        "avg_sentence": 61.6,
+        "long_share": 0.625,
+        "max_paragraph": 233,
+        "paragraphs": 4,
+        "sentences": 8
+      },
+      "score": 94,
+      "source": "trends",
+      "title": "給食費",
+      "warnings": [
+        "読みやすさ: 文が長い（1文の平均 61.6字・60字超の文が 62% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "読みやすさ: 段落が長い（平均 123.2字・最長 233字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-14T02:25:04.440155+00:00",
+      "attempt": 0,
+      "id": "857dce60afbbdecdc3883b512558dc890c2d48ea",
+      "kind": "trend",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 76.3,
+        "avg_sentence": 35.6,
+        "long_share": 0.0,
+        "max_paragraph": 104,
+        "paragraphs": 7,
+        "sentences": 15
+      },
+      "score": 95,
+      "source": "trends",
+      "title": "給食費"
     }
   ],
   "short_text_retry": {},
