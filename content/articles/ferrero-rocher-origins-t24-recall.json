@@ -61,9 +61,8 @@
   "affiliates": [],
   "newsType": "product",
   "todayActions": [
-    "箱のロット番号L247ZBBNJEと賞味期限2027年4月24日を確かめる",
-    "当てはまれば食べずに、日本フェレロ（03-6303-2201、土日祝日を除く10時から17時）へ連絡する",
-    "乳成分・小麦・大豆のアレルギーがある人は、対象の箱を食べない"
+    "箱のロット番号と賞味期限が、対象の特定情報と一致するかを確かめる",
+    "対象の箱なら、食べずに日本フェレロ株式会社へ電話かメールで連絡する"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -105,5 +104,93 @@
     "category": "recall",
     "at": "2026-11-14T09:52:26+00:00",
     "original": "https://www.ferrero.com/jp/sites/ferrero_jp/files/2026-11/screenshot-2026-11-02-at-11.52.44-am.png?t=1793859760"
-  }
+  },
+  "insight": [
+    {
+      "text": "中身は3種類のダークチョコレートで、ページには「GHANA 50％」「ECUADOR 65%」「IVORY COARST 80%」と書かれています。箱と照らし合わせるときの材料になります。",
+      "source": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036108"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "日本フェレロ株式会社 お問い合わせ先",
+      "url": "https://www.ferrero.com/jp/ja/news-stories/news/rocher-origins-voluntary-recall",
+      "source": "https://www.ferrero.com/jp/ja/news-stories/news/rocher-origins-voluntary-recall",
+      "phone": "03-6303-2201",
+      "hours": "10:00～17:00（土日祝日を除く）",
+      "note": "対象商品をお持ちのお客様は、下記お問い合わせ先までご連絡くださいとあります。"
+    },
+    {
+      "name": "消費者庁 リコール情報サイト 商品情報詳細",
+      "url": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036108",
+      "source": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036108",
+      "note": "対象の特定情報（ロット番号・賞味期限・JANコード）が掲載されています。最新情報は事業者のサイトや電話で確認するよう書かれています。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "箱のロット番号と賞味期限が、対象の特定情報と一致するかを確かめる",
+      "source": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036108",
+      "steps": [
+        "箱のロット番号がL247ZBBNJEか見る",
+        "賞味期限が2027年4月24日か見る",
+        "JANコード6972432060560も合わせて見る"
+      ],
+      "url": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036108"
+    },
+    {
+      "action": "対象の箱なら、食べずに日本フェレロ株式会社へ電話かメールで連絡する",
+      "source": "https://www.ferrero.com/jp/ja/news-stories/news/rocher-origins-voluntary-recall",
+      "steps": [
+        "電話は03-6303-2201にかける",
+        "受付は土日祝日を除く10時から17時",
+        "メールはjpcs@ferrero.comへ送る"
+      ],
+      "url": "https://www.ferrero.com/jp/ja/news-stories/news/rocher-origins-voluntary-recall"
+    }
+  ],
+  "cause": {
+    "text": "本来は日本語の一括表示を貼って販売するところ、海外向けパッケージのまま売られていたことが判明しました。回収理由は食品表示法違反で、アレルギー物質「乳成分、小麦、大豆」の表示も欠けていたためです。",
+    "status": "stated",
+    "source": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036108"
+  },
+  "worries": [
+    {
+      "q": "アレルギーがなくても食べて大丈夫？",
+      "a": "対象商品には「乳成分・小麦・大豆」が含まれており、該当するアレルギーがある人は食べないよう求められています。現状、お客様から体調不良の申し出は無いとされています。",
+      "source": "https://www.ferrero.com/jp/ja/news-stories/news/rocher-origins-voluntary-recall",
+      "action": "対象の箱を持っていて、この3つのアレルギーがあるなら食べずに連絡する"
+    },
+    {
+      "q": "自分の箱が対象かどうか、どう見分ける？",
+      "a": "商品名、内容量300g、箱詰め、JANコード6972432060560、ロット番号L247ZBBNJE、賞味期限2027年4月24日、輸入国中国の情報が対象の特定情報として書かれています。",
+      "source": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036108",
+      "action": "箱のJANコード、ロット番号、賞味期限が一致するか確かめる"
+    },
+    {
+      "q": "Amazonで買った場合、返金はされる？",
+      "a": "消費者庁のリコール情報サイトでは「返金／回収」と掲載されています。",
+      "source": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036108",
+      "action": "箱のロット番号と賞味期限を伝えて、日本フェレロに問い合わせる",
+      "actionSource": "https://www.ferrero.com/jp/ja/news-stories/news/rocher-origins-voluntary-recall"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "箱の中身の配合も、公式ページで確認できる",
+    "cause": "なぜ日本語表示がなかったのか",
+    "steps": "まず箱のロット番号と賞味期限を確かめる",
+    "desk": "連絡先と、商品情報の見方",
+    "worries": "アレルギーがなくても大丈夫？対象の見分け方は？"
+  },
+  "depthAt": "2026-11-14T10:12:17+00:00",
+  "updatedAt": "2026-11-14T10:12:17+00:00",
+  "updates": [
+    {
+      "at": "2026-11-14T10:12:17+00:00",
+      "kind": "facts",
+      "title": "公式の資料をもとに、「なるほどの要点」・「公式の窓口」・「今日やること」・「理由」・「よくある不安」を追記しました",
+      "sourceUrl": "https://www.ferrero.com/jp/ja/news-stories/news/rocher-origins-voluntary-recall",
+      "sourceName": "日本フェレロ株式会社 公式発表「フェレロ ロシェ オリジンズT-24（24粒入り）自主回収のお知らせ」（2026年11月2日）"
+    }
+  ]
 }

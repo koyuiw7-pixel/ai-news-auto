@@ -65,8 +65,9 @@
   "affiliates": [],
   "newsType": "policy",
   "todayActions": [
-    "11月上旬を過ぎてもハガキが届かない場合は、マイナポータルの「お知らせ」で電子データが届いていないかを確かめる",
-    "紛失した場合は、「ねんきんネット」の「通知書の再交付申請」か、ねんきん自動音声送付受付サービス（050-3319-3152）で再発行を申し込む"
+    "11月上旬を過ぎてもハガキが届かないなら、マイナポータルの「お知らせ」で電子データが届いていないかを確かめる。",
+    "紛失した場合は「ねんきんネット」の「通知書の再交付申請」から、電子送付か郵送かを選んで再発行を申し込む。",
+    "ねんきんネットを使えない場合は、自動音声で郵送による再発行を電話で申し込む。"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -120,5 +121,143 @@
     "category": "policy",
     "at": "2026-11-14T09:49:02+00:00",
     "original": "https://www.nenkin.go.jp/images/ogp-logo.png"
-  }
+  },
+  "insight": [
+    {
+      "text": "再交付される控除証明書は納付状況に基づいて作られるため、納付が反映されていない場合は、電子納付は2営業日後、コンビニ現金納付は12〜16営業日後を目安に申請するとよい。",
+      "source": "https://www.nenkin.go.jp/denshibenri_kojin/n_net/utilization/reissue.html"
+    },
+    {
+      "text": "前納した複数年分の保険料を分けて申告するための控除証明書は、ねんきん自動音声送付受付サービスでも再交付できない。",
+      "source": "https://www.nenkin.go.jp/section/tel/jidoonsei_service.html"
+    },
+    {
+      "text": "ねんきん加入者ダイヤルは週の初日と、通知書が届いてから5日間程度は混みやすい。夕方（午後4時以降）や月の後半（20日以降）はつながりやすいとされている。",
+      "source": "https://www.nenkin.go.jp/section/tel/toiawase_kanyusha.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "ねんきんネット 通知書の再交付申請",
+      "url": "https://www.nenkin.go.jp/denshibenri_kojin/n_net/utilization/reissue.html",
+      "source": "https://www.nenkin.go.jp/denshibenri_kojin/n_net/utilization/reissue.html",
+      "howTo": [
+        "その他の便利機能を利用する",
+        "通知書の再交付申請"
+      ],
+      "hours": "24時間いつでも",
+      "note": "電子送付はマイナポータルからログインした方のみ選べる。電子送付は申請から3～5営業日程度、郵送は約1週間。"
+    },
+    {
+      "name": "ねんきん自動音声送付受付サービス",
+      "url": "https://www.nenkin.go.jp/section/tel/jidoonsei_service.html",
+      "source": "https://www.nenkin.go.jp/section/tel/jidoonsei_service.html",
+      "phone": "050-3319-3152",
+      "hours": "午前8時から午後11時30分（土曜日、日曜日、祝日含む）",
+      "note": "基礎年金番号、生年月日、郵便番号、電話番号、対象年を入力する。最後まで入力しないと受け付けられない。"
+    },
+    {
+      "name": "ねんきん加入者ダイヤル（国民年金加入者向け）",
+      "url": "https://www.nenkin.go.jp/section/tel/toiawase_kanyusha.html",
+      "source": "https://www.nenkin.go.jp/section/tel/toiawase_kanyusha.html",
+      "phone": "0570-003-004（ナビダイヤル）",
+      "hours": "月曜日から金曜日午前8時30分から午後7時、第2土曜日午前9時30分から午後4時",
+      "note": "基礎年金番号または照会番号がわかるものを用意する。週の初日と通知書到着後5日間程度は混みやすい。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "11月上旬を過ぎてもハガキが届かないなら、マイナポータルの「お知らせ」で電子データが届いていないかを確かめる。",
+      "source": "https://www.nenkin.go.jp/denshibenri_kojin/denshisofu_kojin/mynaportal.html",
+      "steps": [
+        "マイナポータルにログインする",
+        "「お知らせ」を開く",
+        "控除証明書の電子データがあるか確かめる"
+      ],
+      "url": "https://www.nenkin.go.jp/denshibenri_kojin/denshisofu_kojin/mynaportal.html"
+    },
+    {
+      "action": "紛失した場合は「ねんきんネット」の「通知書の再交付申請」から、電子送付か郵送かを選んで再発行を申し込む。",
+      "source": "https://www.nenkin.go.jp/denshibenri_kojin/n_net/utilization/reissue.html",
+      "steps": [
+        "ねんきんネットにログインする",
+        "その他の便利機能を利用するを開く",
+        "通知書の再交付申請を選ぶ"
+      ],
+      "url": "https://www.nenkin.go.jp/denshibenri_kojin/n_net/utilization/reissue.html"
+    },
+    {
+      "action": "ねんきんネットを使えない場合は、自動音声で郵送による再発行を電話で申し込む。",
+      "source": "https://www.nenkin.go.jp/section/tel/jidoonsei_service.html",
+      "steps": [
+        "050-3319-3152に電話する",
+        "音声ガイダンスに従って進む",
+        "基礎年金番号などを入力する"
+      ],
+      "url": "https://www.nenkin.go.jp/section/tel/jidoonsei_service.html"
+    }
+  ],
+  "cause": {
+    "text": "控除証明書は、国民年金保険料を納めた人に届く書類です。国民年金保険料は全額が社会保険料控除の対象で、年末調整や確定申告で社会保険料控除を申告する場合に使います。",
+    "status": "background",
+    "source": "https://www.nenkin.go.jp/service/kokunen/hokenryo/koujo/R8koujo/soufu.html"
+  },
+  "worries": [
+    {
+      "q": "なくしてしまった。再発行はできる？",
+      "a": "「ねんきんネット」の「通知書の再交付申請」から申し込めます。24時間いつでも申請でき、電子送付は3～5営業日程度、郵送は約1週間で届くとされています。",
+      "source": "https://www.nenkin.go.jp/denshibenri_kojin/n_net/utilization/reissue.html",
+      "action": "ねんきんネットの「通知書の再交付申請」で、受け取り方法を電子送付か郵送か選んで申し込む。"
+    },
+    {
+      "q": "電子データで受け取るには何が必要？",
+      "a": "マイナポータルから「ねんきんネット」の利用登録をし、マイナンバーカードと数字4桁のパスワードを用意します。その後「ねんきんネット」で電子送付の希望登録を行います。",
+      "source": "https://www.nenkin.go.jp/denshibenri_kojin/denshisofu_kojin/mynaportal.html",
+      "action": "電子送付を希望するなら、先にマイナポータルから「ねんきんネット」の利用登録をする。"
+    },
+    {
+      "q": "紙の控除証明書をそのまま確定申告に使える？",
+      "a": "「ねんきんネット」の「通知書を確認する」で見られるPDFはお客様控えで、印刷して添付書類にすることはできません。紙に印刷して使う場合は、国税庁のQRコード付証明書等作成システムを利用します。",
+      "source": "https://www.nenkin.go.jp/denshibenri_kojin/denshisofu_kojin/mynaportal.html",
+      "action": "e-Taxで申告するなら、電子データを国税庁の確定申告書等作成コーナーに取り込み、該当項目を自動入力する。"
+    },
+    {
+      "q": "前払いした保険料は、どの年に控除すればいい？",
+      "a": "全額を納めた年にまとめて控除する方法と、各年分に分けて控除する方法のどちらか1つを選びます。まとめて控除する場合は、送られた控除証明書（最大3年分3枚）をすべて申告書に添付します。",
+      "source": "https://www.nenkin.go.jp/service/kokunen/hokenryo/koujo/R8koujo/soufu.html",
+      "action": "13カ月以上の前納がある人は、控除方法を選んでから対応する控除証明書を申告書に添付等する。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "届いていない証明書、どう確かめる？",
+      "situation": "11月上旬を過ぎてもハガキが届かない",
+      "recommend": "まずマイナポータルの「お知らせ」を確かめる",
+      "reason": "電子データの対象になっている人には書面は郵送されない。紛失と決めつける前に確認できる。",
+      "source": "https://www.nenkin.go.jp/service/kokunen/hokenryo/koujo/R8koujo/soufu.html"
+    },
+    {
+      "question": "再発行は電子送付と郵送、どちらにする？",
+      "situation": "紛失し、確定申告までに書類が要る",
+      "recommend": "電子送付の再交付申請を検討する",
+      "reason": "電子送付は申請から3～5営業日程度、郵送は約1週間とされている。電子データはe-Taxで利用できる。",
+      "source": "https://www.nenkin.go.jp/denshibenri_kojin/n_net/utilization/reissue.html"
+    },
+    {
+      "question": "納付したばかりでも再交付を申し込める？",
+      "situation": "最近まで納付の反映を待っている",
+      "recommend": "反映の目安を見てから申し込む",
+      "reason": "反映されていない納付は証明書に入らない。電子納付は2営業日後、コンビニ現金納付は12～16営業日後が目安とされている。",
+      "source": "https://www.nenkin.go.jp/denshibenri_kojin/n_net/utilization/reissue.html"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "再発行と電話で、知っておくと迷わない点",
+    "cause": "控除証明書は何のために届くのか",
+    "steps": "届かないとき、今すぐ確かめること",
+    "desk": "問い合わせ先と、つながりやすい時間",
+    "worries": "いつ届く？なくしたら？電子データは？",
+    "guide": "電子か郵送か、納付直後の再発行をどう決めるか"
+  },
+  "depthAt": "2026-11-14T10:10:56+00:00"
 }

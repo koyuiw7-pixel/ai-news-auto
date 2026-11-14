@@ -68,13 +68,13 @@
   "videoTitle": "ユニクロ感謝祭2026は11月20日から7日間、あんぱんとトートの条件",
   "publishedAt": "2026-11-14T09:54:07.219892+00:00",
   "generatedAt": "2026-11-14T09:54:58.624856+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/uniqlo-kansha-sai-anpan-present-figure-d45f7502.jpg",
   "model": "anthropic-api:claude-haiku-5-5",
   "affiliates": [],
   "newsType": "policy",
   "todayActions": [
-    "11月20日に行く店舗を店舗検索で探し、プレゼントを実施しているかを確かめる。",
-    "行く店舗の電話番号を控え、当日の前にあんぱんの配布数を問い合わせる。"
+    "11月20日に行く店舗を店舗検索で探し、プレゼントの対象かを確かめる。",
+    "行く店舗に電話し、あんぱんの配布数を当日の前に確かめる。"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -96,5 +96,133 @@
   "qualityScore": 93,
   "detectedAt": "2026-11-14T09:55:36+00:00",
   "layout": "noir",
-  "summaryLine": "11月20日（金）に店舗へ来店するだけで、「木村屋總本店 UNIQLOあんぱん」を先着で**1人**1個もらえます。"
+  "summaryLine": "11月20日（金）に店舗へ来店するだけで、「木村屋總本店 UNIQLOあんぱん」を先着で**1人**1個もらえます。",
+  "insight": [
+    {
+      "text": "問い合わせ方法で受付時間が違い、チャット専門のオペレーターは9:00～20:00（年中無休）で受け付けている。電話は9:00～17:00です。",
+      "source": "https://faq.uniqlo.com/contactus?a=MDAwMDE1ODE1"
+    },
+    {
+      "text": "電話予約のページには「現在、電話予約サービスをご利用いただくことはできません」と表示されている。電話で問い合わせる前に確かめたい。",
+      "source": "https://faq.uniqlo.com/contactus/FRCS_CallReservationArticles?a=-1939900898"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "ユニクロお客様窓口（カスタマーサポートセンター）",
+      "url": "https://faq.uniqlo.com/articles/Knowledge/100015815",
+      "source": "https://faq.uniqlo.com/articles/Knowledge/100015815",
+      "howTo": [
+        "ユニクロお問い合わせ",
+        "お問い合わせ"
+      ],
+      "phone": "0120 170 296",
+      "hours": "9:00~17:00（年中無休）",
+      "note": "電話は予約にて承っています。お急ぎの場合はチャットサポート（9:00～20:00、年中無休）が案内されています。"
+    },
+    {
+      "name": "ユニクロ店舗検索",
+      "url": "https://map.uniqlo.com/jp/ja/",
+      "source": "https://faq.uniqlo.com/articles/Knowledge/100015815",
+      "howTo": [
+        "対象店舗",
+        "店舗検索はこちら"
+      ],
+      "note": "一部店舗、オンラインストアでは実施していません。配布数量は店舗ごとに違うため、各店舗へ問い合わせてください。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "11月20日に行く店舗を店舗検索で探し、プレゼントの対象かを確かめる。",
+      "source": "https://faq.uniqlo.com/articles/Knowledge/100015815",
+      "steps": [
+        "「店舗検索はこちら」を開く",
+        "行きたい店舗を探す"
+      ],
+      "url": "https://map.uniqlo.com/jp/ja/"
+    },
+    {
+      "action": "行く店舗に電話し、あんぱんの配布数を当日の前に確かめる。",
+      "source": "https://faq.uniqlo.com/articles/Knowledge/100015815",
+      "steps": [
+        "店舗の電話番号を店舗検索で調べる",
+        "店舗に配布数量を直接問い合わせる",
+        "カスタマーセンターでは数量は案内できないと確認する"
+      ],
+      "url": "https://faq.uniqlo.com/articles/Knowledge/100015815"
+    }
+  ],
+  "worries": [
+    {
+      "q": "店舗によってあんぱんの数が違うのはなぜ？",
+      "a": "配布総数は約9万個ですが、配布数量は店舗ごとに異なります。数量はカスタマーセンターでは案内できないため、各店舗に問い合わせるよう案内されています。",
+      "source": "https://faq.uniqlo.com/articles/Knowledge/100015815",
+      "action": "行く店舗に電話で、当日の配布数量を確かめておく。"
+    },
+    {
+      "q": "オンラインで注文しても受け取れる？",
+      "a": "オンラインストアでは実施していません。もらえるのは店頭での手渡しのみです。また、一部の店舗でも実施していません。",
+      "source": "https://faq.uniqlo.com/articles/Knowledge/100015815",
+      "action": "受け取るなら、店舗検索で対象店舗か確かめてから店頭に行く。"
+    },
+    {
+      "q": "買い物をしなくてももらえる？",
+      "a": "配布の条件は、対象日の2026年11月20日(金)に来店することです。数に限りがあり、なくなり次第終了となります。",
+      "source": "https://faq.uniqlo.com/articles/Knowledge/100015815",
+      "action": "11月20日に来店した際、店頭で配布状況を確かめて受け取る。"
+    },
+    {
+      "q": "問い合わせは何時まで受け付けている？",
+      "a": "チャット専門のオペレーターは9:00～20:00（年中無休）で受け付けています。電話は9:00～17:00（年中無休）で、予約にて承っています。",
+      "source": "https://faq.uniqlo.com/contactus?a=MDAwMDE1ODE1",
+      "action": "急ぎの確認はチャットサポートで問い合わせる。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "配布数を確かめてから行くべき？",
+      "situation": "あんぱんが目当てで、行く店舗は決まっている",
+      "recommend": "店舗に配布数を問い合わせてから行くと安心",
+      "reason": "配布数量は店舗ごとに違い、カスタマーセンターでは案内できません。数を確かめても、なくなり次第終了のため当日受け取れないことがあります。",
+      "source": "https://faq.uniqlo.com/articles/Knowledge/100015815"
+    },
+    {
+      "question": "配布数を確かめてから行くべき？",
+      "situation": "買い物のついでに寄る予定がある",
+      "recommend": "無理に予定を変えなくてよい",
+      "reason": "配布の条件は対象日に来店することで、購入は条件に書かれていません。ただし数に限りがあり、なくなり次第終了です。",
+      "source": "https://faq.uniqlo.com/articles/Knowledge/100015815"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "チャットなら20時まで問い合わせできる",
+    "steps": "行く店を決めて、配布数を確かめる",
+    "desk": "店舗への問い合わせ先と時間",
+    "worries": "あんぱんの数や、買わなくても受け取れるか",
+    "guide": "あんぱん目当てで行くか迷ったときの決め方"
+  },
+  "depthAt": "2026-11-14T10:10:15+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "11月20日に店舗へ行くとあんぱん1個",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-14T10:13:02+00:00"
+  },
+  "imageFocus": {
+    "x": 0.505,
+    "y": 0.411,
+    "box": [
+      0.069,
+      0.048,
+      0.941,
+      0.774
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/uniqlo-kansha-sai-anpan-present-figure-d45f7502.jpg"
+  }
 }
