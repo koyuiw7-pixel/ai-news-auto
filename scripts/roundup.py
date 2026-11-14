@@ -30,6 +30,7 @@ import section_gate  # noqa: E402
 from cluster import build_clusters  # noqa: E402
 import question_patterns  # noqa: E402
 import threads_hooks  # noqa: E402
+import research_firms  # noqa: E402
 from genres import GENRES_BY_SLUG  # noqa: E402
 from main import (  # noqa: E402
     ARTICLES_DIR,
@@ -149,6 +150,12 @@ SCHEMA = {
     ],
 }
 question_patterns.add_to_schema(SCHEMA)  # 問いかけの型の候補（台帳 S19）
+
+
+def roundup_disclaimer(base: str, members: list[dict]) -> str:
+    """まとめの免責文。先頭の元記事が調査会社・情報会社の記事（台帳 A37）なら「公式発表の文章をもとに」と書かない"""
+    firm = research_firms.article_firm(members[0]) if members else ""
+    return research_firms.disclaimer(firm, base) if firm else base
 
 
 def load_articles() -> list[dict]:
@@ -337,7 +344,7 @@ def build_record(topic: str, data: dict, members: list[dict]) -> dict:
         "channelSlug": members[0].get("channelSlug", ""),
         "genre": genre.name if genre else members[0].get("genre", ""),
         "genreSlug": genre.slug if genre else members[0].get("genreSlug", ""),
-        "disclaimer": genre.disclaimer if genre else members[0].get("disclaimer", ""),
+        "disclaimer": roundup_disclaimer(genre.disclaimer if genre else members[0].get("disclaimer", ""), members),
         "videoId": members[0].get("videoId", ""),
         "videoUrl": members[0].get("videoUrl", ""),
         "videoTitle": f"{topic} 関連の{len(members)}本",
