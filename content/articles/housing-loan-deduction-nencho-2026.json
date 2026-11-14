@@ -73,14 +73,13 @@
   "videoTitle": "住宅ローン控除2026年 2年目以降は年末調整で受けられます 勤務先に出す書類は2つです",
   "publishedAt": "2026-11-14T06:45:42.876580+00:00",
   "generatedAt": "2026-11-14T06:48:19.633451+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/housing-loan-deduction-nencho-2026-figure-629d94ad.jpg",
   "model": "anthropic-api:claude-haiku-5-5",
   "affiliates": [],
   "newsType": "policy",
   "todayActions": [
-    "手元の申告書の束から、令和8年分の1枚が入っているかを確かめる",
-    "借入先が調書方式か証明書方式かを、金融機関の案内で確かめる",
-    "勤務先の年末調整の締切日を、総務・経理の担当者に確かめる"
+    "手元の申告書の束から、令和8年分の住宅借入金等特別控除申告書が1枚入っているかを確かめる",
+    "借入先が調書方式か証明書方式かを、金融機関の案内と対応金融機関の一覧で確かめる"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -126,5 +125,139 @@
   "detectedAt": "2026-11-14T06:49:12+00:00",
   "searchTitle": "住宅ローン控除の2年目以降は年末調整で　勤務先に出す書類は2つ",
   "layout": "noir",
-  "summaryLine": "2年目以降の住宅ローン控除は、確定申告をせず勤務先の年末調整で受けられます。国税庁が案内"
+  "summaryLine": "2年目以降の住宅ローン控除は、確定申告をせず勤務先の年末調整で受けられます。国税庁が案内",
+  "insight": [
+    {
+      "text": "2年目の控除証明書に残高が書かれるのは入居2年目の年分だけで、3年目以降は返済計画表などを基に残高を確かめて控除額を計算します。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1230.htm"
+    },
+    {
+      "text": "電子交付で控除証明書を受けるには、おおよそ10月末までにe-Taxで電子交付に一括同意する手続きを済ませておく必要があります。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1230.htm"
+    },
+    {
+      "text": "調書方式の借入先で1年目に控除を受けるには、金融機関にマイナンバー等を記載した「住宅ローン控除の適用申請書」を提出します。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1230.htm"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "国税庁 年末調整がよくわかるページ（令和８年分）",
+      "url": "https://www.nta.go.jp/users/gensen/nencho/index/kyuyosyotokusya.htm",
+      "source": "https://www.nta.go.jp/users/gensen/nencho/index.htm",
+      "howTo": [
+        "年末調整がよくわかるページ（令和８年分）",
+        "給与所得者（従業員）の方へ"
+      ],
+      "note": "年末調整の手順を解説した動画やパンフレット、各種様式・記載例がそろっています。"
+    },
+    {
+      "name": "国税庁 住宅借入金等特別控除の申告書再交付（A1-39 交付申請手続）",
+      "url": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/shinkoku/annai/36.htm",
+      "source": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/shinkoku/annai/36.htm",
+      "howTo": [
+        "税の情報・手続・用紙",
+        "申告手続・用紙",
+        "申告・申請・届出等、用紙（手続の案内・様式）",
+        "申告所得税関係"
+      ],
+      "hours": "税務署の総合窓口は9時から15時まで（令和8年10月1日から）。土日祝日と年末年始は執務していません。",
+      "note": "紛失した申告書の再交付は、納税地を所轄する税務署長に、e-Taxか書面で申請します。提出時期は特に定められていません。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "手元の申告書の束から、令和8年分の住宅借入金等特別控除申告書が1枚入っているかを確かめる",
+      "source": "https://www.nta.go.jp/publication/pamph/gensen/nencho2026/pdf/108.pdf",
+      "steps": [
+        "申告書の束を全部出す",
+        "用紙の年分が「令和8年分」か「平成38年分」かを見る",
+        "控除証明書は用紙の下の部分にある"
+      ]
+    },
+    {
+      "action": "借入先が調書方式か証明書方式かを、金融機関の案内と対応金融機関の一覧で確かめる",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1230.htm",
+      "steps": [
+        "借入先の金融機関の案内を開く",
+        "「調書方式」に対応しているかを探す",
+        "対応金融機関の一覧で借入先を確かめる"
+      ],
+      "url": "https://www.nta.go.jp/taxes/shiraberu/shinkoku/jutaku/ichiran.htm"
+    }
+  ],
+  "cause": {
+    "text": "令和4年度税制改正で、年末残高等証明書を使う「証明書方式」から、金融機関が税務署に提出する年末残高等調書を使う「調書方式」に変わりました。",
+    "status": "background",
+    "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1230.htm"
+  },
+  "worries": [
+    {
+      "q": "勤務先の年末調整には、何を出せばいい？",
+      "a": "令和8年分の給与所得者の住宅借入金等特別控除申告書を、年末調整のときまでに勤務先に出します。証明書方式の場合は、年末残高等証明書も添付します。",
+      "source": "https://www.nta.go.jp/publication/pamph/gensen/nencho2026/pdf/108.pdf",
+      "action": "手元の申告書が令和8年分か確かめ、年末調整の締切を勤務先に聞く。"
+    },
+    {
+      "q": "1年目は確定申告が必要？",
+      "a": "控除を受ける最初の年分は、確定申告で納税地の所轄税務署長に出す必要があります。年末調整では受けられません。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1211-1.htm",
+      "action": "調書方式の借入先なら、金融機関に「住宅ローン控除の適用申請書」を出す準備をする。",
+      "actionSource": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1230.htm"
+    },
+    {
+      "q": "3年目以降の残高は、どうやって確かめる？",
+      "a": "控除証明書に残高が書かれるのは入居2年目の年分だけです。3年目以降は、返済計画表などを基に実際の年末残高を確かめて控除額を計算します。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1230.htm",
+      "action": "手元の返済計画表で、その年の12月31日時点の残高を確かめる。",
+      "actionSource": "https://www.nta.go.jp/publication/pamph/gensen/nencho2026/pdf/108.pdf"
+    },
+    {
+      "q": "繰上返済をしたら、申告書は出し直す？",
+      "a": "返済が遅れたり一部を繰上返済したりして、実際の残高が証明書の残高と違うことになった場合は、実際の残高による正しい申告書を出し直す必要があります。",
+      "source": "https://www.nta.go.jp/publication/pamph/gensen/nencho2026/pdf/108.pdf",
+      "action": "繰上返済をしたら、返済計画表で実際の残高を確かめておく。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "年末調整で受けるか、確定申告で受けるか？",
+      "situation": "2年目以降の給与所得者",
+      "recommend": "年末調整で受けられます。確定申告で受けることもできます。",
+      "reason": "2年目以後の年分は年末調整で控除を受けられます。確定申告で受ける場合は、控除証明書のデータか書面を添付します。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1230.htm"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "3年目以降の残高と、電子交付の期限",
+    "cause": "なぜ方式が変わったのか",
+    "steps": "今日、手元で確かめること",
+    "desk": "連絡先と探し方",
+    "worries": "年末調整で困りやすいこと",
+    "guide": "申告の出し方を決める目安"
+  },
+  "depthAt": "2026-11-14T07:10:27+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "2026年分の住宅ローン控除、2年目以降は年末調整で",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-14T07:11:42+00:00"
+  },
+  "imageFocus": {
+    "x": 0.531,
+    "y": 0.401,
+    "box": [
+      0.091,
+      0.065,
+      0.972,
+      0.738
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/housing-loan-deduction-nencho-2026-figure-629d94ad.jpg"
+  }
 }
