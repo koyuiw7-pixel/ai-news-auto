@@ -73,9 +73,8 @@
     }
   ],
   "todayActions": [
-    "アクサ損保から個別連絡が届くまで、メールや郵便の案内を見落とさないようにする",
-    "MyAXAの不安は0120-999-935（土日祝も9時から17時）で相談する",
-    "ロードサービスは0120-975-986（平日9時から17時）に電話して状況を聞く"
+    "MyAXAの不安は窓口0120-999-935に電話で確かめる",
+    "ロードサービスを使った人は0120-975-986に電話で状況を聞く"
   ],
   "relatedSlugs": [
     "subaru-roadservice-data-leak-2026"
@@ -132,5 +131,94 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/axa-direct-myaxa-data-leak-figure-3d420960.jpg"
-  }
+  },
+  "officialDesk": [
+    {
+      "name": "「MyAXA」に関するお問い合わせ窓口（アクサ損害保険）",
+      "url": "https://www.axa-direct.co.jp/company/official_info/announce/2026/261113.html",
+      "source": "https://www.axa-direct.co.jp/company/official_info/announce/2026/261113.html",
+      "howTo": [
+        "2026年",
+        "お詫びとお知らせ（第2報）"
+      ],
+      "phone": "0120-999-935",
+      "hours": "平日9時-18時 土曜日・日曜日・祝日9時-17時（年末年始を除く）",
+      "note": "ウェブサービスの一時停止に伴い、各種お手続きや本件に関するお問い合わせはこの窓口へ連絡するよう案内されています。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "MyAXAの不安は窓口0120-999-935に電話で確かめる",
+      "source": "https://www.axa-direct.co.jp/company/official_info/announce/2026/261113.html",
+      "steps": [
+        "0120-999-935に電話する",
+        "受付は平日9時から18時、土日祝は9時から17時",
+        "年末年始を除く"
+      ],
+      "url": "https://www.axa-direct.co.jp/company/official_info/announce/2026/261113.html"
+    },
+    {
+      "action": "ロードサービスを使った人は0120-975-986に電話で状況を聞く",
+      "source": "https://www.axa-direct.co.jp/company/official_info/announce/2026/261113.html",
+      "steps": [
+        "0120-975-986に電話する",
+        "受付は平日9時から17時",
+        "受付と手配は電話と代替の運用で継続"
+      ],
+      "url": "https://www.axa-direct.co.jp/company/official_info/announce/2026/261113.html"
+    }
+  ],
+  "cause": {
+    "text": "第三者による不正アクセスで、一部のお客さま情報への不正アクセスと情報の漏洩が確認されています。不正アクセスの原因および影響範囲は、引き続き調査中と発表されています。",
+    "status": "investigating",
+    "source": "https://www.axa-direct.co.jp/company/official_info/announce/2026/261113.html"
+  },
+  "worries": [
+    {
+      "q": "クレジットカードの情報も漏れてしまった？",
+      "a": "MyAXAで漏えいした可能性があるのは、氏名、住所、生年月日、メールアドレス、電話番号です。クレジットカード情報は含まれていないと発表されています。",
+      "source": "https://www.axa-direct.co.jp/company/official_info/announce/2026/261113.html",
+      "action": "カード会社の明細に身に覚えのない支払いがないか、普段どおり確かめる",
+      "actionSource": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "actionGeneral": true
+    },
+    {
+      "q": "保険会社を名乗るメールが来たら、本物か見分けられる？",
+      "a": "電子メールは送信元の名称やアドレスを偽装できるため、表示された送信元だけで本物かどうかを判断するのは困難とされています。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "action": "メール内のリンクは押さず、公式サイトをブックマークか公式アプリから開く",
+      "general": true
+    },
+    {
+      "q": "同じパスワードを他のサイトでも使っていたら？",
+      "a": "同じIDとパスワードを複数のサイトで使っていると、一つが盗まれたときに銀行やSNSなど全てのサービスが乗っ取られるおそれがあります。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "action": "MyAXAと同じパスワードを使う他のサービスを、サイトごとに別のものへ変える",
+      "general": true
+    },
+    {
+      "q": "情報が漏れたあと、詐欺の電話が来ないか心配？",
+      "a": "特殊詐欺対策では、何よりも犯人と話をしないことが大切とされています。相手の番号が分かる番号表示や、非通知拒否のサービスが各電話事業者にあります。",
+      "source": "https://www.npa.go.jp/bureau/safetylife/sos47/case/",
+      "action": "固定電話の番号表示や非通知拒否を、契約している電話会社のサービスで確かめる",
+      "general": true
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "アクサ損保からの連絡がまだ来ない場合は？",
+      "situation": "まだ個別の連絡が届いていない",
+      "recommend": "個別連絡を待ちつつ、不安があれば窓口に問い合わせる",
+      "reason": "対象のお客さまには確認でき次第、順次個別に連絡すると発表されています。対象の特定と詳しい内容の確認は進行中です。窓口では本件に関する問い合わせを受け付けています。",
+      "source": "https://www.axa-direct.co.jp/company/official_info/announce/2026/261113.html"
+    }
+  ],
+  "depthHeadings": {
+    "cause": "なぜ情報が漏れた？分かっていること",
+    "steps": "今日、窓口に確かめられること",
+    "desk": "問い合わせ先と受付時間",
+    "worries": "カードや電話番号、詐欺は大丈夫？",
+    "guide": "連絡を待つか、問い合わせるか"
+  },
+  "depthAt": "2026-11-14T23:10:46+00:00"
 }
