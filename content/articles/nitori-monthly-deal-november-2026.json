@@ -70,7 +70,7 @@
   "videoTitle": "ニトリ2026年11月、セールの終わりは2回 家具と家電は24日まで、鍋と布団は26日まで",
   "publishedAt": "2026-07-01T02:00:00+00:00",
   "generatedAt": "2026-11-14T15:33:25.085317+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/nitori-monthly-deal-november-2026-figure-d60cbaa0.jpg",
   "model": "anthropic-api:claude-haiku-5-5",
   "affiliates": [],
   "newsType": "product",
@@ -107,5 +107,153 @@
   "detectedAt": "2026-11-14T15:34:09+00:00",
   "searchTitle": "ニトリの今月のお買い得品は10％引き　次回は11月27日から",
   "layout": "noir",
-  "summaryLine": "ニトリネットの「今月のお買い得品」は、布団や鍋、加湿器などを期間限定の**10％**引き価格で売っています。"
+  "summaryLine": "ニトリネットの「今月のお買い得品」は、布団や鍋、加湿器などを期間限定の**10％**引き価格で売っています。",
+  "insight": [
+    {
+      "text": "ニトリネットのページには「11,000円(税込)以上で送料無料！」とあります。対象品だけを少し買う場合は、注文前に合計金額を確かめてください。",
+      "source": "https://www.nitori-net.jp/ec/characteristic/campaign/"
+    },
+    {
+      "text": "土鍋風卓上鍋には「加熱するときは必ず付属の取っ手シリコーンカバーをはずしてください。やけどの原因になります。」と書かれています。",
+      "source": "https://www.nitori-net.jp/ec/product/2111200016864s/"
+    },
+    {
+      "text": "「3～4人用 内寸24cm」で、満水容量は3.8Lと書かれています。人数に合うか、買う前に仕様を確かめてください。",
+      "source": "https://www.nitori-net.jp/ec/product/2111200016864s/"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "ニトリネット 今月のお買い得品 対象商品一覧",
+      "url": "https://www.nitori-net.jp/ec/cat/LP/Nitori-02/fe-monthly-sale-a/1/",
+      "source": "https://www.nitori-net.jp/ec/characteristic/campaign/",
+      "howTo": [
+        "ホーム",
+        "今月のお買い得品",
+        "対象商品一覧を見る"
+      ],
+      "note": "商品によっては完売している場合がございます。「期間限定価格」の表示を確かめてから注文してください。"
+    },
+    {
+      "name": "IH・ガス火 超軽量 土鍋風卓上鍋 24cm(ベージュ KY073)の商品ページ",
+      "url": "https://www.nitori-net.jp/ec/product/2111200016888/",
+      "source": "https://www.nitori-net.jp/ec/product/2111200016864s/",
+      "note": "仕様・サイズ欄に、ガス火・IH・電子レンジ・食洗機の使用可否が書かれています。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "対象商品一覧で、買う予定の商品に「期間限定価格」が付いているか確かめる",
+      "source": "https://www.nitori-net.jp/ec/characteristic/campaign/",
+      "steps": [
+        "「対象商品一覧を見る」を開く",
+        "「カテゴリから探す」か一覧から商品を選ぶ",
+        "商品ページで期間限定価格と在庫を確かめる"
+      ],
+      "url": "https://www.nitori-net.jp/ec/cat/LP/Nitori-02/fe-monthly-sale-a/1/"
+    },
+    {
+      "action": "土鍋風卓上鍋を買う前に、商品ページの仕様欄で電子レンジと食洗機の可否を見る",
+      "source": "https://www.nitori-net.jp/ec/product/2111200016864s/",
+      "steps": [
+        "商品ページ（KY073）を開く",
+        "「仕様・サイズ」の欄を見る",
+        "電子レンジ・食洗機の欄の使用不可を確かめる"
+      ],
+      "url": "https://www.nitori-net.jp/ec/product/2111200016888/"
+    }
+  ],
+  "cause": {
+    "text": "このページでは、おすすめアイテムが月替わりで入れ替わると案内されています。対象は月ごとに変わり、表示価格はすでに10％引き後の価格です。",
+    "status": "background",
+    "source": "https://www.nitori-net.jp/ec/characteristic/campaign/"
+  },
+  "worries": [
+    {
+      "q": "表示の値段は本当に10％引きなの？",
+      "a": "今月のお買い得品のページには「表示価格は10％引き後の価格です。」と書かれています。商品ごとに期間限定価格として税込の金額が並んでいます。",
+      "source": "https://www.nitori-net.jp/ec/characteristic/campaign/",
+      "action": "買う商品の商品ページで、価格が期間限定価格になっているかを確かめる。"
+    },
+    {
+      "q": "欲しい商品が売り切れたらどうなる？",
+      "a": "ページには「商品によっては完売している場合がございます」とあります。対象の商品でも在庫がなくなることがあるため、欲しい商品は在庫を確かめてから注文してください。",
+      "source": "https://www.nitori-net.jp/ec/characteristic/campaign/",
+      "action": "欲しい商品の在庫を、注文前に商品ページで確かめる。"
+    },
+    {
+      "q": "少しだけ買うと送料が損になる？",
+      "a": "ニトリネットのページには「11,000円(税込)以上で送料無料！」とあります。対象品とほかの商品を合わせて基準に届くかを、注文前に確かめるとよいです。",
+      "source": "https://www.nitori-net.jp/ec/characteristic/campaign/",
+      "action": "注文前に、カートの合計が11,000円(税込)以上かを確かめる。"
+    },
+    {
+      "q": "土鍋風の卓上鍋は電子レンジや食洗機で使える？",
+      "a": "仕様には「電子レンジ：使用不可」「食洗機：使用不可」と書かれています。ガス火とIHに対応し、IHの200Vは中火以下で使うと書かれています。",
+      "source": "https://www.nitori-net.jp/ec/product/2111200016864s/",
+      "action": "洗い方を気にするなら、購入前に商品ページの仕様欄を見て決める。"
+    },
+    {
+      "q": "取っ手のカバーは付けたまま加熱してもいい？",
+      "a": "ページには「加熱するときは必ず付属の取っ手シリコーンカバーをはずしてください。やけどの原因になります。」とあります。",
+      "source": "https://www.nitori-net.jp/ec/product/2111200016864s/",
+      "action": "加熱する前に、取っ手のシリコーンカバーをはずす。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "1点だけ買うか、ほかの品もまとめて買うか？",
+      "situation": "対象品を1点だけ買う予定",
+      "recommend": "合計が11,000円(税込)以上になるか先に確かめる",
+      "reason": "ニトリネットのページには11,000円(税込)以上で送料無料と書かれています。基準に届くかを合計金額で見比べてから注文を決めると、送料の差に迷いにくくなります。",
+      "source": "https://www.nitori-net.jp/ec/characteristic/campaign/"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "送料無料の基準と、土鍋の注意点",
+    "cause": "対象が月ごとに変わる理由",
+    "steps": "在庫と期間限定価格を、注文前に確かめる",
+    "desk": "対象商品一覧と商品ページの見方",
+    "worries": "10％引きは本当？売り切れや送料は？",
+    "guide": "1点だけ買うか、まとめて買うか"
+  },
+  "todayActions": [
+    "対象商品一覧で、買う予定の商品に「期間限定価格」が付いているか確かめる",
+    "土鍋風卓上鍋を買う前に、商品ページの仕様欄で電子レンジと食洗機の可否を見る"
+  ],
+  "depthAt": "2026-11-14T16:05:16+00:00",
+  "updatedAt": "2026-11-14T16:05:16+00:00",
+  "updates": [
+    {
+      "at": "2026-11-14T16:05:16+00:00",
+      "kind": "facts",
+      "title": "公式の資料をもとに、「なるほどの要点」・「公式の窓口」・「今日やること」・「理由」・「よくある不安」・「判断の目安」を追記しました",
+      "sourceUrl": "https://www.nitori-net.jp/ec/characteristic/campaign/",
+      "sourceName": "ニトリネット「今月のお買い得品」特集ページ"
+    }
+  ],
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "10％",
+    "label": "鍋や布団",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-14T16:07:30+00:00"
+  },
+  "imageFocus": {
+    "x": 0.423,
+    "y": 0.518,
+    "box": [
+      0.0,
+      0.048,
+      0.847,
+      0.988
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/nitori-monthly-deal-november-2026-figure-d60cbaa0.jpg"
+  },
+  "discoverCandidate": true
 }

@@ -61,13 +61,13 @@
   "videoTitle": "年末調整の控除証明書が届かない・なくしたとき 2026年11月、再発行と翌年1月末日の条件",
   "publishedAt": "2026-11-14T15:26:41.826031+00:00",
   "generatedAt": "2026-11-14T15:28:13.034472+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/nencho-kojo-shomeisho-missing-figure-e6c361d8.jpg",
   "model": "anthropic-api:claude-haiku-5-5",
   "affiliates": [],
   "newsType": "policy",
   "todayActions": [
     "勤務先の給与担当に、控除証明書が未着か紛失かを伝え、会社の締切日を確認する",
-    "契約している保険会社のマイページで、再発行か電子発行の手続きを確認する"
+    "翌年1月末日を過ぎたら、確定申告（還付申告）で保険料控除を受ける準備をする"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -121,5 +121,154 @@
   "relatedSlugs": [
     "life-insurance-deduction-certificate-guide",
     "life-insurance-deduction-special-2026-2027"
-  ]
+  ],
+  "insight": [
+    {
+      "text": "旧契約（平成23年12月31日以前締結）で年間保険料が9,000円以下のものは、証明書類が必要ありません。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1140.htm"
+    },
+    {
+      "text": "翌年1月末日までに証明書を出す条件で控除した場合、期日までに出されないと、その保険料を除いて計算し直し、不足額を徴収することになります。",
+      "source": "https://www.nta.go.jp/publication/pamph/gensen/nencho2026/pdf/112.pdf"
+    },
+    {
+      "text": "給与の源泉徴収票の「源泉徴収票」欄が「0」と記載されている人は、申告しても還付される所得税額はありません。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2030.htm"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "給与所得者の保険料控除申告書（国税庁 税務手続の案内 A2-3）",
+      "url": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/gensen/annai/1648_05.htm",
+      "source": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/gensen/annai/1648_05.htm",
+      "howTo": [
+        "税の情報・手続・用紙",
+        "申告手続・用紙",
+        "申告・申請・届出等、用紙（手続の案内・様式）"
+      ],
+      "note": "提出時期は、その年最後に給与等の支払を受ける日の前日までです。提出先は給与の支払者（勤務先）です。"
+    },
+    {
+      "name": "確定申告書等作成コーナー（国税庁）",
+      "url": "https://www.keisan.nta.go.jp/kyoutu/ky/sm/top",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2030.htm",
+      "howTo": [
+        "税について調べる",
+        "所得税（確定申告書等作成コーナー）"
+      ],
+      "note": "画面の案内に沿って金額を入力すると、確定申告書をご自宅等で作成・提出できます。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "勤務先の給与担当に、控除証明書が未着か紛失かを伝え、会社の締切日を確認する",
+      "source": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/gensen/annai/1648_05.htm",
+      "steps": [
+        "請求中なら、翌年1月末日までに出せる見込みを伝える",
+        "保険料控除申告書の提出時期を確認する"
+      ],
+      "url": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/gensen/annai/1648_05.htm"
+    },
+    {
+      "action": "翌年1月末日を過ぎたら、確定申告（還付申告）で保険料控除を受ける準備をする",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2030.htm",
+      "steps": [
+        "確定申告書等作成コーナーで金額を入力する",
+        "証明書または電磁的記録印刷書面を添付か提示する",
+        "提出先は納税地の所轄税務署にする"
+      ],
+      "url": "https://www.keisan.nta.go.jp/kyoutu/ky/sm/top"
+    }
+  ],
+  "cause": {
+    "text": "保険料控除を受けるには、支払ったことを証明する書類を付けて申告するのが原則です。証明書類の交付を請求中などで確認できない場合は、翌年1月末日までに提出することを条件に、控除を先に行う取扱いがあります。",
+    "status": "background",
+    "source": "https://www.nta.go.jp/publication/pamph/gensen/nencho2026/pdf/107.pdf"
+  },
+  "worries": [
+    {
+      "q": "証明書がまだ届かない。会社の締切に間に合わないとどうなる？",
+      "a": "会社の締切までに証明書が出せない場合でも、交付を請求中などで確認できないなら、翌年1月末日までに出すことを条件に控除をしたうえで年末調整を行ってもよいとされています。",
+      "source": "https://www.nta.go.jp/publication/pamph/gensen/nencho2026/pdf/107.pdf",
+      "action": "給与担当に、証明書を請求中で翌年1月末日までに出せることを先に伝え、控除の扱いを確認する"
+    },
+    {
+      "q": "1月末日を過ぎても証明書が出ないと、控除はどうなる？",
+      "a": "翌年1月末日までに証明書が出されないときは、その保険料を除いて控除額を計算し直し、年末調整をやり直して不足額を徴収することになります。",
+      "source": "https://www.nta.go.jp/publication/pamph/gensen/nencho2026/pdf/112.pdf",
+      "action": "証明書が1月末日までに間に合いそうになければ、確定申告で控除を受ける準備をする",
+      "actionSource": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2030.htm"
+    },
+    {
+      "q": "源泉徴収されていないと、確定申告は意味がある？",
+      "a": "給与の源泉徴収票の「源泉徴収票」欄が「0」と記載されている人は、申告しても還付される所得税額はありません。還付は、源泉徴収された所得税がある場合に発生します。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2030.htm",
+      "action": "給与の源泉徴収票で、源泉徴収された所得税額を確かめてから、還付申告をするか決めましょう"
+    },
+    {
+      "q": "地震保険料も、証明書がないと控除されない？",
+      "a": "地震保険料控除は、年末調整で控除された場合は、確定申告で証明書を添付する必要がありません。確定申告で受けるときは添付か提示が必要です。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1145.htm",
+      "action": "年末調整で地震保険料控除を受けたかを確かめ、確定申告で証明書が要るか判断する"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "年末調整の締切までに証明書が届かない。どうする？",
+      "situation": "請求中で、1月末日までに出せる見込みがある",
+      "recommend": "給与担当に早めに伝えて扱いを確認する",
+      "reason": "翌年1月末日までに証明書を出すことを条件に控除を先に行ってもよいとされています。ただし先に控除するかは勤務先の運用によります。",
+      "source": "https://www.nta.go.jp/publication/pamph/gensen/nencho2026/pdf/107.pdf"
+    },
+    {
+      "question": "年末調整の締切までに証明書が届かない。どうする？",
+      "situation": "1月末日までに証明書を出せる見込みがない",
+      "recommend": "確定申告（還付申告）で精算することを考える",
+      "reason": "翌年1月末日も過ぎた場合は、確定申告で控除を受けられます。還付申告は翌年1月1日から5年間提出できます。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2030.htm"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "証明書がいらないケースと、締切後の扱い",
+    "cause": "なぜ証明書がないと控除できないのか",
+    "steps": "今日やる2つのこと、どこで何をするか",
+    "desk": "頼む先と、確認できる国税庁のページ",
+    "worries": "証明書が遅れたら控除はどうなる？",
+    "guide": "証明書が間に合うかで決め方が変わる"
+  },
+  "depthAt": "2026-11-14T16:05:56+00:00",
+  "updatedAt": "2026-11-14T16:05:56+00:00",
+  "updates": [
+    {
+      "at": "2026-11-14T16:05:56+00:00",
+      "kind": "facts",
+      "title": "公式の資料をもとに、「なるほどの要点」・「公式の窓口」・「今日やること」・「理由」・「よくある不安」・「判断の目安」を追記しました",
+      "sourceUrl": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1140.htm",
+      "sourceName": "国税庁タックスアンサー No.1140「生命保険料控除」（令和8年4月1日現在法令等）"
+    }
+  ],
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "控除証明書が届かない・なくしたとき、翌年1月末日までが境目",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-14T16:06:25+00:00"
+  },
+  "imageFocus": {
+    "x": 0.506,
+    "y": 0.39,
+    "box": [
+      0.075,
+      0.048,
+      0.938,
+      0.732
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/nencho-kojo-shomeisho-missing-figure-e6c361d8.jpg"
+  },
+  "discoverCandidate": true
 }
