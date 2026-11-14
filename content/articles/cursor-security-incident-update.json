@@ -91,9 +91,8 @@
     }
   ],
   "todayActions": [
-    "Cursorの拡張機能で、Anthropic.claude-codeが2.1.312か2.1.313でないかを確認する",
-    "該当する場合は、Cursorの10月30日付セキュリティ通知の手順に従い、拡張機能を消すだけで済ませない",
-    "Cursorからの通知メールが届いていないかを確認し、届いていればキーの入れ替えを進める"
+    "Cursorの拡張機能で、Anthropic.claude-codeのバージョンが2.1.312か2.1.313かを確認する",
+    "該当する場合は、10月30日のセキュリティ通知の手順に従い、拡張機能を消すだけで済ませない"
   ],
   "relatedSlugs": [
     "claude-finds-critical-vulnerabilities"
@@ -148,5 +147,122 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/cursor-security-incident-update-figure-e4f9218a.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "攻撃者が最後に確認された活動は11月1日のもので、Cursorはすでにブロックしたと説明しています。引き続きシステムを監視しているとされています。",
+      "source": "https://cursor.com/blog/security-incident-update"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "Cursor セキュリティに関するお知らせ（Claude Code拡張機能の偽物について）",
+      "url": "https://cursor.com/blog/claude-code-extension-security-notice",
+      "source": "https://cursor.com/blog/security-incident-update",
+      "howTo": [
+        "ブログ",
+        "会社",
+        "セキュリティに関するお知らせ"
+      ],
+      "note": "10月30日の通知に、侵害の痕跡(IoC)、対処手順、システムを確認するスクリプトがあると、報告ページに記載されています。"
+    },
+    {
+      "name": "Cursor セキュリティインシデントの報告",
+      "url": "https://cursor.com/blog/security-incident-update",
+      "source": "https://cursor.com/blog/security-incident-update",
+      "note": "ご質問は security@cursor.com までメールで問い合わせるよう書かれています。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "Cursorの拡張機能で、Anthropic.claude-codeのバージョンが2.1.312か2.1.313かを確認する",
+      "source": "https://cursor.com/blog/security-incident-update",
+      "steps": [
+        "拡張機能の一覧でAnthropic.claude-codeを探す",
+        "バージョン番号が2.1.312か2.1.313かを見る",
+        "該当する場合は次の手順に進む"
+      ],
+      "url": "https://cursor.com/blog/claude-code-extension-security-notice"
+    },
+    {
+      "action": "該当する場合は、10月30日のセキュリティ通知の手順に従い、拡張機能を消すだけで済ませない",
+      "source": "https://cursor.com/blog/security-incident-update",
+      "steps": [
+        "通知に載っている対処手順を開く",
+        "書かれた手順どおりに確認する",
+        "拡張機能の削除だけで終えない"
+      ],
+      "url": "https://cursor.com/blog/claude-code-extension-security-notice"
+    }
+  ],
+  "cause": {
+    "text": "Cursorが使う委託先Fireworksに渡していたアクセスキーが漏えいし、攻撃者はそのキーで読み取り専用の保管場所からデータをコピーしました。そこから一部のSaaSツールに入り、認証情報を足がかりに被害が広がりました。",
+    "status": "stated",
+    "source": "https://cursor.com/blog/security-incident-update"
+  },
+  "worries": [
+    {
+      "q": "Privacy Modeを使っていたら、データは大丈夫？",
+      "a": "Cursorの報告によると、Privacy Modeを使っている場合のプロンプトとコードは影響を受けていません。Privacy Modeを使っていない人では、履歴が流出したのは全体の0.05%未満とされています。",
+      "source": "https://cursor.com/blog/security-incident-update",
+      "action": "自分がPrivacy Modeを使っていたかを確かめ、Cursorからの通知が届いていないかを確認する"
+    },
+    {
+      "q": "Cursorから通知が来ていなければ、履歴は大丈夫？",
+      "a": "Cursorは、通知を受け取っていない場合、流出したトレースにあなたのデータは含まれていないと説明しています。該当するユーザーには個別に直接通知しているとされています。",
+      "source": "https://cursor.com/blog/security-incident-update",
+      "action": "Cursorからの通知メールとアプリ内通知に目を通し、届いていなければ次の確認に進む"
+    },
+    {
+      "q": "Claude Codeの拡張機能を入れていたら、どうすればいい？",
+      "a": "Anthropic.claude-codeの2.1.312か2.1.313を、漏えい期間中にインストールまたはアップデートした人は、通知の手順に従うよう求められています。拡張機能をアンインストールするだけでは不十分な場合があるとされています。",
+      "source": "https://cursor.com/blog/security-incident-update",
+      "action": "バージョンを確かめ、2.1.312か2.1.313なら10月30日の通知の手順に従う"
+    },
+    {
+      "q": "Cursorのほかの製品やアプリは大丈夫？",
+      "a": "Cursorは、Cursorアプリとその公式アップデート、本番環境のシステム、Cloud Agents、Grok Botなど他の製品は影響を受けていないとしています。顧客のコードリポジトリも影響を受けていないとされています。",
+      "source": "https://cursor.com/blog/security-incident-update",
+      "action": "Cursorの公式報告で、自分が使っているものが影響を受けた対象に当たるか確認する"
+    },
+    {
+      "q": "同じパスワードを使い回していても大丈夫？",
+      "a": "警察庁は、複数のサイトで同じIDやパスワードを使っていると、一つ盗まれただけで銀行やSNSなど全てのサービスが乗っ取られる被害に遭うおそれがあると注意しています。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "action": "同じパスワードを使っているサービスを洗い出し、サイトごとに違うものに変える",
+      "general": true
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "通知が届いていないとき、何をすればいい？",
+      "situation": "通知が届いておらず、Privacy Modeを使っていない",
+      "recommend": "追加の対応は不要とみられる",
+      "reason": "Cursorは、通知を受け取っていない場合、あなたのデータは流出したトレースに含まれていないと説明しています。拡張機能の確認は別に行ってください。",
+      "source": "https://cursor.com/blog/security-incident-update"
+    },
+    {
+      "question": "Claude Code拡張機能は、消すだけで済む？",
+      "situation": "10月29日にClaude Code拡張機能を入れた、または更新した",
+      "recommend": "通知の手順に従い、削除だけで済ませない",
+      "reason": "Cursorは、2.1.312か2.1.313を入れた人は通知の手順に従うよう求めています。拡張機能をアンインストールするだけでは不十分な場合があると説明しています。",
+      "source": "https://cursor.com/blog/security-incident-update"
+    },
+    {
+      "question": "通知が届いたら、認証情報の入れ替えを急ぐ？",
+      "situation": "通知が届き、Privacy Modeを使っていない",
+      "recommend": "通知に書かれた認証情報を優先して確認する",
+      "reason": "Cursorは、露出した認証情報をリスクの高いものから順に入れ替えたと説明しています。通知で示された対象を優先して確認すると、何が問題か把握しやすくなります。",
+      "source": "https://cursor.com/blog/security-incident-update"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "攻撃は11月1日で止まったと、Cursorは説明",
+    "cause": "なぜ漏れたのか、いま分かっていること",
+    "steps": "まず確かめる、拡張機能のバージョンと通知",
+    "desk": "Cursorに確認するなら、どこを見ればいい？",
+    "worries": "通知が来ていないなら、自分の履歴は大丈夫？",
+    "guide": "通知の有無で、何をするか迷ったときの決め方"
+  },
+  "depthAt": "2026-11-14T01:21:40+00:00"
 }
