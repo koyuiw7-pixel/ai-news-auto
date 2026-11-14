@@ -61,13 +61,14 @@
   "videoTitle": "シェアフル 情報流出、個人は最大約750万件が対象の可能性",
   "publishedAt": "2026-11-09T06:30:46+00:00",
   "generatedAt": "2026-11-14T03:00:59.102633+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/sharefull-data-leak-2026-11-figure-b5a047b0.jpg",
   "model": "anthropic-api:claude-haiku-5-5",
   "affiliates": [],
   "newsType": "general",
   "todayActions": [
-    "シェアフルに登録した銀行口座の明細を、銀行アプリや通帳で確認する",
-    "シェアフルや関係機関を名乗るメール・SMSのURLは開かず、暗証番号を入力しない"
+    "シェアフルに登録した給与振込用の銀行口座の入出金明細を確認する",
+    "身に覚えのないメールやSMSは、URLを開かず削除する",
+    "対象かどうか分からない場合は、個人ユーザー様専用フォームで問い合わせる"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -87,5 +88,128 @@
   "detectedAt": "2026-11-14T03:02:39+00:00",
   "searchTitle": "シェアフルの情報流出の可能性、対象は？　個人最大約750万件",
   "layout": "noir",
-  "summaryLine": "シェアフルの社内管理システムへの不正アクセスで、個人情報の流出が可能性として公表された"
+  "summaryLine": "シェアフルの社内管理システムへの不正アクセスで、個人情報の流出が可能性として公表された",
+  "insight": [
+    {
+      "text": "対象の方には「個別のご連絡（電子メール等）」を順次実施するとされています。身に覚えのない連絡は、URLを開かず、メールを削除するよう求められています。",
+      "source": "https://sharefull.com/information/9480/"
+    },
+    {
+      "text": "流出した可能性のある情報には、緊急連絡先の「ユーザーとの関係（親・配偶者など）、電話番号」が含まれるとされています。",
+      "source": "https://sharefull.com/information/9480/"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "個人ユーザー様専用お問い合わせフォーム",
+      "url": "https://sharefull.com/information/9480/",
+      "source": "https://sharefull.com/information/9480/",
+      "howTo": [
+        "ニュース",
+        "社内管理システムへの不正アクセスによる個人情報および法人情報",
+        "個人ユーザー様専用お問い合わせフォーム"
+      ],
+      "note": "本件に関するお問い合わせは、この専用フォーム（WEB窓口）で一元的に承っております。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "シェアフルに登録した給与振込用の銀行口座の入出金明細を確認する",
+      "source": "https://sharefull.com/information/9480/",
+      "steps": [
+        "銀行アプリか通帳を開く",
+        "直近の入出金を見る",
+        "身に覚えのない出金・振込がないか確かめる"
+      ]
+    },
+    {
+      "action": "身に覚えのないメールやSMSは、URLを開かず削除する",
+      "source": "https://sharefull.com/information/9480/",
+      "steps": [
+        "本文中のURLを開かない",
+        "添付ファイルを開かない",
+        "暗証番号や個人情報を入力しない",
+        "メールは削除する"
+      ]
+    },
+    {
+      "action": "対象かどうか分からない場合は、個人ユーザー様専用フォームで問い合わせる",
+      "source": "https://sharefull.com/information/9480/",
+      "steps": [
+        "シェアフル公式サイトのお知らせを開く",
+        "「個人ユーザー様専用お問い合わせフォーム」を選ぶ"
+      ],
+      "url": "https://sharefull.com/information/9480/"
+    }
+  ],
+  "cause": {
+    "text": "外部の第三者による不正アクセスで、情報が外部へ流出した可能性があると発表されています。原因の究明は、外部専門調査機関と連携して継続中で、まだ公表されていません。",
+    "status": "investigating",
+    "source": "https://sharefull.com/information/9480/"
+  },
+  "worries": [
+    {
+      "q": "口座は大丈夫？暗証番号も漏れた？",
+      "a": "給与振込用の銀行口座情報は、流出した可能性のある項目に含まれています。ただし暗証番号やパスワードは含まれていないと公表されています。",
+      "source": "https://sharefull.com/information/9480/",
+      "action": "給与振込用の口座の入出金明細を、銀行アプリか通帳で確かめる。"
+    },
+    {
+      "q": "クレジットカードの情報も漏れた？",
+      "a": "当社はクレジットカード情報を取得・保持していないため、流出した可能性のあるデータには含まれないとされています。",
+      "source": "https://sharefull.com/information/9480/",
+      "action": "カードの利用明細に、身に覚えのない支払いがないか確認する。",
+      "actionSource": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "actionGeneral": true
+    },
+    {
+      "q": "家族に詐欺の電話が来る？",
+      "a": "緊急連絡先の電話番号も、流出した可能性のある情報に含まれるとされています。その連絡先に不審な電子メール、SMS、電話等が届く可能性があると公表されています。",
+      "source": "https://sharefull.com/information/9480/",
+      "action": "家族に、電話で暗証番号を聞かれても答えず、相手と話を続けないよう伝える。",
+      "actionSource": "https://www.npa.go.jp/bureau/safetylife/sos47/case/",
+      "actionGeneral": true
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "電話やメールで暗証番号を聞かれたら？",
+      "situation": "身に覚えのない連絡で暗証番号を尋ねられた",
+      "recommend": "応じず、メールは削除する",
+      "reason": "シェアフルは電話やメール等で銀行口座の暗証番号やパスワードを尋ねることは一切ないと公表しています。応じなければ、その連絡による情報の入力は防げます。すでに流出した情報は取り戻せません。",
+      "source": "https://sharefull.com/information/9480/"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "個別の連絡が届くまで、何を気をつける？",
+    "cause": "なぜ漏れたのか、いま分かっていること",
+    "steps": "今日まずやること、口座の確認から",
+    "desk": "問い合わせはどこに送ればいい？",
+    "worries": "カードや口座、家族の連絡先は大丈夫？",
+    "guide": "暗証番号を聞かれたときの決め方"
+  },
+  "depthAt": "2026-11-14T03:14:10+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "約750万件",
+    "label": "シェアフルで個人最大",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-14T03:16:54+00:00"
+  },
+  "imageFocus": {
+    "x": 0.534,
+    "y": 0.535,
+    "box": [
+      0.1,
+      0.071,
+      0.969,
+      1.0
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/sharefull-data-leak-2026-11-figure-b5a047b0.jpg"
+  }
 }

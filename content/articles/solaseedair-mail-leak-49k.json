@@ -63,14 +63,14 @@
   "videoTitle": "ソラシドエア 情報流出 約49万件、対象は2026年7〜10月に予約メールを受け取った人",
   "publishedAt": "2026-11-14T03:03:03.727324+00:00",
   "generatedAt": "2026-11-14T03:04:19.060820+00:00",
-  "thumbnail": "https://www.solaseedair.jp/img/ogp/solaseedair_gr.png",
+  "thumbnail": "https://ai-tech-express.jp/img/solaseedair-mail-leak-49k-figure-68036a92.jpg",
   "model": "anthropic-api:claude-haiku-5-5",
   "affiliates": [],
   "newsType": "research",
   "todayActions": [
     "2026年7〜10月に「snj-rsv@solaseedair.jp」から届いたメールがあるか、受信箱で検索する",
-    "ソラシドエアをかたるメールのURLは開かず、ID・パスワードやカード番号は入力しない",
-    "予約がある人は、予約番号と航空券番号を控え、公式サイトの予約確認で内容を確かめる"
+    "予約がある人は、予約番号と航空券番号を控え、公式サイトの予約確認で内容を確かめる",
+    "ソラシドエアをかたるメールのURLは開かず、ID・パスワードやカード番号は入力しない"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -101,16 +101,136 @@
   "searchTitle": "ソラシドエアの漏えい対象は？　7〜10月にメールを受けた人",
   "layout": "noir",
   "summaryLine": "ソラシドエアが使う外部メール送信システムで不正アクセスがあり、**約49万件**のメールアドレスが漏えいした",
+  "insight": [
+    {
+      "text": "「ご搭乗手続き完了後は、出発時刻10分前までに搭乗口にお越しください。この時刻を過ぎますと、原則、ご搭乗いただけません。」と案内されている。",
+      "source": "https://www.solaseedair.jp/service/checkin/qsu/"
+    },
+    {
+      "text": "「予約ができるヤング割」「予約ができるシニア割」「介護割引」「ソラ島割」を使う人は自動チェックイン機が使えない。ただし旅行会社で証明書類を提示して購入した場合などは使える。",
+      "source": "https://www.solaseedair.jp/service/checkin/qsu/"
+    },
+    {
+      "text": "「弊社からメール等でお客さまのパスワードやクレジットカード情報の入力をお願いすることは一切ございません」と会社が明言している。",
+      "source": "https://www.solaseedair.jp/info/2026/11/post-20260912.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "ソラシドエア 個人情報漏えい（メールアドレス）に関するお問い合わせフォーム",
+      "url": "https://mdh.fm/e?kA502VIeRX",
+      "source": "https://www.solaseedair.jp/info/2026/11/post-20260912.html",
+      "howTo": [
+        "お知らせ一覧",
+        "【重要】外部メール送信システムへの不正アクセスによる個人情報",
+        "個人情報漏えい（メールアドレス）に関するお問い合わせフォーム"
+      ],
+      "note": "回答にお時間を要する場合がございます。あらかじめご了承ください。"
+    },
+    {
+      "name": "ソラシドエア 予約確認",
+      "url": "https://spa.solaseedair.jp/webapps/servicing/booking-search?CONNECTION_KIND=6hIv-X-M8CURNj3gvbf9Yw&LANG=u7M0GpugeW1CTR4eF4FUbQ",
+      "source": "https://www.solaseedair.jp/info/2026/11/post-20260910.html",
+      "note": "予約番号・航空券番号を必ず控えておくよう案内されている。"
+    },
+    {
+      "name": "ソラシドエア 発着案内・運航の見通し",
+      "url": "https://www.solaseedair.jp/prospect/",
+      "source": "https://www.solaseedair.jp/info/2026/11/post-20260910.html",
+      "note": "遅延や欠航を含む運航に関するメールが遅れる場合は、こちらで運航状況を確かめられる。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "2026年7〜10月に「snj-rsv@solaseedair.jp」から届いたメールがあるか、受信箱で検索する",
+      "source": "https://www.solaseedair.jp/info/2026/11/post-20260912.html",
+      "steps": [
+        "受信箱の検索欄に送信元のアドレスを入力する",
+        "検索結果に2026年7月1日から10月31日のメールがあるか見る",
+        "一通もなければ今回の対象外と確かめられる"
+      ]
+    },
+    {
+      "action": "予約がある人は、予約番号と航空券番号を控え、公式サイトの予約確認で内容を確かめる",
+      "source": "https://www.solaseedair.jp/info/2026/11/post-20260910.html",
+      "steps": [
+        "eチケットお客様控で予約番号（英数字6桁）と航空券番号（数字13桁）を確かめる",
+        "予約確認で予約番号などを入力して内容を見る"
+      ],
+      "url": "https://spa.solaseedair.jp/webapps/servicing/booking-search?CONNECTION_KIND=6hIv-X-M8CURNj3gvbf9Yw&LANG=u7M0GpugeW1CTR4eF4FUbQ"
+    },
+    {
+      "action": "ソラシドエアをかたるメールのURLは開かず、ID・パスワードやカード番号は入力しない",
+      "source": "https://www.solaseedair.jp/info/2026/11/post-20260912.html",
+      "steps": [
+        "メール内のURLは開かない",
+        "ID・パスワード、予約番号・航空券番号、カード情報は入力しない",
+        "お知らせは公式のお知らせ一覧から見る"
+      ],
+      "url": "https://www.solaseedair.jp/info/"
+    }
+  ],
+  "cause": {
+    "text": "ソラシドエアが利用する外部メール送信システムに、第三者が不正にアクセスしました。第三者がファイルをダウンロードし、その一部に個人情報が含まれていたと発表されています。現在は不正アクセスを遮断し、被害拡大を防ぐ対策を講じています。",
+    "status": "stated",
+    "source": "https://www.solaseedair.jp/info/2026/11/post-20260912.html"
+  },
+  "worries": [
+    {
+      "q": "クレジットカードの情報も漏れた？",
+      "a": "会社が11月4日までに漏えいを確認した個人情報はメールアドレスだけです。氏名・住所・電話番号・クレジットカード情報は漏えいしていないと説明されています。",
+      "source": "https://www.solaseedair.jp/info/2026/11/post-20260912.html",
+      "action": "会社がメールでカード情報の入力を求めることはないため、そうしたメールには応じない。"
+    },
+    {
+      "q": "ソラシドエアをかたる偽メールが来たら、見分けられる？",
+      "a": "送信元の名前やメールアドレスは偽装できるため、見た目だけで本物かを判断するのは難しいとされています。メール内のリンクは偽サイトに誘導されることがあるため、安易にクリックしないよう注意されています。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "action": "メール内のリンクは使わず、公式サイトをブックマークして、そこから予約確認に入る。",
+      "general": true
+    },
+    {
+      "q": "予約や運航のメールが届かないと、搭乗はどうなる？",
+      "a": "航空券の予約や運航に関するメール、搭乗券の送付メール、オンラインチェックインの案内メールが届かない、または遅れる場合があります。各内容は予約確認などのページで確かめられます。",
+      "source": "https://www.solaseedair.jp/info/2026/11/post-20260910.html",
+      "action": "予約番号と航空券番号を控え、発着案内・運航の見通しのページで運航状況を確かめる。"
+    },
+    {
+      "q": "オンラインチェックイン後に搭乗券がメールで届かないときは？",
+      "a": "iPhoneは「搭乗券の発行」画面から「Apple Walletに追加する」を選び、「Appleウォレットに追加」「追加」の順に進みます。Androidは表示されたPDFを印刷するか、当日に空港の自動チェックイン機で手続きします。",
+      "source": "https://www.solaseedair.jp/info/2026/11/post-20260910.html",
+      "action": "お使いの機種に合わせて、Apple Walletに追加するか、PDFを印刷して紙で持っていく。"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "搭乗前に知っておきたい、チェックイン機の決まり",
+    "cause": "なぜ漏れたのか、いま分かっていること",
+    "steps": "今日、自分が対象か確かめる手順",
+    "desk": "問い合わせと予約確認の窓口",
+    "worries": "カードや予約は大丈夫？偽メールは？"
+  },
+  "depthAt": "2026-11-14T03:13:36+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "約49万件",
+    "label": "ソラシドエアのメールアドレス",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-14T03:18:41+00:00"
+  },
   "imageFocus": {
-    "x": 0.492,
-    "y": 0.52,
+    "x": 0.497,
+    "y": 0.414,
     "box": [
-      0.256,
-      0.202,
-      0.728,
-      0.839
+      0.069,
+      0.054,
+      0.925,
+      0.774
     ],
     "ar": 1.9048,
-    "src": "https://www.solaseedair.jp/img/ogp/solaseedair_gr.png"
+    "src": "https://ai-tech-express.jp/img/solaseedair-mail-leak-49k-figure-68036a92.jpg"
   }
 }

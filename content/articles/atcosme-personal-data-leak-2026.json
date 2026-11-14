@@ -61,9 +61,8 @@
   "affiliates": [],
   "newsType": "research",
   "todayActions": [
-    "「cosme.net」ドメインからの案内メールを、迷惑メールフォルダも含めて確かめる",
-    "心当たりのないメールやSMSのURLは開かず、添付ファイルも開かない",
-    "パスワードやカード番号を入力させる連絡は会社からのものではないので、応じない"
+    "「cosme.net」からの案内メールは、リンクを開かずに公式サイトのお知らせで確かめる",
+    "迷惑メール設定で「cosme.net」を受信できるか確かめる"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -122,5 +121,110 @@
     ],
     "ar": 1.5,
     "src": "https://ai-tech-express.jp/img/atcosme-personal-data-leak-2026-da30fe1d.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "問い合わせは「security-support@cosme.net」へ。@cosmeのお問い合わせフォームから送っても、返信はこの窓口から届くことがあります。",
+      "source": "https://www.istyle.co.jp/news/info/2026/11/1102.html"
+    },
+    {
+      "text": "Cuenote FCの事象の詳細は、ユミルリンク株式会社の「第二報」のページで確認できます。一般のお客様の問い合わせ窓口は、第一報から変更されています。",
+      "source": "https://www.istyle.co.jp/news/info/2026/11/1109-2.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "株式会社アイスタイル（アットコスメ） 不正アクセス対応お問い合わせ窓口",
+      "url": "https://www.istyle.co.jp/news/info/2026/11/1102.html",
+      "source": "https://www.istyle.co.jp/news/info/2026/11/1102.html",
+      "hours": "10:00-18:00（土・日・祝日を除きます）",
+      "note": "送り先は security-support@cosme.net。問い合わせが多いと返信に時間がかかることがあります。"
+    },
+    {
+      "name": "ユミルリンク株式会社 当社システムへの不正なアクセスに関するご報告（第二報）",
+      "url": "https://www.ymir.co.jp/info/ymir-information20261027.html",
+      "source": "https://www.istyle.co.jp/news/info/2026/11/1109-2.html",
+      "note": "Cuenote FCの事象の詳細は、こちらで確認できます。"
+    },
+    {
+      "name": "アイスタイル ニュース一覧",
+      "url": "https://www.istyle.co.jp/news/",
+      "source": "https://www.istyle.co.jp/news/info/2026/11/1102.html",
+      "note": "新たに分かった事項は、当社サイト上で案内するとされています。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "「cosme.net」からの案内メールは、リンクを開かずに公式サイトのお知らせで確かめる",
+      "source": "https://www.istyle.co.jp/news/info/2026/11/1102.html",
+      "steps": [
+        "届いたメールのリンクは開かない",
+        "送信元が「cosme.net」か確かめる",
+        "アイスタイルのニュース一覧で内容を見る"
+      ],
+      "url": "https://www.istyle.co.jp/news/"
+    },
+    {
+      "action": "迷惑メール設定で「cosme.net」を受信できるか確かめる",
+      "source": "https://www.istyle.co.jp/news/info/2026/11/1102.html",
+      "steps": [
+        "迷惑メール設定等のご確認",
+        "「cosme.net」からメールを受信できるよう設定"
+      ]
+    }
+  ],
+  "cause": {
+    "text": "@cosmeへの第三者による不正アクセスで、会員情報の一部が外部に漏えいしたと確認されています。原因と影響範囲は、第三者のセキュリティ専門会社が調査中です。",
+    "status": "investigating",
+    "source": "https://www.istyle.co.jp/news/info/2026/11/1102.html"
+  },
+  "worries": [
+    {
+      "q": "住所や電話番号が漏れたら、詐欺の電話が来る？",
+      "a": "このお知らせでは、本件に関連してなりすましのメールやSMS、電話等が届く可能性があるとしています。心当たりのない連絡や不審なURLへのアクセス、個人情報の入力には十分注意するよう呼びかけています。",
+      "source": "https://www.istyle.co.jp/news/info/2026/11/1102.html",
+      "action": "知らない番号から個人情報や暗証番号を聞かれたら答えず、いったん電話を切って公式の番号にかけ直す",
+      "actionSource": "https://www.npa.go.jp/bureau/safetylife/sos47/case/",
+      "actionGeneral": true
+    },
+    {
+      "q": "クレジットカード情報も漏れた？",
+      "a": "パスワードとクレジットカード情報は含まれていないと確認したとされています。第二の件でも、Cuenote FCでクレジットカード情報は一切保持・送信していないとされています。",
+      "source": "https://www.istyle.co.jp/news/info/2026/11/1102.html",
+      "action": "カード番号の入力を求める連絡には応じず、利用明細に身に覚えのない請求がないか見る",
+      "actionSource": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "actionGeneral": true
+    },
+    {
+      "q": "届いたメールが本物か、どうやって見分ければいい？",
+      "a": "案内メールは「cosme.net」ドメインから送信されると案内されています。会社は、案内メールでパスワードやクレジットカード情報の入力を求めることはないとしています。",
+      "source": "https://www.istyle.co.jp/news/info/2026/11/1102.html",
+      "action": "メール本文のリンクは開かず、公式サイトのお知らせで同じ内容があるか確かめる"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "案内メールが届いたら、リンクを開いてもいい？",
+      "situation": "「cosme.net」から案内メールが届いた",
+      "recommend": "リンクは開かず、公式サイトで内容を確かめる",
+      "reason": "案内メールは「cosme.net」ドメインから送られるが、パスワードやクレジットカード情報の入力は求めないとされています。入力を求められたら応じないでください。",
+      "source": "https://www.istyle.co.jp/news/info/2026/11/1102.html"
+    },
+    {
+      "question": "案内メールが届いたら、リンクを開いてもいい？",
+      "situation": "まだ案内メールが届いていない",
+      "recommend": "急がず、迷惑メールフォルダも確かめて待つ",
+      "reason": "第二の件の連絡は11月中に完了する予定とされています。第一の件は、完了が11月6日の予定とされていました。届かなければ専用窓口へ問い合わせる方法があります。",
+      "source": "https://www.istyle.co.jp/news/info/2026/11/1109-2.html"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "問い合わせ先と、フォームからの返信の出どころ",
+    "cause": "なぜ漏れたのか、いま分かっていること",
+    "steps": "今日まずやる確認は、メールの見方と設定",
+    "desk": "問い合わせ先と、確認できる公式ページ",
+    "worries": "詐欺の電話、カード、本物のメールかどうか",
+    "guide": "案内メールが届いたかで、取る行動が変わる"
+  },
+  "depthAt": "2026-11-14T03:15:48+00:00"
 }

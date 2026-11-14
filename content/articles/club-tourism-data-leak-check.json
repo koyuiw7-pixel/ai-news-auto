@@ -62,14 +62,14 @@
   "videoTitle": "クラブツーリズム 情報流出、インターネット会員約432万件が対象か確かめ方",
   "publishedAt": "2026-11-14T02:59:37.773798+00:00",
   "generatedAt": "2026-11-14T02:59:50.695184+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/club-tourism-data-leak-check-figure-0bd03359.jpg",
   "model": "anthropic-api:claude-haiku-5-5",
   "affiliates": [],
   "newsType": "research",
   "todayActions": [
-    "心当たりのないメールやSMSは、本文のリンクを開かず削除する",
-    "クラブツーリズムの登録情報に覚えのないものがないか確かめる",
-    "同じパスワードを他のサービスでも使っていれば、変更を検討する"
+    "同じ・似たパスワードを使うサービスは、変更を検討する",
+    "心当たりのないメール・SMSは、リンクを押さず削除する",
+    "不審な連絡を受けたら、特設窓口に電話で確かめる"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -101,5 +101,134 @@
   "detectedAt": "2026-11-14T03:00:23+00:00",
   "searchTitle": "クラブツーリズムの情報漏えい、対象は？　ネット会員約432万件",
   "layout": "noir",
-  "summaryLine": "クラブツーリズムのインターネット会員、**約432万件**の情報が外部に漏えいした可能性"
+  "summaryLine": "クラブツーリズムのインターネット会員、**約432万件**の情報が外部に漏えいした可能性",
+  "insight": [
+    {
+      "text": "2026年11月7日の再開は一部のページだけです。「旅の思い出 写真大募集ページ」は引き続き停止しています。",
+      "source": "https://www.club-tourism.co.jp/jpn/news/2026/1106_1/"
+    },
+    {
+      "text": "公式は、パスワードはサービスごとに違うものにし、使えるなら多要素認証も設定するよう勧めています。",
+      "source": "https://www.club-tourism.co.jp/jpn/news/2026/1031/"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "クラブツーリズム株式会社 お客様特設窓口",
+      "url": "https://www.club-tourism.co.jp/jpn/news/2026/1031/",
+      "source": "https://www.club-tourism.co.jp/jpn/news/2026/1031/",
+      "phone": "０１２０－３３５－２５５",
+      "hours": "平日（月～金曜日）9：30～17：00。11月中は土曜・日曜・祝日も上記時間で受付",
+      "note": "当社を名乗る不審な連絡や、本件に関連すると考えられる被害・異常を確認した場合の連絡先とされています。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "同じ・似たパスワードを使うサービスは、変更を検討する",
+      "source": "https://www.club-tourism.co.jp/jpn/news/2026/1031/",
+      "steps": [
+        "同じ・似たパスワードを使うサービスを確かめる",
+        "推測されやすい簡単なパスワードは複雑なものにする",
+        "多要素認証が使える場合は設定する"
+      ]
+    },
+    {
+      "action": "心当たりのないメール・SMSは、リンクを押さず削除する",
+      "source": "https://www.club-tourism.co.jp/jpn/news/2026/1101_1/",
+      "steps": [
+        "本文のリンクをクリックしない",
+        "添付ファイルを開かない",
+        "削除する",
+        "判断に迷ったら、店頭・電話窓口・公式サイトで確かめる"
+      ]
+    },
+    {
+      "action": "不審な連絡を受けたら、特設窓口に電話で確かめる",
+      "source": "https://www.club-tourism.co.jp/jpn/news/2026/1031/",
+      "steps": [
+        "フリーダイヤル：０１２０－３３５－２５５",
+        "平日9：30～17：00（11月中は土日祝も）",
+        "当社を名乗る連絡を受けた場合に連絡する窓口"
+      ],
+      "url": "https://www.club-tourism.co.jp/jpn/news/2026/1031/"
+    }
+  ],
+  "cause": {
+    "text": "2026年10月30日、当社サーバの一部に対する外部からの不正アクセスにより、情報の一部が外部に流出した可能性があると説明されています。侵入経路と手段は特定済みとされ、調査は継続しています。",
+    "status": "stated",
+    "source": "https://www.club-tourism.co.jp/jpn/news/2026/1031/"
+  },
+  "worries": [
+    {
+      "q": "クレジットカードの情報も漏れてしまった？",
+      "a": "漏えいした可能性がある項目に、クレジットカード情報は含まれていないと書かれています。金融機関の口座番号や、ログインパスワードも含まれていないとされています。",
+      "source": "https://www.club-tourism.co.jp/jpn/news/2026/1031/",
+      "action": "念のため、カードの利用明細に身に覚えのない請求がないかを確かめておくと安心です。",
+      "actionSource": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "actionGeneral": true
+    },
+    {
+      "q": "同じパスワードを他でも使っていたら？",
+      "a": "ログインパスワードは漏えいした可能性がある項目に含まれていないと書かれています。ただ、他のサービスと同一のパスワードは念のため変更を検討するよう、会社が勧めています。",
+      "source": "https://www.club-tourism.co.jp/jpn/news/2026/1031/",
+      "action": "同じパスワードを使っているサービスから順に、サービスごとに違うものへ変える",
+      "actionSource": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "actionGeneral": true
+    },
+    {
+      "q": "家族の電話にも詐欺がかかってくる？",
+      "a": "警察の特殊詐欺対策のページでは、親族や警察官などを装って電話をかける手口が紹介されています。電話で犯人と話をしないことが大切とされています。",
+      "source": "https://www.npa.go.jp/bureau/safetylife/sos47/case/",
+      "action": "家族にも、親族を名乗る知らない番号からの電話には注意するよう伝えておく",
+      "general": true
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "パスワードを変えるべき？",
+      "situation": "他のサービスと同じパスワードを使っている",
+      "recommend": "変更を検討する",
+      "reason": "ログインパスワードは今回の対象外ですが、他のサービスと同じものなら変更を検討するよう会社が勧めています。変更しても、流出した氏名や住所は元に戻りません。",
+      "source": "https://www.club-tourism.co.jp/jpn/news/2026/1031/"
+    },
+    {
+      "question": "パスワードを変えるべき？",
+      "situation": "パスワードを他で使い回していない",
+      "recommend": "急がなくてよい。推測されやすい簡単なものなら変える",
+      "reason": "推測されやすい簡単なパスワードは、複雑なパスワードへの変更をおすすめするとページにあります。再開にあたって、既に会員の人に新たな手続きは必要ないとされています。",
+      "source": "https://www.club-tourism.co.jp/jpn/news/2026/1106_1/"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "パスワードは変える、多要素認証も設定を",
+    "cause": "なぜ起きた？外部からの不正アクセス",
+    "steps": "今日、まず確かめることと動くこと",
+    "desk": "困ったときの特設窓口",
+    "worries": "カードや家族の連絡先は大丈夫？",
+    "guide": "パスワードを変えるか、迷ったときの決め方"
+  },
+  "depthAt": "2026-11-14T03:15:01+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "約432万件",
+    "label": "ネット会員",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-14T03:17:21+00:00"
+  },
+  "imageFocus": {
+    "x": 0.533,
+    "y": 0.462,
+    "box": [
+      0.091,
+      0.06,
+      0.975,
+      0.863
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/club-tourism-data-leak-check-figure-0bd03359.jpg"
+  }
 }
