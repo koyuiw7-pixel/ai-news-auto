@@ -76,14 +76,13 @@
   "videoTitle": "高等学校等就学支援金は2026年度から所得制限なし 私立は年45万7,200円が上限です",
   "publishedAt": "2026-11-14T00:29:12.411093+00:00",
   "generatedAt": "2026-11-14T00:30:31.206854+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/high-school-tuition-support-2026-figure-81a8f41b.jpg",
   "model": "anthropic-api:claude-haiku-5-5",
   "affiliates": [],
   "newsType": "policy",
   "todayActions": [
-    "学校から配られる申請書類と提出期日を、今日のうちに確かめる",
-    "私立の場合は、学校の納入案内で年間の授業料が45万7,200円を超えるかを見る",
-    "申請が遅れそうなら、学校か都道府県に早めに相談する"
+    "学校から配られた申請書類と提出期日を、学校の案内で確かめる",
+    "日本国籍の方は、e-Shienでオンライン申請できるか確かめる"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -124,5 +123,139 @@
   ],
   "detectedAt": "2026-11-14T00:31:00+00:00",
   "layout": "noir",
-  "summaryLine": "所得制限が撤廃され、年収にかかわらず私立高校（全日制）の上限は年**45万7,200円**に"
+  "summaryLine": "所得制限が撤廃され、年収にかかわらず私立高校（全日制）の上限は年**45万7,200円**に",
+  "insight": [
+    {
+      "text": "休学期間中に授業料がかからず支給を止めたい場合は、学校へ「支給停止の申出」を出す必要があります。出さないと、その期間の支給額は0円として計算されます。",
+      "source": "https://www.mext.go.jp/a_menu/shotou/mushouka/1342600.htm"
+    },
+    {
+      "text": "経済的に困難な家庭は、授業料徴収の猶予措置等を使える場合があります。詳しくは学校へ問い合わせるよう案内されています。",
+      "source": "https://www.mext.go.jp/a_menu/shotou/mushouka/20260527-mxt_shuukyo03-100002595_2.pdf"
+    },
+    {
+      "text": "支給期間は、定時制・通信制の課程では原則48月まで支給されます。全日制は36月までです。",
+      "source": "https://www.mext.go.jp/a_menu/shotou/mushouka/1342600.htm"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "私立高等学校における就学支援金の問い合わせ先一覧",
+      "url": "https://www.mext.go.jp/a_menu/shotou/mushouka/1292214.htm",
+      "source": "https://www.mext.go.jp/a_menu/shotou/mushouka/1342600.htm",
+      "note": "現行制度及び旧制度の私立高校の問い合わせ先がまとめられています。"
+    },
+    {
+      "name": "高等学校等就学支援金オンライン申請システム e-Shien",
+      "url": "https://www.mext.go.jp/a_menu/shotou/mushouka/01753.html",
+      "source": "https://www.mext.go.jp/a_menu/shotou/mushouka/index.htm",
+      "note": "学校から配布されたログインID通知書を参照して申請します。学校や都道府県から別の案内があれば、その指示に従います。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "学校から配られた申請書類と提出期日を、学校の案内で確かめる",
+      "source": "https://www.mext.go.jp/a_menu/shotou/mushouka/1342600.htm",
+      "steps": [
+        "学校から配られた案内や書類を確認する",
+        "提出期日と提出先を控える",
+        "都道府県の案内が別にあればそちらに従う"
+      ]
+    },
+    {
+      "action": "日本国籍の方は、e-Shienでオンライン申請できるか確かめる",
+      "source": "https://www.mext.go.jp/a_menu/shotou/mushouka/20260527-mxt_shuukyo03-100002595_2.pdf",
+      "steps": [
+        "高校生等への修学支援のページを開く",
+        "「高等学校等就学支援金オンライン申請システム e-Shien」を開く",
+        "学校から配られたログインID通知書を用意する"
+      ],
+      "url": "https://www.mext.go.jp/a_menu/shotou/mushouka/01753.html"
+    }
+  ],
+  "cause": {
+    "text": "文部科学省は、全ての意志ある高校生等が安心して教育を受けられるよう、経済的状況にかかわらず希望に応じた教育を受けられる環境を整えるためと説明しています。",
+    "status": "background",
+    "source": "https://www.mext.go.jp/a_menu/shotou/mushouka/1342600.htm"
+  },
+  "worries": [
+    {
+      "q": "所得が多くても、就学支援金の対象になりますか？",
+      "a": "令和8年4月から所得制限が撤廃され、国籍・在留資格などの要件を満たせば、世帯の年収にかかわらず対象になります。返済は不要です。",
+      "source": "https://www.mext.go.jp/a_menu/shotou/mushouka/1342600.htm",
+      "action": "学校から配られた申請書類を確かめ、受給資格を得るために期日までに申請する。"
+    },
+    {
+      "q": "私立に通うと、授業料はどのくらい払うことになりますか？",
+      "a": "私立高校（全日制）の支給上限は年45万7,200円です。学校の授業料と就学支援金の差額は、生徒本人（保護者）が支払う必要があります。",
+      "source": "https://www.mext.go.jp/a_menu/shotou/mushouka/1342600.htm",
+      "action": "学校の納入案内で年間の授業料が45万7,200円を超えるかを見て、差額を用意する。"
+    },
+    {
+      "q": "申請が遅れると、支援はどうなりますか？",
+      "a": "原則として、支給は申し込みが行われた月からの開始になります。提出が遅れそうな場合や遅れた場合は、学校や都道府県へ相談するよう案内されています。",
+      "source": "https://www.mext.go.jp/a_menu/shotou/mushouka/1342600.htm",
+      "action": "提出期日を確かめ、遅れそうなら早めに学校か都道府県へ相談する。"
+    },
+    {
+      "q": "支援はいつまで続きますか？",
+      "a": "全日制は高等学校の標準的な修業年限とされている36月まで原則支給されます。定時制・通信制の課程は原則48月まで支給されます。",
+      "source": "https://www.mext.go.jp/a_menu/shotou/mushouka/1342600.htm",
+      "action": "自分が通う課程が全日制、定時制、通信制のどれかを、学校の案内で確かめる。"
+    },
+    {
+      "q": "休学したら、支援はどうなりますか？",
+      "a": "休学期間中に授業料の徴収がなく、支給を止めたい場合は、学校に支給停止の申出を提出する必要があります。出さなかった場合、その期間の支給額は0円として計算されます。",
+      "source": "https://www.mext.go.jp/a_menu/shotou/mushouka/1342600.htm",
+      "action": "休学する前に、学校へ支給停止の申出が必要かどうかを確かめる。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "私立の授業料が上限を超えたら、どうする？",
+      "situation": "年間の授業料が45万7,200円を超える私立に通う",
+      "recommend": "差額の用意を先に考えておくとよい",
+      "reason": "学校の授業料と就学支援金の差額は、生徒本人（保護者）が支払う必要があります。都道府県の減免や奨学金は別の制度で、原則として併せて受けられます。",
+      "source": "https://www.mext.go.jp/a_menu/shotou/mushouka/1342600.htm"
+    },
+    {
+      "question": "私立の授業料が上限を超えたら、どうする？",
+      "situation": "年間の授業料が45万7,200円以下の私立に通う",
+      "recommend": "期日までの申請を優先するとよい",
+      "reason": "支給は原則として申し込みが行われた月からの開始です。申請が遅れると、その分の支給が後ろにずれます。",
+      "source": "https://www.mext.go.jp/a_menu/shotou/mushouka/1342600.htm"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "休学や猶予など、申請の前後に知っておくこと",
+    "cause": "なぜ所得制限をなくしたのか",
+    "steps": "申請で今日やること",
+    "desk": "問い合わせ先は学校と文部科学省",
+    "worries": "所得制限なしでも、差額や申請は大丈夫？",
+    "guide": "私立の授業料と申請、迷ったときの考え方"
+  },
+  "depthAt": "2026-11-14T00:52:31+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "高校の授業料支援、2026年4月から所得制限なし",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-14T00:57:18+00:00"
+  },
+  "imageFocus": {
+    "x": 0.495,
+    "y": 0.41,
+    "box": [
+      0.087,
+      0.065,
+      0.903,
+      0.756
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/high-school-tuition-support-2026-figure-81a8f41b.jpg"
+  }
 }

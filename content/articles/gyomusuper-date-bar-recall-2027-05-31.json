@@ -64,14 +64,13 @@
   "videoTitle": "賞味期限2027年5月31日なら食べないで　業務スーパーのデーツバー回収、返し方は2つです",
   "publishedAt": "2026-11-14T00:25:10.603205+00:00",
   "generatedAt": "2026-11-14T00:25:54.658031+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/gyomusuper-date-bar-recall-2027-05-31-figure-d0265ee6.jpg",
   "model": "anthropic-api:claude-haiku-5-5",
   "affiliates": [],
   "newsType": "general",
   "todayActions": [
-    "味が「オーツ麦&ココア」で、袋の賞味期限が2027年5月31日の商品がないか確かめる",
-    "対象の袋があれば、食べずに分けて保管する",
-    "対象品の返し方は、お客様相談室（0120-808-348、月〜金9:00〜17:00）へ電話で確かめる"
+    "食べずに分けて保管し、お客様相談室へ電話で返し方を確かめる",
+    "急ぎの用件は、メールでなくフリーダイヤルへ電話する"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -109,5 +108,111 @@
   "detectedAt": "2026-11-14T00:26:12+00:00",
   "searchTitle": "業務スーパーのデーツバー回収、対象は？　2027年5月31日",
   "layout": "noir",
-  "summaryLine": "業務スーパーの「砂糖不使用 デーツバー（オーツ麦&ココア）」が、賞味期限2027年5月31日の分を自主回収の対象に"
+  "summaryLine": "業務スーパーの「砂糖不使用 デーツバー（オーツ麦&ココア）」が、賞味期限2027年5月31日の分を自主回収の対象に",
+  "insight": [
+    {
+      "text": "消費者庁のリコール一覧では、この商品は「返金／回収」と区分され、2026/11/12の日付で掲載されています。",
+      "source": "https://www.recall.caa.go.jp/"
+    },
+    {
+      "text": "業務スーパーの2026年11月11日のお詫びは、回収の詳細を「こちら」のリンク先だけに載せています。",
+      "source": "https://gyomusuper.jp/info/index.php"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "株式会社神戸物産 お客様相談室",
+      "url": "https://gyomusuper.jp/info/index.php",
+      "source": "https://gyomusuper.jp/info/index.php",
+      "howTo": [
+        "HOME",
+        "お知らせ"
+      ],
+      "phone": "0120-808-348",
+      "hours": "月～金9：00～17：00（土・日曜日、年末年始を除く）",
+      "note": "メールの問い合わせは一時休止中のため、お急ぎの用件はフリーダイヤルへ連絡するよう案内されています。"
+    },
+    {
+      "name": "消費者庁 リコール情報サイト（神戸物産「砂糖不使用デーツバー（オーツ麦&ココア）」）",
+      "url": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036119&screenkbn=06",
+      "source": "https://www.recall.caa.go.jp/",
+      "howTo": [
+        "トップページ",
+        "新規登録情報"
+      ],
+      "note": "一覧では「返金／回収」と区分されています。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "食べずに分けて保管し、お客様相談室へ電話で返し方を確かめる",
+      "source": "https://gyomusuper.jp/info/index.php",
+      "steps": [
+        "お客様相談室 0120-808-348へ電話",
+        "受付は月～金9：00～17：00",
+        "土・日曜日と年末年始は受付なし"
+      ],
+      "url": "https://gyomusuper.jp/info/index.php"
+    },
+    {
+      "action": "急ぎの用件は、メールでなくフリーダイヤルへ電話する",
+      "source": "https://gyomusuper.jp/info/index.php",
+      "steps": [
+        "メールでの問い合わせは一時休止中",
+        "お急ぎはフリーダイヤルへ連絡",
+        "休止は11月12日（木）19時頃から復旧まで"
+      ],
+      "url": "https://gyomusuper.jp/info/index.php"
+    }
+  ],
+  "worries": [
+    {
+      "q": "お客様相談室に電話できるのは、いつですか？",
+      "a": "お客様相談室の受付時間は月～金9：00～17：00です。土・日曜日と年末年始を除くと、業務スーパーのお知らせに書かれています。お問い合わせは弊社受付時間内に順次対応とされています。",
+      "source": "https://gyomusuper.jp/info/index.php",
+      "action": "平日9時から17時の間に、フリーダイヤル0120-808-348へ電話して確かめるようにする"
+    },
+    {
+      "q": "急ぎの連絡はメールで間に合いますか、どうすればいいですか？",
+      "a": "メールでの問い合わせへの返信と対応は、11月12日（木）19時頃から復旧までの間、一時休止されています。お急ぎのご用件は、フリーダイヤルへ連絡するよう案内されています。",
+      "source": "https://gyomusuper.jp/info/index.php",
+      "action": "メールは待たず、お急ぎの用件はフリーダイヤル0120-808-348へ電話する"
+    },
+    {
+      "q": "ほかの食品も回収されていないか、どう確かめますか？",
+      "a": "消費者庁のリコール情報サイトでは、食料品などの回収情報が「新規登録情報」として日付ごとに一覧で掲載されています。ほかの食品も、この一覧で確かめられます。",
+      "source": "https://www.recall.caa.go.jp/",
+      "action": "リコール情報サイトの「新規登録情報」一覧を開き、買い置きの食品名がないか見る"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "回収の詳細はお知らせの画像にあり、区分は返金／回収",
+    "steps": "食べずに電話で確かめる手順",
+    "desk": "問い合わせ先は神戸物産のお客様相談室",
+    "worries": "電話の時間やメールの休止、気になる点"
+  },
+  "depthAt": "2026-11-14T00:54:03+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "賞味期限2027年5月31日のデーツバーは食べない",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-14T00:56:38+00:00"
+  },
+  "imageFocus": {
+    "x": 0.531,
+    "y": 0.413,
+    "box": [
+      0.103,
+      0.071,
+      0.959,
+      0.756
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/gyomusuper-date-bar-recall-2027-05-31-figure-d0265ee6.jpg"
+  }
 }

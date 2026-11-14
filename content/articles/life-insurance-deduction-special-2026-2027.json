@@ -60,13 +60,14 @@
   "videoTitle": "生命保険料控除の特例は令和8年分と令和9年分だけ 年末調整で一般の上限が6万円になる条件 2026年分",
   "publishedAt": "2026-11-14T00:23:30.831533+00:00",
   "generatedAt": "2026-11-14T00:23:45.586437+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/life-insurance-deduction-special-2026-2027-figure-1caafbc4.jpg",
   "model": "anthropic-api:claude-haiku-5-5",
   "affiliates": [],
   "newsType": "policy",
   "todayActions": [
-    "保険会社から届いた控除証明書で、新契約か旧契約かを確かめる",
-    "勤務先の保険料控除申告書の提出期限を確認する"
+    "保険会社の控除証明書で、新契約か旧契約かを確かめる",
+    "勤務先に保険料控除申告書を、最後の給与の前日までに出す",
+    "マイナポータル連携で控除証明書の電子データを取得できるか確かめる"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -114,5 +115,166 @@
   "detectedAt": "2026-11-14T00:24:54+00:00",
   "searchTitle": "生命保険料控除、23歳未満の扶養親族は最高6万円　令和8・9年分",
   "layout": "noir",
-  "summaryLine": "23歳未満の扶養親族がいる場合、令和8年分と令和9年分の一般の生命保険料控除は最高**6万円**になる（国税庁パンフレット）"
+  "summaryLine": "23歳未満の扶養親族がいる場合、令和8年分と令和9年分の一般の生命保険料控除は最高**6万円**になる（国税庁パンフレット）",
+  "insight": [
+    {
+      "text": "「旧生命保険料」は、支払金額から剰余金や割戻金を引いた残りが9,000円を超えると証明書の添付が必要です。",
+      "source": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/gensen/annai/1648_05.htm"
+    },
+    {
+      "text": "「保険料控除証明書」の電子データは、勤務先が電子提出に対応していれば、年末調整で申告書に添付して送れます。",
+      "source": "https://www.nta.go.jp/publication/pamph/koho/kurashi/html/04_2.htm"
+    },
+    {
+      "text": "「生命保険料控除証明書」の電子データは、マイナポータル連携で一括取得し、申告書に自動入力できます。",
+      "source": "https://www.nta.go.jp/publication/pamph/koho/kurashi/html/04_2.htm"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "国税庁 タックスアンサー No.1140 生命保険料控除",
+      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1140.htm",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1140.htm",
+      "howTo": [
+        "税について調べる",
+        "タックスアンサー（よくある税の質問）",
+        "No.1140 生命保険料控除"
+      ],
+      "note": "特例の計算表と、新契約・旧契約の区分が書かれています"
+    },
+    {
+      "name": "国税庁 A2-3 給与所得者の保険料控除の申告",
+      "url": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/gensen/annai/1648_05.htm",
+      "source": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/gensen/annai/1648_05.htm",
+      "howTo": [
+        "申告手続・用紙",
+        "申告・申請・届出等、用紙（手続の案内・様式）",
+        "A2 源泉所得税関係",
+        "A2-3 給与所得者の保険料控除の申告"
+      ],
+      "note": "入力用PDFはブラウザでは利用できないため、作業場所にダウンロードして使います"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "保険会社の控除証明書で、新契約か旧契約かを確かめる",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1140.htm",
+      "steps": [
+        "証明書で、一般・介護医療・個人年金のどれかを確認",
+        "契約日が平成24年1月1日以後なら新契約",
+        "平成23年12月31日以前なら旧契約"
+      ]
+    },
+    {
+      "action": "勤務先に保険料控除申告書を、最後の給与の前日までに出す",
+      "source": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/gensen/annai/1648_05.htm",
+      "steps": [
+        "A2-3のページで提出時期を確認",
+        "入力用PDFを作業場所にダウンロード",
+        "証明書を添付するか、提示する",
+        "提出先は給与の支払者（勤務先）"
+      ],
+      "url": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/gensen/annai/1648_05.htm"
+    },
+    {
+      "action": "マイナポータル連携で控除証明書の電子データを取得できるか確かめる",
+      "source": "https://www.nta.go.jp/publication/pamph/koho/kurashi/html/04_2.htm",
+      "steps": [
+        "マイナポータル連携特設ページを開く",
+        "マイナポータルから証明書データを一括取得",
+        "申告書に自動入力されるか確かめる"
+      ],
+      "url": "https://www.nta.go.jp/taxes/tetsuzuki/mynumberinfo/mynapo.htm"
+    }
+  ],
+  "cause": {
+    "text": "令和8年分の年末調整の案内は、23歳未満の扶養親族を有する場合の生命保険料控除の特例を創設したと説明しています。",
+    "status": "background",
+    "source": "https://www.nta.go.jp/users/gensen/nencho/index/shikata.htm"
+  },
+  "worries": [
+    {
+      "q": "23歳未満の子がいれば、保険料はすべて6万円になる？",
+      "a": "特例で替わるのは、新契約の一般生命保険料（新生命保険料）の計算表だけです。介護医療保険料と新個人年金保険料は、通常の新契約の表のままです。",
+      "source": "https://www.nta.go.jp/publication/pamph/koho/kurashi/html/04_2.htm",
+      "action": "保険会社の証明書で、支払った保険料が一般か介護医療か個人年金かを確かめる",
+      "actionSource": "https://www.nta.go.jp/users/gensen/nencho/index/shikata.htm"
+    },
+    {
+      "q": "保険料控除の証明書は、必ず出さないといけない？",
+      "a": "証明書は、申告書に添付するか、提出のときに提示します。旧生命保険料で1契約の保険料が9,000円以下のものは、証明書がいりません。",
+      "source": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/gensen/annai/1648_05.htm",
+      "action": "保険会社から届いた控除証明書を手元に用意し、勤務先への提出方法を確かめる"
+    },
+    {
+      "q": "年末調整を受けず、確定申告で受けるときは？",
+      "a": "確定申告書の生命保険料控除の欄に記入し、支払金額を証明する書類を添付するか、提出時に提示します。申告先は所轄税務署です。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1140.htm",
+      "action": "確定申告の前に、保険料控除証明書を添付か提示できるよう手元に用意する"
+    },
+    {
+      "q": "扶養の子が23歳未満か、どう確かめる？",
+      "a": "年齢は23歳未満で、令和8年分では平成16年1月2日以後生まれが対象です。年末調整の確認項目にも、この生まれた日の基準があります。",
+      "source": "https://www.nta.go.jp/users/gensen/nencho/index/shikata.htm",
+      "action": "扶養の子の生年月日が平成16年1月2日以後かを、年末調整の前に確かめる"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "年末調整で受けるか、確定申告で受けるか？",
+      "situation": "勤務先で年末調整を受けている",
+      "recommend": "年末調整で受けるなら、勤務先の提出期限を先に確かめる",
+      "reason": "年末調整では保険料控除申告書を勤務先に出し、提出は最後の給与の前日までです。確定申告で受ける場合は、所轄税務署へ申告します。",
+      "source": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/gensen/annai/1648_05.htm"
+    },
+    {
+      "question": "年末調整で受けるか、確定申告で受けるか？",
+      "situation": "確定申告をする予定がある",
+      "recommend": "確定申告書の生命保険料控除の欄に記入し、証明書を添付か提示する",
+      "reason": "確定申告書の生命保険料控除の欄に記入し、証明書を添付するか提出時に提示します。この特例の計算表は、令和8年分と令和9年分の申告に適用されます。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1140.htm"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "証明書が要るかは、旧契約の保険料で変わる",
+    "cause": "なぜ変わるのか、制度の背景",
+    "steps": "今日やる3つ、証明書と提出期限から",
+    "desk": "確かめる窓口と申告書の場所",
+    "worries": "子の年齢や証明書、どこまで確かめる？",
+    "guide": "年末調整か確定申告か、迷ったときの決め方"
+  },
+  "depthAt": "2026-11-14T00:55:08+00:00",
+  "updatedAt": "2026-11-14T00:55:08+00:00",
+  "updates": [
+    {
+      "at": "2026-11-14T00:55:08+00:00",
+      "kind": "facts",
+      "title": "公式の資料をもとに、「なるほどの要点」・「公式の窓口」・「今日やること」・「理由」・「よくある不安」・「判断の目安」を追記しました",
+      "sourceUrl": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1140.htm",
+      "sourceName": "国税庁タックスアンサー No.1140「生命保険料控除」（令和8年4月1日現在法令等）"
+    }
+  ],
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "生命保険料控除の特例は令和8年分と令和9年分だけ",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-14T00:56:50+00:00"
+  },
+  "imageFocus": {
+    "x": 0.502,
+    "y": 0.438,
+    "box": [
+      0.103,
+      0.083,
+      0.9,
+      0.792
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/life-insurance-deduction-special-2026-2027-figure-1caafbc4.jpg"
+  }
 }
