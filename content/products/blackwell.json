@@ -6,39 +6,54 @@
   "companyName": "NVIDIA",
   "category": "半導体・インフラ",
   "overview": {
-    "text": "Blackwellは、NVIDIAが提供するAIや大規模計算向けの次世代GPUアーキテクチャです。画像生成AIの高速化やノートPC向け統合プロセッサへの採用など、多様なワークロードを処理します。",
+    "text": "Blackwellは、NVIDIAが開発したGPUアーキテクチャです。AIの学習や推論、高負荷な処理を高速に行う半導体として、データセンターや開発者向けに展開されています。",
     "sources": [
       "flux-3-image-klein-blackwell-speedup",
-      "nvidia-rtx-spark-announcement"
+      "nvidia-rtx-spark-announcement",
+      "nvidia-dgx-10-years-history-vera-rubin"
     ]
   },
   "facts": [
     {
-      "label": "向いている人",
-      "value": "画像生成AIの開発者やクリエイター",
+      "label": "使える場所",
+      "value": "データセンターや開発者向け端末",
       "sources": [
         "flux-3-image-klein-blackwell-speedup",
         "nvidia-rtx-spark-announcement"
+      ]
+    },
+    {
+      "label": "向いている人",
+      "value": "AI開発者や企業のIT部門",
+      "sources": [
+        "flux-3-image-klein-blackwell-speedup",
+        "nvidia-dgx-10-years-history-vera-rubin"
       ]
     }
   ],
   "capabilities": [
     {
-      "text": "B200を1台使い、テキストからの画像生成を最大3.46倍速く処理できます。",
+      "text": "B200を1台使用したテストで、画像生成AI「FLUX 3」のテキストからの生成が最大3.46倍速くなりました。",
       "sources": [
         "flux-3-image-klein-blackwell-speedup"
       ]
     },
     {
-      "text": "B200を1台使い、画像からの画像生成を最大4.45倍速く処理できます。",
+      "text": "8枚のB200で分担すると、Base版のテキストからの生成にかかる時間を3.00秒に短縮できます。",
       "sources": [
         "flux-3-image-klein-blackwell-speedup"
       ]
     },
     {
-      "text": "6,144基のCUDAコアを備え、1 petaFLOPのAI処理性能を発揮します。",
+      "text": "Blackwell RTX GPUとGrace CPUを統合し、1 petaFLOPのAI性能を発揮します。",
       "sources": [
         "nvidia-rtx-spark-announcement"
+      ]
+    },
+    {
+      "text": "同一のGPUで多様なAIモデルや一般計算を処理する融通性を備えています。",
+      "sources": [
+        "nvidia-ai-infrastructure-fungible-durable-productive"
       ]
     }
   ],
@@ -47,41 +62,33 @@
   "howto": [],
   "differences": [
     {
-      "text": "次世代のVera Rubin NVL72では、電力効率がBlackwell比10倍です。",
+      "text": "Hopperアーキテクチャから進化し、自律型AIを支える超広帯域と大容量メモリを備えています。",
       "sources": [
-        "nvidia-vera-rubin-performance-coreweave"
+        "nvidia-dgx-10-years-history-vera-rubin"
       ]
     }
   ],
   "faq": [
     {
-      "q": "Blackwellは誰に向いている製品ですか？",
-      "a": "画像生成AIの開発者や、高度なローカルAI処理を求めるクリエイターに向いています。",
+      "q": "誰に向いている製品ですか？",
+      "a": "画像生成AIの開発者や、大規模なAIシステムを運用する企業のIT部門に向いています。",
       "sources": [
         "flux-3-image-klein-blackwell-speedup",
-        "nvidia-rtx-spark-announcement"
+        "nvidia-dgx-10-years-history-vera-rubin"
       ]
     },
     {
-      "q": "画像生成AIの処理速度はどれくらい向上しますか？",
-      "a": "B200を1台使ったテストでは、テキストからの生成が最大3.46倍速くなります。",
-      "sources": [
-        "flux-3-image-klein-blackwell-speedup"
-      ]
-    },
-    {
-      "q": "RTX Sparkでの構成はどうなっていますか？",
-      "a": "Blackwell RTX GPUと20コアのGrace CPUが結合されています。",
+      "q": "どのような端末で使えますか？",
+      "a": "サーバー向けだけでなく、Blackwell RTX GPUを搭載したノートPCなどの小型端末でも利用できます。",
       "sources": [
         "nvidia-rtx-spark-announcement"
       ]
     },
     {
-      "q": "次の世代のモデルは何ですか？",
-      "a": "次世代のVera Rubinアーキテクチャが発表されています。",
+      "q": "どのような特徴がありますか？",
+      "a": "特定のAIモデルに固執せず、同一のGPUで多様なワークロードを柔軟に処理できる融通性を備えています。",
       "sources": [
-        "nvidia-dgx-10-years-history-vera-rubin",
-        "nvidia-vera-rubin-performance-coreweave"
+        "nvidia-ai-infrastructure-fungible-durable-productive"
       ]
     }
   ],
@@ -94,12 +101,13 @@
   ],
   "related": [
     "vera-rubin",
-    "vera-cpu",
     "rtx-spark",
-    "openshell"
+    "openshell",
+    "vera-cpu"
   ],
   "articles": [
     "flux-3-image-klein-blackwell-speedup",
+    "nvidia-vera-rubin-full-summary-matome",
     "nvidia-rtx-spark-announcement",
     "nvidia-ai-infrastructure-fungible-durable-productive",
     "nvidia-dgx-10-years-history-vera-rubin",
@@ -108,9 +116,9 @@
   "linkFrom": [
     "nvidia-rtx-spark-announcement"
   ],
-  "signature": "c0e82e2588197b7a",
-  "primarySignature": "2536f69e9dd8cccb",
+  "signature": "5719f1c315e857b7",
+  "primarySignature": "fc1e5cf866a8ac71",
   "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-10-27T10:50:46+00:00",
-  "updatedAt": "2026-11-12T12:18:42+00:00"
+  "updatedAt": "2026-11-14T13:26:34+00:00"
 }

@@ -6,60 +6,83 @@
   "companyName": "NVIDIA",
   "category": "半導体・インフラ",
   "overview": {
-    "text": "Vera Rubinは、NVIDIAが開発した次世代の計算基盤・半導体プラットフォームです。AIの学習や推論を効率よく処理するシステムとして、2026年8月から11月にかけて詳細や提供が発表されました。",
+    "text": "Vera Rubinは、NVIDIAが開発した次世代AI計算基盤です。新開発のVera CPUとRubin GPUを組み合わせています。",
     "sources": [
-      "oci-vera-cpu-vera-rubin-nvl72",
+      "nvidia-vera-rubin-full-summary-matome",
       "nvidia-vera-rubin-performance-coreweave"
     ]
   },
   "facts": [
     {
       "label": "提供開始",
-      "value": "2026年11月に一般提供",
+      "value": "一般提供中（OCIなど）",
       "sources": [
         "oci-vera-cpu-vera-rubin-nvl72"
       ]
     },
     {
       "label": "向いている人",
-      "value": "企業のIT部門や開発者",
+      "value": "開発者や企業のIT部門",
       "sources": [
-        "oci-vera-cpu-vera-rubin-nvl72"
+        "oci-vera-cpu-vera-rubin-nvl72",
+        "nvidia-vera-rubin-performance-coreweave"
       ]
     }
   ],
   "capabilities": [
     {
-      "text": "Blackwell世代と比較して、システム全体の電力効率が最大10倍に向上します。",
+      "text": "Blackwell比で電力効率（TPS/MW）が10倍に向上しました。",
       "sources": [
+        "nvidia-vera-rubin-full-summary-matome",
         "nvidia-vera-rubin-performance-coreweave"
       ]
     },
     {
-      "text": "推論トークンあたりのコストを最大10分の1に削減します。",
+      "text": "Vera Rubin NVL72は、72基のGPUを1つのラックでつないだシステムです。",
+      "sources": [
+        "oci-vera-cpu-vera-rubin-nvl72"
+      ]
+    },
+    {
+      "text": "推論トークンコストを最大10分の1に低減します。",
       "sources": [
         "nvidia-dgx-10-years-history-vera-rubin"
       ]
     },
     {
-      "text": "CPUとGPUを別々に増やせる構成に対応し、エージェントの処理を高速化します。",
+      "text": "コンテナ型データセンター「DSX POD」により現地での組み立てを数日に短縮できます。",
       "sources": [
-        "oci-vera-cpu-vera-rubin-nvl72"
+        "nvidia-vera-rubin-full-summary-matome",
+        "nvidia-gtc-berlin-2026-vera-rubin-openshell"
       ]
     }
   ],
   "pricing": [],
   "japan": [],
-  "howto": [],
+  "howto": [
+    {
+      "text": "OCI（Oracle Cloud Infrastructure）などで一般提供が始まっています。",
+      "sources": [
+        "oci-vera-cpu-vera-rubin-nvl72"
+      ]
+    }
+  ],
   "differences": [
     {
-      "text": "現行のBlackwell世代と比較して、電力効率（TPS/MW）が10倍に向上しています。",
+      "text": "前世代のBlackwellと比べて電力効率が10倍に向上しました。",
       "sources": [
+        "nvidia-vera-rubin-full-summary-matome",
         "nvidia-vera-rubin-performance-coreweave"
       ]
     },
     {
-      "text": "1ノードの組み立て時間が、前世代の約2時間から5分未満へと短縮されました。",
+      "text": "推論トークンコストを最大10分の1に低減しています。",
+      "sources": [
+        "nvidia-dgx-10-years-history-vera-rubin"
+      ]
+    },
+    {
+      "text": "100%液冷モジュールの採用により、1ノードの組み立て時間が5分未満になりました。",
       "sources": [
         "nvidia-gtc-berlin-2026-vera-rubin-openshell"
       ]
@@ -67,23 +90,24 @@
   ],
   "faq": [
     {
-      "q": "いつから使えますか？",
-      "a": "2026年11月にOCIで一般提供が開始されました。",
-      "sources": [
-        "oci-vera-cpu-vera-rubin-nvl72"
-      ]
-    },
-    {
-      "q": "前モデルと何が違いますか？",
-      "a": "電力効率が10倍になり、推論コストが最大10分の1に削減されます。",
-      "sources": [
-        "nvidia-dgx-10-years-history-vera-rubin",
-        "nvidia-vera-rubin-performance-coreweave"
-      ]
-    },
-    {
       "q": "誰に向いている製品ですか？",
-      "a": "AIの学習や推論を行う企業や開発者に向いています。",
+      "a": "AIの学習や推論、エージェント処理を動かす企業や開発者に向いています。",
+      "sources": [
+        "oci-vera-cpu-vera-rubin-nvl72",
+        "nvidia-vera-rubin-full-summary-matome"
+      ]
+    },
+    {
+      "q": "前世代のBlackwellと何が違いますか？",
+      "a": "電力効率が10倍に向上し、推論トークンコストが最大10分の1になりました。",
+      "sources": [
+        "nvidia-vera-rubin-full-summary-matome",
+        "nvidia-dgx-10-years-history-vera-rubin"
+      ]
+    },
+    {
+      "q": "どこで利用できますか？",
+      "a": "OCIなどで一般提供が始まっています。",
       "sources": [
         "oci-vera-cpu-vera-rubin-nvl72"
       ]
@@ -93,17 +117,12 @@
     {
       "date": "2026-08-20",
       "slug": "nvidia-vera-rubin-performance-coreweave",
-      "event": "Vera Rubinの実機測定値を公開"
+      "event": "次世代「Vera Rubin」の実機測定値を公開"
     },
     {
-      "date": "2026-09-25",
-      "slug": "nvidia-dgx-10-years-history-vera-rubin",
-      "event": "次世代Vera Rubinの展望を発表"
-    },
-    {
-      "date": "2026-10-23",
-      "slug": "nvidia-gtc-berlin-2026-vera-rubin-openshell",
-      "event": "GTC BerlinでVera Rubinを発表"
+      "date": "2026-10-26",
+      "slug": "nvidia-gtc-berlin-2026-keynote-highlights",
+      "event": "GTC BerlinでVera Rubin NVL72を発表"
     },
     {
       "date": "2026-11-09",
@@ -113,13 +132,14 @@
   ],
   "related": [
     "openshell",
-    "vera-cpu",
     "blackwell",
+    "vera-cpu",
     "rtx-spark"
   ],
   "articles": [
     "oci-vera-cpu-vera-rubin-nvl72",
     "nvidia-meta-muse-partnership-expansion",
+    "nvidia-vera-rubin-full-summary-matome",
     "nvidia-uk-ai-factories-robotics",
     "nvidia-gtc-berlin-2026-keynote-highlights",
     "nvidia-gtc-berlin-2026-vera-rubin-openshell",
@@ -127,13 +147,14 @@
     "nvidia-vera-rubin-performance-coreweave"
   ],
   "linkFrom": [
+    "nvidia-vera-rubin-full-summary-matome",
     "nvidia-gtc-berlin-2026-vera-rubin-openshell",
     "nvidia-dgx-10-years-history-vera-rubin",
     "nvidia-vera-rubin-performance-coreweave"
   ],
-  "signature": "61308546ce3d6501",
-  "primarySignature": "719e00a93128e5a7",
+  "signature": "f358bd7e335ee9af",
+  "primarySignature": "d0e74e59768cba3f",
   "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-10-27T10:50:52+00:00",
-  "updatedAt": "2026-11-09T00:06:12+00:00"
+  "updatedAt": "2026-11-14T13:26:14+00:00"
 }
