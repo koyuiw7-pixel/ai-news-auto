@@ -57,7 +57,7 @@
   "videoTitle": "オープンロジで2026年11月に何が漏れた？ 4月8日〜11月8日の届け先情報が対象です",
   "publishedAt": "2026-11-11T03:00:33+00:00",
   "generatedAt": "2026-11-14T06:20:06.844863+00:00",
-  "thumbnail": "https://corp.openlogi.com/wp-content/themes/wp-openlogi/images/OGP.jpg",
+  "thumbnail": "https://ai-tech-express.jp/img/openlogi-recipient-data-leak-2026-figure-ebbdbcfc.jpg",
   "model": "anthropic-api:claude-haiku-5-5",
   "affiliates": [],
   "newsType": "research",
@@ -111,16 +111,135 @@
   "detectedAt": "2026-11-14T06:20:43+00:00",
   "layout": "noir",
   "summaryLine": "オープンロジのシステムへの不正アクセスで、届け先の個人情報が外部に持ち出されました。",
+  "officialDesk": [
+    {
+      "name": "オープンロジ 問い合わせ窓口（メール）",
+      "url": "https://corp.openlogi.com/news/notice-20261111/",
+      "source": "https://corp.openlogi.com/news/notice-20261111/",
+      "howTo": [
+        "ホーム",
+        "ニュース",
+        "お知らせ"
+      ],
+      "hours": "24時間受付（回答は平日8:30～17:00の間に順次対応）",
+      "note": "新たな事実が分かった場合は、当社ウェブサイトなどで知らせるとしています。"
+    },
+    {
+      "name": "都道府県警察のサイバー事案に関する相談窓口",
+      "url": "https://www.npa.go.jp/bureau/cyber/soudan.html",
+      "source": "https://www.npa.go.jp/goiken_index.html",
+      "howTo": [
+        "警察庁Webサイト",
+        "ご意見、各種相談・情報提供等",
+        "都道府県警察のサイバー事案に関する相談窓口はこちら"
+      ],
+      "note": "事件や事故の緊急通報は110番に電話するとされています。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "2026年4月8日から11月8日に受け取った通販の荷物を確かめ、買ったお店の公式サイトのお知らせを見る。",
+      "source": "https://corp.openlogi.com/news/notice-20261111/",
+      "steps": [
+        "期間中に受け取った通販の荷物を注文履歴で確かめる",
+        "買ったお店の公式サイトを、お気に入りなどから開く",
+        "サイトのお知らせで、個人情報の件の案内を確かめる"
+      ]
+    },
+    {
+      "action": "身に覚えのない配送通知のリンクは開かず、配送会社の公式アプリで荷物の状況を確かめる。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "steps": [
+        "届いた通知のリンクは開かない",
+        "自分で入れた配送会社の公式アプリを開く",
+        "アプリ内で荷物の状況を見る"
+      ]
+    },
+    {
+      "action": "不安なときは、オープンロジの専用窓口cs@openlogi.comに問い合わせる。",
+      "source": "https://corp.openlogi.com/news/notice-20261111/",
+      "steps": [
+        "メールアドレス cs@openlogi.com に送る",
+        "受付は24時間",
+        "回答は平日8:30～17:00の間に順次対応"
+      ],
+      "url": "https://corp.openlogi.com/news/notice-20261111/"
+    }
+  ],
+  "cause": {
+    "text": "外部の第三者による不正アクセスを受けたことが確認されています。侵入の原因と経路は、外部の専門機関と調査中です。",
+    "status": "investigating",
+    "source": "https://corp.openlogi.com/news/notice-20261111/"
+  },
+  "worries": [
+    {
+      "q": "通販で買った荷物の情報は、どこまで漏れた？",
+      "a": "漏えいしたのは、届け先の氏名、住所、電話番号、メールアドレス（登録がある場合）、商品名と数量です。クレジットカード番号は保有しておらず、対象に含まれないと発表されています。",
+      "source": "https://corp.openlogi.com/news/notice-20261111/",
+      "action": "期間中に通販で荷物を受け取った覚えがあれば、買ったお店の公式サイトのお知らせを確かめる。"
+    },
+    {
+      "q": "今のところ、悪用の被害は出ている？",
+      "a": "2026年11月11日現在、漏えいした情報の悪用や、本件に起因する具体的な二次被害は確認されていません。今後の調査は継続するとされています。",
+      "source": "https://corp.openlogi.com/news/notice-20261111/",
+      "action": "身に覚えのない配送の連絡が来たら、リンクは開かず、自分で開いた公式アプリや注文履歴で確かめる。",
+      "actionSource": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "actionGeneral": true
+    },
+    {
+      "q": "家族のスマホにも詐欺の連絡が来るおそれは？",
+      "a": "「不在通知」のSMSからアプリを入れた人の電話帳の番号に、同じ内容のSMSが大量に送られた事例があります。家族の番号も電話帳にあれば、同じことが起こり得ます。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "action": "届いた不在通知のリンクは開かず、荷物の状況は自分で開いた公式アプリで確かめる。",
+      "general": true
+    },
+    {
+      "q": "個人情報の入力を求められたらどうする？",
+      "a": "同社は、身に覚えのない配送通知は開かず、不審なURLにアクセスせず、個人情報や決済情報の入力を求められても応じないことを呼びかけています。",
+      "source": "https://corp.openlogi.com/news/notice-20261111/",
+      "action": "入力画面が出ても、その場では入力せず、買ったお店や配送会社の公式の連絡先から確かめる。",
+      "actionSource": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "actionGeneral": true
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "クレジットカードを止める？",
+      "situation": "通販で買い物をし、カード情報が心配",
+      "recommend": "急がなくてよい。まずお店の案内を確かめる",
+      "reason": "同社はクレジットカード番号を保有しておらず、対象に含まれないと発表しています。ただ、対象の確かめは買ったお店の案内によるため、カード番号だけで判断しない方が安心です。",
+      "source": "https://corp.openlogi.com/news/notice-20261111/"
+    }
+  ],
+  "depthHeadings": {
+    "cause": "なぜ起きた？いま分かっていること",
+    "steps": "まず確かめる、買ったお店と受け取った時期",
+    "desk": "問い合わせ先と、被害時の相談先",
+    "worries": "カードや口座、家族のスマホは大丈夫？",
+    "guide": "カードを止めるか迷ったときの見方"
+  },
+  "depthAt": "2026-11-14T06:41:41+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "届け先の氏名・住所が漏えい",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-14T06:45:00+00:00"
+  },
   "imageFocus": {
-    "x": 0.492,
-    "y": 0.544,
+    "x": 0.515,
+    "y": 0.396,
     "box": [
-      0.181,
-      0.327,
-      0.803,
-      0.762
+      0.075,
+      0.036,
+      0.956,
+      0.756
     ],
     "ar": 1.9048,
-    "src": "https://corp.openlogi.com/wp-content/themes/wp-openlogi/images/OGP.jpg"
+    "src": "https://ai-tech-express.jp/img/openlogi-recipient-data-leak-2026-figure-ebbdbcfc.jpg"
   }
 }

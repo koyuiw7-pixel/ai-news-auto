@@ -65,14 +65,13 @@
   "videoTitle": "あなたの登録は入っていますか 京成スカイライナー最大約337万件、2026年11月の不正アクセス",
   "publishedAt": "2026-11-14T06:23:40.142470+00:00",
   "generatedAt": "2026-11-14T06:24:46.295147+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/keisei-skyliner-access-incident-2026-figure-96bc2473.jpg",
   "model": "anthropic-api:claude-haiku-5-5",
   "affiliates": [],
   "newsType": "security",
   "todayActions": [
-    "登録しているメールに京成電鉄からの個別連絡が届くか確かめ、届いても文中のリンクは開かない",
-    "ほかのサービスで同じパスワードを使っていないかを確かめ、使い回しているものはサイトごとに変える",
-    "今日乗る人は、駅窓口か券売機でスカイライナー券を買う"
+    "今日乗るなら、駅の窓口か券売機でスカイライナー券を買う",
+    "ほかのサービスで同じIDとパスワードを使っていないか確かめ、使い回しを変える"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -103,5 +102,150 @@
   "qualityScore": 85,
   "detectedAt": "2026-11-14T06:24:55+00:00",
   "layout": "noir",
-  "summaryLine": "京成スカイライナーの座席予約システムへの不正アクセスで、最大約**337万件**の利用者情報が取得された可能性があります。"
+  "summaryLine": "京成スカイライナーの座席予約システムへの不正アクセスで、最大約**337万件**の利用者情報が取得された可能性があります。",
+  "insight": [
+    {
+      "text": "電子メールやSMSの「送信元名称」や「送信元メールアドレス」は変更でき、スマホのメールアプリは表示項目が少ないため、表示だけで真偽を見分けるのは困難です。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html"
+    },
+    {
+      "text": "警察庁のオンライン受付は、被害の具体的な事実を伝えるなら「通報」、アドバイスを求めるなら「相談」を選びます。e-Govからも行えます。",
+      "source": "https://www.npa.go.jp/bureau/cyber/soudan.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "京成電鉄 ニュース一覧",
+      "url": "https://www.keisei.co.jp/news/",
+      "source": "https://www.keisei.co.jp/news/",
+      "note": "一覧の先頭に「【お詫び】スカイライナー座席予約システムへの不正アクセスについて」があります。"
+    },
+    {
+      "name": "サイバー事案に関する相談窓口（警察庁）",
+      "url": "https://www.npa.go.jp/bureau/cyber/soudan.html",
+      "source": "https://www.npa.go.jp/bureau/cyber/soudan.html",
+      "howTo": [
+        "フィッシング対策",
+        "警察に通報・相談する",
+        "サイバー事案に関する通報等のオンライン受付窓口"
+      ],
+      "note": "被害に遭った具体的な事実があれば「通報」、アドバイスだけなら「相談」を選びます。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "今日乗るなら、駅の窓口か券売機でスカイライナー券を買う",
+      "source": "https://www.keisei.co.jp/cms/files/keisei/MASTER/0110/qWTY2f7x.pdf",
+      "steps": [
+        "駅の窓口か券売機に行く",
+        "スカイライナー券を購入する",
+        "チケットレスサービスは一時中止中"
+      ],
+      "url": "https://www.keisei.co.jp/cms/files/keisei/MASTER/0110/qWTY2f7x.pdf"
+    },
+    {
+      "action": "ほかのサービスで同じIDとパスワードを使っていないか確かめ、使い回しを変える",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "steps": [
+        "同じIDとパスワードを複数のサービスで使っていないか確認",
+        "使い回しているサービスごとに違うパスワードに変更",
+        "覚えられないときはパスワード管理アプリを活用"
+      ],
+      "url": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html"
+    }
+  ],
+  "cause": {
+    "text": "京成電鉄は、このたびのスカイライナーチケットレスサービスの一時中止について、「セキュリティ強化に伴う緊急メンテナンス」のためだと案内しています。",
+    "status": "stated",
+    "source": "https://www.keisei.co.jp/cms/files/keisei/MASTER/0110/qWTY2f7x.pdf"
+  },
+  "worries": [
+    {
+      "q": "パスワードが含まれるなら、ほかのサービスも危ない？",
+      "a": "同じIDとパスワードを複数のサービスで使っていると、一つでも盗まれたら銀行やSNS、通販などほかのサービスも乗っ取られる被害に遭うおそれがあります。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "action": "同じパスワードを使っているサービスを一覧にして、サイトごとに違うものへ変える"
+    },
+    {
+      "q": "京成スカイライナーを名乗る連絡は本物？",
+      "a": "警察庁は、「個人情報の漏えい」「不正アクセス検知」などの切迫感をあおる文面で偽サイトに誘導する事例が多いと注意しています。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "action": "届いた連絡のリンクは開かず、ブックマークしておいた公式サイトから開いて内容を確かめる"
+    },
+    {
+      "q": "クレジットカードの不正利用は補償される？",
+      "a": "クレジットカードの不正利用の被害に遭った場合は、カード会社が補償制度を設けているところもあり、被害に遭ったサービスの会社に相談するよう案内されています。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "action": "身に覚えのない支払いに気づいたら、そのクレジットカード会社に速やかに相談し、取引内容を確認する"
+    },
+    {
+      "q": "被害に遭ったら、どこへ相談すればいい？",
+      "a": "フィッシングの被害に遭った場合は、最寄りの警察署またはサイバー事案に関する通報等のオンライン受付窓口に通報・相談するよう案内されています。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "action": "警察署かオンライン受付窓口に、被害の具体的な事実を伝えて通報する",
+      "actionSource": "https://www.npa.go.jp/bureau/cyber/soudan.html"
+    },
+    {
+      "q": "家族に詐欺の電話が来ないか心配です",
+      "a": "特殊詐欺は、電話などで信用させ、指定口座への振込などで現金をだまし取る犯罪です。何よりも「犯人と話をしない」ことが大切とされています。",
+      "source": "https://www.npa.go.jp/bureau/safetylife/sos47/case/",
+      "action": "知らない番号からの電話には出ず、各電話事業者の番号表示・非通知拒否サービスを使うことを検討する",
+      "general": true
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "今日スカイライナーに乗るには、どうする？",
+      "situation": "今日乗る予定がある",
+      "recommend": "駅窓口か券売機でスカイライナー券を買う",
+      "reason": "駅窓口と券売機では引き続きスカイライナー券を発売しています。一方、チケットレスサービスなどは一時中止中で、再開は別途お知らせすると案内されています。",
+      "source": "https://www.keisei.co.jp/cms/files/keisei/MASTER/0110/qWTY2f7x.pdf"
+    },
+    {
+      "question": "チケットレスで購入済みなら、どうする？",
+      "situation": "チケットレスかe-ticketで買い、まだ乗っていない",
+      "recommend": "駅係員に利用状況を伝えて、別途券を買う",
+      "reason": "別途券を買い、利用状況を駅係員に知らせると、後日払い戻しの対応が取られると案内されています。クレジットカードの取り消しは反映まで時間がかかります。",
+      "source": "https://www.keisei.co.jp/cms/files/keisei/MASTER/0110/qWTY2f7x.pdf"
+    },
+    {
+      "question": "同じパスワードを他のサービスでも使っている？",
+      "situation": "ほかのサービスでも同じIDとパスワードを使っている",
+      "recommend": "先にサイトごとに違うパスワードへ変えておく",
+      "reason": "IDとパスワードを盗まれると、それを使う全サービスが乗っ取られるおそれがあります。サイトごとに変えておけば、一つ盗まれても他への広がりを抑えられます。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "送信元の名前だけでは本物か分からない",
+    "cause": "なぜ一時停止になった？",
+    "steps": "今日の券と、登録済みのパスワード",
+    "desk": "問い合わせ先と、警察への相談窓口",
+    "worries": "パスワードやカードは大丈夫？",
+    "guide": "今日乗るか、購入済みかで変わる決め方"
+  },
+  "depthAt": "2026-11-14T06:40:45+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "スカイライナーの登録者は要確認",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-14T06:43:48+00:00"
+  },
+  "imageFocus": {
+    "x": 0.491,
+    "y": 0.387,
+    "box": [
+      0.069,
+      0.036,
+      0.912,
+      0.738
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/keisei-skyliner-access-incident-2026-figure-96bc2473.jpg"
+  }
 }

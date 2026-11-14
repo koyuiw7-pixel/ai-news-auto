@@ -65,14 +65,14 @@
   "videoTitle": "京阪の公式LINEで情報が漏れた可能性 2026年11月、友だち登録した6アカウントが対象です",
   "publishedAt": "2026-11-14T06:25:09.840645+00:00",
   "generatedAt": "2026-11-14T06:26:35.835617+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/keihan-official-line-data-leak-2026-figure-cdb8f231.jpg",
   "model": "anthropic-api:claude-haiku-5-5",
   "affiliates": [],
   "newsType": "general",
   "todayActions": [
     "京阪グループの6アカウントのうち、自分が友だち登録していたものを確かめる",
-    "京阪やソニックムーブを名乗るメール・SMS・LINEのリンクは開かず、公式サイトで確かめる",
-    "クレジットカードや銀行の利用明細に、身に覚えのない請求がないか見る"
+    "クレジットカードやキャリア決済、ネットバンクの利用明細を見る",
+    "送信元に関係なくメールやSMSのリンクは押さず、ブックマークから入り直す"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -122,5 +122,163 @@
   "detectedAt": "2026-11-14T06:28:14+00:00",
   "searchTitle": "京阪の公式LINEで情報流出の可能性　対象は友だち登録した人",
   "layout": "noir",
-  "summaryLine": "京阪グループの公式LINE6アカウントで、友だち登録した人の情報が漏れた可能性があります。"
+  "summaryLine": "京阪グループの公式LINE6アカウントで、友だち登録した人の情報が漏れた可能性があります。",
+  "insight": [
+    {
+      "text": "メールソフトに表示される「送信元名称」や「送信元メールアドレス」だけを見てメールの真偽を判断することは困難です。実在の企業のメールアドレスになりすましたメールもあります。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html"
+    },
+    {
+      "text": "事業者や公的機関などがSMSやメールを通じて、いきなりクレジットカード番号の入力を求めることはありません。",
+      "source": "https://www.caa.go.jp/policies/policy/consumer_policy/caution/caution_039"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "京阪グループLINE公式アカウント運営事務局",
+      "url": "https://www.keihan.co.jp/privacy/pdf/line.pdf",
+      "source": "https://www.keihan.co.jp/privacy/pdf/line.pdf",
+      "phone": "06-6944-2525",
+      "hours": "9:00~12:00、13:00~17:30（土日祝祭日、5月1日~5月5日および12月30日~1月3日は除く）",
+      "note": "個人情報の取扱いに関する問い合わせ先として案内されています。"
+    },
+    {
+      "name": "株式会社ソニックムーブ COMSBI（SaaS版）お問い合わせ窓口",
+      "url": "https://sonicmoov.com/news/5ttj9ndzh",
+      "source": "https://sonicmoov.com/news/5ttj9ndzh",
+      "howTo": [
+        "お知らせ",
+        "【本件に関するお問い合わせ】"
+      ],
+      "note": "本件に関するお問い合わせの窓口として、メールアドレス（support@sonicmoov.com）が案内されています。"
+    },
+    {
+      "name": "消費者ホットライン",
+      "url": "https://www.caa.go.jp/policies/policy/consumer_policy/caution/caution_039",
+      "source": "https://www.caa.go.jp/policies/policy/consumer_policy/caution/caution_039",
+      "phone": "188",
+      "note": "少しでも不安に思ったら一人で悩まず相談できる窓口です。最寄りの消費生活センター等も案内されています。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "京阪グループの6アカウントのうち、自分が友だち登録していたものを確かめる",
+      "source": "https://www.keihan.co.jp/corporate/info/release/assets/261114_keihan-holdings.pdf",
+      "steps": [
+        "友だち一覧で次の6アカウントを探す",
+        "京阪電車ファン情報、京都タワーサンド、枚方モール",
+        "京阪百貨店、THE THOUSAND KYOTO、京都センチュリーホテル",
+        "対象の項目は京阪の発表で確認する"
+      ],
+      "url": "https://www.keihan.co.jp/corporate/info/release/assets/261114_keihan-holdings.pdf"
+    },
+    {
+      "action": "クレジットカードやキャリア決済、ネットバンクの利用明細を見る",
+      "source": "https://www.caa.go.jp/policies/policy/consumer_policy/caution/caution_039",
+      "steps": [
+        "クレジットカードの利用明細を開く",
+        "キャリア決済やインターネットバンキングも見る",
+        "身に覚えのない請求はすぐカード会社に連絡"
+      ],
+      "url": "https://www.caa.go.jp/policies/policy/consumer_policy/caution/caution_039"
+    },
+    {
+      "action": "送信元に関係なくメールやSMSのリンクは押さず、ブックマークから入り直す",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "steps": [
+        "届いたメールやSMSのリンクは押さない",
+        "事前にブックマークした公式サイトから入る",
+        "IDやパスワードをメールで聞かれたら応じない"
+      ],
+      "url": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html"
+    }
+  ],
+  "cause": {
+    "text": "京阪によると、委託先ソニックムーブの「COMSBI（SaaS版）」への第三者による不正アクセスが原因です。社内用アカウントの認証情報が不正に取得され、その権限で複数企業の情報が取得されたとされています。認証情報が渡った経緯は調査中です。",
+    "status": "stated",
+    "source": "https://sonicmoov.com/news/5ttj9ndzh"
+  },
+  "worries": [
+    {
+      "q": "クレジットカードの情報も漏れてしまった？",
+      "a": "京阪とソニックムーブは、本サービスではクレジットカード情報を保持していないとしています。京阪は、発表に挙がった項目のほかに流出は確認されていないとしています。",
+      "source": "https://www.keihan.co.jp/corporate/info/release/assets/261114_keihan-holdings.pdf",
+      "action": "クレジットカードの利用明細を確認し、身に覚えのない請求がないか見る。見つけたらすぐカード会社に連絡する",
+      "actionSource": "https://www.caa.go.jp/policies/policy/consumer_policy/caution/caution_039"
+    },
+    {
+      "q": "漏れた情報で、詐欺の電話が来ることはある？",
+      "a": "京阪は、今回の流出に関連する二次被害は現時点で確認されていないとしています。ただ、ソニックムーブは、同社や利用企業を装った不審なメール、SMS、LINEのメッセージ、電話に注意するよう呼びかけています。",
+      "source": "https://www.keihan.co.jp/corporate/info/release/assets/261114_keihan-holdings.pdf",
+      "action": "心当たりのない電話やSMSには応じず、公式サイトで確かめた連絡先に自分から問い合わせる",
+      "actionSource": "https://sonicmoov.com/news/5ttj9ndzh"
+    },
+    {
+      "q": "自分の登録したアカウントは、どこまで漏れた？",
+      "a": "漏れた項目はアカウントごとに違い、表示名・プロフィール画像・LINEユーザーIDは6アカウントすべてが対象です。氏名や住所などを含む項目は、一部のアカウントに限られます。",
+      "source": "https://www.keihan.co.jp/corporate/info/release/assets/261114_keihan-holdings.pdf",
+      "action": "登録していたアカウント名を確かめ、京阪の発表で対象の項目を照らし合わせる"
+    },
+    {
+      "q": "今後、京阪を名乗る偽の連絡が来る？",
+      "a": "ソニックムーブは、同社や利用企業を装った不審なメール、SMS、LINEのメッセージ、電話に注意するよう呼びかけています。心当たりのないURLや添付ファイルは開かないよう求めています。",
+      "source": "https://sonicmoov.com/news/5ttj9ndzh",
+      "action": "京阪からの連絡が届いても、本文のリンクは開かず公式サイトから確かめる",
+      "actionSource": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html"
+    },
+    {
+      "q": "IDやパスワードは変えたほうがいい？",
+      "a": "流出した個人情報が悪用されることを防ぐための対策として、IDやパスワードを変更することが挙げられています。パスワードは使い回しを避け、多要素認証を使うことも勧められています。",
+      "source": "https://www.caa.go.jp/policies/policy/consumer_policy/caution/caution_039",
+      "action": "使い回している ID・パスワードを、サイトごとに違うものに変える"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "パスワードは今すぐ変えたほうがいい？",
+      "situation": "同じパスワードを他のサービスでも使っている",
+      "recommend": "早めに変えておくとよい",
+      "reason": "流出した個人情報の悪用を防ぐため、IDやパスワードの変更が挙げられています。使い回しは避けるとされています。ただし、すでに流出した情報を取り戻すものではありません。",
+      "source": "https://www.caa.go.jp/policies/policy/consumer_policy/caution/caution_039"
+    },
+    {
+      "question": "パスワードは今すぐ変えたほうがいい？",
+      "situation": "京阪グループの対象アカウントに登録していない",
+      "recommend": "急がなくてよい",
+      "reason": "今回の流出は、京阪グループの6アカウントに友だち登録していた人が対象として発表されています。対象でなければ、不審な連絡への注意を続けるとよいでしょう。",
+      "source": "https://www.keihan.co.jp/corporate/info/release/assets/261114_keihan-holdings.pdf"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "本物かどうかは、送信元の名前では判断しにくい",
+    "cause": "なぜ漏れたのか、いま分かっていること",
+    "steps": "まず確かめたいのは、登録していたアカウント",
+    "desk": "問い合わせは公式サイトで確かめた窓口へ",
+    "worries": "カードや電話、パスワードは大丈夫？",
+    "guide": "パスワードを変えるか、迷ったときの決め方"
+  },
+  "depthAt": "2026-11-14T06:39:39+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "京阪の公式LINEで情報流出の可能性",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-14T06:43:03+00:00"
+  },
+  "imageFocus": {
+    "x": 0.502,
+    "y": 0.363,
+    "box": [
+      0.081,
+      0.036,
+      0.922,
+      0.69
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/keihan-official-line-data-leak-2026-figure-cdb8f231.jpg"
+  }
 }
