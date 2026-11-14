@@ -69,9 +69,8 @@
     }
   ],
   "todayActions": [
-    "シュークリームの包装で、消費期限26.11.11とロット＋TH/46K7を確認する",
-    "該当品は、お客様相談室（0120-46-8823、平日9:00～17:00）に連絡する",
-    "関東・新潟以外で買った商品は、出荷エリアの対象外であることを確かめる"
+    "ピロー包装の商品で、消費期限26.11.11とロット＋TH/46K7を確かめる",
+    "該当商品があれば、お客様相談室に平日9:00～17:00の間に電話する"
   ],
   "publicInterest": "recall",
   "incident": {
@@ -131,5 +130,102 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/monteur-cream-puff-recall-paper-figure-83f300b1.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "回収のあとの対応は「代替品と交換いたします」とされています。回収方法は、お客様相談室のフリーダイヤルへの連絡です。",
+      "source": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036110&screenkbn=06"
+    },
+    {
+      "text": "対象の形態は「ピロー包装」で、販売先は「小売店」と書かれています。包装の形も確かめる材料になります。",
+      "source": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036110&screenkbn=06"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "株式会社モンテール お客様相談室",
+      "url": "https://www.monteur.co.jp/information/4189",
+      "source": "https://www.monteur.co.jp/information/4189",
+      "howTo": [
+        "お知らせ一覧",
+        "商品の回収に関するお詫びとお知らせ"
+      ],
+      "phone": "0120-46-8823",
+      "hours": "平日9:00～17:00",
+      "note": "当該商品をお持ちのお客様は、このお問い合わせ先へご連絡くださいとされています。お問い合わせフォームもあります。"
+    },
+    {
+      "name": "消費者庁 リコール情報サイト（商品情報詳細）",
+      "url": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036110&screenkbn=06",
+      "source": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036110&screenkbn=06",
+      "howTo": [
+        "リコール情報サイトホーム",
+        "重要なお知らせ"
+      ],
+      "note": "リコール品の取扱いは、事業者のサイトや電話などで最新情報を確認するよう書かれています。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "ピロー包装の商品で、消費期限26.11.11とロット＋TH/46K7を確かめる",
+      "source": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036110&screenkbn=06",
+      "steps": [
+        "包装の消費期限を確認する",
+        "製造所固有記号／ロットを確認する",
+        "商品名とJANコードをお知らせと照らす"
+      ],
+      "url": "https://www.monteur.co.jp/information/4189"
+    },
+    {
+      "action": "該当商品があれば、お客様相談室に平日9:00～17:00の間に電話する",
+      "source": "https://www.monteur.co.jp/information/4189",
+      "steps": [
+        "0120-46-8823へ電話する",
+        "平日9:00～17:00に連絡する"
+      ],
+      "url": "https://www.monteur.co.jp/information/4189"
+    }
+  ],
+  "cause": {
+    "text": "消費者庁のリコール情報では、回収理由の詳細として、カスタードクリームに約1cm四方に千切れたコピー用紙が混入した可能性があるため、自主回収するとされています。",
+    "status": "stated",
+    "source": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036110&screenkbn=06"
+  },
+  "worries": [
+    {
+      "q": "回収になったら、代わりの商品はもらえる？",
+      "a": "消費者庁のリコール情報サイトには、回収後の対応は「代替品と交換いたします」と書かれています。回収方法は、お客様相談室のフリーダイヤルへの連絡です。",
+      "source": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036110&screenkbn=06",
+      "action": "該当商品を見つけたら、お客様相談室のフリーダイヤル0120-46-8823へ連絡する",
+      "actionSource": "https://www.monteur.co.jp/information/4189"
+    },
+    {
+      "q": "自分が買ったものが対象かどうか、どう見分ける？",
+      "a": "対象は、販売地域が関東エリア・新潟県、販売先が小売店、販売日が2026/11/08、消費期限が26年11月11日、ロットが＋TH/46K7の商品です。形態はピロー包装です。",
+      "source": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036110&screenkbn=06",
+      "action": "包装の消費期限とロット＋TH/46K7を確かめ、3商品のJANコードと照らす",
+      "actionSource": "https://www.monteur.co.jp/information/4189"
+    },
+    {
+      "q": "対象商品は全部で何種類？名前は？",
+      "a": "対象は3商品で、「牛乳と卵のカスタード＆ホイップシュー」「しあわせのシュークリーム・カスタード＆ホイップ」「しあわせのシュークリーム・カスタード」です。JANコードはお知らせに載っています。",
+      "source": "https://www.monteur.co.jp/information/4189",
+      "action": "お手元の商品名が、この3つのどれかを包装で確かめる"
+    },
+    {
+      "q": "回収のお知らせは、どこで見られる？",
+      "a": "回収情報は、モンテールのホームページと、販売店のPOPで周知されています。リコール情報サイトにも掲載されています。",
+      "source": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036110&screenkbn=06",
+      "action": "モンテールのお知らせ一覧で、第2報の内容を確かめる",
+      "actionSource": "https://www.monteur.co.jp/information/4189"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "回収のあとは代替品との交換とされています",
+    "cause": "なぜ回収になったのか、分かっていること",
+    "steps": "消費期限とロットを見て、該当するか確かめる",
+    "desk": "連絡先は、お客様相談室とリコール情報サイト",
+    "worries": "交換のしかた、見分け方、対象の範囲は？"
+  },
+  "depthAt": "2026-11-14T04:50:34+00:00"
 }

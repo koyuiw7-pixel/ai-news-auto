@@ -83,9 +83,9 @@
     }
   ],
   "todayActions": [
-    "ラクスルのAdobe Express連携で入稿したか、過去の注文履歴を見て確認する",
-    "ラクスルを名乗る注文・請求のメールやSMSは、URLを開かずラクスルのWebサイトで確認する",
-    "不安な点は、問い合わせフォームで「個人情報保護相談窓口」を選んで送る"
+    "ラクスルの過去の注文で、Adobe Express連携で入稿したかを確かめる",
+    "届いた連絡のURLは開かず、ラクスルのWebサイトから自分で確認する",
+    "不安な点は、お問い合わせフォームで「個人情報保護相談窓口」を選んで送る"
   ],
   "publicInterest": "breach",
   "incident": {
@@ -131,5 +131,101 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/raksul-unauthorized-access-adobe-express-figure-2f2fa942.jpg"
-  }
+  },
+  "officialDesk": [
+    {
+      "name": "ラクスル お問い合わせフォーム（個人情報保護相談窓口）",
+      "url": "https://corp.raksul.com/contact/",
+      "source": "https://corp.raksul.com/news/press/261112_unauthorized-access2/",
+      "hours": "24時間受け付け。回答は平日10:00〜18:00に順次",
+      "note": "「個人情報保護相談窓口」を選んで送信する。お問い合わせが集中した場合は連絡までに時間がかかることがある。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "ラクスルの過去の注文で、Adobe Express連携で入稿したかを確かめる",
+      "source": "https://corp.raksul.com/news/press/261112_unauthorized-access2/",
+      "steps": [
+        "ラクスルの過去の注文を開く",
+        "Adobe Expressを使って入稿したか見る",
+        "対象期間は2025年3月から2026年11月8日まで"
+      ]
+    },
+    {
+      "action": "届いた連絡のURLは開かず、ラクスルのWebサイトから自分で確認する",
+      "source": "https://corp.raksul.com/news/press/261112_unauthorized-access2/",
+      "steps": [
+        "メールやSMSのURLは開かない",
+        "ラクスルのWebサイトを自分で開く",
+        "パスワードやカード番号を求められたら応じない"
+      ]
+    },
+    {
+      "action": "不安な点は、お問い合わせフォームで「個人情報保護相談窓口」を選んで送る",
+      "source": "https://corp.raksul.com/news/press/261112_unauthorized-access2/",
+      "steps": [
+        "お問い合わせフォームを開く",
+        "「個人情報保護相談窓口」を選ぶ",
+        "内容を入力して送信する"
+      ],
+      "url": "https://corp.raksul.com/contact/"
+    }
+  ],
+  "cause": {
+    "text": "原因と影響範囲の特定は引き続き進めているとされ、まだ確定していません。分かっている範囲では、第三者がシステムの認証情報を不正に取得し、2026年11月7日3時頃から11月8日1時頃まで、その権限でクラウド上のデータにアクセスできる状態でした。",
+    "status": "investigating",
+    "source": "https://corp.raksul.com/news/press/261112_unauthorized-access2/"
+  },
+  "worries": [
+    {
+      "q": "Adobe Expressを使っていなければ大丈夫？",
+      "a": "サイト上でAdobe Expressを使って入稿していない人は対象外です。対象は2025年3月から2026年11月8日までの入稿データです。",
+      "source": "https://corp.raksul.com/news/press/261112_unauthorized-access2/",
+      "action": "ラクスルの過去の注文で、Adobe Express連携を使って入稿したかを自分で確かめる"
+    },
+    {
+      "q": "クレジットカードの情報は漏れていませんか？",
+      "a": "ラクスルはクレジットカード情報を保有しておらず、漏えいしていないことを確認しています。ログインIDとパスワードを管理するデータベースへの不正アクセスも確認されていません。",
+      "source": "https://corp.raksul.com/news/press/261112_unauthorized-access2/",
+      "action": "身に覚えのない請求が続いていないか、カード会社の利用明細をふだんどおり確かめる",
+      "actionSource": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "actionGeneral": true
+    },
+    {
+      "q": "届いた電話やSMSには、どう応じればいい？",
+      "a": "当社や関係事業者を装った不審なメール、SMS、電話に注意が必要です。記載されたURLにはアクセスせず、当社のWebサイトから直接確認します。メールやSMSでパスワードやカード番号の入力を求めることはありません。",
+      "source": "https://corp.raksul.com/news/press/261112_unauthorized-access2/",
+      "action": "届いた連絡のURLは開かず、ラクスルのWebサイトを自分で開いて注文や請求の内容を確かめる"
+    },
+    {
+      "q": "不安なときは、どこに相談すればいいの？",
+      "a": "ラクスルのお問い合わせフォームで「個人情報保護相談窓口」を選んで送信します。受け付けは24時間で、回答は平日10:00〜18:00に順次です。混み合うと時間がかかることがあります。",
+      "source": "https://corp.raksul.com/news/press/261112_unauthorized-access2/",
+      "action": "ラクスル公式のお問い合わせフォームで「個人情報保護相談窓口」を選び、不安な点を書いて送る"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "Adobe Express連携の注文は、いつ頃から使える？",
+      "situation": "次に連携で注文したいと考えている",
+      "recommend": "再開の発表を確認してから使うと安心",
+      "reason": "連携は「安全の確認が取れ次第」再開するとされ、時期はまだ発表されていません。再開の発表があるまで、連携を使う日程は決めないほうが確実です。",
+      "source": "https://corp.raksul.com/news/press/261112_unauthorized-access2/"
+    },
+    {
+      "question": "ラクスルを名乗る請求メール、URLを開いてよい？",
+      "situation": "注文や請求に触れたメール・SMSが届いた",
+      "recommend": "開かず、ラクスルのWebサイトで直接確かめる",
+      "reason": "記載されたURLにはアクセスせず、当社のWebサイトから直接確認するよう案内されています。注文や金額、請求に触れた連絡でも同じ扱いです。",
+      "source": "https://corp.raksul.com/news/press/261112_unauthorized-access2/"
+    }
+  ],
+  "depthHeadings": {
+    "cause": "なぜ起きた？いま分かっていること",
+    "steps": "まず過去の注文を見て、連絡は自分で確かめる",
+    "desk": "不安な点は、ラクスルの相談窓口へ",
+    "worries": "カードや口座、自分のデータは大丈夫？",
+    "guide": "連携を使うか、届いた連絡にどう応じるか"
+  },
+  "depthAt": "2026-11-14T04:51:29+00:00"
 }

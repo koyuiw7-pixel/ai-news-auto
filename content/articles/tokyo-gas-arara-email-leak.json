@@ -78,9 +78,8 @@
     }
   ],
   "todayActions": [
-    "同サービスに登録した覚えがあれば、東京ガスの窓口0120-080852（月〜金9〜17時）に問い合わせる",
-    "東京ガスを名乗るメールのURLや添付は開かず、公式窓口で真偽を確かめる",
-    "登録した覚えがない人は、対象者への個別連絡の案内が出るまで、届いたメールのリンクを操作しない"
+    "同サービスに登録した覚えがあれば、東京ガスの専用窓口に電話で確認する",
+    "東京ガスを名乗るメールは、本文のURLを開かず公式サイトのFAQで確かめる"
   ],
   "publicInterest": "breach",
   "incident": {
@@ -134,5 +133,120 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/tokyo-gas-arara-email-leak-figure-d2d6deba.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "11月12日（木）16：00～20：00と11月13日（金）9：00～13：00は、フリーダイヤルではなく03-5322-8910に連絡するよう案内されています。",
+      "source": "https://www.tokyo-gas.co.jp/news/press/20261112-02.html"
+    },
+    {
+      "text": "リリースの脚注「*1」に、委託先アララ社の公表内容（PDF）へのリンクが載っています。流出元の説明はそちらでも確認できます。",
+      "source": "https://www.tokyo-gas.co.jp/news/press/20261112-02.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "東京ガス ガス本管埋設状況確認サービス メール流出に関するお問い合わせ窓口",
+      "url": "https://www.tokyo-gas.co.jp/news/press/20261112-02.html",
+      "source": "https://www.tokyo-gas.co.jp/news/press/20261112-02.html",
+      "howTo": [
+        "プレスリリース",
+        "お問い合わせ窓口"
+      ],
+      "phone": "0120-080852",
+      "hours": "月～金（祝日を除く）：9：00～17：00（11月13日（金）は13：00～）",
+      "note": "IP電話などフリーダイヤルを使えない場合は03-4334-6723。11月12日16：00～20：00と11月13日9：00～13：00は03-5322-8910へ。"
+    },
+    {
+      "name": "東京ガス よくあるご質問・お問い合わせ（怪しいメールの項目）",
+      "url": "https://support.tokyo-gas.co.jp/faq/show/12690?category_id=215&site_domain=open",
+      "source": "https://support.tokyo-gas.co.jp/?site_domain=open",
+      "howTo": [
+        "よくあるご質問・お問い合わせ",
+        "注目のFAQ",
+        "怪しいメールが届きました。東京ガスから送信されたメールか確認"
+      ],
+      "note": "東京ガスから送信されたメールかを確認したいときの項目です。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "同サービスに登録した覚えがあれば、東京ガスの専用窓口に電話で確認する",
+      "source": "https://www.tokyo-gas.co.jp/news/press/20261112-02.html",
+      "steps": [
+        "0120-080852に電話する（月～金9：00～17：00）",
+        "IP電話などは03-4334-6723に電話する",
+        "11月12日・13日の該当時間は03-5322-8910に電話する"
+      ],
+      "url": "https://www.tokyo-gas.co.jp/news/press/20261112-02.html"
+    },
+    {
+      "action": "東京ガスを名乗るメールは、本文のURLを開かず公式サイトのFAQで確かめる",
+      "source": "https://support.tokyo-gas.co.jp/?site_domain=open",
+      "steps": [
+        "東京ガスのよくあるご質問・お問い合わせを開く",
+        "注目のFAQの「怪しいメールが届きました」を選ぶ",
+        "メール本文のURLや添付ファイルは開かない"
+      ],
+      "url": "https://support.tokyo-gas.co.jp/?site_domain=open"
+    }
+  ],
+  "cause": {
+    "text": "東京ガスの発表では、委託先アララ社のメール配信サービス「アララメッセージ」への第三者による不正アクセスにより、利用者登録されたメールアドレスが外部に流出したとされています。流出元は東京ガス本体ではありません。",
+    "status": "stated",
+    "source": "https://www.tokyo-gas.co.jp/news/press/20261112-02.html"
+  },
+  "worries": [
+    {
+      "q": "登録した覚えがなくても対象になる？",
+      "a": "対象は2023年5月時点でガス本管埋設状況確認サービスに利用者登録されていた人です。登録したかどうか思い出せないときは、窓口で確かめられます。",
+      "source": "https://www.tokyo-gas.co.jp/news/press/20261112-02.html",
+      "action": "心当たりがあれば、0120-080852の窓口で登録の有無を確かめる"
+    },
+    {
+      "q": "メールアドレスだけの流出でも心配？",
+      "a": "流出したのはメールアドレス85,565件で、氏名・住所・電話番号・会社名などは含まれないとされています。ただ、アドレスを知られると偽のメールを送られやすくなります。",
+      "source": "https://www.tokyo-gas.co.jp/news/press/20261112-02.html",
+      "action": "東京ガスを名乗るメールのURLや添付ファイルは開かない"
+    },
+    {
+      "q": "不審なメールが来たら、まず何をしない？",
+      "a": "東京ガスは、本件に関連する不審なメールが送られる可能性があるとして、メール本文のURLへのアクセス、添付ファイルの開封、個人情報の入力を行わないよう求めています。",
+      "source": "https://www.tokyo-gas.co.jp/news/press/20261112-02.html",
+      "action": "公式サイトのよくあるご質問で、怪しいメールの項目を確かめる",
+      "actionSource": "https://support.tokyo-gas.co.jp/?site_domain=open"
+    },
+    {
+      "q": "送信元の名前を見れば本物か分かる？",
+      "a": "電子メールは送信元名称や送信元メールアドレスを変えられるため、それだけで本物かどうか判断するのは困難です。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "action": "リンクを押す前に、公式サイトをブックマークから開く",
+      "general": true
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "東京ガスの窓口に問い合わせるべき？",
+      "situation": "登録した覚えがある",
+      "recommend": "窓口で登録の有無を確認してもよい",
+      "reason": "窓口で対象かどうかを確かめられます。流出したのは2023年5月時点の登録メールアドレスで、氏名・住所・電話番号・会社名は含まれないとされています。",
+      "source": "https://www.tokyo-gas.co.jp/news/press/20261112-02.html"
+    },
+    {
+      "question": "東京ガスの窓口に問い合わせるべき？",
+      "situation": "登録の覚えがなく、東京ガスからのメールも来ていない",
+      "recommend": "急いで電話しなくてもよい",
+      "reason": "対象は2023年5月時点の利用者登録者です。東京ガスは、対象のお客さまには準備が整い次第、個別に連絡してお詫びするとしています。",
+      "source": "https://www.tokyo-gas.co.jp/news/press/20261112-02.html"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "東京ガスの窓口は、受付の時間帯で番号が違う",
+    "cause": "なぜ流出したのか、分かっていること",
+    "steps": "今日まず確かめること",
+    "desk": "東京ガスの窓口と確認ページ",
+    "worries": "メールアドレスだけでも心配？",
+    "guide": "窓口に電話するか、急がず待つか"
+  },
+  "depthAt": "2026-11-14T04:49:59+00:00"
 }
