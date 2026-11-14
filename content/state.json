@@ -17369,6 +17369,19 @@
       "skipped": true,
       "url": "https://www.mhlw.go.jp/stf/newpage_77343.html"
     },
+    "ccbcffa54c141694": {
+      "at": "2026-11-14T22:51:01.981676+00:00",
+      "costUsd": 0.0021,
+      "intent": "breaking",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "score": 93,
+      "section": "public",
+      "slug": "axa-direct-myaxa-data-leak",
+      "url": "https://www.axa-direct.co.jp/company/official_info/announce/2026/261113.html"
+    },
     "ccc3595820548dab": {
       "at": "2026-11-13T08:04:53.401829+00:00",
       "reason": "public-interest: 資料が短い 626字",
@@ -22135,23 +22148,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-12T07:44:21.032967+00:00",
-      "attempt": 1,
-      "id": "6ed5e2e981bf0e4b",
-      "kind": "update",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "「既存記事の対戦成績や直近5試合の結果に、今回の発表による変更はありません」→ 直近5試合の結果は元記事にも確認済みの文脈にも無く、存在を裏付けられない",
-        "「https://www.jfa.jp/news/00037020/」→ 元記事に記載の無いURLで、確認済みの文脈にも無いため、出典として裏付けられない",
-        "「既存記事では…背番号は取り上げていませんでした」→ 過去記事の内容を確認できる材料が無く、断定の根拠が不明",
-        "元記事は見出しと日付のみで選手ごとの番号は未掲載だが、記事本文の「背番号を公開しました」「対象は11月14日・17日」は元記事のタイトルと日付に沿っており概ね一致"
-      ],
-      "score": 62,
-      "source": "jfa",
-      "title": "SAMURAI BLUE（日本代表）背番号 MIZUHO BLUE CHALLENGE THE KALLANG FOOTBALL SERIES SINGAPOR"
-    },
     {
       "accepted": true,
       "at": "2026-11-12T07:45:43.284671+00:00",
@@ -29669,6 +29665,29 @@
       "title": "「お菓子屋さん」の倒産、年間最多へ ～ 物価高で加熱する販売競争、店舗コストも重荷 ～",
       "warnings": [
         "初めて出たところで言い換えていない略語（SPA）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-14T22:50:55.951773+00:00",
+      "attempt": 1,
+      "id": "ccbcffa54c141694",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 90.8,
+        "avg_sentence": 43.6,
+        "long_share": 0.16,
+        "max_paragraph": 168,
+        "paragraphs": 12,
+        "sentences": 25
+      },
+      "score": 93,
+      "source": "fast",
+      "title": "当社のお客さま専用マイページ「MyAXA」およびロードサービス委託先への不正アクセスに伴うお客さまの情報漏洩に関するお詫びとお知らせ（第2報）｜自動車保険・バイ",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（SUBARU）"
       ]
     }
   ],
