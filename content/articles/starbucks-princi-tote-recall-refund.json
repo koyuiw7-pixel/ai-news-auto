@@ -63,13 +63,13 @@
   "videoTitle": "スターバックス PRINCIポケッタブルトート回収、店舗購入の来店返金は2026年12月末まで",
   "publishedAt": "2026-09-11T13:00:00+00:00",
   "generatedAt": "2026-11-14T03:22:14.366234+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/starbucks-princi-tote-recall-refund-figure-1d4b3027.jpg",
   "model": "anthropic-api:claude-haiku-5-5",
   "affiliates": [],
   "newsType": "general",
   "todayActions": [
-    "手元のトートの商品名と、JANコード4524785642188が一致するかを確かめる",
-    "店舗でカード以外で払った人は、対象商品を持って2026年12月末までに行く日を決める"
+    "手元のトートの商品名とJANコードが、対象の商品と一致するかを確かめる",
+    "店舗でカード以外で払った人は、対象商品を持って2026年12月末までに購入店舗へ来店する日を決める"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -94,5 +94,109 @@
   "detectedAt": "2026-11-14T03:22:27+00:00",
   "searchTitle": "PRINCIポケッタブルトート回収、全額返金　店舗は12月末まで",
   "layout": "noir",
-  "summaryLine": "PRINCIポケッタブルトートを自主回収し、購入代金を全額返金します。交換品は用意されません。"
+  "summaryLine": "PRINCIポケッタブルトートを自主回収し、購入代金を全額返金します。交換品は用意されません。",
+  "insight": [
+    {
+      "text": "名前が似ている「スターバックス リザーブ ポケッタブルトート ARABICA」はJANコード4524785466159で、対象外です。",
+      "source": "https://www.starbucks.co.jp/notice/20260082/"
+    },
+    {
+      "text": "公式ページの写真説明では、色移りは「白い生地部分に薄っすらと黒の色移りがある」様子として示されています。",
+      "source": "https://www.starbucks.co.jp/notice/20260082/"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "スターバックス コーヒー ジャパン お客様相談室",
+      "url": "https://www.starbucks.co.jp/notice/20260082/",
+      "source": "https://www.starbucks.co.jp/notice/20260082/",
+      "phone": "0120-336-388",
+      "hours": "10:00-18:00、年中無休",
+      "note": "国際電話・IP電話からは03-5745-5890にかける。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "手元のトートの商品名とJANコードが、対象の商品と一致するかを確かめる",
+      "source": "https://www.starbucks.co.jp/notice/20260082/",
+      "steps": [
+        "商品名が「PRINCIポケッタブルトート」か確かめる",
+        "JANコードが4524785642188か確かめる",
+        "4524785466159なら類似商品で対象外"
+      ],
+      "url": "https://www.starbucks.co.jp/notice/20260082/"
+    },
+    {
+      "action": "店舗でカード以外で払った人は、対象商品を持って2026年12月末までに購入店舗へ来店する日を決める",
+      "source": "https://www.starbucks.co.jp/notice/20260082/",
+      "steps": [
+        "対象商品を持つ",
+        "レシートがあれば併せて持つ",
+        "2026年12月末までに購入店舗へ来店する"
+      ],
+      "url": "https://www.starbucks.co.jp/notice/20260082/"
+    }
+  ],
+  "cause": {
+    "text": "対象商品は、プリント加工の工程でインクが生地に十分定着していなかったため、時間の経過とともに黒色部分の色が白色部分へ移る色移りが起きることが判明したとしています。",
+    "status": "stated",
+    "source": "https://www.starbucks.co.jp/notice/20260082/"
+  },
+  "worries": [
+    {
+      "q": "色移りで健康に影響はありますか？",
+      "a": "公式お知らせは「本事象は商品の外観上の不具合であり、現時点で健康被害はございません」としています。一方、衣類や他の所持品と長期間接触すると、それらに色移りが生じるおそれがあります。",
+      "source": "https://www.starbucks.co.jp/notice/20260082/",
+      "action": "衣類や他の持ち物と長く接触させないよう、商品の置き方を見直す。"
+    },
+    {
+      "q": "色移りがまだ見られなくても対象ですか？",
+      "a": "はい。今は色移りが見られない商品も対象に含まれます。販売期間に買われた商品はすべて対象です。",
+      "source": "https://www.starbucks.co.jp/notice/20260082/",
+      "action": "色移りが無くても、JANコードが4524785642188か確かめ、対象なら返金の手続きを進める。"
+    },
+    {
+      "q": "交換品をもらうことはできますか？",
+      "a": "製造品全数で色移りが発生する可能性があるため、交換品は用意されません。商品交換ではなく、ご購入代金を全額返金するとしています。",
+      "source": "https://www.starbucks.co.jp/notice/20260082/",
+      "action": "交換はないので、買った店舗と支払い方で返金の受け方を確かめる。"
+    },
+    {
+      "q": "似た名前のトートも対象になりますか？",
+      "a": "「スターバックス リザーブ ポケッタブルトート ARABICA」は対象外です。対象かどうかは商品名だけでなく、JANコードで判断します。",
+      "source": "https://www.starbucks.co.jp/notice/20260082/",
+      "action": "商品名が似ていても、JANコードが4524785642188かどうかで確かめる。"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "JANコードが違う似た商品は対象外",
+    "cause": "なぜ色移りが起きたのか、分かっていること",
+    "steps": "手元のトートが対象か、JANコードで確かめる",
+    "desk": "お客様相談室への連絡先と受付時間",
+    "worries": "健康や他の持ち物は大丈夫？"
+  },
+  "depthAt": "2026-11-14T03:46:08+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "PRINCIポケッタブルトート回収、代金は全額返金",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-14T03:47:24+00:00"
+  },
+  "imageFocus": {
+    "x": 0.531,
+    "y": 0.411,
+    "box": [
+      0.094,
+      0.06,
+      0.969,
+      0.762
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/starbucks-princi-tote-recall-refund-figure-1d4b3027.jpg"
+  }
 }
