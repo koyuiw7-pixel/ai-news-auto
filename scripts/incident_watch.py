@@ -815,6 +815,12 @@ def backfill_hits(cfg: dict) -> dict[str, dict]:
 
 
 FOLLOWUP_GAP_HOURS = 12
+OUTAGE_SOURCE_FLOOR = 600  # scripts/web_articles.py の MIN_TEXT_CHARS と同じ
+
+
+def source_floor(kind: str) -> int:
+    """速報レーンが書く公式の資料の長さの下限（情報流出・回収は公共性の枠の下限、障害はふつうの下限）"""
+    return public_interest.MIN_SOURCE_CHARS if kind in ("breach", "recall") else OUTAGE_SOURCE_FLOOR
 
 
 def _new_entry(hit: dict, now: datetime, cfg: dict) -> dict:
@@ -905,6 +911,13 @@ def step(state: dict, hits: dict[str, dict], articles: list[dict], fetch_page, c
         announced = parse_time(found["announcedAt"])
         entry.update(officialUrl=found["url"], officialTitle=found.get("title") or "", announcedAt=found["announcedAt"],
                      precision=found["precision"], via=found["via"])
+        floor = source_floor(entry["kind"])
+        if found.get("chars", 0) < floor:
+            # 速報レーンは、公式の資料がこの字数より短いと書かない（水増しになるため。scripts/public_interest.py MIN_SOURCE_CHARS・
+            # scripts/web_articles.py MIN_TEXT_CHARS）。起こしても見送りになるだけなので、ここで止めて理由を残す
+            entry.update(status="skipped", reason=f"公式のお知らせが短い（{found.get('chars', 0)}字。速報レーンの下限 {floor}字）")
+            notes.append(f"公式が短い: {entry['name']}（{label}）{found.get('chars', 0)}字 → {found['url']}")
+            continue
         if entry.get("needScale"):
             major = is_major_name(entry["name"], entry.get("aliases"), cfg)
             if not major and found.get("scale", 0) < int(cfg["min_scale"]):

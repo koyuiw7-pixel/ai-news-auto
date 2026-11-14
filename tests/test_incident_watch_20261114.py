@@ -41,7 +41,7 @@ RSS = """<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><titl
 </channel></rss>""".encode("utf-8")
 
 NOTICE = ("「ネットマイル」における不正アクセスによる個人情報漏洩の可能性に関するお知らせ\n2026年11月2日\n株式会社ネットマイル\n"
-          "当社が運営する「ネットマイル」において、第三者による不正アクセスがあり、会員情報 最大約549万人分が漏えいした可能性があります。" + "詳しい説明です。" * 80)
+          "当社が運営する「ネットマイル」において、第三者による不正アクセスがあり、会員情報 最大約549万人分が漏えいした可能性があります。" + "詳しい説明です。" * 170)
 
 
 def page(text="", links=None, title="", published=""):
@@ -310,6 +310,20 @@ class StepTest(unittest.TestCase):
         self.assertEqual((item["kind"], item["title"], item["source_slug"]), ("trend", "ネットマイル 情報流出", "trends"))
         self.assertEqual(item["traffic"], iw.PRESS_TRAFFIC)
         self.assertEqual(iw.pick_dispatch(state, CFG, NOW), [])  # 報道の記事を速報レーンに渡さない（W31）
+
+    def test_short_official_notice_is_not_dispatched(self):
+        """モンテールの回収のお知らせ（938字）・東京ガス（1,098字）は、速報レーンの資料の下限（1,200字）で見送りになった。起こす前に止めて理由を残す"""
+        state = {"items": {}, "seen": {}}
+        url = "https://www.netmile.co.jp/info/notice-b.html"
+        short = NOTICE[:900]
+        pages = {"https://scan.netsecurity.ne.jp/article/1.html": page("記事", [{"url": url, "text": "リリース"}]), url: page(short)}
+        notes = iw.step(state, self.hit(), [], lambda u: pages[u], CFG, NOW)
+        entry = state["items"]["breach:ネットマイル"]
+        self.assertEqual(entry["status"], "skipped")
+        self.assertIn("短い", entry["reason"])
+        self.assertTrue(any("公式が短い" in n for n in notes))
+        self.assertEqual(iw.source_floor("breach"), iw.public_interest.MIN_SOURCE_CHARS)
+        self.assertEqual(iw.source_floor("outage"), web_articles.MIN_TEXT_CHARS)
 
     def test_backfill_only_within_14_days(self):
         state = {"items": {}, "seen": {}}

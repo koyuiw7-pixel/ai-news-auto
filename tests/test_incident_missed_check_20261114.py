@@ -19,7 +19,7 @@ NOW = datetime(2026, 11, 14, 3, 0, tzinfo=timezone.utc)
 CFG = iw.CONFIG
 PDF = "https://global-assets.irdirect.jp/pdf/menu_file/4482/20261102152018_7983.pdf"
 NOTICE = ("「ネットマイル」における不正アクセスによる個人情報漏洩の可能性に関するお知らせ\n2026年11月2日\n株式会社ネットマイル\n"
-          "当社が運営する「ネットマイル」において、第三者による不正アクセスがあり、会員情報が漏えいした可能性があります。" + "詳しい説明です。" * 80)
+          "当社が運営する「ネットマイル」において、第三者による不正アクセスがあり、会員情報が漏えいした可能性があります。" + "詳しい説明です。" * 170)
 MUJI = {"slug": "muji-card-number-leak-2021", "title": "無印良品のMUJI Card、2021年7月までの入会者109万件のカード番号が流出の可能性",
         "seoTitle": "", "urls": ["https://www.ryohin-keikaku.jp/news/articles/2026_1104_02"], "publishedAt": NOW - timedelta(hours=3),
         "madeAt": NOW - timedelta(hours=3), "sourcePublishedAt": None, "detectedAt": None, "incident": None}
