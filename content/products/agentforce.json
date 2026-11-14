@@ -6,7 +6,7 @@
   "companyName": "Salesforce",
   "category": "アプリ・サービス",
   "overview": {
-    "text": "Agentforceは、Salesforceが提供するAIエージェントプラットフォームです。CRMのデータをもとに、AIが自律的に業務を進めるチームメイトとして機能します。",
+    "text": "Agentforceは、CRMデータをもとにAIが自律的に業務を進めるAIエージェントプラットフォームです。セールスフォース・ジャパンが提供しています。",
     "sources": [
       "salesforce-agentforce-coworker-growth-features",
       "hinode-salesforce-agentforce-roleplay"
@@ -19,35 +19,36 @@
       "sources": [
         "salesforce-agentforce-coworker-growth-features"
       ]
+    },
+    {
+      "label": "提供開始",
+      "value": "2026年11月一般提供予定",
+      "sources": [
+        "salesforce-agentforce-coworker-growth-features"
+      ]
     }
   ],
   "capabilities": [
     {
-      "text": "Microsoft Teams連携により、チャットから商談レビューや案件調査を依頼できます。",
+      "text": "UCCジャパンでは、Data 360上でAIエージェントを稼働させました。トークスクリプトの作成時間を40分から40秒に短縮しました。",
       "sources": [
-        "salesforce-agentforce-coworker-growth-features"
+        "salesforce-idc-marketscape-japan-ai-2026"
       ]
     },
     {
-      "text": "iOS、Mac、Windows向けアプリで、場所を問わず進捗確認や承認が可能です。",
-      "sources": [
-        "salesforce-agentforce-coworker-growth-features"
-      ]
-    },
-    {
-      "text": "営業コーチング機能により、AIが商談の相手役を務め、ロールプレイを実施できます。",
+      "text": "日野出では、AIが商談の相手役を務める営業コーチング機能を導入しました。新規商談件数を導入前の127%に伸ばしました。",
       "sources": [
         "hinode-salesforce-agentforce-roleplay"
       ]
     },
     {
-      "text": "Google Workspaceと接続し、メールやカレンダーの情報をCRMデータと組み合わせて活用できます。",
+      "text": "Vivintでは、AIエージェントのAVAが20%の自律解決率を達成しました。チャット件数も28%増加しました。",
       "sources": [
-        "salesforce-agentforce-coworker-growth-features"
+        "salesforce-agentforce-idc-marketscape-leader"
       ]
     },
     {
-      "text": "Data 360と連携し、SnowflakeやDatabricks、BigQueryへのゼロコピー連携に対応しています。",
+      "text": "Crocsでは、5か月で3つのAIエージェントを構築しました。85を超える国と地域で運用しています。",
       "sources": [
         "salesforce-agentforce-idc-marketscape-leader"
       ]
@@ -55,63 +56,69 @@
   ],
   "pricing": [
     {
-      "text": "1ユーザーあたり月額50ドルの新オプションが追加されました。",
+      "text": "Agentforce Coworkerには、1ユーザーあたり月額50ドルの新オプションが追加されました。",
       "sources": [
         "salesforce-agentforce-coworker-growth-features"
       ]
     }
   ],
-  "japan": [],
+  "japan": [
+    {
+      "text": "セールスフォース・ジャパンがIDC MarketScapeの国内統合AIプラットフォーム市場でリーダーに選出されました。",
+      "sources": [
+        "salesforce-idc-marketscape-japan-ai-2026"
+      ]
+    },
+    {
+      "text": "アフラック生命保険やUCCジャパン、LINEヤフーなどの国内企業による導入事例が紹介されています。",
+      "sources": [
+        "salesforce-idc-marketscape-japan-ai-2026"
+      ]
+    }
+  ],
   "howto": [
     {
-      "text": "既存のSalesforce環境の設定画面から有効化できます。",
+      "text": "Salesforceのお客様は設定画面からAgentforce Coworkerを有効化できます。",
+      "sources": [
+        "salesforce-agentforce-coworker-growth-features"
+      ]
+    },
+    {
+      "text": "無制限の利用には対象ライセンスに加えて権限セットの割り当てが必要です。",
       "sources": [
         "salesforce-agentforce-coworker-growth-features"
       ]
     }
   ],
-  "differences": [
-    {
-      "text": "従来の依頼分類用モデルと異なり、選択肢に項目を加えるだけで再学習なしで利用できます。",
-      "sources": [
-        "salesforce-koa-decisions-model"
-      ]
-    }
-  ],
+  "differences": [],
   "faq": [
     {
-      "q": "誰に向いていますか？",
-      "a": "既存のSalesforce環境を活用し、業務を自動化したい組織に向いています。",
+      "q": "どのような機能が追加されましたか？",
+      "a": "Microsoft Teams連携やiOS向けアプリ、Google Workspaceとの接続が提供されています。",
       "sources": [
         "salesforce-agentforce-coworker-growth-features"
       ]
     },
     {
-      "q": "セキュリティは大丈夫ですか？",
-      "a": "既存のセキュリティ権限や共有ルール、アクセス制御を適用して動作します。",
+      "q": "どこから利用を始められますか？",
+      "a": "Salesforceのお客様は設定画面からAgentforce Coworkerを有効化できます。",
       "sources": [
         "salesforce-agentforce-coworker-growth-features"
       ]
     },
     {
-      "q": "Teamsで使えますか？",
-      "a": "はい、2026年11月に一般提供される予定で、チャットから業務を指示できます。",
+      "q": "どのような企業で導入されていますか？",
+      "a": "The Adecco GroupやFulton Bank、アフラック生命保険などで導入されています。",
       "sources": [
+        "salesforce-idc-marketscape-japan-ai-2026",
         "salesforce-agentforce-coworker-growth-features"
       ]
     },
     {
-      "q": "モバイルで使えますか？",
-      "a": "はい、iOS向けアプリなどが2026年11月に一般提供される予定です。",
+      "q": "セキュリティの権限はどうなりますか？",
+      "a": "既存のセキュリティやガバナンスの枠組みのもとで動作します。該当する従業員の権限が適用されます。",
       "sources": [
         "salesforce-agentforce-coworker-growth-features"
-      ]
-    },
-    {
-      "q": "判断モデルの速さは？",
-      "a": "Agentforceでの振り分けは約26ミリ秒で、一般的なLLMより速いと計測されています。",
-      "sources": [
-        "salesforce-koa-decisions-model"
       ]
     }
   ],
@@ -119,17 +126,17 @@
     {
       "date": "2026-11-09",
       "slug": "salesforce-agentforce-idc-marketscape-leader",
-      "event": "IDC調査のAIエージェント基盤でリーダーに選出"
+      "event": "IDC MarketScapeの初調査でリーダーに選出"
     },
     {
       "date": "2026-11-10",
       "slug": "hinode-salesforce-agentforce-roleplay",
-      "event": "日野出が営業ロールプレイに導入し成果を報告"
+      "event": "日野出が営業ロールプレイに導入"
     },
     {
       "date": "2026-11-11",
       "slug": "salesforce-agentforce-coworker-growth-features",
-      "event": "Teams連携や月額50ドルの新料金を発表"
+      "event": "月額50ドルの新料金オプションを発表"
     }
   ],
   "related": [
@@ -148,9 +155,9 @@
     "hinode-salesforce-agentforce-roleplay",
     "salesforce-agentforce-idc-marketscape-leader"
   ],
-  "signature": "5eb6cb8b6dbff33e",
+  "signature": "2aec6908c0ff7875",
   "primarySignature": "735e6648c763effc",
-  "model": "gemini-3.1-flash-lite",
+  "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-11-11T07:45:17+00:00",
-  "updatedAt": "2026-11-11T07:45:17+00:00"
+  "updatedAt": "2026-11-14T07:53:23+00:00"
 }
