@@ -596,10 +596,21 @@ SHORT_NOTICE_RE = re.compile(
 )
 
 
+def incident_short(article: dict) -> bool:
+    """事故の見張り（scripts/incident_watch.py・台帳 W44）が見つけた会社自身のお知らせから作った記事か（記事の incident の印。
+    速報レーンが付ける）。回収・情報流出のお知らせは短くても対象・窓口・やることがそろっているので、この経路の記事だけ
+    本文の下限を SHORT_BODY（800字）にする（2026-11-14 オーナー承認）。印の無い記事（ほかの経路）は今までどおり"""
+    incident = article.get("incident")
+    return isinstance(incident, dict) and bool(incident.get("kind"))
+
+
 def short_ok(article: dict) -> bool:
     """本文の下限を SHORT_BODY（800字）に下げてよい記事か。lib/indexing.ts の isShortArticle と同じ。
-    速報（breaking が真か、種類が breaking）／お知らせ・注意喚起の題名／ミサイル・災害の題名（公共性のジャンル）"""
+    速報（breaking が真か、種類が breaking）／お知らせ・注意喚起の題名／ミサイル・災害の題名（公共性のジャンル）／
+    事故の見張りの記事（incident_short。サイト側の isShortArticle は robots に使わない説明用で、この印は見ない）"""
     if article.get("breaking") is True or (article.get("newsType") or "") == "breaking":
+        return True
+    if incident_short(article):
         return True
     head = _nfkc(f"{article.get('title', '')} {article.get('seoTitle', '')}")
     if SHORT_NOTICE_RE.search(head):

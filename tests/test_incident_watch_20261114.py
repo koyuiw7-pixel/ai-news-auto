@@ -312,17 +312,18 @@ class StepTest(unittest.TestCase):
         self.assertEqual(iw.pick_dispatch(state, CFG, NOW), [])  # 報道の記事を速報レーンに渡さない（W31）
 
     def test_short_official_notice_is_not_dispatched(self):
-        """モンテールの回収のお知らせ（938字）・東京ガス（1,098字）は、速報レーンの資料の下限（1,200字）で見送りになった。起こす前に止めて理由を残す"""
+        """速報レーンの資料の下限より短い公式のお知らせは、起こす前に止めて理由を残す。事故の見張りの情報流出・回収の下限は
+        incident_watch.json の min_source_chars（700字。モンテール 938字・東京ガス 1,098字は書ける。tests/test_incident_short_notice_20261114.py）"""
         state = {"items": {}, "seen": {}}
         url = "https://www.netmile.co.jp/info/notice-b.html"
-        short = NOTICE[:900]
+        short = NOTICE[:650]
         pages = {"https://scan.netsecurity.ne.jp/article/1.html": page("記事", [{"url": url, "text": "リリース"}]), url: page(short)}
         notes = iw.step(state, self.hit(), [], lambda u: pages[u], CFG, NOW)
         entry = state["items"]["breach:ネットマイル"]
         self.assertEqual(entry["status"], "skipped")
         self.assertIn("短い", entry["reason"])
         self.assertTrue(any("公式が短い" in n for n in notes))
-        self.assertEqual(iw.source_floor("breach"), iw.public_interest.MIN_SOURCE_CHARS)
+        self.assertEqual(iw.source_floor("breach"), CFG["min_source_chars"])
         self.assertEqual(iw.source_floor("outage"), web_articles.MIN_TEXT_CHARS)
 
     def test_backfill_only_within_14_days(self):

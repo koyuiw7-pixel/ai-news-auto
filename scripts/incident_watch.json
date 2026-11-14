@@ -1,5 +1,5 @@
 {
-  "_doc": "「自分は対象か」の事故（情報流出・リコール/回収・大きな障害）の見張り（scripts/incident_watch.py・台帳 W44）。discovery は見つけるためだけの発信元（記事の出典にしない。会社の名前と事故の種類を取り出し、会社自身のお知らせを探して出典にする）。official=true の発信元は項目の URL そのものが公式の一次情報（適時開示の PDF）。消費者庁のリコール情報の項目のページは本文が短いので出典にはせず、見つけるためだけに使う（major_only=全国で知られた名前だけ）。どれも 2026-11-14 に取得できること（HTTP 200・項目が読める）を確かめた。min_scale は情報流出の件数の下限（これ以上なら1つの発信元だけでも拾う）。min_scale_multi は2つ以上の発信元が伝えたときの下限。どちらにも届かず、主要な名前（major_names）にも当たらなければ見送る。name_groups は同じ会社の別の呼び名（先頭が代表）。max_age_days は遡って拾う古さ（発表から。まだ記事が無いときだけ）。covered_days は同じ事故の記事があるかを見る日数。daily_max は1日に速報レーンへ回す数の安全上限（暴走よけ。通常の記事の上限・審査の期間の門とは別枠）。per_dispatch は1回の速報レーンに渡す数（auto_run.yml は3件まで）。redispatch_minutes たっても結果が無ければ起こし直す（max_dispatches 回まで）。major_names は全国で売られている・使われている名前（食品の回収と、件数が分からない事故を拾う目安）。homes は会社自身のお知らせの欄を直接見る会社（トップ・お知らせ一覧の「情報流出・回収」のリンクを候補にする。他社が伝えるのを待たない。2026-11-14 に読めることを確かめた会社だけ）。backfill は取りこぼしを1回だけ拾い直す一覧（--backfill のときだけ読む）",
+  "_doc": "「自分は対象か」の事故（情報流出・リコール/回収・大きな障害）の見張り（scripts/incident_watch.py・台帳 W44）。discovery は見つけるためだけの発信元（記事の出典にしない。会社の名前と事故の種類を取り出し、会社自身のお知らせを探して出典にする）。official=true の発信元は項目の URL そのものが公式の一次情報（適時開示の PDF）。消費者庁のリコール情報の項目のページは本文が短いので出典にはせず、見つけるためだけに使う（major_only=全国で知られた名前だけ）。どれも 2026-11-14 に取得できること（HTTP 200・項目が読める）を確かめた。min_scale は情報流出の件数の下限（これ以上なら1つの発信元だけでも拾う）。min_scale_multi は2つ以上の発信元が伝えたときの下限。どちらにも届かず、主要な名前（major_names）にも当たらなければ見送る。name_groups は同じ会社の別の呼び名（先頭が代表）。max_age_days は遡って拾う古さ（発表から。まだ記事が無いときだけ）。covered_days は同じ事故の記事があるかを見る日数。daily_max は1日に速報レーンへ回す数の安全上限（暴走よけ。通常の記事の上限・審査の期間の門とは別枠）。per_dispatch は1回の速報レーンに渡す数（auto_run.yml は3件まで）。redispatch_minutes たっても結果が無ければ起こし直す（max_dispatches 回まで）。major_names は全国で売られている・使われている名前（食品の回収と、件数が分からない事故を拾う目安）。homes は会社自身のお知らせの欄を直接見る会社（トップ・お知らせ一覧の「情報流出・回収」のリンクを候補にする。他社が伝えるのを待たない。2026-11-14 に読めることを確かめた会社だけ）。min_source_chars は、事故の見張りが見つけた情報流出・回収の公式のお知らせの長さの下限（字。2026-11-14 オーナー承認。回収・流出のお知らせは短くても対象・窓口・やることがそろっているので、この経路だけ公共性の枠の 1,200字より短くてよい。記事の本文の下限もこの経路だけ 800字＝public_interest.SHORT_BODY。ほかの経路は 1,200字／1,500字のまま）。backfill は取りこぼしを1回だけ拾い直す一覧（--backfill のときだけ読む）",
   "min_scale": 100000,
   "min_scale_multi": 10000,
   "max_age_days": 14,
@@ -9,6 +9,7 @@
   "max_dispatches": 3,
   "redispatch_minutes": 45,
   "official_tries": 4,
+  "min_source_chars": 700,
   "discovery": [
     { "slug": "scan-netsecurity", "name": "ScanNetSecurity", "url": "https://scan.netsecurity.ne.jp/rss/index.rdf" },
     { "slug": "security-next", "name": "Security NEXT", "url": "https://www.security-next.com/feed" },
@@ -89,6 +90,7 @@
     { "name": "ノジマ", "kind": "breach", "home": "https://www.nojima.co.jp/" },
     { "name": "ネットマイル", "kind": "breach", "home": "https://www.netmile.co.jp/", "discovery": "https://scan.netsecurity.ne.jp/article/2026/11/13/56773.html" },
     { "name": "モンテール", "kind": "recall", "home": "https://www.monteur.co.jp/" },
-    { "name": "資生堂", "kind": "breach", "home": "https://corp.shiseido.com/jp/", "discovery": "https://www.security-next.com/192582" }
+    { "name": "資生堂", "kind": "breach", "home": "https://corp.shiseido.com/jp/", "discovery": "https://www.security-next.com/192582" },
+    { "name": "東京ガス", "kind": "breach", "home": "https://www.tokyo-gas.co.jp/", "official": "https://www.tokyo-gas.co.jp/news/press/20261112-02.html" }
   ]
 }

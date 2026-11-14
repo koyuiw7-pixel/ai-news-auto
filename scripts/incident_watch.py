@@ -644,7 +644,9 @@ PROMPT_NOTE = """
 4. 経緯: いつ何が起きて、いつ分かり、いつ発表したか（日付は資料のとおり）。
 - 件数・台数・金額は、公式の資料に書かれた数字だけを、資料の言い方（最大・約・可能性がある）のまま書く。報道やほかのサイトの数字は書かない。
 - 題名は「会社・サービスの名前＋何が起きたか＋対象の条件か今やること」。「自分は対象か」を調べる人が検索する言葉（会社名＋情報流出／リコール／回収／障害）を前に置く。
-- 流出した「可能性」と「確認された」を混ぜない。原因・犯人・被害額を推測しない。"""
+- 流出した「可能性」と「確認された」を混ぜない。原因・犯人・被害額を推測しない。
+- 公式のお知らせが短いときは、記事も短くてよい（本文は800字以上あれば足りる）。字数を増やすための一般論・ほかの事故の話・
+  資料に無い背景や数字・同じことの言い換えは書かない。短くても 1.〜3.（対象の表・窓口・今やること）は必ず入れる。"""
 
 
 def prompt_note(incident: dict | None) -> str:
@@ -851,9 +853,19 @@ FOLLOWUP_GAP_HOURS = 12
 OUTAGE_SOURCE_FLOOR = 600  # scripts/web_articles.py の MIN_TEXT_CHARS と同じ
 
 
-def source_floor(kind: str) -> int:
-    """速報レーンが書く公式の資料の長さの下限（情報流出・回収は公共性の枠の下限、障害はふつうの下限）"""
-    return public_interest.MIN_SOURCE_CHARS if kind in ("breach", "recall") else OUTAGE_SOURCE_FLOOR
+def source_floor(kind: str, cfg: dict | None = None) -> int:
+    """速報レーンが書く公式の資料の長さの下限（障害はふつうの下限）。情報流出・回収は、事故の見張りの経路だけ
+    scripts/incident_watch.json の min_source_chars（700字。2026-11-14 オーナー承認）。回収・流出のお知らせは短くても
+    対象・窓口・やることがそろっている（モンテール 938字・東京ガス 1,098字）。ほかの経路は公共性の枠の下限（1,200字）のまま。
+    設定が無い・公共性の枠より大きいときは公共性の枠の下限を使う（この経路がほかより厳しくなることはない）"""
+    if kind not in ("breach", "recall"):
+        return OUTAGE_SOURCE_FLOOR
+    cfg = CONFIG if cfg is None else cfg
+    try:
+        own = int(cfg.get("min_source_chars") or 0)
+    except (TypeError, ValueError):
+        own = 0
+    return min(own, public_interest.MIN_SOURCE_CHARS) if own > 0 else public_interest.MIN_SOURCE_CHARS
 
 
 def _new_entry(hit: dict, now: datetime, cfg: dict) -> dict:
@@ -953,10 +965,11 @@ def step(state: dict, hits: dict[str, dict], articles: list[dict], fetch_page, c
         announced = parse_time(found["announcedAt"])
         entry.update(officialUrl=found["url"], officialTitle=found.get("title") or "", announcedAt=found["announcedAt"],
                      precision=found["precision"], via=found["via"])
-        floor = source_floor(entry["kind"])
+        floor = source_floor(entry["kind"], cfg)
         if found.get("chars", 0) < floor:
-            # 速報レーンは、公式の資料がこの字数より短いと書かない（水増しになるため。scripts/public_interest.py MIN_SOURCE_CHARS・
-            # scripts/web_articles.py MIN_TEXT_CHARS）。起こしても見送りになるだけなので、ここで止めて理由を残す
+            # 速報レーンは、公式の資料がこの字数より短いと書かない（水増しになるため。事故の見張りの情報流出・回収は source_floor＝
+            # incident_watch.json の min_source_chars、障害は scripts/web_articles.py MIN_TEXT_CHARS）。速報レーンも同じ source_floor で
+            # 確かめるので、起こしても見送りになるだけ。ここで止めて理由を残す
             entry.update(status="skipped", reason=f"公式のお知らせが短い（{found.get('chars', 0)}字。速報レーンの下限 {floor}字）")
             notes.append(f"公式が短い: {entry['name']}（{label}）{found.get('chars', 0)}字 → {found['url']}")
             continue

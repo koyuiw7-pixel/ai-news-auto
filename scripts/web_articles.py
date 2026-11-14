@@ -3029,9 +3029,13 @@ def main() -> int:
                 mark(state, item, skipped=True, reason=f"short text {len(text)}")
                 run_status[item["id"]] = ("failed", feeds.source_rank(item))
             return
-        if item.get("_public_interest") and public_interest.source_too_short(item["_public_interest"], text):
+        # 事故の見張り（scripts/incident_watch.py）の情報流出・回収だけ、資料の下限は incident_watch.json の min_source_chars（700字）。
+        # ほかの経路の公共性の候補は 1,200字（public_interest.MIN_SOURCE_CHARS）のまま
+        source_floor = (incident_watch.source_floor(item["_incident"].get("kind") or "") if item.get("_incident")
+                        else public_interest.MIN_SOURCE_CHARS)
+        if item.get("_public_interest") and public_interest.source_too_short(item["_public_interest"], text) and len(text) < source_floor:
             # 公共性の枠で、資料が短く本文の下限に届かないもの（官公庁の短い注意喚起など）。水増しさせず、作り直しで費用も使わない
-            log(f"   [skip] 公共性の候補だが資料が短い（{len(text)}字 / 基準 {public_interest.MIN_SOURCE_CHARS}字）")
+            log(f"   [skip] 公共性の候補だが資料が短い（{len(text)}字 / 基準 {source_floor}字）")
             mark(state, item, skipped=True, reason=f"public-interest: 資料が短い {len(text)}字")
             run_status[item["id"]] = ("failed", feeds.source_rank(item))
             return
