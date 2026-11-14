@@ -8564,6 +8564,19 @@
       "slug": "ntt-progoffice-sms-ai-prevention",
       "url": "https://www.ntt-tx.co.jp/whatsnew/2026/261111.html"
     },
+    "4c870022406aa560": {
+      "at": "2026-11-14T04:23:13.185345+00:00",
+      "costUsd": 0.0024,
+      "intent": "breaking",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "score": 84,
+      "section": "public",
+      "slug": "yakult-website-data-leak-39505",
+      "url": "https://www.yakult.co.jp/maintenance/news/pdf/20261104.pdf"
+    },
     "4c9e0aba14246e1f": {
       "at": "2026-11-10T11:01:04.294321+00:00",
       "costUsd": 0.0088,
@@ -16191,6 +16204,19 @@
       "skipped": true,
       "url": "https://www.mext.go.jp/b_menu/shingi/chousa/shotou/205/kaisai/mext_00013.html"
     },
+    "c1de2f01b3813c39": {
+      "at": "2026-11-14T04:22:22.955862+00:00",
+      "costUsd": 0.0024,
+      "intent": "breaking",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "score": 92,
+      "section": "public",
+      "slug": "snow-peak-unauthorized-access-data-leak",
+      "url": "https://www.snowpeak.co.jp/news/p20261113-0/"
+    },
     "c1f3cd7c04d8742b": {
       "at": "2026-11-09T08:29:00.681002+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（公募）",
@@ -19126,6 +19152,19 @@
       "slug": "boj-jgb-holdings-nov-2026",
       "url": "http://www.boj.or.jp/statistics/boj/other/mei/release/2026/mei261110.xlsx"
     },
+    "f544dc1ba49cc2b8": {
+      "at": "2026-11-14T04:21:36.112094+00:00",
+      "costUsd": 0.0072,
+      "intent": "breaking",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "score": 93,
+      "section": "public",
+      "slug": "edion-ec-data-leak-second-report",
+      "url": "https://www.edion.co.jp/system/files/news-release/pdf/ja/2026-11/20261109_pr_1_1.pdf"
+    },
     "f56c3af18c440a67": {
       "at": "2026-11-11T08:18:18.686748+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（を掲載しました）",
@@ -21234,120 +21273,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-12T02:10:32.266257+00:00",
-      "attempt": 1,
-      "id": "490dc8c40a84ed37",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "「次いで和歌山県が71.40％、東京都が68.27％となっている」→ 元記事では東京都は前年2位から2026年は5位（68.27％）。3位として書くのは順位の取り違え",
-        "「会社を売却・譲渡の方針」「廃業・解散・整理」について「前年からそれぞれ微増した」→ 元記事では0.18→0.20％、0.61→0.76％（0.15ポイント上昇）と数値は合うが、「微増」は廃業の上昇幅の印象を弱めている（軽微）"
-      ],
-      "readability": {
-        "avg_paragraph": 100.3,
-        "avg_sentence": 43.6,
-        "long_share": 0.174,
-        "max_paragraph": 124,
-        "paragraphs": 10,
-        "sentences": 23
-      },
-      "score": 72,
-      "source": "tsr",
-      "title": "2026年「後継者不在率」 過去最高の62.64％ 不在率は伸び鈍化、「同族継承」から「外部招聘」へ",
-      "warnings": [
-        "見出しの書き方: 発表文の題名の言い直し（「〇〇が△△を発表」）。読者にとって何が変わるか（だれの・何が・いつから・いくら）を書く",
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-12T02:10:52.188981+00:00",
-      "attempt": 1,
-      "id": "490dc8c40a84ed37",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 104.3,
-        "avg_sentence": 41.7,
-        "long_share": 0.16,
-        "max_paragraph": 144,
-        "paragraphs": 10,
-        "sentences": 25
-      },
-      "score": 92,
-      "source": "tsr",
-      "title": "2026年「後継者不在率」 過去最高の62.64％ 不在率は伸び鈍化、「同族継承」から「外部招聘」へ",
-      "warnings": [
-        "見出しの書き方: 発表文の題名の言い直し（「〇〇が△△を発表」）。読者にとって何が変わるか（だれの・何が・いつから・いくら）を書く",
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-12T02:11:23.855186+00:00",
-      "attempt": 1,
-      "id": "688f16e6a4687153",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "判定行の「価格=参加無料」→ 元記事に参加費・価格の記載はなく、無料とする根拠がない（価格の創作）",
-        "本文「決済方法に応じてスクラッチカードの色が変わり、1等から3等のいずれかが当たります」→ 赤い画面のPayPay残高は4回に1回の確率であり、必ず当たるわけではないという条件が抜けている",
-        "本文「国内の対象店舗やクレジットカード加盟店で」→ 元記事では海外でのオンライン決済も対象（※3）。対象範囲が狭く書かれている",
-        "紹介プログラム「PayPayカードへの新規入会やクレジット設定、対象店舗での決済」→ 元記事の③は「対象店舗での決済」ではなく、PayPayクレジットまたはPayPayカードでの1回の決済が条件",
-        "「スマートフォンのタッチ決済を活用すると確実にあたりを引くことができます」（仕事・お金欄）→ Google Payは実店舗のタッチ決済のみが対象で、その他の条件もあるため、確実という言い方は言い過ぎ",
-        "「PayPayクーポン」→ 元記事は「配布予定」で、「順次配布されます」とするのは提供状況の言い過ぎ"
-      ],
-      "readability": {
-        "avg_paragraph": 144.0,
-        "avg_sentence": 54.0,
-        "long_share": 0.312,
-        "max_paragraph": 179,
-        "paragraphs": 6,
-        "sentences": 16
-      },
-      "score": 62,
-      "source": "paypay",
-      "title": "「超PayPay祭」が11月20日からスタート！",
-      "warnings": [
-        "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "読みやすさ: 文が長い（1文の平均 54.0字・60字超の文が 31% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "読みやすさ: 段落が長い（平均 144.0字・最長 179字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-12T02:12:33.476120+00:00",
-      "attempt": 1,
-      "id": "77684936399cdeca",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文「一般の住民や企業における日々の手続きや契約には直接の変更はありません」→ 元記事に記載のない影響の有無を断定しており、創作に近い。",
-        "かんたん版「災害時の混乱を防ぐための参考資料」→ 元記事は参考資料と述べるのみで、混乱防止という効果は書かれていない。言い過ぎ。",
-        "かんたん版「避難者の情報を集める」→ 元記事は「被災者情報」の収集・管理としており、対象の言い換えが不正確。",
-        "リード「自治体の防災担当者やシステム調達に関わる事業者は、仕様書を活用した要件整理を進めることになります」→ 利用者の行動を決まったことのように書いており、元記事にない断定。",
-        "タイトル「IPAが…公開」→ 元記事では経済産業省・NEDO・IPA DADCの共同発表であり、IPA単独の公開のように読める（本文のIPAなどの表記とはずれる）。"
-      ],
-      "readability": {
-        "avg_paragraph": 124.3,
-        "avg_sentence": 67.8,
-        "long_share": 0.545,
-        "max_paragraph": 222,
-        "paragraphs": 6,
-        "sentences": 11
-      },
-      "score": 80,
-      "source": "ipa",
-      "title": "「チェックインシステムに係る導入ガイドライン及び標準仕様書 Ver1.0」を公開しました",
-      "warnings": [
-        "見出しの書き方: 記号: かっこの直後に「、」",
-        "見出しが49字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（IPA・ER・OSS）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-12T02:12:50.866554+00:00",
@@ -28782,6 +28707,103 @@
       "score": 90,
       "source": "radar-official",
       "title": "神戸物産 回収"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-14T04:21:06.963444+00:00",
+      "attempt": 1,
+      "id": "f544dc1ba49cc2b8",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "「保存済みのカードを使った場合…は、発表上は対象外とされています」→ 元記事は対象を「新規にカード情報をご入力された場合」とし、保存済みカードの扱いには触れていない。発表が対象外と述べているかのように書くのは元記事にない内容の帰属である。"
+      ],
+      "readability": {
+        "avg_paragraph": 79.9,
+        "avg_sentence": 38.9,
+        "long_share": 0.081,
+        "max_paragraph": 141,
+        "paragraphs": 18,
+        "sentences": 37
+      },
+      "score": 85,
+      "source": "fast",
+      "title": "当社EC サイトにおける新たに判明した事象と個人情報漏洩の可能性、およびサービス停止に関するお詫びとお知らせ(第2報)",
+      "warnings": [
+        "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（EC・PIN・SMS）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-14T04:21:28.999078+00:00",
+      "attempt": 1,
+      "id": "f544dc1ba49cc2b8",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 82.6,
+        "avg_sentence": 39.0,
+        "long_share": 0.083,
+        "max_paragraph": 143,
+        "paragraphs": 17,
+        "sentences": 36
+      },
+      "score": 93,
+      "source": "fast",
+      "title": "当社EC サイトにおける新たに判明した事象と個人情報漏洩の可能性、およびサービス停止に関するお詫びとお知らせ(第2報)",
+      "warnings": [
+        "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（EC・PIN・SMS）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-14T04:22:17.909163+00:00",
+      "attempt": 1,
+      "id": "c1de2f01b3813c39",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 84.3,
+        "avg_sentence": 38.1,
+        "long_share": 0.129,
+        "max_paragraph": 171,
+        "paragraphs": 14,
+        "sentences": 31
+      },
+      "score": 92,
+      "source": "fast",
+      "title": "不正アクセスによる個人情報流出に関するお詫びとお知らせ | 新着情報 | スノーピーク ＊ Snow Peak",
+      "warnings": [
+        "見出しが48字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（SMS）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-14T04:23:07.693103+00:00",
+      "attempt": 1,
+      "id": "4c870022406aa560",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 88.0,
+        "avg_sentence": 40.2,
+        "long_share": 0.086,
+        "max_paragraph": 173,
+        "paragraphs": 16,
+        "sentences": 35
+      },
+      "score": 84,
+      "source": "fast",
+      "title": "当社ホームページへの不正アクセスによる個人情報漏えいに関するお詫びとお知らせ【第3報】~専用お問い合わせ窓口の開設および対象のお客さまへのご連絡について",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（WEB・SMS・NICT）"
+      ]
     }
   ],
   "short_text_retry": {},
