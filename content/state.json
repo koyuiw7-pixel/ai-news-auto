@@ -243,7 +243,7 @@
     "7d3dbcbbc4dfdc9862f08bc9dffb9564ea62c0b9": 2,
     "7d4c03afde3a58677fd4a10a6f87f0a613b9c7b1": 2,
     "7d601991e33d9c44b9aa984a8bb470e456015295": 2,
-    "7d7437d0045f1bda2163f3097b37fb3fb0ac7e82": 1,
+    "7d7437d0045f1bda2163f3097b37fb3fb0ac7e82": 2,
     "7e035393eb5798bfde8a69a755d0e6fa68d58cc2": 2,
     "7e22d215dd5c89c58cb9b849fabfe6c071b2034d": 2,
     "7ef862703d3a4b83bc192563dfee7610d6f08df7": 2,
@@ -273,6 +273,7 @@
     "94b6ad35a37976e8b8ecd27a539d2a38d9c78718": 2,
     "94c84d866defb8e8a18aa956d1daedb702e1f539": 2,
     "94d128c45597baf713b25659404df5d68eadc44b": 2,
+    "962dcf5af47145e5925f3d697b779cb260f3ea33": 1,
     "9720fce3bac4ddf92a32558c7e25a89e237cd265": 2,
     "974cbd7a5cecef2b7b744d059e8f459d6792a654": 2,
     "977cb0e39a1180a97965af8e466f9cde68b35f6c": 2,
@@ -4442,6 +4443,20 @@
       "reason": "dedupe: 固有名詞が一致（home・lifull）: tokyo-23ku-rent-trends-oct-2026",
       "skipped": true,
       "url": "https://lifull.com/news/50957/"
+    },
+    "08f37b802aea4075": {
+      "at": "2026-11-14T06:23:45.721834+00:00",
+      "costUsd": 0.0149,
+      "intent": "neutral",
+      "kind": "trend",
+      "mix": "",
+      "model": "gemini-3.5-flash-lite",
+      "score": 95,
+      "section": "sports",
+      "slug": "bleague-standings-november-2026",
+      "trendKeyword": "千葉ジェッツ",
+      "trendLane": true,
+      "url": "https://www.bleague.jp/standings/"
     },
     "093b056acf1c51f8": {
       "at": "2026-11-06T09:25:45.556503+00:00",
@@ -13969,6 +13984,12 @@
       "skipped": true,
       "url": "https://www.jst.go.jp/pr/info/info1884/index.html"
     },
+    "9ec807f03bac48b65387de5136cf274cfb2b6f91": {
+      "at": "2026-11-14T06:21:47.741210+00:00",
+      "reason": "trend: 重複: 見出しが類似（0.80）: high-school-soccer-championship-miyazaki",
+      "skipped": true,
+      "url": "https://news.yahoo.co.jp/articles/e06fbab5bd90ee8bfa800242e8526a1fa3966dd0"
+    },
     "9f041e1602b63eeb": {
       "at": "2026-11-04T10:27:25.799381+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（を開催）",
@@ -18290,6 +18311,12 @@
       "skipped": true,
       "url": "https://www.usj.co.jp/company/news/2026/1111/"
     },
+    "e1725bfc9a41063f92002224db903b414e709bc0": {
+      "at": "2026-11-14T06:23:45.722002+00:00",
+      "reason": "trend: 公式の発表で記事にした（bleague-standings-november-2026）",
+      "skipped": true,
+      "url": "https://sports.yahoo.co.jp/column/detail/2026111300052-spnaviow"
+    },
     "e1a0a06cf111f8c7": {
       "at": "2026-11-02T01:45:47.966788+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -21437,53 +21464,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-12T02:58:49.836274+00:00",
-      "attempt": 1,
-      "id": "c1558f6b53760f76",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 81.5,
-        "avg_sentence": 44.5,
-        "long_share": 0.273,
-        "max_paragraph": 183,
-        "paragraphs": 6,
-        "sentences": 11
-      },
-      "score": 90,
-      "source": "jnet21",
-      "title": "「中小企業M&A実務能力・倫理検定試験」来年1月実施",
-      "warnings": [
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
-        "読みやすさ: 文が長い（1文の平均 44.5字・60字超の文が 27% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-12T02:59:04.394999+00:00",
-      "attempt": 0,
-      "id": "c1558f6b53760f76",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 59.7,
-        "avg_sentence": 27.9,
-        "long_share": 0.0,
-        "max_paragraph": 103,
-        "paragraphs": 7,
-        "sentences": 15
-      },
-      "score": 90,
-      "source": "jnet21",
-      "title": "「中小企業M&A実務能力・倫理検定試験」来年1月実施",
-      "warnings": [
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
-      ]
-    },
     {
       "accepted": false,
       "at": "2026-11-12T03:44:17.928299+00:00",
@@ -28963,6 +28943,57 @@
         "見出しの書き方: 発表文の題名の言い直し（「〇〇が△△を発表」）。読者にとって何が変わるか（だれの・何が・いつから・いくら）を書く",
         "初めて出たところで言い換えていない略語（AKB・ORICON・NEWS）",
         "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-14T06:23:31.657768+00:00",
+      "attempt": 1,
+      "id": "08f37b802aea4075",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "かんたん版の「東地区では仙台89ERSが勝率4割7分8厘で首位」→ 元記事の仙台89ERSの勝率は.778（7割7分8厘）で、4割7分8厘は誤り。本文・表と矛盾する",
+        "本文の「千葉ジェッツは勝率4割7分1厘で8位」「東地区首位の仙台89ERSと比べて6勝少なく、5敗多い」は元記事（8勝9敗、仙台14勝4敗）と一致し、差の計算も正しい",
+        "西地区・東地区の他クラブの勝率（名古屋.923、広島.867、三河.769、アルバルク東京.765、群馬.750）は元記事と一致"
+      ],
+      "readability": {
+        "avg_paragraph": 66.5,
+        "avg_sentence": 36.3,
+        "long_share": 0.091,
+        "max_paragraph": 112,
+        "paragraphs": 6,
+        "sentences": 11
+      },
+      "score": 62,
+      "source": "radar-official",
+      "title": "順位表 | B.LEAGUE（Bリーグ）公式サイト",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（ERS）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-14T06:23:45.683132+00:00",
+      "attempt": 1,
+      "id": "08f37b802aea4075",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 66.5,
+        "avg_sentence": 36.3,
+        "long_share": 0.091,
+        "max_paragraph": 112,
+        "paragraphs": 6,
+        "sentences": 11
+      },
+      "score": 95,
+      "source": "radar-official",
+      "title": "順位表 | B.LEAGUE（Bリーグ）公式サイト",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（ERS）",
+        "work_money（「仕事・お金にどう活かせる？」欄）が無い"
       ]
     }
   ],
