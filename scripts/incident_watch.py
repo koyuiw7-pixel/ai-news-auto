@@ -321,7 +321,7 @@ def detect(items: list[dict], sources: dict[str, dict], cfg: dict | None = None,
             continue
         if item.get("published") and item["published"] < oldest:
             continue
-        name = extract_company(item["title"], src)
+        name = str(src.get("company") or "") or extract_company(item["title"], src)
         if not name:
             continue
         # 規模は見出しの数字を先に（要約には委託先全体の件数など別の数字が混ざる）
@@ -331,7 +331,7 @@ def detect(items: list[dict], sources: dict[str, dict], cfg: dict | None = None,
         key = hit_key(kind, name)
         hit = hits.setdefault(key, {"key": key, "kind": kind, "name": name, "aliases": [], "scale": 0, "scaleText": "",
                                     "title": item["title"][:200], "discovery": [], "majorOnly": True})
-        for alias in [*group, *([raw_name] if raw_name != name else []), *name_aliases(item["title"], name)]:
+        for alias in [*group, *(src.get("aliases") or []), *([raw_name] if raw_name != name else []), *name_aliases(item["title"], name)]:
             if alias not in hit["aliases"]:
                 hit["aliases"].append(alias)
         if scale and scale[0] > hit["scale"]:
@@ -339,7 +339,8 @@ def detect(items: list[dict], sources: dict[str, dict], cfg: dict | None = None,
         hit["majorOnly"] = hit["majorOnly"] and bool(src.get("major_only"))
         if not any(d["url"] == item["url"] for d in hit["discovery"]):
             hit["discovery"].append({"source": item["source"], "url": item["url"], "title": item["title"][:200],
-                                     "publishedAt": iso(item.get("published")), "official": bool(src.get("official"))})
+                                     "publishedAt": iso(item.get("published")), "official": bool(src.get("official")),
+                                     **({"appearedAfter": item["appearedAfter"]} if item.get("appearedAfter") else {})})
     return hits
 
 
@@ -350,6 +351,8 @@ def significant(hit: dict, cfg: dict | None = None) -> tuple[bool, str]:
     outlets = {d["source"] for d in hit.get("discovery") or []}
     if hit.get("backfill"):
         return True, "取りこぼしの拾い直し"
+    if any(str(s_).startswith("home:") for s_ in outlets):
+        return True, "見張っている会社のサイトのお知らせ"
     if hit.get("majorOnly") and not major:
         return False, "全国で知られた名前ではない（消費者庁の一覧の小さな回収）"
     if hit["kind"] == "breach" and hit.get("scale", 0) >= int(cfg["min_scale"]):
@@ -706,6 +709,7 @@ def load_state(path: Path | None = None) -> dict:
         data = {}
     data.setdefault("items", {})
     data.setdefault("seen", {})
+    data.setdefault("homes", {})
     return data
 
 
@@ -715,7 +719,8 @@ def save_state(data: dict, now: datetime | None = None, path: Path | None = None
     keep_seen = now - timedelta(days=SEEN_KEEP_DAYS)
     items = {k: v for k, v in data["items"].items() if (parse_time(v.get("detectedAt")) or now) >= keep_items}
     seen = {k: v for k, v in data["seen"].items() if (parse_time(v) or now) >= keep_seen}
-    out = {"updated": iso(now), "items": dict(sorted(items.items())), "seen": dict(sorted(seen.items()))}
+    out = {"updated": iso(now), "items": dict(sorted(items.items())), "seen": dict(sorted(seen.items())),
+           "homes": dict(sorted((data.get("homes") or {}).items()))}
     target = path or STATE_PATH
     target.parent.mkdir(parents=True, exist_ok=True)
     target.write_text(json.dumps(out, ensure_ascii=False, indent=2) + "\n", "utf-8")
@@ -785,6 +790,34 @@ def gather(cfg: dict, fetch_bytes) -> tuple[list[dict], dict[str, dict], list[st
     return items, sources, errors
 
 
+def gather_homes(cfg: dict, fetch_page, checked: dict, now: datetime) -> tuple[list[dict], dict[str, dict], list[str]]:
+    """会社自身のお知らせの欄を直接見る（cfg の homes。他社が伝えるのを待たない）。トップ・お知らせ一覧のリンクのうち、
+    題名が情報流出・回収のものを候補にする。checked は会社ごとの前回読めた時刻（state の homes）: 新しいリンクは
+    「前回の確認より後に出た」と分かるので、発表から公開までの時間の上限として記録に使う"""
+    items: list[dict] = []
+    errors: list[str] = []
+    sources: dict[str, dict] = {}
+    for home in cfg.get("homes") or []:
+        slug = f"home:{home['name']}"
+        sources[slug] = {"slug": slug, "official": True, "company": home["name"], "aliases": list(home.get("aliases") or [])}
+        try:
+            page = fetch_page(home["url"])
+        except Exception as error:  # noqa: BLE001 - 1社読めなくてもほかで続ける
+            errors.append(f"{slug}: {str(error)[:60]}")
+            continue
+        site = _site(home["url"])
+        for link in page.get("links") or []:
+            url, text = str(link.get("url") or ""), nfkc(str(link.get("text") or "")).strip()
+            if url.startswith("http://") and _site(url) == site:
+                url = "https://" + url[len("http://"):]
+            if len(text) < 8 or classify(text, "", cfg) not in ("breach", "recall") or is_home(url) or not official_candidate(url, cfg):
+                continue
+            items.append({"title": text[:200], "url": url, "summary": "", "published": None, "source": slug,
+                          "appearedAfter": str(checked.get(home["name"]) or "")})
+        checked[home["name"]] = iso(now)
+    return items, sources, errors
+
+
 def merge_backfill(backfill: dict[str, dict], hits: dict[str, dict]) -> dict[str, dict]:
     """取りこぼしの一覧と、この回に見つけた候補を合わせる（同じ会社は1つに。一覧の印・会社のサイト・公式の URL を残し、見つけた見出しを足す）"""
     out = dict(backfill)
@@ -848,16 +881,20 @@ def step(state: dict, hits: dict[str, dict], articles: list[dict], fetch_page, c
                 entry.update(status="new", backfill=True, tries=0, home=hit.get("home") or entry.get("home", ""),
                              official=hit.get("official") or entry.get("official", ""), aliases=hit.get("aliases") or entry.get("aliases") or [])
             continue
-        if entry.get("status") in ("covered", "published") and fresh:
-            # もう記事がある会社の新しい見出し: 前の検知から時間がたっていれば「続きの知らせ」（第2報・件数の確定など）として別に確かめる。
-            # 無印良品は第2報（11/4）で約109万件のカード番号が出た。公式のお知らせが記事より新しいときだけ速報レーンに回す
+        own_new = [d for d in fresh if d.get("official")]
+        if fresh and (entry.get("status") in ("covered", "published") or (own_new and entry.get("status") in ("skipped", "failed"))):
+            # もう記事がある（か、前のお知らせを見送った）会社の新しい見出し: 「続きの知らせ」（第2報・件数の確定など）として別に確かめる。
+            # 無印良品は第2報（11/4）で約109万件のカード番号が出た。公式のお知らせが記事より新しいときだけ速報レーンに回す。
+            # 他社の見出しは前の検知から時間がたっているときだけ（同じ日の後追いの記事で何度も確かめない）。会社自身の新しいお知らせはすぐ
             base = parse_time(entry.get("detectedAt")) or now
             newest = max((t for d in fresh if (t := parse_time(d.get("publishedAt")))), default=now)
-            if newest - base >= timedelta(hours=FOLLOWUP_GAP_HOURS):
-                fkey = f"{key}#{newest.astimezone(JST):%Y%m%d}"
+            if own_new or newest - base >= timedelta(hours=FOLLOWUP_GAP_HOURS):
+                tail = hashlib.sha1(fresh[0]["url"].encode("utf-8")).hexdigest()[:6] if own_new else ""
+                fkey = f"{key}#{newest.astimezone(JST):%Y%m%d}{tail}"
                 if fkey not in state["items"]:
                     follow = _new_entry({**hit, "key": fkey, "discovery": fresh, "aliases": entry.get("aliases") or hit.get("aliases") or []}, now, cfg)
-                    follow.update(followup=True, home=entry.get("home", ""), status="new", reason="", needScale=False)
+                    follow.update(followup=entry.get("status") in ("covered", "published"), home=entry.get("home", ""), status="new",
+                                  reason="", needScale=False)
                     state["items"][fkey] = follow
             continue
         entry.setdefault("discovery", []).extend(fresh)
@@ -875,7 +912,8 @@ def step(state: dict, hits: dict[str, dict], articles: list[dict], fetch_page, c
         if entry.get("status") not in ("new", "press"):
             continue
         label = cfg["types"][entry["kind"]]["label"]
-        if entry["status"] == "new" and not entry.get("discoveredAt") and not entry.get("backfill") and resolved < max_resolve:
+        if entry["status"] == "new" and not entry.get("discoveredAt") and not entry.get("backfill") and not entry.get("ownSite") \
+                and resolved < max_resolve:
             # 日付の無い一覧（消費者庁のリコール情報）の項目: 項目のページの日付（対応開始日）を読む。古い・読めないものは拾わない
             resolved += 1
             when = None
@@ -884,14 +922,18 @@ def step(state: dict, hits: dict[str, dict], articles: list[dict], fetch_page, c
                     page = fetch_page(d["url"])
                 except Exception:  # noqa: BLE001
                     continue
-                when = text_date(f"{page.get('title') or ''}\n{page.get('text') or ''}", now)
+                when = announced_of(page, now, d["url"])[0]
                 if when:
-                    d["publishedAt"] = iso(when)
+                    if not d.get("official"):
+                        d["publishedAt"] = iso(when)
                     break
             if not when or now - when > timedelta(days=int(cfg["max_age_days"])):
                 entry.update(status="skipped", reason="発表の日が分からない・古い（一覧の上に固定された項目など）")
                 continue
-            entry["discoveredAt"] = iso(when)
+            if not all(d.get("official") for d in entry.get("discovery") or []):
+                entry["discoveredAt"] = iso(when)  # 一覧に載った日（他社の初報の代わり）。会社自身のお知らせには「他社の初報」は無い
+            else:
+                entry["ownSite"] = True
         if slug := covered(entry, articles, cfg=cfg):
             entry.update(status="covered", slug=slug, reason="同じ事故の記事がある")
             notes.append(f"記事あり: {entry['name']} → {slug}")
@@ -938,6 +980,9 @@ def step(state: dict, hits: dict[str, dict], articles: list[dict], fetch_page, c
         if announced and now - announced > timedelta(days=int(cfg["max_age_days"])):
             entry.update(status="skipped", reason=f"発表から{(now - announced).days}日（{cfg['max_age_days']}日より古い）")
             continue
+        after = next((d.get("appearedAfter") for d in entry.get("discovery") or [] if d.get("url") == found["url"] and d.get("appearedAfter")), "")
+        if after:
+            entry["appearedAfter"] = after  # 会社のサイトを前に確かめた時刻（このお知らせはそれより後に出た）
         entry.update(status="queued", reason="")
         notes.append(f"公式あり: {entry['name']}（{label}）→ {found['url']}（{found['via']}）")
     return notes
@@ -1043,6 +1088,8 @@ def latency_rows(state: dict) -> list[dict]:
             "detectedAt": entry.get("detectedAt") or "", "dispatchedAt": entry.get("firstDispatchedAt") or "", "publishedAt": end,
             # 発表の時刻が日付だけのときは「発表から何分」を出さない（うその速さを書かない）
             "announceToPublish": minutes(entry.get("announcedAt"), end) if exact else None,
+            # 会社のサイトを自分で見張っていて、前の確認より後に出たと分かるお知らせは「長くても何分」を出す（上限。本当はこれより短い）
+            "announceToPublishMax": minutes(entry.get("appearedAfter"), end) if entry.get("appearedAfter") else None,
             "pressToDetect": minutes(entry.get("discoveredAt"), entry.get("detectedAt")),
             "detectToPublish": minutes(entry.get("detectedAt"), end),
         })
@@ -1073,11 +1120,13 @@ def report_markdown(state: dict, cfg: dict | None = None) -> str:
     for r in rows[:40]:
         announced = _fmt(r["announcedAt"]) + ("" if r["announcedExact"] or not r["announcedAt"] else "（日付のみ）")
         lines.append(f"| {r['name']}{'（拾い直し）' if r['backfill'] else ''} | {cfg['types'][r['kind']]['label']} | {announced} | {_fmt(r['discoveredAt'])} | "
-                     f"{_fmt(r['detectedAt'])} | {_fmt(r['publishedAt'])} | {_min(r['announceToPublish'])} | {_min(r['pressToDetect'])} | "
+                     f"{_fmt(r['detectedAt'])} | {_fmt(r['publishedAt'])} | "
+                     f"{_min(r['announceToPublish']) if r['announceToPublish'] is not None or r['announceToPublishMax'] is None else '長くても' + _min(r['announceToPublishMax'])} | "
+                     f"{_min(r['pressToDetect'])} | "
                      f"{_min(r['detectToPublish'])} | {r['slug']} |")
     if not rows:
         lines.append("| （まだ公開した記事がありません） | | | | | | | | | |")
-    lines += ["", "発表の時刻が日付しか分からないものは「発表→公開」を出しません（—）。「公開」は本番で開けた時刻（state/live_log.json）、無ければ記事を作った時刻です。"]
+    lines += ["", "発表の時刻が日付しか分からないものは「発表→公開」を出しません（—）。会社のサイトを直接見張っていて、前の確認より後に出たと分かるものだけ「長くても◯分」と出します。「公開」は本番で開けた時刻（state/live_log.json）、無ければ記事を作った時刻です。"]
     waiting = [e for e in state["items"].values() if e.get("status") in ("queued", "dispatched", "press", "failed")]
     if waiting:
         lines += ["", "**まだ記事になっていないもの**"]
@@ -1124,6 +1173,8 @@ def run(args) -> int:
         live = {}
     notes = settle(state, fast_lane.load_acks(), articles, live, now, cfg)
     items, sources, errors = gather(cfg, _fetch_bytes)
+    home_items, home_sources, home_errors = gather_homes(cfg, _fetch_page, state["homes"], now)
+    items, sources, errors = items + home_items, {**sources, **home_sources}, errors + home_errors
     fresh = []
     for item in items:
         sid = hashlib.sha1(item["url"].encode("utf-8")).hexdigest()[:16]

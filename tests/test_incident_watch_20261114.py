@@ -366,6 +366,81 @@ class StepTest(unittest.TestCase):
         self.assertEqual(state["items"][key]["status"], "skipped")
 
 
+class OwnSiteTest(unittest.TestCase):
+    """会社自身のお知らせの欄を直接見る（他社が伝えるのを待たない）"""
+
+    HOME = "https://www.monteur.co.jp/"
+    NOTICE_URL = "https://www.monteur.co.jp/information/5001"
+    CFG1 = {**CFG, "homes": [{"name": "モンテール", "url": HOME}]}
+
+    def pages(self, date="2026年11月14日"):
+        body = f"商品の回収に関するお詫びとお知らせ\n{date}\n弊社が製造した商品の一部を自主回収いたします。" + "対象の商品と連絡先は次のとおりです。" * 80
+        return {self.HOME: page("トップ", [{"url": self.NOTICE_URL, "text": "商品の回収に関するお詫びとお知らせ"},
+                                         {"url": "https://www.monteur.co.jp/information/4177", "text": "11月新商品のお知らせ"},
+                                         {"url": "https://www.monteur.co.jp/sustainability/", "text": "回収キャップを再資源化する取り組み"}]),
+                self.NOTICE_URL: page(body)}
+
+    def test_new_notice_on_the_company_site_is_queued_with_an_upper_bound(self):
+        pages = self.pages()
+        checked = {"モンテール": "2026-11-14T02:45:00+00:00"}
+        items, sources, errors = iw.gather_homes(self.CFG1, lambda u: pages[u], checked, NOW)
+        self.assertEqual([i["url"] for i in items], [self.NOTICE_URL])  # 新商品・取り組みのリンクは拾わない
+        self.assertEqual(errors, [])
+        self.assertEqual(checked["モンテール"], iw.iso(NOW))
+        hits = iw.detect(items, sources, self.CFG1, NOW)
+        self.assertEqual(set(hits), {"recall:モンテール"})
+        self.assertTrue(iw.significant(hits["recall:モンテール"], self.CFG1)[0])
+        state = {"items": {}, "seen": {}, "homes": checked}
+        iw.step(state, hits, [], lambda u: pages[u], self.CFG1, NOW)
+        entry = state["items"]["recall:モンテール"]
+        self.assertEqual((entry["status"], entry["officialUrl"]), ("queued", self.NOTICE_URL))
+        self.assertEqual(entry["appearedAfter"], "2026-11-14T02:45:00+00:00")
+        entry.update(status="published", slug="monteur-recall", publishedAt="2026-11-14T03:10:00+00:00")
+        row = iw.latency_rows(state)[0]
+        self.assertIsNone(row["announceToPublish"])          # 発表の時刻は日付しか分からない
+        self.assertEqual(row["announceToPublishMax"], 25.0)  # 前の確認（11:45）より後に出たので、長くても25分
+        self.assertIn("長くても25分", iw.report_markdown(state, self.CFG1))
+
+    def test_old_notice_on_the_first_look_is_not_made(self):
+        pages = self.pages(date="2026年10月1日")
+        checked = {}
+        items, sources, _ = iw.gather_homes(self.CFG1, lambda u: pages[u], checked, NOW)
+        state = {"items": {}, "seen": {}, "homes": checked}
+        iw.step(state, iw.detect(items, sources, self.CFG1, NOW), [], lambda u: pages[u], self.CFG1, NOW)
+        self.assertEqual(state["items"]["recall:モンテール"]["status"], "skipped")
+
+    def test_second_notice_from_the_company_is_checked_at_once(self):
+        pages = self.pages(date="2026年11月15日")
+        made = article("monteur-recall", "モンテールのシュークリーム回収、対象の商品と連絡先", "https://www.monteur.co.jp/information/4189", made="2026-11-14T04:00:00+00:00")
+        state = {"seen": {}, "homes": {}, "items": {"recall:モンテール": {
+            "key": "recall:モンテール", "kind": "recall", "name": "モンテール", "status": "published", "slug": "monteur-recall",
+            "detectedAt": "2026-11-14T03:00:00+00:00", "discovery": [{"source": "home:モンテール", "url": "https://www.monteur.co.jp/information/4189", "official": True}]}}}
+        later = NOW + timedelta(hours=30)
+        items, sources, _ = iw.gather_homes(self.CFG1, lambda u: pages[u], state["homes"], later)
+        iw.step(state, iw.detect(items, sources, self.CFG1, later), [made], lambda u: pages[u], self.CFG1, later)
+        follow = [e for k, e in state["items"].items() if "#" in k]
+        self.assertEqual(len(follow), 1)
+        self.assertEqual((follow[0]["status"], follow[0]["officialUrl"]), ("queued", self.NOTICE_URL))  # 記事より新しい第2報は速報レーンが続報か決める
+
+    def test_unreadable_site_does_not_stop_the_others(self):
+        def fetch(url):
+            raise RuntimeError("HTTP Error 403")
+
+        checked = {"モンテール": "x"}
+        items, _sources, errors = iw.gather_homes(self.CFG1, fetch, checked, NOW)
+        self.assertEqual(items, [])
+        self.assertEqual(len(errors), 1)
+        self.assertEqual(checked["モンテール"], "x")  # 読めなかった回は「前回の確認」を進めない
+
+    def test_listed_homes(self):
+        names = [h["name"] for h in CFG["homes"]]
+        self.assertEqual(len(names), len(set(names)))
+        for want in ["良品計画", "ノジマ", "クラブツーリズム", "アイスタイル", "ソラシドエア", "SUBARU", "シェアフル", "モンテール", "資生堂"]:
+            self.assertIn(want, names)
+        for h in CFG["homes"]:
+            self.assertTrue(iw.official_candidate(h["url"]), h["name"])
+
+
 class FastLaneTest(unittest.TestCase):
     """速報レーン（scripts/web_articles.py）: 事故の見張りの依頼を受け付け、門・上限・古さの決まりの外で作る"""
 
