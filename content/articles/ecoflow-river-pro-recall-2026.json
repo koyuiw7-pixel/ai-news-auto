@@ -76,9 +76,9 @@
     }
   ],
   "todayActions": [
-    "底面のシールで、型番がEFRIVER600PRO-JPかを確かめる",
-    "ファームウェア未更新なら、直ちに使用を中止して050-3355-3196（平日10:00～19:00）へ連絡する",
-    "型番が一致したら、公式ページの回収・ギフトカード交換受付フォームから申し込む（会員登録が必要）"
+    "製品の底面で型番を確かめ、EFRIVER600PRO-JPと一致するかを見る",
+    "ファームウェア未更新なら直ちに使用を中止し、050-3355-3196へ連絡する",
+    "EcoFlowの会員登録を済ませてから、回収・ギフトカード交換受付フォームで申し込む"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -143,5 +143,142 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/ecoflow-river-pro-recall-2026-figure-efa2dddc.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "消費者庁は、この公表内容は速報段階のもので、今後の追加情報や事故調査の進展により変更・削除される可能性があるとしています。",
+      "source": "https://www.caa.go.jp/notice/assets/consumer_safety_cms202_261113_01.pdf"
+    },
+    {
+      "text": "ギフトカードは「EcoFlow公式ストア」（https://jp.ecoflow.com/）で使えます。本体の返送は4万円分、専用エクストラバッテリーの返送は1万円分です。",
+      "source": "https://www.ecoflow.com/jp/river-pro-return-and-replacement"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "EcoFlow Technology Japan株式会社 お問い合わせ窓口",
+      "url": "https://www.ecoflow.com/jp/river-pro-return-and-replacement",
+      "source": "https://www.ecoflow.com/jp/river-pro-return-and-replacement",
+      "phone": "050-3355-3196",
+      "hours": "平日10:00～19:00（土・日・祝祭日を除く）",
+      "note": "メールは riverpro-jp.support@ecoflow.com。よくあるご質問（FAQ）もこのページにあります。"
+    },
+    {
+      "name": "回収・ギフトカード交換受付フォーム",
+      "url": "https://www.ecoflow.com/jp/river-pro-return-submit",
+      "source": "https://www.ecoflow.com/jp/river-pro-return-and-replacement",
+      "howTo": [
+        "回収・交換プログラムのお手続き",
+        "STEP 2｜お申し込み",
+        "回収・ギフトカード交換受付フォーム"
+      ],
+      "note": "EcoFlowの会員登録のあとに申し込みます。2026年9月24日から受付けています。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "製品の底面で型番を確かめ、EFRIVER600PRO-JPと一致するかを見る",
+      "source": "https://www.ecoflow.com/jp/river-pro-return-and-replacement",
+      "steps": [
+        "製品の底面で型番を確認する",
+        "EFRIVER600PRO-JPと照合する",
+        "一致しなければ、この回収の対象ではない"
+      ]
+    },
+    {
+      "action": "ファームウェア未更新なら直ちに使用を中止し、050-3355-3196へ連絡する",
+      "source": "https://www.caa.go.jp/notice/assets/consumer_safety_cms202_261113_01.pdf",
+      "steps": [
+        "製品の使用を止める",
+        "電話050-3355-3196へ連絡する",
+        "受付は平日10:00～19:00"
+      ],
+      "url": "https://www.ecoflow.com/jp/river-pro-return-and-replacement"
+    },
+    {
+      "action": "EcoFlowの会員登録を済ませてから、回収・ギフトカード交換受付フォームで申し込む",
+      "source": "https://www.ecoflow.com/jp/river-pro-return-and-replacement",
+      "steps": [
+        "EcoFlowの会員登録をする",
+        "回収・ギフトカード交換受付フォームを開く",
+        "申し込み内容を入力して送る"
+      ],
+      "url": "https://www.ecoflow.com/jp/river-pro-return-submit"
+    }
+  ],
+  "cause": {
+    "text": "茨城県の火災の原因は調査中と発表されています。一方、EcoFlowは長期間の使用に伴うバッテリー劣化を原因とする極めて稀な発煙・発火を確認したとしています。消費者庁はリコールの理由を「セルの異常発熱による火災事故が多発したこと」と説明しています。",
+    "status": "investigating",
+    "source": "https://www.caa.go.jp/notice/assets/consumer_safety_cms202_261113_01.pdf"
+  },
+  "worries": [
+    {
+      "q": "まだ使っていても大丈夫？",
+      "a": "消費者庁の資料は、ファームウェア未更新の人は直ちに使用を中止し、速やかに問い合わせ窓口へ連絡するよう記しています。アップデート済みの人からは、その後の発煙・発火の報告は確認されていないとEcoFlowは説明しています。",
+      "source": "https://www.caa.go.jp/notice/assets/consumer_safety_cms202_261113_01.pdf",
+      "action": "まず底面の型番を確かめ、未更新なら使用を止めて050-3355-3196へ連絡する"
+    },
+    {
+      "q": "ファームウェアを更新済みでも対象？",
+      "a": "対象です。EcoFlowは、すでにファームウェアアップデートを実施した人も本交換プログラムの対象になるとしています。型番が一致すれば、更新の有無にかかわらず申し込めます。",
+      "source": "https://www.ecoflow.com/jp/river-pro-return-and-replacement",
+      "action": "型番がEFRIVER600PRO-JPなら、更新の有無にかかわらず受付フォームから申し込める"
+    },
+    {
+      "q": "申し込んだあと、何がいつ届く？",
+      "a": "申し込み内容の確認後、10営業日以内を目安に梱包資材と返送用の送り状が届きます。到着後7営業日以内を目安に、バッテリー残量を0％まで放電し、同梱の耐火シートで包んで返送します。",
+      "source": "https://www.ecoflow.com/jp/river-pro-return-and-replacement",
+      "action": "EcoFlowの会員登録を済ませてから、回収・ギフトカード交換受付フォームで申し込む"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "未更新のまま使い続けてよい？",
+      "situation": "型番が一致し、ファームウェアが未更新",
+      "recommend": "使用を中止し、早めに連絡する",
+      "reason": "消費者庁の資料は、未更新の人は直ちに使用を中止し、速やかに問い合わせ窓口へ連絡するよう記しています。使用を止めても、回収の申し込みは別に行えます。",
+      "source": "https://www.caa.go.jp/notice/assets/consumer_safety_cms202_261113_01.pdf"
+    },
+    {
+      "question": "更新済みでも回収に出すべき？",
+      "situation": "型番が一致し、ファームウェアを更新済み",
+      "recommend": "申し込める対象。急ぐかは検討する価値がある",
+      "reason": "EcoFlowは、すでにアップデートを実施した人も交換プログラムの対象になるとしています。アップデート後の発煙・発火の報告は確認されていないとされていますが、茨城県の火災の原因は調査中です。",
+      "source": "https://www.ecoflow.com/jp/river-pro-return-and-replacement"
+    },
+    {
+      "question": "型番が違うときはどうする？",
+      "situation": "底面の型番がEFRIVER600PRO-JPと違う",
+      "recommend": "この回収の手続きは不要",
+      "reason": "消費者庁の資料では、対象の品番はEFRIVER600PRO-JP、販売期間は2020年11月から2024年4月と記されています。型番が違えば、この回収の対象ではありません。",
+      "source": "https://www.caa.go.jp/notice/assets/consumer_safety_cms202_261113_01.pdf"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "速報の数字は、後から変わることもある",
+    "cause": "茨城の火災は、まだ原因が分かっていない",
+    "steps": "まず型番を確かめ、一致したら申し込む",
+    "desk": "問い合わせ先と、申し込みの入口",
+    "worries": "使い続けて大丈夫？更新済みでも対象？",
+    "guide": "型番が一致したときの動き方"
+  },
+  "depthAt": "2026-11-14T06:55:42+00:00",
+  "updatedAt": "2026-11-14T06:55:42+00:00",
+  "updates": [
+    {
+      "at": "2026-11-14T06:55:42+00:00",
+      "kind": "facts",
+      "title": "公式の資料をもとに、「なるほどの要点」・「公式の窓口」・「今日やること」・「理由」・「よくある不安」・「判断の目安」を追記しました",
+      "sourceUrl": "https://www.caa.go.jp/notice/entry/048140/",
+      "sourceName": "消費者庁「消費生活用製品の重大製品事故:リコール製品で火災等(ポータブル電源(リチウムイオン))(11月13日)」（2026年11月13日公表、公表資料PDF付き）"
+    }
+  ],
+  "figures": [
+    {
+      "src": "/fig/ecoflow-river-pro-recall-2026-fig1.png",
+      "alt": "",
+      "caption": "",
+      "after_heading": "型番の確かめ方と対象の範囲"
+    }
+  ]
 }

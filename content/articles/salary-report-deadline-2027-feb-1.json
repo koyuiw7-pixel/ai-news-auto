@@ -65,7 +65,7 @@
   "videoTitle": "給与支払報告書の提出期限は2027年2月1日です　本来の1月31日が日曜日になる年",
   "publishedAt": "2026-11-14T06:37:57.824166+00:00",
   "generatedAt": "2026-11-14T06:38:14.941218+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/salary-report-deadline-2027-feb-1-figure-5e024aa0.jpg",
   "model": "anthropic-api:claude-haiku-5-5",
   "affiliates": [],
   "newsType": "research",
@@ -119,5 +119,135 @@
   "qualityScore": 92,
   "detectedAt": "2026-11-14T06:40:12+00:00",
   "layout": "noir",
-  "summaryLine": "令和8年分の給与支払報告書の提出期限は2027年2月1日（月）で、本来の1月31日が日曜日に当たる"
+  "summaryLine": "令和8年分の給与支払報告書の提出期限は2027年2月1日（月）で、本来の1月31日が日曜日に当たる",
+  "insight": [
+    {
+      "text": "非居住者に国内の人的役務の対価として給与等を支払った場合は、源泉徴収票ではなく「非居住者に支払われる給与、報酬、年金及び賞金の支払調書」を提出します。支払金額が年間50万円以下なら提出は不要です。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/hotei/7411.htm?aw_shiharaichousho"
+    },
+    {
+      "text": "源泉徴収票は、支払を受ける方の承諾を得るなど一定の要件のもとで電磁的方法で提供できます。ただし、電磁的方法で提供した場合でも、受給者から請求があるときは書面で交付しなければなりません。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/hotei/7411.htm?aw_shiharaichousho"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "国税庁 令和8年分 給与所得の源泉徴収票等の法定調書の作成と提出の手引（提出期限）",
+      "url": "https://www.nta.go.jp/publication/pamph/hotei/tebikihtml/1-1.htm",
+      "source": "https://www.nta.go.jp/publication/pamph/hotei/tebikihtml/1-1.htm",
+      "howTo": [
+        "ホーム",
+        "刊行物等",
+        "パンフレット・手引",
+        "令和8年分 給与所得の源泉徴収票等の法定調書の作成と提出の手",
+        "提出期限"
+      ],
+      "note": "給与支払報告書と退職所得の特別徴収票の提出先は、各市区町村となります。"
+    },
+    {
+      "name": "国税庁 源泉徴収票のみなし提出の特例",
+      "url": "https://www.nta.go.jp/publication/pamph/hotei/tebikihtml/2-2.htm",
+      "source": "https://www.nta.go.jp/publication/pamph/hotei/tebikihtml/2-2.htm",
+      "howTo": [
+        "ホーム",
+        "刊行物等",
+        "パンフレット・手引",
+        "令和8年分 給与所得の源泉徴収票等の法定調書の作成と提出の手",
+        "源泉徴収票のみなし提出の特例"
+      ],
+      "note": "eLTAXを使うと、給与支払報告書のデータが提出先の各市区町村へ自動で振り分けて送信されます。"
+    },
+    {
+      "name": "国税庁 タックスアンサー No.7411「給与所得の源泉徴収票」の提出範囲と提出枚数等",
+      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/hotei/7411.htm?aw_shiharaichousho",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/hotei/7411.htm?aw_shiharaichousho",
+      "note": "提出範囲、非居住者へ支払った場合の扱い、電子交付の注意がまとまっています。"
+    }
+  ],
+  "cause": {
+    "text": "令和8年分から源泉徴収票の提出範囲が広がり、給与支払報告書の提出範囲と同じになりました。令和9年1月1日以降は、市区町村へ給与支払報告書を出せば税務署提出分とみなされます。",
+    "status": "background",
+    "source": "https://www.nta.go.jp/publication/pamph/hotei/tebiki2026/PDF/02.pdf"
+  },
+  "worries": [
+    {
+      "q": "退職した人の分は、どこへいつまでに出す？",
+      "a": "退職時の住所地の市区町村へ給与支払報告書を出します。令和8年中の支払金額が30万円以下なら提出を省略できます。提出期限は令和9年2月1日（月）です。",
+      "source": "https://www.nta.go.jp/publication/pamph/hotei/tebiki2026/PDF/02.pdf",
+      "action": "退職者ごとに令和8年中の支払金額が30万円を超えるかを確かめ、超えていれば退職時の住所地の市区町村へ分けて出す"
+    },
+    {
+      "q": "本人に渡す源泉徴収票は、市区町村へ出せば不要？",
+      "a": "市区町村へ給与支払報告書を出せば、税務署への提出は不要になります。ただし受給者本人への交付は、特例を使っても引き続き必要です。外国人の従業員も対象です。",
+      "source": "https://www.nta.go.jp/publication/pamph/hotei/tebikihtml/2-2.htm",
+      "action": "全従業員の源泉徴収票を作り、退職者は退職の日以後1か月以内に本人へ交付する",
+      "actionSource": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/hotei/7411.htm?aw_shiharaichousho"
+    },
+    {
+      "q": "本人に渡す源泉徴収票に、マイナンバーは書く？",
+      "a": "税務署へ出す源泉徴収票には受給者のマイナンバーを記載する必要がありますが、受給者に交付する源泉徴収票には、マイナンバーも法人番号も記載しません。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/hotei/7411.htm?aw_shiharaichousho",
+      "action": "本人へ渡す源泉徴収票に、マイナンバーや法人番号が書かれていないかを交付前に確かめる"
+    },
+    {
+      "q": "電子で渡す場合、本人の同意は必要？",
+      "a": "あらかじめ支払を受ける方の承諾を得るなど一定の要件のもとで、電磁的方法で提供できます。受給者から請求があれば、書面で交付しなければなりません。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/hotei/7411.htm?aw_shiharaichousho",
+      "action": "従業員に電子交付の承諾を取るか、書面で渡すかを決め、請求があれば書面を用意する"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "前々年の源泉徴収票が30枚以上あったら、どうする？",
+      "situation": "前々年に税務署へ出すべき枚数が30枚以上だった",
+      "recommend": "eLTAXか光ディスク等で提出する",
+      "reason": "30枚以上の場合、給与支払報告書はeLTAXか光ディスク等の電子的方法で提出する必要があります。eLTAXなら各市区町村へ自動で振り分けられます。",
+      "source": "https://www.nta.go.jp/publication/pamph/hotei/tebikihtml/2-2.htm"
+    },
+    {
+      "question": "前々年の枚数が30枚未満なら、書面で出してもよい？",
+      "situation": "30枚未満で、eLTAXを使わない場合",
+      "recommend": "書面でも提出できる。eLTAXは事務負担が軽い",
+      "reason": "提出方法は、eLTAX、光ディスク等、書面のいずれかです。eLTAXはコストや事務負担の軽減が案内されています。",
+      "source": "https://www.nta.go.jp/publication/pamph/hotei/tebikihtml/2-2.htm"
+    },
+    {
+      "question": "本人への源泉徴収票は電子で渡してもよい？",
+      "situation": "従業員が電子交付に承諾している",
+      "recommend": "承諾の範囲で電子交付を使える",
+      "reason": "承諾など一定の要件を満たせば電磁的方法で提供できます。ただし、従業員から請求があれば書面で交付しなければなりません。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/hotei/7411.htm?aw_shiharaichousho"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "非居住者への支払いは、別の調書になる場合がある",
+    "cause": "なぜ制度が変わるのか、いま分かっていること",
+    "desk": "公式の確認先と、そこまでの道順",
+    "worries": "本人への交付や退職者の分は大丈夫？",
+    "guide": "eLTAXか書面か、交付方法の決め方"
+  },
+  "depthAt": "2026-11-14T06:54:29+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "給与支払報告書の提出期限は2027年2月1日",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-14T06:55:54+00:00"
+  },
+  "imageFocus": {
+    "x": 0.49,
+    "y": 0.422,
+    "box": [
+      0.087,
+      0.077,
+      0.894,
+      0.768
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/salary-report-deadline-2027-feb-1-figure-5e024aa0.jpg"
+  }
 }

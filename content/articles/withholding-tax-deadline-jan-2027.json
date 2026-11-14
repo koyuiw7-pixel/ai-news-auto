@@ -66,13 +66,13 @@
   "videoTitle": "源泉所得税は2027年1月12日まで、納期の特例なら1月20日まで　令和8年分の年末調整後の納付期限",
   "publishedAt": "2026-11-14T06:36:11.430833+00:00",
   "generatedAt": "2026-11-14T06:37:28.542443+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/withholding-tax-deadline-jan-2027-figure-c51e01fd.jpg",
   "model": "anthropic-api:claude-haiku-5-5",
   "affiliates": [],
   "newsType": "policy",
   "todayActions": [
-    "自社が「源泉所得税の納期の特例の承認に関する申請書」を出しているか、経理の記録を確かめる",
-    "特例を受けていなければ2027年1月12日、受けていれば1月20日を納付期限として予定に入れる",
+    "自社が納期の特例の申請書を出しているか、税務署への提出記録を確かめる",
+    "特例を受けていなければ1月12日、受けていれば1月20日を納付期限として予定に入れる",
     "納める税額が0円でも、本税欄が0の所得税徴収高計算書を所轄の税務署に出す"
   ],
   "writer": "muse",
@@ -117,5 +117,140 @@
   "detectedAt": "2026-11-14T06:37:37+00:00",
   "searchTitle": "年末調整の源泉所得税の納付期限は1月12日　特例なら1月20日",
   "layout": "noir",
-  "summaryLine": "令和8年分の年末調整に係る源泉所得税の納付期限は、原則の令和9年1月12日（火）です"
+  "summaryLine": "令和8年分の年末調整に係る源泉所得税の納付期限は、原則の令和9年1月12日（火）です",
+  "insight": [
+    {
+      "text": "特例の申請は、却下の通知がなければ、申請書を出した月の翌月末日に承認されたとみなされ、翌月に源泉徴収する分から対象になります。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2505.htm"
+    },
+    {
+      "text": "特例の対象は給与や退職金と税理士・弁護士・司法書士などの一定の報酬だけで、それ以外の報酬は支払った月の翌月10日までに納めます。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2505.htm"
+    },
+    {
+      "text": "申請書を2月に提出した場合、2月支給分の納期限は3月10日、3月から6月支給分は7月10日になります。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2505.htm"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "所轄の税務署（納期の特例の申請書の提出先）",
+      "url": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/gensen/annai/1648_14.htm",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2505.htm",
+      "howTo": [
+        "関連リンク",
+        "「源泉所得税の納期の特例の承認に関する申請書」"
+      ],
+      "note": "提出先は、給与等を支払う事務所などの所在地を所轄する税務署です。"
+    },
+    {
+      "name": "国税に関するご相談窓口（税についての相談窓口）",
+      "url": "https://www.nta.go.jp/taxes/shiraberu/shirabekata/9200.htm",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2505.htm",
+      "howTo": [
+        "お問い合わせ先",
+        "税についての相談窓口"
+      ],
+      "note": "国税に関するご相談は、税についての相談窓口をご覧ください。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "自社が納期の特例の申請書を出しているか、税務署への提出記録を確かめる",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2505.htm",
+      "steps": [
+        "申請書の提出先は所轄の税務署",
+        "提出の記録がなければ特例の対象外と考える",
+        "却下の通知がなければ翌月末日に承認とみなされる"
+      ],
+      "url": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/gensen/annai/1648_14.htm"
+    },
+    {
+      "action": "特例を受けていなければ1月12日、受けていれば1月20日を納付期限として予定に入れる",
+      "source": "https://www.nta.go.jp/publication/pamph/gensen/nencho2026/pdf/101.pdf",
+      "steps": [
+        "原則は支払った月の翌月10日",
+        "特例は7月から12月分を翌年1月20日",
+        "10日か20日が休日なら休日明けの日が期限"
+      ],
+      "url": "https://www.nta.go.jp/publication/pamph/gensen/nencho2026/01.htm"
+    },
+    {
+      "action": "納める税額が0円でも、本税欄が0の所得税徴収高計算書を所轄の税務署に出す",
+      "source": "https://www.nta.go.jp/publication/pamph/gensen/nencho2026/pdf/101.pdf",
+      "steps": [
+        "本税欄に「0」と記載した計算書を使う",
+        "所轄の税務署に提出する",
+        "データはe-Taxで送信できる"
+      ],
+      "url": "https://www.nta.go.jp/publication/pamph/gensen/nencho2026/01.htm"
+    }
+  ],
+  "cause": {
+    "text": "給与の支給人員が常時10人未満の源泉徴収義務者は、源泉徴収した所得税を半年分まとめて納める「納期の特例」を使えます。特例では1月から6月分は7月10日、7月から12月分は翌年1月20日が期限になります。",
+    "status": "background",
+    "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2505.htm"
+  },
+  "worries": [
+    {
+      "q": "去年と同じ1月20日で納めて大丈夫？",
+      "a": "原則は給与などを支払った月の翌月10日までに納めます。特例の承認を受けている場合は、1月から6月分は7月10日、7月から12月分は翌年1月20日が期限です。",
+      "source": "https://www.nta.go.jp/publication/pamph/gensen/nencho2026/pdf/101.pdf",
+      "action": "経理の記録で申請書の提出を確かめ、特例の有無で納付期限を決める",
+      "actionSource": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2505.htm"
+    },
+    {
+      "q": "納める税額が0円なら、何も出さなくていい？",
+      "a": "納付する税額がない場合でも、「本税」欄が「0」の所得税徴収高計算書を所轄の税務署に提出します。データはe-Taxで送信することもできます。",
+      "source": "https://www.nta.go.jp/publication/pamph/gensen/nencho2026/pdf/101.pdf",
+      "action": "納める税額が0円でも、本税欄が0の所得税徴収高計算書を所轄の税務署に出す"
+    },
+    {
+      "q": "納付が期限に遅れたらどうなる？",
+      "a": "期限までに納付がない場合には、加算税や延滞税を負担しなければならないことがあります。",
+      "source": "https://www.nta.go.jp/publication/pamph/gensen/nencho2026/pdf/101.pdf",
+      "action": "期限までに、e-Taxでの納付か金融機関・税務署の窓口で納付する"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "特例の申請を出すか迷っている",
+      "situation": "給与の支給人員が常時10人未満",
+      "recommend": "要件に合うか確かめてから出すか決める",
+      "reason": "特例は給与と一定の報酬が対象で、申請書を出した月の翌月に源泉徴収する分から使えます。常時10人以上になると届出が必要で、届出の日の属する期間から効力が失われます。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2505.htm"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "特例は申請書を出すと、翌月分から使える",
+    "cause": "なぜ1月20日と1月12日に分かれるのか",
+    "steps": "今日、確かめて予定に入れること",
+    "desk": "申請と納付はどこに出す？",
+    "worries": "去年と同じでいい？不安なこと",
+    "guide": "特例を使うか迷ったときの見方"
+  },
+  "depthAt": "2026-11-14T06:55:01+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "年末調整の源泉所得税、納付は2027年1月12日まで",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-14T06:56:22+00:00"
+  },
+  "imageFocus": {
+    "x": 0.525,
+    "y": 0.404,
+    "box": [
+      0.097,
+      0.065,
+      0.953,
+      0.744
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/withholding-tax-deadline-jan-2027-figure-c51e01fd.jpg"
+  }
 }
