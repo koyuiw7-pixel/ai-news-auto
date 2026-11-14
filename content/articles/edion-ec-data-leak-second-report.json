@@ -74,9 +74,8 @@
     }
   ],
   "todayActions": [
-    "11月4日19時以降にパソコンでエディオンのECにカードを新規入力した人は、利用明細に身に覚えのない請求がないか確認する",
-    "パスワード変更のメールが届いたら案内に従って変更し、同じパスワードを使う他のサービスも変更する",
-    "不安な点はエディオンのお客様相談センター（0120-77-0095、9:00〜18:00）に問い合わせる"
+    "11月4日19時以降にパソコンで新規入力したカードの利用明細を確認する",
+    "パスワード変更のメールが届いたら、案内に従って変更する"
   ],
   "publicInterest": "breach",
   "incident": {
@@ -129,5 +128,109 @@
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/edion-ec-data-leak-second-report-figure-5f41f1d2.jpg"
   },
-  "sectionsPolishedAt": "2026-11-14T04:49:15+00:00"
+  "sectionsPolishedAt": "2026-11-14T04:49:15+00:00",
+  "insight": [
+    {
+      "text": "エディオンギフトカードは、カード番号とPINの入力だけで使えるのは当社ECサイトに限られ、実店舗では実物カードの提示が必要とされています。",
+      "source": "https://www.edion.co.jp/system/files/news-release/pdf/ja/2026-11/20261109_pr_1_1.pdf"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "お客様相談センター（エディオン）",
+      "url": "https://www.edion.co.jp/system/files/news-release/pdf/ja/2026-11/20261109_pr_1_1.pdf",
+      "source": "https://www.edion.co.jp/system/files/news-release/pdf/ja/2026-11/20261109_pr_1_1.pdf",
+      "phone": "0120-77-0095",
+      "hours": "9:00~18:00",
+      "note": "報道関係の問い合わせは別の番号（エディオン IR 広報部 06-6202-6016）になります。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "11月4日19時以降にパソコンで新規入力したカードの利用明細を確認する",
+      "source": "https://www.edion.co.jp/system/files/news-release/pdf/ja/2026-11/20261109_pr_1_1.pdf",
+      "steps": [
+        "利用明細で身に覚えのない請求がないか見る",
+        "不審な請求があればカード裏面の窓口へ連絡"
+      ]
+    },
+    {
+      "action": "パスワード変更のメールが届いたら、案内に従って変更する",
+      "source": "https://www.edion.co.jp/system/files/news-release/pdf/ja/2026-11/20261109_pr_1_1.pdf",
+      "steps": [
+        "届いたメールの案内に従ってパスワードを変更",
+        "同じパスワードを使う他のサービスも変更"
+      ]
+    }
+  ],
+  "cause": {
+    "text": "第2報によると、決済関連の処理に外部の第三者が不正なプログラムを組み込む改ざんが行われていたことが判明しました。パソコン環境向けの決済情報入力処理が対象で、入力された情報が直接第三者に漏えいした可能性を否定できないとしています。",
+    "status": "stated",
+    "source": "https://www.edion.co.jp/system/files/news-release/pdf/ja/2026-11/20261109_pr_1_1.pdf"
+  },
+  "worries": [
+    {
+      "q": "クレジットカードの情報は、どこまで漏れた？",
+      "a": "漏えいした可能性があるのは、カード番号、有効期限、カード名義人、セキュリティコードです。対象は11月4日(水)19:00以降にパソコンで新規入力した最大556回分と、エラーログの最大5件です。",
+      "source": "https://www.edion.co.jp/system/files/news-release/pdf/ja/2026-11/20261109_pr_1_1.pdf",
+      "action": "対象の期間にパソコンで新規入力したなら、利用明細に身に覚えのない請求がないか確認する"
+    },
+    {
+      "q": "ログインのパスワードは、すぐ悪用される？",
+      "a": "漏えいしたログインIDとパスワードは最大1,141名分です。ECサイトは新規ログイン時に2段階認証が必要なため、直ちに不正利用が行われる状況ではないとされています。",
+      "source": "https://www.edion.co.jp/system/files/news-release/pdf/ja/2026-11/20261109_pr_1_1.pdf",
+      "action": "エディオンからパスワード変更のメールが届いたら、案内に従ってすぐ変更する。同じパスワードを使う他サービスも変える",
+      "actionSource": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "actionGeneral": true
+    },
+    {
+      "q": "エディオンギフトカードは勝手に使われない？",
+      "a": "ギフトカードの番号、PIN、利用履歴が漏えいしました。カード番号とPINだけで使えるのはECサイトに限られ、実店舗では実物カードの提示が必要なため、停止中のECでは漏えい情報だけで不正利用はできない仕組みとされています。",
+      "source": "https://www.edion.co.jp/system/files/news-release/pdf/ja/2026-11/20261109_pr_1_1.pdf",
+      "action": "ギフトカードの今後の取り扱いは検討中のため、エディオンからの案内を待つ。実店舗では実物カードが必要。"
+    },
+    {
+      "q": "不審なメールやSMSのリンクは、どう扱う？",
+      "a": "電子メールやSMSのリンクは偽装でき、見た目で真偽を判断するのは困難です。正規サイトに類似したドメイン名の偽サイトも多いとされています。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "action": "届いたメールやSMSのリンクは開かず、公式サイトを開き直すか公式アプリから確認する",
+      "general": true
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "ログインのパスワードは今すぐ変えるべき？",
+      "situation": "パスワード変更のメールが届いた",
+      "recommend": "案内に従って変更する",
+      "reason": "漏えいしたログインIDとパスワードは最大1,141名分です。ECサイトは新規ログイン時に2段階認証が必要なため、直ちに不正利用される状況ではないとされています。それでも万全を期すため変更が依頼されています。",
+      "source": "https://www.edion.co.jp/system/files/news-release/pdf/ja/2026-11/20261109_pr_1_1.pdf"
+    },
+    {
+      "question": "同じパスワードを他のサービスでも使っている？",
+      "situation": "パスワードの使い回しがある",
+      "recommend": "他のサービスも速やかに変更する",
+      "reason": "ID・パスワードを複数のサイトで使い回していると、一つ盗まれただけで銀行やSNSなど全てのサービスが乗っ取られるおそれがあります。サイトごとに違うものを使うよう案内されています。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "general": true
+    }
+  ],
+  "depthHeadings": {
+    "insight": "ギフトカードは、番号とPINだけでは店で使えない",
+    "cause": "なぜ漏れたのか、いま分かっていること",
+    "steps": "明細とパスワード、今日確かめること",
+    "desk": "問い合わせはどこ？電話番号と受付時間",
+    "worries": "カードや口座、ギフトカードは大丈夫？",
+    "guide": "パスワードを変えるか、迷ったときの決め方"
+  },
+  "depthAt": "2026-11-14T05:06:07+00:00",
+  "updatedAt": "2026-11-14T05:06:07+00:00",
+  "updates": [
+    {
+      "at": "2026-11-14T05:06:07+00:00",
+      "kind": "facts",
+      "title": "公式の資料をもとに、「なるほどの要点」・「公式の窓口」・「今日やること」・「理由」・「よくある不安」・「判断の目安」を追記しました",
+      "sourceUrl": "https://www.edion.co.jp/system/files/news-release/pdf/ja/2026-11/20261109_pr_1_1.pdf",
+      "sourceName": "エディオン"
+    }
+  ]
 }
