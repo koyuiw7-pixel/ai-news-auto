@@ -6285,6 +6285,20 @@
       "skipped": true,
       "url": "http://www.mlit.go.jp/report/press/jidosha04_hh_000370.html"
     },
+    "26a46cce7cf42b66": {
+      "at": "2026-11-14T01:15:56.926460+00:00",
+      "breaking": true,
+      "costUsd": 0.1249,
+      "foreignAi": true,
+      "intent": "breaking",
+      "major": true,
+      "mix": "other",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "score": 88,
+      "section": "ai",
+      "slug": "cursor-security-incident-update",
+      "url": "https://cursor.com/blog/security-incident-update"
+    },
     "26c6032e1d267765": {
       "at": "2026-11-03T19:12:35.197251+00:00",
       "model": "anthropic-api:claude-sonnet-5-5",
@@ -21009,36 +21023,6 @@
   },
   "quality_log": [
     {
-      "accepted": false,
-      "at": "2026-11-12T01:19:05.717467+00:00",
-      "attempt": 1,
-      "id": "2853afcf73ff129e",
-      "kind": "broad",
-      "model": "gemini-3.6-flash",
-      "problems": [
-        "本文「味わいの強化に加えて手ごろな価格帯が評価され、売上を伸ばしています」→ 元記事は販売数量と顧客の声を述べるのみで、売上が伸びたとは書かれていない",
-        "本文「編集部の見方では…想定を上回るペースで市場に定着しつつあります」→ 元記事に「想定を上回る」「市場に定着」の根拠はなく、編集部の見方として示しても事実の裏付けがない",
-        "本文「発売から10月末までの半月」→ 10月13日発売から10月末までは約2週間半で、「半月」はやや不正確",
-        "かんたん版「120万ケース（大びん換算）」→ 元記事の換算は633ml×20本で、「大びん換算」は言い換えとして不正確",
-        "本文「手ごろな価格で買えるビールとしての認知が広がり」→ 認知の広がりは元記事に書かれていない推測"
-      ],
-      "readability": {
-        "avg_paragraph": 102.4,
-        "avg_sentence": 56.9,
-        "long_share": 0.444,
-        "max_paragraph": 130,
-        "paragraphs": 5,
-        "sentences": 9
-      },
-      "score": 72,
-      "source": "suntory",
-      "title": "「金麦〈豊潤〉」2026年販売計画を120万ケース(※1)に上方修正",
-      "warnings": [
-        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "読みやすさ: 文が長い（1文の平均 56.9字・60字超の文が 44% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
       "accepted": true,
       "at": "2026-11-12T01:19:28.749521+00:00",
       "attempt": 1,
@@ -28580,6 +28564,29 @@
         "見出しの書き方: 区切りの全角空白が2つ以上（補足は1つだけ）",
         "初めて出たところで言い換えていない略語（TBS・NEWS・DIG）",
         "本文に煽りの言葉（「衝撃」）。落ち着いた言葉で事実を書く"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-14T01:15:56.891099+00:00",
+      "attempt": 1,
+      "id": "26a46cce7cf42b66",
+      "kind": "ai",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 89.5,
+        "avg_sentence": 41.0,
+        "long_share": 0.104,
+        "max_paragraph": 177,
+        "paragraphs": 22,
+        "sentences": 48
+      },
+      "score": 88,
+      "source": "cursor-blog",
+      "title": "An update on our recent security incident · Cursor",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（VSX）"
       ]
     }
   ],
