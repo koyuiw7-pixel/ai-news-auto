@@ -124,5 +124,108 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/shiseido-skin-analyzer-data-leak-figure-f7f2e140.jpg"
-  }
+  },
+  "officialDesk": [
+    {
+      "name": "資生堂お客さま窓口",
+      "url": "https://corp.shiseido.com/jp/notice/20261106.html",
+      "source": "https://corp.shiseido.com/jp/notice/20261106.html",
+      "howTo": [
+        "Home",
+        "お知らせ",
+        "当社肌測定システムへの不正アクセスによる個人情報漏えいに関す",
+        "本件に関するお問い合わせ"
+      ],
+      "phone": "0120-81-4710",
+      "hours": "10:00～17:00（土日・祝日・夏季休暇・年末年始休暇を除く）",
+      "note": "問い合わせ内容に応じて、担当窓口をご案内する場合がございます。"
+    },
+    {
+      "name": "イプサ公式お問い合わせページ",
+      "url": "https://www.ipsa.co.jp/static/wh/information/contact.html",
+      "source": "https://corp.shiseido.com/jp/notice/20261106.html",
+      "note": "イプサに関するお問い合わせは、このページを案内されています。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "利用した記憶があれば、資生堂からの個別の連絡が届いていないか確認する",
+      "source": "https://corp.shiseido.com/jp/notice/20261106.html",
+      "steps": [
+        "メールボックスを開き、資生堂からの連絡を探す",
+        "迷惑メールフォルダも見る"
+      ],
+      "url": "https://corp.shiseido.com/jp/notice/20261106.html"
+    },
+    {
+      "action": "不審なメールに書かれたURLは開かず、0120-81-4710で確かめる",
+      "source": "https://corp.shiseido.com/jp/notice/20261106.html",
+      "steps": [
+        "メールのURLや入力画面は開かない",
+        "お客さま窓口 0120-81-4710に電話する",
+        "受付は10:00～17:00（土日祝などを除く）"
+      ],
+      "url": "https://corp.shiseido.com/jp/notice/20261106.html"
+    }
+  ],
+  "cause": {
+    "text": "原因はまだ究明中で、外部の専門機関と調査を進めていると発表されています。分かっているのは、外部の第三者による不正アクセスが2026年10月27日に確認され、システム内の一部情報が改ざんされ、データが外部に持ち出されたことです。",
+    "status": "investigating",
+    "source": "https://corp.shiseido.com/jp/notice/20261106.html"
+  },
+  "worries": [
+    {
+      "q": "クレジットカードの情報も盗まれた？",
+      "a": "顔画像とクレジットカード情報は、今回漏えいが確認された情報には含まれていないと発表されています。当該システムではカード情報を取り扱っていないとも書かれています。",
+      "source": "https://corp.shiseido.com/jp/notice/20261106.html",
+      "action": "資生堂からメールや電話でカード番号や暗証番号を聞かれたら、応じずに窓口で確かめる。"
+    },
+    {
+      "q": "自分の情報が漏れたかは、どうすれば分かる？",
+      "a": "本人を特定できる対象者には、資生堂が個別に連絡するとしています。本人を特定する情報がなく連絡できない人には、このお知らせで報告するとしています。",
+      "source": "https://corp.shiseido.com/jp/notice/20261106.html",
+      "action": "利用した記憶があれば、資生堂からの個別の連絡が届いていないか確認する。"
+    },
+    {
+      "q": "資生堂を名乗るメールが来たら、どうすればいい？",
+      "a": "当社の肌測定サービスに関する不審なメールは確認されていないとしています。万が一届いたら、記載されたURLへのアクセスや情報の入力を行わないよう求めています。",
+      "source": "https://corp.shiseido.com/jp/notice/20261106.html",
+      "action": "届いたメールのURLは開かず、0120-81-4710の窓口に問い合わせる。"
+    },
+    {
+      "q": "メールのリンクが本物かは、どう見分ける？",
+      "a": "メールの送信元名や見た目では本物かどうか判断しにくく、リンクも偽装できるとされています。公式サイトを「お気に入り」に登録し、そこから入るのが安全とされています。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "action": "メールのリンクではなく、公式サイトを直接開いて確かめる。",
+      "general": true
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "停止中の肌測定、いつ再開されるか？",
+      "situation": "停止中のサービスを使いたい",
+      "recommend": "再開の発表を待つ",
+      "reason": "再開は、システムの安全性が確認できた後とされ、時期は未定です。新たな事実は本サイト等で知らせるとしています。",
+      "source": "https://corp.shiseido.com/jp/notice/20261106.html"
+    },
+    {
+      "question": "個別の連絡が来ていないけど、大丈夫？",
+      "situation": "対象サービスを使ったが連絡がない",
+      "recommend": "慌てず、窓口で確かめる",
+      "reason": "本人を特定できない人には、お知らせで報告するとされています。連絡がないことだけでは判断できないため、窓口で確かめられます。",
+      "source": "https://corp.shiseido.com/jp/notice/20261106.html"
+    }
+  ],
+  "depthHeadings": {
+    "cause": "なぜ漏れたのか、いま分かっていること",
+    "steps": "今日、まずやってほしい2つのこと",
+    "desk": "問い合わせ先と、つながる時間",
+    "worries": "カードや不審なメールは大丈夫？",
+    "guide": "停止中の肌測定、待つか迷ったら"
+  },
+  "todayActions": [
+    "利用した記憶があれば、資生堂からの個別の連絡が届いていないか確認する",
+    "不審なメールに書かれたURLは開かず、0120-81-4710で確かめる"
+  ],
+  "depthAt": "2026-11-14T04:16:28+00:00"
 }
