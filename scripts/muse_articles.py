@@ -921,6 +921,9 @@ def resubmission_of(data: dict, name: str = "", articles: list[dict] | None = No
     return None
 
 
+ENTITY_ONLY_MIN_SIMILARITY = 0.2  # 固有名詞の一致だけで重複にする、見出しの類似の下限
+
+
 def duplicate_of(data: dict, name: str = "") -> str | None:
     import dedupe  # noqa: PLC0415
     import story  # noqa: PLC0415
@@ -935,8 +938,17 @@ def duplicate_of(data: dict, name: str = "") -> str | None:
         return None
     # 出典の URL は渡さない（URL が同じだけでは重複にしない。取り下げた記事の出典も、Muse が正しく書き直すのは止めない）。
     # 見出しの類似・固有名詞の一致は今までどおり
-    if hit := recent.find(data["title"], ""):
-        return hit
+    import dedupe  # noqa: PLC0415
+
+    if hit := recent.match(data["title"], ""):
+        reason, label = hit
+        # 固有名詞が同じだけ（例: 「MUJI Card」のポイントの記事と、MUJI Card のカード番号流出の記事）では重複にしない。
+        # 2026-11-14 最優先の流出の記事が「固有名詞が一致（card・muji）」で止まった。見出しの似かたが 0.2 未満なら別の話題として通す
+        shared_n = reason.split("（", 1)[-1].split("）", 1)[0].count("・") + 1 if "（" in reason else 9
+        # 3つ以上の固有名詞が重なる（ライズ・ロッキー・レックス など）なら、見出しが違っても同じ話題として今までどおり止める
+        if not (reason.startswith("固有名詞が一致") and label and shared_n <= 2
+                and dedupe.jaccard(dedupe.bigrams(data["title"]), dedupe.bigrams(label)) < ENTITY_ONLY_MIN_SIMILARITY):
+            return reason
     if hit := resubmission_of(data, name):
         return hit
     try:
