@@ -11149,6 +11149,19 @@
       "slug": "morinaga-milk-earnings-forecast-revision",
       "url": "https://www.morinagamilk.co.jp/release/newsentry-4760.html"
     },
+    "7340f040937f750b": {
+      "at": "2026-11-14T04:29:03.454311+00:00",
+      "costUsd": 0.0017,
+      "intent": "breaking",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "score": 90,
+      "section": "public",
+      "slug": "raksul-unauthorized-access-adobe-express",
+      "url": "https://corp.raksul.com/news/press/261112_unauthorized-access2/"
+    },
     "736ac3fe16e5dc75": {
       "at": "2026-11-04T08:02:54.577746+00:00",
       "reason": "prefilter: お知らせ・統計の転載（statistics）",
@@ -17406,9 +17419,16 @@
       "url": "https://www.nipponham.co.jp/topics_detail20/id=25703"
     },
     "d72f32c9a14fcb2d": {
-      "at": "2026-11-14T03:59:46.435218+00:00",
-      "reason": "public-interest: 資料が短い 938字",
-      "skipped": true,
+      "at": "2026-11-14T04:29:53.580650+00:00",
+      "costUsd": 0.0041,
+      "intent": "breaking",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "recall",
+      "score": 95,
+      "section": "lifestyle",
+      "slug": "monteur-cream-puff-recall-paper",
       "url": "https://www.monteur.co.jp/information/4189"
     },
     "d7422f2df685d455": {
@@ -21273,68 +21293,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-12T02:12:50.866554+00:00",
-      "attempt": 1,
-      "id": "77684936399cdeca",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 118.5,
-        "avg_sentence": 71.1,
-        "long_share": 0.6,
-        "max_paragraph": 187,
-        "paragraphs": 6,
-        "sentences": 10
-      },
-      "score": 92,
-      "source": "ipa",
-      "title": "「チェックインシステムに係る導入ガイドライン及び標準仕様書 Ver1.0」を公開しました",
-      "warnings": [
-        "見出しの書き方: 記号: かっこの直後に「、」",
-        "見出しが57字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（IPA・ER・OSS）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-12T02:13:13.423688+00:00",
-      "attempt": 0,
-      "id": "77684936399cdeca",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 50.1,
-        "avg_sentence": 46.7,
-        "long_share": 0.133,
-        "max_paragraph": 63,
-        "paragraphs": 14,
-        "sentences": 15
-      },
-      "score": 93,
-      "source": "ipa",
-      "title": "「チェックインシステムに係る導入ガイドライン及び標準仕様書 Ver1.0」を公開しました",
-      "warnings": [
-        "見出しの書き方: 記号: かっこの直後に「、」",
-        "見出しが57字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（IPA・ER・OSS）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-12T02:13:46.420552+00:00",
-      "attempt": 1,
-      "id": "5b3847551f6fdba9",
-      "kind": "update",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "score": 90,
-      "source": "miraiz-chuden",
-      "title": "「電気・ガス料金支援」の実施に伴う電気料金および都市ガス料金の特別措置ならびに電気料金の特別措置の認可申請について"
-    },
     {
       "accepted": true,
       "at": "2026-11-12T02:14:03.223311+00:00",
@@ -28803,6 +28761,78 @@
       "title": "当社ホームページへの不正アクセスによる個人情報漏えいに関するお詫びとお知らせ【第3報】~専用お問い合わせ窓口の開設および対象のお客さまへのご連絡について",
       "warnings": [
         "初めて出たところで言い換えていない略語（WEB・SMS・NICT）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-14T04:28:56.836485+00:00",
+      "attempt": 1,
+      "id": "7340f040937f750b",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 91.3,
+        "avg_sentence": 40.3,
+        "long_share": 0.118,
+        "max_paragraph": 156,
+        "paragraphs": 15,
+        "sentences": 34
+      },
+      "score": 90,
+      "source": "fast",
+      "title": "当社システムへの不正アクセスによる個人情報漏えいのおそれについて（第2報） - ラクスル株式会社",
+      "warnings": [
+        "見出しが51字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（SMS）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-14T04:29:32.581714+00:00",
+      "attempt": 1,
+      "id": "d72f32c9a14fcb2d",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "「数十秒で該当するか分かると考えられます」→ 元記事に無い所要時間の数字を、「サイソクの見方」で新たに示している（軽微な創作。fatalではない）"
+      ],
+      "readability": {
+        "avg_paragraph": 81.2,
+        "avg_sentence": 40.6,
+        "long_share": 0.062,
+        "max_paragraph": 184,
+        "paragraphs": 8,
+        "sentences": 16
+      },
+      "score": 88,
+      "source": "fast",
+      "title": "モンテールの回収に関するお知らせ",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（TH・JAN）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-14T04:29:47.733633+00:00",
+      "attempt": 1,
+      "id": "d72f32c9a14fcb2d",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 79.1,
+        "avg_sentence": 39.6,
+        "long_share": 0.062,
+        "max_paragraph": 167,
+        "paragraphs": 8,
+        "sentences": 16
+      },
+      "score": 95,
+      "source": "fast",
+      "title": "モンテールの回収に関するお知らせ",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（TH・JAN）"
       ]
     }
   ],
