@@ -12308,7 +12308,7 @@
       "url": "https://www.ipa.go.jp/shiken/2026/cbt-202701-yotei.html"
     },
     "8518d94902958f06": {
-      "at": "2026-11-12T07:59:44.532068+00:00",
+      "at": "2026-11-14T03:59:46.482921+00:00",
       "reason": "public-interest: 資料が短い 1098字",
       "skipped": true,
       "url": "https://www.tokyo-gas.co.jp/news/press/20261112-02.html"
@@ -12495,6 +12495,19 @@
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
       "skipped": true,
       "url": "https://www.riken.jp/press/2026/20261106_1/index.html"
+    },
+    "8852c74bb4b2168f": {
+      "at": "2026-11-14T04:00:57.210030+00:00",
+      "costUsd": 0.0065,
+      "intent": "breaking",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "score": 93,
+      "section": "public",
+      "slug": "shiseido-skin-analyzer-data-leak",
+      "url": "https://corp.shiseido.com/jp/notice/20261106.html"
     },
     "8852e4123fc0ef20": {
       "at": "2026-11-02T18:43:51.655161+00:00",
@@ -17332,6 +17345,12 @@
       "skipped": true,
       "url": "https://www.nipponham.co.jp/topics_detail20/id=25703"
     },
+    "d72f32c9a14fcb2d": {
+      "at": "2026-11-14T03:59:46.435218+00:00",
+      "reason": "public-interest: 資料が短い 938字",
+      "skipped": true,
+      "url": "https://www.monteur.co.jp/information/4189"
+    },
     "d7422f2df685d455": {
       "at": "2026-11-11T23:38:28.842237+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（開催について）",
@@ -21167,54 +21186,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-12T01:41:06.576447+00:00",
-      "attempt": 0,
-      "id": "657cfa792b136170",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 74.0,
-        "avg_sentence": 42.0,
-        "long_share": 0.135,
-        "max_paragraph": 154,
-        "paragraphs": 21,
-        "sentences": 37
-      },
-      "score": 90,
-      "source": "aws-japan-blog",
-      "title": "【開催報告 & 資料公開】Claude Mythos 時代の AWS セキュリティ対策 ～ AWS Security Agent ご紹介 ～",
-      "warnings": [
-        "見出しの書き方: 記号: かっこの直後に「、」",
-        "見出しが54字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（WAF・SHIP）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-12T01:49:37.850098+00:00",
-      "attempt": 1,
-      "id": "964f3c468280001e",
-      "kind": "broad",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 90.1,
-        "avg_sentence": 38.2,
-        "long_share": 0.061,
-        "max_paragraph": 180,
-        "paragraphs": 14,
-        "sentences": 33
-      },
-      "score": 92,
-      "source": "apple-newsroom-jp-all",
-      "title": "Apple、2026 Designers of Tomorrowの開催を発表",
-      "warnings": [
-        "見出しが52字（目安40字以内）。一覧・カードでは前半だけを出す"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-12T02:07:41.475868+00:00",
@@ -28715,6 +28686,55 @@
         "見出しが51字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（SMS・PHS）",
         "「可能性があります」が多い（3か所以上）。根拠のある事実だけを書く"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-14T04:00:28.277929+00:00",
+      "attempt": 1,
+      "id": "8852c74bb4b2168f",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "仕事・お金にどう活かせる？「登録メールアドレス宛ての資生堂からの連絡を確認するとよいでしょう」→ 元記事は個別連絡の手段を明示しておらず、メール連絡とする根拠がない（軽微な推測）。",
+        "今日やること「イプサの肌測定を使った人は、イプサ公式お問い合わせページで状況を確認する」→ 元記事はイプサ向け問い合わせ先を載せるのみで、状況確認ができるとは書かれていない（軽微な言い過ぎ）。"
+      ],
+      "readability": {
+        "avg_paragraph": 77.6,
+        "avg_sentence": 38.8,
+        "long_share": 0.115,
+        "max_paragraph": 147,
+        "paragraphs": 13,
+        "sentences": 26
+      },
+      "score": 85,
+      "source": "fast",
+      "title": "資生堂の情報流出に関するお知らせ",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（FCA）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-14T04:00:51.584268+00:00",
+      "attempt": 1,
+      "id": "8852c74bb4b2168f",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 77.6,
+        "avg_sentence": 38.8,
+        "long_share": 0.115,
+        "max_paragraph": 147,
+        "paragraphs": 13,
+        "sentences": 26
+      },
+      "score": 93,
+      "source": "fast",
+      "title": "資生堂の情報流出に関するお知らせ",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（FCA）"
       ]
     }
   ],
