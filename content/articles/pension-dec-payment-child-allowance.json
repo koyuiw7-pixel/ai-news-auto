@@ -62,14 +62,14 @@
   "videoTitle": "2026年12月に振り込まれるお金、15日は年金と児童手当の10月・11月分",
   "publishedAt": "2026-11-14T19:37:27.987733+00:00",
   "generatedAt": "2026-11-14T19:38:50.822943+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/pension-dec-payment-child-allowance-figure-bd39513f.jpg",
   "model": "anthropic-api:claude-haiku-5-5",
   "affiliates": [],
   "newsType": "policy",
   "todayActions": [
-    "児童手当を受けている方は、住んでいる市区町村の案内で12月の支給日を確かめる",
+    "児童手当の12月の支給日を、住んでいる市区町村の案内で確かめる",
     "年金送金通知書に書かれた額と、12月15日の通帳の入金を見比べる",
-    "年金生活者支援給付金は年金とは別途の支払いなので、12月15日の入金をそれぞれ確かめる"
+    "年金生活者支援給付金は年金とは別の振り込みなので、12月15日の入金を別々に確かめる"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -112,5 +112,130 @@
   "summaryLine": "年金と年金生活者支援給付金は12月15日、10月分と11月分の2か月分が入ります。",
   "relatedSlugs": [
     "pension-child-allowance-payment-calendar"
-  ]
+  ],
+  "insight": [
+    {
+      "text": "15日が土日・祝日のときは「その直前の金融機関の営業日」に支払われると、支援給付金のページには書かれています。年金のページは「直前の平日」と書いています。",
+      "source": "https://www.nenkin.go.jp/section/faq/jukyu/seido/sonota-kyufu/shienkyufukin/tsuchisho/tsuuchi02.html"
+    },
+    {
+      "text": "令和8年度の老齢基礎年金（満額）は、昭和31年4月1日以前生まれの方が月額70,408円です。表の額は昭和31年4月2日以後生まれの方の場合です。",
+      "source": "https://www.nenkin.go.jp/oshirase/taisetu/kojin/2026/202604/0401.html"
+    },
+    {
+      "text": "児童手当は原則として申請した月の翌月分から支給されます。ただし出生日や転入日が月末に近い場合は、異動日の翌日から15日以内に申請すれば申請した月分から支給されます。",
+      "source": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/annai"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "年金生活者支援給付金の振り込みはいつですか（日本年金機構）",
+      "url": "https://www.nenkin.go.jp/section/faq/jukyu/seido/sonota-kyufu/shienkyufukin/tsuchisho/tsuuchi02.html",
+      "source": "https://www.nenkin.go.jp/section/faq/jukyu/seido/sonota-kyufu/shienkyufukin/tsuchisho/tsuuchi02.html",
+      "howTo": [
+        "ご相談・Q&A",
+        "Q&Aから探す",
+        "年金生活者支援給付金の振り込みはいつですか。"
+      ],
+      "note": "12月には10月分および11月分の支給であることが、このページに書かれています。"
+    },
+    {
+      "name": "児童手当制度のご案内（こども家庭庁）",
+      "url": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/annai",
+      "source": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/annai",
+      "note": "支給額と支給時期（偶数月に前月分まで2か月分）は、このページで確かめられます。"
+    },
+    {
+      "name": "年金はいつ支払われますか（日本年金機構）",
+      "url": "https://www.nenkin.go.jp/section/faq/jukyu/uketori/uketori/shiharaiduki/20140421-01.html",
+      "source": "https://www.nenkin.go.jp/section/faq/jukyu/uketori/uketori/shiharaiduki/20140421-01.html",
+      "note": "支払月と支払対象月の表があり、12月は10月分と11月分です。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "児童手当の12月の支給日を、住んでいる市区町村の案内で確かめる",
+      "source": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/annai",
+      "steps": [
+        "住んでいる市区町村の児童手当の案内を開く",
+        "12月の支給日と対象月を確かめる"
+      ],
+      "url": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/annai"
+    },
+    {
+      "action": "年金送金通知書に書かれた額と、12月15日の通帳の入金を見比べる",
+      "source": "https://www.nenkin.go.jp/section/faq/jukyu/uketori/uketori/shiharaiduki/20140421-01.html",
+      "steps": [
+        "年金送金通知書で額を確かめる",
+        "12月15日の通帳の入金と照らし合わせる"
+      ],
+      "url": "https://www.nenkin.go.jp/service/seidozenpan/20150601.html"
+    },
+    {
+      "action": "年金生活者支援給付金は年金とは別の振り込みなので、12月15日の入金を別々に確かめる",
+      "source": "https://www.nenkin.go.jp/section/faq/jukyu/seido/sonota-kyufu/shienkyufukin/tsuchisho/tsuuchi02.html",
+      "steps": [
+        "年金とは別の振り込みかを通帳で見る",
+        "10月分・11月分が入っているか確かめる"
+      ],
+      "url": "https://www.nenkin.go.jp/section/faq/jukyu/seido/sonota-kyufu/shienkyufukin/tsuchisho/tsuuchi02.html"
+    }
+  ],
+  "cause": {
+    "text": "年金は原則として年6回、偶数月の15日に、その前月までの2カ月分をまとめて支払う決まりです。年金生活者支援給付金も同じ決まりで、12月には10月分と11月分が支払われます。",
+    "status": "background",
+    "source": "https://www.nenkin.go.jp/section/faq/jukyu/uketori/uketori/shiharaiduki/20140421-01.html"
+  },
+  "worries": [
+    {
+      "q": "12月の入金は、いつ何か月分が入りますか？",
+      "a": "年金は12月15日に、10月分と11月分の2か月分が入ります。年金生活者支援給付金も同じ15日に、年金とは別の振り込みで10月分と11月分が入ります。",
+      "source": "https://www.nenkin.go.jp/section/faq/jukyu/uketori/uketori/shiharaiduki/20140421-01.html",
+      "action": "12月15日の通帳で、年金と年金生活者支援給付金の2つの入金を、別々の行として確かめておく"
+    },
+    {
+      "q": "15日が土日や祝日だったら、いつ入りますか？",
+      "a": "年金は、15日の直前の平日に支払われると書かれています。年金生活者支援給付金は、直前の金融機関の営業日に支払われると書かれています。",
+      "source": "https://www.nenkin.go.jp/section/faq/jukyu/uketori/uketori/shiharaiduki/20140421-01.html",
+      "action": "15日が休みなら、その直前の平日から金融機関の営業日までに通帳の入金を確かめる",
+      "actionSource": "https://www.nenkin.go.jp/section/faq/jukyu/seido/sonota-kyufu/shienkyufukin/tsuchisho/tsuuchi02.html"
+    },
+    {
+      "q": "出産後の児童手当は、いつまでに申請すればよいですか？",
+      "a": "出生の日の翌日から15日以内に、現住所の市区町村に申請が必要です。申請が遅れると、原則として遅れた月分の手当は受けられません。",
+      "source": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/annai",
+      "action": "お子さんが生まれたら、出生の日の翌日から15日以内に現住所の市区町村へ申請する"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "15日が休みの日や申請時期で、入金が変わる",
+    "cause": "なぜ12月に2か月分まとめて入るのか",
+    "steps": "12月15日の前に確かめる3つのこと",
+    "desk": "日付と額は公式ページで確かめられる",
+    "worries": "入金日や申請で困りやすい点"
+  },
+  "depthAt": "2026-11-14T19:58:25+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "年金と支援給付金は12月15日、児童手当は12月中に10・11月分が入る",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-14T19:58:47+00:00"
+  },
+  "imageFocus": {
+    "x": 0.525,
+    "y": 0.402,
+    "box": [
+      0.072,
+      0.042,
+      0.978,
+      0.762
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/pension-dec-payment-child-allowance-figure-bd39513f.jpg"
+  }
 }
