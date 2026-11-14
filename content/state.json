@@ -283,7 +283,7 @@
     "77b36a8fda3ac45819f3bb6602a1d2d823da1339": 2,
     "784bcbf1daa37a625da6156cdb4a717798f7a165": 2,
     "78923c31e801abc3205f4fc21b1e38b40ab33560": 2,
-    "79ceaf5599cfa3e4470e97068c6e586876d271ec": 1,
+    "79ceaf5599cfa3e4470e97068c6e586876d271ec": 2,
     "79eb65745bb2c3d41e32be837f3ddd6f0246b52b": 2,
     "7ac4d739974c287296b205d5da0609cc97a1e556": 2,
     "7b3c2d8f97577c84f63be769823c81e6c237e98f": 2,
@@ -373,6 +373,7 @@
     "b4e5410d8a15a83ebdb44949643c4a05b262a2fe": 2,
     "b5272f3ae0f11fc488134cbb6ac69b8e0963c580": 2,
     "b5a5db93d7fb94bcb6373df55b56095e774041c0": 2,
+    "b5af00d4dfca17f631eceedfa98ccc00b20a1b1d": 1,
     "b65f280c64098111f97269341b868a512071df16": 2,
     "b6bfffb8fec0d010efab3f0c560b643d4b791204": 2,
     "b73f81c43c939fa97d7edc910e1672693209e9d0": 2,
@@ -466,6 +467,7 @@
     "f4708261eab089174ac60c7f091cc3851d2ba20a": 2,
     "f4d4c38e055adf32885cdc16ab0b0ac5cf274e40": 1,
     "f4da2af0f9144d7c0aa2037bbb9e65ba0103ecd3": 2,
+    "f53678e204c053bae3d5c8d7d781807b39ffafce": 1,
     "f584cdffc3bbaf348de59dd75e53fe9496f5d399": 2,
     "f5cc1177ae3145dec1eebff2e83d6846c8cb23c1": 2,
     "f615f4305539ff27a65055c7da6312b55374d6d2": 2,
@@ -489,14 +491,6 @@
     "ffc31f4200cbce11860a19beba7306bbafad8093": 2
   },
   "gate_retry": {
-    "0a2391266d2b02e5": {
-      "first": "2026-11-13T09:39:19.991288+00:00",
-      "next": "2026-11-13T12:39:19.991288+00:00",
-      "reason": "記事の基準に足りない（自動で手直ししても残った）: 1.最初の3行で、だれに・どのくらい・いつから（最初の3行にどのくらい・いつからが無い）",
-      "title": "自治体が実施する健康・医療・介護分野の事業のデジタル化（PMH）ー医療費助成に関するダッシュボードを更新しました",
-      "tries": 1,
-      "url": "https://www.digital.go.jp/resources/govdashboard/pmh-medical-expense-subsidies"
-    },
     "0dda930357170276": {
       "first": "2026-11-13T08:53:36.325366+00:00",
       "next": "2026-11-13T11:53:36.325366+00:00",
@@ -4618,6 +4612,20 @@
       "skipped": true,
       "url": "https://www.redhat.com/en/blog/friday-five-november-6-2026-red-hat"
     },
+    "0a2391266d2b02e5": {
+      "at": "2026-11-14T20:46:42.857755+00:00",
+      "costUsd": 0.0188,
+      "intent": "neutral",
+      "kind": "trend",
+      "mix": "",
+      "model": "gemini-3.6-flash",
+      "score": 88,
+      "section": "public",
+      "slug": "pmh-medical-expense-subsidies-dashboard-update",
+      "trendKeyword": "介護",
+      "trendLane": true,
+      "url": "https://www.digital.go.jp/resources/govdashboard/pmh-medical-expense-subsidies"
+    },
     "0a40dc02edbb2ef3": {
       "at": "2026-11-06T19:42:20.591131+00:00",
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
@@ -4808,6 +4816,12 @@
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
       "skipped": true,
       "url": "https://www.kantei.go.jp/jp/105/actions/202611/05tel_kaidan.html"
+    },
+    "0c8fe31bc795ab115e1443d14cfc933133e0fe90": {
+      "at": "2026-11-14T20:44:28.238650+00:00",
+      "reason": "trend: 公式の発表で記事にした（snowman-raul-soresno-meguro-return-2026）",
+      "skipped": true,
+      "url": "https://topics.smt.docomo.ne.jp/article/nikkangendai/entertainment/nikkangendai-1263547"
     },
     "0caeea2696fded37": {
       "at": "2026-11-09T00:03:33.041539+00:00",
@@ -6018,6 +6032,17 @@
       "slug": "boj-deposits-by-depositor-2026-09",
       "url": "http://www.boj.or.jp/statistics/outline/notice_2026/not261112a.htm"
     },
+    "1ef1e86804d1794591a014968eee560ad968ef9e": {
+      "at": "2026-11-14T20:48:08.324938+00:00",
+      "kind": "trend",
+      "model": "gemini-3.6-flash",
+      "pressReport": true,
+      "score": 92,
+      "slug": "ukraine-nato-donbas-peace-proposal",
+      "trendKeyword": "ウクライナ",
+      "trendLane": true,
+      "url": "https://www.nikkei.com/article/DGXZQOCB1436E0U6A111C2000000/"
+    },
     "1f056e11706ca300": {
       "at": "2026-11-09T09:26:00.598430+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（説明会）",
@@ -6519,6 +6544,20 @@
       "reason": "prefilter: 価値の薄いお知らせ（を開催）",
       "skipped": true,
       "url": "https://ppih.co.jp/news/pdf/1112TRU_Christmas_BF.pdf"
+    },
+    "267a4c3ea7d0f586": {
+      "at": "2026-11-14T20:44:28.238440+00:00",
+      "costUsd": 0.0244,
+      "intent": "neutral",
+      "kind": "trend",
+      "mix": "",
+      "model": "gemini-3.6-flash",
+      "score": 92,
+      "section": "public",
+      "slug": "snowman-raul-soresno-meguro-return-2026",
+      "trendKeyword": "ラウール",
+      "trendLane": true,
+      "url": "https://topics.smt.docomo.ne.jp/latestnews/keywords/afe8bfb9d5da2f6b3f6cd6ddd353749bad930c71cd5fe8438b6c5689cc77652f"
     },
     "26a1d99188b16d7a": {
       "at": "2026-11-10T07:45:15.132315+00:00",
@@ -19555,6 +19594,12 @@
       "skipped": true,
       "url": "https://www.mext.go.jp/b_menu/shingi/gijyutu/gijyutu31/001/kaisai/230125_00003.htm"
     },
+    "f2f311445f0bc1e5181bfed1a84493c171706d90": {
+      "at": "2026-11-14T20:46:42.857987+00:00",
+      "reason": "trend: 公式の発表で記事にした（pmh-medical-expense-subsidies-dashboard-update）",
+      "skipped": true,
+      "url": "https://president.jp/articles/-/121929?page=1"
+    },
     "f30582815c21ca92": {
       "at": "2026-11-07T06:12:04.512754+00:00",
       "reason": "dedupe: 同じ発表の記事あり（製品名が一致（gemini4argon））: google-ai-news-october-2026",
@@ -22020,195 +22065,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-12T06:50:14.807940+00:00",
-      "attempt": 1,
-      "id": "e8692d91eff473c0",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 173.1,
-        "avg_sentence": 55.8,
-        "long_share": 0.419,
-        "max_paragraph": 304,
-        "paragraphs": 10,
-        "sentences": 31
-      },
-      "score": 88,
-      "source": "ntt-news",
-      "title": "国家資格「一等無人航空機操縦士」の講習を開講 ～資格取得から実践的な技能習得まで、現場で活躍できる人材育成を推進～",
-      "warnings": [
-        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（III・AVANTE）",
-        "faq の質問が疑問文になっていない（「一等無人航空機操縦士の講習を受けるための」）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-12T06:50:49.878225+00:00",
-      "attempt": 0,
-      "id": "e8692d91eff473c0",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 98.5,
-        "avg_sentence": 38.5,
-        "long_share": 0.087,
-        "max_paragraph": 157,
-        "paragraphs": 18,
-        "sentences": 46
-      },
-      "score": 88,
-      "source": "ntt-news",
-      "title": "国家資格「一等無人航空機操縦士」の講習を開講 ～資格取得から実践的な技能習得まで、現場で活躍できる人材育成を推進～",
-      "warnings": [
-        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（III・AVANTE）",
-        "faq の質問が疑問文になっていない（「一等無人航空機操縦士の講習を受けるための」）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-12T06:51:45.207993+00:00",
-      "attempt": 1,
-      "id": "874ce4e4f9a343e9",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文「森永ビスケッティ」→ 元記事では「森永ビスケット」。商品名の取り違え。",
-        "かんたん版「売上高が過去最高の増収」→ 元記事に過去最高の記載はなく、根拠のない誇張。",
-        "かんたん版「菓子食品事業の価格改定の効果が売上を押し上げました」→ 元記事では価格改定は収益性改善として書かれており、売上を押し上げたとは書かれていない。"
-      ],
-      "readability": {
-        "avg_paragraph": 131.2,
-        "avg_sentence": 65.6,
-        "long_share": 0.55,
-        "max_paragraph": 185,
-        "paragraphs": 10,
-        "sentences": 20
-      },
-      "score": 70,
-      "source": "morinaga",
-      "title": "2027年3月期 第2四半期（中間期）決算短信〔日本基準〕(連結)",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（HI・CHEW）",
-        "要点の1つ目がリードの文の写し。一番のニュースを、リードとは違う言い方で書く",
-        "読みやすさ: 文が長い（1文の平均 65.6字・60字超の文が 55% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-12T06:52:07.415026+00:00",
-      "attempt": 1,
-      "id": "874ce4e4f9a343e9",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 131.1,
-        "avg_sentence": 65.5,
-        "long_share": 0.55,
-        "max_paragraph": 185,
-        "paragraphs": 10,
-        "sentences": 20
-      },
-      "score": 96,
-      "source": "morinaga",
-      "title": "2027年3月期 第2四半期（中間期）決算短信〔日本基準〕(連結)",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（HI・CHEW）",
-        "要点の1つ目がリードの文の写し。一番のニュースを、リードとは違う言い方で書く",
-        "読みやすさ: 文が長い（1文の平均 65.5字・60字超の文が 55% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-12T06:52:42.059410+00:00",
-      "attempt": 0,
-      "id": "874ce4e4f9a343e9",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 65.6,
-        "avg_sentence": 36.0,
-        "long_share": 0.032,
-        "max_paragraph": 163,
-        "paragraphs": 17,
-        "sentences": 31
-      },
-      "score": 96,
-      "source": "morinaga",
-      "title": "2027年3月期 第2四半期（中間期）決算短信〔日本基準〕(連結)",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（HI・CHEW）",
-        "要点の1つ目がリードの文の写し。一番のニュースを、リードとは違う言い方で書く"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-12T06:53:09.295695+00:00",
-      "attempt": 1,
-      "id": "dc98fc50a4cb8ede",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 73.1,
-        "avg_sentence": 41.8,
-        "long_share": 0.143,
-        "max_paragraph": 139,
-        "paragraphs": 8,
-        "sentences": 14
-      },
-      "score": 90,
-      "source": "ppih",
-      "title": "焼き芋は着る、抱く、塗る、吸う時代へ⁉ 累計売上５６億円※突破のドンキ看板商品「焼き芋」から この秋\"食べない\"焼き芋グッズ１７品が新登場",
-      "warnings": [
-        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（RELX）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-12T06:53:37.265503+00:00",
-      "attempt": 1,
-      "id": "5232d6177f33b857",
-      "kind": "update",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "score": 95,
-      "source": "ntt-news-ai",
-      "title": "多様な顧客・契約データから貸し倒れリスクを高精度に予測するAI与信審査技術を確立 ～貸し倒れ予測精度を最大3割向上～"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-12T06:54:39.494417+00:00",
-      "attempt": 1,
-      "id": "19f6d88c9d76c05e",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "読めなかった開示資料（https://www.jfa.jp/social_action_programme/SDGs_report.pdf）があるのに「発表されていません」と書いている。資料を確かめられていないことは「未発表」と言い切らない（その文を消すか、「発表の本文では触れていません」のように確かめた範囲を書く）（"
-      ],
-      "readability": {
-        "avg_paragraph": 86.6,
-        "avg_sentence": 39.0,
-        "long_share": 0.15,
-        "max_paragraph": 120,
-        "paragraphs": 9,
-        "sentences": 20
-      },
-      "score": null,
-      "source": "jfa",
-      "title": "第10回 パワーチェアフットボール チャンピオンシップ ジャパン 2026 supported by Jatcoを静岡で開催 #jfa",
-      "warnings": [
-        "見出しが59字（目安40字以内）。一覧・カードでは前半だけを出す"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-12T06:54:55.884372+00:00",
@@ -29537,6 +29393,203 @@
       "title": "決算",
       "warnings": [
         "初めて出たところで言い換えていない略語（JR・NEWS）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-14T20:43:12.729600+00:00",
+      "attempt": 1,
+      "id": "267a4c3ea7d0f586",
+      "kind": "broad",
+      "model": "gemini-3.6-flash",
+      "problems": [
+        "要点の「佐久間大介が劇場アニメ「風を継ぐもの −はじまり−」で初主演」→ 元記事は「オーディションで主役の座を射止めた」とだけ書いており、「初主演」とは書かれていない。",
+        "かんたん版の「ラウールさんや佐久間大介さんらメンバーが温かく出迎え」→ 元記事は「口々に『おかえり』と伝える」としか書いておらず、ラウールさんと佐久間さんが出迎えたとは特定されていない。"
+      ],
+      "readability": {
+        "avg_paragraph": 135.4,
+        "avg_sentence": 45.1,
+        "long_share": 0.182,
+        "max_paragraph": 278,
+        "paragraphs": 11,
+        "sentences": 33
+      },
+      "score": 85,
+      "source": "radar-official",
+      "title": "Snow Man関連ニュース｜dメニューニュース（NTTドコモ）",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（WEB・TBS・MC）",
+        "感嘆符（！）が多い。感嘆符は使わない",
+        "読みやすさ: 文が長い（1文の平均 45.1字・60字超の文が 18% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-14T20:44:00.745875+00:00",
+      "attempt": 1,
+      "id": "267a4c3ea7d0f586",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 136.5,
+        "avg_sentence": 44.1,
+        "long_share": 0.176,
+        "max_paragraph": 278,
+        "paragraphs": 11,
+        "sentences": 34
+      },
+      "score": 92,
+      "source": "radar-official",
+      "title": "Snow Man関連ニュース｜dメニューニュース（NTTドコモ）",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（WEB・TBS・MC）",
+        "感嘆符（！）が多い。感嘆符は使わない",
+        "読みやすさ: 段落が長い（平均 136.5字・最長 278字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-14T20:44:28.199518+00:00",
+      "attempt": 0,
+      "id": "267a4c3ea7d0f586",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 76.9,
+        "avg_sentence": 37.4,
+        "long_share": 0.077,
+        "max_paragraph": 137,
+        "paragraphs": 19,
+        "sentences": 39
+      },
+      "score": 92,
+      "source": "radar-official",
+      "title": "Snow Man関連ニュース｜dメニューニュース（NTTドコモ）",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（WEB・TBS・MC）",
+        "感嘆符（！）が多い。感嘆符は使わない"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-14T20:45:16.834147+00:00",
+      "attempt": 1,
+      "id": "0a2391266d2b02e5",
+      "kind": "broad",
+      "model": "gemini-3.6-flash",
+      "problems": [
+        "「よくある質問」Q2の「PMHの利用自体にも特別な手数料はかからない」→ 元記事にも確認済みの文脈にも、PMH利用料が無料だという記載がなく、料金に関する創作にあたる",
+        "表「医療機関等の状況」の「病院・診療所・薬局別の対応可否」→ 元資料は病院・医科診療所・歯科診療所・薬局の4分類の導入状況であり、「対応可否」や3分類という書き方は不正確",
+        "「2026年10月時点で参加自治体が614に拡大し、使える医療機関・薬局が約6.9万施設に増えている」→ 過去記事では614は2026年10月28日時点、約6.9万施設は2026年3月時点で、一つの時点にまとめたのは日付の取り違え",
+        "「2024年度から希望自治体で先行実施され」→ 工程表では2024年度はシステム開発とされ、先行実施の時期の記述が元資料より言い切りすぎ",
+        "かんたん版「カード1枚をかざすだけで受診できる」→ 元記事は「マイナンバーカード1枚で受診」とするのみで、かざす操作は元資料に無い表現"
+      ],
+      "readability": {
+        "avg_paragraph": 73.9,
+        "avg_sentence": 61.6,
+        "long_share": 0.417,
+        "max_paragraph": 202,
+        "paragraphs": 10,
+        "sentences": 12
+      },
+      "score": 70,
+      "source": "digital-agency",
+      "title": "自治体が実施する健康・医療・介護分野の事業のデジタル化（PMH）ー医療費助成に関するダッシュボードを更新しました",
+      "warnings": [
+        "読みやすさ: 文が長い（1文の平均 61.6字・60字超の文が 42% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-14T20:46:06.147891+00:00",
+      "attempt": 1,
+      "id": "0a2391266d2b02e5",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 76.2,
+        "avg_sentence": 63.5,
+        "long_share": 0.417,
+        "max_paragraph": 202,
+        "paragraphs": 10,
+        "sentences": 12
+      },
+      "score": 85,
+      "source": "digital-agency",
+      "title": "自治体が実施する健康・医療・介護分野の事業のデジタル化（PMH）ー医療費助成に関するダッシュボードを更新しました",
+      "warnings": [
+        "読みやすさ: 文が長い（1文の平均 63.5字・60字超の文が 42% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-14T20:46:28.532594+00:00",
+      "attempt": 0,
+      "id": "0a2391266d2b02e5",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 72.9,
+        "avg_sentence": 42.2,
+        "long_share": 0.105,
+        "max_paragraph": 129,
+        "paragraphs": 11,
+        "sentences": 19
+      },
+      "score": 88,
+      "source": "digital-agency",
+      "title": "自治体が実施する健康・医療・介護分野の事業のデジタル化（PMH）ー医療費助成に関するダッシュボードを更新しました"
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-14T20:47:43.497678+00:00",
+      "attempt": 1,
+      "id": "1ef1e86804d1794591a014968eee560ad968ef9e",
+      "kind": "trend",
+      "model": "gemini-3.6-flash",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 109.0,
+        "avg_sentence": 72.7,
+        "long_share": 0.5,
+        "max_paragraph": 147,
+        "paragraphs": 4,
+        "sentences": 6
+      },
+      "score": 90,
+      "source": "trends",
+      "title": "ウクライナ",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（NATO・TBS・NEWS）",
+        "読みやすさ: 文が長い（1文の平均 72.7字・60字超の文が 50% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-14T20:48:00.033706+00:00",
+      "attempt": 0,
+      "id": "1ef1e86804d1794591a014968eee560ad968ef9e",
+      "kind": "trend",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 119.2,
+        "avg_sentence": 47.7,
+        "long_share": 0.2,
+        "max_paragraph": 161,
+        "paragraphs": 4,
+        "sentences": 10
+      },
+      "score": 92,
+      "source": "trends",
+      "title": "ウクライナ",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（NATO・TBS・NEWS）",
+        "読みやすさ: 文が長い（1文の平均 47.7字・60字超の文が 20% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
       ]
     }
   ],
