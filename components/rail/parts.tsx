@@ -389,7 +389,7 @@ export function OtherSites({
 }) {
   if (items.length === 0) return null;
   return (
-    <p data-other-sites="" className={`text-meta leading-relaxed text-ink-soft ${className}`}>
+    <p data-other-sites="" className={`text-note leading-relaxed text-ink-soft ${className}`}>
       ほかのサイト：
       {items.map((item, index) => {
         const tag = item.label && item.label !== first?.label && !item.name.includes(item.label) ? `（${item.label}）` : "";

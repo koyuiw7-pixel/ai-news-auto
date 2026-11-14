@@ -11,8 +11,8 @@ export default function HomeHeadlines({ articles, label = "暮らしとお金の
   if (articles.length === 0) return null;
   return (
     <section aria-labelledby="top-headlines-heading" data-home-zone="headlines" className="mt-4 sm:mt-10">
-      <h2 id="top-headlines-heading" className="flex items-center gap-2 text-note font-bold text-ink">
-        <span aria-hidden className="h-4 w-[3px] rounded-full bg-live" />
+      <h2 id="top-headlines-heading" className="flex items-center gap-2 text-[1.25rem] font-bold leading-[1.4] text-ink">
+        <span aria-hidden className="h-5 w-[3px] rounded-full bg-live" />
         {label}
       </h2>
       <ul className="mt-1 sm:mt-3 sm:grid sm:grid-cols-2 sm:gap-x-8 lg:grid-cols-3">

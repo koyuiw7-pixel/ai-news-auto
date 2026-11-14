@@ -252,7 +252,14 @@ function OutLink({ service, dify = false, className = "" }: { service: ResolvedS
       rel={service.sponsored ? AFFILIATE_REL : "nofollow noopener"}
       className={`font-semibold text-accent underline underline-offset-2 ${className}`}
     >
-      公式サイト{service.sponsored && <span className="ad-pr ml-1.5 align-[1px] no-underline">PR</span>}
+      公式サイト
+      {/* 札の前に空白を1つ入れる（「公式サイトPR」とつながると、文字として PR の表示と読み取れない。scripts/ui_check.mjs） */}
+      {service.sponsored && (
+        <>
+          {" "}
+          <span className="ad-pr ml-0.5 align-[1px] no-underline">PR</span>
+        </>
+      )}
       <span className="sr-only">（新しいタブで開きます）</span>
     </a>
   );

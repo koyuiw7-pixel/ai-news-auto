@@ -41,8 +41,8 @@ export default function HomeTrendingStrip({ articles }: { articles: ArticleSumma
   );
   return (
     <section aria-labelledby="trending-strip-heading" data-home-zone="trending" className="mt-6 sm:mt-10">
-      <h2 id="trending-strip-heading" className="flex items-center gap-2 text-note font-bold text-ink">
-        <span aria-hidden className="h-4 w-[3px] rounded-full bg-live" />
+      <h2 id="trending-strip-heading" className="flex items-center gap-2 text-[1.25rem] font-bold leading-[1.4] text-ink">
+        <span aria-hidden className="h-5 w-[3px] rounded-full bg-live" />
         いま話題
         <span className="index-num text-meta font-normal text-muted">この24時間の{articles.length}本</span>
       </h2>

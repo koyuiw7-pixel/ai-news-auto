@@ -44,7 +44,7 @@ export default function AbBox({
             {card.cta}
           </a>
           <Links arm={arm} tool={tool} rest={rest} first={item} />
-          <p className="abx-note">{arm === "1" ? card.note.arm1 : card.note.arm2}</p>
+          <p className="abx-note text-note">{arm === "1" ? card.note.arm1 : card.note.arm2}</p>
         </div>
       ))}
       <Pixels pixels={pixels} />

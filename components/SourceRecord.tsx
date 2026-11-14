@@ -44,9 +44,10 @@ export default function SourceRecord({
     <section aria-labelledby="record-heading" className="src-record mt-10 max-w-[46em]">
       <details className="src-fold">
         <summary>
-          <h2 id="record-heading" className="src-fold-title">
+          {/* 見出し（h2）にしない。小さな1行の開閉の札なので、見出しの大きさ（20px）にすると出典が主役に見える（2026-11-14 文字の読みやすさチェック） */}
+          <span id="record-heading" className="src-fold-title">
             {count > 0 ? `出典を見る（${count}件）` : "出典と更新履歴を見る"}
-          </h2>
+          </span>
           <span className="src-fold-sub">・確認方法・更新履歴</span>
         </summary>
       <dl className="mt-1 divide-y divide-line leading-relaxed text-muted">
