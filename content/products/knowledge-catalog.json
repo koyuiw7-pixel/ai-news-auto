@@ -6,60 +6,68 @@
   "companyName": "IBM",
   "category": "アプリ・サービス",
   "overview": {
-    "text": "Knowledge Catalogは、AIエージェントが参照するデータの意味を管理する仕組みです。Google Cloudが提供し、2026年4月に名前が変わりました。",
+    "text": "Knowledge Catalogは、社内のデータや用語の意味を一覧にしてAIエージェントに伝えるGoogle Cloudのサービスです。2026年4月10日にDataplex Universal Catalogから名前が変わりました。",
     "sources": [
       "knowledge-catalog-semantic-model-ga",
-      "knowledge-catalog-agent-knowledge-base"
+      "google-knowledge-catalog-self-learning-enrichment"
     ]
   },
   "facts": [
     {
-      "label": "料金",
-      "value": "Lookerのメタデータ保存は無料",
-      "sources": [
-        "lookml-knowledge-catalog-ga"
-      ]
-    },
-    {
-      "label": "使える場所",
-      "value": "Google Cloud",
-      "sources": [
-        "knowledge-catalog-semantic-model-ga",
-        "lookml-knowledge-catalog-ga"
-      ]
-    }
-  ],
-  "capabilities": [
-    {
-      "text": "Looker、dbt、Snowflakeなど6種のセマンティックモデルの取り込みができる。",
-      "sources": [
-        "knowledge-catalog-semantic-model-ga"
-      ]
-    },
-    {
-      "text": "AIエージェントの精度が約4倍になり、トークン使用量を最大75%減らせる。",
+      "label": "提供開始",
+      "value": "2026年4月10日（改称）",
       "sources": [
         "knowledge-catalog-semantic-model-ga",
         "google-knowledge-catalog-self-learning-enrichment"
       ]
     },
     {
-      "text": "Geminiを使った自己学習で文書から不足や古いコンテキストを見つけて更新できる。",
+      "label": "向いている人",
+      "value": "データ担当者や管理者",
+      "sources": [
+        "knowledge-catalog-semantic-model-ga",
+        "lookml-knowledge-catalog-ga",
+        "google-knowledge-catalog-self-learning-enrichment"
+      ]
+    }
+  ],
+  "capabilities": [
+    {
+      "text": "Lookerやdbtなど6種類のセマンティックモデルの取り込みに対応しています。",
       "sources": [
         "knowledge-catalog-semantic-model-ga"
       ]
     },
     {
-      "text": "Knowledge Studioを使って自然言語でグラフを探索し、コンテキストセットにまとめられる。",
+      "text": "エージェントの利用履歴から定義の不足を見つけ、修正案を出す自己学習機能が使えます。",
       "sources": [
-        "knowledge-catalog-semantic-model-ga"
+        "google-knowledge-catalog-self-learning-enrichment"
+      ]
+    },
+    {
+      "text": "Looker Coreのテクニカルメタデータの保存は無料で自動同期されます。",
+      "sources": [
+        "lookml-knowledge-catalog-ga"
+      ]
+    },
+    {
+      "text": "Oracleの表の構造とビジネス上のメタデータを自動で一覧にできます。",
+      "sources": [
+        "oracle-ai-database-agentic-update"
+      ]
+    },
+    {
+      "text": "Markdown形式の知識ファイルを作成し、AIの判断ルールを定義できます。",
+      "sources": [
+        "knowledge-catalog-agent-knowledge-base"
       ]
     }
   ],
   "pricing": [
     {
-      "text": "Lookerのテクニカルメタデータの保存は無料です。",
+      "text": "Looker（Google Cloudコア）の技術メタデータの保存は無料です。",
       "sources": [
+        "knowledge-catalog-semantic-model-ga",
         "lookml-knowledge-catalog-ga"
       ]
     },
@@ -69,66 +77,81 @@
         "knowledge-catalog-semantic-model-ga",
         "lookml-knowledge-catalog-ga"
       ]
+    },
+    {
+      "text": "エントリが作成されると、標準のKnowledge Catalogメタデータ保存料金が適用されます。",
+      "sources": [
+        "google-knowledge-catalog-self-learning-enrichment"
+      ]
     }
   ],
   "japan": [],
   "howto": [
     {
-      "text": "コンテキストの探索や管理にはKnowledge Studioを使います。",
+      "text": "プロジェクトでCloud Dataplex APIとData Lineage APIを有効にします。",
       "sources": [
-        "knowledge-catalog-semantic-model-ga"
+        "lookml-knowledge-catalog-ga"
       ]
     },
     {
-      "text": "Looker Coreの連携では、Cloud Dataplex APIなどを有効にし、閲覧者ロールを付与します。",
+      "text": "利用者に閲覧者ロールを付与し、Google Cloudコンソールから設定を有効にします。",
       "sources": [
         "lookml-knowledge-catalog-ga"
+      ]
+    },
+    {
+      "text": "Knowledge Studioを使って自然言語でグラフを探索し、確認した定義をコンテキストセットにまとめます。",
+      "sources": [
+        "knowledge-catalog-semantic-model-ga",
+        "google-knowledge-catalog-self-learning-enrichment"
       ]
     }
   ],
   "differences": [
     {
-      "text": "自己学習型のコンテキストエンリッチメントがプレビュー版として導入されました。",
+      "text": "2026年4月10日にDataplex Universal Catalogから名称が変わりました。",
       "sources": [
+        "knowledge-catalog-semantic-model-ga",
         "google-knowledge-catalog-self-learning-enrichment"
-      ]
-    },
-    {
-      "text": "Lookerやdbt、Snowflakeなど6種のセマンティックモデルの取り込みが一般提供になりました。",
-      "sources": [
-        "knowledge-catalog-semantic-model-ga"
       ]
     }
   ],
   "faq": [
     {
-      "q": "無料で使える？",
-      "a": "Lookerのメタデータ保存は無料ですが、API呼び出しなどには標準料金がかかります。",
+      "q": "Lookerのメタデータ保存は有料ですか？",
+      "a": "Looker Coreの技術メタデータの保存は無料です。",
       "sources": [
         "knowledge-catalog-semantic-model-ga",
         "lookml-knowledge-catalog-ga"
       ]
     },
     {
-      "q": "名前が変わった？",
-      "a": "2026年4月10日にDataplex Universal Catalogから名前が変わりました。",
+      "q": "自己学習機能ではどのように定義の不足を見つけますか？",
+      "a": "エージェントのやり取りを分析し、曖昧な参照や定義の欠落を探して修正案を用意します。",
       "sources": [
-        "knowledge-catalog-semantic-model-ga"
+        "google-knowledge-catalog-self-learning-enrichment"
       ]
     },
     {
-      "q": "どのようなソースを取り込める？",
-      "a": "Looker、dbt、Snowflake、Databricks、SAPなどの6種のソースを取り込めます。",
-      "sources": [
-        "knowledge-catalog-semantic-model-ga"
-      ]
-    },
-    {
-      "q": "設定の反映にはどれくらいかかる？",
-      "a": "有効にしてからKnowledge Catalogで見られるようになるまで最大1日かかります。",
+      "q": "以前の名称は何ですか？",
+      "a": "Dataplex Universal Catalogという名称でした。",
       "sources": [
         "knowledge-catalog-semantic-model-ga",
-        "lookml-knowledge-catalog-ga"
+        "google-knowledge-catalog-self-learning-enrichment"
+      ]
+    },
+    {
+      "q": "カスタムエントリは画面から作成できますか？",
+      "a": "コンソールでは作成できず、APIかCLIで行う必要があります。",
+      "sources": [
+        "knowledge-catalog-agent-knowledge-base"
+      ]
+    },
+    {
+      "q": "どのようなソースから指標の定義を取り込めますか？",
+      "a": "Looker、dbt、Snowflake、Databricks、BigQuery、SAPの6種類から取り込めます。",
+      "sources": [
+        "knowledge-catalog-semantic-model-ga"
       ]
     }
   ],
@@ -136,17 +159,17 @@
     {
       "date": "2026-11-02",
       "slug": "google-knowledge-catalog-self-learning-enrichment",
-      "event": "自己学習型コンテキストエンリッチメントをプレビュー版で導入"
+      "event": "自己学習機能をプレビュー版で追加"
     },
     {
       "date": "2026-11-05",
       "slug": "lookml-knowledge-catalog-ga",
-      "event": "LookMLの指標定義の取り込みがLooker Coreで一般提供に"
+      "event": "LookMLの指標定義をLooker Coreで一般提供"
     },
     {
       "date": "2026-11-12",
       "slug": "knowledge-catalog-semantic-model-ga",
-      "event": "6種のセマンティックモデルの取り込みが一般提供に"
+      "event": "6種のツールの指標定義の取り込みが一般提供に"
     }
   ],
   "related": [
@@ -168,9 +191,9 @@
     "lookml-knowledge-catalog-ga",
     "google-knowledge-catalog-self-learning-enrichment"
   ],
-  "signature": "57b83ead99dd020e",
+  "signature": "248d5fd4d2a9a8ab",
   "primarySignature": "6d073376f22229d0",
   "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-11-06T20:04:36+00:00",
-  "updatedAt": "2026-11-12T08:01:54+00:00"
+  "updatedAt": "2026-11-15T08:04:23+00:00"
 }
