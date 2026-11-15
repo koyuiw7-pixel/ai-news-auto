@@ -65,8 +65,8 @@
   "affiliates": [],
   "newsType": "general",
   "todayActions": [
-    "ネットで買う予定の品は、11月16日9時59分までに注文を終える",
-    "店頭で買う予定があるなら、行く店舗が本州（東北地区を除く）・四国の直営売場かを特設サイトで確かめる"
+    "店頭で買うなら、行く店舗が対象地域のイオン・イオンスタイルか確かめる",
+    "ネットのセールは「おトクなネットセール情報」で、ほとんど全品15%OFFのクーポンを確かめる"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -130,5 +130,75 @@
     "query": "household budget",
     "original": "https://chirashi.otoku.aeonsquare.net/pc/chirashi/blackfriday/img/og_img.jpg",
     "at": "2026-11-15T21:54:06+00:00"
-  }
+  },
+  "insight": [
+    {
+      "text": "「ご予約販売会」は10月31日（土）から11月9日（月）までと書かれており、店頭の「11月20日（金）～30日（月）」の11日間とは日付が違います。",
+      "source": "https://chirashi.otoku.aeonsquare.net/pc/chirashi/blackfriday/index6.html"
+    },
+    {
+      "text": "「店舗により取扱いのない商品、お取り寄せになる商品、売価が異なる場合がございます。」と書かれています。目当ての品は行く店で確かめる必要があります。",
+      "source": "https://chirashi.otoku.aeonsquare.net/blackfriday/"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "イオン お問い合わせ",
+      "url": "https://www.aeon.info/contact/",
+      "source": "https://chirashi.otoku.aeonsquare.net/blackfriday/"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "店頭で買うなら、行く店舗が対象地域のイオン・イオンスタイルか確かめる",
+      "source": "https://chirashi.otoku.aeonsquare.net/blackfriday/",
+      "steps": [
+        "ページ下の「※ 本州（東北地区を除く）、四国のイオン・イオンスタイルにて実施」を読む",
+        "行く店舗の所在地がこの地域に入るかを確認する"
+      ],
+      "url": "https://chirashi.otoku.aeonsquare.net/blackfriday/"
+    },
+    {
+      "action": "ネットのセールは「おトクなネットセール情報」で、ほとんど全品15%OFFのクーポンを確かめる",
+      "source": "https://chirashi.otoku.aeonsquare.net/pc/chirashi/blackfriday/index3.html",
+      "steps": [
+        "「おトクなネットセール情報」のページを開く",
+        "「ほとんど全品15%OFF」のクーポンの説明を読む"
+      ],
+      "url": "https://chirashi.otoku.aeonsquare.net/pc/chirashi/blackfriday/index3.html"
+    }
+  ],
+  "worries": [
+    {
+      "q": "店頭のセールはいつからいつまで？",
+      "a": "店頭の「超！ブラックフライデーFes」は11月20日（金）から30日（月）の11日間と書かれています。ご予約販売会は10月31日（土）から11月9日（月）までです。",
+      "source": "https://chirashi.otoku.aeonsquare.net/blackfriday/",
+      "action": "行く予定の日付が、店頭期間の11月20日から30日に入るかを確かめる。"
+    },
+    {
+      "q": "住んでいる地域でも対象になる？",
+      "a": "このセールは「本州（東北地区を除く）、四国のイオン・イオンスタイル」にて実施と書かれています。対象かどうかは、行く店舗がこの地域に入るかで決まります。",
+      "source": "https://chirashi.otoku.aeonsquare.net/blackfriday/",
+      "action": "行く予定のイオン・イオンスタイルが、対象の地域に入るかを確かめる。"
+    },
+    {
+      "q": "店によって値段は違う？",
+      "a": "「店舗により取扱いのない商品、お取り寄せになる商品、売価が異なる場合がございます」と書かれています。チラシの価格がどの店でも同じとは限りません。",
+      "source": "https://chirashi.otoku.aeonsquare.net/blackfriday/",
+      "action": "買う前に、行く店で商品があるか、売価が合っているかを店に確かめる。"
+    },
+    {
+      "q": "表示の値段は税込？本体？",
+      "a": "掲載価格は、一部商品を除き本体価格と税込を併記しています。税込価格は標準税率10%と軽減税率8%で記載され、飲食料品はお持ち帰りを基本に軽減税率8%で記載されています。",
+      "source": "https://chirashi.otoku.aeonsquare.net/blackfriday/",
+      "action": "値段を比べるときは、税込どうし、本体どうしで同じ表示を比べる。"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "予約販売会と店頭セールは日付が違う",
+    "steps": "店頭で買うなら、まず地域と店を確かめる",
+    "desk": "公式の問い合わせ先はここ",
+    "worries": "買う前に知っておきたい不安"
+  },
+  "depthAt": "2026-11-15T21:59:49+00:00"
 }

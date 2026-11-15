@@ -64,7 +64,7 @@
   "videoTitle": "三菱ふそう eCANTER 3,115台が2026年11月にリコール 対象は車台番号で確かめます",
   "publishedAt": "2026-11-15T21:31:26.036311+00:00",
   "generatedAt": "2026-11-15T21:31:42.425694+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/mitsubishi-fuso-ecanter-recall-2026-figure-fa5fbbaa.jpg",
   "model": "anthropic-api:claude-haiku-5-5",
   "affiliates": [],
   "newsType": "security",
@@ -109,5 +109,112 @@
   "titleStyle": "2026-11-03",
   "searchTitle": "eCANTERのリコールはいつ？　対象は車検証の車台番号で確認",
   "layout": "noir",
-  "summaryLine": "対象は通称名eCANTERの5型式、計**3,115台**で、届出番号は5908です。"
+  "summaryLine": "対象は通称名eCANTERの5型式、計**3,115台**で、届出番号は5908です。",
+  "insight": [
+    {
+      "text": "整備工場など自動車特定整備事業者等には、日整連発行の機関誌への掲載で周知されるとされています。",
+      "source": "https://www.mlit.go.jp/report/press/content/002045179.pdf"
+    },
+    {
+      "text": "同じ三菱ふそうのスーパーグレートやキャンターなどにも、2026年10月8日に別のリコール届出が出ています。",
+      "source": "https://www.mlit.go.jp/jidosha/news.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "三菱ふそうトラック・バス株式会社 お客様相談センター",
+      "url": "https://www.mlit.go.jp/report/press/content/002045179.pdf",
+      "source": "https://www.mlit.go.jp/report/press/content/002045179.pdf",
+      "phone": "0120-930-397",
+      "note": "範囲内でも対象とならない車両が含まれる場合があるという注意事項があります。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "車検証の型式と車台番号を見て、表の範囲に入るかを確かめる。",
+      "source": "https://www.mlit.go.jp/report/press/content/002045179.pdf",
+      "steps": [
+        "車検証の型式を表の5型式と照らし合わせる",
+        "車台番号が表の範囲に入るかを見る",
+        "範囲に入ればお客様相談センターへ連絡する"
+      ],
+      "url": "https://www.mlit.go.jp/report/press/content/002045179.pdf"
+    },
+    {
+      "action": "範囲に入る車は、お客様相談センターに電話して書き換えの段取りを聞く。",
+      "source": "https://www.mlit.go.jp/report/press/content/002045179.pdf",
+      "steps": [
+        "0120-930-397へ電話する",
+        "車検証の型式と車台番号を伝える",
+        "ソフトウェア書き換えの段取りを確かめる"
+      ],
+      "url": "https://www.mlit.go.jp/report/press/content/002045179.pdf"
+    }
+  ],
+  "cause": {
+    "text": "電動式駐車ブレーキのECUのソフトウェアが不適切なため、EVシステムを起動するキーオン時にだけ橙色のウォーニングランプが点灯せず、保安基準に適合しないと届出されています。不具合件数は0件です。",
+    "status": "stated",
+    "source": "https://www.mlit.go.jp/report/press/content/002045179.pdf"
+  },
+  "worries": [
+    {
+      "q": "自分のeCANTERが対象かは、どうやって確かめる？",
+      "a": "対象は5つの型式で、車検証の型式と車台番号が届出表の車台番号の範囲に入るかで確かめられます。製作期間も表に載っています。範囲に入る車でも対象とならない車が含まれることがあるため、最後はお客様相談センターで確かめます。",
+      "source": "https://www.mlit.go.jp/report/press/content/002045179.pdf",
+      "action": "車検証の型式と車台番号を表と照らし合わせ、範囲に入るならお客様相談センターへ連絡する。"
+    },
+    {
+      "q": "通知が来ていなくても対象になることはある？",
+      "a": "届出では、使用者へダイレクトメール等で通知するとされています。ただ、通知は周知の方法で、範囲に入るかは車検証の型式と車台番号から自分で確かめられます。",
+      "source": "https://www.mlit.go.jp/report/press/content/002045179.pdf",
+      "action": "通知が届いていなくても、車検証の型式と車台番号が範囲に入るか確かめる。"
+    },
+    {
+      "q": "修理では、部品を替えるのか、書き換えるのか？",
+      "a": "全車両について、メータークラスターを対策仕様のソフトウェアに書き換えると届出されています。リコール開始日は令和8年11月13日です。",
+      "source": "https://www.mlit.go.jp/report/press/content/002045179.pdf",
+      "action": "令和8年11月13日以降に、お客様相談センターで書き換えの段取りを確かめる。"
+    },
+    {
+      "q": "もう事故や不具合で困っている人は出ている？",
+      "a": "届出では、不具合件数は0件で、事故の有無は「なし」とされています。",
+      "source": "https://www.mlit.go.jp/report/press/content/002045179.pdf",
+      "action": "今のところ事故の届出はないが、自分の車が範囲に入るか車検証で確かめる。"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "同じ三菱ふそうの別リコールも出ています",
+    "cause": "なぜ起きたのか、届出が示していること",
+    "steps": "車検証を見て、今日確かめる手順",
+    "desk": "連絡先はお客様相談センターと国交省",
+    "worries": "車台番号は範囲に入る？修理は何をする？"
+  },
+  "todayActions": [
+    "車検証の型式と車台番号を見て、表の範囲に入るかを確かめる。",
+    "範囲に入る車は、お客様相談センターに電話して書き換えの段取りを聞く。"
+  ],
+  "depthAt": "2026-11-15T22:00:39+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "3,115台",
+    "label": "「eCANTER」",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-15T22:01:53+00:00"
+  },
+  "imageFocus": {
+    "x": 0.453,
+    "y": 0.462,
+    "box": [
+      0.034,
+      0.048,
+      0.872,
+      0.875
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/mitsubishi-fuso-ecanter-recall-2026-figure-fa5fbbaa.jpg"
+  }
 }
