@@ -8,15 +8,31 @@
   "companyName": "Google",
   "category": "開発ツール",
   "overview": {
-    "text": "Antigravityは、Googleが提供するAIエージェントを活用した開発ツールです。文章で目標を伝えると、AIが手順の分解から実装、検証までを自動で行います。",
+    "text": "Google Antigravityは、AIエージェントが目標に沿ってコードの作成から検証までを進める開発ツールです。2026年9月にスマートフォンの遠隔操作機能が発表され、ハードウェア試作やコード開発の事例が公開されています。",
     "sources": [
-      "google-antigravity-autonomous-software-development"
+      "google-antigravity-autonomous-software-development",
+      "google-deepmind-antigravity-remote-control",
+      "google-gemini-4-argon-surf-clock-hardware"
     ]
   },
   "facts": [
     {
+      "label": "提供開始",
+      "value": "2026年9月までに提供",
+      "sources": [
+        "google-deepmind-antigravity-remote-control"
+      ]
+    },
+    {
+      "label": "日本での提供",
+      "value": "利用できる",
+      "sources": [
+        "gemini-4-hydrogen-developers"
+      ]
+    },
+    {
       "label": "向いている人",
-      "value": "開発者",
+      "value": "プログラムを書く開発者",
       "sources": [
         "gemini-4-hydrogen-developers"
       ]
@@ -24,33 +40,27 @@
   ],
   "capabilities": [
     {
-      "text": "文章での指示に基づき、AIが作業を細かく分けて実装します。",
+      "text": "開発者が文章で伝えた目標に沿って、AIエージェントが作業を分けて実装から検証までを進めます。",
       "sources": [
         "google-antigravity-autonomous-software-development"
       ]
     },
     {
-      "text": "テストツールと連携し、テストの実行や結果の確認を自動で行います。",
-      "sources": [
-        "google-antigravity-autonomous-software-development"
-      ]
-    },
-    {
-      "text": "コードの書き方の点検やセキュリティ検査を自動で実施します。",
-      "sources": [
-        "google-antigravity-autonomous-software-development"
-      ]
-    },
-    {
-      "text": "GitHubへのプルリクエスト作成を自動化できます。",
-      "sources": [
-        "google-antigravity-autonomous-software-development"
-      ]
-    },
-    {
-      "text": "Orchestrator機能で複数のAIモデルを組み合わせて利用できます。",
+      "text": "新機能のOrchestratorにより、HydrogenとCarbonを組み合わせて使えます。",
       "sources": [
         "gemini-4-hydrogen-developers"
+      ]
+    },
+    {
+      "text": "スマートフォンやブラウザから、稼働中のエージェントを遠隔監視・操作できます。",
+      "sources": [
+        "google-deepmind-antigravity-remote-control"
+      ]
+    },
+    {
+      "text": "AIモデルを使い、3Dモデリングや電子工作の配線ガイドなどを自動生成できます。",
+      "sources": [
+        "google-gemini-4-argon-surf-clock-hardware"
       ]
     }
   ],
@@ -62,12 +72,24 @@
       ]
     }
   ],
-  "japan": [],
+  "japan": [
+    {
+      "text": "日本からも利用できます。",
+      "sources": [
+        "gemini-4-hydrogen-developers"
+      ]
+    }
+  ],
   "howto": [
     {
-      "text": "CLI版やWebブラウザ、専用アプリから利用できます。",
+      "text": "有料のGoogle AI ProまたはUltraを契約して利用します。",
       "sources": [
-        "google-antigravity-autonomous-software-development",
+        "gemini-4-hydrogen-developers"
+      ]
+    },
+    {
+      "text": "専用アプリやWebブラウザからリモートコントロール機能を利用できます。",
+      "sources": [
         "google-deepmind-antigravity-remote-control"
       ]
     }
@@ -76,30 +98,31 @@
   "faq": [
     {
       "q": "誰に向いている？",
-      "a": "プログラムを書く開発者や、法人でGeminiを使う人に向いています。",
+      "a": "プログラムを書く開発者や法人でGeminiを使う人に向いています。",
       "sources": [
         "gemini-4-hydrogen-developers"
       ]
     },
     {
-      "q": "スマホから操作できる？",
-      "a": "Antigravity Remote Control機能で、モバイル端末から遠隔監視や操作が可能です。",
+      "q": "スマートフォンから操作できる？",
+      "a": "スマートフォンやブラウザから稼働中のエージェントを遠隔監視・操作できます。",
       "sources": [
         "google-deepmind-antigravity-remote-control"
       ]
     },
     {
-      "q": "ハードウェア開発にも使える？",
-      "a": "Gemini 4 Argonと組み合わせ、物理的なスマート機器の自作を支援するデモが公開されています。",
+      "q": "どのようなモデルを組み合わせられる？",
+      "a": "新機能のOrchestratorにより、HydrogenとCarbonを組み合わせて使えます。",
       "sources": [
-        "google-gemini-4-argon-surf-clock-hardware"
+        "gemini-4-hydrogen-developers"
       ]
     },
     {
-      "q": "外部モデルは使える？",
-      "a": "Google Cloudの顧客向けに、Claude Opus 5.5とClaude Sonnet 5.5が利用可能です。",
+      "q": "どのような作業に使える？",
+      "a": "日常のコーディングやハードウェア開発の自動化などに使えます。",
       "sources": [
-        "google-cloud-ai-october-2026-recap"
+        "gemini-4-hydrogen-developers",
+        "google-gemini-4-argon-surf-clock-hardware"
       ]
     }
   ],
@@ -117,7 +140,7 @@
     {
       "date": "2026-11-12",
       "slug": "gemini-4-hydrogen-developers",
-      "event": "有料のAntigravityでHydrogenが利用可能に"
+      "event": "有料のAntigravityでも利用可"
     }
   ],
   "related": [
@@ -143,9 +166,9 @@
     "google-antigravity-autonomous-software-development",
     "google-deepmind-antigravity-remote-control"
   ],
-  "signature": "8390a0053ddce218",
+  "signature": "b3b2b22559da3dc9",
   "primarySignature": "06553f098aaa1168",
-  "model": "gemini-3.1-flash-lite",
+  "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-10-27T10:45:54+00:00",
-  "updatedAt": "2026-11-12T18:35:43+00:00"
+  "updatedAt": "2026-11-15T18:47:05+00:00"
 }
