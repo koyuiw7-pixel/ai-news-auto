@@ -6,7 +6,7 @@
   "companyName": "NVIDIA",
   "category": "半導体・インフラ",
   "overview": {
-    "text": "OpenShellは、自律して思考し行動するAIエージェントを安全に運用するためのセキュリティプラットフォームです。NVIDIAがGTC Berlin 2026で発表しました。",
+    "text": "OpenShellは、自律して思考し行動するAIエージェントを安全に運用するためのセキュリティプラットフォームです。NVIDIAが2026年10月に開催されたGTC Berlinで発表しました。",
     "sources": [
       "nvidia-gtc-berlin-2026-keynote-highlights",
       "nvidia-gtc-berlin-2026-vera-rubin-openshell"
@@ -15,7 +15,7 @@
   "facts": [
     {
       "label": "料金",
-      "value": "無料で使えるオープンソース",
+      "value": "オープンソースで無料",
       "sources": [
         "nvidia-gtc-berlin-2026-vera-rubin-openshell"
       ]
@@ -24,34 +24,27 @@
       "label": "向いている人",
       "value": "開発者や企業",
       "sources": [
-        "korea-openshell-agentic-ai-security",
-        "nvidia-gtc-berlin-2026-vera-rubin-openshell"
+        "korea-openshell-agentic-ai-security"
       ]
     }
   ],
   "capabilities": [
     {
-      "text": "システム本体から切り離したサンドボックス内でAIエージェントを動かせます。",
+      "text": "システム本体から切り離した隔離環境（サンドボックス）でAIエージェントを動かせます。",
       "sources": [
         "nvidia-gtc-berlin-2026-vera-rubin-openshell"
       ]
     },
     {
-      "text": "エージェントの外部に置いた監督役がルールと照らし合わせて操作を制限します。",
-      "sources": [
-        "nvidia-gtc-berlin-2026-vera-rubin-openshell"
-      ]
-    },
-    {
-      "text": "ファイルやネットワーク、資格情報へのアクセスをポリシーによって管理します。",
+      "text": "エージェントがファイルやネットワークにアクセスする際のルールを管理します。",
       "sources": [
         "nvidia-nemoclaw-agent-platform"
       ]
     },
     {
-      "text": "NemoClawの設計図に安全な実行環境として組み込まれています。",
+      "text": "監督役の仕組みやポリシー証明器などの防護壁で不正な動作を防ぎます。",
       "sources": [
-        "nvidia-nemoclaw-agent-platform"
+        "nvidia-gtc-berlin-2026-keynote-highlights"
       ]
     }
   ],
@@ -64,7 +57,15 @@
     }
   ],
   "japan": [],
-  "howto": [],
+  "howto": [
+    {
+      "text": "NVIDIAの公式ページや設計図を通じて提供されます。",
+      "sources": [
+        "korea-openshell-agentic-ai-security",
+        "nvidia-nemoclaw-agent-platform"
+      ]
+    }
+  ],
   "differences": [],
   "faq": [
     {
@@ -76,22 +77,14 @@
     },
     {
       "q": "誰に向いている？",
-      "a": "AIエージェントを導入する企業や開発者に向いています。",
+      "a": "AIエージェントを社内業務に導入しようとする企業や開発者に向いています。",
       "sources": [
-        "korea-openshell-agentic-ai-security",
-        "nvidia-gtc-berlin-2026-vera-rubin-openshell"
+        "korea-openshell-agentic-ai-security"
       ]
     },
     {
-      "q": "何をする仕組み？",
-      "a": "AIエージェントを安全に運用するためのセキュリティプラットフォームです。",
-      "sources": [
-        "nvidia-gtc-berlin-2026-keynote-highlights"
-      ]
-    },
-    {
-      "q": "どのように不正を防ぐ？",
-      "a": "サンドボックス内で動かし、監督役がルールと照らし合わせて許されない操作を止めます。",
+      "q": "どのような仕組みで安全性を保つ？",
+      "a": "隔離環境の中で動かし、監督役がルールと照らし合わせて制限します。",
       "sources": [
         "nvidia-gtc-berlin-2026-vera-rubin-openshell"
       ]
@@ -101,7 +94,12 @@
     {
       "date": "2026-10-23",
       "slug": "nvidia-gtc-berlin-2026-vera-rubin-openshell",
-      "event": "NVIDIAがOpenShellを発表"
+      "event": "GTC BerlinでOpenShellを発表"
+    },
+    {
+      "date": "2026-11-09",
+      "slug": "korea-openshell-agentic-ai-security",
+      "event": "現代自動車グループが導入を検討"
     }
   ],
   "related": [
@@ -123,9 +121,9 @@
   "linkFrom": [
     "korea-openshell-agentic-ai-security"
   ],
-  "signature": "218c90db67ef5bb1",
+  "signature": "53e521a08cbf6ab7",
   "primarySignature": "f6ac39b5f86c1e28",
   "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-11-09T06:33:12+00:00",
-  "updatedAt": "2026-11-12T12:03:10+00:00"
+  "updatedAt": "2026-11-15T12:12:51+00:00"
 }
