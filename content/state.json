@@ -245,6 +245,7 @@
     "4d230c215ba4a4e4fe707b2d757f867f69696e6f": 2,
     "4de683fb64a1f28338880541b5e037cd5608d0d2": 2,
     "4df91a5a063d45c0fc27fa705792e0998764e045": 2,
+    "4e77073462796ddb12273eed7c40f16d35525bae": 1,
     "4e9420671917a1292d60e55c5626b1e785027dd5": 2,
     "4eab6a156403901911cb987b5fca67d461efb0ae": 2,
     "4eda9384204e527b54e525f7ea673290798e5c3a": 2,
@@ -356,6 +357,7 @@
     "7d4c03afde3a58677fd4a10a6f87f0a613b9c7b1": 2,
     "7d601991e33d9c44b9aa984a8bb470e456015295": 2,
     "7d7437d0045f1bda2163f3097b37fb3fb0ac7e82": 2,
+    "7d99b8d20461232cd342c4db18b65cc556683005": 1,
     "7e035393eb5798bfde8a69a755d0e6fa68d58cc2": 2,
     "7e22d215dd5c89c58cb9b849fabfe6c071b2034d": 2,
     "7e39c5d29d1aa5c428a6e43205eb477deb7caa58": 2,
@@ -576,6 +578,7 @@
     "ed6321ecb4f6bfecb4d7b2e044cadbfb5daec7ff": 2,
     "edf06a6c2c53ee45cb9f48516d8c4694788423f4": 2,
     "ef732af380f6095584a115d4a58e9d26d54a84cb": 2,
+    "f070572d887b625a87e6df3f3cfb2c8fdc15212b": 1,
     "f09667001c58453e444a99e31a381a2f395bb10d": 2,
     "f0a4387f78d383e7ec05c8c62cc0ac51af2f8fec": 2,
     "f0a458b9452018c623c18fb62aecaa6e0afdcd18": 2,
@@ -588,6 +591,7 @@
     "f53678e204c053bae3d5c8d7d781807b39ffafce": 3,
     "f584cdffc3bbaf348de59dd75e53fe9496f5d399": 2,
     "f5b8050be5465320d1cb537876b009a3c037da65": 2,
+    "f5c93477e285d6845806ff56f2910089563aee4f": 1,
     "f5cc1177ae3145dec1eebff2e83d6846c8cb23c1": 2,
     "f615f4305539ff27a65055c7da6312b55374d6d2": 2,
     "f61659830a402e6a44a18a999bbe29e140605c18": 2,
@@ -767,14 +771,6 @@
       "title": "令和8年熊本地震非常災害復旧復興本部-令和8年11月13日",
       "tries": 1,
       "url": "https://www.gov-online.go.jp/press_conferences/prime_minister/202611/video-327351.html"
-    },
-    "efe0878e91e7de62": {
-      "first": "2026-11-14T15:55:43.081418+00:00",
-      "next": "2026-11-14T18:55:43.081418+00:00",
-      "reason": "元記事・確認済みの事実の束・計算済みの数字のどれにも無い数字がある（「7年3月期の純利益予想を7,000億円」、「と、経常利益は前回発表の9,550億円」、「発表の9,550億円から550億円」、「0億円から550億円増の1兆100億円」、「前期実績である5,255億8,300万円」）。元記事か束の数字に直すか、その文を削る。簡単な計算（かけ算・足し算など）をするなら、確かめた数字だけを使って式を",
-      "title": "2027年3月期の通期業績予想および期末配当予想の修正について",
-      "tries": 1,
-      "url": "https://www.jp-bank.japanpost.jp/aboutus/press/2026/abt_prs_id002138.html"
     }
   },
   "major_tries": {},
@@ -15770,6 +15766,17 @@
       "skipped": true,
       "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE5wYkdvSkUyZEtoMnVFMlNlS1QtX0FrYlBMWF80LXpyZ3d1Qnc3MXhDcG9jRnhLeWdQdDhTa2dfTmt1bk5oYkRncXpabw?oc=5"
     },
+    "b0a1253b990406ec": {
+      "at": "2026-11-15T05:38:52.017372+00:00",
+      "costUsd": 0.0113,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "gemini-3.5-flash-lite",
+      "score": 92,
+      "section": "business",
+      "slug": "antitrust-payment-rule-60-days",
+      "url": "https://www.tsr-net.co.jp/data/detail/1203431_1527.html"
+    },
     "b0ddd8ed4634c312": {
       "at": "2026-11-11T09:00:01.209477+00:00",
       "costUsd": 0.1125,
@@ -19738,6 +19745,14 @@
       "skipped": true,
       "url": "https://cloud.google.com/blog/ja/topics/ai-infrastructure/agent-compute-engine-deep-dive/"
     },
+    "efe0878e91e7de62": {
+      "at": "2026-11-15T05:37:35.184545+00:00",
+      "costUsd": 0.0077,
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 元記事・確認済みの事実の束・計算済みの数字のどれにも無い数字がある（「7年3月期の純利益予想を7,000億円」、「し、経常利益を前回発表の9,550億円」、「発表の9,550億円から1兆100億円」、「1兆100億円、純利益を6,600億円」、「、前回発表から経常利益は550億円」）。元記事か束の数字に直すか、その文を削る。簡単な計算（かけ算・足し算など）をするなら、確かめた数字",
+      "skipped": true,
+      "url": "https://www.jp-bank.japanpost.jp/aboutus/press/2026/abt_prs_id002138.html"
+    },
     "eff0231c4d1087b6": {
       "at": "2026-11-06T01:42:59.353685+00:00",
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
@@ -22437,82 +22452,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-12T18:04:04.391128+00:00",
-      "attempt": 1,
-      "id": "a8d5fa7d24b3647f",
-      "kind": "ai",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [
-        "元記事・確認済みの資料に無い画面の手順・メニュー名・ボタン名がある（「モデル選択画面」）。資料にある道順だけを書くか、「公式ヘルプの手順を確認してください」と書く"
-      ],
-      "readability": {
-        "avg_paragraph": 90.0,
-        "avg_sentence": 45.8,
-        "long_share": 0.193,
-        "max_paragraph": 187,
-        "paragraphs": 29,
-        "sentences": 57
-      },
-      "score": null,
-      "source": "google-deepmind-blog",
-      "title": "Introducing Gemini 4 Hydrogen",
-      "warnings": [
-        "見出しが55字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（SWE・HLE・MKA）",
-        "読みやすさ: 文が長い（1文の平均 45.8字・60字超の文が 19% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-12T18:04:49.523891+00:00",
-      "attempt": 1,
-      "id": "a8d5fa7d24b3647f",
-      "kind": "ai",
-      "model": "strike:本文 1 文・リード・判定カード",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 87.4,
-        "avg_sentence": 45.3,
-        "long_share": 0.185,
-        "max_paragraph": 148,
-        "paragraphs": 28,
-        "sentences": 54
-      },
-      "score": 93,
-      "source": "google-deepmind-blog",
-      "title": "Introducing Gemini 4 Hydrogen",
-      "warnings": [
-        "見出しが55字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（SWE・HLE・MKA）",
-        "読みやすさ: 文が長い（1文の平均 45.3字・60字超の文が 18% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-12T18:05:39.457591+00:00",
-      "attempt": 0,
-      "id": "a8d5fa7d24b3647f",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 72.0,
-        "avg_sentence": 41.0,
-        "long_share": 0.121,
-        "max_paragraph": 148,
-        "paragraphs": 33,
-        "sentences": 58
-      },
-      "score": 93,
-      "source": "google-deepmind-blog",
-      "title": "Introducing Gemini 4 Hydrogen",
-      "warnings": [
-        "見出しが55字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（SWE・HLE・MKA）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-12T18:32:32.927341+00:00",
@@ -29973,6 +29912,83 @@
         "初めて出たところで言い換えていない略語（KONAMI・MVP・GK）",
         "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
         "読みやすさ: 文が長い（1文の平均 50.1字・60字超の文が 15% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-15T05:37:14.397423+00:00",
+      "attempt": 1,
+      "id": "efe0878e91e7de62",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "元記事・確認済みの事実の束・計算済みの数字のどれにも無い数字がある（「7年3月期の純利益予想を7,000億円」、「し、経常利益を前回発表の9,550億円」、「発表の9,550億円から1兆100億円」、「1兆100億円、純利益を6,600億円」、「、前回発表から経常利益は550億円」）。元記事か束の数字に直すか、その文を"
+      ],
+      "readability": {
+        "avg_paragraph": 233.1,
+        "avg_sentence": 90.7,
+        "long_share": 0.833,
+        "max_paragraph": 361,
+        "paragraphs": 7,
+        "sentences": 18
+      },
+      "score": null,
+      "source": "jp-bank",
+      "title": "2027年3月期の通期業績予想および期末配当予想の修正について",
+      "warnings": [
+        "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
+        "要点の1つ目がリードの文の写し。一番のニュースを、リードとは違う言い方で書く"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-15T05:38:24.654568+00:00",
+      "attempt": 1,
+      "id": "b0a1253b990406ec",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 151.6,
+        "avg_sentence": 68.2,
+        "long_share": 0.45,
+        "max_paragraph": 315,
+        "paragraphs": 9,
+        "sentences": 20
+      },
+      "score": 92,
+      "source": "tsr",
+      "title": "27年4月、独占禁止法に基づく「支払告示」がスタート ～ 製造委託等の「60日以内払い」が義務化 ～",
+      "warnings": [
+        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（TSR）",
+        "読みやすさ: 文が長い（1文の平均 68.2字・60字超の文が 45% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-15T05:38:51.991747+00:00",
+      "attempt": 0,
+      "id": "b0a1253b990406ec",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 105.8,
+        "avg_sentence": 43.8,
+        "long_share": 0.103,
+        "max_paragraph": 206,
+        "paragraphs": 12,
+        "sentences": 29
+      },
+      "score": 92,
+      "source": "tsr",
+      "title": "27年4月、独占禁止法に基づく「支払告示」がスタート ～ 製造委託等の「60日以内払い」が義務化 ～",
+      "warnings": [
+        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（TSR）",
+        "1つの文を2つに割っている（「狙いがあります。特定の事業者に生じている資金繰りの負担を和らげるためです。」）。1文にまとめる"
       ]
     }
   ],
