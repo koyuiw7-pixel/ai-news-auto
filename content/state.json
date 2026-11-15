@@ -101,6 +101,7 @@
     "05300b4cb82f2a3a1ce4ee6989b323727d3091bc": 2,
     "05b310adaf37dd5c16c542c981f14a22b2fe5d55": 2,
     "06aff5fd597e285cf4d5ccf2c223547982790e03": 2,
+    "06ce92a0fa5afdb1d2eb5d7dd72a7ceb7d150db6": 1,
     "079e3ebb57a63b82c25a3471dc7a19873cbb8407": 2,
     "0882adbb24ee9e786158a3f436828988fd6b8c79": 2,
     "0970d8856d2036312320a42b6368992d6d1d99b3": 2,
@@ -412,6 +413,7 @@
     "9019da8c0adbc01f657323eef25d19e370819c32": 2,
     "902e2e4a49979d11595a15ad270fefde0b31a311": 1,
     "90315ed77c2a1cc3b3470387a830145d212cea7f": 2,
+    "903baea9bedfc4265a39610d9f19831c34ecb402": 1,
     "9053a65a2e8c01543ebd92d1cbf8072ae6c5c7f6": 2,
     "90996d67f69e11107107db138755b339e1a1c115": 2,
     "91742b66dae3d34855cb8e61021356870923938d": 2,
@@ -445,6 +447,7 @@
     "a11ec2f23f7cf8d83e4132755ae57544be201b5c": 2,
     "a163454828aa4206181861eca5e4d919e1775765": 2,
     "a170820ef862a7fba3099d94bc117aa6063c9c22": 2,
+    "a18b91f69f7d54c2a034eab643d94ad0022568ff": 1,
     "a1f7df43a41de18f640d9b908075ebe12fdabbc9": 2,
     "a22234bae871d686125c6909bd184bc683dfa7f7": 2,
     "a24225b55320b31386190a5e1a948c7f28ff8235": 2,
@@ -7253,6 +7256,13 @@
       "reason": "prefilter: 価値の薄いお知らせ（表敬）",
       "skipped": true,
       "url": "https://www.kantei.go.jp/jp/105/actions/202611/09hyoukei.html"
+    },
+    "3005b23a7b196db677edbd8213e8d10fe1226e57": {
+      "at": "2026-11-15T08:36:37.390170+00:00",
+      "model": "gemini-3.5-flash",
+      "reason": "quality: タイトル「熱海富士が7日目に6勝目　藤凌駕を破り」→ 元記事（NHK）は7日目の見どころ（取組前）で、熱海富士は5勝1敗、対戦は『予定』と書かれているだけで、勝敗結果は元記事にない。創作; 本文「熱海富士は一気の寄りで藤凌駕を圧倒し、6勝1敗」→ 取組結果・決まり手・成績とも元記事に無い創作; リード・要点「NHKなどが報じました」「7日目は一気の寄りで快勝」→ 元記事にない結果",
+      "skipped": true,
+      "url": "https://news.ntv.co.jp/n/knb/category/sports/kn16aac514b9a24cfe96d109cee4c45686"
     },
     "300d91101f21ec1d": {
       "at": "2026-11-05T23:41:38.575334+00:00",
@@ -22122,14 +22132,6 @@
       "url": "https://www.bk.mufg.jp/info/20261001_aujibun.html",
       "writer": "muse"
     },
-    "muse-c9af16a05a": {
-      "at": "2026-11-15T08:35:42.483927+00:00",
-      "mix": "other",
-      "score": 93,
-      "slug": "ingliff-chair-free-repair-sticker-check",
-      "url": "https://www.kokuyo.com/news/important/20261006/",
-      "writer": "muse"
-    },
     "muse-cac4ac0e61": {
       "at": "2026-11-12T08:40:32.660796+00:00",
       "mix": "money",
@@ -22449,37 +22451,17 @@
       "slug": "docomo-data-leak-what-to-do",
       "url": "https://www.docomo.ne.jp/info/notice/page/261106_00_m.html",
       "writer": "muse"
+    },
+    "muse-c9af16a05a": {
+      "at": "2026-11-15T08:35:42.483927+00:00",
+      "mix": "other",
+      "score": 93,
+      "slug": "ingliff-chair-free-repair-sticker-check",
+      "url": "https://www.kokuyo.com/news/important/20261006/",
+      "writer": "muse"
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-13T02:43:56.912358+00:00",
-      "attempt": 1,
-      "id": "76aaa17ead4f957e",
-      "kind": "ai",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [
-        "タイトル「$449から」→ Warby Parkerの$395が最安で、$449は Gentle Monster の価格。最安値を外して高い方を見出しに出しており、誤解を招く。",
-        "「米国の360以上の店舗では、体験デモの予約もできます」→ 元記事は「more than 360 Warby Parker retail locations」とだけ書き、米国とは述べていない。",
-        "「今回の予約開始は、前者のオーディオ型です」→ 元記事は予約対象の型を明示しておらず、オーディオ型と判断するのは推測。ただしパートナー記述から大きな誤りではない。",
-        "「Samsung版の価格と提供地域はまだ発表されていません」→ 元記事に言及がなく、『発表されていない』という記述として扱えるため軽微。"
-      ],
-      "readability": {
-        "avg_paragraph": 85.3,
-        "avg_sentence": 37.1,
-        "long_share": 0.087,
-        "max_paragraph": 140,
-        "paragraphs": 20,
-        "sentences": 46
-      },
-      "score": 85,
-      "source": "google-ai-blog",
-      "title": "See our intelligent eyewear lineup and pre-order your pair",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（HDR）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-13T02:44:23.777938+00:00",
@@ -30005,6 +29987,37 @@
         "初めて出たところで言い換えていない略語（IMT）",
         "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
         "読みやすさ: 文が長い（1文の平均 52.9字・60字超の文が 35% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-15T08:36:37.390107+00:00",
+      "attempt": 1,
+      "id": "3005b23a7b196db677edbd8213e8d10fe1226e57",
+      "kind": "trend",
+      "model": "gemini-3.5-flash",
+      "problems": [
+        "タイトル「熱海富士が7日目に6勝目　藤凌駕を破り」→ 元記事（NHK）は7日目の見どころ（取組前）で、熱海富士は5勝1敗、対戦は『予定』と書かれているだけで、勝敗結果は元記事にない。創作",
+        "本文「熱海富士は一気の寄りで藤凌駕を圧倒し、6勝1敗」→ 取組結果・決まり手・成績とも元記事に無い創作",
+        "リード・要点「NHKなどが報じました」「7日目は一気の寄りで快勝」→ 元記事にない結果報道の帰属と決まり手の創作",
+        "本文「幕内トップとなる6勝1敗」「幕内トップを守った」→ 熱海富士の成績は元記事では5勝1敗（取組前）のみで、6勝1敗・幕内トップは根拠がない",
+        "本文「立ち合いから力強く攻め込み、すぐに勝ち星を取り戻しました」→ 取組内容の描写は元記事に無い創作",
+        "「藤凌駕は…熱海富士の攻めに対抗できませんでした」→ 取組結果に基づく記述で元記事に無い"
+      ],
+      "readability": {
+        "avg_paragraph": 121.8,
+        "avg_sentence": 44.3,
+        "long_share": 0.0,
+        "max_paragraph": 142,
+        "paragraphs": 4,
+        "sentences": 11
+      },
+      "score": 8,
+      "source": "trends",
+      "title": "熱海富士",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（NEWS）",
+        "読みやすさ: 段落が長い（平均 121.8字・最長 142字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
       ]
     }
   ],
