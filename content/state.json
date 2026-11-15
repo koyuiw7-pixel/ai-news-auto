@@ -9601,12 +9601,6 @@
       "skipped": true,
       "url": "https://www.boj.or.jp/statistics/dl/depo/kashi/kasi2610.pdf"
     },
-    "5012da27dd46e5cc": {
-      "at": "2026-11-01T23:20:58.168369+00:00",
-      "reason": "prefilter: 価値の薄いお知らせ（職員）",
-      "skipped": true,
-      "url": "https://www.mhlw.go.jp/stf/newpage_77111.html"
-    },
     "50154ae2203c3887": {
       "at": "2026-11-06T05:21:14.214675+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（の開催）",
@@ -16913,6 +16907,19 @@
       "skipped": true,
       "url": "https://www.env.go.jp/press/press_05803.html"
     },
+    "b9b44cd1441d4717": {
+      "at": "2026-11-15T23:22:49.765067+00:00",
+      "costUsd": 0.002,
+      "intent": "breaking",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "score": 88,
+      "section": "public",
+      "slug": "irisplaza-data-leak-second-report",
+      "url": "https://www.irisohyama.co.jp/news/2026/amp/?date=1105"
+    },
     "b9cecaef83e317ff": {
       "at": "2026-11-11T07:19:53.494568+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（受賞）",
@@ -17614,6 +17621,19 @@
       "reason": "prefilter: 価値の薄いお知らせ（セミナー）",
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026110519"
+    },
+    "c6057418672e886d": {
+      "at": "2026-11-15T23:23:57.417970+00:00",
+      "costUsd": 0.006,
+      "intent": "breaking",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "score": 92,
+      "section": "public",
+      "slug": "uchicomi-data-leak-ransomware",
+      "url": "https://uchicomi.co.jp/news/647"
     },
     "c63d1aa22d52b881": {
       "at": "2026-11-09T10:03:43.223585+00:00",
@@ -23122,82 +23142,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-13T11:49:28.743586+00:00",
-      "attempt": 1,
-      "id": "48f9386aadfaa5f8",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 141.3,
-        "avg_sentence": 57.8,
-        "long_share": 0.455,
-        "max_paragraph": 209,
-        "paragraphs": 9,
-        "sentences": 22
-      },
-      "score": 92,
-      "source": "tokyu-fudosan",
-      "title": "登戸駅前再開発から生まれる、未来資産を育む住まい 住宅部分の名称を「ブランズタワー登戸」に決定 ～駅徒歩1分・デッキ直結、緑を日常に取り込む地上38階の住宅商業",
-      "warnings": [
-        "見出しの書き方: 発表文の題名の言い直し（「〇〇が△△を発表」）。読者にとって何が変わるか（だれの・何が・いつから・いくら）を書く",
-        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（JR・GREEN・BOBOS）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-13T11:49:54.418184+00:00",
-      "attempt": 0,
-      "id": "48f9386aadfaa5f8",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 69.2,
-        "avg_sentence": 38.2,
-        "long_share": 0.138,
-        "max_paragraph": 170,
-        "paragraphs": 16,
-        "sentences": 29
-      },
-      "score": 92,
-      "source": "tokyu-fudosan",
-      "title": "登戸駅前再開発から生まれる、未来資産を育む住まい 住宅部分の名称を「ブランズタワー登戸」に決定 ～駅徒歩1分・デッキ直結、緑を日常に取り込む地上38階の住宅商業",
-      "warnings": [
-        "見出しの書き方: 発表文の題名の言い直し（「〇〇が△△を発表」）。読者にとって何が変わるか（だれの・何が・いつから・いくら）を書く",
-        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（JR・GREEN・BOBOS）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-13T12:18:40.236349+00:00",
-      "attempt": 1,
-      "id": "2bd53aa92b6c6ce2df630ca3419fca94076e2d61",
-      "kind": "trend",
-      "model": "gemini-3.5-flash",
-      "problems": [
-        "元記事・確認済みの資料に無い画面の手順・メニュー名・ボタン名がある（「設定画面」）。資料にある道順だけを書くか、「公式ヘルプの手順を確認してください」と書く"
-      ],
-      "readability": {
-        "avg_paragraph": 72.0,
-        "avg_sentence": 48.0,
-        "long_share": 0.222,
-        "max_paragraph": 107,
-        "paragraphs": 6,
-        "sentences": 9
-      },
-      "score": null,
-      "source": "trends",
-      "title": "ユナイテッド・スーパーマーケット・ホールディングス",
-      "warnings": [
-        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "読みやすさ: 文が長い（1文の平均 48.0字・60字超の文が 22% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": false,
       "at": "2026-11-13T12:34:46.677596+00:00",
@@ -30698,6 +30642,82 @@
       "title": "賃金",
       "warnings": [
         "初めて出たところで言い換えていない略語（NEWS）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-15T23:22:42.512475+00:00",
+      "attempt": 1,
+      "id": "b9b44cd1441d4717",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 65.5,
+        "avg_sentence": 36.7,
+        "long_share": 0.08,
+        "max_paragraph": 132,
+        "paragraphs": 14,
+        "sentences": 25
+      },
+      "score": 88,
+      "source": "fast",
+      "title": "（第2報）株式会社アイリスプラザECサイト一時停止のお知らせ",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（EC・SMS・SIMPLE）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-15T23:23:27.548103+00:00",
+      "attempt": 1,
+      "id": "c6057418672e886d",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "タイトルの「最大14万2,591アカウント」→ 元記事は「影響を受けた可能性のある対象は142,591アカウント」としており、「最大」という上限の表現はない。事実より大きく言っている。",
+        "本文の「連絡先のうち、メールアドレス、住所、電話番号は、なりすましの連絡に使われやすい情報です」→ 元記事にない一般論が事実のように書かれている。",
+        "本文の「14万2,591アカウント分の連絡先が使われると、ウチコミ!を名乗るメールやSMSが届く恐れがある」→ 元記事に無い推測で、根拠の明示がない。"
+      ],
+      "readability": {
+        "avg_paragraph": 71.0,
+        "avg_sentence": 29.4,
+        "long_share": 0.034,
+        "max_paragraph": 115,
+        "paragraphs": 12,
+        "sentences": 29
+      },
+      "score": 82,
+      "source": "fast",
+      "title": "ウチコミ!の情報流出に関するお知らせ",
+      "warnings": [
+        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（SMS）",
+        "感嘆符（！）が多い。感嘆符は使わない"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-15T23:23:47.623606+00:00",
+      "attempt": 1,
+      "id": "c6057418672e886d",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 64.6,
+        "avg_sentence": 28.4,
+        "long_share": 0.04,
+        "max_paragraph": 115,
+        "paragraphs": 11,
+        "sentences": 25
+      },
+      "score": 92,
+      "source": "fast",
+      "title": "ウチコミ!の情報流出に関するお知らせ",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（SMS）",
+        "感嘆符（！）が多い。感嘆符は使わない"
       ]
     }
   ],
