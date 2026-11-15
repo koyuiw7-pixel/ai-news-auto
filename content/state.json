@@ -92,7 +92,7 @@
     "0187ebd8136138e9dd6260926b0bf8b46008ccf3": 2,
     "0269f82fdb77239e929f5e757e09d832210990a5": 2,
     "02ef51b493ccd1b1bc7e89b2860b65b4c875b2b6": 2,
-    "02f61ccfcaaa5ba6340639cef8e506f82e324707": 1,
+    "02f61ccfcaaa5ba6340639cef8e506f82e324707": 2,
     "03336ca1598a07d5cf6cc34f63df7b152fd54e79": 2,
     "03420de086a09dc3ad89fe6317c3521ef0077ba8": 2,
     "0357ce98f386ad16c3aa6c3c5496d531a1196757": 2,
@@ -255,7 +255,7 @@
     "4179d4865bfaa79700f28f05afed818c438823fa": 2,
     "41c2252ba06705c3b49777a0c2859e9c52b615b5": 2,
     "41de3f72dd3df8ec94dc033c4e56269f355fe447": 2,
-    "42894865683df8c7a9da3e8c7df2fb6ac7060419": 1,
+    "42894865683df8c7a9da3e8c7df2fb6ac7060419": 2,
     "432f5d83dcba731fbb206efeca928b9cea8a3975": 2,
     "433a3d4247ade24d0ba68dc80b8013302dcfd587": 2,
     "43f46f039e8833524d75b8acaf6ca68df4c2dbed": 2,
@@ -287,6 +287,7 @@
     "4cc941f6152a1702c41cbb933b3e47a363cc784d": 2,
     "4d230c215ba4a4e4fe707b2d757f867f69696e6f": 2,
     "4d4a8e3ac38c1ac4fb0217853911af5535129f79": 2,
+    "4d94e3bd746369ea77fef6be88f3bfd0bdeb347e": 1,
     "4de683fb64a1f28338880541b5e037cd5608d0d2": 2,
     "4df91a5a063d45c0fc27fa705792e0998764e045": 2,
     "4e77073462796ddb12273eed7c40f16d35525bae": 1,
@@ -607,7 +608,7 @@
     "c70e00c88fbd0bfee852e9c8047f5e5e5ce8ae95": 2,
     "c76b37ac93749a4c244dddc5a1e3b391023668b8": 2,
     "c829c95e2feea9b8020877eab07280449e33728c": 2,
-    "c868f360e57c807b59880bc579b0883d5b737f95": 1,
+    "c868f360e57c807b59880bc579b0883d5b737f95": 2,
     "c8e0546d2617732ec647d4f6b640d03551a9d260": 1,
     "c946e23a81d7f40099632701adaf89e77d0414ba": 2,
     "c9eb4ec6491d994a3c99f2defed180657ca7bb97": 1,
@@ -649,7 +650,7 @@
     "d40f84253675d75f9845bd485000d4a354b94278": 2,
     "d41e958041324b3f8ad91b8c59589ad49e79cc8d": 2,
     "d45b2cae86cd0f886e3ff9cab7a1eec0fa999ad1": 2,
-    "d470b06f39d6c1e1503effa52a4f52f923610b16": 1,
+    "d470b06f39d6c1e1503effa52a4f52f923610b16": 2,
     "d490d6aff44d35e936d6ac09517adc3d1d395845": 2,
     "d4b630c99b0c64c22d977dcdb2b41dafc0fb6b5f": 2,
     "d52167341792aa6ed4b1ea69f5e07fd210f5a86b": 1,
@@ -740,8 +741,9 @@
     "f615f4305539ff27a65055c7da6312b55374d6d2": 2,
     "f61659830a402e6a44a18a999bbe29e140605c18": 2,
     "f686f8f90502329ff4ea5d3e0e238da5a0a070bf": 2,
-    "f7c650e4943858ce5c1657998087f1208d22ef38": 1,
-    "f7eb2220bbaabeab2b0c2953a35f71bf0e7d8805": 1,
+    "f7c650e4943858ce5c1657998087f1208d22ef38": 2,
+    "f7cd9f317550f1df9044cb9b514747acd6ab6630": 1,
+    "f7eb2220bbaabeab2b0c2953a35f71bf0e7d8805": 2,
     "f7f109b69b470da510f5015d37b1f373cfed6a7f": 2,
     "f8226abbc7bcdc765056996861448b489c67dfd8": 2,
     "f95b4647430c48d5b1e01278c9057a4960978b19": 2,
@@ -12269,6 +12271,13 @@
       "skipped": true,
       "url": "https://www.stat.go.jp/data/kakei/sokuhou/tsuki/index.html"
     },
+    "764c040a86af64aff05dcdc6636eb9deb0ab6397": {
+      "at": "2026-11-15T23:00:48.776569+00:00",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "reason": "quality: 元記事・確認済みの事実の束・計算済みの数字のどれにも無い数字がある（「によると県内の中小企業の67.9%」）。元記事か束の数字に直すか、その文を削る。簡単な計算（かけ算・足し算など）をするなら、確かめた数字だけを使って式を書き「（サイソク編集部の計算）」と添える",
+      "skipped": true,
+      "url": "https://news.yahoo.co.jp/articles/7cd0e797baafaeb2f8293e6806d74b6b2fa571c1"
+    },
     "7654ed0c5356186b": {
       "at": "2026-11-02T17:11:43.212524+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -23110,13 +23119,6 @@
       "slug": "mcdonalds-mcnugget-15pc-490yen",
       "url": "https://www.mcdonalds.co.jp/company/news/2026/1111a/",
       "writer": "muse"
-    },
-    "764c040a86af64aff05dcdc6636eb9deb0ab6397": {
-      "at": "2026-11-15T23:00:48.776569+00:00",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "reason": "quality: 元記事・確認済みの事実の束・計算済みの数字のどれにも無い数字がある（「によると県内の中小企業の67.9%」）。元記事か束の数字に直すか、その文を削る。簡単な計算（かけ算・足し算など）をするなら、確かめた数字だけを使って式を書き「（サイソク編集部の計算）」と添える",
-      "skipped": true,
-      "url": "https://news.yahoo.co.jp/articles/7cd0e797baafaeb2f8293e6806d74b6b2fa571c1"
     }
   },
   "quality_log": [

@@ -65,13 +65,13 @@
   "videoTitle": "楽天ブラックフライデー2026は11月19日20時開始　エントリー必須、買いまわりの特典は最大7,000ポイント",
   "publishedAt": "2026-11-15T23:03:29.549563+00:00",
   "generatedAt": "2026-11-15T23:03:51.320524+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/rakuten-black-friday-2026-eligibility-figure-7913412a.jpg",
   "model": "anthropic-api:claude-haiku-5-5",
   "affiliates": [],
   "newsType": "product",
   "todayActions": [
-    "楽天市場のキャンペーンページで、エントリーが済んでいるかを確かめる。",
-    "1ショップの合計が税込1,000円以上になるように、買い物の予定を確かめる。"
+    "エントリー履歴を開き、買いまわりに申し込み済みかを確かめる",
+    "未エントリーなら、期間中に買いまわりのエントリーを済ませる"
   ],
   "angleOf": "rakuten-black-friday-2026-entry",
   "deepDive": "check",
@@ -93,5 +93,121 @@
   "titleStyle": "2026-11-03",
   "searchTitle": "楽天ブラックフライデー　買いまわり、1ショップ1,000円以上",
   "layout": "noir",
-  "summaryLine": "対象期間は11月19日（木）20時から11月25日（水）01時59分までです。"
+  "summaryLine": "対象期間は11月19日（木）20時から11月25日（水）01時59分までです。",
+  "insight": [
+    {
+      "text": "特典ポイントは税抜、送料別、クーポン適用後の金額に対して付与されます。対象購入額の税込1,000円とは計算の基準が違います。",
+      "source": "https://event.rakuten.co.jp/campaign/point-up/blackfriday/"
+    },
+    {
+      "text": "特典ポイント付与時点で注文がキャンセルされている場合、その注文は本キャンペーンの対象外となります。",
+      "source": "https://event.rakuten.co.jp/campaign/point-up/blackfriday/"
+    },
+    {
+      "text": "特典ポイントの期限は2027年1月31日(日)23:59までです。期限後にキャンセルや金額修正が生じても返還されません。",
+      "source": "https://event.rakuten.co.jp/campaign/point-up/blackfriday/"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "楽天市場 ブラックフライデー 買いまわりエントリー",
+      "url": "https://oubo.rakuten.co.jp/apply/ic/blackfriday/20261119jfpze/pointup",
+      "source": "https://event.rakuten.co.jp/campaign/point-up/blackfriday/",
+      "note": "エントリー期間は2026年11月12日(木)10:00～2026年11月25日(水)01:59です。"
+    },
+    {
+      "name": "楽天市場 エントリー履歴",
+      "url": "https://oubo.rakuten.co.jp/list",
+      "source": "https://event.rakuten.co.jp/campaign/point-up/blackfriday/",
+      "note": "対象期間中にエントリーすれば、エントリー前のお買い物も買いまわりの対象となります。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "エントリー履歴を開き、買いまわりに申し込み済みかを確かめる",
+      "source": "https://event.rakuten.co.jp/campaign/point-up/blackfriday/",
+      "steps": [
+        "楽天市場のブラックフライデーのページを開く",
+        "「エントリー履歴を見る」を押す",
+        "買いまわりのエントリーがあるかを見る"
+      ],
+      "url": "https://oubo.rakuten.co.jp/list"
+    },
+    {
+      "action": "未エントリーなら、期間中に買いまわりのエントリーを済ませる",
+      "source": "https://event.rakuten.co.jp/campaign/point-up/blackfriday/",
+      "steps": [
+        "楽天市場のブラックフライデーのページを開く",
+        "「買いまわりキャンペーンに事前エントリーする」を押す",
+        "「エントリー済みです」と表示されるかを確かめる"
+      ],
+      "url": "https://oubo.rakuten.co.jp/apply/ic/blackfriday/20261119jfpze/pointup"
+    }
+  ],
+  "worries": [
+    {
+      "q": "エントリーより前の買い物も対象になる？",
+      "a": "対象期間中にエントリーすれば、エントリー前のお買い物も買いまわりの対象となります。エントリー履歴のページで確認できます。",
+      "source": "https://event.rakuten.co.jp/campaign/point-up/blackfriday/",
+      "action": "エントリー履歴で申し込み状況を確かめ、期間内に済ませる。"
+    },
+    {
+      "q": "送料やクーポン後の金額は対象になる？",
+      "a": "対象購入金額は税込、送料別、クーポン適用後の金額です。同一ショップの複数回の購入は合算され、1ショップとしてカウントされます。",
+      "source": "https://event.rakuten.co.jp/campaign/point-up/blackfriday/",
+      "action": "買い物の前に、送料を除いた商品代の合計が税込1,000円以上かを確かめる。"
+    },
+    {
+      "q": "特典ポイントはいつ付く？",
+      "a": "特典ポイントの付与予定日は2026年12月15日(火)頃です。お買い物後、付与までに期間がございます。",
+      "source": "https://event.rakuten.co.jp/campaign/point-up/blackfriday/",
+      "action": "付与予定日の2026年12月15日頃を目安に、ポイントが付いたかを確かめる。"
+    },
+    {
+      "q": "ふるさと納税の寄付でも特典は付く？",
+      "a": "2025年10月1日(水)より「楽天ふるさと納税」の寄付は、原則として楽天ポイント付与の対象外となりました。",
+      "source": "https://event.rakuten.co.jp/campaign/point-up/blackfriday/",
+      "action": "ふるさと納税の寄付で特典を狙うなら、先に対象外かどうかを確かめる。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "まだエントリーしていないけど、今から済ませるべき？",
+      "situation": "期間中に買い物の予定がある",
+      "recommend": "期限の11月25日01:59までに済ませておくと安心",
+      "reason": "エントリー期間は2026年11月25日(水)01:59までです。期間中にエントリーすれば、エントリー前の買い物も対象になります。期間を過ぎるとエントリーはできません。",
+      "source": "https://event.rakuten.co.jp/campaign/point-up/blackfriday/"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "特典は税抜で計算、キャンセルは対象外",
+    "steps": "今日やる2つ、まずエントリー確認から",
+    "desk": "エントリーと履歴を確かめる公式ページ",
+    "worries": "期間外の買い物やポイントはどうなる？",
+    "guide": "今からエントリーするか迷ったら"
+  },
+  "depthAt": "2026-11-15T23:17:33+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "1,000円",
+    "label": "買いまわりは1ショップ",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-15T23:18:34+00:00"
+  },
+  "imageFocus": {
+    "x": 0.479,
+    "y": 0.453,
+    "box": [
+      0.066,
+      0.048,
+      0.891,
+      0.857
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/rakuten-black-friday-2026-eligibility-figure-7913412a.jpg"
+  }
 }
