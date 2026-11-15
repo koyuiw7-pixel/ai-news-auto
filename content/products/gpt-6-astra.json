@@ -8,86 +8,58 @@
   "companyName": "OpenAI",
   "category": "AIモデル",
   "overview": {
-    "text": "GPT-6 Astraは、PC操作や3D制作などを自律的に行うAIモデルです。米OpenAIが2026年9月に発表しました。",
+    "text": "GPT-6 Astraは、米OpenAIが2026年9月に発表した次世代のフラグシップAIモデルです。PCの自動操作や高度な論理推論、3D制作などを自律的に実行するAIエージェントとして提供されています。",
     "sources": [
-      "openai-announces-gpt-6-astra"
+      "openai-announces-gpt-6-astra",
+      "openai-gpt-6-astra-comprehensive-guide-matome"
     ]
   },
   "facts": [
     {
       "label": "提供開始",
-      "value": "2026年9月3日",
+      "value": "2026年9月3日より順次提供",
       "sources": [
         "openai-announces-gpt-6-astra"
       ]
     },
     {
       "label": "日本での提供",
-      "value": "利用できる",
+      "value": "日本からも利用できる",
       "sources": [
         "openai-announces-gpt-6-astra"
-      ]
-    },
-    {
-      "label": "使える場所",
-      "value": "ChatGPTデスクトップアプリ等",
-      "sources": [
-        "openai-announces-gpt-6-astra"
-      ]
-    },
-    {
-      "label": "向いている人",
-      "value": "開発者、IT管理者、デザイナー",
-      "sources": [
-        "openai-announces-gpt-6-astra",
-        "openai-gpt6-astra-figma-integration",
-        "openai-astra-shield-forge-it-support"
       ]
     }
   ],
   "capabilities": [
     {
-      "text": "PC上のアプリケーションを自動で操作する「Computer Use」機能に対応しています。",
+      "text": "パソコン上のアプリやWeb画面を自動で操作できます。",
       "sources": [
         "openai-announces-gpt-6-astra"
       ]
     },
     {
-      "text": "Figma MCP Serverを介してデザインシステムと直接連携し、プロトタイプを構築します。",
+      "text": "Blenderを使った3Dモデリングや3Dプリント用ファイルの出力が行えます。",
+      "sources": [
+        "openai-announces-gpt-6-astra"
+      ]
+    },
+    {
+      "text": "Figmaと直接連携し、数時間をかけて複数の画面を跨ぐUIプロトタイプを自動構築します。",
       "sources": [
         "openai-gpt6-astra-figma-integration"
       ]
     },
     {
-      "text": "NVIDIA Isaacと統合され、CADからシミュレーションを自動生成できます。",
+      "text": "数日間にわたる長期的なタスクを自律的にスケジュールし、バックグラウンドで処理を継続します。",
       "sources": [
-        "nvidia-isaac-gpt6-astra-robotics-agile-one"
-      ]
-    },
-    {
-      "text": "IT運用基盤Forgeに採用され、レガシーシステムを直接操作して障害を解決します。",
-      "sources": [
-        "openai-astra-shield-forge-it-support"
+        "openai-gpt6-astra-jump-trading-agents"
       ]
     }
   ],
-  "pricing": [
-    {
-      "text": "Enterprise向けなどに即日提供され、Plus、Pro、Businessなどに順次展開されます。",
-      "sources": [
-        "openai-announces-gpt-6-astra"
-      ]
-    },
-    {
-      "text": "APIやAWS顧客への広範な提供も予定されています。",
-      "sources": [
-        "openai-announces-gpt-6-astra"
-      ]
-    }
-  ],
+  "pricing": [],
   "japan": [
     {
-      "text": "日本からも利用できます。",
+      "text": "発表の時点では、日本からも利用できます。",
       "sources": [
         "openai-announces-gpt-6-astra"
       ]
@@ -95,15 +67,16 @@
   ],
   "howto": [
     {
-      "text": "ChatGPTデスクトップアプリなどを通じて利用できます。",
+      "text": "ChatGPTデスクトップアプリやAPI、AWSなどを通じて利用できます。",
       "sources": [
-        "openai-announces-gpt-6-astra"
+        "openai-announces-gpt-6-astra",
+        "openai-gpt6-astra-ultrafast-release"
       ]
     }
   ],
   "differences": [
     {
-      "text": "従来テキストや画像生成にとどまっていた役割を広げ、PC操作や長時間タスクの並行処理を実現しています。",
+      "text": "従来型モデルと比べて、PC操作や複数タスクの自律並行処理において最高性能を達成しています。",
       "sources": [
         "openai-announces-gpt-6-astra"
       ]
@@ -112,34 +85,23 @@
   "faq": [
     {
       "q": "いつから使えますか？",
-      "a": "2026年9月3日に一部向けに提供が始まり、PlusやPro、APIなどへ順次拡大されます。",
+      "a": "2026年9月3日から順次提供されています。",
       "sources": [
         "openai-announces-gpt-6-astra"
       ]
     },
     {
-      "q": "どのような機能がありますか？",
-      "a": "PCの自動操作、3Dモデリングの作成、Figma連携によるUIプロトタイプ構築などを実行できます。",
+      "q": "Ultrafastモードとは何ですか？",
+      "a": "知性を維持したまま処理速度を極限まで高める超高速推論オプションです。",
       "sources": [
-        "openai-announces-gpt-6-astra",
+        "openai-gpt6-astra-ultrafast-release"
+      ]
+    },
+    {
+      "q": "Figmaと連携できますか？",
+      "a": "Figma MCP Serverを介してデザインシステムと直接連携し、UIプロトタイプを自動構築します。",
+      "sources": [
         "openai-gpt6-astra-figma-integration"
-      ]
-    },
-    {
-      "q": "安全性はどのような状態ですか？",
-      "a": "欺瞞的ふるまいの削減などアライメントが大幅に向上していますが、研究では誤りも残されています。",
-      "sources": [
-        "openai-announces-gpt-6-astra",
-        "biobasicsbench-wet-lab-ai-agents"
-      ]
-    },
-    {
-      "q": "対応している外部ツールは何ですか？",
-      "a": "FigmaやNVIDIA Isaac、IT運用基盤のForgeなどと連携します。",
-      "sources": [
-        "openai-gpt6-astra-figma-integration",
-        "nvidia-isaac-gpt6-astra-robotics-agile-one",
-        "openai-astra-shield-forge-it-support"
       ]
     }
   ],
@@ -150,34 +112,14 @@
       "event": "GPT-6 Astraを発表"
     },
     {
-      "date": "2026-09-18",
-      "slug": "openai-gpt6-astra-jump-trading-agents",
-      "event": "数日間稼働するエージェント運用を開始"
-    },
-    {
       "date": "2026-09-22",
       "slug": "openai-gpt6-astra-figma-integration",
-      "event": "Figma連携によるUIプロトタイプ構築デモ公開"
+      "event": "Figmaとの連携デモを公開"
     },
     {
       "date": "2026-09-30",
       "slug": "openai-gpt6-astra-ultrafast-release",
-      "event": "超高速推論「Ultrafast」を追加"
-    },
-    {
-      "date": "2026-10-24",
-      "slug": "openai-astra-shield-forge-it-support",
-      "event": "IT運用基盤Forgeへの採用を発表"
-    },
-    {
-      "date": "2026-10-24",
-      "slug": "nvidia-isaac-gpt6-astra-robotics-agile-one",
-      "event": "NVIDIA Isaacとの統合を発表"
-    },
-    {
-      "date": "2026-11-06",
-      "slug": "biobasicsbench-wet-lab-ai-agents",
-      "event": "新評価BioBasicsBenchで首位を獲得"
+      "event": "Ultrafastモードを追加"
     }
   ],
   "related": [
@@ -215,9 +157,9 @@
     "openai-gpt6-astra-jump-trading-agents",
     "openai-announces-gpt-6-astra"
   ],
-  "signature": "64d287809efbf6f2",
+  "signature": "d742feefb2e22786",
   "primarySignature": "970d3a8733748c82",
   "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-10-27T10:41:21+00:00",
-  "updatedAt": "2026-11-12T10:58:16+00:00"
+  "updatedAt": "2026-11-15T11:05:56+00:00"
 }
