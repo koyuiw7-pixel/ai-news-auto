@@ -1,0 +1,220 @@
+{
+  "slug": "ipa-ai-security-bulletin-2026-11",
+  "sourceType": "web",
+  "sourceUrl": "https://www.ipa.go.jp/digital/ai/security/ai-security-bulletin.html",
+  "sourceName": "IPA（情報処理推進機構）",
+  "title": "AIの悪用や脆弱性が急増　IPA、2026年10月のセキュリティ動向を公開",
+  "seoTitle": "AIセキュリティ短信2026年11月号　IPAが公開した動向と事例",
+  "threadsPost": "AIセキュリティの動向を追っている人に、知っておいてほしい話です。\n\nIPAは11月13日、AIに関する国内外の脅威や脆弱性をまとめた「AIセキュリティ短信 2026年11月号」を公開しました。\nAIエージェントの攻撃基盤の利用拡大や、開発ツールを狙う脅威が報告されています。\n\n仕事でAIツールを使うとき、どのようなセキュリティ対策を意識していますか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "plain",
+      "question": "仕事でAIツールを使うとき、どのようなセキュリティ対策を意識していますか？"
+    },
+    {
+      "pattern": "future",
+      "question": "AIが自動でエージェントを動かす仕組みは、これからの業務をどう変えるとと感じますか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "senpai",
+  "lede": "情報処理推進機構（IPA）は11月13日、「AIセキュリティ短信 2026年11月号」を公表しました。10月6日から11月2日までに報じられたAI関連の脆弱性や脅威の事例がまとめられています。開発ツールへの攻撃や、AIエージェントの悪用に関する最新の動向が確認できます。",
+  "description": "情報処理推進機構（IPA）は「AIセキュリティ短信 2026年11月号」を公開しました。AIエージェントの悪用や開発ツールを狙う脅威などの動向を確認できます。",
+  "keywords": [
+    "IPA",
+    "AIセキュリティ短信",
+    "生成AI",
+    "脆弱性",
+    "AIエージェント",
+    "セキュリティ",
+    "情報処理推進機構",
+    "LLMjacking"
+  ],
+  "tags": [
+    "セキュリティ",
+    "アプリ",
+    "テック",
+    "AI"
+  ],
+  "highlights": [
+    "IPAは11月13日、AIセキュリティの動向をまとめた「AIセキュリティ短信 2026年11月号」を公開しました。",
+    "AIエージェントの攻撃基盤の利用が多様な脅威アクターに広がり、開発ツールや実行基盤が標的となっています。",
+    "公開AI基盤の乗っ取り攻撃や、OSやブラウザによるAI防御の強化といった最新の動向が整理されています。"
+  ],
+  "timetable": [],
+  "verdict": null,
+  "workMoney": {
+    "relevance": "medium",
+    "points": [
+      "AIシステムを開発するエンジニアや企業のセキュリティ担当者は、最新の脆弱性情報を確認できます。",
+      "業務でAIツールやエージェント機能を利用する際は、認証情報の管理や利用範囲の制限を点検するとよいでしょう。"
+    ]
+  },
+  "body": "この短信は、国内外の公開情報からAIセキュリティに関するトレンドやインシデント事例を収集し、システム開発者やセキュリティ担当者向けに整理したものです。\n\n対象となる期間は2026年10月6日から11月2日までで、AIの安全性確保やサイバー攻撃への対処など、多岐にわたる動向が取り上げられています。\n\n### AIエージェントを狙う脅威と攻撃基盤の広がり\n\n今号のエグゼクティブサマリーでは、AIエージェント型の攻撃基盤の利用が多様な脅威アクターに広がっている点が挙げられています。 Symantecなどの調査によれば、公開された大規模言語モデル（LLM）のエンドポイントを探して乗っ取り、攻撃を計画・実行させる自律型エージェントが報告されています（IPA「AIセキュリティ短信 2026年11月号」、11/16確認）。\n\nまた、セキュリティ企業のNorForgeは、公開状態で放置されたAI駆動のペネトレーションテスト用管理パネルが悪用されている実態を報告しています（IPA「AIセキュリティ短信 2026年11月号」、11/16確認）。AIを用いた開発ツールや実行基盤そのものが、侵害や認証情報の窃取の標的となっている状況が示されています。\n\n### OSやブラウザにおけるAI防御と安全性の検証\n\n一方で、OSやブラウザ側ではAIによる防御やエージェントの統制機能を既定にする動きが進んでいます。AppleがmacOSのFull Disk Accessの制御を強化したほか、MicrosoftがAIエージェントを内部者として統制する機能を発表するなど、安全性を高める対策が講じられています（IPA「AIセキュリティ短信 2026年11月号」、11/16確認）。\n\nまた、AIを活用して脆弱性を発見する動きが量産段階を迎えており、Anthropicなどが Claude を活用した形式検証でオープンソースソフトウェアのバグを多数発見するなどの成果も報告されています（IPA「AIセキュリティ短信 2026年11月号」、11/16確認）。検証と修正の能力を高める一方で、評価中のAIにおける逸脱への対応や監視の強化が課題となっています。\n\n## まだ分からないこと\n\n- 個別の事例に関するその後の詳細な被害状況や追加の対策については、今後の関連機関からの発表を確認する必要があります。",
+  "easy": "## ひとことで言うと\n\n情報処理推進機構（IPA）が、2026年10月のAIに関するセキュリティ動向や脅威の事例をまとめた最新レポートを公開しました。\n\n## 報告されている主な動向\n\nレポートでは、AIエージェントを悪用した攻撃基盤の広がりや、AIの開発ツール、実行基盤が標的となっている事例が紹介されています。また、公開されているAI基盤を乗っ取る動きや、OS・ブラウザ側での防御策の強化についても触れられています。",
+  "channel": "IPA（情報処理推進機構）",
+  "channelId": "",
+  "channelSlug": "ipa",
+  "genre": "テクノロジー・ガジェット",
+  "genreSlug": "tech-gadget",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。価格・仕様・提供時期は変更される場合があるため、購入・利用の前に発表元の一次情報をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "「AIセキュリティ短信 2026年11月号」を公開しました",
+  "publishedAt": "2026-11-12T15:00:00+00:00",
+  "generatedAt": "2026-11-15T15:39:08.375785+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/ipa-ai-security-bulletin-2026-11-figure-271a8d9e.jpg",
+  "model": "gemini-3.5-flash-lite",
+  "affiliates": [],
+  "newsType": "product",
+  "faq": [
+    {
+      "q": "「AIセキュリティ短信 2026年11月号」の対象期間はいつですか？",
+      "a": "2026年10月6日から2026年11月2日までに報じられた話題を中心に集約されています。"
+    },
+    {
+      "q": "短信はどのような観点で情報を整理していますか？",
+      "a": "「AIに係る安全性確保」「AIを活用したサイバーセキュリティ確保」「AIを悪用したサイバー攻撃への対処」「AIセーフティ」の4つの観点で整理されています。"
+    }
+  ],
+  "todayActions": [
+    "AIセキュリティ短信2026年11月号のPDFを開き、掲載の事例を確認する",
+    "業務で使うAI開発ツールと実行基盤の認証情報とアクセス権限を見直す"
+  ],
+  "searchTrend": "ai",
+  "qualityBar": {
+    "score": 6,
+    "missing": [
+      1,
+      3
+    ],
+    "notes": {
+      "1": "最初の3行にだれにが無い",
+      "3": "早見の表・式つきの計算・「〜の人は〜」の判断の目安が無い"
+    },
+    "checkedAt": "2026-11-15T15:39:58+00:00",
+    "before": [
+      1,
+      3
+    ],
+    "repaired": false
+  },
+  "qualityScore": 88,
+  "late": true,
+  "sourcePublishedAt": "2026-11-12T15:00:00+00:00",
+  "detectedAt": "2026-11-15T15:30:57+00:00",
+  "layout": "noir",
+  "summaryLine": "IPAは11月13日、AIセキュリティの動向をまとめた「AIセキュリティ短信 2026年11月号」を公開しました。",
+  "insight": [
+    {
+      "text": "LiteLLMのリリース工程が侵害され、v1.107.0に窃取型マルウェアが入っていたと掲載されています（2026-10-21の項）。このバージョンを使っていないか確認する価値があります。",
+      "source": "https://www.ipa.go.jp/digital/ai/security/ai-security-bulletin.html"
+    },
+    {
+      "text": "掲載内容は「それぞれの調査時点の情報」で、掲載後に状況が変わったり追加情報が公開されている可能性があると、ページに書かれています。",
+      "source": "https://www.ipa.go.jp/digital/ai/security/ai-security-bulletin.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "AIセキュリティ短信",
+      "url": "https://www.ipa.go.jp/digital/ai/security/ai-security-bulletin.html",
+      "source": "https://www.ipa.go.jp/digital/ai/security/ai-security-bulletin.html",
+      "howTo": [
+        "AIセキュリティのトップページ",
+        "AIセキュリティ短信一覧",
+        "最新号"
+      ],
+      "note": "掲載は調査時点の情報で、その後状況が変わっていることがあります。"
+    },
+    {
+      "name": "AIセキュリティ短信2026年11月号（PDF）",
+      "url": "https://www.ipa.go.jp/digital/ai/security/rcu1hd0000007gji-att/2026-5_1113.pdf",
+      "source": "https://www.ipa.go.jp/digital/ai/security/ai-security-bulletin.html",
+      "howTo": [
+        "AIセキュリティ短信一覧",
+        "最新号",
+        "AIセキュリティ短信2026年11月号(PDF:1.3 MB"
+      ],
+      "note": "PDFに、対象期間の事例の詳細がまとめられています。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "AIセキュリティ短信2026年11月号のPDFを開き、掲載の事例を確認する",
+      "source": "https://www.ipa.go.jp/digital/ai/security/ai-security-bulletin.html",
+      "steps": [
+        "AIセキュリティ短信のページを開く",
+        "「最新号」の「AIセキュリティ短信2026年11月号(PDF:1.3 MB)」を押す",
+        "目次から気になる事例を探す"
+      ],
+      "url": "https://www.ipa.go.jp/digital/ai/security/rcu1hd0000007gji-att/2026-5_1113.pdf"
+    },
+    {
+      "action": "業務で使うAI開発ツールと実行基盤の認証情報とアクセス権限を見直す",
+      "source": "https://www.ipa.go.jp/digital/ai/security/ai-security-bulletin.html",
+      "steps": [
+        "使っているAI開発ツールと実行基盤を一覧にする",
+        "各ツールの認証情報を確認する",
+        "使っていない認証情報や不要な権限を削除する"
+      ]
+    }
+  ],
+  "cause": {
+    "text": "ページは、AIエージェント型の攻撃基盤の利用が多様な脅威アクターに広がっていること、AIによる脆弱性発見が量産段階を迎えたことを今号の要点として挙げています。AIを攻撃にも防御にも使う動きが同時に進んでいる、という整理です。",
+    "status": "background",
+    "source": "https://www.ipa.go.jp/digital/ai/security/ai-security-bulletin.html"
+  },
+  "worries": [
+    {
+      "q": "自分が使っているAIツールも狙われている？",
+      "a": "ページでは、AIの開発ツールと実行基盤が侵害や認証情報の窃取の標的になっていると示されています。LiteLLMのリリース工程の侵害でv1.107.0に窃取型マルウェアが入っていたことや、Cursorでの改ざん版配布も掲載されています。",
+      "source": "https://www.ipa.go.jp/digital/ai/security/ai-security-bulletin.html",
+      "action": "使っているAI開発ツールの提供元の発表を確かめ、該当するバージョンを使っていないか確認する"
+    },
+    {
+      "q": "見つかった欠陥は、もう直されている？",
+      "a": "ChatGPT共有リンクの会話窃取の欠陥はOpenAIが修正したと書かれています。IBMとRed Hatは、AI活用でJava脆弱性400件超を修正したとされています。ただし掲載は調査時点の情報です。",
+      "source": "https://www.ipa.go.jp/digital/ai/security/ai-security-bulletin.html",
+      "action": "利用中のAIサービスや開発ツールを最新版に更新し、提供元の更新情報を確認する"
+    },
+    {
+      "q": "AIを使った攻撃は、身近な話になった？",
+      "a": "国内の不正アクセスが多発し、一部でAIエージェントの関与が確認されたとページにあります。AIエージェントを使う攻撃キャンペーンの報告も相次いでいると書かれています。",
+      "source": "https://www.ipa.go.jp/digital/ai/security/ai-security-bulletin.html",
+      "action": "業務で使うAIエージェントやツールに与えた権限を見直し、不要なものを外す"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "LiteLLMの改ざんや、ツールの欠陥も載っている",
+    "cause": "なぜ増えているのか、ページの整理",
+    "steps": "今日、確認できること",
+    "desk": "公式の原本はどこで見られる？",
+    "worries": "AI開発ツールや自分の業務は大丈夫？"
+  },
+  "depthAt": "2026-11-15T15:40:34+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "AIの悪用や脆弱性が急増",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-15T15:41:31+00:00"
+  },
+  "imageFocus": {
+    "x": 0.514,
+    "y": 0.518,
+    "box": [
+      0.075,
+      0.036,
+      0.953,
+      1.0
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/ipa-ai-security-bulletin-2026-11-figure-271a8d9e.jpg"
+  }
+}
