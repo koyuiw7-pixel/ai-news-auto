@@ -67,7 +67,7 @@
   "videoTitle": "（第2報）株式会社アイリスプラザECサイト一時停止のお知らせ",
   "publishedAt": "2026-11-05T11:00:00+00:00",
   "generatedAt": "2026-11-15T23:22:31.835625+00:00",
-  "thumbnail": "https://www.irisohyama.co.jp/news/2026/img/1105/fb.png",
+  "thumbnail": "https://ai-tech-express.jp/img/irisplaza-data-leak-second-report-figure-636d5ecc.jpg",
   "model": "claude:sonnet",
   "affiliates": [],
   "newsType": "policy",
@@ -82,9 +82,8 @@
     }
   ],
   "todayActions": [
-    "アイリスプラザと同じパスワードを使っているサービスがないか確認し、あれば変更する",
-    "アイリスプラザを名乗るメールやSMSは、リンクを開かず返信もしない",
-    "対象か不安なときは、コンタクトセンター0120-108-824（平日・土曜9:30〜17:00）に問い合わせる"
+    "同じパスワードを他のサービスで使っていないか確認し、あれば変更する",
+    "アイリスプラザ名のメールやSMSは、リンクを開かず確認する"
   ],
   "publicInterest": "breach",
   "incident": {
@@ -113,5 +112,158 @@
   "fastLane": true,
   "searchTitle": "アイリスプラザの情報漏えい、対象は？　最大770万人分",
   "layout": "noir",
-  "summaryLine": "アイリスプラザが利用する外部クラウドから、**約770万人**分の個人情報が漏えいした可能性が判明した"
+  "summaryLine": "アイリスプラザが利用する外部クラウドから、**約770万人**分の個人情報が漏えいした可能性が判明した",
+  "insight": [
+    {
+      "text": "電話の受付は平日・土曜の9：30〜17：00ですが、年末年始休暇・夏季休業期間・会社都合による休日は除かれます。",
+      "source": "https://www.irisohyama.co.jp/news/2026/amp/?date=1105"
+    },
+    {
+      "text": "夜間や休日は、「アイリスプラザ サポートチャットボット」が24時間受け付けています。",
+      "source": "https://www.irisohyama.co.jp/news/2026/amp/?date=1105"
+    },
+    {
+      "text": "詳しい内容やよくあるご質問は、「本件に関するFAQ」にまとめられています。",
+      "source": "https://www.irisohyama.co.jp/news/2026/amp/?date=1105"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "株式会社アイリスプラザ コンタクトセンター",
+      "url": "https://www.irisohyama.co.jp/news/2026/amp/?date=1105",
+      "source": "https://www.irisohyama.co.jp/news/2026/amp/?date=1105",
+      "howTo": [
+        "トップページ",
+        "ニュース",
+        "（第2報）株式会社アイリスプラザECサイト一時停止のお知らせ"
+      ],
+      "phone": "0120-108-824",
+      "hours": "平日・土曜日 9：30～17：00（年末年始休暇・夏季休業期間・会社都合による休日は除く）",
+      "note": "通話が途中で切れた際の折り返しのため、発信者番号通知でかける。非通知の場合は「186」を付ける。"
+    },
+    {
+      "name": "アイリスプラザ サポートチャットボット",
+      "url": "https://supportbot-admin.userlocal.jp/pages/367b45d2746d7046db40",
+      "source": "https://www.irisohyama.co.jp/news/2026/amp/?date=1105",
+      "howTo": [
+        "お問い合わせ先",
+        "Webからのお問い合わせ",
+        "アイリスプラザ サポートチャットボット"
+      ],
+      "hours": "24時間",
+      "note": "「こちらのリンク」から利用できます。"
+    },
+    {
+      "name": "本件に関するFAQ",
+      "url": "https://www.irisplaza.co.jp/index.php?KB=KAISO&CID=6879",
+      "source": "https://www.irisohyama.co.jp/news/2026/amp/?date=1105",
+      "howTo": [
+        "お問い合わせ先",
+        "本件に関するFAQ"
+      ],
+      "note": "本件の詳細、お客様へのお願い、よくあるご質問を確認できます。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "同じパスワードを他のサービスで使っていないか確認し、あれば変更する",
+      "source": "https://www.irisohyama.co.jp/news/2026/amp/?date=1105",
+      "steps": [
+        "使っているサービスのパスワードを一覧にする",
+        "同じものを使うサービスは、新しいパスワードに変える",
+        "パスワードは使い回さず、サービスごとに違うものにする"
+      ]
+    },
+    {
+      "action": "アイリスプラザ名のメールやSMSは、リンクを開かず確認する",
+      "source": "https://www.irisohyama.co.jp/news/2026/amp/?date=1105",
+      "steps": [
+        "メールやSMSのリンクは開かない",
+        "返信や添付ファイルは開かない",
+        "公式サイトの「ニュース」で同じ案内があるか見る"
+      ],
+      "url": "https://www.irisohyama.co.jp/news/"
+    }
+  ],
+  "cause": {
+    "text": "外部クラウドサービスで、第三者による不正アクセスが確認されました。原因の特定と再発防止に向けた取り組みを進めるとしています。",
+    "status": "investigating",
+    "source": "https://www.irisohyama.co.jp/news/2026/amp/?date=1105"
+  },
+  "worries": [
+    {
+      "q": "クレジットカードの情報も漏れていませんか？",
+      "a": "クレジットカード情報は、今回のクラウドサービスには保存されておらず、不正アクセスによる影響を受けていないことを確認したとしています。",
+      "source": "https://www.irisohyama.co.jp/news/2026/amp/?date=1105",
+      "action": "身に覚えのない請求があれば、カード会社の相談窓口に連絡する",
+      "actionSource": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "actionGeneral": true
+    },
+    {
+      "q": "パスワードは漏れてしまったのですか？",
+      "a": "会員データの項目にパスワードが含まれ、漏えいの可能性があるとしています。ただし一部は暗号化されており、退会者のパスワードは対象外です。",
+      "source": "https://www.irisohyama.co.jp/news/2026/amp/?date=1105",
+      "action": "アイリスプラザと同じパスワードを使うサービスは、すぐ変更する"
+    },
+    {
+      "q": "アイリス系の他のサービスも危ないですか？",
+      "a": "SIMPLE STYLEと家電サブスクリプション等は、現時点で不正アクセスも情報漏えいも確認されていないとしています。再開時期は決まり次第お知らせするとしています。",
+      "source": "https://www.irisohyama.co.jp/news/2026/amp/?date=1105",
+      "action": "利用中のアイリス系サービスは、再開のお知らせを公式サイトで確認する"
+    },
+    {
+      "q": "偽のメールや電話が来たら、どうすればいいの？",
+      "a": "当社を装った不審なメール、SMS、電話や偽サイトが作られる可能性があるとしています。添付ファイルを開かず、リンク先にアクセスせず、返信もしないよう呼びかけています。パスワードや認証コードを聞くことはないとしています。",
+      "source": "https://www.irisohyama.co.jp/news/2026/amp/?date=1105",
+      "action": "心当たりのないメールやSMSは、リンクを開かず返信もしない"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "同じパスワードを他でも使っている。変える？",
+      "situation": "アイリスプラザの会員だった、または購入したことがある",
+      "recommend": "他のサービスのパスワードを変えるのがおすすめ",
+      "reason": "ページは、他のサービスで同一のパスワードを使っている場合は変更するよう求めています。変えると、他のサービスへの不正利用を防ぐ手助けになります。アイリスプラザ側の情報は、会社の案内を待つ必要があります。",
+      "source": "https://www.irisohyama.co.jp/news/2026/amp/?date=1105"
+    },
+    {
+      "question": "アイリスプラザの再開を待つ？",
+      "situation": "注文や会員の利用を再開したいと考えている",
+      "recommend": "再開時期は未定なので、公式のお知らせを待つ",
+      "reason": "ページは、再開の時期が決まり次第速やかにお知らせするとしています。現時点では時期が決まっていないことを踏まえて判断するとよいです。",
+      "source": "https://www.irisohyama.co.jp/news/2026/amp/?date=1105"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "夜や休日は、チャットボットで24時間相談できる",
+    "cause": "なぜ漏れたのか、いま分かっていること",
+    "steps": "今日からできる、パスワードと連絡の確認",
+    "desk": "問い合わせ先と、確かめる場所",
+    "worries": "カードや他のサービスは大丈夫？",
+    "guide": "パスワードを変えるか迷ったときの決め方"
+  },
+  "depthAt": "2026-11-15T23:36:03+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "約770万人",
+    "label": "最大",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-15T23:37:08+00:00"
+  },
+  "imageFocus": {
+    "x": 0.536,
+    "y": 0.453,
+    "box": [
+      0.097,
+      0.06,
+      0.975,
+      0.845
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/irisplaza-data-leak-second-report-figure-636d5ecc.jpg"
+  }
 }
