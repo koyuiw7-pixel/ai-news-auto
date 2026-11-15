@@ -6,61 +6,58 @@
   "companyName": "Google",
   "category": "開発ツール",
   "overview": {
-    "text": "Google AI Studioは、Googleが提供する開発者向けのAI開発プラットフォームです。APIキーの取得や、Geminiモデルを使ったアプリの試作を行えます。",
+    "text": "Google AI Studioは、Googleが提供する開発者向けの作業画面です。Geminiのモデルを試したり、アプリを作ったりするために使われます。",
     "sources": [
-      "gemini-decisions-api-decision-1",
-      "google-gemini-live-sprout-plant-robot",
-      "operating-real-hardware-with-gemini-ai"
+      "google-ai-studio-cloud-credits-claim"
     ]
   },
   "facts": [
     {
       "label": "料金",
-      "value": "試作用のAPI無料枠あり",
+      "value": "無料利用枠あり、従量課金対応",
       "sources": [
         "google-gemini-live-sprout-plant-robot"
       ]
     },
     {
       "label": "日本での提供",
-      "value": "日本からも利用できます",
+      "value": "利用できる",
       "sources": [
-        "google-gemini-live-sprout-plant-robot",
-        "operating-real-hardware-with-gemini-ai"
+        "google-ai-studio-cloud-credits-claim"
       ]
     },
     {
       "label": "向いている人",
       "value": "開発者",
       "sources": [
-        "gemini-decisions-api-decision-1",
-        "google-gemini-live-sprout-plant-robot"
+        "google-ai-studio-cloud-credits-claim"
       ]
     }
   ],
   "capabilities": [
     {
-      "text": "Gemini APIのキーを取得してアプリの試作を行えます。",
+      "text": "Geminiのモデルを試したりアプリを作成したりできます。",
+      "sources": [
+        "google-ai-studio-cloud-credits-claim"
+      ]
+    },
+    {
+      "text": "AI Studioの中でGoogle Cloudクレジットの受け取りや課金設定を行えます。",
+      "sources": [
+        "google-ai-studio-cloud-credits-claim"
+      ]
+    },
+    {
+      "text": "Gemini APIのキーを取得し、さまざまな機能を試すことができます。",
       "sources": [
         "gemini-decisions-api-decision-1",
         "google-gemini-live-sprout-plant-robot"
       ]
     },
     {
-      "text": "選択肢の確率を返すGemini Decisions APIを利用できます。",
+      "text": "AIに資料を読ませてプログラムや3Dビジュアライザーのコードを作らせることができます。",
       "sources": [
-        "gemini-decisions-api-decision-1"
-      ]
-    },
-    {
-      "text": "資料を読み込ませて実装計画やコードを作らせることができます。",
-      "sources": [
-        "building-digital-synth-with-google-gemini"
-      ]
-    },
-    {
-      "text": "3Dビジュアライザーや制御スクリプトを自動生成できます。",
-      "sources": [
+        "building-digital-synth-with-google-gemini",
         "operating-real-hardware-with-gemini-ai"
       ]
     }
@@ -69,6 +66,7 @@
     {
       "text": "試作用のAPI無料枠が用意されています。",
       "sources": [
+        "gemini-decisions-api-decision-1",
         "google-gemini-live-sprout-plant-robot"
       ]
     },
@@ -79,18 +77,18 @@
       ]
     },
     {
-      "text": "追加機能のGemini Decisions APIは入力100万トークン0.10ドルです。",
+      "text": "Gemini APIをCloud課金で使うには、最低5ドルの前払いと残高が必要です。",
       "sources": [
-        "gemini-decisions-api-decision-1"
+        "google-ai-studio-cloud-credits-claim"
       ]
     }
   ],
   "japan": [
     {
-      "text": "日本からも利用可能です。",
+      "text": "Gemini APIは日本で利用できます。",
       "sources": [
-        "google-gemini-live-sprout-plant-robot",
-        "operating-real-hardware-with-gemini-ai"
+        "google-ai-studio-cloud-credits-claim",
+        "gemini-decisions-api-decision-1"
       ]
     },
     {
@@ -102,13 +100,13 @@
   ],
   "howto": [
     {
-      "text": "Google AI Studioのサイトにアクセスし、Googleアカウントでログインします。",
+      "text": "公式サイト（ai.google.dev）にアクセスし、Googleアカウントでログインして始めます。",
       "sources": [
         "google-gemini-live-sprout-plant-robot"
       ]
     },
     {
-      "text": "APIキーを発行し、必要な機能を有効化して利用します。",
+      "text": "APIキーを発行し、各種モデルや機能を有効化して呼び出します。",
       "sources": [
         "gemini-decisions-api-decision-1",
         "google-gemini-live-sprout-plant-robot"
@@ -119,24 +117,24 @@
   "faq": [
     {
       "q": "無料で使える？",
-      "a": "試作用のAPI無料枠が用意されています。",
+      "a": "試作用のAPI無料枠が用意されており、超えた分は従量課金になります。",
       "sources": [
         "google-gemini-live-sprout-plant-robot"
       ]
     },
     {
-      "q": "どんな開発ができる？",
-      "a": "APIキーの取得や、コードの生成などを試すことができます。",
+      "q": "誰に向いている？",
+      "a": "アプリケーションやシステムを作る開発者に向いています。",
       "sources": [
         "gemini-decisions-api-decision-1",
-        "building-digital-synth-with-google-gemini"
+        "google-ai-studio-cloud-credits-claim"
       ]
     },
     {
-      "q": "誰に向いている？",
-      "a": "アプリやシステムを作る開発者が対象です。",
+      "q": "クレジットの受け取りはどう行う？",
+      "a": "Google AI Studioの中でプロフィールの作成や課金のひもづけを行い、受け取ることができます。",
       "sources": [
-        "gemini-decisions-api-decision-1"
+        "google-ai-studio-cloud-credits-claim"
       ]
     }
   ],
@@ -157,9 +155,9 @@
     "gemini-remote-robotics-low-latency-control"
   ],
   "linkFrom": [],
-  "signature": "5c99658369a70476",
+  "signature": "8de6e0689b93d0d0",
   "primarySignature": "e1d35a6f7182bfba",
   "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-10-27T10:46:46+00:00",
-  "updatedAt": "2026-11-12T12:50:42+00:00"
+  "updatedAt": "2026-11-15T13:02:16+00:00"
 }
