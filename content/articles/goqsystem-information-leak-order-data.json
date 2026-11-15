@@ -83,9 +83,8 @@
     }
   ],
   "todayActions": [
-    "購入したネットショップの公式サイトで、GoQSystemの件に関するお知らせが出ていないか確かめる",
-    "配送業者や店舗を名乗るメール・SMS・電話は、リンクを開かず、自分で調べた連絡先で確認する",
-    "店舗の運営者は、11月14〜15日に届くデータ提供の案内を待ち、個人情報保護委員会の資料で報告手続きを確認する"
+    "GoQSystemを使う店舗の担当者は、11月14日（土）〜15日（日）に届く案内で注文データのダウンロード方法を確かめる",
+    "配送業者や店舗、GoQSystemを名乗る不審なメール・SMS・電話には、そのまま応じず、自分で調べた連絡先で確かめる"
   ],
   "publicInterest": "breach",
   "incident": {
@@ -139,5 +138,83 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/goqsystem-information-leak-order-data-figure-bf669a9a.jpg"
-  }
+  },
+  "officialDesk": [
+    {
+      "name": "GoQSystem 本件のお問い合わせ窓口（メール）",
+      "url": "https://goq.co.jp/security-incident.html",
+      "source": "https://goq.co.jp/security-incident.html",
+      "hours": "24時間（回答対応：平日 9:00〜18:00）",
+      "note": "問い合わせが集中しており、回答は届いた順になるため時間がかかる場合があります。"
+    },
+    {
+      "name": "個人情報保護委員会「漏えい等の対応とお役立ち資料」",
+      "url": "https://www.ppc.go.jp/personalinfo/legal/leakAction/",
+      "source": "https://goq.co.jp/security-incident-2.html",
+      "note": "店舗の報告手続きや、注文者への案内方法を確認するための資料です。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "GoQSystemを使う店舗の担当者は、11月14日（土）〜15日（日）に届く案内で注文データのダウンロード方法を確かめる",
+      "source": "https://goq.co.jp/security-incident-2.html",
+      "steps": [
+        "届いた案内を開く",
+        "注文データのダウンロード方法を確認する",
+        "注文者への案内方法は個人情報保護委員会の資料で確かめる"
+      ]
+    },
+    {
+      "action": "配送業者や店舗、GoQSystemを名乗る不審なメール・SMS・電話には、そのまま応じず、自分で調べた連絡先で確かめる",
+      "source": "https://goq.co.jp/security-incident-2.html",
+      "steps": [
+        "メールやSMSのリンクは開かない",
+        "電話番号にはそのまま答えない",
+        "購入した店舗の連絡先を自分で調べて確認する"
+      ]
+    }
+  ],
+  "cause": {
+    "text": "外部の第三者が、システムに設置されていたお問い合わせフォームの脆弱性（プログラムの弱点）を悪用し、不正にアクセスしたことによるものだと発表されています。店舗側の設定や操作が原因ではないとしています。詳細は引き続き調査中です。",
+    "status": "stated",
+    "source": "https://goq.co.jp/security-incident-2.html"
+  },
+  "worries": [
+    {
+      "q": "クレジットカードの情報も漏れてしまった？",
+      "a": "同社はクレジットカード情報を保有していないため、カード情報の漏えいはないとしています。漏えいした項目は、注文者・届け先の氏名、住所、電話番号、メールアドレス、注文内容などです。",
+      "source": "https://goq.co.jp/security-incident.html",
+      "action": "カードの利用明細に身に覚えのない請求がないか確かめ、あればカード会社に相談する",
+      "actionSource": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "actionGeneral": true
+    },
+    {
+      "q": "銀行を名乗る連絡があったら、どうすればいい？",
+      "a": "金融機関が、IDやパスワードをメールやSMSで問い合わせることはありません。フィッシングで不正送金の被害に遭った場合は、金融機関が補償制度や相談窓口を設けていることもあります。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "action": "銀行を名乗るメールやSMSでIDやパスワードを求められたら入力せず、公式アプリや公式サイトから確かめる",
+      "general": true
+    },
+    {
+      "q": "届いたメールの送信元名が本物っぽいなら安心？",
+      "a": "電子メールは送信元名称や送信元メールアドレスを簡単に変えられるため、それだけで本物かどうかを判断することは困難とされています。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "action": "メールやSMSのリンクは開かず、購入した店舗の公式サイトや公式アプリを自分で開いて確かめる",
+      "general": true
+    },
+    {
+      "q": "同じパスワードを使い回していると、どうなる？",
+      "a": "複数のサイトで同じIDとパスワードを使っていると、一つでも盗まれたら、銀行やSNS、通販サイトなど全てのサービスが乗っ取られるおそれがあります。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "action": "サイトごとに違うパスワードに変え、覚えられない場合はパスワード管理アプリを使う",
+      "general": true
+    }
+  ],
+  "depthHeadings": {
+    "cause": "なぜ漏れたのか、いま分かっていること",
+    "steps": "今日、まず確かめること",
+    "desk": "問い合わせ先と、店舗の確認先",
+    "worries": "カードや口座は大丈夫？不審な連絡の見分け方"
+  },
+  "depthAt": "2026-11-15T12:33:07+00:00"
 }
