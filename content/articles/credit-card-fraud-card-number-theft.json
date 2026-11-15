@@ -66,14 +66,14 @@
   "videoTitle": "クレジットカード不正利用、被害の9割は番号盗用 2026年11月に自分のカードで確かめること",
   "publishedAt": "2026-11-15T01:06:06.604050+00:00",
   "generatedAt": "2026-11-15T01:06:51.207283+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/credit-card-fraud-card-number-theft-figure-726ca581.jpg",
   "model": "anthropic-api:claude-haiku-5-5",
   "affiliates": [],
   "newsType": "research",
   "todayActions": [
-    "利用明細を、利用日・店の名前・金額まで見て、身に覚えのない請求がないか確かめる",
-    "身に覚えのない請求があれば、カードの裏面に書かれたカード会社の電話番号に連絡する",
-    "メールやSMSの「カードの確認」などのリンクは開かず、公式アプリか公式サイトから確かめる"
+    "身に覚えのない請求があったら、被害に遭ったサービスを提供している会社に相談する。",
+    "見つけた偽サイトのURLを、フィッシング110番に通報する。",
+    "被害に遭ったら、警察庁の窓口でお住まいの都道府県を選んで通報・相談する。"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -107,5 +107,140 @@
   "detectedAt": "2026-11-15T01:08:01+00:00",
   "searchTitle": "カード不正利用はいくら？　4〜6月107.7億円、番号盗用が9割",
   "layout": "noir",
-  "summaryLine": "日本クレジット協会の集計で、2026年4〜6月のカード不正利用被害は**107.7億円**、前期比5.2%減"
+  "summaryLine": "日本クレジット協会の集計で、2026年4〜6月のカード不正利用被害は**107.7億円**、前期比5.2%減",
+  "insight": [
+    {
+      "text": "フィッシングでは、カード番号のほか、運転免許証やマイナンバーカードの画像も入力を求められることがあります。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html"
+    },
+    {
+      "text": "技術的な相談はIPAの情報セキュリティ安心相談窓口（03-5978-7509）、商品やサービスの消費生活全般は消費生活センターか188へ、と相談先を使い分けます。",
+      "source": "https://www.npa.go.jp/bureau/cyber/soudan.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "警察庁 サイバー事案に関する通報等のオンライン受付窓口",
+      "url": "https://www.npa.go.jp/bureau/cyber/soudan.html",
+      "source": "https://www.npa.go.jp/bureau/cyber/soudan.html",
+      "howTo": [
+        "フィッシングの被害に遭ったら",
+        "サイバー事案に関する通報等のオンライン受付窓口"
+      ],
+      "note": "通報・相談はお住まいの都道府県の警察本部か管轄警察署を選んで送ります。被害届を出す場合は、最寄りの警察署等に連絡します。"
+    },
+    {
+      "name": "フィッシング110番（インターネット・ホットラインセンター）",
+      "url": "https://www.internethotline.jp/",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "howTo": [
+        "警察に通報・相談する",
+        "フィッシング110番【インターネット・ホットラインセンター】"
+      ],
+      "note": "フィッシングサイトのURLを通報する先です。被害に遭った場合は、最寄りの警察署やオンライン受付窓口に通報・相談します。"
+    },
+    {
+      "name": "情報セキュリティ安心相談窓口（IPA）",
+      "url": "https://www.ipa.go.jp/security/anshin/about.html",
+      "source": "https://www.npa.go.jp/bureau/cyber/soudan.html",
+      "howTo": [
+        "一般的な情報セキュリティに関する技術的な相談",
+        "情報セキュリティ安心相談窓口"
+      ],
+      "phone": "03-5978-7509",
+      "note": "一般的な情報セキュリティに関する技術的な相談の窓口です。商品やサービスの消費トラブルは別の窓口になります。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "身に覚えのない請求があったら、被害に遭ったサービスを提供している会社に相談する。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "steps": [
+        "被害に遭ったサービスを提供している会社を確かめる",
+        "その会社の相談窓口に連絡する",
+        "補償制度があるかを確かめる"
+      ]
+    },
+    {
+      "action": "見つけた偽サイトのURLを、フィッシング110番に通報する。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "steps": [
+        "フィッシング110番のサイトを開く",
+        "偽サイトのURLを入力して通報する"
+      ],
+      "url": "https://www.internethotline.jp/"
+    },
+    {
+      "action": "被害に遭ったら、警察庁の窓口でお住まいの都道府県を選んで通報・相談する。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "steps": [
+        "警察庁のサイバー事案の相談窓口を開く",
+        "お住まいの都道府県の警察本部を選ぶ",
+        "通報か相談かを選んで内容を送る"
+      ],
+      "url": "https://www.npa.go.jp/bureau/cyber/soudan.html"
+    }
+  ],
+  "cause": {
+    "text": "警察庁によると、フィッシングは実在のサービスや企業をかたり、偽のメールやSMSで偽サイトに誘導して、クレジットカード番号などを入力させる手口です。",
+    "status": "background",
+    "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html"
+  },
+  "worries": [
+    {
+      "q": "カード番号を入力してしまったら、どこに相談する？",
+      "a": "フィッシングでクレジットカードの不正利用の被害に遭った場合は、カード会社が補償制度や相談窓口を設けているところがあります。被害に遭ったサービスを提供している会社に相談してください。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "action": "身に覚えのない請求があれば、カード会社の補償制度や相談窓口に相談する。"
+    },
+    {
+      "q": "IDやパスワードを入力してしまったら、どうすればいい？",
+      "a": "フィッシングサイトに普段使っているIDやパスワードを入力してしまった場合は、そのIDやパスワードを利用している全てのサービスで、速やかに変更してください。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "action": "IDやパスワードを入力したら、同じものを使うすべてのサービスで速やかに変更する。"
+    },
+    {
+      "q": "見つけた偽サイトは、どこに知らせればいい？",
+      "a": "フィッシングサイトのURLは、フィッシング110番（インターネット・ホットラインセンター）に通報できます。被害に遭った場合は、最寄りの警察署やオンライン受付窓口に通報・相談してください。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "action": "偽サイトのURLを、フィッシング110番に通報する。"
+    },
+    {
+      "q": "ウイルスに感染したら、ほかにも被害が出る？",
+      "a": "マルウェアに感染すると、スマートフォンに登録された電話帳の情報が盗まれたり、自分のスマートフォンがフィッシングSMSの発信源になってしまうこともあります。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "action": "OSやアプリのアップデートを行い、パソコンやスマートフォンを安全な状態に保つ。"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "偽のSMSは、免許証やマイナンバーの画像も求めてくる",
+    "cause": "番号が盗まれる入り口はどこか",
+    "steps": "明細で気づいたら、今すぐやること",
+    "desk": "困ったときの通報・相談先",
+    "worries": "カード番号を入力したら、どうなる？"
+  },
+  "depthAt": "2026-11-15T01:22:57+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "9割",
+    "label": "カードの被害",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-15T01:23:30+00:00"
+  },
+  "imageFocus": {
+    "x": 0.412,
+    "y": 0.518,
+    "box": [
+      0.0,
+      0.048,
+      0.825,
+      0.988
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/credit-card-fraud-card-number-theft-figure-726ca581.jpg"
+  }
 }

@@ -61,13 +61,14 @@
   "videoTitle": "ユニクロ感謝祭2026とニトリのセール、初日に確かめる期限と条件",
   "publishedAt": "2026-11-15T01:08:43.850059+00:00",
   "generatedAt": "2026-11-15T01:08:55.503750+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/uniqlo-kanshasai-2026-deadlines-figure-7ea6b131.jpg",
   "model": "anthropic-api:claude-haiku-5-5",
   "affiliates": [],
   "newsType": "general",
   "todayActions": [
-    "行く予定のユニクロ店舗で、11月20日のあんぱんの配布があるかを店舗に確かめる",
-    "11月20日から23日のうちに、10,000円以上の買い物をまとめる日を決める"
+    "行く店舗で11月20日のあんぱん配布があるかを確かめる",
+    "トートバッグを狙う日を、11月20日から23日の中から決める",
+    "11月26日までの対象で、調理用品かこたつ用品を買う日を決める"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -111,5 +112,160 @@
   "detectedAt": "2026-11-15T01:10:00+00:00",
   "searchTitle": "ユニクロ感謝祭2026の期限　トートバッグは23日まで",
   "layout": "noir",
-  "summaryLine": "あんぱんは11月20日だけ、来店先着で**1人**1個。配布総数は約9万個で、一部店舗とオンラインストアは対象外"
+  "summaryLine": "あんぱんは11月20日だけ、来店先着で**1人**1個。配布総数は約9万個で、一部店舗とオンラインストアは対象外",
+  "insight": [
+    {
+      "text": "店舗ごとの配布数は、各店舗への問い合わせが必要です。「カスタマーセンターではご案内できません」と書かれています。",
+      "source": "https://www.uniqlo.com/jp/ja/special-feature/kanshasai"
+    },
+    {
+      "text": "一部離島でのお買い上げまたはお届けの場合は、別途手数料を頂戴すると書かれています。",
+      "source": "https://www.nitorihd.co.jp/news/items/5a8a91a36ef3c4c415f04dbecd68334d.pdf"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "ニトリ よくあるご質問（《期間限定》ブラックフライデー／家具・大型家電）",
+      "url": "https://www.faq.nitori-net.jp/question/01m5k9446njsesyfsn5w8d958p",
+      "source": "https://www.faq.nitori-net.jp/question/01m5k9446njsesyfsn5w8d958p",
+      "howTo": [
+        "よくあるご質問",
+        "キャンペーン・特集",
+        "《期間限定》ブラックフライデー／家具・大型家電"
+      ],
+      "hours": "チャットは24時間受付。有人による対応は10:00~18:00（年末年始を除く）",
+      "note": "電話は電話ナビゲーションで内容を選ぶと、担当オペレーターにつながると書かれています。"
+    },
+    {
+      "name": "ニトリネット 今月のお買い得品",
+      "url": "https://www.nitori-net.jp/ec/characteristic/campaign/",
+      "source": "https://www.nitori-net.jp/ec/characteristic/campaign/",
+      "howTo": [
+        "ホーム",
+        "今月のお買い得品"
+      ],
+      "note": "商品によっては完売している場合がございますと書かれています。"
+    },
+    {
+      "name": "ユニクロ感謝祭2026 特設ページ",
+      "url": "https://www.uniqlo.com/jp/ja/special-feature/kanshasai",
+      "source": "https://www.uniqlo.com/jp/ja/special-feature/kanshasai",
+      "note": "感謝祭期間中は営業時間が異なる店舗があり、詳しくは「こちら」で確認できると書かれています。店舗ごとの配布数は各店舗へ。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "行く店舗で11月20日のあんぱん配布があるかを確かめる",
+      "source": "https://www.uniqlo.com/jp/ja/special-feature/kanshasai",
+      "steps": [
+        "感謝祭ページの「感謝企画 プレゼント」を開く",
+        "「11/20(金)のみ」のあんぱんの欄を見る",
+        "「一部店舗、オンラインストアでは実施しておりません」を確認",
+        "店舗の配布数量は各店舗に問い合わせる"
+      ],
+      "url": "https://www.uniqlo.com/jp/ja/special-feature/kanshasai"
+    },
+    {
+      "action": "トートバッグを狙う日を、11月20日から23日の中から決める",
+      "source": "https://www.uniqlo.com/jp/ja/special-feature/kanshasai",
+      "steps": [
+        "感謝祭ページの「パッカブルビッグトートバッグ」の欄を開く",
+        "店舗は毎日先着、オンラインは毎日抽選と確認",
+        "10,000円以上の購入が対象",
+        "「ORDER & PICK」をご利用の場合は対象外"
+      ],
+      "url": "https://www.uniqlo.com/jp/ja/special-feature/kanshasai"
+    },
+    {
+      "action": "11月26日までの対象で、調理用品かこたつ用品を買う日を決める",
+      "source": "https://www.nitorihd.co.jp/news/items/5a8a91a36ef3c4c415f04dbecd68334d.pdf",
+      "steps": [
+        "ニトリネットの「今月のお買い得品」ページを開く",
+        "「食卓・調理用品」や「あったかアイテム」の欄を見る",
+        "期間は2026年10月30日から11月26日まで",
+        "対象は全国のニトリ店舗、デコホーム、ニトリネット"
+      ],
+      "url": "https://www.nitori-net.jp/ec/characteristic/campaign/"
+    }
+  ],
+  "worries": [
+    {
+      "q": "あんぱんは、11月20日に行けば必ずもらえますか？",
+      "a": "11月20日に来店した人へ先着で1人1個です。一部店舗とオンラインストアでは実施されず、店舗ごとに配布数量が異なります。",
+      "source": "https://www.uniqlo.com/jp/ja/special-feature/kanshasai",
+      "action": "行く店舗で配布があるかを事前に店舗へ問い合わせる（カスタマーセンターでは案内できません）。"
+    },
+    {
+      "q": "トートバッグは、どうやって受け取るのが確実？",
+      "a": "10,000円以上購入した人へ1人1点です。店舗では毎日先着、オンラインストアでは毎日抽選で、当日分が無くなり次第終了です。色は選べません。",
+      "source": "https://www.uniqlo.com/jp/ja/special-feature/kanshasai",
+      "action": "確実に欲しいなら店舗の先着、待てるならオンライン抽選を選び、11月20日から23日の買い物日を決める。"
+    },
+    {
+      "q": "ニトリのブラックフライデーはいつまで？",
+      "a": "期間は2026年10月30日（金）から11月24日（火）までで、対象は全国のニトリ店舗とニトリネットです。",
+      "source": "https://www.faq.nitori-net.jp/question/01m5k9446njsesyfsn5w8d958p",
+      "action": "家具や大型家電を買うなら、11月24日までに店舗かニトリネットで決める。"
+    },
+    {
+      "q": "ニトリに人と話して相談したいとき、いつ連絡すればいい？",
+      "a": "チャットは24時間受付ですが、有人による対応は10:00~18:00（年末年始を除く）と書かれています。電話は電話ナビゲーションで内容を選ぶと担当オペレーターにつながります。",
+      "source": "https://www.faq.nitori-net.jp/question/01m5k9446njsesyfsn5w8d958p",
+      "action": "人と話したい用件は、有人対応の10時から18時の間にチャットか電話で問い合わせる。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "ユニクロのトートバッグ、店舗とオンラインどちらで狙う？",
+      "situation": "確実に欲しく、店舗へ行ける人",
+      "recommend": "店舗の先着を狙うのも一つの方法",
+      "reason": "店舗は毎日先着で、当日分が無くなり次第終了です。配布総数は店舗60万点・オンラインストア9万点です。",
+      "source": "https://www.uniqlo.com/jp/ja/special-feature/kanshasai"
+    },
+    {
+      "question": "ユニクロのトートバッグ、店舗とオンラインどちらで狙う？",
+      "situation": "待てる人、店舗に行きにくい人",
+      "recommend": "オンラインストアの抽選も検討する価値がある",
+      "reason": "オンラインストアは毎日抽選で、店舗の先着とは取り方が違います。配布総数はオンラインストアが約9万点です。",
+      "source": "https://www.uniqlo.com/jp/ja/special-feature/kanshasai"
+    },
+    {
+      "question": "ニトリで家具・大型家電を買うのは、いつまでに決める？",
+      "situation": "家具や大型家電を買う予定がある",
+      "recommend": "11月24日までに決めておくと安心",
+      "reason": "ブラックフライデーは2026年10月30日（金）から11月24日（火）までです。今月のお買い得品（11月26日まで）の対象は含まれません。",
+      "source": "https://www.faq.nitori-net.jp/question/01m5k9446njsesyfsn5w8d958p"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "配り数は各店舗に聞くしかない",
+    "steps": "今日、店とサイトで確かめること",
+    "desk": "問い合わせ先と見るページ",
+    "worries": "あんぱんや配布は本当にもらえる？",
+    "guide": "トートバッグと家具、どちらの取り方を選ぶか"
+  },
+  "depthAt": "2026-11-15T01:22:16+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "ユニクロ感謝祭2026、あんぱんは11月20日だけ",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-15T01:23:21+00:00"
+  },
+  "imageFocus": {
+    "x": 0.505,
+    "y": 0.405,
+    "box": [
+      0.066,
+      0.042,
+      0.944,
+      0.768
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/uniqlo-kanshasai-2026-deadlines-figure-7ea6b131.jpg"
+  }
 }
