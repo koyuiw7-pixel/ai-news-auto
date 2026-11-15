@@ -20236,6 +20236,19 @@
       "skipped": true,
       "url": "http://www.mlit.go.jp/report/press/tetsudo01_hh_000267.html"
     },
+    "f72359d97ccde33f": {
+      "at": "2026-11-15T12:22:09.346586+00:00",
+      "costUsd": 0.0017,
+      "intent": "breaking",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "score": 92,
+      "section": "public",
+      "slug": "goqsystem-information-leak-order-data",
+      "url": "https://goq.co.jp/security-incident.html"
+    },
     "f789f34fdfee6cb3": {
       "at": "2026-11-04T13:11:53.644058+00:00",
       "reason": "public-interest: 資料が短い 737字",
@@ -22528,32 +22541,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-13T06:44:00.416899+00:00",
-      "attempt": 1,
-      "id": "a9a99cbc2313f85a",
-      "kind": "broad",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [
-        "元記事・確認済みの事実の束・計算済みの数字のどれにも無い数字がある（「純利益は前年同期の約2.7倍」）。元記事か束の数字に直すか、その文を削る。簡単な計算（かけ算・足し算など）をするなら、確かめた数字だけを使って式を書き「（サイソク編集部の計算）」と添える"
-      ],
-      "readability": {
-        "avg_paragraph": 75.5,
-        "avg_sentence": 32.8,
-        "long_share": 0.0,
-        "max_paragraph": 113,
-        "paragraphs": 20,
-        "sentences": 46
-      },
-      "score": null,
-      "source": "fast",
-      "title": "ゆうちょ銀行 2027年３月期第２四半期（中間期）決算短信〔日本基準〕(連結)",
-      "warnings": [
-        "見出しが45字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（FX）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-13T06:44:27.428869+00:00",
@@ -30097,6 +30084,29 @@
       "warnings": [
         "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（GFS）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-15T12:22:00.418051+00:00",
+      "attempt": 1,
+      "id": "f72359d97ccde33f",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 96.8,
+        "avg_sentence": 41.1,
+        "long_share": 0.152,
+        "max_paragraph": 191,
+        "paragraphs": 14,
+        "sentences": 33
+      },
+      "score": 92,
+      "source": "fast",
+      "title": "GoQSystemの情報流出に関するお知らせ",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（IP・SMS）"
       ]
     }
   ],
