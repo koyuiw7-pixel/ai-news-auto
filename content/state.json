@@ -19695,6 +19695,19 @@
       "skipped": true,
       "url": "https://www.mhlw.go.jp/stf/newpage_77160.html"
     },
+    "ed4893ea038813a4": {
+      "at": "2026-11-15T11:57:10.942508+00:00",
+      "costUsd": 0.0069,
+      "intent": "breaking",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "score": 88,
+      "section": "public",
+      "slug": "gfs-education-data-breach",
+      "url": "https://gfse.jp/incident-20261113-2/"
+    },
     "ed4b58253682640f": {
       "at": "2026-11-02T18:26:06.281188+00:00",
       "model": "claude:sonnet",
@@ -22515,58 +22528,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-13T06:40:18.107756+00:00",
-      "attempt": 1,
-      "id": "b7ce81743d8d7962",
-      "kind": "broad",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [
-        "元記事・確認済みの事実の束・計算済みの数字のどれにも無い数字がある（「## 資産は2兆8,954億円」）。元記事か束の数字に直すか、その文を削る。簡単な計算（かけ算・足し算など）をするなら、確かめた数字だけを使って式を書き「（サイソク編集部の計算）」と添える"
-      ],
-      "readability": {
-        "avg_paragraph": 65.5,
-        "avg_sentence": 35.3,
-        "long_share": 0.026,
-        "max_paragraph": 127,
-        "paragraphs": 21,
-        "sentences": 39
-      },
-      "score": null,
-      "source": "fast",
-      "title": "楽天グループ 2026年12月期 第３四半期決算短信〔ＩＦＲＳ〕（連結）",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（GAAP）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-13T06:42:10.570212+00:00",
-      "attempt": 1,
-      "id": "20f83829a634e250",
-      "kind": "broad",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [
-        "元記事・確認済みの事実の束・計算済みの数字のどれにも無い数字がある（「## 貸出金は24兆円」）。元記事か束の数字に直すか、その文を削る。簡単な計算（かけ算・足し算など）をするなら、確かめた数字だけを使って式を書き「（サイソク編集部の計算）」と添える",
-        "要点の数字「1,969億円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）",
-        "要点の数字「712億円」が公式の資料に無い（桁・単位・丸めを資料どおりに。資料に無い数字は書かない）"
-      ],
-      "readability": {
-        "avg_paragraph": 86.2,
-        "avg_sentence": 38.3,
-        "long_share": 0.022,
-        "max_paragraph": 142,
-        "paragraphs": 20,
-        "sentences": 45
-      },
-      "score": null,
-      "source": "fast",
-      "title": "日本郵政 2027年３月期 第２四半期（中間期）決算短信〔日本基準〕(連結)",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（FX）"
-      ]
-    },
     {
       "accepted": false,
       "at": "2026-11-13T06:44:00.416899+00:00",
@@ -30085,6 +30046,57 @@
       "title": "高市総理はフィジカルＡＩ関連企業との意見交換会を行いました",
       "warnings": [
         "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-15T11:56:37.917220+00:00",
+      "attempt": 1,
+      "id": "ed4893ea038813a4",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "リード「最大で約11万人分の個人情報が流出」→ 元記事は「約11万人分」の漏えいまたはそのおそれとしており、「最大」とは書いていない（数字の上限を示す表現を追加している）",
+        "タイトル「約11万人分の個人情報が流出」→ 元記事は「漏えいした、または漏えいしたおそれ」であり、流出が確定したように読める",
+        "本文「GFS会員サイトは、同社が運営する金融スクール関連の会員向けサイト」→ 元記事は会員サイトの運営者であることは述べるが、金融スクールとの関連づけは元記事の文言にない（公式サイトでは同社が金融教育スクールを運営とあるが、会員サイトとの関係は確認できない）"
+      ],
+      "readability": {
+        "avg_paragraph": 81.1,
+        "avg_sentence": 40.5,
+        "long_share": 0.143,
+        "max_paragraph": 160,
+        "paragraphs": 14,
+        "sentences": 28
+      },
+      "score": 82,
+      "source": "fast",
+      "title": "「GFS会員サイト」への不正アクセスによる個人情報漏えいに関するお詫びとお知らせ - 株式会社GFS Education",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（GFS）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-15T11:57:00.876397+00:00",
+      "attempt": 1,
+      "id": "ed4893ea038813a4",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 80.4,
+        "avg_sentence": 40.2,
+        "long_share": 0.143,
+        "max_paragraph": 160,
+        "paragraphs": 14,
+        "sentences": 28
+      },
+      "score": 88,
+      "source": "fast",
+      "title": "「GFS会員サイト」への不正アクセスによる個人情報漏えいに関するお詫びとお知らせ - 株式会社GFS Education",
+      "warnings": [
+        "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（GFS）"
       ]
     }
   ],
