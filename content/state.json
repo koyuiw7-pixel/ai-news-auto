@@ -120,6 +120,7 @@
     "0de9917678894f79d40696721ff4ba533efe3fd6": 2,
     "0ff0eaa2ba94c7e95ccd21161a93a00b8a2eff42": 2,
     "10f4ea9bd14472fd07b7933c56966cb0394130ef": 2,
+    "1103376a4d638ed6242a30fb18ceb3b92d282d83": 1,
     "111910edca1c8e38bf63058d5fc732d16c87d7a9": 2,
     "116050421d412e483613eb3173d4ff25572e5979": 2,
     "11879038017cab73e9e00b87ae4b6b4357180ae1": 2,
@@ -243,6 +244,7 @@
     "4ba246b693fa816ebfce2c375f1717f753a79048": 2,
     "4cc941f6152a1702c41cbb933b3e47a363cc784d": 2,
     "4d230c215ba4a4e4fe707b2d757f867f69696e6f": 2,
+    "4d4a8e3ac38c1ac4fb0217853911af5535129f79": 1,
     "4de683fb64a1f28338880541b5e037cd5608d0d2": 2,
     "4df91a5a063d45c0fc27fa705792e0998764e045": 2,
     "4e77073462796ddb12273eed7c40f16d35525bae": 1,
@@ -282,7 +284,7 @@
     "5b3d024cdf4bb2d8f5d3117c531da8f9242dd052": 2,
     "5b4c1cab0fa6e72c64de5bff44d09afff748fce0": 2,
     "5bd28d756f8d1cb9895862bda2d857dccc65c419": 2,
-    "5bda8c237c5b5677623d4f4d5527f5a0398e95eb": 1,
+    "5bda8c237c5b5677623d4f4d5527f5a0398e95eb": 2,
     "5c6bfa562a0fc1293a5b300cb7b1eff1ad53ec9b": 2,
     "5ca056b9cba2cdf5b1ccb1db2d65131268ff8e1b": 2,
     "5cdbe4a0bc6121d48f63e80f97286f697660d54a": 2,
@@ -435,7 +437,7 @@
     "a38b1462c9b48c8a223139595f6507e2710f203d": 2,
     "a3eefb1abfe2feb7b78aa68af4e2ffe82d955167": 2,
     "a3fdee2dba56e9449178c49fce8f7742ce271de6": 2,
-    "a423c2e024968c8645d54220875ec030b88b143f": 1,
+    "a423c2e024968c8645d54220875ec030b88b143f": 2,
     "a4354bfd70bbffd4eb2af3702630bec07dba6230": 2,
     "a4ccc83453b1648014d6f0b33b7b98c26f1853fd": 2,
     "a5e8a53acd77b1bf7c8f61b06470bd1c1cc1f82f": 2,
@@ -641,14 +643,6 @@
       "title": "データセンターの排熱を陸上養殖に活用する共同実証プロジェクトを開始",
       "tries": 1,
       "url": "https://www.ntt-green-and-food.com/news/1522/"
-    },
-    "2242a0af9c6ad458": {
-      "first": "2026-11-14T15:37:14.204881+00:00",
-      "next": "2026-11-14T18:37:14.204881+00:00",
-      "reason": "記事の基準に足りない（自動で手直ししても残った）: 5.読者がすること（何を・どこで・期限）（することは書いてあるが、どこで（窓口・ページ）・いつまでが無い）",
-      "title": "結婚する理由が問われる時代－消費者行動から読む、若い世代の「暮らしの選び方」",
-      "tries": 1,
-      "url": "https://www.nli-research.co.jp/topics_detail1/id=87340?site=nli"
     },
     "2d75f45f1333f2d4": {
       "first": "2026-11-14T16:43:22.543972+00:00",
@@ -6460,6 +6454,17 @@
       "reason": "stale: 発表から51時間（48時間を超えた発表は通常の記事にしない）",
       "skipped": true,
       "url": "https://blog.jetbrains.com/rust/2026/11/05/new-in-rustrover-2026-3/"
+    },
+    "2242a0af9c6ad458": {
+      "at": "2026-11-15T06:14:19.869013+00:00",
+      "costUsd": 0.0161,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "gemini-3.5-flash",
+      "score": 84,
+      "section": "business",
+      "slug": "unmarried-rate-exceeds-twenty-percent-analysis",
+      "url": "https://www.nli-research.co.jp/topics_detail1/id=87340?site=nli"
     },
     "227def68631bf3e2": {
       "at": "2026-11-11T01:51:52.222970+00:00",
@@ -22460,69 +22465,6 @@
   "quality_log": [
     {
       "accepted": true,
-      "at": "2026-11-12T18:32:32.927341+00:00",
-      "attempt": 1,
-      "id": "482148aaa5ddfc2a",
-      "kind": "ai",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 103.9,
-        "avg_sentence": 48.5,
-        "long_share": 0.267,
-        "max_paragraph": 164,
-        "paragraphs": 14,
-        "sentences": 30
-      },
-      "score": 90,
-      "source": "google-gemini-blog",
-      "title": "Gemini 4 Hydrogen: everyday coding and agentic workflows for developers",
-      "warnings": [
-        "見出しが58字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "かんたん版に決まった型の見出し（「使ってみるには」）。中身の言葉にするか見出しを消す",
-        "読みやすさ: 文が長い（1文の平均 48.5字・60字超の文が 27% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-12T18:32:55.278495+00:00",
-      "attempt": 0,
-      "id": "482148aaa5ddfc2a",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 86.9,
-        "avg_sentence": 43.4,
-        "long_share": 0.156,
-        "max_paragraph": 165,
-        "paragraphs": 16,
-        "sentences": 32
-      },
-      "score": 88,
-      "source": "google-gemini-blog",
-      "title": "Gemini 4 Hydrogen: everyday coding and agentic workflows for developers",
-      "warnings": [
-        "見出しが58字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "かんたん版に決まった型の見出し（「使ってみるには」）。中身の言葉にするか見出しを消す"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-12T18:33:21.613152+00:00",
-      "attempt": 1,
-      "id": "8fdb0296ea11e78c",
-      "kind": "update",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "「前のモデルのGemini 4 Argonの50を上回りました」→ 元記事ではArgonは最上位の「frontier model」の一つとして並べられており、Hydrogenの前のモデルとは書かれていない。「前のモデル」は誤り。"
-      ],
-      "score": 85,
-      "source": "google-gemini-blog",
-      "title": "Introducing Gemini 4 Hydrogen"
-    },
-    {
-      "accepted": true,
       "at": "2026-11-12T20:12:32.748299+00:00",
       "attempt": 1,
       "id": "9def9fac8535e342",
@@ -29996,6 +29938,78 @@
         "初めて出たところで言い換えていない略語（TSR）",
         "1つの文を2つに割っている（「狙いがあります。特定の事業者に生じている資金繰りの負担を和らげるためです。」）。1文にまとめる"
       ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-15T06:13:31.644804+00:00",
+      "attempt": 1,
+      "id": "2242a0af9c6ad458",
+      "kind": "broad",
+      "model": "gemini-3.5-flash",
+      "problems": [
+        "「行動や生き方が自由」「家族を養う責任がなく気楽」→ 元記事は独身生活の利点が「高い水準で推移」としか述べておらず、この2項目は元記事に無い。確認済みの文脈にある第16回調査の増加項目を第17回の話として書いている。",
+        "「インターネットなどで情報を集めて比較し」（かんたん版）→ 元記事は「比較して選ぶことに慣れた世代」とだけ述べており、インターネットへの言及は無い。",
+        "「外食・お惣菜などの食サービス」（かんたん版）→ 元記事は中食のみに触れており、外食は元記事に無い。",
+        "「時短家電や中食で一人の暮らしを回せる人ほど、急いで結婚を決める必要を感じにくいとみられます」→ 元記事に無い推論だが、「とみられます」と見方として示しているため軽微。",
+        "「ニッセイ基礎研究所が若い世代の意識変化を分析しました」「国立社会保障・人口問題研究所の第17回出生動向基本調査」→ 元記事は第17回調査を基にしたとあり、実施主体の記載は確認済み文脈の一般的な情報源で補える範囲。"
+      ],
+      "readability": {
+        "avg_paragraph": 93.9,
+        "avg_sentence": 57.8,
+        "long_share": 0.385,
+        "max_paragraph": 128,
+        "paragraphs": 8,
+        "sentences": 13
+      },
+      "score": 72,
+      "source": "nli-research",
+      "title": "結婚する理由が問われる時代－消費者行動から読む、若い世代の「暮らしの選び方」",
+      "warnings": [
+        "読みやすさ: 文が長い（1文の平均 57.8字・60字超の文が 38% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-15T06:13:53.068213+00:00",
+      "attempt": 1,
+      "id": "2242a0af9c6ad458",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 88.9,
+        "avg_sentence": 54.7,
+        "long_share": 0.308,
+        "max_paragraph": 128,
+        "paragraphs": 8,
+        "sentences": 13
+      },
+      "score": 86,
+      "source": "nli-research",
+      "title": "結婚する理由が問われる時代－消費者行動から読む、若い世代の「暮らしの選び方」",
+      "warnings": [
+        "読みやすさ: 文が長い（1文の平均 54.7字・60字超の文が 31% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-15T06:14:19.825863+00:00",
+      "attempt": 0,
+      "id": "2242a0af9c6ad458",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 91.5,
+        "avg_sentence": 43.1,
+        "long_share": 0.059,
+        "max_paragraph": 134,
+        "paragraphs": 8,
+        "sentences": 17
+      },
+      "score": 84,
+      "source": "nli-research",
+      "title": "結婚する理由が問われる時代－消費者行動から読む、若い世代の「暮らしの選び方」"
     }
   ],
   "short_text_retry": {},
