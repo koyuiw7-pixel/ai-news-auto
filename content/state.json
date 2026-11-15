@@ -13205,6 +13205,17 @@
       "skipped": true,
       "url": "https://www.soumu.go.jp/menu_syokai/saiyou/detail/02shingi06_02001058.html"
     },
+    "894783f1f0933b37bd6c021ad64f0023513cb024": {
+      "at": "2026-11-15T10:35:11.837840+00:00",
+      "kind": "trend",
+      "model": "gemini-3.5-flash",
+      "pressReport": true,
+      "score": 88,
+      "slug": "spacex-starship-catches-launch-pad-success",
+      "trendKeyword": "スペースx",
+      "trendLane": true,
+      "url": "https://www.afpbb.com/articles/-/3662401"
+    },
     "895b8ff93dbe4194": {
       "at": "2026-11-04T08:03:10.192592+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（委員会）",
@@ -22485,76 +22496,6 @@
   },
   "quality_log": [
     {
-      "accepted": false,
-      "at": "2026-11-13T03:17:41.397385+00:00",
-      "attempt": 1,
-      "id": "2a5183d1cb10c153",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "題名で料金・価格を約束しているのに、本文に金額（円・ドル・無料など）が無い。元記事の金額を書くか、題名から料金の話を外す"
-      ],
-      "readability": {
-        "avg_paragraph": 97.8,
-        "avg_sentence": 42.8,
-        "long_share": 0.219,
-        "max_paragraph": 174,
-        "paragraphs": 14,
-        "sentences": 32
-      },
-      "score": null,
-      "source": "nli-research",
-      "title": "ＧＤＰ統計から見た価格転嫁率の試算－企業へのアンケート調査と大きく異なり累積の転嫁率は100％超",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（GDP）",
-        "同じ数字が多い（「122%」が5回）",
-        "読みやすさ: 文が長い（1文の平均 42.8字・60字超の文が 22% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-13T03:19:50.276371+00:00",
-      "attempt": 1,
-      "id": "dae75056a58d8a1d",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 93.7,
-        "avg_sentence": 39.4,
-        "long_share": 0.053,
-        "max_paragraph": 161,
-        "paragraphs": 16,
-        "sentences": 38
-      },
-      "score": 88,
-      "source": "tdb",
-      "title": "アンケート 社内イベントに関する企業の動向アンケート アフターコロナの社内イベント 「年賀状」「社員旅行」「新年会・忘年会」の減少幅大きく ～働き方・意識の変化"
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-13T04:31:56.597138+00:00",
-      "attempt": 1,
-      "id": "f97a761cfa2c6db3",
-      "kind": "broad",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 81.2,
-        "avg_sentence": 32.8,
-        "long_share": 0.043,
-        "max_paragraph": 195,
-        "paragraphs": 19,
-        "sentences": 47
-      },
-      "score": 91,
-      "source": "fast",
-      "title": "三井住友フィナンシャルグループ 2027年3月期 第2四半期(中間期)決算短信〔日本基準〕(連結)",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（SMFG）"
-      ]
-    },
-    {
       "accepted": true,
       "at": "2026-11-13T05:21:54.708101+00:00",
       "attempt": 1,
@@ -30047,6 +29988,86 @@
         "見出しの書き方: 区切りの全角空白が2つ以上（補足は1つだけ）",
         "初めて出たところで言い換えていない略語（TBS・NEWS）",
         "読みやすさ: 文が長い（1文の平均 51.8字・60字超の文が 11% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-15T10:34:33.610520+00:00",
+      "attempt": 1,
+      "id": "894783f1f0933b37bd6c021ad64f0023513cb024",
+      "kind": "trend",
+      "model": "gemini-3.5-flash",
+      "problems": [
+        "リード「機体を再利用してコストを下げる取り組みの一環」→ 元記事にコスト削減の目的は書かれていない（再利用技術の前進とのみ書かれている）",
+        "本文「従来のように海上へ着水させて回収するのではなく」→ 元記事に海上着水による従来の回収方法の記述はない",
+        "本文「回収から再打ち上げまでの準備期間とコストを大幅に削る狙いがあります」→ 元記事に無い狙いを断定的に書いている",
+        "本文「着陸や空中での分解など様々な段階が検証されてきました」→ 元記事に具体的な試験段階の記述がなく、確認できない経緯",
+        "本文「再利用ロケット技術の実用化へ大きく近づいたと伝えられています」→ 元記事は『再利用技術開発が大きく前進』との表現で、実用化への接近までは書かれていない"
+      ],
+      "readability": {
+        "avg_paragraph": 87.4,
+        "avg_sentence": 62.4,
+        "long_share": 0.429,
+        "max_paragraph": 125,
+        "paragraphs": 5,
+        "sentences": 7
+      },
+      "score": 70,
+      "source": "trends",
+      "title": "スペースx",
+      "warnings": [
+        "見出しの書き方: 記号: かっこの直後に「、」",
+        "初めて出たところで言い換えていない略語（NEWS）",
+        "読みやすさ: 文が長い（1文の平均 62.4字・60字超の文が 43% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-15T10:34:54.356553+00:00",
+      "attempt": 1,
+      "id": "894783f1f0933b37bd6c021ad64f0023513cb024",
+      "kind": "trend",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 50.8,
+        "avg_sentence": 50.8,
+        "long_share": 0.2,
+        "max_paragraph": 99,
+        "paragraphs": 5,
+        "sentences": 5
+      },
+      "score": 88,
+      "source": "trends",
+      "title": "スペースx",
+      "warnings": [
+        "見出しの書き方: 記号: かっこの直後に「、」",
+        "初めて出たところで言い換えていない略語（NEWS）",
+        "読みやすさ: 文が長い（1文の平均 50.8字・60字超の文が 20% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-15T10:35:05.445155+00:00",
+      "attempt": 0,
+      "id": "894783f1f0933b37bd6c021ad64f0023513cb024",
+      "kind": "trend",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 50.8,
+        "avg_sentence": 42.3,
+        "long_share": 0.0,
+        "max_paragraph": 99,
+        "paragraphs": 5,
+        "sentences": 6
+      },
+      "score": 88,
+      "source": "trends",
+      "title": "スペースx",
+      "warnings": [
+        "見出しの書き方: 記号: かっこの直後に「、」",
+        "初めて出たところで言い換えていない略語（NEWS）"
       ]
     }
   ],
