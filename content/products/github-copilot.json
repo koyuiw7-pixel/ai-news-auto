@@ -10,19 +10,18 @@
   "companyName": "Microsoft",
   "category": "開発ツール",
   "overview": {
-    "text": "GitHub Copilotは、プログラムの補完や作業の代行をするAIの開発支援サービスです。Microsoftが提供し、コードレビューやチャット、マルチモデルの選択など多くの機能が発表されています。",
+    "text": "GitHub Copilotは、プログラムの補完や作業の代行をするAIの開発支援サービスです。MicrosoftおよびGitHubが提供しています。2026年8月にモデル選択肢の追加などの更新が発表されました。",
     "sources": [
-      "github-copilot-code-review-api-settings",
+      "github-copilot-kimi-k3-multi-agent",
       "github-copilot-weekly-releases-nov-2"
     ]
   },
   "facts": [
     {
       "label": "提供開始",
-      "value": "2026年11月など順次",
+      "value": "2026年8月頃から順次",
       "sources": [
-        "github-copilot-code-review-api-settings",
-        "github-copilot-weekly-releases-nov-2"
+        "github-copilot-kimi-k3-multi-agent"
       ]
     },
     {
@@ -30,7 +29,7 @@
       "value": "日本で利用できる",
       "sources": [
         "github-copilot-code-review-api-settings",
-        "copilot-impact-dashboard-chat-vscode-agent"
+        "github-copilot-kimi-k3-multi-agent"
       ]
     },
     {
@@ -38,57 +37,57 @@
       "value": "開発者および開発チームの管理者",
       "sources": [
         "github-copilot-code-review-api-settings",
-        "copilot-impact-dashboard-chat-vscode-agent"
+        "github-copilot-weekly-releases-nov-2"
       ]
     }
   ],
   "capabilities": [
     {
-      "text": "コードレビューの設定をREST APIとGraphQL APIから変更できます。",
+      "text": "REST APIやGraphQL APIを使って企業から各リポジトリまでコードレビューの設定を変更できます。",
       "sources": [
         "github-copilot-code-review-api-settings"
       ]
     },
     {
-      "text": "影響ダッシュボードの採用グラフでチャットなど9機能を確認できます。",
-      "sources": [
-        "copilot-impact-dashboard-chat-vscode-agent"
-      ]
-    },
-    {
-      "text": "Xcode 27.3 betaの標準アシスタントやJetBrains Airで利用できます。",
+      "text": "Xcode 27.3 betaの標準コーディングアシスタントとして利用できます。",
       "sources": [
         "github-copilot-weekly-releases-nov-2"
       ]
     },
     {
-      "text": "SlackやMicrosoft Teamsの@GitHubでバグ調査やPR作成ができます。",
+      "text": "JetBrains Air上やクラウド環境で複数のエージェント作業を進められます。",
       "sources": [
-        "github-copilot-slack-teams-ga"
+        "github-copilot-jetbrains-air",
+        "github-copilot-weekly-releases-nov-2"
+      ]
+    },
+    {
+      "text": "AIによるデスクトップアプリの自動操作機能を利用できます。",
+      "sources": [
+        "github-copilot-app-projects-computer-use"
       ]
     }
   ],
-  "pricing": [
+  "pricing": [],
+  "japan": [
     {
-      "text": "対象はPro、Pro+、Max、Business、Enterpriseなどの各プランです。",
+      "text": "GitHub Copilot自体は日本で利用できます。公式ドキュメントは日本語で公開されています。",
       "sources": [
         "github-copilot-code-review-api-settings",
         "github-copilot-kimi-k3-multi-agent"
       ]
     }
   ],
-  "japan": [
-    {
-      "text": "GitHub Copilot自体は日本で使えます。",
-      "sources": [
-        "github-copilot-code-review-api-settings",
-        "copilot-impact-dashboard-chat-vscode-agent"
-      ]
-    }
-  ],
   "howto": [
     {
-      "text": "Visual Studio Codeなどの対応環境でモデルピッカーからモデルを選択して始められます。",
+      "text": "対応するエディタやIDEの拡張機能を通じて利用できます。",
+      "sources": [
+        "github-copilot-kimi-k3-multi-agent",
+        "github-copilot-weekly-releases-nov-2"
+      ]
+    },
+    {
+      "text": "チャット画面のモデル選択メニューから好みのAIモデルに切り替えられます。",
       "sources": [
         "gpt-6-1-terra-github-copilot-guide",
         "github-copilot-kimi-k3-multi-agent"
@@ -98,31 +97,26 @@
   "differences": [],
   "faq": [
     {
-      "q": "どのプランがコードレビューのAPI対象ですか？",
-      "a": "Pro、Pro+、Max、Business、Enterpriseの各プランが対象です。Freeプランは対象に挙がっていません。",
+      "q": "いつから使えますか？",
+      "a": "すでに主要な機能やモデルの提供が始まっています。一部の機能は段階的な展開となっています。",
       "sources": [
-        "github-copilot-code-review-api-settings"
+        "gpt-6-1-terra-github-copilot-guide",
+        "github-copilot-kimi-k3-multi-agent"
       ]
     },
     {
-      "q": "利用状況はどこで確認できますか？",
-      "a": "Copilot影響ダッシュボードの採用グラフで9機能の利用状況を確認できます。",
+      "q": "どのプランが対象ですか？",
+      "a": "機能やモデルにより異なりますが、ProやBusinessなどのプランが対象となります。",
       "sources": [
-        "copilot-impact-dashboard-chat-vscode-agent"
+        "github-copilot-code-review-api-settings",
+        "gpt-6-1-terra-github-copilot-guide"
       ]
     },
     {
-      "q": "Xcodeで使えますか？",
-      "a": "Xcode 27.3 betaの標準コーディングアシスタントで公開プレビューとして利用できます。",
+      "q": "セキュリティ機能はありますか？",
+      "a": "アプリ内のセキュリティ拡張でコードスキャン等の確認や修正依頼を行えます。",
       "sources": [
-        "github-copilot-weekly-releases-nov-2"
-      ]
-    },
-    {
-      "q": "チャットツールから使えますか？",
-      "a": "SlackとMicrosoft Teamsの@GitHubが一般提供され、チャットからバグ調査やPR作成を行えます。",
-      "sources": [
-        "github-copilot-slack-teams-ga"
+        "github-copilot-security-extension"
       ]
     }
   ],
@@ -135,27 +129,27 @@
     {
       "date": "2026-10-26",
       "slug": "gpt-6-1-terra-github-copilot-guide",
-      "event": "GitHub CopilotでGPT-6.1 Terraが一般提供"
+      "event": "GPT-6.1 Terraを一般提供"
     },
     {
       "date": "2026-10-29",
       "slug": "github-copilot-app-projects-computer-use",
-      "event": "Copilotアプリにプロジェクト機能とコンピューター利用を追加"
+      "event": "Copilotアプリにプロジェクト機能を追加"
     },
     {
       "date": "2026-10-29",
       "slug": "github-copilot-security-extension",
-      "event": "GitHub Copilotアプリにセキュリティ拡張を追加"
+      "event": "Copilotアプリにセキュリティ拡張を追加"
     },
     {
       "date": "2026-11-07",
       "slug": "github-copilot-code-review-api-settings",
-      "event": "Copilotのコードレビュー設定をAPIで変更可能に"
+      "event": "コードレビューの設定をAPIで変更可能に"
     },
     {
       "date": "2026-11-07",
       "slug": "github-copilot-weekly-releases-nov-2",
-      "event": "XcodeやJetBrains Airでの利用に対応"
+      "event": "JetBrains AirとXcodeで利用可能に"
     }
   ],
   "related": [
@@ -208,9 +202,9 @@
     "github-copilot-reusable-agent-skills-guide",
     "github-copilot-kimi-k3-multi-agent"
   ],
-  "signature": "3fad3a5aa97e5ecc",
+  "signature": "914b7200ad982e2e",
   "primarySignature": "1df75fafa54bdcd9",
-  "model": "gemini-3.1-flash-lite",
+  "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-10-27T10:43:48+00:00",
-  "updatedAt": "2026-11-12T10:42:22+00:00"
+  "updatedAt": "2026-11-15T10:51:39+00:00"
 }

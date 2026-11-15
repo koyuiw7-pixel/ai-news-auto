@@ -672,14 +672,6 @@
       "tries": 1,
       "url": "https://www.mhlw.go.jp/stf/newpage_77371.html"
     },
-    "2d75f45f1333f2d4": {
-      "first": "2026-11-14T16:43:22.543972+00:00",
-      "next": "2026-11-14T19:43:22.543972+00:00",
-      "reason": "記事の基準に足りない（自動で手直ししても残った）: 5.読者がすること（何を・どこで・期限）（することは書いてあるが、どこで（窓口・ページ）・いつまでが無い）",
-      "title": "英国ＧＤＰ（2026年7-9月期）－1-3月、4-6月に続き高い成長率を記録",
-      "tries": 1,
-      "url": "https://www.nli-research.co.jp/topics_detail1/id=87342?site=nli"
-    },
     "3cf150df28276760": {
       "first": "2026-11-13T21:44:52.897578+00:00",
       "next": "2026-11-14T00:44:52.897578+00:00",
@@ -7150,6 +7142,17 @@
       "reason": "prefilter: 価値の薄いお知らせ（委員会）",
       "skipped": true,
       "url": "https://www.kantei.go.jp/jp/105/actions/202611/06teigen.html"
+    },
+    "2d75f45f1333f2d4": {
+      "at": "2026-11-15T10:51:29.810339+00:00",
+      "costUsd": 0.0176,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "gemini-3.5-flash",
+      "score": 88,
+      "section": "business",
+      "slug": "uk-gdp-q3-2026-growth-ai-sector",
+      "url": "https://www.nli-research.co.jp/topics_detail1/id=87342?site=nli"
     },
     "2db014d6b1ff61ff": {
       "at": "2026-11-07T19:52:10.046783+00:00",
@@ -22497,80 +22500,6 @@
   "quality_log": [
     {
       "accepted": true,
-      "at": "2026-11-13T05:21:54.708101+00:00",
-      "attempt": 1,
-      "id": "510ed7cb96f91db6",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 136.3,
-        "avg_sentence": 54.5,
-        "long_share": 0.333,
-        "max_paragraph": 182,
-        "paragraphs": 6,
-        "sentences": 15
-      },
-      "score": 93,
-      "source": "radar-official",
-      "title": "vindictus defying fate ps5",
-      "warnings": [
-        "見出しが59字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（NEXON・PS）",
-        "読みやすさ: 文が長い（1文の平均 54.5字・60字超の文が 33% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-13T05:22:17.560311+00:00",
-      "attempt": 0,
-      "id": "510ed7cb96f91db6",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 82.4,
-        "avg_sentence": 43.4,
-        "long_share": 0.053,
-        "max_paragraph": 139,
-        "paragraphs": 10,
-        "sentences": 19
-      },
-      "score": 88,
-      "source": "radar-official",
-      "title": "vindictus defying fate ps5",
-      "warnings": [
-        "見出しが59字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（NEXON・PS）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-13T05:33:13.124797+00:00",
-      "attempt": 1,
-      "id": "40e8002f36a0999f",
-      "kind": "broad",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [
-        "「第一ライフグループは、生命保険事業を中心とする持株会社です」→ 元記事に持株会社・事業内容の記述はなく、元記事に無い事実を書いている。",
-        "「有価証券の評価差額が前年同期のプラスからマイナスに変わったことが主な背景です」→ その他有価証券評価差額金の増減は元記事にあるが、包括利益減少の『主な背景』という因果は元記事に書かれておらず、推測として断定している。",
-        "「有価証券売却益が倍近くに」（見出し）→ 5,501億円は前年同期2,697億円の約2.04倍で、『倍近く』より『2倍超』が正確。言い回しの問題。",
-        "「保険料等収入は3兆5,503億円でした。前年同期は3兆3,309億円です」→ 元記事の3,330,997百万円は3兆3,310億円に四捨五入されるため、1億円の表記ずれ（切り捨てとしても許容範囲）。"
-      ],
-      "readability": {
-        "avg_paragraph": 76.3,
-        "avg_sentence": 32.7,
-        "long_share": 0.048,
-        "max_paragraph": 115,
-        "paragraphs": 18,
-        "sentences": 42
-      },
-      "score": 80,
-      "source": "fast",
-      "title": "第一ライフグループ 2027年３月期 第２四半期（中間期）決算短信〔日本基準〕(連結)"
-    },
-    {
-      "accepted": true,
       "at": "2026-11-13T05:33:43.498151+00:00",
       "attempt": 1,
       "id": "40e8002f36a0999f",
@@ -30068,6 +29997,85 @@
       "warnings": [
         "見出しの書き方: 記号: かっこの直後に「、」",
         "初めて出たところで言い換えていない略語（NEWS）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-15T10:50:39.118592+00:00",
+      "attempt": 1,
+      "id": "2d75f45f1333f2d4",
+      "kind": "broad",
+      "model": "gemini-3.5-flash",
+      "problems": [
+        "「サイソクの見方」の「AI分野への投資加速」→ 元記事は投資が1.7%増と書くのみで、投資のうちAI分野が加速したとの記述はなく、根拠のない事実の付け足し",
+        "リード「AI関連産業が全体を引っ張っています」→ 元記事はAI関連と見られる産業が9月の月次で強かったと指摘するのみで、四半期全体の成長を牽引したとは書かれていない（誇張）",
+        "要点「AI関連の産業分野が成長を強力に後押しした」→ 元記事の「後押し」「強かった」を「強力に」と強めており、程度を言い過ぎ",
+        "「仕事・お金にどう活かせる」→ 欧州拠点を引き受ける担当者は恩恵を受けやすいという断定的な見立てで、元記事に裏付けのない事業への影響予測"
+      ],
+      "readability": {
+        "avg_paragraph": 91.5,
+        "avg_sentence": 50.4,
+        "long_share": 0.15,
+        "max_paragraph": 138,
+        "paragraphs": 11,
+        "sentences": 20
+      },
+      "score": 72,
+      "source": "nli-research",
+      "title": "英国ＧＤＰ（2026年7-9月期）－1-3月、4-6月に続き高い成長率を記録",
+      "warnings": [
+        "見出しが45字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（GDP）",
+        "読みやすさ: 文が長い（1文の平均 50.4字・60字超の文が 15% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-15T10:51:07.825151+00:00",
+      "attempt": 1,
+      "id": "2d75f45f1333f2d4",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 85.6,
+        "avg_sentence": 49.6,
+        "long_share": 0.158,
+        "max_paragraph": 138,
+        "paragraphs": 11,
+        "sentences": 19
+      },
+      "score": 86,
+      "source": "nli-research",
+      "title": "英国ＧＤＰ（2026年7-9月期）－1-3月、4-6月に続き高い成長率を記録",
+      "warnings": [
+        "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（GDP）",
+        "読みやすさ: 文が長い（1文の平均 49.6字・60字超の文が 16% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-15T10:51:29.768859+00:00",
+      "attempt": 0,
+      "id": "2d75f45f1333f2d4",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 73.2,
+        "avg_sentence": 44.0,
+        "long_share": 0.1,
+        "max_paragraph": 138,
+        "paragraphs": 12,
+        "sentences": 20
+      },
+      "score": 88,
+      "source": "nli-research",
+      "title": "英国ＧＤＰ（2026年7-9月期）－1-3月、4-6月に続き高い成長率を記録",
+      "warnings": [
+        "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（GDP）"
       ]
     }
   ],
