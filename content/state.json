@@ -833,7 +833,6 @@
     "58e398f6c82e88a1": "2026-11-12T01:32:51.352949+00:00",
     "607dfb27cfad3976": "2026-11-15T17:50:53.256695+00:00",
     "624b6f3c9746a4f4": "2026-11-12T16:31:00.204086+00:00",
-    "67659b4bccb64e40": "2026-11-11T18:50:54.383665+00:00",
     "6aae2ae24b4d535b": "2026-11-12T16:10:56.906216+00:00",
     "6f2de5eac4a4084e": "2026-11-14T17:21:00.173670+00:00",
     "70b6770bf120d03d": "2026-11-15T17:50:53.256695+00:00",
@@ -843,7 +842,6 @@
     "83d6fad6bd86843b": "2026-11-12T16:31:00.204086+00:00",
     "89d9c40f384de464": "2026-11-12T16:31:00.204086+00:00",
     "8b64f059f61c9435": "2026-11-12T16:10:56.906216+00:00",
-    "9403a23a06ef907c": "2026-11-11T18:50:54.383665+00:00",
     "9782bc8f876e1348": "2026-11-12T16:31:00.204086+00:00",
     "a33256afa2fec596": "2026-11-12T16:31:00.204086+00:00",
     "b2c399a7e032ea28": "2026-11-12T16:31:00.204086+00:00",
@@ -856,7 +854,6 @@
     "ceadcdaa2dd48deb": "2026-11-12T01:01:02.846059+00:00",
     "d2369c7efb100e6e": "2026-11-12T05:18:55.055349+00:00",
     "d3de59dcf81ced43": "2026-11-12T16:31:00.204086+00:00",
-    "d59119d08c91014e": "2026-11-11T18:50:54.383665+00:00",
     "da38c64b9638bb2b": "2026-11-12T07:10:55.106500+00:00",
     "dd2ee190c6d81244": "2026-11-15T17:50:53.256695+00:00",
     "df3c3fca76dc097a": "2026-11-15T17:31:05.012183+00:00",
@@ -6563,6 +6560,20 @@
       "slug": "unmarried-rate-exceeds-twenty-percent-analysis",
       "url": "https://www.nli-research.co.jp/topics_detail1/id=87340?site=nli"
     },
+    "2268e63f1a0d9675": {
+      "at": "2026-11-15T19:14:42.516330+00:00",
+      "costUsd": 0.0213,
+      "intent": "neutral",
+      "kind": "trend",
+      "mix": "",
+      "model": "gemini-3.5-flash",
+      "score": 90,
+      "section": "sports",
+      "slug": "nagano-hisayoshi-tokyo-fm-radio-event",
+      "trendKeyword": "長野 久義",
+      "trendLane": true,
+      "url": "https://topics.smt.docomo.ne.jp/latestnews/keywords/1d454d36325ac78ec98883cbf04cc6a27f0994952d9577e6336bc6a3dde4c78d"
+    },
     "227def68631bf3e2": {
       "at": "2026-11-11T01:51:52.222970+00:00",
       "costUsd": 0.0056,
@@ -6850,6 +6861,12 @@
       "slug": "cursor-security-incident-update",
       "url": "https://cursor.com/blog/security-incident-update"
     },
+    "26c1ed08df9958d93c533b87eccac89fbe00405b": {
+      "at": "2026-11-15T19:14:42.516499+00:00",
+      "reason": "trend: 公式の発表で記事にした（nagano-hisayoshi-tokyo-fm-radio-event）",
+      "skipped": true,
+      "url": "https://news.yahoo.co.jp/articles/5263106c2800aba726af9a674801cac1f393a235"
+    },
     "26c6032e1d267765": {
       "at": "2026-11-03T19:12:35.197251+00:00",
       "model": "anthropic-api:claude-sonnet-5-5",
@@ -6857,6 +6874,13 @@
       "section": "ai",
       "slug": "openai-physical-engineering-ai",
       "url": "https://openai.com/index/accelerating-engineering-for-the-physical-world"
+    },
+    "26ce5aa77b8ff4763bed947cc0509dcc83d12f9a": {
+      "at": "2026-11-15T19:14:54.504178+00:00",
+      "model": "gemini-3.6-flash",
+      "reason": "タレントの個人SNS投稿および家族に関するエンタメニュースであり、テクノロジー・お金・住まい・制度など読者の仕事や暮らしに役立つ実質的な情報を含まないため。",
+      "skipped": true,
+      "url": "https://news.tv-asahi.co.jp/news_geinou/articles/900204231.html"
     },
     "272f393bead73334": {
       "at": "2026-11-06T08:58:44.243362+00:00",
@@ -8050,6 +8074,12 @@
       "reason": "prefilter: 価値の薄いお知らせ（役員）",
       "skipped": true,
       "url": "https://global.toyota/jp/newsroom/corporate/44969952.html"
+    },
+    "398885aa2707e9605c74ab397d39e16617b20431": {
+      "at": "2026-11-15T19:12:04.293691+00:00",
+      "reason": "trend: 重複: 固有名詞＋見出しが類似（イングランド / 0.42）: england-vs-japan-rugby-2026",
+      "skipped": true,
+      "url": "https://news.yahoo.co.jp/articles/e5a921478f0c981e506924ecb4cae6565f78a209"
     },
     "39cf968ded6c1c30": {
       "at": "2026-11-06T22:01:56.721787+00:00",
@@ -22913,83 +22943,6 @@
   "quality_log": [
     {
       "accepted": true,
-      "at": "2026-11-13T11:00:07.757524+00:00",
-      "attempt": 1,
-      "id": "1a84fda568160878",
-      "kind": "ai",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 171.7,
-        "avg_sentence": 64.4,
-        "long_share": 0.375,
-        "max_paragraph": 266,
-        "paragraphs": 3,
-        "sentences": 8
-      },
-      "score": 88,
-      "source": "microsoft-research-blog",
-      "title": "Microsoft Research Focus – Edition #98",
-      "warnings": [
-        "見出しの書き方: 発表文の題名の言い直し（「〇〇が△△を発表」）。読者にとって何が変わるか（だれの・何が・いつから・いくら）を書く",
-        "見出しが48字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（KLS・APEC・LCT）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-13T11:00:24.604732+00:00",
-      "attempt": 0,
-      "id": "1a84fda568160878",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 90.5,
-        "avg_sentence": 49.4,
-        "long_share": 0.091,
-        "max_paragraph": 141,
-        "paragraphs": 6,
-        "sentences": 11
-      },
-      "score": 88,
-      "source": "microsoft-research-blog",
-      "title": "Microsoft Research Focus – Edition #98",
-      "warnings": [
-        "見出しの書き方: 発表文の題名の言い直し（「〇〇が△△を発表」）。読者にとって何が変わるか（だれの・何が・いつから・いくら）を書く",
-        "見出しが48字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（KLS・APEC・LCT）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-13T11:15:35.414197+00:00",
-      "attempt": 1,
-      "id": "4b1197b04ca5a948",
-      "kind": "broad",
-      "model": "gemini-3.5-flash",
-      "problems": [
-        "元記事・確認済みの事実の束・計算済みの数字のどれにも無い数字がある（「売上高は110億ドル(約1.6兆円」）。元記事か束の数字に直すか、その文を削る。簡単な計算（かけ算・足し算など）をするなら、確かめた数字だけを使って式を書き「（サイソク編集部の計算）」と添える"
-      ],
-      "readability": {
-        "avg_paragraph": 153.4,
-        "avg_sentence": 64.6,
-        "long_share": 0.632,
-        "max_paragraph": 218,
-        "paragraphs": 8,
-        "sentences": 19
-      },
-      "score": null,
-      "source": "radar-official",
-      "title": "sandisk",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（SNDK・GAAP）",
-        "読みやすさ: 文が長い（1文の平均 64.6字・60字超の文が 63% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "読みやすさ: 段落が長い（平均 153.4字・最長 218字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
       "at": "2026-11-13T11:16:39.644923+00:00",
       "attempt": 1,
       "id": "4b1197b04ca5a948",
@@ -30497,6 +30450,86 @@
         "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（SPORTS・VISION・BMX）",
         "読みやすさ: 文が長い（1文の平均 48.0字・60字超の文が 12% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-15T19:13:37.730949+00:00",
+      "attempt": 1,
+      "id": "2268e63f1a0d9675",
+      "kind": "broad",
+      "model": "gemini-3.5-flash",
+      "problems": [
+        "リード「公開収録の詳しい参加方法やスペシャルゲストの詳細は、今後の番組内で順次発表される予定です」→ 元記事に参加方法の発表予定は書かれておらず、発表スケジュールを創作している",
+        "本文「公開収録の参加方法は…番組内で順次発表される予定です」→ 元記事にない発表予定を書いている。元記事は参加方法について何も述べていない",
+        "本文「参加の申し込み先や期限は、まだ発表されていません」→ 元記事・確認済みの文脈に、発表の有無を示す記述がなく、断定の根拠がない",
+        "「織田翔希投手」→ 元記事では「横浜高校・織田翔希」とあるのみで、投手であることは元記事に書かれていない（軽微）",
+        "「##サイソクの見方」の「番組では現場の首脳陣と近い立場から話している点が特徴」→ 元記事の根拠が薄い解釈を事実のように書いている（軽微）"
+      ],
+      "readability": {
+        "avg_paragraph": 139.2,
+        "avg_sentence": 60.5,
+        "long_share": 0.391,
+        "max_paragraph": 206,
+        "paragraphs": 10,
+        "sentences": 23
+      },
+      "score": 72,
+      "source": "radar-official",
+      "title": "長野久義関連ニュース｜dメニューニュース（NTTドコモ）",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（OB・TOKYO・FM）",
+        "読みやすさ: 文が長い（1文の平均 60.5字・60字超の文が 39% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "読みやすさ: 段落が長い（平均 139.2字・最長 206字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-15T19:14:08.104656+00:00",
+      "attempt": 1,
+      "id": "2268e63f1a0d9675",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 139.0,
+        "avg_sentence": 62.5,
+        "long_share": 0.4,
+        "max_paragraph": 206,
+        "paragraphs": 9,
+        "sentences": 20
+      },
+      "score": 88,
+      "source": "radar-official",
+      "title": "長野久義関連ニュース｜dメニューニュース（NTTドコモ）",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（OB・TOKYO・FM）",
+        "work_money（「仕事・お金にどう活かせる？」欄）が無い",
+        "読みやすさ: 文が長い（1文の平均 62.5字・60字超の文が 40% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-15T19:14:42.474952+00:00",
+      "attempt": 0,
+      "id": "2268e63f1a0d9675",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 83.5,
+        "avg_sentence": 41.8,
+        "long_share": 0.067,
+        "max_paragraph": 145,
+        "paragraphs": 15,
+        "sentences": 30
+      },
+      "score": 90,
+      "source": "radar-official",
+      "title": "長野久義関連ニュース｜dメニューニュース（NTTドコモ）",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（OB・TOKYO・FM）",
+        "work_money（「仕事・お金にどう活かせる？」欄）が無い"
       ]
     }
   ],
