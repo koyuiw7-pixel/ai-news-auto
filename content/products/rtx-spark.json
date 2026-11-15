@@ -6,7 +6,7 @@
   "companyName": "NVIDIA",
   "category": "ガジェット",
   "overview": {
-    "text": "RTX Sparkは、NVIDIAがMicrosoftと共同で4年かけて開発した個人向けの小型AI端末です。最大128GBの統合メモリなどを備え、2026年10月に発表されました。",
+    "text": "RTX Sparkは、NVIDIAとMediaTekが共同開発した次世代PC向けの統合プロセッサです。Blackwell GPUとGrace CPUを搭載し、モバイル環境でのAI処理と高画質ゲームを両立します。10月に発表されました。",
     "sources": [
       "nvidia-gtc-berlin-2026-keynote-highlights",
       "nvidia-rtx-spark-announcement"
@@ -14,18 +14,23 @@
   },
   "facts": [
     {
-      "label": "向いている人",
-      "value": "開発者や映像制作者、PCゲーマー",
+      "label": "提供開始",
+      "value": "10月16日に発売されました",
       "sources": [
-        "geforce-8800-gtx-20-years-steam-demo",
-        "nvidia-gtc-berlin-2026-keynote-highlights",
-        "adobe-premiere-nvidia-rtx-spark"
+        "nvidia-local-ai-gtc-berlin-spark-station"
+      ]
+    },
+    {
+      "label": "使える場所",
+      "value": "Windows PC",
+      "sources": [
+        "nvidia-gtc-berlin-2026-keynote-highlights"
       ]
     }
   ],
   "capabilities": [
     {
-      "text": "FP4精度における1 petaFLOPのAI処理性能を備えています。",
+      "text": "FP4精度で1 petaFLOPのAI処理性能を持ちます。",
       "sources": [
         "nvidia-rtx-spark-announcement"
       ]
@@ -37,59 +42,50 @@
       ]
     },
     {
-      "text": "4K 10-bit 4:2:2 60fpsのマルチカム映像をプロキシなしで再生できます。",
+      "text": "4Kレンダリングと100fps超のゲームを同時に処理できます。",
       "sources": [
-        "adobe-premiere-nvidia-rtx-spark"
+        "nvidia-rtx-spark-announcement"
       ]
     },
     {
-      "text": "3D描画やAI推論と100fps超のゲーム動作を同時にこなせます。",
+      "text": "Premiere ProのAI機能や映像編集を高速化します。",
       "sources": [
-        "nvidia-rtx-spark-announcement"
+        "adobe-premiere-nvidia-rtx-spark"
       ]
     }
   ],
   "pricing": [],
   "japan": [],
-  "howto": [
-    {
-      "text": "GeForce RTXかRTX Sparkを搭載したパソコンで利用できます。",
-      "sources": [
-        "geforce-8800-gtx-20-years-steam-demo",
-        "nvidia-game-ready-driver-621-14-wow-forever"
-      ]
-    },
-    {
-      "text": "必要なドライバーは、NVIDIAアプリか公式サイトからダウンロードできます。",
-      "sources": [
-        "geforce-8800-gtx-20-years-steam-demo",
-        "nvidia-game-ready-driver-621-14-wow-forever"
-      ]
-    }
-  ],
+  "howto": [],
   "differences": [],
   "faq": [
     {
-      "q": "誰に向いている？",
-      "a": "AIアプリの開発者や映像制作者、PCゲーマーに向いています。",
+      "q": "誰に向いている製品ですか？",
+      "a": "手元でAIモデルを動かしたい開発者やクリエイターに向いています。",
       "sources": [
-        "geforce-8800-gtx-20-years-steam-demo",
-        "nvidia-gtc-berlin-2026-keynote-highlights",
-        "adobe-premiere-nvidia-rtx-spark"
+        "nvidia-local-ai-gtc-berlin-spark-station",
+        "nvidia-gtc-berlin-2026-keynote-highlights"
       ]
     },
     {
-      "q": "どのような仕組みで動く？",
-      "a": "MediaTekと共同開発したGrace CPUとBlackwell GPUを統合しています。",
+      "q": "どのメーカーから販売されていますか？",
+      "a": "ASUSやHPなどのノートPCが販売中です。",
+      "sources": [
+        "nvidia-local-ai-gtc-berlin-spark-station"
+      ]
+    },
+    {
+      "q": "CPUは何が使われていますか？",
+      "a": "MediaTekと共同開発した20コアのGrace CPUが使われています。",
       "sources": [
         "nvidia-rtx-spark-announcement"
       ]
     },
     {
-      "q": "どのメーカーから展開される？",
-      "a": "Gigabyte、HP、Lenovo、MSIなどの主要OEMパートナーから展開される予定です。",
+      "q": "CPUとGPUはどう接続されていますか？",
+      "a": "NVLink C2Cという独自伝送技術で接続されています。",
       "sources": [
-        "nvidia-gtc-berlin-2026-keynote-highlights"
+        "nvidia-rtx-spark-announcement"
       ]
     }
   ],
@@ -102,7 +98,7 @@
     {
       "date": "2026-10-26",
       "slug": "nvidia-gtc-berlin-2026-keynote-highlights",
-      "event": "GTC Berlin 2026でRTX Sparkを披露"
+      "event": "GTC BerlinでRTX Sparkを披露"
     }
   ],
   "related": [
@@ -127,9 +123,9 @@
     "nvidia-gtc-berlin-2026-keynote-highlights",
     "adobe-premiere-nvidia-rtx-spark"
   ],
-  "signature": "c50c93d6411e6ab2",
+  "signature": "8d31d793edfee8bc",
   "primarySignature": "21614c5aa3d7a06e",
   "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-10-27T10:43:40+00:00",
-  "updatedAt": "2026-11-12T11:15:35+00:00"
+  "updatedAt": "2026-11-15T11:22:05+00:00"
 }
