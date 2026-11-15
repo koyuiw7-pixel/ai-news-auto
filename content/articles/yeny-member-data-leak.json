@@ -82,9 +82,9 @@
     }
   ],
   "todayActions": [
-    "ultra pay カードかPayBlendのアプリを開き、お知らせ欄に案内が届いていないか確認する",
-    "Yenyを名乗るSMSや電話でパスワード・カード情報を求められても入力しない",
-    "退会済みで確認できない人は、Yeny公式の「お問い合わせフォーム」から問い合わせる"
+    "ultra payカードかPayBlendのアプリを開き、お知らせ欄に案内が届いていないか確認する",
+    "退会済みでアプリを開けない人は、本件のお問い合わせフォームから問い合わせる",
+    "心当たりのないSMSは、URLを開かず個人情報を入力せず、速やかに削除する"
   ],
   "publicInterest": "breach",
   "incident": {
@@ -130,5 +130,109 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/yeny-member-data-leak-figure-080faee5.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "本件の問い合わせフォームのURLは support.ultra-pay.co.jp/hc/ja/requests/new です。届いたリンクのドメインと見比べて、本物かどうかを確かめられます。",
+      "source": "https://yeny.jp/pressrelease/1547/"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "本件に関するお問い合わせフォーム",
+      "url": "https://support.ultra-pay.co.jp/hc/ja/requests/new",
+      "source": "https://yeny.jp/pressrelease/1547/",
+      "note": "退会済みでアプリで確認できない人も含め、本件に関するお問い合わせを受け付けるとされています。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "ultra payカードかPayBlendのアプリを開き、お知らせ欄に案内が届いていないか確認する",
+      "source": "https://yeny.jp/pressrelease/1547/",
+      "steps": [
+        "アプリを開く",
+        "お知らせ欄を開く",
+        "Yenyからの案内があるか確認する"
+      ]
+    },
+    {
+      "action": "退会済みでアプリを開けない人は、本件のお問い合わせフォームから問い合わせる",
+      "source": "https://yeny.jp/pressrelease/1547/",
+      "steps": [
+        "お問い合わせフォームのURLを開く",
+        "「本件に関するお問い合わせフォーム」を選ぶ",
+        "対象サービス名と状況を入力する"
+      ],
+      "url": "https://support.ultra-pay.co.jp/hc/ja/requests/new"
+    },
+    {
+      "action": "心当たりのないSMSは、URLを開かず個人情報を入力せず、速やかに削除する",
+      "source": "https://yeny.jp/pressrelease/1547/",
+      "steps": [
+        "本文中のURLは開かない",
+        "IDやカード情報は入力しない",
+        "速やかに削除する"
+      ]
+    }
+  ],
+  "cause": {
+    "text": "2026年10月31日に接続先の事業者から不審なAPIコールの連絡を受け、調査した結果、当社のAPI接続設定不備により電話番号を含む会員情報の一部が漏えいしたと確認しています。その後、緊急サービスメンテナンスでシステムを修正しました。",
+    "status": "stated",
+    "source": "https://yeny.jp/pressrelease/1547/"
+  },
+  "worries": [
+    {
+      "q": "クレジットカード番号も漏れてしまったのか？",
+      "a": "現時点では、クレジットカード番号などの決済情報の漏えいは確認されていないとしています。今回漏えいしたのは電話番号と会員IDで、それだけではアプリへの不正ログインや決済には使えないとも書かれています。",
+      "source": "https://yeny.jp/pressrelease/1547/",
+      "action": "ultra payやPayBlendの利用履歴に身に覚えのない決済がないか、いつもどおり確認しておく。"
+    },
+    {
+      "q": "Yenyを名乗るSMSで入力を求められたら？",
+      "a": "Yenyが、SMSや電話でパスワードやカード情報の入力をお願いすることはないとしています。心当たりのないSMSは、本文中のURLを開いたり個人情報を入力したりせず、速やかに削除するよう案内されています。",
+      "source": "https://yeny.jp/pressrelease/1547/",
+      "action": "届いたSMSのリンクは開かず、公式アプリや、お気に入りに登録した公式サイトから確認し直す",
+      "actionSource": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "actionGeneral": true
+    },
+    {
+      "q": "退会済みでも対象になるのか、どうすれば確認できる？",
+      "a": "対象件数は退会者を含むとされています。対象の人にはアプリ内のお知らせ欄で案内するとしていますが、アプリを開けない場合は「本件に関するお問い合わせフォーム」で問い合わせられます。",
+      "source": "https://yeny.jp/pressrelease/1547/",
+      "action": "退会済みでアプリを開けない人は、本件のお問い合わせフォームから問い合わせる。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "Yenyを名乗るSMSのURLを、開いてしまったら？",
+      "situation": "IDやパスワードを入力してしまった",
+      "recommend": "速やかに、同じIDやパスワードを使う全サービスの変更を",
+      "reason": "フィッシングサイトにIDやパスワードを入力した場合は、同じものを使っている全サービスのパスワードを速やかに変更するとされています。Yenyの今回の漏えいは電話番号と会員IDで、パスワードは含まれていないとされています。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "general": true
+    },
+    {
+      "question": "Yenyを名乗るSMSのURLを、開いてしまったら？",
+      "situation": "まだ入力していない、URLも開いていない",
+      "recommend": "開かず、速やかに削除する",
+      "reason": "心当たりのないSMSは、本文中のURLを開かず、個人情報を入力せずに速やかに削除するよう、Yenyが案内しています。Yenyがパスワードやカード情報の入力をSMSや電話で求めることはないとしています。",
+      "source": "https://yeny.jp/pressrelease/1547/"
+    },
+    {
+      "question": "退会済みでも、確認のために問い合わせるべき？",
+      "situation": "アプリを開けず、お知らせも見られない",
+      "recommend": "お問い合わせフォームから問い合わせる",
+      "reason": "退会者も対象に含まれるため、フォームから問い合わせて確認できます。ただし、案内の内容や追加の手続きは、まだ発表されていません。",
+      "source": "https://yeny.jp/pressrelease/1547/"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "問い合わせの入口は、このドメインのフォームだけ",
+    "cause": "なぜ漏れたのか、いま分かっていること",
+    "steps": "今日やること、アプリで確かめる",
+    "desk": "問い合わせ先と、確かめ方",
+    "worries": "カードや決済は大丈夫？SMSにどう備える？",
+    "guide": "退会済みの人、SMSを開いてしまった人の判断"
+  },
+  "depthAt": "2026-11-15T00:28:38+00:00"
 }
