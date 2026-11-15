@@ -688,14 +688,6 @@
       "tries": 1,
       "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000121431_00485.html"
     },
-    "4900e4c5ca2e1aec": {
-      "first": "2026-11-12T15:52:01.903588+00:00",
-      "next": "2026-11-12T18:52:01.903588+00:00",
-      "reason": "記事の基準に足りない（自動で手直ししても残った）: 5.読者がすること（何を・どこで・期限）（することは書いてあるが、どこで（窓口・ページ）・いつまでが無い）",
-      "title": "高市総理はフィジカルＡＩ関連企業との意見交換会を行いました",
-      "tries": 1,
-      "url": "https://www.kantei.go.jp/jp/105/actions/202611/12ikenkoukan.html"
-    },
     "4d525ab74f95595e": {
       "first": "2026-11-13T16:29:35.711163+00:00",
       "next": "2026-11-13T19:29:35.711163+00:00",
@@ -8026,6 +8018,12 @@
       "slug": "nvidia-ai-semiconductor-fab-cases",
       "url": "https://blogs.nvidia.com/blog/ai-semiconductor-fabs/"
     },
+    "3bca7763ab7afd9b": {
+      "at": "2026-11-15T11:38:14.079756+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（募集）",
+      "skipped": true,
+      "url": "https://www.env.go.jp/press/press_05819.html"
+    },
     "3c1945dc02193cc9": {
       "at": "2026-11-02T04:31:23.929763+00:00",
       "reason": "prefilter: タイトルが短すぎる（一覧リンク等）",
@@ -8809,6 +8807,17 @@
       "trendKeyword": "住宅",
       "trendLane": true,
       "url": "https://www.tokyu-fudosan-hd.co.jp/news/companies/pdf/f82822a31e69a9f013d5e5e88526ed0a414b373c.pdf"
+    },
+    "4900e4c5ca2e1aec": {
+      "at": "2026-11-15T11:40:09.159818+00:00",
+      "costUsd": 0.0142,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "gemini-3.5-flash",
+      "score": 86,
+      "section": "public",
+      "slug": "physical-ai-government-strategy-2040",
+      "url": "https://www.kantei.go.jp/jp/105/actions/202611/12ikenkoukan.html"
     },
     "490a1c7d99a4ec0b": {
       "at": "2026-11-12T07:28:54.088270+00:00",
@@ -11009,6 +11018,14 @@
       "reason": "prefilter: 価値の薄いお知らせ（審議会）",
       "skipped": true,
       "url": "http://www.mlit.go.jp/report/press/house05_hh_001166.html"
+    },
+    "66dd76b7a347bbf4": {
+      "at": "2026-11-15T11:38:14.063718+00:00",
+      "kind": "update",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "score": 92,
+      "updated": "ntt-datacenter-heat-aquaculture",
+      "url": "https://www.ntt.com/about-us/press-releases/news/article/2026/1113.html"
     },
     "66ed14c6418f09b7": {
       "at": "2026-11-10T14:02:41.640647+00:00",
@@ -22499,103 +22516,6 @@
   },
   "quality_log": [
     {
-      "accepted": true,
-      "at": "2026-11-13T05:33:43.498151+00:00",
-      "attempt": 1,
-      "id": "40e8002f36a0999f",
-      "kind": "broad",
-      "model": "strike:本文 2 文",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 72.3,
-        "avg_sentence": 32.5,
-        "long_share": 0.05,
-        "max_paragraph": 115,
-        "paragraphs": 18,
-        "sentences": 40
-      },
-      "score": 93,
-      "source": "fast",
-      "title": "第一ライフグループ 2027年３月期 第２四半期（中間期）決算短信〔日本基準〕(連結)"
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-13T06:08:26.657454+00:00",
-      "attempt": 1,
-      "id": "131e55b2f5a1b623",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 155.1,
-        "avg_sentence": 48.5,
-        "long_share": 0.312,
-        "max_paragraph": 231,
-        "paragraphs": 10,
-        "sentences": 32
-      },
-      "score": 88,
-      "source": "radar-official",
-      "title": "スカイライン関連ニュース｜dメニューニュース（NTTドコモ）",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（GT・BNR）",
-        "読みやすさ: 文が長い（1文の平均 48.5字・60字超の文が 31% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "読みやすさ: 段落が長い（平均 155.1字・最長 231字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-13T06:09:02.239159+00:00",
-      "attempt": 0,
-      "id": "131e55b2f5a1b623",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 88.1,
-        "avg_sentence": 40.5,
-        "long_share": 0.162,
-        "max_paragraph": 175,
-        "paragraphs": 17,
-        "sentences": 37
-      },
-      "score": 92,
-      "source": "radar-official",
-      "title": "スカイライン関連ニュース｜dメニューニュース（NTTドコモ）",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（GT・BNR）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-13T06:22:02.902834+00:00",
-      "attempt": 1,
-      "id": "ad85fa02f6a318b0",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文「前回の7代目フェアレディZは2024年8月に受注停止となり」→ 確認済みの文脈では7代目の受注停止は2022年8月（2024年モデルの一時受注停止は2023年8月）。年を取り違えている",
-        "タイトル・本文の「改良版スカイライン」→ 元記事は「新型スカイライン」登場の噂を「!?」付きで伝えるのみで、改良版と断定できる根拠がない",
-        "本文「今回のマイナーチェンジ版も注文が集中するとみられる」→ 元記事・確認済みの文脈に無い見通しを事実のように書いている",
-        "タイトルの「スカイライン」の最新動向→ 本文はスカイラインについて「発表されていない」と述べるのみで、タイトルの約束に対する具体的内容が乏しい"
-      ],
-      "readability": {
-        "avg_paragraph": 96.8,
-        "avg_sentence": 60.5,
-        "long_share": 0.5,
-        "max_paragraph": 156,
-        "paragraphs": 5,
-        "sentences": 8
-      },
-      "score": 62,
-      "source": "radar-official",
-      "title": "フェアレディZ関連ニュース｜dメニューニュース（NTTドコモ）",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（GT・GAINER・TANAX）",
-        "読みやすさ: 文が長い（1文の平均 60.5字・60字超の文が 50% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
       "accepted": false,
       "at": "2026-11-13T06:40:18.107756+00:00",
       "attempt": 1,
@@ -30076,6 +29996,95 @@
       "warnings": [
         "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（GDP）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-15T11:38:14.045928+00:00",
+      "attempt": 1,
+      "id": "66dd76b7a347bbf4",
+      "kind": "update",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "score": 92,
+      "source": "ntt-news",
+      "title": "データセンターの排熱を陸上養殖に活用する共同実証プロジェクトを開始"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-15T11:39:11.325714+00:00",
+      "attempt": 1,
+      "id": "4900e4c5ca2e1aec",
+      "kind": "broad",
+      "model": "gemini-3.5-flash",
+      "problems": [
+        "今日やること「首相官邸や経済産業省が今後発表する『日本成長戦略実行計画』の更新情報」→ 元記事は発表主体を首相官邸としか示しておらず、経済産業省が発表するという記述は元記事・確認済みの文脈に無い",
+        "よくある質問「個別の制度内容は今後の政府計画で提示される予定です」→ 元記事は総理が城内大臣に予算額等を明らかにするよう指示したとのみ書いており、提示が予定されているとまでは言えない",
+        "「データ集積を促す枠組みを維持・拡大すること」→ 元記事の企業側要望は『データ集積を促す仕組みが不可欠』であり、『維持・拡大』は言い換えを超えた追加",
+        "「現時点で示されている申請の期限はないため」→ 元記事に申請期限の有無についての記述は無く、推測に基づく断定",
+        "「GENIAC（…生成AIの開発力を強化する政府の取組）」の括弧内説明→ 元記事に説明は無い補足だが、事実の誤りではない"
+      ],
+      "readability": {
+        "avg_paragraph": 116.2,
+        "avg_sentence": 54.7,
+        "long_share": 0.412,
+        "max_paragraph": 181,
+        "paragraphs": 8,
+        "sentences": 17
+      },
+      "score": 80,
+      "source": "kantei",
+      "title": "高市総理はフィジカルＡＩ関連企業との意見交換会を行いました",
+      "warnings": [
+        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "読みやすさ: 文が長い（1文の平均 54.7字・60字超の文が 41% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-15T11:39:40.834414+00:00",
+      "attempt": 1,
+      "id": "4900e4c5ca2e1aec",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 102.4,
+        "avg_sentence": 54.6,
+        "long_share": 0.4,
+        "max_paragraph": 145,
+        "paragraphs": 8,
+        "sentences": 15
+      },
+      "score": 88,
+      "source": "kantei",
+      "title": "高市総理はフィジカルＡＩ関連企業との意見交換会を行いました",
+      "warnings": [
+        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "読みやすさ: 文が長い（1文の平均 54.6字・60字超の文が 40% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-15T11:40:09.131417+00:00",
+      "attempt": 0,
+      "id": "4900e4c5ca2e1aec",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 72.7,
+        "avg_sentence": 42.1,
+        "long_share": 0.105,
+        "max_paragraph": 118,
+        "paragraphs": 11,
+        "sentences": 19
+      },
+      "score": 86,
+      "source": "kantei",
+      "title": "高市総理はフィジカルＡＩ関連企業との意見交換会を行いました",
+      "warnings": [
+        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す"
       ]
     }
   ],
