@@ -11067,6 +11067,19 @@
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026110514"
     },
+    "69e3f1cc5762327a": {
+      "at": "2026-11-15T00:10:48.373564+00:00",
+      "costUsd": 0.0016,
+      "intent": "breaking",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "score": 92,
+      "section": "public",
+      "slug": "yeny-member-data-leak",
+      "url": "https://yeny.jp/pressrelease/1547/"
+    },
     "69e577618434b437": {
       "at": "2026-11-05T03:31:35.238166+00:00",
       "model": "anthropic-api:claude-haiku-5-5",
@@ -22253,31 +22266,6 @@
   "quality_log": [
     {
       "accepted": true,
-      "at": "2026-11-12T15:08:42.692431+00:00",
-      "attempt": 1,
-      "id": "f53fd8b42eaaef82",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 145.8,
-        "avg_sentence": 62.5,
-        "long_share": 0.571,
-        "max_paragraph": 331,
-        "paragraphs": 6,
-        "sentences": 14
-      },
-      "score": 90,
-      "source": "boj",
-      "title": "日本銀行が保有する国債の銘柄別残高",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（XLSX・KB）",
-        "読みやすさ: 文が長い（1文の平均 62.5字・60字超の文が 57% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "読みやすさ: 段落が長い（平均 145.8字・最長 331字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
       "at": "2026-11-12T15:09:06.310389+00:00",
       "attempt": 0,
       "id": "f53fd8b42eaaef82",
@@ -29786,6 +29774,29 @@
       "title": "徹子の部屋関連ニュース｜dメニューニュース（NTTドコモ）",
       "warnings": [
         "初めて出たところで言い換えていない略語（WBA）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-15T00:10:42.018970+00:00",
+      "attempt": 1,
+      "id": "69e3f1cc5762327a",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 67.9,
+        "avg_sentence": 37.4,
+        "long_share": 0.05,
+        "max_paragraph": 114,
+        "paragraphs": 11,
+        "sentences": 20
+      },
+      "score": 92,
+      "source": "fast",
+      "title": "不正アクセスによる会員情報の漏えいに関するお詫びとお知らせ | 株式会社Yeny",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（SMS）"
       ]
     }
   ],
