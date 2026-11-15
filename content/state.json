@@ -361,6 +361,7 @@
     "6a18e1449bedbb383e6d5eb108ba0da3716a8b03": 2,
     "6ab7084ecd2527b0df9d501e8778ec035c886500": 2,
     "6adbf1b949617dc8a11be678cd64b80df368a1ea": 2,
+    "6b7c785411c4629997565a5c2ff2dd7f4620d2c5": 1,
     "6bf47a1f74be45c51748534ad33e9f4a1ddf97e2": 2,
     "6d40a2c35fd0bcad640299a1d4f936281b5778a7": 2,
     "6d509dcafaeef8d3bee4b2b09a04814f7e8215b6": 2,
@@ -480,6 +481,7 @@
     "9ae829fbbb9dff66e98037289c2d8fef16ea1ff2": 2,
     "9b0b7c058ad29387ff3831642dc5ac5dba071d28": 2,
     "9b372e9b8408d9dae9cea6aa489c845c8bffc87c": 2,
+    "9bd60b7e55cfd3b49e2ab9f157b5f30eb5c1a075": 1,
     "9d870fabf10eba3e85638e076136ef0b220bea5c": 2,
     "9dbf250d4550effcfaa28e21daac7658b1986a02": 2,
     "9ddc83e2c4579c4ec17874e068df9a1544cb0b4b": 2,
@@ -543,6 +545,7 @@
     "b61b980d10af8e9c718b951fa0e34e6c43849b14": 2,
     "b65f280c64098111f97269341b868a512071df16": 2,
     "b6bfffb8fec0d010efab3f0c560b643d4b791204": 2,
+    "b70660ca29350b54a3b84ea1ffd625325251a3b6": 1,
     "b73f81c43c939fa97d7edc910e1672693209e9d0": 2,
     "b75d0b88f2b2f439a1d080b71bcaee06dbadf023": 2,
     "b77a8d4a33dcd908bcfadcd3a635e24a32dcd59c": 2,
@@ -5525,6 +5528,13 @@
       "section": "public",
       "slug": "japan-6g-fund-preliminary-survey",
       "url": "https://www.soumu.go.jp/menu_news/s-news/01tsushin03_02000476.html"
+    },
+    "1392b648b3abffa82a24dfd29fccfd2f61ae8e9c": {
+      "at": "2026-11-15T20:52:54.291617+00:00",
+      "model": "gemini-3.6-flash",
+      "reason": "quality: 元記事・確認済みの事実の束・計算済みの数字のどれにも無い数字がある（「利の平均が1年前と比べて0.5%」、「比べて0.5%上昇し、年1.34%」）。元記事か束の数字に直すか、その文を削る。簡単な計算（かけ算・足し算など）をするなら、確かめた数字だけを使って式を書き「（サイソク編集部の計算）」と添える",
+      "skipped": true,
+      "url": "https://news.yahoo.co.jp/articles/54d09ef1c03af6a4892175236dbc4ce91cb7e745"
     },
     "1393d0e0f8bb9b8a": {
       "at": "2026-11-01T23:39:24.680411+00:00",
@@ -12471,6 +12481,17 @@
       "reason": "trend: 公式の発表で記事にした（chunichi-sports-gifu-news）",
       "skipped": true,
       "url": "https://topics.smt.docomo.ne.jp/article/chuspo/sports/chuspo-1339195"
+    },
+    "7a90f5230000d20252a5cb4485ce5c7eb87c24dc": {
+      "at": "2026-11-15T20:54:04.039863+00:00",
+      "kind": "trend",
+      "model": "gemini-3.6-flash",
+      "pressReport": true,
+      "score": 88,
+      "slug": "us-flights-grounded-system-failure",
+      "trendKeyword": "航空機",
+      "trendLane": true,
+      "url": "https://www.cnn.co.jp/usa/35254903.html"
     },
     "7aaeb925fd6b0516": {
       "at": "2026-11-05T12:21:50.142739+00:00",
@@ -22939,78 +22960,6 @@
   },
   "quality_log": [
     {
-      "accepted": true,
-      "at": "2026-11-13T11:16:39.644923+00:00",
-      "attempt": 1,
-      "id": "4b1197b04ca5a948",
-      "kind": "broad",
-      "model": "strike:本文 2 文・かんたん版 1 文・リード・仕事・お金の欄",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 144.1,
-        "avg_sentence": 64.1,
-        "long_share": 0.611,
-        "max_paragraph": 218,
-        "paragraphs": 8,
-        "sentences": 18
-      },
-      "score": 90,
-      "source": "radar-official",
-      "title": "sandisk",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（SNDK・GAAP）",
-        "読みやすさ: 文が長い（1文の平均 64.1字・60字超の文が 61% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "読みやすさ: 段落が長い（平均 144.1字・最長 218字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-13T11:17:04.000608+00:00",
-      "attempt": 0,
-      "id": "4b1197b04ca5a948",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 90.8,
-        "avg_sentence": 45.4,
-        "long_share": 0.154,
-        "max_paragraph": 155,
-        "paragraphs": 13,
-        "sentences": 26
-      },
-      "score": 88,
-      "source": "radar-official",
-      "title": "sandisk",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（SNDK・GAAP）",
-        "読みやすさ: 文が長い（1文の平均 45.4字・60字超の文が 15% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-13T11:31:30.927395+00:00",
-      "attempt": 1,
-      "id": "5b0f73df89a6e310",
-      "kind": "ai",
-      "model": "claude:sonnet",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 93.8,
-        "avg_sentence": 44.9,
-        "long_share": 0.196,
-        "max_paragraph": 211,
-        "paragraphs": 22,
-        "sentences": 46
-      },
-      "score": 92,
-      "source": "openai-news",
-      "title": "How Amplitude ships product improvements in 1–2 days with OpenAI",
-      "warnings": [
-        "見出しが49字（目安40字以内）。一覧・カードでは前半だけを出す"
-      ]
-    },
-    {
       "accepted": false,
       "at": "2026-11-13T11:47:00.956107+00:00",
       "attempt": 1,
@@ -30527,6 +30476,79 @@
       "warnings": [
         "初めて出たところで言い換えていない略語（OB・TOKYO・FM）",
         "work_money（「仕事・お金にどう活かせる？」欄）が無い"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-15T20:52:22.526368+00:00",
+      "attempt": 1,
+      "id": "1392b648b3abffa82a24dfd29fccfd2f61ae8e9c",
+      "kind": "trend",
+      "model": "gemini-3.6-flash",
+      "problems": [
+        "元記事・確認済みの事実の束・計算済みの数字のどれにも無い数字がある（「利の平均が1年前と比べて0.5%」、「比べて0.5%上昇し、年1.34%」）。元記事か束の数字に直すか、その文を削る。簡単な計算（かけ算・足し算など）をするなら、確かめた数字だけを使って式を書き「（サイソク編集部の計算）」と添える"
+      ],
+      "readability": {
+        "avg_paragraph": 122.5,
+        "avg_sentence": 49.0,
+        "long_share": 0.4,
+        "max_paragraph": 138,
+        "paragraphs": 4,
+        "sentences": 10
+      },
+      "score": null,
+      "source": "trends",
+      "title": "住宅ローン",
+      "warnings": [
+        "読みやすさ: 文が長い（1文の平均 49.0字・60字超の文が 40% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "読みやすさ: 段落が長い（平均 122.5字・最長 138字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-15T20:53:44.056065+00:00",
+      "attempt": 1,
+      "id": "7a90f5230000d20252a5cb4485ce5c7eb87c24dc",
+      "kind": "trend",
+      "model": "gemini-3.6-flash",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 102.7,
+        "avg_sentence": 44.0,
+        "long_share": 0.214,
+        "max_paragraph": 159,
+        "paragraphs": 6,
+        "sentences": 14
+      },
+      "score": 88,
+      "source": "trends",
+      "title": "航空機",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（NEWS・FAA・JAL）",
+        "読みやすさ: 文が長い（1文の平均 44.0字・60字超の文が 21% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-15T20:54:04.026252+00:00",
+      "attempt": 0,
+      "id": "7a90f5230000d20252a5cb4485ce5c7eb87c24dc",
+      "kind": "trend",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 81.4,
+        "avg_sentence": 38.0,
+        "long_share": 0.133,
+        "max_paragraph": 128,
+        "paragraphs": 7,
+        "sentences": 15
+      },
+      "score": 88,
+      "source": "trends",
+      "title": "航空機",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（NEWS・FAA・JAL）"
       ]
     }
   ],
