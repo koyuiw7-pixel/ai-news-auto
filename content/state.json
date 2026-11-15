@@ -198,6 +198,7 @@
     "2ca40f6fe1469aec7b2ea01d37585a4860dca615": 2,
     "2d03ee8ac969ce9dfab04aa995f966cb8216adfe": 2,
     "2d898b7feb79236818a8e7f8b976b6886d913c02": 2,
+    "2ddf65596926063cdb9e7704fbccd43a9aa8aa35": 1,
     "2dfccf3c4714df532ed34503215154ee4185be04": 2,
     "2e5f8640ebb090329c47b474ef004f0101f29750": 1,
     "2fca045aa4a4b1f7963c81b2812d5827a0c295d8": 2,
@@ -235,7 +236,7 @@
     "3d0d75c0162e1c58b4b2ee077709063c0fb0f3d0": 2,
     "3d7cabef33571698610aa0c29bdf352875a958e6": 2,
     "3e400850a5ee2a01d3f5b0fc16c1fc1cb2cf554f": 2,
-    "3e69c37383b2f99d3ea4e84c80304b32768e500d": 1,
+    "3e69c37383b2f99d3ea4e84c80304b32768e500d": 2,
     "3faaa84ac83405077356c87328b7ba05db2e15da": 2,
     "4015287e129e142f070f2860bf4a2324010b62fe": 2,
     "40153a89f46c1ff6062eaa9f4790bc6afb74d43b": 2,
@@ -427,7 +428,7 @@
     "883f1e578f4aa0d619113d87162138311c172d86": 2,
     "899e0c0e563201d11f934771b2c70082d1e3310f": 2,
     "89a7ead54ac388701c0dee085744c704ce27685f": 2,
-    "89d9213f440e8c6cff043de30a8fd47943a61cf7": 1,
+    "89d9213f440e8c6cff043de30a8fd47943a61cf7": 2,
     "8a16921b5055266738dbba73be7dab3991c05bf8": 2,
     "8a418d39e190f221da2d2929e5da3bb558553ea5": 2,
     "8aa105368fa557be41bd644ef4e527b3351a7e2c": 2,
@@ -553,7 +554,7 @@
     "bf80d9d03a94e4598b82cda4956dec401506049e": 2,
     "c065c5ab2f7914d7e1148d6cd97df62793e30e40": 2,
     "c06f8f19eb9b92542f6381b6ceb9ef3920921ce6": 2,
-    "c107aa2d6e9d9b08eca018b37e97901ebbd9534e": 1,
+    "c107aa2d6e9d9b08eca018b37e97901ebbd9534e": 2,
     "c13bbe86281276749fc60b483f6ab5dab8bc8b1c": 2,
     "c1ac357b8e34194131f89712fe86fdf8efcd6c58": 2,
     "c20b6d33922fa0720e9289660775a502f609ee21": 2,
@@ -8763,6 +8764,20 @@
       "slug": "ai-dlc-mbk-wellness-bottleneck",
       "url": "https://aws.amazon.com/jp/blogs/news/mbk-wellness-ai-dlc-workshop/"
     },
+    "4690c3b9de26996f": {
+      "at": "2026-11-15T18:34:00.194879+00:00",
+      "costUsd": 0.0126,
+      "intent": "neutral",
+      "kind": "trend",
+      "mix": "",
+      "model": "gemini-3.5-flash",
+      "score": 88,
+      "section": "public",
+      "slug": "olympic-q-series-tokyo-2028-vision",
+      "trendKeyword": "オリンピック",
+      "trendLane": true,
+      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026111321"
+    },
     "469c856ce55e4add033b7559fa5603acf37c0314": {
       "at": "2026-11-13T15:26:10.486273+00:00",
       "reason": "trend: 報道が出典の記事の形が崩れた: 題名が報道の内容を確定した事実のように言い切っている（「〜と報道」「NHKなど」「〜か」のいずれかを入れる）",
@@ -9324,6 +9339,12 @@
       "reason": "prefilter: 価値の薄いお知らせ（を開催）",
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026110910"
+    },
+    "4e0231c1c67825b9423779991302bcb539db695f": {
+      "at": "2026-11-15T18:34:00.195090+00:00",
+      "reason": "trend: 公式の発表で記事にした（olympic-q-series-tokyo-2028-vision）",
+      "skipped": true,
+      "url": "https://ja.laodong.vn/lao-dong-cuoi-tuan/ap-luc-tam-ve-olympic-1798986.ldo"
     },
     "4e1c8bc4665bb02f": {
       "at": "2026-11-05T03:14:08.002771+00:00",
@@ -11309,12 +11330,6 @@
       "slug": "recruit-holdings-fy2027-interim-results",
       "url": "https://www.release.tdnet.info/inbs/140120261106568174.pdf"
     },
-    "6955ee89a2df1f06": {
-      "at": "2026-11-01T18:31:05.066641+00:00",
-      "reason": "prefilter: 価値の薄いお知らせ（ビデオメッセージ）",
-      "skipped": true,
-      "url": "https://www.gov-online.go.jp/press_conferences/prime_minister/202611/video-326948.html"
-    },
     "695b25dcb4295c45": {
       "at": "2026-11-02T16:12:02.744082+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -13178,14 +13193,6 @@
       "section": "public",
       "slug": "tokyo-gas-arara-email-leak",
       "url": "https://www.tokyo-gas.co.jp/news/press/20261112-02.html"
-    },
-    "852d5d7ce61f0e5a": {
-      "at": "2026-11-01T18:15:54.421755+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "score": 100,
-      "section": "public",
-      "slug": "government-education-loan-guide-2026",
-      "url": "https://www.gov-online.go.jp/article/201512/entry-8156.html"
     },
     "857dce60afbbdecdc3883b512558dc890c2d48ea": {
       "at": "2026-11-14T02:25:10.739249+00:00",
@@ -22905,85 +22912,6 @@
   },
   "quality_log": [
     {
-      "accepted": false,
-      "at": "2026-11-13T10:30:28.550289+00:00",
-      "attempt": 1,
-      "id": "19cbff459123038d",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "「11日の日本戦では黒のホットパンツ姿で踊る姿が『可愛すぎる』と話題になり（日刊スポーツ、11/12確認）」→ 日本戦は元記事で12日（11/12の井口ジャパン初戦）であり、11日とするのは日付の取り違え。同じ段落の「前日」の記述とも食い違う。",
-        "「その後に披露された衣装は白からグレーに変わった」→ 元記事の見出しは『衣装も白からグレーに』とあるが、いつの試合かは元記事から確定できず、『その後』の時系列は断定しすぎ。",
-        "「台湾チアが東京ドームを席巻」（タイトル）→ 元記事は応援の盛り上がりを伝えるものだが『席巻』は誇張気味。"
-      ],
-      "readability": {
-        "avg_paragraph": 162.7,
-        "avg_sentence": 54.2,
-        "long_share": 0.407,
-        "max_paragraph": 371,
-        "paragraphs": 9,
-        "sentences": 27
-      },
-      "score": 72,
-      "source": "radar-official",
-      "title": "台湾関連ニュース｜dメニューニュース（NTTドコモ）",
-      "warnings": [
-        "見出しが47字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（NEWS・THE・DIGEST）",
-        "読みやすさ: 文が長い（1文の平均 54.2字・60字超の文が 41% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-13T10:30:54.908142+00:00",
-      "attempt": 1,
-      "id": "19cbff459123038d",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 161.7,
-        "avg_sentence": 53.9,
-        "long_share": 0.407,
-        "max_paragraph": 371,
-        "paragraphs": 9,
-        "sentences": 27
-      },
-      "score": 88,
-      "source": "radar-official",
-      "title": "台湾関連ニュース｜dメニューニュース（NTTドコモ）",
-      "warnings": [
-        "見出しが49字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（NEWS・THE・DIGEST）",
-        "work_money（「仕事・お金にどう活かせる？」欄）が無い"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-13T10:31:21.365727+00:00",
-      "attempt": 0,
-      "id": "19cbff459123038d",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 113.2,
-        "avg_sentence": 47.5,
-        "long_share": 0.226,
-        "max_paragraph": 185,
-        "paragraphs": 13,
-        "sentences": 31
-      },
-      "score": 88,
-      "source": "radar-official",
-      "title": "台湾関連ニュース｜dメニューニュース（NTTドコモ）",
-      "warnings": [
-        "見出しが49字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（NEWS・THE・DIGEST）",
-        "work_money（「仕事・お金にどう活かせる？」欄）が無い"
-      ]
-    },
-    {
       "accepted": true,
       "at": "2026-11-13T11:00:07.757524+00:00",
       "attempt": 1,
@@ -30490,6 +30418,85 @@
       "warnings": [
         "見出しが46字（目安40字以内）。一覧・カードでは前半だけを出す",
         "読みやすさ: 文が長い（1文の平均 52.3字・60字超の文が 30% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-15T18:33:15.323106+00:00",
+      "attempt": 1,
+      "id": "4690c3b9de26996f",
+      "kind": "broad",
+      "model": "gemini-3.5-flash",
+      "problems": [
+        "「464名のトップ選手が集結」「世界から約464名の選手が参加」→ 元記事の464名は「Q-Series 2024 実績」であり、2028年大会の参加予定数ではない。「約」も元記事にない。",
+        "「2028年5月の大型連休中に代々木周辺で大規模な集客が見込まれる」→ 元記事に集客予測や連休との関係の記述はなく、根拠のない見通し。",
+        "「世界最高峰のアーバンスポーツを間近で体感できる機会」→ 元記事にない誇張的な表現。"
+      ],
+      "readability": {
+        "avg_paragraph": 105.2,
+        "avg_sentence": 60.1,
+        "long_share": 0.429,
+        "max_paragraph": 205,
+        "paragraphs": 4,
+        "sentences": 7
+      },
+      "score": 60,
+      "source": "tokyo-metro",
+      "title": "「オリンピック Q シリーズ東京 SPORTS VISION 2028+」を策定しました",
+      "warnings": [
+        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（SPORTS・VISION・BMX）",
+        "読みやすさ: 文が長い（1文の平均 60.1字・60字超の文が 43% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-15T18:33:37.206534+00:00",
+      "attempt": 1,
+      "id": "4690c3b9de26996f",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 91.0,
+        "avg_sentence": 60.7,
+        "long_share": 0.5,
+        "max_paragraph": 148,
+        "paragraphs": 4,
+        "sentences": 6
+      },
+      "score": 90,
+      "source": "tokyo-metro",
+      "title": "「オリンピック Q シリーズ東京 SPORTS VISION 2028+」を策定しました",
+      "warnings": [
+        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（SPORTS・VISION・BMX）",
+        "読みやすさ: 文が長い（1文の平均 60.7字・60字超の文が 50% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-15T18:34:00.159063+00:00",
+      "attempt": 0,
+      "id": "4690c3b9de26996f",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 96.0,
+        "avg_sentence": 48.0,
+        "long_share": 0.125,
+        "max_paragraph": 154,
+        "paragraphs": 4,
+        "sentences": 8
+      },
+      "score": 88,
+      "source": "tokyo-metro",
+      "title": "「オリンピック Q シリーズ東京 SPORTS VISION 2028+」を策定しました",
+      "warnings": [
+        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（SPORTS・VISION・BMX）",
+        "読みやすさ: 文が長い（1文の平均 48.0字・60字超の文が 12% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
       ]
     }
   ],
