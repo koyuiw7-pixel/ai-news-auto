@@ -65,13 +65,13 @@
   "videoTitle": "国税庁 令和8年分 年末調整 扶養控除等申告書は年初 保険料控除申告書は年末 期限が違う",
   "publishedAt": "2026-11-16T00:27:06.373825+00:00",
   "generatedAt": "2026-11-16T00:27:27.614655+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/nta-fuyo-hoken-shinkoku-deadline-figure-a1bd59cb.jpg",
   "model": "anthropic-api:claude-haiku-5-5",
   "affiliates": [],
   "newsType": "policy",
   "todayActions": [
     "勤務先から配られた扶養控除等（異動）申告書の提出期限を、総務や経理の案内で確かめる。",
-    "保険料控除申告書を出す予定なら、生命保険料などの支払金額を証する書類を用意しておく。"
+    "保険料控除申告書を出すなら、支払金額を証する書類を用意して勤務先に1部提出する。"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -119,5 +119,154 @@
   "detectedAt": "2026-11-16T00:27:57+00:00",
   "searchTitle": "年末調整の申告書の期限は？　扶養控除等は年初、保険料控除は年末",
   "layout": "noir",
-  "summaryLine": "扶養控除等（異動）申告書は、その年の最初に給与の支払を受ける日の前日までが国の提出時期です。"
+  "summaryLine": "扶養控除等（異動）申告書は、その年の最初に給与の支払を受ける日の前日までが国の提出時期です。",
+  "insight": [
+    {
+      "text": "日額表の丙欄が適用される人は、扶養控除等（異動）申告書を提出する必要はありません。それ以外の人は、扶養の有無にかかわらず原則として提出が必要です。",
+      "source": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/gensen/annai/1648_01.htm"
+    },
+    {
+      "text": "非居住者の親族が30歳以上70歳未満で、その年に生活費や教育費として38万円以上の支払を受けている場合は、その親族に係る「38万円送金書類」を添付します。",
+      "source": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/gensen/annai/1648_01.htm"
+    },
+    {
+      "text": "社会保険料の添付は、国民年金保険料等の支払金額を証する書類だけが必要です。国民年金保険料等以外の社会保険料は添付が不要とされています。",
+      "source": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/gensen/annai/1648_05.htm"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "国税庁 A2-1 給与所得者の扶養控除等の（異動）申告",
+      "url": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/gensen/annai/1648_01.htm",
+      "source": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/gensen/annai/1648_01.htm",
+      "howTo": [
+        "税の情報・手続・用紙",
+        "申告手続・用紙",
+        "税務手続の案内（税目別一覧）",
+        "A2 源泉所得税関係",
+        "A2-1 給与所得者の扶養控除等の（異動）申告"
+      ],
+      "note": "PDFの「入力用」はブラウザでは利用できないため、作業場所にダウンロードして使う。印刷で一部が見切れる場合は縮小して印刷する。"
+    },
+    {
+      "name": "国税庁 A2-3 給与所得者の保険料控除の申告",
+      "url": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/gensen/annai/1648_05.htm",
+      "source": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/gensen/annai/1648_05.htm",
+      "howTo": [
+        "税の情報・手続・用紙",
+        "申告手続・用紙",
+        "税務手続の案内（税目別一覧）",
+        "A2 源泉所得税関係",
+        "A2-3 給与所得者の保険料控除の申告"
+      ],
+      "note": "令和8年11月30日以前に年末調整を行う場合は、様式裏面の注意書きを読み替えて使う。"
+    },
+    {
+      "name": "国税庁 年末調整がよくわかるページ（令和8年分）",
+      "url": "https://www.nta.go.jp/users/gensen/nencho/index.htm",
+      "source": "https://www.nta.go.jp/users/gensen/nencho/index.htm",
+      "note": "年末調整の手順動画やパンフレット、各種様式・記載例がこのページから入手できる。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "勤務先から配られた扶養控除等（異動）申告書の提出期限を、総務や経理の案内で確かめる。",
+      "source": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/gensen/annai/1648_01.htm",
+      "steps": [
+        "勤務先の総務・経理の案内を開く",
+        "その年の最初に給与を受け取る日の前日を確認",
+        "就職後最初の給与なら、その前日までに出す"
+      ],
+      "url": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/gensen/annai/1648_01.htm"
+    },
+    {
+      "action": "保険料控除申告書を出すなら、支払金額を証する書類を用意して勤務先に1部提出する。",
+      "source": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/gensen/annai/1648_05.htm",
+      "steps": [
+        "生命保険料・地震保険料・小規模企業共済等掛金の支払金額を証する書類を用意",
+        "国民年金保険料等があれば、その書類も用意",
+        "申告書と一緒に給与の支払者へ提出"
+      ],
+      "url": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/gensen/annai/1648_05.htm"
+    }
+  ],
+  "cause": {
+    "text": "扶養控除等（異動）申告は、給与について扶養控除などの諸控除を受けるための手続です。保険料控除申告は、年末調整で生命保険料などの保険料控除を受けるための手続です。",
+    "status": "background",
+    "source": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/gensen/annai/1648_01.htm"
+  },
+  "worries": [
+    {
+      "q": "扶養控除等の申告書は、いつまでに出せばいい？",
+      "a": "提出期限は、その年の最初に給与の支払を受ける日の前日までです。中途就職の場合は、就職後最初に給与の支払を受ける日の前日までに出します。",
+      "source": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/gensen/annai/1648_01.htm",
+      "action": "勤務先から配られた扶養控除等（異動）申告書を確認し、総務や経理の案内で提出日を確かめましょう。"
+    },
+    {
+      "q": "扶養の内容が途中で変わったときは、どうすればいい？",
+      "a": "当初の申告書の記載内容に異動があった場合は、異動の内容を記載した申告書を出します。提出期限は、異動の日後、最初に給与の支払を受ける日の前日までです。",
+      "source": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/gensen/annai/1648_01.htm",
+      "action": "扶養の人数や続柄が変わったら異動の日を控え、勤務先の総務に異動後の申告書の出し方を確かめる。"
+    },
+    {
+      "q": "申告書を出さないと、どうなるの？",
+      "a": "この申告を行わないと、月々の源泉徴収の際に受けられる諸控除が受けられず、年末調整も行われないことになります。扶養の有無にかかわらず、原則として行う必要があります。",
+      "source": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/gensen/annai/1648_01.htm",
+      "action": "扶養に入れる人がいるなら、勤務先から配られた扶養控除等（異動）申告書を期限までに勤務先へ提出しましょう。"
+    },
+    {
+      "q": "保険料控除の申告書には、何を添えればいい？",
+      "a": "生命保険料、地震保険料、小規模企業共済等掛金は、支払金額を証する書類を1部添付します。国民年金保険料等も同様に添付します。それ以外の社会保険料は添付不要です。",
+      "source": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/gensen/annai/1648_05.htm",
+      "action": "生命保険料などの支払金額がわかる書類を用意し、保険料控除申告書と一緒に勤務先へ提出する。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "給与が2か所からある場合、扶養控除等申告書はどこに出す？",
+      "situation": "2か所以上から給与を受けている",
+      "recommend": "いずれか1か所にだけ提出すればよい",
+      "reason": "2以上の給与の支払者から給与を受ける場合、扶養控除等（異動）申告書はそのいずれか一の給与の支払者にだけ提出できます。どちらに出すかの違いは、ページには書かれていません。",
+      "source": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/gensen/annai/1648_01.htm"
+    },
+    {
+      "question": "この申告書は出す必要がある？",
+      "situation": "税額表が日額表の丙欄とされている",
+      "recommend": "提出は不要でよい",
+      "reason": "適用される税額表が日額表の丙欄とされる人は、この申告書を提出する必要はないとページにあります。それ以外の人は、扶養の有無にかかわらず原則として提出が必要です。",
+      "source": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/gensen/annai/1648_01.htm"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "出さなくてよい人や、添える書類は決まっている",
+    "cause": "申告書が2種類ある理由は、何のための手続か",
+    "steps": "今日、確かめる期限と書類",
+    "desk": "国税庁の申告書ページで期限と様式を確認",
+    "worries": "期限・添付・途中変更、よくある不安",
+    "guide": "2か所から給与があるときの出し方"
+  },
+  "depthAt": "2026-11-16T00:37:34+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "扶養控除等の申告書は年初、保険料控除の申告書は年末が期限",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-16T00:37:50+00:00"
+  },
+  "imageFocus": {
+    "x": 0.525,
+    "y": 0.428,
+    "box": [
+      0.103,
+      0.107,
+      0.947,
+      0.75
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/nta-fuyo-hoken-shinkoku-deadline-figure-a1bd59cb.jpg"
+  }
 }

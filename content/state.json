@@ -523,6 +523,7 @@
     "9f7acb900d7edfa095ecd470471e9260cd939ae1": 2,
     "9fa3d6685ceb63ce20ca25feed9521ff9493a9ce": 2,
     "a028f55c839c6c2b47842deeaa052a5516e3c6fb": 2,
+    "a0348cd508ec7e33ede0fe3b56189e84ea599212": 1,
     "a0fd67b51b1301b8fa1a0385ad8e7c6a8b25801f": 2,
     "a11ec2f23f7cf8d83e4132755ae57544be201b5c": 2,
     "a1546bd33dae9d959ba10b7f846ff3b239057b0f": 2,
@@ -539,7 +540,7 @@
     "a3fdee2dba56e9449178c49fce8f7742ce271de6": 2,
     "a423c2e024968c8645d54220875ec030b88b143f": 2,
     "a4354bfd70bbffd4eb2af3702630bec07dba6230": 2,
-    "a46f4e4087748d8e02e1e52b4247d0c6c2ed6aa5": 1,
+    "a46f4e4087748d8e02e1e52b4247d0c6c2ed6aa5": 2,
     "a4ccc83453b1648014d6f0b33b7b98c26f1853fd": 2,
     "a4ef230a2d258d90344121dc95151029d1ee1f9c": 2,
     "a5e8a53acd77b1bf7c8f61b06470bd1c1cc1f82f": 2,
@@ -19474,6 +19475,17 @@
       "slug": "copilot-cowork-build-lessons-rust",
       "url": "https://commandline.microsoft.com/how-we-built-copilot-cowork-python-to-rust-migration/"
     },
+    "e0c14d11f94efd57f22f8d2070f2f402544eabf2": {
+      "at": "2026-11-16T00:36:39.468886+00:00",
+      "kind": "trend",
+      "model": "gemini-3.5-flash-lite",
+      "pressReport": true,
+      "score": 85,
+      "slug": "hololive-wachawacha-gakuen-fes",
+      "trendKeyword": "ホロライブ",
+      "trendLane": true,
+      "url": "https://mainichi.jp/articles/20261115/pr1/00m/020/002000c"
+    },
     "e0c380df6115174c": {
       "at": "2026-11-06T09:17:17.326013+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（入札）",
@@ -19958,14 +19970,6 @@
       "section": "ai",
       "slug": "google-tpu-oracle-cloud-infrastructure",
       "url": "https://cloud.google.com/blog/ja/products/infrastructure/bringing-google-tpus-to-oracle-cloud-infrastructure/"
-    },
-    "e8f2f6f028b691d7": {
-      "at": "2026-11-02T00:22:39.237407+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "score": 100,
-      "section": "lifestyle",
-      "slug": "craft-boss-croissant-latte",
-      "url": "https://www.suntory.co.jp/softdrink/news/pr/article/2026/SBF1747.html?rss=0000000029"
     },
     "e91c5849ebb1c805": {
       "at": "2026-11-02T21:18:57.942007+00:00",
@@ -23174,53 +23178,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-13T13:07:18.353066+00:00",
-      "attempt": 1,
-      "id": "000514a000443392a6b2ff92472d94a95b275cb8",
-      "kind": "trend",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 70.8,
-        "avg_sentence": 47.2,
-        "long_share": 0.167,
-        "max_paragraph": 95,
-        "paragraphs": 4,
-        "sentences": 6
-      },
-      "score": 96,
-      "source": "trends",
-      "title": "森田駿哉",
-      "warnings": [
-        "本文が見出しで始まっている（最初の段落は見出しなしで、だれに関係するか・関係しない人はどうかを書く）",
-        "読みやすさ: 文が長い（1文の平均 47.2字・60字超の文が 17% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-13T13:07:27.510343+00:00",
-      "attempt": 0,
-      "id": "000514a000443392a6b2ff92472d94a95b275cb8",
-      "kind": "trend",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 72.5,
-        "avg_sentence": 32.2,
-        "long_share": 0.0,
-        "max_paragraph": 102,
-        "paragraphs": 4,
-        "sentences": 9
-      },
-      "score": 96,
-      "source": "trends",
-      "title": "森田駿哉",
-      "warnings": [
-        "本文が見出しで始まっている（最初の段落は見出しなしで、だれに関係するか・関係しない人はどうかを書く）"
-      ]
-    },
     {
       "accepted": false,
       "at": "2026-11-13T15:24:00.025564+00:00",
@@ -30757,6 +30714,56 @@
       "warnings": [
         "初めて出たところで言い換えていない略語（GDP）",
         "読みやすさ: 文が長い（1文の平均 59.7字・60字超の文が 38% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-16T00:36:20.899391+00:00",
+      "attempt": 1,
+      "id": "e0c14d11f94efd57f22f8d2070f2f402544eabf2",
+      "kind": "trend",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 95.0,
+        "avg_sentence": 47.5,
+        "long_share": 0.0,
+        "max_paragraph": 148,
+        "paragraphs": 2,
+        "sentences": 4
+      },
+      "score": 85,
+      "source": "trends",
+      "title": "ホロライブ",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（DAY）",
+        "読みやすさ: 文が長い（1文の平均 47.5字・60字超の文が 0% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-16T00:36:32.236551+00:00",
+      "attempt": 0,
+      "id": "e0c14d11f94efd57f22f8d2070f2f402544eabf2",
+      "kind": "trend",
+      "model": "",
+      "problems": [
+        "読みやすさ基準外のまま受理: 書き直し後の確認に不合格: 要点「多くのファンが注目している」→ 元記事に注目度や反響の記述がない; 本文「イベントの締めくくりには全員での合唱も行われました」→ 合唱が最後だったという順序は元記事に書かれていない"
+      ],
+      "readability": {
+        "avg_paragraph": 95.0,
+        "avg_sentence": 47.5,
+        "long_share": 0.0,
+        "max_paragraph": 148,
+        "paragraphs": 2,
+        "sentences": 4
+      },
+      "score": 85,
+      "source": "trends",
+      "title": "ホロライブ",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（DAY）",
+        "読みやすさ: 文が長い（1文の平均 47.5字・60字超の文が 0% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
       ]
     }
   ],
