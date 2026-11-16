@@ -450,7 +450,11 @@ jobs:
           PENDING=${PENDING:-0}
           DUE=0
           if [ "$FORCE_DEPLOY" = "true" ] || [ $((NOW - LAST)) -ge 3300 ]; then DUE=1; fi
-          echo "前回のデプロイから $(( (NOW - LAST) / 60 )) 分 / 保留=${PENDING} / 強制=${FORCE_DEPLOY} / デプロイ対象=${DUE}"
+          # 保留した記事の控え（state/deploy_held.json・scripts/deploy_hold.py。2026-11-17）。期限（Muse は前回のデプロイ＋15分・
+          # ほかは＋55分）が来た控えがあれば、この回でデプロイする（0/1 の印 deploy_pending はマージで消えることがあったため）
+          HELD=$(python3 scripts/deploy_hold.py due --now "$NOW" || echo 1)
+          if [ "$HELD" = "1" ]; then DUE=1; fi
+          echo "前回のデプロイから $(( (NOW - LAST) / 60 )) 分 / 保留=${PENDING} / 期限が来た控え=${HELD} / 強制=${FORCE_DEPLOY} / デプロイ対象=${DUE}"
 
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -497,15 +501,18 @@ jobs:
             if [ "$DUE" = "1" ]; then
               echo "$NOW" > state/last_deploy
               echo 0 > state/deploy_pending
+              python3 scripts/deploy_hold.py clear
               echo "deploy=1" >> "$GITHUB_OUTPUT"
             else
               echo 1 > state/deploy_pending
+              python3 scripts/deploy_hold.py add --by auto_run --due $((LAST + 3300)) --staged
               MSG="${MSG} [no-deploy]"
             fi
-          elif [ "$PENDING" = "1" ] && [ "$DUE" = "1" ]; then
+          elif { [ "$PENDING" = "1" ] || [ "$HELD" = "1" ]; } && [ "$DUE" = "1" ]; then
             # 記事は増えていないが、前の回で保留した記事を公開する
             echo "$NOW" > state/last_deploy
             echo 0 > state/deploy_pending
+            python3 scripts/deploy_hold.py clear
             echo "deploy=1" >> "$GITHUB_OUTPUT"
             MSG="chore(deploy): 保留中の記事を公開 [deploy]"
           elif [ "$ACK" = "1" ]; then
@@ -521,6 +528,7 @@ jobs:
             exit 0
           fi
           git add state/last_deploy state/deploy_pending
+          if [ -f state/deploy_held.json ]; then git add state/deploy_held.json; fi
           if [ -f state/fast_lane.json ]; then git add state/fast_lane.json; fi
           if [ -f state/page_watch.json ]; then git add state/page_watch.json; fi
           if [ -f state/claude_api_usage.json ]; then git add state/claude_api_usage.json; fi

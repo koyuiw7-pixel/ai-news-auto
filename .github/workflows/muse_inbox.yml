@@ -176,6 +176,9 @@ jobs:
       # ただしデプロイの回数（費用）を守るため、前回のデプロイ（だれの回でも。state/last_deploy）から15分たっていないときは保留にする
       # （＝まとめのほかに増えるデプロイは15分に1回まで。保留の分は、記事づくりの回か次の Muse の回が出す）。
       # すぐ出すときは state/last_deploy を今にするので、たまっていた自動の記事も一緒に公開される（HEAD をビルドする）
+      # 2026-11-17: 保留した記事は state/deploy_held.json に記事ごとに控え、期限（前回のデプロイ＋15分）が来たら、記事づくりの回
+      # （auto_run.yml・15〜20分ごと）か次の Muse の回が必ず出す（scripts/deploy_hold.py。それまでは 0/1 の印 state/deploy_pending
+      # だけで、55分のまとめまで待つうえ、同じころの別のデプロイの「0」に上書きされて消えることがあった＝Lawson の記事が 404 のまま）
       - name: Commit & push
         if: ${{ steps.inbox.outputs.count != '0' }}
         id: commit
@@ -194,6 +197,8 @@ jobs:
           NOW=$(date -u +%s)
           LAST=$(cat state/last_deploy 2>/dev/null | tr -cd '0-9')
           LAST=${LAST:-0}
+          # 前に保留した記事の期限が来ているか（来ていれば、この回が公開しなくてもデプロイする）
+          HELD=$(python3 scripts/deploy_hold.py due --now "$NOW" || echo 1)
           python scripts/radar.py coverage || echo "::warning::記事の索引（state/coverage.json）を更新できませんでした"
           # 入稿の .md を消した分（公開・見送り）も、記事・今日の本数（content/state.json）・使用量も入れる
           git add -A content
@@ -206,15 +211,25 @@ jobs:
           ADDED="${{ steps.addenda.outputs.applied || '0' }}"
           if [ "$COUNT" != "0" ] || [ "$ADDED" != "0" ]; then
             if [ "$COUNT" != "0" ]; then MSG="chore(muse): Muse の記事を公開 (+${COUNT}本)"; else MSG="chore(muse): Muse の追記を記事に反映 (${ADDED}本)"; fi
-            if [ $((NOW - LAST)) -ge "$MUSE_DEPLOY_GAP" ]; then
+            if [ $((NOW - LAST)) -ge "$MUSE_DEPLOY_GAP" ] || [ "$HELD" = "1" ]; then
               echo "$NOW" > state/last_deploy
               echo 0 > state/deploy_pending
+              python3 scripts/deploy_hold.py clear
               echo "deploy=1" >> "$GITHUB_OUTPUT"
             else
               echo 1 > state/deploy_pending
+              python3 scripts/deploy_hold.py add --by muse --due $((LAST + MUSE_DEPLOY_GAP)) --staged
               MSG="${MSG} [no-deploy]"
             fi
-            git add state/last_deploy state/deploy_pending
+            git add state/last_deploy state/deploy_pending state/deploy_held.json
+          elif [ "$HELD" = "1" ]; then
+            # 公開は無いが、前の回で保留した記事の期限が来ている
+            echo "$NOW" > state/last_deploy
+            echo 0 > state/deploy_pending
+            python3 scripts/deploy_hold.py clear
+            echo "deploy=1" >> "$GITHUB_OUTPUT"
+            git add state/last_deploy state/deploy_pending state/deploy_held.json
+            MSG="chore(muse): Muse の入稿の審査結果を記録・保留中の記事を公開"
           else
             MSG="chore(muse): Muse の入稿の審査結果を記録 [no-deploy]"
           fi

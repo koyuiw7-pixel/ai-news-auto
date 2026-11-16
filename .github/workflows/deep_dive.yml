@@ -141,12 +141,15 @@ jobs:
             if [ $((NOW - LAST)) -ge 3300 ]; then
               echo "$NOW" > state/last_deploy
               echo 0 > state/deploy_pending
+              python3 scripts/deploy_hold.py clear
               echo "deploy=1" >> "$GITHUB_OUTPUT"
             else
               echo 1 > state/deploy_pending
+              # 保留した記事を記事ごとに控える（期限が来たら auto_run が必ず出す。scripts/deploy_hold.py）
+              python3 scripts/deploy_hold.py add --by deep_dive --due $((LAST + 3300)) --staged
               MSG="${MSG} [no-deploy]"
             fi
-            git add state/last_deploy state/deploy_pending
+            git add state/last_deploy state/deploy_pending state/deploy_held.json
           else
             MSG="chore(deep): 深掘りの結果を記録 [no-deploy]"
           fi

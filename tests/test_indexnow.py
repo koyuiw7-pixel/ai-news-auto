@@ -262,6 +262,9 @@ class IndexNowChangedOnlyTest(IndexNowFixture):
         site = patch.object(indexnow, "site_url", return_value=BASE)
         site.start()
         self.addCleanup(site.stop)
+        live = patch.object(indexnow, "page_status", return_value=200)  # 本番で開けるものとして送る（下の LiveCheckTest で別に確かめる）
+        live.start()
+        self.addCleanup(live.stop)
         with patch.object(indexnow, "find_key", return_value="k"), patch.object(indexnow, "rules_drift", return_value=False), \
                 patch.object(indexnow, "submit", side_effect=OSError("down")), patch.object(sys, "argv", argv):
             self.assertEqual(indexnow.main(), 1)
@@ -279,6 +282,82 @@ class IndexNowChangedOnlyTest(IndexNowFixture):
     def test_nothing_changed_sends_nothing(self):
         argv = ["indexnow.py", "--hours", "12"]
         with patch.object(indexnow, "find_key", return_value="k"), patch.object(indexnow, "rules_drift", return_value=False), \
+                patch.object(indexnow, "submit", side_effect=AssertionError("must not send")), patch.object(sys, "argv", argv):
+            self.assertEqual(indexnow.main(), 0)
+        self.assertFalse(indexnow.STATE_PATH.exists())
+
+
+class LiveCheckTest(IndexNowFixture):
+    """2026-11-17: 本番で 200 を返す URL だけを送る（公開前の 404 の URL を検索エンジンに知らせない）"""
+
+    article = IndexNowChangedOnlyTest.article
+
+    def test_only_live_urls_are_kept_and_not_live_are_retried_until_wait(self):
+        calls = {}
+
+        def status(url):
+            calls[url] = calls.get(url, 0) + 1
+            if url.endswith("/late"):
+                return 200 if calls[url] >= 2 else 404  # デプロイの切り替わりで2回目に開ける
+            return 404 if url.endswith("/missing") else 200
+
+        sleeps = []
+        urls = [BASE, BASE + "/articles/late", BASE + "/articles/missing", BASE + "/articles/ok"]
+        ok, not_live = indexnow.live_urls(urls, wait=40, interval=20, status=status, sleep=sleeps.append)
+        self.assertEqual(ok, [BASE, BASE + "/articles/late", BASE + "/articles/ok"])
+        self.assertEqual(not_live, {BASE + "/articles/missing": 404})
+        self.assertEqual(sleeps, [20, 20])  # 待つのは wait（40秒）まで
+        self.assertEqual(calls[BASE + "/articles/ok"], 1)  # 開けた URL は見直さない
+        self.assertEqual(calls[BASE + "/articles/missing"], 3)
+
+    def test_page_status_sends_internal_header_on_plain_url(self):
+        seen = {}
+
+        class Response:
+            status = 200
+
+            def __enter__(self):
+                return self
+
+            def __exit__(self, *exc):
+                return False
+
+        def fake_urlopen(request, timeout):
+            seen["url"], seen["header"] = request.full_url, request.get_header("X-saisoku-internal")
+            return Response()
+
+        self.urlopen.side_effect = fake_urlopen
+        self.assertEqual(indexnow.page_status(BASE + "/articles/a"), 200)
+        self.assertEqual(seen, {"url": BASE + "/articles/a", "header": "1"})
+        self.urlopen.side_effect = indexnow.urllib.error.HTTPError(BASE, 404, "nf", {}, None)
+        self.assertEqual(indexnow.page_status(BASE + "/articles/b"), 404)
+        self.urlopen.side_effect = OSError("down")
+        self.assertEqual(indexnow.page_status(BASE + "/articles/c"), "error")
+
+    def test_main_does_not_send_or_record_a_404_article(self):
+        """Lawson の件: 記事は main にあるが本番でまだ 404。送らず、指紋も残さない（公開された次の回に送る）"""
+        self.article("lawson", genreSlug="lifestyle")
+        self.article("denki", genreSlug="lifestyle")
+        out = self.root / "out.json"
+        argv = ["indexnow.py", "--hours", "12", "--state-out", str(out), "--live-wait", "0"]
+        sent = []
+        with patch.object(indexnow, "site_url", return_value=BASE), patch.object(indexnow, "find_key", return_value="k"), \
+                patch.object(indexnow, "rules_drift", return_value=False), \
+                patch.object(indexnow, "page_status", side_effect=lambda u: 404 if u.endswith("/lawson") else 200), \
+                patch.object(indexnow, "submit", side_effect=lambda b, k, urls: sent.extend(urls) or 200), \
+                patch.object(sys, "argv", argv):
+            self.assertEqual(indexnow.main(), 0)
+        self.assertIn(BASE + "/articles/denki", sent)
+        self.assertNotIn(BASE + "/articles/lawson", sent)
+        state = indexnow.load_state(out)
+        self.assertNotIn(BASE + "/articles/lawson", state["urls"])
+        self.assertIn("hash", state["urls"][BASE + "/articles/denki"])
+
+    def test_main_sends_nothing_when_nothing_is_live(self):
+        self.article("lawson", genreSlug="lifestyle")
+        argv = ["indexnow.py", "--hours", "12", "--live-wait", "0"]
+        with patch.object(indexnow, "site_url", return_value=BASE), patch.object(indexnow, "find_key", return_value="k"), \
+                patch.object(indexnow, "rules_drift", return_value=False), patch.object(indexnow, "page_status", return_value=404), \
                 patch.object(indexnow, "submit", side_effect=AssertionError("must not send")), patch.object(sys, "argv", argv):
             self.assertEqual(indexnow.main(), 0)
         self.assertFalse(indexnow.STATE_PATH.exists())

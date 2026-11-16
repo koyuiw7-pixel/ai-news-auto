@@ -9,7 +9,9 @@ IndexNow はアカウント不要で Bing / DuckDuckGo / Yandex などに直接�
   python3 scripts/indexnow.py --hours 12 # 直近12時間に生成された記事だけ
   python3 scripts/indexnow.py --urls https://ai-tech-express.jp/guides/a,...  # 指定した URL だけ
 
-ページが開けるようになってから送る（deploy_cloudflare.yml の「Record live time」のあと）。送ったURLと中身の指紋・
+ページが開けるようになってから送る（deploy_cloudflare.yml の「Record live time」のあと）。送る直前に、本番の URL が
+200 を返すかを1本ずつ確かめ、200 でない URL（まだ公開されていない・消えた）は送らない（2026-11-17 公開前の 404 を知らせない。
+送らなかった URL は指紋を残さないので、公開された次の回に送る）。送ったURLと中身の指紋・
 HTTP の番号を state/indexnow_sent.json に残し、前と同じ中身で受理されたURLは送り直さない（seo A2・LLMO-A3）。
 """
 
@@ -21,7 +23,9 @@ import json
 import os
 import re
 import sys
+import time
 import unicodedata
+from concurrent.futures import ThreadPoolExecutor
 import urllib.error
 import urllib.request
 from datetime import datetime, timedelta, timezone
@@ -308,6 +312,47 @@ def record_result(state: dict, urls: list[str], hashes: dict[str, str], status: 
     state["log"].append(line)
     state["last"] = line
     return state
+
+
+LIVE_HEADERS = {"X-Saisoku-Internal": "1", "User-Agent": "saisoku-indexnow/1.0"}  # 自社の確かめ（計測に数えない）
+LIVE_WAIT_SEC = 180  # 200 にならない URL を待つ最長の秒数（デプロイ直後の切り替わり待ち）
+LIVE_INTERVAL_SEC = 20
+
+
+def page_status(url: str) -> int | str:
+    """本番の URL を、検索のロボットと同じ（何も付けない）URL で開いた HTTP の番号。開けなければ "error" """
+    try:
+        request = urllib.request.Request(url, headers=LIVE_HEADERS)
+        with urllib.request.urlopen(request, timeout=20) as response:
+            return response.status
+    except urllib.error.HTTPError as error:
+        return error.code
+    except Exception:  # noqa: BLE001 - つながらない・時間切れ（まだ開けないものとして扱う）
+        return "error"
+
+
+def live_urls(urls: list[str], wait: int = LIVE_WAIT_SEC, interval: int = LIVE_INTERVAL_SEC,
+              status=None, sleep=time.sleep) -> tuple[list[str], dict[str, int | str]]:
+    """本番で 200 を返した URL（元の順）と、待っても 200 にならなかった URL とその番号。
+    デプロイの直後は切り替わりに少しかかるので、200 でない URL だけを interval 秒ごとに wait 秒まで見直す"""
+    status = status or page_status
+    pending = list(dict.fromkeys(urls))
+    ok: set[str] = set()
+    last: dict[str, int | str] = {}
+    waited = 0
+    while pending:
+        with ThreadPoolExecutor(max_workers=8) as pool:
+            codes = list(pool.map(status, pending))
+        for url, code in zip(pending, codes):
+            last[url] = code
+            if code == 200:
+                ok.add(url)
+        pending = [url for url in pending if url not in ok]
+        if not pending or waited >= wait:
+            break
+        sleep(interval)
+        waited += interval
+    return [url for url in urls if url in ok], {url: last[url] for url in pending}
 
 
 def submit(base: str, key: str, urls: list[str]) -> int:
@@ -752,6 +797,8 @@ def main() -> int:
     parser.add_argument("--urls", default="", help="カンマ区切りの URL だけを送る")
     parser.add_argument("--export-rules", action="store_true", help="サイト側の判定材料 lib/index-rules.json を書き出す")
     parser.add_argument("--state-out", default="", help="送った記録を書くファイル（既定は state/indexnow_sent.json）")
+    parser.add_argument("--live-wait", type=int, default=LIVE_WAIT_SEC, help="本番で 200 にならない URL を待つ最長の秒数")
+    parser.add_argument("--no-live-check", action="store_true", help="本番で 200 かを確かめずに送る（試すときだけ）")
     parser.add_argument("--merge-state", default="", help="--state-out で書いた記録を state/indexnow_sent.json に足す")
     args = parser.parse_args()
 
@@ -793,6 +840,14 @@ def main() -> int:
     if not urls:
         print("[skip] 変わったURLがないため送信しません")
         return 0
+
+    if not args.no_live_check:
+        urls, not_live = live_urls(urls, wait=args.live_wait)
+        for url, code in list(not_live.items())[:20]:
+            print(f"[hold] 本番でまだ開けないので送りません（次の回に送ります）: {url}（{code}）")
+        if not urls:
+            print("[skip] 本番で開ける URL がないため送信しません")
+            return 0
 
     out = Path(args.state_out) if args.state_out else STATE_PATH
     try:

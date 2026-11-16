@@ -19,7 +19,7 @@ COMMIT = FLOW[FLOW.index("- name: Commit & push"):FLOW.index("- name: Deploy to 
 class MuseDeployTest(unittest.TestCase):
     def test_gap_is_15_minutes_and_not_the_55_minute_batch(self):
         self.assertIn('MUSE_DEPLOY_GAP: "900"', COMMIT)
-        self.assertIn('if [ $((NOW - LAST)) -ge "$MUSE_DEPLOY_GAP" ]; then', COMMIT)
+        self.assertIn('if [ $((NOW - LAST)) -ge "$MUSE_DEPLOY_GAP" ] || [ "$HELD" = "1" ]; then', COMMIT)
         self.assertNotIn("3300", COMMIT)
 
     def test_only_a_publish_can_deploy(self):
@@ -33,7 +33,11 @@ class MuseDeployTest(unittest.TestCase):
         self.assertIn("echo 1 > state/deploy_pending", no)
         self.assertIn('MSG="${MSG} [no-deploy]"', no)
         self.assertIn('MSG="chore(muse): Muse の入稿の審査結果を記録 [no-deploy]"', no)
-        self.assertEqual(COMMIT.count('echo "deploy=1"'), 1)
+        # 2026-11-17: 公開の無い回でデプロイするのは、前に保留した記事の期限が来たときだけ（scripts/deploy_hold.py）
+        self.assertEqual(COMMIT.count('echo "deploy=1"'), 2)
+        held = COMMIT[COMMIT.index('elif [ "$HELD" = "1" ]; then'):COMMIT.index('MSG="chore(muse): Muse の入稿の審査結果を記録 [no-deploy]"')]
+        self.assertIn('echo "deploy=1"', held)
+        self.assertIn("python3 scripts/deploy_hold.py clear", held)
 
     def test_deploy_step_dispatches_the_site_deploy(self):
         step = FLOW[FLOW.index("- name: Deploy to Cloudflare"):FLOW.index("- name: Summary")]
@@ -43,11 +47,11 @@ class MuseDeployTest(unittest.TestCase):
 
     def test_decision_line_runs_as_written(self):
         """判定の行を bash でそのまま動かす: 15分以上なら出す・未満なら保留"""
-        line = re.search(r'if \[ \$\(\(NOW - LAST\)\) -ge "\$MUSE_DEPLOY_GAP" \]; then', COMMIT).group(0)
+        line = re.search(r'if \[ \$\(\(NOW - LAST\)\) -ge "\$MUSE_DEPLOY_GAP" \] \|\| \[ "\$HELD" = "1" \]; then', COMMIT).group(0)
         gap = re.search(r'MUSE_DEPLOY_GAP: "(\d+)"', COMMIT).group(1)
 
         def decide(since_last: int) -> str:
-            script = f'MUSE_DEPLOY_GAP={gap}; NOW=100000; LAST=$((NOW - {since_last})); {line} echo deploy; else echo hold; fi'
+            script = f'MUSE_DEPLOY_GAP={gap}; HELD=0; NOW=100000; LAST=$((NOW - {since_last})); {line} echo deploy; else echo hold; fi'
             return subprocess.run(["bash", "-c", script], capture_output=True, text=True, check=True).stdout.strip()
 
         self.assertEqual(decide(899), "hold")
@@ -55,7 +59,7 @@ class MuseDeployTest(unittest.TestCase):
         self.assertEqual(decide(3299), "deploy")   # これまでは55分まで保留だった
         self.assertEqual(decide(60), "hold")
         # 記録が無いとき（LAST=0）は出す
-        script = f'MUSE_DEPLOY_GAP={gap}; NOW=1794544378; LAST=0; {line} echo deploy; else echo hold; fi'
+        script = f'MUSE_DEPLOY_GAP={gap}; HELD=0; NOW=1794544378; LAST=0; {line} echo deploy; else echo hold; fi'
         self.assertEqual(subprocess.run(["bash", "-c", script], capture_output=True, text=True, check=True).stdout.strip(), "deploy")
 
     def test_automatic_batch_is_unchanged(self):

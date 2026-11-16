@@ -63,11 +63,15 @@ jobs:
           if [ $((NOW - LAST)) -ge 3300 ]; then
             echo "$NOW" > state/last_deploy
             echo 0 > state/deploy_pending
+            python3 scripts/deploy_hold.py clear
           else
             echo 1 > state/deploy_pending
+            # 保留した記事を記事ごとに控える（期限が来たら auto_run が必ず出す。scripts/deploy_hold.py）
+            git add content
+            python3 scripts/deploy_hold.py add --by angle_now --due $((LAST + 3300)) --staged
             MSG="${MSG} [no-deploy]"
           fi
-          git add content state/last_deploy state/deploy_pending
+          git add content state/last_deploy state/deploy_pending state/deploy_held.json
           git commit -m "$MSG"
           # ぶつかっても記事を落とさずに載せ直して push する（scripts/git_safe_push.py）
           if python3 scripts/git_safe_push.py; then
