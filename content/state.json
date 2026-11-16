@@ -20742,6 +20742,20 @@
       "slug": "goqsystem-information-leak-order-data",
       "url": "https://goq.co.jp/security-incident.html"
     },
+    "f757626f23d5e99c": {
+      "at": "2026-11-16T18:57:25.142206+00:00",
+      "breaking": true,
+      "costUsd": 0.1074,
+      "foreignAi": true,
+      "intent": "breaking",
+      "major": true,
+      "mix": "ai_consumer",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "score": 92,
+      "section": "ai",
+      "slug": "gemini-regional-voices-rollout",
+      "url": "https://blog.google/innovation-and-ai/products/gemini-app/regional-voices/"
+    },
     "f789f34fdfee6cb3": {
       "at": "2026-11-04T13:11:53.644058+00:00",
       "reason": "public-interest: 資料が短い 737字",
@@ -23337,58 +23351,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-14T15:16:15.293351+00:00",
-      "attempt": 1,
-      "id": "8bf22bdb3d9c3623",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 129.7,
-        "avg_sentence": 61.8,
-        "long_share": 0.524,
-        "max_paragraph": 241,
-        "paragraphs": 10,
-        "sentences": 21
-      },
-      "score": 80,
-      "source": "rakuten",
-      "title": "楽天グループ株式会社2026年度第3四半期 決算ハイライトに関するお知らせ",
-      "warnings": [
-        "材料の無い章がある（サイソクの見方：ふるさと納税の反動を除くとEC流通は9.0％増、楽天モバイルの損失縮小は続くとみられる 前年同期のふるさと納税の駆け込み需要を除くと国内EC流通総額は9.0％増で、今回の1兆6,873億円（前年同期比0.",
-        "初めて出たところで言い換えていない略語（GAAP・NISA）",
-        "読みやすさ: 文が長い（1文の平均 61.8字・60字超の文が 52% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-14T15:16:56.885650+00:00",
-      "attempt": 0,
-      "id": "8bf22bdb3d9c3623",
-      "kind": "broad",
-      "model": "",
-      "problems": [
-        "読みやすさ基準外のまま受理: 書き直し後の確認に不合格: タイトル「売上高6,971億円で過去最高を更新」→ 元記事は「第3四半期として過去最高」と述べており、通期や全期間の最高ではないため、言い過ぎである; タイトル「モバイルの赤字も縮小へ」→ 元記事は既に287億円へ100億円改善したと述べており、「へ」は将来の見"
-      ],
-      "readability": {
-        "avg_paragraph": 129.7,
-        "avg_sentence": 61.8,
-        "long_share": 0.524,
-        "max_paragraph": 241,
-        "paragraphs": 10,
-        "sentences": 21
-      },
-      "score": 80,
-      "source": "rakuten",
-      "title": "楽天グループ株式会社2026年度第3四半期 決算ハイライトに関するお知らせ",
-      "warnings": [
-        "材料の無い章がある（サイソクの見方：ふるさと納税の反動を除くとEC流通は9.0％増、楽天モバイルの損失縮小は続くとみられる 前年同期のふるさと納税の駆け込み需要を除くと国内EC流通総額は9.0％増で、今回の1兆6,873億円（前年同期比0.",
-        "初めて出たところで言い換えていない略語（GAAP・NISA）",
-        "読みやすさ: 文が長い（1文の平均 61.8字・60字超の文が 52% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-14T15:17:58.600764+00:00",
@@ -30960,6 +30922,54 @@
       "score": 85,
       "source": "pref-aichi",
       "title": "小切手による県税事務所窓口での県税の納付等について受付を終了します。"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-16T18:56:54.734788+00:00",
+      "attempt": 1,
+      "id": "f757626f23d5e99c",
+      "kind": "ai",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [
+        "元記事・確認済みの資料に無い画面の手順・メニュー名・ボタン名がある（「三点メニュー」）。資料にある道順だけを書くか、「公式ヘルプの手順を確認してください」と書く"
+      ],
+      "readability": {
+        "avg_paragraph": 96.3,
+        "avg_sentence": 41.9,
+        "long_share": 0.13,
+        "max_paragraph": 158,
+        "paragraphs": 10,
+        "sentences": 23
+      },
+      "score": null,
+      "source": "google-blog-all",
+      "title": "Regional voices are rolling out in the Gemini app.",
+      "warnings": [
+        "答えになっていない見出し（「日本で使えるかは、声によって分からない」）。未定のことは「## まだ分からないこと」に1行で書き、章は作らない"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-16T18:57:25.112660+00:00",
+      "attempt": 1,
+      "id": "f757626f23d5e99c",
+      "kind": "ai",
+      "model": "strike:本文 2 文・今日やること",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 81.7,
+        "avg_sentence": 43.0,
+        "long_share": 0.158,
+        "max_paragraph": 134,
+        "paragraphs": 10,
+        "sentences": 19
+      },
+      "score": 92,
+      "source": "google-blog-all",
+      "title": "Regional voices are rolling out in the Gemini app.",
+      "warnings": [
+        "答えになっていない見出し（「日本で使えるかは、声によって分からない」）。未定のことは「## まだ分からないこと」に1行で書き、章は作らない"
+      ]
     }
   ],
   "short_text_retry": {},
