@@ -1,233 +1,328 @@
 {
-  "weeks": [
+ "weeks": [
+  {
+   "id": "2026-46",
+   "start": "2026-11-09",
+   "end": "2026-11-15",
+   "title": "今週のAIニュースまとめ（11月9日〜11月15日）",
+   "lede": [
+    "今週は各社から新しいモデルやAPI、業務支援機能の発表が相次ぎました。",
+    "実務で活用できる選択肢がさらに広がっています。"
+   ],
+   "items": [
     {
-      "id": "2026-45",
-      "start": "2026-11-02",
-      "end": "2026-11-08",
-      "title": "今週のAIニュースまとめ（11月2日〜11月8日）",
-      "lede": [
-        "この週は、GoogleやAnthropicなどによる新機能やエージェント関連の発表が相次ぎました。",
-        "物理設計や金融口座連携など、AIの利用領域が広がる実証や基盤整備が進んでいます。"
-      ],
-      "items": [
-        {
-          "slug": "google-ai-news-october-2026",
-          "title": "Google、10月のAI発表をまとめ公開　「Gemini 4 Argon」提供済み、詐欺対策も",
-          "company": "Google",
-          "publishedAt": "2026-11-02T18:00:33.906162+00:00",
-          "what": "Googleが10月のAI発表をまとめ、Gemini 4 Argonなどを公開しました。",
-          "why": "コーディングや財務分析向けモデルの提供状況や、詐欺対策機能の動向を把握できます。"
-        },
-        {
-          "slug": "claude-personal-finance-beta",
-          "title": "Claude、銀行・カード口座をつなぐ「Personal Finance」をベータ提供　米国のPro以上が対象",
-          "company": "Anthropic",
-          "publishedAt": "2026-11-05T17:59:41.819859+00:00",
-          "what": "Anthropicが、銀行・カード口座をClaudeに連携するPersonal Financeをベータ提供しました。",
-          "why": "残高や取引履歴に自然言語で質問できるようになり、日常的な資産管理の効率が変わります。"
-        },
-        {
-          "slug": "nvidia-open-source-6g-research-tools",
-          "title": "NVIDIAの6G向けオープンソースツール、100万ダウンロード超え　研究機関8,000超が利用",
-          "company": "NVIDIA",
-          "publishedAt": "2026-11-06T16:07:36.751761+00:00",
-          "what": "NVIDIAの6G向けオープンソースツールが100万ダウンロードを突破しました。",
-          "why": "8,000超の研究機関による通信分野のAI活用や実験の高速化に貢献しています。"
-        },
-        {
-          "slug": "kimi-k3-bedrock-india-inference",
-          "title": "AWS、Bedrockの「Kimi K3」でインド国内推論に対応　処理をムンバイとハイデラバードに限定",
-          "company": "Moonshot AI",
-          "publishedAt": "2026-11-03T16:48:20.240483+00:00",
-          "what": "AWSのBedrockでKimi K3のインド国内推論に対応しました。",
-          "why": "ムンバイやハイデラバードに処理を限定でき、既存のopenaiライブラリから呼び出せます。"
-        },
-        {
-          "slug": "nvidia-recovery-automated-training-recovery",
-          "title": "NVIDIAがAI学習の自動復旧ツール「NVIDIA Recovery」を公開　止まった学習を自動で再開",
-          "company": "NVIDIA",
-          "publishedAt": "2026-11-02T23:38:15.807310+00:00",
-          "what": "NVIDIAが分散AI学習の自動復旧ツールNVIDIA Recoveryを公開しました。",
-          "why": "障害を自動で見つけて止まった学習を再開させ、運用の手間を減らせます。"
-        },
-        {
-          "slug": "openai-physical-engineering-ai",
-          "title": "OpenAI、物理製品の設計支援AIの成果を公開　ハード部門のトークン利用は23倍に",
-          "company": "OpenAI",
-          "publishedAt": "2026-11-03T19:12:14.922693+00:00",
-          "what": "OpenAIが物理製品の設計支援AIに関する取り組みと社内成果を公開しました。",
-          "why": "機械や電気設計の試作期間が短縮され、製造業におけるAI活用の可能性が広がります。"
-        }
-      ],
-      "articleCount": 158,
-      "generatedAt": "2026-11-09T01:21:35+00:00",
-      "model": "gemini-3.5-flash-lite"
+     "slug": "gemini-decisions-api-decision-1",
+     "title": "「Gemini Decisions API」公開　入力100万トークン0.10ドル、出力は課金なし",
+     "company": "Google",
+     "publishedAt": "2026-11-11T19:11:39.922032+00:00",
+     "what": "Googleが判断専用のGemini Decisions APIを公開しました。",
+     "why": "選択肢の評価コストを大幅に抑えられるため、システム開発の費用対効果を高められます。"
     },
     {
-      "id": "2026-44",
-      "start": "2026-10-26",
-      "end": "2026-11-01",
-      "title": "今週のAIニュースまとめ（10月26日〜11月1日）",
-      "lede": [
-        "高性能モデルの発表が続き、サイバー防御の話題も目立った週でした。",
-        "日本語のSiri AIやGeminiのファイル編集など、すぐ使えるものもあります。"
-      ],
-      "items": [
-        {
-          "slug": "gemini-4-carbon-cybersecurity-model",
-          "title": "Gemini 4 Carbonとは？日本で使える？料金と提供状況",
-          "company": "Google",
-          "publishedAt": "2026-10-28T17:02:33.184251+00:00",
-          "what": "GoogleがGemini 4 Carbonを防御担当者向けに限定提供します。",
-          "why": "一般公開は時期未定ですが、料金はArgonと同額なので試算は先にできます。"
-        },
-        {
-          "slug": "mistral-large-4-preview",
-          "title": "Mistral Large 4とは？日本で使える？料金も",
-          "company": "Mistral AI",
-          "publishedAt": "2026-10-29T14:36:40.099122+00:00",
-          "what": "Mistral AIがMistral Large 4のモデルウェイトを公開しました。",
-          "why": "稼働時は490億パラメータのMoEで、自社環境での検証候補になります。"
-        },
-        {
-          "slug": "microsoft-ui-reactor-winui-csharp-mvu",
-          "title": "Microsoft.UI.Reactorとは？使い方と料金｜日本での提供状況",
-          "company": "Microsoft",
-          "publishedAt": "2026-10-28T04:51:44.489807+00:00",
-          "what": "MicrosoftがMicrosoft.UI.ReactorをOSSで公開しました。",
-          "why": "C#だけでWinUIの画面を作れ、MITライセンスで無料で試せます。"
-        },
-        {
-          "slug": "meta-muse-singapore-launch",
-          "title": "Museとは？シンガポール提供開始と日本での使い方",
-          "company": "Meta",
-          "publishedAt": "2026-10-28T00:50:27.206802+00:00",
-          "what": "Metaの個人向けAI「Muse」がシンガポールで始まりました。",
-          "why": "iOS・Android・muse.aiで提供され、ほとんどの用途は無料です。"
-        },
-        {
-          "slug": "gemini-edit-files-directly",
-          "title": "Geminiアプリのファイル編集とは？使い方と対応形式",
-          "company": "Google",
-          "publishedAt": "2026-10-29T16:19:04.424322+00:00",
-          "what": "GoogleがGeminiアプリにファイル編集機能を加えました。",
-          "why": "全ユーザーが対象で、選んだ部分だけ直す作業を任せられます。"
-        },
-        {
-          "slug": "claude-finds-critical-vulnerabilities",
-          "title": "Claudeの脆弱性発見とは？Chromeなど5例と日本での使い方",
-          "company": "Anthropic",
-          "publishedAt": "2026-10-30T02:09:26.097227+00:00",
-          "what": "Anthropicの社内AIがChromeで62件のCVEを発見しました。",
-          "why": "PR時点でのスキャンが推奨され、開発の流れに検査を組み込めます。"
-        },
-        {
-          "slug": "apple-creator-studio-new-ai-features",
-          "title": "Apple Creator Studioとは？新AI機能・料金・日本対応",
-          "company": "Google",
-          "publishedAt": "2026-10-28T02:28:27.358387+00:00",
-          "what": "Apple Creator Studioが11月に提供開始、AI機能が加わります。",
-          "why": "Logic Pro・Keynote・Pages・NumbersにAIアシスタントがベータ版で登場。"
-        },
-        {
-          "slug": "siri-ai-japanese-launch",
-          "title": "Siri AIとは？日本語対応の使い方と提供状況",
-          "company": "",
-          "publishedAt": "2026-10-28T01:52:48.257203+00:00",
-          "what": "Siri AIが27.2で日本語を含む5言語に対応しました。",
-          "why": "ベータ版で、サーバ処理の機能は1日の使用回数に制限があります。"
-        },
-        {
-          "slug": "anthropic-s1-sec-ipo-filing",
-          "title": "Anthropic上場とは？S-1提出とANTの買い方",
-          "company": "Anthropic",
-          "publishedAt": "2026-10-28T01:43:43.510935+00:00",
-          "what": "AnthropicがSECにForm S-1を提出し、上場準備に入りました。",
-          "why": "銘柄名はANTの予定ですが、登録が有効になるまで売買できません。"
-        }
-      ],
-      "articleCount": 139,
-      "generatedAt": "2026-11-02T01:10:44+00:00",
-      "model": "claude:sonnet"
+     "slug": "claude-whiteboards-sheets-data",
+     "title": "Claudeに共同編集のホワイトボードと表計算が登場　有料プランで利用可能に",
+     "company": "Anthropic",
+     "publishedAt": "2026-11-10T17:19:37.178318+00:00",
+     "what": "AnthropicがClaudeにホワイトボードと表計算機能を追加しました。",
+     "why": "チームメンバーと一緒にAIを交えてデータを編集し、共同作業を進められます。"
     },
     {
-      "id": "2026-43",
-      "start": "2026-10-19",
-      "end": "2026-10-25",
-      "title": "今週のAIニュースまとめ（10月19日〜10月25日）",
-      "lede": [
-        "NVIDIAが次世代GPUアーキテクチャやロボット開発基盤を発表しました。",
-        "AIエージェントの最適化ツールやオープンウェイトモデルの展開も進んでいます。"
-      ],
-      "items": [
-        {
-          "slug": "nvidia-gtc-berlin-2026-vera-rubin-openshell",
-          "title": "NVIDIA Vera Rubin発表｜AI工場DSX PODとOpenShell",
-          "company": "NVIDIA",
-          "publishedAt": "2026-10-23T10:49:07.233750+00:00",
-          "what": "NVIDIAが次世代GPUアーキテクチャVera Rubinを発表しました。",
-          "why": "液冷モジュール構造とDSX PODによりデータセンター構築期間を大幅に短縮できます。"
-        },
-        {
-          "slug": "nvidia-isaac-gpt6-astra-robotics-agile-one",
-          "title": "NVIDIA Isaac×Astraでロボット開発を自動化：Jetson Thor搭載",
-          "company": "NVIDIA",
-          "publishedAt": "2026-10-24T20:01:47.839822+00:00",
-          "what": "NVIDIAがGPT-6 AstraとIsaacの統合によるロボット開発自動化を発表しました。",
-          "why": "プロンプト指示からシミュレーションを経て実環境へのスキル移植が可能になります。"
-        },
-        {
-          "slug": "nvidia-rtx-spark-announcement",
-          "title": "RTX Sparkとは：MediaTek製CPUとBlackwell GPUを搭載",
-          "company": "NVIDIA",
-          "publishedAt": "2026-10-19T02:08:36.507370+00:00",
-          "what": "NVIDIAがBlackwell GPUとMediaTek製CPUを搭載するRTX Sparkを発表しました。",
-          "why": "モバイル機でのローカルAIモデル学習と4Kレンダリングの同時処理を実現します。"
-        },
-        {
-          "slug": "v7-go-gpt-5-6-integration-context-graph",
-          "title": "V7 GoがGPT-5.6統合｜エラー率0.2%とハルシネーション38%削減",
-          "company": "OpenAI",
-          "publishedAt": "2026-10-22T10:51:04.297372+00:00",
-          "what": "OpenAIのGPT-5.6を統合したV7 Goがツール呼び出しエラー率を低減しました。",
-          "why": "100ページ超の指示書に基づく長期間の複合ワークフロー処理を高速化します。"
-        },
-        {
-          "slug": "microsoft-foundry-ai-agent-cost-optimization",
-          "title": "Microsoft FoundryでAIエージェントのコストを自動最適化",
-          "company": "Microsoft",
-          "publishedAt": "2026-10-20T10:32:58.146539+00:00",
-          "what": "MicrosoftがFoundryでAIエージェントのコストを自動最適化する機能を発表しました。",
-          "why": "Model Routerが要求精度に応じた最適なLLMを動的に選択し費用対効果を高めます。"
-        },
-        {
-          "slug": "openai-retail-shopping-agent-demo",
-          "title": "OpenAIのECエージェント：音声と画像で接客から注文変更まで自動化",
-          "company": "OpenAI",
-          "publishedAt": "2026-10-21T10:54:53.505457+00:00",
-          "what": "OpenAIが音声と画像で接客から注文変更まで自動化するECエージェントのデモを公開しました。",
-          "why": "部屋の写真から家具を即座に生成し音声指示で商品の差し替えや配送変更が行えます。"
-        },
-        {
-          "slug": "llama-app-mac-local-ai-hugging-face",
-          "title": "Mac用ローカルAI「Llama」とは：ワンクリック導入とOpenAI互換API",
-          "company": "Hugging Face",
-          "publishedAt": "2026-10-23T10:51:48.984538+00:00",
-          "what": "Hugging FaceがMacのメニューバーで常駐するローカルAIアプリLlamaをリリースしました。",
-          "why": "完全にオフラインで動作しOpenAI互換のAPIエンドポイントを提供します。"
-        },
-        {
-          "slug": "azure-cosmos-db-ai-assisted-development",
-          "title": "Azure Cosmos DB AI支援開発入門｜ローカルでAIアプリ構築",
-          "company": "Microsoft",
-          "publishedAt": "2026-10-22T16:15:15.420812+00:00",
-          "what": "MicrosoftがDocker環境を用いたAzure Cosmos DBのAI支援開発機能を発表しました。",
-          "why": "自然言語からベクタークエリを出力しローカルでのAIアプリ構築を効率化します。"
-        }
-      ],
-      "articleCount": 29,
-      "generatedAt": "2026-10-27T11:02:11+00:00",
-      "model": "gemini-3.5-flash-lite"
+     "slug": "gemini-4-hydrogen-launch-pricing",
+     "title": "Gemini 4 Hydrogen、入力100万トークン1.5ドルで全世界に提供　Geminiアプリと検索でも",
+     "company": "Google",
+     "publishedAt": "2026-11-12T18:04:03.877228+00:00",
+     "what": "GoogleがGemini 4 Hydrogenの提供を全世界で始めました。",
+     "why": "速度や処理能力が向上しており、日々の検索やアプリでの作業効率が変わります。"
+    },
+    {
+     "slug": "claude-for-manufacturing-plugin",
+     "title": "Claude for Manufacturing、見積もりや品質報告書の下書きを17のスキルで　NetSuiteなど4製品と接続",
+     "company": "Anthropic",
+     "publishedAt": "2026-11-12T16:57:44.317314+00:00",
+     "what": "Anthropicが製造業向けのClaude for Manufacturingを発表しました。",
+     "why": "見積もりや品質報告書の下書きを自動化し、現場の事務負担を大きく軽減できます。"
+    },
+    {
+     "slug": "grok-bot-1-0-team-bots",
+     "title": "Grok Bot 1.0、Slack・Teamsやビデオ通話に参加　Team・Enterpriseプランで提供",
+     "company": "xAI",
+     "publishedAt": "2026-11-11T18:09:42.414159+00:00",
+     "what": "xAIがSlackやTeamsに参加するGrok Bot 1.0を公開しました。",
+     "why": "チームのチャット内で未完了タスクの確認や人の呼び込みを自動で行ってくれます。"
+    },
+    {
+     "slug": "plamo-3-fin-open-weight",
+     "title": "金融特化AI「PLaMo 3.0 Fin」公開　収入・売上10億円未満は商用も無償",
+     "company": "",
+     "publishedAt": "2026-11-09T02:05:58.789287+00:00",
+     "what": "金融特化の国産小型AI「PLaMo 3.0 Fin」の重みが公開されました。",
+     "why": "GPU1枚で社内環境に構築でき、条件に合う中小企業は商用でも無償で利用できます。"
+    },
+    {
+     "slug": "kimi-k3-1-pro-highspeed-bedrock",
+     "title": "BedrockでKimi K3.1 Pro Highspeed提供　出力速度はProの2〜3倍",
+     "company": "Moonshot AI",
+     "publishedAt": "2026-11-11T01:15:35.979082+00:00",
+     "what": "Moonshot AIがBedrockでKimi K3.1 Pro Highspeedの提供を始めました。",
+     "why": "出力速度が従来の2〜3倍になり、応答を待つストレスが減ってレスポンスが早くなります。"
+    },
+    {
+     "slug": "claude-meetings-beta",
+     "title": "Claude Meetings、Google Meetの会議に参加し議事録や資料を作成　Team・Enterpriseでベータ",
+     "company": "Anthropic",
+     "publishedAt": "2026-11-12T20:16:59.764455+00:00",
+     "what": "AnthropicがGoogle Meetに対応するClaude Meetingsのベータ版を始めました。",
+     "why": "会議中にリアルタイムで議事録や資料作成を任せられ、事後作業の時間を削れます。"
+    },
+    {
+     "slug": "claude-fable-5-2-api-price",
+     "title": "Claude Fable 5.2、API料金は入力$8・出力$40に　5.1より2割安い",
+     "company": "Anthropic",
+     "publishedAt": "2026-11-09T19:02:18.846376+00:00",
+     "what": "AnthropicがClaude Fable 5.2を公開し、API料金を引き下げました。",
+     "why": "コストが前バージョンより安くなり、長文の処理や高度な作業を導入しやすくなります。"
+    },
+    {
+     "slug": "nemotron-pii-japan-finance-datasets",
+     "title": "日本語の個人情報検出データ10万件と金融ペルソナ900万件を公開",
+     "company": "NVIDIA",
+     "publishedAt": "2026-11-10T04:22:58.803059+00:00",
+     "what": "NVIDIAが日本語の個人情報検出データと金融ペルソナデータを公開しました。",
+     "why": "国内の金融や医療分野で、安全に配慮したAIモデルの学習や評価が行いやすくなります。"
     }
-  ]
+   ],
+   "articleCount": 112,
+   "generatedAt": "2026-11-16T01:33:51+00:00",
+   "model": "gemini-3.5-flash-lite"
+  },
+  {
+   "id": "2026-45",
+   "start": "2026-11-02",
+   "end": "2026-11-08",
+   "title": "今週のAIニュースまとめ（11月2日〜11月8日）",
+   "lede": [
+    "この週は、GoogleやAnthropicなどによる新機能やエージェント関連の発表が相次ぎました。",
+    "物理設計や金融口座連携など、AIの利用領域が広がる実証や基盤整備が進んでいます。"
+   ],
+   "items": [
+    {
+     "slug": "google-ai-news-october-2026",
+     "title": "Google、10月のAI発表をまとめ公開　「Gemini 4 Argon」提供済み、詐欺対策も",
+     "company": "Google",
+     "publishedAt": "2026-11-02T18:00:33.906162+00:00",
+     "what": "Googleが10月のAI発表をまとめ、Gemini 4 Argonなどを公開しました。",
+     "why": "コーディングや財務分析向けモデルの提供状況や、詐欺対策機能の動向を把握できます。"
+    },
+    {
+     "slug": "claude-personal-finance-beta",
+     "title": "Claude、銀行・カード口座をつなぐ「Personal Finance」をベータ提供　米国のPro以上が対象",
+     "company": "Anthropic",
+     "publishedAt": "2026-11-05T17:59:41.819859+00:00",
+     "what": "Anthropicが、銀行・カード口座をClaudeに連携するPersonal Financeをベータ提供しました。",
+     "why": "残高や取引履歴に自然言語で質問できるようになり、日常的な資産管理の効率が変わります。"
+    },
+    {
+     "slug": "nvidia-open-source-6g-research-tools",
+     "title": "NVIDIAの6G向けオープンソースツール、100万ダウンロード超え　研究機関8,000超が利用",
+     "company": "NVIDIA",
+     "publishedAt": "2026-11-06T16:07:36.751761+00:00",
+     "what": "NVIDIAの6G向けオープンソースツールが100万ダウンロードを突破しました。",
+     "why": "8,000超の研究機関による通信分野のAI活用や実験の高速化に貢献しています。"
+    },
+    {
+     "slug": "kimi-k3-bedrock-india-inference",
+     "title": "AWS、Bedrockの「Kimi K3」でインド国内推論に対応　処理をムンバイとハイデラバードに限定",
+     "company": "Moonshot AI",
+     "publishedAt": "2026-11-03T16:48:20.240483+00:00",
+     "what": "AWSのBedrockでKimi K3のインド国内推論に対応しました。",
+     "why": "ムンバイやハイデラバードに処理を限定でき、既存のopenaiライブラリから呼び出せます。"
+    },
+    {
+     "slug": "nvidia-recovery-automated-training-recovery",
+     "title": "NVIDIAがAI学習の自動復旧ツール「NVIDIA Recovery」を公開　止まった学習を自動で再開",
+     "company": "NVIDIA",
+     "publishedAt": "2026-11-02T23:38:15.807310+00:00",
+     "what": "NVIDIAが分散AI学習の自動復旧ツールNVIDIA Recoveryを公開しました。",
+     "why": "障害を自動で見つけて止まった学習を再開させ、運用の手間を減らせます。"
+    },
+    {
+     "slug": "openai-physical-engineering-ai",
+     "title": "OpenAI、物理製品の設計支援AIの成果を公開　ハード部門のトークン利用は23倍に",
+     "company": "OpenAI",
+     "publishedAt": "2026-11-03T19:12:14.922693+00:00",
+     "what": "OpenAIが物理製品の設計支援AIに関する取り組みと社内成果を公開しました。",
+     "why": "機械や電気設計の試作期間が短縮され、製造業におけるAI活用の可能性が広がります。"
+    }
+   ],
+   "articleCount": 158,
+   "generatedAt": "2026-11-09T01:21:35+00:00",
+   "model": "gemini-3.5-flash-lite"
+  },
+  {
+   "id": "2026-44",
+   "start": "2026-10-26",
+   "end": "2026-11-01",
+   "title": "今週のAIニュースまとめ（10月26日〜11月1日）",
+   "lede": [
+    "高性能モデルの発表が続き、サイバー防御の話題も目立った週でした。",
+    "日本語のSiri AIやGeminiのファイル編集など、すぐ使えるものもあります。"
+   ],
+   "items": [
+    {
+     "slug": "gemini-4-carbon-cybersecurity-model",
+     "title": "Gemini 4 Carbonとは？日本で使える？料金と提供状況",
+     "company": "Google",
+     "publishedAt": "2026-10-28T17:02:33.184251+00:00",
+     "what": "GoogleがGemini 4 Carbonを防御担当者向けに限定提供します。",
+     "why": "一般公開は時期未定ですが、料金はArgonと同額なので試算は先にできます。"
+    },
+    {
+     "slug": "mistral-large-4-preview",
+     "title": "Mistral Large 4とは？日本で使える？料金も",
+     "company": "Mistral AI",
+     "publishedAt": "2026-10-29T14:36:40.099122+00:00",
+     "what": "Mistral AIがMistral Large 4のモデルウェイトを公開しました。",
+     "why": "稼働時は490億パラメータのMoEで、自社環境での検証候補になります。"
+    },
+    {
+     "slug": "microsoft-ui-reactor-winui-csharp-mvu",
+     "title": "Microsoft.UI.Reactorとは？使い方と料金｜日本での提供状況",
+     "company": "Microsoft",
+     "publishedAt": "2026-10-28T04:51:44.489807+00:00",
+     "what": "MicrosoftがMicrosoft.UI.ReactorをOSSで公開しました。",
+     "why": "C#だけでWinUIの画面を作れ、MITライセンスで無料で試せます。"
+    },
+    {
+     "slug": "meta-muse-singapore-launch",
+     "title": "Museとは？シンガポール提供開始と日本での使い方",
+     "company": "Meta",
+     "publishedAt": "2026-10-28T00:50:27.206802+00:00",
+     "what": "Metaの個人向けAI「Muse」がシンガポールで始まりました。",
+     "why": "iOS・Android・muse.aiで提供され、ほとんどの用途は無料です。"
+    },
+    {
+     "slug": "gemini-edit-files-directly",
+     "title": "Geminiアプリのファイル編集とは？使い方と対応形式",
+     "company": "Google",
+     "publishedAt": "2026-10-29T16:19:04.424322+00:00",
+     "what": "GoogleがGeminiアプリにファイル編集機能を加えました。",
+     "why": "全ユーザーが対象で、選んだ部分だけ直す作業を任せられます。"
+    },
+    {
+     "slug": "claude-finds-critical-vulnerabilities",
+     "title": "Claudeの脆弱性発見とは？Chromeなど5例と日本での使い方",
+     "company": "Anthropic",
+     "publishedAt": "2026-10-30T02:09:26.097227+00:00",
+     "what": "Anthropicの社内AIがChromeで62件のCVEを発見しました。",
+     "why": "PR時点でのスキャンが推奨され、開発の流れに検査を組み込めます。"
+    },
+    {
+     "slug": "apple-creator-studio-new-ai-features",
+     "title": "Apple Creator Studioとは？新AI機能・料金・日本対応",
+     "company": "Google",
+     "publishedAt": "2026-10-28T02:28:27.358387+00:00",
+     "what": "Apple Creator Studioが11月に提供開始、AI機能が加わります。",
+     "why": "Logic Pro・Keynote・Pages・NumbersにAIアシスタントがベータ版で登場。"
+    },
+    {
+     "slug": "siri-ai-japanese-launch",
+     "title": "Siri AIとは？日本語対応の使い方と提供状況",
+     "company": "",
+     "publishedAt": "2026-10-28T01:52:48.257203+00:00",
+     "what": "Siri AIが27.2で日本語を含む5言語に対応しました。",
+     "why": "ベータ版で、サーバ処理の機能は1日の使用回数に制限があります。"
+    },
+    {
+     "slug": "anthropic-s1-sec-ipo-filing",
+     "title": "Anthropic上場とは？S-1提出とANTの買い方",
+     "company": "Anthropic",
+     "publishedAt": "2026-10-28T01:43:43.510935+00:00",
+     "what": "AnthropicがSECにForm S-1を提出し、上場準備に入りました。",
+     "why": "銘柄名はANTの予定ですが、登録が有効になるまで売買できません。"
+    }
+   ],
+   "articleCount": 139,
+   "generatedAt": "2026-11-02T01:10:44+00:00",
+   "model": "claude:sonnet"
+  },
+  {
+   "id": "2026-43",
+   "start": "2026-10-19",
+   "end": "2026-10-25",
+   "title": "今週のAIニュースまとめ（10月19日〜10月25日）",
+   "lede": [
+    "NVIDIAが次世代GPUアーキテクチャやロボット開発基盤を発表しました。",
+    "AIエージェントの最適化ツールやオープンウェイトモデルの展開も進んでいます。"
+   ],
+   "items": [
+    {
+     "slug": "nvidia-gtc-berlin-2026-vera-rubin-openshell",
+     "title": "NVIDIA Vera Rubin発表｜AI工場DSX PODとOpenShell",
+     "company": "NVIDIA",
+     "publishedAt": "2026-10-23T10:49:07.233750+00:00",
+     "what": "NVIDIAが次世代GPUアーキテクチャVera Rubinを発表しました。",
+     "why": "液冷モジュール構造とDSX PODによりデータセンター構築期間を大幅に短縮できます。"
+    },
+    {
+     "slug": "nvidia-isaac-gpt6-astra-robotics-agile-one",
+     "title": "NVIDIA Isaac×Astraでロボット開発を自動化：Jetson Thor搭載",
+     "company": "NVIDIA",
+     "publishedAt": "2026-10-24T20:01:47.839822+00:00",
+     "what": "NVIDIAがGPT-6 AstraとIsaacの統合によるロボット開発自動化を発表しました。",
+     "why": "プロンプト指示からシミュレーションを経て実環境へのスキル移植が可能になります。"
+    },
+    {
+     "slug": "nvidia-rtx-spark-announcement",
+     "title": "RTX Sparkとは：MediaTek製CPUとBlackwell GPUを搭載",
+     "company": "NVIDIA",
+     "publishedAt": "2026-10-19T02:08:36.507370+00:00",
+     "what": "NVIDIAがBlackwell GPUとMediaTek製CPUを搭載するRTX Sparkを発表しました。",
+     "why": "モバイル機でのローカルAIモデル学習と4Kレンダリングの同時処理を実現します。"
+    },
+    {
+     "slug": "v7-go-gpt-5-6-integration-context-graph",
+     "title": "V7 GoがGPT-5.6統合｜エラー率0.2%とハルシネーション38%削減",
+     "company": "OpenAI",
+     "publishedAt": "2026-10-22T10:51:04.297372+00:00",
+     "what": "OpenAIのGPT-5.6を統合したV7 Goがツール呼び出しエラー率を低減しました。",
+     "why": "100ページ超の指示書に基づく長期間の複合ワークフロー処理を高速化します。"
+    },
+    {
+     "slug": "microsoft-foundry-ai-agent-cost-optimization",
+     "title": "Microsoft FoundryでAIエージェントのコストを自動最適化",
+     "company": "Microsoft",
+     "publishedAt": "2026-10-20T10:32:58.146539+00:00",
+     "what": "MicrosoftがFoundryでAIエージェントのコストを自動最適化する機能を発表しました。",
+     "why": "Model Routerが要求精度に応じた最適なLLMを動的に選択し費用対効果を高めます。"
+    },
+    {
+     "slug": "openai-retail-shopping-agent-demo",
+     "title": "OpenAIのECエージェント：音声と画像で接客から注文変更まで自動化",
+     "company": "OpenAI",
+     "publishedAt": "2026-10-21T10:54:53.505457+00:00",
+     "what": "OpenAIが音声と画像で接客から注文変更まで自動化するECエージェントのデモを公開しました。",
+     "why": "部屋の写真から家具を即座に生成し音声指示で商品の差し替えや配送変更が行えます。"
+    },
+    {
+     "slug": "llama-app-mac-local-ai-hugging-face",
+     "title": "Mac用ローカルAI「Llama」とは：ワンクリック導入とOpenAI互換API",
+     "company": "Hugging Face",
+     "publishedAt": "2026-10-23T10:51:48.984538+00:00",
+     "what": "Hugging FaceがMacのメニューバーで常駐するローカルAIアプリLlamaをリリースしました。",
+     "why": "完全にオフラインで動作しOpenAI互換のAPIエンドポイントを提供します。"
+    },
+    {
+     "slug": "azure-cosmos-db-ai-assisted-development",
+     "title": "Azure Cosmos DB AI支援開発入門｜ローカルでAIアプリ構築",
+     "company": "Microsoft",
+     "publishedAt": "2026-10-22T16:15:15.420812+00:00",
+     "what": "MicrosoftがDocker環境を用いたAzure Cosmos DBのAI支援開発機能を発表しました。",
+     "why": "自然言語からベクタークエリを出力しローカルでのAIアプリ構築を効率化します。"
+    }
+   ],
+   "articleCount": 29,
+   "generatedAt": "2026-10-27T11:02:11+00:00",
+   "model": "gemini-3.5-flash-lite"
+  }
+ ]
 }
