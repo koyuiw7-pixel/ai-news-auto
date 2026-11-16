@@ -81,9 +81,8 @@
     }
   ],
   "todayActions": [
-    "2026年7月11日の清掃イベントに「teket」で申し込んだ覚えがあるか、確認する",
-    "身に覚えのないメールや電話は、URLを開かず添付も開かず、個人情報を入力しない",
-    "不安があれば、神奈川区地域振興課（電話045-411-7090）に問い合わせる"
+    "身に覚えのないメールや電話は、URLも添付も開かず返信しない",
+    "不安があれば、神奈川区地域振興課に電話で問い合わせる"
   ],
   "publicInterest": "breach",
   "incident": {
@@ -136,5 +135,98 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/teket-unauthorized-access-kanagawa-ward-figure-f824cc74.jpg"
-  }
+  },
+  "officialDesk": [
+    {
+      "name": "神奈川区総務部地域振興課",
+      "url": "https://www.city.yokohama.lg.jp/city-info/koho-kocho/press/kanagawa/2026/1110shigen.html",
+      "source": "https://www.city.yokohama.lg.jp/city-info/koho-kocho/press/kanagawa/2026/1110shigen.html",
+      "howTo": [
+        "横浜市トップページ",
+        "記者発表",
+        "神奈川区",
+        "記者発表 2026年度"
+      ],
+      "phone": "045-411-7090",
+      "note": "メールアドレス（kg-chishin@city.yokohama.lg.jp）とファクス（045-323-2502）も掲載されています。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "身に覚えのないメールや電話は、URLも添付も開かず返信しない",
+      "source": "https://www.city.yokohama.lg.jp/city-info/koho-kocho/press/kanagawa/2026/1110shigen.files/0008_20261110.pdf",
+      "steps": [
+        "メール等に記載されたURLにアクセスしない",
+        "添付ファイルを開かない",
+        "個人情報を入力したり返信したりしない"
+      ]
+    },
+    {
+      "action": "不安があれば、神奈川区地域振興課に電話で問い合わせる",
+      "source": "https://www.city.yokohama.lg.jp/city-info/koho-kocho/press/kanagawa/2026/1110shigen.html",
+      "steps": [
+        "「このページへのお問合せ」欄を見る",
+        "電話 045-411-7090 にかける"
+      ],
+      "url": "https://www.city.yokohama.lg.jp/city-info/koho-kocho/press/kanagawa/2026/1110shigen.html"
+    }
+  ],
+  "cause": {
+    "text": "第三者による不正アクセスが発生し、利用者情報の一部が漏えいした可能性があることが判明しました。現時点で個人情報の漏えいは確認されていません。",
+    "status": "stated",
+    "source": "https://www.city.yokohama.lg.jp/city-info/koho-kocho/press/kanagawa/2026/1110shigen.html"
+  },
+  "worries": [
+    {
+      "q": "清掃イベントに申し込んだだけで対象になる？",
+      "a": "対象は、7月11日の清掃イベント参加申込の際に「teket」へ会員登録を行った人です。漏えいの可能性があるのは氏名・住所・メールアドレス・電話番号で、約120件とされています。",
+      "source": "https://www.city.yokohama.lg.jp/city-info/koho-kocho/press/kanagawa/2026/1110shigen.files/0008_20261110.pdf",
+      "action": "7月11日の清掃イベントに「teket」で申し込んだか、まず確かめる"
+    },
+    {
+      "q": "申し込んだ自分の情報は、もう漏れてしまった？",
+      "a": "現時点で個人情報の漏えいは確認されていません。当該イベント参加申込者への影響の有無は確認中とされています。区は、新たな事実が分かった場合、参加申込者へお知らせ等を行うとしています。",
+      "source": "https://www.city.yokohama.lg.jp/city-info/koho-kocho/press/kanagawa/2026/1110shigen.files/0008_20261110.pdf",
+      "action": "区からの参加申込者へのお知らせを、届いたら内容を確かめる"
+    },
+    {
+      "q": "クレジットカードや銀行口座も、狙われる？",
+      "a": "発表で漏えいの可能性があるとされているのは、氏名・住所・メールアドレス・電話番号の4項目です。カード番号や口座番号は、この発表の対象情報には含まれていません。",
+      "source": "https://www.city.yokohama.lg.jp/city-info/koho-kocho/press/kanagawa/2026/1110shigen.files/0008_20261110.pdf",
+      "action": "銀行などが、ID・パスワードをメールやSMSで問い合わせることはないと覚えておく",
+      "actionSource": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "actionGeneral": true
+    },
+    {
+      "q": "同じパスワードを使い回していると乗っ取られる？",
+      "a": "同じIDとパスワードを複数のサイトで使い回していると、1つ盗まれただけで、銀行やSNS、通販サービスなど全てが乗っ取られるおそれがあります。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "action": "使い回しているIDとパスワードは、サイトごとに違うものへ変える。覚えられなければ管理アプリを使う",
+      "general": true
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "身に覚えのない連絡が来たら、どうする？",
+      "situation": "申し込んだ覚えがある",
+      "recommend": "URLや添付を開かず、区に電話で確認する",
+      "reason": "URLを開かず、添付も開かず、個人情報の入力や返信もしないよう区が求めています。不審な連絡への対応は防げますが、既に漏えいした情報を取り戻すことはできません。",
+      "source": "https://www.city.yokohama.lg.jp/city-info/koho-kocho/press/kanagawa/2026/1110shigen.files/0008_20261110.pdf"
+    },
+    {
+      "question": "身に覚えのない連絡が来たら、どうする？",
+      "situation": "申し込んだ覚えがない",
+      "recommend": "この件で特に対応する必要はないと読み取れます",
+      "reason": "対象は、7月11日の清掃イベント参加申込の際に「teket」へ会員登録を行った人です。覚えがなければ、この件の対象ではないと読み取れます。",
+      "source": "https://www.city.yokohama.lg.jp/city-info/koho-kocho/press/kanagawa/2026/1110shigen.files/0008_20261110.pdf"
+    }
+  ],
+  "depthHeadings": {
+    "cause": "なぜ漏れたのか、いま分かっていること",
+    "steps": "申し込んだか確かめ、不審な連絡は開かない",
+    "desk": "区に確認するなら地域振興課へ",
+    "worries": "カードや口座、乗っ取りは大丈夫？",
+    "guide": "申し込んだかどうかで、やることが変わる"
+  },
+  "depthAt": "2026-11-16T23:30:03+00:00"
 }
