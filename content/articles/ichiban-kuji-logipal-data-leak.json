@@ -76,9 +76,8 @@
     }
   ],
   "todayActions": [
-    "一番くじONLINEの利用者は、11月17日以降に届くメールと郵便を確認する",
-    "一番くじ倶楽部の窓口 https://charaos.com/inquiry.html で、自分が対象か確認する",
-    "心当たりのない電話や郵送物が届いたら、個人情報を伝えずに対応する"
+    "一番くじ ONLINE会員は、11月17日以降に届くメールと郵送物を確認する",
+    "一番くじ倶楽部の対象か、会員様のお問い合わせ先から確認する"
   ],
   "publicInterest": "breach",
   "incident": {
@@ -152,5 +151,104 @@
       }
     ],
     "notes": "対象の判断基準を注文日や受取日ではなく、資料にある発送期間に合わせました。情報の流出を断定した表現を修正し、リードと見出しを具体的にしました。"
-  }
+  },
+  "insight": [
+    {
+      "text": "該当者への連絡は「一番くじ ONLINE」と「一番くじ倶楽部」から、11月17日以降にメールか郵送で届くと書かれています。",
+      "source": "https://www.bandainamco.co.jp/files/2026111620HPE794A8E4B88DE6ADA3E382A2E382AFE382BBE3.pdf"
+    },
+    {
+      "text": "電話番号や受付時間は第2報には書かれていません。問い合わせは各社の問い合わせ先のURLで受け付けています。",
+      "source": "https://www.bandainamco.co.jp/files/2026111620HPE794A8E4B88DE6ADA3E382A2E382AFE382BBE3.pdf"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "一番くじ ONLINE会員は、11月17日以降に届くメールと郵送物を確認する",
+      "source": "https://www.bandainamco.co.jp/files/2026111620HPE794A8E4B88DE6ADA3E382A2E382AFE382BBE3.pdf",
+      "steps": [
+        "11月17日以降に届くメールを開く",
+        "「一番くじ ONLINE」からの郵送物を確認する",
+        "心当たりがなければ個人情報を伝えない"
+      ]
+    },
+    {
+      "action": "一番くじ倶楽部の対象か、会員様のお問い合わせ先から確認する",
+      "source": "https://www.bandainamco.co.jp/files/2026111620HPE794A8E4B88DE6ADA3E382A2E382AFE382BBE3.pdf",
+      "steps": [
+        "https://charaos.com/inquiry.html を開く",
+        "会員様のお問い合わせ先から入力する"
+      ]
+    }
+  ],
+  "cause": {
+    "text": "バンダイロジパルが管理するシステムに、第三者から不正アクセスを受けました。10月21日に不正アクセスの疑いのある痕跡が見つかり、攻撃手段の特定と対応を進めています。手口や原因は第2報では示されていません。",
+    "status": "investigating",
+    "source": "https://www.bandainamco.co.jp/files/2026111620HPE794A8E4B88DE6ADA3E382A2E382AFE382BBE3.pdf"
+  },
+  "worries": [
+    {
+      "q": "クレジットカードの情報も漏れた？",
+      "a": "漏れた可能性のある情報には、クレジットカード情報は含まれていません。現時点で不正使用などは確認されていないとされています。",
+      "source": "https://www.bandainamco.co.jp/files/2026111620HPE794A8E4B88DE6ADA3E382A2E382AFE382BBE3.pdf",
+      "action": "カード会社の利用明細を開き、身に覚えのない請求がないか確認する。気になる請求があれば、カード会社に相談する。",
+      "actionSource": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "actionGeneral": true
+    },
+    {
+      "q": "電話番号と住所が漏れたら、詐欺の電話が来る？",
+      "a": "漏れた可能性があるのは氏名・住所・電話番号です。不正利用は確認されていませんが、不審な電話や郵送物が届く可能性があると注意が呼びかけられています。",
+      "source": "https://www.bandainamco.co.jp/files/2026111620HPE794A8E4B88DE6ADA3E382A2E382AFE382BBE3.pdf",
+      "action": "心当たりのない電話には出ず、個人情報を伝えない。犯人と話をしないことが大切とされています。",
+      "actionSource": "https://www.npa.go.jp/bureau/safetylife/sos47/case/",
+      "actionGeneral": true
+    },
+    {
+      "q": "連絡が来たかどうか、どうやって分かる？",
+      "a": "対象のお客様には「一番くじ ONLINE」と「一番くじ倶楽部」から、11月17日以降にメールか郵送で順次連絡が届くとされています。",
+      "source": "https://www.bandainamco.co.jp/files/2026111620HPE794A8E4B88DE6ADA3E382A2E382AFE382BBE3.pdf",
+      "action": "11月17日以降に届く連絡を確認し、届かないか不安なら問い合わせ先に確かめる。"
+    },
+    {
+      "q": "一番くじ倶楽部を使ったことがあるけど、対象？",
+      "a": "一番くじ倶楽部は、2019年1月1日〜2026年10月22日に賞品発送があった一部のお客様が対象とされています。",
+      "source": "https://www.bandainamco.co.jp/files/2026111620HPE794A8E4B88DE6ADA3E382A2E382AFE382BBE3.pdf",
+      "action": "一番くじ倶楽部の会員様のお問い合わせ先から、自分が対象か問い合わせる。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "11月17日より前に問い合わせてもいい？",
+      "situation": "心配で、連絡が来る前に確かめたい",
+      "recommend": "問い合わせは可能。急がず連絡を待つのも一つ",
+      "reason": "対象者への連絡は11月17日から順次始まるとされています。問い合わせ先は両社の窓口で、第2報には電話番号は書かれていません。",
+      "source": "https://www.bandainamco.co.jp/files/2026111620HPE794A8E4B88DE6ADA3E382A2E382AFE382BBE3.pdf"
+    },
+    {
+      "question": "心当たりのない電話が来たら、どうする？",
+      "situation": "不審な電話がかかってきた",
+      "recommend": "個人情報を伝えず、話を続けずに切る",
+      "reason": "特殊詐欺対策では「犯人と話をしない」ことが大切とされています。個人情報を伝えなければ、悪用される心配を減らせます。",
+      "source": "https://www.npa.go.jp/bureau/safetylife/sos47/case/",
+      "general": true
+    }
+  ],
+  "depthHeadings": {
+    "insight": "本物の連絡は一番くじの名前で届く",
+    "cause": "なぜ漏れたのか、いま分かっていること",
+    "steps": "11月17日以降の連絡を確かめるところから",
+    "worries": "カードや電話番号、詐欺は大丈夫？",
+    "guide": "連絡を待つか、窓口に聞くか迷ったら"
+  },
+  "depthAt": "2026-11-16T13:32:09+00:00",
+  "updatedAt": "2026-11-16T13:32:09+00:00",
+  "updates": [
+    {
+      "at": "2026-11-16T13:32:09+00:00",
+      "kind": "facts",
+      "title": "公式の資料をもとに、「なるほどの要点」・「今日やること」・「理由」・「よくある不安」・「判断の目安」を追記しました",
+      "sourceUrl": "https://www.bandainamco.co.jp/files/2026111620HPE794A8E4B88DE6ADA3E382A2E382AFE382BBE3.pdf",
+      "sourceName": "バンダイナムコ"
+    }
+  ]
 }
