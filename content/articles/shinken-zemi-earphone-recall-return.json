@@ -54,13 +54,14 @@
   "videoTitle": "進研ゼミのイヤホン84,779個を自主回収　充電中の異常発熱で、製品番号PTH077Bを確認",
   "publishedAt": "2026-11-16T22:28:52.969753+00:00",
   "generatedAt": "2026-11-16T22:30:20.625606+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/shinken-zemi-earphone-recall-return-figure-71f9d67d.jpg",
   "model": "anthropic-api:claude-haiku-5-5",
   "affiliates": [],
   "newsType": "general",
   "todayActions": [
-    "お子さんのイヤホンが、対象の3つの期間のどれに当てはまるかを、入会や受講の時期で確かめる",
-    "回収キットが届くまで、イヤホンの充電と使用を止め、高温の場所に置かない"
+    "お子さんのイヤホンが対象の3つの期間に当てはまるか、入会や受講の時期で確かめる",
+    "回収キットが届くまで、イヤホンの使用と充電を止め、高温の場所に置かない",
+    "キットが届かない、手続きで困ったら、FAQサイトで確かめてから進研ゼミへ電話する"
   ],
   "angleOf": "shinken-zemi-earphone-recall-pth077b",
   "deepDive": "procedure",
@@ -86,5 +87,147 @@
   "detectedAt": "2026-11-16T22:30:54+00:00",
   "searchTitle": "進研ゼミのイヤホン回収の対象は？　回収キットは12月中旬から順次",
   "layout": "noir",
-  "summaryLine": "進研ゼミのイヤホン84,779個を自主回収、対象の人は回収キットで本体を返送します"
+  "summaryLine": "進研ゼミのイヤホン84,779個を自主回収、対象の人は回収キットで本体を返送します",
+  "insight": [
+    {
+      "text": "充電中に「充電ケースのバッテリー周辺で異常発熱・発煙、充電ケースの溶解等」が起きた事案があり、回収の対象になっています。",
+      "source": "https://company.benesse.co.jp/notice/004.html"
+    },
+    {
+      "text": "異常発熱は、出荷した約８万５千個に対し現時点で６件把握されており、人的被害・重大な物的被害の報告はないとされています。",
+      "source": "https://company.benesse.co.jp/notice/004.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "回収に関するFAQ・お問い合わせ窓口",
+      "url": "https://bc.benesse.ne.jp/nzm/redirect?code=MwB9My46Z1",
+      "source": "https://company.benesse.co.jp/notice/004.html",
+      "note": "よくあるご質問と回答を確かめられます。解決しない場合は次の窓口へ連絡します。"
+    },
+    {
+      "name": "進研ゼミ『中学講座』",
+      "url": "https://company.benesse.co.jp/notice/004.html",
+      "source": "https://company.benesse.co.jp/notice/004.html",
+      "phone": "0120-929-100（通話料無料）",
+      "hours": "9:00～18:00（年末年始を除く）",
+      "note": "回収に関することの窓口です。FAQで解決しない場合に連絡します。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "お子さんのイヤホンが対象の3つの期間に当てはまるか、入会や受講の時期で確かめる",
+      "source": "https://company.benesse.co.jp/notice/004.html",
+      "steps": [
+        "入会・受講の時期を、3つの期間と照らし合わせる",
+        "製品番号PTH077Bと色（4色すべて対象）を確認する"
+      ],
+      "url": "https://company.benesse.co.jp/notice/004.html"
+    },
+    {
+      "action": "回収キットが届くまで、イヤホンの使用と充電を止め、高温の場所に置かない",
+      "source": "https://company.benesse.co.jp/notice/004.html",
+      "steps": [
+        "イヤホンの使用を中止する",
+        "充電は行わない",
+        "高温の場所に置かない"
+      ],
+      "url": "https://company.benesse.co.jp/notice/004.html"
+    },
+    {
+      "action": "キットが届かない、手続きで困ったら、FAQサイトで確かめてから進研ゼミへ電話する",
+      "source": "https://company.benesse.co.jp/notice/004.html",
+      "steps": [
+        "FAQサイトでよくある質問を確かめる",
+        "解決しなければ0120-929-100へ電話する",
+        "受付は9:00～18:00（年末年始を除く）"
+      ],
+      "url": "https://bc.benesse.ne.jp/nzm/redirect?code=MwB9My46Z1"
+    }
+  ],
+  "cause": {
+    "text": "充電中に充電ケースのバッテリー周辺で異常発熱・発煙などが起きており、輸入事業者と原因究明を進めています。原因はまだ特定されておらず、お客様の安全を最優先に回収を実施するとされています。",
+    "status": "investigating",
+    "source": "https://company.benesse.co.jp/notice/004.html"
+  },
+  "worries": [
+    {
+      "q": "うちの子のイヤホンは対象？どう確かめる？",
+      "a": "対象は、2025年9月1日～12月3日の期間にコース登録して『中学準備講座』(1月号)＜チャレンジタッチ＞を受講した人など、3つの期間のどれかに当てはまる人です。色は4色すべてが対象です。",
+      "source": "https://company.benesse.co.jp/notice/004.html",
+      "action": "入会や受講の時期を確かめ、3つの期間のどれかに当てはまるか見て、製品番号PTH077Bも確認する"
+    },
+    {
+      "q": "回収キットが届くまで、イヤホンはどうすればいい？",
+      "a": "直ちに〈Smartワイヤレスイヤホン〉の使用を中止し、充電は行わず、高温環境下に置かないよう求められています。キットが届いたら返送します。",
+      "source": "https://company.benesse.co.jp/notice/004.html",
+      "action": "イヤホンの使用と充電を止め、高温の場所を避けて、キットが届くまで保管する。"
+    },
+    {
+      "q": "回収キットが届かない、手続きで困ったら？",
+      "a": "よくある質問はFAQサイトで確かめられ、解決しない場合は進研ゼミ『中学講座』0120-929-100（通話料無料）へ連絡します。受付は9:00～18:00（年末年始を除く）です。",
+      "source": "https://company.benesse.co.jp/notice/004.html",
+      "action": "FAQサイトで質問と回答を確かめ、解決しなければ進研ゼミ『中学講座』へ電話する"
+    },
+    {
+      "q": "これまでに、けがや火事などの被害はあった？",
+      "a": "出荷した約８万５千個に対し、現時点で６件の異常発熱を把握しています。人的被害・重大な物的被害の報告はありません。",
+      "source": "https://company.benesse.co.jp/notice/004.html",
+      "action": "充電中に発熱や発煙があったら、直ちに使用を中止し、充電は行わず、窓口へ連絡する"
+    },
+    {
+      "q": "イヤホン本体の不調は、どこに聞けばいい？",
+      "a": "製品・不良不調の問い合わせは、エレマテック株式会社 03-5050-0209（通話料がかかります）へ。受付は9:00～18:00（土日祝日・年末年始を除く）です。",
+      "source": "https://company.benesse.co.jp/notice/004.html",
+      "action": "不調のある製品の使用を止めたうえで、エレマテック株式会社に電話で相談する"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "回収キットが届くまで、イヤホンを使わせてもいい？",
+      "situation": "対象の3つの期間のどれかに当てはまる",
+      "recommend": "使用と充電は止めておく（案内どおり）",
+      "reason": "直ちに使用を中止し、充電は行わず、高温環境下に置かないよう求められています。キットが届いたら返送します。返送の期限はまだ発表されていません。",
+      "source": "https://company.benesse.co.jp/notice/004.html"
+    },
+    {
+      "question": "回収キットが届くまで、イヤホンを使わせてもいい？",
+      "situation": "対象の期間に当てはまらない",
+      "recommend": "この回収の対象ではない",
+      "reason": "期間に当てはまらない場合は、この回収の対象にはなりません。イヤホンの不調は、エレマテック株式会社の窓口で相談できます。",
+      "source": "https://company.benesse.co.jp/notice/004.html"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "充電ケースの異常が起きた製品です",
+    "cause": "なぜ回収するのか、分かっていること",
+    "steps": "対象かどうか、今日すぐ確かめる",
+    "desk": "困ったときの連絡先は2つに分かれる",
+    "worries": "キットや金券、被害や連絡先は？",
+    "guide": "回収キットが届くまで使わせてもいい？"
+  },
+  "depthAt": "2026-11-16T22:47:57+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "進研ゼミのイヤホン回収、返送は「回収キット」で",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-16T22:49:26+00:00"
+  },
+  "imageFocus": {
+    "x": 0.526,
+    "y": 0.41,
+    "box": [
+      0.081,
+      0.065,
+      0.972,
+      0.756
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/shinken-zemi-earphone-recall-return-figure-71f9d67d.jpg"
+  }
 }
