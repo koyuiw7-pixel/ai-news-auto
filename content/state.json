@@ -17919,6 +17919,19 @@
       "skipped": true,
       "url": "https://www.soumu.go.jp/menu_news/s-news/01ryutsu09_02000401.html"
     },
+    "cbbcb323b4be0b3f": {
+      "at": "2026-11-16T12:40:51.522644+00:00",
+      "costUsd": 0.0017,
+      "intent": "breaking",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "score": 88,
+      "section": "public",
+      "slug": "ichiban-kuji-logipal-data-leak",
+      "url": "https://www.bandainamco.co.jp/files/2026111620HPE794A8E4B88DE6ADA3E382A2E382AFE382BBE3.pdf"
+    },
     "cbc3e4c0f962713b": {
       "at": "2026-11-12T02:10:10.057947+00:00",
       "costUsd": 0.0059,
@@ -23284,31 +23297,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-13T23:16:10.167276+00:00",
-      "attempt": 1,
-      "id": "3ae6086871336dbb",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 116.7,
-        "avg_sentence": 38.9,
-        "long_share": 0.111,
-        "max_paragraph": 243,
-        "paragraphs": 6,
-        "sentences": 18
-      },
-      "score": 90,
-      "source": "radar-official",
-      "title": "ホンダ関連ニュース｜dメニューニュース（NTTドコモ）",
-      "warnings": [
-        "見出しの書き方: 区切りの全角空白が2つ以上（補足は1つだけ）",
-        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（CR・SUV・ZR）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-13T23:16:31.552319+00:00",
@@ -30869,6 +30857,30 @@
       "warnings": [
         "見出しが46字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（KOS・JILL・STUART）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-16T12:40:42.105675+00:00",
+      "attempt": 1,
+      "id": "cbbcb323b4be0b3f",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 71.3,
+        "avg_sentence": 34.5,
+        "long_share": 0.032,
+        "max_paragraph": 123,
+        "paragraphs": 15,
+        "sentences": 31
+      },
+      "score": 88,
+      "source": "fast",
+      "title": "バンダイナムコの情報流出に関するお知らせ",
+      "warnings": [
+        "見出しが45字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（BANDAI・ONLINE）"
       ]
     }
   ],
