@@ -87,7 +87,7 @@
     "zoohZ1BiHs0": 1
   },
   "failed_web": {
-    "00c15bfe70833eb74eb17c43ec98505405debb16": 1,
+    "00c15bfe70833eb74eb17c43ec98505405debb16": 2,
     "00f822032178798c49820525368d438921589736": 2,
     "0160cca0e3c443c7a624adf036f3be8e6ac4cb00": 2,
     "0187ebd8136138e9dd6260926b0bf8b46008ccf3": 2,
@@ -251,6 +251,7 @@
     "389b494273916936e30e406e17d9e5250f1384ac": 2,
     "3920a6576cb920429e8eafca55c596acd392a612": 2,
     "39737244b40af3da763d618abefaf6b1970e845b": 2,
+    "3a502c3ed3a016b9bbf3929d6b3cce70f4329a7c": 1,
     "3b1fef72cd68e8f9c2657bd426031f013873c482": 2,
     "3b2227e3b92d731d16c8620e8ecfba8e128ac4b7": 2,
     "3c1c183a7e66cce0aae08a8a2fe86e864c9c4fff": 2,
@@ -408,6 +409,7 @@
     "6983f5ea638d0ac131fd1a38678dcfe9bb96995a": 2,
     "6a085ae61e61c30362fc08d2f14cf4670cd55a6f": 2,
     "6a18e1449bedbb383e6d5eb108ba0da3716a8b03": 2,
+    "6a9885b6733b694be274705ef5a1f8c49e2504e5": 1,
     "6ab7084ecd2527b0df9d501e8778ec035c886500": 2,
     "6adbf1b949617dc8a11be678cd64b80df368a1ea": 2,
     "6b7c785411c4629997565a5c2ff2dd7f4620d2c5": 2,
@@ -489,6 +491,7 @@
     "82000e706599d1091bf23d34402d1008715149be": 2,
     "82417086a24c1dcce0c9f23ac82e4df20bdb3097": 2,
     "82a9a033893304c240d92ea7ef9b790b0de1643f": 2,
+    "82be940e045b46eb20e2e36082e5e7b15c41e1d6": 1,
     "8371ac2e51bfde814f0d0e595a93effd9543584d": 2,
     "83d93179493cf461a143956d961d77f587be89ee": 2,
     "8478ec4b5b1a77a86d332e7ec2aa41c495d997af": 2,
@@ -532,6 +535,7 @@
     "91763922d3db01a3165833f1082e66300e6451bb": 2,
     "920e5ca163bd43a1e3f499799ef9865ec0093350": 1,
     "9249c09258e284dd444367552a2c198d32914162": 2,
+    "9250db2c5a7ff7c0ac487ddc84059fc69afd4e55": 1,
     "9322b3529376b98b84233769de379c73cafd4e35": 2,
     "94b6ad35a37976e8b8ecd27a539d2a38d9c78718": 2,
     "94b6ec207e6b0cbcec45811d74953c015f70a4ff": 2,
@@ -10014,6 +10018,19 @@
       "reason": "prefilter: 価値の薄いお知らせ（開催について）",
       "skipped": true,
       "url": "https://www.maff.go.jp/j/press/kanbo/bunsyo/saigai/261113.html"
+    },
+    "559572c5514c54f4": {
+      "at": "2026-11-16T06:10:21.460920+00:00",
+      "costUsd": 0.0028,
+      "intent": "neutral",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "score": 95,
+      "section": "lifestyle",
+      "slug": "nissin-line-account-data-leak",
+      "url": "https://www.nissin.com/jp/news/13997/"
     },
     "55a6c6aa2846faa5": {
       "at": "2026-11-07T04:51:50.078598+00:00",
@@ -23129,31 +23146,6 @@
   "quality_log": [
     {
       "accepted": true,
-      "at": "2026-11-13T16:29:15.316992+00:00",
-      "attempt": 1,
-      "id": "4d525ab74f95595e",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 98.9,
-        "avg_sentence": 52.4,
-        "long_share": 0.294,
-        "max_paragraph": 170,
-        "paragraphs": 9,
-        "sentences": 17
-      },
-      "score": 93,
-      "source": "nomura-re",
-      "title": "「Be ACTO 亀戸」、街区から地域へひろがるエリアマネジメントを推進 亀戸緑道公園・区道を活用した「まちのリビング 緑道デイ」を10 月25 日（日）に開催",
-      "warnings": [
-        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（ACTO）",
-        "読みやすさ: 文が長い（1文の平均 52.4字・60字超の文が 29% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
       "at": "2026-11-13T16:29:35.710965+00:00",
       "attempt": 0,
       "id": "4d525ab74f95595e",
@@ -30715,6 +30707,30 @@
       "warnings": [
         "初めて出たところで言い換えていない略語（THE・ANSWER・DIGEST）",
         "読みやすさ: 文が長い（1文の平均 42.8字・60字超の文が 22% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-16T06:10:10.655159+00:00",
+      "attempt": 1,
+      "id": "559572c5514c54f4",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 106.1,
+        "avg_sentence": 41.2,
+        "long_share": 0.194,
+        "max_paragraph": 185,
+        "paragraphs": 14,
+        "sentences": 36
+      },
+      "score": 95,
+      "source": "nissin",
+      "title": "清食品 外部サービスへの不正アクセスによる 個人情報漏えいに関するお知らせとお詫び",
+      "warnings": [
+        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（TOPPAN・SMS）"
       ]
     }
   ],
