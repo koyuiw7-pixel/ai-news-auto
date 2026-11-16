@@ -64,7 +64,7 @@
   "videoTitle": "年金廃止は2026年11月時点で決まっていない 言われていることと公式で確かめられること",
   "publishedAt": "2026-11-16T07:08:55.101480+00:00",
   "generatedAt": "2026-11-16T07:09:16.172831+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/pension-abolition-rumor-official-check-figure-dce76b0a.jpg",
   "model": "anthropic-api:claude-haiku-5-5",
   "affiliates": [],
   "newsType": "policy",
@@ -75,8 +75,8 @@
     }
   ],
   "todayActions": [
-    "ねんきんネットの「年金記録を確認する」から、自分の加入記録を一覧や月別で確認する",
-    "届いている「ねんきん定期便」の国民年金納付状況の欄を見て、「3号」の表示の月を確かめる"
+    "ねんきんネットの「年金記録を確認する」から、自分の加入記録を一覧や月別で確かめておく。",
+    "届いたねんきん定期便の国民年金の欄で、「3号」と表示された月を確かめて記録しておく。"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -132,5 +132,138 @@
   "detectedAt": "2026-11-16T07:10:59+00:00",
   "searchTitle": "年金は廃止される？　廃止の決定は公式に出ていない",
   "layout": "noir",
-  "summaryLine": "2025年の年金制度改正法の内容に、公的年金の支給を廃止する内容は含まれていません。"
+  "summaryLine": "2025年の年金制度改正法の内容に、公的年金の支給を廃止する内容は含まれていません。",
+  "insight": [
+    {
+      "text": "ねんきん定期便の「お客様のアクセスキー」は17桁の番号で、ユーザID発行申込みに使うと即時にユーザIDが取得できると書かれています。",
+      "source": "https://www.nenkin.go.jp/service/nenkinkiroku/torikumi/teikibin/kako/2022/r4teikibin.files/06.pdf"
+    },
+    {
+      "text": "事業所名が国のコンピュータに登録されていない場合は、お勤め先の名称に代えて「厚生年金保険」と制度名で表示され, 年金の給付には特に問題ないと書かれています。",
+      "source": "https://www.nenkin.go.jp/denshibenri_kojin/n_net/utilization/guide.files/sp04.pdf"
+    },
+    {
+      "text": "第3号の認定は今後1年間の収入の見込みで判断し、令和8年4月からは雇用契約上の年収が130万円未満であることが明らかな場合、その時点で認定すると書かれています。",
+      "source": "https://www.mhlw.go.jp/content/12500000/001746546.pdf"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "ねんきんネット",
+      "url": "https://www.nenkin.go.jp/denshibenri_kojin/n_net/utilization/guide.files/sp04.pdf",
+      "source": "https://www.nenkin.go.jp/denshibenri_kojin/n_net/utilization/guide.files/sp04.pdf",
+      "howTo": [
+        "ねんきんネット",
+        "年金記録を確認する",
+        "一覧で年金記録を確認する"
+      ],
+      "note": "1年間の保険料納付額は、原則として当年度の誕生月の4か月前までの情報です。"
+    },
+    {
+      "name": "厚生労働省 「国民の皆様の声」募集 送信フォーム",
+      "url": "https://www.mhlw.go.jp/form/pub/mhlw01/getmail",
+      "source": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000147284_00017.html",
+      "howTo": [
+        "年金制度改正法が成立しました",
+        "厚生労働省からのご案内"
+      ],
+      "note": "年金制度についてご意見・ご質問がございましたら、厚生労働省にお寄せいただくようお願い申し上げます。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "ねんきんネットの「年金記録を確認する」から、自分の加入記録を一覧や月別で確かめておく。",
+      "source": "https://www.nenkin.go.jp/denshibenri_kojin/n_net/utilization/guide.files/sp04.pdf",
+      "steps": [
+        "ねんきんネットを開き「年金記録を確認する」をタップ",
+        "「一覧で年金記録を確認する」をタップ",
+        "特にご確認いただきたい月のアイコンを確かめる"
+      ],
+      "url": "https://www.nenkin.go.jp/denshibenri_kojin/n_net/utilization/guide.files/sp04.pdf"
+    },
+    {
+      "action": "届いたねんきん定期便の国民年金の欄で、「3号」と表示された月を確かめて記録しておく。",
+      "source": "https://www.nenkin.go.jp/service/nenkinkiroku/torikumi/teikibin/kako/2022/r4teikibin.files/06.pdf",
+      "steps": [
+        "「国民年金(第1号・第3号)納付状況」の欄を見る",
+        "「3号」と表示された月を確かめる",
+        "「3号」は第3号被保険者として登録されている月と書かれている"
+      ],
+      "url": "https://www.nenkin.go.jp/service/nenkinkiroku/torikumi/teikibin/kako/2022/r4teikibin.files/06.pdf"
+    }
+  ],
+  "cause": {
+    "text": "第3号被保険者制度は昭和60年の改正で、サラリーマン世帯の専業主婦にも自分名義の年金権を持たせるために導入されたと書かれています。2025年の改正法の附則では、その在り方を検討すると定められました。",
+    "status": "background",
+    "source": "https://www.mhlw.go.jp/stf/newpage_76904.html"
+  },
+  "worries": [
+    {
+      "q": "年金が廃止になると、もう決まったのでしょうか？",
+      "a": "改正法の措置は、社会保険の加入対象の拡大、在職老齢年金制度の見直し、遺族年金の見直しなどで、年金の支給を廃止する内容は挙げられていません。",
+      "source": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000147284_00017.html",
+      "action": "ねんきんネットの「年金記録を確認する」から、自分の加入記録を一覧や月別で確かめておく。",
+      "actionSource": "https://www.nenkin.go.jp/denshibenri_kojin/n_net/utilization/guide.files/sp04.pdf"
+    },
+    {
+      "q": "専業主婦の年金の記録は消えてしまうの？",
+      "a": "第3号被保険者の期間は、保険料納付済期間として基礎年金の給付に反映されます。本人は保険料を負担せず、第2号被保険者全体で基礎年金の費用を負担する仕組みです。",
+      "source": "https://www.mhlw.go.jp/content/12500000/001746546.pdf",
+      "action": "届いたねんきん定期便の国民年金の欄で、「3号」と表示された月を確かめて記録しておく。",
+      "actionSource": "https://www.nenkin.go.jp/service/nenkinkiroku/torikumi/teikibin/kako/2022/r4teikibin.files/06.pdf"
+    },
+    {
+      "q": "第3号の制度は、いつ、どう変わるの？",
+      "a": "厚生労働省の検討会は2026年9月4日に第1回が開かれ、第3号被保険者の実態調査の結果は令和8年度中に取りまとめると説明されました。",
+      "source": "https://www.mhlw.go.jp/stf/newpage_76904.html",
+      "action": "厚生労働省の検討会ページで、議事録や資料が公開されているか見て、議論の進み具合を確かめる。"
+    },
+    {
+      "q": "年金は今までどおり、偶数月に支払われるの？",
+      "a": "日本年金機構の資料では、年金は偶数月の15日に前2か月分が支払われると案内されています。15日が土日や休日なら直前の営業日に支払われます。",
+      "source": "https://www.nenkin.go.jp/service/riyoushabetsu/nenkiniin/kenshu/1.files/kyufu2026_02.pdf",
+      "action": "毎年6月に届く年金振込通知書で、支払額や受取先の金融機関が合っているか確かめる。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "第3号のままか、収入を増やすか迷ったら",
+      "situation": "パートの年収が130万円に近づいている",
+      "recommend": "今年の収入の見込みを確かめてから決める",
+      "reason": "第3号の認定は今後1年間の収入の見込みで判断し、年間収入130万円未満が必要と書かれています（60歳以上などは180万円未満）。令和8年4月からは、雇用契約上の年収が130万円未満と明らかならその時点で認定されます。",
+      "source": "https://www.mhlw.go.jp/content/12500000/001746546.pdf"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "17桁の番号で、ユーザIDがすぐ取れる",
+    "cause": "第3号の制度はなぜできて、今どう検討中か",
+    "steps": "今日は年金記録と定期便の「3号」を確かめる",
+    "desk": "ねんきんネットと厚労省の窓口",
+    "worries": "廃止されるのか、支払いや記録は大丈夫？",
+    "guide": "収入の見込みで第3号のままかを決める"
+  },
+  "depthAt": "2026-11-16T07:20:21+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "年金廃止は決まっていない",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-16T07:21:42+00:00"
+  },
+  "imageFocus": {
+    "x": 0.469,
+    "y": 0.411,
+    "box": [
+      0.016,
+      0.042,
+      0.922,
+      0.78
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/pension-abolition-rumor-official-check-figure-dce76b0a.jpg"
+  }
 }
