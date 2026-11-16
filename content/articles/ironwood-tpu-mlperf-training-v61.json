@@ -84,8 +84,8 @@
   "newsType": "product",
   "faq": [],
   "todayActions": [
-    "MLCommonsのMLPerf Training結果一覧で、自社の用途に近い試験の条件を確認する",
-    "Google Cloudの案内でIronwoodの提供地域と料金が出ているか確かめる"
+    "MLCommonsの結果表で、自社の用途に近い試験の条件を確かめる",
+    "Google公式ブログのリンク先で、今回の提出の詳細な結果を確かめる"
   ],
   "qualityBar": {
     "score": 7,
@@ -139,5 +139,119 @@
     ],
     "ar": 1.5,
     "src": "https://ai-tech-express.jp/img/ironwood-tpu-mlperf-training-v61-66d95492.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "Closed区分は同じモデルで条件をそろえて比べる区分で、Open区分はモデルを変えたり再学習したりしてよい区分です。",
+      "source": "https://mlcommons.org/benchmarks/training/"
+    },
+    {
+      "text": "公開された結果は後から修正や無効になることがあり、「View Change Log」で変更履歴を確かめられます。",
+      "source": "https://mlcommons.org/benchmarks/training/"
+    },
+    {
+      "text": "MLCommonsの結果表は絞り込みができ、上のタブを切り替えると結果を視覚的に見られます。",
+      "source": "https://mlcommons.org/benchmarks/training/"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "MLCommons MLPerf Training 結果表（interactive table）",
+      "url": "https://results.mlcommons.org/training",
+      "source": "https://mlcommons.org/benchmarks/training/",
+      "howTo": [
+        "Results",
+        "interactive table"
+      ],
+      "note": "絞り込みやタブで、必要な試験だけを表示して比べられる。"
+    },
+    {
+      "name": "MLPerf Training v6.1 結果ページ（MLCommons）",
+      "url": "https://mlcommons.org/2026/11/mlperf-training-v6-1-results/",
+      "source": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/training-performance-benchmarks-tpus/",
+      "note": "Google公式ブログ本文の「click here」から辿れる、今回の結果の詳細ページ。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "MLCommonsの結果表で、自社の用途に近い試験の条件を確かめる",
+      "source": "https://mlcommons.org/benchmarks/training/",
+      "steps": [
+        "「interactive table」を開く",
+        "フィルターで条件を絞る",
+        "上のタブで結果を確かめる"
+      ],
+      "url": "https://results.mlcommons.org/training"
+    },
+    {
+      "action": "Google公式ブログのリンク先で、今回の提出の詳細な結果を確かめる",
+      "source": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/training-performance-benchmarks-tpus/",
+      "steps": [
+        "Google公式ブログの本文を開く",
+        "「click here」を押す",
+        "提出の結果ページを見る"
+      ],
+      "url": "https://mlcommons.org/2026/11/mlperf-training-v6-1-results/"
+    }
+  ],
+  "cause": {
+    "text": "今回の結果は、MLPerf Training v6.1という性能テストの回で公表されたものです。このテストは、AIが決められた品質に達するまでの時間を測る仕組みで、業界団体のMLCommonsが運営しています。",
+    "status": "background",
+    "source": "https://mlcommons.org/benchmarks/training/"
+  },
+  "worries": [
+    {
+      "q": "この数字は、ほかのAIや試験と比べてもいい？",
+      "a": "MLPerfでは試験ごとにデータセットと目標品質が決まっています。Closed区分は同じモデルで比べる区分で、Open区分はモデルを変えてよいため、並べて速さを比べにくいです。",
+      "source": "https://mlcommons.org/benchmarks/training/",
+      "action": "結果表で自社の用途に近い試験を選び、同じ試験の行どうしだけを比べて読む"
+    },
+    {
+      "q": "測定の結果にどのくらいブレがある？",
+      "a": "結果は複数回の測定から最高値と最低値を除いて平均されます。それでも誤差は残り、画像系で約±2.5%、ほかの試験で約±5%とされています。",
+      "source": "https://mlcommons.org/benchmarks/training/",
+      "action": "数字の差が小さいときは、約±5%の誤差の範囲内かどうかを考えてから判断する"
+    },
+    {
+      "q": "Ironwoodは大規模な学習でも速さを保てる？",
+      "a": "ページでは、8,192基のIronwood TPUが1.70分で目標品質に到達し、4,096基までチップを増やしたときの効率は96%だと書かれています。",
+      "source": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/training-performance-benchmarks-tpus/",
+      "action": "大規模な学習を考えるなら、本家の結果ページで提出の条件と台数を必ず確かめる"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "大規模な学習にIronwoodを検討すべき？",
+      "situation": "大規模な事前学習を検討している",
+      "recommend": "提供条件を確かめてから検討する",
+      "reason": "8,192基で1.70分、4,096基までの効率は96%と書かれています。日本での提供や料金は、このページでは分からないため別に確かめる必要があります。",
+      "source": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/training-performance-benchmarks-tpus/"
+    },
+    {
+      "question": "どの区分の結果を見ればよい？",
+      "situation": "同じモデルでの比較を知りたい",
+      "recommend": "Closed区分の結果を先に見る",
+      "reason": "Closed区分は同じモデルで条件をそろえて比べる区分です。Open区分はモデルを変えてよいため、Closed区分と直接比べると条件が違うことに注意が必要です。",
+      "source": "https://mlcommons.org/benchmarks/training/"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "同じ条件で比べたいなら、区分と結果表を見る",
+    "cause": "今回の結果が何を測るテストか",
+    "steps": "自社に近い試験を結果表で探す",
+    "desk": "結果を確かめる公式の入口",
+    "worries": "この数字は比べてもいい？",
+    "guide": "大規模学習を考えるときの見方"
+  },
+  "depthAt": "2026-11-16T18:15:23+00:00",
+  "updatedAt": "2026-11-16T18:15:23+00:00",
+  "updates": [
+    {
+      "at": "2026-11-16T18:15:23+00:00",
+      "kind": "facts",
+      "title": "公式の資料をもとに、「なるほどの要点」・「公式の窓口」・「今日やること」・「理由」・「よくある不安」・「判断の目安」を追記しました",
+      "sourceUrl": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/training-performance-benchmarks-tpus/",
+      "sourceName": "Google公式ブログ"
+    }
+  ]
 }

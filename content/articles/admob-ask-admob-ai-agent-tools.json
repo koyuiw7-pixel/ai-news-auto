@@ -23,7 +23,7 @@
   ],
   "threadsStyle": 3,
   "writingVoice": "honest",
-  "lede": "AdMobを使うアプリ開発者向けに、広告設定の問題や収益機会を見つける対話型AI「Ask AdMob」のテストが今後数カ月かけて始まります。広告コードの実装を支援するagent skillsはすでに利用でき、AdMobと開発環境をつなぐMCPサーバーも早期テスト中です。",
+  "lede": "AdMobでアプリに広告を出している開発者は、Geminiを使う対話型AI「Ask AdMob」で、設定ミスの発見や収益機会の提案をアカウントの中で頼めるようになる見込みです。テストは今後数カ月かけて始まり、利用者に代わって操作する機能は来年（2027年）後半に加わる予定です。使っていない人には、今回の発表で変わることはありません。",
   "description": "GoogleがAdMob向けに、設定の問題や収益機会を見つける対話型AI「Ask AdMob」を発表。広告コードの実装を支援するagent skillsや、2027年初めにテスト対象を広げる予定のMCPサーバーも紹介します。",
   "keywords": [
     "AdMob",
@@ -67,8 +67,8 @@
       "Ask AdMobとMCPサーバーは段階的な提供です。料金や日本での提供は未発表なので、公式の案内を待つ必要があります。"
     ]
   },
-  "body": "AdMob（Googleのアプリ向け広告収益化サービス）を使っているアプリ開発者に関係する発表です。Ask AdMobのテストは今後数カ月かけて始まります。\n\nAdMobは、アプリに広告を出して収益を得る仕組みです。今回のAI機能は、広告の設定や運用の手間を減らすために用意されました。\n\nGoogle公式ブログによると、新しいAIツールはAsk AdMob、agent skills、MCPサーバーの3つです。広告設定の管理や連携エラーの修正などを支援します。\n\n## Ask AdMobは管理画面の中で相談できるAI\n\nAsk AdMobは、Geminiで作られた対話型のエージェントです。AdMobのアカウント内で使います。AdMobの収益化のベストプラクティスを学習しており、製品専門家のように問題の修正や収益機会の発見を手伝うとされています。\n\nGoogleは、次のような機能を挙げています。\n\n- **設定の不具合を見つける**：トラブルシューティングのハブが、設定の異常やSDK（広告を表示するための開発ツール）の組み込みの問題を示します。アプリで広告がどう読み込まれているかを把握し、収益に響く問題への対処を提案します。\n- **収益の機会を見つける**：同業の比較データをもとに、収益増が予測されるSDK入札社の追加を提案し、メディエーショングループ（複数の広告会社の配信をまとめる設定）の最適化を助けます。第三者ネットワークの設定も自動で確認し、収益に影響する打ち間違いやフロア価格（最低入札価格）のずれを見つけます。\n- **ブランドセーフティのルールを言葉で作る**：ブロックリストを手作業で管理する代わりに、AdMobの画面で自然な言葉の指示を使い、独自のルールを設定できます。\n\n## Ask AdMobは今後数カ月かけてテスト開始\n\nGoogleは、これらの機能のテストを今後数カ月かけて始めます。2027年中には、利用者に代わって操作を実行する、より高度な機能も加える予定です。提案は適用前に利用者が確認し、承認します。\n\n## agent skillsは利用可能、MCPサーバーは早期テスト中\n\nこれまで広告枠の設定では、Webの管理画面を操作し、広告ユニットIDをコピー＆ペーストし、コードの外で設定ファイルを管理していました。agent skillsと開発中のMCPサーバーにより、使い慣れたAIエージェントで広告コードの作成や編集、検証を進められるようにします。\n\nagent skillsは、テスト済みの作業手順書をAIエージェントに渡す仕組みです。次のような作業が対象です。\n\n- Google Mobile Ads Next-Gen SDKへの移行\n- SDKの実装の検証\n- アプリへの新しい広告フォーマットの実装\n\nこれらは、Googleの開発者サイトで探せます。\n\nAdMob MCPサーバーは、開発環境とAdMobを直接つなぐ仕組みです。MCPは、AIが外部のデータや機能につながるための共通の規格です。Googleによると、AIエージェントがアカウントのデータを読み、新しい広告ユニットを作り、メディエーションの設定を管理できるようになります。本番に反映する前に、利用者が変更を確認して承認します。現在は早期テスト中で、2027年初めに対象の開発者が増える予定です。\n\n## 2027年にはAIエージェントの機能も拡大\n\nGoogleは、2027年を通じて、アプリ開発者向けにさらに幅広く高度なAIツールを出すとしています。製品内のAI機能とAIエージェントの機能の両方を広げ、日常の運用作業をより多く引き受ける方針です。\n\n## まず利用できるagent skillsを確認\n\nAsk AdMobのテストは今後数カ月かけて始まり、MCPサーバーは2027年初めにテスト対象が広がる予定です。今すぐすべてを使えるわけではありません。\n\nすでに利用できるagent skillsは、Next-Gen SDKへの移行や実装の検証といった具体的な作業に使えます。AIエージェントを使って開発している人は、Googleの開発者サイトで対象の手順を確認できます。\n\nAsk AdMobの提案は、適用前に利用者が確認して承認します。MCPサーバーを使った変更も、本番に反映する前に利用者が確認して承認する流れです。",
-  "easy": "## ひとことで言うと\n\nGoogleがアプリ広告サービスAdMobに、AIの相談役「Ask AdMob」を加えます。設定の誤りを見つけたり、広告コードの作業を手伝ったりします。\n\n## 広告の設定を、AIに相談できるようになる\n\nAdMobは、アプリに広告を表示して収益を得るためのサービスです。Ask AdMobは、その管理画面の中で使える対話型のAIです。\n\n広告の読み込み状況を見て、収益に響く問題を教えてくれます。ブランドに合わない広告を避けるルールも、ふだんの言葉で指示して作れます。\n\nAIの提案は、アプリに反映される前に必ず人が確認して承認します。\n\n## 広告コードの作業はAIエージェントに\n\n「agent skills」は、AIエージェントに渡す作業手順書のようなものです。新しい広告SDKへの移行や、実装が正しいかの検証などを任せられます。すでに開発者サイトで公開されています。\n\n開発環境とAdMobをつなぐ「MCPサーバー」も準備中です。早期テスト中で、来年（2027年）初めに対象の開発者が増える予定です。\n\n料金と日本での提供は、まだ発表されていません。",
+  "body": "AdMob（Googleのアプリ向け広告収益化サービス）を使っているアプリ開発者に関係する発表です。Ask AdMobは今後数カ月かけてテストが始まる段階で、料金や日本での提供はまだ発表されていません。使っていない人には何も変わりません。\n\nAdMobは、アプリに広告を出して収益を得る仕組みです。今回のAI機能は、その運用の手間を減らすために用意されました。\n\nGoogle公式ブログによると、新しいAI機能はAsk AdMob、agent skills、MCPサーバー（AIが外部のデータや機能につながるための共通の規格を使う仕組み）の3つです。いずれもGoogle AIで作られ、広告設定の管理や連携エラーの修正を軽くする狙いです。\n\n## Ask AdMobは管理画面の中で相談できるAI\n\nAsk AdMobは、Geminiで作られた対話型のエージェントです。AdMobのアカウントの中で使います。AdMobの収益化のベストプラクティスを学習していて、AdMobの製品専門家のように問題の修正や収益機会の発見を手伝うとされています。\n\n具体的には、次の3つができます。\n\n- **設定の不具合を見つける**：トラブルシューティングのハブが、設定の異常やSDK（広告を表示する部品）の組み込みの問題を示します。広告がアプリでどう読み込まれているかが見えるため、収益に響く問題の対処を提案します。\n- **収益の機会を見つける**：同業の比較データをもとに、収益の増加が見込まれるSDK入札社の追加を提案し、メディエーショングループ（複数の広告会社の配信をまとめる設定）の最適化を助けます。第三者ネットワークの設定も自動で確認し、収益に響く打ち間違いやフロア価格（最低入札価格）のずれを先に見つけます。\n- **ブランドセーフティのルールを言葉で作る**：ブロックリストを手作業で管理する代わりに、AdMobの画面で自然な言葉の指示を使い、独自のルールを設定できます。\n\n## 提供は数カ月かけて、実行機能は来年\n\nテストは今後数カ月かけて始まります。来年（2027年）後半には、利用者に代わって操作を実行する高度な機能も加える予定です。すべての提案は、適用の前に人が確認して承認します。\n\n## agent skillsは公開済み、MCPサーバーは準備中\n\nこれまで広告枠の設定では、Webの管理画面を操作し、広告ユニットIDをコピー＆ペーストし、コードの外で設定ファイルを管理していました。今回は、使い慣れたAIエージェントでこれらを進められるようにします。\n\nagent skillsは、テスト済みの作業手順書をAIエージェントに渡す仕組みです。次のような作業が対象です。\n\n- Google Mobile Ads Next-Gen SDKへの移行\n- SDKの実装の検証\n- アプリへの新しい広告フォーマットの実装\n\nこれらは、Googleの開発者サイトで探せます。\n\nAdMob MCPサーバーは、開発環境とAdMobを直接つなぐ仕組みです。MCPは、AIが外部のデータや機能につながるための共通の規格です。完成すると、AIエージェントがアカウントのデータを読み、新しい広告ユニットを作り、メディエーションの設定を管理できるようになります。本番に反映する前に、人が確認して承認します。現在は早期テストで、来年（2027年）初めに対象の開発者が増える予定です。\n\n## 2027年には更に幅広いAI機能が出る\n\nGoogleは、2027年を通じて、アプリ開発者向けにもっと幅広く高度なAIツールを出すとしています。製品の中のAI機能と、AIエージェントの機能の両方を広げ、日常の運用作業をより多く引き受ける方針です。\n\n## 広告の設定を手作業で行っている開発者は、テストの始まりから確認する\n\n- 広告ユニットIDのコピー＆ペーストや設定ファイルの管理に時間がかかっている人は、テストが始まったら、Ask AdMobによる設定の不具合の確認から試すとよいでしょう。\n- 日常の運用をAIエージェントに任せたい人は、MCPサーバーが来年（2027年）初めに対象の開発者へ広がるのを待つことになります。\n- AdMobを使っていない人は、今回の発表で手を動かす必要はありません。\n\n## サイソクの見方：まず使えるagent skillsから試す\n\nAsk AdMobは数カ月かけて、MCPサーバーは来年（2027年）初めにテストが広がる段階です。今すぐ全部を使えるわけではありません。\n\nすでに公開されているagent skillsは、Next-Gen SDKへの移行や実装の検証といった具体的な作業で試せます。AIエージェントを使った開発をしている人なら、先に確認するとよいでしょう。\n\nAIの提案は必ず承認を挟む設計です。広告設定の変更が自動で本番に反映される形ではないため、運用の責任範囲は今と大きく変わらないとみられます。\n\n## まだ分からないこと\n\n- Ask AdMobの料金と、利用できる対象の範囲はまだ発表されていません。\n- Ask AdMobやMCPサーバーを日本で使えるかどうかは、まだ発表されていません。\n- Ask AdMobが利用者に代わって操作する機能の具体的な内容は、来年（2027年）後半に向けて検討が続いています。\n",
+  "easy": "## ひとことで言うと\n\nGoogleがアプリ広告サービスAdMobに、AIの相談役「Ask AdMob」を加えます。設定の誤りを見つけたり、広告コードの作業を手伝ったりします。\n\n## 広告の設定を、AIに相談できるようになる\n\nAdMobは、アプリに広告を表示して収益を得るためのサービスです。Ask AdMobは、その管理画面の中で使える対話型のAIです。\n\n広告の読み込み状況を見て、収益に響く問題を教えてくれます。ブランドに合わない広告を避けるルールも、ふだんの言葉で指示して作れます。\n\nAIの提案は、アプリに反映される前に必ず人が確認して承認します。\n\n## 広告コードの作業はAIエージェントに\n\n「agent skills」は、AIエージェントに渡す作業手順書です。新しい広告SDKへの移行や、実装が正しいかの検証などを任せられます。すでに開発者サイトで公開されています。\n開発環境とAdMobをつなぐ「MCPサーバー」も準備中です。早期テスト中で、来年（2027年）初めに対象の開発者が増える予定です。\n料金と日本での提供は、まだ発表されていません。",
   "channel": "Google公式ブログ",
   "channelId": "",
   "channelSlug": "google-blog-all",
@@ -91,36 +91,13 @@
     }
   ],
   "todayActions": [
-    "AdMobの開発者サイトで、agent skillsにNext-Gen SDKへの移行手順があるか確認する",
-    "使っているAIエージェントに、SDK実装の検証スキルを渡せるか試す",
-    "第三者ネットワークの設定にある打ち間違いとフロア価格のずれを、手元で点検する"
+    "開発者サイトで、agent skillsにNext-Gen SDKへの移行手順があるか確認する",
+    "使っているAIエージェントに、SDK実装の検証スキルを渡せるか試す"
   ],
   "relatedSlugs": [
     "ask-maps-holiday-travel-features",
     "apple-creator-studio-new-ai-features"
   ],
-  "qualityBar": {
-    "score": 5,
-    "missing": [
-      1,
-      3,
-      6
-    ],
-    "notes": {
-      "1": "最初の3行にだれに・どのくらいが無い",
-      "3": "早見の表・式つきの計算・「〜の人は〜」の判断の目安が無い",
-      "6": "言い換えの無い略語（MCP）"
-    },
-    "checkedAt": "2026-11-16T17:01:55+00:00",
-    "before": [
-      1,
-      3,
-      6,
-      7
-    ],
-    "repaired": false,
-    "repairLater": true
-  },
   "qualityScore": 93,
   "breaking": true,
   "sourcePublishedAt": "2026-11-16T17:00:00+00:00",
@@ -151,6 +128,130 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/admob-ask-admob-ai-agent-tools-figure-60ed7fda.jpg"
+  },
+  "sectionsPolishedAt": "2026-11-16T18:13:52+00:00",
+  "insight": [
+    {
+      "text": "Ask AdMobの提案は、適用される前に人が確認して承認する形です。MCPサーバーも、本番に反映する前に人が承認すると書かれています。",
+      "source": "https://blog.google/products/publisher-connections/new-google-admob-tools/"
+    },
+    {
+      "text": "MCPサーバーは現在「early testing」の段階で、対象の開発者は来年（2027年）初めに増える予定と書かれています。",
+      "source": "https://blog.google/products/publisher-connections/new-google-admob-tools/"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "Google 開発者サイト（AdMob agent skills）",
+      "url": "https://developers.google.com/admob/android/next-gen/agent-skills",
+      "source": "https://blog.google/products/publisher-connections/new-google-admob-tools/",
+      "note": "テスト済みの作業手順書（agent skills）を探せる場所と書かれています。移行、SDKの検証、新しい広告フォーマットの実装が対象です。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "開発者サイトで、agent skillsにNext-Gen SDKへの移行手順があるか確認する",
+      "source": "https://blog.google/products/publisher-connections/new-google-admob-tools/",
+      "steps": [
+        "開発者サイトを開く",
+        "agent skillsを探す",
+        "Next-Gen SDKへの移行の項目を確認する"
+      ],
+      "url": "https://developers.google.com/admob/android/next-gen/agent-skills"
+    },
+    {
+      "action": "使っているAIエージェントに、SDK実装の検証スキルを渡せるか試す",
+      "source": "https://blog.google/products/publisher-connections/new-google-admob-tools/",
+      "steps": [
+        "開発者サイトでagent skillsを探す",
+        "SDKの実装の検証に当たるものを選ぶ",
+        "AIエージェントに渡して試す"
+      ],
+      "url": "https://developers.google.com/admob/android/next-gen/agent-skills"
+    }
+  ],
+  "cause": {
+    "text": "広告設定の手作業、連携エラーの修正、ブランドセーフティの点検が開発の時間を取られるため、AIで運用の手間を減らす狙いと書かれています。",
+    "status": "background",
+    "source": "https://blog.google/products/publisher-connections/new-google-admob-tools/"
+  },
+  "worries": [
+    {
+      "q": "Ask AdMobは、いつから使えるようになる？",
+      "a": "テストは今後数カ月かけて始まると書かれています。利用者に代わって操作する高度な機能は、来年（2027年）後半に加える予定です。",
+      "source": "https://blog.google/products/publisher-connections/new-google-admob-tools/",
+      "action": "テストの案内が出たら、対象になるかをAdMobの管理画面で確認する。"
+    },
+    {
+      "q": "AIが勝手に広告設定を変えてしまわない？",
+      "a": "すべての提案は、適用の前に人が確認して承認すると書かれています。MCPサーバーも、本番に反映する前に人が承認します。",
+      "source": "https://blog.google/products/publisher-connections/new-google-admob-tools/",
+      "action": "AIの提案を適用する前に、内容を確認してから承認する運用にする。"
+    },
+    {
+      "q": "今の広告設定は、AIでどう変わる？",
+      "a": "これまではWeb管理画面で操作し、広告ユニットIDをコピー＆ペーストし、設定ファイルを管理していたと書かれています。agent skillsでは、使い慣れたAIエージェントから進められます。",
+      "source": "https://blog.google/products/publisher-connections/new-google-admob-tools/",
+      "action": "まず開発者サイトでagent skillsの移行や検証の作業手順書を確認する。"
+    },
+    {
+      "q": "MCPサーバーは、いま使える？",
+      "a": "早期テスト中で、来年（2027年）初めに対象の開発者が増える予定と書かれています。今すぐ全員が使える段階ではありません。",
+      "source": "https://blog.google/products/publisher-connections/new-google-admob-tools/",
+      "action": "MCPサーバーの対象が広がるまで、今の設定の手順を手元で整理しておく。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "AdMobのAI機能を、今すぐ使うか待つか？",
+      "situation": "AIエージェントで開発をしている",
+      "recommend": "agent skillsから先に確かめるとよい",
+      "reason": "agent skillsは移行や検証などの作業手順書として、今すぐ使える段階と書かれています。Ask AdMobとMCPサーバーはテスト段階で、全部が使えるわけではありません。",
+      "source": "https://blog.google/products/publisher-connections/new-google-admob-tools/"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "AIの提案は、適用前に人が承認する",
+    "cause": "なぜAIを入れるのか、いま分かっていること",
+    "steps": "今日試せるのはagent skillsから",
+    "desk": "公式の開発者サイトはどこ？",
+    "worries": "今の広告設定は、どう変わる？",
+    "guide": "今すぐ使うか、待つか迷ったら"
+  },
+  "depthAt": "2026-11-16T18:14:50+00:00",
+  "updatedAt": "2026-11-16T18:15:23+00:00",
+  "updates": [
+    {
+      "at": "2026-11-16T18:14:50+00:00",
+      "kind": "facts",
+      "title": "公式の資料をもとに、「なるほどの要点」・「公式の窓口」・「今日やること」・「理由」・「よくある不安」・「判断の目安」を追記しました",
+      "sourceUrl": "https://blog.google/products/publisher-connections/new-google-admob-tools/",
+      "sourceName": "Google公式ブログ"
+    },
+    {
+      "at": "2026-11-16T18:15:23+00:00",
+      "kind": "facts",
+      "title": "公式の資料を読み直し、対象・数字・手続きを書き足しました",
+      "sourceUrl": "https://blog.google/products/publisher-connections/new-google-admob-tools/",
+      "sourceName": "Google公式ブログ"
+    }
+  ],
+  "qualityBar": {
+    "score": 7,
+    "missing": [
+      6
+    ],
+    "notes": {
+      "6": "言い換えの無い略語（MCP）"
+    },
+    "checkedAt": "2026-11-16T18:15:47+00:00",
+    "before": [
+      1,
+      3,
+      6
+    ],
+    "repaired": true,
+    "repairedLaterAt": "2026-11-16T18:15:23+00:00"
   },
   "gptReview": {
     "reviewedBy": "gpt-6.1-terra",

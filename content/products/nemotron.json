@@ -6,45 +6,35 @@
   "companyName": "NVIDIA",
   "category": "AIモデル",
   "overview": {
-    "text": "Nemotronは、NVIDIAが提供する特化型で効率的なAIエージェントやモデルのオープンな基盤です。2026年10月から11月にかけて、音声認識、科学研究、個人情報検出などの新しいモデルやデータセットが発表されました。",
+    "text": "Nemotronは、NVIDIAが提供するAIエージェント構築のためのオープンなモデル、データ、技術群です。2026年10月以降、科学研究や音声処理、個人情報検出など多岐にわたる用途で順次発表されています。",
     "sources": [
       "nvidia-nemotron-for-science",
       "nemotron-pii-japan-finance-datasets",
+      "korea-openshell-agentic-ai-security",
       "nvidia-nemotron-35-transcribe"
     ]
   },
   "facts": [
     {
       "label": "提供開始",
-      "value": "2026年10月〜11月に順次公開",
+      "value": "2026年10月より順次",
       "sources": [
-        "nvidia-nemotron-for-science",
-        "nemotron-pii-japan-finance-datasets",
-        "nvidia-nemotron-35-transcribe"
+        "nvidia-nemotron-35-transcribe",
+        "nvidia-nemoclaw-agent-platform"
       ]
     },
     {
       "label": "日本での提供",
-      "value": "日本から利用可能",
+      "value": "利用可能",
       "sources": [
-        "nemotron-pii-japan-finance-datasets",
-        "nvidia-nemotron-35-transcribe"
-      ]
-    },
-    {
-      "label": "使える場所",
-      "value": "Hugging Faceなど",
-      "sources": [
-        "nvidia-nemotron-for-science",
         "nemotron-pii-japan-finance-datasets",
         "nvidia-nemotron-35-transcribe"
       ]
     },
     {
       "label": "向いている人",
-      "value": "AI開発者や研究者",
+      "value": "AI開発者・研究者",
       "sources": [
-        "nvidia-nemotron-for-science",
         "nemotron-pii-japan-finance-datasets",
         "nvidia-nemotron-35-transcribe"
       ]
@@ -52,46 +42,33 @@
   ],
   "capabilities": [
     {
-      "text": "40言語の文字起こしや31言語の翻訳、話者識別を1つのモデルで処理できます。",
-      "sources": [
-        "nvidia-nemotron-35-transcribe"
-      ]
-    },
-    {
-      "text": "化学推論データ約5万問を活用した創薬や材料の研究支援が可能です。",
+      "text": "化学推論の学習・評価用データ（約5万問）の提供。",
       "sources": [
         "nvidia-nemotron-for-science"
       ]
     },
     {
-      "text": "日本語文書向けの個人情報検出・マスキング用の合成データを約10万件提供します。",
+      "text": "日本語文書の個人情報検出・マスキング用合成データ（約10万件）の提供。",
       "sources": [
         "nemotron-pii-japan-finance-datasets"
       ]
     },
     {
-      "text": "金融向けの合成ペルソナを900万件収録し、市場調査などに活用できます。",
-      "sources": [
-        "nemotron-pii-japan-finance-datasets"
-      ]
-    },
-    {
-      "text": "安全な実行環境OpenShellにより、エージェントのアクセスをポリシーで制御できます。",
-      "sources": [
-        "nvidia-nemoclaw-agent-platform",
-        "nvidia-gtc-berlin-2026-vera-rubin-openshell"
-      ]
-    }
-  ],
-  "pricing": [
-    {
-      "text": "モデルの重みやデータはオープンソースとして無償公開されています。",
+      "text": "多言語音声認識、話者識別、翻訳を1つのモデルで処理。",
       "sources": [
         "nvidia-nemotron-35-transcribe"
       ]
     },
     {
-      "text": "実行には対応するNVIDIA製GPU環境が必要なため、インフラの利用コストが別途発生します。",
+      "text": "金融向け合成ペルソナ（900万件）を用いたシミュレーション。",
+      "sources": [
+        "nemotron-pii-japan-finance-datasets"
+      ]
+    }
+  ],
+  "pricing": [
+    {
+      "text": "モデルやデータはオープンウェイトとして無償公開されています。",
       "sources": [
         "nvidia-nemotron-35-transcribe"
       ]
@@ -99,13 +76,13 @@
   ],
   "japan": [
     {
-      "text": "Hugging Faceにアクセスできる環境があれば、日本からモデルをダウンロードして試すことができます。",
+      "text": "Hugging Face等からダウンロードして利用可能です。",
       "sources": [
         "nvidia-nemotron-35-transcribe"
       ]
     },
     {
-      "text": "理化学研究所のAIスーパーコンピューター「RIKYU」の基盤でも利用可能です。",
+      "text": "理化学研究所のAIスーパーコンピューターでも利用できます。",
       "sources": [
         "nvidia-nemotron-for-science"
       ]
@@ -113,65 +90,50 @@
   ],
   "howto": [
     {
-      "text": "Hugging FaceやModelScopeのページからモデルやデータセットをダウンロードして利用します。",
+      "text": "Hugging FaceやModelScopeからモデルやデータを取得します。",
       "sources": [
         "nvidia-nemotron-for-science",
-        "nemotron-pii-japan-finance-datasets",
         "nvidia-nemotron-35-transcribe"
       ]
     },
     {
-      "text": "組み込み機器向けにはTensorRT Edge-LLMを使い、コマンドラインから実行できます。",
+      "text": "DGX Spark等の環境でローカル実行が可能です。",
       "sources": [
+        "nvidia-nemotron-for-science",
         "nvidia-tensorrt-edge-llm-edge-ai"
       ]
     }
   ],
   "differences": [
     {
-      "text": "音声処理では、複数のタスクを1つのモデルに統合し、自然言語の指示で制御可能になりました。",
+      "text": "音声処理において、複数タスクを1つのモデルで統合処理可能になりました。",
       "sources": [
         "nvidia-nemotron-35-transcribe"
-      ]
-    },
-    {
-      "text": "エージェント構築では、既存の仕組みを書き直さず、最適化と安全な実行環境を統合できます。",
-      "sources": [
-        "nvidia-nemoclaw-agent-platform"
       ]
     }
   ],
   "faq": [
     {
-      "q": "無料で使える？",
-      "a": "モデルやデータセットは無償公開されていますが、実行には対応するGPU環境が必要です。",
+      "q": "無料で使えますか？",
+      "a": "モデルやデータはオープンウェイトとして無償公開されています。",
       "sources": [
         "nvidia-nemotron-35-transcribe"
       ]
     },
     {
-      "q": "誰に向いている？",
-      "a": "AIの開発を進めるエンジニアや、化学・医療・金融などの分野で研究を行う開発者に向いています。",
+      "q": "どのような用途に向いていますか？",
+      "a": "科学推論、個人情報検出、音声認識など用途に応じたモデル群です。",
       "sources": [
         "nvidia-nemotron-for-science",
-        "nemotron-pii-japan-finance-datasets"
+        "nvidia-nemotron-35-transcribe"
       ]
     },
     {
-      "q": "どこから入手できる？",
-      "a": "Hugging FaceやModelScopeのプラットフォームから入手できます。",
+      "q": "誰が使うことを想定していますか？",
+      "a": "AI開発者や研究者向けに設計されています。",
       "sources": [
-        "nvidia-nemotron-for-science",
         "nemotron-pii-japan-finance-datasets",
         "nvidia-nemotron-35-transcribe"
-      ]
-    },
-    {
-      "q": "安全性はどう確保する？",
-      "a": "OpenShellという実行環境を使い、ポリシーに基づいてエージェントの操作を制限します。",
-      "sources": [
-        "nvidia-nemoclaw-agent-platform",
-        "nvidia-gtc-berlin-2026-vera-rubin-openshell"
       ]
     }
   ],
@@ -184,12 +146,12 @@
     {
       "date": "2026-11-10",
       "slug": "nemotron-pii-japan-finance-datasets",
-      "event": "日本語PIIデータと金融ペルソナを公開"
+      "event": "日本語個人情報検出データ等を公開"
     },
     {
       "date": "2026-11-17",
       "slug": "nvidia-nemotron-for-science",
-      "event": "Nemotron for Scienceを公開"
+      "event": "科学AI向けNemotron for Scienceを発表"
     }
   ],
   "related": [
@@ -214,9 +176,9 @@
     "nvidia-nemotron-halloween-monsterhouse",
     "nvidia-nemotron-35-transcribe"
   ],
-  "signature": "760a6b8e9a93f13a",
-  "primarySignature": "f5c93ede2af03f9c",
+  "signature": "8ff3cf43d538f613",
+  "primarySignature": "2576ed36181a2336",
   "model": "gemini-3.1-flash-lite",
   "createdAt": "2026-10-29T17:50:17+00:00",
-  "updatedAt": "2026-11-16T16:43:55+00:00"
+  "updatedAt": "2026-11-16T18:13:37+00:00"
 }
