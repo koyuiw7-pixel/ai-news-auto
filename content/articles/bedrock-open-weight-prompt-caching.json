@@ -1,0 +1,180 @@
+{
+  "slug": "bedrock-open-weight-prompt-caching",
+  "sourceType": "web",
+  "sourceUrl": "https://aws.amazon.com/blogs/machine-learning/use-prompt-caching-with-open-weight-models-on-amazon-bedrock/",
+  "sourceName": "AWS Machine Learning Blog",
+  "title": "Bedrockのオープンウェイトモデルで明示的キャッシュが利用可能に　入力コスト削減",
+  "seoTitle": "Bedrockのプロンプトキャッシュとは？オープンモデル対応",
+  "threadsPost": "AWSでAIアプリを作っている開発者の人に、押さえておきたい話です。\n\nAmazon Bedrockのオープンウェイトモデルで、明示的なプロンプトキャッシュが使えるようになりました。\n長い共通の指示文を、毎回処理し直さずに済みます。\n\nAIの利用料金、毎月いくらまでなら出せますか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "price",
+      "question": "AIの利用料金、毎月いくらまでなら出せますか？"
+    },
+    {
+      "pattern": "tradeoff",
+      "question": "手間を増やして費用を抑えるのと、設定なしで使うの、どちらですか？"
+    },
+    {
+      "pattern": "count",
+      "question": "同じ指示文を、1日に何回AIへ送っていますか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "senpai",
+  "lede": "Amazon Bedrockのオープンウェイトモデルで、明示的なプロンプトキャッシュが使えるようになりました。長い共通の指示文や資料を毎回処理し直さず、入力コストと応答の遅れを減らせます。使えるモードやキャッシュの保持時間はモデルごとに違うため、利用するモデルのモデルカードの確認が必要です。",
+  "description": "Amazon Bedrockのオープンウェイトモデルが明示的なプロンプトキャッシュに対応。暗黙的キャッシュとの違い、Chat Completions APIでの設定方法、料金の考え方、使い分けの目安をAWSの公式ブログから整理します。",
+  "keywords": [
+    "プロンプトキャッシュ",
+    "Amazon Bedrock",
+    "オープンウェイトモデル",
+    "明示的キャッシュ",
+    "暗黙的キャッシュ",
+    "Chat Completions API",
+    "入力トークン コスト削減",
+    "prompt_cache_breakpoint",
+    "AWS 生成AI",
+    "LLM コスト削減"
+  ],
+  "tags": [
+    "生成AI",
+    "Amazon Bedrock",
+    "LLM",
+    "AWS",
+    "プロンプトキャッシュ"
+  ],
+  "highlights": [
+    "Bedrockのオープンウェイトモデルが明示的なプロンプトキャッシュに対応し、再利用する部分を自分で指定できる",
+    "明示的モードはprompt_cache_optionsと、区切り位置を示すprompt_cache_breakpointの両方を指定する",
+    "毎回変わる質問が続く用途では、共通部分だけを書き込む明示的モードで不要な書き込み料金を避けられる"
+  ],
+  "timetable": [],
+  "verdict": {
+    "status": "available",
+    "japan": "unknown",
+    "price": "従量課金",
+    "free": null,
+    "audience": "開発者",
+    "take": "長い共通プロンプトを使うなら、モデルカードで対応モードを確認し、まず暗黙的キャッシュの効果を測るとよいでしょう。",
+    "judgedAt": "2026-11-16T15:57:54.725618+00:00"
+  },
+  "workMoney": {
+    "relevance": "medium",
+    "points": [
+      "Bedrockで生成AIアプリを運用する開発者は、共通の長い指示文の入力コストを下げられます。",
+      "キャッシュの読み取りは標準の入力より低い料金で、モデルごとの料金はAmazon Bedrockの料金ページで確認できます。",
+      "まず自社のプロンプトの先頭が固定されているかを見直すと、効果を測りやすくなります。"
+    ]
+  },
+  "body": "Bedrockのオープンウェイトモデルを使う開発者は、これまでの暗黙的キャッシュに加えて、明示的なプロンプトキャッシュを選べるようになりました。Amazon Bedrockを使っていない人や、キャッシュを使わない用途では、何も変わりません。日本での提供状況はまだ発表されていません。\n\nプロンプトキャッシュとは、AIへの指示文の先頭部分を計算済みの状態で保存し、次の依頼で再利用する仕組みです。システムプロンプト（AIへの基本指示）、参考資料、ツールの定義、これまでの会話などが対象になります。AWS Machine Learning Blogによると、再利用が多いほど節約額は大きくなります。\n\n## 暗黙的と明示的、2つのモードの違い\n\n依頼が過去の依頼と同じ内容で始まると、Amazon Bedrockはその先頭部分をキャッシュから読み、残りだけを処理します。キャッシュの読み取りは標準の入力より低い料金です。モデルによっては、書き込みが標準より高くなります。\n\n**設定が不要なら暗黙的、保存範囲を絞りたいなら明示的です。**\n\n| 比べること | 暗黙的キャッシュ | 明示的キャッシュ | 向いているのは |\n|---|---|---|---|\n| リクエストの変更 | なし | モード指定と区切りの印が必要 | **暗黙的は手間が少ない** |\n| 保存される範囲 | 対象の先頭部分を自動で選ぶ（できる範囲で） | 各区切りまでの内容 | **明示的は範囲を指定できる** |\n| 向く用途 | 会話、エージェントのくり返し処理 | 固定の共通部分と変わる質問、層になった共通部分 | 用途で選ぶ |\n\nChat Completions APIでは、明示的モードにprompt_cache_optionsのmodeをexplicitにし、prompt_cache_breakpointの印を1つ以上付けます。\n\n## 暗黙的キャッシュは先頭を固定すると効く\n\n会話では、毎回それまでの全文を送り直します。前の依頼が、次の依頼のキャッシュ済みの先頭になります。\n\nAWSは、固定の内容を先に、変わる内容を後に置くよう勧めています。先頭が変わると、その位置からキャッシュが作り直されます。\n\nサンプルでは、システムメッセージにマニュアルを、ユーザーメッセージに質問を入れています。両方を1つのユーザーメッセージの部分として送ると、暗黙的キャッシュは効きませんでした。\n\n## 明示的キャッシュで書き込みを絞る\n\n暗黙的モードでは、次回以降に使われない内容もキャッシュに書き込まれることがあります。毎回変わる質問が典型です。\n\n共通部分の後ろの内容が毎回変わるなら、明示的キャッシュで書き込みを共通部分だけに絞れます。最後の区切りより後ろは標準の入力料金です。書き込みが高いモデルでも、読まれない内容に高い書き込み料金を払わずに済みます。\n\n区切りは、変わる頻度の違う層ごとに複数付けられます。上限はモデルによって違います。\n\nサンプルのコードの要点は次のとおりです。\n\n- システムメッセージの本文を、テキスト部分として渡す\n- そのテキスト部分にprompt_cache_breakpointのmodeをexplicitにして付ける\n- extra_bodyでprompt_cache_optionsのmodeをexplicitにして送る\n- モードだけで区切りが無いと、何もキャッシュされない\n- 区切りだけでモードの指定が無いと、暗黙的キャッシュのように動く\n\nキャッシュの保持時間（TTL）は、キャッシュに当たるたびにリセットされます。ttlの指定値は、モデルカードで確認します。\n\n## 使い方：キャッシュの効き方を確かめる\n\nAWSのサンプルは、架空の浄水器「AnyCompany AquaPure 500」のサポートアシスタントです。約4,000トークンのマニュアルを共通の先頭にして、3つの質問を送ります。\n\n応答の使用量（usage）にあるprompt_tokens_detailsで、キャッシュの動きが分かります。読んだ量がcached_tokens、書いた量がcache_write_tokensです。\n\n暗黙的モードの初回実行は、次のようになります。\n\n- 1回目は、プロンプトをキャッシュに書き込む\n- 2、3回目は、マニュアルをキャッシュから読む\n- 2、3回目は、新しい質問の分として数トークンを書く\n- 最後のメッセージの後ろの数トークンは、毎回キャッシュされない\n\nTTLの間に再実行すると、すべての呼び出しが読み取りになり、書き込みは発生しません。明示的モードでは、2、3回目の書き込みがありません。\n\n準備に必要なものは次のとおりです。\n\n- 選んだモデルを使えるAWSアカウント（対応リージョンはモデルごとに違う）\n- そのモデルを呼び出せるIAMの権限\n- Python 3.12と、openaiの3.26.0以降、aws-bedrock-token-generatorの1.1.0以降\n- エージェントの例では、OpenCode 1.18.35を入れるnpm\n\n認証は、aws-bedrock-token-generatorのprovide_token()で、AWSの認証情報から最長12時間有効の短期APIキーを作ります。長期のキーを作って保管する必要はありません。\n\nマニュアルは、モデルカードの最低限のプレフィックスの長さを超える必要があります。サンプルでは、ダミーの文章でもよいとされています。キャッシュに必要なのは同一の先頭だけだからです。推論モデルが返す推論用のトークンも、max_tokensに含まれます。\n\n## 料金とプライバシーの扱い\n\n入力トークンは、キャッシュ書き込み、キャッシュ読み取り、標準入力の3つのレートのどれかで請求されます（Amazon Bedrockの公式ドキュメント、11/17確認）。Amazon Novaの暗黙的キャッシュの再利用は例外です。各モデルの料金は、Amazon Bedrockの料金ページにあります。\n\nBedrockのほかのモデルと同じく、プロンプトと出力はモデル提供元と共有されず、モデルの学習にも使われません。\n\n## モデルによって違うこと\n\nBedrockのOpenAIモデルは、対応するAPI経由で暗黙的キャッシュを使えます。GPT-5.6以降のモデルは、明示的キャッシュにも対応します（Amazon Bedrockの公式ドキュメント、11/17確認）。\n\nAnthropicのモデルは明示的キャッシュに対応し、キャッシュコントロールの無いリクエストはキャッシュされません。保持時間は5分と1時間です（同、11/17確認）。\n\nMistral Large 3は、bedrock-runtimeエンドポイントで暗黙的キャッシュに対応しています（AWS Machine Learning Blog、11/17確認）。Anthropic向けの解説にある明示的キャッシュの設定は、オープンウェイトモデルにそのまま当てはまりません。\n\n## サイソクの見方：まず暗黙的で測り、変わる質問が多いなら明示的へ\n\n会話や、同じ手順をくり返すエージェントのように、先頭が安定している用途なら、まず設定の要らない暗黙的キャッシュで効果を測るのが手堅いと考えられます。\n\nAquaPureの例のように、共通のマニュアルに毎回違う質問が続く用途で、書き込みが高いモデルを使うなら、明示的キャッシュで共通部分だけを書き込む方が無駄が出にくいとみられます。\n\nどちらの場合も、使うモデルのモデルカードで対応モード、最低限の長さ、TTLを先に確認するとよいでしょう。\n\n## まだ分からないこと\n\n- 各オープンウェイトモデルが対応するモードと保持時間の一覧は、このブログでは示されておらず、モデルカードの確認が必要です\n- 日本のリージョンでの対応状況はまだ発表されていません\n- 各モデルのキャッシュ書き込みと読み取りの具体的な料金は、このブログには示されていません",
+  "easy": "## ひとことで言うと\n\nAmazon Bedrockで使えるオープンウェイトモデル（重みが公開されたAI）で、「明示的キャッシュ」が使えるようになりました。毎回同じ長い文章をAIに読ませるアプリで、費用と待ち時間を減らせます。\n\n## キャッシュの仕組み\n\nAIアプリは、同じ指示文やマニュアルを毎回送ることがよくあります。プロンプトキャッシュは、この同じ部分を覚えておき、次からは読み直さずに使う仕組みです。\n\nキャッシュから読み取った分は、通常の入力より低い料金で請求されます。ただし書き込みの料金は、モデルによっては通常より高くなります。\n\n## 2つのモード\n\n暗黙的キャッシュは、設定なしで自動的に働きます。会話や、同じ手順をくり返すエージェントに向いています。\n\n明示的キャッシュは、「ここまでを覚える」という区切りを自分で付けます。共通の部分は固定で、質問だけが毎回変わるアプリに向いています。\n\n明示的モードでは、モードの指定と区切りの印の両方が必要です。どちらか片方だけでは、期待どおりに動きません。\n\n## 使う前に確認すること\n\n対応するモード、最低限必要な長さ、保持時間はモデルごとに違います。使うモデルのモデルカードで確認してください。",
+  "channel": "AWS Machine Learning Blog",
+  "channelId": "",
+  "channelSlug": "aws-ml-blog",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "Use prompt caching with open-weight models on Amazon Bedrock",
+  "publishedAt": "2026-11-16T15:42:41+00:00",
+  "generatedAt": "2026-11-16T15:57:54.725605+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/bedrock-open-weight-prompt-caching-af866099.jpg",
+  "model": "anthropic-api:claude-sonnet-5-5",
+  "affiliates": [],
+  "newsType": "general",
+  "faq": [
+    {
+      "q": "Bedrockの暗黙的キャッシュで効かない書き方はある？",
+      "a": "サンプルでは、マニュアルと質問を1つのユーザーメッセージの部分として送ると、暗黙的キャッシュに当たりませんでした。固定の内容はシステムメッセージに置きます。"
+    },
+    {
+      "q": "Bedrockの明示的キャッシュで区切りだけ指定するとどうなる？",
+      "a": "モードを明示的にせず区切りだけを付けると、暗黙的キャッシュと同じ動きになります。モードだけで区切りが無い場合は、何もキャッシュされません。"
+    },
+    {
+      "q": "Bedrockのキャッシュ保持時間はどこで確認する？",
+      "a": "キャッシュの保持時間はモデルごとに違い、モデルカードで確認します。キャッシュに当たるたびにリセットされ、ttlの指定値もモデルカードにあります。"
+    }
+  ],
+  "todayActions": [
+    "使うモデルのモデルカードで、対応するキャッシュのモード、最低限の長さ、TTLを確認する",
+    "自社のプロンプトを見直し、固定の指示文を先頭に、変わる質問を最後に置く",
+    "応答のusage.prompt_tokens_detailsのcached_tokensを見て、キャッシュの当たり方を測る"
+  ],
+  "qualityBar": {
+    "score": 5,
+    "missing": [
+      1,
+      5,
+      6
+    ],
+    "notes": {
+      "1": "最初の3行にだれに・どのくらい・いつからが無い",
+      "5": "することは書いてあるが、どこで（窓口・ページ）・いつまでが無い",
+      "6": "言い換えの無い略語（IAM）"
+    },
+    "checkedAt": "2026-11-16T15:58:06+00:00",
+    "before": [
+      1,
+      5,
+      6
+    ],
+    "repaired": false,
+    "repairLater": true
+  },
+  "qualityScore": 88,
+  "breaking": true,
+  "sourcePublishedAt": "2026-11-16T15:42:41+00:00",
+  "detectedAt": "2026-11-16T15:44:20+00:00",
+  "fastLane": true,
+  "speedMinutes": 19,
+  "layout": "noir",
+  "summaryLine": "Bedrockのオープンウェイトモデルが明示的なプロンプトキャッシュに対応し、再利用する部分を自分で指定できる",
+  "bodyImages": [
+    {
+      "src": "https://ai-tech-express.jp/img/bedrock-open-weight-prompt-caching-fig1-3671514a.jpg",
+      "width": 864,
+      "height": 363,
+      "kind": "dense",
+      "credit": "AWS",
+      "sourceUrl": "https://aws.amazon.com/blogs/machine-learning/use-prompt-caching-with-open-weight-models-on-amazon-bedrock/",
+      "original": "https://d2908q01vomqb2.cloudfront.net/f1f836cb4ea6efb2a0b1b99f41ad8b103eff4b59/2026/11/04/ML-22160-4.png"
+    },
+    {
+      "src": "https://ai-tech-express.jp/img/bedrock-open-weight-prompt-caching-fig2-5a109ab3.jpg",
+      "width": 864,
+      "height": 543,
+      "kind": "dense",
+      "credit": "AWS",
+      "sourceUrl": "https://aws.amazon.com/blogs/machine-learning/use-prompt-caching-with-open-weight-models-on-amazon-bedrock/",
+      "original": "https://d2908q01vomqb2.cloudfront.net/f1f836cb4ea6efb2a0b1b99f41ad8b103eff4b59/2026/11/04/ML-22160-5.png"
+    }
+  ],
+  "imageCredit": {
+    "kind": "stock",
+    "title": "Dell PowerEdge Servers",
+    "creator": "Dsv",
+    "creatorUrl": "",
+    "license": "Public Domain",
+    "licenseUrl": "",
+    "provider": "Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Dell_PowerEdge_Servers.jpg",
+    "query": "computer server",
+    "original": "https://d2908q01vomqb2.cloudfront.net/f1f836cb4ea6efb2a0b1b99f41ad8b103eff4b59/2026/11/04/ML-22160-featured-image.png",
+    "at": "2026-11-16T15:58:31+00:00"
+  },
+  "imageFocus": {
+    "x": 0.486,
+    "y": 0.502,
+    "box": [
+      0.053,
+      0.065,
+      0.919,
+      0.94
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/bedrock-open-weight-prompt-caching-af866099.jpg"
+  }
+}

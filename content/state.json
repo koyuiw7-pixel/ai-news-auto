@@ -1016,9 +1016,7 @@
       "url": "https://www.netbk.co.jp/contents/company/press/2026/1116_006637.html"
     }
   },
-  "major_tries": {
-    "7381db88317ca659": 2
-  },
+  "major_tries": {},
   "pi_reopened": {
     "139593f9eb7f19a8": "2026-11-12T16:10:56.906216+00:00",
     "14dc418a6f602e91": "2026-11-13T03:30:58.033406+00:00",
@@ -12048,6 +12046,20 @@
       "reason": "prefilter: 価値の薄いお知らせ（審議会）",
       "skipped": true,
       "url": "https://www.mext.go.jp/b_menu/shingi/chukyo/chukyo3/002/mext_00027.html"
+    },
+    "7381db88317ca659": {
+      "at": "2026-11-16T15:58:06.143953+00:00",
+      "breaking": true,
+      "costUsd": 0.1309,
+      "foreignAi": true,
+      "intent": "breaking",
+      "major": true,
+      "mix": "enterprise_dev",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "score": 88,
+      "section": "ai",
+      "slug": "bedrock-open-weight-prompt-caching",
+      "url": "https://aws.amazon.com/blogs/machine-learning/use-prompt-caching-with-open-weight-models-on-amazon-bedrock/"
     },
     "73e6b1863c01a835": {
       "at": "2026-11-02T21:11:41.349271+00:00",
@@ -23280,29 +23292,6 @@
   },
   "quality_log": [
     {
-      "accepted": true,
-      "at": "2026-11-14T04:00:51.584268+00:00",
-      "attempt": 1,
-      "id": "8852c74bb4b2168f",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 77.6,
-        "avg_sentence": 38.8,
-        "long_share": 0.115,
-        "max_paragraph": 147,
-        "paragraphs": 13,
-        "sentences": 26
-      },
-      "score": 93,
-      "source": "fast",
-      "title": "資生堂の情報流出に関するお知らせ",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（FCA）"
-      ]
-    },
-    {
       "accepted": false,
       "at": "2026-11-14T04:13:00.773410+00:00",
       "attempt": 1,
@@ -30885,6 +30874,30 @@
       "title": "Use prompt caching with open-weight models on Amazon Bedrock",
       "warnings": [
         "見出しが54字（目安40字以内）。一覧・カードでは前半だけを出す"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-16T15:58:06.100947+00:00",
+      "attempt": 1,
+      "id": "7381db88317ca659",
+      "kind": "ai",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 81.4,
+        "avg_sentence": 42.2,
+        "long_share": 0.167,
+        "max_paragraph": 151,
+        "paragraphs": 28,
+        "sentences": 54
+      },
+      "score": 88,
+      "source": "aws-ml-blog",
+      "title": "Use prompt caching with open-weight models on Amazon Bedrock",
+      "warnings": [
+        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（TTL・IAM）"
       ]
     }
   ],
