@@ -19494,6 +19494,19 @@
       "skipped": true,
       "url": "https://www.sumitomo-rd.co.jp/news/2026111022506/"
     },
+    "e32a0808698f5340": {
+      "at": "2026-11-16T06:50:17.840456+00:00",
+      "breaking": true,
+      "costUsd": 0.1248,
+      "intent": "breaking",
+      "major": true,
+      "mix": "brand",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "score": 95,
+      "section": "entertainment",
+      "slug": "xbox-25th-anniversary-recap",
+      "url": "https://news.xbox.com/ja-jp/2026/11/16/xbox-25th-anniversary-news-recap/"
+    },
     "e34c16449eb87ea4": {
       "at": "2026-11-04T07:26:29.601692+00:00",
       "model": "anthropic-api:claude-haiku-5-5",
@@ -23111,60 +23124,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-13T16:29:35.710965+00:00",
-      "attempt": 0,
-      "id": "4d525ab74f95595e",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 101.2,
-        "avg_sentence": 43.4,
-        "long_share": 0.095,
-        "max_paragraph": 180,
-        "paragraphs": 9,
-        "sentences": 21
-      },
-      "score": 90,
-      "source": "nomura-re",
-      "title": "「Be ACTO 亀戸」、街区から地域へひろがるエリアマネジメントを推進 亀戸緑道公園・区道を活用した「まちのリビング 緑道デイ」を10 月25 日（日）に開催",
-      "warnings": [
-        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（ACTO）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-13T16:30:56.071806+00:00",
-      "attempt": 1,
-      "id": "8bf22bdb3d9c3623",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "リード『利用者の契約やプランは現在のままで変更はありません』→ 元記事に契約・プランが変わらないという記述はなく、利用者への影響を元記事にない内容で断定している。",
-        "本文冒頭『利用中のサービスや契約内容が自動で切り替わることはなく、個人利用者が手続きを行う必要はありません』→ 元記事に書かれていない利用者への影響の断定で、発表内容の創作にあたる。",
-        "『サイソクの見方』1つ目『記事のとおり契約内容が自動で切り替わることも手続きも不要』→ 根拠となる『記事のとおり』の部分が元記事にないため、見方の前提が誤っている。",
-        "EBITDAの説明『減価償却費などを加算して算出する指標』→ 元記事では『Non-GAAP営業利益に減価償却費などを加算して算出』とされており、基準となる指標が省かれている（軽微）。"
-      ],
-      "readability": {
-        "avg_paragraph": 156.6,
-        "avg_sentence": 52.2,
-        "long_share": 0.2,
-        "max_paragraph": 224,
-        "paragraphs": 5,
-        "sentences": 15
-      },
-      "score": 60,
-      "source": "rakuten",
-      "title": "楽天グループ株式会社2026年度第3四半期 決算ハイライトに関するお知らせ",
-      "warnings": [
-        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（GAAP・EC・NISA）",
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-13T16:31:11.955616+00:00",
@@ -30698,6 +30657,56 @@
       "warnings": [
         "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（TOPPAN・SMS）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-16T06:49:51.083553+00:00",
+      "attempt": 1,
+      "id": "e32a0808698f5340",
+      "kind": "broad",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 103.2,
+        "avg_sentence": 47.9,
+        "long_share": 0.286,
+        "max_paragraph": 173,
+        "paragraphs": 13,
+        "sentences": 28
+      },
+      "score": 95,
+      "source": "xbox-wire-jp",
+      "title": "XBOX プレイヤーの皆さん、25 年間ありがとう:『Wolfenstein 3』や『Halo』のファイアファイト、PC で遊べる初代 XBOX の名作集などの",
+      "warnings": [
+        "見出しが53字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（OG・MAX・GR）",
+        "読みやすさ: 文が長い（1文の平均 47.9字・60字超の文が 29% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-16T06:50:17.819260+00:00",
+      "attempt": 0,
+      "id": "e32a0808698f5340",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 104.5,
+        "avg_sentence": 42.5,
+        "long_share": 0.219,
+        "max_paragraph": 180,
+        "paragraphs": 13,
+        "sentences": 32
+      },
+      "score": 95,
+      "source": "xbox-wire-jp",
+      "title": "XBOX プレイヤーの皆さん、25 年間ありがとう:『Wolfenstein 3』や『Halo』のファイアファイト、PC で遊べる初代 XBOX の名作集などの",
+      "warnings": [
+        "見出しが53字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（OG・MAX・GR）",
+        "読みやすさ: 文が長い（1文の平均 42.5字・60字超の文が 22% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
       ]
     }
   ],
