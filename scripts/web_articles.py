@@ -2927,6 +2927,22 @@ def main() -> int:
         if recent.has_url(cand["url"]):
             mark(state, cand, skipped=True, reason="dedupe: 同じ出典URL")
             return "drop", "重複: 同じ出典URL"
+        inc = cand.get("_incident") or {}
+        if inc.get("day") and cand.get("fast"):
+            # 事故の見張りの障害（発生日つき。台帳 W45）: 同じ会社でも日が違えば別の事故。前の日の障害の記事の続報・重複にしない
+            # （2026-11-16 ドコモの 5G SA の障害は今月3回目。見出しが似ているので、ふつうの判定では前の記事と同じ話題にされる）。
+            # 同じ発生日の同じ事故の記事があるときだけ、そこに続報を足す（第二報・復旧で2本目の記事を作らない）
+            same_slug = incident_watch.same_incident_slug(inc)
+            if not same_slug:
+                return "take", None
+            target = followup_for(same_slug, "同じ事故の続きのお知らせ")
+            if target and target[0] == "defer":
+                return "next", "続報の上限（次回）"
+            if not target:
+                mark(state, cand, skipped=True, reason=f"dedupe: 同じ事故の記事あり: {same_slug}"[:200])
+                return "drop", "重複: 同じ事故の記事"
+            cand["_incident_same"] = same_slug
+            return "take", target
         if is_stale(cand) and not cand.get("fast"):
             if not major and life_late_ok(cand):
                 cand["late"] = True  # 暮らし・お金の公式の発表は LIFE_LATE_HOURS まで「速報ではない」形で作る（台帳 A57）
@@ -3018,6 +3034,17 @@ def main() -> int:
                 return
             item["late"] = True
             log(f"   [late] 発表から{hours}時間。速報ではない形で作ります（速報投稿・ニュース用サイトマップに出さない）")
+        if (item.get("_incident") or {}).get("kind") == "outage":
+            # 障害の記事には、同じ会社の過去の障害（公式のお知らせの発生・復旧の時刻・かかった時間・原因）と言葉の説明を資料に足す
+            # （2026-11-16 オーナー「なぜ起きているのか仕組みも分からないし、いつもはどのくらいで直るのかも無い」・台帳 W45）
+            try:
+                extra = incident_watch.outage_context(item["_incident"], item["url"], text)
+            except Exception as error:  # noqa: BLE001 - 足せなくても記事は作る
+                extra = ""
+                log(f"   [incident] 過去の障害の資料を足せませんでした（{str(error)[:80]}）")
+            if extra:
+                text = f"{text}\n\n{extra}"
+                log(f"   [incident] 過去の障害・言葉の説明を資料に足しました（{len(extra)}字）")
         if len(text) < MIN_TEXT_CHARS:
             log(f"   [skip] 本文が短い（{len(text)}字）")
             if major:
@@ -3031,7 +3058,7 @@ def main() -> int:
             return
         # 事故の見張り（scripts/incident_watch.py）の情報流出・回収だけ、資料の下限は incident_watch.json の min_source_chars（700字）。
         # ほかの経路の公共性の候補は 1,200字（public_interest.MIN_SOURCE_CHARS）のまま
-        source_floor = (incident_watch.source_floor(item["_incident"].get("kind") or "") if item.get("_incident")
+        source_floor = (incident_watch.source_floor(item["_incident"].get("kind") or "", url=item["url"]) if item.get("_incident")
                         else public_interest.MIN_SOURCE_CHARS)
         if item.get("_public_interest") and public_interest.source_too_short(item["_public_interest"], text) and len(text) < source_floor:
             # 公共性の枠で、資料が短く本文の下限に届かないもの（官公庁の短い注意喚起など）。水増しさせず、作り直しで費用も使わない
@@ -3054,6 +3081,13 @@ def main() -> int:
                     major_retry(item, "続報の処理に失敗")
                 elif outcome == "updated":
                     run_status[item["id"]] = ("article", target[1].stem)
+                return
+            if item.get("_incident_same"):
+                # 同じ事故（同じ会社・同じ発生日）の記事がある続きのお知らせは、追記できなくても2本目の記事にしない（台帳 W45）
+                item.pop("_followup_new", None)
+                log(f"   [incident] 同じ事故の記事（{item['_incident_same']}）に足せなかったので、新しい記事は作りません")
+                mark(state, item, skipped=True, reason=f"followup: 同じ事故の記事に足せなかった（{item['_incident_same']}）"[:200])
+                run_status[item["id"]] = ("failed", feeds.source_rank(item))
                 return
 
         related = arch.related(item["title"], text, item["url"], "ai" if is_ai else lane)
@@ -3094,7 +3128,8 @@ def main() -> int:
                 rec["publicInterest"] = item["_public_interest"]  # 公共性の枠の印（1日の本数・門・安全情報のリンク。scripts/public_interest.py）
             if item.get("_incident"):
                 inc = item["_incident"]  # 事故の見張りの記事の印（発表 → 検知 → 公開の時間の記録に使う。scripts/incident_watch.py）
-                rec["incident"] = {"key": str(inc.get("key") or ""), "kind": str(inc.get("kind") or ""), "name": str(inc.get("name") or "")}
+                rec["incident"] = {"key": str(inc.get("key") or ""), "kind": str(inc.get("kind") or ""), "name": str(inc.get("name") or ""),
+                                   **({"day": str(inc["day"])} if inc.get("day") else {})}
             if item.get("_trend_hit"):
                 rec["searchTrend"] = item["_trend_hit"]  # いま検索で急上昇している言葉（台帳 A63。すぐ公開して Google ニュースのサイトマップに載せる目印）
             if trend_term:

@@ -85,7 +85,7 @@ class SourceFloorTest(unittest.TestCase):
 
     def test_fast_lane_uses_the_same_floor_only_for_incident_items(self):
         src = (ROOT / "scripts" / "web_articles.py").read_text("utf-8")
-        self.assertIn('incident_watch.source_floor(item["_incident"].get("kind") or "") if item.get("_incident")', src)
+        self.assertIn('incident_watch.source_floor(item["_incident"].get("kind") or "", url=item["url"]) if item.get("_incident")', src)
         self.assertIn("else public_interest.MIN_SOURCE_CHARS)", src)
         self.assertIn('public_interest.source_too_short(item["_public_interest"], text) and len(text) < source_floor', src)
 

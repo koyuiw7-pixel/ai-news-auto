@@ -15,6 +15,9 @@
   5. 公式のお知らせが見つからないときは、話題のレーン（scripts/trend_lane.py）の決まり（主要な報道機関の独立した2社以上・報道と明記）で
      作れるよう、話題キュー（state/trend_queue.json）に「会社名＋事故の種類」を先頭で足す
   6. 発表 → 他社の初報 → 検知 → 速報レーンに渡した → 公開 の時刻を state/incident_watch.json に残す（report で「発表から何分」を出す）
+  7. 障害は「同じ会社でも日が違えば別の事故」（2026-11-16・台帳 W45。ドコモの 5G SA の障害は 11/5・11/11・11/16 の3回）。鍵に発生日を入れ、
+     記事があるかは同じ発生日の記事だけで決める。通信会社の公式の障害のお知らせ一覧（incident_watch.json の notices）を直接読み、
+     障害の記事には同じ会社の過去の障害（発生と復旧の時刻・かかった時間・公式が発表した原因）を資料として渡す
 
   python scripts/incident_watch.py run                 # 見張り（新しい事故を見つけて速報レーンに回す）
   python scripts/incident_watch.py run --backfill      # 取りこぼしの一覧（incident_watch.json の backfill）も1回だけ拾い直す
@@ -63,6 +66,12 @@ def load_config(path: Path | None = None) -> dict:
         spec["_re"] = re.compile(spec["re"])
         spec["_anchor_re"] = re.compile(spec["anchor_re"])
     data["_exclude_re"] = re.compile(data["exclude_re"])
+    data["_notice_title_re"] = re.compile(data.get("notice_title_re") or "障害")
+    data["_notice_exclude_re"] = re.compile(data.get("notice_exclude_re") or "(?!)")
+    for src in data.get("notices") or []:
+        src["_link_re"] = re.compile(src["link_re"])
+    for g in data.get("glossary") or []:
+        g["_re"] = re.compile(g["re"])
     return data
 
 
@@ -302,12 +311,67 @@ def _when(value: str) -> datetime | None:
     return dt if dt.tzinfo else dt.replace(tzinfo=JST)
 
 
-def hit_key(kind: str, name: str) -> str:
-    return f"{kind}:{norm(name)}"
+def hit_key(kind: str, name: str, day: str = "") -> str:
+    """事故の鍵。障害（dated_kinds）は「種類:会社@発生日」。同じ会社でも日が違えば別の事故（2026-11-16・台帳 W45）"""
+    return f"{kind}:{norm(name)}" + (f"@{day}" if day else "")
 
 
-def detect(items: list[dict], sources: dict[str, dict], cfg: dict | None = None, now: datetime | None = None) -> dict[str, dict]:
-    """見出しの一覧 → 事故の候補（会社＋種類ごとに1つ。複数の発信元の見出しをまとめる）"""
+def base_key(key: str) -> str:
+    """鍵から発生日（@…）と続きの知らせの印（#…）を外した「種類:会社」"""
+    return key.split("#", 1)[0].split("@", 1)[0]
+
+
+def day_of(when: datetime | None) -> str:
+    return when.astimezone(JST).strftime("%Y%m%d") if when else ""
+
+
+def _day_dt(day: str) -> datetime | None:
+    try:
+        return datetime.strptime(day, "%Y%m%d").replace(tzinfo=JST)
+    except (TypeError, ValueError):
+        return None
+
+
+_TITLE_DAY_RE = re.compile(r"(?<!\d)(\d{1,2})月(\d{1,2})日")
+FOLLOWUP_WORD_RE = re.compile(r"復旧|回復|解消|第[0-9一二三四五六七八九十]+報|最終報|続報|原因")
+
+
+def title_day(title: str, ref: datetime) -> str:
+    """見出しに書かれた発生日（「11月16日10時2分から」）。ref（見出しの時刻）から見て先の日付・10日より前の日付は使わない"""
+    for m in _TITLE_DAY_RE.finditer(nfkc(title)):
+        for year in (ref.astimezone(JST).year, ref.astimezone(JST).year - 1):
+            try:
+                when = datetime(year, int(m.group(1)), int(m.group(2)), tzinfo=JST)
+            except ValueError:
+                continue
+            if timedelta(0) <= ref - when <= timedelta(days=10):
+                return day_of(when)
+    return ""
+
+
+def incident_day(item: dict, kind: str, name: str, now: datetime, open_days: dict | None = None, cfg: dict | None = None) -> str:
+    """障害（dated_kinds）の発生日（YYYYMMDD・日本時間）。当てになる順: 公式の一覧で分かった日 → 見出しに書かれた日 →
+    続きの見出し（復旧・第N報）で、同じ会社の事故が followup_days 日以内にあればその日 → 見出しの出た日。ほかの種類は空"""
+    cfg = cfg or CONFIG
+    if kind not in (cfg.get("dated_kinds") or []):
+        return ""
+    if item.get("day"):
+        return str(item["day"])
+    ref = item.get("published") or now
+    if day := title_day(item.get("title") or "", ref):
+        return day
+    if FOLLOWUP_WORD_RE.search(nfkc(item.get("title") or "")):
+        limit = ref - timedelta(days=int(cfg.get("followup_days") or 2) + 1)
+        near = [d for d in (open_days or {}).get(hit_key(kind, name), []) if (dt := _day_dt(d)) and limit <= dt <= ref]
+        if near:
+            return max(near)
+    return day_of(ref)
+
+
+def detect(items: list[dict], sources: dict[str, dict], cfg: dict | None = None, now: datetime | None = None,
+           open_days: dict | None = None) -> dict[str, dict]:
+    """見出しの一覧 → 事故の候補（会社＋種類ごとに1つ。障害は会社＋種類＋発生日ごと。複数の発信元の見出しをまとめる）。
+    open_days は、もう記録にある事故の発生日 {種類:会社: [YYYYMMDD]}（日付の無い「復旧」の見出しを前の事故につなぐ）"""
     cfg = cfg or CONFIG
     now = now or datetime.now(UTC)
     oldest = now - timedelta(days=int(cfg["max_age_days"]))
@@ -328,9 +392,10 @@ def detect(items: list[dict], sources: dict[str, dict], cfg: dict | None = None,
         scale = parse_scale(item["title"]) or parse_scale(item.get("summary") or "")
         raw_name = name
         name, group = canonical(name, cfg)
-        key = hit_key(kind, name)
+        day = incident_day(item, kind, name, now, open_days, cfg)
+        key = hit_key(kind, name, day)
         hit = hits.setdefault(key, {"key": key, "kind": kind, "name": name, "aliases": [], "scale": 0, "scaleText": "",
-                                    "title": item["title"][:200], "discovery": [], "majorOnly": True})
+                                    "title": item["title"][:200], "discovery": [], "majorOnly": True, **({"day": day} if day else {})})
         for alias in [*group, *(src.get("aliases") or []), *([raw_name] if raw_name != name else []), *name_aliases(item["title"], name)]:
             if alias not in hit["aliases"]:
                 hit["aliases"].append(alias)
@@ -340,6 +405,7 @@ def detect(items: list[dict], sources: dict[str, dict], cfg: dict | None = None,
         if not any(d["url"] == item["url"] for d in hit["discovery"]):
             hit["discovery"].append({"source": item["source"], "url": item["url"], "title": item["title"][:200],
                                      "publishedAt": iso(item.get("published")), "official": bool(src.get("official")),
+                                     **({"stage": item["stage"]} if item.get("stage") else {}),
                                      **({"appearedAfter": item["appearedAfter"]} if item.get("appearedAfter") else {})})
     return hits
 
@@ -351,7 +417,7 @@ def significant(hit: dict, cfg: dict | None = None) -> tuple[bool, str]:
     outlets = {d["source"] for d in hit.get("discovery") or []}
     if hit.get("backfill"):
         return True, "取りこぼしの拾い直し"
-    if any(str(s_).startswith("home:") for s_ in outlets):
+    if any(str(s_).startswith(("home:", "notice:")) for s_ in outlets):
         return True, "見張っている会社のサイトのお知らせ"
     if hit.get("majorOnly") and not major:
         return False, "全国で知られた名前ではない（消費者庁の一覧の小さな回収）"
@@ -408,31 +474,88 @@ def names_of(hit: dict) -> list[str]:
     return [n for n in dict.fromkeys([hit.get("name") or "", *(hit.get("aliases") or [])]) if n]
 
 
-def covered(hit: dict, articles: list[dict], official_url: str = "", announced: datetime | None = None,
-            cfg: dict | None = None) -> str | None:
-    """同じ事故の記事がもうあれば、その slug。
-    (1) 出典の URL が同じ (2) 題名に会社の名前と同じ種類の事故の語 (3) 同じ会社のサイトが出典で、題名に同じ種類の事故の語。
-    (2)(3) は、公式のお知らせが記事を作った後に出たもの（第2報など）なら当てない（速報レーンが続報か新しい記事かを決める）"""
+def notice_src(name_or_url: str, cfg: dict | None = None) -> dict | None:
+    """通信会社の公式の障害のお知らせ一覧（cfg の notices）の設定。会社の名前か、お知らせ1件の URL で引く"""
+    cfg = cfg or CONFIG
+    for src in cfg.get("notices") or []:
+        if name_or_url.startswith("http"):
+            if _site(name_or_url) == _site(src["url"]) and src["_link_re"].search(urllib.parse.urlsplit(name_or_url).path):
+                return src
+        elif any(public_interest.contains_term(n, name_or_url) or norm(n) == norm(name_or_url) for n in [src["name"], *(src.get("aliases") or [])]):
+            return src
+    return None
+
+
+def article_day(a: dict) -> str:
+    """記事が扱っている事故の発生日（YYYYMMDD）。記事の印（incident.day）→ 出典の URL の日付（…/261116_01_m.html）→ 資料の発表日 → 公開日"""
+    inc = a.get("incident") or {}
+    if inc.get("day"):
+        return str(inc["day"])
+    ref = (a.get("madeAt") or a["publishedAt"]) + timedelta(days=1)
+    for url in a.get("urls") or []:
+        if when := url_date(url, ref):
+            return day_of(when)
+    return day_of(a.get("sourcePublishedAt") or a["publishedAt"])
+
+
+def same_incident(hit: dict, a: dict, site: str = "", cfg: dict | None = None) -> bool:
+    """記事 a が、hit と同じ事故（同じ会社・同じ種類。発生日つきの種類は同じ日）を扱っているか。
+    発生日つきの種類（障害）は、日が違えば会社と種類が同じでも別の事故（2026-11-16・台帳 W45: ドコモの 11/5・11/11・11/16 の障害）"""
     cfg = cfg or CONFIG
     kind_re = cfg["types"][hit["kind"]]["_re"]
+    head = f"{a['title']} {a['seoTitle']}"
+    inc = a.get("incident") or {}
+    day = str(hit.get("day") or "")
+    if day:
+        if article_day(a) != day:
+            return False
+        src = next((s for u in a["urls"] if (s := notice_src(u, cfg))), None)
+        own = bool(src) and norm(canonical(src["name"], cfg)[0]) == norm(canonical(hit["name"], cfg)[0])
+        same_name = own or any(public_interest.contains_term(n, head) for n in names_of(hit)) \
+            or (bool(inc.get("name")) and norm(inc["name"]) == norm(hit["name"])) or bool(site and any(_site(u) == site for u in a["urls"][:1]))
+        same_kind = (own and src.get("kind") == hit["kind"]) or bool(kind_re.search(nfkc(head))) or inc.get("kind") == hit["kind"]
+        return same_name and same_kind
+    if not kind_re.search(nfkc(head)):
+        return False
+    return any(public_interest.contains_term(n, head) for n in names_of(hit)) or bool(site and any(_site(u) == site for u in a["urls"][:1]))
+
+
+def covered(hit: dict, articles: list[dict], official_url: str = "", announced: datetime | None = None,
+            cfg: dict | None = None, url_only: bool = False) -> str | None:
+    """同じ事故の記事がもうあれば、その slug。
+    (1) 出典の URL が同じ (2) 題名に会社の名前と同じ種類の事故の語 (3) 同じ会社のサイトが出典で、題名に同じ種類の事故の語。
+    (2)(3) は、公式のお知らせが記事を作った後に出たもの（第2報など）なら当てない（速報レーンが続報か新しい記事かを決める）。
+    発生日つきの種類（障害）は、(2)(3) を「同じ発生日の記事」だけに当てる（前の日の障害の記事があっても、新しい日の障害は別の事故）。
+    url_only は (1) だけ見る（公式の一覧で見つけた続きのお知らせ。同じ事故の記事への追記は速報レーンが決める）"""
+    cfg = cfg or CONFIG
     key = _url_key(official_url) if official_url else ""
     site = _site(official_url) if official_url else ""
+    if not site and hit.get("day") and (src := notice_src(hit.get("name") or "", cfg)):
+        site = _site(src["url"])
     for a in articles:
         if key and any(_url_key(u) == key for u in a["urls"]):
             return a["slug"]
-    if hit.get("followup") and not key:
+    if url_only or (hit.get("followup") and not key):
         return None  # 続きの知らせ（第2報など）は、公式のお知らせの URL と日付が分かってから比べる
     for a in articles:
         if announced and announced > a["madeAt"]:
             continue
-        head = f"{a['title']} {a['seoTitle']}"
-        if not kind_re.search(nfkc(head)):
-            continue
-        if any(public_interest.contains_term(n, head) for n in names_of(hit)):
-            return a["slug"]
-        if site and any(_site(u) == site for u in a["urls"][:1]):
+        if same_incident(hit, a, site, cfg):
             return a["slug"]
     return None
+
+
+def same_incident_slug(incident: dict, articles: list[dict] | None = None, cfg: dict | None = None, now: datetime | None = None) -> str:
+    """速報レーン用: 事故の見張りが渡した事故（発生日つき）と同じ事故の記事があれば、いちばん新しい記事の slug（続きの知らせはそこに足す）"""
+    cfg = cfg or CONFIG
+    if not incident.get("day") or incident.get("kind") not in cfg["types"]:
+        return ""
+    name, group = canonical(str(incident.get("name") or ""), cfg)
+    hit = {"kind": incident["kind"], "name": name, "aliases": group, "day": str(incident["day"])}
+    site = _site(src["url"]) if (src := notice_src(name, cfg)) else ""
+    rows = articles if articles is not None else load_articles(int(cfg["covered_days"]), now)
+    same = [a for a in rows if same_incident(hit, a, site, cfg)]
+    return max(same, key=lambda a: a["madeAt"])["slug"] if same else ""
 
 
 # --------------------------------------------------------------------------- #
@@ -649,8 +772,24 @@ PROMPT_NOTE = """
   資料に無い背景や数字・同じことの言い換えは書かない。短くても 1.〜3.（対象の表・窓口・今やること）は必ず入れる。"""
 
 
+OUTAGE_NOTE = """
+
+## 障害の記事に必ず入れる深掘り（2026-11-16 オーナー「なぜ起きているのか仕組みも分からないし、いつもはどのくらいで直るのかも無い」・台帳 W45）
+上の「ほかの事故の話は書かない」の例外として、資料の「同じ会社の過去の障害」の欄（公式のお知らせから取り出した記録）があるときは、次の章を入れる:
+- **今やること**を対象の表のすぐ後に置く（公式のお知らせにある回避の方法・問い合わせ先。手順は資料のとおり）。
+- **仕組み**: 何が止まっているのか、なぜその回避の方法で使える場合があるのかを、やさしい言葉で1章書く。資料の「言葉の説明」の欄の説明を使い、専門の言葉には言い換えを添える。
+- **過去の障害との比較の表**: 資料の過去の障害を1件1行で（発生した日・発生と復旧の時刻・復旧までにかかった時間・公式が発表した原因）。今回の障害も1行足し、分かっていない欄は「調査中」「未発表」と書く。
+  表のすぐ後に「これまでは復旧までに◯◯〜◯◯かかった」と、資料にある時間だけで書く（平均や予想は計算しない。今回もその時間で直るとは書かない）。
+- **原因の書き分け**: 過去の原因は「◯月◯日の障害について、公式は原因を〜と発表した」と過去のこととして書く。今回の原因が資料で「調査中」「確認中」のときは、
+  今回の原因は調査中とだけ書き、過去の原因を今回の原因として書かない・同じ原因だと推測しない（「同じ原因の可能性」「再発」などと言い切らない）。
+- 過去の障害の時刻・かかった時間・原因は、資料の欄の数字と言葉をそのまま使う。欄に無い過去の障害・数字は書かない。
+資料に「同じ会社の過去の障害」の欄が無いときは、比較の表は作らず、仕組みと今やることだけ書く。"""
+
+
 def prompt_note(incident: dict | None) -> str:
-    return PROMPT_NOTE if incident else ""
+    if not incident:
+        return ""
+    return PROMPT_NOTE + (OUTAGE_NOTE if incident.get("kind") == "outage" else "")
 
 
 def fast_id(key: str) -> str:
@@ -668,7 +807,11 @@ def build_meta(entry: dict, cfg: dict | None = None, now: datetime | None = None
         "title": (entry.get("officialTitle") or f"{entry['name']}の{label}に関するお知らせ")[:120], "sourceName": entry["name"], "lang": "ja",
         "detectedAt": entry.get("detectedAt") or iso(now or datetime.now(UTC)), "genre": spec["genre"],
         "incident": {"key": entry["key"], "kind": entry["kind"], "name": entry["name"],
-                     "discoveredAt": entry.get("discoveredAt") or "", "backfill": bool(entry.get("backfill"))},
+                     "discoveredAt": entry.get("discoveredAt") or "", "backfill": bool(entry.get("backfill")),
+                     # 発生日（障害だけ）: 速報レーンは、同じ日の同じ事故の記事があればそこに足し、無ければ新しい記事にする。
+                     # 前の日の障害の記事の続報・重複にはしない（台帳 W45）
+                     **({"day": entry["day"]} if entry.get("day") else {}),
+                     **({"followup": True} if entry.get("followup") else {})},
     }
     if entry.get("announcedAt"):
         # 日付だけ分かるときは、その日の 0:00（日本時間）を発表の時刻として渡す（48時間を超えた発表を「速報ではない」形にするため。
@@ -820,6 +963,305 @@ def gather_homes(cfg: dict, fetch_page, checked: dict, now: datetime) -> tuple[l
     return items, sources, errors
 
 
+# --------------------------------------------------------------------------- #
+# 7a. 通信会社の公式の障害のお知らせ一覧（2026-11-16・台帳 W45）
+# --------------------------------------------------------------------------- #
+_KANJI_NUM = {"一": 1, "二": 2, "三": 3, "四": 4, "五": 5, "六": 6, "七": 7, "八": 8, "九": 9}
+_REPORT_RE = re.compile(r"第\s?([0-9]+|[一二三四五六七八九十]+)\s?報")
+_ASOF_RE = re.compile(r"(\d{1,2})月(\d{1,2})日\s?(午前|午後)?\s?(\d{1,2})時(?:(\d{1,2})分)?\s?(?:時点|現在)")
+_LIST_DATE_RE = re.compile(r"^(20\d{2})年(\d{1,2})月(\d{1,2})日$")
+
+
+def _report_no(text: str) -> int:
+    m = _REPORT_RE.search(text)
+    if not m:
+        return 0
+    raw = m.group(1)
+    if raw.isdigit():
+        return int(raw)
+    if raw == "十":
+        return 10
+    if raw.startswith("十"):
+        return 10 + _KANJI_NUM.get(raw[1:], 0)
+    if raw.endswith("十"):
+        return _KANJI_NUM.get(raw[0], 0) * 10
+    if "十" in raw:
+        return _KANJI_NUM.get(raw[0], 0) * 10 + _KANJI_NUM.get(raw[-1], 0)
+    return _KANJI_NUM.get(raw, 0)
+
+
+def notice_stage(title: str) -> tuple[str, int]:
+    """お知らせの段階と報の番号。start（障害発生・確認中）/ report（第N報）/ partial（一部復旧）/ recovered（復旧・最終報）"""
+    text = nfkc(title)
+    number = _report_no(text)
+    if "一部復旧" in text:
+        return "partial", number
+    if re.search(r"復旧|回復|最終報|解消", text):
+        return "recovered", number
+    if number >= 2:
+        return "report", number
+    return "start", number or 1
+
+
+def _clock(ampm: str | None, hour: int, minute: int) -> tuple[int, int]:
+    if ampm == "午後" and hour < 12:
+        hour += 12
+    if ampm == "午前" and hour == 12:
+        hour = 0
+    return hour % 24, minute
+
+
+def _subject(title: str) -> str:
+    """何の障害か（【】と（）を外した題名の頭。「携帯電話サービス…」と「ドコモメール…」を分ける）"""
+    core = nfkc(title)
+    for _ in range(3):
+        core = re.sub(r"【[^】]*】|\([^()]*\)", "", core)
+    return norm(core)[:6]
+
+
+def parse_notice_list(src: dict, page: dict, now: datetime, cfg: dict | None = None) -> list[dict]:
+    """公式の障害のお知らせ一覧（fetch_page の結果）→ 1件ずつ [{url, title, stage, no, posted(日付・日本時間), asOf(時刻つき|None), subject}]。
+    新しい順。日付は、一覧の中の日付の行（その下に題名が並ぶ）→ URL の日付（…/261116_00_m.html）の順。災害・工事・一部の地域のお知らせは外す"""
+    cfg = cfg or CONFIG
+    dated: list[tuple[str, datetime]] = []  # 一覧の本文の行（題名, その上の日付）。同じ題名が何度も出る（毎回の「障害発生」）ので順番で当てる
+    current = None
+    for line in nfkc(page.get("text") or "").splitlines():
+        line = re.sub(r"\s+", " ", line).strip()
+        if m := _LIST_DATE_RE.match(line.replace(" ", "")):
+            try:
+                current = datetime(int(m.group(1)), int(m.group(2)), int(m.group(3)), tzinfo=JST)
+            except ValueError:
+                current = None
+        elif current and len(line) >= 8:
+            dated.append((line, current))
+    pointer = 0
+    rows: list[dict] = []
+    seen = set()
+    for link in page.get("links") or []:
+        url = urllib.parse.urljoin(src["url"], str(link.get("url") or ""))
+        title = re.sub(r"\s+", " ", nfkc(str(link.get("text") or ""))).strip()
+        if url in seen or not src["_link_re"].search(urllib.parse.urlsplit(url).path) or _site(url) != _site(src["url"]):
+            continue
+        if not cfg["_notice_title_re"].search(title) or cfg["_notice_exclude_re"].search(title):
+            continue
+        seen.add(url)
+        posted = None
+        for index in range(pointer, len(dated)):
+            if dated[index][0] == title:
+                posted, pointer = dated[index][1], index + 1
+                break
+        posted = posted or url_date(url, now + timedelta(days=1))
+        if not posted:
+            continue
+        stage, number = notice_stage(title)
+        as_of = None
+        if m := _ASOF_RE.search(title):
+            hour, minute = _clock(m.group(3), int(m.group(4)), int(m.group(5) or 0))
+            try:
+                as_of = datetime(posted.year, int(m.group(1)), int(m.group(2)), hour, minute, tzinfo=JST)
+            except ValueError:
+                as_of = None
+        rows.append({"url": url, "title": title[:200], "stage": stage, "no": number, "posted": posted, "asOf": as_of, "subject": _subject(title)})
+    return rows
+
+
+def group_notices(rows: list[dict], gap_days: int = 3) -> list[dict]:
+    """お知らせの行を事故ごとにまとめる（古い順に読む）。「障害発生」は新しい事故を開く。第N報・一部復旧・復旧は、同じ対象の
+    まだ復旧していない事故（gap_days 日以内に始まったもの）に足す。開いている事故が無い復旧のお知らせは、それだけで1つの事故。
+    戻り値は新しい順 [{day(YYYYMMDD), subject, rows(古い順), stage(いちばん新しい段階)}]"""
+    def order(row: dict):
+        return (row["posted"], row["asOf"] or row["posted"], {"start": 0, "report": 1, "partial": 2, "recovered": 3}[row["stage"]], row["no"])
+
+    incidents: list[dict] = []
+    for row in sorted(rows, key=order):
+        target = None
+        if row["stage"] != "start":
+            for inc in reversed(incidents):
+                if inc["subject"] == row["subject"] and inc["stage"] != "recovered" \
+                        and row["posted"] - inc["rows"][0]["posted"] <= timedelta(days=gap_days):
+                    target = inc
+                    break
+        if target is None:
+            target = {"day": day_of(row["posted"]), "subject": row["subject"], "rows": [], "stage": ""}
+            incidents.append(target)
+        target["rows"].append(row)
+        target["stage"] = row["stage"]
+    return incidents[::-1]
+
+
+def key_rows(incident: dict) -> list[dict]:
+    """1つの事故のうち、記事にかかわる節目のお知らせ（障害発生・最初の続報・最初の一部復旧・復旧）。
+    毎時の「更新情報はありません」の報では速報レーンを起こさない"""
+    out = []
+    for stage in ("start", "report", "partial", "recovered"):
+        same = [r for r in incident["rows"] if r["stage"] == stage]
+        if same:
+            out.append(same[-1] if stage == "recovered" else same[0])
+    return out
+
+
+def gather_notices(cfg: dict, fetch_page, now: datetime) -> tuple[list[dict], dict[str, dict], list[str], dict[str, str]]:
+    """通信会社の公式の障害のお知らせ一覧を直接読む（cfg の notices。他社が伝えるのを待たない）。
+    戻り値: (候補の見出し, 発信元, 読めなかった一覧, お知らせの URL → 事故の発生日)。
+    記事にするのは、発生のお知らせが出た事故（終わってから出た復旧だけのお知らせは拾わない）で、いちばん新しいお知らせが
+    notice_max_age_days 日以内のもの（古い事故を今から記事にしない）"""
+    items: list[dict] = []
+    errors: list[str] = []
+    sources: dict[str, dict] = {}
+    days: dict[str, str] = {}
+    max_age = int(cfg.get("notice_max_age_days") or 1)
+    today = now.astimezone(JST).date()
+    for src in cfg.get("notices") or []:
+        slug = f"notice:{src['name']}"
+        sources[slug] = {"slug": slug, "official": True, "company": src["name"], "aliases": list(src.get("aliases") or []), "kind": src.get("kind") or "outage"}
+        try:
+            rows = parse_notice_list(src, fetch_page(src["url"]), now, cfg)
+        except Exception as error:  # noqa: BLE001 - 1社読めなくてもほかで続ける
+            errors.append(f"{slug}: {str(error)[:60]}")
+            continue
+        if not rows:
+            continue  # 障害のお知らせが1件も無いのは、ふつうのこと（読めなかった扱いにしない）
+        for inc in group_notices(rows):
+            for row in inc["rows"]:
+                days[_url_key(row["url"])] = inc["day"]
+            newest = max(r["posted"] for r in inc["rows"]).date()
+            if (today - newest).days > max_age or not any(r["stage"] != "recovered" for r in inc["rows"]):
+                continue
+            for row in reversed(key_rows(inc)):  # 新しい節目を先に（初めて見た事故は、いちばん新しいお知らせを出典にする）
+                items.append({"title": row["title"], "url": row["url"], "summary": "", "published": row["asOf"], "source": slug,
+                              "day": inc["day"], "stage": row["stage"]})
+    return items, sources, errors, days
+
+
+# --------------------------------------------------------------------------- #
+# 7b. 同じ会社の過去の障害（記事に渡す比較の材料。公式のお知らせから取り出す）
+# --------------------------------------------------------------------------- #
+_SECTION_RE = r"(?m)^\s*\d+\s*[.．]\s*{name}\s*\n(.*(?:\n(?!\s*\d+\s*[.．]).*)*)"
+_DT_RE = re.compile(r"(?:(20\d{2})年)?\s?(\d{1,2})月(\d{1,2})日\s?(?:\([^)]*\))?\s?(午前|午後)?\s?(\d{1,2})時(?:(\d{1,2})分)?")
+_TIME_RE = re.compile(r"(午前|午後)\s?(\d{1,2})時(?:(\d{1,2})分)?")
+UNKNOWN_CAUSE_RE = re.compile(r"調査中|確認中|特定中|未定")
+
+
+def _section(text: str, name: str) -> str:
+    m = re.search(_SECTION_RE.replace("{name}", name), text)
+    return m.group(1).strip() if m else ""
+
+
+def _dt(m: re.Match, year: int) -> datetime | None:
+    hour, minute = _clock(m.group(4), int(m.group(5)), int(m.group(6) or 0))
+    try:
+        return datetime(int(m.group(1) or year), int(m.group(2)), int(m.group(3)), hour, minute, tzinfo=JST)
+    except ValueError:
+        return None
+
+
+def parse_outage_notice(text: str, year: int) -> dict:
+    """公式の障害のお知らせの本文 → {start, end(datetime|None), cause, approx}。「発生日時」「復旧日時」「原因」の欄から読む
+    （ドコモ「１．発生日時 …午前10時34分から…午後7時17分まで」・楽天モバイル「1. 日時 …午前8時00分頃から午前8時25分頃」）。読めない欄は空"""
+    body = nfkc(text or "")
+    when = _section(body, r"(?:発生)?日時")
+    head, sep, tail = when.partition("から")
+    start = end = None
+    if m := _DT_RE.search(head):
+        start = _dt(m, year)
+    if start and sep and "継続" not in tail:
+        if m := _DT_RE.search(tail):
+            end = _dt(m, start.year)
+        elif m := _TIME_RE.search(tail):
+            hour, minute = _clock(m.group(1), int(m.group(2)), int(m.group(3) or 0))
+            end = start.replace(hour=hour, minute=minute)
+    if start and not end and (m := _DT_RE.search(_section(body, "復旧日時"))):
+        end = _dt(m, start.year)
+    if start and end and end <= start:
+        end = None
+    cause = re.sub(r"\s+", " ", _section(body, "原因").splitlines()[0] if _section(body, "原因") else "").strip()
+    return {"start": start, "end": end, "cause": cause[:120], "approx": "頃" in when}
+
+
+def _jp_time(when: datetime) -> str:
+    hour = when.hour
+    return f"{when.month}月{when.day}日{'午前' if hour < 12 else '午後'}{hour if hour < 12 else hour - 12}時{when.minute:02d}分"
+
+
+def _span(start: datetime, end: datetime) -> str:
+    total = int((end - start).total_seconds() // 60)
+    hours, mins = divmod(total, 60)
+    return (f"{hours}時間" if hours else "") + (f"{mins}分" if mins or not hours else "")
+
+
+def outage_history(name: str, fetch_page, cfg: dict | None = None, now: datetime | None = None, current_url: str = "",
+                   day: str = "") -> list[dict]:
+    """同じ会社の、もう復旧した過去の障害（新しい順・history_max 件まで）。公式の一覧の復旧のお知らせから、発生と復旧の時刻・原因を読む。
+    今回の事故（day・current_url のお知らせを含む事故）は入れない。時刻が読めなかったお知らせは入れない（作らない）"""
+    cfg = cfg or CONFIG
+    now = now or datetime.now(UTC)
+    src = notice_src(current_url, cfg) if current_url else None
+    src = src or notice_src(name, cfg)
+    if not src:
+        return []
+    rows = parse_notice_list(src, fetch_page(src["url"]), now, cfg)
+    incidents = group_notices(rows)
+    current = next((i for i in incidents if any(_url_key(r["url"]) == _url_key(current_url) for r in i["rows"])), None) if current_url else None
+    subject = current["subject"] if current else ""
+    oldest = now - timedelta(days=int(cfg.get("history_days") or 120))
+    cases: list[dict] = []
+    for inc in incidents:
+        if len(cases) >= int(cfg.get("history_max") or 4):
+            break
+        last = inc["rows"][-1]
+        if inc is current or inc["day"] == day or inc["stage"] != "recovered" or last["posted"] < oldest or (subject and inc["subject"] != subject):
+            continue
+        try:
+            page = fetch_page(last["url"])
+        except Exception:  # noqa: BLE001 - 読めないお知らせは飛ばす
+            continue
+        facts = parse_outage_notice(page.get("text") or "", inc["rows"][0]["posted"].year)
+        if not facts["start"] or not facts["end"]:
+            continue
+        cases.append({**facts, "url": last["url"], "title": last["title"], "day": day_of(facts["start"])})
+    return cases
+
+
+def history_block(name: str, cases: list[dict], list_url: str, now: datetime, text: str = "", cfg: dict | None = None) -> str:
+    """資料に足す欄（過去の障害の記録と言葉の説明）。時間はここで計算して渡す（LLM に計算させない）"""
+    cfg = cfg or CONFIG
+    lines: list[str] = []
+    if cases:
+        lines += [f"【同じ会社の過去の障害】（{name}の公式のお知らせ一覧 {list_url} から。{now.astimezone(JST):%Y年%-m月%-d日}に確認。"
+                  "どれも復旧済みの別の障害の記録。今回の障害の原因・復旧の見込みではない）"]
+        for c in cases:
+            about = "頃" if c.get("approx") else ""
+            cause = c["cause"] or "お知らせに記載なし"
+            if UNKNOWN_CAUSE_RE.search(cause):
+                cause = f"復旧のお知らせの時点では「{cause}」"
+            lines.append(f"- {c['start'].year}年{_jp_time(c['start'])}{about}に発生 → {_jp_time(c['end'])}{about}に復旧。"
+                         f"復旧までにかかった時間は{'約' if about else ''}{_span(c['start'], c['end'])}（公式の発生と復旧の時刻から計算）。"
+                         f"公式が発表した原因: {cause}。出典: {c['title'][:60]} {c['url']}")
+    blob = nfkc(text + "\n" + "\n".join(lines))
+    words = [g for g in cfg.get("glossary") or [] if g["_re"].search(blob)]
+    if words:
+        lines += ["【言葉の説明】（一般的な通信の仕組みの説明。今回の障害の原因の説明ではない）"] + [f"- {g['text']}" for g in words]
+    return "\n".join(lines)
+
+
+def outage_context(incident: dict, url: str, text: str, fetch_page=None, cfg: dict | None = None, now: datetime | None = None) -> str:
+    """速報レーン用: 障害の記事の資料に足す欄（同じ会社の過去の障害・言葉の説明）。障害でない・材料が無いときは空"""
+    cfg = cfg or CONFIG
+    now = now or datetime.now(UTC)
+    if (incident or {}).get("kind") != "outage":
+        return ""
+    name = canonical(str(incident.get("name") or ""), cfg)[0]
+    src = notice_src(url, cfg) or notice_src(name, cfg)
+    cases: list[dict] = []
+    if src:
+        try:
+            cases = outage_history(name, fetch_page or _fetch_page, cfg, now, current_url=url, day=str(incident.get("day") or ""))
+        except Exception as error:  # noqa: BLE001 - 過去の記録が読めなくても記事は作る
+            log(f"   [incident] 過去の障害の一覧が読めない（{str(error)[:80]}）")
+    return history_block(name, cases, src["url"] if src else "", now, text, cfg)
+
+
+
 def merge_backfill(backfill: dict[str, dict], hits: dict[str, dict]) -> dict[str, dict]:
     """取りこぼしの一覧と、この回に見つけた候補を合わせる（同じ会社は1つに。一覧の印・会社のサイト・公式の URL を残し、見つけた見出しを足す）"""
     out = dict(backfill)
@@ -853,14 +1295,21 @@ FOLLOWUP_GAP_HOURS = 12
 OUTAGE_SOURCE_FLOOR = 600  # scripts/web_articles.py の MIN_TEXT_CHARS と同じ
 
 
-def source_floor(kind: str, cfg: dict | None = None) -> int:
+def source_floor(kind: str, cfg: dict | None = None, url: str = "") -> int:
     """速報レーンが書く公式の資料の長さの下限（障害はふつうの下限）。情報流出・回収は、事故の見張りの経路だけ
     scripts/incident_watch.json の min_source_chars（700字。2026-11-14 オーナー承認）。回収・流出のお知らせは短くても
     対象・窓口・やることがそろっている（モンテール 938字・東京ガス 1,098字）。ほかの経路は公共性の枠の下限（1,200字）のまま。
     設定が無い・公共性の枠より大きいときは公共性の枠の下限を使う（この経路がほかより厳しくなることはない）"""
-    if kind not in ("breach", "recall"):
-        return OUTAGE_SOURCE_FLOOR
     cfg = CONFIG if cfg is None else cfg
+    if kind not in ("breach", "recall"):
+        if url and notice_src(url, cfg):
+            # 通信会社の公式の障害のお知らせ（第一報は600字に届かないことがある。ドコモ 11/16 は596字）。速報レーンは同じ会社の
+            # 過去の公式のお知らせ（発生・復旧の時刻・原因）を資料に足してから、ふつうの下限（600字）で確かめる
+            try:
+                return min(int(cfg.get("notice_min_source_chars") or OUTAGE_SOURCE_FLOOR), OUTAGE_SOURCE_FLOOR)
+            except (TypeError, ValueError):
+                return OUTAGE_SOURCE_FLOOR
+        return OUTAGE_SOURCE_FLOOR
     try:
         own = int(cfg.get("min_source_chars") or 0)
     except (TypeError, ValueError):
@@ -878,8 +1327,19 @@ def _new_entry(hit: dict, now: datetime, cfg: dict) -> dict:
             "needScale": need_scale, "tries": 0, "dispatches": 0}
 
 
-def step(state: dict, hits: dict[str, dict], articles: list[dict], fetch_page, cfg: dict, now: datetime, max_resolve: int = 12) -> list[str]:
-    """新しい候補を state に入れ、記事の有無 → 公式のお知らせ探し まで進める（速報レーンを起こす前まで）"""
+def open_days_of(state: dict) -> dict[str, list[str]]:
+    """記録にある事故の発生日 {種類:会社: [YYYYMMDD]}（発生日つきの種類だけ）"""
+    out: dict[str, list[str]] = {}
+    for key, entry in state["items"].items():
+        if entry.get("day") and "#" not in key:
+            out.setdefault(base_key(key), []).append(str(entry["day"]))
+    return out
+
+
+def step(state: dict, hits: dict[str, dict], articles: list[dict], fetch_page, cfg: dict, now: datetime, max_resolve: int = 12,
+         notice_days: dict | None = None) -> list[str]:
+    """新しい候補を state に入れ、記事の有無 → 公式のお知らせ探し まで進める（速報レーンを起こす前まで）。
+    notice_days は、公式の一覧で分かった「お知らせの URL → その事故の発生日」（翌日に出た復旧のお知らせを、前の日の事故につなぐ）"""
     notes: list[str] = []
     resolved = 0
     for key, hit in hits.items():
@@ -887,7 +1347,9 @@ def step(state: dict, hits: dict[str, dict], articles: list[dict], fetch_page, c
         if entry is None:
             state["items"][key] = _new_entry(hit, now, cfg)
             continue
-        fresh = [d for d in hit["discovery"] if not any(x["url"] == d["url"] for x in entry.get("discovery") or [])]
+        known = [*(entry.get("discovery") or []),
+                 *(d for k, e in state["items"].items() if k.startswith(key + "#") for d in e.get("discovery") or [])]
+        fresh = [d for d in hit["discovery"] if not any(x["url"] == d["url"] for x in known)]
         if hit.get("backfill"):
             if entry.get("status") in ("skipped", "failed", "press"):
                 entry.update(status="new", backfill=True, tries=0, home=hit.get("home") or entry.get("home", ""),
@@ -965,7 +1427,16 @@ def step(state: dict, hits: dict[str, dict], articles: list[dict], fetch_page, c
         announced = parse_time(found["announcedAt"])
         entry.update(officialUrl=found["url"], officialTitle=found.get("title") or "", announcedAt=found["announcedAt"],
                      precision=found["precision"], via=found["via"])
-        floor = source_floor(entry["kind"], cfg)
+        floor = source_floor(entry["kind"], cfg, found["url"])
+        from_notice = notice_src(found["url"], cfg) is not None
+        if entry.get("day"):
+            # 公式のお知らせから分かった発生日が違うとき（翌日の「原因は…」の記事から前の日のお知らせに行き着いた・復旧のお知らせが翌日に出た）は、
+            # その日の事故の続きとして扱う（新しい事故の記事を作らない）
+            real = str((notice_days or {}).get(_url_key(found["url"])) or "")
+            if not real and from_notice and announced:
+                real = day_of(announced)
+            if real and real != entry["day"] and real < entry["day"]:
+                entry.update(day=real, followup=True)
         if found.get("chars", 0) < floor:
             # 速報レーンは、公式の資料がこの字数より短いと書かない（水増しになるため。事故の見張りの情報流出・回収は source_floor＝
             # incident_watch.json の min_source_chars、障害は scripts/web_articles.py MIN_TEXT_CHARS）。速報レーンも同じ source_floor で
@@ -978,7 +1449,11 @@ def step(state: dict, hits: dict[str, dict], articles: list[dict], fetch_page, c
             if not major and found.get("scale", 0) < int(cfg["min_scale"]):
                 entry.update(status="skipped", reason=f"規模が小さい・分からない（公式の資料: {found.get('scaleText') or '件数なし'}）")
                 continue
-        if slug := covered(entry, articles, found["url"], announced, cfg):
+        # 公式の一覧で見つけた続きのお知らせ（第二報・一部復旧・復旧）は、出典の URL が同じ記事があるときだけ「記事あり」。
+        # 同じ事故の記事への追記か見送りかは速報レーンが決める（発表の時刻が日付だけでも、復旧を取りこぼさない）
+        own_followup = bool(entry.get("followup")) and from_notice and any(d.get("official") and d.get("url") == found["url"]
+                                                                          for d in entry.get("discovery") or [])
+        if slug := covered(entry, articles, found["url"], announced, cfg, url_only=own_followup):
             entry.update(status="covered", slug=slug, reason="同じ事故の記事がある（公式のお知らせで確認）")
             notes.append(f"記事あり: {entry['name']} → {slug}")
             continue
@@ -1052,10 +1527,10 @@ def enqueue_external(rows: list[dict], now: datetime | None = None, fetch_page=N
     now = now or datetime.now(UTC)
     items = [{"title": r["title"], "url": r["url"], "summary": "", "published": r.get("published"), "source": r.get("source") or "他社"}
              for r in rows if r.get("title") and r.get("url")]
-    hits = detect(items, {}, cfg, now)
+    state = load_state(state_path)
+    hits = detect(items, {}, cfg, now, open_days_of(state))
     if not hits:
         return []
-    state = load_state(state_path)
     before = {k: v.get("status") for k, v in state["items"].items()}
     step(state, hits, articles if articles is not None else load_articles(int(cfg["covered_days"]), now), fetch_page or _fetch_page, cfg, now)
     lines = []
@@ -1187,19 +1662,20 @@ def run(args) -> int:
     notes = settle(state, fast_lane.load_acks(), articles, live, now, cfg)
     items, sources, errors = gather(cfg, _fetch_bytes)
     home_items, home_sources, home_errors = gather_homes(cfg, _fetch_page, state["homes"], now)
-    items, sources, errors = items + home_items, {**sources, **home_sources}, errors + home_errors
+    notice_items, notice_sources, notice_errors, notice_days = gather_notices(cfg, _fetch_page, now)
+    items, sources, errors = items + home_items + notice_items, {**sources, **home_sources, **notice_sources}, errors + home_errors + notice_errors
     fresh = []
     for item in items:
         sid = hashlib.sha1(item["url"].encode("utf-8")).hexdigest()[:16]
         if sid not in state["seen"]:
             state["seen"][sid] = iso(now)
             fresh.append(item)
-    hits = detect(fresh, sources, cfg, now)
+    hits = detect(fresh, sources, cfg, now, open_days_of(state))
     if args.backfill:
         hits = merge_backfill(backfill_hits(cfg), hits)
     log(f"[incident] 見出し {len(items)} 件（新しいもの {len(fresh)} 件）→ 事故の候補 {len(hits)} 件"
         + (f" / 読めなかった発信元: {' / '.join(errors)}" if errors else ""))
-    notes += step(state, hits, articles, _fetch_page, cfg, now)
+    notes += step(state, hits, articles, _fetch_page, cfg, now, notice_days=notice_days)
     batch = pick_dispatch(state, cfg, now)
     if batch and not args.dry_run and not args.no_dispatch:
         metas = [build_meta(e, cfg, now) for e in batch]

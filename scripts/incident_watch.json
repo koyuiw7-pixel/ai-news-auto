@@ -1,5 +1,5 @@
 {
-  "_doc": "「自分は対象か」の事故（情報流出・リコール/回収・大きな障害）の見張り（scripts/incident_watch.py・台帳 W44）。discovery は見つけるためだけの発信元（記事の出典にしない。会社の名前と事故の種類を取り出し、会社自身のお知らせを探して出典にする）。official=true の発信元は項目の URL そのものが公式の一次情報（適時開示の PDF）。消費者庁のリコール情報の項目のページは本文が短いので出典にはせず、見つけるためだけに使う（major_only=全国で知られた名前だけ）。どれも 2026-11-14 に取得できること（HTTP 200・項目が読める）を確かめた。min_scale は情報流出の件数の下限（これ以上なら1つの発信元だけでも拾う）。min_scale_multi は2つ以上の発信元が伝えたときの下限。どちらにも届かず、主要な名前（major_names）にも当たらなければ見送る。name_groups は同じ会社の別の呼び名（先頭が代表）。max_age_days は遡って拾う古さ（発表から。まだ記事が無いときだけ）。covered_days は同じ事故の記事があるかを見る日数。daily_max は1日に速報レーンへ回す数の安全上限（暴走よけ。通常の記事の上限・審査の期間の門とは別枠）。per_dispatch は1回の速報レーンに渡す数（auto_run.yml は3件まで）。redispatch_minutes たっても結果が無ければ起こし直す（max_dispatches 回まで）。major_names は全国で売られている・使われている名前（食品の回収と、件数が分からない事故を拾う目安）。homes は会社自身のお知らせの欄を直接見る会社（トップ・お知らせ一覧の「情報流出・回収」のリンクを候補にする。他社が伝えるのを待たない。2026-11-14 に読めることを確かめた会社だけ）。min_source_chars は、事故の見張りが見つけた情報流出・回収の公式のお知らせの長さの下限（字。2026-11-14 オーナー承認。回収・流出のお知らせは短くても対象・窓口・やることがそろっているので、この経路だけ公共性の枠の 1,200字より短くてよい。記事の本文の下限もこの経路だけ 800字＝public_interest.SHORT_BODY。ほかの経路は 1,200字／1,500字のまま）。backfill は取りこぼしを1回だけ拾い直す一覧（--backfill のときだけ読む）",
+  "_doc": "「自分は対象か」の事故（情報流出・リコール/回収・大きな障害）の見張り（scripts/incident_watch.py・台帳 W44）。discovery は見つけるためだけの発信元（記事の出典にしない。会社の名前と事故の種類を取り出し、会社自身のお知らせを探して出典にする）。official=true の発信元は項目の URL そのものが公式の一次情報（適時開示の PDF）。消費者庁のリコール情報の項目のページは本文が短いので出典にはせず、見つけるためだけに使う（major_only=全国で知られた名前だけ）。どれも 2026-11-14 に取得できること（HTTP 200・項目が読める）を確かめた。min_scale は情報流出の件数の下限（これ以上なら1つの発信元だけでも拾う）。min_scale_multi は2つ以上の発信元が伝えたときの下限。どちらにも届かず、主要な名前（major_names）にも当たらなければ見送る。name_groups は同じ会社の別の呼び名（先頭が代表）。max_age_days は遡って拾う古さ（発表から。まだ記事が無いときだけ）。covered_days は同じ事故の記事があるかを見る日数。daily_max は1日に速報レーンへ回す数の安全上限（暴走よけ。通常の記事の上限・審査の期間の門とは別枠）。per_dispatch は1回の速報レーンに渡す数（auto_run.yml は3件まで）。redispatch_minutes たっても結果が無ければ起こし直す（max_dispatches 回まで）。major_names は全国で売られている・使われている名前（食品の回収と、件数が分からない事故を拾う目安）。homes は会社自身のお知らせの欄を直接見る会社（トップ・お知らせ一覧の「情報流出・回収」のリンクを候補にする。他社が伝えるのを待たない。2026-11-14 に読めることを確かめた会社だけ）。min_source_chars は、事故の見張りが見つけた情報流出・回収の公式のお知らせの長さの下限（字。2026-11-14 オーナー承認。回収・流出のお知らせは短くても対象・窓口・やることがそろっているので、この経路だけ公共性の枠の 1,200字より短くてよい。記事の本文の下限もこの経路だけ 800字＝public_interest.SHORT_BODY。ほかの経路は 1,200字／1,500字のまま）。backfill は取りこぼしを1回だけ拾い直す一覧（--backfill のときだけ読む）。2026-11-16（台帳 W45）: dated_kinds は「同じ会社でも日が違えば別の事故」として鍵に発生日を入れる種類（障害）。followup_days は、日付の無い続きの見出し（復旧・第N報）を前の事故につなぐ日数。notices は通信会社の公式の障害のお知らせ一覧（他社が伝えるのを待たずに直接読む。2026-11-16 に読めることを確かめたものだけ。au・ソフトバンクは一覧がスクリプトで描かれていて読めなかった）。link_re はお知らせ1件の URL の形。notice_title_re に当たり notice_exclude_re に当たらない題名だけ拾う（災害・工事・一部の地域・手続きの不具合は別の扱い）。notice_max_age_days より古い事故は今から記事にしない。notice_min_source_chars は一覧から見つけた障害のお知らせの長さの下限（第一報は600字に届かないことがある。速報レーンが同じ会社の過去の公式のお知らせを資料に足す）。history_days・history_max は記事に渡す過去の障害の範囲と件数。glossary は仕組みの説明に使う言葉（お知らせ・過去の原因にその言葉があるときだけ渡す）",
   "min_scale": 100000,
   "min_scale_multi": 10000,
   "max_age_days": 14,
@@ -10,6 +10,23 @@
   "redispatch_minutes": 45,
   "official_tries": 4,
   "min_source_chars": 700,
+  "dated_kinds": [ "outage" ],
+  "followup_days": 2,
+  "notice_max_age_days": 1,
+  "notice_min_source_chars": 300,
+  "history_days": 120,
+  "history_max": 4,
+  "notice_title_re": "障害発生|ご利用しづらい|利用しづらい|ご利用できない|ご利用いただけない|つながりにくい|通信障害",
+  "notice_exclude_re": "台風|地震|大雨|豪雨|大雪|噴火|津波|影響なし|一部エリア|MVNO|工事|メンテナンス|MNP|乗り換え|my 楽天モバイル",
+  "notices": [
+    { "name": "NTTドコモ", "aliases": [ "ドコモ", "docomo" ], "kind": "outage", "url": "https://www.docomo.ne.jp/info/network/", "link_re": "/info/network/[a-z]+/pages/\\d{6}_\\d+(?:_m)?\\.html$" },
+    { "name": "楽天モバイル", "aliases": [ "Rakuten Mobile" ], "kind": "outage", "url": "https://network.mobile.rakuten.co.jp/information/failure/", "link_re": "/information/failure/\\d+/?$" }
+  ],
+  "glossary": [
+    { "term": "5G SA", "re": "5G\\s?SA|Standalone|スタンドアローン", "text": "5G SA（スタンドアローン）は、電波を出す基地局だけでなく、通信を制御する中心の設備も5G専用のものを使う方式。これまでの5G（NSA）は、中心の設備に4Gのものを組み合わせて動く。端末の設定で4Gを選ぶと、5G SA用の設備ではなく4Gの設備を使ってつながる" },
+    { "term": "輻輳", "re": "輻輳", "text": "輻輳（ふくそう）は、通信や処理の要求が一度に集中して設備がさばききれず、混み合ってつながりにくくなる状態" },
+    { "term": "交換機", "re": "交換機", "text": "交換機は、端末からの接続の要求を受け付けて、通話やデータ通信を相手先につなぐネットワークの中心の設備" }
+  ],
   "discovery": [
     { "slug": "scan-netsecurity", "name": "ScanNetSecurity", "url": "https://scan.netsecurity.ne.jp/rss/index.rdf" },
     { "slug": "security-next", "name": "Security NEXT", "url": "https://www.security-next.com/feed" },
@@ -32,7 +49,7 @@
     "outage": {
       "label": "障害",
       "genre": "public",
-      "re": "システム障害|通信障害|接続障害|障害が発生|つながりにくい|利用できない状況|ATM.{0,10}(?:利用|使え)",
+      "re": "システム障害|通信障害|接続障害|障害が発生|障害発生|つながりにくい|利用できない状況|利用しづらい|ATM.{0,10}(?:利用|使え)",
       "anchor_re": "障害|つながりにくい|利用できない"
     }
   },
