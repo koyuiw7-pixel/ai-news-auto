@@ -1,0 +1,115 @@
+{
+  "slug": "xenserver-outlook-jpcert-vulnerabilities-summary-matome",
+  "type": "roundup",
+  "newsType": "event",
+  "roundupKey": "XenServer",
+  "membersHash": "1a7b387141f01b3b",
+  "sources": [
+    {
+      "slug": "outlook-vulnerability-november-2026",
+      "title": "Outlookのなりすまし脆弱性、悪用を確認　11月の更新プログラムで修正",
+      "publishedAt": "2026-11-11T02:20:00+00:00",
+      "channel": "JPCERT/CC"
+    },
+    {
+      "slug": "jpcert-weekly-report-20261111-vulnerabilities",
+      "title": "Cloud Software Groupの「XenServer」やFirefoxなどに複数の脆弱性　JPCERT/CCが注意喚起",
+      "publishedAt": "2026-11-11T00:07:00+00:00",
+      "channel": "JPCERT/CC"
+    },
+    {
+      "slug": "jpcert-security-advisory-wordpress-edge-chrome-updates",
+      "title": "WordPressやChromeなど主要ソフトに複数脆弱性　悪用事例の報告も",
+      "publishedAt": "2026-11-05T00:52:00+00:00",
+      "channel": "JPCERT/CC"
+    },
+    {
+      "slug": "jpcert-weekly-report-20261028-vulnerabilities",
+      "title": "JPCERT/CC、VeloCloud OrchestratorやPHPなどの脆弱性で注意喚起",
+      "publishedAt": "2026-10-28T00:07:00+00:00",
+      "channel": "JPCERT/CC"
+    }
+  ],
+  "title": "XenServerやOutlookなど主要ソフトに相次ぐ脆弱性、JPCERT/CCの発表まとめ",
+  "seoTitle": "XenServerやOutlookに脆弱性：JPCERT/CC注意喚起まとめ",
+  "threadsPost": "社内のサーバーやPCを管理している人に、知っておいてほしい話です。\n\nJPCERT/CCはXenServerやOutlookなどの脆弱性を相次ぎ公表しました。\nすでに悪用が確認された問題も含まれ、修正版への更新が必要です。\n\n自社のシステムで使っているソフトウェアの把握、できていますか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "plain",
+      "question": "自社のシステムで使っているソフトウェアの把握、できていますか？"
+    },
+    {
+      "pattern": "expert",
+      "question": "社内システムの脆弱性対策で、一番苦労している作業は何ですか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "lede": "JPCERT/CCは2026年10月下旬から11月にかけて、仮想化基盤のXenServerやOutlookなど、多数のソフトウェアで脆弱性が確認されたと発表しました。対象にはすでに実際の攻撃で悪用されている問題も含まれており、自社で運用するサーバーや端末のバージョン確認と修正プログラムの適用が求められます。該当する製品を使用していない環境では作業は不要ですが、管理者は資産台帳と照合して速やかに更新作業を進める必要があります。",
+  "description": "JPCERT/CCが発表したXenServerやOutlook、WordPressなどの脆弱性情報を統合解説。悪用が確認された事例や修正プログラムの適用手順、サポート終了製品への対応方法を分かりやすくまとめました。",
+  "keywords": [
+    "XenServer",
+    "Outlook",
+    "JPCERT/CC",
+    "脆弱性",
+    "セキュリティ",
+    "WordPress",
+    "VeloCloud",
+    "PHP",
+    "更新プログラム",
+    "CVE-2026-124194"
+  ],
+  "tags": [
+    "セキュリティ",
+    "脆弱性",
+    "XenServer",
+    "JPCERT/CC",
+    "運用管理"
+  ],
+  "highlights": [
+    "XenServerやOutlookを含む主要ソフトウェアでセキュリティ欠陥が相次ぎ修正版への更新が求められています。",
+    "OutlookやWordPress、VeloCloudなど一部製品ではすでに実際の悪用攻撃が確認されています。",
+    "サポート終了済みのPHPなどは修正版が提供されないため上位版への移行や代替措置が必要です。"
+  ],
+  "timetable": [],
+  "body": "JPCERT/CC（一般社団法人JPCERTコーディネーションセンター）は、2026年10月下旬から11月にかけて、企業や個人が利用する各種ソフトウェアのセキュリティ情報（安全上の問題）を相次いで公表しました。仮想化基盤（複数のOSを動作させる仕組み）である「XenServer」をはじめ、Webブラウザやサーバー向けソフトに至るまで対象は広範囲に及びます。\n\n影響を受ける対象は、自社で対象製品を導入している企業や、個人の端末で該当ソフトを利用しているユーザーです。リストに含まれる製品を使っていない環境では、何も対応する必要はありません。一方で対象となる製品を運用中の場合は、悪質な攻撃を防ぐための更新作業が必要となります。\n\n## 主な脆弱性と影響を受ける製品の一覧\n\n一連の発表で対象となった主要な製品と、それぞれの影響や状況を以下の表に統合しました。すでに実際の攻撃で悪用されたことが確認されている項目も含まれるため、優先度の判断材料として活用できます。\n\n| 対象製品・サービス | 主な問題の内容 | 悪用や攻撃コードの確認 | 公表日と情報源 |\n| --- | --- | --- | --- |\n| XenServer（Cloud Software Group） | 複数の脆弱性が存在 | 未記載 | 11月11日（JPCERT/CC週報） |\n| Outlook（Microsoft） | なりすましの問題（CVE-2026-124194） | 悪用を確認 | 11月11日（JPCERT/CC） |\n| Airbyte | 任意のプログラムが実行される問題 | 悪用を確認 | 11月11日（JPCERT/CC週報） |\n| Puppet Server / OpenVox（Perforce） | データの復元処理における不具合や認証回避 | 未記載 | 11月11日（JPCERT/CC週報） |\n| GS1900シリーズ（Zyxel） | メモリ書き込みのエラー（CVE-2026-107441） | 攻撃コードの分析報告あり | 11月11日（JPCERT/CC週報） |\n| Barracuda製品 | 認可の回避や不正コマンドの実行 | エクスプロイトコードあり | 11月11日（JPCERT/CC週報） |\n| WordPress | 本体の更新処理におけるコード実行（CVE-2026-119977） | 悪用を確認（CISA警告） | 11月5日（JPCERT/CC） |\n| YOOtheme Pro | 不正なファイルのアップロード | 悪用を確認 | 11月5日（JPCERT/CC） |\n| Secure Firewall ASA / FTD（Cisco） | サービス運用妨害（DoS）の欠陥 | 悪用を確認 | 11月5日（JPCERT/CC） |\n| Ruby | Alpine Linux等における不正アクセス試行 | 攻撃試行の報告あり | 11月5日（JPCERT/CC） |\n| Brotli（C言語実装） | データ展開時の処理エラー（CVE-2026-111497） | 未記載 | 11月5日（JPCERT/CC） |\n| VeloCloud Orchestrator（Arista） | データベースへの不正命令（SQLインジェクション） | 悪用を確認 | 10月28日（JPCERT/CC週報） |\n| PHP | 遠隔からのプログラム実行（CVE-2026-109618等） | 実証コード多数、通信観測 | 10月28日（JPCERT/CC週報） |\n\n公表された一連の情報は、時期を追って段階的に提供されています。以下の表は、各発表や調査が公開された経緯をまとめたものです。\n\n| 公開日 | 発信元 | 掲載された主な内容 |\n| --- | --- | --- |\n| 10月15日 | JPCERT/CC Eyes | AIを用いた脆弱性スキャンやAPI攻撃の調査結果を公開 |\n| 10月22日 | JPCERT/CC | 7〜9月期の脆弱性届出状況および四半期レポートを掲載 |\n| 10月28日 | JPCERT/CC週報 | VeloCloud OrchestratorやPHPを含む15項目の修正情報を掲載 |\n| 11月5日 | NCO（内閣官房） | Webおよびアプリ事業者向けに資産把握と診断の徹底を要請 |\n| 11月5日 | JPCERT/CC | WordPressやCisco製品など悪用事例を含むセキュリティ注意喚起を発行 |\n| 11月11日 | JPCERT/CC | Outlookのなりすまし脆弱性（CVE-2026-124194）の悪用を公表 |\n| 11月11日 | JPCERT/CC週報 | XenServerやAirbyteなど多岐にわたる製品の修正情報を公開 |\n\n## 悪用事例の公表状況と運用の注意点\n\n一連の発表を整理すると、単なる潜在的欠陥の報告にとどまらず、実際の攻撃や実証コードの流通が報告されている製品が目立ちます。特にOutlook、WordPress、Airbyte、VeloCloud Orchestratorでは悪用が確認されています。\n\nサポート対応の有無も重要なポイントです。PHPの古いバージョンやSophos UTMなどの一部製品はサポートが終了しており、修正用のプログラムが自動で配られない場合があります。これらについては手動での対処や上位版への移行が求められます。また、内閣官房国家サイバー統括室（NCO）が11月5日に資産把握と継続的な診断を求める案内を出したように、組織全体での管理徹底が提示されています。\n\n主要な個別発表の内容は以下のとおりです。\n\nCloud Software Groupが提供する「XenServer」においては複数のセキュリティ上の欠陥が確認されており、修正済みバージョンへの更新が必要です。詳細: [Cloud Software Groupの「XenServer」やFirefoxなどに複数の脆弱性 JPCERT/CCが注意喚起](/articles/jpcert-weekly-report-20261111-vulnerabilities)\n\nMicrosoft Outlookの脆弱性「CVE-2026-124194」は、細工されたファイルを開く際に警告が表示されず、攻撃者のサーバーに自動接続して認証情報が漏洩する恐れがあります。詳細: [Outlookのなりすまし脆弱性、悪用を確認 11月の更新プログラムで修正](/articles/outlook-vulnerability-november-2026)\n\nWordPressでは本体の更新機能に関する欠陥（CVE-2026-119977）が悪用されているほか、Ciscoのファイアウォール製品でも攻撃事例が報告されています。詳細: [WordPressやChromeなど主要ソフトに複数脆弱性 悪用事例の報告も](/articles/jpcert-security-advisory-wordpress-edge-chrome-updates)\n\nAristaの「VeloCloud Orchestrator」オンプレミス版やPHPの複数脆弱性についても、攻撃や実証コードの公開が確認されています。詳細: [JPCERT/CC、VeloCloud OrchestratorやPHPなどの脆弱性で注意喚起](/articles/jpcert-weekly-report-20261028-vulnerabilities)\n\n## まだ分からないこと\n\n- 個別のシステム環境における具体的な被害規模やログの詳細については各開発者の発表に依存しており一括した数値は提示されていません。\n- Sophos UTMなどサポート終了製品における手動パッチの提供範囲や配布手続きの詳細は個別ヘルプでの確認が必要です。\n- VeloCloud Orchestratorへの攻撃による実際の被害件数や詳細な影響範囲はまだ公表されていません。\n\n## システム管理者が確認すべき対応手順\n\nサーバーや社内ネットワークを管理する担当者は、自社の資産台帳と今回公表された対象製品の一覧を照らし合わせる必要があります。該当するソフトウェアや機器が存在する場合は、開発元の案内を参照して修正版のバージョンと適用条件を確認してください。\n\n悪用が確認されているOutlookやWordPress、VeloCloud Orchestratorオンプレミス版などの運用環境では、優先して修正プログラムの展開を進めることが推奨されます。PCやスマートフォンの一般利用者は、OSやブラウザの自動更新設定を有効にし、更新後の再起動通知が表示された場合は速やかに再起動を行ってください。",
+  "easy": "## ひとことで言うと\n\nサーバーを作るソフト「XenServer」やメールソフト「Outlook」など、仕事で使う多くのプログラムに安全上の問題（セキュリティ上の欠陥）が見つかりました。修正するための最新版が用意されているため、使っている場合は早めの更新が必要です。\n\n## なぜ更新が必要なの？\n\nいくつかの問題では、すでに悪意のある攻撃に使われたことが分かっています。たとえばOutlookでは、特別なファイルをひらくと警告が出ないまま怪しいサーバーへ接続し、パスワードなどの情報が盗まれる危険があります。\n\n## 自分がやるべきことは？\n\n自分のパソコンや会社のサーバーで対象のソフトを使っていない場合は、何もする必要はありません。使っている場合は、案内にしたがって最新のバージョンへ更新を行ってください。",
+  "channel": "4本の記事から編集部が統合",
+  "channelId": "",
+  "channelSlug": "jpcert",
+  "genre": "テクノロジー・ガジェット",
+  "genreSlug": "tech-gadget",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。価格・仕様・提供時期は変更される場合があるため、購入・利用の前に発表元の一次情報をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "XenServer 関連の4本",
+  "publishedAt": "2026-11-11T02:20:00+00:00",
+  "generatedAt": "2026-11-16T00:09:43.199288+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/xenserver-outlook-jpcert-vulnerabilities-summary-matome-figure-4a621685.jpg",
+  "model": "gemini-3.5-flash",
+  "affiliates": [],
+  "depthAt": "2026-11-16T00:10:02+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "XenServerやOutlookなど主要ソフトに相次ぐ脆弱性、JPCERT/CCの発表まとめ",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-16T00:12:02+00:00"
+  },
+  "imageFocus": {
+    "x": 0.515,
+    "y": 0.372,
+    "box": [
+      0.081,
+      0.042,
+      0.95,
+      0.702
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/xenserver-outlook-jpcert-vulnerabilities-summary-matome-figure-4a621685.jpg"
+  }
+}
