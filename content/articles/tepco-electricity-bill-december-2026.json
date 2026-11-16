@@ -63,8 +63,8 @@
   "affiliates": [],
   "newsType": "product",
   "todayActions": [
-    "11月分と12月分の差0.68円に、自分の月の使用量（kWh）を掛けると、増える額の目安が分かります。",
-    "高圧や特別高圧の契約なら、11月27日か12月25日に発表される単価を確かめる。"
+    "自分の1か月の使用量（kWh）に0.68円を掛けて、12月分で増える額の目安を出す。",
+    "高圧・特別高圧の契約なら、計量期間などの始まり方を確かめ、発表される単価を見る。"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -108,5 +108,90 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/tepco-electricity-bill-december-2026-596b5543.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "高圧・特別高圧の市場価格調整単価は、計量期間の始まりが毎月1日なら2027年1月4日、そうでなければ12月1日に発表される予定です。",
+      "source": "https://www4.tepco.co.jp/en/ep/about/newsroom/press/archives/2026/pdf/261029e0201.pdf"
+    },
+    {
+      "text": "平均モデルの9,738円には、再生可能エネルギー発電促進賦課金の1,086円と消費税などが含まれています。",
+      "source": "https://www4.tepco.co.jp/en/ep/about/newsroom/press/archives/2026/pdf/261029e0201.pdf"
+    },
+    {
+      "text": "燃料価格や需給が急に変わると、燃料費調整単価が大幅に上がる可能性があると書かれています。",
+      "source": "https://www4.tepco.co.jp/en/ep/about/newsroom/press/archives/2026/pdf/261029e0201.pdf"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "東京電力エナジーパートナー 報道発表（燃料費調整単価）",
+      "url": "https://www4.tepco.co.jp/en/ep/about/newsroom/press/archives/2026/pdf/261029e0201.pdf",
+      "source": "https://www4.tepco.co.jp/en/ep/about/newsroom/press/archives/2026/pdf/261029e0201.pdf"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "自分の1か月の使用量（kWh）に0.68円を掛けて、12月分で増える額の目安を出す。",
+      "source": "https://www4.tepco.co.jp/en/ep/about/newsroom/press/archives/2026/pdf/261029e0201.pdf",
+      "steps": [
+        "11月分と12月分の単価の差は1kWhあたり0.68円",
+        "自分の月の使用量（kWh）を用意する",
+        "使用量×0.68円で増える額の目安を計算する"
+      ]
+    },
+    {
+      "action": "高圧・特別高圧の契約なら、計量期間などの始まり方を確かめ、発表される単価を見る。",
+      "source": "https://www4.tepco.co.jp/en/ep/about/newsroom/press/archives/2026/pdf/261029e0201.pdf",
+      "steps": [
+        "計量期間などが毎月1日に始まるか確かめる",
+        "毎月1日始まりなら12月25日の発表を確かめる",
+        "そうでなければ11月27日の発表を確かめる"
+      ],
+      "url": "https://www4.tepco.co.jp/en/ep/about/newsroom/press/archives/2026/pdf/261029e0201.pdf"
+    }
+  ],
+  "cause": {
+    "text": "12月分の単価は、2026年7月から9月の燃料価格（貿易統計の実績）をもとに決まりました。燃料費調整単価のマイナス幅が0.68円縮んだため、平均モデルの電気代は11月分より177円高くなっています。",
+    "status": "background",
+    "source": "https://www4.tepco.co.jp/en/ep/about/newsroom/press/archives/2026/pdf/261029e0201.pdf"
+  },
+  "worries": [
+    {
+      "q": "自分の家では、12月分でいくら増えますか？",
+      "a": "11月分と12月分の差は1kWhあたり0.68円です。平均モデル（月260kWh）では177円増の9,738円となっています。使用量によって増える額は変わります。",
+      "source": "https://www4.tepco.co.jp/en/ep/about/newsroom/press/archives/2026/pdf/261029e0201.pdf",
+      "action": "自分の1か月の使用量（kWh）に0.68円を掛けて、増える額の目安を出す。"
+    },
+    {
+      "q": "高圧や特別高圧の契約でも同じように上がりますか？",
+      "a": "9,738円は低圧の平均モデルの数字です。高圧・特別高圧の単価は別に発表され、計量期間の始まり方によって11月27日か12月25日に発表予定と書かれています。",
+      "source": "https://www4.tepco.co.jp/en/ep/about/newsroom/press/archives/2026/pdf/261029e0201.pdf",
+      "action": "高圧・特別高圧なら、計量期間などが毎月1日に始まるかを確かめ、発表日を見る。"
+    },
+    {
+      "q": "今後も電気代は上がり続けますか？",
+      "a": "燃料費調整単価は燃料価格で決まり、世界のエネルギー情勢や需給が逼迫すると、単価が大きく上がる可能性があると書かれています。",
+      "source": "https://www4.tepco.co.jp/en/ep/about/newsroom/press/archives/2026/pdf/261029e0201.pdf",
+      "action": "次に発表される単価が同じ方向かどうかを、東京電力の発表で確かめる。"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "平均モデルの9,738円に含まれるものは",
+    "cause": "12月分の単価は何の燃料で決まった？",
+    "steps": "自分の家の増える額を計算してみる",
+    "desk": "公式の発表はどこで見られる？",
+    "worries": "来月もさらに上がるのか、家の場合は？"
+  },
+  "depthAt": "2026-11-16T10:58:05+00:00",
+  "updatedAt": "2026-11-16T10:58:05+00:00",
+  "updates": [
+    {
+      "at": "2026-11-16T10:58:05+00:00",
+      "kind": "facts",
+      "title": "公式の資料をもとに、「なるほどの要点」・「公式の窓口」・「今日やること」・「理由」・「よくある不安」を追記しました",
+      "sourceUrl": "https://www4.tepco.co.jp/en/ep/about/newsroom/press/archives/2026/pdf/261029e0201.pdf",
+      "sourceName": "東京電力エナジーパートナー「2026年12月分電気料金の燃料費調整等について」（2026年10月29日発表、東京電力ホールディングス公式サイト）"
+    }
+  ]
 }
