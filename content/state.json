@@ -215,6 +215,7 @@
     "3043d0d8fe1cc569dae45ea2be89d497a3bdb326": 2,
     "30a87ba425eef94db9a0ab4571a09229f2e60658": 2,
     "319b4ba93dd7bedaf58f8dc08f01c50d422b0cd7": 2,
+    "3283600f8dedbf1fefb8db40196b3097b249fed4": 1,
     "32d9fb7fc71d1ce2c8e93d4141787a334b9b35fc": 2,
     "3377af5064e6f6f9c9e1e77ecc468f4c3f8ca75a": 2,
     "33f83b6a9b7e4e8b88c9b1d1268a7a1f64413027": 2,
@@ -354,6 +355,7 @@
     "603ed4a13449702c0333b4fdb5f4d1d3e62d8c2d": 2,
     "60ac03aad0674399809c9c9c2654b45f09e5a769": 2,
     "61203529c42c2e32350e1cbc706d58a31b255c2a": 2,
+    "61203e11c6055f58059c557c2b65f3bb24d82a56": 1,
     "61ec5aaadfbbb515046915067c0d3ff48655acbe": 2,
     "623030f059c35fd0e44dcd0ee6695ab3404a3fbd": 2,
     "6253009c45c30bbe3a85560f84642dc379d7a6b7": 2,
@@ -523,7 +525,7 @@
     "9f7acb900d7edfa095ecd470471e9260cd939ae1": 2,
     "9fa3d6685ceb63ce20ca25feed9521ff9493a9ce": 2,
     "a028f55c839c6c2b47842deeaa052a5516e3c6fb": 2,
-    "a0348cd508ec7e33ede0fe3b56189e84ea599212": 1,
+    "a0348cd508ec7e33ede0fe3b56189e84ea599212": 2,
     "a0fd67b51b1301b8fa1a0385ad8e7c6a8b25801f": 2,
     "a11ec2f23f7cf8d83e4132755ae57544be201b5c": 2,
     "a1546bd33dae9d959ba10b7f846ff3b239057b0f": 2,
@@ -17445,6 +17447,14 @@
       "slug": "toyota-grmn-corolla-application-starts",
       "url": "https://global.toyota/jp/newsroom/toyota/44983225.html"
     },
+    "c1a9d8d0ee398c2c": {
+      "at": "2026-11-16T00:49:29.639786+00:00",
+      "kind": "update",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "score": 95,
+      "updated": "gemini-4-hydrogen-launch-pricing",
+      "url": "https://blog.google/intl/ja-jp/company-news/technology/gemini-4/introducing-gemini-4-hydrogen/"
+    },
     "c1af2a356ff78bf9": {
       "at": "2026-11-10T07:47:14.975263+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（会議）",
@@ -23178,35 +23188,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-13T15:24:00.025564+00:00",
-      "attempt": 1,
-      "id": "8e1a91ab974f3439be35e53f201451f14c1b75ee",
-      "kind": "trend",
-      "model": "gemini-3.5-flash",
-      "problems": [
-        "「中央左寄りの赤い五角星」→ 元記事は「赤い五角星」とだけ書いており、星の位置は元記事に無い創作的な補足である。",
-        "「対外宣伝サイト「ネナラ」でその全文を公開」→ 元記事（日経）は「ウェブサイト「ネナラ（わが国）」で公開」と書いており、対外宣伝サイトという性格づけは元記事に無い。",
-        "「まだ分からないこと」の「全面的に差し替えられる時期」→ 元記事に言及は無いが「発表されていない」という記述なので問題にはしないが、「基本のデザイン構成を変えずに規格の数値のみを改定した点が今回の特徴」は元記事の範囲を超えた編集部の解釈として断定的である。",
-        "「正恩氏独自の体制を象徴する施策の一環とみられています」→ 元記事は韓国メディアの分析として伝えており、記事は分析の出どころを示さずに事実寄りに書いている。"
-      ],
-      "readability": {
-        "avg_paragraph": 95.8,
-        "avg_sentence": 57.5,
-        "long_share": 0.3,
-        "max_paragraph": 174,
-        "paragraphs": 6,
-        "sentences": 10
-      },
-      "score": 82,
-      "source": "trends",
-      "title": "北 朝鮮 国旗",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（NEWS）",
-        "読みやすさ: 文が長い（1文の平均 57.5字・60字超の文が 30% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-13T15:24:20.140253+00:00",
@@ -30765,6 +30746,18 @@
         "初めて出たところで言い換えていない略語（DAY）",
         "読みやすさ: 文が長い（1文の平均 47.5字・60字超の文が 0% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
       ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-16T00:49:29.603985+00:00",
+      "attempt": 1,
+      "id": "c1a9d8d0ee398c2c",
+      "kind": "update",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "score": 95,
+      "source": "google-japan-blog",
+      "title": "Gemini 4 Hydrogen を、本日よりすべての人に提供開始"
     }
   ],
   "short_text_retry": {},
