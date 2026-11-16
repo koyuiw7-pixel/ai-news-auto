@@ -1017,7 +1017,7 @@
     }
   },
   "major_tries": {
-    "7381db88317ca659": 1
+    "7381db88317ca659": 2
   },
   "pi_reopened": {
     "139593f9eb7f19a8": "2026-11-12T16:10:56.906216+00:00",
@@ -23280,32 +23280,6 @@
   },
   "quality_log": [
     {
-      "accepted": false,
-      "at": "2026-11-14T04:00:28.277929+00:00",
-      "attempt": 1,
-      "id": "8852c74bb4b2168f",
-      "kind": "broad",
-      "model": "claude:sonnet",
-      "problems": [
-        "仕事・お金にどう活かせる？「登録メールアドレス宛ての資生堂からの連絡を確認するとよいでしょう」→ 元記事は個別連絡の手段を明示しておらず、メール連絡とする根拠がない（軽微な推測）。",
-        "今日やること「イプサの肌測定を使った人は、イプサ公式お問い合わせページで状況を確認する」→ 元記事はイプサ向け問い合わせ先を載せるのみで、状況確認ができるとは書かれていない（軽微な言い過ぎ）。"
-      ],
-      "readability": {
-        "avg_paragraph": 77.6,
-        "avg_sentence": 38.8,
-        "long_share": 0.115,
-        "max_paragraph": 147,
-        "paragraphs": 13,
-        "sentences": 26
-      },
-      "score": 85,
-      "source": "fast",
-      "title": "資生堂の情報流出に関するお知らせ",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（FCA）"
-      ]
-    },
-    {
       "accepted": true,
       "at": "2026-11-14T04:00:51.584268+00:00",
       "attempt": 1,
@@ -30886,6 +30860,31 @@
       "warnings": [
         "見出しが57字（目安40字以内）。一覧・カードでは前半だけを出す",
         "材料の無い章がある（日本の利用者の料金・使い方）。表示では隠す"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-16T15:54:24.613685+00:00",
+      "attempt": 1,
+      "id": "7381db88317ca659",
+      "kind": "ai",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [
+        "題名で料金・価格を約束しているのに、本文に金額（円・ドル・無料など）が無い。元記事の金額を書くか、題名から料金の話を外す"
+      ],
+      "readability": {
+        "avg_paragraph": 91.2,
+        "avg_sentence": 36.5,
+        "long_share": 0.044,
+        "max_paragraph": 165,
+        "paragraphs": 18,
+        "sentences": 45
+      },
+      "score": null,
+      "source": "aws-ml-blog",
+      "title": "Use prompt caching with open-weight models on Amazon Bedrock",
+      "warnings": [
+        "見出しが54字（目安40字以内）。一覧・カードでは前半だけを出す"
       ]
     }
   ],
