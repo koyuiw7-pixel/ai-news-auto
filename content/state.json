@@ -9392,6 +9392,20 @@
       "skipped": true,
       "url": "https://topics.smt.docomo.ne.jp/latestnews/keywords/9b3bfc39a75f8ebc85db028a774477738df677a7c5ee096316e0f97701278d55"
     },
+    "4cd283f189105f89": {
+      "at": "2026-11-16T16:09:24.732642+00:00",
+      "breaking": true,
+      "costUsd": 0.1141,
+      "foreignAi": true,
+      "intent": "breaking",
+      "major": true,
+      "mix": "enterprise_dev",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "score": 92,
+      "section": "ai",
+      "slug": "nvidia-nemotron-for-science",
+      "url": "https://nvidianews.nvidia.com/news/nvidia-introduces-nemotron-for-science-to-accelerate-discoveries-with-agents"
+    },
     "4ce3bc9aca2ca9ed": {
       "at": "2026-11-13T15:43:40.184131+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（周年）",
@@ -23285,76 +23299,6 @@
   "quality_log": [
     {
       "accepted": true,
-      "at": "2026-11-14T04:14:21.228922+00:00",
-      "attempt": 1,
-      "id": "f036bddff3367d6a",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 131.2,
-        "avg_sentence": 54.7,
-        "long_share": 0.167,
-        "max_paragraph": 229,
-        "paragraphs": 5,
-        "sentences": 12
-      },
-      "score": 88,
-      "source": "radar-official",
-      "title": "神戸物産 回収",
-      "warnings": [
-        "読みやすさ: 文が長い（1文の平均 54.7字・60字超の文が 17% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "読みやすさ: 段落が長い（平均 131.2字・最長 229字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-14T04:14:42.164700+00:00",
-      "attempt": 0,
-      "id": "f036bddff3367d6a",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 74.7,
-        "avg_sentence": 44.8,
-        "long_share": 0.067,
-        "max_paragraph": 98,
-        "paragraphs": 9,
-        "sentences": 15
-      },
-      "score": 90,
-      "source": "radar-official",
-      "title": "神戸物産 回収"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-14T04:21:06.963444+00:00",
-      "attempt": 1,
-      "id": "f544dc1ba49cc2b8",
-      "kind": "broad",
-      "model": "claude:sonnet",
-      "problems": [
-        "「保存済みのカードを使った場合…は、発表上は対象外とされています」→ 元記事は対象を「新規にカード情報をご入力された場合」とし、保存済みカードの扱いには触れていない。発表が対象外と述べているかのように書くのは元記事にない内容の帰属である。"
-      ],
-      "readability": {
-        "avg_paragraph": 79.9,
-        "avg_sentence": 38.9,
-        "long_share": 0.081,
-        "max_paragraph": 141,
-        "paragraphs": 18,
-        "sentences": 37
-      },
-      "score": 85,
-      "source": "fast",
-      "title": "当社EC サイトにおける新たに判明した事象と個人情報漏洩の可能性、およびサービス停止に関するお詫びとお知らせ(第2報)",
-      "warnings": [
-        "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（EC・PIN・SMS）"
-      ]
-    },
-    {
-      "accepted": true,
       "at": "2026-11-14T04:21:28.999078+00:00",
       "attempt": 1,
       "id": "f544dc1ba49cc2b8",
@@ -30883,6 +30827,84 @@
       "title": "NVIDIA Announces Rubin HPC — A New GPU to Accelerate Agents for Science, Enginee",
       "warnings": [
         "初めて出たところで言い換えていない略語（HPC・CUDA・GTC）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-16T16:08:27.000588+00:00",
+      "attempt": 1,
+      "id": "4cd283f189105f89",
+      "kind": "ai",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [
+        "タイトル「化学データ約5万問をHugging Faceで無料提供」→ 元記事に無料提供の記述はなく、記事本文も「料金は発表されていません」としており、タイトルと本文が矛盾している",
+        "表「推論のコスト | 1 | 10〜20倍」→ Nemotron側の『1』は元記事にない基準値で、比較の表現として誤解を招く",
+        "「追加学習で…推論のコストは10〜20分の1」→ 元記事は『10-20x lower inference cost』で、比較対象との相対値である点の説明が不十分"
+      ],
+      "readability": {
+        "avg_paragraph": 89.7,
+        "avg_sentence": 45.9,
+        "long_share": 0.14,
+        "max_paragraph": 158,
+        "paragraphs": 22,
+        "sentences": 43
+      },
+      "score": 72,
+      "source": "nvidia-newsroom",
+      "title": "NVIDIA Introduces Nemotron for Science to Accelerate Discoveries With Agents",
+      "warnings": [
+        "見出しが58字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（VL・DGX・KTH）",
+        "読みやすさ: 文が長い（1文の平均 45.9字・60字超の文が 14% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-16T16:08:53.541214+00:00",
+      "attempt": 1,
+      "id": "4cd283f189105f89",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 88.0,
+        "avg_sentence": 46.1,
+        "long_share": 0.167,
+        "max_paragraph": 158,
+        "paragraphs": 22,
+        "sentences": 42
+      },
+      "score": 90,
+      "source": "nvidia-newsroom",
+      "title": "NVIDIA Introduces Nemotron for Science to Accelerate Discoveries With Agents",
+      "warnings": [
+        "見出しが56字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（VL・DGX・KTH）",
+        "読みやすさ: 文が長い（1文の平均 46.1字・60字超の文が 17% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-16T16:09:24.695605+00:00",
+      "attempt": 0,
+      "id": "4cd283f189105f89",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 90.1,
+        "avg_sentence": 42.2,
+        "long_share": 0.085,
+        "max_paragraph": 158,
+        "paragraphs": 22,
+        "sentences": 47
+      },
+      "score": 92,
+      "source": "nvidia-newsroom",
+      "title": "NVIDIA Introduces Nemotron for Science to Accelerate Discoveries With Agents",
+      "warnings": [
+        "見出しが56字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（VL・DGX・KTH）"
       ]
     }
   ],
