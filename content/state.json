@@ -649,7 +649,7 @@
     "af046e192e25aaf1d6922b8bed23e503bdefd461": 1,
     "af2cbc4fed1c9f295c756d917002668dad5381bf": 2,
     "af2f30e4be35f2f9a64acb99530e207c0c6c4a35": 2,
-    "af7de1c8e1b2388650ebb55a195bd92edea102c9": 1,
+    "af7de1c8e1b2388650ebb55a195bd92edea102c9": 2,
     "b0487f647bdb138699f50e1a9293865c2d77903e": 2,
     "b0ad19c706a911993805ff049dfc2fe4da723221": 2,
     "b1169b8f7b6cfe51fa39c22e17093b971530a6d5": 2,
@@ -775,6 +775,7 @@
     "d6aa31e4b170ce55236e7df4a65b496042034828": 2,
     "d6b1a9f32dfcaabbadfab897c7678bb4c5a28dd5": 2,
     "d6c8988537c537623ea70e6dbd24b8d0121eb3cc": 2,
+    "d6db5c3087a8aaccbbc8f6f5f58d460e62012324": 1,
     "d6e66f0d3235f320f36e76ff49e3de701d60f92e": 2,
     "d6fe316195ca894da47cbff17c6237662381898b": 2,
     "d7763fce745fa619be65b6e6a2d20c90c1a46f76": 1,
@@ -8749,14 +8750,6 @@
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・暮らしの交通/天気/値上げ/障害/給付/発売・日本のスポーツのどれでもない）",
       "skipped": true,
       "url": "https://www.suntory.co.jp/news/article/2026/15169.html?rss=0000000029"
-    },
-    "43cb23190dac1c19": {
-      "at": "2026-11-02T12:14:34.074475+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "score": 100,
-      "section": "business",
-      "slug": "mof-jgbsp-121st-meeting-schedule",
-      "url": "https://www.mof.go.jp/about_mof/councils/meeting_of_jgbsp/press_release/261102.html"
     },
     "43feae2da3c8b4ec": {
       "at": "2026-11-12T02:16:16.305659+00:00",
@@ -17438,6 +17431,17 @@
       "skipped": true,
       "url": "https://www.cfa.go.jp/press/9b95e378-b813-45ae-9716-dbee3e54db8f"
     },
+    "c3ecca85e37a357618a75b987fff200758a5845a": {
+      "at": "2026-11-16T12:20:06.657634+00:00",
+      "kind": "trend",
+      "model": "gemini-3.6-flash",
+      "pressReport": true,
+      "score": 84,
+      "slug": "loto6-first-prize-winners-reported",
+      "trendKeyword": "ロト",
+      "trendLane": true,
+      "url": "https://www.fukuishimbun.co.jp/articles/-/2748339"
+    },
     "c446a7d8eeea8f09": {
       "at": "2026-11-10T07:28:05.969333+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（開催について）",
@@ -23279,54 +23283,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-13T22:27:20.941888+00:00",
-      "attempt": 1,
-      "id": "e5520618568ebfff4373e1ab663b9dc7f5aec436",
-      "kind": "trend",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 130.0,
-        "avg_sentence": 65.0,
-        "long_share": 0.667,
-        "max_paragraph": 138,
-        "paragraphs": 3,
-        "sentences": 6
-      },
-      "score": 85,
-      "source": "trends",
-      "title": "アメリカ 航空機",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（FAA）",
-        "読みやすさ: 文が長い（1文の平均 65.0字・60字超の文が 67% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "読みやすさ: 段落が長い（平均 130.0字・最長 138字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-13T22:27:35.058482+00:00",
-      "attempt": 0,
-      "id": "e5520618568ebfff4373e1ab663b9dc7f5aec436",
-      "kind": "trend",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 66.8,
-        "avg_sentence": 40.1,
-        "long_share": 0.0,
-        "max_paragraph": 90,
-        "paragraphs": 6,
-        "sentences": 10
-      },
-      "score": 88,
-      "source": "trends",
-      "title": "アメリカ 航空機",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（FAA）"
-      ]
-    },
     {
       "accepted": false,
       "at": "2026-11-13T23:15:23.668269+00:00",
@@ -30871,6 +30827,53 @@
       "warnings": [
         "見出しが49字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（NEET・VP・EMEA）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-16T12:19:37.631260+00:00",
+      "attempt": 1,
+      "id": "c3ecca85e37a357618a75b987fff200758a5845a",
+      "kind": "trend",
+      "model": "gemini-3.6-flash",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 90.2,
+        "avg_sentence": 45.1,
+        "long_share": 0.1,
+        "max_paragraph": 135,
+        "paragraphs": 5,
+        "sentences": 10
+      },
+      "score": 85,
+      "source": "trends",
+      "title": "ロト",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（NEWS）",
+        "読みやすさ: 文が長い（1文の平均 45.1字・60字超の文が 10% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-16T12:19:54.730751+00:00",
+      "attempt": 0,
+      "id": "c3ecca85e37a357618a75b987fff200758a5845a",
+      "kind": "trend",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 90.0,
+        "avg_sentence": 40.9,
+        "long_share": 0.0,
+        "max_paragraph": 134,
+        "paragraphs": 5,
+        "sentences": 11
+      },
+      "score": 84,
+      "source": "trends",
+      "title": "ロト",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（NEWS）"
       ]
     }
   ],
