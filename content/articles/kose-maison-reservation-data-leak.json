@@ -78,9 +78,9 @@
     }
   ],
   "todayActions": [
-    "過去にMaison KOSÉ銀座・表参道を予約した人は、コーセーからの個別メールが届いていないか確認する",
-    "コーセーを名乗るメールやSMSのURL・添付ファイルは開かず、不安なら0120-586-682（平日9時〜17時）に問い合わせる",
-    "予約済みの予定を変えるときは、同じ番号（JILL STUARTは各店舗）に電話してキャンセルする"
+    "過去に予約した覚えがある人は、コーセーからのお詫びメールが届いていないか確かめる",
+    "コーセーを名乗る連絡のURLは開かず、不安なら0120-586-682に電話して確かめる",
+    "予約済みの予定を変えるなら、同じ番号に電話してキャンセルする"
   ],
   "publicInterest": "breach",
   "incident": {
@@ -132,5 +132,98 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/kose-maison-reservation-data-leak-figure-10b464cb.jpg"
-  }
+  },
+  "officialDesk": [
+    {
+      "name": "メゾンコーセー銀座・表参道 個人情報お問い合わせ窓口",
+      "url": "https://koseholdings.co.jp/ja/kose/urgent/10275/",
+      "source": "https://koseholdings.co.jp/ja/kose/urgent/10275/",
+      "phone": "0120-586-682",
+      "hours": "平日 9時～17時",
+      "note": "予約のキャンセルも同じ番号で受け付けています。JILL STUARTの予約は各店舗へ問い合わせます。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "過去に予約した覚えがある人は、コーセーからのお詫びメールが届いていないか確かめる",
+      "source": "https://koseholdings.co.jp/ja/kose/urgent/10275/",
+      "steps": [
+        "コーセーからの「お詫び」のメールがあるか見る",
+        "届いていなければ問い合わせ窓口に電話する"
+      ],
+      "url": "https://koseholdings.co.jp/ja/kose/urgent/10275/"
+    },
+    {
+      "action": "コーセーを名乗る連絡のURLは開かず、不安なら0120-586-682に電話して確かめる",
+      "source": "https://koseholdings.co.jp/ja/kose/urgent/10275/",
+      "steps": [
+        "記載のURLにアクセスしない",
+        "添付ファイルを開かない",
+        "不安なら0120-586-682（平日9時～17時）へ電話"
+      ],
+      "url": "https://koseholdings.co.jp/ja/kose/urgent/10275/"
+    },
+    {
+      "action": "予約済みの予定を変えるなら、同じ番号に電話してキャンセルする",
+      "source": "https://koseholdings.co.jp/ja/kose/urgent/10275/",
+      "steps": [
+        "0120-586-682（平日9時～17時）に電話する",
+        "JILL STUARTの予約は各店舗に問い合わせる"
+      ],
+      "url": "https://koseholdings.co.jp/ja/kose/urgent/10275/"
+    }
+  ],
+  "cause": {
+    "text": "2026年11月9日に会員の個人情報を読み込むリクエストが短時間に続いていたのを11月10日に確認し、その後の調査で予約システムのアクセス制御の不備が悪用されたと判明しました。",
+    "status": "stated",
+    "source": "https://koseholdings.co.jp/ja/kose/urgent/10275/"
+  },
+  "worries": [
+    {
+      "q": "名前や住所、電話番号が漏れたら詐欺が来る？",
+      "a": "漏えいしたのは氏名、メールアドレス、電話番号、郵便番号、住所、生年月日、性別とされています。二次被害の有無は引き続き確認中で、お客さまにお願いする対応があれば公式サイト等で案内するとしています。",
+      "source": "https://koseholdings.co.jp/ja/kose/urgent/10275/",
+      "action": "メールのリンクは押さず、お気に入りに登録した公式サイトから開き直して確かめる",
+      "actionSource": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "actionGeneral": true
+    },
+    {
+      "q": "クレジットカードや口座は大丈夫？",
+      "a": "パスワードとクレジットカード情報は、今回漏えいした情報に含まれていないとされています。漏えい項目に口座番号は挙げられていません。",
+      "source": "https://koseholdings.co.jp/ja/kose/urgent/10275/",
+      "action": "カードの利用明細を見て、身に覚えのない支払いがないか確認する",
+      "actionSource": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "actionGeneral": true
+    },
+    {
+      "q": "不審な連絡が来たら、どうすればいい？",
+      "a": "記載されたURLへのアクセスや添付ファイルの開封を控え、誘導先のサイトで個人情報やパスワードを入力しないようお願いされています。相手が名前を知っていても、それだけで正規の連絡とは判断しないとしています。",
+      "source": "https://koseholdings.co.jp/ja/kose/urgent/10275/",
+      "action": "不安なら0120-586-682（平日9時～17時）の窓口に連絡し、リンクは押さない"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "予約済みの体験は、このまま行ってよい？",
+      "situation": "すでに店頭体験やレッスンを予約している人",
+      "recommend": "予定どおり実施されるとされているので、急いで変える必要は少ない",
+      "reason": "すでに予約済みの人は予定どおり実施するとされています。予約をキャンセルしたい場合は電話で承っています。漏えいした情報の扱いは別に確認が必要です。",
+      "source": "https://koseholdings.co.jp/ja/kose/urgent/10275/"
+    },
+    {
+      "question": "停止中のサービスを新しく予約したい？",
+      "situation": "停止中の5サービスを予約したい人",
+      "recommend": "再開の案内を待つのがよい",
+      "reason": "新規予約は一時停止中で、再開時期は未定です。再開の際は対象サービスの公式サイト等で知らせるとされています。",
+      "source": "https://koseholdings.co.jp/ja/kose/urgent/10275/"
+    }
+  ],
+  "depthHeadings": {
+    "cause": "なぜ漏れたのか、いま分かっていること",
+    "steps": "過去に予約したか確かめ、メールを待つ手順",
+    "desk": "困ったときの問い合わせ先と電話番号",
+    "worries": "名前や番号の悪用、カードは大丈夫？",
+    "guide": "予約をどうするか、迷ったときの決め方"
+  },
+  "depthAt": "2026-11-16T12:36:54+00:00"
 }
