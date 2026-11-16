@@ -979,7 +979,9 @@
       "url": "https://www.gov-online.go.jp/press_conferences/prime_minister/202611/video-327351.html"
     }
   },
-  "major_tries": {},
+  "major_tries": {
+    "e3915f7e4cf071c4": 1
+  },
   "pi_reopened": {
     "139593f9eb7f19a8": "2026-11-12T16:10:56.906216+00:00",
     "14dc418a6f602e91": "2026-11-13T03:30:58.033406+00:00",
@@ -7198,14 +7200,6 @@
       "reason": "prefilter: 価値の薄いお知らせ（を開催）",
       "skipped": true,
       "url": "http://www.mlit.go.jp/report/press/kouku19_hh_000117.html"
-    },
-    "2a181a0a4fb64895": {
-      "at": "2026-11-02T11:51:18.751815+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "score": 100,
-      "section": "business",
-      "slug": "katayama-mof-budget-2027-tax-estimate",
-      "url": "https://www.mof.go.jp/public_relations/conference/my20261102.html"
     },
     "2a3ac4983c49b69f": {
       "at": "2026-11-11T08:00:32.215905+00:00",
@@ -23274,33 +23268,6 @@
   },
   "quality_log": [
     {
-      "accepted": true,
-      "at": "2026-11-13T21:44:52.895947+00:00",
-      "attempt": 0,
-      "id": "3cf150df28276760",
-      "kind": "broad",
-      "model": "",
-      "problems": [
-        "読みやすさ基準外のまま受理: 書き直し後の確認に不合格: 「2026年10月末時点での参加状況」→ 元記事の参加自治体・人数の時点は「2026年10月1日時点」で、10月末とは書かれていない（10月末はリーフレットの記載にあるため、取り違えではなく時点の混同）; 「1,566団体から約16,300人」「38機関から約2"
-      ],
-      "readability": {
-        "avg_paragraph": 128.9,
-        "avg_sentence": 64.4,
-        "long_share": 0.5,
-        "max_paragraph": 183,
-        "paragraphs": 7,
-        "sentences": 14
-      },
-      "score": 90,
-      "source": "digital-agency",
-      "title": "デジタル改革共創プラットフォームに係る資料や利用規約・プライバシーポリシーを更新しました",
-      "warnings": [
-        "見出しが50字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（LGWAN）",
-        "読みやすさ: 文が長い（1文の平均 64.4字・60字超の文が 50% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
       "accepted": false,
       "at": "2026-11-13T21:51:44.267842+00:00",
       "attempt": 1,
@@ -30858,6 +30825,35 @@
       "title": "首里城 火災",
       "warnings": [
         "初めて出たところで言い換えていない略語（NEWS）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-16T11:57:53.918361+00:00",
+      "attempt": 1,
+      "id": "e3915f7e4cf071c4",
+      "kind": "ai",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [
+        "「今回の提携は英国の若者が対象で、日本の利用者の手続きや料金に変わりはありません」「ChatGPTの料金や機能にも変更はありません」→ 元記事にChatGPTの料金・機能や日本の利用者への影響についての記述がなく、無根拠の断定である",
+        "「日本の利用者に影響はなく」（リード）→ 元記事は対象を英国の若者とするのみで、日本の利用者への影響には触れていない",
+        "「AI学習は企業の支援から、公的な資格へ広がるとみられます」→ 元記事は「nationally recognized」の資格とするだけで、「公的」とは書かれていない。「就職で評価される証明に結びつく」も元記事・確認済みの文脈に根拠がない",
+        "「学んだ成果は、全国的に認められるAI資格として示せるようにする計画です」→ 元記事は資格を含むプログラムを開発中とするのみで、成果を資格として示す計画とまでは書かれていない"
+      ],
+      "readability": {
+        "avg_paragraph": 78.4,
+        "avg_sentence": 40.5,
+        "long_share": 0.161,
+        "max_paragraph": 136,
+        "paragraphs": 16,
+        "sentences": 31
+      },
+      "score": 72,
+      "source": "openai-news",
+      "title": "The King’s Trust and OpenAI launch £1m partnership",
+      "warnings": [
+        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（NEET・EMEA）"
       ]
     }
   ],
