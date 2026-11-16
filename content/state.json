@@ -14126,6 +14126,20 @@
       "slug": "google-messages-gradient-icon",
       "url": "https://9to5google.com/2026/11/02/google-messages-gradient-icon-beta/"
     },
+    "91e58e2ea930c2fa": {
+      "at": "2026-11-16T10:16:27.004848+00:00",
+      "breaking": true,
+      "costUsd": 0.1043,
+      "foreignAi": true,
+      "intent": "breaking",
+      "major": true,
+      "mix": "other",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "score": 92,
+      "section": "ai",
+      "slug": "lvmh-media-openai-partnership",
+      "url": "https://openai.com/index/lvmh-media-division-partnership"
+    },
     "91e6a98d22c84046": {
       "at": "2026-11-04T15:34:28.371145+00:00",
       "mix": "other",
@@ -23226,30 +23240,6 @@
   "quality_log": [
     {
       "accepted": true,
-      "at": "2026-11-13T17:15:18.704112+00:00",
-      "attempt": 1,
-      "id": "0a576ec206146d91",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 142.2,
-        "avg_sentence": 63.2,
-        "long_share": 0.556,
-        "max_paragraph": 169,
-        "paragraphs": 4,
-        "sentences": 9
-      },
-      "score": 86,
-      "source": "mhlw",
-      "title": "Microsoft365の大規模障害について",
-      "warnings": [
-        "読みやすさ: 文が長い（1文の平均 63.2字・60字超の文が 56% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "読みやすさ: 段落が長い（平均 142.2字・最長 169字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
       "at": "2026-11-13T17:15:35.322950+00:00",
       "attempt": 0,
       "id": "0a576ec206146d91",
@@ -30799,6 +30789,30 @@
       "title": "不正アクセスによる個人情報漏えいに関するお詫びとお知らせ",
       "warnings": [
         "初めて出たところで言い換えていない略語（SMS）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-16T10:16:26.983249+00:00",
+      "attempt": 1,
+      "id": "91e58e2ea930c2fa",
+      "kind": "ai",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 78.7,
+        "avg_sentence": 40.7,
+        "long_share": 0.172,
+        "max_paragraph": 125,
+        "paragraphs": 15,
+        "sentences": 29
+      },
+      "score": 92,
+      "source": "openai-news",
+      "title": "LVMH’s Media Division announces strategic partnership with OpenAI",
+      "warnings": [
+        "見出しが49字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（LVMH・EMEA）"
       ]
     }
   ],
