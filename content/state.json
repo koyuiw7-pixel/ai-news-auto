@@ -5178,6 +5178,20 @@
       "slug": "urban-flood-measures-mlit-chiba",
       "url": "http://www.mlit.go.jp/report/press/mizukokudo03_hh_001372.html"
     },
+    "0d9461929c71e146": {
+      "at": "2026-11-16T03:14:22.412628+00:00",
+      "breaking": true,
+      "costUsd": 0.1116,
+      "foreignAi": true,
+      "intent": "breaking",
+      "major": true,
+      "mix": "enterprise_dev",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "score": 90,
+      "section": "ai",
+      "slug": "qwen4-max-ai-gateway",
+      "url": "https://vercel.com/changelog/qwen4-max-now-available-on-ai-gateway"
+    },
     "0d95f6103264d924": {
       "at": "2026-11-05T01:41:26.336627+00:00",
       "model": "anthropic-api:claude-haiku-5-5",
@@ -23150,22 +23164,6 @@
   },
   "quality_log": [
     {
-      "accepted": false,
-      "at": "2026-11-13T15:43:40.176070+00:00",
-      "attempt": 1,
-      "id": "310e2b1a35aa4abd",
-      "kind": "update",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "要点の「前年同期の277億円の赤字から転じ」→ 277億円は元記事にない数字で、「800億円−1,077億円」の計算結果だが、計算であることが明記されていない（数値自体は正しい）",
-        "「中国を除く市場では、小売販売台数が前年同期比4.1％増になると見込んでいます」→ 元記事では下期の見込みだが、記事では時期が示されておらず、上期の実績と混同されやすい",
-        "「日産自動車 ニュースルームは11月13日」→ 元記事の日付は2026/11/13で、発表が11月13日とする根拠は元記事の公開日に基づくため問題は小さいが、発表日として断定している"
-      ],
-      "score": 85,
-      "source": "nissan",
-      "title": "日産自動車の2026年度上期決算について"
-    },
-    {
       "accepted": true,
       "at": "2026-11-13T15:45:08.433008+00:00",
       "attempt": 1,
@@ -30723,6 +30721,30 @@
       "title": "nttドコモ",
       "warnings": [
         "初めて出たところで言い換えていない略語（SMS・MVNO・ON）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-16T03:14:22.379528+00:00",
+      "attempt": 1,
+      "id": "0d9461929c71e146",
+      "kind": "ai",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 88.2,
+        "avg_sentence": 42.9,
+        "long_share": 0.114,
+        "max_paragraph": 147,
+        "paragraphs": 17,
+        "sentences": 35
+      },
+      "score": 90,
+      "source": "vercel-changelog",
+      "title": "Qwen4-Max now available on AI Gateway",
+      "warnings": [
+        "見出しが52字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（CLI・BYOK）"
       ]
     }
   ],
