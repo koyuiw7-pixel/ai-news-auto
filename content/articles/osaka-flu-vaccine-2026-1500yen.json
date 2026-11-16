@@ -68,13 +68,13 @@
   "videoTitle": "1,500円で受けられるのは2027年1月31日まで 大阪市の65歳以上インフルエンザ予防接種 2026年度",
   "publishedAt": "2026-11-16T21:36:34.412941+00:00",
   "generatedAt": "2026-11-16T21:36:44.758951+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/osaka-flu-vaccine-2026-1500yen-figure-b3a851d7.jpg",
   "model": "anthropic-api:claude-haiku-5-5",
   "affiliates": [],
   "newsType": "product",
   "todayActions": [
-    "大阪市保健所感染症対策課（06-6647-0954）に電話し、受ける医療機関が委託医療機関か確かめる。",
-    "無料の対象になる場合は、当日持参する確認書類の種類を電話で聞いておく。"
+    "受ける医療機関が大阪市の委託医療機関か、予約の電話で確かめる",
+    "無料の対象なら、当日持参する確認書類の種類を保健所に確かめる"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -106,5 +106,118 @@
   "detectedAt": "2026-11-16T21:37:19+00:00",
   "searchTitle": "大阪市のインフルエンザ予防接種は1,500円　接種券は交付なし",
   "layout": "noir",
-  "summaryLine": "大阪市の65歳以上のインフルエンザ予防接種は、接種期間が2027年1月31日までです。"
+  "summaryLine": "大阪市の65歳以上のインフルエンザ予防接種は、接種期間が2027年1月31日までです。",
+  "insight": [
+    {
+      "text": "市民税非課税世帯などの無料の確認書類には条件があり、例えば「介護保険料（変更）決定通知書」（資料5）は「介護保険料段階が第1段階～第４段階のもの」に限られる。",
+      "source": "https://www.city.osaka.lg.jp/kenko/cmsfiles/contents/0000480/480887/20260917GuidelineB-flufix.pdf"
+    },
+    {
+      "text": "60歳から64歳の対象は、主治医や専門性の高い医師に接種できるかの意見を求め、慎重に判断するとされている。対象の方は受ける前に主治医へ相談する。",
+      "source": "https://www.city.osaka.lg.jp/kenko/cmsfiles/contents/0000480/480887/20260917GuidelineB-flufix.pdf"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "大阪市保健所 感染症対策課（感染症グループ）",
+      "url": "https://www.city.osaka.lg.jp/kenko/cmsfiles/contents/0000480/480887/Overview.pdf",
+      "source": "https://www.city.osaka.lg.jp/kenko/cmsfiles/contents/0000480/480887/Overview.pdf",
+      "phone": "06-6647-0954",
+      "note": "予防接種の委託料の支払いや、予防接種に関することの問い合わせ先です。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "受ける医療機関が大阪市の委託医療機関か、予約の電話で確かめる",
+      "source": "https://www.city.osaka.lg.jp/kenko/cmsfiles/contents/0000480/480887/20260917GuidelineB-flufix.pdf",
+      "steps": [
+        "保健所感染症対策課（感染症グループ）に電話する",
+        "受けたい医療機関が大阪市の委託医療機関か聞く"
+      ]
+    },
+    {
+      "action": "無料の対象なら、当日持参する確認書類の種類を保健所に確かめる",
+      "source": "https://www.city.osaka.lg.jp/kenko/cmsfiles/contents/0000480/480887/20260917GuidelineB-flufix.pdf",
+      "steps": [
+        "保健所感染症対策課へ電話する",
+        "市民税非課税世帯なら確認書類の一覧を見る",
+        "当日、確認書類を医療機関に持参する"
+      ],
+      "url": "https://www.city.osaka.lg.jp/kenko/cmsfiles/contents/0000480/480887/20260917GuidelineB-flufix.pdf"
+    }
+  ],
+  "cause": {
+    "text": "この制度は予防接種法に基づくインフルエンザ予防接種の一つで、大阪市が自己負担1,500円を定めています。接種券は交付せず、接種費用の後日の償還払いもしない仕組みです。",
+    "status": "background",
+    "source": "https://www.city.osaka.lg.jp/kenko/cmsfiles/contents/0000480/480887/Overview.pdf"
+  },
+  "worries": [
+    {
+      "q": "接種券がないけど、受けられるの？",
+      "a": "大阪市は無料接種券を発行せず、接種券は交付しません。対象の人は医療機関に直接予約して受けます。接種期間は令和8年10月1日から令和9年1月31日までです。",
+      "source": "https://www.city.osaka.lg.jp/kenko/cmsfiles/contents/0000480/480887/Overview.pdf",
+      "action": "対象なら、受けたい医療機関へ直接予約の電話をかけて、期間内に申し込みましょう。",
+      "actionSource": "https://www.city.osaka.lg.jp/kenko/cmsfiles/contents/0000480/480887/20260917GuidelineB-flufix.pdf"
+    },
+    {
+      "q": "市民税非課税なら自動で無料になる？",
+      "a": "自動では無料になりません。接種当日に確認書類を医療機関に持参すると無料になります。認められる書類は種類ごとに条件が決まっています。",
+      "source": "https://www.city.osaka.lg.jp/kenko/cmsfiles/contents/0000480/480887/InstructionsFlu.pdf",
+      "action": "接種前に保健所感染症対策課へ、持っている書類が対象か電話で確かめておきましょう。",
+      "actionSource": "https://www.city.osaka.lg.jp/kenko/cmsfiles/contents/0000480/480887/20260917GuidelineB-flufix.pdf"
+    },
+    {
+      "q": "60歳から64歳でも受けられる？",
+      "a": "心臓・腎臓・呼吸器の機能障がいや、HIVによる免疫の障がいがあり、身体障がい者手帳1級相当の方が対象です。主治医などに接種できるか意見を求め、慎重に判断されます。",
+      "source": "https://www.city.osaka.lg.jp/kenko/cmsfiles/contents/0000480/480887/20260917GuidelineB-flufix.pdf",
+      "action": "まず主治医に接種してよいか相談してから、医療機関に予約の電話をかけましょう。"
+    },
+    {
+      "q": "接種のあとに体調が悪くなったら？",
+      "a": "接種後30分は体調が変化することがあるので安静にし、医師とすぐ連絡がとれるようにします。接種後に高熱やけいれんが出たら、速やかに医師の診察を受けてください。",
+      "source": "https://www.city.osaka.lg.jp/kenko/cmsfiles/contents/0000480/480887/InstructionsFlu.pdf",
+      "action": "接種後30分は安静にし、体調の変化に備えて医師とすぐ連絡がとれるようにしましょう。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "非課税世帯で確認書類がないときは？",
+      "situation": "書類を用意できない、種類が分からない",
+      "recommend": "受ける前に保健所へ確かめておく",
+      "reason": "確認書類を持参しないと無料にならず、自己負担は1,500円です（2026年10月1日からの期間、ページ時点の金額）。接種費用の後日償還払いはしないため、あとから戻りません。",
+      "source": "https://www.city.osaka.lg.jp/kenko/cmsfiles/contents/0000480/480887/20260917GuidelineB-flufix.pdf"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "無料の確認書類と、60歳から64歳の条件",
+    "cause": "接種券がなく、後から戻らない仕組み",
+    "steps": "予約の前に確かめる2つのこと",
+    "desk": "保健所の問い合わせ先",
+    "worries": "接種券、無料の条件、副反応は大丈夫？",
+    "guide": "非課税で書類がないときの決め方"
+  },
+  "depthAt": "2026-11-16T21:51:28+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "65歳",
+    "label": "大阪市",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-16T21:59:07+00:00"
+  },
+  "imageFocus": {
+    "x": 0.483,
+    "y": 0.447,
+    "box": [
+      0.022,
+      0.042,
+      0.944,
+      0.851
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/osaka-flu-vaccine-2026-1500yen-figure-b3a851d7.jpg"
+  }
 }

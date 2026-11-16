@@ -69,9 +69,8 @@
   "affiliates": [],
   "newsType": "product",
   "todayActions": [
-    "12月検針の検針票で、自分の使用量（立方メートル）を確かめる",
-    "確かめた使用量に8.29円を掛けると、今回の増額の目安が分かる",
-    "契約メニューの名前が一般料金Sか、資料の一覧にあるかを検針票で確かめる"
+    "資料の4番の一覧で、自分の契約メニューが載っているか確かめる",
+    "検針票の使用量に8.29円を掛けて、今回の増額の目安を出す"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -120,5 +119,68 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/osaka-gas-dec-2026-gas-rate-d53c535d.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "資料の一覧で「My Home Power Generation」「Floor Heating」「Eco-Jozu」などには、新規申込を受け付けていないと注記があります。",
+      "source": "https://www.osakagas.co.jp/en/whatsnew/__icsFiles/afieldfile/2026/11/12/261112.pdf"
+    },
+    {
+      "text": "資料では、平均原料価格と基準64,090円/トンの差53,050円/トンを100円単位で切り捨て、530×0.081×(1+0.1)で47.22円と計算しています。",
+      "source": "https://www.osakagas.co.jp/en/whatsnew/__icsFiles/afieldfile/2026/11/12/261112.pdf"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "資料の4番の一覧で、自分の契約メニューが載っているか確かめる",
+      "source": "https://www.osakagas.co.jp/en/whatsnew/__icsFiles/afieldfile/2026/11/12/261112.pdf",
+      "steps": [
+        "資料の「Attached material」の4番を開く",
+        "「Gas rate plan」の表で契約メニュー名を探す",
+        "その単価が47.22円なら今回の調整単価と同じ"
+      ],
+      "url": "https://www.osakagas.co.jp/en/whatsnew/__icsFiles/afieldfile/2026/11/12/261112.pdf"
+    },
+    {
+      "action": "検針票の使用量に8.29円を掛けて、今回の増額の目安を出す",
+      "source": "https://www.osakagas.co.jp/en/whatsnew/__icsFiles/afieldfile/2026/11/12/261112.pdf",
+      "steps": [
+        "検針票で使用量（m3）を確かめる",
+        "使用量×8.29円で増額の目安を計算する",
+        "単価の差は資料に「+8.29」と書かれている"
+      ]
+    }
+  ],
+  "cause": {
+    "text": "資料によると、2026年7月から9月の平均原料価格は1トンあたり117,140円で、基準の64,090円を上回りました。その差を反映して、原料費調整単価が1立方メートルあたり38.93円から47.22円に上がりました。",
+    "status": "background",
+    "source": "https://www.osakagas.co.jp/en/whatsnew/__icsFiles/afieldfile/2026/11/12/261112.pdf"
+  },
+  "worries": [
+    {
+      "q": "今月のガス代は、標準的な家でいくら上がる？",
+      "a": "標準家庭（月30立方メートル）の12月検針分は7,151円で、11月検針分の6,902円から249円増えると資料にあります。実際の使用量は季節や使い方で毎月変わるとも書かれています。",
+      "source": "https://www.osakagas.co.jp/en/whatsnew/__icsFiles/afieldfile/2026/11/12/261112.pdf",
+      "action": "検針票の使用量に8.29円を掛けて、自分の増額の目安を出す。"
+    },
+    {
+      "q": "使う量が多い家ほど増額は大きくなる？",
+      "a": "資料の式は、単位料金に使用量（m3）を掛けて計算しています。原料費調整単価は12月検針分で47.22円となり、11月の38.93円から8.29円増えています。",
+      "source": "https://www.osakagas.co.jp/en/whatsnew/__icsFiles/afieldfile/2026/11/12/261112.pdf",
+      "action": "検針票で使用量を見て、使う量が多いかどうかを確かめる。"
+    },
+    {
+      "q": "自分の契約が対象の料金か、どうやって分かる？",
+      "a": "資料には、一般料金Sの表に加え、「Gas rate plan」の一覧にも12月検針分の調整単価47.22円が載っています。一覧には多くのメニュー名が並んでいます。",
+      "source": "https://www.osakagas.co.jp/en/whatsnew/__icsFiles/afieldfile/2026/11/12/261112.pdf",
+      "action": "資料4番の一覧で、契約メニュー名が載っているかを確かめる。"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "古いメニューは新規申込できないと書かれている",
+    "cause": "値上がりの原因は、原料価格の上昇",
+    "steps": "検針票の使用量で、増額の目安を出す方法",
+    "worries": "今月の増額はいくら？使用量でどう変わる？"
+  },
+  "depthAt": "2026-11-16T21:52:45+00:00"
 }
