@@ -6,7 +6,7 @@
   "companyName": "Google",
   "category": "アプリ・サービス",
   "overview": {
-    "text": "Gemini Liveは、声で話しかけてそのまま会話を続けられるAI機能です。Googleが提供しており、車での音声会話や植物ロボットの対話、イヤホンからの呼び出しなど様々な場面で活用されています。",
+    "text": "Gemini Liveは、Googleが提供する音声対話機能です。話しかけてそのまま会話を続けられるのが特徴で、2026年10月以降、ロボットやイヤホン、CarPlayなど様々な環境で活用されています。",
     "sources": [
       "gemini-apple-carplay-rollout",
       "google-gemini-live-sprout-plant-robot",
@@ -15,125 +15,131 @@
   },
   "facts": [
     {
-      "label": "提供開始",
-      "value": "2026年11月11日から順次",
+      "label": "料金",
+      "value": "無料 / 月725円〜",
       "sources": [
         "gemini-apple-carplay-rollout"
       ]
     },
     {
       "label": "日本での提供",
-      "value": "日本からも利用できます",
+      "value": "利用できる",
       "sources": [
+        "gemini-apple-carplay-rollout",
         "google-gemini-live-sprout-plant-robot"
       ]
     },
     {
       "label": "使える場所",
-      "value": "CarPlay、イヤホン、アプリ",
+      "value": "Android/iOSアプリなど",
       "sources": [
-        "gemini-apple-carplay-rollout",
-        "google-gemini-live-sprout-plant-robot",
-        "samsung-galaxy-buds-on-cuff-earbuds"
+        "gemini-regional-voices-rollout",
+        "gemini-apple-carplay-rollout"
       ]
     }
   ],
   "capabilities": [
     {
-      "text": "運転中に音声で予定の確認やGmailの未読メールの要約ができます。",
+      "text": "運転中や歩行中に、スマホを取り出さず音声でリアルタイムに会話できます。",
       "sources": [
-        "gemini-apple-carplay-rollout"
-      ]
-    },
-    {
-      "text": "ロボットとリアルタイムで自然な音声対話を行うことができます。",
-      "sources": [
-        "google-gemini-live-sprout-plant-robot"
-      ]
-    },
-    {
-      "text": "イヤホンを着けたまま「Hey Google, let's talk Live」と話しかけて呼び出せます。",
-      "sources": [
+        "gemini-apple-carplay-rollout",
         "samsung-galaxy-buds-on-cuff-earbuds"
       ]
     },
     {
-      "text": "面接や発表の練習、新しいソフトの操作を教わることができます。",
+      "text": "面接や発表の練習、新しいソフトの操作方法の質問などに使えます。",
       "sources": [
+        "gemini-apple-carplay-rollout",
         "google-gemini-college-student-features"
+      ]
+    },
+    {
+      "text": "AndroidとiOSアプリで、66種類の地域別ボイスから好みの声を選べます。",
+      "sources": [
+        "gemini-regional-voices-rollout"
+      ]
+    },
+    {
+      "text": "CarPlayと連携し、予定の確認やメールの要約を声で行えます。",
+      "sources": [
+        "gemini-apple-carplay-rollout"
       ]
     }
   ],
   "pricing": [
     {
-      "text": "無料プランは0円/月で15 GBのクラウドストレージ付きです。",
+      "text": "無料プランは0円/月で、15 GBのクラウドストレージが付きます。",
       "sources": [
         "gemini-apple-carplay-rollout"
       ]
     },
     {
-      "text": "Google AI Plusは725円/月（月払い）です。",
+      "text": "有料プランとしてGoogle AI Plusが月725円、Google AI Proが月2,900円です。",
       "sources": [
-        "gemini-apple-carplay-rollout"
-      ]
-    },
-    {
-      "text": "Google AI Proは2,900円/月（月払い）です。",
-      "sources": [
+        "gemini-regional-voices-rollout",
         "gemini-apple-carplay-rollout"
       ]
     }
   ],
   "japan": [
     {
-      "text": "GeminiアプリやAI機能は日本から利用できます。",
+      "text": "Geminiアプリは日本で利用でき、対応言語に日本語が含まれます。",
       "sources": [
-        "google-gemini-live-sprout-plant-robot"
+        "gemini-regional-voices-rollout",
+        "gemini-apple-carplay-rollout"
       ]
     }
   ],
   "howto": [
     {
-      "text": "iPhoneのGeminiアプリを最新版にし、マイクの権限を許可して一度スマホで使います。",
+      "text": "スマホのGeminiアプリを最新版に更新し、マイク権限を許可して利用します。",
       "sources": [
         "gemini-apple-carplay-rollout"
       ]
     },
     {
-      "text": "車に接続してCarPlayの画面のGeminiアイコンをタップして始めます。",
+      "text": "Google AI StudioでAPIキーを発行し、開発環境から呼び出せます。",
       "sources": [
-        "gemini-apple-carplay-rollout"
-      ]
-    },
-    {
-      "text": "対応イヤホンを接続し「Hey Google, let's talk Live」と話しかけて呼び出します。",
-      "sources": [
-        "samsung-galaxy-buds-on-cuff-earbuds"
+        "google-gemini-live-sprout-plant-robot"
       ]
     }
   ],
-  "differences": [],
+  "differences": [
+    {
+      "text": "従来の音声アシスタントと異なり、呼びかけ後の待ち時間がなく滑らかに会話できます。",
+      "sources": [
+        "google-gemini-live-sprout-plant-robot"
+      ]
+    }
+  ],
   "faq": [
     {
       "q": "無料で使える？",
-      "a": "0円/月で15 GBのストレージが付いた無料プランが用意されています。",
+      "a": "無料プラン（0円/月）が用意されています。",
       "sources": [
         "gemini-apple-carplay-rollout"
       ]
     },
     {
-      "q": "いつから使える？",
-      "a": "iPhoneのCarPlayでは2026年11月11日から全世界で順次提供されています。",
+      "q": "声の種類は選べる？",
+      "a": "AndroidとiOSアプリで66種類の地域別ボイスが順次提供されています。",
       "sources": [
-        "gemini-apple-carplay-rollout"
+        "gemini-regional-voices-rollout"
       ]
     },
     {
       "q": "誰に向いている？",
-      "a": "運転中に音声で作業したい人や、学習で音声対話を使いたい学生に向いています。",
+      "a": "運転中や移動中に音声で予定確認や会話をしたい人に向いています。",
       "sources": [
         "gemini-apple-carplay-rollout",
-        "google-gemini-college-student-features"
+        "samsung-galaxy-buds-on-cuff-earbuds"
+      ]
+    },
+    {
+      "q": "安全性は？",
+      "a": "運転中に集中したいときは、一時停止して会話を中断できます。",
+      "sources": [
+        "gemini-apple-carplay-rollout"
       ]
     }
   ],
@@ -146,7 +152,7 @@
     {
       "date": "2026-10-29",
       "slug": "google-gemini-live-sprout-plant-robot",
-      "event": "植物ロボットSproutを公開"
+      "event": "植物ロボット「Sprout」のデモを公開"
     }
   ],
   "related": [
@@ -156,6 +162,7 @@
     "gemini-notebook"
   ],
   "articles": [
+    "gemini-regional-voices-rollout",
     "gemini-apple-carplay-rollout",
     "google-gemini-live-sprout-plant-robot",
     "samsung-galaxy-buds-on-cuff-earbuds",
@@ -164,9 +171,9 @@
   "linkFrom": [
     "samsung-galaxy-buds-on-cuff-earbuds"
   ],
-  "signature": "cb0f43517ead3416",
+  "signature": "adf8180f71ee666b",
   "primarySignature": "26dceba283119754",
-  "model": "gemini-3.5-flash-lite",
+  "model": "gemini-3.1-flash-lite",
   "createdAt": "2026-10-27T10:59:22+00:00",
-  "updatedAt": "2026-11-12T12:03:18+00:00"
+  "updatedAt": "2026-11-16T19:24:45+00:00"
 }
