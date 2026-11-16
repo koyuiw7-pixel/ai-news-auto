@@ -4726,6 +4726,19 @@
       "skipped": true,
       "url": "https://www.suntory.co.jp/softdrink/news/pr/article/2026/SBF1746.html?rss=0000000029"
     },
+    "08053551a22b7de2": {
+      "at": "2026-11-16T07:40:09.901032+00:00",
+      "costUsd": 0.0016,
+      "intent": "breaking",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "score": 88,
+      "section": "public",
+      "slug": "osaka-online-system-email-leak",
+      "url": "https://www.pref.osaka.lg.jp/hodo/fumin/o050180/prs_00002.html"
+    },
     "08058c08f6ecfb14": {
       "at": "2026-11-11T02:44:45.076884+00:00",
       "costUsd": 0.0055,
@@ -18523,6 +18536,12 @@
       "skipped": true,
       "url": "https://www.gov-online.go.jp/press_conferences/minister_of_state/202611/video-327226.html"
     },
+    "d6afe6951c435fb4": {
+      "at": "2026-11-16T07:40:39.149162+00:00",
+      "reason": "followup: 同じ事故の記事に足せなかった（docomo-5g-sa-outage-third-time-nov-2026）",
+      "skipped": true,
+      "url": "https://www.docomo.ne.jp/info/network/kanto/pages/261116_07_m.html"
+    },
     "d6be14be84f599b5": {
       "at": "2026-11-07T12:17:22.264583+00:00",
       "costUsd": 0.0213,
@@ -23108,58 +23127,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-13T16:33:37.091654+00:00",
-      "attempt": 0,
-      "id": "aa687843ef0bc998",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 74.9,
-        "avg_sentence": 34.8,
-        "long_share": 0.018,
-        "max_paragraph": 145,
-        "paragraphs": 26,
-        "sentences": 56
-      },
-      "score": 88,
-      "source": "nli-research",
-      "title": "インド消費者物価（26年10月）～総合ＣＰＩは6.1％に上昇、RBIの許容上限を超過",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（RBI・CPI・CFPI）",
-        "1つの文を2つに割っている（「違いがあります。総合CPIが6%を超えたことと、10月の利上げ後も実質金利が▲0」）。1文にまとめる",
-        "「可能性があります」が多い（3か所以上）。根拠のある事実だけを書く"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-13T16:34:52.500858+00:00",
-      "attempt": 1,
-      "id": "2a5183d1cb10c153",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "題名で料金・価格を約束しているのに、本文に金額（円・ドル・無料など）が無い。元記事の金額を書くか、題名から料金の話を外す"
-      ],
-      "readability": {
-        "avg_paragraph": 126.6,
-        "avg_sentence": 58.0,
-        "long_share": 0.417,
-        "max_paragraph": 210,
-        "paragraphs": 11,
-        "sentences": 24
-      },
-      "score": null,
-      "source": "nli-research",
-      "title": "ＧＤＰ統計から見た価格転嫁率の試算－企業へのアンケート調査と大きく異なり累積の転嫁率は100％超",
-      "warnings": [
-        "見出しが47字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "読みやすさ: 文が長い（1文の平均 58.0字・60字超の文が 42% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "読みやすさ: 段落が長い（平均 126.6字・最長 210字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-13T16:36:21.731814+00:00",
@@ -30699,6 +30666,45 @@
         "初めて出たところで言い換えていない略語（PS・EC・PULSE）",
         "読みやすさ: 文が長い（1文の平均 45.6字・60字超の文が 29% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
       ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-16T07:40:01.242457+00:00",
+      "attempt": 1,
+      "id": "08053551a22b7de2",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 82.1,
+        "avg_sentence": 35.7,
+        "long_share": 0.0,
+        "max_paragraph": 161,
+        "paragraphs": 10,
+        "sentences": 23
+      },
+      "score": 88,
+      "source": "fast",
+      "title": "大阪府行政オンラインシステムでの情報漏えいについて",
+      "warnings": [
+        "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-16T07:40:39.149045+00:00",
+      "attempt": 1,
+      "id": "d6afe6951c435fb4",
+      "kind": "update",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "本文「当初は第三報まで「継続中」だった障害」→ 元記事に第三報や「継続中」という表示の記述はなく、創作である",
+        "簡単版「5G SAを使う人の通信が一か所に集中した」→ 元記事は「交換機への通信の集中」とするのみで、「一か所」は言い過ぎ",
+        "本文「当初は調査中としていた原因が示されたことになります」→ 元記事に「当初は調査中」との直接の記述はなく、確認済みの文脈の要約からの推測で、根拠が弱い"
+      ],
+      "score": 62,
+      "source": "docomo-news-release",
+      "title": "NTTドコモの障害に関するお知らせ"
     }
   ],
   "short_text_retry": {},
