@@ -298,7 +298,8 @@ function inPageAudit(opts) {
   const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
   const BAD = [
     [/(^|[^A-Za-z_\-./])(undefined|NaN|null|\[object Object\])(?![A-Za-z_\-])/, "undefined/NaN/null"],
-    [/\*\*[^*\s][^*]{0,80}\*\*|(^|\s)\*\*(\s|$)/, "生の **太字**"],
+    // 「C05-*****-******1」のような伏せ字の「*」の並びは太字の印ではない（前後が「*」の「**」は数えない。2026-11-16 issue #155 の誤検知）
+    [/(?<!\*)\*\*(?!\*)[^*\s][^*]{0,80}(?<!\*)\*\*(?!\*)|(^|\s)\*\*(\s|$)/, "生の **太字**"],
     [/(^|\n)\s{0,3}#{1,6}\s+\S/, "生の ## 見出し"],
     [/\[[^\]\n]{1,80}\]\((https?:\/\/|\/)[^)\s]+\)/, "生の [リンク](URL)"],
     [/<\/?(div|span|p|br|strong|a|table|tr|td|ul|li|h[1-6])(\s[^>]*)?>/i, "生の HTML タグ"],
@@ -396,7 +397,8 @@ function inPageAudit(opts) {
 
   // 7. 中身のない箱（見出しだけ・枠だけ）
   for (const el of main.querySelectorAll("section, aside")) {
-    if (!vis(el)) continue;
+    // 閉じた開け閉めの欄（details）の中は、中身があっても文字が読めず「空」に見える。数えない（2026-11-16 issue #155 の誤検知）
+    if (!vis(el) || el.closest("details:not([open])")) continue;
     const r = el.getBoundingClientRect();
     const text = norm(el);
     const media = el.querySelector("img, svg, video, iframe, canvas, input, button, a[href]");

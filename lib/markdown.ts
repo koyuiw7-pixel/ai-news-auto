@@ -2,6 +2,7 @@ import { marked } from "marked";
 import { AFFILIATE_REL, isAffiliateUrl } from "@/lib/affiliate";
 import { bareUrlToken } from "@/lib/autolink";
 import { dropDeadArticleLinks, type IsLiveArticle } from "@/lib/live-links";
+import { protectMaskStars } from "@/lib/mask-stars";
 
 marked.setOptions({ gfm: true, breaks: false });
 // 生のURLの自動リンクは、日本語・全角記号・空白の手前で止める（lib/autolink.ts）
@@ -50,7 +51,7 @@ export async function renderMarkdown(
 ): Promise<string> {
   // 生成文の「です。 次の文」の半角スペースは、日本語の文中では不自然な隙間に見えるので詰める（2026-11-03 の画面の点検）
   const tidy = (markdown ?? "").replace(/([。！？])[ \u00a0]+(?=[^\s|])/g, "$1");
-  const html = await marked.parse(tidy);
+  const html = await marked.parse(protectMaskStars(tidy));
   const hardened = hardenLinks(sanitize(html), affiliateUrls);
   return isLiveArticle ? dropDeadArticleLinks(hardened, isLiveArticle) : hardened;
 }
