@@ -87,6 +87,7 @@
     "zoohZ1BiHs0": 1
   },
   "failed_web": {
+    "00c15bfe70833eb74eb17c43ec98505405debb16": 1,
     "00f822032178798c49820525368d438921589736": 2,
     "0160cca0e3c443c7a624adf036f3be8e6ac4cb00": 2,
     "0187ebd8136138e9dd6260926b0bf8b46008ccf3": 2,
@@ -104,7 +105,7 @@
     "05b310adaf37dd5c16c542c981f14a22b2fe5d55": 2,
     "06aff5fd597e285cf4d5ccf2c223547982790e03": 2,
     "06ce92a0fa5afdb1d2eb5d7dd72a7ceb7d150db6": 2,
-    "070762fe57c71765f0d08d1bf71d25fcb97cbe79": 1,
+    "070762fe57c71765f0d08d1bf71d25fcb97cbe79": 2,
     "073f089b5809d010c7d9a0424e5ca9ac11646f7c": 2,
     "079e3ebb57a63b82c25a3471dc7a19873cbb8407": 2,
     "0819a0de25d664360432678b48c142d16c056638": 2,
@@ -708,7 +709,7 @@
     "d01de8fffe25824f0129d74158c892e168f7bef3": 2,
     "d158ec60020239fa3eab7534493a788b6ae234e8": 2,
     "d1f435bc8822640b295bc0ef33daed81c8b4afda": 2,
-    "d23fea4b1b5c392c623ff58a7ec442073c8b66bf": 1,
+    "d23fea4b1b5c392c623ff58a7ec442073c8b66bf": 2,
     "d2793d17d92118d19abd636099dc444722dc69f9": 2,
     "d29e984b52e88c7e6f088b2bc8071e3d86c1523e": 2,
     "d2d343ed190037c1f0f267a52b81d53403a73599": 2,
@@ -6473,14 +6474,6 @@
       "reason": "major gave up x3: 本文が短い（455字）",
       "skipped": true,
       "url": "https://support.claude.com/en/articles/12138966-release-notes#entry-2026-11-05"
-    },
-    "1ff21a1fea64f84e": {
-      "at": "2026-11-02T05:48:42.542932+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "score": 100,
-      "section": "ai",
-      "slug": "openai-gpt-61-terra-amazon-bedrock",
-      "url": "https://aws.amazon.com/jp/blogs/news/weekly-genai-20261026/"
     },
     "200b45c3ad861410": {
       "at": "2026-11-12T16:11:44.178668+00:00",
@@ -12724,6 +12717,12 @@
       "slug": "aja-anime-industry-report-2026",
       "url": "https://aja.gr.jp/info/2795"
     },
+    "7d05b5f2458e8b8a7ca750bce00824bd1237b915": {
+      "at": "2026-11-16T05:55:43.500137+00:00",
+      "reason": "trend: 公式の発表で記事にした（nakai-ami-skate-america-2026）",
+      "skipped": true,
+      "url": "https://news.yahoo.co.jp/articles/d659f3fa9143394234e5315e21cfb6b4e541b6e1"
+    },
     "7d35dbd94e2102ad1a84e0e9aa1ee16566a94062": {
       "at": "2026-11-14T19:04:30.305269+00:00",
       "kind": "trend",
@@ -17660,14 +17659,6 @@
       "skipped": true,
       "url": "https://cq.ifeng.com/c/8y390q7QSPb"
     },
-    "c733105af322c5af": {
-      "at": "2026-11-02T05:48:53.823018+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "score": 100,
-      "section": "business",
-      "slug": "boj-outlook-report-october",
-      "url": "http://www.boj.or.jp/mopo/outlook/gor2610b.pdf"
-    },
     "c73d5d469180761e": {
       "at": "2026-11-07T19:52:10.047425+00:00",
       "reason": "stale: 発表から53時間（48時間を超えた発表は通常の記事にしない）",
@@ -18938,6 +18929,20 @@
       "reason": "prefilter: 価値の薄いお知らせ（セミナー）",
       "skipped": true,
       "url": "https://www.jpx.co.jp/corporate/news/news-releases/6020/20261112-01.html"
+    },
+    "dcddc7a7eb4a8679": {
+      "at": "2026-11-16T05:55:43.499972+00:00",
+      "costUsd": 0.0113,
+      "intent": "neutral",
+      "kind": "trend",
+      "mix": "",
+      "model": "gemini-3.5-flash-lite",
+      "score": 95,
+      "section": "sports",
+      "slug": "nakai-ami-skate-america-2026",
+      "trendKeyword": "イグナトワ",
+      "trendLane": true,
+      "url": "https://topics.smt.docomo.ne.jp/redirector?cp_id=thedigestweb&controller=article&action=index&redirect_url=https%3A%2F%2Fthedigestweb.com%2Ftopics_detail13%2Fid%3D122835&unit_id=DNS-CLK-03-05-AMP&news_article_id=thedigestweb-122834&related_info_title=18%E6%AD%B3%E3%83%BB%E4%B8%AD%E4%BA%95%E4%BA%9C%E7%BE%8E236.81%E7%82%B9%EF%BC%81%20SP%E3%81%AB%E7%B6%9A%E3%81%8F%E4%BB%8A%E5%AD%A3%E4%B8%96%E7%95%8C%E6%9C%80%E9%AB%98%E5%BE%97%E7%82%B9%E3%81%AE%E5%AE%8C%E7%92%A7%E6%BC%94%E6%8A%80%E3%81%A7%EF%BC%92%E5%B9%B4%E9%80%A3%E7%B6%9AGP%E3%83%95%E3%82%A1%E3%82%A4%E3%83%8A%E3%83%AB%E9%80%B2%E5%87%BA%E6%B1%BA%E5%AE%9A%EF%BC%81%20%E6%9D%BE%E7%94%9F%E7%90%86%E4%B9%83%EF%BC%93%E4%BD%8D%E3%81%A7%E6%97%A5%E6%9C%AC%E5%A5%B3%E5%AD%90W%E8%A1%A8%E5%BD%B0%E5%8F%B0%E3%80%90GP%E3%82%A2%E3%83%A1%E3%83%AA%E3%82%AB%E3%80%91&genre_id=sports"
     },
     "dce002db3322e21b": {
       "at": "2026-11-09T06:50:40.343422+00:00",
@@ -23122,60 +23127,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-13T16:26:49.782666+00:00",
-      "attempt": 0,
-      "id": "92694eca87ee4ca5",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 68.1,
-        "avg_sentence": 32.8,
-        "long_share": 0.037,
-        "max_paragraph": 112,
-        "paragraphs": 13,
-        "sentences": 27
-      },
-      "score": 85,
-      "source": "radar-official",
-      "title": "日清食品グループ",
-      "warnings": [
-        "見出しが49字（目安40字以内）。一覧・カードでは前半だけを出す"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-13T16:28:52.190367+00:00",
-      "attempt": 1,
-      "id": "4d525ab74f95595e",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "「マンションなどの街区内で行ってきた」→ 元記事は「街区」としか書いておらず、マンションという建物種別は元記事・確認済みの文脈に無い補足である",
-        "「東京都江東区にある亀戸緑道公園」→ 区名は元記事に無い。一般的に知られた地名ではあるが、出典なしで書かれている",
-        "「開発事業者が一方的に場をつくるのではなく」→ 元記事に無い、取り組みの方針の対比についての記述である",
-        "「直接的な収入や支出の変動はありません」→ 元記事・確認済みの文脈に根拠が無く、読者の家計への影響を断定している",
-        "「日常の延長線上でくつろげる場をつくりました」→ 元記事の「思い思いに過ごせる」を言い換えたものだが、「日常の延長線上」は元記事に無い表現である"
-      ],
-      "readability": {
-        "avg_paragraph": 105.1,
-        "avg_sentence": 55.6,
-        "long_share": 0.353,
-        "max_paragraph": 170,
-        "paragraphs": 9,
-        "sentences": 17
-      },
-      "score": 84,
-      "source": "nomura-re",
-      "title": "「Be ACTO 亀戸」、街区から地域へひろがるエリアマネジメントを推進 亀戸緑道公園・区道を活用した「まちのリビング 緑道デイ」を10 月25 日（日）に開催",
-      "warnings": [
-        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（ACTO）",
-        "読みやすさ: 文が長い（1文の平均 55.6字・60字超の文が 35% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-13T16:29:15.316992+00:00",
@@ -30716,6 +30667,54 @@
       "warnings": [
         "読みやすさ: 文が長い（1文の平均 53.8字・60字超の文が 32% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
         "読みやすさ: 段落が長い（平均 168.1字・最長 271字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-16T05:55:27.844752+00:00",
+      "attempt": 1,
+      "id": "dcddc7a7eb4a8679",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 108.9,
+        "avg_sentence": 54.4,
+        "long_share": 0.429,
+        "max_paragraph": 165,
+        "paragraphs": 7,
+        "sentences": 14
+      },
+      "score": 93,
+      "source": "radar-official",
+      "title": "18歳・中井亜美236.81点！ SPに続く今季世界最高得点の完璧演技で２年連続GPファイナル進出決定！ 松生理乃３位で日本女子W表彰台【GPアメリカ】",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（THE・ANSWER・DIGEST）",
+        "読みやすさ: 文が長い（1文の平均 54.4字・60字超の文が 43% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-16T05:55:43.464908+00:00",
+      "attempt": 0,
+      "id": "dcddc7a7eb4a8679",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 110.1,
+        "avg_sentence": 42.8,
+        "long_share": 0.222,
+        "max_paragraph": 169,
+        "paragraphs": 7,
+        "sentences": 18
+      },
+      "score": 95,
+      "source": "radar-official",
+      "title": "18歳・中井亜美236.81点！ SPに続く今季世界最高得点の完璧演技で２年連続GPファイナル進出決定！ 松生理乃３位で日本女子W表彰台【GPアメリカ】",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（THE・ANSWER・DIGEST）",
+        "読みやすさ: 文が長い（1文の平均 42.8字・60字超の文が 22% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
       ]
     }
   ],
