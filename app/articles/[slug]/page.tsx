@@ -51,7 +51,7 @@ import ShareButtons from "@/components/ShareButtons";
 import MoneyCheckLink from "@/components/MoneyCheckLink";
 import { moneyLinkFor } from "@/lib/money-pages";
 import ThreadsFollow from "@/components/ThreadsFollow";
-import { offerPlanForArticle } from "@/lib/offers";
+import { afterBodyOffer, offerPlanForArticle } from "@/lib/offers";
 import { getCta } from "@/lib/monetization";
 import { inlineReadForArticle, readNextForArticle } from "@/lib/read-next";
 import ReadNextBox from "@/components/ReadNextBox";
@@ -255,7 +255,8 @@ export default async function ArticlePage({ params }: Props) {
       );
   const offerAll = offerWithBenefits(offerPlan.offer, benefitContext);
   const offer = adReview ? undefined : offerWithBenefits(offerPlan.rail, benefitContext);
-  const inlineOffer = offerWithBenefits(offerPlan.inline, benefitContext);
+  // 審査の期間は本文の後ろの1つだけの囲みに、記事に合う候補をすべて渡す（右側に回した分で囲みが空にならないように。lib/offers.ts afterBodyOffer）
+  const inlineOffer = offerWithBenefits(afterBodyOffer(offerPlan, adReview), benefitContext);
   // ニュース記事 → 同じ話題の比較記事への「次に読む」のカード（自分たちの記事への案内。広告の枠には数えない）
   const funnel = funnelForArticle(article, getAllArticles());
   // 商品枠の話題に比較ガイドがあれば、商品枠のすぐ下に1行だけ案内する

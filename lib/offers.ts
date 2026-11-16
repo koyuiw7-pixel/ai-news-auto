@@ -735,6 +735,17 @@ export function offerPlanForArticle(article: ArticleSummary, exclude: Iterable<s
   return { offer: { ...offer, ...headingFor(railItems, base) }, rail, inline };
 }
 
+/**
+ * 本文の後ろの PR の囲みに出す中身。
+ * ふだんは本文中の枠（inline。右側と重ならない残り）。AdSense の審査の期間（lib/ad-review.ts）は右側を出さないので、
+ * 1つだけの囲みに記事にいちばん合う候補をすべて（offer。関連の高い順）渡す。候補が3つ以下だと inline は空になり、
+ * 囲みが1つも出ない記事があった（2026-11-17）。候補が1つでもあれば出す
+ */
+export function afterBodyOffer(plan: OfferPlan, adReview: boolean): Offer | undefined {
+  if (!adReview) return plan.inline;
+  return plan.offer && plan.offer.items.length > 0 ? plan.offer : undefined;
+}
+
 /** 2つ目の枠の見出し。並ぶ商品の種類（サービス・本）で言い分ける */
 function secondHeading(offer: Offer): Pick<Offer, "eyebrow" | "headline" | "lead"> {
   const hasBook = offer.items.some((item) => item.kind === "book");
