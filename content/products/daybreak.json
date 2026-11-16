@@ -6,10 +6,10 @@
   "companyName": "OpenAI",
   "category": "AIモデル",
   "overview": {
-    "text": "Daybreakは、脆弱性の自動発見や修正コードの生成を行うOpenAIのセキュリティ自動化基盤です。サイバー攻撃を防ぐ防御側の能力を高める目的で開発され、2026年11月に発表されました。",
+    "text": "Daybreakは、脆弱性の自動発見とコード修復を行うOpenAIのセキュリティ自動化基盤です。2026年11月に発表され、企業の開発ラインや防御担当者を支援します。",
     "sources": [
       "openai-daybreak-gpt6-cyber-launch",
-      "sophos-openai-daybreak-security-agent"
+      "chatgpt-work-complete-guide-features-matome"
     ]
   },
   "facts": [
@@ -21,22 +21,8 @@
       ]
     },
     {
-      "label": "日本での提供",
-      "value": "条件付き",
-      "sources": [
-        "openai-daybreak-gpt6-cyber-launch"
-      ]
-    },
-    {
-      "label": "使える場所",
-      "value": "管理画面、APIなど",
-      "sources": [
-        "openai-daybreak-gpt6-cyber-launch"
-      ]
-    },
-    {
       "label": "向いている人",
-      "value": "開発者、企業のセキュリティ担当者",
+      "value": "企業の開発者・セキュリティ担当者",
       "sources": [
         "openai-daybreak-gpt6-cyber-launch",
         "sophos-openai-daybreak-security-agent"
@@ -45,26 +31,26 @@
   ],
   "capabilities": [
     {
-      "text": "攻撃者の視点で自社システムに模擬攻撃を行い、悪用可能な脆弱性を自動で検出できます。",
+      "text": "攻撃者の視点で模擬攻撃を行い、悪用可能な脆弱性を自動で検出できます。",
       "sources": [
         "openai-daybreak-gpt6-cyber-launch"
       ]
     },
     {
-      "text": "検出された脆弱性を分析し、修正用のプログラムコードを作成してテストまで自動で実行します。",
+      "text": "検出された脆弱性の修正プログラムコードを作成し、テストまで自動で実行します。",
       "sources": [
         "openai-daybreak-gpt6-cyber-launch"
       ]
     },
     {
-      "text": "導入企業の検証では、脅威への平均対応時間を38分から89秒へ96%削減しました。",
+      "text": "脅威への平均対応時間を38分から89秒へ96%削減した実績があります。",
       "sources": [
         "openai-daybreak-gpt6-cyber-launch",
         "sophos-openai-daybreak-security-agent"
       ]
     },
     {
-      "text": "Linuxカーネルの解析で948件の脆弱性と修正パッチを自動生成しました。",
+      "text": "Linuxカーネルで948件の脆弱性と修正パッチを自動生成しました。",
       "sources": [
         "openai-daybreak-gpt6-cyber-launch"
       ]
@@ -73,7 +59,7 @@
   "pricing": [],
   "japan": [
     {
-      "text": "ソフォスの日本法人や国内の正規代理店を通じてMDRサービスを利用できます。",
+      "text": "ソフォスの日本法人や国内の正規代理店を通じてMDRサービスを契約することで恩恵を受けられます。",
       "sources": [
         "sophos-openai-daybreak-security-agent"
       ]
@@ -87,73 +73,49 @@
       ]
     },
     {
-      "text": "企業向けの個別問い合わせ窓口やウェイトリストから提供されます。",
+      "text": "OpenAIの公式ウェブサイトからプログラムへの参加を申請します。",
+      "sources": [
+        "openai-daybreak-gpt6-cyber-launch"
+      ]
+    }
+  ],
+  "differences": [],
+  "faq": [
+    {
+      "q": "個人のChatGPTでも使える？",
+      "a": "個人でChatGPTを使っている利用者の画面や契約内容が変わることはありません。",
       "sources": [
         "openai-daybreak-gpt6-cyber-launch"
       ]
     },
     {
-      "text": "AWS GovCloud環境ではAmazon Bedrock経由で利用できます。",
+      "q": "誰に向いている？",
+      "a": "ウェブサービスやアプリを開発する企業やエンジニア向けのエージェント基盤です。",
+      "sources": [
+        "openai-daybreak-gpt6-cyber-launch",
+        "chatgpt-work-complete-guide-features-matome"
+      ]
+    },
+    {
+      "q": "どのモデルが組み込まれている？",
+      "a": "サイバーセキュリティに特化した専用AIモデルのGPT-6 Cyberが組み込まれています。",
+      "sources": [
+        "openai-daybreak-gpt6-cyber-launch"
+      ]
+    },
+    {
+      "q": "AWSでも使える？",
+      "a": "承認済みの政府系顧客向けに、Amazon Bedrock経由で利用できます。",
       "sources": [
         "gpt-56-cyber-aws-govcloud"
       ]
     }
   ],
-  "differences": [
-    {
-      "text": "従来モデルでは難しかった複雑な攻撃経路の作成が可能になりました。",
-      "sources": [
-        "openai-daybreak-gpt6-cyber-launch"
-      ]
-    },
-    {
-      "text": "GPT-6 Cyberは脆弱性発見の試験で前世代モデルを上回る成績を記録しました。",
-      "sources": [
-        "openai-daybreak-gpt6-cyber-launch",
-        "gpt-6-cyber-aligned-security-agents"
-      ]
-    }
-  ],
-  "faq": [
-    {
-      "q": "個人でも使えますか？",
-      "a": "企業やエンジニア向けの基盤システムとして提供されます。",
-      "sources": [
-        "openai-daybreak-gpt6-cyber-launch"
-      ]
-    },
-    {
-      "q": "どのようなモデルが使われますか？",
-      "a": "サイバーセキュリティに特化したGPT-6 Cyberなどが組み込まれています。",
-      "sources": [
-        "openai-daybreak-gpt6-cyber-launch"
-      ]
-    },
-    {
-      "q": "どのような仕組みで動作しますか？",
-      "a": "模擬攻撃を行うDaybreak Red Teamなどで構成されます。",
-      "sources": [
-        "openai-daybreak-gpt6-cyber-launch"
-      ]
-    },
-    {
-      "q": "どのようなツールと連携できますか？",
-      "a": "GitHubなどのコード管理サービスと連携させて運用できます。",
-      "sources": [
-        "openai-daybreak-gpt6-cyber-launch"
-      ]
-    }
-  ],
   "timeline": [
-    {
-      "date": "2026-10-09",
-      "slug": "sophos-openai-daybreak-security-agent",
-      "event": "ソフォスがOpenAI Daybreakを採用"
-    },
     {
       "date": "2026-11-13",
       "slug": "openai-daybreak-gpt6-cyber-launch",
-      "event": "OpenAIがDaybreakを発表"
+      "event": "自動修復基盤「Daybreak」を発表"
     }
   ],
   "related": [
@@ -175,9 +137,9 @@
     "openai-daybreak-gpt6-cyber-launch",
     "sophos-openai-daybreak-security-agent"
   ],
-  "signature": "aef032d3b149197c",
+  "signature": "13ef8c61fb0448c9",
   "primarySignature": "3a36b1d89ba45c1f",
   "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-11-03T05:32:40+00:00",
-  "updatedAt": "2026-11-13T00:10:42+00:00"
+  "updatedAt": "2026-11-16T00:20:55+00:00"
 }
