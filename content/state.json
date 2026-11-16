@@ -7098,6 +7098,19 @@
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026110606"
     },
+    "27309691699b2f79": {
+      "at": "2026-11-16T22:55:05.665315+00:00",
+      "costUsd": 0.0067,
+      "intent": "breaking",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "score": 93,
+      "section": "public",
+      "slug": "feiler-line-lottery-data-leak",
+      "url": "https://www.feiler-jp.com/information/detail/277"
+    },
     "27611e9c9997cbd4": {
       "at": "2026-11-10T18:22:58.193669+00:00",
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・暮らしの交通/天気/値上げ/障害/給付/発売・日本のスポーツのどれでもない）",
@@ -23391,58 +23404,6 @@
   "quality_log": [
     {
       "accepted": true,
-      "at": "2026-11-14T15:57:14.444674+00:00",
-      "attempt": 1,
-      "id": "40f713b8e7d26519",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 141.0,
-        "avg_sentence": 58.1,
-        "long_share": 0.412,
-        "max_paragraph": 376,
-        "paragraphs": 7,
-        "sentences": 17
-      },
-      "score": 88,
-      "source": "nli-research",
-      "title": "TikTokの「For You」機能に関するDSA違反の暫定的判断",
-      "warnings": [
-        "見出しが47字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（DSA・KIDS）",
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-14T15:57:39.706906+00:00",
-      "attempt": 0,
-      "id": "40f713b8e7d26519",
-      "kind": "broad",
-      "model": "",
-      "problems": [
-        "読みやすさ基準外のまま受理: 書き直し後の確認に不合格: 「よくある質問」のQ1の答え「2026年11月13日に公表されたニッセイ基礎研究所のレポートで明らかにされています」→ 判断を公表したのは欧州委員会で11月6日だが、日付の取り違えになっている（11月13日はレポートの公開日）。; 「今後は本人の選択をより重視し"
-      ],
-      "readability": {
-        "avg_paragraph": 141.0,
-        "avg_sentence": 58.1,
-        "long_share": 0.412,
-        "max_paragraph": 376,
-        "paragraphs": 7,
-        "sentences": 17
-      },
-      "score": 88,
-      "source": "nli-research",
-      "title": "TikTokの「For You」機能に関するDSA違反の暫定的判断",
-      "warnings": [
-        "見出しが47字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（DSA・KIDS）",
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
-      ]
-    },
-    {
-      "accepted": true,
       "at": "2026-11-14T15:58:50.683959+00:00",
       "attempt": 1,
       "id": "13603964e6b85cca",
@@ -31028,6 +30989,56 @@
       "warnings": [
         "見出しの書き方: 区切りの全角空白が2つ以上（補足は1つだけ）",
         "初めて出たところで言い換えていない略語（NEWS・FNN）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-16T22:54:36.382438+00:00",
+      "attempt": 1,
+      "id": "27309691699b2f79",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "かんたん版「フェイラーが店頭入店などの抽選に使っていたLINEの運用サービス」→ 元記事は抽選用LINEとしか書いておらず、店頭入店の抽選だとする記述は元記事に無い。"
+      ],
+      "readability": {
+        "avg_paragraph": 89.2,
+        "avg_sentence": 42.7,
+        "long_share": 0.13,
+        "max_paragraph": 204,
+        "paragraphs": 11,
+        "sentences": 23
+      },
+      "score": 88,
+      "source": "fast",
+      "title": "INFORMATION インフォメーション 記事ページ | フェイラー(FEILER)オフィシャルブランドサイト",
+      "warnings": [
+        "見出しが48字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（SMS）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-16T22:54:55.920623+00:00",
+      "attempt": 1,
+      "id": "27309691699b2f79",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 89.2,
+        "avg_sentence": 42.7,
+        "long_share": 0.13,
+        "max_paragraph": 204,
+        "paragraphs": 11,
+        "sentences": 23
+      },
+      "score": 93,
+      "source": "fast",
+      "title": "INFORMATION インフォメーション 記事ページ | フェイラー(FEILER)オフィシャルブランドサイト",
+      "warnings": [
+        "見出しが48字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（SMS）"
       ]
     }
   ],
