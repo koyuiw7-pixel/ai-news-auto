@@ -68,9 +68,9 @@
   "affiliates": [],
   "newsType": "policy",
   "todayActions": [
-    "kaeneからの個別メールが届いていないか確認し、届いていれば案内を読む",
-    "kaeneを装う電話・SMSが来たら、リンクを開かず、092-622-2552（9:00〜17:00）に確認する",
-    "不安な点は、公式サイトのメールフォームで「個人情報について」を選んで問い合わせる"
+    "kaeneからの個別案内メールが届いていないか確認し、届いていれば案内の内容を読む",
+    "kaeneを装う電話やSMSが来たら、リンクを開かず、092-622-2552に確認する",
+    "不安な点は、公式サイトのメールフォームで件名「個人情報について」を選んで問い合わせる"
   ],
   "publicInterest": "breach",
   "incident": {
@@ -125,5 +125,115 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/kaene-onescloset-data-leak-figure-b1805b04.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "2026年11月2日時点でキャンセル処理が完了していた注文は、漏えいした可能性のある情報が「お名前のみ」です。それ以外の注文では、お届け先の住所・電話番号も対象になり得ます。",
+      "source": "https://kaene.jp/blogs/topics_kaene/personal-data-incident-notice"
+    },
+    {
+      "text": "問い合わせのメールフォームでは、お問い合わせ件名として「個人情報について」を選択します。電話（092-622-2552）の受付時間は9：00 - 17：00です。",
+      "source": "https://kaene.jp/blogs/topics_kaene/personal-data-incident-notice"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "株式会社侶丹 お問い合わせ窓口（メールフォーム・電話）",
+      "url": "https://kaene.jp/pages/contact-kaene",
+      "source": "https://kaene.jp/blogs/topics_kaene/personal-data-incident-notice",
+      "phone": "092-622-2552",
+      "hours": "9：00 - 17：00",
+      "note": "メールフォームでは件名「個人情報について」を選択してください。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "kaeneからの個別案内メールが届いていないか確認し、届いていれば案内の内容を読む",
+      "source": "https://kaene.jp/blogs/topics_kaene/personal-data-incident-notice",
+      "steps": [
+        "メールの差出人がkaeneかを確かめる",
+        "届いていれば案内の内容を読み、窓口の情報を控える"
+      ],
+      "url": "https://kaene.jp/blogs/topics_kaene/personal-data-incident-notice"
+    },
+    {
+      "action": "kaeneを装う電話やSMSが来たら、リンクを開かず、092-622-2552に確認する",
+      "source": "https://kaene.jp/blogs/topics_kaene/personal-data-incident-notice",
+      "steps": [
+        "記載されたリンクは開かない",
+        "パスワードや認証コード、カード情報は伝えない",
+        "受付時間9：00 - 17：00内に092-622-2552へかける"
+      ],
+      "url": "https://kaene.jp/blogs/topics_kaene/personal-data-incident-notice"
+    },
+    {
+      "action": "不安な点は、公式サイトのメールフォームで件名「個人情報について」を選んで問い合わせる",
+      "source": "https://kaene.jp/blogs/topics_kaene/personal-data-incident-notice",
+      "steps": [
+        "お知らせのページで「こちら」を押す",
+        "お問い合わせ件名「個人情報について」を選択する"
+      ],
+      "url": "https://kaene.jp/pages/contact-kaene"
+    }
+  ],
+  "cause": {
+    "text": "One’sClosetのサーバーで2026年11月2日に第三者による不正アクセスが発生し、保存されていた個人情報と接続キーが漏えいしたことが確認されたと報告を受けています。不正アクセスの詳しい原因および漏えいの範囲については、現在も調査が続いております。",
+    "status": "investigating",
+    "source": "https://kaene.jp/blogs/topics_kaene/personal-data-incident-notice"
+  },
+  "worries": [
+    {
+      "q": "自分が漏えいの対象か分からないけど、どうすればいい？",
+      "a": "漏えいの可能性が確認できたお客様には、個別にメールでご案内しているとのことです。kaeneの客のうち、誰のどの情報が漏れたかは確認中とされています。",
+      "source": "https://kaene.jp/blogs/topics_kaene/personal-data-incident-notice",
+      "action": "kaeneからの個別メールが届いていないか確認し、届いていれば案内の内容を読んで窓口の情報を控えましょう。"
+    },
+    {
+      "q": "クレジットカード情報も漏れてしまった？",
+      "a": "運営会社からの報告では、One’sClosetにはメールアドレスとクレジットカード情報（カード番号、有効期限、セキュリティコード）は保存されていないとされています。",
+      "source": "https://kaene.jp/blogs/topics_kaene/personal-data-incident-notice",
+      "action": "身に覚えのない請求がカードの支払い明細にないか、こまめに確認しましょう。",
+      "actionSource": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "actionGeneral": true
+    },
+    {
+      "q": "家族に詐欺の電話が来ることはある？",
+      "a": "警察庁の一般的な注意のページでは、特殊詐欺対策では何よりも「犯人と話をしない」ことが大切とされています。各電話事業者の番号表示や非通知拒否サービスも紹介されています。",
+      "source": "https://www.npa.go.jp/bureau/safetylife/sos47/case/",
+      "action": "知らない番号や非通知の電話には出ず、不安な電話は一度切って公式窓口で確かめる。",
+      "general": true
+    },
+    {
+      "q": "リンクを開いてIDやパスワードを入れてしまったら？",
+      "a": "フィッシングサイト等にIDやパスワードを入力してしまった場合は、そのIDやパスワードを利用している全てのサービスで、速やかに変更するよう案内されています。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "action": "パスワードを入れてしまったら、同じパスワードを使う全てのサービスで速やかに変更する。",
+      "general": true
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "案内メールが届いていないが、問い合わせるべき？",
+      "situation": "kaeneで注文した覚えがあり、メールは届いていない",
+      "recommend": "不安なら問い合わせる価値がある",
+      "reason": "対象かどうかは確認が進んでいる段階です。メールが届いていなくても、電話092-622-2552（受付9：00 - 17：00）で確かめられます。",
+      "source": "https://kaene.jp/blogs/topics_kaene/personal-data-incident-notice"
+    },
+    {
+      "question": "案内メールが届いていないが、問い合わせるべき？",
+      "situation": "メールが届き、案内の内容を読んだ",
+      "recommend": "急がなくてよい。窓口の情報を控えておけばよい",
+      "reason": "案内の内容と窓口（電話092-622-2552、メールフォーム）を控えておけば、後で不審な連絡を確かめる際に使えます。",
+      "source": "https://kaene.jp/blogs/topics_kaene/personal-data-incident-notice"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "キャンセル済みの注文は名前だけ、その他は住所と電話も",
+    "cause": "なぜ漏れたのか、いま分かっていること",
+    "steps": "まずは届いた連絡の確かめから",
+    "desk": "kaeneへの問い合わせは電話かメールで",
+    "worries": "カードの請求や家族の電話は大丈夫？",
+    "guide": "問い合わせるか迷ったときの決め方"
+  },
+  "depthAt": "2026-11-16T01:39:07+00:00"
 }
