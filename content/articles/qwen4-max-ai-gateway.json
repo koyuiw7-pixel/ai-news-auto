@@ -86,9 +86,8 @@
   "newsType": "product",
   "faq": [],
   "todayActions": [
-    "AI Gatewayのモデル詳細ページで、alibaba/qwen4-max の単価を確かめる",
-    "AI SDKのコードで model を alibaba/qwen4-max に替え、同じ指示文の結果を比べる",
-    "Vercelのモデルのプレイグラウンドで、自分の仕事の指示文を試す"
+    "AI Gatewayのモデルプレイグラウンドで、自分の仕事の指示文をQwen4-Maxに試す",
+    "Claude CodeなどでQwen4-Maxを使うなら、Vercel CLIを入れて設定コマンドを実行する"
   ],
   "relatedSlugs": [
     "vercel-ai-gateway-deepseek-search-fetch",
@@ -110,7 +109,8 @@
       6
     ],
     "repaired": false,
-    "repairLater": true
+    "repairLater": true,
+    "laterTriedAt": "2026-11-16T03:36:59+00:00"
   },
   "qualityScore": 90,
   "breaking": true,
@@ -141,5 +141,93 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/qwen4-max-ai-gateway-figure-36e4c9e0.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "AI Gatewayは、再試行や障害時の切り替えの設定によって、提供元そのものより高い稼働率を目指す仕組みとされています。",
+      "source": "https://vercel.com/changelog/qwen4-max-now-available-on-ai-gateway"
+    },
+    {
+      "text": "AI Gatewayで使えるテキストのモデルは「all language models」の一覧ページでまとめて見られます。モデルごとの詳細は個別のページで確認します。",
+      "source": "https://vercel.com/changelog/qwen4-max-now-available-on-ai-gateway"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "Qwen4-Max のモデル詳細ページ（AI Gateway）",
+      "url": "https://vercel.com/ai-gateway/models/qwen4-max",
+      "source": "https://vercel.com/changelog/qwen4-max-now-available-on-ai-gateway"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "AI Gatewayのモデルプレイグラウンドで、自分の仕事の指示文をQwen4-Maxに試す",
+      "source": "https://vercel.com/changelog/qwen4-max-now-available-on-ai-gateway",
+      "steps": [
+        "Vercelのモデルプレイグラウンドを開く",
+        "モデルに alibaba/qwen4-max を選ぶ",
+        "自分の仕事の指示文を入れて結果を見る"
+      ]
+    },
+    {
+      "action": "Claude CodeなどでQwen4-Maxを使うなら、Vercel CLIを入れて設定コマンドを実行する",
+      "source": "https://vercel.com/changelog/qwen4-max-now-available-on-ai-gateway",
+      "steps": [
+        "最新のVercel CLIをインストールする",
+        "npx vercel ai-gateway setup を実行する",
+        "エージェント内で alibaba/qwen4-max を選ぶ"
+      ],
+      "url": "https://vercel.com/docs/ai-gateway/coding-agents"
+    }
+  ],
+  "cause": {
+    "text": "Qwen4シリーズの第1弾として、コーディング、専門職の仕事、長時間動くエージェント作業向けに作られたモデルです。AI Gatewayで利用できるようになりました。",
+    "status": "background",
+    "source": "https://vercel.com/changelog/qwen4-max-now-available-on-ai-gateway"
+  },
+  "worries": [
+    {
+      "q": "AI Gatewayで使うと料金は上乗せされる？",
+      "a": "AI Gatewayは提供元の料金をそのまま反映し、上乗せしないとされています。推論にプラットフォーム手数料はかからず、自分のAPIキーを持ち込む場合も同じです。",
+      "source": "https://vercel.com/changelog/qwen4-max-now-available-on-ai-gateway",
+      "action": "AI Gatewayのモデル詳細ページで、alibaba/qwen4-maxの料金を確かめる"
+    },
+    {
+      "q": "会社の機密性の高い書類を送っても大丈夫？",
+      "a": "AI Gatewayは、Zero Data Retentionへの対応を備えていると書かれています。対応の中身は、専用のブログ記事で説明されています。",
+      "source": "https://vercel.com/changelog/qwen4-max-now-available-on-ai-gateway",
+      "action": "機密性の高い書類を扱う前に、Zero Data Retentionのブログ記事を読む"
+    },
+    {
+      "q": "長い作業の途中で、方向を変えることはできる？",
+      "a": "長時間の作業では、早い段階で使える第1版が出て、その後のリリースで改善していく流れです。完成前に進み具合を確認し、方向を変えられるとされています。",
+      "source": "https://vercel.com/changelog/qwen4-max-now-available-on-ai-gateway",
+      "action": "長い作業は、途中の第1版を見てから続きを指示する"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "今使っているAIモデルから替える？",
+      "situation": "まだAI Gatewayを使っていない",
+      "recommend": "急がなくてよい。まず試す価値はある",
+      "reason": "AI Gatewayは提供元の料金を反映し、上乗せせず、推論にプラットフォーム手数料もかからないとされています。ただしQwen4-Maxの単価は、この発表には示されていません。",
+      "source": "https://vercel.com/changelog/qwen4-max-now-available-on-ai-gateway"
+    },
+    {
+      "question": "今使っているAIモデルから替える？",
+      "situation": "すでにAI Gatewayを使っている",
+      "recommend": "同じ作業で使用量を比べてから決める",
+      "reason": "Qwen4-Maxは、前世代のQwen Maxと比べて同じ作業を終えるのに使うトークンが少ないとされています。削減の幅は示されていないため、自分の作業で測るのが確実です。",
+      "source": "https://vercel.com/changelog/qwen4-max-now-available-on-ai-gateway"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "障害時の切り替えは提供元より高い稼働率を狙う",
+    "cause": "Qwen4シリーズ第1弾は何向けのモデル？",
+    "steps": "今すぐ試す手順と、設定コマンドの流れ",
+    "desk": "料金を見るならモデルの詳細ページ",
+    "worries": "料金や機密データ、長い作業は大丈夫？",
+    "guide": "今のモデルから替えるかどうかの決め方"
+  },
+  "depthAt": "2026-11-16T03:34:55+00:00"
 }

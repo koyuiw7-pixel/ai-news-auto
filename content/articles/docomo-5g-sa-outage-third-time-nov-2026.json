@@ -66,8 +66,8 @@
   "affiliates": [],
   "newsType": "research",
   "todayActions": [
-    "5G SAの契約者は、ネットワーク設定を4Gにして、再起動か機内モードのオン・オフを試す",
-    "つながらないときは、113（ドコモの携帯から）か0120-800-000（一般電話）に問い合わせる"
+    "ネットワーク設定で4Gを選び、再起動か機内モードのオン・オフで、通話・データ通信・SMSが使えるか確かめる",
+    "iPhoneは「5Gスタンドアローン」がONになっているかを設定アプリで確かめ、5G SAが使えるか見る"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -135,5 +135,128 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/docomo-5g-sa-outage-third-time-nov-2026-figure-aa11b090.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "5G SAのご利用には、iPhone・iPadでは「Ver.7のドコモUIMカードまたはeSIM」が必要とされています。Androidなどは「Ver.6」や「ahamoのドコモUIMカード」も対象です。",
+      "source": "https://www.docomo.ne.jp/service/5g_sa/"
+    },
+    {
+      "text": "今後5G SAが有料サービスになる場合も、「自動的に有料サービスに移行して課金されることはございません」とされ、改めて申込んだ場合に限るとしています。",
+      "source": "https://www.docomo.ne.jp/service/5g_sa/"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "ドコモおたすけロボット",
+      "url": "https://otasuke-robot.front.smt.docomo.ne.jp/index.html",
+      "source": "https://www.docomo.ne.jp/info/network/kanto/pages/261116_02_m.html",
+      "hours": "24時間・年中無休",
+      "note": "スマートフォン・PCから利用する窓口です。ドコモの携帯電話からは113、一般電話などからは0120-800-000も案内されています。"
+    },
+    {
+      "name": "5G機能ONの設定方法",
+      "url": "https://otasuke-robot.front.smt.docomo.ne.jp/5g-setting.html",
+      "source": "https://www.docomo.ne.jp/service/5g_sa/",
+      "note": "5G SAオプション契約後、すぐに情報が端末へ反映されない場合は、端末の電源を入れ直すよう案内されています。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "ネットワーク設定で4Gを選び、再起動か機内モードのオン・オフで、通話・データ通信・SMSが使えるか確かめる",
+      "source": "https://www.docomo.ne.jp/info/network/kanto/pages/261116_02_m.html",
+      "steps": [
+        "ネットワーク設定を開く",
+        "接続先で4Gを選ぶ",
+        "携帯電話を再起動するか、機内モードをオンにしてからオフに戻す",
+        "通話やデータ通信ができるか確かめる"
+      ]
+    },
+    {
+      "action": "iPhoneは「5Gスタンドアローン」がONになっているかを設定アプリで確かめ、5G SAが使えるか見る",
+      "source": "https://www.docomo.ne.jp/service/5g_sa/",
+      "steps": [
+        "ホーム画面の「設定アプリ」を開く",
+        "「モバイル通信」→「通信のオプション」を選ぶ",
+        "「音声通話とデータ」を開く",
+        "「5Gスタンドアローン」がONになっているか見る"
+      ],
+      "url": "https://www.docomo.ne.jp/service/5g_sa/"
+    }
+  ],
+  "cause": {
+    "text": "原因は調査中と発表されています。現時点までの調査では、事象発生前後を含め、不正アクセスの形跡やサイバー攻撃を示す事象は確認されておりません。",
+    "status": "investigating",
+    "source": "https://www.docomo.ne.jp/info/network/kanto/pages/261116_02_m.html"
+  },
+  "worries": [
+    {
+      "q": "自分の回線は今回の障害の対象になっている？",
+      "a": "5G SAの契約がない人、4Gを使っている人、ドコモ回線を使う格安SIM（MVNO）の人には影響がないと発表されています。なお、圏外表示になる場合があるとも発表されています。",
+      "source": "https://www.docomo.ne.jp/info/network/kanto/pages/261116_02_m.html",
+      "action": "iPhoneは「設定アプリ」→「モバイル通信」→「通信のオプション」→「音声通話とデータ」で「5Gスタンドアローン」がONか見る",
+      "actionSource": "https://www.docomo.ne.jp/service/5g_sa/"
+    },
+    {
+      "q": "緊急通報（110番・119番）はつながる？",
+      "a": "ドコモの発表では、緊急通報には影響がないとされています。今回の障害では、圏外表示になる場合もあるとされています。",
+      "source": "https://www.docomo.ne.jp/info/network/kanto/pages/261116_02_m.html",
+      "action": "緊急のときは、通常どおり110番・119番にかける。発表では影響はないとされています。"
+    },
+    {
+      "q": "5G SAにすると、勝手に料金が増える？",
+      "a": "5G SAは今後、任意加入の有料サービスとして提供する場合があるとされています。その場合は事前に案内し、改めて申込んだ場合に限るとされ、自動的に課金されることはないと説明されています。",
+      "source": "https://www.docomo.ne.jp/service/5g_sa/",
+      "action": "心配なときは「現在の契約内容の確認／変更」で、契約内容を自分で確かめる"
+    },
+    {
+      "q": "障害中に届いた「復旧」のSMSは本物？",
+      "a": "電子メールやSMSのリンクは送信元や内容を偽装できるため、見た目で本物か判断するのは難しいとされています。公式サイトを「お気に入り」に登録しておくか、公式アプリから接続するのが安全とされています。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "action": "SMSのリンクは押さず、ドコモの公式サイトやおたすけロボットを自分で開く",
+      "general": true
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "5G SAが使えず困っているとき、4Gに切り替えてよい？",
+      "situation": "5G SAの契約があり、通話やデータ通信が止まって困っている",
+      "recommend": "4Gへの切り替えを試す価値がある",
+      "reason": "4Gに切り替え、再起動か機内モードで使える場合があると案内されています。ただし、すべての人で直るとは書かれていません。復旧の見込みも発表されていません。",
+      "source": "https://www.docomo.ne.jp/info/network/kanto/pages/261116_02_m.html"
+    },
+    {
+      "question": "5G SAの契約がない、4Gを使っているときはどうする？",
+      "situation": "5G SAの契約がない、または4Gを使っている",
+      "recommend": "急いで設定を変える必要はないとみられる",
+      "reason": "5G SAの契約がない人、4Gを使っている人には影響がないと発表されています。今回の障害で通信が止まるかどうかは、契約の種類で分かれます。",
+      "source": "https://www.docomo.ne.jp/info/network/kanto/pages/261116_02_m.html"
+    },
+    {
+      "question": "4Gに変えたまま、障害が直ったらどうする？",
+      "situation": "4Gに変更した人。障害が直ったあと",
+      "recommend": "復旧の案内が出たら、ネットワーク設定を元に戻す",
+      "reason": "過去2回の復旧時には、暫定対処で4Gに変えた人に設定を戻すよう案内されています。今回も復旧後に同じ案内が出る可能性があるとされています。",
+      "source": "https://www.docomo.ne.jp/info/network/kanto/pages/261106_00_m.html"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "5G SAは、SIMの種類と料金も確かめたい",
+    "cause": "原因は調査中、不正アクセスの形跡は確認なし",
+    "steps": "まず4Gに切り替えて、直るか試す",
+    "desk": "困ったときの連絡先と、確かめ方のページ",
+    "worries": "自分は対象？緊急通報や料金は大丈夫？",
+    "guide": "4Gに切り替えるか、待つか迷ったとき"
+  },
+  "depthAt": "2026-11-16T03:35:53+00:00",
+  "updatedAt": "2026-11-16T03:35:53+00:00",
+  "updates": [
+    {
+      "at": "2026-11-16T03:35:53+00:00",
+      "kind": "facts",
+      "title": "公式の資料をもとに、「なるほどの要点」・「公式の窓口」・「今日やること」・「理由」・「よくある不安」・「判断の目安」を追記しました",
+      "sourceUrl": "https://www.docomo.ne.jp/info/network/kanto/pages/261116_02_m.html",
+      "sourceName": "NTTドコモ 重要なお知らせ（通信障害等）第三報（2026年11月16日11時30分時点）"
+    }
+  ]
 }

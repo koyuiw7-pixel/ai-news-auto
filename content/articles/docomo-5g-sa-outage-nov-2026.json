@@ -69,8 +69,7 @@
   "newsType": "security",
   "todayActions": [
     "ネットワーク設定で4Gを選び、携帯電話を再起動するか機内モードをオンオフする",
-    "自分の契約が5G SAかどうかを確かめる",
-    "急ぎの相談は、ドコモの携帯から113、一般電話から0120-800-000へ電話する"
+    "急ぎの相談は、ドコモおたすけロボットか電話の113・0120-800-000で問い合わせる"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -110,5 +109,102 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/docomo-5g-sa-outage-nov-2026-figure-c5fe6c66.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "ドコモのお知らせは11月16日11時30分時点の内容で、「第二報からの更新情報はありません」と書かれています。最新の状況は、このページの更新で確かめてください。",
+      "source": "https://www.docomo.ne.jp/info/network/kanto/pages/261116_02_m.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "ドコモおたすけロボット",
+      "url": "https://otasuke-robot.front.smt.docomo.ne.jp/index.html",
+      "source": "https://www.docomo.ne.jp/info/network/kanto/pages/261116_02_m.html",
+      "hours": "24時間・年中無休",
+      "note": "スマートフォン・PCから利用する窓口です。"
+    },
+    {
+      "name": "ドコモの電話お問い合わせ",
+      "url": "https://www.docomo.ne.jp/info/network/kanto/pages/261116_02_m.html",
+      "source": "https://www.docomo.ne.jp/info/network/kanto/pages/261116_02_m.html",
+      "phone": "ドコモ携帯電話から：113 一般電話などから：0120-800-000",
+      "hours": "24時間・年中無休",
+      "note": "お知らせの「お問い合わせ」に載っている番号です。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "ネットワーク設定で4Gを選び、携帯電話を再起動するか機内モードをオンオフする",
+      "source": "https://www.docomo.ne.jp/info/network/kanto/pages/261116_02_m.html",
+      "steps": [
+        "携帯電話のネットワーク設定で、4Gを選ぶ",
+        "携帯電話を再起動する。または、機内モードをオンにしてからオフに戻す",
+        "通話やデータ通信ができるか確かめる"
+      ]
+    },
+    {
+      "action": "急ぎの相談は、ドコモおたすけロボットか電話の113・0120-800-000で問い合わせる",
+      "source": "https://www.docomo.ne.jp/info/network/kanto/pages/261116_02_m.html",
+      "steps": [
+        "スマートフォン・PCからは、ドコモおたすけロボットを開く",
+        "ドコモの携帯電話からは113に電話する",
+        "一般電話などからは0120-800-000に電話する"
+      ],
+      "url": "https://otasuke-robot.front.smt.docomo.ne.jp/index.html"
+    }
+  ],
+  "cause": {
+    "text": "原因は調査中です。ドコモは、事象の発生前後を含め、現時点までの調査では不正アクセスの形跡やサイバー攻撃を示す事象は確認されていないとしています。",
+    "status": "investigating",
+    "source": "https://www.docomo.ne.jp/info/network/kanto/pages/261116_02_m.html"
+  },
+  "worries": [
+    {
+      "q": "自分がこの障害の対象か、どう分かる？",
+      "a": "対象は5G SAサービスをご契約のお客さまです。5G SAの契約者以外の5Gの利用者と、4Gの利用者には影響がないとされています。ドコモ回線利用MVNOにも影響はありません。",
+      "source": "https://www.docomo.ne.jp/info/network/kanto/pages/261116_02_m.html",
+      "action": "契約が5G SAか分からないときは、ドコモおたすけロボットか113で問い合わせて確かめる"
+    },
+    {
+      "q": "4Gに切り替えれば、すぐ使えるようになる？",
+      "a": "ネットワーク設定で4Gを選び、再起動か機内モードのオンオフを実施すると、音声通話・データ通信・SMSが使える場合があるとされています。",
+      "source": "https://www.docomo.ne.jp/info/network/kanto/pages/261116_02_m.html",
+      "action": "ネットワーク設定で4Gを選んで再起動を試し、使えなければ、あらためてのお知らせを待つ"
+    },
+    {
+      "q": "今回の障害で、緊急通報もつながらなくなる？",
+      "a": "ドコモの発表では、緊急通報には影響がないとされています。今回の障害の対象は、5G SAサービスの音声通話・データ通信・SMSです。",
+      "source": "https://www.docomo.ne.jp/info/network/kanto/pages/261116_02_m.html",
+      "action": "緊急時は、緊急通報をふだんどおりかける。通話とSMSがだめな時のために、ほかの連絡手段も決めておく"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "4Gへの切り替えは、すぐ試してよい？",
+      "situation": "5G SAの契約者で、通話やSMSがつながらない",
+      "recommend": "まず試す価値がある。ただし全員が直るわけではない",
+      "reason": "ページでは、4Gを選び再起動か機内モードのオンオフを行うと使える場合があるとされています。すべての人で直るとは発表されておらず、復旧の見込みは未発表で、あらためてお知らせするとしています。",
+      "source": "https://www.docomo.ne.jp/info/network/kanto/pages/261116_02_m.html"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "ドコモの最新案内は11時30分時点、更新なし",
+    "cause": "なぜ起きたのか、いま分かっていること",
+    "steps": "5G SAの人がまず試せる切り替え手順",
+    "desk": "困ったときの問い合わせ先",
+    "worries": "5G SAか、格安SIMか、緊急時は大丈夫？",
+    "guide": "待つか、4Gを試すか迷ったときの決め方"
+  },
+  "depthAt": "2026-11-16T03:36:28+00:00",
+  "updatedAt": "2026-11-16T03:36:28+00:00",
+  "updates": [
+    {
+      "at": "2026-11-16T03:36:28+00:00",
+      "kind": "facts",
+      "title": "公式の資料をもとに、「なるほどの要点」・「公式の窓口」・「今日やること」・「理由」・「よくある不安」・「判断の目安」を追記しました",
+      "sourceUrl": "https://www.docomo.ne.jp/info/network/kanto/pages/261116_02_m.html",
+      "sourceName": "NTTドコモ 重要なお知らせ（通信障害等）第三報（2026年11月16日11時30分時点）"
+    }
+  ]
 }

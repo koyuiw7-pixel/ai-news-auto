@@ -65,7 +65,7 @@
   "newsType": "product",
   "todayActions": [
     "11月12日10:00以降に、楽天市場のブラックフライデーのページからエントリーする",
-    "11月25日01:59までに、対象の買い物が1ショップ1,000円（税込）以上になるよう買い物の予定を立てる"
+    "11月25日01:59までに、1ショップで税込1,000円以上になるよう買い物の予定を立てる"
   ],
   "angleOf": "rakuten-black-friday-2026-entry",
   "deepDive": "compare",
@@ -110,5 +110,121 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/rakuten-black-friday-2026-points-table-figure-f1bbfd6d.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "ラクマ特典の1,500ポイントは別枠で、「最大47.5倍」にはSPU対象の一部サービスで別途エントリーが必要です。",
+      "source": "https://event.rakuten.co.jp/campaign/point-up/blackfriday/"
+    },
+    {
+      "text": "対象購入金額の1,000円は税込で判定されますが、特典ポイントは税抜の金額に対して付与されると書かれています。",
+      "source": "https://event.rakuten.co.jp/campaign/point-up/blackfriday/"
+    },
+    {
+      "text": "2025年10月1日より「楽天ふるさと納税」の寄付は、原則として楽天ポイント付与の対象外となりました。",
+      "source": "https://event.rakuten.co.jp/campaign/point-up/blackfriday/"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "買いまわりキャンペーン 事前エントリー",
+      "url": "https://event.rakuten.co.jp/campaign/point-up/blackfriday/",
+      "source": "https://event.rakuten.co.jp/campaign/point-up/blackfriday/",
+      "note": "エントリー期間は2026年11月12日(木)10:00～2026年11月25日(水)01:59です。"
+    },
+    {
+      "name": "エントリー履歴",
+      "url": "https://oubo.rakuten.co.jp/list",
+      "source": "https://event.rakuten.co.jp/campaign/point-up/blackfriday/",
+      "note": "対象期間中にエントリーすれば、エントリー前のお買い物も買いまわりの対象となります。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "11月12日10:00以降に、楽天市場のブラックフライデーのページからエントリーする",
+      "source": "https://event.rakuten.co.jp/campaign/point-up/blackfriday/",
+      "steps": [
+        "楽天市場のブラックフライデーのページを開く",
+        "「買いまわりキャンペーンに事前エントリーする」を押す",
+        "「エントリー済みです」と表示されるか確かめる"
+      ],
+      "url": "https://event.rakuten.co.jp/campaign/point-up/blackfriday/"
+    },
+    {
+      "action": "11月25日01:59までに、1ショップで税込1,000円以上になるよう買い物の予定を立てる",
+      "source": "https://event.rakuten.co.jp/campaign/point-up/blackfriday/",
+      "steps": [
+        "ポイントアップ期間は11/19 20:00〜11/25 01:59",
+        "1ショップの合計を税込1,000円以上にする",
+        "特典ポイントは12月15日(火)頃に付与予定"
+      ]
+    }
+  ],
+  "worries": [
+    {
+      "q": "エントリーし忘れたら、買い物は対象外になる？",
+      "a": "対象期間中にエントリーすれば、エントリー前のお買い物も買いまわりの対象となります。エントリーは2026年11月25日(水)01:59までです。",
+      "source": "https://event.rakuten.co.jp/campaign/point-up/blackfriday/",
+      "action": "11月25日01:59までにエントリーを済ませ、エントリー済みの表示を確認する。"
+    },
+    {
+      "q": "ポイントはいつもらえるの？",
+      "a": "特典ポイント付与予定日は2026年12月15日(火)頃で、お買い物後に付与まで期間があります。特典ポイント期限は2027年1月31日(日)23:59までです。",
+      "source": "https://event.rakuten.co.jp/campaign/point-up/blackfriday/",
+      "action": "付与予定日の12月15日頃を過ぎても届かないか、その頃に付与を確認する。"
+    },
+    {
+      "q": "上限7,000ポイントのほかにもらえるポイントはある？",
+      "a": "獲得上限ポイント数は7,000ポイント(期間限定)で、本キャンペーンでの買いまわりによる特典ポイントの上限です。各ショップのポイントアップ商品、SPU、他のキャンペーンの特典とは別で付与されます。",
+      "source": "https://event.rakuten.co.jp/campaign/point-up/blackfriday/",
+      "action": "上限の7,000ポイントと、SPUなど別枠のポイントを分けて数えておく。"
+    },
+    {
+      "q": "税込と税抜、どちらの金額で数える？",
+      "a": "対象購入金額は税込、送料別、クーポン適用後の金額です。特典ポイントは税抜、送料別、クーポン適用後の金額に対して付与されます。",
+      "source": "https://event.rakuten.co.jp/campaign/point-up/blackfriday/",
+      "action": "1ショップの合計が税込1,000円に届くか、クーポン適用後の金額で確かめる。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "エントリーはいつ済ませればいい？",
+      "situation": "買い物の予定がまだ決まっていない",
+      "recommend": "期間内であれば、いつ済ませてもよい",
+      "reason": "エントリー期間は11月25日01:59までで、期間中にエントリーすれば、エントリー前の買い物も対象になります。",
+      "source": "https://event.rakuten.co.jp/campaign/point-up/blackfriday/"
+    },
+    {
+      "question": "エントリーはいつ済ませればいい？",
+      "situation": "買い物の予定がもう決まっている",
+      "recommend": "早めに済ませておくと安心できる",
+      "reason": "エントリー前の買い物も、期間中にエントリーすれば対象になります。エントリーの確認はエントリー履歴で行えます。",
+      "source": "https://event.rakuten.co.jp/campaign/point-up/blackfriday/"
+    },
+    {
+      "question": "ふるさと納税の寄付でもポイントを狙うべき？",
+      "situation": "ふるさと納税の寄付を予定している",
+      "recommend": "ポイントは当てにせず判断する",
+      "reason": "2025年10月1日より「楽天ふるさと納税」の寄付は、原則として楽天ポイント付与の対象外となったと書かれています。",
+      "source": "https://event.rakuten.co.jp/campaign/point-up/blackfriday/"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "上限の内訳と、税込・税抜の違い",
+    "steps": "今日やるのは、エントリーと1,000円の確認",
+    "desk": "エントリーや履歴はどこで見る？",
+    "worries": "上限やポイントの付与、買い忘れは大丈夫？",
+    "guide": "ふるさと納税を含めるか迷ったときの考え方"
+  },
+  "depthAt": "2026-11-16T03:36:59+00:00",
+  "updatedAt": "2026-11-16T03:36:59+00:00",
+  "updates": [
+    {
+      "at": "2026-11-16T03:36:59+00:00",
+      "kind": "facts",
+      "title": "公式の資料をもとに、「なるほどの要点」・「公式の窓口」・「今日やること」・「よくある不安」・「判断の目安」を追記しました",
+      "sourceUrl": "https://event.rakuten.co.jp/campaign/point-up/blackfriday/",
+      "sourceName": "楽天市場「ブラックフライデー」公式キャンペーンページ"
+    }
+  ]
 }
