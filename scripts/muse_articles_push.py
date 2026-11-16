@@ -6,7 +6,10 @@ Muse には鍵を渡さない（オーナー決定）。Muse は ~/Downloads/sai
   2. 前に送ったファイル（sent/）の結果を state/muse_articles.json で見て、公開 → done/、見送り → rejected/ と <名前>.reason.txt
   3. 新しい .md を形だけ確かめ（scripts/muse_format.py）、だめなら rejected/ に理由つきで戻す。よければ content/muse_inbox/ に入れて
      コミットし main に push（Mac の git の認証。[no-deploy]。push で Muse Inbox（muse_inbox.yml）がすぐ審査する）。元のファイルは sent/ へ
-  4. FORMAT.md（書式）と ledger.md（この7日の記事の題名と URL・Muse の入稿の結果）を書き直す。Muse は書く前に ledger.md を読む
+  4. 追記（もう出ている記事への書き足し。addenda/*.md）も同じ push で content/muse_inbox/addenda/ に入れる（2026-11-16。それまでは
+     フォルダの直下の「YYYYMMDD-….md」しか見ておらず、追記は1本も届いていなかった）。審査は scripts/muse_addenda.py。
+     結果は addenda/done/・addenda/rejected/ と <名前>.reason.txt。置かれてから24時間を超えた追記は送らない（古い話を今ごろ足さない）
+  5. FORMAT.md（書式）と ledger.md（この7日の記事の題名と URL・Muse の入稿の結果）を書き直す。Muse は書く前に ledger.md を読む
 launchd（~/Library/LaunchAgents/com.komuro.saisoku-muse-articles.plist）で25分ごと。ログは ~/.saisoku-muse/push.log。
 
   python3 scripts/muse_articles_push.py             # 1回動かす
@@ -41,6 +44,8 @@ SPARSE = ["content/articles", "content/muse_inbox", "content/muse_images", "publ
 SKIP_NAMES = {"FORMAT.md", "ledger.md", "README.md"}
 SETTLE_SEC = 90  # 書き込み中のファイルを持っていかない（最後の変更からこの秒数たったものだけ）
 LEDGER_DAYS = 7
+ADDENDA = "addenda"  # 追記の置き場（FOLDER の下）・受け箱（content/muse_inbox の下）・結果の名前の頭（"addenda/<ファイル名>"）
+ADDENDA_STALE_SEC = 24 * 3600  # 置かれてからこれを超えた追記は送らない（話が古くなっている。確かめて置き直してもらう）
 GIT_ENV = {**os.environ, "GIT_TERMINAL_PROMPT": "0", "PATH": "/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"}
 
 
@@ -100,24 +105,53 @@ def write_reason(dest_md: Path, reason: str) -> None:
         encoding="utf-8")
 
 
-def settle_results(items: dict) -> list[str]:
-    """sent/ のファイルを、結果に合わせて done/・rejected/ に移す"""
+def settle_results(items: dict, base: Path | None = None, prefix: str = "") -> list[str]:
+    """sent/ のファイルを、結果に合わせて done/・rejected/ に移す（追記は base=addenda/・prefix="addenda/"）"""
     notes = []
-    sent = FOLDER / "sent"
+    base = base or FOLDER
+    sent = base / "sent"
     if not sent.exists():
         return notes
     for path in sorted(sent.glob("*.md")):
-        row = items.get(nfc(path.name))
+        row = items.get(prefix + nfc(path.name))
         if not row or row.get("status") == "waiting":
             continue
         if row.get("status") == "published":
-            move(path, FOLDER / "done")
-            notes.append(f"公開: {path.name} → {row.get('url')}")
+            move(path, base / "done")
+            notes.append(f"公開: {prefix}{path.name} → {row.get('url')}{'（' + str(row['reason']) + '）' if row.get('reason') else ''}")
         elif row.get("status") == "rejected":
-            dest = move(path, FOLDER / "rejected")
+            dest = move(path, base / "rejected")
             write_reason(dest, str(row.get("reason") or "理由の記録がありません"))
-            notes.append(f"見送り: {path.name}（{str(row.get('reason'))[:80]}）")
+            notes.append(f"見送り: {prefix}{path.name}（{str(row.get('reason'))[:80]}）")
     return notes
+
+
+def pick_addenda(items: dict) -> list[tuple[Path, str]]:
+    """新しい追記 [(元のファイル, 受け箱での名前)]。addenda/ の直下の .md だけ（sent/・done/・rejected/ は見ない）。
+    対象の記事・出典・事実の確かめは Actions の側（scripts/muse_addenda.py）。ここでは古すぎるものだけ戻す"""
+    out = []
+    base = FOLDER / ADDENDA
+    if not base.exists():
+        return out
+    now = time.time()
+    for path in sorted(base.glob("*.md")):
+        if path.name.startswith("."):
+            continue
+        age = now - path.stat().st_mtime
+        if age < SETTLE_SEC:
+            log(f"書き込み中かもしれないので次の回に回します: {ADDENDA}/{path.name}")
+            continue
+        name = nfc(path.name)
+        if age > ADDENDA_STALE_SEC:
+            dest = move(path, base / "rejected")
+            write_reason(dest, f"置かれてから{int(age // 3600)}時間たっているので、記事に足していません（追記は24時間以内のものだけ自動で足します）。\n"
+                               "今の状況に合っているかを確かめ、先頭の行に「対象スラッグ: <記事の URL の最後の部分>」を書いて、新しいファイルとして置き直してください。")
+            log(f"古い追記なので送りません: {name}（{int(age // 3600)}時間前）")
+            continue
+        if f"{ADDENDA}/{name}" in items or (CLONE / "content" / "muse_inbox" / ADDENDA / name).exists():
+            name = f"{name[:-3]}-{datetime.now(JST):%H%M}.md"  # 同じ名前の追記が前にあった（結果の取り違えを防ぐ）
+        out.append((path, name))
+    return out
 
 
 def pick_new(mf, items: dict) -> list[tuple[Path, str]]:
@@ -242,21 +276,29 @@ def run(no_push: bool = False) -> int:
     if not fmt.exists() or fmt.read_text("utf-8") != mf.FORMAT_MD:
         fmt.write_text(mf.FORMAT_MD, encoding="utf-8")
     items = {nfc(k): v for k, v in results().items()}
-    for note in settle_results(items):
+    for note in settle_results(items) + settle_results(items, FOLDER / ADDENDA, f"{ADDENDA}/"):
         log(note)
     new = pick_new(mf, items)
+    addenda = pick_addenda(items)
     pending = [p.name for p in sorted((FOLDER / "sent").glob("*.md"))] if (FOLDER / "sent").exists() else []
+    pending += [f"{ADDENDA}/{p.name}" for p in sorted((FOLDER / ADDENDA / "sent").glob("*.md"))] if (FOLDER / ADDENDA / "sent").exists() else []
     pending = [n for n in pending if nfc(n) not in items or items[nfc(n)].get("status") == "waiting"]
-    if new:
+    if new or addenda:
         inbox = CLONE / "content" / "muse_inbox"
         inbox.mkdir(parents=True, exist_ok=True)
         for src, name in new:
             shutil.copyfile(src, inbox / name)
+        if addenda:
+            (inbox / ADDENDA).mkdir(parents=True, exist_ok=True)
+        for src, name in addenda:
+            shutil.copyfile(src, inbox / ADDENDA / name)
+        sent_names = [n for _, n in new] + [f"{ADDENDA}/{n}" for _, n in addenda]
         if no_push:
-            log(f"受け箱に入れました（push なし）: {', '.join(n for _, n in new)}")
+            log(f"受け箱に入れました（push なし）: {', '.join(sent_names)}")
         else:
             git("add", "content/muse_inbox")
-            message = f"chore(muse): Muse の記事の入稿 (+{len(new)}本) [no-deploy]"
+            message = (f"chore(muse): Muse の記事の入稿 (+{len(new)}本) [no-deploy]" if not addenda else
+                       f"chore(muse): Muse の入稿 (記事 +{len(new)}本・追記 +{len(addenda)}本) [no-deploy]")
             git("commit", "--quiet", "-m", message)
             if not push(message):
                 log("push できなかったので、ファイルはフォルダに残して次の回にもう一度送ります")
@@ -268,7 +310,12 @@ def run(no_push: bool = False) -> int:
                 if dest.name != name:
                     dest.rename(dest.with_name(name))
                 pending.append(name)
-            log(f"入稿を送りました: {', '.join(n for _, n in new)}")
+            for src, name in addenda:
+                dest = move(src, FOLDER / ADDENDA / "sent")
+                if dest.name != name:
+                    dest.rename(dest.with_name(name))
+                pending.append(f"{ADDENDA}/{name}")
+            log(f"入稿を送りました: {', '.join(sent_names)}")
     write_ledger(items, pending, images(no_push))
     return 0
 

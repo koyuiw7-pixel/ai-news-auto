@@ -213,6 +213,7 @@ PROSE_WRITERS = {
     "section_polish.py": ["added_problems"],             # 章の見出し・文の書き直し（公開中の記事）
     "deep_dive.py": ["quality.evaluate(", "publish_blocked("],  # 読まれた記事の深掘り（台帳 A70）。ふつうの記事と同じ門
     "muse_articles.py": ["quality.evaluate(", "publish_blocked("],  # Muse の入稿（台帳 A59）。ふつうの記事と同じ門
+    "muse_addenda.py": ["added_problems", "fact_check("],  # Muse の追記を公開中の記事に足す（2026-11-16。出典との事実確認＋増えた不合格）
     "gpt_review.py": ["added_problems"],                 # ChatGPT での公開中の記事の見直し（台帳 A65）
     "easy_version.py": ["added_problems", "fact_check("],  # かんたん版を本文から作り直す（2026-11-10。数字の照合＋本文との事実確認）
     "quality_bar.py": ["quality.evaluate(", "added_problems", "publish_blocked("],  # 記事の8つの基準・速報のあとの手直し（2026-11-12）
