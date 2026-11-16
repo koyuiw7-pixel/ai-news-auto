@@ -1,0 +1,143 @@
+{
+  "slug": "ironwood-tpu-mlperf-training-v61",
+  "sourceType": "web",
+  "sourceUrl": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/training-performance-benchmarks-tpus/",
+  "sourceName": "Google公式ブログ",
+  "title": "Google「Ironwood」TPU、8,192基で1.70分　AI学習の性能テストMLPerf Training v6.1",
+  "seoTitle": "Ironwood TPUとは？MLPerf v6.1の結果",
+  "threadsPost": "AIの開発や基盤選びに関わる人に、知っておいてほしい話です。\n\nGoogle Cloudは、AIの学習速度を測る性能テストで10件の結果を出しました。\n第7世代TPU「Ironwood」8,192基で、事前学習の目標品質に1.70分で到達しています。\n\nAIの学習用に、性能とコスト、どちらを重く見て基盤を選びますか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "tradeoff",
+      "question": "AIの学習基盤を選ぶなら、速さとコスト、どちらを重く見ますか？"
+    },
+    {
+      "pattern": "future",
+      "question": "AIの学習が速くなると、開発の仕事はどう変わると感じますか？"
+    },
+    {
+      "pattern": "plain",
+      "question": "ふだん使うAIの回答、速さと正確さのどちらを重視しますか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "honest",
+  "lede": "Googleの第7世代TPU「Ironwood」が、AIの学習速度を測る性能テストMLPerf Training v6.1で結果を示しました。8,192基の事前学習は目標品質に1.70分で到達し、4,096基までの拡張効率は96%でした。Google Cloudは10件の結果を提出しており、日本での提供や料金はまだ発表されていません。",
+  "description": "GoogleがMLPerf Training v6.1でIronwood TPUとNVIDIA GB300の結果を公開。8,192基で1.70分、エージェント型強化学習は640基で18.02分。結果の読み方を整理します。",
+  "keywords": [
+    "Ironwood TPU",
+    "MLPerf Training v6.1",
+    "Google Cloud",
+    "TPU 性能",
+    "AI学習 ベンチマーク",
+    "エージェント型強化学習",
+    "NVIDIA GB300",
+    "AI Hypercomputer",
+    "事前学習",
+    "A4X Max"
+  ],
+  "tags": [
+    "Google Cloud",
+    "TPU",
+    "ベンチマーク",
+    "生成AI",
+    "AIインフラ"
+  ],
+  "highlights": [
+    "Ironwood TPU 8,192基が事前学習の目標品質に1.70分で到達しました",
+    "エージェント型強化学習は640基で18.02分、正答率は目標0.69に対し0.765でした",
+    "GB300 256基は31.96分で到達し、強化学習の提出も5件ありました"
+  ],
+  "timetable": [],
+  "verdict": {
+    "status": "limited",
+    "japan": "unknown",
+    "price": "不明",
+    "free": null,
+    "audience": "AI開発者",
+    "take": "自社のAI学習基盤を選ぶ立場なら、MLCommonsの結果表で条件を確かめ、料金の発表を待つのが妥当です。",
+    "judgedAt": "2026-11-16T16:54:51.787186+00:00"
+  },
+  "workMoney": {
+    "relevance": "low",
+    "points": [
+      "直接の影響は小さい発表です。大規模なAIの学習基盤を選ぶ開発者や情報システム担当者が、比較の材料にできます。"
+    ]
+  },
+  "body": "Googleの公式ブログによると、Google CloudはAIの学習速度を測る性能テスト「MLPerf Training v6.1」で10件の結果を出しました。直接の対象はAIの学習基盤を選ぶ開発者や情報システム担当者です。一般の利用者の契約や使い方は変わりません。\n\nMLPerf Trainingは、AIが決められた品質に達するまでの時間を測る性能テストです。業界団体のMLCommonsが運営しています（MLCommons公式サイト、11/17確認）。\n\n## 事前学習は8,192基で1.70分\n\n今回の結果は、第7世代TPU「Ironwood」とNVIDIAのGrace Blackwell GPUの2系統です。Google CloudのAI Hypercomputer（AI用の計算基盤の設計）上で動かしています。\n\n事前学習（AIに大量のデータを最初に読み込ませる工程）では、Ironwood 8,192基が目標品質に1.70分で到達しました。4,096基までチップを増やしたときの効率は96%でした。\n\n## 初のエージェント型強化学習は640基で18.02分\n\n今回の回では、エージェント型強化学習（AIが試行錯誤しながら手順を学ぶ方法）が初めてベンチマークに加わりました。\n\nIronwood 640基は、コーディングの試験で18.02分で目標の正答率に届きました。目標の0.69に対し結果は0.765です。\n\nコードの生成と学習を同時に進めたため、学習用チップが待つ時間は全体の3%未満でした。\n\nMLCommonsの一覧では、この試験は「R2E-Gym-Subset（易しい区分）」で、モデルはQwen3.5-397B-A17B、指標は0.69 pass @ 4とされています（MLCommons公式サイト、11/17確認）。\n\n## NVIDIA GB300は256基で31.96分\n\nGoogle CloudのA4X Maxインスタンスでは、NVIDIA GB300 GPU 256基が31.96分で目標品質に到達しました。\n\nA4XとA4X Maxでは、エージェント型強化学習の提出も5件ありました。\n\n## 数字を読むときの注意\n\nMLCommonsによると、結果は複数回の測定から最高値と最低値を除いて平均します。それでも誤差は残り、画像系で約±2.5%、そのほかで約±5%です（MLCommons公式サイト、11/17確認）。\n\nまた、各試験でモデルやデータ、目標品質が違います。1.70分、18.02分、31.96分を横に並べて速さを比べることはできません。\n\n## サイソクの見方：自社の用途に近い試験の条件を先に確かめる\n\nIronwoodの96%という拡張効率と、待ち時間3%未満という数字は、大規模な学習で台数を増やしても効きやすいことを示すとみられます。ただし、試験ごとに条件が違うため、速さの優劣は結果表で確かめる必要があります。\n\n- 大規模な事前学習を検討しているなら、8,192基の1.70分と、4,096基までの96%を比べる材料にできます。\n- コード生成AIの強化学習を考えているなら、640基・18.02分・正答率0.765の条件を確認するとよいでしょう。\n- 一般の利用者なら、今すぐ必要な対応はありません。\n\n## まだ分からないこと\n\n- Ironwoodの日本での提供はまだ発表されていません。\n- Ironwoodの利用料金はまだ発表されていません。",
+  "easy": "## ひとことで言うと\n\nGoogleは、AIを学習させる速さを測る性能テストで、自社の専用チップ「Ironwood」の結果を公開しました。大規模な学習が短い時間で終わることが示されました。\n\n## 何が測られたのか\n\nこのテストは、AIが決められた品質に達するまでの時間を測るものです。Ironwoodを8,192基使った場合は1.70分で到達しました。\n\nコードを書くAIを鍛える新しい試験では、640基を使って18.02分でした。正答率は目標の0.69を上回る0.765でした。\n\n## 使えるようになる時期\n\nGoogleのチップ以外に、NVIDIAのGB300 256基の結果も出ています。時間は31.96分でした。日本での提供や料金はまだ発表されていません。",
+  "channel": "Google公式ブログ",
+  "channelId": "",
+  "channelSlug": "google-blog-all",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "New AI training performance benchmarks for Google TPUs",
+  "publishedAt": "2026-11-15T15:00:00+00:00",
+  "generatedAt": "2026-11-16T16:54:51.787175+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/ironwood-tpu-mlperf-training-v61-66d95492.jpg",
+  "model": "anthropic-api:claude-sonnet-5-5",
+  "affiliates": [],
+  "newsType": "product",
+  "faq": [],
+  "todayActions": [
+    "MLCommonsのMLPerf Training結果一覧で、自社の用途に近い試験の条件を確認する",
+    "Google Cloudの案内でIronwoodの提供地域と料金が出ているか確かめる"
+  ],
+  "qualityBar": {
+    "score": 7,
+    "missing": [
+      1
+    ],
+    "notes": {
+      "1": "最初の3行にだれにが無い"
+    },
+    "checkedAt": "2026-11-16T16:55:18+00:00",
+    "before": [
+      1
+    ],
+    "repaired": false,
+    "repairLater": true
+  },
+  "qualityScore": 90,
+  "breaking": true,
+  "factSources": [
+    {
+      "label": "調べた公式情報",
+      "name": "公式サイト（mlcommons.org）「MLCommons MLPerf Training Benchmark」",
+      "url": "https://mlcommons.org/benchmarks/training/",
+      "checkedAt": "2026-11-17"
+    }
+  ],
+  "sourcePublishedAt": "2026-11-15T15:00:00+00:00",
+  "detectedAt": "2026-11-16T16:42:20+00:00",
+  "fastLane": true,
+  "layout": "noir",
+  "summaryLine": "Ironwood TPU 8,192基が事前学習の目標品質に1.70分で到達しました",
+  "imageCredit": {
+    "kind": "official",
+    "org": "Google",
+    "provider": "Google公式ブログ",
+    "sourceUrl": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/training-performance-benchmarks-tpus/",
+    "original": "https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Ironwood_board.max-1440x810.jpg",
+    "width": 1200,
+    "height": 800,
+    "at": "2026-11-16T16:55:24+00:00"
+  },
+  "heroOk": true,
+  "imageFocus": {
+    "x": 0.599,
+    "y": 0.486,
+    "box": [
+      0.197,
+      0.0,
+      1.0,
+      0.972
+    ],
+    "ar": 1.5,
+    "src": "https://ai-tech-express.jp/img/ironwood-tpu-mlperf-training-v61-66d95492.jpg"
+  }
+}

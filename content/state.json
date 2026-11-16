@@ -6223,6 +6223,20 @@
       "skipped": true,
       "url": "https://blog.dropbox.com/topics/company/fall-launch-2026-put-ai-to-work-in-dropbox"
     },
+    "1a45a81e9082a5e2": {
+      "at": "2026-11-16T16:55:18.922987+00:00",
+      "breaking": true,
+      "costUsd": 0.1025,
+      "foreignAi": true,
+      "intent": "breaking",
+      "major": true,
+      "mix": "enterprise_dev",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "score": 90,
+      "section": "ai",
+      "slug": "ironwood-tpu-mlperf-training-v61",
+      "url": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/training-performance-benchmarks-tpus/"
+    },
     "1a84fda568160878": {
       "at": "2026-11-13T11:00:29.618910+00:00",
       "costUsd": 0.0143,
@@ -16817,14 +16831,6 @@
       "skipped": true,
       "url": "https://topics.smt.docomo.ne.jp/latestnews/keywords/c5a464fb40abee73fe58379d8c521fafebea3eb17fd4ff0fd8b6b41c164c2456"
     },
-    "b899de252968df59": {
-      "at": "2026-11-02T16:52:12.072031+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "score": 100,
-      "section": "business",
-      "slug": "haneda-innov-city-awai-2026",
-      "url": "https://www.nomura-re-hd.co.jp/news/005027.html"
-    },
     "b8c092e554a77e02": {
       "at": "2026-11-11T09:34:59.622799+00:00",
       "costUsd": 0.0097,
@@ -18394,12 +18400,6 @@
       "reason": "prefilter: サイトの主題外（エンタメのビジネス・テックの話題ではない。料金・決算・販売本数・AI・規約などがない）",
       "skipped": true,
       "url": "https://news.xbox.com/ja-jp/2026/11/11/where-winds-meet-anniversary-update-hutuo/"
-    },
-    "d2dcc5433b77dccb": {
-      "at": "2026-11-02T16:51:49.808113+00:00",
-      "reason": "dedupe: 固有名詞が一致（gpt-6.1・terra）: openai-gpt-61-terra-amazon-bedrock",
-      "skipped": true,
-      "url": "https://aws.amazon.com/blogs/aws/aws-weekly-roundup-gpt-6-1-terra-on-bedrock-step-functions-as-agent-tools-and-more-november-2-2026/"
     },
     "d2f504e0471f643a": {
       "at": "2026-11-12T16:11:44.115575+00:00",
@@ -23362,58 +23362,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-14T05:02:28.944231+00:00",
-      "attempt": 1,
-      "id": "9d2f530326e313a2da28a01ba7f92a68634e18cb",
-      "kind": "trend",
-      "model": "gemini-3.5-flash",
-      "problems": [
-        "「両校が選手権の県決勝で対戦するのは10年ぶり」→ 元記事の本文は「10大会ぶり」と書いており、見出しの「10年ぶり」と食い違う。ただし元記事の見出しに「10年ぶり」とあるため軽微。",
-        "「各地区予選を勝ち抜いた代表校が出揃い次第、組み合わせ抽選会が実施されます」→ 元記事に抽選会の記述が無く、確認できない予定を書いている。",
-        "「全国47都道府県の代表校が集い、ノックアウト方式でトーナメントを戦います」→ 元記事に無い大会形式の説明。一般的な知識の範囲だが、出典は無い。"
-      ],
-      "readability": {
-        "avg_paragraph": 81.2,
-        "avg_sentence": 47.8,
-        "long_share": 0.118,
-        "max_paragraph": 139,
-        "paragraphs": 10,
-        "sentences": 17
-      },
-      "score": 85,
-      "source": "trends",
-      "title": "全国高校サッカー選手権",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（TBS・NEWS・DIG）",
-        "読みやすさ: 文が長い（1文の平均 47.8字・60字超の文が 12% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-14T05:02:48.490168+00:00",
-      "attempt": 1,
-      "id": "9d2f530326e313a2da28a01ba7f92a68634e18cb",
-      "kind": "trend",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 73.9,
-        "avg_sentence": 49.3,
-        "long_share": 0.133,
-        "max_paragraph": 139,
-        "paragraphs": 10,
-        "sentences": 15
-      },
-      "score": 92,
-      "source": "trends",
-      "title": "全国高校サッカー選手権",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（TBS・NEWS・DIG）",
-        "読みやすさ: 文が長い（1文の平均 49.3字・60字超の文が 13% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-14T05:03:07.583996+00:00",
@@ -30967,6 +30915,58 @@
         "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（NOP）",
         "本文が見出しで始まっている（最初の段落は見出しなしで、だれに関係するか・関係しない人はどうかを書く）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-16T16:54:58.837831+00:00",
+      "attempt": 1,
+      "id": "1a45a81e9082a5e2",
+      "kind": "ai",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 82.2,
+        "avg_sentence": 48.6,
+        "long_share": 0.227,
+        "max_paragraph": 131,
+        "paragraphs": 13,
+        "sentences": 22
+      },
+      "score": 90,
+      "source": "google-blog-all",
+      "title": "New AI training performance benchmarks for Google TPUs",
+      "warnings": [
+        "見出しが63字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（TPU）",
+        "読みやすさ: 文が長い（1文の平均 48.6字・60字超の文が 23% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-16T16:55:18.901321+00:00",
+      "attempt": 0,
+      "id": "1a45a81e9082a5e2",
+      "kind": "ai",
+      "model": "",
+      "problems": [
+        "読みやすさ基準外のまま受理: 読みやすさが改善しなかった（48.6→46.2字）"
+      ],
+      "readability": {
+        "avg_paragraph": 82.2,
+        "avg_sentence": 48.6,
+        "long_share": 0.227,
+        "max_paragraph": 131,
+        "paragraphs": 13,
+        "sentences": 22
+      },
+      "score": 90,
+      "source": "google-blog-all",
+      "title": "New AI training performance benchmarks for Google TPUs",
+      "warnings": [
+        "見出しが63字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（TPU）",
+        "読みやすさ: 文が長い（1文の平均 48.6字・60字超の文が 23% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
       ]
     }
   ],
