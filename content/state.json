@@ -979,9 +979,7 @@
       "url": "https://www.gov-online.go.jp/press_conferences/prime_minister/202611/video-327351.html"
     }
   },
-  "major_tries": {
-    "e3915f7e4cf071c4": 1
-  },
+  "major_tries": {},
   "pi_reopened": {
     "139593f9eb7f19a8": "2026-11-12T16:10:56.906216+00:00",
     "14dc418a6f602e91": "2026-11-13T03:30:58.033406+00:00",
@@ -19498,6 +19496,20 @@
       "slug": "renova-biomass-third-party-verification",
       "url": "https://www.ntt-ae.co.jp/news/%e3%83%90%e3%82%a4%e3%82%aa%e3%83%9e%e3%82%b9%e7%99%ba%e9%9b%bb%e3%81%ae%e6%8c%81%e7%b6%9a%e5%8f%af%e8%83%bd%e6%80%a7%e3%81%ab%e9%96%a2%e3%81%99%e3%82%8b%e7%ac%ac%e4%b8%89%e8%80%85%e6%a4%9c%e8%a8%bc-2/"
     },
+    "e3915f7e4cf071c4": {
+      "at": "2026-11-16T12:02:36.465563+00:00",
+      "breaking": true,
+      "costUsd": 0.1082,
+      "foreignAi": true,
+      "intent": "breaking",
+      "major": true,
+      "mix": "other",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "score": 92,
+      "section": "ai",
+      "slug": "kings-trust-openai-ai-skills",
+      "url": "https://openai.com/index/the-kings-trust-and-openai"
+    },
     "e3fddc352d969ecb": {
       "at": "2026-11-09T08:29:00.672546+00:00",
       "reason": "prefilter: 扱わない話題（事件・ゴシップ・選挙・医療効果・噂）",
@@ -23267,82 +23279,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-13T21:51:44.267842+00:00",
-      "attempt": 1,
-      "id": "93373dced3e62ff9",
-      "kind": "ai",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [
-        "本文「日本の利用者の画面や料金は今のところ変わりません」→ 元記事・確認済みの文脈に、日本の画面や料金が変わらないという記述はなく、根拠のない断定である",
-        "「この連携が有料プランだけか、無料でも使えるかなど」→ 元記事は「All Gemini app users in the U.S.」と対象を明記しており、無料利用者が対象かが未発表とするのは元記事との説明のずれがある",
-        "「1,000ドル」の換算→ 元記事の例文の金額を日本円に換算しているが、読者にとっての意味づけが弱く、計算自体は「サイソク編集部の計算」と明記されており正しい"
-      ],
-      "readability": {
-        "avg_paragraph": 96.9,
-        "avg_sentence": 44.0,
-        "long_share": 0.136,
-        "max_paragraph": 136,
-        "paragraphs": 10,
-        "sentences": 22
-      },
-      "score": 82,
-      "source": "google-ai-blog",
-      "title": "Connect Google Wallet to Gemini for personal finance insights",
-      "warnings": [
-        "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "答えになっていない見出し（「日本の利用者は：Geminiは使えるが、連携は未発表」）。未定のことは「## まだ分からないこと」に1行で書き、章は作らない"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-13T21:52:06.325361+00:00",
-      "attempt": 1,
-      "id": "93373dced3e62ff9",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 95.5,
-        "avg_sentence": 43.4,
-        "long_share": 0.136,
-        "max_paragraph": 136,
-        "paragraphs": 10,
-        "sentences": 22
-      },
-      "score": 93,
-      "source": "google-ai-blog",
-      "title": "Connect Google Wallet to Gemini for personal finance insights",
-      "warnings": [
-        "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "答えになっていない見出し（「日本の利用者は：Geminiは使えるが、連携は未発表」）。未定のことは「## まだ分からないこと」に1行で書き、章は作らない"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-13T22:26:56.051423+00:00",
-      "attempt": 2,
-      "id": "06e290c3755a8a006dedd3c67198dc45fc98a316",
-      "kind": "trend",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 87.2,
-        "avg_sentence": 37.4,
-        "long_share": 0.143,
-        "max_paragraph": 122,
-        "paragraphs": 6,
-        "sentences": 14
-      },
-      "score": 90,
-      "source": "trends",
-      "title": "給与",
-      "warnings": [
-        "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（NEWS）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-13T22:27:20.941888+00:00",
@@ -30854,6 +30790,87 @@
       "warnings": [
         "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（NEET・EMEA）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-16T12:01:56.701193+00:00",
+      "attempt": 1,
+      "id": "e3915f7e4cf071c4",
+      "kind": "ai",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [
+        "タイトル「1億ポンド…ではなく100万ポンド」→元記事に1億ポンドという数字は無く、存在しない金額を引き合いに出している",
+        "リード「日本の利用者の料金やサービスは変わらず」→元記事に日本の利用者への言及は無く、確認済みの文脈（Kakaoのヘルプ）も日本の料金には触れていないため、根拠のない断定",
+        "本文「日本の利用者の料金やサービスは変わりません」→元記事・確認済みの文脈に無い提供状況の断定",
+        "「仕事・お金にどう活かせる？」「日本の働く人に直接の影響は小さく、手続きや費用の変更もありません」→日本の費用・手続きに変更がないことは元記事に書かれていない",
+        "「今日やること」「日本の人への影響」の「料金や手続きは変わりません」→同じく元記事に無い日本向けの提供状況の断定",
+        "「公的に認められた資格」→元記事は nationally recognized（全国的に認められた）であり、公的認定とは別物"
+      ],
+      "readability": {
+        "avg_paragraph": 93.2,
+        "avg_sentence": 46.6,
+        "long_share": 0.208,
+        "max_paragraph": 127,
+        "paragraphs": 12,
+        "sentences": 24
+      },
+      "score": 55,
+      "source": "openai-news",
+      "title": "The King’s Trust and OpenAI launch £1m partnership",
+      "warnings": [
+        "見出しが59字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（NEET・VP・EMEA）",
+        "読みやすさ: 文が長い（1文の平均 46.6字・60字超の文が 21% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-16T12:02:16.856672+00:00",
+      "attempt": 1,
+      "id": "e3915f7e4cf071c4",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 88.7,
+        "avg_sentence": 46.3,
+        "long_share": 0.217,
+        "max_paragraph": 127,
+        "paragraphs": 12,
+        "sentences": 23
+      },
+      "score": 92,
+      "source": "openai-news",
+      "title": "The King’s Trust and OpenAI launch £1m partnership",
+      "warnings": [
+        "見出しが49字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（NEET・VP・EMEA）",
+        "読みやすさ: 文が長い（1文の平均 46.3字・60字超の文が 22% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-16T12:02:36.429798+00:00",
+      "attempt": 0,
+      "id": "e3915f7e4cf071c4",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 84.6,
+        "avg_sentence": 39.0,
+        "long_share": 0.077,
+        "max_paragraph": 130,
+        "paragraphs": 12,
+        "sentences": 26
+      },
+      "score": 92,
+      "source": "openai-news",
+      "title": "The King’s Trust and OpenAI launch £1m partnership",
+      "warnings": [
+        "見出しが49字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（NEET・VP・EMEA）"
       ]
     }
   ],
