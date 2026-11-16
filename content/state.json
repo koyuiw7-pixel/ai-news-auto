@@ -10576,6 +10576,19 @@
       "slug": "lookml-knowledge-catalog-ga",
       "url": "https://cloud.google.com/blog/ja/products/business-intelligence/lookml-metadata-indexing-in-knowledge-catalog-is-now-ga/"
     },
+    "5d70a086523ce35a": {
+      "at": "2026-11-16T12:26:49.595543+00:00",
+      "costUsd": 0.0015,
+      "intent": "breaking",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "score": 94,
+      "section": "public",
+      "slug": "kose-maison-reservation-data-leak",
+      "url": "https://koseholdings.co.jp/ja/kose/urgent/10275/"
+    },
     "5da3efca3ab35d22": {
       "at": "2026-11-10T00:29:25.912402+00:00",
       "reason": "prefilter: 告知・お知らせ系",
@@ -23284,36 +23297,6 @@
   },
   "quality_log": [
     {
-      "accepted": false,
-      "at": "2026-11-13T23:15:23.668269+00:00",
-      "attempt": 1,
-      "id": "3ae6086871336dbb",
-      "kind": "broad",
-      "model": "gemini-3.5-flash",
-      "problems": [
-        "「初代モデルの導入から30周年の節目」→元記事は「導入『30周年』の節目」とだけ書いており、「初代モデル」は元記事にない補足である。",
-        "「全車ハイブリッド化による燃料代の抑制効果が期待できます」→元記事に燃費・燃料代に関する記述がなく、根拠のない効果の見込みを書いている。",
-        "「現行のZR-Vやヴェゼルのハイブリッド車を試乗や見積もりで比べ」→ヴェゼルのハイブリッド設定は元記事・確認済みの文脈に無く、確認できない記述である。",
-        "「ホンダの主力SUV」→元記事に「主力」との位置づけは無く、言い過ぎである。"
-      ],
-      "readability": {
-        "avg_paragraph": 108.9,
-        "avg_sentence": 40.1,
-        "long_share": 0.105,
-        "max_paragraph": 243,
-        "paragraphs": 7,
-        "sentences": 19
-      },
-      "score": 80,
-      "source": "radar-official",
-      "title": "ホンダ関連ニュース｜dメニューニュース（NTTドコモ）",
-      "warnings": [
-        "見出しの書き方: 区切りの全角空白が2つ以上（補足は1つだけ）",
-        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（CR・SUV・ZR）"
-      ]
-    },
-    {
       "accepted": true,
       "at": "2026-11-13T23:16:10.167276+00:00",
       "attempt": 1,
@@ -30874,6 +30857,30 @@
       "title": "ロト",
       "warnings": [
         "初めて出たところで言い換えていない略語（NEWS）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-16T12:26:40.614097+00:00",
+      "attempt": 1,
+      "id": "5d70a086523ce35a",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 78.1,
+        "avg_sentence": 37.8,
+        "long_share": 0.065,
+        "max_paragraph": 125,
+        "paragraphs": 15,
+        "sentences": 31
+      },
+      "score": 94,
+      "source": "fast",
+      "title": "Maison KOSÉ銀座およびMaison KOSÉ表参道の店頭体験・レッスン予約システムをご利用のお客さまの個人情報漏えいに関するお詫びとお知らせ | 重要",
+      "warnings": [
+        "見出しが46字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（KOS・JILL・STUART）"
       ]
     }
   ],
