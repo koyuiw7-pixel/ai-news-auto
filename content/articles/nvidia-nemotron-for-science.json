@@ -98,9 +98,8 @@
     }
   ],
   "todayActions": [
-    "Hugging Faceで「LitmusBench v0.2」を検索し、化学データの内容と利用条件を確認する",
-    "自分の研究分野が化学・創薬・材料に当てはまるか見直し、追加学習の対象を決める",
-    "DGX Sparkを使う場合は、メモリ128GBの構成かどうか仕様を確かめる"
+    "Hugging Faceでデータセットを開き、化学の推論問題が約5万問あることを確かめる",
+    "DGX Sparkを使うなら、メモリが128GBの構成かを製品ページで確かめる"
   ],
   "relatedSlugs": [
     "nvidia-tensorrt-edge-llm-edge-ai"
@@ -124,7 +123,8 @@
       6
     ],
     "repaired": false,
-    "repairLater": true
+    "repairLater": true,
+    "laterTriedAt": "2026-11-16T16:48:53+00:00"
   },
   "qualityScore": 92,
   "breaking": true,
@@ -168,5 +168,90 @@
     ],
     "ar": 1.7778,
     "src": "https://ai-tech-express.jp/img/nvidia-nemotron-for-science-9a1de801.jpg"
-  }
+  },
+  "officialDesk": [
+    {
+      "name": "LitmusBench v0.2（Hugging Face）",
+      "url": "https://huggingface.co/datasets/nvidia/Nemotron-RL-litmus-bench-v0.2/tree/cf18cb1b2392d04a2ac578637462261d62da11d7",
+      "source": "https://nvidianews.nvidia.com/news/nvidia-introduces-nemotron-for-science-to-accelerate-discoveries-with-agents",
+      "howTo": [
+        "Availability",
+        "LitmusBench v0.2"
+      ]
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "Hugging Faceでデータセットを開き、化学の推論問題が約5万問あることを確かめる",
+      "source": "https://nvidianews.nvidia.com/news/nvidia-introduces-nemotron-for-science-to-accelerate-discoveries-with-agents",
+      "steps": [
+        "ページの説明で、化学の推論を測る・鍛えるデータだと確認する",
+        "問題数が「nearly 50,000」と書かれているかを見る"
+      ],
+      "url": "https://huggingface.co/datasets/nvidia/Nemotron-RL-litmus-bench-v0.2/tree/cf18cb1b2392d04a2ac578637462261d62da11d7"
+    },
+    {
+      "action": "DGX Sparkを使うなら、メモリが128GBの構成かを製品ページで確かめる",
+      "source": "https://nvidianews.nvidia.com/news/nvidia-introduces-nemotron-for-science-to-accelerate-discoveries-with-agents",
+      "steps": [
+        "NVIDIA DGX Sparkの製品ページを開く",
+        "メモリが128GBの構成かを仕様で確認する",
+        "128GBなら、Hugging Faceでモデルを取得する"
+      ],
+      "url": "https://www.nvidia.com/en-us/products/workstations/dgx-spark/"
+    }
+  ],
+  "cause": {
+    "text": "NVIDIAは、AIエージェントで科学の発見を加速させるために公開したと説明しています。研究者がモデルを自分の分野に合わせて追加学習できるよう、データと手順をまとめて提供するとしています。",
+    "status": "background",
+    "source": "https://nvidianews.nvidia.com/news/nvidia-introduces-nemotron-for-science-to-accelerate-discoveries-with-agents"
+  },
+  "worries": [
+    {
+      "q": "手元の機器で、このモデルは動かせますか？",
+      "a": "モデルは、メモリ128GBのNVIDIA DGX Sparkで動くよう最適化されたと書かれています。DGX Sparkは、AIを手元で動かすための卓上の機器だと説明されています。",
+      "source": "https://nvidianews.nvidia.com/news/nvidia-introduces-nemotron-for-science-to-accelerate-discoveries-with-agents",
+      "action": "DGX Sparkをお使いなら、メモリが128GBの構成かを製品ページで確かめてから、Hugging Faceでモデルを取得する。"
+    },
+    {
+      "q": "組織の機器の中で、研究データを安全に扱えますか？",
+      "a": "発表では、組織が管理する設備のなかで安全に研究を進められる点を挙げています。机の上の機器から、大規模なデータセンターまで同じモデルを動かせるという説明です。",
+      "source": "https://nvidianews.nvidia.com/news/nvidia-introduces-nemotron-for-science-to-accelerate-discoveries-with-agents",
+      "action": "社外に出せないデータを扱うなら、導入先が組織の管理下の設備かを先に確認する。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "手元のDGX Sparkで動かすか迷っている",
+      "situation": "メモリ128GBの機器を持っている",
+      "recommend": "仕様が合うか確かめてから検討する",
+      "reason": "モデルは128GBのDGX Sparkで動くよう最適化されたと発表されています。ただし、料金や動作の詳しい条件は、このページには書かれていません。",
+      "source": "https://nvidianews.nvidia.com/news/nvidia-introduces-nemotron-for-science-to-accelerate-discoveries-with-agents"
+    },
+    {
+      "question": "化学データで追加学習を始めるか迷っている",
+      "situation": "化学・創薬・材料の研究をしている",
+      "recommend": "データの内容を確かめてから検討する",
+      "reason": "LitmusBench v0.2は約5万問で、評価にも追加学習にも使えると書かれています。利用条件の詳細は、発表の文章には示されていません。",
+      "source": "https://nvidianews.nvidia.com/news/nvidia-introduces-nemotron-for-science-to-accelerate-discoveries-with-agents"
+    }
+  ],
+  "depthHeadings": {
+    "cause": "今回の発表は何のために出された？",
+    "steps": "今日やるなら、まずデータの中身から",
+    "desk": "データの公開ページはどこ？",
+    "worries": "手元で動くか、データは外に出る？",
+    "guide": "DGX Sparkで動かすか迷ったときは"
+  },
+  "depthAt": "2026-11-16T16:47:55+00:00",
+  "updatedAt": "2026-11-16T16:47:55+00:00",
+  "updates": [
+    {
+      "at": "2026-11-16T16:47:55+00:00",
+      "kind": "facts",
+      "title": "公式の資料をもとに、「公式の窓口」・「今日やること」・「理由」・「よくある不安」・「判断の目安」を追記しました",
+      "sourceUrl": "https://nvidianews.nvidia.com/news/nvidia-introduces-nemotron-for-science-to-accelerate-discoveries-with-agents",
+      "sourceName": "NVIDIAニュースルーム"
+    }
+  ]
 }

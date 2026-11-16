@@ -99,9 +99,8 @@
     }
   ],
   "todayActions": [
-    "使うモデルのモデルカードで、対応するキャッシュのモード、最低限の長さ、TTLを確認する",
-    "自社のプロンプトを見直し、固定の指示文を先頭に、変わる質問を最後に置く",
-    "応答のusage.prompt_tokens_detailsのcached_tokensを見て、キャッシュの当たり方を測る"
+    "使うモデルのモデルカードで、対応するキャッシュのモード、最低限の長さ、TTLを確認する。",
+    "自社のプロンプトを見直し、固定の指示文や資料を先頭に、毎回変わる質問を最後に置く。"
   ],
   "qualityBar": {
     "score": 5,
@@ -176,5 +175,114 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/bedrock-open-weight-prompt-caching-af866099.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "対応するリージョンはモデルごとに違うため、利用するモデルのモデルカードで、そのモデルが使えるリージョンを確認します。",
+      "source": "https://aws.amazon.com/blogs/machine-learning/use-prompt-caching-with-open-weight-models-on-amazon-bedrock/"
+    },
+    {
+      "text": "オープンウェイトモデルを使う前に、モデルカードからリンクされているライセンスとサービス条件を確認する必要があります。",
+      "source": "https://aws.amazon.com/blogs/machine-learning/use-prompt-caching-with-open-weight-models-on-amazon-bedrock/"
+    },
+    {
+      "text": "Pythonは3.12が必要で、openaiは3.26.0以降、aws-bedrock-token-generatorは1.1.0以降を入れます。エージェントの例ではOpenCode 1.18.35をnpmで入れます。",
+      "source": "https://aws.amazon.com/blogs/machine-learning/use-prompt-caching-with-open-weight-models-on-amazon-bedrock/"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "Amazon Bedrock モデルカード（Models at a glance）",
+      "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/model-cards.html",
+      "source": "https://aws.amazon.com/blogs/machine-learning/use-prompt-caching-with-open-weight-models-on-amazon-bedrock/",
+      "note": "モデルごとのキャッシュのモード、最小のプレフィックス長、保持時間（TTL）はここで確認する。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "使うモデルのモデルカードで、対応するキャッシュのモード、最低限の長さ、TTLを確認する。",
+      "source": "https://aws.amazon.com/blogs/machine-learning/use-prompt-caching-with-open-weight-models-on-amazon-bedrock/",
+      "steps": [
+        "リンクの「Models at a glance」を開く",
+        "使うモデルの行を探す",
+        "対応モード・最小の長さ・TTLを確かめる"
+      ],
+      "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/model-cards.html"
+    },
+    {
+      "action": "自社のプロンプトを見直し、固定の指示文や資料を先頭に、毎回変わる質問を最後に置く。",
+      "source": "https://aws.amazon.com/blogs/machine-learning/use-prompt-caching-with-open-weight-models-on-amazon-bedrock/",
+      "steps": [
+        "固定の指示文や資料を先頭に置く",
+        "変わる質問は最後に置く",
+        "先頭が変わると、そこからキャッシュが作り直される"
+      ]
+    }
+  ],
+  "cause": {
+    "text": "同じ長い指示文や資料を毎回処理し直す無駄を減らし、入力コストと応答の遅れを抑えるため、Amazon Bedrockのオープンウェイトモデルで明示的プロンプトキャッシュが使えるようになったと説明されています。",
+    "status": "background",
+    "source": "https://aws.amazon.com/blogs/machine-learning/use-prompt-caching-with-open-weight-models-on-amazon-bedrock/"
+  },
+  "worries": [
+    {
+      "q": "うちのモデルでもキャッシュは使えますか？",
+      "a": "キャッシュに対応するモードや最低限の長さ、保持時間はモデルごとに違います。対応リージョンも、モデルカードで確かめる必要があります。",
+      "source": "https://aws.amazon.com/blogs/machine-learning/use-prompt-caching-with-open-weight-models-on-amazon-bedrock/",
+      "action": "使うモデルのモデルカードで、対応するモード、リージョン、保持時間をそろえて確かめる。"
+    },
+    {
+      "q": "キャッシュを使えば料金は必ず安くなりますか？",
+      "a": "キャッシュの読み取りは標準の入力より低い料金です。ただ、モデルによっては書き込みが標準より高くなり、再利用が多いほど節約は大きくなります。",
+      "source": "https://aws.amazon.com/blogs/machine-learning/use-prompt-caching-with-open-weight-models-on-amazon-bedrock/",
+      "action": "Amazon Bedrockの料金ページで、使うモデルの書き込みと読み取りの料金を確かめる。"
+    },
+    {
+      "q": "入力した内容はモデルの学習に使われませんか？",
+      "a": "Bedrockのほかのモデルと同様に、プロンプトと出力はモデル提供元と共有されず、モデルの学習にも使われないと書かれています。",
+      "source": "https://aws.amazon.com/blogs/machine-learning/use-prompt-caching-with-open-weight-models-on-amazon-bedrock/",
+      "action": "詳しい扱いはデータ保護のページで確かめ、社内の利用ルールと照らし合わせる。"
+    },
+    {
+      "q": "毎回違う質問も、キャッシュに保存されてしまいませんか？",
+      "a": "暗黙的キャッシュでは、後で使われない内容も書き込まれることがあります。明示的キャッシュなら、共通部分の後ろに区切りを付けて書き込みを絞れます。",
+      "source": "https://aws.amazon.com/blogs/machine-learning/use-prompt-caching-with-open-weight-models-on-amazon-bedrock/",
+      "action": "共通の指示文や資料の後ろに区切りの印を付け、毎回変わる質問はその後ろに置く。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "暗黙的と明示的、どちらで始めるか",
+      "situation": "会話やくり返し処理が中心の用途",
+      "recommend": "設定の少ない暗黙的から試すと検討しやすい",
+      "reason": "暗黙的はリクエストの変更が不要で、固定の先頭がある会話やエージェントのくり返しに向くと書かれています。明示的は書き込みの範囲を区切れますが、モードと区切りの指定が必要です。",
+      "source": "https://aws.amazon.com/blogs/machine-learning/use-prompt-caching-with-open-weight-models-on-amazon-bedrock/"
+    },
+    {
+      "question": "暗黙的と明示的、どちらで始めるか",
+      "situation": "固定の共通部分の後に毎回違う質問が来る",
+      "recommend": "明示的を検討する価値がある",
+      "reason": "明示的なら書き込みを共通部分までに絞れ、最後の区切りより後ろは標準の入力料金になります。書き込みが高いモデルでも、読まれない内容の書き込み料金を払わずに済みます。",
+      "source": "https://aws.amazon.com/blogs/machine-learning/use-prompt-caching-with-open-weight-models-on-amazon-bedrock/"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "使う前に確かめたい、モデルごとの違い",
+    "cause": "なぜ明示的キャッシュが使えるようになったか",
+    "steps": "今日、モデルカードで確かめること",
+    "desk": "モデルごとの条件はここで見られる",
+    "worries": "うちのモデルで使える？料金は安くなる？",
+    "guide": "暗黙的と明示的、どちらで始めるか"
+  },
+  "depthAt": "2026-11-16T16:48:52+00:00",
+  "updatedAt": "2026-11-16T16:48:52+00:00",
+  "updates": [
+    {
+      "at": "2026-11-16T16:48:52+00:00",
+      "kind": "facts",
+      "title": "公式の資料をもとに、「なるほどの要点」・「公式の窓口」・「今日やること」・「理由」・「よくある不安」・「判断の目安」を追記しました",
+      "sourceUrl": "https://aws.amazon.com/blogs/machine-learning/use-prompt-caching-with-open-weight-models-on-amazon-bedrock/",
+      "sourceName": "AWS Machine Learning Blog"
+    }
+  ]
 }
