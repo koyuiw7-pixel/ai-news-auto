@@ -3,8 +3,8 @@
   "sourceType": "web",
   "sourceUrl": "https://nvidianews.nvidia.com/news/nvidia-introduces-nemotron-for-science-to-accelerate-discoveries-with-agents",
   "sourceName": "NVIDIAニュースルーム",
-  "title": "NVIDIA「Nemotron for Science」公開　化学データ約5万問をHugging Faceで提供",
-  "seoTitle": "Nemotron for Scienceとは：使い方と提供状況",
+  "title": "NVIDIA、化学AI向け約5万問のデータ公開　モデルも入手可能に",
+  "seoTitle": "Nemotron for Science公開　化学AI向けデータを提供",
   "threadsPost": "化学や創薬のAI開発に関わる人に、知っておいてほしい話です。\n\nNVIDIAが科学向けの「Nemotron for Science」を出しました。\n約5万問の化学データ「LitmusBench v0.2」は、Hugging Faceで今すぐ使えます。\n\n自分の仕事のAI、どこまで自社の環境で動かしたいですか？",
   "threadsHook": "callout",
   "threadsQuestions": [
@@ -23,8 +23,8 @@
   ],
   "threadsStyle": 3,
   "writingVoice": "senpai",
-  "lede": "化学や創薬のAIエージェントを作る研究者向けに、NVIDIAが「Nemotron for Science」を公開しました。化学の推論を測り鍛える約5万問のデータ「LitmusBench v0.2」と、モデル「Nemotron 3.5 Super VL」は、Hugging Faceで今すぐ入手できます。料金や日本語対応はまだ発表されていません。",
-  "description": "NVIDIAが科学向けAI基盤「Nemotron for Science」を公開。約5万問の化学データLitmusBench v0.2とNemotron 3.5 Super VLをHugging Faceで提供。DGX Sparkでも動作し、料金は未発表です。",
+  "lede": "化学や創薬のAIエージェントを開発する研究者は、NVIDIAのモデル「Nemotron 3.5 Super VL」と、化学推論の学習・評価に使える約5万問のデータをHugging Faceから入手できるようになりました。NVIDIAが11月16日に発表した「Nemotron for Science」の一部で、モデルは128GBのDGX Sparkでのローカル動作にも最適化されています。",
+  "description": "NVIDIAが科学研究向けのNemotron for Scienceを発表。化学推論の学習・評価に使う約5万問のデータとAIモデルをHugging Faceで提供します。研究機関による活用例や量子ドットの作成結果も紹介します。",
   "keywords": [
     "Nemotron for Science",
     "Nemotron 3.5 Super VL",
@@ -66,7 +66,7 @@
       "DGX Sparkなら手元の機器でモデルを動かせるため、社外に出せないデータを扱う現場で検討できます。"
     ]
   },
-  "body": "化学や創薬、材料の研究でAIエージェントを作りたい研究者・開発者が、対象の読者です。モデルとデータは公開済みで、Hugging Faceから入手できます。\n\n「Nemotron for Science」は、NVIDIAのオープンなAIモデル「Nemotron 3.5 Super VL」を科学の研究に使うための一式です。公式の発表によると、モデル、科学向けの評価、化学のオープンデータ、追加学習の手順（レシピ）をまとめています。AIエージェントとは、自分で手順を進めるAIのことです。\n\n## Hugging Faceで今すぐ入手、DGX Sparkでも動作\n\nNVIDIAニュースルームの発表（11月16日付）によると、「Nemotron 3.5 Super VL」と「LitmusBench v0.2」はHugging Faceで公開されています。\n\nモデルは、メモリ128GBの「NVIDIA DGX Spark」で動くよう最適化されました。DGX Sparkは、AIを手元で動かすための卓上の機器です（NVIDIAニュースルームの関連ページ、11/17確認）。\n\n発表では、組織が管理する設備のなかで安全に研究を進められる点も挙げています。机の上の機器から、大規模なデータセンターまで同じモデルを動かせるという説明です。\n\n## 約5万問の化学データ「LitmusBench v0.2」\n\nLitmusBench v0.2は、化学の推論を測る・鍛えるためのオープンなデータです。問題数は約5万問です。\n\n分子の性質や、創薬の実験データをもとにしています。狙いは、分子がどう振る舞うかを予測する力を伸ばすことです。たとえば、水への溶けやすさや人の体での処理のされ方が含まれます。\n\nポストトレーニング（公開されたモデルに、特定の分野のデータを追加で学ばせること）にも使えます。性能テストとしてだけでなく、鍛える素材としても使える点が特徴です。\n\n## 追加学習で得た成果：4つの事例\n\n発表で紹介された事例は、いずれも企業・研究機関による自己申告の結果です。\n\n**Terray Therapeutics**：化学反応の図から、反応物・生成物・反応条件を読み取るよう追加学習しました。RxnScribeという性能テストでは、正解とされた反応の約76%を取り出しました。2つのテストで既存の公表結果を上回ったとしています。\n\n**Lila Sciences**：自動化された実験室向けに、すぐ実行できる実験手順を設計させました。追加学習なしで最先端並みの性能だったとしています。\n\n**Therna**：mRNA医薬の設計向けに追加学習しました。たんぱく質の産生量の範囲を当てる精度が、最先端モデルのほぼ2倍になったとしています。科学者は96%の比較で、元のモデルより追加学習後の説明を好みました。\n\n**KTH王立工科大学**：分子動力学ソフト「GROMACS」の壊れた設定を直すAIエージェントを作りました。DGX Spark 1台で一晩実行しました。推論を有効にした場合、81%のテストケースを修復しています。修正はすべてGROMACS自身が独立に検証しました。\n\n## 量子ドットの正解率は61%、推論コストは10〜20分の1\n\nLila Sciencesの量子ドット（画面や太陽電池に使うナノサイズの結晶）の事例が、数字として最も具体的です。研究室でのフィードバックを使った追加学習で、作り方の正解率は約2倍近くの61%になりました。\n\n発表では、作り方の正解率がGPT-6 Astraの54%を上回ったとしています。推論のコストは、GPT-6 Astraの10〜20分の1だったとしています。\n\n| 比べること | Nemotron（追加学習後） | GPT-6 Astra | 有利なのは |\n| --- | --- | --- | --- |\n| 量子ドット作成の正解率 | 61% | 54% | **Nemotron** |\n| 推論のコスト | 10〜20分の1 | 基準 | **Nemotron** |\n\n推論コストは、発表の「10〜20x lower」を相対値で表したものです。評価条件の詳細はまだ公表されていないため、他分野にそのまま当てはまるとは限りません。\n\n## 研究機関の導入状況：Argonne、Jülich、理研\n\n米エネルギー省のArgonne国立研究所は、Nemotronを「StructBioReasoner」に組み込んでいます。StructBioReasonerは、タンパク質ベースの治療薬候補を設計・評価するマルチエージェントシステムです。対象はがんなどの病気の治療です。\n\nJülich Supercomputing Centreも、創薬や科学研究のAIエージェントに組み込んでいます。\n\n日本の理化学研究所（RIKEN）は、AIスーパーコンピューター「RIKYU」の基盤で、Nemotronを利用できるようにしました。Nemotron 3.5 Super VLも含まれ、研究者は推論用の入り口「RiVault」から使えます。\n\n## サイソクの見方：自分の環境で動かせる点が、選ぶ決め手になりそうです\n\n今回の発表は、モデルを渡すだけでなく、化学のデータと追加学習の手順まで同梱した点が特徴とみられます。LitmusBench v0.2の約5万問で、自分のモデルを測ってから鍛える流れを作れます。\n\n判断の目安は次のとおりです。\n\n- 社外にデータを出せない研究・開発なら、128GBのDGX Sparkで動く点を確認する\n- 化学・創薬・材料の分野でAIの追加学習を検討しているなら、Hugging Faceでデータの条件を見る\n- 研究以外の用途が中心なら、今回は見送ってよい\n\nNVIDIAの発表と技術ブログの内容を前提にした見方で、各社の結果は自社環境での検証が必要です。直近では、DGX Sparkで小型モデルを動かす手順も公開されています（[NVIDIA、エッジAI開発を数コマンドで始められる「TensorRT Edge-LLM」](/articles/nvidia-tensorrt-edge-llm-edge-ai)）。\n\n## まだ分からないこと\n\n- 日本語での利用や、日本語の科学データへの対応はまだ発表されていません。\n- 利用料金や、モデルのライセンスの詳しい条件は、発表の文章に示されていません。\n- Nemotron 3.5 Super VLのパラメーター数など、モデルの規模はまだ発表されていません。",
+  "body": "化学や創薬、材料の研究でAIエージェントを作りたい研究者・開発者に向けて、NVIDIAがモデルとデータを公開しました。Hugging Faceから入手できます。\n\n「Nemotron for Science」は、NVIDIAのオープンなAIモデル「Nemotron 3.5 Super VL」を科学研究に使うための取り組みです。公式発表によると、モデル、科学向けの評価、化学のオープンデータ、追加学習の手順（レシピ）をまとめています。AIエージェントとは、自分で手順を進めるAIのことです。\n\n## モデルとデータをHugging Faceで公開\n\nNVIDIAの11月16日の発表によると、「Nemotron 3.5 Super VL」と「LitmusBench v0.2」はHugging Faceで入手できます。\n\nモデルは、メモリ128GBの「NVIDIA DGX Spark」でローカルに動くよう最適化されました。発表では、研究者の机上からスーパーコンピューターの施設まで、組織が管理する設備で安全に研究を進められるとしています。\n\n## 化学推論の学習・評価に約5万問\n\nLitmusBench v0.2は、化学の推論を測り、鍛えるためのオープンなデータです。問題数は5万問近くあります。\n\n分子の性質や創薬の実験データをもとにしています。狙いは、分子がどう振る舞うかを予測するモデルの能力を伸ばすことです。水への溶けやすさや、人の体での処理のされ方などが含まれます。\n\nポストトレーニング（公開されたモデルに、特定の分野のデータを追加で学ばせること）にも使えます。性能を測るテストとしてだけでなく、モデルを鍛える素材としても使えます。\n\n## 企業・大学による4つの活用事例\n\nNVIDIAは、企業や大学による次の活用結果を紹介しています。\n\n**Terray Therapeutics**：化学反応の図から、反応物・生成物・反応条件を読み取るよう追加学習しました。RxnScribeという性能テストでは、定められた照合基準のもとで、注釈付きの反応の約76%を取り出しました。2つのテストで既存の公表結果を上回ったとしています。\n\n**Lila Sciences**：自動化された実験室向けに、すぐ実行できる実験手順を設計させました。追加学習なしで最先端水準に並ぶ性能だったとしています。\n\n**Therna**：mRNA医薬の設計向けに追加学習しました。たんぱく質の産生量の範囲を予測する精度が、最先端モデルに比べてほぼ2倍になったとしています。科学者は96%の比較で、元のモデルより追加学習後の説明を好みました。\n\n**KTH王立工科大学**：分子動力学ソフト「GROMACS」の壊れた設定を直すAIエージェントを作りました。DGX Spark 1台で一晩実行し、推論を有効にした場合、81%のテストケースを修復しました。修正はすべてGROMACS自身が独立に検証しました。\n\n## 量子ドットの作成精度は61%、推論コストは10〜20分の1\n\nLila Sciencesは、量子ドット（画面や太陽電池に使うナノサイズの結晶）の作成にモデルを活用しました。NVIDIAの発表によると、研究室でのフィードバックを使った追加学習で、作成の精度は約2倍の61%になりました。\n\n発表では、この精度がGPT-6 Astraの54%を上回り、推論コストはGPT-6 Astraの10〜20分の1だったとしています。\n\n| 比べること | Nemotron（追加学習後） | GPT-6 Astra |\n| --- | --- | --- |\n| 量子ドット作成の精度 | 61% | 54% |\n| 推論のコスト | 10〜20分の1 | 比較の基準 |\n\n推論コストは、発表の「10〜20x lower」を相対値で表したものです。これらの数字は、発表で紹介された量子ドットの事例における結果です。\n\n## Argonneや理研などの研究機関も活用\n\n米エネルギー省のArgonne国立研究所は、Nemotronを「StructBioReasoner」に組み込んでいます。StructBioReasonerは、がんなどの病気に対するタンパク質ベースの治療薬候補を設計・評価するマルチエージェントシステムです。\n\nJülich Supercomputing Centreも、創薬や科学研究のAIエージェントに組み込んでいます。\n\n日本の理化学研究所（RIKEN）は、AIスーパーコンピューター「RIKYU」の基盤で、Nemotronを利用できるようにしました。Nemotron 3.5 Super VLも含まれ、研究者は推論用の入り口「RiVault」から使えます。\n\n## 利用前にモデルとデータの条件を確認\n\n今回の発表では、モデルに加え、化学のデータと追加学習の手順が提供されています。LitmusBench v0.2は、モデルの化学推論を評価するほか、追加学習にも使えます。\n\n利用を検討する際は、次の点が確認の目安になります。\n\n- 手元での利用を検討する場合、128GBのDGX Spark向けにモデルが最適化されていることを確認する\n- 化学・創薬などで追加学習を検討する場合、Hugging Faceでモデルやデータの利用条件を確認する\n- 発表された性能は、対象の作業や環境に応じて検証する\n\nNVIDIAの発表には、企業や研究機関による個別の活用結果が紹介されています。直近では、DGX Sparkで小型モデルを動かす手順も公開されています（[NVIDIA、エッジAI開発を数コマンドで始められる「TensorRT Edge-LLM」](/articles/nvidia-tensorrt-edge-llm-edge-ai)）。\n\n## 発表文で確認できない利用条件\n\n- 日本語での利用や、日本語の科学データへの対応は、今回の発表文には示されていません。\n- 利用料金やモデルのライセンスの詳しい条件は、今回の発表文には示されていません。\n- Nemotron 3.5 Super VLのパラメーター数など、モデルの規模は今回の発表文には示されていません。",
   "easy": "## ひとことで言うと\n\nNVIDIAが、化学や創薬などの研究で使うAIエージェントを作るための道具一式「Nemotron for Science」を公開しました。モデルと約5万問の化学データは、Hugging Faceで今すぐ入手できます。\n\n## 何が使えるか\n\n中心は、NVIDIAのオープンなAIモデル「Nemotron 3.5 Super VL」です。これに、分野の知識を追加で学ばせる手順（レシピ）が付きます。化学向けのデータ「LitmusBench v0.2」は、約5万問で成り立っています。AIの実力を測る用途にも、鍛える用途にも使えます。\n\n## 現場での成果\n\nLila Sciencesは、量子ドット（画面や太陽電池に使う微小な結晶）の作り方の正解率を、追加学習で61%に高めました。比較対象のGPT-6 Astraは54%で、推論のコストはGPT-6 Astraの10〜20分の1だったとされています。KTH王立工科大学のAIは、分子シミュレーションの設定ミスを一晩で81%直しました。\n\n## 手元でも動かせる\n\nモデルは、メモリ128GBのNVIDIA DGX Sparkで動くよう最適化されています。机の上の機器でも動かせるため、組織の外に出したくないデータを扱う場面で選びやすくなります。料金や日本語への対応は、まだ発表されていません。",
   "channel": "NVIDIAニュースルーム",
   "channelId": "",
@@ -253,5 +253,43 @@
       "sourceUrl": "https://nvidianews.nvidia.com/news/nvidia-introduces-nemotron-for-science-to-accelerate-discoveries-with-agents",
       "sourceName": "NVIDIAニュースルーム"
     }
-  ]
+  ],
+  "gptReview": {
+    "reviewedBy": "gpt-6.1-terra",
+    "reviewedAt": "2026-11-16T17:10:36+00:00",
+    "changed": [
+      "body",
+      "description",
+      "lede",
+      "seoTitle",
+      "title"
+    ],
+    "before": {
+      "title": "NVIDIA「Nemotron for Science」公開　化学データ約5万問をHugging Faceで提供",
+      "lede": "化学や創薬のAIエージェントを作る研究者向けに、NVIDIAが「Nemotron for Science」を公開しました。化学の推論を測り鍛える約5万問のデータ「LitmusBench v0.2」と、モデル「Nemotron 3.5 Super VL」は、Hugging Faceで今すぐ入手できます。料金や日本語対応はまだ発表されていません。"
+    },
+    "fixes": [
+      {
+        "before": "正解とされた反応の約76%を取り出しました",
+        "after": "定められた照合基準のもとで、注釈付きの反応の約76%を取り出しました",
+        "evidence": "資料1「76% of annotated reactions under the benchmark’s matching criteria」"
+      },
+      {
+        "before": "作り方の正解率は約2倍近くの61%",
+        "after": "作成の精度は約2倍の61%",
+        "evidence": "資料1「nearly doubled the model’s accuracy for making quantum dots ... to 61%」"
+      },
+      {
+        "before": "日本語での利用や、日本語の科学データへの対応はまだ発表されていません",
+        "after": "日本語での利用や、日本語の科学データへの対応は、今回の発表文には示されていません",
+        "evidence": "資料1の発表文には日本語対応の記載がない"
+      },
+      {
+        "before": "パラメーター数など、モデルの規模はまだ発表されていません",
+        "after": "パラメーター数など、モデルの規模は今回の発表文には示されていません",
+        "evidence": "資料1の発表文にはパラメーター数の記載がない"
+      }
+    ],
+    "notes": "リードと見出しを、入手できるものや研究者に役立つ情報が先に分かる形に直しました。評価結果の条件を明確にし、発表文に記載がない事項は、その範囲で確認できないと表現しました。"
+  }
 }
