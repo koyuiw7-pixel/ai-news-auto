@@ -11804,14 +11804,6 @@
       "slug": "fsa-securities-unauthorized-trading",
       "url": "https://www.fsa.go.jp/ordinary/chuui/chuui_phishing.html"
     },
-    "6f9832433932a9cb": {
-      "at": "2026-11-02T01:21:04.861459+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "score": 100,
-      "section": "entertainment",
-      "slug": "piggparty-tougen-anki-collab",
-      "url": "https://www.cyberagent.co.jp/news/detail/id=33965"
-    },
     "6f9884c795f906ec": {
       "at": "2026-11-10T00:06:22.533308+00:00",
       "reason": "prefilter: お知らせ・統計の転載（statistics）",
@@ -19848,6 +19840,19 @@
       "skipped": true,
       "url": "https://www.qst.go.jp/site/press/20261106.html"
     },
+    "e69525438f1543d3": {
+      "at": "2026-11-16T01:22:42.499453+00:00",
+      "costUsd": 0.0071,
+      "intent": "breaking",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "score": 92,
+      "section": "public",
+      "slug": "kaene-onescloset-data-leak",
+      "url": "https://kaene.jp/blogs/topics_kaene/personal-data-incident-notice"
+    },
     "e6bc890b8e0378b5": {
       "at": "2026-11-03T08:40:23.765520+00:00",
       "breaking": true,
@@ -23202,59 +23207,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-13T15:25:36.108487+00:00",
-      "attempt": 1,
-      "id": "469c856ce55e4add033b7559fa5603acf37c0314",
-      "kind": "trend",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "タイトル「2戦連続アーチ」→ 元記事は9回のソロ本塁打を1試合分として報じており、2戦連続に言及する記述は無い（創作）",
-        "タイトル「初スタメン」→ 元記事に宗山選手の初スタメンだとする記述は無い（創作）",
-        "本文は「2番ショートとしてスタメン起用」とあるのみで、初スタメンの根拠が本文にも無い"
-      ],
-      "readability": {
-        "avg_paragraph": 107.6,
-        "avg_sentence": 59.8,
-        "long_share": 0.333,
-        "max_paragraph": 131,
-        "paragraphs": 5,
-        "sentences": 9
-      },
-      "score": 55,
-      "source": "trends",
-      "title": "宗山 塁",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（TBS・NEWS・DIG）",
-        "読みやすさ: 文が長い（1文の平均 59.8字・60字超の文が 33% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-13T15:25:50.903235+00:00",
-      "attempt": 1,
-      "id": "469c856ce55e4add033b7559fa5603acf37c0314",
-      "kind": "trend",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 107.6,
-        "avg_sentence": 59.8,
-        "long_share": 0.333,
-        "max_paragraph": 131,
-        "paragraphs": 5,
-        "sentences": 9
-      },
-      "score": 92,
-      "source": "trends",
-      "title": "宗山 塁",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（TBS・NEWS・DIG）",
-        "work_money（「仕事・お金にどう活かせる？」欄）が無い",
-        "読みやすさ: 文が長い（1文の平均 59.8字・60字超の文が 33% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-13T15:26:10.483298+00:00",
@@ -30774,6 +30726,58 @@
       "warnings": [
         "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（IR・SSBJ・EFRAG）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-16T01:22:08.387488+00:00",
+      "attempt": 1,
+      "id": "e69525438f1543d3",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "かんたん版の「公式ヘルプの手順を確認してください（[One’sClosetの案内](https://kaene.jp/blogs/topics_kaene/personal-data-incident-notice)）」→ リンク先は kaene の公式お知らせで One’sClosetの案内でもヘルプ手順でもないため",
+        "かんたん版の「ひとことで言うと」は手順を示していない元記事を「手順」と書いており、読者に誤った案内の種類を伝えている。",
+        "かんたん版が本文と内容を繰り返しており、1つの記事に同じ案内が二重に載っている。",
+        "よくある質問の「法律上の報告義務」は一般的な法制度の説明で、kaene の今回の事案に対して報告がなされたかは元記事に書かれていないが、その点が明示されていない。",
+        "「今回の案内も、その流れの中にあると考えられます」は根拠の薄い推測で、事実と解釈の区別が弱い。"
+      ],
+      "readability": {
+        "avg_paragraph": 65.0,
+        "avg_sentence": 36.4,
+        "long_share": 0.12,
+        "max_paragraph": 182,
+        "paragraphs": 14,
+        "sentences": 25
+      },
+      "score": 80,
+      "source": "fast",
+      "title": "【重要】お客様の個人情報が漏えいした可能性に関するお詫びとお知らせ",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（SMS・EC）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-16T01:22:34.685298+00:00",
+      "attempt": 1,
+      "id": "e69525438f1543d3",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 61.0,
+        "avg_sentence": 37.1,
+        "long_share": 0.13,
+        "max_paragraph": 158,
+        "paragraphs": 14,
+        "sentences": 23
+      },
+      "score": 92,
+      "source": "fast",
+      "title": "【重要】お客様の個人情報が漏えいした可能性に関するお詫びとお知らせ",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（SMS・EC）"
       ]
     }
   ],
