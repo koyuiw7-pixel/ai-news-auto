@@ -6,17 +6,28 @@
   "companyName": "OpenAI",
   "category": "アプリ・サービス",
   "overview": {
-    "text": "ChatGPT Enterpriseは、企業向けのChatGPTです。OpenAIが提供し、法人向けプランとして発表されました。",
+    "text": "ChatGPT Enterpriseは、OpenAIが提供する企業向けのAI環境です。組織向けの安全な管理機能や拡張機能を備え、さまざまな業務で活用されています。",
     "sources": [
+      "lvmh-media-openai-partnership",
+      "gilbert-tobin-chatgpt-work-case",
       "chatgpt-enterprise-aws-marketplace",
       "thomson-reuters-openai-chatgpt-enterprise-cocounsel"
     ]
   },
   "facts": [
     {
-      "label": "向いている人",
-      "value": "法人の導入担当や法務担当",
+      "label": "料金",
+      "value": "法人向けプラン",
       "sources": [
+        "gilbert-tobin-chatgpt-work-case",
+        "chatgpt-enterprise-aws-marketplace"
+      ]
+    },
+    {
+      "label": "向いている人",
+      "value": "法人の導入担当者や法務部門",
+      "sources": [
+        "gilbert-tobin-chatgpt-work-case",
         "chatgpt-enterprise-aws-marketplace",
         "thomson-reuters-openai-chatgpt-enterprise-cocounsel"
       ]
@@ -24,42 +35,72 @@
   ],
   "capabilities": [
     {
-      "text": "AWS Marketplaceで既存のAWS契約で購入と管理ができます。",
+      "text": "LVMHのメディア部門で文書調査や比較、下訳に使われています。",
       "sources": [
-        "chatgpt-enterprise-aws-marketplace"
+        "lvmh-media-openai-partnership"
       ]
     },
     {
-      "text": "Thomson ReutersのCoCounsel LegalやHighQと統合できます。",
+      "text": "法律事務所の年次評価の作業を数分で処理しPDFを作れます。",
+      "sources": [
+        "gilbert-tobin-chatgpt-work-case"
+      ]
+    },
+    {
+      "text": "引用元が明記された法務調査や契約書作成が行えます。",
       "sources": [
         "thomson-reuters-openai-chatgpt-enterprise-cocounsel"
       ]
     }
   ],
-  "pricing": [],
-  "japan": [],
-  "howto": [],
+  "pricing": [
+    {
+      "text": "AWS Marketplace経由での購入や利用額の充当に対応しています。",
+      "sources": [
+        "chatgpt-enterprise-aws-marketplace"
+      ]
+    }
+  ],
+  "japan": [
+    {
+      "text": "日本での提供条件や価格は発表の時点では示されていません。",
+      "sources": [
+        "chatgpt-enterprise-aws-marketplace",
+        "thomson-reuters-openai-chatgpt-enterprise-cocounsel"
+      ]
+    }
+  ],
+  "howto": [
+    {
+      "text": "OpenAIとのエンタープライズ契約やAWS経由で購入できます。",
+      "sources": [
+        "chatgpt-enterprise-aws-marketplace",
+        "thomson-reuters-openai-chatgpt-enterprise-cocounsel"
+      ]
+    }
+  ],
   "differences": [],
   "faq": [
     {
-      "q": "どこで買うことができますか？",
-      "a": "AWS Marketplaceなどで購入や管理ができるようになりました。",
+      "q": "AWS経由で購入できますか？",
+      "a": "AWS Marketplaceから購入や管理が行えます。",
       "sources": [
         "chatgpt-enterprise-aws-marketplace"
       ]
     },
     {
-      "q": "法律の業務に活用できますか？",
-      "a": "Thomson ReutersのCoCounsel Legalなどを統合して利用できます。",
+      "q": "法務分野のツールと連携できますか？",
+      "a": "Thomson Reutersのツールと統合して利用できます。",
       "sources": [
         "thomson-reuters-openai-chatgpt-enterprise-cocounsel"
       ]
     },
     {
-      "q": "日本の会社が購入できるかはどこで確認できますか？",
-      "a": "OpenAIまたはAWSのアカウントチームに確認するよう案内されています。",
+      "q": "どのような職場で使われていますか？",
+      "a": "法律事務所やメディア企業などの法人組織で導入されています。",
       "sources": [
-        "chatgpt-enterprise-aws-marketplace"
+        "lvmh-media-openai-partnership",
+        "gilbert-tobin-chatgpt-work-case"
       ]
     }
   ],
@@ -67,7 +108,7 @@
     {
       "date": "2026-10-20",
       "slug": "thomson-reuters-openai-chatgpt-enterprise-cocounsel",
-      "event": "Thomson Reutersの法務AIを統合"
+      "event": "Thomson Reutersが法務AIを統合"
     },
     {
       "date": "2026-11-10",
@@ -82,6 +123,7 @@
     "amazon-bedrock"
   ],
   "articles": [
+    "lvmh-media-openai-partnership",
     "gilbert-tobin-chatgpt-work-case",
     "chatgpt-enterprise-aws-marketplace",
     "thomson-reuters-openai-chatgpt-enterprise-cocounsel"
@@ -90,9 +132,9 @@
     "chatgpt-enterprise-aws-marketplace",
     "thomson-reuters-openai-chatgpt-enterprise-cocounsel"
   ],
-  "signature": "b7598968a69ce5c9",
+  "signature": "4a0c21b1e494f06b",
   "primarySignature": "c27375b0774d7c5f",
   "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-11-04T05:47:09+00:00",
-  "updatedAt": "2026-11-09T19:43:04+00:00"
+  "updatedAt": "2026-11-16T10:32:15+00:00"
 }

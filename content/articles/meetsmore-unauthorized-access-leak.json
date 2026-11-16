@@ -83,8 +83,8 @@
   ],
   "todayActions": [
     "ミツモアと同じパスワードを使っている他のサービスを探し、別のパスワードに変更する",
-    "届いたメールの送信元が no-reply@meetsmore.com か確認し、パスワード入力を求めるリンクがあれば開かない",
-    "事業者は、ミツモア内で登録したオンライン会議URLを再発行する"
+    "届いたメールの送信元が no-reply@meetsmore.com か確認し、パスワード入力を求めるリンクは開かない",
+    "事業者は、ミツモア内で登録したオンライン会議のURLを再発行する"
   ],
   "publicInterest": "breach",
   "incident": {
@@ -129,5 +129,116 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/meetsmore-unauthorized-access-leak-figure-07a80eb7.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "不正ログインでは、登録情報の変更、メッセージの送信、お支払いの操作は「確認されていない」とされています。",
+      "source": "https://company.meetsmore.com/page/notice-20261116"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "ミツモア 不正アクセス事案に関するお問い合わせフォーム",
+      "url": "https://meetsmore.zendesk.com/hc/ja/requests/new?ticket_form_id=64278782468377",
+      "source": "https://company.meetsmore.com/page/notice-20261116",
+      "howTo": [
+        "サイトトップへ",
+        "お知らせ",
+        "8. お問い合わせ先",
+        "■不正アクセス事案に関するお問い合わせ"
+      ],
+      "note": "対象となる皆様には、順次メールでご連絡しています。お問い合わせは下記フォームよりご連絡ください。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "ミツモアと同じパスワードを使っている他のサービスを探し、別のパスワードに変更する",
+      "source": "https://company.meetsmore.com/page/notice-20261116",
+      "steps": [
+        "ミツモアと同じパスワードを他のサービスでも使っていないか確認する",
+        "使っているサービスは、それぞれ別のパスワードへ変更する"
+      ]
+    },
+    {
+      "action": "届いたメールの送信元が no-reply@meetsmore.com か確認し、パスワード入力を求めるリンクは開かない",
+      "source": "https://company.meetsmore.com/page/notice-20261116",
+      "steps": [
+        "送信元が no-reply@meetsmore.com か確認する",
+        "パスワードの入力を求めるリンクがあれば開かない"
+      ]
+    },
+    {
+      "action": "事業者は、ミツモア内で登録したオンライン会議のURLを再発行する",
+      "source": "https://company.meetsmore.com/page/notice-20261116",
+      "steps": [
+        "ミツモア内で登録していたオンライン会議のURLを確認する",
+        "再発行をおすすめします（外部カレンダーのURLは対象外）"
+      ]
+    }
+  ],
+  "cause": {
+    "text": "今回の漏えいは、事業者の空き状況を表示する機能の脆弱性を第三者が悪用したことが原因です。不正ログインは、当社以外の外部で入手されたIDとパスワードが使われたとみられています。ミツモアのシステムからIDやパスワードが流出した形跡は確認されていません。",
+    "status": "stated",
+    "source": "https://company.meetsmore.com/page/notice-20261116"
+  },
+  "worries": [
+    {
+      "q": "漏れた住所や電話番号で、不審な電話は来る？",
+      "a": "漏えいした情報は住所・電話番号などで、氏名・メールアドレス・パスワードは含まれていません。ミツモアは電話・メール・SMSでパスワードやカード番号を尋ねることはないと案内しています。",
+      "source": "https://company.meetsmore.com/page/notice-20261116",
+      "action": "ミツモアや事業者を名乗る不審な電話・訪問・SMS・メールには応じず、パスワードやカード番号は伝えない。"
+    },
+    {
+      "q": "クレジットカードや支払いは大丈夫？",
+      "a": "漏えいした情報に、クレジットカード情報は含まれていません。不正ログインでも、お支払いの操作は確認されていないとされています。現時点で不正利用や二次被害は確認されていません。",
+      "source": "https://company.meetsmore.com/page/notice-20261116",
+      "action": "身に覚えのない支払いがないか、カードの利用明細を確認する。",
+      "actionSource": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "actionGeneral": true
+    },
+    {
+      "q": "同じパスワードを使い回している。どうする？",
+      "a": "不正ログインは外部で入手されたIDとパスワードが使われたとみられています。他のサービスで同じパスワードを使っている場合は、それぞれ別のパスワードへ変更することがすすめられています。",
+      "source": "https://company.meetsmore.com/page/notice-20261116",
+      "action": "ミツモアと同じパスワードを使っているサービスを探し、それぞれ別のパスワードに変える。"
+    },
+    {
+      "q": "ミツモアから届いたメールは本物？",
+      "a": "対象の方には登録のメールアドレス宛に順次連絡が届き、送信元は no-reply@meetsmore.com です。連絡メールに、パスワードの入力を求めるリンクは記載されないとされています。",
+      "source": "https://company.meetsmore.com/page/notice-20261116",
+      "action": "送信元アドレスを確かめ、パスワード入力を求めるリンクがあれば開かない。"
+    },
+    {
+      "q": "知らない番号からの電話には出ないほうがいい？",
+      "a": "特殊詐欺では「犯人と話をしない」ことが大切とされています。各電話事業者は、番号表示や非通知拒否のサービスを提供しています。",
+      "source": "https://www.npa.go.jp/bureau/safetylife/sos47/case/",
+      "action": "契約中の電話会社で、番号表示・非通知拒否サービスがあるか確認する。",
+      "general": true
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "ほかのサービスと同じパスワードを使っている。今すぐ変える？",
+      "situation": "ミツモアと同じパスワードを他で使っている",
+      "recommend": "ミツモアから連絡を待たず、早めに変えるのがよい",
+      "reason": "不正ログインは外部で入手されたIDとパスワードが使われたとみられています。同じパスワードを使うと、他のサービスも乗っ取られるおそれがあるため、それぞれ別のパスワードに変更するよう案内されています。",
+      "source": "https://company.meetsmore.com/page/notice-20261116"
+    },
+    {
+      "question": "オンライン会議のURLを再発行するべき？",
+      "situation": "ミツモア内でオンライン会議URLを登録している事業者",
+      "recommend": "再発行を検討する価値がある",
+      "reason": "漏えいした情報には、ミツモア内で登録されたオンライン会議のURLが含まれます。ページでは再発行がすすめられています。外部カレンダーに登録したURLは漏えいの対象ではありません。",
+      "source": "https://company.meetsmore.com/page/notice-20261116"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "ログインされても、変更や送信は確認されていない",
+    "cause": "なぜ漏れたのか、いま分かっていること",
+    "steps": "今日やること、まずは同じパスワードの確認から",
+    "desk": "ミツモアへの問い合わせは、専用フォームから",
+    "worries": "カードや電話の詐欺は大丈夫？",
+    "guide": "オンライン会議URLを再発行するか迷ったら"
+  },
+  "depthAt": "2026-11-16T10:33:49+00:00"
 }

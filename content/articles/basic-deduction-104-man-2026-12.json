@@ -59,7 +59,7 @@
   "videoTitle": "2026年12月1日施行で基礎控除104万円、国税庁の改正は年末調整で精算される",
   "publishedAt": "2026-11-16T10:09:39.830862+00:00",
   "generatedAt": "2026-11-16T10:09:59.213718+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/basic-deduction-104-man-2026-12-figure-29f8ba97.jpg",
   "model": "anthropic-api:claude-haiku-5-5",
   "affiliates": [],
   "newsType": "policy",
@@ -95,5 +95,149 @@
     "value": "489万",
     "unit": "円",
     "label": "合計所得金額"
+  },
+  "insight": [
+    {
+      "text": "扶養親族等の所得要件は、扶養親族・同一生計配偶者が「62万円以下（136万円以下）」、特定親族が「62万円超123万円以下（136万円超197万円以下）」に改正された。",
+      "source": "https://www.nta.go.jp/publication/pamph/gensen/2026kaisei.pdf"
+    },
+    {
+      "text": "令和8年12月の年金支払時の精算は、令和9年分の欄の基礎的控除額を使って1年分の税額を計算します。還付は原則として支払者から行われます。",
+      "source": "https://www.nta.go.jp/publication/pamph/gensen/2026kaisei.pdf"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "給与所得者の基礎控除申告書 兼 給与所得者の配偶者控除等申告書 兼 給与所得者の特定親族特別控除申告",
+      "url": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/gensen/annai/1648_73.htm",
+      "source": "https://www.nta.go.jp/users/gensen/2026kiso/index.htm",
+      "howTo": [
+        "源泉徴収義務者の方",
+        "令和８年度税制改正による所得税の基礎控除の引上げ等について",
+        "給与所得者の基礎控除申告書 兼 給与所得者の配偶者控除等申告"
+      ],
+      "note": "前年分から変更されています。令和8年分の様式は、このページで確認できます。"
+    },
+    {
+      "name": "令和８年度税制改正（基礎控除の引上げ等関係）Ｑ＆Ａ",
+      "url": "https://www.nta.go.jp/users/gensen/2026kiso/pdf/0026005-024.pdf",
+      "source": "https://www.nta.go.jp/users/gensen/2026kiso/index.htm",
+      "howTo": [
+        "源泉徴収義務者の方",
+        "令和８年度税制改正による所得税の基礎控除の引上げ等について"
+      ],
+      "note": "改正の概要は「令和８年４月源泉所得税の改正のあらまし」にも掲載されています。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "新たに扶養に入れる家族がいる人は、「給与所得者の扶養控除等（異動）申告書」を勤務先に年末調整を行う日までに出す。",
+      "source": "https://www.nta.go.jp/publication/pamph/gensen/2026kaisei.pdf",
+      "steps": [
+        "勤務先（給与を支払っている会社）に提出する",
+        "「給与所得者の扶養控除等（異動）申告書」を用意する",
+        "年末調整を行う日までに出す"
+      ],
+      "url": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/gensen/annai/1648_73.htm"
+    },
+    {
+      "action": "年金を受けていて新たに扶養に入れる家族がいる人は、令和8年分について原則として確定申告が必要か確かめる。",
+      "source": "https://www.nta.go.jp/publication/pamph/gensen/2026kaisei.pdf",
+      "steps": [
+        "年金を受け取っていて、新たに扶養に入れる家族がいるか確かめる",
+        "令和8年分は原則として確定申告が必要",
+        "令和8年12月の年金支払時の精算では反映されない場合がある"
+      ]
+    }
+  ],
+  "cause": {
+    "text": "令和8年度税制改正で基礎控除などが引き上げられました。令和10年分以後は、2年ごとに直前の額に見直し後2年間の全国消費者物価指数の変化率を乗じた額を基準に見直すことが基本とされました。",
+    "status": "background",
+    "source": "https://www.nta.go.jp/publication/pamph/gensen/2026kaisei.pdf"
+  },
+  "worries": [
+    {
+      "q": "今の給料から引かれる税金は変わるの？",
+      "a": "令和8年11月までの給与等の源泉徴収事務に変更は生じません。令和8年12月の年末調整で、改正後の基礎控除額などに基づいて1年間の税額を計算し、改正前の表で計算した税額と精算します。",
+      "source": "https://www.nta.go.jp/users/gensen/2026kiso/index.htm",
+      "action": "11月までの天引きは変わらないので、12月の年末調整で精算されるまで待つ。"
+    },
+    {
+      "q": "新たに扶養に入れる家族がいるときは、何を出せばいい？",
+      "a": "「給与所得者の扶養控除等（異動）申告書」等の提出が必要です。提出先は給与を支払っている勤務先で、期限は年末調整を行う日までです。",
+      "source": "https://www.nta.go.jp/publication/pamph/gensen/2026kaisei.pdf",
+      "action": "勤務先に「給与所得者の扶養控除等（異動）申告書」を年末調整を行う日までに出す。"
+    },
+    {
+      "q": "年金の税金は12月にどう精算されるの？",
+      "a": "公的年金等の受給者は、令和8年12月の年金支払時に支払者が1年分の税額を計算し直して精算します。還付すべき金額が生じる場合は、原則として支払者から還付されます。",
+      "source": "https://www.nta.go.jp/publication/pamph/gensen/2026kaisei.pdf",
+      "action": "年金を受けていて新たに扶養に入れる家族がいるなら、令和8年分は原則として確定申告が必要か確かめる。"
+    },
+    {
+      "q": "扶養に入れられる家族の収入の目安は上がった？",
+      "a": "扶養親族等の所得要件は、合計所得金額58万円以下から62万円以下に上がりました。収入が給与だけの場合の目安は136万円以下です。",
+      "source": "https://www.nta.go.jp/publication/pamph/gensen/2026kaisei.pdf",
+      "action": "新たに扶養に入れたい家族の収入が136万円以下に入るか、給与だけなら収入を確かめる。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "扶養に入れる家族の申告はいつまでに出す？",
+      "situation": "新たに扶養に入れる家族がいる",
+      "recommend": "年末調整を行う日までに勤務先へ提出する",
+      "reason": "12月1日以後に支払う給与から改正が適用されるため、新たな家族の分を12月の年末調整に反映させるには、この申告書の提出が必要とされています。",
+      "source": "https://www.nta.go.jp/publication/pamph/gensen/2026kaisei.pdf"
+    },
+    {
+      "question": "年金をもらっている人は確定申告が要る？",
+      "situation": "年金を受け取り、新たに扶養に入れる家族がいる",
+      "recommend": "令和8年分は原則として確定申告を検討する",
+      "reason": "ページには、新たに扶養に入れる家族の扶養控除等を受けるには、原則として確定申告をする必要があると書かれています。12月の年金支払時の精算だけでは足りない場合があります。",
+      "source": "https://www.nta.go.jp/publication/pamph/gensen/2026kaisei.pdf"
+    },
+    {
+      "question": "基礎控除の引上げだけなら手続きは要る？",
+      "situation": "新たに扶養に入れる家族がいない給与所得者",
+      "recommend": "本人がする手続きはなく、急がなくてよい",
+      "reason": "12月の年末調整で勤務先が改正後の額で計算するため、本人の手続きや確定申告は不要とされています。",
+      "source": "https://www.nta.go.jp/publication/pamph/gensen/2026kaisei.pdf"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "扶養の所得要件は家族の種類で違う",
+    "cause": "なぜ改正されたのか、どう精算されるか",
+    "steps": "扶養に入れる家族がいる人がすること",
+    "desk": "申告書の様式と国税庁の案内",
+    "worries": "今の給料や年金の税金はどうなる？",
+    "guide": "扶養の申告を出すか迷ったときは"
+  },
+  "todayActions": [
+    "新たに扶養に入れる家族がいる人は、「給与所得者の扶養控除等（異動）申告書」を勤務先に年末調整を行う日までに出す。",
+    "年金を受けていて新たに扶養に入れる家族がいる人は、令和8年分について原則として確定申告が必要か確かめる。"
+  ],
+  "depthAt": "2026-11-16T10:34:26+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "最大104万円",
+    "label": "12月1日施行",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-16T10:36:37+00:00"
+  },
+  "imageFocus": {
+    "x": 0.487,
+    "y": 0.423,
+    "box": [
+      0.037,
+      0.042,
+      0.938,
+      0.804
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/basic-deduction-104-man-2026-12-figure-29f8ba97.jpg"
   }
 }
