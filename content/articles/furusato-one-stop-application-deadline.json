@@ -71,8 +71,7 @@
   "newsType": "policy",
   "todayActions": [
     "今年寄附した自治体の数を数え、5団体以内かを確かめる",
-    "寄附先ごとに届く申請書を、2027年1月10日までに自治体へ出す",
-    "引っ越しの予定があれば、変更届出書の期限も確かめておく"
+    "引っ越しの予定があれば、変更届出書の期限を確かめておく"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -132,5 +131,109 @@
     "original": "https://www.soumu.go.jp/main_content/000372150.jpg",
     "at": "2026-11-16T09:29:59+00:00",
     "reused": true
-  }
+  },
+  "insight": [
+    {
+      "text": "一部の自治体では、令和4年中にされた寄附から「ワンストップ特例のオンライン申請」が可能です。対応状況は、寄附先の自治体にお問合せくださいとされています。",
+      "source": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/mechanism/procedure.html"
+    },
+    {
+      "text": "ワンストップ特例では所得税からの控除は行われず、翌年6月以降に支払う住民税の減額という形で控除されます。",
+      "source": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/topics/20150401.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "総務省 ふるさと納税の流れ",
+      "url": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/mechanism/procedure.html",
+      "source": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/mechanism/procedure.html",
+      "howTo": [
+        "総務省トップ",
+        "自治税務局",
+        "ふるさと納税ポータルサイト",
+        "ふるさと納税のしくみ",
+        "ふるさと納税の流れ"
+      ],
+      "note": "マイナンバーカードによるオンライン申請の対応状況は、ふるさと納税先の自治体までお問合せくださいとされています。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "今年寄附した自治体の数を数え、5団体以内かを確かめる",
+      "source": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/mechanism/procedure.html",
+      "steps": [
+        "寄附先の自治体の数を数える",
+        "5団体以内なら特例の申請が行える",
+        "6団体以上なら確定申告が必要"
+      ],
+      "url": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/mechanism/procedure.html"
+    },
+    {
+      "action": "引っ越しの予定があれば、変更届出書の期限を確かめておく",
+      "source": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/topics/20150401.html",
+      "steps": [
+        "申請書を出したあとに住所が変わるか確かめる",
+        "変更届出書は翌年1月10日までに提出する",
+        "提出先は寄附先の自治体"
+      ],
+      "url": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/topics/20150401.html"
+    }
+  ],
+  "cause": {
+    "text": "確定申告が不要な給与所得者などが、確定申告をしなくても寄附金控除を受けられるよう、平成27年度税制改正でワンストップ特例制度が創設されました。",
+    "status": "background",
+    "source": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/topics/20150401.html"
+  },
+  "worries": [
+    {
+      "q": "6団体以上に寄附したら、どうなる？",
+      "a": "6団体以上に寄附した人は、ワンストップ特例を使えず、確定申告が必要と書かれています。特例を申請しない人も確定申告が必要です。",
+      "source": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/mechanism/procedure.html",
+      "action": "寄附先が6団体以上なら、確定申告で寄附金控除を申告し、受領書を添付して翌年3月15日までに税務署へ出す。"
+    },
+    {
+      "q": "引っ越したら、申請書の手続きはどうなる？",
+      "a": "申請書を出したあとに住所などが変わった場合は、翌年の1月10日までに変更届出書を寄附先の自治体へ提出します。",
+      "source": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/topics/20150401.html",
+      "action": "引っ越しの予定があれば、変更届出書を翌年1月10日までに出せるよう準備しておく。"
+    },
+    {
+      "q": "申請書はオンラインで出せる？",
+      "a": "令和4年中にされた寄附から、一部の自治体でマイナンバーカードを使ったオンライン申請が可能です。対応は自治体ごとに異なるため、寄附先に問い合わせてください。",
+      "source": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/mechanism/procedure.html",
+      "action": "寄附先の自治体に問い合わせて、オンライン申請に対応しているか確かめる。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "5団体以内なら、特例で申請する？",
+      "situation": "確定申告が不要な給与所得者で、寄附先が5団体以内",
+      "recommend": "寄附先ごとに申請書を出す方法が対象になります",
+      "reason": "特例を使うと確定申告は不要です。所得税からの控除はなく、翌年度の住民税の減額で控除されます。",
+      "source": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/mechanism/procedure.html"
+    },
+    {
+      "question": "特例と確定申告、どちらにする？",
+      "situation": "寄附先が6団体以上、または確定申告をする人",
+      "recommend": "確定申告で寄附金控除を申告する方法になります",
+      "reason": "6団体以上や確定申告をする人は特例を使えません。受領書を添付し、翌年3月15日までに住所地の税務署へ申告します。",
+      "source": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/mechanism/procedure.html"
+    },
+    {
+      "question": "申請後に住所が変わったら、どうする？",
+      "situation": "5団体以内で特例を申請し、住所変更の予定がある",
+      "recommend": "変更届出書の期限を確かめておくとよいでしょう",
+      "reason": "申請書を出したあとに転居などで内容が変わったら、翌年1月10日までに変更届出書を寄附先の自治体へ提出します。",
+      "source": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/topics/20150401.html"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "マイナンバーカードで申請できる自治体も",
+    "cause": "なぜこの特例ができたのか",
+    "steps": "今日までに確かめること",
+    "desk": "制度と手続きの流れを公式で見る",
+    "worries": "5団体超えや引っ越しは、どうなる？",
+    "guide": "特例と確定申告、どちらで進めるか"
+  },
+  "depthAt": "2026-11-16T09:43:14+00:00"
 }

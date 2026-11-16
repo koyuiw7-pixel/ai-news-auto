@@ -71,9 +71,8 @@
   "affiliates": [],
   "newsType": "pricing",
   "todayActions": [
-    "10月分の納付書の金額が月額17,920円か、付加保険料つきの18,320円かを確かめる",
-    "納付書が手元にないなら、ねんきんネットで納付書情報を表示し、Pay-easy納付を試す",
-    "コンビニ払いは反映まで12～16営業日かかるため、期限のかなり前に納める"
+    "ねんきんネットにログインして納付書情報を表示し、Pay-easy（ペイジー）で10月分を納付する",
+    "スマホ決済で納めるなら、対応アプリか確かめてから納付書のバーコードを読み取る"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -130,5 +129,119 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/kokumin-nenkin-premium-deadline-nov30-f032178c.jpg"
+  },
+  "insight": [
+    {
+      "text": "スマートフォン決済で納める場合の対応アプリは、AEON Pay、au PAY、d払い、PayB、PayPay、楽天ペイです。納付書のバーコードをカメラで読み取って納めます。",
+      "source": "https://www.city.kobe.lg.jp/a52670/kurashi/support/pension/10.html"
+    },
+    {
+      "text": "任意加入をしている方は、免除・納付猶予の申請ができません。免除を考える前に、自分が任意加入かどうかを確かめます。",
+      "source": "https://www.nenkin.go.jp/service/kokunen/menjo/20150428.html"
+    },
+    {
+      "text": "保険料額が30万円を超える場合は、コンビニエンスストアでは納付できません。まとめて前納するときは、納付先を確かめる必要があります。",
+      "source": "https://www.city.kobe.lg.jp/a52670/kurashi/support/pension/10.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "日本年金機構 ねんきんネットを活用した納付書によらない納付",
+      "url": "https://www.nenkin.go.jp/service/kokunen/hokenryo/nofusholess.html",
+      "source": "https://www.nenkin.go.jp/service/kokunen/hokenryo/hokenryo.html",
+      "howTo": [
+        "3．国民年金保険料の納付方法",
+        "ねんきんネットを活用した納付書によらない納付"
+      ],
+      "note": "納付書がなくても、ねんきんネットの画面に表示される納付書情報（収納機関番号、納付番号、確認番号）でPay-easy（ペイジー）納付ができます。"
+    },
+    {
+      "name": "年金事務所",
+      "url": "https://www.nenkin.go.jp/section/soudan/index.html",
+      "source": "https://www.nenkin.go.jp/service/kokunen/menjo/20150428.html",
+      "note": "免除・納付猶予の申請は、住所地の市（区）役所・町村役場の国民年金の担当窓口か、お近くの年金事務所へ。申請書は郵送でも提出できます。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "ねんきんネットにログインして納付書情報を表示し、Pay-easy（ペイジー）で10月分を納付する",
+      "source": "https://www.nenkin.go.jp/service/kokunen/hokenryo/hokenryo.html",
+      "steps": [
+        "ねんきんネットにログインする",
+        "納付書情報（収納機関番号・納付番号・確認番号）を表示する",
+        "Pay-easy（ペイジー）で納付する"
+      ],
+      "url": "https://www.nenkin.go.jp/service/kokunen/hokenryo/nofusholess.html"
+    },
+    {
+      "action": "スマホ決済で納めるなら、対応アプリか確かめてから納付書のバーコードを読み取る",
+      "source": "https://www.city.kobe.lg.jp/a52670/kurashi/support/pension/10.html",
+      "steps": [
+        "対応決済アプリか確かめる",
+        "納付書のバーコードをカメラで読み取る",
+        "金額が17,920円か確かめて納める"
+      ],
+      "url": "https://www.city.kobe.lg.jp/a52670/kurashi/support/pension/10.html"
+    }
+  ],
+  "cause": {
+    "text": "国民年金保険料は毎月納めるもので、納め忘れがあると、将来の老齢基礎年金が少なくなります。また、障害基礎年金や遺族基礎年金が受けられない場合もあります。",
+    "status": "background",
+    "source": "https://www.city.kobe.lg.jp/a52670/kurashi/support/pension/10.html"
+  },
+  "worries": [
+    {
+      "q": "コンビニで払うと、いつ反映されるの？",
+      "a": "納付状況の反映までの目安は、金融機関・郵便局の窓口が3～4営業日後、電子納付（ペイジー）が2営業日後、コンビニの現金納付が12～16営業日後です。",
+      "source": "https://www.nenkin.go.jp/service/kokunen/hokenryo/hokenryo.html",
+      "action": "期限に余裕がないなら、反映が早い電子納付（ペイジー）か金融機関の窓口で納める"
+    },
+    {
+      "q": "納付書をなくしたら、どうやって納めればいい？",
+      "a": "ねんきんネットに表示される納付書情報（収納機関番号、納付番号、確認番号）を使い、Pay-easy（ペイジー）で納められます。ATMに情報を入力して納めることもできます。",
+      "source": "https://www.nenkin.go.jp/service/kokunen/hokenryo/hokenryo.html",
+      "action": "ねんきんネットにログインして納付書情報を表示し、Pay-easy（ペイジー）で10月分を納付する"
+    },
+    {
+      "q": "収入が減って払えないときはどうする？",
+      "a": "収入の減少や失業などで払うのが難しいときは、免除・納付猶予の制度があります。申請できるのは、申請時点から2年1カ月前までの期間です。",
+      "source": "https://www.nenkin.go.jp/service/kokunen/menjo/20150428.html",
+      "action": "保険料が払えないなら、住所地の役所の国民年金担当窓口かお近くの年金事務所に相談する"
+    },
+    {
+      "q": "免除を受けたら、将来の年金は減る？",
+      "a": "全額免除された期間は、保険料を全額納めた場合の年金額の2分の1が反映されます。納付猶予の期間は、年金額には反映されません。",
+      "source": "https://www.nenkin.go.jp/service/kokunen/menjo/20150428.html",
+      "action": "免除や納付猶予を受けた期間は、10年以内なら申し出て後から納付（追納）できるか確かめる"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "コンビニ払いと口座振替、どちらにする？",
+      "situation": "期限が近く、まだ納めていない",
+      "recommend": "期限が近いなら、反映の早い方法を選ぶ",
+      "reason": "口座振替は当月末振替の早割で1か月60円割引になります（2026年4月時点の金額）。反映は7～8営業日後です。コンビニ払いは反映まで12～16営業日後のため、期限直前には向きません。",
+      "source": "https://www.city.kobe.lg.jp/a52670/kurashi/support/pension/10.html"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "任意加入は免除できない、アプリ払いの対応先",
+    "cause": "なぜ毎月納めるの？年金への影響",
+    "steps": "納付書をなくしたときの納め方",
+    "desk": "相談先と、ねんきんネットの納付方法",
+    "worries": "反映の遅れや払えないときの不安は？",
+    "guide": "口座振替かコンビニ払いか、迷ったときの決め方"
+  },
+  "depthAt": "2026-11-16T09:45:12+00:00",
+  "coverImage": "https://ai-tech-express.jp/img/kokumin-nenkin-premium-deadline-nov30-f032178c.jpg",
+  "coverCredit": {
+    "kind": "ai",
+    "model": "flux-2-klein-4b",
+    "prompt": "A close-up of a person's hands holding an envelope and a calendar, marking a deadline on a deadline-marked calendar, soft natural light.",
+    "provider": "Cloudflare Workers AI",
+    "relevant": true,
+    "original": "https://www.nenkin.go.jp/images/ogp-logo.png",
+    "at": "2026-11-16T09:31:23+00:00",
+    "reused": true
   }
 }
