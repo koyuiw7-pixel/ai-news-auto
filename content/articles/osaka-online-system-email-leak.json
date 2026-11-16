@@ -74,9 +74,8 @@
     }
   ],
   "todayActions": [
-    "7月1日から10月31日に大阪府の電子申請をしたか、申請の記録を確認する",
     "心当たりのないメールは、URLや添付ファイルを開かずに削除する",
-    "不明点は大阪府 行政DX推進課 推進グループ（06-6944-6985）に問い合わせる"
+    "府からの連絡か不安なら、行政DX推進課の推進グループに電話で確かめる"
   ],
   "publicInterest": "breach",
   "incident": {
@@ -152,5 +151,90 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/osaka-online-system-email-leak-figure-52fc1aa9.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "府の公式発表には、問い合わせ用のダイヤルイン番号06-6944-6985と、メールアドレス digital-kikaku@gbox.pref.osaka.lg.jp が載っている。",
+      "source": "https://www.pref.osaka.lg.jp/hodo/fumin/o050180/prs_00002.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "大阪府 財務部 行政DX推進課 推進グループ",
+      "url": "https://www.pref.osaka.lg.jp/soshikikarasagasu/dxsuishin/index.html",
+      "source": "https://www.pref.osaka.lg.jp/hodo/fumin/o050180/prs_00002.html",
+      "phone": "06-6944-6985",
+      "note": "メールでの問い合わせ先は digital-kikaku@gbox.pref.osaka.lg.jp と書かれている。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "心当たりのないメールは、URLや添付ファイルを開かずに削除する",
+      "source": "https://www.pref.osaka.lg.jp/hodo/fumin/o050180/prs_00002.html",
+      "steps": [
+        "メールのURLや添付ファイルを開かない",
+        "ID・パスワード、暗証番号、カード情報を入力しない"
+      ]
+    },
+    {
+      "action": "府からの連絡か不安なら、行政DX推進課の推進グループに電話で確かめる",
+      "source": "https://www.pref.osaka.lg.jp/hodo/fumin/o050180/prs_00002.html",
+      "steps": [
+        "ダイヤルイン番号 06-6944-6985 に電話する",
+        "部局は財務部、課は行政DX推進課、グループは推進グループ"
+      ],
+      "url": "https://www.pref.osaka.lg.jp/soshikikarasagasu/dxsuishin/index.html"
+    }
+  ],
+  "cause": {
+    "text": "大阪府によると、提供事業者が使う外部サービスへの不正アクセスがあり、利用者のメールアドレスが漏えいしたとの報告がありました。不正アクセスの原因と再発防止策の詳細は、府が事業者に報告を求めています。",
+    "status": "stated",
+    "source": "https://www.pref.osaka.lg.jp/hodo/fumin/o050180/prs_00002.html"
+  },
+  "worries": [
+    {
+      "q": "自分のメールアドレスは対象になっている？",
+      "a": "対象は、2026年7月1日から10月31日（土曜日）までの間に本システムから通知メールを送信したアドレスです。府は、対象となる皆様に本件で連絡するとしています。",
+      "source": "https://www.pref.osaka.lg.jp/hodo/fumin/o050180/prs_00002.html",
+      "action": "7月1日から10月31日の間に大阪府の電子申請をしたかを思い出し、心当たりがあれば府からの連絡を待つ"
+    },
+    {
+      "q": "漏れたのはメールアドレスだけ？パスワードも？",
+      "a": "漏えいした情報は利用者のメールアドレスで、項目はこれだけです。府は、ID・パスワード、暗証番号やクレジットカード情報等を、心当たりのないメールに入力しないよう呼びかけています。",
+      "source": "https://www.pref.osaka.lg.jp/hodo/fumin/o050180/prs_00002.html",
+      "action": "心当たりのないメールに、ID・パスワード、暗証番号、クレジットカード情報を入力しない"
+    },
+    {
+      "q": "偽のメールやSMSが来たら、どう見分ける？",
+      "a": "電子メールやSMSのリンクは偽装できるため、見た目で本物かどうかを判断するのは非常に困難とされています。公式サイトを登録しておき、そこから開いて確かめるのが安全です。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "action": "届いたメールのリンクは開かず、公式サイトを自分で開いて内容を確かめる",
+      "general": true
+    },
+    {
+      "q": "期間外に申請した人は、もう安心していい？",
+      "a": "対象は2026年7月1日から10月31日までの間に通知メールを送信したアドレスです。期間外のアドレスは今回の対象に当たります。",
+      "source": "https://www.pref.osaka.lg.jp/hodo/fumin/o050180/prs_00002.html",
+      "action": "期間外でも、心当たりのないメールのURLや添付ファイルは開かない"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "偽サイトにIDを入れたら、パスワードを変える？",
+      "situation": "ID・パスワードを偽サイトに入力してしまった",
+      "recommend": "速やかに変更する",
+      "reason": "フィッシングサイトに入力してしまった場合は、そのIDやパスワードを使っている全てのサービスで、速やかに変更するよう案内されている。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "general": true
+    }
+  ],
+  "depthHeadings": {
+    "insight": "府の問い合わせ先と、確かめるための連絡先",
+    "cause": "なぜ漏れたのか、分かっていること",
+    "steps": "今日できる、メールの確かめ方",
+    "desk": "府に確かめるなら、この窓口",
+    "worries": "自分のアドレスは対象？連絡は来る？",
+    "guide": "入力してしまったときの対応"
+  },
+  "depthAt": "2026-11-16T07:44:08+00:00"
 }
