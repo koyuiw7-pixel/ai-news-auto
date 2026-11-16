@@ -1,0 +1,191 @@
+{
+  "slug": "claude-code-vs-codex-vs-cursor",
+  "kind": "ai-tool",
+  "tool": "claude-code",
+  "toolName": "Claude Code / Codex / Cursor",
+  "company": "anthropic",
+  "intent": "比較",
+  "keyword": "claude code codex 比較",
+  "title": "Cursorは$0から。Claude Code・Codexとの違いと選び方",
+  "seoTitle": "Cursorは$0から。Claude Code・Codexとの違い",
+  "description": "Claude Code・Codex・Cursorは、AIにコードの作成や修正を任せるツールです。Cursorには$0の無料プランがあります。Codexは$20/月のPlusから使えます。Claude Codeは、Claudeのサブスクリプションなどが必要です。",
+  "conclusion": [
+    "Cursorは、$0/月のFreeプランから使えます。ただし、エージェントとチャットのリクエスト数に制限があります。",
+    "Claude Codeは、ターミナル、VS Code、JetBrains、デスクトップアプリ、Webで使えます。ほとんどの環境でClaudeのサブスクリプションかConsoleアカウントが必要です。",
+    "Codexは、ChatGPTのプランに含まれています。Plusは$20/月で、毎週の集中的なコーディング作業に使える利用枠が含まれます。",
+    "ChatGPTを使っているならCodex、無料で始めたいならCursorが候補です。Claude Codeは、Claudeのサブスクリプションが前提になります。"
+  ],
+  "intro": "Claude Code、Codex、Cursorは、AIにコードの作成や修正を任せられるツールです。このページでは、3つの製品の違い、料金、無料で使える範囲、日本での利用状況を、各社の公式ページの情報だけで整理します。最後に、初心者がどれから試すとよいかもまとめます。",
+  "steps": [
+    {
+      "title": "Cursorをダウンロードして、サインインする",
+      "body": "cursor.com から Cursor をダウンロードします。macOS は .dmg、Windows は .exe の公式インストーラーがあります。アプリを開いてサインインし、作業するフォルダーを選びます。"
+    },
+    {
+      "title": "Agentで、コードベースの説明を頼む",
+      "body": "フォルダーを選んだら、Agent を開いて、プロジェクトの説明を頼みます。主要なエントリーポイントやモジュール、変更前に読むべきファイルを案内してもらえます。"
+    },
+    {
+      "title": "差分を確認して、テストなどで検証する",
+      "body": "AIの変更は、差分表示で確認できます。プロジェクトが使っているテスト、型チェック、リント、ローカルビルドを実行して、結果を見ます。"
+    },
+    {
+      "title": "Claude Codeをインストールして起動する",
+      "body": "ターミナルで curl -fsSL https://claude.ai/install.sh | bash を実行します（macOS、Linux、WSL）。Homebrew や WinGet でも入れられます。プロジェクトのフォルダーに移動して claude と入力すると起動します。"
+    },
+    {
+      "title": "ChatGPTのドロップダウンから Codex を選ぶ",
+      "body": "ChatGPT のデスクトップアプリかWebで、ドロップダウンから Codex を選びます。コードベースと開発ツールを使うソフトウェア開発の作業向けです。Codex CLI と Codex IDE 拡張機能も用意されています。"
+    }
+  ],
+  "pricing": [
+    {
+      "plan": "Cursor Free",
+      "price": "$0/月",
+      "note": "使用量制限あり。エージェントとチャットのリクエスト数に制限があります。"
+    },
+    {
+      "plan": "Cursor Plus",
+      "price": "$8/月",
+      "note": "使用量の基準となるプランです。Premiumは基本の4倍、Superは15倍、Ultraは50倍です。"
+    },
+    {
+      "plan": "Cursor Premium",
+      "price": "$30/月",
+      "note": "Plusの全機能に加えて、クラウドエージェントと自動化などが使えます。使用量はPlusの4倍です。"
+    },
+    {
+      "plan": "Cursor Super",
+      "price": "$100/月",
+      "note": "使用量はPlusの15倍です。混雑時もモデルに優先アクセスできます。"
+    },
+    {
+      "plan": "Cursor Ultra",
+      "price": "$200/月",
+      "note": "使用量はPlusの50倍です。すべての製品・モデルへの最優先アクセスがあります。"
+    },
+    {
+      "plan": "Cursor Teams",
+      "price": "$30+/ユーザー/月",
+      "note": "使用量はチーム内で共有されます。"
+    },
+    {
+      "plan": "Codex Plus",
+      "price": "$20/月",
+      "note": "毎週、集中的なコーディング作業に使える Codex の利用枠が含まれます。"
+    },
+    {
+      "plan": "Codex Pro",
+      "price": "$100から",
+      "note": "利用上限が高く、複数のプロジェクトで1日の業務を通して利用できます。"
+    },
+    {
+      "plan": "Codex Business",
+      "price": "$20 1ユーザーあたり／月",
+      "note": "2席以上の場合、年額課金です。管理者向けの機能があります。"
+    }
+  ],
+  "freeTier": [
+    "Cursorには$0/月のFreeプランがあり、まずはこちらから始められます。エージェントとチャットを使えます。",
+    "Cursor Freeでは、エージェントのリクエスト数とチャットのリクエスト数に制限があります。",
+    "Cursor Freeでも、Agentにコードベースの説明を頼み、差分を確認する手順を試せます。",
+    "Claude Codeは、ほとんどの環境で Claude のサブスクリプションか Console アカウントが必要です。",
+    "Codexは ChatGPT のプランに含まれて使われます。無料プランの扱いは、今回の公式ページでは案内されていません。"
+  ],
+  "japan": {
+    "answer": "日本語の案内あり。提供地域は公式で確認",
+    "body": "Claude Code、Codex、Cursorには、日本語のページがあります。料金は$（ドル）表記で、Cursorの価格は税抜きで、税金は別途加算されます。Cursorのセルフサービスのプランでは、主要なクレジットカードとデビットカードで支払えます。円での料金表示や、日本でのすべての提供状況は、今回参照した公式ページでは案内されていません。購入前に各公式ページで確認するとよいでしょう。"
+  },
+  "tips": [
+    {
+      "title": "契約に必要なアカウントを先に確かめる",
+      "body": "Claude Codeは、Claudeのサブスクリプションか Console アカウントが必要です。Codex は ChatGPT のプランで使います。どのアカウントで使うかを、契約前に確認するとよいでしょう。"
+    },
+    {
+      "title": "機密情報や個人情報を入力しない",
+      "body": "パスワード、APIキー、個人情報、社外秘のコードを、AIツールに入力しないようにします。貼り付けたコードが、どのサービスに送られるかも確認しておくと安心です。"
+    },
+    {
+      "title": "AIの変更は差分を読んでから受け入れる",
+      "body": "AIが出した変更は、差分表示で一つずつ読みます。プロジェクトのテストや型チェックで確かめてから使うことが大切です。AIの出力をそのまま本番に入れないようにします。"
+    },
+    {
+      "title": "料金の単位と税抜き表記を確認する",
+      "body": "Cursor と Codex の料金は $ 表記で、Cursor の価格は税抜きです。Cursorは、価格が変更される場合があると案内しています。支払う前に、料金ページで最新の金額を確認するとよいでしょう。"
+    }
+  ],
+  "faq": [
+    {
+      "q": "Cursorは無料で使えますか？",
+      "a": "はい。Cursorには$0/月のFreeプランがあります。ただし、エージェントとチャットのリクエスト数に制限があります。料金は公式の料金ページで確認できます。"
+    },
+    {
+      "q": "Codexは月いくらですか？",
+      "a": "Codexは ChatGPT のプランに含まれます。Plusは$20/月で、毎週の集中的なコーディング作業に使える利用枠が含まれます。Proは$100からで、利用上限が高くなっています。"
+    },
+    {
+      "q": "Claude Codeはどこで使えますか？",
+      "a": "ターミナル、VS Code、JetBrains のIDE、デスクトップアプリ、Webで使えます。ほとんどの環境で、Claudeのサブスクリプションか Console アカウントが必要です。"
+    },
+    {
+      "q": "初心者はどれを選べばよいですか？",
+      "a": "ChatGPTのプランを使っているなら、Codexを試せます。無料で始めたいなら、Cursor の Free が候補になります。Claude Codeは、Claudeのサブスクリプションが前提になります。"
+    }
+  ],
+  "workMoney": {
+    "relevance": "high",
+    "points": [
+      "既存のプロジェクトを読み解く作業に、Cursor の Agent でコードベースの説明を頼めます。",
+      "無料で試すなら、Cursor Free で小さな修正を依頼し、差分を確認する流れを試せます。",
+      "有料プランに申し込む前に、利用枠と税抜きの料金を確かめることが大切です。"
+    ]
+  },
+  "match": "(?:Claude Code)|(?:Codex)|(?:Cursor)",
+  "products": [
+    "claude-opus-5-5",
+    "codex"
+  ],
+  "related": [],
+  "sources": [
+    {
+      "url": "https://code.claude.com/docs/ja/overview",
+      "title": "概要 - Claude Code Docs",
+      "checkedAt": "2026-11-16T12:55:13+09:00"
+    },
+    {
+      "url": "https://code.claude.com/docs/ja/quickstart",
+      "title": "クイックスタート - Claude Code Docs",
+      "checkedAt": "2026-11-16T12:55:13+09:00"
+    },
+    {
+      "url": "https://developers.openai.com/codex/quickstart",
+      "title": "Quickstart | ChatGPT Learn",
+      "checkedAt": "2026-11-16T12:55:13+09:00"
+    },
+    {
+      "url": "https://openai.com/ja-JP/codex/",
+      "title": "Codex | OpenAI の AI コーディングパートナー",
+      "checkedAt": "2026-11-16T12:55:13+09:00"
+    },
+    {
+      "url": "https://cursor.com/ja/pricing",
+      "title": "Cursor · 料金プラン",
+      "checkedAt": "2026-11-16T12:55:13+09:00"
+    },
+    {
+      "url": "https://cursor.com/ja/docs/get-started/quickstart",
+      "title": "Quickstart | Cursor Docs",
+      "checkedAt": "2026-11-16T12:55:13+09:00"
+    }
+  ],
+  "sourceHash": "6bd38e6dfcb8d06e",
+  "fact": {
+    "score": 78,
+    "model": "anthropic-api:claude-haiku-5-5"
+  },
+  "model": "anthropic-api:claude-haiku-5-5",
+  "promptVersion": 1,
+  "createdAt": "2026-11-16T12:55:13+09:00",
+  "updatedAt": "2026-11-16T12:55:13+09:00",
+  "checkedAt": "2026-11-16T12:55:13+09:00"
+}
