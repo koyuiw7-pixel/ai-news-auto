@@ -20522,6 +20522,19 @@
       "skipped": true,
       "url": "http://global.nissannews.com/ja-JP/releases/261112-01-j"
     },
+    "f47fa2b38a05e5b6": {
+      "at": "2026-11-16T23:46:52.760949+00:00",
+      "costUsd": 0.0015,
+      "intent": "breaking",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "score": 92,
+      "section": "public",
+      "slug": "hankyu-hanshin-hotels-karte-leak",
+      "url": "https://www.hankyu-hotel.com/topics/2026/GPDetailPage"
+    },
     "f4838a409f763256": {
       "at": "2026-11-16T15:42:43.036811+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（キャンペーン）",
@@ -23418,29 +23431,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-14T16:01:24.110429+00:00",
-      "attempt": 1,
-      "id": "efc204c97049a20e",
-      "kind": "broad",
-      "model": "strike:本文 5 文・要点 1 個",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 80.0,
-        "avg_sentence": 44.4,
-        "long_share": 0.111,
-        "max_paragraph": 151,
-        "paragraphs": 10,
-        "sentences": 18
-      },
-      "score": 86,
-      "source": "gov-online",
-      "title": "令和8年熊本地震非常災害復旧復興本部-令和8年11月13日",
-      "warnings": [
-        "要点の1つ目（「生活の再建では拠点避難所の整備や仮設住宅への入居…」）が一番のニュースになっていない。題名・リードの1文目と同じ中心の事実（年熊本地震・復旧復興本部・開催）を、リードとは違う言い方で1つ目に書く"
-      ]
-    },
     {
       "accepted": false,
       "at": "2026-11-14T16:02:32.209706+00:00",
@@ -31049,6 +31039,26 @@
       "warnings": [
         "見出しが45字（目安40字以内）。一覧・カードでは前半だけを出す"
       ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-16T23:46:42.325548+00:00",
+      "attempt": 1,
+      "id": "f47fa2b38a05e5b6",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 60.7,
+        "avg_sentence": 35.7,
+        "long_share": 0.118,
+        "max_paragraph": 121,
+        "paragraphs": 10,
+        "sentences": 17
+      },
+      "score": 92,
+      "source": "fast",
+      "title": "阪急阪神ホテルズの情報流出に関するお知らせ"
     }
   ],
   "short_text_retry": {},
