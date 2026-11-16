@@ -10989,14 +10989,6 @@
       "slug": "claude-text-watermark-api",
       "url": "https://platform.claude.com/docs/en/release-notes/overview.md#entry-2026-11-03"
     },
-    "63028db311b26f99": {
-      "at": "2026-11-02T16:02:18.527087+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "score": 100,
-      "section": "ai",
-      "slug": "google-warns-llmjacking-cloud-threats",
-      "url": "https://cloud.google.com/blog/topics/threat-intelligence/llmjacking-monetizing-compromised-cloud-models/"
-    },
     "63105f6c71562031": {
       "at": "2026-11-11T06:04:53.721419+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（委員会）",
@@ -11616,6 +11608,20 @@
       "reason": "prefilter: 価値の薄いお知らせ（割引）",
       "skipped": true,
       "url": "https://www.post.japanpost.jp/newsrelease/pressrelease/6245844421.html"
+    },
+    "6cab091c059af43f": {
+      "at": "2026-11-16T16:06:13.428158+00:00",
+      "breaking": true,
+      "costUsd": 0.1082,
+      "foreignAi": true,
+      "intent": "breaking",
+      "major": true,
+      "mix": "other",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "score": 88,
+      "section": "ai",
+      "slug": "nvidia-rubin-hpc-gpu-2028",
+      "url": "https://blogs.nvidia.com/blog/rubin-hpc/"
     },
     "6cb1b6c288e89f55": {
       "at": "2026-11-03T00:51:10.726264+00:00",
@@ -15995,14 +16001,6 @@
       "skipped": true,
       "url": "https://www.ipa.go.jp/jinzai/mitou/it/2027/koubo.html"
     },
-    "af6a467fdfe036d7": {
-      "at": "2026-11-02T16:02:48.986730+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "score": 100,
-      "section": "business",
-      "slug": "nli-electronic-waste-recycling-challenges",
-      "url": "https://www.nli-research.co.jp/topics_detail1/id=87238?site=nli"
-    },
     "af8523a04307cc10": {
       "at": "2026-11-06T05:41:47.941516+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（審議会）",
@@ -17170,12 +17168,6 @@
       "section": "ai",
       "slug": "devrev-self-service-agents",
       "url": "https://openai.com/index/devrev-enterprise-self-service"
-    },
-    "bf895ca3bdfe6537": {
-      "at": "2026-11-02T16:02:19.195181+00:00",
-      "reason": "prefilter: 価値の薄いお知らせ（会議）",
-      "skipped": true,
-      "url": "http://www.mlit.go.jp/report/press/kouku08_hh_000092.html"
     },
     "bfaf55726f703b66": {
       "at": "2026-11-07T19:12:12.172449+00:00",
@@ -23291,61 +23283,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-14T04:13:00.773410+00:00",
-      "attempt": 1,
-      "id": "b77453ec9305e591",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文「ブックオフグループホールディングスが提供する会員情報を管理するシステム」→ 元記事は「同社子会社が提供する」としており、提供主体の取り違え",
-        "「10月9日の公表時点と比べ、第3報では638万3,279人という具体的な数字が出ました」→ 10月9日に具体数がなかったとは元記事に書かれておらず、根拠がない",
-        "「最大で638万3,279人」→ 元記事は「638万3,279人の会員情報が漏えい」としており、「最大」は言い過ぎ",
-        "「今後の発表で明らかにされる見通し」「自分が対象かどうかを気にする読者が増えるとみられます」→ 元記事に無い見通し・推測",
-        "「個人向けの個別の案内や確認方法はまだ明らかにされていません」→ 元記事では言及がなく、「発表されていない」扱いとしては許容範囲だが根拠は示されていない"
-      ],
-      "readability": {
-        "avg_paragraph": 125.2,
-        "avg_sentence": 41.8,
-        "long_share": 0.083,
-        "max_paragraph": 139,
-        "paragraphs": 4,
-        "sentences": 12
-      },
-      "score": 72,
-      "source": "radar-official",
-      "title": "ScanNetSecurity 最新セキュリティ情報",
-      "warnings": [
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
-        "読みやすさ: 段落が長い（平均 125.2字・最長 139字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-14T04:13:27.820629+00:00",
-      "attempt": 1,
-      "id": "b77453ec9305e591",
-      "kind": "broad",
-      "model": "strike:本文 5 文・リード・要点 1 個",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 92.3,
-        "avg_sentence": 39.6,
-        "long_share": 0.143,
-        "max_paragraph": 131,
-        "paragraphs": 3,
-        "sentences": 7
-      },
-      "score": 88,
-      "source": "radar-official",
-      "title": "ScanNetSecurity 最新セキュリティ情報",
-      "warnings": [
-        "本文が見出しで始まっている（最初の段落は見出しなしで、だれに関係するか・関係しない人はどうかを書く）",
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
-        "要点の1つ目（「10月9日の公表に続く第3報として、具体的な影響…」）が一番のニュースになっていない。題名・リードの1文目と同じ中心の事実（会員情報流出・638・万人超・対象範囲）を、リードとは違う言い方で1つ目に書く"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-14T04:14:21.228922+00:00",
@@ -30898,6 +30835,54 @@
       "warnings": [
         "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（TTL・IAM）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-16T16:05:52.779553+00:00",
+      "attempt": 1,
+      "id": "6cab091c059af43f",
+      "kind": "ai",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [
+        "workMoney に投資助言・売買のすすめの言い回しがある（「今すぐ購入」）。一般的な情報と判断材料の提示に直す"
+      ],
+      "readability": {
+        "avg_paragraph": 96.6,
+        "avg_sentence": 42.5,
+        "long_share": 0.12,
+        "max_paragraph": 176,
+        "paragraphs": 11,
+        "sentences": 25
+      },
+      "score": null,
+      "source": "nvidia-blog",
+      "title": "NVIDIA Announces Rubin HPC — A New GPU to Accelerate Agents for Science, Enginee",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（HPC・CUDA・GTC）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-16T16:06:13.396351+00:00",
+      "attempt": 1,
+      "id": "6cab091c059af43f",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 94.8,
+        "avg_sentence": 43.5,
+        "long_share": 0.125,
+        "max_paragraph": 176,
+        "paragraphs": 11,
+        "sentences": 24
+      },
+      "score": 88,
+      "source": "nvidia-blog",
+      "title": "NVIDIA Announces Rubin HPC — A New GPU to Accelerate Agents for Science, Enginee",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（HPC・CUDA・GTC）"
       ]
     }
   ],
