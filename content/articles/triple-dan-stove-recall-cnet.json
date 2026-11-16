@@ -60,13 +60,13 @@
   "videoTitle": "トリプル暖ストーブ CDTM505WH（JAN 4571102093901）とBDTM601WHの回収",
   "publishedAt": "2026-11-16T21:53:44.223106+00:00",
   "generatedAt": "2026-11-16T21:56:03.662895+00:00",
-  "thumbnail": "https://ai-tech-express.jp/img/triple-dan-stove-recall-cnet-db446256.jpg",
+  "thumbnail": "https://ai-tech-express.jp/img/triple-dan-stove-recall-cnet-b54f14c1.jpg",
   "model": "anthropic-api:claude-haiku-5-5",
   "affiliates": [],
   "newsType": "research",
   "todayActions": [
-    "お持ちのトリプル暖ストーブの型番（CDTM505WHかBDTM601WH）と製造番号を確かめる",
-    "対象の製造番号なら、使用を止めてシィー・ネットの公式フォーム（24時間受付）から申し込む"
+    "お持ちのトリプル暖ストーブの型番と製造番号を、資料の範囲と照らして確かめる",
+    "対象の製造番号なら、使用を止めてシィー・ネットの公式フォームか電話で申し込む"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -102,28 +102,118 @@
   "searchTitle": "トリプル暖ストーブの対象は？　型番と製造番号で確かめる",
   "layout": "noir",
   "summaryLine": "シィー・ネットの電気ストーブ（CDTM505WH）で火災が起き、原因はシーズヒーター管の不具合と考えられている（調査中）",
+  "insight": [
+    {
+      "text": "CDTM505WHは製造番号C2400000～C24003038、BDTM601WHはC2400000～C24003009の範囲が対象で、範囲の外の番号は対象に入らない。",
+      "source": "https://www.caa.go.jp/notice/assets/consumer_safety_cms202_260206_01.pdf"
+    },
+    {
+      "text": "対象のJANコードはCDTM505WHが4571102093901、BDTM601WHが4571102094021。販売期間は2024年10月から2025年3月まで。",
+      "source": "https://www.caa.go.jp/notice/assets/consumer_safety_cms202_260206_01.pdf"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "株式会社シィー・ネット お問い合わせ窓口",
+      "url": "https://www.cnet-coltd.co.jp/info/20250724/index.html",
+      "source": "https://www.caa.go.jp/notice/assets/consumer_safety_cms202_260206_01.pdf",
+      "phone": "0120-357-191（フリーダイヤル）",
+      "hours": "月曜日～金曜日 10時～17時（土・日・祝日・年末年始は除く）",
+      "note": "24時間受付のオンライン交換お申込みフォームもあります。電話は受付時間内にかけてください。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "お持ちのトリプル暖ストーブの型番と製造番号を、資料の範囲と照らして確かめる",
+      "source": "https://www.caa.go.jp/notice/assets/consumer_safety_cms202_260206_01.pdf",
+      "steps": [
+        "本体の型番がCDTM505WHかBDTM601WHかを見る",
+        "製造番号が資料の範囲内かを確かめる"
+      ]
+    },
+    {
+      "action": "対象の製造番号なら、使用を止めてシィー・ネットの公式フォームか電話で申し込む",
+      "source": "https://www.caa.go.jp/notice/assets/consumer_safety_cms202_260206_01.pdf",
+      "steps": [
+        "まず使用を中止する",
+        "公式の交換お申込みフォーム（24時間受付）から申し込む",
+        "電話なら0120-357-191に月～金の10時～17時にかける"
+      ],
+      "url": "https://www.cnet-coltd.co.jp/info/20250724/index.html"
+    }
+  ],
+  "cause": {
+    "text": "原因は調査中と発表されています。ただ、シーズヒーター管（熱を出す管）の不具合により、発煙・発火に至ったものと考えられています。",
+    "status": "investigating",
+    "source": "https://www.caa.go.jp/notice/assets/consumer_safety_cms202_260206_01.pdf"
+  },
+  "worries": [
+    {
+      "q": "型番が同じなら、うちのストーブも対象？",
+      "a": "対象は型番と製造番号の組み合わせで決まります。CDTM505WHは製造番号C2400000～C24003038、BDTM601WHはC2400000～C24003009の範囲が対象です。",
+      "source": "https://www.caa.go.jp/notice/assets/consumer_safety_cms202_260206_01.pdf",
+      "action": "本体の型番と製造番号を確かめ、範囲内かを見る。"
+    },
+    {
+      "q": "今回の回収は、どのくらい進んでいるの？",
+      "a": "回収率は49.4％（2025年10月31日時点）です。資料の数字は公表日より前の時点のものです。",
+      "source": "https://www.caa.go.jp/notice/assets/consumer_safety_cms202_260206_01.pdf",
+      "action": "まだ交換を受けていなければ、対象かを確かめて申し込む。"
+    },
+    {
+      "q": "使い続けても大丈夫？",
+      "a": "まだ回収・交換を受けていない人は、直ちに使用を中止し、速やかに問い合わせ先へ連絡するよう案内されています。原因は調査中です。",
+      "source": "https://www.caa.go.jp/notice/assets/consumer_safety_cms202_260206_01.pdf",
+      "action": "対象の番号なら、今すぐ使用を止めて公式フォームか電話で申し込む。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "製造番号が範囲内だったら、いつ申し込む？",
+      "situation": "製造番号が対象の範囲内だった",
+      "recommend": "使用をやめて、すぐ申し込む",
+      "reason": "資料は直ちに使用を中止し、速やかに連絡するよう案内している。原因は調査中だが、発煙・発火の不具合が考えられるとされている。",
+      "source": "https://www.caa.go.jp/notice/assets/consumer_safety_cms202_260206_01.pdf"
+    },
+    {
+      "question": "型番が同じでも、使い続けてよい？",
+      "situation": "型番は同じだが製造番号が範囲外",
+      "recommend": "今回の対象ではないと読み取れる",
+      "reason": "対象は型番ごとに資料が示す製造番号の範囲で決まる。範囲外なら今回の回収・交換の対象には入らない。",
+      "source": "https://www.caa.go.jp/notice/assets/consumer_safety_cms202_260206_01.pdf"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "本物かどうかより、製造番号の範囲を見る",
+    "cause": "なぜ火が出たのか、いま分かっていること",
+    "steps": "今日、ストーブの番号を確かめる手順",
+    "desk": "困ったときの問い合わせ先",
+    "worries": "使い続けて平気？回収はどこまで進んだ？",
+    "guide": "対象だったときの動き方を決める"
+  },
+  "depthAt": "2026-11-16T22:17:09+00:00",
   "imageCredit": {
     "kind": "stock",
-    "title": "Wall-fixed kerosene heater",
+    "title": "Japanese kerosene heater with tank",
     "creator": "Douglas P Perkins ( Douglaspperkins ( talk ))",
     "creatorUrl": "",
     "license": "CC BY 3.0",
     "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
     "provider": "Wikimedia Commons",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Wall-fixed_kerosene_heater.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Japanese_kerosene_heater_with_tank.jpg",
     "query": "kerosene heater",
-    "at": "2026-11-16T22:11:11+00:00"
+    "at": "2026-11-16T22:20:38+00:00"
   },
   "imageFocus": {
-    "x": 0.489,
-    "y": 0.502,
+    "x": 0.495,
+    "y": 0.433,
     "box": [
       0.0,
-      0.067,
-      0.978,
-      0.938
+      0.0,
+      0.991,
+      0.867
     ],
     "ar": 1.3333,
-    "src": "https://ai-tech-express.jp/img/triple-dan-stove-recall-cnet-db446256.jpg"
+    "src": "https://ai-tech-express.jp/img/triple-dan-stove-recall-cnet-b54f14c1.jpg"
   }
 }
