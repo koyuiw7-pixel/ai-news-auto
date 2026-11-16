@@ -62,13 +62,14 @@
   "videoTitle": "縦型ショートドラマの課金トラブル2026、解約できない請求の確かめ方",
   "publishedAt": "2026-11-14T12:26:33+00:00",
   "generatedAt": "2026-11-16T00:53:10.512159+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/short-drama-subscription-trouble-check-figure-25df1ef0.jpg",
   "model": "anthropic-api:claude-haiku-5-5",
   "affiliates": [],
   "newsType": "policy",
   "todayActions": [
-    "クレジットカードとキャリア決済の明細で、心当たりのない引き落としが続いていないか確かめる",
-    "iPhoneは「サブスクリプション」、Androidは定期購入の一覧を開いて契約が残っていないか確かめる"
+    "iPhoneは「設定」で自分の名前をタップし、「サブスクリプション」で契約を確かめる",
+    "Appleの購入履歴で、ドラマアプリの購入や請求が残っていないか確かめる",
+    "クレジットカードとキャリア決済の明細で、毎月の定額の引き落としを確かめる"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -127,5 +128,160 @@
   "sourcePublishedAt": "2026-11-14T12:26:33+00:00",
   "detectedAt": "2026-11-16T00:55:04+00:00",
   "layout": "noir",
-  "summaryLine": "2026年9月までの1年間に、全国52の消費生活センターへ少なくとも**211件**の相談が寄せられた。"
+  "summaryLine": "2026年9月までの1年間に、全国52の消費生活センターへ少なくとも**211件**の相談が寄せられた。",
+  "insight": [
+    {
+      "text": "トライアルを更新したくないなら、トライアルが終了する24時間以上前に解約してください。",
+      "source": "https://support.apple.com/HT202039"
+    },
+    {
+      "text": "キャンセルボタンが表示されない場合や、期限切れのメッセージが赤字で表示される場合、そのサブスクリプションは解約済みです。",
+      "source": "https://support.apple.com/HT202039"
+    },
+    {
+      "text": "家族のApple Accountで契約したサブスクリプションは、自分では解約できません。レシートに記載された家族に解約を依頼します。",
+      "source": "https://support.apple.com/HT202039"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "消費者ホットライン（188）",
+      "url": "https://www.caa.go.jp/policies/policy/local_cooperation/local_consumer_administration/hotline/",
+      "source": "https://www.caa.go.jp/policies/policy/local_cooperation/local_consumer_administration/hotline/",
+      "phone": "188",
+      "note": "郵便番号等を入力すると、お近くの消費生活相談窓口を案内してもらえます。相談は無料ですが、窓口につながった時点から通話料がかかります。"
+    },
+    {
+      "name": "国民生活センター バックアップ相談",
+      "url": "https://www.consumer.go.jp/pio?id=pio_consult_backup&sysparm_article=KB0010086",
+      "source": "https://www.caa.go.jp/policies/policy/local_cooperation/local_consumer_administration/hotline/",
+      "howTo": [
+        "相談窓口等について",
+        "バックアップ相談(国民生活センター)"
+      ],
+      "phone": "03-3446-0999",
+      "hours": "平日10時～16時",
+      "note": "消費者ホットラインが話中でつながらない場合に利用できます。おかけ間違いのないよう番号を確認してください。"
+    },
+    {
+      "name": "Apple 購入履歴（reportaproblem.apple.com）",
+      "url": "https://reportaproblem.apple.com/?s=6",
+      "source": "https://support.apple.com/ja-jp/118212",
+      "howTo": [
+        "reportaproblem.apple.com にアクセス",
+        "Apple Accountにサインイン",
+        "購入履歴"
+      ],
+      "note": "正確な額が分かっていれば、その額で検索できます。覚えのない購入は、家族が購入した可能性もあります。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "iPhoneは「設定」で自分の名前をタップし、「サブスクリプション」で契約を確かめる",
+      "source": "https://support.apple.com/HT202039",
+      "steps": [
+        "「設定」で自分の名前をタップ",
+        "「サブスクリプション」をタップ",
+        "対象をタップし「サブスクリプションをキャンセル」の有無を見る"
+      ],
+      "url": "https://support.apple.com/HT202039"
+    },
+    {
+      "action": "Appleの購入履歴で、ドラマアプリの購入や請求が残っていないか確かめる",
+      "source": "https://support.apple.com/ja-jp/118212",
+      "steps": [
+        "reportaproblem.apple.com にアクセス",
+        "Apple Accountにサインイン",
+        "購入履歴で覚えのない購入がないか見る"
+      ],
+      "url": "https://reportaproblem.apple.com/?s=6"
+    },
+    {
+      "action": "クレジットカードとキャリア決済の明細で、毎月の定額の引き落としを確かめる",
+      "source": "https://www.kokusen.go.jp/mimamori/mj_mailmag/mj-shinsen545.html",
+      "steps": [
+        "明細で毎月の定額の引き落としを探す",
+        "心当たりのない請求がないか見る"
+      ]
+    }
+  ],
+  "cause": {
+    "text": "縦型ショートドラマ市場は中国で急成長し、ここ数年で世界に拡大しました。国民生活センターによると、中国語や英語表記のため解約方法が分からなかったり、解約手続きの案内が見つからなかったりする例があります。",
+    "status": "background",
+    "source": "https://www.okinawatimes.co.jp/articles/-/1966388"
+  },
+  "worries": [
+    {
+      "q": "アプリを消したら、もう課金されない？",
+      "a": "国民生活センターは、アプリのアイコンを削除したり、アプリをアンインストールするだけでは解約とはならないと案内しています。事業者の定めた方法で解約することが必要です。",
+      "source": "https://www.kokusen.go.jp/mimamori/mj_mailmag/mj-shinsen545.html",
+      "action": "アプリを消す前に、ストアの一覧で契約が残っていないか確かめる。"
+    },
+    {
+      "q": "身に覚えのない引き落としは、どこで確かめる？",
+      "a": "国民生活センターは、クレジットカードやキャリア決済などの明細を毎月確認するよう勧めています。利用していないサブスクの請求に気付くためです。",
+      "source": "https://www.kokusen.go.jp/mimamori/mj_mailmag/mj-shinsen545.html",
+      "action": "今月のカードとキャリア決済の明細を開き、心当たりのない定額の引き落としを探す。"
+    },
+    {
+      "q": "iPhoneで契約しているか、どこで見られる？",
+      "a": "「設定」でユーザ名をタップし、「サブスクリプション」をタップすると、サブスクリプションの一覧を開くことができます。",
+      "source": "https://support.apple.com/HT202039",
+      "action": "iPhoneの「設定」で自分の名前をタップし、「サブスクリプション」の一覧で契約を確かめる。"
+    },
+    {
+      "q": "解約の方法が分からないときは、どこに相談する？",
+      "a": "国民生活センターは、困ったときは消費者ホットライン188に相談するよう案内しています。相談は無料ですが、窓口につながった時点から通話料がかかります。",
+      "source": "https://www.caa.go.jp/policies/policy/local_cooperation/local_consumer_administration/hotline/",
+      "action": "消費者ホットライン188に電話して、お住まいの地域の相談窓口を案内してもらう。",
+      "actionSource": "https://www.kokusen.go.jp/mimamori/mj_mailmag/mj-shinsen545.html"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "無料お試しを続けるか、解約するか迷う",
+      "situation": "無料お試し中で、まだ見ていない",
+      "recommend": "お試し期間の終わる日を確かめてから決める",
+      "reason": "Appleのトライアルは、終了の24時間以上前に解約するよう案内されています。期限を過ぎると、更新を止めたい場合に間に合わないおそれがあります。",
+      "source": "https://support.apple.com/HT202039"
+    },
+    {
+      "question": "覚えのない請求、解約と返金どちらを先にする？",
+      "situation": "覚えのない定額の請求が続いている",
+      "recommend": "解約と返金は別々に確かめる",
+      "reason": "解約は今後の請求を止める手続きです。Appleの購入履歴のページには、返金の対象となる場合はリクエストできると書かれています。過去の請求の扱いは別に確かめます。",
+      "source": "https://support.apple.com/ja-jp/118212"
+    }
+  ],
+  "depthHeadings": {
+    "cause": "なぜ解約トラブルが増えているのか",
+    "steps": "今日、明細とiPhoneの一覧で確かめること",
+    "desk": "困ったときに電話・確認できる窓口",
+    "worries": "アプリを消しただけで大丈夫？",
+    "guide": "無料お試しと覚えのない請求、どちらから手を付けるか"
+  },
+  "depthAt": "2026-11-16T01:06:57+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "211件",
+    "label": "1年",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-16T01:07:27+00:00"
+  },
+  "imageFocus": {
+    "x": 0.433,
+    "y": 0.524,
+    "box": [
+      0.0,
+      0.048,
+      0.866,
+      1.0
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/short-drama-subscription-trouble-check-figure-25df1ef0.jpg"
+  }
 }
