@@ -59,8 +59,8 @@
   "affiliates": [],
   "newsType": "research",
   "todayActions": [
-    "本体背面の型番を確かめ、A1257ならSN：のあとの16桁のシリアルナンバーを控える。",
-    "対象の製品で回収を受けていないなら、使用を中止し、0120-775-171（9時から17時）に連絡する。"
+    "A1257の本体背面にある16桁のシリアルナンバーを控え、フォームで判定を受ける",
+    "対象の製品で回収を受けていないなら、使用を中止して受付窓口に電話する"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -121,5 +121,106 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/anker-power-bank-recall-a1647-a1642-figure-3038bd1c.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "ふるさと納税の返礼品名は「Anker 大容量モバイルバッテリー 10000mAh 川崎限定モデル」で、A1257の製品に付けられています。",
+      "source": "https://corp.ankerjapan.com/posts/555"
+    },
+    {
+      "text": "消費者庁の公表では、アンカーの受付は「土・日・祝日を除く」9時～17時とされています。アンカーのお知らせは「土日祝含む」と書いています。",
+      "source": "https://www.caa.go.jp/notice/assets/consumer_safety_cms202_260206_01.pdf"
+    },
+    {
+      "text": "回収対象の製品は販売されている国により異なり、ご購入された国での発表情報を確認するよう書かれています。",
+      "source": "https://corp.ankerjapan.com/posts/555"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "アンカー・ジャパン株式会社 受付窓口",
+      "url": "https://corp.ankerjapan.com/posts/555",
+      "source": "https://corp.ankerjapan.com/posts/555",
+      "phone": "0120-775-171",
+      "hours": "9:00-17:00 土日祝含む",
+      "note": "フリーダイヤルです。消費者庁の公表では受付は「土・日・祝日を除く」とされているので、週末に電話する前に確かめてください。"
+    },
+    {
+      "name": "オンライン受付フォーム",
+      "url": "https://www.ankerjapan.com/pages/202506-support",
+      "source": "https://corp.ankerjapan.com/posts/555",
+      "hours": "24時間",
+      "note": "シリアルナンバーを入力すると、対象かどうかを確かめられます。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "A1257の本体背面にある16桁のシリアルナンバーを控え、フォームで判定を受ける",
+      "source": "https://corp.ankerjapan.com/posts/555",
+      "steps": [
+        "本体背面の「SN：」を探す",
+        "「SN：」のあとのAから始まる16桁を控える",
+        "オンライン受付フォームで入力する"
+      ],
+      "url": "https://www.ankerjapan.com/pages/202506-support"
+    },
+    {
+      "action": "対象の製品で回収を受けていないなら、使用を中止して受付窓口に電話する",
+      "source": "https://corp.ankerjapan.com/posts/555",
+      "steps": [
+        "製品の使用をやめる",
+        "0120-775-171に電話する",
+        "受付は9時から17時まで"
+      ],
+      "url": "https://corp.ankerjapan.com/posts/555"
+    }
+  ],
+  "cause": {
+    "text": "委託先のセル製造サプライヤーが、Ankerグループの品質基準を満たさない部材を無断で使っていたことが、追加の調査で分かりました。セル内部で内部短絡が起きる可能性があるため、回収を決めたと説明されています。",
+    "status": "stated",
+    "source": "https://corp.ankerjapan.com/posts/555"
+  },
+  "worries": [
+    {
+      "q": "火災はもう起きているの？",
+      "a": "消費者庁は2026年2月6日、アンカー・ジャパンが輸入したリチウム電池内蔵充電器の火災を公表しました。",
+      "source": "https://www.caa.go.jp/notice/assets/consumer_safety_cms202_260206_01.pdf",
+      "action": "対象の製品を持っていて回収を受けていないなら、直ちに使用を中止し、受付窓口に連絡する",
+      "actionSource": "https://corp.ankerjapan.com/posts/555"
+    },
+    {
+      "q": "回収になったら、交換と返金のどちらになる？",
+      "a": "ページでは、回収と交換・返金を実施すると案内されています。対象と判別されたら、オンライン受付フォームの案内に沿って手続きを進めます。",
+      "source": "https://corp.ankerjapan.com/posts/555",
+      "action": "オンライン受付フォームで、シリアルナンバーを入力して対象か確かめる"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "ふるさと納税でもらった製品も対象？",
+      "situation": "返礼品名が「川崎限定モデル」と書かれている",
+      "recommend": "返礼品名を確かめ、フォームで判定を受ける",
+      "reason": "ページでは、この返礼品名はA1257の製品について示されています。A1257は一部の製品だけが対象なので、背面の16桁のシリアルナンバーを入力して判定を受けてください。",
+      "source": "https://corp.ankerjapan.com/posts/555"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "ふるさと納税の返礼品や、国ごとの発表も確かめて",
+    "cause": "なぜ回収になったのか、分かっていること",
+    "steps": "今日やること、型番とシリアルの確かめ方",
+    "desk": "電話とフォー厶の問い合わせ先",
+    "worries": "似た製品や火災、返金はどうなる？",
+    "guide": "ふるさと納税の製品は、どう判定する？"
+  },
+  "depthAt": "2026-11-16T22:33:07+00:00",
+  "updatedAt": "2026-11-16T22:33:07+00:00",
+  "updates": [
+    {
+      "at": "2026-11-16T22:33:07+00:00",
+      "kind": "facts",
+      "title": "公式の資料をもとに、「なるほどの要点」・「公式の窓口」・「今日やること」・「理由」・「よくある不安」・「判断の目安」を追記しました",
+      "sourceUrl": "https://corp.ankerjapan.com/posts/555",
+      "sourceName": "アンカー・ジャパン株式会社「弊社モバイルバッテリー4製品に関するお詫びと自主回収のお知らせ」（2025年6月26日公開、2026年10月8日更新）"
+    }
+  ]
 }
