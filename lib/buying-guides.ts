@@ -50,6 +50,44 @@ export type BuyingGuideProduct = {
   /** 診断チャートの絞り込みに使う当てはまり（quiz の key → value の一覧） */
   fit?: Record<string, string[]>;
   sources?: { label: string; url: string }[];
+  /**
+   * サイソクの運営者が自分で運営しているサービス（提携先ではない）。名前の横に「PR」の札を出す。
+   * リンクは公式サイトへの普通のリンク（nofollow）で、提携リンクのクリック計測には入れない（2026-11-16 台帳 W46）
+   */
+  own?: boolean;
+};
+
+/** 表とは別の読み物の段（背景・サイソクの見方など）。place で置き場所を決める */
+export type GuideNote = {
+  id: string;
+  /** top＝導入のすぐ下 / afterTable＝比較表の下 / afterFit＝選び方の表の下 */
+  place: "top" | "afterTable" | "afterFit";
+  /** 見出しの青い札（例: 背景・見方） */
+  label: string;
+  title: string;
+  body: string[];
+  /** 小見出しつきの箇条（body の下に出す） */
+  points?: { title: string; body: string }[];
+  /** points の下に出す締めの文 */
+  closing?: string;
+  /** 段の終わりに出す公式サイトへのリンク（提携リンクではない。rel は nofollow） */
+  link?: { label: string; url: string };
+  source?: { label: string; url: string };
+};
+
+/** ページに置く動画（/video/<名前>。cloudflare/video.ts が KV から配る。components/ArticleVideo.tsx で押したときに再生） */
+export type GuideVideo = {
+  label: string;
+  title: string;
+  src: string;
+  poster?: string;
+  seconds?: number;
+  /** 音を消した状態で始める（音楽つきの紹介動画） */
+  muted?: boolean;
+  /** 動画の下の説明（何が本物で何が作り物か） */
+  caption: string;
+  /** この id の読み物の段（notes）の中に置く。無ければページの下に動画だけの段を出す */
+  inNote?: string;
 };
 
 /**
@@ -135,7 +173,27 @@ export type BuyingGuide = {
   /** 提携商品のボタンの文（省略時は「公式ストアで見る」） */
   sponsoredCta?: string;
   /** 向いている人・向いていない人の表（状況 → おすすめ → 理由 → 出典）。読者の得を先に書く */
-  fitTable?: { situation: string; fit: "suits" | "not"; recommendation: string; reason: string; source: { label: string; url: string } }[];
+  fitTable?: { situation: string; fit?: "suits" | "not"; recommendation: string; reason: string; source?: { label: string; url: string } }[];
+  /** fitTable の見出し・注記・置き場所（省略時は「向いている人・向いていない人」を比較表の上に出す） */
+  fitTableTitle?: string;
+  fitTableNote?: string;
+  /** 表の見出し3つ（省略時は「あなたの状況・おすすめ・理由」） */
+  fitTableHeads?: [string, string, string];
+  fitTablePlace?: "afterTable";
+  /** 比較表の見出しと注記（省略時は「比較表」） */
+  tableTitle?: string;
+  tableNote?: string;
+  /** 商品ごとの「注意点」の見出しの言い換え（例: 申込みの前に確かめること） */
+  limitsLabel?: string;
+  /**
+   * サイソクの運営者が自分のサービスを扱うページの、冒頭の1行（「PR」の札といっしょに出す）。
+   * 自分の商品を第三者のように紹介しないため（ステルスマーケティングの規制）。2026-11-16 オーナー決定・台帳 W46。
+   * これがあるページには提携先（partner）の商品を並べない（tests/test_own_product_page.cjs）
+   */
+  ownerNote?: string;
+  /** 表とは別の読み物の段（背景・サイソクの見方など） */
+  notes?: GuideNote[];
+  video?: GuideVideo;
   /** 公的機関の案内（総務省・資源エネルギー庁など。開けることを確かめた URL だけ） */
   officialGuidance?: { label: string; url: string; note: string }[];
   /**

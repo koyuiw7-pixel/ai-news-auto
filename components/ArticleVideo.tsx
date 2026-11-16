@@ -8,15 +8,29 @@ import type { ArticleVideoInfo } from "@/lib/articles";
  * 最初はポスター画像（遅延読み込み・16:9 の場所を先に取る）と再生ボタンだけ。押したときに初めて <video> を置いて再生する
  * （LCP・通信量に響かない。音つきの自動再生はしない）。動画は /video/ から Range つきで届く（cloudflare/video.ts）
  */
-export default function ArticleVideo({ video }: { video: ArticleVideoInfo }) {
+export default function ArticleVideo({
+  video,
+  caption,
+  muted = false,
+  name,
+}: {
+  video: ArticleVideoInfo;
+  /** 動画の下の説明を差し替える（比較ガイドの紹介動画。省略時は「動画で解説（約◯秒）」） */
+  caption?: string;
+  /** 音を消した状態で始める（操作の欄から音を出せる） */
+  muted?: boolean;
+  /** 再生ボタンの読み上げに使う動画の呼び名（省略時は「動画で解説」） */
+  name?: string;
+}) {
   const [playing, setPlaying] = useState(false);
   const seconds = video.seconds ? Math.round(video.seconds) : 0;
-  const label = seconds ? `動画で解説（約${seconds}秒）` : "動画で解説";
+  const base = name ?? "動画で解説";
+  const label = seconds ? `${base}（約${seconds}秒）` : base;
   return (
     <figure className="mt-6">
       <div className="relative aspect-video overflow-hidden rounded-xl bg-surface">
         {playing ? (
-          <video src={video.src} poster={video.poster || undefined} controls autoPlay playsInline preload="auto" className="size-full bg-ink" />
+          <video src={video.src} poster={video.poster || undefined} controls autoPlay muted={muted} playsInline preload="auto" className="size-full bg-ink" />
         ) : (
           <button type="button" onClick={() => setPlaying(true)} aria-label={`${label}を再生する`} className="group absolute inset-0 block size-full">
             {video.poster ? (
@@ -31,9 +45,9 @@ export default function ArticleVideo({ video }: { video: ArticleVideoInfo }) {
           </button>
         )}
       </div>
-      <figcaption className="mt-2 text-meta text-muted">
-        {label}
-        {video.credit ? `・音声 ${video.credit}` : ""}
+      <figcaption className={`mt-2 text-muted ${caption ? "text-note leading-[1.75]" : "text-meta"}`}>
+        {caption ?? label}
+        {!caption && video.credit ? `・音声 ${video.credit}` : ""}
       </figcaption>
     </figure>
   );

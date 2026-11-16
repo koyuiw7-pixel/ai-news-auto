@@ -233,8 +233,9 @@ export function CompareTable({
           </tbody>
         </table>
       </div>
-      <p className="mt-2 px-4 text-meta text-muted sm:px-0">
+      <p className="mt-2 px-4 text-note leading-[1.75] text-muted sm:px-0">
         {view.checkedLabel}。「公式サイトで確認」は公式ページに記載が見つからなかった項目です。スマホでは表を横にスクロールできます。
+        {view.guide.tableNote ? ` ${view.guide.tableNote}` : ""}
       </p>
     </div>
   );
@@ -317,7 +318,21 @@ export function Disclosure({ view, className = "" }: { view: GuideView; classNam
   return (
     <p className={`text-note leading-[1.75] text-muted ${className}`}>
       {/* 2026-11-11 オーナー決定（台帳 W40）: 「本ページはプロモーションを含みます」は出さない。提携先の商品には各行の「PR」の札 */}
+      {/* 自社サービスを扱うページ（ownerNote）は、冒頭の OwnerNote が代わりに出る（台帳 W46） */}
       編集部が実際に使って評価したものではありません。
+    </p>
+  );
+}
+
+/**
+ * サイソクの運営者が自分のサービスを扱うページの冒頭の表示（運営が同じことの1行）。
+ * 2026-11-16 オーナー決定（台帳 W46）: 自分の商品を第三者のように紹介しないため、題名より前に文章で書く。
+ * 提携の広告ではないので「PR」の札は付けない（消費者庁の運用基準 第3の2(1)イ「文章による表示」）。この1行は消さない
+ */
+export function OwnerNote({ note, className = "" }: { note: string; className?: string }) {
+  return (
+    <p data-owner-note className={`border-l-2 border-ink pl-3 text-note leading-[1.75] text-ink ${className}`}>
+      {note}
     </p>
   );
 }
