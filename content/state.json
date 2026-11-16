@@ -5861,6 +5861,20 @@
       "slug": "esther-mahlangu-google-arts-culture-veo",
       "url": "https://blog.google/company-news/outreach-and-initiatives/arts-culture/esther-mahlangu/"
     },
+    "1515a8b73292efb6": {
+      "at": "2026-11-16T17:01:55.238728+00:00",
+      "breaking": true,
+      "costUsd": 0.1132,
+      "foreignAi": true,
+      "intent": "breaking",
+      "major": true,
+      "mix": "other",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "score": 93,
+      "section": "ai",
+      "slug": "admob-ask-admob-ai-agent-tools",
+      "url": "https://blog.google/products/publisher-connections/new-google-admob-tools/"
+    },
     "1518f82e6c28ebe0": {
       "at": "2026-11-04T15:34:28.836212+00:00",
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
@@ -23363,29 +23377,6 @@
   },
   "quality_log": [
     {
-      "accepted": true,
-      "at": "2026-11-14T05:03:07.583996+00:00",
-      "attempt": 0,
-      "id": "9d2f530326e313a2da28a01ba7f92a68634e18cb",
-      "kind": "trend",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 76.1,
-        "avg_sentence": 40.1,
-        "long_share": 0.0,
-        "max_paragraph": 140,
-        "paragraphs": 10,
-        "sentences": 19
-      },
-      "score": 93,
-      "source": "trends",
-      "title": "全国高校サッカー選手権",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（TBS・NEWS・DIG）"
-      ]
-    },
-    {
       "accepted": false,
       "at": "2026-11-14T05:38:25.278101+00:00",
       "attempt": 1,
@@ -30967,6 +30958,30 @@
         "見出しが63字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（TPU）",
         "読みやすさ: 文が長い（1文の平均 48.6字・60字超の文が 23% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-16T17:01:55.201254+00:00",
+      "attempt": 1,
+      "id": "1515a8b73292efb6",
+      "kind": "ai",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 84.1,
+        "avg_sentence": 36.8,
+        "long_share": 0.094,
+        "max_paragraph": 187,
+        "paragraphs": 14,
+        "sentences": 32
+      },
+      "score": 93,
+      "source": "google-blog-all",
+      "title": "New Google AdMob AI tools help app creators build, fix, and grow faster",
+      "warnings": [
+        "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（MCP）"
       ]
     }
   ],
