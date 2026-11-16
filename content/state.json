@@ -212,6 +212,7 @@
     "2a7023fc1ad9136f45efec22a1101b821a83b9ba": 2,
     "2b57e89591f7666c13a41c92e40d16e6f753a561": 2,
     "2bc84d195319cbe6532cbe247a3bb6f7e6a8f09d": 2,
+    "2bd90fbeee7462ad8be0a8977bee030bbb5f7b68": 1,
     "2bdb5c600057609ed7ab475285e3d65a22c608a1": 2,
     "2c10140229718950f041634a27e214d4169b6a7b": 2,
     "2c2284d5ae67603e302e8a12a27ce42781cff47e": 1,
@@ -398,6 +399,7 @@
     "655c70537e9760e1aacfe7f39319368c0ef34649": 2,
     "65801f07d8d68e8bc538b5d28904c7435a9f763d": 2,
     "6582b0fc4062995020e55b63bc9a09ba62364505": 1,
+    "6606acb1a3ee23015267faf1cf53ae294e28f722": 1,
     "665120704c9552accd5357e47ed8b3ae5f79af87": 2,
     "667ba6d8f1e369cabacb6df9425342b7af521ad1": 2,
     "66a6de22246c23991688d8bf6903d598b0b12b94": 2,
@@ -497,6 +499,7 @@
     "8191e2e5c29e5658cc911e33d1e35ce981438398": 2,
     "819ae5a0f5f4c36aac04af97f5e98cca773a82df": 2,
     "82000e706599d1091bf23d34402d1008715149be": 2,
+    "8223ce5f087389f85d6a15b45d5d061026f42c00": 1,
     "82417086a24c1dcce0c9f23ac82e4df20bdb3097": 2,
     "82a9a033893304c240d92ea7ef9b790b0de1643f": 2,
     "82be940e045b46eb20e2e36082e5e7b15c41e1d6": 2,
@@ -682,6 +685,7 @@
     "c33692848242e7ea459798450c8471ac1b9139e8": 2,
     "c38d4ddecf289e25b961198717a6c52258f58961": 2,
     "c3bf1240611c575f8b33d6f74a1191b0d8ee5456": 2,
+    "c3c65de1b4d8d06888dc550a6e0dc50d353750db": 1,
     "c4333c776bb3d306e7643f563479c7247b71aa13": 2,
     "c474a5f0afa5b2724d47651aad822a2a2318df7a": 2,
     "c54bbd96db587ea78700da57fbccbbd20a7b225d": 2,
@@ -12717,6 +12721,12 @@
       "skipped": true,
       "url": "https://news.yahoo.co.jp/articles/d659f3fa9143394234e5315e21cfb6b4e541b6e1"
     },
+    "7d06b485308dd5acde4ae77db6de40fc71f400da": {
+      "at": "2026-11-16T08:46:42.717222+00:00",
+      "reason": "trend: 公式の発表で記事にした（yoshinofuji-onosato-sumo-kyushu-basho）",
+      "skipped": true,
+      "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10289233"
+    },
     "7d35dbd94e2102ad1a84e0e9aa1ee16566a94062": {
       "at": "2026-11-14T19:04:30.305269+00:00",
       "kind": "trend",
@@ -17514,6 +17524,20 @@
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・暮らしの交通/天気/値上げ/障害/給付/発売・日本のスポーツのどれでもない）",
       "skipped": true,
       "url": "https://www.city.yokohama.lg.jp/city-info/koho-kocho/press/bousai/2026/11020001.html"
+    },
+    "c6636c5ed8743eb5": {
+      "at": "2026-11-16T08:46:42.717011+00:00",
+      "costUsd": 0.0099,
+      "intent": "neutral",
+      "kind": "trend",
+      "mix": "",
+      "model": "gemini-3.5-flash",
+      "score": 88,
+      "section": "sports",
+      "slug": "yoshinofuji-onosato-sumo-kyushu-basho",
+      "trendKeyword": "義ノ富士",
+      "trendLane": true,
+      "url": "https://topics.smt.docomo.ne.jp/latestnews/keywords/08cf3970f743b2fbebadfbfb4a5fe6ddd9f59f93944bcf20b59ecb19327baa9a"
     },
     "c664ceeed1b18caf": {
       "at": "2026-11-04T00:40:45.175194+00:00",
@@ -23074,29 +23098,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-13T16:37:32.136474+00:00",
-      "attempt": 1,
-      "id": "9dfd01604cb58f6e",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 108.0,
-        "avg_sentence": 64.8,
-        "long_share": 0.6,
-        "max_paragraph": 157,
-        "paragraphs": 3,
-        "sentences": 5
-      },
-      "score": 90,
-      "source": "bousai",
-      "title": "※令和８年11月13日開催の「防災立国シンポジウム２０２６」について システム障害の影響により、オンライン視聴URLのメールが届いていない等、オンライン配信が視",
-      "warnings": [
-        "読みやすさ: 文が長い（1文の平均 64.8字・60字超の文が 60% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-13T16:37:50.097699+00:00",
@@ -30654,6 +30655,29 @@
       "warnings": [
         "初めて出たところで言い換えていない略語（JFA・MIZUHO・THE）",
         "本文が見出しで始まっている（最初の段落は見出しなしで、だれに関係するか・関係しない人はどうかを書く）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-16T08:46:33.826171+00:00",
+      "attempt": 1,
+      "id": "c6636c5ed8743eb5",
+      "kind": "broad",
+      "model": "gemini-3.5-flash",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 100.4,
+        "avg_sentence": 42.6,
+        "long_share": 0.182,
+        "max_paragraph": 199,
+        "paragraphs": 14,
+        "sentences": 33
+      },
+      "score": 88,
+      "source": "radar-official",
+      "title": "行司関連ニュース｜dメニューニュース（NTTドコモ）",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（ABEMA）"
       ]
     }
   ],
