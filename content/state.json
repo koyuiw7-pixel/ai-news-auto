@@ -5112,6 +5112,20 @@
       "skipped": true,
       "url": "https://www.cfa.go.jp/press/d6e7bdab-eeb2-42e3-9aaa-661de2587e6e"
     },
+    "0bc322583e6f0775": {
+      "at": "2026-11-16T14:08:09.464251+00:00",
+      "breaking": true,
+      "costUsd": 0.1074,
+      "foreignAi": true,
+      "intent": "breaking",
+      "major": true,
+      "mix": "other",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "score": 93,
+      "section": "ai",
+      "slug": "ask-maps-holiday-travel-features",
+      "url": "https://blog.google/products-and-platforms/products/maps/ask-maps-holiday-travel-features-2026/"
+    },
     "0c1cf97223ad220b": {
       "at": "2026-11-07T17:12:39.075551+00:00",
       "model": "anthropic-api:claude-haiku-5-5",
@@ -23262,59 +23276,6 @@
   "quality_log": [
     {
       "accepted": true,
-      "at": "2026-11-13T23:16:31.552319+00:00",
-      "attempt": 0,
-      "id": "3ae6086871336dbb",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 72.4,
-        "avg_sentence": 36.2,
-        "long_share": 0.056,
-        "max_paragraph": 148,
-        "paragraphs": 9,
-        "sentences": 18
-      },
-      "score": 88,
-      "source": "radar-official",
-      "title": "ホンダ関連ニュース｜dメニューニュース（NTTドコモ）",
-      "warnings": [
-        "見出しの書き方: 区切りの全角空白が2つ以上（補足は1つだけ）",
-        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（CR・SUV・ZR）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-13T23:17:38.009826+00:00",
-      "attempt": 1,
-      "id": "3adaf415f34242bdcdfd508395006daff8e9f2f8",
-      "kind": "trend",
-      "model": "gemini-3.5-flash",
-      "problems": [
-        "「作動時に部品が破損して乗員がけがをする危険があるため」→ 元記事は部品破損の恐れと報じるのみで、乗員のけがの危険は書かれていない。",
-        "「無償修理」（本文・仕事・お金の欄・まだ分からないことの欄）→ 元記事に無償修理との記載はなく、無償かどうかは確認できない。",
-        "かんたん版「破裂する危険が出ている」→ 元記事は吸湿防止が不十分で部品が破損する恐れとしており、破裂は言い過ぎ。",
-        "「2013年4月〜2017年1月に…乾燥剤入り部品へ交換した車かどうかを、販売店に車台番号で問い合わせる」→ 一般的な行動だが、元記事に無い手順の具体化で、対象の判断基準とは言い切れない。"
-      ],
-      "readability": {
-        "avg_paragraph": 83.3,
-        "avg_sentence": 53.0,
-        "long_share": 0.364,
-        "max_paragraph": 118,
-        "paragraphs": 7,
-        "sentences": 11
-      },
-      "score": 84,
-      "source": "trends",
-      "title": "トヨタ・アルファード",
-      "warnings": [
-        "読みやすさ: 文が長い（1文の平均 53.0字・60字超の文が 36% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
       "at": "2026-11-13T23:18:18.594681+00:00",
       "attempt": 1,
       "id": "3adaf415f34242bdcdfd508395006daff8e9f2f8",
@@ -30844,6 +30805,58 @@
       "warnings": [
         "見出しが45字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（BANDAI・ONLINE）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-16T14:07:36.539495+00:00",
+      "attempt": 1,
+      "id": "0bc322583e6f0775",
+      "kind": "ai",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [
+        "「旅程づくりは提供地域の制限が無いため」→ 元記事は「Ask Mapsが提供されているすべての地域」と限定しており、地域制限が無いとは書かれていない。",
+        "「Androidの自動化機能とは別の機能です」→ 元記事にも確認済みの文脈にも無い比較の断定。",
+        "「旅程づくりは…日本で使える場合は…最初に試せる機能とみられます」→ 日本で使えるかは未発表なのに、見通しを前提にした記述になっている。"
+      ],
+      "readability": {
+        "avg_paragraph": 76.4,
+        "avg_sentence": 39.6,
+        "long_share": 0.111,
+        "max_paragraph": 115,
+        "paragraphs": 14,
+        "sentences": 27
+      },
+      "score": 85,
+      "source": "google-ai-blog",
+      "title": "New Ask Maps features to help with holiday travel and prep",
+      "warnings": [
+        "見出しの書き方: 記号: かっこの直後に「、」",
+        "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-16T14:07:59.518536+00:00",
+      "attempt": 1,
+      "id": "0bc322583e6f0775",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 76.4,
+        "avg_sentence": 39.6,
+        "long_share": 0.111,
+        "max_paragraph": 115,
+        "paragraphs": 14,
+        "sentences": 27
+      },
+      "score": 93,
+      "source": "google-ai-blog",
+      "title": "New Ask Maps features to help with holiday travel and prep",
+      "warnings": [
+        "見出しの書き方: 記号: かっこの直後に「、」",
+        "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す"
       ]
     }
   ],
