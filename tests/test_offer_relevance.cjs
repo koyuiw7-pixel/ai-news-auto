@@ -244,7 +244,7 @@ test("枠の見出しは、その枠に並ぶ商品の話題から作る（Gemin
       const key = [...topics][0];
       const topic = topicOf(key);
       if (topic) assert.equal(offer.headline, topic.headline, label);
-      else assert.ok(String(key).startsWith("fallback-"), label);
+      else assert.ok(String(key).startsWith("fallback-") || key === "product-search", label);
     } else {
       // 複数の話題にまたがる枠は、並ぶ話題の名前から作った見出し
       for (const key of topics) {
@@ -283,7 +283,8 @@ test("製品・趣味の記事は、カテゴリの語で楽天（A8）とAmazon
   ];
   for (const [fields, query] of cases) {
     const plan = offerPlanForArticle(article(fields));
-    assert.equal(plan.offer.topic, "fallback-product", fields.title);
+    // 見出しの語で決まった製品カテゴリは記事の品物そのもの（product-search。2026-11-17 から新しい見た目の記事にも出す）
+    assert.equal(plan.offer.topic, "product-search", fields.title);
     assert.match(plan.rail.headline, /^この記事に関連する商品：/);
     const [rakuten, amazon] = plan.rail.items;
     assert.ok(rakuten.url.startsWith("https://rpx.a8.net/svt/ejp?a8mat=4BELTP+50ED2Q+2HOM+BWGDT&rakuten=y&a8ejpredirect="), rakuten.url);
@@ -293,7 +294,7 @@ test("製品・趣味の記事は、カテゴリの語で楽天（A8）とAmazon
     assert.ok(plan.offer.pixels.includes("https://www15.a8.net/0.gif?a8mat=4BELTP+50ED2Q+2HOM+BWGDT"));
   }
   // 決算・株価などの記事は製品の記事として扱わない
-  assert.notEqual(offerPlanForArticle(article({ title: "任天堂の決算、Switch 2が好調", genreSlug: "business" })).offer.topic, "fallback-product");
+  assert.ok(!["fallback-product", "product-search"].includes(offerPlanForArticle(article({ title: "任天堂の決算、Switch 2が好調", genreSlug: "business" })).offer.topic));
 });
 
 test("まとめ記事は脇の話題の1語でセキュリティソフトを出さず、AIツール・スキルの広告にする。デザインアプリの記事に VPS を出さない（2026-11-03 の画面の点検 D）", () => {

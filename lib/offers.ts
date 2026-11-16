@@ -1,8 +1,8 @@
 import fs from "@/lib/content-fs";
 import path from "node:path";
 import type { ArticleSummary } from "@/lib/articles";
-import { amazonUrl, rakutenSearchUrl } from "@/lib/amazon";
-import { productCategoryForArticle } from "@/lib/keyword-products";
+import { AMAZON_TAG, amazonUrl, rakutenPageUrl, rakutenSearchUrl } from "@/lib/amazon";
+import { productCategoryForArticle, productCategoryForTitle } from "@/lib/keyword-products";
 import { MONEY_PAGES, type MoneyTarget } from "@/lib/money-pages";
 import type { Benefit } from "@/lib/ad-benefits";
 
@@ -46,6 +46,26 @@ type Topic = {
   money?: string;
   /** 行動欄の PR で候補を使い切ったとき、ジャンルの既定の広告で埋めない（年金・給付金の記事に証券会社を出さない。scripts/a8_import.py の LIFE_NO_FALLBACK） */
   noFallback?: boolean;
+  /** 見出しだけで採点する（タグ・要約の脇の語では当てない。通販の検索の話題 shop-* など） */
+  titleOnly?: boolean;
+  /**
+   * ほかの話題が1つも当たらないときだけ使う（2026-11-17 オーナー「広告がないのはやめてほしい」・合う広告だけ）。
+   * 製品・食品・手続きなど、記事の品物と同じ種類の通販の検索（shop）や、記事の場面に合う提携先を出す話題
+   */
+  lastResort?: boolean;
+  /** 記事の品物と同じ種類の商品を、楽天市場（A8 の楽天アフィリエイト）・Amazon の検索結果で案内する（価格・宣伝文句は出さない）。上から順に見出しに当たる最初の1つ */
+  shop?: ShopSearch[];
+};
+
+/** 通販の案内の行き先。rakuten・amazon は検索結果、rakuten-books・amazon-books は本の検索結果、amazon-prime は Amazon プライムの公式ページ */
+export type ShopId = "rakuten" | "amazon" | "rakuten-books" | "amazon-books" | "amazon-prime";
+export type ShopSearch = {
+  /** 見出しに当たるときだけ使う（無ければいつも使う） */
+  match?: string;
+  /** 検索語（楽天・Amazon 共通） */
+  query: string;
+  /** 行き先（省略時は楽天市場と Amazon の検索結果） */
+  shops?: ShopId[];
 };
 
 /**
@@ -440,7 +460,8 @@ export function scoreTopics(article: ArticleSummary): TopicScore[] {
     if (regex(topic.articleExclude)?.test(text.title)) continue;
     // まとめ記事: AIツール・スキル・仕事・お金の話題だけ（「詐欺対策も」のような脇の1語でセキュリティソフトなどを出さない）
     if (roundup && !roundup.preferTopics.includes(topic.key)) continue;
-    let score = relevanceScore(topic.alsoMatch ? `${topic.match}|${topic.alsoMatch}` : topic.match, article, text);
+    const pattern = topic.alsoMatch ? `${topic.match}|${topic.alsoMatch}` : topic.match;
+    let score = topic.titleOnly ? relevanceScore(pattern, article, { ...text, meta: "", summary: "" }) : relevanceScore(pattern, article, text);
     // 発表元だけでは当てない（話題の語が記事に出てくるときの裏付けとして使う）
     if (score > 0 && regex(topic.companies)?.test(text.company)) score += 1;
     // 法人・企業向けの記事: 個人向けの話題（副業・家の回線など）は下げて、見出しにはっきり出ているときだけ選ぶ。
@@ -449,8 +470,10 @@ export function scoreTopics(article: ArticleSummary): TopicScore[] {
     if (score < (topic.min ?? MIN_SCORE)) continue;
     scored.push({ topic, score: score + (b2b?.preferTopics?.includes(topic.key) ? (b2b.bonus ?? 1) : 0) });
   }
+  // ほかの話題が当たった記事では、最後の手段の話題（lastResort）は使わない
+  const kept = scored.some(({ topic }) => !topic.lastResort) ? scored.filter(({ topic }) => !topic.lastResort) : scored;
   // 同点は offers.json の並び（具体的な話題が上）のまま
-  return scored.sort((a, b) => b.score - a.score);
+  return kept.sort((a, b) => b.score - a.score);
 }
 
 /** まとめ記事か（type: "roundup"、または見出しが「10月の発表まとめ」「最新動向」など。offers.json の roundup.match） */
@@ -637,34 +660,12 @@ export function fallbackOfferForArticle(article: ArticleSummary, maxItems = 12):
 export function keywordProductOffer(article: ArticleSummary): Offer | undefined {
   const category = productCategoryForArticle(article);
   if (!category) return undefined;
-  const { products } = load();
-  const topicKey = "fallback-product";
+  // 見出しの語で決まったカテゴリは記事の品物そのもの（product-search。新しい見た目の記事にも出す）。スポーツの記事はタグの競技（サッカー・バスケなど）でもよい。
+  // ほかのタグだけで決まったものは今までどおりの既定の扱い（fallback-product。ポケモンの記事にスマホが出ていた）
+  const byTitle = productCategoryForTitle(article) === category || article.genreSlug === "sports";
+  const topicKey = byTitle ? "product-search" : "fallback-product";
   const note = `記事で扱った${category.name}に関連する商品を、検索結果で比べられます。特定の商品をすすめるものではありません。`;
-  const caution = "価格・在庫・仕様は各ショップのページで確認してください。";
-  const shops = [
-    { id: "rakuten", shop: "楽天市場", badge: "RAKUTEN", url: rakutenSearchUrl(category.query), pixel: validPixel(products?.pixel) },
-    { id: "amazon", shop: "Amazon", badge: "AMAZON", url: amazonUrl({ query: category.query }), pixel: undefined },
-  ];
-  const built: Built[] = shops
-    .filter((shop) => isValidAffiliateUrl(shop.url))
-    .map((shop) => ({
-      item: {
-        key: `${shop.id}-search:${category.query}`,
-        kind: "partner" as const,
-        name: `「${category.query}」を${shop.shop}で探す`,
-        label: `${shop.shop}の検索結果`,
-        badge: shop.badge,
-        note,
-        caution,
-        image: null,
-        url: shop.url,
-        shop: shop.shop,
-        cta: `${shop.shop}で探す`,
-        relevance: 0,
-        topic: topicKey,
-      },
-      pixel: shop.pixel,
-    }));
+  const built = shopItems(category.query, topicKey, note, 0);
   const topic: Topic = {
     key: topicKey,
     match: "",
@@ -673,7 +674,59 @@ export function keywordProductOffer(article: ArticleSummary): Offer | undefined 
     lead: "記事で扱った製品のカテゴリで、通販サイトの検索結果を案内します。",
     partners: [],
   };
-  return finishOffer(topic, built, { relevance: 0, fallback: true });
+  return finishOffer(topic, built, { relevance: 0, fallback: !byTitle });
+}
+
+const SHOP_CAUTION = "価格・在庫・仕様は各ショップのページで確認してください。";
+const AMAZON_PRIME_PAGE = "https://www.amazon.co.jp/amazonprime";
+
+/** 見出しに当たる最初の検索（match の無い行はいつも当たる） */
+export function shopSearchFor(searches: ShopSearch[] | undefined, article: Pick<ArticleSummary, "title" | "seoTitle">): ShopSearch | undefined {
+  if (!searches?.length) return undefined;
+  const title = stripDescriptors(`${article.title} ${article.seoTitle ?? ""}`);
+  return searches.find((s) => !s.match || (regex(s.match)?.test(title) ?? false));
+}
+
+/** 通販の検索の案内（楽天市場・Amazon など）。価格は出さない。提携リンクの形が正しいものだけ */
+function shopItems(query: string, topicKey: string, note: string, relevance: number, shopIds?: ShopId[]): Built[] {
+  const { products } = load();
+  const rakutenPixel = validPixel(products?.pixel);
+  const q = encodeURIComponent(query);
+  const make = (id: ShopId) => {
+    switch (id) {
+      case "rakuten":
+        return { shop: "楽天市場", badge: "RAKUTEN", url: rakutenSearchUrl(query), pixel: rakutenPixel, name: `「${query}」を楽天市場で探す`, label: "楽天市場の検索結果", cta: "楽天市場で探す" };
+      case "amazon":
+        return { shop: "Amazon", badge: "AMAZON", url: amazonUrl({ query }), pixel: undefined, name: `「${query}」をAmazonで探す`, label: "Amazonの検索結果", cta: "Amazonで探す" };
+      case "rakuten-books":
+        return { shop: "楽天ブックス", badge: "BOOKS", url: rakutenPageUrl(`https://books.rakuten.co.jp/search?sitem=${q}&g=001`), pixel: rakutenPixel, name: `「${query}」の本を楽天ブックスで探す`, label: "楽天ブックスの検索結果", cta: "楽天ブックスで探す" };
+      case "amazon-books":
+        return { shop: "Amazon", badge: "BOOKS", url: `https://www.amazon.co.jp/s?k=${q}&i=stripbooks&tag=${AMAZON_TAG}`, pixel: undefined, name: `「${query}」の本をAmazonで探す`, label: "Amazonの本の検索結果", cta: "Amazonで探す" };
+      case "amazon-prime":
+        return { shop: "Amazon", badge: "PRIME", url: `${AMAZON_PRIME_PAGE}?tag=${AMAZON_TAG}`, pixel: undefined, name: "Amazonプライム（Prime Video）", label: "Amazonプライムの公式ページ", cta: "Amazonで見る" };
+    }
+  };
+  return (shopIds ?? ["rakuten", "amazon"])
+    .map((id, index) => ({ id, index, link: make(id) }))
+    .filter(({ link }) => isValidAffiliateUrl(link.url))
+    .map(({ id, index, link }) => ({
+      item: {
+        key: id === "amazon-prime" ? "amazon-prime" : `${id}-search:${query}`,
+        kind: "partner" as const,
+        name: link.name,
+        label: link.label,
+        badge: link.badge,
+        note: id === "amazon-prime" ? "Prime Video の見放題などを含む Amazon の会員サービスです。料金・特典・対象の作品は公式ページで確認してください。" : note,
+        caution: id === "amazon-prime" ? undefined : SHOP_CAUTION,
+        image: null,
+        url: link.url,
+        shop: link.shop,
+        cta: link.cta,
+        relevance: relevance - index * 0.1,
+        topic: topicKey,
+      },
+      pixel: link.pixel,
+    }));
 }
 
 /**
@@ -946,6 +999,13 @@ function buildArticleOffer(article: ArticleSummary, scored: TopicScore[], maxIte
         if (hosting.has(key) && !named) return;
         consider(partnerOffer(key), score - index * 0.1 + (named ? 3 : 0), topic.key);
       });
+    }
+    // 通販の検索（記事の品物と同じ種類）。提携商品のあと、同じ話題の中で並べる
+    const search = shopSearchFor(topic.shop, article);
+    if (search) {
+      const note = "記事で扱った品物と同じ種類の商品を、検索結果で比べられます。特定の商品をすすめるものではありません。";
+      const base = score - topic.partners.length * 0.1 - 0.05;
+      for (const built of shopItems(search.query, topic.key, note, base, search.shops)) consider(built, built.item.relevance ?? base, topic.key);
     }
     const require = regex(topic.require);
     rotate(validBooks(products?.books?.[topic.key]), article.slug || topic.key).forEach((book, index) => {

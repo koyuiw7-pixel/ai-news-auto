@@ -69,17 +69,16 @@ test("実データ: 候補が少ない記事（イヤホン回収の記事）は
   assert.deepEqual(keys(shown), keys(plan.offer));
 });
 
-test("実データ: ナゲットの記事は候補が5つあり、審査の期間の囲みにすべて渡る（話題は暮らしの既定の広告）", (t) => {
+test("実データ: ナゲットの記事は、審査の期間の囲みに記事に合う候補が渡る（2026-11-17 から食品の通販の検索。tests/test_ad_relevant_20261117.cjs）", (t) => {
   const a = articleJson("mcdonalds-mcnugget-15pc-490yen");
   if (!a) return t.skip("記事が無い");
   const plan = offerPlanForArticle(a, [], []);
   const shown = afterBodyOffer(plan, true);
   assert.ok(shown && shown.items.length >= 2);
   assert.deepEqual(keys(shown), keys(plan.offer));
-  // 新しい見た目（layout: noir）では、話題が当たらない既定の広告（fallback-*）は出さない決まり（2026-11-10 オーナー承認）。
-  // この記事はその決まりで本番に出ていない。決まりは変えていない
+  // 新しい見た目（layout: noir）では、話題が当たらない既定の広告（fallback-*）は出さない決まり（2026-11-10 オーナー承認）はそのまま
   assert.equal(a.layout, "noir");
-  assert.match(String(shown.topic), /^fallback-/);
+  assert.doesNotMatch(String(shown.topic), /^fallback-/);
   assert.ok(read("components/noir/noirArticlePage.tsx").includes('startsWith("fallback-") ? o : undefined'));
 });
 

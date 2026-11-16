@@ -155,6 +155,8 @@ export function noirArticlePage(ctx: NoirPageContext) {
   } = ctx;
   // 記事に合う PR だけ出す（2026-11-10 オーナー承認）。話題が当たらずジャンルの既定の広告（fallback-*）になった商品枠は、ノワールの記事では出さない
   // （年金生活者支援給付金の記事に証券会社が出ていた）。合う話題は scripts/a8_import.py の ACTION_ADS（life-*）で足す
+  // 2026-11-17 オーナー「広告がないのはやめてほしい」: 合わない既定の広告は出さないまま、記事の品物・場面に合う話題（offers.json の shop-* など）を足した。
+  // 見出しの語で決まる製品カテゴリの通販の検索（product-search。lib/offers.ts keywordProductOffer）も記事の品物そのものなので出す
   const matched = (o: Any) => (o && !String(o.topic ?? "").startsWith("fallback-") ? o : undefined);
   const inlineOffer = matched(ctx.inlineOffer);
   const offer = matched(ctx.offer);
