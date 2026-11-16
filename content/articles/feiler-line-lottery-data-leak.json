@@ -68,9 +68,8 @@
     }
   ],
   "todayActions": [
-    "フェイラーのLINE抽選に登録した覚えがあれば、LINEメッセージでの個別連絡の有無を確認する",
-    "フェイラーを名乗る電話・SMS・郵便・LINEは、記載のURLを開かず0120-791-027に相談する",
-    "不安があれば、緊急お問い合わせ窓口（10時〜17時30分、土日祝も受付）に電話する"
+    "フェイラーのLINE抽選に登録した覚えがあれば、LINEメッセージで届く個別連絡を確かめる",
+    "フェイラーを名乗る電話・SMS・郵便・LINEは、記載のURLを開かず0120-791-027に相談する"
   ],
   "publicInterest": "breach",
   "incident": {
@@ -115,5 +114,99 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/feiler-line-lottery-data-leak-figure-76a18732.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "対象の人への個別の連絡は「LINEメッセージ等にて順次」行うとされ、同じ日に全員へ届くとは書かれていません。",
+      "source": "https://www.feiler-jp.com/information/detail/277"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "フェイラージャパン株式会社 フェイラー緊急お問い合わせ窓口",
+      "url": "https://www.feiler-jp.com/information/detail/277",
+      "source": "https://www.feiler-jp.com/information/detail/277",
+      "howTo": [
+        "ホーム",
+        "INFORMATION インフォメーション",
+        "外部委託先への不正アクセスによるお客様情報の漏えいに関するお",
+        "7.お問い合わせ窓口"
+      ],
+      "phone": "0120-791-027",
+      "hours": "10時〜17時30分（土日祝を含む）",
+      "note": "不審な連絡を受けた場合は、記載のURLを開かず、この窓口までご相談くださいとされています。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "フェイラーのLINE抽選に登録した覚えがあれば、LINEメッセージで届く個別連絡を確かめる",
+      "source": "https://www.feiler-jp.com/information/detail/277",
+      "steps": [
+        "LINEメッセージに、フェイラーからの個別連絡があるか確認",
+        "不審に感じた連絡の記載URLは開かない",
+        "不安があれば窓口へ相談"
+      ],
+      "url": "https://www.feiler-jp.com/information/detail/277"
+    },
+    {
+      "action": "フェイラーを名乗る電話・SMS・郵便・LINEは、記載のURLを開かず0120-791-027に相談する",
+      "source": "https://www.feiler-jp.com/information/detail/277",
+      "steps": [
+        "電話・SMS・郵便物・LINEメッセージを受け取る",
+        "記載のURLは開かない",
+        "0120-791-027に電話で相談する"
+      ],
+      "url": "https://www.feiler-jp.com/information/detail/277"
+    }
+  ],
+  "cause": {
+    "text": "委託先の株式会社ソニックムーブが提供する「COMSBI（SaaS版）」に、第三者が同社の社内用アカウントの認証情報を不正に使ってログインしたことが原因です。不正アクセスの経路はすでに遮断されているとされています。",
+    "status": "stated",
+    "source": "https://www.feiler-jp.com/information/detail/277"
+  },
+  "worries": [
+    {
+      "q": "電話番号と住所も漏れたなら、詐欺の電話が来る？",
+      "a": "漏えいしたのは氏名、電話番号、住所です。フェイラーは、当社を装った不審な電話、SMS、郵便物、LINEメッセージに注意するよう呼びかけています。",
+      "source": "https://www.feiler-jp.com/information/detail/277",
+      "action": "フェイラーを名乗る電話やSMSは、記載のURLを開かず、フェイラー緊急お問い合わせ窓口0120-791-027に相談する。"
+    },
+    {
+      "q": "クレジットカードの情報も漏れた？",
+      "a": "漏えいした情報には、クレジットカード情報、メールアドレス、生年月日、性別は含まれていません。フェイラーが、パスワードやクレジットカード番号を聞くことはないとしています。",
+      "source": "https://www.feiler-jp.com/information/detail/277",
+      "action": "フェイラーを名乗ってカード番号やパスワードを聞かれたら、応じずに窓口へ相談する。"
+    },
+    {
+      "q": "抽選用LINEの友だち追加だけでも対象になる？",
+      "a": "抽選用LINEアカウントの友だちは対象で、表示名、プロフィール画像のURL、LINEユーザーIDが漏えいの対象です。LINEユーザーIDは友だち検索に使う「LINE ID」とは異なります。",
+      "source": "https://www.feiler-jp.com/information/detail/277",
+      "action": "フェイラーの抽選用LINEを友だちに追加した覚えがあるか思い出し、覚えがあれば窓口に相談する。"
+    },
+    {
+      "q": "同じパスワードを使い回していたら、乗っ取られる？",
+      "a": "警察庁の一般的な注意によると、同じIDとパスワードを複数のサイトで使っていると、一つ盗まれただけで、銀行やSNSなど全てのサービスが乗っ取られる被害に遭うおそれがあります。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "action": "ほかのサービスで同じIDとパスワードを使っていれば、それぞれ別のパスワードに変える。",
+      "general": true
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "連絡が来ていないけど、窓口に電話すべき？",
+      "situation": "登録した覚えがあり、まだ連絡が来ていない",
+      "recommend": "急がなくてよいが、不安なら窓口へ相談してもよい",
+      "reason": "フェイラーは対象の人に個別連絡をLINEメッセージ等で順次行うとしています。窓口は0120-791-027、10時〜17時30分（土日祝を含む）で受け付けており、連絡を待つことも確かめることもできます。",
+      "source": "https://www.feiler-jp.com/information/detail/277"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "個別の連絡は順次届くとされている",
+    "cause": "なぜ漏れたのか、いま分かっていること",
+    "steps": "今日まずできる確かめ方",
+    "desk": "どこに相談すればいい？",
+    "worries": "カード情報は？ 詐欺の電話は来る？",
+    "guide": "連絡を待つか相談するか、迷ったときの決め方"
+  },
+  "depthAt": "2026-11-16T23:11:58+00:00"
 }
