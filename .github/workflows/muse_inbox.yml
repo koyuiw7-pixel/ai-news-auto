@@ -8,6 +8,8 @@ name: Muse Inbox
 #   - 順番: 急ぎ（genre が速報解説・「急ぎ: はい」の印）→ 日付の新しい順（scripts/muse_articles.py の order_inbox。2026-11-13）。
 #     1回で終わらなかった入稿があれば、予約（12分・42分）を待たずに次の回をすぐ呼ぶ（下の「Run again for the rest」）
 #   - 今日の本数: content/state.json の processed_web に入れる（scripts/pacing.py の live_today。段の上限 WEB_STAGE_TARGET の中に数える）
+#   - 追記（2026-11-16）: content/muse_inbox/addenda/ の .md は、もう出ている記事への書き足し。scripts/muse_addenda.py が対象の記事を決め、
+#     出典との事実確認に通ったものだけ記事に足す（更新履歴 updates に1行）。足した回は、新しい記事を公開した回と同じくデプロイする
 #   - push: scripts/git_safe_push.py（記事づくりの回と同じ。state の JSON は項目ごとに3方向マージ・新しい記事は必ず残す）
 on:
   push:
@@ -46,9 +48,11 @@ jobs:
       - name: Check inbox
         id: inbox
         run: |
-          N=$(ls content/muse_inbox/*.md 2>/dev/null | wc -l | tr -d ' ')
+          N=$(ls content/muse_inbox/*.md content/muse_inbox/addenda/*.md 2>/dev/null | wc -l | tr -d ' ')
+          A=$(ls content/muse_inbox/addenda/*.md 2>/dev/null | wc -l | tr -d ' ')
           echo "count=${N}" >> "$GITHUB_OUTPUT"
-          echo "Muse の入稿: ${N} 本"
+          echo "addenda=${A}" >> "$GITHUB_OUTPUT"
+          echo "Muse の入稿: ${N} 本（うち追記 ${A} 本）"
 
       - name: Setup Python
         if: ${{ steps.inbox.outputs.count != '0' }}
@@ -84,6 +88,27 @@ jobs:
         continue-on-error: true
         run: npm i -g @anthropic-ai/claude-code
 
+      # 追記（もう出ている記事への書き足し）。続きの知らせは時間がたつと価値が下がるので、記事の審査（最長30分）より先に片づける。
+      # 1本につき出典の読み込みと事実確認1回（scripts/muse_addenda.py）。対象の記事を決められないもの・事実確認に落ちたものは足さない
+      - name: Muse addenda
+        if: ${{ steps.inbox.outputs.addenda != '0' }}
+        id: addenda
+        continue-on-error: true
+        timeout-minutes: 8
+        env:
+          LLM_WORKFLOW: articles
+          JINA_API_KEY: ${{ secrets.JINA_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          CLAUDE_API_MONTHLY_BUDGET_USD: ${{ vars.CLAUDE_API_MONTHLY_BUDGET_USD }}
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          CLAUDE_DAILY_MAX: ${{ vars.CLAUDE_DAILY_MAX || '40' }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: timeout 420 python scripts/muse_addenda.py --max 4 --budget 300
+
       - name: Muse articles
         if: ${{ steps.inbox.outputs.count != '0' }}
         continue-on-error: true
@@ -110,7 +135,7 @@ jobs:
         id: left
         run: |
           BEFORE="${{ steps.inbox.outputs.count }}"
-          AFTER=$(ls content/muse_inbox/*.md 2>/dev/null | wc -l | tr -d ' ')
+          AFTER=$(ls content/muse_inbox/*.md content/muse_inbox/addenda/*.md 2>/dev/null | wc -l | tr -d ' ')
           DONE=$((BEFORE - AFTER))
           echo "remaining=${AFTER}" >> "$GITHUB_OUTPUT"
           echo "processed=${DONE}" >> "$GITHUB_OUTPUT"
@@ -177,8 +202,10 @@ jobs:
           done
           COUNT=$(git diff --cached --name-only --diff-filter=A -- 'content/articles/*.json' | wc -l | tr -d ' ')
           echo "count=${COUNT}" >> "$GITHUB_OUTPUT"
-          if [ "$COUNT" != "0" ]; then
-            MSG="chore(muse): Muse の記事を公開 (+${COUNT}本)"
+          # 追記を足した記事（scripts/muse_addenda.py の applied）。新しい記事が無くても、読者に見える中身が変わったのでデプロイする
+          ADDED="${{ steps.addenda.outputs.applied || '0' }}"
+          if [ "$COUNT" != "0" ] || [ "$ADDED" != "0" ]; then
+            if [ "$COUNT" != "0" ]; then MSG="chore(muse): Muse の記事を公開 (+${COUNT}本)"; else MSG="chore(muse): Muse の追記を記事に反映 (${ADDED}本)"; fi
             if [ $((NOW - LAST)) -ge "$MUSE_DEPLOY_GAP" ]; then
               echo "$NOW" > state/last_deploy
               echo 0 > state/deploy_pending
@@ -219,5 +246,6 @@ jobs:
           {
             echo "## Muse の入稿"
             echo "- 入稿の残り: ${{ steps.left.outputs.remaining || '0' }} 本 / 次の回をすぐ呼んだ: ${{ steps.left.outputs.again || '0' }}（1=呼んだ）"
+            echo "- 追記: ${{ steps.inbox.outputs.addenda || '0' }} 本 / 記事に足した: ${{ steps.addenda.outputs.applied || '0' }} 本"
             echo "- 入稿: ${{ steps.inbox.outputs.count }} 本 / 公開: ${{ steps.commit.outputs.count || '0' }} 本 / デプロイ: ${{ steps.commit.outputs.deploy || '0' }}（1=すぐ出した・0=保留か公開なし）"
           } >> "$GITHUB_STEP_SUMMARY"
