@@ -293,7 +293,7 @@
     "49a12c06e1601a635f51e2bfd0781cf99d0875da": 2,
     "4a41facb5f689cdb60e7f5ac6288cbda9acf3bd6": 2,
     "4a88bf8692e217219c4404598cbac0a501baff73": 2,
-    "4aa8cf80ee4c24b09d06eee92ba26bd598949f01": 1,
+    "4aa8cf80ee4c24b09d06eee92ba26bd598949f01": 2,
     "4b89efcffa47812ea28a9717bf36267f055bb22d": 2,
     "4ba244e31fe54ce150baf42db44e6883e45fba95": 2,
     "4ba246b693fa816ebfce2c375f1717f753a79048": 2,
@@ -515,7 +515,7 @@
     "94c84d866defb8e8a18aa956d1daedb702e1f539": 2,
     "94d128c45597baf713b25659404df5d68eadc44b": 2,
     "95c027fa7678c5520a4b3490a08fcc58047056f7": 2,
-    "95c406f079028955ef47e724b02c32df9321991c": 1,
+    "95c406f079028955ef47e724b02c32df9321991c": 2,
     "962dcf5af47145e5925f3d697b779cb260f3ea33": 1,
     "9720fce3bac4ddf92a32558c7e25a89e237cd265": 2,
     "974cbd7a5cecef2b7b744d059e8f459d6792a654": 2,
@@ -651,7 +651,7 @@
     "ca331d0f22413db2c0dcadf139bf29601c4bd821": 2,
     "ca72e9089237ffd44e3243811de163c6951d927c": 2,
     "cb050fc9ba36357ba48ad1db60a1ba023dad2188": 2,
-    "cb12989add9ab90fd5886a5613e3e91c77809fbc": 1,
+    "cb12989add9ab90fd5886a5613e3e91c77809fbc": 2,
     "cb190b291fa19077fc0ccd547908308b266bae69": 2,
     "cb93c845393a8d2016c8fe34f4d281b96688af01": 2,
     "cbbafc7f230c30467136cea1f183e83244917e67": 2,
@@ -806,7 +806,7 @@
     "fdd3388fce3e35a2e6631cf25c90f5acf24e12a9": 2,
     "fe2278f9da97d590747623f9cfba97b74e09eefd": 2,
     "fe240ae7c1d758b371332f816db1631262434016": 2,
-    "fe42eedf9cea45fe8460b02ff03d5cbdb3d49652": 1,
+    "fe42eedf9cea45fe8460b02ff03d5cbdb3d49652": 2,
     "fed117281df58d7274f06a990b2c6e067999bd22": 2,
     "ff5d4dee95cf707b2eefca97fa6ddbbfb9bbe329": 2,
     "ff811b061d629a876d4ca22ecf64f1cccd9fcfbd": 2,
@@ -10814,12 +10814,6 @@
       "skipped": true,
       "url": "https://blog.jetbrains.com/go/2026/11/05/goland-2026-3-is-now-available/"
     },
-    "612cc780797c9fc6": {
-      "at": "2026-11-02T02:51:24.657873+00:00",
-      "reason": "prefilter: 価値の薄いお知らせ（採用）",
-      "skipped": true,
-      "url": "https://www.mhlw.go.jp/stf/kouseiroudoushou/saiyou/ninkituki/ninki-gyoumukaikakusuishinsenmonkan.html"
-    },
     "613010f141cb0ebf": {
       "at": "2026-11-02T08:01:23.531220+00:00",
       "model": "gemini-3.5-flash-lite",
@@ -12816,6 +12810,20 @@
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・暮らしの交通/天気/値上げ/障害/給付/発売・日本のスポーツのどれでもない）",
       "skipped": true,
       "url": "https://www.fsa.go.jp/common/conference/minister/2026b/20261102-1.html"
+    },
+    "7e15971df5234f2f": {
+      "at": "2026-11-16T02:58:44.355481+00:00",
+      "costUsd": 0.0047,
+      "intent": "neutral",
+      "kind": "trend",
+      "mix": "",
+      "model": "gemini-3.6-flash",
+      "score": 88,
+      "section": "public",
+      "slug": "docomo-5g-sa-network-outage-2026",
+      "trendKeyword": "nttドコモ",
+      "trendLane": true,
+      "url": "https://www.docomo.ne.jp/info/network/kanto/pages/261116_01_m.html"
     },
     "7e2b0f29c83358ef": {
       "at": "2026-11-11T08:18:18.691922+00:00",
@@ -15008,12 +15016,6 @@
       "skipped": true,
       "url": "https://www.lawson.co.jp/company/news/detail/1534176_2504.html"
     },
-    "a04be811bb04ce2e": {
-      "at": "2026-11-02T02:51:24.657899+00:00",
-      "reason": "prefilter: 価値の薄いお知らせ（会議）",
-      "skipped": true,
-      "url": "https://www.mhlw.go.jp/acp-jinseikaigi/"
-    },
     "a08ab1f6c7db9372": {
       "at": "2026-11-09T05:01:47.109921+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（調達）",
@@ -16019,14 +16021,6 @@
       "section": "ai",
       "slug": "google-knowledge-catalog-self-learning-enrichment",
       "url": "https://cloud.google.com/blog/ja/products/data-analytics/knowledge-catalog-self-learning-context-enrichment-for-ai-agents/"
-    },
-    "ae8372a9c3c19778": {
-      "at": "2026-11-02T02:51:24.657678+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "score": 100,
-      "section": "ai",
-      "slug": "nvidia-ai-cluster-runtime-dynamo",
-      "url": "https://developer.nvidia.com/blog/build-a-validated-kubernetes-runtime-for-nvidia-dynamo/"
     },
     "ae8ca6386c357aa1": {
       "at": "2026-11-11T01:47:37.477281+00:00",
@@ -17080,6 +17074,12 @@
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026110507"
     },
+    "bc45b87ccb94a76c87c4d18823148287e5d46988": {
+      "at": "2026-11-16T02:58:44.355684+00:00",
+      "reason": "trend: 公式の発表で記事にした（docomo-5g-sa-network-outage-2026）",
+      "skipped": true,
+      "url": "https://news.yahoo.co.jp/pickup/6602764"
+    },
     "bc874e3622317cf2": {
       "at": "2026-11-12T00:06:38.241483+00:00",
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・暮らしの交通/天気/値上げ/障害/給付/発売・日本のスポーツのどれでもない）",
@@ -17854,14 +17854,6 @@
       "section": "lifestyle",
       "slug": "kansai-wide-area-bousai-test-2026",
       "url": "http://www.ntt-west.co.jp/news/2611/261110a.html"
-    },
-    "c94fa0fe456c6e41": {
-      "at": "2026-11-02T02:51:42.284565+00:00",
-      "model": "gemini-3.5-flash-lite",
-      "score": 100,
-      "section": "tech-gadget",
-      "slug": "ipa-dx-certification-nov-2026",
-      "url": "https://disclosure.dx-portal.ipa.go.jp/"
     },
     "c99873828d835e64": {
       "at": "2026-11-05T10:14:42.166103+00:00",
@@ -19296,16 +19288,6 @@
       "score": 92,
       "slug": "child-allowance-application-deadline",
       "url": "https://www.cfa.go.jp/assets/contents/node/basic_page/field_ref_resources/e8adaa7f-8595-4662-88bd-dac21bac9382/7c795743/20260203_policies_budget_r8ebpmsiryou_030.pdf",
-      "writer": "deep_dive"
-    },
-    "deep-dc1b5c0a98": {
-      "angleOf": "rakuten-black-friday-2026-entry",
-      "at": "2026-11-16T02:56:46.985935+00:00",
-      "deepDive": "compare",
-      "mix": "money",
-      "score": 88,
-      "slug": "rakuten-black-friday-2026-points-table",
-      "url": "https://event.rakuten.co.jp/campaign/point-up/blackfriday/",
       "writer": "deep_dive"
     },
     "deep-dc788458b3": {
@@ -23154,32 +23136,19 @@
       "slug": "mcdonalds-mcnugget-15pc-490yen",
       "url": "https://www.mcdonalds.co.jp/company/news/2026/1111a/",
       "writer": "muse"
+    },
+    "deep-dc1b5c0a98": {
+      "angleOf": "rakuten-black-friday-2026-entry",
+      "at": "2026-11-16T02:56:46.985935+00:00",
+      "deepDive": "compare",
+      "mix": "money",
+      "score": 88,
+      "slug": "rakuten-black-friday-2026-points-table",
+      "url": "https://event.rakuten.co.jp/campaign/point-up/blackfriday/",
+      "writer": "deep_dive"
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-13T15:27:53.806089+00:00",
-      "attempt": 0,
-      "id": "52edad5aed8f70e2",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 87.2,
-        "avg_sentence": 39.9,
-        "long_share": 0.057,
-        "max_paragraph": 154,
-        "paragraphs": 16,
-        "sentences": 35
-      },
-      "score": 92,
-      "source": "jp-bank",
-      "title": "従業員向け株式給付制度の導入及び株式給付信託（J-ESOP）に係る信託拠出に伴う自己株式の処分に関するお知らせ",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（ESOP）"
-      ]
-    },
     {
       "accepted": false,
       "at": "2026-11-13T15:43:40.176070+00:00",
@@ -30731,6 +30700,29 @@
         "見出しが48字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（GW）",
         "読みやすさ: 文が長い（1文の平均 53.1字・60字超の文が 39% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-16T02:58:44.315828+00:00",
+      "attempt": 1,
+      "id": "7e15971df5234f2f",
+      "kind": "broad",
+      "model": "gemini-3.6-flash",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 70.6,
+        "avg_sentence": 41.2,
+        "long_share": 0.083,
+        "max_paragraph": 149,
+        "paragraphs": 7,
+        "sentences": 12
+      },
+      "score": 88,
+      "source": "radar-official",
+      "title": "nttドコモ",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（SMS・MVNO・ON）"
       ]
     }
   ],
