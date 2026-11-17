@@ -1,0 +1,189 @@
+{
+  "slug": "gemini-hydrogen-robotics-plugin",
+  "sourceType": "web",
+  "sourceUrl": "https://developers.googleblog.com/gemini-hydrogen-for-robotics/",
+  "sourceName": "Google Developers Blog",
+  "title": "「Gemini 4 Hydrogen」でロボット開発　初期設定は約10分の事例も",
+  "seoTitle": "Gemini 4 Hydrogenの使い方：ロボット開発の料金と事例",
+  "threadsPost": "ロボット開発に携わる人に、知っておいてほしい話です。\n\nGoogleの新しい追加機能は、ロボットの初期設定から動作確認まで支援します。\n実演では、アームの接続から作業の準備まで約10分でした。\n\nロボットの作業は、どこまでAIに任せたいですか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "line",
+      "question": "ロボットの作業は、どこまでAIに任せたいですか？"
+    },
+    {
+      "pattern": "expert",
+      "question": "ロボットの動きを試すとき、何を重視していますか？"
+    },
+    {
+      "pattern": "ab",
+      "question": "動作の確認は、仮想環境と実機のどちらを重視しますか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "senpai",
+  "lede": "「Gemini 4 Hydrogen」と新しい追加機能を使い、ロボットの初期設定から制御までを開発できるようになりました。Google Antigravityで使うには、有料のGoogle AI ProまたはUltraが必要です。開発者は、公開されたRobotics追加機能を使って作業を始められます。",
+  "description": "Google Antigravityにロボット開発向けのRobotics追加機能が登場。Gemini 4 Hydrogenを使い、初期設定から仮想環境での検証、実機の制御までを支援します。料金条件と実演事例を紹介します。",
+  "keywords": [
+    "Gemini 4 Hydrogen",
+    "Gemini ロボット",
+    "Antigravity Robotics",
+    "Google ロボット開発",
+    "Gemini 4 Hydrogen 使い方",
+    "Antigravity 料金",
+    "ロボットアーム AI",
+    "MuJoCo シミュレーション",
+    "Gemini Robotics ER 2"
+  ],
+  "tags": [
+    "Gemini 4 Hydrogen",
+    "Google Antigravity",
+    "ロボティクス",
+    "生成AI",
+    "開発ツール"
+  ],
+  "highlights": [
+    "Gemini 4 HydrogenとRobotics追加機能で、ロボットの設定から制御までを支援",
+    "I2RT YAMアームの実演では、USB接続から作業の準備まで約10分かかりました",
+    "実機を使う性能テストでHydrogenは58点を記録し、Argonと同程度でした"
+  ],
+  "timetable": [],
+  "verdict": {
+    "status": "available",
+    "japan": "ok",
+    "price": "有料プランが必要",
+    "free": null,
+    "audience": "ロボット開発者",
+    "take": "ロボット開発に使うなら、Antigravityの有料プランと追加機能の提供条件を確認できます。",
+    "judgedAt": "2026-11-17T17:50:40.712436+00:00",
+    "japanSource": {
+      "name": "Gemini（Googleの生成AI）",
+      "url": "https://support.google.com/gemini/answer/13575153?hl=ja",
+      "checkedAt": "2026-11-03"
+    }
+  },
+  "workMoney": {
+    "relevance": "medium",
+    "points": [
+      "ロボット開発者は、実機を動かす前にMuJoCoの仮想環境で動作を検証できます。",
+      "Antigravityで追加機能を使うには、Google AI ProまたはUltraの契約が必要です。"
+    ]
+  },
+  "body": "ロボットを使ったアプリを開発する人は、Google AntigravityにRobotics追加機能を入れて作業できます。Antigravityで使うには、Google AI ProかUltraの契約が必要です。\n\nRoboticsは、ロボットの設定や動作の検証をAIに依頼するための追加機能です。実機を動かすための準備から、画面上での試験までを支援します。\n\nGoogle Developers Blogの11月17日付の発表によると、追加機能はその日から提供されました。使うAIは、速さと効率を重視したGemini 4 Hydrogenです。\n\nHydrogenは今回の追加機能より前に提供が始まっています。ロボット開発向けの機能が加わった形です（[Hydrogenの提供開始](/articles/gemini-4-hydrogen-launch-pricing)、サイソクの過去記事、11/13確認）。\n\n日本向けのGoogle AI Proは月払いで2,900円です。Google AI Ultraも対象プランに含まれます（Google公式の料金ページ、11/16確認）。\n\n## YAMアームは約10分で作業の準備\n\n開発者は、目標を普段の言葉で伝え、カメラ映像を渡します。Hydrogenは作業を計画し、制御用のコードを書いて実行します。作業が終わるまで動きを調整する仕組みです。\n\n追加機能は、機器を動かすためのソフトの導入やカメラの検出を支援します。アームの位置合わせと、安全な動作の確認も行います。\n\nGoogleの実演では、I2RT YAMアームと外付けの深度カメラをパソコンに接続しました。アームの位置合わせを終え、作業できる状態になるまで約10分でした。SO-ARM101やFR3 Duoを動かす例も紹介しています。\n\n追加機能では、MuJoCoという仮想環境でロボットの動作を試せます。形や位置、物理的な性質を会話で調整し、実機に触れる前に腕が届くか、物をつかめるかを確かめます。\n\nお菓子の仕分けの実演では、実際の現場の画像から仮想環境を作りました。複数回の試験を経て、動くベルトからアームでお菓子を仕分けるまで、全体で約1時間かかったとしています。\n\nほかにも、2本のYAM Proアームで石けんの注文を梱包する例や、FR3 Duoでチェスをする例が紹介されました。\n\n## Hydrogenの実機テストは58点\n\nGoogleによると、Gemini 4 ArgonとCarbonもカメラ映像からアームを直接制御できます。Hydrogenはその能力を保ちながら、速さと効率を重視したモデルです。\n\nArtificial Analysis Robotics 0.1という性能テストでは、6軸の実機アームを使いました。飲み物を注ぐ、ブロックを箱に詰めるなど、卓上の8種類の作業が対象です。\n\nHydrogenは58点で、GoogleはArgonと同程度だったと説明しています。AIが文字を数える単位であるトークン当たりの費用は、Argonより低いとしています。\n\nまた、空間や身体の動きに関する能力を測る公開テスト「ERQA」では、Gemini Robotics ER 2を上回ったとしています。対象には、異なる視点の画像を対応づける作業や、立体的な軌道を考える作業が含まれます。\n\n## サイソクの見方：実機の前にMuJoCoで検証\n\n実機を使う前に動作を確かめたい開発者なら、Robotics追加機能のMuJoCoで試す方法が考えられます。Gemini Robotics ER 2を使っている開発者なら、空間を扱う同じ作業でHydrogenを試し、結果を比べるのがよさそうです。\n\n## まだ分からないこと\n\n- Robotics追加機能の日本での提供範囲は、まだ発表されていません。\n- Robotics追加機能に別途料金がかかるかは、まだ発表されていません。\n\n## AntigravityでのRoboticsの始め方\n\nAntigravityでは、Gemini 4 Hydrogenを選びます。追加機能は「Customizations」を開き、「Build With Google」から「Robotics」を検索して導入できます。\n\nHydrogen自体は、Gemini API（アプリから呼び出す仕組み）でも利用できます。Google AI Studioでは、ブラウザーから空間を扱う指示やカメラ映像を試せます。",
+  "easy": "## ひとことで言うと\n\nGoogleの新しい追加機能で、ロボットを動かす準備や動作の検証をAIが支援します。使うにはGoogle Antigravityと、有料のGoogle AI ProまたはUltraが必要です。\n\n## 実機を動かす前に画面で試せる\n\nAIはロボットやカメラの設定を支援します。実機を動かす前に、画面上で物をつかむ動きも確かめられます。\n\nGoogleの実演では、お菓子を仕分けるアームを約1時間で動かしました。日本での追加機能の提供範囲と、追加料金の有無はまだ発表されていません。",
+  "channel": "Google Developers Blog",
+  "channelId": "",
+  "channelSlug": "google-developers-blog",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "Gemini 4 Hydrogen: a faster model for general purpose robotics",
+  "publishedAt": "2026-11-17T17:42:20.777000+00:00",
+  "generatedAt": "2026-11-17T17:50:40.712424+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/gemini-hydrogen-robotics-plugin-8937ecc9.jpg",
+  "model": "openai-api:gpt-6.1-terra",
+  "affiliates": [],
+  "newsType": "product",
+  "todayActions": [
+    "AntigravityのCustomizationsでRoboticsを検索し、追加機能を確認する。",
+    "Google AI Studioで、空間を扱う指示やカメラ映像を試す。"
+  ],
+  "relatedSlugs": [
+    "gemini-4-hydrogen-launch-pricing"
+  ],
+  "qualityBar": {
+    "score": 5,
+    "missing": [
+      1,
+      5,
+      6
+    ],
+    "notes": {
+      "1": "最初の3行にだれに・どのくらいが無い",
+      "5": "することは書いてあるが、どこで（窓口・ページ）・いつまでが無い",
+      "6": "言い換えの無い略語（YAM・RT・SO）"
+    },
+    "checkedAt": "2026-11-17T17:50:48+00:00",
+    "before": [
+      1,
+      5,
+      6
+    ],
+    "repaired": false,
+    "repairLater": true
+  },
+  "qualityScore": 100,
+  "breaking": true,
+  "factSources": [
+    {
+      "label": "料金",
+      "name": "Google公式の料金ページ",
+      "url": "https://gemini.google/jp/subscriptions/?hl=ja",
+      "checkedAt": "2026-11-16"
+    },
+    {
+      "label": "過去記事",
+      "name": "サイソクの過去記事",
+      "url": "",
+      "checkedAt": "2026-11-13"
+    },
+    {
+      "label": "日本での提供",
+      "name": "Gemini（Googleの生成AI）の公式ページ",
+      "url": "https://support.google.com/gemini/answer/13575153?hl=ja",
+      "checkedAt": "2026-11-03"
+    }
+  ],
+  "detectedAt": "2026-11-17T17:42:20+00:00",
+  "fastLane": true,
+  "layout": "noir",
+  "summaryLine": "Gemini 4 HydrogenとRobotics追加機能で、ロボットの設定から制御までを支援",
+  "bodyImages": [
+    {
+      "src": "https://ai-tech-express.jp/img/gemini-hydrogen-robotics-plugin-fig1-90757d03.jpg",
+      "width": 1200,
+      "height": 600,
+      "kind": "hero",
+      "credit": "Google Developers",
+      "sourceUrl": "https://developers.googleblog.com/gemini-hydrogen-for-robotics/",
+      "original": "https://storage.googleapis.com/gweb-developer-goog-blog-assets/images/Robotics_Banner.2e16d0ba.fill-1200x600.jpg"
+    },
+    {
+      "src": "https://ai-tech-express.jp/img/gemini-hydrogen-robotics-plugin-fig2-818db29c.jpg",
+      "width": 1200,
+      "height": 675,
+      "kind": "hero",
+      "credit": "Google Developers",
+      "sourceUrl": "https://developers.googleblog.com/gemini-hydrogen-for-robotics/",
+      "original": "https://storage.googleapis.com/gweb-developer-goog-blog-assets/images/Robotics_Banner.original.jpg"
+    }
+  ],
+  "imageCredit": {
+    "kind": "official",
+    "org": "Google Developers",
+    "provider": "Google Developers Blog",
+    "sourceUrl": "https://developers.googleblog.com/gemini-hydrogen-for-robotics/",
+    "original": "https://storage.googleapis.com/gweb-developer-goog-blog-assets/original_videos/wagtailvideo-l0f6wpmy_thumb.jpg",
+    "width": 1200,
+    "height": 675,
+    "at": "2026-11-17T17:51:04+00:00"
+  },
+  "heroOk": true,
+  "imageFocus": {
+    "x": 0.458,
+    "y": 0.5,
+    "box": [
+      0.0,
+      0.0,
+      0.916,
+      1.0
+    ],
+    "ar": 1.7778,
+    "src": "https://ai-tech-express.jp/img/gemini-hydrogen-robotics-plugin-8937ecc9.jpg"
+  },
+  "duplicateOf": "gemini-4-hydrogen-launch-pricing",
+  "duplicateReason": "製品名が一致（gemini4hydrogen）"
+}

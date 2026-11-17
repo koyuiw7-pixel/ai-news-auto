@@ -7625,6 +7625,20 @@
       "trendLane": true,
       "url": "https://news.yahoo.co.jp/articles/966c7c7910608c7ab45117faa47a627d4bd01b44"
     },
+    "2c616836327a8b64": {
+      "at": "2026-11-17T17:50:48.088586+00:00",
+      "breaking": true,
+      "costUsd": 0.0431,
+      "foreignAi": true,
+      "intent": "breaking",
+      "major": true,
+      "mix": "enterprise_dev",
+      "model": "openai-api:gpt-6.1-terra",
+      "score": 100,
+      "section": "ai",
+      "slug": "gemini-hydrogen-robotics-plugin",
+      "url": "https://developers.googleblog.com/gemini-hydrogen-for-robotics/"
+    },
     "2c694c30d988e63d6fec58691721518932680d08": {
       "at": "2026-11-14T17:22:20.003649+00:00",
       "reason": "trend: 重複: 報道の見出しと同じ話題の記事がある（同じ出典URL）",
@@ -23979,30 +23993,6 @@
   "quality_log": [
     {
       "accepted": true,
-      "at": "2026-11-15T10:51:29.768859+00:00",
-      "attempt": 0,
-      "id": "2d75f45f1333f2d4",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 73.2,
-        "avg_sentence": 44.0,
-        "long_share": 0.1,
-        "max_paragraph": 138,
-        "paragraphs": 12,
-        "sentences": 20
-      },
-      "score": 88,
-      "source": "nli-research",
-      "title": "英国ＧＤＰ（2026年7-9月期）－1-3月、4-6月に続き高い成長率を記録",
-      "warnings": [
-        "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（GDP）"
-      ]
-    },
-    {
-      "accepted": true,
       "at": "2026-11-15T11:38:14.045928+00:00",
       "attempt": 1,
       "id": "66dd76b7a347bbf4",
@@ -31520,6 +31510,29 @@
         "初めて出たところで言い換えていない略語（MP・CD）",
         "読みやすさ: 文が長い（1文の平均 48.7字・60字超の文が 29% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
         "読みやすさ: 段落が長い（平均 151.6字・最長 272字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-17T17:50:48.052905+00:00",
+      "attempt": 1,
+      "id": "2c616836327a8b64",
+      "kind": "ai",
+      "model": "openai-api:gpt-6.1-terra",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 87.2,
+        "avg_sentence": 42.4,
+        "long_share": 0.081,
+        "max_paragraph": 119,
+        "paragraphs": 18,
+        "sentences": 37
+      },
+      "score": 100,
+      "source": "google-developers-blog",
+      "title": "Gemini 4 Hydrogen: a faster model for general purpose robotics",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（YAM・RT・SO）"
       ]
     }
   ],
