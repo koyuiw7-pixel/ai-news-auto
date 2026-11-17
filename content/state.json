@@ -12574,6 +12574,19 @@
       "skipped": true,
       "url": "https://www.cyberagent.co.jp/news/detail/id=33979"
     },
+    "7aded4e4b3cc0fca": {
+      "at": "2026-11-17T02:12:57.223743+00:00",
+      "costUsd": 0.1356,
+      "foreignAi": true,
+      "intent": "breaking",
+      "major": true,
+      "mix": "other",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "score": 90,
+      "section": "ai",
+      "slug": "openai-csam-image-classifier",
+      "url": "https://deploymentsafety.openai.com/csam-image-classifier?utm_source=chatgpt.com"
+    },
     "7ae7407c57e61447": {
       "at": "2026-11-10T04:21:01.280602+00:00",
       "costUsd": 0.0129,
@@ -23297,60 +23310,6 @@
   },
   "quality_log": [
     {
-      "accepted": false,
-      "at": "2026-11-14T16:34:26.115864+00:00",
-      "attempt": 1,
-      "id": "36fcdd95fe7d92a177dc47b56e410838044331fe",
-      "kind": "trend",
-      "model": "gemini-3.5-flash",
-      "problems": [
-        "かんたん版「じっくり時間をかけて移籍先を決める見通し」→ 元記事に移籍先決定の時期や見通しの記述はなく、根拠のない見通しである",
-        "かんたん版「自分自身の成長を実感できるチームを一番の条件に挙げています」→ 元記事は「伸びしろを感じてもらって一緒に成長できるチームに」と述べたのみで、「一番の条件」とは書かれていない",
-        "リード「焦らずトレーニングを継続して交渉を見守る意向」→ 元記事は「ゆったりとした気持ちで過ごしている」と述べており、交渉を見守る意向という記述は元記事にない",
-        "本文「大リーグ公式サイトの先発投手ランキングでも9位と高く評価」→ 元記事は移籍市場の先発投手ランキング9位とするのみで、「高く評価」は解釈として言い過ぎ",
-        "本文「契約の長さよりも、成長できる環境と日々の緊張感を優先する考え」→ 元発言は長期契約への考え方の反省であり、優先順位の表明としては言い過ぎ"
-      ],
-      "readability": {
-        "avg_paragraph": 119.8,
-        "avg_sentence": 53.2,
-        "long_share": 0.333,
-        "max_paragraph": 170,
-        "paragraphs": 4,
-        "sentences": 9
-      },
-      "score": 78,
-      "source": "trends",
-      "title": "今永昇太",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（FA）",
-        "読みやすさ: 文が長い（1文の平均 53.2字・60字超の文が 33% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-14T16:34:50.464705+00:00",
-      "attempt": 1,
-      "id": "36fcdd95fe7d92a177dc47b56e410838044331fe",
-      "kind": "trend",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 101.5,
-        "avg_sentence": 58.0,
-        "long_share": 0.429,
-        "max_paragraph": 131,
-        "paragraphs": 4,
-        "sentences": 7
-      },
-      "score": 88,
-      "source": "trends",
-      "title": "今永昇太",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（FA）",
-        "読みやすさ: 文が長い（1文の平均 58.0字・60字超の文が 43% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
       "accepted": true,
       "at": "2026-11-14T16:35:09.801247+00:00",
       "attempt": 0,
@@ -30905,6 +30864,60 @@
       "warnings": [
         "見出しが49字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（PS・LLM・SHA）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-17T02:12:30.084696+00:00",
+      "attempt": 1,
+      "id": "7aded4e4b3cc0fca",
+      "kind": "ai",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [
+        "本文「一般の個人が直接使うものではなく、個人の利用者の手続きや料金が変わることもありません」→ 元記事に「個人の手続きや料金」への言及はなく、根拠のない断定である。",
+        "本文「対象は、画像を受け付けるサービスの運営者や審査チーム」→ 元記事は承認された組織への提供としか書いておらず、対象の種類を具体的に限定しているのは言い過ぎである。",
+        "見出し・小見出し「学習と評価の画像は50万点超と約4万7,000点」→ 50万点超は学習の陽性数、4万7,000点は評価の総数で、指す対象が混ざって読みにくい。",
+        "小見出し「医療・教育・家族写真は対象外として学習」→ 元記事では、これらは非CSAMの例として学習・評価の陰性データに含まれるもので、「対象外」という表現は誤解を招く。",
+        "かんたん版「最終的には、訓練を受けた人が確認します」→ 元記事は人による確認を補完的な安全策と位置づけており、「最終的に」は言い過ぎである。"
+      ],
+      "readability": {
+        "avg_paragraph": 98.4,
+        "avg_sentence": 42.6,
+        "long_share": 0.149,
+        "max_paragraph": 178,
+        "paragraphs": 29,
+        "sentences": 67
+      },
+      "score": 85,
+      "source": "radar-official",
+      "title": "OpenAI CSAM Image Classifier Model Card - OpenAI Deployment Safety Hub",
+      "warnings": [
+        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（CSAM・CLIP・MLP）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-17T02:12:57.196934+00:00",
+      "attempt": 1,
+      "id": "7aded4e4b3cc0fca",
+      "kind": "ai",
+      "model": "strike:本文 2 文・かんたん版 1 文",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 95.9,
+        "avg_sentence": 42.8,
+        "long_share": 0.154,
+        "max_paragraph": 178,
+        "paragraphs": 29,
+        "sentences": 65
+      },
+      "score": 90,
+      "source": "radar-official",
+      "title": "OpenAI CSAM Image Classifier Model Card - OpenAI Deployment Safety Hub",
+      "warnings": [
+        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（CSAM・CLIP・MLP）"
       ]
     }
   ],
