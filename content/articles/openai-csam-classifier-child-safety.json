@@ -1,0 +1,158 @@
+{
+  "slug": "openai-csam-classifier-child-safety",
+  "sourceType": "web",
+  "sourceUrl": "https://openai.com/index/strengthening-online-child-safety",
+  "sourceName": "OpenAI公式ブログ",
+  "title": "児童性的虐待コンテンツの検出ツール、審査済み団体にAPIで無料提供　OpenAIが公開",
+  "seoTitle": "OpenAIのCSAM分類器とは？無料提供の条件",
+  "threadsPost": "子どもの安全に関わる開発や運営をしている人に、押さえておきたい話です。\n\nOpenAIが、AI生成も含む児童性的虐待コンテンツの画像分類器を公開しました。\n審査を通った団体には、APIから無料で提供されます。\n\n画像を扱うサービスの安全対策、今どんな体制ですか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "plain",
+      "question": "画像を扱うサービスの安全対策、今どんな体制ですか？"
+    },
+    {
+      "pattern": "tradeoff",
+      "question": "安全のため投稿を自動で審査されるなら、どこまで許せますか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "honest",
+  "lede": "児童性的虐待コンテンツ（CSAM）を見つける画像分類器が、審査を通った団体にOpenAI APIで無料提供されます。AI生成の画像かどうかを示す専用の信号を持つ、広く使える分類器としては初だと、OpenAIは説明しています。ChatGPTの一般の利用者に必要な手続きはなく、利用を望む団体は申込フォームから申請します。",
+  "description": "OpenAIが児童性的虐待コンテンツ（CSAM）の画像分類器を、審査済みの団体にAPIで無料提供します。確認件数を48%減らせる試算や、ChatGPTの警告表示、開発者向けの手引きまで整理します。",
+  "keywords": [
+    "OpenAI",
+    "CSAM",
+    "児童性的虐待コンテンツ",
+    "画像分類器",
+    "児童の安全",
+    "ChatGPT 警告",
+    "Moderation API",
+    "Tech Coalition",
+    "NCMEC",
+    "AI生成 画像 検出",
+    "コンテンツモデレーション",
+    "Thorn Safer"
+  ],
+  "tags": [
+    "OpenAI",
+    "ChatGPT",
+    "生成AI",
+    "AI安全性",
+    "コンテンツモデレーション"
+  ],
+  "highlights": [
+    "CSAMを検出する新しい画像分類器を、審査済み団体にOpenAI APIで無料提供する",
+    "既存の保護策と比べ、確認対象は48%減りながら、見つかる虐待画像はほぼ同数と試算",
+    "ChatGPTは警告を出し、会話を削除して24時間利用を止める。繰り返すと閉鎖や通報も"
+  ],
+  "timetable": [],
+  "verdict": {
+    "status": "limited",
+    "japan": "unknown",
+    "price": "審査済み団体は無料",
+    "free": true,
+    "audience": "開発者・運営団体",
+    "take": "画像を扱うサービスの運営者は、公式の申込フォームと手引きで、自社の対策の抜けを点検するとよいでしょう。",
+    "judgedAt": "2026-11-17T04:51:36.485028+00:00"
+  },
+  "workMoney": {
+    "relevance": "medium",
+    "points": [
+      "画像のアップロードを受けるサービスの運営者は、手引きで安全対策の抜けを確認できます。",
+      "分類器は審査済みの団体にAPIで無料提供されます。申請は公式の申込フォームからです。"
+    ]
+  },
+  "body": "一般のChatGPT利用者が、今回の分類器のために手続きをする必要はありません。対象は、審査を通った児童保護団体や、画像を扱うサービスの運営団体です。日本での提供範囲はまだ発表されていません。ChatGPTとOpenAI APIそのものは日本で使えます（当サイトの確認：11/3）。\n\n新しい分類器は、画像の中の視覚的な特徴から、児童性的虐待コンテンツ（CSAM）の疑いを見つけます。AIが作った画像も対象です。審査担当者に点数を返すので、どの画像から確認するかを決める助けになります。\n\n## 審査済みの団体にAPIで無料提供\n\nOpenAIの公式ブログによると、分類器は審査を通った団体にOpenAI APIで無料提供されます。規模の小さなチームも想定されています。利用を望む団体は、申込フォームから申請します。\n\n開発には、児童の搾取を通報する窓口「CyberTipline」を運営する非営利団体NCMEC（全米行方不明・被搾取児童センター）が協力しました。提供の共有には、業界団体のTech CoalitionとROOSTが関わっています。\n\nOpenAIはTech Coalitionの情報共有の取り組み「Lantern」にも最近参加しました。ほかのプラットフォームと、児童の性的搾取に関する信号をやり取りします。Thorn（児童保護の非営利団体）のSaferなど、他社のツールも支持するとしています。\n\n## 確認件数は48%減、虐待画像の割合は約2倍\n\nOpenAIは、利用者がアップロードした画像で、新しい分類器と現行の保護策を比べました。\n\n- 検出される虐待画像はほぼ同数のまま、確認対象に挙がる画像は48%少なくなる試算でした。\n- 分類器が挙げた画像に虐待が含まれる割合は、約2倍でした。\n\n早くから使った3社の結果も公開されています。\n\n- fal：人が確認した本番の画像で、高い確信度の検出の72%が新種のCSAMと確認されました。\n- invideo AI：検出された事例の4件に1件が、アカウントの停止につながりました。\n- SafetyKit：子どもを性的に描いた絵やアニメーションでは、90%を検出しました。\n\n数字は評価条件つきの結果です。精度の詳細は、モデルカード（性能や限界の説明書）で公開されています。\n\n## ChatGPTは警告を出し、24時間止める\n\nOpenAIはすでにCSAMを禁止し、要求を断るよう学習させています。今回は、ChatGPTに警告表示を加えました。虐待コンテンツを探す試みを止めて、結果を説明し、行動をやめるための支援先を示します。\n\n警告では、AIが作った素材でも子どもの性的な描写は害になると明示します。あわせて、該当の会話を削除し、ChatGPTの利用を24時間止めます。繰り返すと制限が長くなり、最終的にアカウント閉鎖や当局への通報もあります。\n\n設計にはProtect Childrenやルーシー・フェイスフル財団などの助言が入りました。抑止メッセージの試行は、タスマニア大学のJoel Scanlan氏が独立に評価しています。\n\n## 開発者向けの手引きと、捜査部門への支援\n\nOpenAIは、開発者向けにCSAM対応の手引きを公開しました。Tech Coalition、Thorn、NCMEC、Internet Watch Foundationの意見を入れています。ルールの作り方、利用者からの通報手段、検出ツール、疑わしい投稿の確認と通報の流れを扱います。\n\n手引きは、検出に使う方法も整理しています。既知の画像を照合する知覚ハッシュ（画像の特徴から作る指紋）と、未知の画像を見つける分類器です（OpenAI公式「CSAM guidance」、11/17確認）。\n\n利用者が違反した際に、開発者が個人を特定しやすくする「安全識別子」にも触れています。審査担当者を守る支援の考え方も載っています。\n\nModeration API（不適切な内容を判定するAPI）は、無料で使えます。ただしCSAMの疑いのある画像を送ってはいけません。承認された団体は、代わりにこの分類器で確認します（OpenAI公式「Moderation」、11/17確認）。\n\nOpenAIはAnthropic、Googleと共同で、AIの利用者が被害を打ち明けたときの対応指針もTech Coalitionから公開しています。この手引きの公開後、児童保護ツールを使う開発者や、NCMECへの通報登録が増えたとしています。\n\n捜査部門向けには、AIを使った調査ツールと研修が用意されます。最初のツールは、長いチャット記録や法的手続きで得た資料を読み解き、つながりや時系列を整理します。結果には、元の資料への参照がつきます。利用は各機関の承認と、プログラムの要件しだいです。\n\n## サイソクの見方：画像を受け付けるサービスの点検に使える\n\nユーザーが画像を投稿できるサービスを運営しているなら、公開された手引きは、自社の体制を見直す材料になります。分類器は審査済みの団体向けで、申請は申込フォームからです。\n\n確認件数が48%減るという数字は、審査担当者の負担を考えるうえで目安になります。ただし、これはOpenAIの評価条件での結果で、自社の画像にそのまま当てはまるとは限りません。\n\n画像を扱わない一般の利用者は、ChatGPTの警告表示のルールを知っておけば足ります。\n\n## まだ分からないこと\n\n- 日本の団体が、申請して利用できるかはまだ発表されていません。\n- 審査の基準と、利用開始までの期間はまだ発表されていません。\n- 研修の開催時期と対象の国は、まだ決まっていません。",
+  "easy": "## ひとことで言うと\n\nOpenAIが、児童への性的虐待を写した画像を見つける道具を公開しました。審査を通った団体は、APIで無料で使えます。\n\n## 何が公開されたか\n\nAI生成の画像も含めて、虐待の疑いがある画像に点数をつけます。審査する人は、点数をもとに確認の順番を決められます。\n\nOpenAIの試算では、既存の保護策より確認する画像が48%減り、見つかる虐待画像はほぼ同じ数でした。\n\n## ChatGPTの利用者への影響\n\nChatGPTでは、虐待コンテンツを探そうとする行為に警告が出ます。会話は削除され、ChatGPTは24時間使えなくなります。繰り返すと、利用の制限が長くなり、アカウント閉鎖や通報につながることがあります。\n\n## 開発者や捜査機関への支援\n\nアプリ開発者向けの手引きも公開されました。児童保護を担う捜査部門には、AIを使った調査ツールと研修が提供されます。",
+  "channel": "OpenAI公式ブログ",
+  "channelId": "",
+  "channelSlug": "openai-news",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "Strengthening the fight against online child sexual abuse with new tools and support",
+  "publishedAt": "2026-11-16T17:00:00+00:00",
+  "generatedAt": "2026-11-17T04:51:36.485018+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/openai-csam-classifier-child-safety-75428bd4.jpg",
+  "model": "anthropic-api:claude-sonnet-5-5",
+  "affiliates": [],
+  "newsType": "product",
+  "faq": [
+    {
+      "q": "OpenAIのCSAM分類器は、自分の会社でも申し込めますか？",
+      "a": "審査を通った団体が対象で、申込フォームから申請します。"
+    }
+  ],
+  "todayActions": [
+    "画像を投稿できるサービスの運営者は、OpenAIの「CSAM guidance」で自社の通報の流れを確認する",
+    "利用を検討する団体は、OpenAIの申込フォームで分類器へのアクセスを申請する",
+    "分類器の評価条件と限界は、モデルカードで確認する"
+  ],
+  "qualityBar": {
+    "score": 5,
+    "missing": [
+      3,
+      5,
+      7
+    ],
+    "notes": {
+      "3": "早見の表・式つきの計算・「〜の人は〜」の判断の目安が無い",
+      "5": "することは書いてあるが、どこで（窓口・ページ）・いつまでが無い",
+      "7": "内部リンクが1本（2本以上）"
+    },
+    "checkedAt": "2026-11-17T04:51:47+00:00",
+    "before": [
+      3,
+      5,
+      7
+    ],
+    "repaired": false,
+    "repairLater": true
+  },
+  "qualityScore": 90,
+  "breaking": true,
+  "sourcePublishedAt": "2026-11-16T17:00:00+00:00",
+  "detectedAt": "2026-11-17T04:49:24+00:00",
+  "fastLane": true,
+  "layout": "noir",
+  "summaryLine": "CSAMを検出する新しい画像分類器を、審査済み団体にOpenAI APIで無料提供する",
+  "bodyImages": [
+    {
+      "src": "https://ai-tech-express.jp/img/openai-csam-classifier-child-safety-fig1-fb20136a.jpg",
+      "width": 1200,
+      "height": 675,
+      "kind": "dense",
+      "credit": "OpenAI",
+      "sourceUrl": "https://openai.com/index/strengthening-online-child-safety",
+      "original": "https://images.ctfassets.net/kftzwdyauwt9/6phKwsBa1TVzc2XxxUJSNQ/ff62c0fb3cea0b4e799a7177210c1a19/strengthening-online-child-safety-inline-warning.png?w=3840&q=90&fm=webp"
+    }
+  ],
+  "imageCredit": {
+    "kind": "official",
+    "org": "OpenAI",
+    "provider": "OpenAI公式ブログ",
+    "sourceUrl": "https://openai.com/index/strengthening-online-child-safety",
+    "original": "https://images.ctfassets.net/kftzwdyauwt9/48yJpyhKNBj3OvZAAEeLWN/5a888045c242da8cc8f8dc539f5f92fe/strengthening-online-child-safety-social.png?w=1600&h=900&fit=fill",
+    "width": 1200,
+    "height": 675,
+    "at": "2026-11-17T04:51:56+00:00",
+    "imageKind": "hero"
+  },
+  "heroOk": false,
+  "imageFocus": {
+    "x": 0.511,
+    "y": 0.68,
+    "box": [
+      0.022,
+      0.361,
+      1.0,
+      1.0
+    ],
+    "ar": 1.7778,
+    "src": "https://ai-tech-express.jp/img/openai-csam-classifier-child-safety-75428bd4.jpg"
+  }
+}

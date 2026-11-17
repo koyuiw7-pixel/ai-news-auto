@@ -16182,6 +16182,20 @@
       "skipped": true,
       "url": "https://www.docomo.ne.jp/binary/pdf/info/news_release/topics_261116_g1.pdf"
     },
+    "b1c71d07875ac772": {
+      "at": "2026-11-17T04:51:47.498737+00:00",
+      "breaking": true,
+      "costUsd": 0.1161,
+      "foreignAi": true,
+      "intent": "breaking",
+      "major": true,
+      "mix": "other",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "score": 90,
+      "section": "ai",
+      "slug": "openai-csam-classifier-child-safety",
+      "url": "https://openai.com/index/strengthening-online-child-safety"
+    },
     "b1e194f7b5fa4210": {
       "at": "2026-11-12T05:38:23.426102+00:00",
       "costUsd": 0.0074,
@@ -23492,21 +23506,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-14T17:23:18.782853+00:00",
-      "attempt": 1,
-      "id": "3432d952b03ef8bb",
-      "kind": "update",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "本文「既存記事ではパラグアイ戦の日程のみを紹介していました」→ 元記事の関連ニュース見出しは「ブラジル代表戦（11.14）・パラグアイ代表戦（11.17）」の両方を扱っており、既存記事がパラグアイ戦だけだったという記述は元記事と食い違う。",
-        "本文「鎌田選手は今回のメンバーに入っていたため、離脱の発表となりました」→ 元記事は「離脱」と書くだけで、メンバー入りしていたとは明記していない。推測による補足。"
-      ],
-      "score": 80,
-      "source": "jfa",
-      "title": "SAMURAI BLUE（日本代表）選手離脱 MIZUHO BLUE CHALLENGE THE KALLANG FOOTBALL SERIES SINGAPO"
-    },
     {
       "accepted": true,
       "at": "2026-11-14T17:24:32.841214+00:00",
@@ -31053,6 +31052,30 @@
       "warnings": [
         "見出しが45字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（AR・HDR・IPX）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-17T04:51:47.471629+00:00",
+      "attempt": 1,
+      "id": "b1c71d07875ac772",
+      "kind": "ai",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 93.2,
+        "avg_sentence": 38.8,
+        "long_share": 0.062,
+        "max_paragraph": 140,
+        "paragraphs": 20,
+        "sentences": 48
+      },
+      "score": 90,
+      "source": "openai-news",
+      "title": "Strengthening the fight against online child sexual abuse with new tools and sup",
+      "warnings": [
+        "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（CSAM・ROOST）"
       ]
     }
   ],
