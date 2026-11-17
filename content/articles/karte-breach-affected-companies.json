@@ -66,7 +66,7 @@
   "videoTitle": "KARTEの不正アクセス、あなたの使う店も対象か　公表した会社の一覧",
   "publishedAt": "2026-11-17T15:46:51.184809+00:00",
   "generatedAt": "2026-11-17T15:48:04.766574+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/karte-breach-affected-companies-figure-5cb3acaa.jpg",
   "model": "anthropic-api:claude-haiku-5-5",
   "affiliates": [],
   "newsType": "security",
@@ -77,9 +77,9 @@
     }
   ],
   "todayActions": [
-    "届いたメールのリンクや添付ファイルは開かず、ログイン情報も入力しない",
-    "会員登録した会社が一覧にあれば、その会社の窓口に確かめる（クラブツーリズムは0120-678-786）",
-    "KARTEを業務で使う会社の担当者は、連携用の認証情報を無効にしているか確かめる"
+    "Francfrancで店舗購入した人は、会員登録の有無から対象の可能性を確認する",
+    "クラブツーリズムのインターネット会員は、対象時点を確認して特設窓口へ問い合わせる",
+    "KARTEと外部サービスを連携する会社は、該当する認証情報を無効化する"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -134,5 +134,134 @@
   "detectedAt": "2026-11-17T15:49:29+00:00",
   "searchTitle": "KARTEの不正アクセス、漏えいした6社と件数　問い合わせ窓口",
   "layout": "noir",
-  "summaryLine": "KARTEを提供するプレイドが不正アクセスを受け、**6社**が会員情報の漏えいを公表。"
+  "summaryLine": "KARTEを提供するプレイドが不正アクセスを受け、**6社**が会員情報の漏えいを公表。",
+  "insight": [
+    {
+      "text": "Francfrancは、店舗購入だけでも会員登録があれば情報流出の可能性があります。一方、会員登録せずに購入した人や外部通販サイトで購入した人は対象外と案内しています。",
+      "source": "https://help.francfranc.com/hc/ja/sections/64369202474649"
+    },
+    {
+      "text": "Francfrancの公式オンラインショップと公式アプリは通常どおり利用できます。KARTEに連携していたお客さま情報については、情報連携を停止しています。",
+      "source": "https://help.francfranc.com/hc/ja/articles/64371011900313"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "クラブツーリズム株式会社 お客様特設窓口",
+      "url": "https://www.club-tourism.co.jp/jpn/news/2026/1117_1/",
+      "source": "https://www.club-tourism.co.jp/jpn/news/2026/1117_1/",
+      "phone": "０１２０－６７８－７８６",
+      "hours": "平日（月～金曜日）9：30～17：00。土曜・日曜・祝日・休業日も2026年12月28日までは上記時間で受付"
+    },
+    {
+      "name": "【アインズ＆トルペ・AYURA・Francfranc共通】 お客さまサポートセンター",
+      "url": "https://forms.cloud.microsoft/r/GtP2icxStM",
+      "source": "https://help.francfranc.com/hc/ja/articles/64371011900313",
+      "howTo": [
+        "ご利用ガイドTOP",
+        "お知らせ",
+        "Francfrancにおけるお客さま情報流出の可能性について"
+      ],
+      "phone": "0120-001-318",
+      "hours": "9：00～21：00",
+      "note": "専用フォームはお客さま用です。"
+    },
+    {
+      "name": "サポート窓口",
+      "url": "https://support.morisawafonts.com/hc/ja/requests/new?ticket_form_id=360001989372",
+      "source": "https://www.morisawa.co.jp/about/news/19310"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "Francfrancで店舗購入した人は、会員登録の有無から対象の可能性を確認する",
+      "source": "https://help.francfranc.com/hc/ja/sections/64369202474649",
+      "steps": [
+        "「店舗でしか購入していませんが、対象ですか？」を開く",
+        "店舗購入時に会員登録していたか確認する"
+      ],
+      "url": "https://help.francfranc.com/hc/ja/articles/64369778540825-%E5%BA%97%E8%88%97%E3%81%A7%E3%81%97%E3%81%8B%E8%B3%BC%E5%85%A5%E3%81%97%E3%81%A6%E3%81%84%E3%81%BE%E3%81%9B%E3%82%93%E3%81%8C-%E5%AF%BE%E8%B1%A1%E3%81%A7%E3%81%99%E3%81%8B"
+    },
+    {
+      "action": "クラブツーリズムのインターネット会員は、対象時点を確認して特設窓口へ問い合わせる",
+      "source": "https://www.club-tourism.co.jp/jpn/news/2026/1117_1/",
+      "steps": [
+        "2026年11月12日時点の会員登録を確認する",
+        "お客様特設窓口へ電話する"
+      ],
+      "url": "https://www.club-tourism.co.jp/jpn/news/2026/1117_1/"
+    },
+    {
+      "action": "KARTEと外部サービスを連携する会社は、該当する認証情報を無効化する",
+      "source": "https://plaid.co.jp/news/20261116/",
+      "steps": [
+        "KARTEと外部サービスの連携利用を確認する",
+        "該当するシークレットキーやアクセストークンを無効化する"
+      ],
+      "url": "https://plaid.co.jp/news/20261116/"
+    }
+  ],
+  "cause": {
+    "text": "11月13日未明、第三者がプレイドのサーバーの脆弱性を悪用し、システムやデータベースの接続用認証情報を窃取しました。その情報でデータを外部に読み出し、プレイドのアカウントを乗っ取って管理画面にも不正アクセスしたと説明しています。",
+    "status": "stated",
+    "source": "https://plaid.co.jp/news/20261116/"
+  },
+  "worries": [
+    {
+      "q": "店舗で買っただけでも、私の情報は対象になる？",
+      "a": "Francfrancは、店舗購入だけでも会員登録があれば会員情報が流出した可能性があると案内しています。会員登録せずに購入した場合や、楽天市場など外部通販サイトで購入した場合は対象外です。",
+      "source": "https://help.francfranc.com/hc/ja/sections/64369202474649",
+      "action": "会員登録の有無をFAQで確認し、会員だった場合は公式のお客さまサポートセンターへ問い合わせてください。"
+    },
+    {
+      "q": "Francfrancのカード情報やパスワードも漏れた？",
+      "a": "Francfrancは、クレジットカード情報と該当サービスへのログインパスワードの流出は確認されていないと案内しています。対象となる情報や件数は、今後の調査で変更となる可能性があります。",
+      "source": "https://help.francfranc.com/hc/ja/articles/64371011900313",
+      "action": "FrancfrancのFAQでカード情報・パスワードに関する最新の案内を確認してください。"
+    },
+    {
+      "q": "クラブツーリズムの氏名や住所、連絡先も対象？",
+      "a": "対象となる可能性がある情報は、会員番号（暗号化したうえで特殊な文字列に変換）、顧客番号、性別、年齢、生年月日です。氏名、住所、電話番号、メールアドレス、ログインパスワードなどは含まれていないとしています。",
+      "source": "https://www.club-tourism.co.jp/jpn/news/2026/1117_1/",
+      "action": "2026年11月12日時点でインターネット会員だった人は、お客様特設窓口へ対象範囲を確認してください。"
+    },
+    {
+      "q": "今回の件を装った不審なメールが届くことはある？",
+      "a": "プレイドはKARTEのアカウントとして登録されたメールアドレス宛てに、同社をかたる不審なメールが届く可能性があると注意を呼びかけています。モリサワも、漏えいしたメールアドレスを悪用した不審なメールが送信される可能性を案内しています。",
+      "source": "https://plaid.co.jp/news/20261116/",
+      "action": "心当たりのないメールのURLや添付ファイルは開かず、ログイン情報を入力しないでください。"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "店舗購入でも会員登録があれば対象の可能性",
+    "cause": "盗まれた認証情報で管理画面にも侵入",
+    "steps": "自分の登録と会社の連携を確認する",
+    "desk": "対象か迷ったら各社の窓口へ",
+    "worries": "カード情報や連絡先まで漏れた？"
+  },
+  "depthAt": "2026-11-17T16:12:45+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "KARTEの不正アクセス、あなたの使う店も対象か",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-17T16:13:32+00:00"
+  },
+  "imageFocus": {
+    "x": 0.534,
+    "y": 0.399,
+    "box": [
+      0.084,
+      0.042,
+      0.984,
+      0.756
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/karte-breach-affected-companies-figure-5cb3acaa.jpg"
+  },
+  "discoverCandidate": true
 }
