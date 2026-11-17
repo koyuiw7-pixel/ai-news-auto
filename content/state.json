@@ -6559,6 +6559,19 @@
       "skipped": true,
       "url": "https://www.env.go.jp/press/press_05859.html"
     },
+    "1e7766d97ea58921": {
+      "at": "2026-11-17T07:00:06.321751+00:00",
+      "costUsd": 0.0072,
+      "intent": "breaking",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "score": 93,
+      "section": "public",
+      "slug": "francfranc-karte-data-leak",
+      "url": "https://help.francfranc.com/hc/ja/articles/64371011900313-Francfranc%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E3%81%8A%E5%AE%A2%E3%81%95%E3%81%BE%E6%83%85%E5%A0%B1%E6%B5%81%E5%87%BA%E3%81%AE%E5%8F%AF%E8%83%BD%E6%80%A7%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6"
+    },
     "1e8793f408d27ac2": {
       "at": "2026-11-16T15:33:04.775908+00:00",
       "costUsd": 0.0108,
@@ -9597,12 +9610,6 @@
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・暮らしの交通/天気/値上げ/障害/給付/発売・日本のスポーツのどれでもない）",
       "skipped": true,
       "url": "https://www.soumu.go.jp/menu_news/kaiken/01koho01_02001591.html"
-    },
-    "4d836f21a02fa461": {
-      "at": "2026-11-03T07:11:12.740799+00:00",
-      "reason": "dedupe: 固有名詞＋見出しが類似（agentic / 0.31）: aws-nvidia-nemotron-35-super-vl",
-      "skipped": true,
-      "url": "https://blogs.nvidia.com/blog/cities-physical-agentic-ai-applications/"
     },
     "4daf6dadf9c46066": {
       "at": "2026-11-07T15:13:11.035339+00:00",
@@ -14298,6 +14305,13 @@
       "section": "ai",
       "slug": "google-health-ai-evaluation-framework",
       "url": "https://blog.google/innovation-and-ai/technology/health/evaluating-health-ai-at-scale/"
+    },
+    "91f50f1dc9342187": {
+      "at": "2026-11-17T07:00:33.422513+00:00",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "reason": "followup quality: 本文「アインズ&トルペ・アユーラは11月16日、…発表しました」→ 元記事に発表日の記載はなく、11月16日という日付は元記事・確認済みの文脈のどちらにも無い。; 要点「店舗のみで買った会員も対象に含まれます」→ 元記事にも確認済みの文脈にも店舗のみの会員が対象に含まれるという記述は無く、Francfrancの件数に関する創作。; 要点「11月16日に発表」→ ",
+      "skipped": true,
+      "url": "https://ainz-tulpe.jp/blogs/information/%E3%82%A2%E3%82%A4%E3%83%B3%E3%82%BA-%E3%83%88%E3%83%AB%E3%83%9A%E5%85%AC%E5%BC%8F%E3%82%A2%E3%83%97%E3%83%AA%E5%8F%8A%E3%81%B3%E5%85%AC%E5%BC%8F%E3%82%AA%E3%83%B3%E3%83%A9%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%82%A2%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B-%E3%81%8A%E5%AE%A2%E3%81%95%E3%81%BE%E6%83%85%E5%A0%B1%E6%B5%81%E5%87%BA%E3%81%AE%E5%8F%AF%E8%83%BD%E6%80%A7%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6"
     },
     "9214c4281408292adfb113ed1bb174f52f0f527e": {
       "at": "2026-11-14T05:17:56.220076+00:00",
@@ -21211,13 +21225,6 @@
       "slug": "google-language-explorer-world-languages",
       "url": "https://research.google/blog/exploring-the-worlds-languages-with-language-explorer/"
     },
-    "fec0e46ceba430b8": {
-      "at": "2026-11-03T07:14:43.405052+00:00",
-      "model": "anthropic-api:claude-opus-5-5",
-      "reason": "quality: サイソクが自分で試したように読める書き方がある（「筆者」）。サイソクは試していない。元記事の書き手が試した結果なら「〇〇（媒体名）の記者が試したところ」と誰が試したかを書く",
-      "skipped": true,
-      "url": "https://huggingface.co/blog/transformers-mic"
-    },
     "fec2a37d38580243": {
       "at": "2026-11-05T13:15:07.612850+00:00",
       "reason": "dedupe: 固有名詞が一致（daihyo・jfa）: フットサルモロッコ代表 来日メンバー 国際親善試合 フットサル日本代表 対 フッ",
@@ -21298,6 +21305,20 @@
       "section": "public",
       "slug": "soumu-ict-economics-r8-01",
       "url": "https://www.soumu.go.jp/main_sosiki/kenkyu/keizaiken/R8_01.html"
+    },
+    "ffdf52027929ad7f": {
+      "at": "2026-11-17T07:27:30.357565+00:00",
+      "breaking": true,
+      "costUsd": 0.0984,
+      "foreignAi": true,
+      "intent": "breaking",
+      "major": true,
+      "mix": "other",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "score": 90,
+      "section": "ai",
+      "slug": "meta-direct-messaging-app",
+      "url": "https://about.fb.com/news/2026/11/introducing-direct-an-app-just-for-messaging/"
     },
     "ffe0526a36b01e3d": {
       "at": "2026-11-10T09:05:35.031168+00:00",
@@ -23608,53 +23629,9 @@
       "slug": "fujiseika-kinpaku-hagoromo-recall",
       "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602845",
       "writer": "muse"
-    },
-    "1e7766d97ea58921": {
-      "at": "2026-11-17T07:00:06.321751+00:00",
-      "costUsd": 0.0072,
-      "intent": "breaking",
-      "major": true,
-      "mix": "alert",
-      "model": "claude:sonnet",
-      "publicInterest": "breach",
-      "score": 93,
-      "section": "public",
-      "slug": "francfranc-karte-data-leak",
-      "url": "https://help.francfranc.com/hc/ja/articles/64371011900313-Francfranc%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E3%81%8A%E5%AE%A2%E3%81%95%E3%81%BE%E6%83%85%E5%A0%B1%E6%B5%81%E5%87%BA%E3%81%AE%E5%8F%AF%E8%83%BD%E6%80%A7%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6"
-    },
-    "91f50f1dc9342187": {
-      "at": "2026-11-17T07:00:33.422513+00:00",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "reason": "followup quality: 本文「アインズ&トルペ・アユーラは11月16日、…発表しました」→ 元記事に発表日の記載はなく、11月16日という日付は元記事・確認済みの文脈のどちらにも無い。; 要点「店舗のみで買った会員も対象に含まれます」→ 元記事にも確認済みの文脈にも店舗のみの会員が対象に含まれるという記述は無く、Francfrancの件数に関する創作。; 要点「11月16日に発表」→ ",
-      "skipped": true,
-      "url": "https://ainz-tulpe.jp/blogs/information/%E3%82%A2%E3%82%A4%E3%83%B3%E3%82%BA-%E3%83%88%E3%83%AB%E3%83%9A%E5%85%AC%E5%BC%8F%E3%82%A2%E3%83%97%E3%83%AA%E5%8F%8A%E3%81%B3%E5%85%AC%E5%BC%8F%E3%82%AA%E3%83%B3%E3%83%A9%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%82%A2%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B-%E3%81%8A%E5%AE%A2%E3%81%95%E3%81%BE%E6%83%85%E5%A0%B1%E6%B5%81%E5%87%BA%E3%81%AE%E5%8F%AF%E8%83%BD%E6%80%A7%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6"
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-14T20:44:28.199518+00:00",
-      "attempt": 0,
-      "id": "267a4c3ea7d0f586",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 76.9,
-        "avg_sentence": 37.4,
-        "long_share": 0.077,
-        "max_paragraph": 137,
-        "paragraphs": 19,
-        "sentences": 39
-      },
-      "score": 92,
-      "source": "radar-official",
-      "title": "Snow Man関連ニュース｜dメニューニュース（NTTドコモ）",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（WEB・TBS・MC）",
-        "感嘆符（！）が多い。感嘆符は使わない"
-      ]
-    },
     {
       "accepted": false,
       "at": "2026-11-14T20:45:16.834147+00:00",
@@ -31184,6 +31161,29 @@
       "score": 58,
       "source": "fast",
       "title": "お客さま情報流出の可能性について"
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-17T07:27:30.337258+00:00",
+      "attempt": 1,
+      "id": "ffdf52027929ad7f",
+      "kind": "ai",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 77.3,
+        "avg_sentence": 35.7,
+        "long_share": 0.077,
+        "max_paragraph": 116,
+        "paragraphs": 12,
+        "sentences": 26
+      },
+      "score": 90,
+      "source": "meta-newsroom",
+      "title": "Introducing Direct: An App Just for Messaging",
+      "warnings": [
+        "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す"
+      ]
     }
   ],
   "short_text_retry": {},
