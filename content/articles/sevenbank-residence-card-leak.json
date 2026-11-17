@@ -73,9 +73,9 @@
     }
   ],
   "todayActions": [
-    "在留カードを2026年10月16日〜11月9日にセブン銀行のサイトで提出したか、書類不備の案内を受けたかを確かめる",
-    "セブン銀行を名乗る電話やSMSで暗証番号や認証コードを聞かれても答えず、0088-21-1189（月〜金 9:00〜18:00）に連絡する",
-    "心当たりのないメールやSMSのリンク、添付ファイルは開かない"
+    "在留カード提出の時期と書類不備の案内を照らし、対象条件を確認する",
+    "対象条件に当てはまる人や判断に迷う人は、電話窓口に確認する",
+    "メールで問い合わせる人は、利用状況に合ったフォームを選ぶ"
   ],
   "relatedSlugs": [
     "yucho-atm-familymart-end-2027"
@@ -130,5 +130,125 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/sevenbank-residence-card-leak-figure-f7b798be.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "メールで問い合わせる場合、ダイレクトバンキング利用者はログオン後の「ダイレクトバンキングサービスTOP」にあるフォーム、未利用者は別のフォームを使います。",
+      "source": "https://www.sevenbank.co.jp/support/info_notice127.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "お電話によるお問合せ",
+      "url": "https://www.sevenbank.co.jp/support/info_notice127.html",
+      "source": "https://www.sevenbank.co.jp/support/info_notice127.html",
+      "howTo": [
+        "お問合せ窓口",
+        "お電話によるお問合せ"
+      ],
+      "phone": "0088-21-1189",
+      "hours": "月～金 9:00～18:00"
+    },
+    {
+      "name": "チャットサポート",
+      "url": "https://sevenbank.karakuri.ai/embed/",
+      "source": "https://www.sevenbank.co.jp/support/info_notice127.html",
+      "howTo": [
+        "お問合せ窓口",
+        "チャットによるお問合せ",
+        "チャットサポート"
+      ],
+      "hours": "月～土 9:00～18:00"
+    },
+    {
+      "name": "お問合せフォーム（ダイレクトバンキングサービスをご利用されていない方）",
+      "url": "https://reg31.smp.ne.jp/regist/is?SMPFORM=ncq-mbmbtj-7155ce3474c9ca26d1ffc6bd1fb14c4a",
+      "source": "https://www.sevenbank.co.jp/support/info_notice127.html",
+      "howTo": [
+        "お問合せ窓口",
+        "メールによるお問合せ",
+        "ダイレクトバンキングサービスをご利用されていない方"
+      ]
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "在留カード提出の時期と書類不備の案内を照らし、対象条件を確認する",
+      "source": "https://www.sevenbank.co.jp/support/info_notice127.html",
+      "steps": [
+        "手続き日が2026年10月16日～11月9日か確認する",
+        "書類不備の案内を受けたか確認する"
+      ],
+      "url": "https://www.sevenbank.co.jp/support/info_notice127.html"
+    },
+    {
+      "action": "対象条件に当てはまる人や判断に迷う人は、電話窓口に確認する",
+      "source": "https://www.sevenbank.co.jp/support/info_notice127.html",
+      "steps": [
+        "0088-21-1189へ電話する",
+        "受付時間は月～金 9:00～18:00"
+      ],
+      "url": "https://www.sevenbank.co.jp/support/info_notice127.html"
+    },
+    {
+      "action": "メールで問い合わせる人は、利用状況に合ったフォームを選ぶ",
+      "source": "https://www.sevenbank.co.jp/support/info_notice127.html",
+      "steps": [
+        "利用者はログオンする",
+        "ダイレクトバンキングサービスTOPを開く",
+        "お問合せフォームを選ぶ"
+      ],
+      "url": "https://ib.sevenbank.co.jp/IB/IB_U_CO_002/IB_U_CO_002_100.aspx?Lang=ja-JP"
+    }
+  ],
+  "cause": {
+    "text": "2026年11月9日に2つのサイトで第三者が不正にアクセスした形跡が確認され、対象システムの停止や攻撃元からのアクセス遮断が行われました。不正アクセスの原因と影響範囲は、引き続き特定を進めています。",
+    "status": "investigating",
+    "source": "https://www.sevenbank.co.jp/support/info_notice127.html"
+  },
+  "worries": [
+    {
+      "q": "私の在留カード情報も流出対象に入るのでしょうか？",
+      "a": "対象となる可能性があるのは、在留カード提出サイトで手続きをして書類不備の案内を受けた人、または2026年10月16日～11月9日に同サイトで手続きをした人です。情報は最大150件程度の券面情報です。",
+      "source": "https://www.sevenbank.co.jp/support/info_notice127.html",
+      "action": "条件に当てはまるか判断に迷う場合は、セブン銀行の電話窓口へ確認してください。"
+    },
+    {
+      "q": "口座の送金やATM利用まで止まっているのでしょうか？",
+      "a": "セブン銀行は、ATM取引、インターネットバンキングやデビットサービスなどの主要サービスへの影響はないとしています。また、この件に起因する送金や口座解約などの不正な処理は確認されていません。",
+      "source": "https://www.sevenbank.co.jp/support/info_notice127.html",
+      "action": "不審な連絡を受けた場合は、電話・チャット・メールの問い合わせ窓口に連絡してください。"
+    },
+    {
+      "q": "メールやSMSで暗証番号を聞かれたら本物ですか？",
+      "a": "セブン銀行は、電子メールやSMSで暗証番号、パスワード、認証コードなどを尋ねることはないと案内しています。一方、同行を装った不審な電話、電子メール、SMSが送られる可能性があるとしています。",
+      "source": "https://www.sevenbank.co.jp/support/info_notice127.html",
+      "action": "不審な連絡には記載されたリンクから進まず、セブン銀行の電話窓口へ確認してください。"
+    },
+    {
+      "q": "偽サイトに普段のIDやパスワードを入力したら？",
+      "a": "警察庁は、フィッシングサイトなどに普段使っているIDやパスワードを入力した場合、それらを利用しているすべてのサービスで速やかに変更するよう案内しています。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "action": "入力したIDやパスワードを利用しているすべてのサービスで、速やかに変更してください。",
+      "general": true
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "対象かもしれないとき、まず連絡すべき？",
+      "situation": "手続き時期か書類不備の条件に当てはまる",
+      "recommend": "窓口に確認する",
+      "reason": "対象となる可能性があるのは、書類不備の案内を受けた人、または2026年10月16日～11月9日に手続きした人です。対象は最大150件程度の在留カード券面情報とされています。",
+      "source": "https://www.sevenbank.co.jp/support/info_notice127.html"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "メール問い合わせの入口は利用状況で分かれる",
+    "cause": "不正アクセスの原因と範囲は調査中",
+    "steps": "提出時期と書類不備の案内を確認",
+    "desk": "電話・チャット・メールの問い合わせ先",
+    "worries": "券面情報や口座への影響が気になる",
+    "guide": "対象の可能性があるときの確認先"
+  },
+  "depthAt": "2026-11-17T23:45:24+00:00"
 }
