@@ -68,14 +68,14 @@
   "videoTitle": "中部電力ミライズ2026年12月分は5.36円、モデル料金は9,920円で273円増えます",
   "publishedAt": "2026-11-17T06:12:28.858828+00:00",
   "generatedAt": "2026-11-17T06:13:20.305254+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/chubu-miraiz-dec-2026-fuel-cost-figure-96203157.jpg",
   "model": "anthropic-api:claude-haiku-5-5",
   "affiliates": [],
   "newsType": "pricing",
   "todayActions": [
-    "公式の単価表（2026年12月分）で、自分のプランが特定小売供給約款と基本契約要綱のどちらかを確かめる",
-    "12月分の単価5.36円または5.38円に、自分の月間使用量を掛けて増える額を出す",
-    "中部電力ミライズの公式サイトで、燃料費調整単価の推移を確かめる"
+    "12月分の単価表で、自分の契約がどちらの単価の列かを確かめる",
+    "燃料費調整単価推移で、自分の契約の単価の推移を見る",
+    "使用量に単価の差を掛けて、12月分で増える額を出す"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -111,5 +111,128 @@
   "detectedAt": "2026-11-17T06:14:11+00:00",
   "searchTitle": "中部電力ミライズ12月分の単価は5.36円　家庭は273円増",
   "layout": "noir",
-  "summaryLine": "中部電力ミライズの12月分、従量電灯の燃料費調整単価は1kWhあたり**5.36円**へ上昇"
+  "summaryLine": "中部電力ミライズの12月分、従量電灯の燃料費調整単価は1kWhあたり**5.36円**へ上昇",
+  "insight": [
+    {
+      "text": "2026年11月分の家庭モデルは、11月1日実施の特定小売供給約款を適用した場合の値で、電気料金見直しによる影響額は「+395円」とされています。",
+      "source": "https://miraiz.chuden.co.jp/home/electric/contract/fuelcost/unitprice/__icsFiles/afieldfile/2026/09/30/nen_price_202611.pdf"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "中部電力ミライズ 燃料費調整単価推移（個人のお客さま）",
+      "url": "https://miraiz.chuden.co.jp/home/electric/contract/fuelcost_transition/",
+      "source": "https://miraiz.chuden.co.jp/home/electric/contract/fuelcost_transition/",
+      "howTo": [
+        "電気について",
+        "電気の契約・料金のしくみ",
+        "燃料費調整単価推移"
+      ],
+      "note": "特定小売供給約款を適用している場合と、基本契約要綱を適用している場合の2つの単価の推移が並んでいます。"
+    },
+    {
+      "name": "2026年12月分 燃料費調整単価表（PDF）",
+      "url": "https://miraiz.chuden.co.jp/home/electric/contract/fuelcost/unitprice/__icsFiles/afieldfile/2026/10/30/nen_price_202612.pdf",
+      "source": "https://miraiz.chuden.co.jp/home/electric/contract/fuelcost/unitprice/__icsFiles/afieldfile/2026/10/30/nen_price_202612.pdf",
+      "note": "特定小売供給約款を適用している場合と、基本契約要綱を適用している場合の2列があります。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "12月分の単価表で、自分の契約がどちらの単価の列かを確かめる",
+      "source": "https://miraiz.chuden.co.jp/info/press/1218582_1938.html",
+      "steps": [
+        "単価表の従量制供給の欄を開く",
+        "「特定小売供給約款を適用している場合」の列を見る",
+        "「基本契約要綱を適用している場合」の列も見る"
+      ],
+      "url": "https://miraiz.chuden.co.jp/home/electric/contract/fuelcost/unitprice/__icsFiles/afieldfile/2026/10/30/nen_price_202612.pdf"
+    },
+    {
+      "action": "燃料費調整単価推移で、自分の契約の単価の推移を見る",
+      "source": "https://miraiz.chuden.co.jp/home/electric/contract/fuelcost_transition/",
+      "steps": [
+        "電気の契約・料金のしくみを開く",
+        "燃料費調整単価推移を選ぶ",
+        "低圧の表で自分の契約の列を見る"
+      ],
+      "url": "https://miraiz.chuden.co.jp/home/electric/contract/fuelcost_transition/"
+    },
+    {
+      "action": "使用量に単価の差を掛けて、12月分で増える額を出す",
+      "source": "https://miraiz.chuden.co.jp/home/electric/contract/fuelcost/unitprice/__icsFiles/afieldfile/2026/10/30/nen_price_202612.pdf",
+      "steps": [
+        "1か月の使用量を確かめる",
+        "12月分の単価から11月分の単価を引く",
+        "引いた差に使用量を掛ける"
+      ]
+    }
+  ],
+  "cause": {
+    "text": "12月分は、2026年7月から9月の貿易統計より算定した平均燃料価格が69,000円/klで、上限68,900円/klを超えたため、特定小売供給約款では68,900円/klとして算定しています。",
+    "status": "background",
+    "source": "https://miraiz.chuden.co.jp/info/press/1218582_1938.html"
+  },
+  "worries": [
+    {
+      "q": "家庭の電気代は12月分でどれくらい増えますか？",
+      "a": "公式の家庭モデル（従量電灯B・30A、260kWh、口座振替初回引落とし割引後）では、12月分は9,920円、11月分は9,647円で、273円増です。この額には再エネ賦課金1,086円と消費税等相当額が含まれます。",
+      "source": "https://miraiz.chuden.co.jp/home/electric/contract/fuelcost/unitprice/__icsFiles/afieldfile/2026/10/30/nen_price_202612.pdf",
+      "action": "使用量に単価の差を掛けて、自分の増える額の目安を出す。"
+    },
+    {
+      "q": "自分の電気代は、どの単価で計算されますか？",
+      "a": "12月分の燃料費調整単価は、特定小売供給約款を適用している場合は5.36円/kWh、基本契約要綱を適用している場合は5.38円/kWh（税込）です。2016年4月以前の従量電灯などは特定小売供給約款の単価になります。",
+      "source": "https://miraiz.chuden.co.jp/home/electric/contract/fuelcost/unitprice/__icsFiles/afieldfile/2026/10/30/nen_price_202612.pdf",
+      "action": "自分の契約のメニューが従量電灯などか、ポイントプランなどかを確かめ、どちらの単価か見分ける。",
+      "actionSource": "https://miraiz.chuden.co.jp/info/press/1218582_1938.html"
+    },
+    {
+      "q": "使用量が違う家庭でも、273円と同じ増え方になりますか？",
+      "a": "273円は使用量260kWhの家庭モデルの場合の金額です。使用量が違えば、増える額も変わります。",
+      "source": "https://miraiz.chuden.co.jp/home/electric/contract/fuelcost/unitprice/__icsFiles/afieldfile/2026/10/30/nen_price_202612.pdf",
+      "action": "1か月の使用量を確かめ、単価の差に掛けて増える額を計算する。"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "11月の料金見直しで家庭は395円の影響",
+    "cause": "12月分が上がった理由は燃料の平均価格",
+    "steps": "自分の単価と増える額を、まず確かめる",
+    "desk": "単価表と推移ページで自分の単価を確かめる",
+    "worries": "12月分で電気代はいくら増える？"
+  },
+  "depthAt": "2026-11-17T06:46:53+00:00",
+  "updatedAt": "2026-11-17T06:46:53+00:00",
+  "updates": [
+    {
+      "at": "2026-11-17T06:46:53+00:00",
+      "kind": "facts",
+      "title": "公式の資料をもとに、「なるほどの要点」・「公式の窓口」・「今日やること」・「理由」・「よくある不安」を追記しました",
+      "sourceUrl": "https://miraiz.chuden.co.jp/info/press/1218582_1938.html",
+      "sourceName": "中部電力ミライズ「2026年12月分電気料金の燃料費調整について」（2026年10月29日、中部電力ミライズ公式サイト）"
+    }
+  ],
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "273円",
+    "label": "家庭の電気代",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-17T06:49:41+00:00"
+  },
+  "imageFocus": {
+    "x": 0.434,
+    "y": 0.527,
+    "box": [
+      0.006,
+      0.054,
+      0.863,
+      1.0
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/chubu-miraiz-dec-2026-fuel-cost-figure-96203157.jpg"
+  }
 }

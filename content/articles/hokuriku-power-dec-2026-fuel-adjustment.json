@@ -64,13 +64,13 @@
   "videoTitle": "北陸電力2026年12月分はマイナス6.14円、モデル料金7,982円で11月分より12円増えます",
   "publishedAt": "2026-11-17T06:18:12.033196+00:00",
   "generatedAt": "2026-11-17T06:21:21.705929+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/hokuriku-power-dec-2026-fuel-adjustment-figure-3eae9e81.jpg",
   "model": "anthropic-api:claude-haiku-5-5",
   "affiliates": [],
   "newsType": "pricing",
   "todayActions": [
-    "検針票かほくリンクで、12月分の使用量（kWh）を確かめる",
-    "ほくリンクの料金明細で、燃料費調整単価がマイナス6円14銭になっているかを見る"
+    "ほくリンクの料金明細で、12月分の燃料費調整単価と使用量を確かめる",
+    "ほくリンクに入っていない人は、届いた「電気ご使用量等のお知らせ」で確かめる"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -111,5 +111,129 @@
   ],
   "detectedAt": "2026-11-17T06:22:35+00:00",
   "layout": "noir",
-  "summaryLine": "北陸電力の12月分、モデル料金は**7,982円**で11月分より12円増　単価はマイナス6円14銭"
+  "summaryLine": "北陸電力の12月分、モデル料金は**7,982円**で11月分より12円増　単価はマイナス6円14銭",
+  "insight": [
+    {
+      "text": "高圧・特別高圧の12月分は「12月1日から12月31日までのご使用分」で、低圧の検針日をもとにした期間とは違います。",
+      "source": "https://www.rikuden.co.jp/press/attach/26102902.pdf"
+    },
+    {
+      "text": "振込用紙での支払いには「振込票発行手数料」として220円（税込）がかかり、口座振替とクレジットカードは手数料がかかりません。",
+      "source": "https://www.rikuden.co.jp/faq/index.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "北陸電力お客さまサービスセンター",
+      "url": "https://www.rikuden.co.jp/mymeisaiqa/faq.html",
+      "source": "https://www.rikuden.co.jp/mymeisaiqa/faq.html",
+      "howTo": [
+        "TOP",
+        "電気・サービス",
+        "Web料金明細サービス",
+        "よくあるご質問"
+      ],
+      "phone": "0120-776453",
+      "hours": "月～金曜日 9時～17時（祝日・年末年始を除く）",
+      "note": "供給(受電)地点特定番号や契約時の電話番号が分からないときの連絡先として案内されています"
+    },
+    {
+      "name": "電気料金のお支払い方法について",
+      "url": "https://www.rikuden.co.jp/tetsuzuki/oshiharai.html",
+      "source": "https://www.rikuden.co.jp/faq/index.html",
+      "howTo": [
+        "TOP",
+        "よくあるご質問（個人向け）",
+        "電気料金のしくみ、お支払い方法",
+        "電気料金のお支払い方法について"
+      ],
+      "note": "支払い方法の変更はインターネットで手続きできると案内されています"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "ほくリンクの料金明細で、12月分の燃料費調整単価と使用量を確かめる",
+      "source": "https://www.rikuden.co.jp/press/attach/26102902.pdf",
+      "steps": [
+        "ほくリンク（ブラウザ版）の料金明細画面を開く",
+        "または、ほくリンクアプリの請求料金詳細画面を開く",
+        "12月分の燃料費調整単価と使用量を見る"
+      ],
+      "url": "https://mieruka.rikuden.co.jp/OI008_DOC/contents/login/"
+    },
+    {
+      "action": "ほくリンクに入っていない人は、届いた「電気ご使用量等のお知らせ」で確かめる",
+      "source": "https://www.rikuden.co.jp/press/attach/26102902.pdf",
+      "steps": [
+        "毎月届く「電気ご使用量等のお知らせ」か請求書を開く",
+        "12月分の燃料費調整額を11月分と比べる"
+      ]
+    }
+  ],
+  "cause": {
+    "text": "燃料費調整制度は、燃料価格や為替の変化を電気料金に反映させる仕組みで、基準燃料価格と3か月ごとの平均燃料価格を比べて毎月自動で調整します。12月分は7～9月の平均燃料価格42,600円/klで決まりました。",
+    "status": "background",
+    "source": "https://www.rikuden.co.jp/press/attach/26102902.pdf"
+  },
+  "worries": [
+    {
+      "q": "マイナスの単価なのに、なぜ請求は増えるの？",
+      "a": "燃料費調整単価は電気代から差し引かれる額を表します。今回は単価のマイナス幅が5銭縮んだため、差し引かれる額が減り、モデル料金は12円増えたと発表されています。",
+      "source": "https://www.rikuden.co.jp/press/attach/26102902.pdf",
+      "action": "ほくリンクの料金明細か検針票で、12月分の使用量と燃料費調整の金額を、11月分と並べて確かめる"
+    },
+    {
+      "q": "高圧で契約していると、12月分はどう変わる？",
+      "a": "高圧・特別高圧の12月分は「12月1日から12月31日までのご使用分」で、低圧の検針日基準とは違います。市場価格調整単価は11月27日にお知らせ予定とされています。",
+      "source": "https://www.rikuden.co.jp/press/attach/26102902.pdf",
+      "action": "高圧・特別高圧で契約しているなら、11月27日の市場価格調整単価のお知らせを待って確かめる"
+    },
+    {
+      "q": "支払い方法で、手数料が余計にかかることはある？",
+      "a": "口座振替とクレジットカードは手数料がかかりません。振込用紙の場合は、振込票発行手数料として220円（税込）をご負担いただくことになります。",
+      "source": "https://www.rikuden.co.jp/faq/index.html",
+      "action": "振込用紙で払っているなら、インターネットから口座振替かクレジットカードへの変更を検討する"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "振込用紙で払っている。口座振替に変えるべき？",
+      "situation": "振込用紙で支払っている",
+      "recommend": "手数料を減らしたいなら、変更を検討する価値がある",
+      "reason": "口座振替とクレジットカードは手数料がかからず、振込用紙は振込票発行手数料220円（税込）がかかります。変更の手続きには1～2か月かかる場合があると案内されています。",
+      "source": "https://www.rikuden.co.jp/faq/index.html"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "高圧は12月1日からの使用分、低圧と違う",
+    "cause": "なぜ12円増えた？単価差と平均燃料価格",
+    "steps": "ほくリンクで12月分の単価と使用量を見る",
+    "desk": "電話や窓口は、どこに聞けばいい？",
+    "worries": "マイナス単価なのに、請求が増えるのはなぜ？",
+    "guide": "振込用紙の手数料、支払い方法を変えるか"
+  },
+  "depthAt": "2026-11-17T06:46:07+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "12円",
+    "label": "モデル料金",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-17T06:49:14+00:00"
+  },
+  "imageFocus": {
+    "x": 0.415,
+    "y": 0.524,
+    "box": [
+      0.0,
+      0.054,
+      0.831,
+      0.994
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/hokuriku-power-dec-2026-fuel-adjustment-figure-3eae9e81.jpg"
+  }
 }
