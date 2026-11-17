@@ -16640,6 +16640,19 @@
       "skipped": true,
       "url": "https://www.env.go.jp/press/111118_00087.html"
     },
+    "b731023ee6b46451": {
+      "at": "2026-11-17T06:25:40.201116+00:00",
+      "costUsd": 0.0112,
+      "intent": "query",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "recall",
+      "score": 92,
+      "section": "business",
+      "slug": "mitsubishi-fuso-canter-recall-meter",
+      "url": "http://www.mlit.go.jp/report/press/jidosha08_hh_005890.html"
+    },
     "b73105fe4ec5f060": {
       "at": "2026-11-10T19:03:10.640078+00:00",
       "costUsd": 0.0116,
@@ -23521,56 +23534,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-14T17:26:42.635544+00:00",
-      "attempt": 0,
-      "id": "72013d8254e78716",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 55.6,
-        "avg_sentence": 34.7,
-        "long_share": 0.1,
-        "max_paragraph": 127,
-        "paragraphs": 25,
-        "sentences": 40
-      },
-      "score": 92,
-      "source": "mext",
-      "title": "認定日本語教育機関の認定結果（令和8年度1回目）について",
-      "warnings": [
-        "見出しの書き方: 発表文の題名の言い直し（「〇〇が△△を発表」）。読者にとって何が変わるか（だれの・何が・いつから・いくら）を書く"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-14T17:27:40.133509+00:00",
-      "attempt": 1,
-      "id": "b6b44e40224ebacf",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "題名で料金・価格を約束しているのに、本文に金額（円・ドル・無料など）が無い。元記事の金額を書くか、題名から料金の話を外す"
-      ],
-      "readability": {
-        "avg_paragraph": 113.2,
-        "avg_sentence": 47.9,
-        "long_share": 0.346,
-        "max_paragraph": 179,
-        "paragraphs": 11,
-        "sentences": 26
-      },
-      "score": null,
-      "source": "tokyo-metro",
-      "title": "「とうきょう こども アンケート」2026年調査結果",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（WHO）",
-        "中身のない章「男女の差」（答えになっていない）。章ごと消し、大事な未定事項は「## まだ分からないこと」に1行で書く",
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-14T17:27:58.380885+00:00",
@@ -31092,6 +31055,56 @@
       "title": "Updating our coordinated vulnerability disclosure policy timelines",
       "warnings": [
         "初めて出たところで言い換えていない略語（CVD・OSS）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-17T06:24:38.101288+00:00",
+      "attempt": 1,
+      "id": "b731023ee6b46451",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "元記事・確認済みの事実の束・計算済みの数字のどれにも無い数字がある（「計524件で、内訳は1が92件」、「、内訳は1が92件、2が432件」）。元記事か束の数字に直すか、その文を削る。簡単な計算（かけ算・足し算など）をするなら、確かめた数字だけを使って式を書き「（サイソク編集部の計算）」と添える"
+      ],
+      "readability": {
+        "avg_paragraph": 107.9,
+        "avg_sentence": 40.0,
+        "long_share": 0.074,
+        "max_paragraph": 207,
+        "paragraphs": 10,
+        "sentences": 27
+      },
+      "score": null,
+      "source": "mlit-press",
+      "title": "リコールの届出について（三菱 ふそうキャンター 他）",
+      "warnings": [
+        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（PG・FEB）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-17T06:25:33.031618+00:00",
+      "attempt": 1,
+      "id": "b731023ee6b46451",
+      "kind": "broad",
+      "model": "strike:今日やること",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 103.6,
+        "avg_sentence": 39.8,
+        "long_share": 0.038,
+        "max_paragraph": 207,
+        "paragraphs": 10,
+        "sentences": 26
+      },
+      "score": 92,
+      "source": "mlit-press",
+      "title": "リコールの届出について（三菱 ふそうキャンター 他）",
+      "warnings": [
+        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（PG・FEB）"
       ]
     }
   ],
