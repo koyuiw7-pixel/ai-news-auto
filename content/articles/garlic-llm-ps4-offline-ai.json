@@ -109,9 +109,9 @@
     }
   ],
   "todayActions": [
-    "PS4のファームウェアが11.52・9.04・14.00・12.02のどれかを確認する",
-    "PS4の空き容量が約6GB（内蔵ディスクへコピーするなら12GB）あるか見る",
-    "GitHubのソースコードとモデルごとのライセンスを確認する"
+    "PS4のファームウェアが11.52・9.04・14.00・12.02のどれかを確かめる",
+    "ダウンロードしたパッケージのSHA-256を公開値と照合してから入れる",
+    "GitHubでGPLv3のソースと、モデルごとのライセンスを確かめる"
   ],
   "qualityBar": {
     "score": 5,
@@ -132,7 +132,8 @@
       6
     ],
     "repaired": false,
-    "repairLater": true
+    "repairLater": true,
+    "laterTriedAt": "2026-11-17T02:30:28+00:00"
   },
   "qualityScore": 91,
   "detectedAt": "2026-11-17T01:53:24+00:00",
@@ -162,5 +163,114 @@
     ],
     "ar": 1.8519,
     "src": "https://ai-tech-express.jp/img/garlic-llm-ps4-offline-ai-dcdac389.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "配布ファイルのSHA-256は「6a774c8532d6b1c1ea08bfde0fa91ea83e12643e24776a80b057df40e94ebc69」と公開されています。Garlic-LLM-1.19.pkgをダウンロードしたあと、この値と一致するかを確かめられます。",
+      "source": "https://huggingface.co/garlic-llm/garlic-llm-ps4"
+    },
+    {
+      "text": "インストールは「Settings → Debug Settings → Game → Package Installer」の順に進む方法が、公開ページにあります。パッケージをPS4へコピーしてから入れる手順です。",
+      "source": "https://huggingface.co/garlic-llm/garlic-llm-ps4"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "Garlic LLMのソースコード（GitHub）",
+      "url": "https://github.com/leonardo-alegria/garlic-llm",
+      "source": "https://huggingface.co/garlic-llm/garlic-llm-ps4",
+      "note": "クレジットはソースリポジトリにあり、アプリにも同梱されています。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "PS4のファームウェアが11.52・9.04・14.00・12.02のどれかを確かめる",
+      "source": "https://huggingface.co/garlic-llm/garlic-llm-ps4",
+      "steps": [
+        "PS4がGoldHENを入れた状態か確かめる",
+        "ファームウェアの版が一覧のどれか見る",
+        "一覧にない版は動作報告がないと考える"
+      ]
+    },
+    {
+      "action": "ダウンロードしたパッケージのSHA-256を公開値と照合してから入れる",
+      "source": "https://huggingface.co/garlic-llm/garlic-llm-ps4",
+      "steps": [
+        "Garlic-LLM-1.19.pkg（5.66GB）をダウンロードする",
+        "ファイルのSHA-256を公開ページの値と比べる",
+        "一致したらPS4にコピーし、Package Installerで入れる"
+      ],
+      "url": "https://huggingface.co/garlic-llm/garlic-llm-ps4"
+    },
+    {
+      "action": "GitHubでGPLv3のソースと、モデルごとのライセンスを確かめる",
+      "source": "https://huggingface.co/garlic-llm/garlic-llm-ps4",
+      "steps": [
+        "GitHubのSource code（GPLv3）を開く",
+        "アプリのコードはGPLv3と確認する",
+        "モデルごとのライセンス（Apache-2.0など）を確認する"
+      ],
+      "url": "https://github.com/leonardo-alegria/garlic-llm"
+    }
+  ],
+  "worries": [
+    {
+      "q": "うちのPS4で動くか、どう確かめればいい？",
+      "a": "動作確認はファームウェア11.52の通常型とSlimで行われ、利用者の報告では9.04・14.00（Slim）、12.02（Pro）でも動くとされています。GoldHENを入れたPS4が必要です。",
+      "source": "https://huggingface.co/garlic-llm/garlic-llm-ps4",
+      "action": "導入前に、PS4のファームウェアが一覧のどれかと、GoldHENの導入を確かめる"
+    },
+    {
+      "q": "変なプログラムが入っていないか心配",
+      "a": "公開ページには、通常のホームブリューのパッケージで、脆弱性を突くコード（エクスプロイト）は含まないと書かれています。ソニーとは無関係で、承認も受けていません。",
+      "source": "https://huggingface.co/garlic-llm/garlic-llm-ps4",
+      "action": "ダウンロードしたファイルのSHA-256を公開ページの値と照合してから入れる"
+    },
+    {
+      "q": "PS4で使っている間に、データが外に出ない？",
+      "a": "公開ページには、動作中はPCもインターネットも使わないと書かれています。ページのタイトルにも「Offline」とあります。",
+      "source": "https://huggingface.co/garlic-llm/garlic-llm-ps4",
+      "action": "インストールは必要なパッケージだけにして、使うときは通信なしで動くことを確かめる"
+    },
+    {
+      "q": "日本語で話したり、音声入力したりできる？",
+      "a": "音声会話はスペイン語・英語・ポルトガル語・ロシア語・イタリア語・フランス語・ドイツ語、音声入力は欧州25言語です。ページの一覧に日本語はありません。",
+      "source": "https://huggingface.co/garlic-llm/garlic-llm-ps4",
+      "action": "日本語で使いたい人は、対応が示されるまで導入を急がず、対応言語の発表を待つ"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "内蔵ディスクにコピーしてから入れる？",
+      "situation": "空きが約6GBしかない",
+      "recommend": "空きを増やして12GB確保してから検討する",
+      "reason": "直接入れる場合は約6GBの空き、いったん内蔵ディスクへコピーしてから入れる場合は12GBの空きが必要と、ページに書かれています。6GBしかない場合は、コピー方式は選べません。",
+      "source": "https://huggingface.co/garlic-llm/garlic-llm-ps4"
+    },
+    {
+      "question": "うちのPS4のファームウェアは一覧にない？",
+      "situation": "11.52・9.04・14.00・12.02以外",
+      "recommend": "急がず、同じ版の動作報告を確かめてから決める",
+      "reason": "動作報告があるのは11.52（確認済み）、9.04と14.00（Slim）、12.02（Pro）です。それ以外の版は、このページでは動作が確かめられていないため、判断できません。",
+      "source": "https://huggingface.co/garlic-llm/garlic-llm-ps4"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "パッケージが正しいかは、SHA-256で確かめられる",
+    "steps": "入れる前に、ファームウェアと容量を確かめる",
+    "desk": "作者のソースと、ライセンスの確認先",
+    "worries": "うちのPS4で動く？ 安全？ 通信は？",
+    "guide": "空き容量で、入れ方を選ぶ"
+  },
+  "depthAt": "2026-11-17T02:30:28+00:00",
+  "updatedAt": "2026-11-17T02:30:28+00:00",
+  "updates": [
+    {
+      "at": "2026-11-17T02:30:28+00:00",
+      "kind": "facts",
+      "title": "公式の資料をもとに、「なるほどの要点」・「公式の窓口」・「今日やること」・「よくある不安」・「判断の目安」を追記しました",
+      "sourceUrl": "https://huggingface.co/garlic-llm/garlic-llm-ps4",
+      "sourceName": "Hugging Face公式ブログ"
+    }
+  ]
 }

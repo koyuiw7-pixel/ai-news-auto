@@ -90,9 +90,8 @@
     }
   ],
   "todayActions": [
-    "画像投稿を受け付けるサービスの運営者は、OpenAIの申し込みフォーム（openai.com/form/csam-classifier-intake）で条件を確認する",
-    "現在のハッシュ照合が、AI生成画像など新しい画像を拾えるかを自社の運用で点検する",
-    "疑いのある画像を人が確認する担当と、報告の手順が決まっているかを見直す"
+    "画像投稿サービスの運営者は、申し込みフォームで承認された組織としての利用を申請する",
+    "分類器のスコアは確定ではないと理解し、人による確認の順番づけに使う"
   ],
   "qualityBar": {
     "score": 5,
@@ -142,5 +141,91 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/openai-csam-image-classifier-figure-7d0a2082.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "この分類器は、National Center for Missing and Exploited Children（NCMEC）の支援を受けて作られたと、ページに書かれています。",
+      "source": "https://deploymentsafety.openai.com/csam-image-classifier?utm_source=chatgpt.com"
+    },
+    {
+      "text": "確認された誤りのパターンは、後の学習と評価のサイクルに取り入れられることがあると書かれています。",
+      "source": "https://deploymentsafety.openai.com/csam-image-classifier?utm_source=chatgpt.com"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "OpenAI CSAM Image Classifier 申し込みフォーム",
+      "url": "https://openai.com/form/csam-classifier-intake/",
+      "source": "https://deploymentsafety.openai.com/csam-image-classifier?utm_source=chatgpt.com",
+      "note": "承認された組織に無料で提供されます。利用を希望する組織は、このフォームに記入して申請します。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "画像投稿サービスの運営者は、申し込みフォームで承認された組織としての利用を申請する",
+      "source": "https://deploymentsafety.openai.com/csam-image-classifier?utm_source=chatgpt.com",
+      "steps": [
+        "申し込みフォームのリンクを開く",
+        "利用を希望する組織として記入して申請する"
+      ],
+      "url": "https://openai.com/form/csam-classifier-intake/"
+    },
+    {
+      "action": "分類器のスコアは確定ではないと理解し、人による確認の順番づけに使う",
+      "source": "https://deploymentsafety.openai.com/csam-image-classifier?utm_source=chatgpt.com",
+      "steps": [
+        "スコアで確認する画像の順番を決める",
+        "スコアだけで違法性や報告義務は決まらないと確認する"
+      ]
+    }
+  ],
+  "cause": {
+    "text": "既知の画像と照合するハッシュ照合だけでは、新しく作られた画像やAI生成の画像を見逃すことがあります。この分類器は、そうした画像を補うものとして作られ、承認された組織に無料で提供されています。",
+    "status": "background",
+    "source": "https://deploymentsafety.openai.com/csam-image-classifier?utm_source=chatgpt.com"
+  },
+  "worries": [
+    {
+      "q": "AIで作られた画像も見つけられる？",
+      "a": "ページによると、ハッシュ照合だけでは見逃すような新しい画像やAI生成の画像も検出の対象です。likely-csam/gen-aiのスコアはAI生成のCSAMの疑いを示しますが、画像の出どころを確かめるものではないとされています。",
+      "source": "https://deploymentsafety.openai.com/csam-image-classifier?utm_source=chatgpt.com",
+      "action": "ハッシュ照合だけに頼らず、分類器のスコアを人の確認の順番づけに組み合わせて使う"
+    },
+    {
+      "q": "スコアが高ければ、すぐ違法と判断できる？",
+      "a": "いいえ。ページには、スコアだけでは画像がCSAMだと確定せず、法的な位置づけも、報告義務があるかどうかも決まらないと書かれています。",
+      "source": "https://deploymentsafety.openai.com/csam-image-classifier?utm_source=chatgpt.com",
+      "action": "スコアが高い画像は、訓練を受けた人の確認と法的な報告の手続きに回す"
+    },
+    {
+      "q": "個人でも使える？",
+      "a": "分類器は個人が直接使うものではなく、承認された組織に無料で提供されるとページにあります。利用を希望する組織は、申し込みフォームから申請します。",
+      "source": "https://deploymentsafety.openai.com/csam-image-classifier?utm_source=chatgpt.com",
+      "action": "個人では使えないため、画像を扱う運営者として申し込みフォームの内容を確認する"
+    },
+    {
+      "q": "APIに送った画像は、学習に使われてしまう？",
+      "a": "ページには、APIに送られた画像は保存されずに処理され、学習にも評価にも使われないと書かれています。",
+      "source": "https://deploymentsafety.openai.com/csam-image-classifier?utm_source=chatgpt.com",
+      "action": "送る画像が保存されない前提かを、社内の利用規約と照らし合わせて確認する"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "画像投稿サービスで、申し込むか迷うとき",
+      "situation": "投稿画像を受け付け、ハッシュ照合を使っている",
+      "recommend": "申請を検討する価値がある",
+      "reason": "ハッシュ照合で拾えないAI生成画像などを補う目的で使えます。ただしスコアだけでは違法性も報告義務も決まらず、人による確認の体制が前提になります。承認の基準や審査期間は、このページでは発表されていません。",
+      "source": "https://deploymentsafety.openai.com/csam-image-classifier?utm_source=chatgpt.com"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "NCMEC支援と、確認された誤りの取り込み",
+    "cause": "なぜ作られた？既存の照合の限界",
+    "steps": "運営者が今日すぐできること",
+    "desk": "申し込みはどこから？",
+    "worries": "AI画像や個人の画像は大丈夫？",
+    "guide": "申し込むか迷ったときの見方"
+  },
+  "depthAt": "2026-11-17T02:29:43+00:00"
 }
