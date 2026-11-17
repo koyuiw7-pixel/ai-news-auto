@@ -4756,6 +4756,19 @@
       "skipped": true,
       "url": "https://blog.ja.playstation.com/2026/11/11/20261111-psplus-game-catalog-o/"
     },
+    "01dbd0dccb71b365": {
+      "at": "2026-11-17T22:55:21.445670+00:00",
+      "costUsd": 0.0055,
+      "intent": "breaking",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "score": 96,
+      "section": "public",
+      "slug": "chocozap-rizap-karte-data-leak",
+      "url": "https://chocozap.jp/info/25114"
+    },
     "01f9bf41ed18d821": {
       "at": "2026-11-09T05:06:17.561777+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（審議会）",
@@ -24297,40 +24310,6 @@
   },
   "quality_log": [
     {
-      "accepted": true,
-      "at": "2026-11-15T21:56:50.855577+00:00",
-      "attempt": 1,
-      "id": "0a34e347224ea836",
-      "kind": "update",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "score": 88,
-      "source": "jfa",
-      "title": "U-21日本代表 選手離脱 海外遠征（11.8-18 スペイン／アルメンドラレホ エジプト／カイロ） #jfa #daihyo"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-15T22:44:29.656088+00:00",
-      "attempt": 1,
-      "id": "02de88dbe463e905370ecd35d6caae6a4571584a",
-      "kind": "trend",
-      "model": "gemini-3.6-flash",
-      "problems": [
-        "元記事・確認済みの事実の束・計算済みの数字のどれにも無い数字がある（「ると、同社は1兆ドル(約150兆円」）。元記事か束の数字に直すか、その文を削る。簡単な計算（かけ算・足し算など）をするなら、確かめた数字だけを使って式を書き「（サイソク編集部の計算）」と添える"
-      ],
-      "readability": {
-        "avg_paragraph": 88.8,
-        "avg_sentence": 44.4,
-        "long_share": 0.083,
-        "max_paragraph": 127,
-        "paragraphs": 6,
-        "sentences": 12
-      },
-      "score": null,
-      "source": "trends",
-      "title": "上場"
-    },
-    {
       "accepted": false,
       "at": "2026-11-15T23:00:21.379309+00:00",
       "attempt": 2,
@@ -31751,6 +31730,59 @@
         "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
         "読みやすさ: 文が長い（1文の平均 57.5字・60字超の文が 33% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
         "読みやすさ: 段落が長い（平均 172.5字・最長 217字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-17T22:54:37.539625+00:00",
+      "attempt": 1,
+      "id": "01dbd0dccb71b365",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "「ZAP IDは、これらのサービスに共通するIDです」→ 元記事は対象者としてZAP ID登録者と各サービスの利用者を挙げていますが、サービス共通のIDだとは説明していません。"
+      ],
+      "readability": {
+        "avg_paragraph": 79.3,
+        "avg_sentence": 42.5,
+        "long_share": 0.143,
+        "max_paragraph": 147,
+        "paragraphs": 15,
+        "sentences": 28
+      },
+      "score": 91,
+      "source": "fast",
+      "title": "【お詫び】外部サービス「KARTE」への不正アクセスによる個人情報漏えいの可能性および一部サービスの一時停止について｜チョコザップ｜運動も美容もリフレッシュも！",
+      "warnings": [
+        "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（RIZAP・KARTE）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-17T22:55:14.365214+00:00",
+      "attempt": 1,
+      "id": "01dbd0dccb71b365",
+      "kind": "broad",
+      "model": "openai-api:gpt-6-luna",
+      "problems": [
+        "「メール最大432万件」→ 元記事の件数はメールそのものではなくメールアドレスの件数です。",
+        "「不正利用や不当な請求の報告も出ていません」→ 元記事が述べているのは二次被害が現時点で確認されていないことまでで、報告自体がなかったとは確認できません。"
+      ],
+      "readability": {
+        "avg_paragraph": 77.7,
+        "avg_sentence": 43.1,
+        "long_share": 0.148,
+        "max_paragraph": 147,
+        "paragraphs": 15,
+        "sentences": 27
+      },
+      "score": 96,
+      "source": "fast",
+      "title": "【お詫び】外部サービス「KARTE」への不正アクセスによる個人情報漏えいの可能性および一部サービスの一時停止について｜チョコザップ｜運動も美容もリフレッシュも！",
+      "warnings": [
+        "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（RIZAP・KARTE）"
       ]
     }
   ],
