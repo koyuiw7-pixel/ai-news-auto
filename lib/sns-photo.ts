@@ -75,7 +75,13 @@ function bodyQualifies(im: BodyImage): boolean {
 
 /** SNS のカードに敷く公式の写真（無ければ null ＝ 今までのカード） */
 export function snsPhoto(article: Photoable): SnsPhoto | null {
-  if (researchFirmArticle(article)) return null;
+  if (researchFirmArticle(article)) {
+    // 2026-11-18（台帳 I11）: 調査会社自身の発表資料の画像（出典「画像：〇〇（発表資料）」）だけ使う
+    const c = article.imageCredit;
+    const ok = article.thumbnail && c?.kind === "official" && Boolean(c.firm) && article.heroOk !== false
+      && HERO_SNS_KINDS.includes(c.imageKind ?? "photo") && researchFirmUrl(c.sourceUrl);
+    return ok ? { src: article.thumbnail, credit: c as ImageCredit, from: "thumbnail" } : null;
+  }
   if (article.thumbnail && heroQualifies(article)) return { src: article.thumbnail, credit: article.imageCredit as ImageCredit, from: "thumbnail" };
   const body = (article.bodyImages ?? []).find(bodyQualifies);
   if (!body) return null;

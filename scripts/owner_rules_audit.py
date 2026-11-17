@@ -387,7 +387,9 @@ def research_firm_problems(record: dict) -> list[str]:
     if research_firms.OFFICIAL_CLAIM.search(str(record.get("disclaimer") or "")):
         out.append(f"[A37] {firm}の調査・取材記事なのに、免責文が「公式発表の文章をもとに」になっている（「報道」として扱う）")
     credit = record.get("imageCredit") or {}
-    if isinstance(credit, dict) and credit.get("kind") == "official" and research_firms.host_firm(credit.get("sourceUrl") or credit.get("original") or ""):
+    # 2026-11-18（台帳 I11）: 調査会社自身の発表資料の画像で、出典が「画像：〇〇（発表資料）」（credit.firm）なら違反ではない
+    if isinstance(credit, dict) and credit.get("kind") == "official" and not credit.get("firm") \
+            and research_firms.host_firm(credit.get("sourceUrl") or credit.get("original") or ""):
         out.append(f"[A37] {firm}のサイトの写真を「公式発表より」の写真として使っている（報道の写真を主役の公式写真にしない）")
     return out
 

@@ -545,8 +545,11 @@ def official_source(article: dict) -> dict | None:
         return None
     # 調査会社・情報会社（東京商工リサーチ・帝国データバンクなど）の記事は報道。そのサイトの写真を、記事に登場する企業の
     # 公式写真のように使わない（2026-11-04 オーナー決定 D2・台帳 A37。一覧は lib/research-firms.json）
-    if research_firms.article_firm(article):
-        return None
+    # 2026-11-18 オーナー「目的に合うなら、法律や規約に触れないなら変えていいよ」（台帳 I11）: 出典がその調査会社自身の発表
+    # （自社サイトの発表資料）なら、その会社自身の画像（発表資料の画像・og:image）は使ってよい。出典は「画像：〇〇（発表資料）」で、
+    # 記事に出てくる企業の公式写真のようには書かない（A37 のうち「報道として扱う」はそのまま）
+    if firm := research_firms.article_firm(article):
+        return {"wire": "", "firm": firm} if research_firms.host_firm(page) else None
     official_slugs()  # MEDIA_HOSTS に radar.outlets を足す
     if _host_in(host, MEDIA_HOSTS):
         return None
@@ -1660,6 +1663,7 @@ def pick_official(article: dict, repeats: Counter, fast: bool = False, extra: in
             # 「…_og.jpg」が「/content/dam/site/」の下にあっても、パスに発表のページの名前（2261103e など）が入っていれば
             # その発表のための画像（2026-11-03 Honda RN0 の og:image がサイト共通の画像として扱われた）
             problem = None
+        generic_name = bool(problem and problem.startswith("サイト共通"))  # ogimage.png・/common/ の下の共有画像など
         if problem and problem.startswith("サイト共通"):
             site_default = True  # サイト共通の既定画像（多くはロゴ）。ロゴとしてだけ使える
             problem = None
@@ -1673,7 +1677,8 @@ def pick_official(article: dict, repeats: Counter, fast: bool = False, extra: in
         if not problem and others and not framed:
             site_default = True
         # 会社の自社サイトの発表の og:image（その会社のロゴ・キービジュアル）で、ほかの発表に使い回されていないもの
-        own_og = (not framed and own_company and item.get("where") == "og" and not reused
+        # サイト共通の既定画像の名前（ogimage.png・/common/…/share.jpg）は、どのページにも同じものが出るので含めない（台帳 S49）
+        own_og = (not framed and own_company and item.get("where") == "og" and not reused and not generic_name
                   and _root_domain(urllib.parse.urlparse(url).netloc) == page_root)
         if own_og and site_default:
             site_default = False
@@ -3217,7 +3222,7 @@ def _process(path: Path, article: dict, ctx: dict) -> str:
     # （その回だけ元記事が開けない・判定が落ちた、で公式の写真を失わない）
     # ただし調査会社・情報会社のサイトから取った写真は残さない（報道の写真を主役の公式写真として使わない。台帳 A37）
     if previous.get("kind") == "official" and (previous.get("imageKind") not in NOT_COVER_KINDS or previous.get("ownOg")) \
-            and not research_firms.host_firm(previous.get("sourceUrl") or previous.get("original") or "") \
+            and (previous.get("firm") or not research_firms.host_firm(previous.get("sourceUrl") or previous.get("original") or "")) \
             and is_ours(previous_thumb := (ctx.get("previous_thumb", {}).get(slug) or thumb)):
         article["thumbnail"] = previous_thumb
         article["imageCredit"] = previous
@@ -3491,7 +3496,7 @@ def use_official(path: Path, article: dict, ctx: dict, best: dict, official: dic
     slug = article.get("slug") or path.stem
     url, image, kind = best["url"], best["image"], best["kind"]
     source = release["article"] if release else article
-    org = (release or {}).get("org") or (wire_org(source) if official["wire"] else org_name(source))
+    org = (release or {}).get("org") or official.get("firm") or (wire_org(source) if official["wire"] else org_name(source))
     reuse = ctx["official_by_original"].get(url)
     if reuse and not str(reuse["thumbnail"]).rsplit("/", 1)[-1].startswith(slug[:120]):
         # ほかの記事のために保存した画像は使い回さない（同じ公式の写真でも、この記事の名前で保存し直す。台帳 S49）
@@ -3528,6 +3533,8 @@ def use_official(path: Path, article: dict, ctx: dict, best: dict, official: dic
         credit["ownOg"] = True  # 会社自身の発表の og:image（ロゴでも、その会社のニュースの画像にしてよい。台帳 I11）
     if official["wire"]:
         credit["via"] = official["wire"]
+    if official.get("firm"):
+        credit["firm"] = official["firm"]  # 調査会社自身の発表資料の画像（出典は「画像：〇〇（発表資料）」。台帳 I11・A37）
     if release:
         credit["foundFrom"] = article.get("sourceUrl", "")  # 報道の記事から会社自身の発表をたどった
     article["thumbnail"] = new_url

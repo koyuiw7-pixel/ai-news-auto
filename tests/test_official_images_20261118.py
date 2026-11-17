@@ -59,11 +59,20 @@ class OfficialByHostTest(unittest.TestCase):
             self.assertIsNone(images.official_source(web("fast", url, "報道")), url)
             self.assertIsNone(images.official_source(web("trends", url, "報道")), url)
 
-    def test_research_firm_is_still_not_official(self):
-        # 台帳 A37: 調査会社・情報会社のサイトの写真は使わない
-        self.assertIsNone(images.official_source(web("tsr", "https://www.tsr-net.co.jp/data/detail/1.html", "東京商工リサーチ")))
-        self.assertIsNone(images.official_source(web("nli-research", "https://www.nli-research.co.jp/report/detail/id=1?site=nli", "ニッセイ基礎研究所")))
-        self.assertIsNone(images.official_source(web("fast", "https://www.tdb.co.jp/report/economic/20261118/", "帝国データバンク")))
+    def test_research_firm_own_release_is_credited_as_firm(self):
+        # 2026-11-18 オーナー「目的に合うなら、法律や規約に触れないなら変えていいよ」: 調査会社自身の発表資料の画像は使い、
+        # 出典は「画像：〇〇（発表資料）」。記事に出てくる企業の公式写真（「公式発表より」）とは書かない（A37）
+        got = images.official_source(web("fast", "https://www.tdb.co.jp/report/economic/20261118/", "帝国データバンク"))
+        self.assertEqual(got, {"wire": "", "firm": "帝国データバンク"})
+        self.assertIsNone(images.official_source(web("tsr", "https://www.example-corp.co.jp/news/1/", "東京商工リサーチ")))
+        import sns_rules  # noqa: PLC0415
+        credit = {"kind": "official", "org": "帝国データバンク", "firm": "帝国データバンク", "sourceUrl": "https://www.tdb.co.jp/report/x/"}
+        self.assertEqual(sns_rules.official_credit_text(credit), "画像：帝国データバンク（発表資料）")
+        article = web("tdb", "https://www.tdb.co.jp/report/x/", "帝国データバンク", slug="tdb-x",
+                      thumbnail="https://ai-tech-express.jp/img/tdb-x-1a2b3c4d.jpg", imageCredit=credit)
+        self.assertEqual(sns_rules.sns_photo(article)["from"], "thumbnail")
+        # 発表資料の印（firm）の無い「公式発表より」の写真は今までどおり使わない
+        self.assertIsNone(sns_rules.sns_photo({**article, "imageCredit": {k: v for k, v in credit.items() if k != "firm"}}))
 
     def test_platforms_and_unknown_pages_are_not_official(self):
         self.assertIsNone(images.official_source(web("fast", "https://note.com/someone/n/n123", "誰か")))
@@ -150,6 +159,19 @@ class LogoTest(unittest.TestCase):
         # 台帳 S49: ほかの発表（別のページ）でも使われている画像はサイト共通のロゴ。記事の画像にしない
         result = self.pick("https://www.example-corp.co.jp/news/2026/1118.html", {"https://www.example-corp.co.jp/news/2026/0901.html"})
         self.assertFalse(images.cover_worthy(result["best"]))
+
+    def test_site_wide_default_og_name_is_still_rejected(self):
+        # どのページにも出る共有画像の名前（/ogp/ogimage.png）は、使い回しの記録が無くてもその発表の画像として扱わない
+        page = "https://www.jleague.jp/news/article/1234/"
+        og = "https://www.jleague.jp/ogp/ogimage.png"
+        html = f'<html><head><meta property="og:image" content="{og}"></head><body><article><p>本文</p></article></body></html>'
+        article = web("fast", page, "Jリーグ", slug="z", title="日本代表が勝利", publishedAt="2026-11-18T00:00:00Z")
+        with mock.patch.dict(images.PARSE_CACHE, {page: (collector(html), page)}), \
+                mock.patch.object(images, "http_get", return_value=(png(), "image/png", og)), \
+                mock.patch.object(images, "cf_vision", return_value=None):
+            result = images.pick_official(article, Counter())
+        self.assertFalse(result["best"] and result["best"].get("ownOg"))
+        self.assertFalse(images.official_first(result["best"]))
 
     def test_ministry_logo_is_still_rejected(self):
         page = "https://www.mhlw.go.jp/stf/newpage_1.html"

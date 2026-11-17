@@ -58,6 +58,10 @@ export type ImageCredit = {
   provider?: string;
   /** official: 写真を出した会社・団体の名前 */
   org?: string;
+  /** official: 調査会社自身の発表資料の画像（出典は「画像：〇〇（発表資料）」。2026-11-18 台帳 I11） */
+  firm?: string;
+  /** official: 会社自身の発表の og:image（ロゴ・キービジュアル。2026-11-18 台帳 I11） */
+  ownOg?: boolean;
   /** official: プレスリリース配信サービスの名前（PR TIMES など。自社サイトの発表なら無し） */
   via?: string;
   /** official: 保存した JPEG の大きさ（幅は最大 1200px） */

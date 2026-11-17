@@ -1555,10 +1555,15 @@ def _firm_url(url: str) -> bool:
 def sns_photo(article: dict | None) -> dict | None:
     """SNS のカードに敷く公式の写真 {"src", "credit", "from": "thumbnail"|"body"}。無ければ None（今までのカード）"""
     article = article or {}
-    if research_firms.article_firm(article):
-        return None
     c = article.get("imageCredit") or {}
     thumb = str(article.get("thumbnail") or "")
+    firm = research_firms.article_firm(article)
+    if firm:
+        # 2026-11-18（台帳 I11）: 調査会社自身の発表資料の画像（出典「画像：〇〇（発表資料）」）だけ使う。本文の画像・ほかの写真は使わない
+        if thumb and c.get("kind") == "official" and c.get("firm") == firm and article.get("heroOk") is not False \
+                and (c.get("imageKind") or "photo") in HERO_SNS_KINDS and research_firms.host_firm(c.get("sourceUrl", "")) == firm:
+            return {"src": thumb, "credit": c, "from": "thumbnail"}
+        return None
     if (thumb and c.get("kind") == "official" and (c.get("org") or c.get("via") or c.get("provider"))
             and article.get("heroOk") is not False and (c.get("imageKind") or "photo") in HERO_SNS_KINDS
             and not _firm_url(c.get("sourceUrl", "")) and not _firm_url(c.get("original", ""))):
@@ -1588,6 +1593,8 @@ def official_credit_text(credit: dict | None) -> str:
         return f"画像：{org}（公式動画より）"
     if credit.get("imageKind") == "broadcast":
         return f"映像：{org}（中継）より"
+    if credit.get("firm"):
+        return f"画像：{credit['firm']}（発表資料）"
     via = credit.get("via")
     if via and org != via:
         return f"画像：{org}（{via}配信の公式発表より）"

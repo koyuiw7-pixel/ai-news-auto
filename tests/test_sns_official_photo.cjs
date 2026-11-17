@@ -77,6 +77,15 @@ test("文字が主役の公式の画像（図・ロゴ・サイト共通・heroO
   assert.equal(snsPhoto({ ...OFFICIAL, heroOk: false }), null);
 });
 
+test("2026-11-18（台帳 I11）: 調査会社自身の発表資料の画像は「画像：〇〇（発表資料）」で使う", () => {
+  const credit = { kind: "official", org: "帝国データバンク", firm: "帝国データバンク", sourceUrl: "https://www.tdb.co.jp/report/x/" };
+  const a = { slug: "tdb-x", channelSlug: "tdb", sourceUrl: "https://www.tdb.co.jp/report/x/", thumbnail: `${IMG}tdb-x-1a2b3c4d.jpg`, imageCredit: credit };
+  assert.equal(snsPhoto(a).from, "thumbnail");
+  assert.equal(officialCreditText(credit), "画像：帝国データバンク（発表資料）");
+  const { firm, ...noFirm } = credit;
+  assert.equal(snsPhoto({ ...a, imageCredit: noFirm }), null);
+});
+
 test("2026-11-18（台帳 I11）: 公式の告知のバナー・キービジュアル・放送のコマは SNS のカードに使う（出典つき）", () => {
   for (const imageKind of ["banner", "hero", "broadcast"]) {
     const photo = snsPhoto({ ...OFFICIAL, imageCredit: { ...OFFICIAL.imageCredit, imageKind } });

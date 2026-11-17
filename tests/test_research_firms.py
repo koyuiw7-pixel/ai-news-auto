@@ -24,8 +24,13 @@ class ResearchFirmTest(unittest.TestCase):
         self.assertEqual(research_firms.firm_name("openai-news", "https://openai.com/index/x"), "")
 
     def test_research_firm_site_is_not_official_source_for_photos(self):
-        self.assertIsNone(images.official_source(web("tsr", "https://www.tsr-net.co.jp/data/detail/1.html", "東京商工リサーチ")))
-        self.assertIsNone(images.official_source(web("radar-official", "https://www.tdb.co.jp/report/x", "帝国データバンク")))
+        # 2026-11-18（台帳 I11）: 調査会社自身の発表資料の画像は、その会社の名前で「発表資料」として使う（企業の公式写真にはしない）
+        self.assertEqual(images.official_source(web("tsr", "https://www.tsr-net.co.jp/data/detail/1.html", "東京商工リサーチ")),
+                         {"wire": "", "firm": "東京商工リサーチ"})
+        self.assertEqual(images.official_source(web("radar-official", "https://www.tdb.co.jp/report/x", "帝国データバンク")),
+                         {"wire": "", "firm": "帝国データバンク"})
+        # 調査会社の記事でも、出典がその会社のサイトでなければ使わない
+        self.assertIsNone(images.official_source(web("tsr", "https://www.example-corp.co.jp/news/1/", "東京商工リサーチ")))
         images.official_slugs()
         self.assertIsNotNone(images._host_in("www.tsr-net.co.jp", images.MEDIA_HOSTS))
         self.assertEqual(images.official_source(web("nvidia-blog", "https://blogs.nvidia.com/blog/x/", "NVIDIA公式ブログ")), {"wire": ""})
