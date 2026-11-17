@@ -59,7 +59,7 @@
   "videoTitle": "楽天証券の偽メールと偽電話の見分け方　本物のメールにURLはない",
   "publishedAt": "2026-11-17T12:51:25.555800+00:00",
   "generatedAt": "2026-11-17T12:51:41.748588+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/rakuten-sec-phishing-how-to-spot-figure-c87cf8a7.jpg",
   "model": "anthropic-api:claude-haiku-5-5",
   "affiliates": [],
   "newsType": "filing",
@@ -70,8 +70,9 @@
     }
   ],
   "todayActions": [
-    "楽天証券を名乗るURL付きのメールは開かず、削除してください。",
-    "お客様サポートに載っている0120-862-274で、届いた連絡が本物かを確かめてください。"
+    "届いたメールが本物か、ログイン後の直近2週間の配信履歴で確かめる",
+    "心配なら、ログイン後のセキュリティ設定で取引やサービスを一時停止する",
+    "パスキーが未設定なら、パスキー認証の操作ガイドを見て設定する"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -120,5 +121,163 @@
   "detectedAt": "2026-11-17T12:53:09+00:00",
   "searchTitle": "楽天証券の偽メール見分け方　本物はURLを載せない",
   "layout": "noir",
-  "summaryLine": "楽天証券は、同社から送るメールにはURLを記載していないと案内"
+  "summaryLine": "楽天証券は、同社から送るメールにはURLを記載していないと案内",
+  "insight": [
+    {
+      "text": "ログインに必要なパスワードや暗証番号は漏えいを確認していないと同社は書いています。漏えいのおそれがあるのは、最大約447万口座の氏名、住所、出金先口座などです。",
+      "source": "https://www.rakuten-sec.co.jp/web/info/info20261117-02.html"
+    },
+    {
+      "text": "カスタマーサービスセンターに連絡すると、取引やログイン、出金などを制限できます。その受付は自動音声なら24時間だと案内されています。",
+      "source": "https://www.rakuten-sec.co.jp/web/security/crime/phishing.html?msockid=01fc8ba208e66db227129e0c09db6cff"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "楽天証券カスタマーサポートセンター",
+      "url": "https://www.rakuten-sec.co.jp/web/info/info20261117-02.html",
+      "source": "https://www.rakuten-sec.co.jp/web/info/info20261117-02.html",
+      "howTo": [
+        "ホーム",
+        "お知らせ",
+        "当社お客様の情報漏えいの可能性に関するお詫びとお知らせ"
+      ],
+      "phone": "0120-862-274",
+      "hours": "平日 8:30～17:00 / 土日 9:00～17:00",
+      "note": "フリーダイヤル（無料）。届いた連絡が本物か迷ったら、メールや電話に書かれた番号ではなく、公式サイトに載る番号にかける。"
+    },
+    {
+      "name": "楽天証券 お客様サポート（フィッシング詐欺についてのお問い合わせ）",
+      "url": "https://www.rakuten-sec.co.jp/web/support/#sub20",
+      "source": "https://www.rakuten-sec.co.jp/web/support/#sub20",
+      "howTo": [
+        "ホーム",
+        "お客様サポート",
+        "事務手続き",
+        "フィッシング詐欺についてのお問い合わせ"
+      ],
+      "phone": "0120-41-1004（通話料無料）",
+      "hours": "平日8:30～17:00（土日祝・年末年始を除く）",
+      "note": "音声ガイダンスに従って 1 を押してください。携帯電話からは03-6739-3333（通話料有料）。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "届いたメールが本物か、ログイン後の直近2週間の配信履歴で確かめる",
+      "source": "https://www.rakuten-sec.co.jp/web/security/crime/phishing.html?msockid=01fc8ba208e66db227129e0c09db6cff",
+      "steps": [
+        "公式アプリか、ブックマークした公式サイトからログインする",
+        "ログイン後のメール履歴を開く",
+        "直近2週間の配信として届いているかを見る"
+      ],
+      "url": "https://www.rakuten-sec.co.jp/web/security/crime/phishing.html?msockid=01fc8ba208e66db227129e0c09db6cff"
+    },
+    {
+      "action": "心配なら、ログイン後のセキュリティ設定で取引やサービスを一時停止する",
+      "source": "https://www.rakuten-sec.co.jp/web/info/info20261117-02.html",
+      "steps": [
+        "楽天証券のウェブサイトにログインする",
+        "セキュリティ設定ページを開く",
+        "取引やサービスの一時的な利用停止を設定する"
+      ],
+      "url": "https://www.rakuten-sec.co.jp/web/security/account_lock/"
+    },
+    {
+      "action": "パスキーが未設定なら、パスキー認証の操作ガイドを見て設定する",
+      "source": "https://www.rakuten-sec.co.jp/web/info/info20261117-02.html",
+      "steps": [
+        "ログイン後、パスキーの設定状況を確認する",
+        "パスキー認証（FIDO2）操作ガイドを開く",
+        "ガイドに沿って設定する"
+      ],
+      "url": "https://www.rakuten-sec.co.jp/web/security/passkey/guide/"
+    }
+  ],
+  "cause": {
+    "text": "2026年11月16日に第三者による不正アクセスの可能性を検知し、11月11日にテスト環境で管理していた一部の情報が外部に漏えいしたおそれがあると確認しました。不正アクセスの原因や詳細な経緯は、引き続き調査中とされています。",
+    "status": "investigating",
+    "source": "https://www.rakuten-sec.co.jp/web/info/info20261117-02.html"
+  },
+  "worries": [
+    {
+      "q": "パスワードや取引の暗証番号は盗まれた？",
+      "a": "ログインに必要なパスワード、暗証番号を含む取引の各種情報は、漏えいを確認していないとされています。現時点で、本件に起因する不正アクセスや不正取引も確認されていないとしています。",
+      "source": "https://www.rakuten-sec.co.jp/web/info/info20261117-02.html",
+      "action": "心配なら、ログイン後にセキュリティ設定で取引やサービスの一時停止を設定できる。"
+    },
+    {
+      "q": "漏えいした情報を使った偽の連絡が来る？",
+      "a": "漏えいしたおそれがあるのは、氏名、住所、電話番号、メールアドレス、出金先口座などです。そのため、この情報を使った不審なメール、SMS、電話などに注意するよう案内されています。",
+      "source": "https://www.rakuten-sec.co.jp/web/info/info20261117-02.html",
+      "action": "知らない送信元からの連絡には答えず、公式サイトに載る番号にかけ直す。",
+      "actionSource": "https://www.rakuten-sec.co.jp/web/support/#sub20"
+    },
+    {
+      "q": "楽天証券を名乗る電話には答えていい？",
+      "a": "楽天証券は、電話で個人情報やログインに関する情報を伺うことはないと案内しています。電話でログインIDやパスワード、暗証番号を聞かれたら、答えないでください。",
+      "source": "https://www.rakuten-sec.co.jp/web/info/info20261117-02.html",
+      "action": "電話では答えず、いったん切って、公式サイトに載る番号にかけ直す。",
+      "actionSource": "https://www.rakuten-sec.co.jp/web/support/#sub20"
+    },
+    {
+      "q": "偽サイトに入力してしまったらどうする？",
+      "a": "偽サイトにIDやパスワードを入力した場合、パスワードや取引暗証番号が盗まれている可能性があるとされています。速やかに再設定し、「ログイン追加認証サービス」の設定も行うよう案内されています。",
+      "source": "https://www.rakuten-sec.co.jp/web/security/crime/phishing.html?msockid=01fc8ba208e66db227129e0c09db6cff",
+      "action": "公式サイトの変更手続きから、パスワードと取引暗証番号を速やかに変更し、取引の一時停止も検討する。"
+    },
+    {
+      "q": "同じパスワードを他のサービスでも使っていたら？",
+      "a": "フィッシングでIDやパスワードを入力した場合は、そのIDやパスワードを利用している全てのサービスで、速やかに変更するよう案内されています。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "action": "同じIDやパスワードを使っている他のサービスも、それぞれ速やかに変更する。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "パスキーを設定しておくべき？",
+      "situation": "パスキーをまだ設定していない",
+      "recommend": "公式の操作ガイドを見て設定を検討する",
+      "reason": "パスキー認証は、不正アクセスやフィッシング詐欺への耐性が高いと同社は案内しています。ただし、漏えいした情報そのものを取り戻すものではない点は、ページでも示されていません。",
+      "source": "https://www.rakuten-sec.co.jp/web/info/info20261117-02.html"
+    },
+    {
+      "question": "取引や出金を一時的に止めておくべき？",
+      "situation": "不安が強く、今すぐ取引を控えたい",
+      "recommend": "心配なら一時停止を検討する",
+      "reason": "取引やログイン、出金などを制限し、不正な取引や出金を防ぐことができるとされています。必要な取引まで止まるため、使う予定がある人は設定前に確認が必要です。",
+      "source": "https://www.rakuten-sec.co.jp/web/security/crime/phishing.html?msockid=01fc8ba208e66db227129e0c09db6cff"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "漏えいしたのは何か、停止はいつでもできる",
+    "cause": "なぜ漏れたのか、いま分かっていること",
+    "steps": "今日、自分で確かめて止められること",
+    "desk": "問い合わせ先は公式サイトの番号で",
+    "worries": "パスワードは盗まれた？口座は大丈夫？",
+    "guide": "パスキーや一時停止、迷ったときの決め方"
+  },
+  "depthAt": "2026-11-17T13:08:35+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "楽天証券を名乗る偽メール・偽電話の見分け方",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-17T13:09:16+00:00"
+  },
+  "imageFocus": {
+    "x": 0.52,
+    "y": 0.411,
+    "box": [
+      0.094,
+      0.06,
+      0.947,
+      0.762
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/rakuten-sec-phishing-how-to-spot-figure-c87cf8a7.jpg"
+  }
 }
