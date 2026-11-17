@@ -5330,6 +5330,19 @@
       "skipped": true,
       "url": "https://blog.jetbrains.com/ai/2026/11/building-a-rag-pipeline-for-semantic-code-search-a-developer-diary-and-field-notes-part-2/"
     },
+    "0c2bca83aac92188": {
+      "at": "2026-11-17T06:08:27.713720+00:00",
+      "costUsd": 0.1055,
+      "foreignAi": true,
+      "intent": "breaking",
+      "major": true,
+      "mix": "other",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "score": 90,
+      "section": "ai",
+      "slug": "anthropic-cvd-timeline-30-days",
+      "url": "https://www.anthropic.com/research/coordinated-vulnerability-disclosure-timelines"
+    },
     "0c40826dc2c0af5c": {
       "at": "2026-11-05T02:21:26.967900+00:00",
       "model": "gemini-3.5-flash",
@@ -15774,13 +15787,6 @@
       "skipped": true,
       "url": "https://www.mlit.go.jp/saigai/saigai_261108.html"
     },
-    "aa02a3c870b2f55d": {
-      "at": "2026-11-03T05:58:26.517928+00:00",
-      "model": "anthropic-api:claude-opus-5-5",
-      "reason": "AWS re:Invent 2026のCloud Operationsトラックで開かれるセッションの紹介記事です。新製品の提供開始や料金などの発表ではなく、イベントのセッション告知が中心のため対象外としました。",
-      "skipped": true,
-      "url": "https://aws.amazon.com/jp/blogs/news/embracing-observability-for-the-ai-era-at-reinvent-2026/"
-    },
     "aa687843ef0bc998": {
       "at": "2026-11-13T19:35:54.803150+00:00",
       "costUsd": 0.0125,
@@ -18992,13 +18998,6 @@
       "reason": "prefilter: お知らせ・統計の転載（statistics）",
       "skipped": true,
       "url": "https://www.boj.or.jp/statistics/boj/other/acmai/release/2026/ac261031.htm"
-    },
-    "ddc65a2a91363189": {
-      "at": "2026-11-03T05:58:03.398545+00:00",
-      "model": "anthropic-api:claude-opus-5-5",
-      "reason": "quality: 「数字で見るとどう変わった？」の「NUS・NTUへの支援の総額：600万ドル超（約9億4,700万円）」→ 600万ドルの円換算は計算済みの数字にあり正しいが、「600万ドル超」に「約9億4,700万円」を付けると、実際の総額が超過分だけ多い点が曖昧になる軽い言い過ぎ。; 「たとえるなら、強い部活のある学校に、企業が練習道具と指導者の費用を出すようなものです。すぐ試合に勝つわけで",
-      "skipped": true,
-      "url": "https://blog.google/innovation-and-ai/technology/research/partnering-singapore-advance-scientific-discovery/"
     },
     "ddd64db69903db7d": {
       "at": "2026-11-04T22:11:14.838922+00:00",
@@ -23522,30 +23521,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-14T17:26:15.319697+00:00",
-      "attempt": 1,
-      "id": "72013d8254e78716",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 112.3,
-        "avg_sentence": 44.3,
-        "long_share": 0.184,
-        "max_paragraph": 222,
-        "paragraphs": 15,
-        "sentences": 38
-      },
-      "score": 92,
-      "source": "mext",
-      "title": "認定日本語教育機関の認定結果（令和8年度1回目）について",
-      "warnings": [
-        "見出しの書き方: 発表文の題名の言い直し（「〇〇が△△を発表」）。読者にとって何が変わるか（だれの・何が・いつから・いくら）を書く",
-        "読みやすさ: 段落が長い（平均 112.3字・最長 222字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-14T17:26:42.635544+00:00",
@@ -31094,6 +31069,29 @@
         "見出しの書き方: 区切りの全角空白が2つ以上（補足は1つだけ）",
         "見出しが48字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（JAN）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-17T06:08:27.692386+00:00",
+      "attempt": 1,
+      "id": "0c2bca83aac92188",
+      "kind": "ai",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 73.9,
+        "avg_sentence": 33.1,
+        "long_share": 0.0,
+        "max_paragraph": 130,
+        "paragraphs": 17,
+        "sentences": 38
+      },
+      "score": 90,
+      "source": "anthropic-news",
+      "title": "Updating our coordinated vulnerability disclosure policy timelines",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（CVD・OSS）"
       ]
     }
   ],
