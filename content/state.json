@@ -11277,6 +11277,19 @@
       "skipped": true,
       "url": "https://lifull.com/news/50881/"
     },
+    "641d65c32658e107": {
+      "at": "2026-11-17T15:11:15.827092+00:00",
+      "breaking": true,
+      "costUsd": 0.124,
+      "intent": "breaking",
+      "major": true,
+      "mix": "other",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "score": 93,
+      "section": "tech-gadget",
+      "slug": "google-play-best-of-2026-japan",
+      "url": "https://blog.google/intl/ja-jp/products/android-chrome-play/best-of-play-awards-2026/"
+    },
     "646e58946cb76443": {
       "at": "2026-11-10T13:05:55.104278+00:00",
       "breaking": true,
@@ -23790,78 +23803,6 @@
   "quality_log": [
     {
       "accepted": true,
-      "at": "2026-11-14T23:09:24.893757+00:00",
-      "attempt": 0,
-      "id": "18178d0c9df77c3d",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 43.3,
-        "avg_sentence": 35.5,
-        "long_share": 0.0,
-        "max_paragraph": 83,
-        "paragraphs": 9,
-        "sentences": 11
-      },
-      "score": 93,
-      "source": "tokyo-metro",
-      "title": "令和8年度 「東京都都民安全総合対策本部長賞表彰式」の開催",
-      "warnings": [
-        "見出しが54字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "work_money（「仕事・お金にどう活かせる？」欄）が無い"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-14T23:41:51.787609+00:00",
-      "attempt": 1,
-      "id": "3f82e69684a38f74",
-      "kind": "broad",
-      "model": "claude:sonnet",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 87.6,
-        "avg_sentence": 39.2,
-        "long_share": 0.105,
-        "max_paragraph": 133,
-        "paragraphs": 17,
-        "sentences": 38
-      },
-      "score": 88,
-      "source": "fast",
-      "title": "当社が運営する旅行会社様向け予約手配システム「Rikisha Easy REZ!」への不正アクセスによる個人情報流出のおそれに関するお詫びとお知らせ",
-      "warnings": [
-        "見出しが46字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（REZ・SMS）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-14T23:57:00.686338+00:00",
-      "attempt": 1,
-      "id": "63168b4299a6d201",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 106.2,
-        "avg_sentence": 47.2,
-        "long_share": 0.222,
-        "max_paragraph": 195,
-        "paragraphs": 4,
-        "sentences": 9
-      },
-      "score": 93,
-      "source": "radar-official",
-      "title": "徹子の部屋関連ニュース｜dメニューニュース（NTTドコモ）",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（WBA）",
-        "読みやすさ: 文が長い（1文の平均 47.2字・60字超の文が 22% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
       "at": "2026-11-14T23:57:19.150534+00:00",
       "attempt": 0,
       "id": "63168b4299a6d201",
@@ -31340,6 +31281,85 @@
       "warnings": [
         "見出しが45字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（KARTE）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-17T15:10:17.825263+00:00",
+      "attempt": 1,
+      "id": "641d65c32658e107",
+      "kind": "broad",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [
+        "「物価高に伴うスマートな消費に応えたアプリとして「Too Good To Go」が注目トレンドに入っています」→ 元記事は物価高に伴うスマートな消費をアプリ分野全体の評価として挙げるのみで、Too Good To Goをその文脈に結びつける記述はない。作品と評価理由の対応づけが創作にあたる。",
+        "「オンゴーイング部門」を「長く遊ばれている作品を選ぶ部門」と説明しているが、元記事に部門の定義はない。読者には部門の意味として伝わるため、解釈を事実のように書いている。",
+        "「仕事の道具を探している人は」「ゲームを探している人は」などの見方は編集部の解釈として妥当だが、「ウェアラブルなら「Todoist」…部門から探すのが早いとみられます」は推測であり、根拠の明示が弱い。"
+      ],
+      "readability": {
+        "avg_paragraph": 88.8,
+        "avg_sentence": 50.7,
+        "long_share": 0.381,
+        "max_paragraph": 146,
+        "paragraphs": 12,
+        "sentences": 21
+      },
+      "score": 82,
+      "source": "google-japan-blog-all",
+      "title": "Google Play ベスト オブ 2026 発表",
+      "warnings": [
+        "見出しの書き方: 記号: かっこの直後に「、」",
+        "見出しの書き方: 区切りの全角空白が2つ以上（補足は1つだけ）",
+        "見出しが57字（目安40字以内）。一覧・カードでは前半だけを出す"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-17T15:10:42.635828+00:00",
+      "attempt": 1,
+      "id": "641d65c32658e107",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 87.0,
+        "avg_sentence": 49.7,
+        "long_share": 0.381,
+        "max_paragraph": 146,
+        "paragraphs": 12,
+        "sentences": 21
+      },
+      "score": 90,
+      "source": "google-japan-blog-all",
+      "title": "Google Play ベスト オブ 2026 発表",
+      "warnings": [
+        "見出しの書き方: 記号: かっこの直後に「、」",
+        "見出しの書き方: 区切りの全角空白が2つ以上（補足は1つだけ）",
+        "見出しが57字（目安40字以内）。一覧・カードでは前半だけを出す"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-17T15:11:07.906846+00:00",
+      "attempt": 0,
+      "id": "641d65c32658e107",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 82.5,
+        "avg_sentence": 41.3,
+        "long_share": 0.077,
+        "max_paragraph": 146,
+        "paragraphs": 13,
+        "sentences": 26
+      },
+      "score": 93,
+      "source": "google-japan-blog-all",
+      "title": "Google Play ベスト オブ 2026 発表",
+      "warnings": [
+        "見出しの書き方: 記号: かっこの直後に「、」",
+        "見出しの書き方: 区切りの全角空白が2つ以上（補足は1つだけ）",
+        "見出しが57字（目安40字以内）。一覧・カードでは前半だけを出す"
       ]
     }
   ],
