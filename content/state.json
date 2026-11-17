@@ -11157,6 +11157,19 @@
       "slug": "claude-text-watermark-api",
       "url": "https://platform.claude.com/docs/en/release-notes/overview.md#entry-2026-11-03"
     },
+    "62f14b70e27c1e6e": {
+      "at": "2026-11-17T07:42:19.938501+00:00",
+      "breaking": true,
+      "costUsd": 0.1301,
+      "intent": "breaking",
+      "major": true,
+      "mix": "other",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "score": 92,
+      "section": "ai",
+      "slug": "ntt-data-clean-modernization-cobol-java",
+      "url": "https://www.nttdata.com/global/ja/news/release/2026/111700"
+    },
     "63105f6c71562031": {
       "at": "2026-11-11T06:04:53.721419+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（委員会）",
@@ -23663,84 +23676,6 @@
   "quality_log": [
     {
       "accepted": true,
-      "at": "2026-11-14T20:47:43.497678+00:00",
-      "attempt": 1,
-      "id": "1ef1e86804d1794591a014968eee560ad968ef9e",
-      "kind": "trend",
-      "model": "gemini-3.6-flash",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 109.0,
-        "avg_sentence": 72.7,
-        "long_share": 0.5,
-        "max_paragraph": 147,
-        "paragraphs": 4,
-        "sentences": 6
-      },
-      "score": 90,
-      "source": "trends",
-      "title": "ウクライナ",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（NATO・TBS・NEWS）",
-        "読みやすさ: 文が長い（1文の平均 72.7字・60字超の文が 50% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-14T20:48:00.033706+00:00",
-      "attempt": 0,
-      "id": "1ef1e86804d1794591a014968eee560ad968ef9e",
-      "kind": "trend",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 119.2,
-        "avg_sentence": 47.7,
-        "long_share": 0.2,
-        "max_paragraph": 161,
-        "paragraphs": 4,
-        "sentences": 10
-      },
-      "score": 92,
-      "source": "trends",
-      "title": "ウクライナ",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（NATO・TBS・NEWS）",
-        "読みやすさ: 文が長い（1文の平均 47.7字・60字超の文が 20% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-14T22:07:26.644374+00:00",
-      "attempt": 1,
-      "id": "92de01dcbb379929",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "「首相官邸の『総理の一日』にも同じ行事が掲載されています」→ 元記事・確認済みの文脈で確認できるのは2025年10月24日の官邸掲載のみで、2026年11月12日の行事が官邸に掲載されているという記述は裏付けがない",
-        "「名称を『AZEC2.0』構想に改めて」→ 前回と今回の名称変更の経緯は元記事にない。『改めて』は記事側の解釈",
-        "リード「具体的な協力策が話し合われました」→ 元記事は提言を受け取ったことのみを記載しており、協議内容は確認できない",
-        "「今後のエネルギー政策や関連産業の動向に影響する可能性があります」→ 元資料に根拠のない見通しで、解釈として断定寄りの書き方"
-      ],
-      "readability": {
-        "avg_paragraph": 155.7,
-        "avg_sentence": 60.6,
-        "long_share": 0.333,
-        "max_paragraph": 272,
-        "paragraphs": 7,
-        "sentences": 18
-      },
-      "score": 80,
-      "source": "gov-online",
-      "title": "日本経済団体連合会による「AZEC2.0」構想の具体化に向けた提言手交-令和8年11月12日",
-      "warnings": [
-        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（AZEC・ASEAN・IEA）",
-        "読みやすさ: 文が長い（1文の平均 60.6字・60字超の文が 33% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
       "at": "2026-11-14T22:07:52.345830+00:00",
       "attempt": 1,
       "id": "92de01dcbb379929",
@@ -31212,6 +31147,85 @@
         "見出しが47字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（MTG・LIFULL・HOME）",
         "決まった型の見出し（「何が起きたか」）。その記事でしか使えない中身の言葉にするか、見出しを消す"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-17T07:41:32.878062+00:00",
+      "attempt": 1,
+      "id": "62f14b70e27c1e6e",
+      "kind": "ai",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [
+        "判定: 提供状況=limited → 元記事に「limited（限定提供）」という提供状況の記載はなく、内部用の判定ラベルが本文に残っている（事実の裏付けがない）。"
+      ],
+      "readability": {
+        "avg_paragraph": 85.3,
+        "avg_sentence": 47.6,
+        "long_share": 0.206,
+        "max_paragraph": 148,
+        "paragraphs": 19,
+        "sentences": 34
+      },
+      "score": 88,
+      "source": "nttdata-news",
+      "title": "生成AIでCOBOLの基幹システムを保守性の高いJavaへ再設計する「クリーンモダナイゼーション™」を提供開始",
+      "warnings": [
+        "見出しが49字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（SQUARE・SOMPO・TEL）",
+        "読みやすさ: 文が長い（1文の平均 47.6字・60字超の文が 21% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-17T07:41:54.229721+00:00",
+      "attempt": 1,
+      "id": "62f14b70e27c1e6e",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 85.3,
+        "avg_sentence": 47.6,
+        "long_share": 0.206,
+        "max_paragraph": 148,
+        "paragraphs": 19,
+        "sentences": 34
+      },
+      "score": 92,
+      "source": "nttdata-news",
+      "title": "生成AIでCOBOLの基幹システムを保守性の高いJavaへ再設計する「クリーンモダナイゼーション™」を提供開始",
+      "warnings": [
+        "見出しが49字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（SQUARE・SOMPO・TEL）",
+        "読みやすさ: 文が長い（1文の平均 47.6字・60字超の文が 21% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-17T07:42:19.911014+00:00",
+      "attempt": 0,
+      "id": "62f14b70e27c1e6e",
+      "kind": "ai",
+      "model": "",
+      "problems": [
+        "読みやすさ基準外のまま受理: 書き直し後の確認に不合格: 判定: 提供状況=limited 価格=不明（個別案件） → 元記事に「limited」（提供範囲が限定的）という提供状況の記述はなく、「個別案件」も元記事では明言されていない。元記事は価格未発表と書くのみで、この判定行は根拠の無い断定に近い。"
+      ],
+      "readability": {
+        "avg_paragraph": 85.3,
+        "avg_sentence": 47.6,
+        "long_share": 0.206,
+        "max_paragraph": 148,
+        "paragraphs": 19,
+        "sentences": 34
+      },
+      "score": 92,
+      "source": "nttdata-news",
+      "title": "生成AIでCOBOLの基幹システムを保守性の高いJavaへ再設計する「クリーンモダナイゼーション™」を提供開始",
+      "warnings": [
+        "見出しが49字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（SQUARE・SOMPO・TEL）",
+        "読みやすさ: 文が長い（1文の平均 47.6字・60字超の文が 21% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
       ]
     }
   ],
