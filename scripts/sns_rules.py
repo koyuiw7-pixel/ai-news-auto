@@ -1541,8 +1541,10 @@ def uses_article_photo(url: str, article: dict) -> bool:
 # ---- SNS のカードに敷く公式の写真（2026-11-07 オーナー承認・台帳 S45。サイト側は lib/sns-photo.ts の snsPhoto と同じ判定） ----
 # 記事の写真が公式発表の写真で文字が主役でなければそれ、でなければ本文の公式の写真（photo / kit）。どちらも無ければ今までのカード。
 # 調査会社・情報会社のサイトの画像（台帳 A37）・告知のバナー・図・ロゴ・大きな文字があるとされた写真（heroOk: false）は使わない
-HERO_SNS_KINDS = {"photo", "kit", "video", "youtube", "hero"}
-BODY_SNS_KINDS = {"photo", "kit"}
+# 2026-11-18 オーナー「公式の画像使えていないの多いんじゃない？」（台帳 I11）: 告知のバナー・キービジュアル・放送のコマも出す。
+# 文字の多い図（dense）・ロゴ・サイト共通の画像は今までどおり出さない。表紙の判定で「ほとんど文字」とされたもの（heroOk: false）も出さない
+HERO_SNS_KINDS = {"photo", "kit", "video", "youtube", "broadcast", "hero", "banner"}
+BODY_SNS_KINDS = {"photo", "kit", "hero"}
 OUR_IMAGE_RE = re.compile(r"^https://ai-tech-express\.jp/img/[\w.-]+\.(?:jpg|jpeg|png|webp)$")
 
 
@@ -1568,8 +1570,8 @@ def sns_photo(article: dict | None) -> dict | None:
             continue
         credit = {"kind": "official", "org": str(im["credit"]).strip(), "sourceUrl": im.get("sourceUrl", ""),
                   "width": im.get("width"), "height": im.get("height")}
-        if im.get("kind") == "kit":
-            credit["imageKind"] = "kit"
+        if im.get("kind") in ("kit", "hero"):
+            credit["imageKind"] = im["kind"]
         return {"src": im["src"], "credit": credit, "from": "body"}
     return None
 
@@ -1584,6 +1586,8 @@ def official_credit_text(credit: dict | None) -> str:
         return ""
     if credit.get("imageKind") in ("youtube", "video"):
         return f"画像：{org}（公式動画より）"
+    if credit.get("imageKind") == "broadcast":
+        return f"映像：{org}（中継）より"
     via = credit.get("via")
     if via and org != via:
         return f"画像：{org}（{via}配信の公式発表より）"

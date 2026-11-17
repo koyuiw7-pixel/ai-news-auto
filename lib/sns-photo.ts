@@ -6,20 +6,21 @@ import type { BodyImage } from "./body-images";
  * SNS の投稿の画像（/card/<slug>。Threads・Bluesky・X・Facebook が同じカードを使う）に、どの写真を敷くか。
  * 2026-11-07 オーナー承認（台帳 S45）: 会社の公式発表の写真を、出典（画像：会社名（公式発表より））つきで使う。
  *
- * 1. 記事の写真（thumbnail）が公式発表の写真で、文字が主役でないもの（写真・報道用素材・公式動画のコマ・キービジュアル）→ そのまま
- * 2. 1 でなければ、本文に置いた公式の写真（bodyImages の photo / kit）→ それをカードに敷き、出典もその会社にする
+ * 1. 記事の写真（thumbnail）が公式発表の画像で、文字が主役でないもの（写真・報道用素材・公式動画や放送のコマ・キービジュアル・告知のバナー）→ そのまま
+ * 2. 1 でなければ、本文に置いた公式の写真（bodyImages の photo / kit / hero）→ それをカードに敷き、出典もその会社にする
  * 3. どちらも無ければ今までのカード（AI のイメージなら「画像はイメージ（AI生成）」のまま）
  *
- * 使わないもの: 調査会社・情報会社のサイトの画像（台帳 A37。lib/research-firms.json）、告知のバナー・図・ロゴ、
+ * 使わないもの: 調査会社・情報会社のサイトの画像（台帳 A37。lib/research-firms.json）、文字の多い図・ロゴ・サイト共通の画像、
  * 表紙の判定で大きな文字があるとされた写真（heroOk: false）。公式の動画は再投稿しない（静止画のコマだけ。カードの写真として使う）。
  * Python 側の同じ判定は scripts/sns_rules.py の sns_photo（門番・下見で使う）。ずれは tests/test_sns_official_photo.cjs と
  * tests/test_sns_official_photo_20261107.py が同じ例で確かめる。
  */
 
 /** 記事の写真として SNS に出してよい公式の画像の種類（imageKind。無ければ写真） */
-export const HERO_SNS_KINDS = ["photo", "kit", "video", "youtube", "hero"];
+// 2026-11-18（台帳 I11）: 告知のバナー・キービジュアル・放送のコマも出す（文字の多い図・ロゴ・サイト共通の画像は出さない）
+export const HERO_SNS_KINDS = ["photo", "kit", "video", "youtube", "broadcast", "hero", "banner"];
 /** 本文の公式の画像のうち、カードに敷いてよい種類（図・キービジュアルは文字が多いので使わない） */
-export const BODY_SNS_KINDS = ["photo", "kit"];
+export const BODY_SNS_KINDS = ["photo", "kit", "hero"];
 const OUR_IMAGE = /^https:\/\/ai-tech-express\.jp\/img\/[\w.-]+\.(?:jpg|jpeg|png|webp)$/;
 
 type Photoable = {
@@ -80,7 +81,7 @@ export function snsPhoto(article: Photoable): SnsPhoto | null {
   if (!body) return null;
   return {
     src: body.src,
-    credit: { kind: "official", org: body.credit.trim(), sourceUrl: body.sourceUrl, width: body.width, height: body.height, ...(body.kind === "kit" ? { imageKind: "kit" } : {}) },
+    credit: { kind: "official", org: body.credit.trim(), sourceUrl: body.sourceUrl, width: body.width, height: body.height, ...(body.kind === "kit" || body.kind === "hero" ? { imageKind: body.kind } : {}) },
     from: "body",
   };
 }

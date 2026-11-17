@@ -70,13 +70,19 @@ test("調査会社・情報会社の画像は使わない（台帳 A37）", () =
   assert.equal(snsPhoto({ ...AI_WITH_BODY, bodyImages: [{ ...AI_WITH_BODY.bodyImages[1], sourceUrl: "https://www.tsr-net.co.jp/x" }] }), null);
 });
 
-test("文字が主役の公式の画像（バナー・図・ロゴ・heroOk: false）は使わない", () => {
-  for (const imageKind of ["banner", "dense", "logo", "generic"]) {
+test("文字が主役の公式の画像（図・ロゴ・サイト共通・heroOk: false）は使わない", () => {
+  for (const imageKind of ["dense", "logo", "generic"]) {
     assert.equal(snsPhoto({ ...OFFICIAL, imageCredit: { ...OFFICIAL.imageCredit, imageKind } }), null, imageKind);
   }
   assert.equal(snsPhoto({ ...OFFICIAL, heroOk: false }), null);
-  const banner = { ...OFFICIAL, imageCredit: { ...OFFICIAL.imageCredit, imageKind: "banner" }, bodyImages: AI_WITH_BODY.bodyImages };
-  assert.equal(snsPhoto(banner).from, "body");
+});
+
+test("2026-11-18（台帳 I11）: 公式の告知のバナー・キービジュアル・放送のコマは SNS のカードに使う（出典つき）", () => {
+  for (const imageKind of ["banner", "hero", "broadcast"]) {
+    const photo = snsPhoto({ ...OFFICIAL, imageCredit: { ...OFFICIAL.imageCredit, imageKind } });
+    assert.equal(photo.from, "thumbnail", imageKind);
+  }
+  assert.equal(officialCreditText({ kind: "official", org: "NHK", imageKind: "broadcast" }), "映像：NHK（中継）より");
 });
 
 test("公式の写真が無ければ今までのカード（AI の出典のまま＝「画像はイメージ（AI生成）」）", () => {

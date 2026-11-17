@@ -10,6 +10,8 @@ export function officialCreditText(credit?: Pick<ImageCredit, "kind" | "org" | "
   const org = credit.org || credit.via || credit.provider;
   if (!org) return null;
   if (credit.imageKind === "youtube" || credit.imageKind === "video") return `画像：${org}（公式動画より）`;
+  // 放送の切り抜き（中継の映像のコマ。2026-11-18 オーナー「放送の切り抜きはOK、権利表記つけて使って」台帳 I11）
+  if (credit.imageKind === "broadcast") return `映像：${org}（中継）より`;
   if (credit.via && org !== credit.via) return `画像：${org}（${credit.via}配信の公式発表より）`;
   if (credit.via) return `画像：${credit.via}配信の公式発表より`;
   return `画像：${org}（公式発表より）`;

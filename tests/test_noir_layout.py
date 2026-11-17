@@ -91,7 +91,7 @@ class DeriveTest(unittest.TestCase):
 
 
 class HeroOkTest(unittest.TestCase):
-    """ノワールの表紙に写真を出すのは、大きな文字の無い本物の写真だけ（迷ったら黒い表紙）"""
+    """ノワールの表紙に公式の画像を出す（2026-11-18 台帳 I11: 画像判定が「ほとんど文字」と答えたものだけ出さない）"""
 
     def setUp(self):
         import images  # noqa: PLC0415
@@ -104,19 +104,26 @@ class HeroOkTest(unittest.TestCase):
         return lambda image, prompt, max_tokens=0: replies.pop(0) if replies else None
 
     def test_real_photo_passes(self):
-        ok, _ = self.images.hero_ok(self.photo, "photo", "https://example.com/news/serena.jpg", vision=self.fake("photo", "no"))
+        ok, _ = self.images.hero_ok(self.photo, "photo", "https://example.com/news/serena.jpg", vision=self.fake("no"))
         self.assertTrue(ok)
 
-    def test_banner_slide_and_unknown_fail(self):
+    def test_mostly_text_logo_and_odd_shapes_fail(self):
         h = self.images.hero_ok
-        self.assertFalse(h(self.photo, "banner", "https://x/a.jpg", vision=self.fake("photo", "no"))[0])
-        self.assertFalse(h(self.photo, "hero", "https://x/a.jpg", vision=self.fake("photo", "no"))[0])
-        self.assertFalse(h(self.photo, "photo", "https://x/uploads/OGP-scaled.png", vision=self.fake("photo", "no"))[0])
-        self.assertFalse(h(self.photo, "photo", "https://x/a.jpg", vision=self.fake("text-heavy"))[0])
-        self.assertFalse(h(self.photo, "photo", "https://x/a.jpg", vision=self.fake("photo", "yes"))[0])
-        self.assertFalse(h(self.photo, "photo", "https://x/a.jpg", vision=self.fake())[0])  # 判定できない
+        self.assertFalse(h(self.photo, "photo", "https://x/a.jpg", vision=self.fake("yes"))[0])  # ほとんど文字
+        for kind in ("logo", "generic", "dense"):
+            self.assertFalse(h(self.photo, kind, "https://x/a.jpg", vision=self.fake("no"))[0], kind)
         tall = self.images.Image.new("RGB", (800, 1200))
-        self.assertFalse(h(tall, "photo", "https://x/a.jpg", vision=self.fake("photo", "no"))[0])
+        self.assertFalse(h(tall, "photo", "https://x/a.jpg", vision=self.fake("no"))[0])
+
+    def test_official_banners_ogp_names_and_unknown_pass(self):
+        # 2026-11-18 オーナー（台帳 I11）: ファイル名では落とさない・バナー/キービジュアルも出す・判定できないときは出す
+        h = self.images.hero_ok
+        self.assertTrue(h(self.photo, "photo", "https://x/uploads/OGP-scaled.png", vision=self.fake("no"))[0])
+        self.assertTrue(h(self.photo, "photo", "https://x/img/thumbnail_kv.jpg", vision=self.fake("no"))[0])
+        self.assertTrue(h(self.photo, "banner", "https://x/a.jpg", vision=self.fake("no"))[0])
+        self.assertTrue(h(self.photo, "hero", "https://x/a.jpg", vision=self.fake("no"))[0])
+        self.assertTrue(h(self.photo, "broadcast", "https://x/a.jpg", vision=self.fake("no"))[0])
+        self.assertTrue(h(self.photo, "photo", "https://x/a.jpg", vision=self.fake())[0])  # 判定できない
 
     def test_images_decides_for_noir_articles(self):
         src = (Path(__file__).resolve().parent.parent / "scripts" / "images.py").read_text("utf-8")

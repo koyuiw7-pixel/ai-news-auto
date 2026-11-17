@@ -470,6 +470,69 @@ def official_slugs() -> set[str]:
     return _official_slugs
 
 
+# 2026-11-18 オーナー「他にもあなたが勝手に作ったルールで公式の画像使えていないの多いんじゃない？」（台帳 I11）:
+# 公式かどうかを、登録したフィード（channelSlug）だけでなく元記事のホストでも決める。
+# 官公庁・自治体（*.go.jp・*.lg.jp）・日本銀行・適時開示（TDnet）・競技団体と大会の主催者・会社の自社サイトのページは公式の発表。
+# ニュースサイト（NHK・日経・朝日・テレビ局など。台帳 I1）・調査会社（台帳 A37）・SNS・ブログの場は今までどおり公式ではない
+PUBLIC_HOSTS = re.compile(r"(?:^|\.)(?:go\.jp|lg\.jp)$")
+OFFICIAL_HOSTS = {
+    "boj.or.jp", "release.tdnet.info", "tdnet.info", "jpx.co.jp", "jpx.jp", "e-gov.go.jp", "jfa.jp", "jleague.jp", "npb.jp", "npb.or.jp",
+    "bleague.jp", "joc.or.jp", "jpnsport.go.jp", "rugby-japan.jp", "jaaf.or.jp", "jva.or.jp", "japan-sports.or.jp", "sumo.or.jp",
+    "jra.jp", "jgto.org", "lpga.or.jp", "swim.or.jp", "jsta.or.jp", "japan-baseball.jp", "fifa.com", "olympics.com", "worldathletics.org",
+}
+# ニュースサイト・放送局・まとめ（ホスト名の目印。会社の自社サイトと見分ける。一覧に無い報道も落とす）
+NEWS_HOST_RE = re.compile(
+    r"(?:^|\.)(?:nhk\.or\.jp|web\.nhk|tbs\.co\.jp|ntv\.co\.jp|tv-asahi\.co\.jp|fujitv\.co\.jp|fnn\.jp|tv-tokyo\.co\.jp|tvtokyo|mbs\.jp|"
+    r"ktv\.jp|ytv\.co\.jp|abema|jiji\.com|kyodonews|kyodo\.co\.jp|47news\.jp|nordot\.app|yahoo\.co\.jp|livedoor|goo\.ne\.jp|excite\.co\.jp|"
+    r"msn\.com|smartnews|gunosy|newspicks|toyokeizai\.net|diamond\.jp|president\.jp|j-cast\.com|gigazine\.net|itmedia\.co\.jp|"
+    r"impress\.co\.jp|mynavi\.jp|cnet\.com|zdnet|ascii\.jp|businessinsider|forbesjapan|newsweekjapan|bunshun\.jp|gendai\.media|"
+    r"zakzak|smart-flash|oricon\.co\.jp|natalie\.mu|mantan-web\.jp|modelpress\.jp|cinematoday\.jp|response\.jp|webcg\.net|carview|"
+    r"bestcarweb|nikkansports\.com|sponichi\.co\.jp|sanspo\.com|hochi\.news|daily\.co\.jp|number\.bunshun|sportsnavi|"
+    r"bloomberg\.co(?:m|\.jp)|reuters\.com|nikkei\.com|asahi\.com|yomiuri\.co\.jp|mainichi\.jp|sankei\.com|tokyo-np\.co\.jp|"
+    r"chunichi\.co\.jp|kahoku\.news|nishinippon\.co\.jp|hokkaido-np\.co\.jp|kobe-np\.co\.jp|okinawatimes\.co\.jp|ryukyushimpo\.jp|"
+    r"shimbun|-np\.co\.jp|times\.co\.jp|wsj\.com|ft\.com|nytimes\.com|cnn\.(?:com|co\.jp)|bbc\.(?:com|co\.uk)|afpbb\.com|newsdig)$"
+)
+# SNS・ブログの場・動画の場（会社の自社サイトではない）
+PLATFORM_HOSTS = {
+    "note.com", "medium.com", "ameblo.jp", "hatenablog.com", "hatena.ne.jp", "livedoor.jp", "wordpress.com", "substack.com", "fc2.com",
+    "twitter.com", "x.com", "facebook.com", "instagram.com", "threads.net", "threads.com", "tiktok.com", "youtube.com", "youtu.be",
+    "linkedin.com", "line.me", "bsky.app", "wikipedia.org", "github.io", "google.com", "qiita.com", "zenn.dev",
+}
+
+
+def _host_slug(host: str) -> str:
+    """ホストから作ったフィードの名前（www.mcdonalds.co.jp → mcdonalds-co-jp。scripts/feeds.py がホストから作る channelSlug と同じ形）"""
+    return re.sub(r"[^a-z0-9]+", "-", (host or "").lower().removeprefix("www.")).strip("-")
+
+
+def news_host(host: str) -> bool:
+    """ニュースサイト・放送局・まとめのホストか（台帳 I1。会社の自社サイトとして扱わない）"""
+    host = (host or "").lower().split(":")[0]
+    official_slugs()  # MEDIA_HOSTS に radar.outlets と調査会社を足す
+    return bool(_host_in(host, MEDIA_HOSTS) or _host_in(host, AGENCY_IMAGE_HOSTS) or NEWS_HOST_RE.search(host))
+
+
+def own_site_source(article: dict) -> bool:
+    """元記事が会社・団体の自社サイトのページか（ニュースサイト・SNS・ブログの場でなく、
+    ①そのホストから作ったフィードの記事 ②発表のページの形（/news/・/press/ など）③ホストに会社名が入っている のどれか）"""
+    page = article.get("sourceUrl") or ""
+    host = urllib.parse.urlparse(page).netloc.lower().split(":")[0]
+    if not host or news_host(host) or _host_in(host, PLATFORM_HOSTS):
+        return False
+    if (article.get("channelSlug") or "") == _host_slug(host):
+        return True
+    if _release_link(page):
+        return True
+    org = re.sub(r"[^a-z0-9]", "", org_name(article).lower())
+    return len(org) >= 3 and any(org in label or label in org for label in _host_label_set(host))
+
+
+def official_host(host: str) -> bool:
+    """ホストだけで公式と分かる発信元（官公庁・自治体・日本銀行・TDnet・競技団体など）"""
+    host = (host or "").lower().split(":")[0]
+    return bool(PUBLIC_HOSTS.search(host) or _host_in(host, OFFICIAL_HOSTS))
+
+
 def official_source(article: dict) -> dict | None:
     """公式の発表なら {"wire": 配信サービス名 or ""}、そうでなければ None"""
     if article.get("sourceType") != "web":
@@ -477,7 +540,8 @@ def official_source(article: dict) -> dict | None:
     page = article.get("sourceUrl") or ""
     host = urllib.parse.urlparse(page).netloc.lower()
     slug = article.get("channelSlug") or ""
-    if not host or slug == "trends" or (slug.startswith("radar-") and slug != "radar-official"):
+    # radar-<報道機関> は報道の記事（公式の発表は radar-official）
+    if not host or (slug.startswith("radar-") and slug != "radar-official"):
         return None
     # 調査会社・情報会社（東京商工リサーチ・帝国データバンクなど）の記事は報道。そのサイトの写真を、記事に登場する企業の
     # 公式写真のように使わない（2026-11-04 オーナー決定 D2・台帳 A37。一覧は lib/research-firms.json）
@@ -489,7 +553,12 @@ def official_source(article: dict) -> dict | None:
     wire = WIRE_CHANNELS.get(slug) or WIRE_HOSTS.get(_host_in(host, WIRE_HOSTS) or "")
     if wire:
         return {"wire": wire}
-    if slug in official_slugs():
+    if news_host(host):
+        return None
+    if slug in official_slugs() and slug != "trends":
+        return {"wire": ""}
+    # 2026-11-18（台帳 I11）: 登録したフィードでなくても、元記事のホストで公式と分かるもの
+    if official_host(host) or own_site_source(article):
         return {"wire": ""}
     return None
 
@@ -539,19 +608,28 @@ def wire_org(article: dict) -> str:
 
 # 写真の種類の順位（小さいほど良い）。数字の図（figure）と素材（stock）は process() で間に入る。
 # generic はサイト共通の共有画像のうち写真・キービジュアルのもの（本社ビルなど。その発表だけの写真ではない）
-OFFICIAL_RANK = {"photo": 0, "video": 1, "youtube": 1, "kit": 2, "hero": 3, "banner": 4, "dense": 5, "generic": 6, "logo": 7}
-MIN_PHOTO_WIDTH = 560  # 元記事の写真（実写）。755px の発表写真（日産の調印式など）や 600px の製品写真を落とさない（拡大はしない）
-MIN_GRAPHIC_WIDTH = 700  # 見出し画像・キービジュアル
-MIN_DENSE_WIDTH = 800  # 文字の多い図（小さいと読めない）
+# broadcast: 放送の切り抜き（中継の映像のコマ。2026-11-18 オーナー「放送の切り抜きはOK、権利表記つけて使って」。
+# 出典は「映像：〇〇（中継）より」。テレビの画面を自分で取りに行く仕組みはまだ無く、入れ物だけ）
+OFFICIAL_RANK = {"photo": 0, "video": 1, "youtube": 1, "broadcast": 1, "kit": 2, "hero": 3, "banner": 4, "dense": 5, "generic": 6, "logo": 7}
+# 2026-11-18（台帳 I11）: 大きさの下限を下げる（400px の製品写真・縦長の製品写真も使う。縦長は保存のときにぼかした地に置く）
+MIN_PHOTO_WIDTH = 400  # 元記事の写真（実写）。拡大はしない
+MIN_PHOTO_HEIGHT = 225
+MIN_GRAPHIC_WIDTH = 600  # 見出し画像・キービジュアル
+MIN_DENSE_WIDTH = 700  # 文字の多い図（小さいと読めない）
 MIN_LOGO_WIDTH = 150
+PORTRAIT_MIN_RATIO = 0.5  # 縦長の写真はここまで（保存のときに 1200×630 のぼかした地の真ん中に置く）
+VISION_BUDGET = 12  # 1本の記事で公式の画像を画像判定にかける回数
+FETCH_BUDGET = 20  # 1本の記事で読む公式の画像の数
 
 # 通信社・報道機関・写真素材の配信元（公式の発表のページに載っていても使わない）
 AGENCY_IMAGE_HOSTS = {
     "gettyimages.com", "gettyimages.co.jp", "reuters.com", "apnews.com", "ap.org", "afp.com", "afpbb.com", "jiji.com",
     "kyodonews.jp", "kyodonews.net", "nikkei.com", "itmedia.co.jp", "shutterstock.com", "istockphoto.com", "alamy.com",
     "aflo.com", "pixta.jp", "amanaimages.com", "sankei.com", "asahi.com", "yomiuri.co.jp", "mainichi.jp", "nhk.or.jp",
-    "twimg.com", "fbcdn.net", "cdninstagram.com", "tiktokcdn.com",
 }
+# SNS の画像の置き場。他人の投稿の画像は使わない。元記事がその会社・団体の公式アカウントの投稿（登録した公式の発信元）なら使う（台帳 I11）
+SOCIAL_IMAGE_HOSTS = {"twimg.com": ("twitter.com", "x.com"), "fbcdn.net": ("facebook.com", "instagram.com"),
+                      "cdninstagram.com": ("instagram.com",), "tiktokcdn.com": ("tiktok.com",)}
 AGENCY_CREDIT = re.compile(r"(getty ?images|reuters|ロイター|\bAP\b|\bAFP\b|共同通信|時事通信|アフロ|AFLO|pixta|shutterstock|istock)", re.I)
 
 # 本文ではない場所（関連記事・おすすめ・ランキング・バナー・メニュー・共有ボタン）
@@ -595,6 +673,7 @@ class _PageCollector(HTMLParser):
         self.meta: dict[str, str] = {}
         self.images: list[dict] = []
         self.youtube: list[str] = []
+        self.youtube_body: set[str] = set()  # 本文の中に埋め込まれた動画（関連動画の欄ではない）
         self.videos: list[str] = []  # 会社が自分で置いている動画ファイル（mp4・webm）
         self.links: list[tuple[str, str, bool]] = []  # (リンク先, 文字, 本文ではない場所か)
         self.stack: list[tuple[str, bool, bool]] = []  # (tag, 本文か, 本文ではない場所か)
@@ -634,6 +713,9 @@ class _PageCollector(HTMLParser):
             match = YOUTUBE_ID.search(a.get("src") or a.get("data-src") or "")
             if match:
                 self.youtube.append(match.group(1))
+                in_body, bad, _ = self._state()
+                if in_body and not bad:
+                    self.youtube_body.add(match.group(1))
             return
         if tag == "a":
             href = a.get("href") or ""
@@ -649,6 +731,9 @@ class _PageCollector(HTMLParser):
             vid = a.get("videoid") or a.get("data-youtube-id") or ""
             if re.fullmatch(r"[\w-]{11}", vid):
                 self.youtube.append(vid)
+                in_body, bad, _ = self._state()
+                if in_body and not bad:
+                    self.youtube_body.add(vid)
         if tag in ("video", "source"):
             _, bad, _ = self._state()
             src = a.get("src") or a.get("data-src") or ""
@@ -843,20 +928,38 @@ def page_candidates(parser: _PageCollector, final: str, known: str = "", article
     return result
 
 
-def youtube_official(video_id: str, article: dict) -> dict | None:
-    """その会社・団体の公式チャンネルの動画なら {"title", "author", "thumb"}（oEmbed のチャンネル名で確かめる）"""
+# チャンネル名・会社名から外す言葉（「トヨタ自動車株式会社 公式チャンネル」→「トヨタ自動車」）
+_CHANNEL_WORDS = re.compile(
+    r"(株式会社|（株）|\(株\)|有限会社|合同会社|ホールディングス|グループ|公式チャンネル|オフィシャルチャンネル|公式|チャンネル|"
+    r"\b(?:official ?channel|official|channel|japan|jp|inc|corp|corporation|co|ltd|holdings|group|tv|ch)\b\.?)",
+    re.I,
+)
+
+
+def _channel_norm(text: str) -> str:
+    return re.sub(r"[\s\-_・.,、。!！|｜/／()（）]", "", _CHANNEL_WORDS.sub("", str(text or "").lower()))
+
+
+def youtube_official(video_id: str, article: dict, page_links: list | None = None) -> dict | None:
+    """その会社・団体の公式チャンネルの動画なら {"title", "author", "body"}。
+    2026-11-18（台帳 I11）: チャンネル名の完全な一致にこだわらない。①元記事のページ（会社のサイト）がそのチャンネルに
+    リンクしている ②会社名（株式会社・公式・チャンネルなどを外した形）がチャンネル名に入っている ③会社のサイトのホストの名前が入っている、のどれか"""
     try:
         data = http_json("https://www.youtube.com/oembed?format=json&url=" + urllib.parse.quote(f"https://www.youtube.com/watch?v={video_id}"), ua=BROWSER_UA, timeout=15)
     except Exception:  # noqa: BLE001
         return None
     author = str(data.get("author_name") or "")
-    norm = lambda s: re.sub(r"[\s\-_・.]", "", s.lower())  # noqa: E731
-    a = norm(author)
-    org = norm(org_name(article))
+    author_url = str(data.get("author_url") or "").rstrip("/").lower()
+    a = _channel_norm(author)
+    org = _channel_norm(org_name(article))
     host = urllib.parse.urlparse(article.get("sourceUrl") or "").netloc
     labels = {re.sub(r"news$", "", h) for h in _host_label_set(host)}
-    ok = bool(a) and ((org and len(org) >= 3 and (org in a or a in org)) or any(len(h) >= 4 and h in a for h in labels))
-    if not ok:
+    linked = bool(author_url) and any(
+        str(href).split("?")[0].rstrip("/").lower().endswith(urllib.parse.urlparse(author_url).path.lower()) and "youtube.com" in str(href).lower()
+        for href, *_ in (page_links or []) if urllib.parse.urlparse(author_url).path not in ("", "/")
+    )
+    named = bool(a) and ((org and len(org) >= 2 and (org in a or a in org)) or any(len(h) >= 4 and h in a for h in labels))
+    if not (linked or named):
         log(f"   [img] YouTube {video_id} は公式チャンネルと確かめられない（{author[:40]}）")
         return None
     return {"title": str(data.get("title") or ""), "author": author}
@@ -1023,25 +1126,37 @@ def size_ok(kind: str, w: int, h: int) -> str | None:
     ratio = w / max(h, 1)
     if kind == "logo":
         return None if w >= MIN_LOGO_WIDTH else f"小さい（{w}×{h}）"
-    if kind in ("photo", "youtube", "video", "kit", "generic"):
-        if w < MIN_PHOTO_WIDTH or h < 300:
+    if kind in ("photo", "youtube", "video", "broadcast", "kit", "generic"):
+        # 縦長の製品写真も使う（保存のときにぼかした地の真ん中に置く。2026-11-18 台帳 I11）
+        if w < MIN_PHOTO_WIDTH or h < MIN_PHOTO_HEIGHT:
             return f"小さい（{w}×{h}）"
-        if not (1.0 <= ratio <= 3.3):
+        if not (PORTRAIT_MIN_RATIO <= ratio <= 3.3):
             return f"縦横比が合わない（{w}×{h}）"
         return None
     if kind == "dense":
         if w < MIN_DENSE_WIDTH:
             return f"文字の多い図で小さい（{w}×{h}）"
-        return None if 1.0 <= ratio <= 2.6 else f"縦横比が合わない（{w}×{h}）"
-    if w < MIN_GRAPHIC_WIDTH or h < 300:
+        return None if 0.7 <= ratio <= 3.3 else f"縦横比が合わない（{w}×{h}）"
+    if w < MIN_GRAPHIC_WIDTH or h < MIN_PHOTO_HEIGHT:
         return f"小さい（{w}×{h}）"
-    return None if 1.2 <= ratio <= 3.3 else f"縦横比が合わない（{w}×{h}）"
+    return None if 0.7 <= ratio <= 3.3 else f"縦横比が合わない（{w}×{h}）"
 
 
-def agency_problem(url: str, alt: str = "") -> str | None:
+def official_account_post(article: dict | None, platforms: tuple[str, ...]) -> bool:
+    """元記事が、登録した公式の発信元（会社・団体の公式アカウント）の SNS の投稿か"""
+    article = article or {}
+    host = urllib.parse.urlparse(article.get("sourceUrl") or "").netloc.lower()
+    slug = article.get("channelSlug") or ""
+    return bool(_host_in(host, platforms)) and bool(slug) and slug != "trends" and not slug.startswith("radar-") and slug in official_slugs()
+
+
+def agency_problem(url: str, alt: str = "", article: dict | None = None) -> str | None:
     host = urllib.parse.urlparse(url).netloc
     if _host_in(host, AGENCY_IMAGE_HOSTS):
-        return "報道機関・通信社・SNS の画像"
+        return "報道機関・通信社の画像"
+    social = _host_in(host, SOCIAL_IMAGE_HOSTS)
+    if social and not official_account_post(article, SOCIAL_IMAGE_HOSTS[social]):
+        return "SNS の画像（公式アカウントの投稿ではない）"
     if alt and AGENCY_CREDIT.search(alt):
         return "通信社のクレジット入り"
     return None
@@ -1527,8 +1642,12 @@ def pick_official(article: dict, repeats: Counter, fast: bool = False, extra: in
     parser, final = parsed
     known = current if current and not is_ours(current) and not is_youtube(current) else ""
     candidates = page_candidates(parser, final, known, article)
-    vision_budget = 4 if fast else 7
+    vision_budget = VISION_BUDGET
     fetches = 0
+    # 元記事が会社の自社サイト（官公庁・配信サービスではない）なら、そのページの og:image のロゴ・キービジュアルも
+    # その会社自身の画像として扱う（ほかの発表でも使い回されている画像・サイト共通の既定画像は今までどおり外す。台帳 S49・I11）
+    page_root = _root_domain(urllib.parse.urlparse(final).netloc)
+    own_company = not public_body_source(article) and not WIRE_HOSTS.get(_host_in(urllib.parse.urlparse(final).netloc, WIRE_HOSTS) or "")
     token = release_token(page)
 
     def consider(item: dict, forced_kind: str = "") -> dict | None:
@@ -1547,15 +1666,21 @@ def pick_official(article: dict, repeats: Counter, fast: bool = False, extra: in
         if problem and "ロゴ" in problem and not re.search(r"\.(svg|gif|ico)(\?|$)", url, re.I):
             site_default = True
             problem = None
-        problem = problem or agency_problem(url, item.get("alt", ""))
+        problem = problem or agency_problem(url, item.get("alt", ""), article)
         # 別の発表（元記事のページが違う）と同じ画像は、サイト共通・使い回しの画像。ロゴとしてだけ使える
         others = PAGES_BY_IMAGE.get(url, set()) - {page, ""}
+        reused = bool(others) or repeats.get(url, 0) >= 3
         if not problem and others and not framed:
             site_default = True
+        # 会社の自社サイトの発表の og:image（その会社のロゴ・キービジュアル）で、ほかの発表に使い回されていないもの
+        own_og = (not framed and own_company and item.get("where") == "og" and not reused
+                  and _root_domain(urllib.parse.urlparse(url).netloc) == page_root)
+        if own_og and site_default:
+            site_default = False
         if problem:
             reasons.append(problem)
             return None
-        if fetches >= 12:
+        if fetches >= FETCH_BUDGET:
             return None
         fetches += 1
         try:
@@ -1609,6 +1734,8 @@ def pick_official(article: dict, repeats: Counter, fast: bool = False, extra: in
             reasons.append(f"{kind}: {problem}")
             return None
         hit = {"kind": kind, "url": url, "image": image, "rank": item.get("rank", OFFICIAL_RANK.get(kind, 9)), "where": item.get("where", ""), "order": len(found), "big": w >= 1000}
+        if own_og:
+            hit["ownOg"] = True  # 会社自身の発表の og:image（ロゴでも、その会社のニュースの表紙にしてよい。台帳 I11）
         found.append(hit)
         return hit
 
@@ -1639,11 +1766,12 @@ def pick_official(article: dict, repeats: Counter, fast: bool = False, extra: in
     #    2b. 公式 YouTube 動画の画像（YouTube が配る表紙と途中のコマだけ。動画はダウンロードしない）
     if not any(f["rank"] < 1 for f in found):
         for vid in list(dict.fromkeys(parser.youtube))[:2]:
-            info = youtube_official(vid, article)
+            info = youtube_official(vid, article, parser.links)
             if not info:
                 continue
-            # 同じ会社の動画でも、別の話題の動画（ページの下の「おすすめ動画」など）は使わない
-            if not video_on_topic(info["title"], article):
+            # 同じ会社の動画でも、別の話題の動画（ページの下の「おすすめ動画」など）は使わない。
+            # 発表の本文に埋め込まれた、その会社自身の動画は題名の言葉を問わない（2026-11-18 台帳 I11）
+            if vid not in parser.youtube_body and not video_on_topic(info["title"], article):
                 log(f"   [img] YouTube {vid} は記事の話題と違う動画（{info['title'][:40]}）")
                 continue
             picked = best_frame(youtube_frames(vid), min(2 if not fast else 1, vision_budget))
@@ -1713,6 +1841,19 @@ def body_images(article: dict, result: dict, ctx: dict, org: str, thumb_url: str
         if len(out) >= BODY_MAX:
             break
     return out
+
+
+def blur_fill(image, size: tuple[int, int] = (OUT_W, OUT_H)):
+    """縦長の写真を、同じ写真を大きくぼかした地（1200×630）の真ん中に、切らずに置く"""
+    from PIL import ImageFilter  # noqa: PLC0415
+
+    w, h = size
+    back = ImageOps.fit(image.convert("RGB"), size, method=Image.LANCZOS).filter(ImageFilter.GaussianBlur(28))
+    back = Image.blend(back, Image.new("RGB", size, (20, 20, 20)), 0.25)
+    scale = min(w / image.size[0], h / image.size[1])
+    front = image.convert("RGB").resize((max(1, round(image.size[0] * scale)), max(1, round(image.size[1] * scale))), Image.LANCZOS)
+    back.paste(front, ((w - front.size[0]) // 2, (h - front.size[1]) // 2))
+    return back
 
 
 def logo_canvas(image):
@@ -2084,7 +2225,29 @@ NOT_COVER_KINDS = ("logo", "generic")
 
 
 def cover_worthy(best: dict | None) -> bool:
-    return bool(best) and best.get("kind") not in NOT_COVER_KINDS
+    """記事の画像にしてよい公式の画像か。ロゴ・サイト共通の画像は、その会社自身の発表の og:image（ownOg。ほかの発表に
+    使い回されていない）のときだけ（2026-11-18 台帳 I11。官公庁のロゴの使い回し S49 は今までどおり外す）"""
+    if not best:
+        return False
+    return best.get("kind") not in NOT_COVER_KINDS or bool(best.get("ownOg"))
+
+
+def text_only_graphic(best: dict | None) -> bool:
+    """文字だけの図（台帳 I2 の旧 I3: 文字だけの図の画像を記事の写真にしない）"""
+    image = (best or {}).get("image")
+    if image is None or (best or {}).get("kind") not in ("dense", "banner", "hero"):
+        return False
+    try:
+        stats = graphic_stats(image)
+    except Exception:  # noqa: BLE001 - 読めない画像は文字だけとは言えない
+        return False
+    return stats["flat"] >= 0.75 and stats["colorful"] < 4
+
+
+def official_first(best: dict | None) -> bool:
+    """AI・素材より先に使う公式の画像か（2026-11-18 台帳 I11: 写真に限らず、キービジュアル・バナー・図も AI の作り物より先。
+    ロゴ（ownOg を含む）・サイト共通の画像・文字だけの図は AI・素材が無いときだけ）"""
+    return bool(best) and best.get("kind") not in NOT_COVER_KINDS and not text_only_graphic(best)
 
 
 # --------------------------------------------------------------------------- #
@@ -2464,42 +2627,31 @@ def vision_kind(image) -> str | None:
     return None
 
 
-# ノワールの記事の表紙に写真を全面で出してよいか（2026-11-07・台帳 W36）。
-# 表紙は写真の上に題名を大きく重ねるので、写真そのものに大きな文字（告知のバナー・スライド・画面・ロゴの板）があると題名とぶつかる。
-# 本物の写真（製品・人・場所・乗り物）で大きな文字の無いものだけ True。迷ったら・判定できないときは False（黒い表紙に題名）
-HERO_KINDS = {"photo", "kit"}
-HERO_NAME_HINT = re.compile(r"(?:^|[/_.-])(?:banner|bnr|ogp|og[-_]?image|ogimage|key[-_]?visual|kv|mv|main[-_]?visual|eyecatch|thumbnail|thumb|title|header|slide|screenshot|logo|cover|card)(?:[/_.-]|\d|$)", re.I)
+# ノワールの記事の表紙に公式の画像を全面で出してよいか（2026-11-07・台帳 W36）。
+# 2026-11-18 オーナー「他にもあなたが勝手に作ったルールで公式の画像使えていないの多いんじゃない？」（台帳 I11）で緩めた:
+#  - ファイル名（ogp・thumbnail・kv・eyecatch・header・cover など）では落とさない（会社の発表の写真の多くがこの名前）
+#  - 写真・報道用素材に限らず、公式動画・放送のコマ・キービジュアル・バナーも出す（ロゴ・サイト共通の画像・文字の多い図は出さない）
+#  - 形は 1.0〜2.6（縦長の写真は保存のときにぼかした地に置いてある）
+#  - 画像判定が「ほとんど文字（資料・スライド・表・文字だけの板）」とはっきり答えたときだけ落とす。判定できないときは出す
+HERO_KINDS = {"photo", "kit", "video", "youtube", "broadcast", "hero", "banner"}
 HERO_PROMPT = (
-    "Is this a photograph of the subject (a real product, person, place or vehicle) without large overlaid text? "
-    "Banners, ads, flyers, slides, screenshots, charts, title cards and logos with text are text-heavy. "
-    "Answer with one word: photo or text-heavy."
-)
-HERO_TEXT_PROMPT = (
-    "Is a large part of this image covered by big overlaid text such as headlines, slogans, prices or dates "
-    "(not small logos, product labels or signs in the scene)? Answer with one word: yes or no."
+    "Is this image mostly text - a document, slide, table, chart, screenshot of text, or a plain card where words cover most of "
+    "the image - rather than a picture of a product, person, place, vehicle, event or artwork? Answer with one word: yes or no."
 )
 
 
 def hero_ok(image, kind: str, url: str = "", vision=None) -> tuple[bool, str]:
-    """ノワールの表紙に写真を出してよいか。(よいか, 理由)。無料の画像判定（Workers AI）と、名前・形の目安で決める"""
+    """ノワールの表紙に公式の画像を出してよいか。(よいか, 理由)。無料の画像判定（Workers AI）が「ほとんど文字」と答えたものだけ落とす"""
     vision = vision or cf_vision
     if kind not in HERO_KINDS:
-        return False, f"写真ではない種類（{kind}）"
-    name = urllib.parse.urlparse(url or "").path.rsplit("/", 1)[-1]
-    if name and HERO_NAME_HINT.search(name):
-        return False, f"告知の画像らしい名前（{name[:60]}）"
+        return False, f"表紙にしない種類（{kind}）"
     w, h = image.size
-    if h and not 1.2 <= w / h <= 2.1:
-        return False, f"写真らしくない形（{w}×{h}）"
-    answer = (vision(image, HERO_PROMPT, max_tokens=6) or "").strip().lower()
-    if not answer:
-        return False, "画像判定ができない"
-    if "text" in answer or not answer.startswith("photo"):
-        return False, f"文字が主役の画像（{answer[:20]}）"
-    text = (vision(image, HERO_TEXT_PROMPT, max_tokens=4) or "").strip().lower()
-    if not text.startswith("no"):
-        return False, f"大きな文字が重なっている（{text[:10] or '判定できない'}）"
-    return True, "写真"
+    if h and not 1.0 <= w / h <= 2.6:
+        return False, f"表紙に合わない形（{w}×{h}）"
+    answer = (vision(image, HERO_PROMPT, max_tokens=4) or "").strip().lower()
+    if answer.startswith("yes"):
+        return False, "ほとんど文字の画像"
+    return True, "公式の画像" if answer else "公式の画像（画像判定ができないので出す）"
 
 
 def graphic_problem(image) -> str | None:
@@ -2995,7 +3147,7 @@ def _process(path: Path, article: dict, ctx: dict) -> str:
     # 自前の画像（まとめ記事・別の切り口の記事が元記事の画像を引き継いだ）なら出典も引き継ぐ
     if is_ours(thumb) and not ctx.get("retry_ai") and not ctx.get("repick"):
         credit = ctx["credit_by_thumb"].get(thumb)
-        if credit and credit.get("imageKind") not in NOT_COVER_KINDS:
+        if credit and (credit.get("imageKind") not in NOT_COVER_KINDS or credit.get("ownOg")):
             article["imageCredit"] = credit
             if not ctx["dry_run"]:
                 save(path, article)
@@ -3052,8 +3204,8 @@ def _process(path: Path, article: dict, ctx: dict) -> str:
                     log(f"   [img] 会社自身の発表の画像: {best['kind']}（{best['where']}）{best['url'][:90]}")
                 else:
                     release = None
-        # 製品・サービスの発表は、製品が写った公式のバナー（発表のキービジュアル）も AI の作り物より良い
-        if best and best["rank"] <= OFFICIAL_RANK["banner" if announce else "hero"]:
+        # 公式の画像は種類を問わず（キービジュアル・バナー・図も）AI の作り物・素材より先（2026-11-18 オーナー・台帳 I11）
+        if official_first(best):
             return use_official(path, article, ctx, best, official, release)
 
     # 公式の画像だけを探す選び直し（--official-only）: 見つからなければ今の画像のまま
@@ -3064,7 +3216,7 @@ def _process(path: Path, article: dict, ctx: dict) -> str:
     # 選び直し（--slug・--repick-hours など）で、前に付けた公式の写真を AI・素材・写真なしに替えない
     # （その回だけ元記事が開けない・判定が落ちた、で公式の写真を失わない）
     # ただし調査会社・情報会社のサイトから取った写真は残さない（報道の写真を主役の公式写真として使わない。台帳 A37）
-    if previous.get("kind") == "official" and previous.get("imageKind") not in NOT_COVER_KINDS \
+    if previous.get("kind") == "official" and (previous.get("imageKind") not in NOT_COVER_KINDS or previous.get("ownOg")) \
             and not research_firms.host_firm(previous.get("sourceUrl") or previous.get("original") or "") \
             and is_ours(previous_thumb := (ctx.get("previous_thumb", {}).get(slug) or thumb)):
         article["thumbnail"] = previous_thumb
@@ -3352,6 +3504,9 @@ def use_official(path: Path, article: dict, ctx: dict, best: dict, official: dic
         try:
             if kind == "logo":
                 new_url, size = store(slug, logo_canvas(image), ctx["dry_run"])
+            elif (dims := getattr(image, "size", None)) and dims[0] / max(1, dims[1]) < 1.0:
+                # 縦長の公式の写真（製品写真など）は切らずに、ぼかした地の真ん中に置く（2026-11-18 台帳 I11）
+                new_url, size = store(slug, blur_fill(image), ctx["dry_run"], keep_aspect=True)
             else:
                 new_url, size = store(slug, image, ctx["dry_run"], keep_aspect=True)
         except Exception as error:  # noqa: BLE001
@@ -3368,7 +3523,9 @@ def use_official(path: Path, article: dict, ctx: dict, best: dict, official: dic
         "at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
     }
     if kind != "photo":
-        credit["imageKind"] = kind  # youtube / kit / hero / banner / dense / logo
+        credit["imageKind"] = kind  # youtube / video / broadcast / kit / hero / banner / dense / logo
+    if best.get("ownOg"):
+        credit["ownOg"] = True  # 会社自身の発表の og:image（ロゴでも、その会社のニュースの画像にしてよい。台帳 I11）
     if official["wire"]:
         credit["via"] = official["wire"]
     if release:
@@ -3468,6 +3625,20 @@ def settle_hotlink(path: Path, article: dict, ctx: dict) -> str | None:
     return "unhotlinked"
 
 
+REPICK_KINDS = ("ai", "figure", "stock", "card")
+
+
+def official_repick_target(article: dict) -> bool:
+    """--official-repick の対象か: 公式の発信元の記事で、今の画像が公式ではない（AI・図・素材・文字のカード・画像なし）"""
+    if article.get("noPhoto") or article.get("type") == "roundup" or is_youtube(article.get("thumbnail") or ""):
+        return False
+    credit = article.get("imageCredit") or {}
+    current = credit.get("kind") if article.get("thumbnail") or credit else ""
+    if current not in REPICK_KINDS and current:
+        return False
+    return official_source(article) is not None
+
+
 def load_env_local() -> None:
     """手元実行用: .env.local の鍵を読む（git worktree の中なら親のリポジトリのものも探す）"""
     for base in [ROOT, *ROOT.parents]:
@@ -3512,6 +3683,9 @@ def main() -> int:
     parser.add_argument("--recheck-source", action="store_true", help="元記事の写真を採用した記事を今の基準で見直す")
     parser.add_argument("--repick-hours", type=float, default=0, help="この時間以内の記事で、フリー素材・AI 生成・数字の図にした画像を今の基準で選び直す")
     parser.add_argument("--product-repick-days", type=float, default=0, help="この日数以内の製品・サービスの発表の記事で、AI 生成・素材の画像を選び直す（公式の画像→製品を描かない場面）")
+    parser.add_argument("--official-repick", action="store_true",
+                        help="公式の発信元（官公庁・会社の自社サイト・配信サービスなど）の記事で、今の画像が AI・図・素材・文字のカード・画像なしのものを、"
+                             "公式の画像だけで選び直す（見つからなければ今のまま。AI は作らない。--dry-run と --report で下見。2026-11-18 台帳 I11）")
     parser.add_argument("--official-only", action="store_true", help="選び直しで公式の画像だけを探す（見つからなければ今の画像のまま。AI は作らない）")
     parser.add_argument("--scene", help="AI 生成の場面（英語）をこの文にする（--slug で1本だけ直すとき用）")
     parser.add_argument("--report", help="記事ごとの結果（JSON Lines）をこのファイルに書く（確認用）")
@@ -3556,8 +3730,8 @@ def main() -> int:
         "ai_only": args.ai_only,
         "defer_hours": args.defer_hours,
         "retry_ai": args.retry_ai,
-        "repick": bool(args.slug or args.repick_hours or args.product_repick_days),
-        "official_only": args.official_only,
+        "repick": bool(args.slug or args.repick_hours or args.product_repick_days or args.official_repick),
+        "official_only": args.official_only or args.official_repick,
         "scene": args.scene or "",
         # 選び直しの前の画像（公式の写真を AI・素材に替えないため。下で imageCredit を消す前に覚えておく）
         "previous_credit": {a.get("slug") or p.stem: a["imageCredit"] for p, a in articles.items() if isinstance(a.get("imageCredit"), dict)},
@@ -3597,6 +3771,10 @@ def main() -> int:
         ]
         for p, a in targets:
             log(f"[img] 製品・サービスの発表で AI・素材の画像: {a.get('slug')}")
+            a.pop("imageCredit", None)
+    elif args.official_repick:
+        targets = [(p, a) for p, a in ordered if official_repick_target(a)]
+        for _, a in targets:
             a.pop("imageCredit", None)
     elif args.recheck_source:
         # 元記事の写真を採用した記事を、今の基準（文字・図が主役の画像は不採用）で見直す

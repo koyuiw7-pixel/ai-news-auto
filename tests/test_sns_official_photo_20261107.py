@@ -71,13 +71,17 @@ class OfficialPhotoTest(unittest.TestCase):
         self.assertIsNone(sns_rules.sns_photo(body))
 
     def test_text_heavy_official_images_are_not_chosen(self):
-        for kind in ("banner", "dense", "logo", "generic"):
+        for kind in ("dense", "logo", "generic"):
             a = {**OFFICIAL, "imageCredit": {**OFFICIAL["imageCredit"], "imageKind": kind}}
             self.assertIsNone(sns_rules.sns_photo(a), kind)
         self.assertIsNone(sns_rules.sns_photo({**OFFICIAL, "heroOk": False}))
-        # 告知のバナーでも、本文に公式の写真があればそちら
-        a = {**OFFICIAL, "imageCredit": {**OFFICIAL["imageCredit"], "imageKind": "banner"}, "bodyImages": AI_WITH_BODY["bodyImages"]}
-        self.assertEqual(sns_rules.sns_photo(a)["from"], "body")
+
+    def test_official_banner_and_broadcast_frames_are_chosen(self):
+        # 2026-11-18（台帳 I11）: 公式の告知のバナー・キービジュアル・放送のコマも SNS のカードに使う
+        for kind in ("banner", "hero", "broadcast"):
+            a = {**OFFICIAL, "imageCredit": {**OFFICIAL["imageCredit"], "imageKind": kind}}
+            self.assertEqual(sns_rules.sns_photo(a)["from"], "thumbnail", kind)
+        self.assertEqual(sns_rules.official_credit_text({"kind": "official", "org": "NHK", "imageKind": "broadcast"}), "映像：NHK（中継）より")
 
     def test_ai_fallback_keeps_ai_label(self):
         self.assertIsNone(sns_rules.sns_photo(AI_ONLY))
