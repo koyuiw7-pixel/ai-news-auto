@@ -14782,6 +14782,19 @@
       "skipped": true,
       "url": "https://j-net21.smrj.go.jp/news/bt5puv0000010toi.html"
     },
+    "999dde7067e722a9": {
+      "at": "2026-11-17T09:48:29.167777+00:00",
+      "costUsd": 0.0016,
+      "intent": "breaking",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "score": 95,
+      "section": "public",
+      "slug": "rakuten-sec-data-leak-447",
+      "url": "https://www.rakuten-sec.co.jp/smartphone/info/info20261117-02.html"
+    },
     "99a00480106165dd": {
       "at": "2026-11-09T07:45:04.965418+00:00",
       "costUsd": 0.0087,
@@ -23762,29 +23775,6 @@
   },
   "quality_log": [
     {
-      "accepted": true,
-      "at": "2026-11-14T23:07:07.425538+00:00",
-      "attempt": 1,
-      "id": "84cf43cb732b6f7e",
-      "kind": "ai",
-      "model": "claude:sonnet",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 82.6,
-        "avg_sentence": 38.4,
-        "long_share": 0.036,
-        "max_paragraph": 127,
-        "paragraphs": 13,
-        "sentences": 28
-      },
-      "score": 93,
-      "source": "nvidia-japan-blog",
-      "title": "NVIDIA、CEO 交代に関するお知らせ",
-      "warnings": [
-        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す"
-      ]
-    },
-    {
       "accepted": false,
       "at": "2026-11-14T23:08:25.178766+00:00",
       "attempt": 1,
@@ -31319,6 +31309,29 @@
       "title": "熱海富士",
       "warnings": [
         "初めて出たところで言い換えていない略語（TBS・NEWS・DIG）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-17T09:48:23.387904+00:00",
+      "attempt": 1,
+      "id": "999dde7067e722a9",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 77.4,
+        "avg_sentence": 37.3,
+        "long_share": 0.074,
+        "max_paragraph": 166,
+        "paragraphs": 13,
+        "sentences": 27
+      },
+      "score": 95,
+      "source": "fast",
+      "title": "当社お客様の情報漏えいの可能性に関するお詫びとお知らせ:楽天証券",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（SMS）"
       ]
     }
   ],
