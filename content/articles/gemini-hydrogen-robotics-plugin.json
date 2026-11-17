@@ -88,8 +88,8 @@
   "affiliates": [],
   "newsType": "product",
   "todayActions": [
-    "AntigravityのCustomizationsでRoboticsを検索し、追加機能を確認する。",
-    "Google AI Studioで、空間を扱う指示やカメラ映像を試す。"
+    "AntigravityでRoboticsプラグインを検索し、追加する。",
+    "実機を動かす前にMuJoCoでシーンを作り、腕の届き方や把持を確かめる。"
   ],
   "relatedSlugs": [
     "gemini-4-hydrogen-launch-pricing"
@@ -210,5 +210,107 @@
       }
     ],
     "notes": "リードの冒頭に提供開始日、対象者、利用条件をまとめました。Antigravity自体の無料利用枠と、RoboticsをHydrogenと組み合わせる場合の条件を区別し、資料で確認できない事項の表現を修正しました。"
-  }
+  },
+  "insight": [
+    {
+      "text": "MuJoCoのシーンやアセットは、文章で説明するだけでなく、リンクや文書の取り込み、ワークスペースの写真のアップロードからも作れます。形・位置・物理的性質はチャットで調整し、実機導入前に到達や把持を確かめられます。",
+      "source": "https://developers.googleblog.com/gemini-hydrogen-for-robotics/"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "Robotics plugin（Google Antigravity）",
+      "url": "https://antigravity.google/",
+      "source": "https://developers.googleblog.com/gemini-hydrogen-for-robotics/",
+      "howTo": [
+        "Antigravity",
+        "Customizations",
+        "Build With Google",
+        "Robotics"
+      ]
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "AntigravityでRoboticsプラグインを検索し、追加する。",
+      "source": "https://developers.googleblog.com/gemini-hydrogen-for-robotics/",
+      "steps": [
+        "Antigravityを開く",
+        "Customizationsを開く",
+        "Build With GoogleからRoboticsを検索する"
+      ],
+      "url": "https://antigravity.google/"
+    },
+    {
+      "action": "実機を動かす前にMuJoCoでシーンを作り、腕の届き方や把持を確かめる。",
+      "source": "https://developers.googleblog.com/gemini-hydrogen-for-robotics/",
+      "steps": [
+        "Antigravity内でMuJoCoを使う",
+        "シーンやアセットを作成・プレビューする",
+        "チャットで形や位置などを調整する",
+        "実機導入前に到達や把持を検証する"
+      ],
+      "url": "https://antigravity.google/"
+    }
+  ],
+  "cause": {
+    "text": "Googleは、ロボット開発ではドライバーや校正用スクリプト、シミュレーター、認識コード、画面をつなぎ合わせる必要があり、専門知識と時間がかかると説明しています。Roboticsプラグインは、こうした作業をスキルとしてまとめ、Antigravityをロボット開発用の作業環境にするために発表されました。",
+    "status": "background",
+    "source": "https://developers.googleblog.com/gemini-hydrogen-for-robotics/"
+  },
+  "worries": [
+    {
+      "q": "Hydrogenを使うにはPro契約が必要？",
+      "a": "Google AIの料金ページでは、Gemini 4 Hydrogenは無料プランのほか、Google AI Plus、Google AI Pro、Google AI Ultraにも記載されています。各プランで利用できる上限は異なります。",
+      "source": "https://gemini.google/jp/subscriptions/?hl=ja",
+      "action": "料金ページで各プランの内容と利用上限を確認してから選ぶ。"
+    },
+    {
+      "q": "YAM以外のロボットも約10分で準備できる？",
+      "a": "約10分で準備できた例は、I2RT YAMアームと外付け深度カメラをパソコンに接続したケースです。",
+      "source": "https://developers.googleblog.com/gemini-hydrogen-for-robotics/",
+      "action": "使う機器を接続し、Roboticsプラグインのセットアップ手順で準備を進める。"
+    },
+    {
+      "q": "実機に触る前に動作を確かめられる？",
+      "a": "Antigravity内のMuJoCoでシーンやアセットを作成・プレビューし、チャットで形や位置、物理的性質を調整できます。実機に導入する前に、腕が届くか、物をつかめるかを検証できます。",
+      "source": "https://developers.googleblog.com/gemini-hydrogen-for-robotics/",
+      "action": "MuJoCoでシーンをプレビューし、到達や把持を確認してから実機へ進む。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "実機を動かす前にシミュレーションする？",
+      "situation": "腕が届くか、物をつかめるか確かめたい",
+      "recommend": "まずMuJoCoで検証する",
+      "reason": "RoboticsプラグインではAntigravity内でMuJoCoを使い、形や位置などを調整して、実機に導入する前に到達や把持を確かめられます。",
+      "source": "https://developers.googleblog.com/gemini-hydrogen-for-robotics/"
+    },
+    {
+      "question": "ER 2で使う作業をHydrogenでも試す？",
+      "situation": "Gemini Robotics ER 2を利用中",
+      "recommend": "同じ作業で試して比べる",
+      "reason": "Googleは、Gemini Robotics ER 2を使う開発者に、こうした作業でGemini 4 Hydrogenを試すことを推奨しています。ERQAでは空間推論の作業でHydrogenがER 2を上回ったとしています。",
+      "source": "https://developers.googleblog.com/gemini-hydrogen-for-robotics/"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "写真や資料から仮想の作業環境を作れる",
+    "cause": "開発に必要な作業をまとめた背景",
+    "steps": "実機に触る前に仮想環境で試す",
+    "desk": "Roboticsプラグインの追加方法",
+    "worries": "プランや準備時間、実機テストの疑問",
+    "guide": "実機テストとシミュレーション、どちらから？"
+  },
+  "depthAt": "2026-11-17T19:22:59+00:00",
+  "updatedAt": "2026-11-17T19:22:59+00:00",
+  "updates": [
+    {
+      "at": "2026-11-17T19:22:59+00:00",
+      "kind": "facts",
+      "title": "公式の資料をもとに、「なるほどの要点」・「公式の窓口」・「今日やること」・「理由」・「よくある不安」・「判断の目安」を追記しました",
+      "sourceUrl": "https://developers.googleblog.com/gemini-hydrogen-for-robotics/",
+      "sourceName": "Google Developers Blog"
+    }
+  ]
 }

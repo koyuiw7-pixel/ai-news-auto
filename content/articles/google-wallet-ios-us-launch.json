@@ -88,8 +88,9 @@
     }
   ],
   "todayActions": [
-    "米国のiOS利用者は、Google Walletに取り込みたいポイントカードやジムの会員証を確認する",
-    "店頭でのタッチ決済を使いたい人は、iOS版が対応していない点を確認する"
+    "米国のiPhone利用者は、App StoreのGoogle Wallet掲載ページから入手する",
+    "取り込みたいポイントカードやジム会員証を、iPhoneのカメラで読み取る",
+    "移したいパスが対象か、公式ヘルプで国を選んで確認する"
   ],
   "qualityBar": {
     "score": 8,
@@ -153,5 +154,107 @@
     },
     "fixes": [],
     "notes": "リードと見出しを整理し、米国のiPhone利用者ができることと、タッチ決済に対応していないことを先に示しました。提示資料で確認できない無料との記述と、日本でのiOS版提供に関する記述は削除しました。"
-  }
+  },
+  "insight": [
+    {
+      "text": "Google Walletに保存できるパスやカードは一律ではなく、国・端末・対応パートナーによって利用できるものが限られます。会員証などを移す前に、対象条件も確認しておくと安心です。",
+      "source": "https://support.google.com/wallet/answer/12060037?hl=en&co=ADWORDS.BillingCountryCode%3DUS"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "Supported countries for Google Wallet & tap to pay",
+      "url": "https://support.google.com/wallet/answer/12060037?hl=en&co=ADWORDS.BillingCountryCode%3DUS",
+      "source": "https://support.google.com/wallet/answer/12060037?hl=en&co=ADWORDS.BillingCountryCode%3DUS",
+      "note": "一部のパスやカードは、特定の国・端末・対応パートナーでのみ利用できます。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "米国のiPhone利用者は、App StoreのGoogle Wallet掲載ページから入手する",
+      "source": "https://blog.google/products-and-platforms/platforms/google-pay/wallet-available-ios-united-states/",
+      "steps": [
+        "「Google Wallet to iOS」を開く"
+      ],
+      "url": "https://apps.apple.com/us/app/google-wallet/id6761386270"
+    },
+    {
+      "action": "取り込みたいポイントカードやジム会員証を、iPhoneのカメラで読み取る",
+      "source": "https://blog.google/products-and-platforms/platforms/google-pay/wallet-available-ios-united-states/",
+      "steps": [
+        "Google Walletを開く",
+        "スマートフォンのカメラでカードを読み取る"
+      ],
+      "url": "https://apps.apple.com/us/app/google-wallet/id6761386270"
+    },
+    {
+      "action": "移したいパスが対象か、公式ヘルプで国を選んで確認する",
+      "source": "https://support.google.com/wallet/answer/12060037?hl=en&co=ADWORDS.BillingCountryCode%3DUS",
+      "steps": [
+        "「Supported countries for Google Wallet & tap to pay」を開く",
+        "select your country from the dropdown"
+      ],
+      "url": "https://support.google.com/wallet/answer/12060037?hl=en&co=ADWORDS.BillingCountryCode%3DUS"
+    }
+  ],
+  "cause": {
+    "text": "Googleは、iOS版の提供で、使う端末の種類にかかわらず利用できる人を広げ、購入品やチケット、搭乗券などを1か所で整理しやすくすると説明しています。",
+    "status": "background",
+    "source": "https://blog.google/products-and-platforms/platforms/google-pay/wallet-available-ios-united-states/"
+  },
+  "worries": [
+    {
+      "q": "iPhoneで店頭のタッチ決済はできる？",
+      "a": "Googleの公式ブログは、iOSでは現時点でタッチ決済に対応していないと案内しています。Google Walletでカードなどを管理できても、iPhone版で店頭のタッチ決済はできません。",
+      "source": "https://blog.google/products-and-platforms/platforms/google-pay/wallet-available-ios-united-states/",
+      "action": "店頭で支払う前に、iOS版はタッチ決済に非対応と確認し、別の支払い方法を用意してください。"
+    },
+    {
+      "q": "ポイントカードや会員証は全部取り込める？",
+      "a": "Google Walletではポイントカードやジムの会員証をカメラで読み取れます。ただし、一部のパスやカードは特定の国・端末・対応パートナーでのみ利用できます。",
+      "source": "https://support.google.com/wallet/answer/12060037?hl=en&co=ADWORDS.BillingCountryCode%3DUS",
+      "action": "取り込みたいカードが使えるか、公式ヘルプで国を選び、対象条件を確認してください。"
+    },
+    {
+      "q": "米国以外でもGoogle Walletを使える？",
+      "a": "公式ヘルプでは、利用できるか確認するには国を選ぶよう案内しています。選択肢に国が載っていない場合、その国ではGoogle Walletをまだ利用できません。",
+      "source": "https://support.google.com/wallet/answer/12060037?hl=en&co=ADWORDS.BillingCountryCode%3DUS",
+      "action": "公式ヘルプの国選択欄で、自分が利用する国が選択肢にあるか確認してください。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "iPhoneで店頭のタッチ決済を使える？",
+      "situation": "iPhoneで店頭支払いをしたい",
+      "recommend": "別の支払い方法を用意する",
+      "reason": "Googleの公式ブログは、iOSでは現時点でタッチ決済をサポートしないと案内しています。搭乗券やカードの管理とは別の機能なので、店頭支払いには別の方法が必要です。",
+      "source": "https://blog.google/products-and-platforms/platforms/google-pay/wallet-available-ios-united-states/"
+    },
+    {
+      "question": "手持ちの会員証を全部移してよい？",
+      "situation": "国・端末・対応パートナーが異なる",
+      "recommend": "対象条件を先に確認する",
+      "reason": "Google Walletの一部のパスやカードは、特定の国・端末、または対応パートナーでのみ利用できます。カードを取り込む前に、使える条件に当てはまるか確認できます。",
+      "source": "https://support.google.com/wallet/answer/12060037?hl=en&co=ADWORDS.BillingCountryCode%3DUS"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "会員証は国や端末で使えない場合も",
+    "cause": "端末を問わず使える人を広げる狙い",
+    "steps": "会員証を読み込み、国ごとの対応も確認",
+    "desk": "対応国とタッチ決済を公式ヘルプで確認",
+    "worries": "店頭決済や会員証の取り込みで迷ったら",
+    "guide": "店頭払いと会員証の移行をどう判断する？"
+  },
+  "depthAt": "2026-11-17T19:22:08+00:00",
+  "updatedAt": "2026-11-17T19:22:08+00:00",
+  "updates": [
+    {
+      "at": "2026-11-17T19:22:08+00:00",
+      "kind": "facts",
+      "title": "公式の資料をもとに、「なるほどの要点」・「公式の窓口」・「今日やること」・「理由」・「よくある不安」・「判断の目安」を追記しました",
+      "sourceUrl": "https://blog.google/products-and-platforms/platforms/google-pay/wallet-available-ios-united-states/",
+      "sourceName": "Google公式ブログ（AI）"
+    }
+  ]
 }
