@@ -80,8 +80,8 @@
   "affiliates": [],
   "newsType": "product",
   "todayActions": [
-    "基準づくりへの参加に関心がある組織は、Microsoftの専用案内ページから登録する。",
-    "企業のAI管理担当者は、AIに渡すデータや操作権限を確かめる際の観点として、今回の構想を社内で共有する。"
+    "基準づくりへの協力や進捗確認を希望する組織は、専用ページから登録する。",
+    "AI管理担当者は、証拠の出所とモデル変更後も証拠を保持できるかを社内で確認する。"
   ],
   "qualityBar": {
     "score": 5,
@@ -102,7 +102,8 @@
       6
     ],
     "repaired": false,
-    "repairLater": true
+    "repairLater": true,
+    "laterTriedAt": "2026-11-17T19:05:40+00:00"
   },
   "qualityScore": 100,
   "breaking": true,
@@ -134,5 +135,108 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/microsoft-ai-transparency-initiative-figure-dab63b65.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "証拠には、モデル自身の報告だけでなく、実行環境やID・方針など独立したシステムを情報源として記し、別の記録と照合する構想です。",
+      "source": "https://news.microsoft.com/source/2026/11/17/microsoft-and-organizations-across-industries-launch-ai-transparency-initiative-to-strengthen-enterprise-trust-in-ai-models-and-agents/"
+    },
+    {
+      "text": "モデルや提供元を変更しても、組織が証拠を保持し、AIのアクセス管理や行動の監査を続けられる仕組みを目指しています。",
+      "source": "https://news.microsoft.com/source/2026/11/17/microsoft-and-organizations-across-industries-launch-ai-transparency-initiative-to-strengthen-enterprise-trust-in-ai-models-and-agents/"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "AI Transparency Initiative",
+      "url": "https://aka.ms/learnmoreAItransparency",
+      "source": "https://news.microsoft.com/source/2026/11/17/microsoft-and-organizations-across-industries-launch-ai-transparency-initiative-to-strengthen-enterprise-trust-in-ai-models-and-agents/",
+      "howTo": [
+        "AI Transparency Initiative",
+        "Get involved",
+        "learn more and sign up"
+      ],
+      "note": "取り組みづくりへの協力または進捗確認を希望する組織向けの案内です。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "基準づくりへの協力や進捗確認を希望する組織は、専用ページから登録する。",
+      "source": "https://news.microsoft.com/source/2026/11/17/microsoft-and-organizations-across-industries-launch-ai-transparency-initiative-to-strengthen-enterprise-trust-in-ai-models-and-agents/",
+      "steps": [
+        "発表ページの「Get involved」を確認する",
+        "「learn more and sign up」から登録する"
+      ],
+      "url": "https://aka.ms/learnmoreAItransparency"
+    },
+    {
+      "action": "AI管理担当者は、証拠の出所とモデル変更後も証拠を保持できるかを社内で確認する。",
+      "source": "https://news.microsoft.com/source/2026/11/17/microsoft-and-organizations-across-industries-launch-ai-transparency-initiative-to-strengthen-enterprise-trust-in-ai-models-and-agents/",
+      "steps": [
+        "「See」「Verify」「Control」の観点を確認する",
+        "証拠の情報源をモデル・実行環境・独立システムに分ける",
+        "モデル変更後も証拠とアクセス管理を維持できるか確認する"
+      ],
+      "url": "https://news.microsoft.com/source/2026/11/17/microsoft-and-organizations-across-industries-launch-ai-transparency-initiative-to-strengthen-enterprise-trust-in-ai-models-and-agents/"
+    }
+  ],
+  "cause": {
+    "text": "企業はAIモデルの周辺の活動を多く把握できても、依頼から結果までに何が起きたかを再構成できないことがあります。AIの自己報告を独立して確かめにくく、セキュリティや法令順守、監査、説明責任のリスクになるとMicrosoftは説明しています。",
+    "status": "background",
+    "source": "https://news.microsoft.com/source/2026/11/17/microsoft-and-organizations-across-industries-launch-ai-transparency-initiative-to-strengthen-enterprise-trust-in-ai-models-and-agents/"
+  },
+  "worries": [
+    {
+      "q": "AI自身が「問題ない」と報告すれば、それだけで信頼できますか？",
+      "a": "Microsoftは、AIエージェント自身を行動の唯一の情報源にすべきではないとしています。モデルの報告を、実行環境やID・方針など独立したシステムが観測した記録と照合できるようにする構想です。",
+      "source": "https://news.microsoft.com/source/2026/11/17/microsoft-and-organizations-across-industries-launch-ai-transparency-initiative-to-strengthen-enterprise-trust-in-ai-models-and-agents/",
+      "action": "AIの行動を確認する際、モデルの報告と照合できる独立した記録があるかを社内で確認する。"
+    },
+    {
+      "q": "AIのモデルや提供元を変えたら、監査の記録は失われますか？",
+      "a": "取り組みは、クローズドモデルとオープンウェイトモデルの両方を対象にし、モデルや提供元を変えても、組織がAIを管理し行動を監査できる状態を保つことを目指しています。証拠も組織側に残す構想です。",
+      "source": "https://news.microsoft.com/source/2026/11/17/microsoft-and-organizations-across-industries-launch-ai-transparency-initiative-to-strengthen-enterprise-trust-in-ai-models-and-agents/",
+      "action": "モデル変更を検討するときは、証拠の保持とアクセス管理を変更後も組織側で続けられるか確認する。"
+    },
+    {
+      "q": "AIが重要な操作をしたとき、誰が説明責任を負いますか？",
+      "a": "Microsoftは、説明責任は組織に残るとしています。重要な出来事が起きた場合、顧客や従業員、取締役会、監査人、規制当局への説明にAIのせいだとすることは答えにならない、と述べています。",
+      "source": "https://news.microsoft.com/source/2026/11/17/microsoft-and-organizations-across-industries-launch-ai-transparency-initiative-to-strengthen-enterprise-trust-in-ai-models-and-agents/",
+      "action": "AIに任せる業務ごとに、目的・責任者・データ・委ねる権限が明確か確認する。"
+    },
+    {
+      "q": "AIには、どのデータやツールまで使わせる構想ですか？",
+      "a": "Microsoftの構想では、AIがアクセスしたデータやツール、実行した操作を把握し、組織がアクセスできるデータやその管理方法を決められるようにします。重要な操作の前に、組織の方針を適用する考えです。",
+      "source": "https://news.microsoft.com/source/2026/11/17/microsoft-and-organizations-across-industries-launch-ai-transparency-initiative-to-strengthen-enterprise-trust-in-ai-models-and-agents/",
+      "action": "AIに任せる作業のデータ・ツール・権限を確認し、重要操作の前に適用する社内方針を整理する。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "共通基準づくりに今から関わるべき？",
+      "situation": "基準づくりへの協力を希望する組織",
+      "recommend": "専用ページで参加を検討する",
+      "reason": "Microsoftは取り組みづくりへの協力を希望する組織に、案内の確認と登録を呼びかけています。参加すれば基準づくりに関われますが、製品への反映時期や条件はこの発表では示されていません。",
+      "source": "https://news.microsoft.com/source/2026/11/17/microsoft-and-organizations-across-industries-launch-ai-transparency-initiative-to-strengthen-enterprise-trust-in-ai-models-and-agents/"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "証拠の出所とモデル変更後の管理",
+    "cause": "依頼から結果まで追いにくい背景",
+    "steps": "社内で確かめたい3つの観点",
+    "desk": "参加や進捗確認の案内",
+    "worries": "AIの記録や権限はどう扱われる？",
+    "guide": "基準づくりに関わるか迷ったら"
+  },
+  "depthAt": "2026-11-17T19:04:14+00:00",
+  "updatedAt": "2026-11-17T19:04:14+00:00",
+  "updates": [
+    {
+      "at": "2026-11-17T19:04:14+00:00",
+      "kind": "facts",
+      "title": "公式の資料をもとに、「なるほどの要点」・「公式の窓口」・「今日やること」・「理由」・「よくある不安」・「判断の目安」を追記しました",
+      "sourceUrl": "https://news.microsoft.com/source/2026/11/17/microsoft-and-organizations-across-industries-launch-ai-transparency-initiative-to-strengthen-enterprise-trust-in-ai-models-and-agents/",
+      "sourceName": "Microsoft Source（ニュースルーム）"
+    }
+  ]
 }

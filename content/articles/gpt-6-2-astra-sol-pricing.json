@@ -91,9 +91,8 @@
     }
   ],
   "todayActions": [
-    "OpenAIのGPT-6.2公式発表で、自分の仕事に近い資料作成やコード作成の事例を確認する。",
-    "APIを使う場合は、AstraとSolの入力・出力単価を、自分の作業に必要な量と合わせて比べる。",
-    "セキュリティ調査に使う場合は、GPT-6.2で強化された利用制限とDaybreakの対象モデルを確認する。"
+    "API利用者は、Astraの入力・キャッシュ入力・出力単価を公式発表で確認する",
+    "ChatGPT Workを使う人は、公式発表からGPT-6.2を試すページを開く"
   ],
   "relatedSlugs": [
     "devrev-self-service-agents"
@@ -213,5 +212,84 @@
       }
     ],
     "notes": "発表済みの対象プランと提供開始についての誤りを直し、Enterprise・Eduの管理者による有効化条件を加えました。スライドのひな形再現と法律課題の採点条件も資料に合わせ、見出しとリードを整理しました。"
-  }
+  },
+  "insight": [
+    {
+      "text": "OpenAIは、GPT-6.2 SolならGPT-6.1 Solと同じAPI単価のまま、同じ有料プランでより多くの作業を完了できると説明しています。",
+      "source": "https://openai.com/index/introducing-gpt-6-2-astra-sol"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "API利用者は、Astraの入力・キャッシュ入力・出力単価を公式発表で確認する",
+      "source": "https://openai.com/index/introducing-gpt-6-2-astra-sol",
+      "steps": [
+        "OpenAI公式発表を開く",
+        "「In the API」の料金説明を確認する"
+      ],
+      "url": "https://openai.com/index/introducing-gpt-6-2-astra-sol"
+    },
+    {
+      "action": "ChatGPT Workを使う人は、公式発表からGPT-6.2を試すページを開く",
+      "source": "https://openai.com/index/introducing-gpt-6-2-astra-sol",
+      "steps": [
+        "OpenAI公式発表を開く",
+        "「Try in ChatGPT Work」を選ぶ"
+      ],
+      "url": "https://chatgpt.com/?surface=work"
+    }
+  ],
+  "cause": {
+    "text": "OpenAIは、難しい仕事でより良い結果を少ない出力トークンで出し、利用上限内でより多くの作業を進められるようにするため、AstraとSolを発表したと説明しています。企業や開発者向けには、大規模利用でも見合う費用を目指すとしています。",
+    "status": "background",
+    "source": "https://openai.com/index/introducing-gpt-6-2-astra-sol"
+  },
+  "worries": [
+    {
+      "q": "SolのAPI単価は前のモデルから変わった？",
+      "a": "GPT-6.2 SolのAPIトークン単価は、GPT-6.1 Solの単価を維持するとOpenAIは説明しています。",
+      "source": "https://openai.com/index/introducing-gpt-6-2-astra-sol",
+      "action": "OpenAI公式発表で、SolのAPI単価がGPT-6.1 Solと同じとする説明を確認する。"
+    },
+    {
+      "q": "Solはコード作業でもAstraに近い結果を出せる？",
+      "a": "FrontierCode 2.0では、最大設定でGPT-6.2 SolはGPT-6.2 Astraとの差が0.5ポイント以内で、作業あたりの費用は約5分の1だったとOpenAIは説明しています。これは同テストの結果です。",
+      "source": "https://openai.com/index/introducing-gpt-6-2-astra-sol",
+      "action": "公式発表のFrontierCode 2.0の比較を確認し、最大設定でのテスト結果として読み取る。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "複雑な資料づくりなら、どちらを選ぶ？",
+      "situation": "ひな形や専門分野の作法を反映したい",
+      "recommend": "Astraを候補にする",
+      "reason": "OpenAIは、Astraがスライドや文書を提供されたひな形や専門分野の慣行に沿って作ると説明しています。ひな形への適合を重視する仕事で候補になります。",
+      "source": "https://openai.com/index/introducing-gpt-6-2-astra-sol"
+    },
+    {
+      "question": "複雑な資料づくりなら、どちらを選ぶ？",
+      "situation": "日常業務や複数手順の作業が中心",
+      "recommend": "Solを候補にする",
+      "reason": "OpenAIはSolを日常業務向けとし、複数手順の作業を進められると説明しています。同じ有料プランでより多くの作業を完了できるともしています。",
+      "source": "https://openai.com/index/introducing-gpt-6-2-astra-sol"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "Solは同じ有料プランでより多くの作業をこなせる",
+    "cause": "利用上限内でより多くの仕事を進めるため",
+    "steps": "API料金とChatGPT Workを確認する",
+    "worries": "API料金と作業の得意分野が気になる",
+    "guide": "仕事の内容に合わせたモデルの選び方"
+  },
+  "depthAt": "2026-11-17T19:05:40+00:00",
+  "updatedAt": "2026-11-17T19:05:40+00:00",
+  "updates": [
+    {
+      "at": "2026-11-17T19:05:40+00:00",
+      "kind": "facts",
+      "title": "公式の資料をもとに、「なるほどの要点」・「今日やること」・「理由」・「よくある不安」・「判断の目安」を追記しました",
+      "sourceUrl": "https://openai.com/index/introducing-gpt-6-2-astra-sol",
+      "sourceName": "OpenAI公式ブログ"
+    }
+  ]
 }
