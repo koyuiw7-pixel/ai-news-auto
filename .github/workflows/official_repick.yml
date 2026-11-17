@@ -1,0 +1,74 @@
+# 公式の発信元の記事で、今の画像が公式でない（AI・図・素材・カード）ものを、公式の画像に選び直す（scripts/images.py --official-repick）。
+# 2026-11-18 オーナー「勝手に作ったルールで公式の画像使えていないの多いんじゃない？本当に勿体無い」（台帳 I11）。
+# Workers AI の無料枠を使い切らないよう、1日1回・80本まで。対象が無くなれば何もしない。
+name: Official image repick
+
+on:
+  schedule:
+    - cron: "40 18 * * *"  # 日本時間 3:40
+  workflow_dispatch:
+    inputs:
+      max:
+        description: "1回で選び直す最大本数"
+        default: "80"
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: official-repick
+  cancel-in-progress: false
+
+jobs:
+  repick:
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: main
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt imageio-ffmpeg
+      - name: Repick official images
+        continue-on-error: true
+        env:
+          LLM_WORKFLOW: images
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          JINA_API_KEY: ${{ secrets.JINA_API_KEY }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CF_KV_TOKEN: ${{ secrets.CF_DEPLOY_TOKEN }}
+          IMAGE_FIGURE_COVER: ${{ vars.IMAGE_FIGURE_COVER || '0' }}
+          MAX: ${{ inputs.max || '80' }}
+        run: timeout 3600 python -u scripts/images.py --official-repick --max "$MAX" --budget 3300
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - name: Deploy tests before push
+        id: tests
+        run: python3 scripts/deploy_tests.py
+      - name: Commit and deploy
+        if: ${{ !cancelled() && steps.tests.outcome == 'success' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git add content/articles
+          if [ -d state ]; then git add state/*.json 2>/dev/null || true; fi
+          if git diff --cached --quiet; then echo "変更なし"; exit 0; fi
+          N=$(git diff --cached --name-only -- 'content/articles/*.json' | wc -l | tr -d ' ')
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "chore(images): 公式の画像に選び直す（${N}本）"
+          if python3 scripts/git_safe_push.py --wait-idle auto_run.yml --wait-max 1200; then
+            gh workflow run deploy_cloudflare.yml --ref main
+            exit 0
+          fi
+          exit 1
