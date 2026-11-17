@@ -12164,6 +12164,19 @@
       "slug": "goland-profiler-ai-agents-claude-code",
       "url": "https://blog.jetbrains.com/go/2026/11/06/we-gave-ai-agents-goland-s-profiler-they-found-the-same-bottlenecks-with-half-the-tokens/"
     },
+    "71d626db914ce5ec": {
+      "at": "2026-11-17T09:22:59.319801+00:00",
+      "costUsd": 0.0019,
+      "intent": "breaking",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "score": 86,
+      "section": "public",
+      "slug": "rococo-mail-delivery-data-leak",
+      "url": "https://www.rococo.co.jp/news/20261113/"
+    },
     "71dd368127b09bc6": {
       "at": "2026-11-06T19:18:02.541678+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（会議）",
@@ -23739,29 +23752,6 @@
   "quality_log": [
     {
       "accepted": true,
-      "at": "2026-11-14T22:22:05.761930+00:00",
-      "attempt": 0,
-      "id": "f18df684a4aa2500",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 77.0,
-        "avg_sentence": 37.1,
-        "long_share": 0.074,
-        "max_paragraph": 143,
-        "paragraphs": 13,
-        "sentences": 27
-      },
-      "score": 92,
-      "source": "tsr",
-      "title": "「お菓子屋さん」の倒産、年間最多へ ～ 物価高で加熱する販売競争、店舗コストも重荷 ～",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（SPA）"
-      ]
-    },
-    {
-      "accepted": true,
       "at": "2026-11-14T22:50:55.951773+00:00",
       "attempt": 1,
       "id": "ccbcffa54c141694",
@@ -31295,6 +31285,29 @@
         "見出しが50字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（SMS）",
         "読みやすさ: 文が長い（1文の平均 45.4字・60字超の文が 17% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-17T09:22:54.436559+00:00",
+      "attempt": 1,
+      "id": "71d626db914ce5ec",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 92.5,
+        "avg_sentence": 39.2,
+        "long_share": 0.038,
+        "max_paragraph": 184,
+        "paragraphs": 11,
+        "sentences": 26
+      },
+      "score": 86,
+      "source": "fast",
+      "title": "委託先メール配信サービスへの不正アクセスによる個人情報漏洩に関するお詫びとお知らせ | 株式会社ロココ",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（SMS）"
       ]
     }
   ],
