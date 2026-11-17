@@ -18004,6 +18004,14 @@
       "skipped": true,
       "url": "https://www.jst.go.jp/pr/announce/20261112-2/index.html"
     },
+    "ceb125792ad19b73": {
+      "at": "2026-11-17T03:15:43.337896+00:00",
+      "kind": "update",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "score": 90,
+      "updated": "ibm-microsoft-imagine-enterprise",
+      "url": "https://newsroom.ibm.com/2026-11-10-ibm-and-microsoft-announce-a-new-ai-agent-platform-designed-for-industry-specific-transformation"
+    },
     "cee11ff3f94b3117": {
       "at": "2026-11-09T06:49:47.113640+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（受賞）",
@@ -23345,31 +23353,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-14T16:42:49.276147+00:00",
-      "attempt": 1,
-      "id": "2d75f45f1333f2d4",
-      "kind": "broad",
-      "model": "strike:本文 6 文・要点 1 個・仕事・お金の欄",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 117.6,
-        "avg_sentence": 51.4,
-        "long_share": 0.219,
-        "max_paragraph": 219,
-        "paragraphs": 14,
-        "sentences": 32
-      },
-      "score": 94,
-      "source": "nli-research",
-      "title": "英国ＧＤＰ（2026年7-9月期）－1-3月、4-6月に続き高い成長率を記録",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（ONS・GDP）",
-        "同じ数字が多い（「0.7%」が6回）",
-        "work_money（「仕事・お金にどう活かせる？」欄）が無い"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-14T16:43:22.540475+00:00",
@@ -30932,6 +30915,18 @@
         "見出しの書き方: 区切りの全角空白が2つ以上（補足は1つだけ）",
         "初めて出たところで言い換えていない略語（NEWS）"
       ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-17T03:15:43.316642+00:00",
+      "attempt": 1,
+      "id": "ceb125792ad19b73",
+      "kind": "update",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "score": 90,
+      "source": "ibm-announcements",
+      "title": "IBM and Microsoft Announce a New AI Agent Platform Designed for Industry-Specifi"
     }
   ],
   "short_text_retry": {},
