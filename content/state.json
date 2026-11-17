@@ -6551,6 +6551,19 @@
       "skipped": true,
       "url": "https://www.env.go.jp/press/press_05859.html"
     },
+    "1e7766d97ea58921": {
+      "at": "2026-11-17T07:00:06.321751+00:00",
+      "costUsd": 0.0072,
+      "intent": "breaking",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "score": 93,
+      "section": "public",
+      "slug": "francfranc-karte-data-leak",
+      "url": "https://help.francfranc.com/hc/ja/articles/64371011900313-Francfranc%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E3%81%8A%E5%AE%A2%E3%81%95%E3%81%BE%E6%83%85%E5%A0%B1%E6%B5%81%E5%87%BA%E3%81%AE%E5%8F%AF%E8%83%BD%E6%80%A7%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6"
+    },
     "1e8793f408d27ac2": {
       "at": "2026-11-16T15:33:04.775908+00:00",
       "costUsd": 0.0108,
@@ -14290,6 +14303,13 @@
       "section": "ai",
       "slug": "google-health-ai-evaluation-framework",
       "url": "https://blog.google/innovation-and-ai/technology/health/evaluating-health-ai-at-scale/"
+    },
+    "91f50f1dc9342187": {
+      "at": "2026-11-17T07:00:33.422513+00:00",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "reason": "followup quality: 本文「アインズ&トルペ・アユーラは11月16日、…発表しました」→ 元記事に発表日の記載はなく、11月16日という日付は元記事・確認済みの文脈のどちらにも無い。; 要点「店舗のみで買った会員も対象に含まれます」→ 元記事にも確認済みの文脈にも店舗のみの会員が対象に含まれるという記述は無く、Francfrancの件数に関する創作。; 要点「11月16日に発表」→ ",
+      "skipped": true,
+      "url": "https://ainz-tulpe.jp/blogs/information/%E3%82%A2%E3%82%A4%E3%83%B3%E3%82%BA-%E3%83%88%E3%83%AB%E3%83%9A%E5%85%AC%E5%BC%8F%E3%82%A2%E3%83%97%E3%83%AA%E5%8F%8A%E3%81%B3%E5%85%AC%E5%BC%8F%E3%82%AA%E3%83%B3%E3%83%A9%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%82%A2%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B-%E3%81%8A%E5%AE%A2%E3%81%95%E3%81%BE%E6%83%85%E5%A0%B1%E6%B5%81%E5%87%BA%E3%81%AE%E5%8F%AF%E8%83%BD%E6%80%A7%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6"
     },
     "9214c4281408292adfb113ed1bb174f52f0f527e": {
       "at": "2026-11-14T05:17:56.220076+00:00",
@@ -23596,84 +23616,6 @@
   },
   "quality_log": [
     {
-      "accepted": false,
-      "at": "2026-11-14T19:25:29.910474+00:00",
-      "attempt": 2,
-      "id": "3707c74fbceeb355ccbb559240adfba1b5793139",
-      "kind": "trend",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [
-        "投資・マネーの記事に短い免責文（「投資助言ではありません」）がない"
-      ],
-      "readability": {
-        "avg_paragraph": 78.9,
-        "avg_sentence": 35.5,
-        "long_share": 0.0,
-        "max_paragraph": 153,
-        "paragraphs": 9,
-        "sentences": 20
-      },
-      "score": null,
-      "source": "trends",
-      "title": "決算",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（JR・NEWS）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-14T20:43:12.729600+00:00",
-      "attempt": 1,
-      "id": "267a4c3ea7d0f586",
-      "kind": "broad",
-      "model": "gemini-3.6-flash",
-      "problems": [
-        "要点の「佐久間大介が劇場アニメ「風を継ぐもの −はじまり−」で初主演」→ 元記事は「オーディションで主役の座を射止めた」とだけ書いており、「初主演」とは書かれていない。",
-        "かんたん版の「ラウールさんや佐久間大介さんらメンバーが温かく出迎え」→ 元記事は「口々に『おかえり』と伝える」としか書いておらず、ラウールさんと佐久間さんが出迎えたとは特定されていない。"
-      ],
-      "readability": {
-        "avg_paragraph": 135.4,
-        "avg_sentence": 45.1,
-        "long_share": 0.182,
-        "max_paragraph": 278,
-        "paragraphs": 11,
-        "sentences": 33
-      },
-      "score": 85,
-      "source": "radar-official",
-      "title": "Snow Man関連ニュース｜dメニューニュース（NTTドコモ）",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（WEB・TBS・MC）",
-        "感嘆符（！）が多い。感嘆符は使わない",
-        "読みやすさ: 文が長い（1文の平均 45.1字・60字超の文が 18% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-14T20:44:00.745875+00:00",
-      "attempt": 1,
-      "id": "267a4c3ea7d0f586",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 136.5,
-        "avg_sentence": 44.1,
-        "long_share": 0.176,
-        "max_paragraph": 278,
-        "paragraphs": 11,
-        "sentences": 34
-      },
-      "score": 92,
-      "source": "radar-official",
-      "title": "Snow Man関連ニュース｜dメニューニュース（NTTドコモ）",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（WEB・TBS・MC）",
-        "感嘆符（！）が多い。感嘆符は使わない",
-        "読みやすさ: 段落が長い（平均 136.5字・最長 278字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
       "accepted": true,
       "at": "2026-11-14T20:44:28.199518+00:00",
       "attempt": 0,
@@ -31157,6 +31099,75 @@
       "warnings": [
         "同じ数字が多い（「3件」が6回）"
       ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-17T06:59:36.588001+00:00",
+      "attempt": 1,
+      "id": "1e7766d97ea58921",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "「いま会員情報を変更する手続きは求められていません」→ 元記事に、会員情報の変更手続きが不要だという記載はない。元記事から読み取れない断定である。",
+        "「専用フォーム：公式のお知らせページに掲載」→ 元記事では専用フォームのURLが示されているだけで、お知らせページへの掲載は書かれていない。出典の位置づけが不正確である。",
+        "「退会するかどうかは、調査結果と個別の連絡を待って決めても遅くはない」→ 元記事・確認済みの文脈にない判断の目安である。見方としては許容範囲だが、根拠は示されていない。"
+      ],
+      "readability": {
+        "avg_paragraph": 78.2,
+        "avg_sentence": 39.1,
+        "long_share": 0.0,
+        "max_paragraph": 161,
+        "paragraphs": 12,
+        "sentences": 24
+      },
+      "score": 85,
+      "source": "fast",
+      "title": "Francfrancにおけるお客さま情報流出の可能性について",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（KARTE・EC・AYURA）",
+        "「可能性があります」が多い（3か所以上）。根拠のある事実だけを書く"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-17T06:59:58.849060+00:00",
+      "attempt": 1,
+      "id": "1e7766d97ea58921",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 73.0,
+        "avg_sentence": 38.1,
+        "long_share": 0.0,
+        "max_paragraph": 135,
+        "paragraphs": 12,
+        "sentences": 23
+      },
+      "score": 93,
+      "source": "fast",
+      "title": "Francfrancにおけるお客さま情報流出の可能性について",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（KARTE・EC・AYURA）",
+        "「可能性があります」が多い（3か所以上）。根拠のある事実だけを書く"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-17T07:00:33.422399+00:00",
+      "attempt": 1,
+      "id": "91f50f1dc9342187",
+      "kind": "update",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [
+        "本文「アインズ&トルペ・アユーラは11月16日、…発表しました」→ 元記事に発表日の記載はなく、11月16日という日付は元記事・確認済みの文脈のどちらにも無い。",
+        "要点「店舗のみで買った会員も対象に含まれます」→ 元記事にも確認済みの文脈にも店舗のみの会員が対象に含まれるという記述は無く、Francfrancの件数に関する創作。",
+        "要点「11月16日に発表」→ 元記事に発表日の記載が無く、日付の創作。",
+        "かんたん版「11月16日に会員情報が外部に流出した可能性があると発表」→ 流出の発表日として元記事に無い日付を書いており、本文と同じ創作。"
+      ],
+      "score": 58,
+      "source": "fast",
+      "title": "お客さま情報流出の可能性について"
     }
   ],
   "short_text_retry": {},
