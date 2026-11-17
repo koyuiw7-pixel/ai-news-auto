@@ -15559,6 +15559,19 @@
       "skipped": true,
       "url": "https://www.lawson.co.jp/company/news/detail/1534176_2504.html"
     },
+    "a067f4e3ea975087": {
+      "at": "2026-11-17T23:34:13.204542+00:00",
+      "costUsd": 0.0042,
+      "intent": "breaking",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "score": 100,
+      "section": "public",
+      "slug": "sevenbank-residence-card-leak",
+      "url": "https://www.sevenbank.co.jp/support/info_notice127.html"
+    },
     "a08ab1f6c7db9372": {
       "at": "2026-11-09T05:01:47.109921+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（調達）",
@@ -24340,60 +24353,6 @@
   },
   "quality_log": [
     {
-      "accepted": true,
-      "at": "2026-11-15T23:23:47.623606+00:00",
-      "attempt": 1,
-      "id": "c6057418672e886d",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 64.6,
-        "avg_sentence": 28.4,
-        "long_share": 0.04,
-        "max_paragraph": 115,
-        "paragraphs": 11,
-        "sentences": 25
-      },
-      "score": 92,
-      "source": "fast",
-      "title": "ウチコミ!の情報流出に関するお知らせ",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（SMS）",
-        "感嘆符（！）が多い。感嘆符は使わない"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-15T23:51:20.165447+00:00",
-      "attempt": 1,
-      "id": "9d51f4edb21b6757",
-      "kind": "broad",
-      "model": "gemini-3.6-flash",
-      "problems": [
-        "タイトル「初出場の最終戦」→ シェルトン選手のATPファイナルズ初出場は元記事にない（元記事で初出場とされるのは親友ティアフォー選手）。",
-        "タイトル・リード「初戦でフィス選手を下して」→ シェルトン対フィスの勝敗を明記する元記事がなく、tennis365の「世界4位 熱戦制し最終戦で初白星」を当てはめた推定にすぎない。",
-        "「ドコモニュース、11/16確認」付きで書かれた試合結果の詳細は、元記事の対戦カードと見出しから推定できる範囲を超えている。",
-        "「初戦の1勝が準決勝進出を左右する重要な意味を持ちます」→ 根拠のない一般論・見通しを断定的に書いている。",
-        "「配信や放送で観戦する機会となります」→ 元記事に配信・放送の情報はない。"
-      ],
-      "readability": {
-        "avg_paragraph": 115.0,
-        "avg_sentence": 57.5,
-        "long_share": 0.4,
-        "max_paragraph": 164,
-        "paragraphs": 10,
-        "sentences": 20
-      },
-      "score": 55,
-      "source": "radar-official",
-      "title": "ATPファイナルズ関連ニュース｜dメニューニュース（NTTドコモ）",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（ATP）",
-        "読みやすさ: 文が長い（1文の平均 57.5字・60字超の文が 40% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
       "accepted": false,
       "at": "2026-11-16T00:07:34.173064+00:00",
       "attempt": 1,
@@ -31815,6 +31774,57 @@
         "見出しが57字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（BRUTUS）",
         "読みやすさ: 文が長い（1文の平均 65.1字・60字超の文が 46% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-17T23:33:45.165339+00:00",
+      "attempt": 1,
+      "id": "a067f4e3ea975087",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "「この件で不正に使われたという報告は出ていません」→ 元記事が述べているのは不正利用が確認されていないことです。「報告が出ていない」とまでは確認できません。",
+        "「連絡の来た人も来ていない人も、同行を装った電話やSMSが来る可能性は変わりません」→ 不審な連絡の可能性があることは元記事にありますが、連絡の有無で可能性が変わらないという比較は裏付けられていません。"
+      ],
+      "readability": {
+        "avg_paragraph": 83.9,
+        "avg_sentence": 42.0,
+        "long_share": 0.091,
+        "max_paragraph": 146,
+        "paragraphs": 11,
+        "sentences": 22
+      },
+      "score": 92,
+      "source": "fast",
+      "title": "重要なお知らせ 当社システムへの不正アクセスによるお客さま情報の漏洩について | セブン銀行",
+      "warnings": [
+        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（ATM・SMS・TOP）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-17T23:34:05.627654+00:00",
+      "attempt": 1,
+      "id": "a067f4e3ea975087",
+      "kind": "broad",
+      "model": "openai-api:gpt-6-luna",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 80.7,
+        "avg_sentence": 42.3,
+        "long_share": 0.095,
+        "max_paragraph": 146,
+        "paragraphs": 11,
+        "sentences": 21
+      },
+      "score": 100,
+      "source": "fast",
+      "title": "重要なお知らせ 当社システムへの不正アクセスによるお客さま情報の漏洩について | セブン銀行",
+      "warnings": [
+        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（ATM・SMS・TOP）"
       ]
     }
   ],
