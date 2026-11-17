@@ -6,71 +6,75 @@
   "companyName": "OpenAI",
   "category": "AIモデル",
   "overview": {
-    "text": "GPT-6は、PC画面の自律操作や高度な論理推論を行う次世代AIモデルエコシステムです。OpenAIが開発し、2026年10月7日に発表されました。",
+    "text": "GPT-6は、OpenAIが開発した次世代の大規模言語モデルおよびエコシステムの総称です。音声やテキストの処理に加え、PCの自動操作機能を備え、2026年10月7日に発表されました。",
     "sources": [
-      "openai-announces-gpt-6-astra",
-      "chatgpt-work-complete-guide-features-matome",
-      "openai-announces-gpt6-with-intelligent-ui"
+      "openai-announces-gpt6-with-intelligent-ui",
+      "openai-gpt-6-astra-comprehensive-guide-matome"
     ]
   },
   "facts": [
     {
-      "label": "料金",
-      "value": "Plusプランは月額20ドル",
-      "sources": [
-        "openai-announces-gpt6-with-intelligent-ui"
-      ]
-    },
-    {
       "label": "提供開始",
-      "value": "2026年10月7日から順次提供",
+      "value": "2026年10月7日より順次",
       "sources": [
         "openai-announces-gpt6-with-intelligent-ui"
       ]
     },
     {
       "label": "日本での提供",
-      "value": "日本から利用できる",
+      "value": "日本から利用できます",
       "sources": [
+        "openai-chatgpt-voice-update-gpt6-astra",
+        "openai-announces-gpt6-with-intelligent-ui"
+      ]
+    },
+    {
+      "label": "向いている人",
+      "value": "一般ユーザー、開発者、ビジネス職",
+      "sources": [
+        "chatgpt-work-complete-guide-features-matome",
+        "openai-gpt-6-1-terra-announcement",
         "openai-announces-gpt6-with-intelligent-ui"
       ]
     }
   ],
   "capabilities": [
     {
-      "text": "AIがその場で操作可能なインタラクティブ画面を生成して回答します。",
+      "text": "Intelligent UI機能により、回答に応じた動的なミニアプリ画面をその場で生成できます。",
       "sources": [
+        "chatgpt-work-complete-guide-features-matome",
         "openai-announces-gpt6-with-intelligent-ui"
       ]
     },
     {
-      "text": "PCアプリの自動操作や長時間タスクの並行処理を行います。",
+      "text": "PCアプリやブラウザを人間に代わって自動操作するComputer Use機能を搭載しています。",
       "sources": [
+        "openai-gpt-6-astra-comprehensive-guide-matome",
         "openai-announces-gpt-6-astra"
       ]
     },
     {
-      "text": "音声指示だけで決済機能付きWebサイトの構築が可能です。",
+      "text": "音声対話を通じてカレンダー登録やメール送信などの実タスクを自律実行します。",
       "sources": [
         "openai-chatgpt-voice-update-gpt6-astra"
       ]
     },
     {
-      "text": "カレンダーやメールなどの外部ツールと連携して実タスクを自律実行します。",
+      "text": "自然言語の指示からコード記述やテスト実行まで一貫して行えます。",
       "sources": [
-        "openai-chatgpt-voice-update-gpt6-astra"
+        "openai-gpt-6-astra-comprehensive-guide-matome"
       ]
     }
   ],
   "pricing": [
     {
-      "text": "Plusプランは月額20ドルで提供されます。",
+      "text": "Plusプランは個人向けプレミアムで月額20ドルです。",
       "sources": [
         "openai-announces-gpt6-with-intelligent-ui"
       ]
     },
     {
-      "text": "FreeおよびGoプランは無料です。",
+      "text": "無料のFreeプランやGoプランでも順次利用できます。",
       "sources": [
         "openai-announces-gpt6-with-intelligent-ui"
       ]
@@ -82,17 +86,23 @@
       "sources": [
         "openai-announces-gpt6-with-intelligent-ui"
       ]
+    },
+    {
+      "text": "日本語での音声指示によるカレンダー連携やWebサイト構築なども行えます。",
+      "sources": [
+        "openai-chatgpt-voice-update-gpt6-astra"
+      ]
     }
   ],
   "howto": [
     {
-      "text": "公式サイトや公式モバイルアプリにログインして利用します。",
+      "text": "iOSおよびAndroid向けのChatGPT公式アプリを最新バージョンにアップデートして始められます。",
       "sources": [
-        "openai-announces-gpt6-with-intelligent-ui"
+        "openai-chatgpt-voice-update-gpt6-astra"
       ]
     },
     {
-      "text": "アプリ内の設定メニューから音声モードを有効にして使います。",
+      "text": "既存のOpenAIアカウントでログインし、音声モードを有効にすることで利用できます。",
       "sources": [
         "openai-chatgpt-voice-update-gpt6-astra"
       ]
@@ -100,14 +110,15 @@
   ],
   "differences": [
     {
-      "text": "従来のテキスト主体のチャット形式から脱却し、専用のインタラクティブなアプリを生成します。",
+      "text": "従来のテキスト主体のチャット形式から脱却し、インタラクティブなミニアプリ画面を生成できるようになりました。",
       "sources": [
         "openai-announces-gpt6-with-intelligent-ui"
       ]
     },
     {
-      "text": "単一のコード補完ツールを超えてPCや外部アプリケーションを自律操作します。",
+      "text": "単なる質問の回答だけでなく、PC操作や外部ツール連携による実務タスクの自律実行が可能になりました。",
       "sources": [
+        "openai-chatgpt-voice-update-gpt6-astra",
         "openai-announces-gpt-6-astra"
       ]
     }
@@ -115,32 +126,30 @@
   "faq": [
     {
       "q": "無料で使える？",
-      "a": "FreeプランやGoプランのユーザーが無料で利用できます。",
+      "a": "無料プランのユーザー向けにも順次ロールアウトされます。",
       "sources": [
         "openai-announces-gpt6-with-intelligent-ui"
       ]
     },
     {
       "q": "いつから使える？",
-      "a": "有料プラン向けには2026年10月7日から順次提供されています。",
+      "a": "有料プラン向けには2026年10月7日から提供が開始されています。",
       "sources": [
         "openai-announces-gpt6-with-intelligent-ui"
       ]
     },
     {
-      "q": "誰に向いている？",
-      "a": "一般ユーザーからビジネス職や開発者まで幅広い層に向いています。",
+      "q": "音声で操作できる？",
+      "a": "ChatGPT Voiceを通じて音声指示でのタスク実行が可能です。",
       "sources": [
-        "chatgpt-work-complete-guide-features-matome",
-        "openai-announces-gpt6-with-intelligent-ui"
-      ]
-    },
-    {
-      "q": "どのような機能がある？",
-      "a": "画面操作や3D制作、外部ツールとの連携やWebサイトの自動構築ができます。",
-      "sources": [
-        "chatgpt-work-complete-guide-features-matome",
         "openai-chatgpt-voice-update-gpt6-astra"
+      ]
+    },
+    {
+      "q": "どのようなプランがある？",
+      "a": "Plus、Pro、Business、Enterpriseなどの有料プランや無料プランがあります。",
+      "sources": [
+        "openai-announces-gpt6-with-intelligent-ui"
       ]
     }
   ],
@@ -153,12 +162,7 @@
     {
       "date": "2026-10-08",
       "slug": "openai-announces-gpt6-with-intelligent-ui",
-      "event": "新型モデル「GPT-6」を発表"
-    },
-    {
-      "date": "2026-11-13",
-      "slug": "chatgpt-work-complete-guide-features-matome",
-      "event": "「GPT-6.1 Terra」発表"
+      "event": "GPT-6を発表"
     }
   ],
   "related": [
@@ -180,9 +184,9 @@
   "linkFrom": [
     "openai-announces-gpt6-with-intelligent-ui"
   ],
-  "signature": "81781540d3caa6a8",
-  "primarySignature": "599edf5263ee00c7",
+  "signature": "0b4c804289f7dfe0",
+  "primarySignature": "7e201ea15a56c87d",
   "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-10-27T10:45:46+00:00",
-  "updatedAt": "2026-11-13T12:04:05+00:00"
+  "updatedAt": "2026-11-17T00:04:13+00:00"
 }

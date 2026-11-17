@@ -82,9 +82,8 @@
     }
   ],
   "todayActions": [
-    "会員または元会員の人は、ホテルを名乗る不審なメールや電話に応じず、内容を確かめる",
-    "不明点は member-e@hankyu-hanshin-hotels.com に問い合わせる",
-    "同社のホームページで、調査の進み具合や追加のお知らせを確認する"
+    "ホテルを名乗る不審な連絡は、応じる前に内容を確かめ、不明点はメールで問い合わせる",
+    "阪急阪神ホテルズの発表ページで、調査の進み具合や追加のお知らせを確認する"
   ],
   "publicInterest": "breach",
   "incident": {
@@ -129,5 +128,95 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/hankyu-hanshin-hotels-karte-leak-figure-01689389.jpg"
-  }
+  },
+  "officialDesk": [
+    {
+      "name": "阪急阪神ホテルズ 本件お問合せ窓口（メール）",
+      "url": "https://www.hankyu-hotel.com/topics/2026/GPDetailPage",
+      "source": "https://www.hankyu-hotel.com/topics/2026/GPDetailPage",
+      "howTo": [
+        "Topics",
+        "お知らせ"
+      ],
+      "note": "窓口はメールアドレスのみ記載されています。電話番号と受付時間は書かれていません。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "ホテルを名乗る不審な連絡は、応じる前に内容を確かめ、不明点はメールで問い合わせる",
+      "source": "https://www.hankyu-hotel.com/topics/2026/GPDetailPage",
+      "steps": [
+        "届いた連絡の内容を確かめる",
+        "不明点は member-e@hankyu-hanshin-hotels.com へ問い合わせる"
+      ],
+      "url": "https://www.hankyu-hotel.com/topics/2026/GPDetailPage"
+    },
+    {
+      "action": "阪急阪神ホテルズの発表ページで、調査の進み具合や追加のお知らせを確認する",
+      "source": "https://www.hankyu-hotel.com/topics/2026/GPDetailPage",
+      "steps": [
+        "Topics（トピックス）を開く",
+        "お知らせの一覧で新しい発表を見る"
+      ],
+      "url": "https://www.hankyu-hotel.com/topics/2026/GPDetailPage"
+    }
+  ],
+  "cause": {
+    "text": "原因は、プレイド社が提供するKARTEへの第三者による不正アクセスと判明しています。KARTEは、メンバーズクラブの会員へメール配信などを行うために使っていたツールです。",
+    "status": "stated",
+    "source": "https://www.hankyu-hotel.com/topics/2026/GPDetailPage"
+  },
+  "worries": [
+    {
+      "q": "クレジットカードの情報も漏れてしまいましたか？",
+      "a": "クレジットカード情報とパスポートデータは含まれていないと、ホテル側は説明しています。漏えいしたのは氏名、年齢、住所、電話番号、メールアドレスなどです。",
+      "source": "https://www.hankyu-hotel.com/topics/2026/GPDetailPage",
+      "action": "カードの利用明細に、身に覚えのない支払いがないか確認しましょう。",
+      "actionSource": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "actionGeneral": true
+    },
+    {
+      "q": "不審なメールは送信元の名前で見分けられますか？",
+      "a": "送信元の名前やメールアドレスは簡単に偽装できるため、それだけで本物かを判断するのは困難とされています。リンクも偽装できるとされています。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "action": "メールやSMSのリンクは押さず、公式サイトを「お気に入り」から開き直す。",
+      "general": true
+    },
+    {
+      "q": "退会した人も、連絡や被害の対象になりますか？",
+      "a": "過去に退会した会員の情報も含まれる可能性があると、ホテル側は説明しています。その詳細は現在確認中とされています。",
+      "source": "https://www.hankyu-hotel.com/topics/2026/GPDetailPage",
+      "action": "過去に会員だった人も、ホテル名を使った連絡は内容を確かめてから応じる。"
+    },
+    {
+      "q": "この件で、もう被害は出ているのでしょうか？",
+      "a": "同社によると、現時点でこの件による具体的な被害の報告は受けていないとされています。ただ、不審なメールや連絡には十分注意するよう呼びかけています。",
+      "source": "https://www.hankyu-hotel.com/topics/2026/GPDetailPage",
+      "action": "不審なメールや電話には、すぐに応じず、内容をよく確かめてから返事や操作をしましょう。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "ホテルを名乗る連絡が来たら、どうする？",
+      "situation": "会員または元会員で、不審な連絡が届いた",
+      "recommend": "すぐ応じず、内容を確かめてから対応する",
+      "reason": "ホテル側は、本件に起因する具体的な被害の報告は受けていないとしつつ、不審なメールや連絡には十分注意するよう呼びかけています。",
+      "source": "https://www.hankyu-hotel.com/topics/2026/GPDetailPage"
+    },
+    {
+      "question": "会社からの連絡を待つべき？",
+      "situation": "会員または元会員で、まだ連絡が届いていない",
+      "recommend": "急がず、届く連絡の内容に従って確認する",
+      "reason": "会社は準備が整い次第、情報が漏えいしたお客様へ連絡するとしています。ただし連絡の方法と時期は、まだ発表されていません。",
+      "source": "https://www.hankyu-hotel.com/topics/2026/GPDetailPage"
+    }
+  ],
+  "depthHeadings": {
+    "cause": "漏れたのは、外部のメール配信ツールから",
+    "steps": "今日、まず何を確かめる？",
+    "desk": "問い合わせは、メールだけ",
+    "worries": "カードは大丈夫？退会者や不審な連絡は？",
+    "guide": "連絡を待つか、今動くか迷ったとき"
+  },
+  "depthAt": "2026-11-17T00:05:15+00:00"
 }

@@ -8,7 +8,7 @@
   "companyName": "OpenAI",
   "category": "アプリ・サービス",
   "overview": {
-    "text": "ChatGPT Workは、自然言語の分析やアプリの自律操作ができる企業向けプラットフォームです。OpenAIによって、Enterpriseプラン向けに2026年7月23日から順次提供が開始されました。",
+    "text": "ChatGPT Workは、企業の業務プロセスを自律的に実行するAIアシスタント機能です。OpenAIが提供し、Enterpriseプラン向けの提供が発表されました。",
     "sources": [
       "chatgpt-work-complete-guide-features-matome",
       "openai-chatgpt-work-enterprise-rollout"
@@ -17,14 +17,14 @@
   "facts": [
     {
       "label": "提供開始",
-      "value": "2026年7月23日",
+      "value": "2026年7月24日",
       "sources": [
-        "chatgpt-work-complete-guide-features-matome"
+        "openai-chatgpt-work-enterprise-rollout"
       ]
     },
     {
       "label": "日本での提供",
-      "value": "日本からも利用できます",
+      "value": "利用できる",
       "sources": [
         "gilbert-tobin-chatgpt-work-case",
         "openai-chatgpt-work-enterprise-rollout"
@@ -34,6 +34,14 @@
       "label": "使える場所",
       "value": "Web、デスクトップ、モバイル",
       "sources": [
+        "openai-chatgpt-work-enterprise-rollout"
+      ]
+    },
+    {
+      "label": "向いている人",
+      "value": "法人組織のデータ担当やビジネス職",
+      "sources": [
+        "chatgpt-work-dashboard-generation",
         "openai-chatgpt-work-enterprise-rollout"
       ]
     }
@@ -46,21 +54,21 @@
       ]
     },
     {
-      "text": "音声やテキストの指示でメールやファイルを探索し、データの比較や分析を行います。",
+      "text": "音声指示だけでPC上のメールや添付ファイルを探索して解析できます。",
       "sources": [
         "openai-chatgpt-work-voice-agent"
       ]
     },
     {
-      "text": "ダッシュボード上のテキストやグラフの形式を直感的なUI操作で直接編集できます。",
+      "text": "ダッシュボードのデータ更新を平日9:00などのスケジュールで自動設定できます。",
       "sources": [
-        "chatgpt-work-tailor-dashboards-demo"
+        "chatgpt-work-dashboard-generation"
       ]
     }
   ],
   "pricing": [
     {
-      "text": "Enterpriseプランに含まれる機能としてロールアウトされています。",
+      "text": "既存のChatGPT Enterpriseプランに含まれる機能として提供されています。",
       "sources": [
         "openai-chatgpt-work-enterprise-rollout"
       ]
@@ -68,21 +76,22 @@
   ],
   "japan": [
     {
-      "text": "Enterpriseプランの組織のユーザーであれば日本からも利用できます。",
+      "text": "日本からも利用できます。",
       "sources": [
+        "gilbert-tobin-chatgpt-work-case",
         "openai-chatgpt-work-enterprise-rollout"
       ]
     }
   ],
   "howto": [
     {
-      "text": "Enterpriseプランを契約している組織のユーザーである必要があります。",
+      "text": "Enterpriseプランを契約した組織のユーザーが利用対象となります。",
       "sources": [
         "openai-chatgpt-work-enterprise-rollout"
       ]
     },
     {
-      "text": "デスクトップアプリやモバイルアプリを最新バージョンにアップデートして利用します。",
+      "text": "デスクトップアプリやモバイルアプリを最新バージョンにアップデートして使います。",
       "sources": [
         "openai-chatgpt-work-enterprise-rollout"
       ]
@@ -90,37 +99,44 @@
   ],
   "differences": [
     {
-      "text": "従来のチャット型AIと異なり、PCのデスクトップ環境や外部アプリを自律的に操作します。",
+      "text": "従来のチャット型AIを超えて、PC操作やデータ分析などの業務プロセスを自律実行する機能が追加されています。",
       "sources": [
+        "chatgpt-work-complete-guide-features-matome",
         "openai-chatgpt-work-voice-agent"
       ]
     }
   ],
   "faq": [
     {
-      "q": "無料プランでも使えますか？",
-      "a": "対象は法人向けのEnterpriseプランや有料向けとなっています。",
-      "sources": [
-        "chatgpt-work-complete-guide-features-matome",
-        "openai-chatgpt-work-enterprise-rollout"
-      ]
-    },
-    {
-      "q": "いつから提供されていますか？",
-      "a": "2026年7月23日からEnterpriseプランで順次提供されています。",
-      "sources": [
-        "chatgpt-work-complete-guide-features-matome"
-      ]
-    },
-    {
-      "q": "どのような端末で使えますか？",
-      "a": "Webブラウザ、デスクトップアプリ、モバイルアプリで利用可能です。",
+      "q": "いつから使える？",
+      "a": "Enterpriseプラン向けに順次提供が開始されています。",
       "sources": [
         "openai-chatgpt-work-enterprise-rollout"
       ]
     },
     {
-      "q": "セキュリティはどうなっていますか？",
+      "q": "どこから使える？",
+      "a": "Webブラウザ、デスクトップアプリ、モバイルアプリの全環境で利用可能です。",
+      "sources": [
+        "openai-chatgpt-work-enterprise-rollout"
+      ]
+    },
+    {
+      "q": "ダッシュボードは作れる？",
+      "a": "自然言語の指示から数秒でインタラクティブなダッシュボードを自動生成できます。",
+      "sources": [
+        "chatgpt-work-dashboard-generation"
+      ]
+    },
+    {
+      "q": "音声で操作できる？",
+      "a": "マイクに向かって音声で指示し、PC上のファイルやメールを探索させることができます。",
+      "sources": [
+        "openai-chatgpt-work-voice-agent"
+      ]
+    },
+    {
+      "q": "安全性は？",
       "a": "企業向けプランのため、入力データがモデルの学習に利用されることはありません。",
       "sources": [
         "openai-chatgpt-work-enterprise-rollout"
@@ -134,16 +150,31 @@
       "event": "ChatGPT WorkをEnterpriseで順次提供開始"
     },
     {
-      "date": "2026-11-13",
+      "date": "2026-08-24",
+      "slug": "openai-chatgpt-work-voice-agent",
+      "event": "音声でPCを操作するデモを公開"
+    },
+    {
+      "date": "2026-09-18",
+      "slug": "chatgpt-work-dashboard-generation",
+      "event": "ダッシュボード自動生成機能を公開"
+    },
+    {
+      "date": "2026-09-18",
+      "slug": "chatgpt-work-tailor-dashboards-demo",
+      "event": "ダッシュボードの編集デモを公開"
+    },
+    {
+      "date": "2026-11-17",
       "slug": "chatgpt-work-complete-guide-features-matome",
-      "event": "定期実行機能およびAgent Plugins 1.0発表"
+      "event": "全機能とGPT-6エコシステム統合まとめを公開"
     }
   ],
   "related": [
     "chatgpt",
     "codex",
-    "gpt-6-astra",
-    "gpt-6"
+    "gpt-6",
+    "gpt-6-astra"
   ],
   "articles": [
     "chatgpt-work-complete-guide-features-matome",
@@ -175,9 +206,9 @@
     "openai-chatgpt-work-admin-api",
     "openai-chatgpt-work-enterprise-rollout"
   ],
-  "signature": "bf6912c10fa09316",
-  "primarySignature": "0db4cef7860b885a",
+  "signature": "609e3920093acf28",
+  "primarySignature": "b972cd1d04b675dd",
   "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-10-27T10:34:50+00:00",
-  "updatedAt": "2026-11-13T12:03:58+00:00"
+  "updatedAt": "2026-11-17T00:04:05+00:00"
 }
