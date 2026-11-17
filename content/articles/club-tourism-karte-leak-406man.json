@@ -83,9 +83,8 @@
     }
   ],
   "todayActions": [
-    "クラブツーリズムのネット会員だった人は、会社からの連絡が届いていないか確認する",
-    "クラブツーリズムを名乗るサイトやバナーで、認証情報やカード情報を入力しない",
-    "不安があれば、お客様特設窓口0120-678-786（平日9:30〜17:00）に問い合わせる"
+    "不安な点は、クラブツーリズムのお客様特設窓口に電話で確認する",
+    "リンクやバナーからログインせず、公式サイトを開き直して確認する"
   ],
   "relatedSlugs": [
     "club-tourism-data-leak-check"
@@ -140,5 +139,91 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/club-tourism-karte-leak-406man-figure-4b9ee52f.jpg"
-  }
+  },
+  "officialDesk": [
+    {
+      "name": "クラブツーリズム株式会社 お客様特設窓口",
+      "url": "https://www.club-tourism.co.jp/jpn/news/2026/1117_1/",
+      "source": "https://www.club-tourism.co.jp/jpn/news/2026/1117_1/",
+      "phone": "０１２０－６７８－７８６",
+      "hours": "平日（月～金曜日）9：30～17：00。土曜・日曜・祝日・休業日も2026年12月28日までは上記時間で受付"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "不安な点は、クラブツーリズムのお客様特設窓口に電話で確認する",
+      "source": "https://www.club-tourism.co.jp/jpn/news/2026/1117_1/",
+      "steps": [
+        "0120-678-786に電話する",
+        "平日9:30〜17:00に受付",
+        "12月28日までは土日祝も同じ時間"
+      ],
+      "url": "https://www.club-tourism.co.jp/jpn/news/2026/1117_1/"
+    },
+    {
+      "action": "リンクやバナーからログインせず、公式サイトを開き直して確認する",
+      "source": "https://www.club-tourism.co.jp/jpn/news/2026/1117_1/",
+      "steps": [
+        "メールやバナーのリンクは開かない",
+        "トップページを直接開く",
+        "そこから必要な手続きを確認する"
+      ],
+      "url": "https://www.club-tourism.co.jp/jpn/"
+    }
+  ],
+  "cause": {
+    "text": "クラブツーリズムの発表では、同社が利用する外部サービス「KARTE」（株式会社プレイドが提供）への第三者による不正アクセスにより、お客様の個人情報が外部に漏えいした可能性があるとされています。",
+    "status": "stated",
+    "source": "https://www.club-tourism.co.jp/jpn/news/2026/1117_1/"
+  },
+  "worries": [
+    {
+      "q": "カード情報や口座の情報も漏れてしまった？",
+      "a": "漏えいの可能性がある情報は、会員番号（暗号化済み）、顧客番号、性別、年齢、生年月日です。氏名、住所、電話番号、メールアドレス、ログインパスワード、クレジットカード情報、金融機関口座番号は含まれないとしています。",
+      "source": "https://www.club-tourism.co.jp/jpn/news/2026/1117_1/",
+      "action": "身に覚えのない請求がないか、クレジットカードの利用明細を確認し、あればカード会社に相談する",
+      "actionSource": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "actionGeneral": true
+    },
+    {
+      "q": "クラブツーリズムを名乗るメールが来たら、どうすればいい？",
+      "a": "会社は、当社を装った不審なウェブサイトやバナー等に注意するよう呼びかけています。そうしたサイトでは、認証情報やクレジットカード情報を入力しないよう求めています。",
+      "source": "https://www.club-tourism.co.jp/jpn/news/2026/1117_1/",
+      "action": "メールやバナーのリンクは開かず、公式サイトを自分で開いてから確認する",
+      "actionSource": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "actionGeneral": true
+    },
+    {
+      "q": "同じパスワードを使い回していたら、どうなる？",
+      "a": "同じIDとパスワードを複数のサイトで使っていると、1つでも盗まれたら、銀行やSNS、通販などほかのサービスも乗っ取られるおそれがあります。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "action": "使い回しているサービスのパスワードを、サイトごとに違うものに変える",
+      "general": true
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "パスワードはすぐ変えるべき？",
+      "situation": "不審なサイトにIDやパスワードを入力してしまった",
+      "recommend": "速やかに変更する",
+      "reason": "入力したIDやパスワードを使っているすべてのサービスで、速やかに変更するとされています。ほかのサービスでも同じものを使っていれば、そちらも変えます。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "general": true
+    },
+    {
+      "question": "パスワードはすぐ変えるべき？",
+      "situation": "まだ入力しておらず、不審な連絡も来ていない",
+      "recommend": "急がなくてよい",
+      "reason": "今回漏えいの可能性がある情報には、ログインパスワードは含まれないとされています。ただし、今後の連絡や不審なサイトには引き続き注意が必要です。",
+      "source": "https://www.club-tourism.co.jp/jpn/news/2026/1117_1/"
+    }
+  ],
+  "depthHeadings": {
+    "cause": "なぜ漏れたのか、分かっていること",
+    "steps": "今日すぐできる確認と、偽サイトへの注意",
+    "desk": "不安があれば、特設窓口に電話で相談",
+    "worries": "カードや口座、パスワードは大丈夫？",
+    "guide": "パスワードを変えるかどうか、迷ったときの決め方"
+  },
+  "depthAt": "2026-11-17T11:56:32+00:00"
 }
