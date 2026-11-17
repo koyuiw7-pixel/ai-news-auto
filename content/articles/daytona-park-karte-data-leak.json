@@ -83,9 +83,9 @@
     }
   ],
   "todayActions": [
-    "Daytona Parkに登録したメールの受信箱で、FREAK’Sからの個別連絡が届いていないか確認する",
-    "お名前や誕生日入りのクーポン案内メールは、URLや添付ファイルを開かずに削除する",
-    "不安な点はDaytona Parkのお問い合わせフォームで「個人情報漏洩について」を選んで問い合わせる"
+    "問い合わせが必要なら、Daytona Parkのフォームで個人情報漏洩について選んで送る",
+    "不審なメールに普段使うIDやパスワードを入力した人は、使い回している各サービスのパスワードを変更する",
+    "名前や誕生日入りの心当たりのないメールは、URLや添付ファイルを開かず削除する"
   ],
   "publicInterest": "breach",
   "incident": {
@@ -136,5 +136,100 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/daytona-park-karte-data-leak-figure-66159fe3.jpg"
-  }
+  },
+  "officialDesk": [
+    {
+      "name": "Daytona Park お問い合わせフォーム",
+      "url": "https://www.daytona-park.com/inquiry/form",
+      "source": "https://daytonajp.com/news/3821/",
+      "note": "お問い合わせの種類は「個人情報漏洩について」をお選びください。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "問い合わせが必要なら、Daytona Parkのフォームで個人情報漏洩について選んで送る",
+      "source": "https://daytonajp.com/news/3821/",
+      "steps": [
+        "Daytona Park お問い合わせフォームを開く",
+        "お問い合わせの種類で「個人情報漏洩について」を選ぶ"
+      ],
+      "url": "https://www.daytona-park.com/inquiry/form"
+    },
+    {
+      "action": "不審なメールに普段使うIDやパスワードを入力した人は、使い回している各サービスのパスワードを変更する",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "steps": [
+        "入力したIDやパスワードを使うサービスを確認する",
+        "該当する各サービスのパスワードを速やかに変更する"
+      ]
+    },
+    {
+      "action": "名前や誕生日入りの心当たりのないメールは、URLや添付ファイルを開かず削除する",
+      "source": "https://daytonajp.com/news/3821/",
+      "steps": [
+        "メールのURLや添付ファイルを開かない",
+        "個人情報やパスワードを入力しない",
+        "金銭を支払わない"
+      ]
+    }
+  ],
+  "cause": {
+    "text": "会員情報を預けていたプレイドのシステムが、2026年11月13日に外部から不正アクセスを受けました。プレイドは同日中にKARTEの全サービスを停止し、攻撃元からの通信を遮断したと発表しています。",
+    "status": "stated",
+    "source": "https://daytonajp.com/news/3821/"
+  },
+  "worries": [
+    {
+      "q": "名前や誕生日入りのメールは本物か見分けられる？",
+      "a": "警察庁によると、メールの送信元名称やメールアドレスは簡単になりすましが可能です。表示された送信元情報だけで真偽を判断するのは困難とされています。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "action": "送信元の表示だけで本物と決めず、メール内のURLや添付ファイルは開かないでください。",
+      "actionSource": "https://daytonajp.com/news/3821/",
+      "general": true
+    },
+    {
+      "q": "クレジットカード情報や住所も漏れたの？",
+      "a": "第一報では、クレジットカード情報、住所、電話番号、購入履歴は、現時点で漏えいが確認されていない情報として挙げられています。調査中の情報や件数は、結果によって変わる場合があります。",
+      "source": "https://daytonajp.com/news/3821/",
+      "action": "不審なメールでカード情報の入力や支払いを求められても応じず、URLや添付ファイルを開かないでください。"
+    },
+    {
+      "q": "会社からの連絡がまだ届かないのは対象外だから？",
+      "a": "対象の人には準備が整い次第、電子メールで個別に知らせるとしています。また、調査結果によって対象となる情報や件数が変わる場合は、改めて知らせる方針です。",
+      "source": "https://daytonajp.com/news/3821/",
+      "action": "メールが届いていない場合も、対象や件数が変わる可能性を踏まえ、公式のお知らせの続報を確認してください。"
+    },
+    {
+      "q": "不審なメールにパスワードを入力してしまったら？",
+      "a": "警察庁は、フィッシングサイトなどに普段使うIDやパスワードを入力した場合、その情報を使っているすべてのサービスで速やかに変更するよう案内しています。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "action": "入力したIDやパスワードを使うサービスを確認し、それぞれのサービスで速やかに変更してください。",
+      "general": true
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "パスワードは今すぐ変更したほうがいい？",
+      "situation": "不審なメールに入力していない",
+      "recommend": "急いで変更しなくてよい",
+      "reason": "会社は現時点でパスワードの漏えいを確認しておらず、変更をお願いする状況ではないとしています。状況が変われば改めて知らせる方針です。",
+      "source": "https://daytonajp.com/news/3821/"
+    },
+    {
+      "question": "パスワードは今すぐ変更したほうがいい？",
+      "situation": "不審なページに入力してしまった",
+      "recommend": "速やかに変更する",
+      "reason": "この漏えいではパスワードの漏えいは確認されていませんが、不審なページに入力した場合は別です。入力したIDやパスワードを使うすべてのサービスで変更するよう警察庁が案内しています。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "general": true
+    }
+  ],
+  "depthHeadings": {
+    "cause": "委託先のシステムへの不正アクセス",
+    "steps": "問い合わせと不審メールへの対応",
+    "desk": "個人情報漏洩の問い合わせ先",
+    "worries": "メールや漏えい情報への不安",
+    "guide": "パスワードを変更するか迷ったら"
+  },
+  "depthAt": "2026-11-17T22:25:41+00:00"
 }
