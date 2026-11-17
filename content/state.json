@@ -175,6 +175,7 @@
     "1738d739517d7c16097ff620059685d7349258c4": 2,
     "17bf597cc879fa7375e5f654ddfcb744e5394006": 2,
     "17c508caca144e28c378d85980a2768129d23835": 2,
+    "17c57c30f46c78f190d4d9e097b34b454e6d6c06": 1,
     "182a9bea17e7a049b14200aa954a8fbdc70ec788": 2,
     "189ad41b7f1f86a3b2502cef0d78f88d28a29adb": 2,
     "18c22649b5b8a465afdecb1586318bc877542b00": 2,
@@ -251,7 +252,7 @@
     "2c6286114f833d222ee71c5606df5d0048f3bb44": 1,
     "2ca40f6fe1469aec7b2ea01d37585a4860dca615": 2,
     "2d03ee8ac969ce9dfab04aa995f966cb8216adfe": 2,
-    "2d36d729225f84c7044faec64337eef617e51a4d": 1,
+    "2d36d729225f84c7044faec64337eef617e51a4d": 2,
     "2d898b7feb79236818a8e7f8b976b6886d913c02": 2,
     "2d9708042247ca3f7ad8fdea2c36fc14d6463fa1": 2,
     "2ddf65596926063cdb9e7704fbccd43a9aa8aa35": 2,
@@ -10874,6 +10875,17 @@
       "reason": "stale: 発表から54時間（48時間を超えた発表は通常の記事にしない）",
       "skipped": true,
       "url": "https://blog.jetbrains.com/go/2026/11/05/goland-2026-3-is-now-available/"
+    },
+    "6129f2defae75f79374b6586553526af9ed8991b": {
+      "at": "2026-11-17T03:01:08.070766+00:00",
+      "kind": "trend",
+      "model": "gemini-3.5-flash",
+      "pressReport": true,
+      "score": 95,
+      "slug": "aiko-princess-singapore-visit-official",
+      "trendKeyword": "愛子さま",
+      "trendLane": true,
+      "url": "https://news.tv-asahi.co.jp/news_society/articles/000548114.html"
     },
     "6136106213c42dfe": {
       "at": "2026-11-11T07:43:14.971393+00:00",
@@ -23335,59 +23347,6 @@
   "quality_log": [
     {
       "accepted": true,
-      "at": "2026-11-14T16:36:46.594874+00:00",
-      "attempt": 0,
-      "id": "580df8096ff4d60263adf6b7e69c862deed590cc",
-      "kind": "trend",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 56.4,
-        "avg_sentence": 41.0,
-        "long_share": 0.182,
-        "max_paragraph": 87,
-        "paragraphs": 8,
-        "sentences": 11
-      },
-      "score": 85,
-      "source": "trends",
-      "title": "池田向希",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（TBS・NEWS・DIG）",
-        "work_money（「仕事・お金にどう活かせる？」欄）が無い"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-14T16:41:51.630741+00:00",
-      "attempt": 1,
-      "id": "2d75f45f1333f2d4",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "Q&Aの「投資が前期比1.7%増と最も高い伸びを記録し」→ 同じ記事の表・元記事では輸入が1.8%で、需要項目の中で最も高いため、記述が誤り",
-        "リード「現時点で日本の個人生活や制度に直接的な変更はありません」→ 元記事に無い主張で、根拠なしに断定している",
-        "リードの「設備投資」→ 元記事は「投資」であり、設備投資に限定する根拠はない（軽微な言い換え）"
-      ],
-      "readability": {
-        "avg_paragraph": 134.8,
-        "avg_sentence": 51.0,
-        "long_share": 0.243,
-        "max_paragraph": 219,
-        "paragraphs": 14,
-        "sentences": 37
-      },
-      "score": 72,
-      "source": "nli-research",
-      "title": "英国ＧＤＰ（2026年7-9月期）－1-3月、4-6月に続き高い成長率を記録",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（ONS・GDP・MPC）",
-        "同じ数字が多い（「0.7%」が6回）",
-        "読みやすさ: 文が長い（1文の平均 51.0字・60字超の文が 24% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
       "at": "2026-11-14T16:42:49.276147+00:00",
       "attempt": 1,
       "id": "2d75f45f1333f2d4",
@@ -30923,6 +30882,55 @@
       "title": "首相",
       "warnings": [
         "初めて出たところで言い換えていない略語（ASEAN・APEC）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-17T03:00:51.584120+00:00",
+      "attempt": 1,
+      "id": "6129f2defae75f79374b6586553526af9ed8991b",
+      "kind": "trend",
+      "model": "gemini-3.5-flash",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 77.2,
+        "avg_sentence": 51.5,
+        "long_share": 0.333,
+        "max_paragraph": 105,
+        "paragraphs": 4,
+        "sentences": 6
+      },
+      "score": 93,
+      "source": "trends",
+      "title": "愛子さま",
+      "warnings": [
+        "見出しの書き方: 区切りの全角空白が2つ以上（補足は1つだけ）",
+        "初めて出たところで言い換えていない略語（NEWS）",
+        "読みやすさ: 文が長い（1文の平均 51.5字・60字超の文が 33% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-17T03:01:01.977016+00:00",
+      "attempt": 0,
+      "id": "6129f2defae75f79374b6586553526af9ed8991b",
+      "kind": "trend",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 77.0,
+        "avg_sentence": 38.5,
+        "long_share": 0.0,
+        "max_paragraph": 105,
+        "paragraphs": 4,
+        "sentences": 8
+      },
+      "score": 95,
+      "source": "trends",
+      "title": "愛子さま",
+      "warnings": [
+        "見出しの書き方: 区切りの全角空白が2つ以上（補足は1つだけ）",
+        "初めて出たところで言い換えていない略語（NEWS）"
       ]
     }
   ],
