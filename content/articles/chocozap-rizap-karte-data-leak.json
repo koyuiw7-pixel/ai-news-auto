@@ -82,9 +82,8 @@
     }
   ],
   "todayActions": [
-    "RIZAPやchocoZAPを名乗るメールが来たら、リンクを開かず返信もしない",
-    "店舗の休館などは、メールが止まっているためアプリなど公式の案内で確かめる",
-    "不安があれば、RIZAP株式会社の0120-990-299（9:00〜18:00、年中無休）に問い合わせる"
+    "ZAP ID登録者は、公式告知で漏えい情報と一時停止中の機能を確認する",
+    "RIZAPやchocoZAPを名乗る連絡には返信せず、本文中のリンクを開かない"
   ],
   "relatedSlugs": [
     "shimamura-karte-member-data-leak",
@@ -110,7 +109,8 @@
       1
     ],
     "repaired": false,
-    "repairLater": true
+    "repairLater": true,
+    "laterTriedAt": "2026-11-17T23:11:26+00:00"
   },
   "qualityScore": 96,
   "factSources": [
@@ -149,5 +149,85 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/chocozap-rizap-karte-data-leak-figure-9297ec7e.jpg"
-  }
+  },
+  "officialDesk": [
+    {
+      "name": "RIZAP株式会社",
+      "url": "https://chocozap.jp/info/25114",
+      "source": "https://chocozap.jp/info/25114",
+      "phone": "0120-990-299",
+      "hours": "年中無休 9:00-18:00",
+      "note": "通話料無料。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "ZAP ID登録者は、公式告知で漏えい情報と一時停止中の機能を確認する",
+      "source": "https://chocozap.jp/info/25114",
+      "steps": [
+        "chocoZAPのお知らせを開く",
+        "「漏えいした可能性のある情報」を確認",
+        "「一時停止している一部Webサービス」を確認"
+      ],
+      "url": "https://chocozap.jp/info/25114"
+    },
+    {
+      "action": "RIZAPやchocoZAPを名乗る連絡には返信せず、本文中のリンクを開かない",
+      "source": "https://chocozap.jp/info/25114",
+      "steps": [
+        "本文中のリンクを開かない",
+        "返信しない",
+        "必要ならRIZAP株式会社へ電話する"
+      ],
+      "url": "https://chocozap.jp/info/25114"
+    }
+  ],
+  "cause": {
+    "text": "RIZAPが一部Webサービスで使うマーケティングプラットフォーム「KARTE」で第三者による不正アクセスが発生しました。原因と影響範囲は、プレイド社と連携して確認中です。",
+    "status": "investigating",
+    "source": "https://chocozap.jp/info/25114"
+  },
+  "worries": [
+    {
+      "q": "カード情報やZAP IDのパスワードも漏れたのでしょうか？",
+      "a": "公式発表では、クレジットカード等の決済情報とZAP IDのログインパスワードは、漏えいした可能性のある情報に含まれていません。",
+      "source": "https://chocozap.jp/info/25114",
+      "action": "不審な連絡で情報を求められても応じず、本文中のリンクを開いたり返信したりしないでください。"
+    },
+    {
+      "q": "LINEのログイン情報まで漏れたのでしょうか？",
+      "a": "LINEのログイン情報は漏えいした可能性のある情報に含まれていません。一方、LINE公式アカウントとの連携に使う識別番号は、可能性のある情報に挙げられています。",
+      "source": "https://chocozap.jp/info/25114",
+      "action": "LINEを名乗る不審な連絡が届いても、リンクを開かず返信しないでください。"
+    },
+    {
+      "q": "住所や電話番号、生年月日も対象になっているのでしょうか？",
+      "a": "公式発表では、住所、電話番号、生年月日は漏えいした可能性のある情報に含まれていません。",
+      "source": "https://chocozap.jp/info/25114",
+      "action": "不審な連絡で個人情報を尋ねられた場合は応じず、心配があればRIZAP株式会社の窓口へ確認してください。"
+    },
+    {
+      "q": "RIZAPを名乗るメールがパスワードを聞いてきたら？",
+      "a": "RIZAPやchocoZAPがメールやLINEでパスワードやクレジットカード情報を尋ねることはないと、公式発表で案内されています。",
+      "source": "https://chocozap.jp/info/25114",
+      "action": "リンクを開いたり返信したりせず、必要ならRIZAP株式会社の窓口へ相談してください。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "RIZAPを名乗るメールのリンクを開いてよい？",
+      "situation": "不審なメールや連絡を受け取った",
+      "recommend": "リンクを開かず、返信もしない",
+      "reason": "公式発表は、不審なメール・電話・連絡を受け取った場合、本文中のリンクにアクセスせず返信もしないよう呼びかけています。RIZAPやchocoZAPはメールやLINEでパスワードやクレジットカード情報を尋ねないとしています。",
+      "source": "https://chocozap.jp/info/25114"
+    }
+  ],
+  "depthHeadings": {
+    "cause": "不正アクセスの原因と影響範囲は確認中",
+    "steps": "公式告知で漏えい情報と停止中の機能を確認",
+    "desk": "RIZAP株式会社の問い合わせ先",
+    "worries": "漏れた情報と不審な連絡への対応",
+    "guide": "なりすましの連絡にどう対応するか"
+  },
+  "depthAt": "2026-11-17T23:11:26+00:00"
 }
