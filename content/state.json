@@ -11845,6 +11845,19 @@
       "slug": "aws-sap-agentic-ai-series",
       "url": "https://aws.amazon.com/jp/blogs/news/your-cfo-wants-sap-ai-results-next-quarter-heres-where-to-start/"
     },
+    "6f02b176d576abc9": {
+      "at": "2026-11-17T04:39:50.206482+00:00",
+      "breaking": true,
+      "costUsd": 0.1342,
+      "intent": "breaking",
+      "major": true,
+      "mix": "brand",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "score": 93,
+      "section": "tech-gadget",
+      "slug": "samsung-intelligent-eyewear-december-launch",
+      "url": "https://news.samsung.com/jp/samsung-announces-december-release-for-intelligent-eyewear2611?utm_source=rss&utm_medium=direct"
+    },
     "6f2de5eac4a4084e": {
       "at": "2026-11-14T17:25:04.686688+00:00",
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・暮らしの交通/天気/値上げ/障害/給付/発売・日本のスポーツのどれでもない）",
@@ -23480,30 +23493,6 @@
   },
   "quality_log": [
     {
-      "accepted": true,
-      "at": "2026-11-14T17:07:44.463186+00:00",
-      "attempt": 1,
-      "id": "302b35d831362718",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 113.4,
-        "avg_sentence": 43.6,
-        "long_share": 0.154,
-        "max_paragraph": 190,
-        "paragraphs": 5,
-        "sentences": 13
-      },
-      "score": 88,
-      "source": "nissui",
-      "title": "家庭用食品の一部商品の出荷価格改定について",
-      "warnings": [
-        "見出しの書き方: 発表文の題名の言い直し（「〇〇が△△を発表」）。読者にとって何が変わるか（だれの・何が・いつから・いくら）を書く",
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
-      ]
-    },
-    {
       "accepted": false,
       "at": "2026-11-14T17:23:18.782853+00:00",
       "attempt": 1,
@@ -31040,6 +31029,30 @@
         "見出しが52字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（NULL・CVSS・IPA）",
         "読みやすさ: 文が長い（1文の平均 46.2字・60字超の文が 8% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-17T04:39:50.177138+00:00",
+      "attempt": 1,
+      "id": "6f02b176d576abc9",
+      "kind": "broad",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 66.5,
+        "avg_sentence": 37.7,
+        "long_share": 0.2,
+        "max_paragraph": 154,
+        "paragraphs": 17,
+        "sentences": 30
+      },
+      "score": 93,
+      "source": "samsung-jp",
+      "title": "Samsung、インテリジェントアイウェアを12月に発売。AIで世界の見え方を、もっとスマートに。",
+      "warnings": [
+        "見出しが45字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（AR・HDR・IPX）"
       ]
     }
   ],
