@@ -21129,6 +21129,19 @@
       "skipped": true,
       "url": "https://www.docomo.ne.jp/info/news_release/2026/11/04_00.html"
     },
+    "fc92a8f788c0bc89": {
+      "at": "2026-11-17T07:38:58.412830+00:00",
+      "costUsd": 0.0027,
+      "intent": "breaking",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "score": 85,
+      "section": "public",
+      "slug": "mtg-style-shop-line-data-leak",
+      "url": "https://www.mtg.gr.jp/news/detail/2026/11/article_2682.html"
+    },
     "fc957715059c1ab0": {
       "at": "2026-11-10T08:50:58.855088+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（開催について）",
@@ -23648,26 +23661,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-14T20:46:28.532594+00:00",
-      "attempt": 0,
-      "id": "0a2391266d2b02e5",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 72.9,
-        "avg_sentence": 42.2,
-        "long_share": 0.105,
-        "max_paragraph": 129,
-        "paragraphs": 11,
-        "sentences": 19
-      },
-      "score": 88,
-      "source": "digital-agency",
-      "title": "自治体が実施する健康・医療・介護分野の事業のデジタル化（PMH）ー医療費助成に関するダッシュボードを更新しました"
-    },
     {
       "accepted": true,
       "at": "2026-11-14T20:47:43.497678+00:00",
@@ -31194,6 +31187,31 @@
       "title": "葛飾 シカ",
       "warnings": [
         "初めて出たところで言い換えていない略語（TBS・NEWS・DIG）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-17T07:38:50.876690+00:00",
+      "attempt": 1,
+      "id": "fc92a8f788c0bc89",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 81.7,
+        "avg_sentence": 37.7,
+        "long_share": 0.115,
+        "max_paragraph": 137,
+        "paragraphs": 12,
+        "sentences": 26
+      },
+      "score": 85,
+      "source": "fast",
+      "title": "「Style」ショップLINE公式アカウントの外部サービス提供元における不正アクセスの発生について | MTG News | 株式会社MTG",
+      "warnings": [
+        "見出しが47字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（MTG・LIFULL・HOME）",
+        "決まった型の見出し（「何が起きたか」）。その記事でしか使えない中身の言葉にするか、見出しを消す"
       ]
     }
   ],
