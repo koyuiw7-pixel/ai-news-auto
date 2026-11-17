@@ -8798,6 +8798,19 @@
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026111111"
     },
+    "3fb10cc5bfb3fe52": {
+      "at": "2026-11-17T11:42:32.288945+00:00",
+      "costUsd": 0.0066,
+      "intent": "breaking",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "score": 92,
+      "section": "public",
+      "slug": "club-tourism-karte-leak-406man",
+      "url": "https://www.club-tourism.co.jp/jpn/news/2026/1117_1/"
+    },
     "4042ce7dce07eff3": {
       "at": "2026-11-13T19:31:53.467282+00:00",
       "reason": "review: AdSense の審査の期間は海外の AI の発表を自動で記事にしない（速報だけ。scripts/news_mix.py review_ai_blocks）",
@@ -23823,61 +23836,6 @@
   },
   "quality_log": [
     {
-      "accepted": false,
-      "at": "2026-11-14T23:08:25.178766+00:00",
-      "attempt": 1,
-      "id": "18178d0c9df77c3d",
-      "kind": "broad",
-      "model": "gemini-3.5-flash",
-      "problems": [
-        "「まだ分からないこと」の「受賞者の具体的な氏名・名称一覧の詳細は公表されていません」→ 元記事は受賞者名簿を別添PDFとして公開しており、公表されていないという記述は元記事と矛盾する。",
-        "「令和8年度東京都都民安全総合対策本部長賞表表彰式」→ 「表表彰式」は誤字。",
-        "「日ごろ登下校時の子供の見守りやパトロール活動を行っている人々が選ばれました」→ 元記事は式典前の発表で、選出が済んだとは書いていない。また見守り等は団体の活動全般の説明で、受賞者の活動内容として特定されていない。",
-        "「地域の防犯活動に長年取り組んできたボランティアの個人や団体」→ 「長年」は元記事に無い誇張。表彰基準は7年以上・1年以上の活動であり、一律に長年とは言えない。",
-        "「防犯パトロールや子供の見守り活動など、都内の治安向上への貢献に応じた基準で選ばれています」→ 選考基準は活動年数や功労の程度であり、活動の種類で選ばれるとは元記事に書かれていない。"
-      ],
-      "readability": {
-        "avg_paragraph": 59.7,
-        "avg_sentence": 53.7,
-        "long_share": 0.4,
-        "max_paragraph": 109,
-        "paragraphs": 9,
-        "sentences": 10
-      },
-      "score": 82,
-      "source": "tokyo-metro",
-      "title": "令和8年度 「東京都都民安全総合対策本部長賞表彰式」の開催",
-      "warnings": [
-        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "読みやすさ: 文が長い（1文の平均 53.7字・60字超の文が 40% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-14T23:09:06.046976+00:00",
-      "attempt": 1,
-      "id": "18178d0c9df77c3d",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 56.2,
-        "avg_sentence": 56.2,
-        "long_share": 0.444,
-        "max_paragraph": 109,
-        "paragraphs": 9,
-        "sentences": 9
-      },
-      "score": 92,
-      "source": "tokyo-metro",
-      "title": "令和8年度 「東京都都民安全総合対策本部長賞表彰式」の開催",
-      "warnings": [
-        "見出しが54字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "work_money（「仕事・お金にどう活かせる？」欄）が無い",
-        "読みやすさ: 文が長い（1文の平均 56.2字・60字超の文が 44% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
       "accepted": true,
       "at": "2026-11-14T23:09:24.893757+00:00",
       "attempt": 0,
@@ -31380,6 +31338,55 @@
       "title": "当社お客様の情報漏えいの可能性に関するお詫びとお知らせ:楽天証券",
       "warnings": [
         "初めて出たところで言い換えていない略語（SMS）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-17T11:42:00.778556+00:00",
+      "attempt": 1,
+      "id": "3fb10cc5bfb3fe52",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 97.5,
+        "avg_sentence": 42.9,
+        "long_share": 0.12,
+        "max_paragraph": 225,
+        "paragraphs": 11,
+        "sentences": 25
+      },
+      "score": 93,
+      "source": "fast",
+      "title": "株式会社プレイドで発生した不正アクセスによる 個人情報漏えいの可能性に関するお詫びとお知らせ│クラブツーリズム",
+      "warnings": [
+        "見出しが45字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（KARTE）",
+        "読みやすさ: 段落が長い（平均 97.5字・最長 225字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-17T11:42:23.475607+00:00",
+      "attempt": 0,
+      "id": "3fb10cc5bfb3fe52",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 59.8,
+        "avg_sentence": 32.8,
+        "long_share": 0.0,
+        "max_paragraph": 128,
+        "paragraphs": 17,
+        "sentences": 31
+      },
+      "score": 92,
+      "source": "fast",
+      "title": "株式会社プレイドで発生した不正アクセスによる 個人情報漏えいの可能性に関するお詫びとお知らせ│クラブツーリズム",
+      "warnings": [
+        "見出しが45字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（KARTE）"
       ]
     }
   ],
