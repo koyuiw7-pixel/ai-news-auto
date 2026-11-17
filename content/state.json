@@ -9946,6 +9946,20 @@
       "skipped": true,
       "url": "https://www.ipa.go.jp/news/2026/shiken_20261105.html"
     },
+    "4faa980a30277cf4": {
+      "at": "2026-11-17T21:35:28.191145+00:00",
+      "breaking": true,
+      "costUsd": 0.0461,
+      "foreignAi": true,
+      "intent": "breaking",
+      "major": true,
+      "mix": "enterprise_dev",
+      "model": "openai-api:gpt-6.1-terra",
+      "score": 97,
+      "section": "ai",
+      "slug": "nvidia-fiscal-2027-q3-results",
+      "url": "https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-third-quarter-fiscal-2027"
+    },
     "4fc707364320f23e": {
       "at": "2026-11-04T01:28:01.507999+00:00",
       "reason": "prefilter: お知らせ・統計の転載（listing）",
@@ -24159,63 +24173,6 @@
   "quality_log": [
     {
       "accepted": true,
-      "at": "2026-11-15T17:34:04.761233+00:00",
-      "attempt": 0,
-      "id": "17a0da042940fdf6",
-      "kind": "broad",
-      "model": "",
-      "problems": [
-        "読みやすさ基準外のまま受理: 本文に「# 」の見出しが入った（# 今の原稿の数値は見出しではなく編集メモのため出力に含めま）"
-      ],
-      "readability": {
-        "avg_paragraph": 96.1,
-        "avg_sentence": 56.1,
-        "long_share": 0.333,
-        "max_paragraph": 168,
-        "paragraphs": 14,
-        "sentences": 24
-      },
-      "score": 92,
-      "source": "ntt-news",
-      "title": "プログラマブルな光回路で通信向けデジタル信号処理を低消費電力化 ～伝送途中の光信号処理で、1300km長距離光通信で信号歪みの要因を60％低減～",
-      "warnings": [
-        "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（SDM・PLC・DNN）",
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-15T17:36:14.601124+00:00",
-      "attempt": 1,
-      "id": "0dda930357170276",
-      "kind": "broad",
-      "model": "gemini-flash-latest",
-      "problems": [
-        "リード/タイトルの「初評価」→ 元記事には初回だと明記されておらず、「令和8年度以降評価結果を公表する」とあるのみ。初回である根拠が確認できない。",
-        "よくある質問の「今回の結果は令和8年度の薬価改定などに反映される方針」→ 元記事は令和8年度薬価改定における評価と述べるが、具体的な反映方針までは書かれていない。言い過ぎ。",
-        "今日やること「調剤明細書」「お薬手帳のシール」「薬の包装シート裏面に製造販売元が記載」→ 元記事・確認済みの文脈に無い具体的な情報源の記述。一般的には正しいが出典がない。",
-        "本文冒頭・リードの「患者が窓口で支払う薬の代金や処方の手順が今すぐ変わるわけではありません」→ 元記事に明記のない推測を事実のように断定している（ただし即時の影響がないという趣旨は妥当）。",
-        "「一部メーカーの不正などを発端に医薬品の供給不足が続いた」「数年前から」→ 元記事は品質不正等を発端とした供給不安としか書いておらず、「数年前から」「供給不足が続いた」は補足の創作に近い。"
-      ],
-      "readability": {
-        "avg_paragraph": 95.1,
-        "avg_sentence": 58.5,
-        "long_share": 0.385,
-        "max_paragraph": 131,
-        "paragraphs": 8,
-        "sentences": 13
-      },
-      "score": 72,
-      "source": "mhlw",
-      "title": "後発医薬品を製造販売する企業の安定供給の取組に関する評価結果を公表します",
-      "warnings": [
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
-        "読みやすさ: 文が長い（1文の平均 58.5字・60字超の文が 38% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
       "at": "2026-11-15T17:37:09.601074+00:00",
       "attempt": 1,
       "id": "0dda930357170276",
@@ -31632,6 +31589,54 @@
       "warnings": [
         "初めて出たところで言い換えていない略語（NEWS）",
         "work_money（「仕事・お金にどう活かせる？」欄）が無い"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-17T21:34:30.532505+00:00",
+      "attempt": 1,
+      "id": "4faa980a30277cf4",
+      "kind": "ai",
+      "model": "openai-api:gpt-6.1-terra",
+      "problems": [
+        "元記事・確認済みの事実の束・計算済みの数字のどれにも無い数字がある（「GAAP)による純利益は653億ドル」）。元記事か束の数字に直すか、その文を削る。簡単な計算（かけ算・足し算など）をするなら、確かめた数字だけを使って式を書き「（サイソク編集部の計算）」と添える"
+      ],
+      "readability": {
+        "avg_paragraph": 77.2,
+        "avg_sentence": 35.7,
+        "long_share": 0.0,
+        "max_paragraph": 136,
+        "paragraphs": 12,
+        "sentences": 26
+      },
+      "score": null,
+      "source": "nvidia-newsroom",
+      "title": "NVIDIA Announces Financial Results for Third Quarter Fiscal 2027",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（GAAP・NVL）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-17T21:35:28.137537+00:00",
+      "attempt": 1,
+      "id": "4faa980a30277cf4",
+      "kind": "ai",
+      "model": "strike:本文 1 文・今日やること",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 70.1,
+        "avg_sentence": 35.0,
+        "long_share": 0.0,
+        "max_paragraph": 136,
+        "paragraphs": 12,
+        "sentences": 24
+      },
+      "score": 97,
+      "source": "nvidia-newsroom",
+      "title": "NVIDIA Announces Financial Results for Third Quarter Fiscal 2027",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（NVL）"
       ]
     }
   ],
