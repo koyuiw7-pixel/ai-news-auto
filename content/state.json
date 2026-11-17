@@ -5115,6 +5115,19 @@
       "slug": "medical-device-ceo-matching-2026",
       "url": "https://j-net21.smrj.go.jp/news/bt5puv0000011k73.html"
     },
+    "08dbf1aa25256a0e": {
+      "at": "2026-11-17T08:43:31.335581+00:00",
+      "costUsd": 0.0078,
+      "intent": "breaking",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "score": 94,
+      "section": "public",
+      "slug": "smarthr-notion-ai-fireworks-incident",
+      "url": "https://smarthr.co.jp/news/info/20261117/"
+    },
     "08dd1a671577c6b8": {
       "at": "2026-11-11T02:08:37.280629+00:00",
       "costUsd": 0.0104,
@@ -15986,6 +15999,19 @@
       "slug": "aeon-topvalu-yasashi-gohan-2026-11",
       "url": "https://www.aeon.info/news/release_115550/"
     },
+    "ac429b9004c1434c": {
+      "at": "2026-11-17T08:42:09.802275+00:00",
+      "costUsd": 0.0009,
+      "intent": "breaking",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "score": 100,
+      "section": "public",
+      "slug": "morisawa-fonts-karte-data-leak",
+      "url": "https://www.morisawa.co.jp/about/news/19310"
+    },
     "ac56a512dd320df7": {
       "at": "2026-11-04T11:24:42.037003+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（受賞）",
@@ -19906,16 +19932,6 @@
       "slug": "kaene-onescloset-data-leak",
       "url": "https://kaene.jp/blogs/topics_kaene/personal-data-incident-notice"
     },
-    "e6bc890b8e0378b5": {
-      "at": "2026-11-03T08:40:23.765520+00:00",
-      "breaking": true,
-      "major": true,
-      "model": "anthropic-api:claude-opus-5-5",
-      "score": 96,
-      "section": "ai",
-      "slug": "secure-samba-mac-drive-app",
-      "url": "https://news.mynavi.jp/techplus/article/20261103-5248905/"
-    },
     "e6bc963cf5dfbd700ec73259704944ad516bddba": {
       "at": "2026-11-15T17:52:10.018400+00:00",
       "reason": "trend: 重複: 同じ言葉の記事がある（nissan-skyline-news-summary）",
@@ -23712,105 +23728,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-14T22:09:18.005121+00:00",
-      "attempt": 2,
-      "id": "44f7309590b4f3787687747579f60ba5682853ca",
-      "kind": "trend",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 67.7,
-        "avg_sentence": 36.5,
-        "long_share": 0.077,
-        "max_paragraph": 134,
-        "paragraphs": 7,
-        "sentences": 13
-      },
-      "score": 93,
-      "source": "trends",
-      "title": "経済"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-14T22:09:47.710441+00:00",
-      "attempt": 1,
-      "id": "c72770435653b65c29749f6f819133f78dd72ddc",
-      "kind": "trend",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "確かなことと、まだ分かっていないこと（調査中・現時点では公表されていない など）を分けて書く"
-      ],
-      "readability": {
-        "avg_paragraph": 111.5,
-        "avg_sentence": 44.6,
-        "long_share": 0.2,
-        "max_paragraph": 123,
-        "paragraphs": 2,
-        "sentences": 5
-      },
-      "score": null,
-      "source": "trends",
-      "title": "雨",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（TBS・NEWS・DIG）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-14T22:21:08.630389+00:00",
-      "attempt": 1,
-      "id": "f18df684a4aa2500",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "「原材料費やエネルギーコストなどの物価高騰があります」→ 元記事は「物価高による値上げ」とだけ書いており、原材料費・エネルギーコストへの言及はない。具体的な費目を補っている。",
-        "「販売不振に陥る小規模な事業者が増えています」（要点欄の簡単版）→ 元記事は小規模とは書いていない。負債1億円未満が約7割という記述からの推測を断定の形で書いている。",
-        "「損をするのは、値上げ後に客足が落ちた店や…取引先に持つ事業者とみられます」→ 元記事に無い影響範囲の推測。「とみられます」と見方として書かれてはいるが、根拠の提示がない。"
-      ],
-      "readability": {
-        "avg_paragraph": 183.3,
-        "avg_sentence": 55.0,
-        "long_share": 0.45,
-        "max_paragraph": 265,
-        "paragraphs": 6,
-        "sentences": 20
-      },
-      "score": 82,
-      "source": "tsr",
-      "title": "「お菓子屋さん」の倒産、年間最多へ ～ 物価高で加熱する販売競争、店舗コストも重荷 ～",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（SPA）",
-        "読みやすさ: 文が長い（1文の平均 55.0字・60字超の文が 45% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "読みやすさ: 段落が長い（平均 183.3字・最長 265字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-14T22:21:31.003921+00:00",
-      "attempt": 1,
-      "id": "f18df684a4aa2500",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 169.5,
-        "avg_sentence": 53.5,
-        "long_share": 0.421,
-        "max_paragraph": 265,
-        "paragraphs": 6,
-        "sentences": 19
-      },
-      "score": 92,
-      "source": "tsr",
-      "title": "「お菓子屋さん」の倒産、年間最多へ ～ 物価高で加熱する販売競争、店舗コストも重荷 ～",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（SPA）",
-        "読みやすさ: 文が長い（1文の平均 53.5字・60字超の文が 42% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "読みやすさ: 段落が長い（平均 169.5字・最長 265字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-14T22:22:05.761930+00:00",
@@ -31269,6 +31186,106 @@
       "warnings": [
         "材料の無い章がある（日本の店舗利用や料金に今すぐ変わる点はあるか）。表示では隠す",
         "初めて出たところで言い換えていない略語（KKR）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-17T08:42:01.657239+00:00",
+      "attempt": 1,
+      "id": "ac429b9004c1434c",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 76.5,
+        "avg_sentence": 41.2,
+        "long_share": 0.115,
+        "max_paragraph": 146,
+        "paragraphs": 14,
+        "sentences": 26
+      },
+      "score": 100,
+      "source": "fast",
+      "title": "当社委託先サービスへの不正アクセスによる個人情報漏洩に関するお詫びとお知らせ | ニュース&プレスリリース | 企業情報",
+      "warnings": [
+        "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-17T08:42:43.581618+00:00",
+      "attempt": 1,
+      "id": "08dbf1aa25256a0e",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "タイトル「SmartHRのNotion AIチャット記録が流出のおそれ」→ 元記事は「チャット記録の一部」で、対象は役職員の入力とAIの返答に限られる。「一部」「役職員」が抜けており、全記録が対象に見える言い過ぎ"
+      ],
+      "readability": {
+        "avg_paragraph": 85.7,
+        "avg_sentence": 49.0,
+        "long_share": 0.238,
+        "max_paragraph": 168,
+        "paragraphs": 12,
+        "sentences": 21
+      },
+      "score": 85,
+      "source": "fast",
+      "title": "クラウドサービス「Notion」のAI機能委託先への不正アクセスに関するお知らせ（第一報）｜株式会社SmartHR",
+      "warnings": [
+        "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（SMS）",
+        "読みやすさ: 文が長い（1文の平均 49.0字・60字超の文が 24% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-17T08:42:59.331706+00:00",
+      "attempt": 1,
+      "id": "08dbf1aa25256a0e",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 85.7,
+        "avg_sentence": 49.0,
+        "long_share": 0.238,
+        "max_paragraph": 168,
+        "paragraphs": 12,
+        "sentences": 21
+      },
+      "score": 93,
+      "source": "fast",
+      "title": "クラウドサービス「Notion」のAI機能委託先への不正アクセスに関するお知らせ（第一報）｜株式会社SmartHR",
+      "warnings": [
+        "見出しが50字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（SMS）",
+        "読みやすさ: 文が長い（1文の平均 49.0字・60字超の文が 24% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-17T08:43:16.091418+00:00",
+      "attempt": 0,
+      "id": "08dbf1aa25256a0e",
+      "kind": "broad",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 65.2,
+        "avg_sentence": 45.4,
+        "long_share": 0.174,
+        "max_paragraph": 137,
+        "paragraphs": 16,
+        "sentences": 23
+      },
+      "score": 94,
+      "source": "fast",
+      "title": "クラウドサービス「Notion」のAI機能委託先への不正アクセスに関するお知らせ（第一報）｜株式会社SmartHR",
+      "warnings": [
+        "見出しが50字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（SMS）",
+        "読みやすさ: 文が長い（1文の平均 45.4字・60字超の文が 17% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
       ]
     }
   ],
