@@ -7785,6 +7785,20 @@
       "skipped": true,
       "url": "https://www.maff.go.jp/j/press/keiei/seisaku/261106.html"
     },
+    "2f7ff3d5ef40d974": {
+      "at": "2026-11-17T18:12:50.025053+00:00",
+      "breaking": true,
+      "costUsd": 0.0419,
+      "foreignAi": true,
+      "intent": "breaking",
+      "major": true,
+      "mix": "other",
+      "model": "openai-api:gpt-6.1-terra",
+      "score": 100,
+      "section": "ai",
+      "slug": "meta-muse-australia-launch",
+      "url": "https://about.fb.com/news/2026/11/muse-is-now-available-in-australia/"
+    },
     "2f82597f21184158": {
       "at": "2026-11-17T06:31:28.965754+00:00",
       "costUsd": 0.0103,
@@ -24004,53 +24018,6 @@
   },
   "quality_log": [
     {
-      "accepted": true,
-      "at": "2026-11-15T11:39:40.834414+00:00",
-      "attempt": 1,
-      "id": "4900e4c5ca2e1aec",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 102.4,
-        "avg_sentence": 54.6,
-        "long_share": 0.4,
-        "max_paragraph": 145,
-        "paragraphs": 8,
-        "sentences": 15
-      },
-      "score": 88,
-      "source": "kantei",
-      "title": "高市総理はフィジカルＡＩ関連企業との意見交換会を行いました",
-      "warnings": [
-        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "読みやすさ: 文が長い（1文の平均 54.6字・60字超の文が 40% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-15T11:40:09.131417+00:00",
-      "attempt": 0,
-      "id": "4900e4c5ca2e1aec",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 72.7,
-        "avg_sentence": 42.1,
-        "long_share": 0.105,
-        "max_paragraph": 118,
-        "paragraphs": 11,
-        "sentences": 19
-      },
-      "score": 86,
-      "source": "kantei",
-      "title": "高市総理はフィジカルＡＩ関連企業との意見交換会を行いました",
-      "warnings": [
-        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す"
-      ]
-    },
-    {
       "accepted": false,
       "at": "2026-11-15T11:56:37.917220+00:00",
       "attempt": 1,
@@ -31546,6 +31513,54 @@
       "title": "Introducing GPT-6.2 Astra and Sol",
       "warnings": [
         "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-17T18:12:26.593849+00:00",
+      "attempt": 1,
+      "id": "2f7ff3d5ef40d974",
+      "kind": "ai",
+      "model": "openai-api:gpt-6.1-terra",
+      "problems": [
+        "「Meta Museのプランと料金」の表に「OpenAI dot」を同列で掲載しており、Meta Museのプランの一つであるかのように見えるため、表題を「関連サービスを含む料金情報」などに改める必要があります。"
+      ],
+      "readability": {
+        "avg_paragraph": 93.7,
+        "avg_sentence": 41.2,
+        "long_share": 0.08,
+        "max_paragraph": 138,
+        "paragraphs": 11,
+        "sentences": 25
+      },
+      "score": 95,
+      "source": "meta-newsroom",
+      "title": "Muse Is Now Available in Australia: The World’s First Personal AI Agent Built fo",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（SWEAT・VM）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-17T18:12:50.001288+00:00",
+      "attempt": 1,
+      "id": "2f7ff3d5ef40d974",
+      "kind": "ai",
+      "model": "strike:本文 1 文",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 93.7,
+        "avg_sentence": 41.2,
+        "long_share": 0.08,
+        "max_paragraph": 138,
+        "paragraphs": 11,
+        "sentences": 25
+      },
+      "score": 100,
+      "source": "meta-newsroom",
+      "title": "Muse Is Now Available in Australia: The World’s First Personal AI Agent Built fo",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（SWEAT・VM）"
       ]
     }
   ],
