@@ -7001,6 +7001,19 @@
       "slug": "gemini-4-carbon-ai-gateway-half-price",
       "url": "https://vercel.com/changelog/gemini-4-carbon-now-available-on-ai-gateway"
     },
+    "250be2a7df9d8a1b": {
+      "at": "2026-11-17T00:22:55.151578+00:00",
+      "costUsd": 0.0016,
+      "intent": "breaking",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "score": 92,
+      "section": "public",
+      "slug": "liplus-telforce-unauthorized-access",
+      "url": "https://liplus-h.com/news/telforce-notice/"
+    },
     "2592c29864b9601b": {
       "at": "2026-11-09T09:21:44.662876+00:00",
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・暮らしの交通/天気/値上げ/障害/給付/発売・日本のスポーツのどれでもない）",
@@ -18426,14 +18439,6 @@
       "skipped": true,
       "url": "https://www.docomo.ne.jp/info/notice/page/261105_03_m.html"
     },
-    "d57ad97ed73f8c5d": {
-      "at": "2026-11-03T00:20:50.186473+00:00",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "score": 100,
-      "section": "public",
-      "slug": "disaster-agency-launch-2026",
-      "url": "https://www.kantei.go.jp/jp/105/actions/202611/02hossokushiki.html"
-    },
     "d59119d08c91014e": {
       "at": "2026-11-11T18:51:40.236249+00:00",
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・暮らしの交通/天気/値上げ/障害/給付/発売・日本のスポーツのどれでもない）",
@@ -23363,35 +23368,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-14T16:02:32.209706+00:00",
-      "attempt": 1,
-      "id": "b7fb67058330294c",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "本文末尾の「判定: 提供状況=available 価格=無料」→ 元記事に価格の記載はなく、「無料」「提供状況=available」は裏付けのない創作である。",
-        "「対応しているカーナビを使っているドライバーは」（かんたん版）→ 対応機種の条件は元記事にない。本文では対応機種は不明と書いており、矛盾している。",
-        "「仕事・お金にどう活かせる？」→ 影響を受ける対象（ビジネスパーソン・物流事業者）は元記事に無い推測だが、一般的な助言の範囲内で軽微。"
-      ],
-      "readability": {
-        "avg_paragraph": 146.7,
-        "avg_sentence": 57.1,
-        "long_share": 0.278,
-        "max_paragraph": 234,
-        "paragraphs": 7,
-        "sentences": 18
-      },
-      "score": 62,
-      "source": "tokyo-metro",
-      "title": "アンダーパスの冠水事故防止に向けた取組を強化",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（KB）",
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
-        "読みやすさ: 文が長い（1文の平均 57.1字・60字超の文が 28% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-14T16:03:16.981432+00:00",
@@ -30991,6 +30967,30 @@
       "score": 92,
       "source": "fast",
       "title": "阪急阪神ホテルズの情報流出に関するお知らせ"
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-17T00:22:41.269224+00:00",
+      "attempt": 1,
+      "id": "250be2a7df9d8a1b",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 75.5,
+        "avg_sentence": 39.5,
+        "long_share": 0.143,
+        "max_paragraph": 133,
+        "paragraphs": 11,
+        "sentences": 21
+      },
+      "score": 92,
+      "source": "fast",
+      "title": "不正アクセスによる個人情報漏えいのおそれに関するお知らせとお詫び（Widsley社提供 架電システム「Telforce」） ｜ ニュース｜ LiPLUSホールデ",
+      "warnings": [
+        "見出しが47字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（SMS）"
+      ]
     }
   ],
   "short_text_retry": {},
