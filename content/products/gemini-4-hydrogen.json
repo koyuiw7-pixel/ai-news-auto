@@ -6,7 +6,7 @@
   "companyName": "Google",
   "category": "AIモデル",
   "overview": {
-    "text": "Gemini 4 Hydrogenは、速さと効率を重視したGoogleのAIモデルです。日常のコーディングやエージェント作業向けに作られており、2026年11月12日に発表されました。",
+    "text": "Gemini 4 Hydrogenは、速さと効率を重視したAIモデルです。Googleが開発し、2026年11月12日に発表・提供が始まりました。",
     "sources": [
       "gemini-hydrogen-robotics-plugin",
       "gemini-4-hydrogen-launch-pricing",
@@ -16,41 +16,46 @@
   "facts": [
     {
       "label": "料金",
-      "value": "入力100万トークン1.5ドル、出力7.5ドル",
+      "value": "入力100万トークン1.5ドル",
       "sources": [
-        "gemini-4-hydrogen-launch-pricing"
+        "gemini-4-hydrogen-launch-pricing",
+        "gemini-4-hydrogen-developers"
       ]
     },
     {
       "label": "提供開始",
       "value": "2026年11月12日",
       "sources": [
-        "gemini-4-hydrogen-launch-pricing"
+        "gemini-4-hydrogen-launch-pricing",
+        "gemini-4-hydrogen-developers"
       ]
     },
     {
       "label": "向いている人",
-      "value": "プログラムを書く開発者",
+      "value": "ロボット開発者やプログラマー",
       "sources": [
+        "gemini-hydrogen-robotics-plugin",
         "gemini-4-hydrogen-developers"
       ]
     }
   ],
   "capabilities": [
     {
-      "text": "標準の「高」設定では、Gemini 3.8 Flashより2.5倍速くタスクを完了します。",
+      "text": "日常のコーディングやエージェント型の作業を速くこなせます。",
       "sources": [
-        "gemini-4-hydrogen-launch-pricing"
-      ]
-    },
-    {
-      "text": "思考レベルを4段階から選んで、日常のコーディングやデバッグを行えます。",
-      "sources": [
+        "gemini-4-hydrogen-launch-pricing",
         "gemini-4-hydrogen-developers"
       ]
     },
     {
-      "text": "ロボット開発向けのRobotics追加機能と組み合わせ、ロボットの設定から制御までを支援します。",
+      "text": "思考レベルを4段階から選ぶことができます。",
+      "sources": [
+        "gemini-4-hydrogen-launch-pricing",
+        "gemini-4-hydrogen-developers"
+      ]
+    },
+    {
+      "text": "ロボットの設定から制御までをカメラ映像と会話で支援します。",
       "sources": [
         "gemini-hydrogen-robotics-plugin"
       ]
@@ -58,37 +63,47 @@
   ],
   "pricing": [
     {
-      "text": "API料金は、100万トークンあたり入力が1.5ドル、出力が7.5ドルです。",
+      "text": "API料金は100万トークンあたり入力が1.5ドル、出力が7.5ドルです。",
       "sources": [
-        "gemini-4-hydrogen-launch-pricing"
+        "gemini-4-hydrogen-launch-pricing",
+        "gemini-4-hydrogen-developers"
       ]
     }
   ],
-  "japan": [],
+  "japan": [
+    {
+      "text": "Gemini APIは日本で使えます。",
+      "sources": [
+        "gemini-4-hydrogen-developers"
+      ]
+    }
+  ],
   "howto": [
     {
-      "text": "Gemini APIでは、Google AI StudioやAndroid Studioで利用できます。",
+      "text": "Google AI StudioやAndroid StudioのGemini APIで利用できます。",
       "sources": [
         "gemini-4-hydrogen-developers"
       ]
     },
     {
-      "text": "Antigravityで使うには、Google AI ProかUltraの契約が必要です。",
+      "text": "Google AntigravityではGoogle AI ProかUltraの契約が必要です。",
       "sources": [
-        "gemini-hydrogen-robotics-plugin"
+        "gemini-hydrogen-robotics-plugin",
+        "gemini-4-hydrogen-launch-pricing",
+        "gemini-4-hydrogen-developers"
       ]
     }
   ],
   "differences": [
     {
-      "text": "Hydrogenは、上位モデルのCarbonやArgonに比べて速さと効率を重視したモデルです。",
+      "text": "上位モデルのCarbonやArgonに比べ、速さと効率を重視したモデルです。",
       "sources": [
-        "gemini-4-hydrogen-launch-pricing",
-        "gemini-4-hydrogen-developers"
+        "gemini-hydrogen-robotics-plugin",
+        "gemini-4-hydrogen-launch-pricing"
       ]
     },
     {
-      "text": "API料金は、Argonの入力2ドル・出力10ドルよりも安価に設定されています。",
+      "text": "Argonに比べて入力・出力ともにトークンあたりの費用が安くなっています。",
       "sources": [
         "gemini-4-hydrogen-launch-pricing"
       ]
@@ -97,22 +112,16 @@
   "faq": [
     {
       "q": "いつから使えますか？",
-      "a": "2026年11月12日から提供が始まっています。",
+      "a": "2026年11月12日から全世界で順次提供が始まっています。",
       "sources": [
         "gemini-4-hydrogen-launch-pricing"
       ]
     },
     {
-      "q": "どのような用途に向いていますか？",
-      "a": "日常のコーディングや、AIが自分で手順を進めるエージェント作業に向いています。",
+      "q": "どんな作業に向いていますか？",
+      "a": "日常のコーディングや、エージェントを使った作業に向いています。",
       "sources": [
-        "gemini-4-hydrogen-developers"
-      ]
-    },
-    {
-      "q": "Antigravityではどのプランで使えますか？",
-      "a": "有料のGoogle AI ProかUltraの契約者向けに提供されています。",
-      "sources": [
+        "gemini-4-hydrogen-launch-pricing",
         "gemini-4-hydrogen-developers"
       ]
     },
@@ -120,6 +129,16 @@
       "q": "思考レベルは変更できますか？",
       "a": "4段階から選ぶことができます。",
       "sources": [
+        "gemini-4-hydrogen-launch-pricing",
+        "gemini-4-hydrogen-developers"
+      ]
+    },
+    {
+      "q": "Antigravityではどのプランで使えますか？",
+      "a": "有料のGoogle AI ProかUltraの契約者向けです。",
+      "sources": [
+        "gemini-hydrogen-robotics-plugin",
+        "gemini-4-hydrogen-launch-pricing",
         "gemini-4-hydrogen-developers"
       ]
     }
@@ -128,7 +147,7 @@
     {
       "date": "2026-11-12",
       "slug": "gemini-4-hydrogen-developers",
-      "event": "Gemini 4 Hydrogenを開発者向けに公開"
+      "event": "Gemini 4 Hydrogenを発表"
     },
     {
       "date": "2026-11-13",
@@ -138,7 +157,7 @@
     {
       "date": "2026-11-18",
       "slug": "gemini-hydrogen-robotics-plugin",
-      "event": "ロボット開発向けのRobotics追加機能を発表"
+      "event": "ロボット開発向けRobotics追加機能を提供"
     }
   ],
   "related": [
@@ -157,9 +176,9 @@
     "gemini-4-hydrogen-launch-pricing",
     "gemini-4-hydrogen-developers"
   ],
-  "signature": "ef6745ef2f096ec9",
-  "primarySignature": "ef6745ef2f096ec9",
+  "signature": "8d6705aca73a7859",
+  "primarySignature": "8d6705aca73a7859",
   "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-11-17T19:02:13+00:00",
-  "updatedAt": "2026-11-17T19:02:13+00:00"
+  "updatedAt": "2026-11-17T19:39:12+00:00"
 }
