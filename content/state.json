@@ -418,7 +418,6 @@
     "4fce87b64181260a04ef10e30e292f1f547162dc": 2,
     "4fe462e5a3a5720a05ac62c6f63aae14d33a4c63": 2,
     "5002210267c8ea19c7682a9f5c50481da57fdf2a": 2,
-    "503d13ad7458a3d97f939451ffe9a929907ef77c": 1,
     "505f8180b97bfbf5f784a03ec4612dfe3b443aef": 2,
     "50bc83c2df6791ec13f65193642c5657336ee187": 2,
     "50ed98d89f7218ff269faca4483a09f41cfb284b": 2,
@@ -465,6 +464,7 @@
     "5b4c1cab0fa6e72c64de5bff44d09afff748fce0": 2,
     "5b793a1c6a819d5d1b7468991d3e992a395936b8": 2,
     "5ba1ddb90cf5d72aba6b01ad12c8268da6988801": 2,
+    "5ba8a8b1dd7df3127ffb718f272977cefb57a5dc": 1,
     "5bd28d756f8d1cb9895862bda2d857dccc65c419": 2,
     "5bda8c237c5b5677623d4f4d5527f5a0398e95eb": 2,
     "5be4e594ff2f80a66463b6a5ea67e30d8743c3d2": 2,
@@ -9836,6 +9836,17 @@
       "section": "business",
       "slug": "rakuten-insight-ai-shopping-survey-2026",
       "url": "https://corp.rakuten.co.jp/news/press/2026/1105_03.html"
+    },
+    "503d13ad7458a3d97f939451ffe9a929907ef77c": {
+      "at": "2026-11-17T09:31:32.120875+00:00",
+      "kind": "trend",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "pressReport": true,
+      "score": 85,
+      "slug": "atami-fuji-kyushu-basho-day10",
+      "trendKeyword": "熱海富士",
+      "trendLane": true,
+      "url": "https://www.nikkansports.com/m/battle/sumo/news/202611170000267_m.html?mode=all"
     },
     "507181e993a841c9": {
       "at": "2026-11-06T05:51:04.527880+00:00",
@@ -23752,29 +23763,6 @@
   "quality_log": [
     {
       "accepted": true,
-      "at": "2026-11-14T22:50:55.951773+00:00",
-      "attempt": 1,
-      "id": "ccbcffa54c141694",
-      "kind": "broad",
-      "model": "claude:sonnet",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 90.8,
-        "avg_sentence": 43.6,
-        "long_share": 0.16,
-        "max_paragraph": 168,
-        "paragraphs": 12,
-        "sentences": 25
-      },
-      "score": 93,
-      "source": "fast",
-      "title": "当社のお客さま専用マイページ「MyAXA」およびロードサービス委託先への不正アクセスに伴うお客さまの情報漏洩に関するお詫びとお知らせ（第2報）｜自動車保険・バイ",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（SUBARU）"
-      ]
-    },
-    {
-      "accepted": true,
       "at": "2026-11-14T23:07:07.425538+00:00",
       "attempt": 1,
       "id": "84cf43cb732b6f7e",
@@ -31308,6 +31296,29 @@
       "title": "委託先メール配信サービスへの不正アクセスによる個人情報漏洩に関するお詫びとお知らせ | 株式会社ロココ",
       "warnings": [
         "初めて出たところで言い換えていない略語（SMS）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-17T09:31:32.103285+00:00",
+      "attempt": 2,
+      "id": "503d13ad7458a3d97f939451ffe9a929907ef77c",
+      "kind": "trend",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 79.0,
+        "avg_sentence": 29.6,
+        "long_share": 0.0,
+        "max_paragraph": 123,
+        "paragraphs": 6,
+        "sentences": 16
+      },
+      "score": 85,
+      "source": "trends",
+      "title": "熱海富士",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（TBS・NEWS・DIG）"
       ]
     }
   ],
