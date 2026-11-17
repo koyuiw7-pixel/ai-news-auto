@@ -1289,7 +1289,7 @@
     }
   },
   "major_tries": {
-    "96ff71f54c6e7b4d": 2
+    "96ff71f54c6e7b4d": 3
   },
   "pi_reopened": {
     "25d126f469e81252": "2026-11-15T17:50:53.256695+00:00",
@@ -24088,59 +24088,6 @@
   },
   "quality_log": [
     {
-      "accepted": true,
-      "at": "2026-11-15T16:36:10.114700+00:00",
-      "attempt": 0,
-      "id": "43bbd8684f7d32bd",
-      "kind": "broad",
-      "model": "",
-      "problems": [
-        "読みやすさ基準外のまま受理: 書き直し後の確認に不合格: 本文「日常の出社や外出は、通常通り続けて問題ありません。」→ 元記事にない安全性の判断で、公式情報に基づく断定として書かれている。; 本文「入院患者数は172人に減少」「新規入院患者数は、第45週で172人」→ 元資料の入院患者数の表は抽出が乱れており、172人"
-      ],
-      "readability": {
-        "avg_paragraph": 92.6,
-        "avg_sentence": 66.1,
-        "long_share": 0.571,
-        "max_paragraph": 198,
-        "paragraphs": 10,
-        "sentences": 14
-      },
-      "score": 82,
-      "source": "mhlw",
-      "title": "新型コロナウイルス感染症に関する報道発表資料を更新しました",
-      "warnings": [
-        "見出しの書き方: 区切りの全角空白が2つ以上（補足は1つだけ）",
-        "見出しの書き方: 発表文の題名の言い直し（「〇〇が△△を発表」）。読者にとって何が変わるか（だれの・何が・いつから・いくら）を書く",
-        "初めて出たところで言い換えていない略語（COVID）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-15T16:53:25.095403+00:00",
-      "attempt": 1,
-      "id": "72013d8254e78716",
-      "kind": "broad",
-      "model": "gemini-3.5-flash",
-      "problems": [
-        "元記事・確認済みの事実の束・計算済みの数字のどれにも無い数字がある（「1機関 | **認定率 25%」、「0機関から230機関へと2.3倍」）。元記事か束の数字に直すか、その文を削る。簡単な計算（かけ算・足し算など）をするなら、確かめた数字だけを使って式を書き「（サイソク編集部の計算）」と添える"
-      ],
-      "readability": {
-        "avg_paragraph": 98.5,
-        "avg_sentence": 53.3,
-        "long_share": 0.417,
-        "max_paragraph": 163,
-        "paragraphs": 13,
-        "sentences": 24
-      },
-      "score": null,
-      "source": "mext",
-      "title": "認定日本語教育機関の認定結果（令和8年度1回目）について",
-      "warnings": [
-        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "読みやすさ: 文が長い（1文の平均 53.3字・60字超の文が 42% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
       "accepted": false,
       "at": "2026-11-15T16:55:33.267779+00:00",
       "attempt": 1,
@@ -31577,6 +31524,47 @@
       "title": "OpenAI’s GPT-6.2 Astra and GPT-6.2 Sol now available",
       "warnings": [
         "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-17T20:46:26.158419+00:00",
+      "attempt": 1,
+      "id": "96ff71f54c6e7b4d",
+      "kind": "update",
+      "model": "openai-api:gpt-6.1-terra",
+      "problems": [
+        "「既報のChatGPT WorkやCodexに加え」→ 元記事と確認済みの文脈にはChatGPT WorkやCodexについての記載がなく、「既報」とする根拠も確認できません。"
+      ],
+      "score": 88,
+      "source": "github-changelog",
+      "title": "OpenAI’s GPT-6.2 Astra and GPT-6.2 Sol now available"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-17T20:47:04.187190+00:00",
+      "attempt": 1,
+      "id": "96ff71f54c6e7b4d",
+      "kind": "ai",
+      "model": "openai-api:gpt-6.1-terra",
+      "problems": [
+        "題名で料金・価格を約束しているのに、本文に金額（円・ドル・無料など）が無い。元記事の金額を書くか、題名から料金の話を外す",
+        "元記事・確認済みの資料に無い画面の手順・メニュー名・ボタン名がある（「モデル選択画面」）。資料にある道順だけを書くか、「公式ヘルプの手順を確認してください」と書く"
+      ],
+      "readability": {
+        "avg_paragraph": 74.1,
+        "avg_sentence": 35.7,
+        "long_share": 0.0,
+        "max_paragraph": 116,
+        "paragraphs": 13,
+        "sentences": 27
+      },
+      "score": null,
+      "source": "github-changelog",
+      "title": "OpenAI’s GPT-6.2 Astra and GPT-6.2 Sol now available",
+      "warnings": [
+        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（CLI）"
       ]
     }
   ],
