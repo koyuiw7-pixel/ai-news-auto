@@ -80,9 +80,8 @@
     }
   ],
   "todayActions": [
-    "MTGの個別連絡が届くまで待ち、届いた連絡はMTG公式サイトのお知らせと照らして確かめる",
-    "MTGをかたる不審な電話・メール・LINEメッセージが来たら、記載のリンクは開かない",
-    "MTG公式サイトのお知らせで、問い合わせ窓口の掲載を確認する"
+    "MTGのお知らせで、問い合わせ窓口の掲載が出ているか確かめる",
+    "届いた連絡は、MTG公式サイトのお知らせと照らして確かめてから動く"
   ],
   "relatedSlugs": [
     "lifull-homes-line-comsbi-leak"
@@ -131,5 +130,109 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/mtg-style-shop-line-data-leak-figure-046ecde0.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "流出したのは「LINEユーザーID」で、友だち検索に使う「LINE ID」とは異なる内部的な識別子です。",
+      "source": "https://www.mtg.gr.jp/news/detail/2026/11/article_2682.html"
+    },
+    {
+      "text": "新たに知らせる事項が分かった場合、MTGはウェブサイト等を通じて「速やかに」案内するとしています。",
+      "source": "https://www.mtg.gr.jp/news/detail/2026/11/article_2682.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "MTG News（お知らせ）",
+      "url": "https://www.mtg.gr.jp/news/",
+      "source": "https://www.mtg.gr.jp/news/detail/2026/11/article_2682.html",
+      "howTo": [
+        "MTG News",
+        "お知らせリリース"
+      ],
+      "note": "問い合わせ窓口は準備中で、準備ができしだい掲載すると書かれています。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "MTGのお知らせで、問い合わせ窓口の掲載が出ているか確かめる",
+      "source": "https://www.mtg.gr.jp/news/detail/2026/11/article_2682.html",
+      "steps": [
+        "MTG NEWSトップを開く",
+        "お知らせリリースの一覧を見る",
+        "問い合わせ窓口の掲載を確認する"
+      ],
+      "url": "https://www.mtg.gr.jp/news/"
+    },
+    {
+      "action": "届いた連絡は、MTG公式サイトのお知らせと照らして確かめてから動く",
+      "source": "https://www.mtg.gr.jp/news/detail/2026/11/article_2682.html",
+      "steps": [
+        "連絡の送信元と内容を控える",
+        "MTG NEWSのお知らせを開く",
+        "同じ内容が出ているか確かめる"
+      ],
+      "url": "https://www.mtg.gr.jp/news/"
+    }
+  ],
+  "cause": {
+    "text": "株式会社ソニックムーブの基盤システム「COMSBI（SaaS版）」への不正アクセスにより、お客様情報が漏えいした可能性がある、とMTGは報告を受けています。調査は継続中です。",
+    "status": "stated",
+    "source": "https://www.mtg.gr.jp/news/detail/2026/11/article_2682.html"
+  },
+  "worries": [
+    {
+      "q": "クレジットカードの情報も、一緒に漏れてしまったのでしょうか？",
+      "a": "パスワードとクレジットカード情報は含まれていないと、MTGは発表しています。今回の漏えいの対象は、会員登録情報と友だち情報です。",
+      "source": "https://www.mtg.gr.jp/news/detail/2026/11/article_2682.html",
+      "action": "カード番号などを聞かれる連絡は、MTG公式サイトのお知らせと照らして確かめてから応じる"
+    },
+    {
+      "q": "LINEアカウントを乗っ取られる心配はある？",
+      "a": "LINEアカウントの乗っ取りや、不明なアカウントからの友だち追加・メッセージ送信の恐れはないと、MTGは発表しています。本件による不正利用の被害も確認されていないとしています。",
+      "source": "https://www.mtg.gr.jp/news/detail/2026/11/article_2682.html",
+      "action": "MTGをかたる連絡はリンクを開かず、公式サイトをブックマークから開いて確かめる",
+      "actionSource": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "actionGeneral": true
+    },
+    {
+      "q": "知らない人から不審な電話が来たら、どうすればいい？",
+      "a": "特殊詐欺では「犯人と話をしない」ことが大切だとされています。各電話事業者は、番号表示サービスや非通知拒否サービスを提供しています。",
+      "source": "https://www.npa.go.jp/bureau/safetylife/sos47/case/",
+      "action": "知らない番号からの電話には出ず、電話会社の番号表示や非通知拒否の設定を使う",
+      "general": true
+    },
+    {
+      "q": "メールのリンクを押して入力してしまったら？",
+      "a": "フィッシングサイトにIDやパスワードを入力してしまったら、そのIDやパスワードを使っている全てのサービスで、速やかに変更してください。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "action": "同じIDやパスワードを使い回している全サービスで、パスワードを速やかに変える",
+      "general": true
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "個別の連絡が届かないとき、どうすればいい？",
+      "situation": "まだ連絡が来ていない",
+      "recommend": "急がず、窓口の掲載を待つのがよい",
+      "reason": "個別連絡は、個人情報の漏えいが確認された人に届く仕組みです。窓口は準備ができしだい掲載されるとMTGは書いており、問い合わせはそれまで待つ形になります。",
+      "source": "https://www.mtg.gr.jp/news/detail/2026/11/article_2682.html"
+    },
+    {
+      "question": "個別の連絡が届かないとき、どうすればいい？",
+      "situation": "個別の連絡が届いた",
+      "recommend": "届いた内容をMTG公式サイトのお知らせと照らして確かめる",
+      "reason": "公式サイトのお知らせと照らせば、連絡が本物かを判断する材料になります。ただし、個人情報が含まれるかどうかは、MTGの個別連絡で知らされるとされています。",
+      "source": "https://www.mtg.gr.jp/news/detail/2026/11/article_2682.html"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "流れたのは友だち検索用のLINE IDとは別のID",
+    "cause": "なぜ漏れたのか、いま分かっていること",
+    "steps": "連絡が届くまでにできること",
+    "desk": "問い合わせ窓口はまだ準備中",
+    "worries": "カード情報やLINEは大丈夫？",
+    "guide": "連絡が届いたとき、届かないときの動き方"
+  },
+  "depthAt": "2026-11-17T07:46:46+00:00"
 }

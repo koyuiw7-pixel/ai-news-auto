@@ -92,9 +92,8 @@
     }
   ],
   "todayActions": [
-    "自社のCOBOLシステムで、設計書が古く仕様を把握している担当者が限られる箇所を洗い出す",
-    "直近の改修で、影響調査とテストにかかった工数を整理して、問い合わせ時に示せるようにする",
-    "費用や対象条件は、NTTデータ AI事業本部 AIテクノロジー事業部のメール窓口に確認する"
+    "自社の改修で影響調査とテストにかかった工数を書き出し、問い合わせ時に示せるようにする",
+    "設計書が古い箇所と、仕様を知る担当者が限られる箇所を一覧にして洗い出す"
   ],
   "relatedSlugs": [
     "sompo-systems-knowledge-graph-ai-maintenance"
@@ -180,5 +179,92 @@
     ],
     "ar": 1.9756,
     "src": "https://ai-tech-express.jp/img/ntt-data-clean-modernization-cobol-java-db808494.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "COBOLを新たに調達する場合、ベンダーのCOBOL製品は他の言語やツールより高額になることも多いとされています。",
+      "source": "https://dx.ipa.go.jp/modernization_cobol"
+    },
+    {
+      "text": "COBOLのスキルは専任から兼任へ変わりつつあり、AIの力を借りて複数の言語を扱う技術者が保守を続ける流れが紹介されています。",
+      "source": "https://dx.ipa.go.jp/modernization_cobol"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "NTTデータ AI事業本部 AIテクノロジー事業部（製品・サービスに関する問い合わせ）",
+      "url": "https://www.nttdata.com/global/ja/news/release/2026/111700",
+      "source": "https://www.nttdata.com/global/ja/news/release/2026/111700",
+      "note": "担当は岡田、坂田、師。E-mail（adm_consul@kits.nttdata.co.jp）で受け付けています。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "自社の改修で影響調査とテストにかかった工数を書き出し、問い合わせ時に示せるようにする",
+      "source": "https://www.nttdata.com/global/ja/news/release/2026/111700",
+      "steps": [
+        "直近の改修ごとに影響調査の時間を書く",
+        "テストにかかった工数を別に書く",
+        "改修履歴として問い合わせ時に持参する"
+      ]
+    },
+    {
+      "action": "設計書が古い箇所と、仕様を知る担当者が限られる箇所を一覧にして洗い出す",
+      "source": "https://www.nttdata.com/global/ja/news/release/2026/111700",
+      "steps": [
+        "設計書が古くなっている箇所を書き出す",
+        "仕様を説明できる担当者が一人かを確認する",
+        "その箇所を問い合わせ時の資料にする"
+      ]
+    }
+  ],
+  "cause": {
+    "text": "多くの企業では、COBOLなどの基幹システムが長年の改修で複雑化し、仕様を把握する技術者の減少も重なって、保守・改修に多くの時間と費用がかかっています。",
+    "status": "background",
+    "source": "https://www.nttdata.com/global/ja/news/release/2026/111700"
+  },
+  "worries": [
+    {
+      "q": "うちの会社の基幹システムでも対象になる？",
+      "a": "主な対象は、金融機関や官公庁など大規模な基幹システムを長年運用する組織です。COBOLをはじめさまざまなプログラミング言語で作られた既存プログラムが対象とされています。",
+      "source": "https://www.nttdata.com/global/ja/news/release/2026/111700",
+      "action": "自社の基幹システムが大規模で、長年の改修を重ねて複雑になっていないかを担当者と確かめる"
+    },
+    {
+      "q": "工数が約5割減るというのは本当？",
+      "a": "約5割減は、過去の大規模COBOL案件をもとにしたNTTデータの試算です。刷新せず構造をそのまま保守する場合と比べたもので、実際の効果は対象システムの特性や改修内容で異なります。",
+      "source": "https://www.nttdata.com/global/ja/news/release/2026/111700",
+      "action": "直近の改修で影響調査とテストにかかった工数を書き出し、自社の改修で当てはまるかを問い合わせ時に確かめる"
+    },
+    {
+      "q": "設計書が古くても、作り直しを任せられる？",
+      "a": "生成AIが既存のプログラムや設計書から業務仕様と処理構造を復元し、文書にします。設計書が古く仕様を知る技術者に頼っていたシステムでも、処理の内容と目的を説明できる状態になるとされています。",
+      "source": "https://www.nttdata.com/global/ja/news/release/2026/111700",
+      "action": "設計書が古い箇所と、仕様を知る担当者が限られる箇所を一覧にして、問い合わせ時に示せるようにする"
+    },
+    {
+      "q": "生成AIが作ったものの品質は大丈夫？",
+      "a": "生成AIが作った設計やプログラムは、別のAIエージェントがコードの複雑さや機能間の依存関係を評価し、保守しにくい箇所を改善してから提供されます。",
+      "source": "https://www.nttdata.com/global/ja/news/release/2026/111700",
+      "action": "問い合わせの際に、点検の手順と改善後に何を確かめるのかを具体的に聞いて記録しておく"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "今すぐ問い合わせて検討を始めるべきか？",
+      "situation": "保守の負担が重く、システムが大規模",
+      "recommend": "急がなくてよい。まず現状を整理してから問い合わせる",
+      "reason": "この手法で解決するのは、改修の影響範囲を限定して保守の工数を減らすことです。約5割減や約4割短縮はNTTデータの試算なので、価格や導入の範囲は問い合わせで確かめる必要があります。",
+      "source": "https://www.nttdata.com/global/ja/news/release/2026/111700"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "工数が減る数字の前提を先に確かめる",
+    "cause": "なぜ今、刷新が必要とされているのか",
+    "steps": "今日、自社で確かめられること",
+    "desk": "問い合わせはどこに送ればいい？",
+    "worries": "規模や品質、工数の不安を先に確かめる",
+    "guide": "今すぐ問い合わせるか、迷ったときの決め方"
+  },
+  "depthAt": "2026-11-17T07:46:05+00:00"
 }
