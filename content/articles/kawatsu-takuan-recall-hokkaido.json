@@ -59,12 +59,12 @@
   "videoTitle": "河鶴「たくあん一本漬」を回収　北海道で261ケース、2026年11月",
   "publishedAt": "2026-11-17T00:58:36.612338+00:00",
   "generatedAt": "2026-11-17T00:59:13.109641+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/kawatsu-takuan-recall-hokkaido-figure-57e95367.jpg",
   "model": "anthropic-api:claude-haiku-5-5",
   "affiliates": [],
   "newsType": "product",
   "todayActions": [
-    "賞味期限が2027年1月19日か、JANコード4972558019024かを確かめる",
+    "賞味期限が2027.01.19か、JANコード4972558019024かを確かめる",
     "対象の商品なら食べずに、買った販売店舗へ持っていく"
   ],
   "writer": "muse",
@@ -91,5 +91,92 @@
   "titleStyle": "2026-11-03",
   "searchTitle": "たくあん一本漬の回収、対象は？　賞味期限2027年1月19日",
   "layout": "noir",
-  "summaryLine": "たくあん一本漬が甘味料の使用基準を超え、北海道のイオン北海道とダイゼンで回収されています。"
+  "summaryLine": "たくあん一本漬が甘味料の使用基準を超え、北海道のイオン北海道とダイゼンで回収されています。",
+  "insight": [
+    {
+      "text": "健康への危険性は「CLASSⅢ」。ページには、添加物の使用基準違反食品がこの区分の例として挙がっている",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602834"
+    },
+    {
+      "text": "回収は2026-10-31に始まり、届出年月日は2026-11-10、公開年月日は2026-11-13。届出より前に回収が始まっていた",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602834"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "賞味期限が2027.01.19か、JANコード4972558019024かを確かめる",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602834",
+      "steps": [
+        "JANコード 4972558019024を確かめる",
+        "賞味期限 2027.01.19を確かめる",
+        "どちらかが対象の数字と一致すれば対象の商品"
+      ],
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602834"
+    },
+    {
+      "action": "対象の商品なら食べずに、買った販売店舗へ持っていく",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602834",
+      "steps": [
+        "食べずに取り分ける",
+        "買った販売店舗へ持っていく",
+        "回収方法は販売店舗での回収です"
+      ],
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602834"
+    }
+  ],
+  "cause": {
+    "text": "輸入時の検疫検査において、同ロットで甘味料サッカリンナトリウムの使用基準超過が判明したため。基準値は0.20g/kg未満、検出値は0.20g/kgです。食品衛生法第20条に該当するとされています。",
+    "status": "stated",
+    "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602834"
+  },
+  "worries": [
+    {
+      "q": "北海道以外で買った場合も対象になりますか？",
+      "a": "届出の販売地域は北海道エリアで、販売先はダイゼンとイオン北海道だけです。販売数はダイゼン81ケース、イオン北海道180ケースです。ほかの地域の販売先は届出に含まれていません。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602834",
+      "action": "買った店の名前が「ダイゼン」か「イオン北海道」かを、まず確かめておく。"
+    },
+    {
+      "q": "食べてしまったら、体に影響はありますか？",
+      "a": "届出では健康被害の報告はありません。検出値で試算すると、体重50kgの人のADIは190mg/日で、生涯毎日約1kg食べ続けるとADIに達する水準とされています。通常の食生活では悪影響の可能性は極めて低いと考えられています。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602834",
+      "action": "食べた量が、このページの「ADI」の目安（体重50kgなら190mg/日）と比べてどうかを確かめる。"
+    },
+    {
+      "q": "なぜ回収の対象になったのですか？",
+      "a": "輸入時の検疫検査で、同じロットから甘味料のサッカリンナトリウムが使用基準を超えて検出されたためです。食品衛生法第20条に該当するとされています。回収は2026-10-31に始まりました。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602834",
+      "action": "パッケージの「賞味期限」と「JANコード」を、対象の数字と照らし合わせて確かめる。"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "回収は届出より前の10月31日に始まっていた",
+    "cause": "なぜ回収されたのか、分かっていること",
+    "steps": "買ったかどうか、まず確かめる手順",
+    "worries": "北海道で買った？食べたら体は大丈夫？"
+  },
+  "depthAt": "2026-11-17T01:14:32+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "「たくあん一本漬」261ケース回収",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-17T01:15:36+00:00"
+  },
+  "imageFocus": {
+    "x": 0.482,
+    "y": 0.414,
+    "box": [
+      0.044,
+      0.042,
+      0.919,
+      0.786
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/kawatsu-takuan-recall-hokkaido-figure-57e95367.jpg"
+  }
 }

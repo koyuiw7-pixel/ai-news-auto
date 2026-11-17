@@ -59,14 +59,13 @@
   "videoTitle": "ヨークベニマル「よりどり鍋具材（カニ入つみれ）」回収、インストアコード2401260603006、2026年",
   "publishedAt": "2026-11-17T00:56:55.880904+00:00",
   "generatedAt": "2026-11-17T00:57:41.613175+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/yorkbenimaru-kani-tsumire-recall-figure-fe91f31e.jpg",
   "model": "anthropic-api:claude-haiku-5-5",
   "affiliates": [],
   "newsType": "product",
   "todayActions": [
-    "11月12日12時から14時頃に新原店で鍋具材を買った覚えがあれば、レシートを確かめる",
-    "対象の商品は食べずに、新原店のサービスカウンターへ商品かレシートを持って申し出る",
-    "心配なときは、新原店（029-309-5025）に電話で確かめる"
+    "レシートの購入店と日時を確かめ、対象の5点と照らし合わせる",
+    "対象の商品は食べず、商品かレシートを持って新原店のサービスカウンターへ申し出る"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -89,5 +88,119 @@
   "qualityScore": 93,
   "detectedAt": "2026-11-17T00:58:19+00:00",
   "searchTitle": "ヨークベニマルの鍋具材、乳成分の表示欠落　対象は新原店1パック",
-  "layout": "noir"
+  "layout": "noir",
+  "insight": [
+    {
+      "text": "厚労省の分類では、アレルゲンの欠落はCLASSⅠ、名称だけの誤表示はCLASSⅢとされ、健康への危険性の程度が分けられています。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602926"
+    },
+    {
+      "text": "回収の周知は「販売店におけるお詫びお知らせPOP」と、店舗またはお客様相談室への電話連絡の方法だけと書かれています。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602926"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "ヨークベニマル新原店（回収担当）",
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602926",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602926",
+      "phone": "029-309-5025",
+      "note": "商品またはレシートをご持参のうえサービスカウンターまでお申し出ください。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "レシートの購入店と日時を確かめ、対象の5点と照らし合わせる",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602926",
+      "steps": [
+        "レシートの購入店が新原店か見る",
+        "購入日時が2026年11月12日12時～14時頃か見る",
+        "商品名・内容量・JANコードを対象と比べる"
+      ],
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602926"
+    },
+    {
+      "action": "対象の商品は食べず、商品かレシートを持って新原店のサービスカウンターへ申し出る",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602926",
+      "steps": [
+        "商品またはレシートを用意する",
+        "新原店のサービスカウンターへ行く",
+        "ご返金での対応を受ける"
+      ],
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602926"
+    }
+  ],
+  "cause": {
+    "text": "販売した「鯵ごぼうつみれ」に「カニ入つみれ」のラベルを貼り付けたことで、原材料・添加物・アレルゲン表示に間違いが起きました。そのため特定原材料「乳成分」の表示が欠落したと公表されています。回収理由は食品表示法違反です。",
+    "status": "stated",
+    "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602926"
+  },
+  "worries": [
+    {
+      "q": "自分が買った鍋具材が対象か、どうやって確かめる？",
+      "a": "対象は、商品名「よりどり鍋具材（カニ入つみれ）」、8個入り・黒トレーラップ包装、JANコード2401260603006、ヨークベニマル新原店で2026年11月12日(木)12時～14時頃に販売された1パック278円税込300円です。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602926",
+      "action": "レシートの購入店と日時、商品名・内容量を確かめ、対象の5点と照らし合わせる"
+    },
+    {
+      "q": "レシートがなくても返金してもらえる？",
+      "a": "商品かレシートのどちらかを持参し、サービスカウンターへ申し出ると、ご返金での対応とされています。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602926",
+      "action": "商品かレシートのどちらかを用意して、新原店のサービスカウンターへ申し出る"
+    },
+    {
+      "q": "すでに食べてしまった場合、体はどうなる？",
+      "a": "乳成分アレルギーのお客様が食べた場合、アレルギー反応を起こす恐れがあります。ただし11月16日13時時点で、健康被害についての申し出はないと公表されています。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602926",
+      "action": "すでに食べた場合は、体に異変がないかを確かめ、新原店に食べたことを伝える"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "乳アレルギーの人は、この鍋具材を食べてもいい？",
+      "situation": "乳アレルギーの人がいて、対象の商品が家にある",
+      "recommend": "食べずに、新原店へ申し出る",
+      "reason": "乳成分の表示が欠落しており、乳成分アレルギーのお客様が食べるとアレルギー反応を起こす恐れがあると書かれています。返金は商品かレシートを持って申し出る形です。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602926"
+    },
+    {
+      "question": "買った覚えのない鍋具材は回収の対象になる？",
+      "situation": "11月12日の新原店での購入か、分からない",
+      "recommend": "レシートや商品で、まず購入日時と店を確かめる",
+      "reason": "対象は販売先・販売日・商品名・内容量・JANコード・価格で示されています。当てはまらなければ、この回収の対象とは書かれていません。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602926"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "表示の欠落と、危険の程度の分類",
+    "cause": "なぜラベルの間違いが起きたのか",
+    "steps": "今日やること、レシートの見方",
+    "desk": "問い合わせ先は2か所",
+    "worries": "食べてしまった時と返金の心配",
+    "guide": "乳アレルギーの家族がいるときの決め方"
+  },
+  "depthAt": "2026-11-17T01:15:08+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "ヨークベニマルの鍋具材、乳成分の表示が欠落",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-17T01:15:47+00:00"
+  },
+  "imageFocus": {
+    "x": 0.498,
+    "y": 0.422,
+    "box": [
+      0.087,
+      0.071,
+      0.909,
+      0.774
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/yorkbenimaru-kani-tsumire-recall-figure-fe91f31e.jpg"
+  }
 }
