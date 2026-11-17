@@ -73,9 +73,9 @@
     }
   ],
   "todayActions": [
-    "Francfranc名義のメールやSMSのURLと添付ファイルは開かず、情報も入力しない",
-    "不安なときは、お客さまサポートセンター（0120-001-318、9:00〜21:00）に問い合わせる",
-    "退会を考えるなら、会員証（マイページ）の会員メニューで手続きできるか確認する"
+    "身に覚えのないメールやSMSは、リンクを開かず、情報も入力しない",
+    "不安なときは、公式の0120-001-318（9:00〜21:00）に電話で確認する",
+    "会員の退会やメールアドレス変更は、マイページの会員メニューから行う"
   ],
   "publicInterest": "breach",
   "incident": {
@@ -126,5 +126,111 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/francfranc-karte-data-leak-figure-02bf7a9d.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "問い合わせフォームは「＜お客さま用＞」と「＜報道機関・お取引様のお問い合わせ＞」の2つがあり、お客さまは前者を使う案内です。",
+      "source": "https://help.francfranc.com/hc/ja/articles/64371011900313-Francfranc%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E3%81%8A%E5%AE%A2%E3%81%95%E3%81%BE%E6%83%85%E5%A0%B1%E6%B5%81%E5%87%BA%E3%81%AE%E5%8F%AF%E8%83%BD%E6%80%A7%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "お客さまサポートセンター（アインズ＆トルペ・AYURA・Francfranc共通）",
+      "url": "https://help.francfranc.com/hc/ja/articles/64370034558105-%E4%BB%8A%E5%9B%9E%E3%81%AE%E4%BB%B6%E3%81%AB%E9%96%A2%E3%81%99%E3%82%8B-%E3%81%8A%E5%95%8F%E3%81%84%E5%90%88%E3%82%8F%E3%81%9B%E7%AA%93%E5%8F%A3%E3%82%92%E6%95%99%E3%81%88%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84",
+      "source": "https://help.francfranc.com/hc/ja/articles/64371011900313-Francfranc%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E3%81%8A%E5%AE%A2%E3%81%95%E3%81%BE%E6%83%85%E5%A0%B1%E6%B5%81%E5%87%BA%E3%81%AE%E5%8F%AF%E8%83%BD%E6%80%A7%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6",
+      "howTo": [
+        "ご利用ガイドTOP",
+        "Francfrancにおけるお客さま情報流出の可能性について",
+        "今回の件に関する、お問い合わせ窓口を教えてください"
+      ],
+      "phone": "0120-001-318",
+      "hours": "9:00〜21:00",
+      "note": "不審に思ったときは、メール等に記載された連絡先ではなく、こちらに問い合わせるよう案内されています。"
+    },
+    {
+      "name": "お客さま用 専用フォーム",
+      "url": "https://forms.cloud.microsoft/r/GtP2icxStM",
+      "source": "https://help.francfranc.com/hc/ja/articles/64371011900313-Francfranc%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E3%81%8A%E5%AE%A2%E3%81%95%E3%81%BE%E6%83%85%E5%A0%B1%E6%B5%81%E5%87%BA%E3%81%AE%E5%8F%AF%E8%83%BD%E6%80%A7%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6",
+      "note": "報道機関・お取引様のお問い合わせ用とは別のフォームです。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "身に覚えのないメールやSMSは、リンクを開かず、情報も入力しない",
+      "source": "https://help.francfranc.com/hc/ja/articles/64371011900313-Francfranc%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E3%81%8A%E5%AE%A2%E3%81%95%E3%81%BE%E6%83%85%E5%A0%B1%E6%B5%81%E5%87%BA%E3%81%AE%E5%8F%AF%E8%83%BD%E6%80%A7%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6",
+      "steps": [
+        "届いたメールやSMSを開く",
+        "記載のURLや添付ファイルは開かない",
+        "ID・パスワードや個人情報は入力しない"
+      ]
+    },
+    {
+      "action": "不安なときは、公式の0120-001-318（9:00〜21:00）に電話で確認する",
+      "source": "https://help.francfranc.com/hc/ja/articles/64371011900313-Francfranc%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E3%81%8A%E5%AE%A2%E3%81%95%E3%81%BE%E6%83%85%E5%A0%B1%E6%B5%81%E5%87%BA%E3%81%AE%E5%8F%AF%E8%83%BD%E6%80%A7%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6",
+      "steps": [
+        "メールに書かれた番号は使わない",
+        "0120-001-318にかける",
+        "受付は9:00〜21:00"
+      ],
+      "url": "https://help.francfranc.com/hc/ja/articles/64370034558105-%E4%BB%8A%E5%9B%9E%E3%81%AE%E4%BB%B6%E3%81%AB%E9%96%A2%E3%81%99%E3%82%8B-%E3%81%8A%E5%95%8F%E3%81%84%E5%90%88%E3%82%8F%E3%81%9B%E7%AA%93%E5%8F%A3%E3%82%92%E6%95%99%E3%81%88%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84"
+    },
+    {
+      "action": "会員の退会やメールアドレス変更は、マイページの会員メニューから行う",
+      "source": "https://help.francfranc.com/hc/ja/sections/64369202474649",
+      "steps": [
+        "会員証（マイページ）にログインする",
+        "会員メニューを開く",
+        "メールアドレス変更か退会を選ぶ"
+      ],
+      "url": "https://help.francfranc.com/hc/ja/articles/64369998360345-%E9%80%80%E4%BC%9A-%E5%80%8B%E4%BA%BA%E6%83%85%E5%A0%B1%E3%81%AE%E5%89%8A%E9%99%A4%E3%82%92%E3%81%97%E3%81%9F%E3%81%84%E3%81%A7%E3%81%99"
+    }
+  ],
+  "cause": {
+    "text": "購入内容の分析に使われる外部サービス「KARTE」に、第三者による不正アクセスがあったためと発表されています。Francfrancのサービス提供システムとは別の外部サービスで起きたとされています。",
+    "status": "stated",
+    "source": "https://help.francfranc.com/hc/ja/articles/64371011900313-Francfranc%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E3%81%8A%E5%AE%A2%E3%81%95%E3%81%BE%E6%83%85%E5%A0%B1%E6%B5%81%E5%87%BA%E3%81%AE%E5%8F%AF%E8%83%BD%E6%80%A7%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6"
+  },
+  "worries": [
+    {
+      "q": "クレジットカードの情報も流れてしまった？",
+      "a": "クレジットカード情報への影響は、現段階では流出が確認されていないと公式FAQにあります。ただし件数などは今後の調査で変わる可能性があると案内されています。",
+      "source": "https://help.francfranc.com/hc/ja/sections/64369202474649",
+      "action": "身に覚えのない支払いや利用があれば、すぐにクレジットカード会社に相談する。フィッシング被害でも、カード会社に相談するよう案内されています。",
+      "actionSource": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "actionGeneral": true
+    },
+    {
+      "q": "パスワードも流出していないか気になります",
+      "a": "FAQでは、パスワード情報への流出は現段階では確認されていないとされています。件数や情報は現時点の調査に基づくもので、今後の調査で変わる可能性があると案内されています。",
+      "source": "https://help.francfranc.com/hc/ja/sections/64369202474649",
+      "action": "ほかのサイトと同じパスワードを使っていれば、サイトごとに違うものに変える。パスワード管理アプリを使う方法もあります。",
+      "actionSource": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "actionGeneral": true
+    },
+    {
+      "q": "家族のスマホや、ギフトの贈り先も対象？",
+      "a": "ギフトの贈り先や家族の情報は、現段階では流出が確認されていないとFAQにあります。対象者の特定が完了次第、個別連絡または公式サイトでお知らせするとされています。",
+      "source": "https://help.francfranc.com/hc/ja/sections/64369202474649",
+      "action": "家族に、届いたメールやSMSのURLは開かず、公式の窓口で確認するよう伝える。",
+      "actionSource": "https://help.francfranc.com/hc/ja/articles/64371011900313-Francfranc%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E3%81%8A%E5%AE%A2%E3%81%95%E3%81%BE%E6%83%85%E5%A0%B1%E6%B5%81%E5%87%BA%E3%81%AE%E5%8F%AF%E8%83%BD%E6%80%A7%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "身に覚えのないメールが来たら、どうする？",
+      "situation": "Francfranc名義のメールやSMSが届いた",
+      "recommend": "リンクを開かず、公式の窓口に確認する",
+      "reason": "記載のURLや添付ファイルを開かず、情報も入力しないよう案内されています。不審なときはメールの連絡先ではなく、公式のお問い合わせ先に確認します。",
+      "source": "https://help.francfranc.com/hc/ja/articles/64371011900313-Francfranc%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E3%81%8A%E5%AE%A2%E3%81%95%E3%81%BE%E6%83%85%E5%A0%B1%E6%B5%81%E5%87%BA%E3%81%AE%E5%8F%AF%E8%83%BD%E6%80%A7%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "一覧にない情報と、フォームの選び方",
+    "cause": "なぜ漏れたのか、いま分かっていること",
+    "steps": "今日まず、メールとマイページで確かめる",
+    "desk": "問い合わせ先はどこ？",
+    "worries": "カードやパスワード、家族の情報は大丈夫？",
+    "guide": "退会か、そのまま使うか迷ったときの決め方"
+  },
+  "depthAt": "2026-11-17T07:05:52+00:00"
 }
