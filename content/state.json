@@ -1255,7 +1255,7 @@
     }
   },
   "major_tries": {
-    "2adb42fb63722b0a": 1
+    "2adb42fb63722b0a": 2
   },
   "pi_reopened": {
     "25d126f469e81252": "2026-11-15T17:50:53.256695+00:00",
@@ -24021,30 +24021,6 @@
   "quality_log": [
     {
       "accepted": true,
-      "at": "2026-11-15T11:57:00.876397+00:00",
-      "attempt": 1,
-      "id": "ed4893ea038813a4",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 80.4,
-        "avg_sentence": 40.2,
-        "long_share": 0.143,
-        "max_paragraph": 160,
-        "paragraphs": 14,
-        "sentences": 28
-      },
-      "score": 88,
-      "source": "fast",
-      "title": "「GFS会員サイト」への不正アクセスによる個人情報漏えいに関するお詫びとお知らせ - 株式会社GFS Education",
-      "warnings": [
-        "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（GFS）"
-      ]
-    },
-    {
-      "accepted": true,
       "at": "2026-11-15T12:22:00.418051+00:00",
       "attempt": 1,
       "id": "f72359d97ccde33f",
@@ -31562,6 +31538,32 @@
       "warnings": [
         "見出しが51字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（IQ・CRM）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-17T18:17:48.206083+00:00",
+      "attempt": 1,
+      "id": "2adb42fb63722b0a",
+      "kind": "ai",
+      "model": "openai-api:gpt-6.1-terra",
+      "problems": [
+        "題名で料金・価格を約束しているのに、本文に金額（円・ドル・無料など）が無い。元記事の金額を書くか、題名から料金の話を外す"
+      ],
+      "readability": {
+        "avg_paragraph": 90.7,
+        "avg_sentence": 41.8,
+        "long_share": 0.077,
+        "max_paragraph": 173,
+        "paragraphs": 12,
+        "sentences": 26
+      },
+      "score": null,
+      "source": "microsoft-source",
+      "title": "Microsoft and Salesforce Announce Copilotforce, Bringing Trusted Customer Contex",
+      "warnings": [
+        "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（IQ）"
       ]
     }
   ],
