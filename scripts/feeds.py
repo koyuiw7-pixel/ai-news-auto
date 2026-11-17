@@ -1045,9 +1045,17 @@ BLOCK_TAGS = {"p", "div", "section", "li", "ul", "ol", "h1", "h2", "h3", "h4", "
 VOID_TAGS = {"br", "img", "meta", "link", "input", "hr", "source", "area", "base", "col", "embed", "param", "track", "wbr"}
 
 
+_HIDDEN_STYLE = re.compile(r"display\s*:\s*none|visibility\s*:\s*hidden", re.I)
+
+
 class _Extractor(HTMLParser):
-    def __init__(self):
+    """keep_form: <form> の中も本文として読む（2026-11-17。厚生労働省の食品リコール i2fas の公開回収事案詳細は
+    本文の表がまるごと <form> の中にあり、form を読み飛ばすと「公開回収事案詳細」の37字しか残らなかった）。
+    このときは style で隠した要素（display:none。i2fas は「削除されています」の文言を隠して置いている）も読まない"""
+
+    def __init__(self, keep_form: bool = False):
         super().__init__(convert_charrefs=True)
+        self.keep_form = keep_form
         self.stack: list[str] = []
         self.skip_at: int | None = None  # 読み飛ばし中の要素の深さ
         self.buffers = {"body": [], "article": [], "main": []}
@@ -1073,7 +1081,10 @@ class _Extractor(HTMLParser):
         self.stack.append(tag)
         cls = (attrs.get("class") or "") + " " + (attrs.get("id") or "")
         hidden = attrs.get("aria-hidden") == "true" or re.search(r"\b(cookie|newsletter|share|related|breadcrumb|subscribe|social)\b", cls, re.I)
-        if self.skip_at is None and (tag in SKIP_TAGS or (hidden and tag in {"div", "section", "ul"})):
+        skip = tag in SKIP_TAGS and not (self.keep_form and tag == "form")
+        if self.keep_form and ("hidden" in attrs or _HIDDEN_STYLE.search(attrs.get("style") or "")):
+            skip = True
+        if self.skip_at is None and (skip or (hidden and tag in {"div", "section", "ul"})):
             self.skip_at = len(self.stack) - 1
         if tag == "article":
             self.in_article += 1
@@ -1564,14 +1575,14 @@ def _fetch_direct(url: str, timeout: int = 25) -> dict:
             "text": pdf[:TEXT_CAP], "full_text": pdf[:400_000] if len(pdf) > TEXT_CAP else "", "image": None,
             "title": pdf_title(pdf), "description": "", "final_url": final_url, "published": "", "links": [],
         }
-    parser = _Extractor()
-    try:
-        parser.feed(_decode(data))
-        parser.close()
-    except Exception:  # noqa: BLE001 - 壊れた HTML でもそこまでの結果を使う
-        pass
-    candidates = [_collapse(parser.buffers[k]) for k in ("article", "main", "body")]
-    text = next((c for c in candidates if len(c) >= 500), max(candidates, key=len))
+    decoded = _decode(data)
+    parser, text = _extract_html(decoded)
+    if len(text) < FORM_RETRY_CHARS and re.search(r"<form\b", decoded, re.I):
+        # 本文がほとんど取れず、ページに <form> がある: 本文が form の中にある作りのページ（i2fas の食品リコールなど）。
+        # form の中も読み直し、多く取れたほうを使う
+        again, again_text = _extract_html(decoded, keep_form=True)
+        if len(again_text) > len(text):
+            parser, text = again, again_text
     image = parser.meta.get("og:image") or parser.meta.get("twitter:image")
     if image:
         image = urllib.parse.urljoin(final_url, html.unescape(image))
@@ -1586,6 +1597,20 @@ def _fetch_direct(url: str, timeout: int = 25) -> dict:
         "published": parser.meta.get("article:published_time", "") or parser.meta.get("og:published_time", "") or _jsonld_published(data),
         "links": _abs_links(parser.links, final_url),
     }
+
+
+FORM_RETRY_CHARS = 300
+
+
+def _extract_html(decoded: str, keep_form: bool = False) -> tuple[_Extractor, str]:
+    parser = _Extractor(keep_form=keep_form)
+    try:
+        parser.feed(decoded)
+        parser.close()
+    except Exception:  # noqa: BLE001 - 壊れた HTML でもそこまでの結果を使う
+        pass
+    candidates = [_collapse(parser.buffers[k]) for k in ("article", "main", "body")]
+    return parser, next((c for c in candidates if len(c) >= 500), max(candidates, key=len))
 
 
 def _abs_links(links: list[dict], base: str) -> list[dict]:
