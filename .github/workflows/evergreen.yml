@@ -84,6 +84,13 @@ jobs:
           # Claude API の Haiku（中心の段。予算が苦しくても無料モデルに下げない）→ 無料モデル。使用量はこのジョブ専用のファイルに記録（scripts/llm.py）
           # 2026-11-06（台帳 A47）: 「その他」の段では予算の配分で無料モデルになり、無料枠切れで1本も作れない日が続いたので「中心」にする
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          # OpenAI API（ChatGPT Pro の API クレジット。2026-11-18）。キーが無ければ何も変わらない。順番は変数 LLM_PROVIDER_ORDER（既定 claude）
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          LLM_PROVIDER_ORDER: ${{ vars.LLM_PROVIDER_ORDER }}
+          CLAUDE_API_FALLBACK_PURPOSES: ${{ vars.CLAUDE_API_FALLBACK_PURPOSES }}
+          OPENAI_API_MONTHLY_BUDGET_USD: ${{ vars.OPENAI_API_MONTHLY_BUDGET_USD }}
+          OPENAI_API_CYCLE_BUDGET_USD: ${{ vars.OPENAI_API_CYCLE_BUDGET_USD }}
+          OPENAI_API_CYCLE_BUDGET_UNTIL: ${{ vars.OPENAI_API_CYCLE_BUDGET_UNTIL }}
           CLAUDE_API_MONTHLY_BUDGET_USD: ${{ vars.CLAUDE_API_MONTHLY_BUDGET_USD }}
           LLM_DEFAULT_PURPOSE: core
           CLAUDE_API_LEDGER: evergreen

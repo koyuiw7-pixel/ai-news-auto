@@ -2674,7 +2674,7 @@ def main() -> int:
             if time_left() < EST_SEC_PER_ARTICLE / 2:
                 log("   [rescue] 時間が足りないため救済を打ち切ります")
                 return None
-            why = llm.api_block_reason(purpose)
+            why = llm.paid_block_reason(purpose)
             if why:
                 log(f"   [rescue] Claude の{llm.API_TIERS[purpose][4]}が使えない（{why}）。無料モデルで試します")
             try:
@@ -2783,7 +2783,7 @@ def main() -> int:
                 break
             if attempt < attempts and not verdict.get("unavailable") and time_left() > EST_SEC_PER_ARTICLE:
                 prompt = prompt + quality.feedback_block(verdict.get("problems") or [])
-                if "sonnet" not in str(model_name) and purpose and llm.api_block_reason("rescue") is None:
+                if "sonnet" not in str(model_name) and purpose and llm.paid_block_reason("rescue") is None:
                     # 無料モデル・Haiku の原稿が救えなかった: 作り直しは Sonnet で（月の予算の範囲。1日の配分では下げない）
                     draft_purpose = "rescue"
                     log("   [gate] 問題点を伝えて、Claude（Sonnet・救済の段）で作り直します")

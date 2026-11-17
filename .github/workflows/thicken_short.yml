@@ -50,6 +50,13 @@ jobs:
           # API の使用額はこのジョブ専用のファイルに記録（手入れのジョブの回数として数える。予算はファイルの合計で見る）
           CLAUDE_API_LEDGER: thicken
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          # OpenAI API（ChatGPT Pro の API クレジット。2026-11-18）。キーが無ければ何も変わらない。順番は変数 LLM_PROVIDER_ORDER（既定 claude）
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          LLM_PROVIDER_ORDER: ${{ vars.LLM_PROVIDER_ORDER }}
+          CLAUDE_API_FALLBACK_PURPOSES: ${{ vars.CLAUDE_API_FALLBACK_PURPOSES }}
+          OPENAI_API_MONTHLY_BUDGET_USD: ${{ vars.OPENAI_API_MONTHLY_BUDGET_USD }}
+          OPENAI_API_CYCLE_BUDGET_USD: ${{ vars.OPENAI_API_CYCLE_BUDGET_USD }}
+          OPENAI_API_CYCLE_BUDGET_UNTIL: ${{ vars.OPENAI_API_CYCLE_BUDGET_UNTIL }}
           CLAUDE_API_MONTHLY_BUDGET_USD: ${{ vars.CLAUDE_API_MONTHLY_BUDGET_USD }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}

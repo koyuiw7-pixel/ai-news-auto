@@ -153,6 +153,13 @@ jobs:
           # 予算に合わせて自動で上下）。だめなら速報・SNS は Claude CLI、そのあと無料モデル。仕組みは scripts/llm.py
           # 予算は GitHub の変数 CLAUDE_API_MONTHLY_BUDGET_USD（未設定なら $95。Ultra にしたら 190 くらい）
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          # OpenAI API（ChatGPT Pro の API クレジット。2026-11-18）。キーが無ければ何も変わらない。順番は変数 LLM_PROVIDER_ORDER（既定 claude）
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          LLM_PROVIDER_ORDER: ${{ vars.LLM_PROVIDER_ORDER }}
+          CLAUDE_API_FALLBACK_PURPOSES: ${{ vars.CLAUDE_API_FALLBACK_PURPOSES }}
+          OPENAI_API_MONTHLY_BUDGET_USD: ${{ vars.OPENAI_API_MONTHLY_BUDGET_USD }}
+          OPENAI_API_CYCLE_BUDGET_USD: ${{ vars.OPENAI_API_CYCLE_BUDGET_USD }}
+          OPENAI_API_CYCLE_BUDGET_UNTIL: ${{ vars.OPENAI_API_CYCLE_BUDGET_UNTIL }}
           CLAUDE_API_MONTHLY_BUDGET_USD: ${{ vars.CLAUDE_API_MONTHLY_BUDGET_USD }}
           CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           CLAUDE_DAILY_MAX: ${{ vars.CLAUDE_DAILY_MAX || '40' }}
@@ -211,6 +218,13 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           # Claude API の Haiku（その他の段）→ 無料モデル。使用量は記事と同じ state/claude_api_usage.json（同じジョブの中なので衝突しない）
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          # OpenAI API（ChatGPT Pro の API クレジット。2026-11-18）。キーが無ければ何も変わらない。順番は変数 LLM_PROVIDER_ORDER（既定 claude）
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          LLM_PROVIDER_ORDER: ${{ vars.LLM_PROVIDER_ORDER }}
+          CLAUDE_API_FALLBACK_PURPOSES: ${{ vars.CLAUDE_API_FALLBACK_PURPOSES }}
+          OPENAI_API_MONTHLY_BUDGET_USD: ${{ vars.OPENAI_API_MONTHLY_BUDGET_USD }}
+          OPENAI_API_CYCLE_BUDGET_USD: ${{ vars.OPENAI_API_CYCLE_BUDGET_USD }}
+          OPENAI_API_CYCLE_BUDGET_UNTIL: ${{ vars.OPENAI_API_CYCLE_BUDGET_UNTIL }}
           CLAUDE_API_MONTHLY_BUDGET_USD: ${{ vars.CLAUDE_API_MONTHLY_BUDGET_USD }}
           LLM_DEFAULT_PURPOSE: rest
         run: |
@@ -260,6 +274,13 @@ jobs:
           LLM_WORKFLOW: products
           # Haiku（purpose=helper。月の予算の配分の中で）→ だめなら無料モデル
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          # OpenAI API（ChatGPT Pro の API クレジット。2026-11-18）。キーが無ければ何も変わらない。順番は変数 LLM_PROVIDER_ORDER（既定 claude）
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          LLM_PROVIDER_ORDER: ${{ vars.LLM_PROVIDER_ORDER }}
+          CLAUDE_API_FALLBACK_PURPOSES: ${{ vars.CLAUDE_API_FALLBACK_PURPOSES }}
+          OPENAI_API_MONTHLY_BUDGET_USD: ${{ vars.OPENAI_API_MONTHLY_BUDGET_USD }}
+          OPENAI_API_CYCLE_BUDGET_USD: ${{ vars.OPENAI_API_CYCLE_BUDGET_USD }}
+          OPENAI_API_CYCLE_BUDGET_UNTIL: ${{ vars.OPENAI_API_CYCLE_BUDGET_UNTIL }}
           CLAUDE_API_MONTHLY_BUDGET_USD: ${{ vars.CLAUDE_API_MONTHLY_BUDGET_USD }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
@@ -278,6 +299,13 @@ jobs:
         env:
           LLM_WORKFLOW: products
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          # OpenAI API（ChatGPT Pro の API クレジット。2026-11-18）。キーが無ければ何も変わらない。順番は変数 LLM_PROVIDER_ORDER（既定 claude）
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          LLM_PROVIDER_ORDER: ${{ vars.LLM_PROVIDER_ORDER }}
+          CLAUDE_API_FALLBACK_PURPOSES: ${{ vars.CLAUDE_API_FALLBACK_PURPOSES }}
+          OPENAI_API_MONTHLY_BUDGET_USD: ${{ vars.OPENAI_API_MONTHLY_BUDGET_USD }}
+          OPENAI_API_CYCLE_BUDGET_USD: ${{ vars.OPENAI_API_CYCLE_BUDGET_USD }}
+          OPENAI_API_CYCLE_BUDGET_UNTIL: ${{ vars.OPENAI_API_CYCLE_BUDGET_UNTIL }}
           CLAUDE_API_MONTHLY_BUDGET_USD: ${{ vars.CLAUDE_API_MONTHLY_BUDGET_USD }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
@@ -297,6 +325,13 @@ jobs:
         env:
           LLM_WORKFLOW: products
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          # OpenAI API（ChatGPT Pro の API クレジット。2026-11-18）。キーが無ければ何も変わらない。順番は変数 LLM_PROVIDER_ORDER（既定 claude）
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          LLM_PROVIDER_ORDER: ${{ vars.LLM_PROVIDER_ORDER }}
+          CLAUDE_API_FALLBACK_PURPOSES: ${{ vars.CLAUDE_API_FALLBACK_PURPOSES }}
+          OPENAI_API_MONTHLY_BUDGET_USD: ${{ vars.OPENAI_API_MONTHLY_BUDGET_USD }}
+          OPENAI_API_CYCLE_BUDGET_USD: ${{ vars.OPENAI_API_CYCLE_BUDGET_USD }}
+          OPENAI_API_CYCLE_BUDGET_UNTIL: ${{ vars.OPENAI_API_CYCLE_BUDGET_UNTIL }}
           CLAUDE_API_MONTHLY_BUDGET_USD: ${{ vars.CLAUDE_API_MONTHLY_BUDGET_USD }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
@@ -602,6 +637,13 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           # 問いかけの1文は Claude API の Haiku（補助の段・予算の範囲）。だめなら上の無料モデル
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          # OpenAI API（ChatGPT Pro の API クレジット。2026-11-18）。キーが無ければ何も変わらない。順番は変数 LLM_PROVIDER_ORDER（既定 claude）
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          LLM_PROVIDER_ORDER: ${{ vars.LLM_PROVIDER_ORDER }}
+          CLAUDE_API_FALLBACK_PURPOSES: ${{ vars.CLAUDE_API_FALLBACK_PURPOSES }}
+          OPENAI_API_MONTHLY_BUDGET_USD: ${{ vars.OPENAI_API_MONTHLY_BUDGET_USD }}
+          OPENAI_API_CYCLE_BUDGET_USD: ${{ vars.OPENAI_API_CYCLE_BUDGET_USD }}
+          OPENAI_API_CYCLE_BUDGET_UNTIL: ${{ vars.OPENAI_API_CYCLE_BUDGET_UNTIL }}
           CLAUDE_API_MONTHLY_BUDGET_USD: ${{ vars.CLAUDE_API_MONTHLY_BUDGET_USD }}
           LLM_DEFAULT_PURPOSE: helper
           GH_TOKEN: ${{ github.token }}  # 門番が止めた投稿の issue を立てる

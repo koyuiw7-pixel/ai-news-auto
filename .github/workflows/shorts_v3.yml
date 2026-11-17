@@ -54,6 +54,13 @@ jobs:
           CLAUDE_MODEL: sonnet  # Claude CLI のときの台本のモデル（2026-11-04 オーナー決定: 自動の処理では Opus を使わない）
           # 動画の台本は目立つもの: Claude API（クレジット。台本・レビューとも Sonnet）→ Claude CLI → 無料モデル（scripts/llm.py）
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          # OpenAI API（ChatGPT Pro の API クレジット。2026-11-18）。キーが無ければ何も変わらない。順番は変数 LLM_PROVIDER_ORDER（既定 claude）
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          LLM_PROVIDER_ORDER: ${{ vars.LLM_PROVIDER_ORDER }}
+          CLAUDE_API_FALLBACK_PURPOSES: ${{ vars.CLAUDE_API_FALLBACK_PURPOSES }}
+          OPENAI_API_MONTHLY_BUDGET_USD: ${{ vars.OPENAI_API_MONTHLY_BUDGET_USD }}
+          OPENAI_API_CYCLE_BUDGET_USD: ${{ vars.OPENAI_API_CYCLE_BUDGET_USD }}
+          OPENAI_API_CYCLE_BUDGET_UNTIL: ${{ vars.OPENAI_API_CYCLE_BUDGET_UNTIL }}
           LLM_DEFAULT_VISIBILITY: high
           LLM_DEFAULT_PURPOSE: video
           CLAUDE_API_LEDGER: video_trial  # 試しは本番の1日の上限と別に数える（scripts/llm.py の is_trial）

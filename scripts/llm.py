@@ -49,7 +49,7 @@ import tempfile
 import time
 import urllib.error
 import urllib.request
-from datetime import datetime, timedelta, timezone
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
 try:
@@ -1397,6 +1397,8 @@ def merge_api_usage(mine: dict, dest: dict) -> dict:
     if str(mine.get("exhausted_until") or "") > str(out.get("exhausted_until") or ""):
         out["exhausted_until"] = mine["exhausted_until"]
         out["exhausted_reason"] = mine.get("exhausted_reason", "")
+    if isinstance(mine.get("openai"), dict):  # OpenAI の欄も同じ決まりで合わせる
+        out["openai"] = merge_api_usage(mine["openai"], out.get("openai") if isinstance(out.get("openai"), dict) else {})
     return out
 
 
@@ -1553,6 +1555,466 @@ def _try_anthropic_api(system_instruction: str, prompt: str, schema: dict, max_o
     return None
 
 
+# --------------------------------------------------------------------------- #
+# OpenAI API（ChatGPT Pro に付く API クレジット 月 $100。2026-11-18 オーナー決定）
+#   - サイソクの記事づくりに使い、Claude API のクレジットを別の製品に回す
+#   - クレジットの期間は毎月8日〜翌月7日（繰り越しなし）。予算に届きそうなら止めて、今までの無料の経路へ
+#     （Claude API へは CLAUDE_API_FALLBACK_PURPOSES に書いた段だけ）
+#   - どの会社の API を先に使うかは LLM_PROVIDER_ORDER（例 "openai,claude"）。段ごとに LLM_PROVIDER_ORDER_<段>。
+#     既定は "claude"（今までどおり）。OPENAI_API_KEY が無いときは、変数があっても今までどおり（何も変わらない）
+#   - 使用額は Claude API と同じ台帳のファイル（state/claude_api_usage*.json）の "openai" の欄に書く
+#     （どのワークフローも今の台帳のファイルを main に残しているので、そのまま全部のジョブの額を合計できる）
+# 料金は公式の表 https://developers.openai.com/api/docs/pricing（2026-11-18 確認）。モデルの説明は
+# https://developers.openai.com/api/docs/models（gpt-6.1-terra =「clear, natural writing」、gpt-6-luna = 大量の軽い仕事）
+# --------------------------------------------------------------------------- #
+
+OPENAI_PREFIX = "openai-api:"
+OPENAI_URL = "https://api.openai.com/v1/responses"
+# 1M トークンあたりの米ドル: (入力, キャッシュ済みの入力, 出力)。考える分（reasoning）は出力として数えられる
+OPENAI_PRICES = {
+    "gpt-6-astra": (10.00, 1.00, 50.00),
+    "gpt-6.1-sol": (2.00, 0.10, 10.00),
+    "gpt-6.1-terra": (1.00, 0.05, 5.00),
+    "gpt-6-luna": (0.10, 0.01, 0.50),
+    "gpt-6-sol": (2.00, 0.20, 10.00),
+    "gpt-5.6-sol": (4.00, 0.40, 20.00),
+    "gpt-5.6-terra": (2.00, 0.20, 12.00),
+    "gpt-5.6-luna": (0.20, 0.02, 1.20),
+}
+OPENAI_PRICE_UNKNOWN = OPENAI_PRICES["gpt-6-astra"]  # 知らないモデルはいちばん高い値で多めに数える
+OPENAI_WRITER = "gpt-6.1-terra"   # Sonnet の段の代わり（$1/$5。Sonnet 5.5 の半分）
+OPENAI_LIGHT = "gpt-6-luna"       # Haiku の段の代わり（$0.10/$0.50）
+# 段 → いつものモデル（環境変数 OPENAI_MODEL_<段> で変更）。Claude の段の「いつもの段」（API_TIERS の1番目）に合わせた
+OPENAI_PURPOSE_MODELS = {
+    "breaking": OPENAI_WRITER, "sns": OPENAI_WRITER, "core": OPENAI_WRITER,
+    "rescue": OPENAI_WRITER, "ymyl": OPENAI_WRITER,
+    "check": OPENAI_LIGHT, "helper": OPENAI_LIGHT, "repair": OPENAI_LIGHT, "rest": OPENAI_LIGHT,
+}
+# OpenAI に回さない段: 動画の台本・画像の確認は Claude だけ（台帳 O11）
+OPENAI_EXCLUDED_PURPOSES = set(CLAUDE_ONLY_PURPOSES)
+# 1日の目安（残り予算÷残り日数 × この倍率）を超えたら、守る段（速報・確認）以外は今日はもう使わない（数日で使い切らない）
+OPENAI_DAILY_PACE_DEFAULT = 1.5
+OPENAI_PROTECTED_PURPOSES = {"breaking", "check"}
+OPENAI_MONTHLY_BUDGET_DEFAULT = 100.0   # OPENAI_API_MONTHLY_BUDGET_USD
+OPENAI_REFILL_DAY_DEFAULT = 8           # OPENAI_API_REFILL_DAY（期間は 8日〜翌月7日）
+OPENAI_SAFETY_MARGIN_DEFAULT = 3.0      # OPENAI_API_SAFETY_MARGIN_USD（同時に動くジョブの、まだ main に無い分の余裕）
+# 期間の最初の日（日本時間）→ その期間だけの上限。2026-11-18 オーナー: 今の期間（11/8〜12/7）の残りは $69
+# （それまでの分はこの台帳に無いので、残りの額を上限にする）。環境変数 OPENAI_API_CYCLE_BUDGET_USD＋_UNTIL でも変えられる
+OPENAI_CYCLE_BUDGETS = {"2026-11-08": 69.0}
+OPENAI_TIMEOUT = 240
+PROVIDERS = ("openai", "claude")
+
+_openai_off: str | None = None
+_openai_transient_failures = 0
+
+
+def _openai_refill_day() -> int:
+    return min(28, max(1, _env_int("OPENAI_API_REFILL_DAY", OPENAI_REFILL_DAY_DEFAULT)))
+
+
+def openai_cycle_bounds(now: datetime | None = None) -> tuple[date, date]:
+    """いまの OpenAI のクレジットの期間（日本時間の日付。最初の日, 最後の日）。8日〜翌月7日"""
+    today = (now or _now()).astimezone(JST).date()
+    day = _openai_refill_day()
+    start = today.replace(day=day) if today.day >= day else (today.replace(day=1) - timedelta(days=1)).replace(day=day)
+    end = (start.replace(day=1) + timedelta(days=32)).replace(day=day) - timedelta(days=1)
+    return start, end
+
+
+def openai_cycle_budget(start: date, now: datetime | None = None) -> float:
+    """その期間の上限（米ドル）。①環境変数 OPENAI_API_CYCLE_BUDGET_USD（OPENAI_API_CYCLE_BUDGET_UNTIL の日まで。
+    日付が無ければ今の期間だけ）②OPENAI_CYCLE_BUDGETS ③OPENAI_API_MONTHLY_BUDGET_USD（既定 100）。どれも月の額より上にはしない"""
+    monthly = _env_float("OPENAI_API_MONTHLY_BUDGET_USD", OPENAI_MONTHLY_BUDGET_DEFAULT)
+    override = os.environ.get("OPENAI_API_CYCLE_BUDGET_USD")
+    if override:
+        until = os.environ.get("OPENAI_API_CYCLE_BUDGET_UNTIL") or ""
+        try:
+            until_day = date.fromisoformat(until) if until else openai_cycle_bounds(now)[1]
+        except ValueError:
+            until_day = openai_cycle_bounds(now)[1]
+        if start <= until_day:
+            return min(monthly, _env_float("OPENAI_API_CYCLE_BUDGET_USD", monthly))
+    if start.isoformat() in OPENAI_CYCLE_BUDGETS:
+        return min(monthly, OPENAI_CYCLE_BUDGETS[start.isoformat()])
+    return monthly
+
+
+def openai_model_for(purpose: str) -> str | None:
+    if purpose not in OPENAI_PURPOSE_MODELS:
+        return None
+    return os.environ.get(f"OPENAI_MODEL_{purpose.upper()}") or OPENAI_PURPOSE_MODELS[purpose]
+
+
+def openai_cost(model: str, usage) -> float:
+    """Responses API の usage から米ドル。cached_tokens は input_tokens の内数"""
+    price_in, price_cached, price_out = OPENAI_PRICES.get(model, OPENAI_PRICE_UNKNOWN)
+    usage = usage or {}
+    inp = int(usage.get("input_tokens") or 0)
+    cached = int((usage.get("input_tokens_details") or {}).get("cached_tokens") or 0)
+    out = int(usage.get("output_tokens") or 0)
+    return (max(0, inp - cached) * price_in + cached * price_cached + out * price_out) / 1_000_000
+
+
+def openai_estimate(model: str, input_chars: int, max_output_tokens: int) -> float:
+    """呼ぶ前の多めの見積もり（日本語は1字＝1トークン以上に数え、出力は上限いっぱいで数える）"""
+    price_in, _, price_out = OPENAI_PRICES.get(model, OPENAI_PRICE_UNKNOWN)
+    return (input_chars * 1.2 * price_in + max_output_tokens * price_out) / 1_000_000
+
+
+def _openai_days(data: dict) -> dict:
+    sub = data.get("openai") if isinstance(data.get("openai"), dict) else {}
+    runs = sub.get("runs")
+    return runs if isinstance(runs, dict) else {}
+
+
+def openai_ledger_summary(now: datetime | None = None) -> dict:
+    """全部の台帳のファイルの "openai" の欄を合計した、今の期間の状況。
+    期間の最初の日（8日）は、クレジットが切り替わる時刻（日本時間かアメリカ時間か）が分からないので、
+    その日の額を前の期間にも足して、前の期間の上限も確かめる（どちらの期間でも超えないように）"""
+    now = now or _now()
+    start, end = openai_cycle_bounds(now)
+    prev_start, prev_end = openai_cycle_bounds(datetime.combine(start - timedelta(days=1), datetime.min.time(), JST))
+    today = _jst_day(now)
+    spent = spent_today = prev_spent = 0.0
+    calls_today: dict[str, int] = {}
+    by_purpose: dict[str, float] = {}
+    exhausted_until, reason = None, ""
+    for path in sorted(API_STATE_DIR.glob("claude_api_usage*.json")):
+        data = _read_json(path)
+        for day, runs in _openai_days(data).items():
+            if not isinstance(runs, dict):
+                continue
+            usd = sum(float((e or {}).get("usd") or 0) for e in runs.values())
+            if prev_start.isoformat() <= day <= prev_end.isoformat() or day == start.isoformat():
+                prev_spent += usd
+            if not (start.isoformat() <= day <= end.isoformat()):
+                continue
+            spent += usd
+            for entry in runs.values():
+                for key, stat in ((entry or {}).get("by") or {}).items():
+                    p = key.split("|", 1)[0]
+                    by_purpose[p] = by_purpose.get(p, 0.0) + float(stat.get("usd") or 0)
+            if day == today:
+                spent_today += usd
+                for entry in runs.values():
+                    for p, count in ((entry or {}).get("calls") or {}).items():
+                        calls_today[p] = calls_today.get(p, 0) + int(count or 0)
+        until = (data.get("openai") or {}).get("exhausted_until") if isinstance(data.get("openai"), dict) else None
+        if until:
+            try:
+                when = datetime.fromisoformat(str(until).replace("Z", "+00:00"))
+            except ValueError:
+                continue
+            if when > now and (exhausted_until is None or when > exhausted_until):
+                exhausted_until, reason = when, str(data["openai"].get("exhausted_reason") or "")
+    budget = openai_cycle_budget(start, now)
+    days_left = max(1, (end - now.astimezone(JST).date()).days + 1)
+    pace = _env_float("OPENAI_API_DAILY_PACE", OPENAI_DAILY_PACE_DEFAULT)
+    daily_limit = max(0.0, (budget - (spent - spent_today)) / days_left) * pace
+    return {
+        "cycle_start": start.isoformat(), "cycle_end": end.isoformat(), "budget": budget,
+        "spent": round(spent, 6), "spent_today": round(spent_today, 6), "days_left": days_left,
+        "daily_limit": round(daily_limit, 4), "calls_today": calls_today, "by_purpose": by_purpose,
+        "first_day": today == start.isoformat(), "prev_spent": round(prev_spent, 6),
+        "prev_budget": openai_cycle_budget(prev_start, now),
+        "margin": _env_float("OPENAI_API_SAFETY_MARGIN_USD", OPENAI_SAFETY_MARGIN_DEFAULT),
+        "exhausted_until": exhausted_until.isoformat() if exhausted_until else None, "exhausted_reason": reason,
+    }
+
+
+def openai_block_reason(purpose: str, estimate: float = 0.0, now: datetime | None = None, summary: dict | None = None) -> str | None:
+    """この段で、いま OpenAI API を使えない理由（使えるなら None）。estimate はこの1回の多めの見積もり（米ドル）。
+    「使ったら予算を超える」なら呼ばない（届いてから止めるのではなく、届く前に止める）"""
+    if os.environ.get("OPENAI_API_DISABLE") == "1":
+        return "OPENAI_API_DISABLE=1"
+    if not os.environ.get("OPENAI_API_KEY"):
+        return "OPENAI_API_KEY が未設定"
+    if _openai_off:
+        return _openai_off
+    if purpose in OPENAI_EXCLUDED_PURPOSES or not openai_model_for(purpose):
+        return f"purpose={purpose!r} は OpenAI の対象外"
+    s = summary or openai_ledger_summary(now)
+    if s["exhausted_until"]:
+        return f"クレジット切れの印（{s['exhausted_until'][:16]} まで: {s['exhausted_reason'][:60]}）"
+    limit = s["budget"] - s["margin"]
+    if s["spent"] + estimate > limit:
+        return f"OpenAI の今の期間の予算 ${s['budget']:.0f}（余裕 ${s['margin']:.0f} を残す）に届く（使用 ${s['spent']:.2f}＋この回 ${estimate:.2f}）"
+    if s["first_day"] and s["prev_spent"] + estimate > s["prev_budget"] - s["margin"]:
+        return f"期間の切り替えの日: 前の期間の予算 ${s['prev_budget']:.0f} にも数えて届く（${s['prev_spent']:.2f}）"
+    if purpose not in OPENAI_PROTECTED_PURPOSES and s["spent_today"] + estimate > s["daily_limit"]:
+        return f"OpenAI の今日の目安 ${s['daily_limit']:.2f} に届く（今日 ${s['spent_today']:.2f}）"
+    cap = max(0, _env_int(f"OPENAI_API_DAILY_CALLS_{purpose.upper()}", _daily_calls_cap(purpose)))
+    if cap and s["calls_today"].get(purpose, 0) >= cap:
+        return f"{purpose} の OpenAI の今日の安全上限 {cap} 回に到達"
+    return None
+
+
+def _fallback_purposes() -> set[str]:
+    return {p.strip() for p in (os.environ.get("CLAUDE_API_FALLBACK_PURPOSES") or "").split(",") if p.strip()}
+
+
+def provider_order(purpose: str) -> list[str]:
+    """この段で、どの会社の API をどの順で試すか（"openai" / "claude"）。
+    - OPENAI_API_KEY が無い・OpenAI の対象外の段: ["claude"]（今までどおり）
+    - 変数 LLM_PROVIDER_ORDER_<段> か LLM_PROVIDER_ORDER（既定 "claude"）の順
+    - OpenAI が Claude より先なら、Claude は CLAUDE_API_FALLBACK_PURPOSES に書いた段（"all" で全部）だけ後ろに残す
+      （OpenAI の予算で止まったら、Claude のクレジットではなく今までの無料の経路へ）"""
+    if not os.environ.get("OPENAI_API_KEY") or purpose in OPENAI_EXCLUDED_PURPOSES or purpose not in OPENAI_PURPOSE_MODELS:
+        return ["claude"]
+    raw = os.environ.get(f"LLM_PROVIDER_ORDER_{purpose.upper()}") or os.environ.get("LLM_PROVIDER_ORDER") or "claude"
+    order: list[str] = []
+    for name in raw.replace(" ", "").lower().split(","):
+        if name in PROVIDERS and name not in order:
+            order.append(name)
+    if not order:
+        return ["claude"]
+    if order[0] == "openai":
+        fallback = _fallback_purposes()
+        order = ["openai"] + (["claude"] if purpose in fallback or "all" in fallback else [])
+    return order
+
+
+def paid_block_reason(purpose: str) -> str | None:
+    """この段で、有料の API（OpenAI・Claude のどちらか、provider_order の中）を使えない理由。どちらか使えるなら None"""
+    reasons = []
+    for provider in provider_order(purpose):
+        why = openai_block_reason(purpose) if provider == "openai" else api_block_reason(purpose)
+        if why is None:
+            return None
+        reasons.append(f"{provider}: {why}")
+    return " / ".join(reasons) or "有料の API なし"
+
+
+def _openai_entry(data: dict, now: datetime | None = None) -> dict:
+    sub = data.setdefault("openai", {})
+    return sub.setdefault("runs", {}).setdefault(_jst_day(now), {}).setdefault(_run_key(), {})
+
+
+def _prune_openai(data: dict, now: datetime | None = None) -> dict:
+    """前の期間より古い日は、月の合計だけ history に残して消す"""
+    sub = data.get("openai")
+    if not isinstance(sub, dict):
+        return data
+    start, _ = openai_cycle_bounds(now)
+    prev_start, _ = openai_cycle_bounds(datetime.combine(start - timedelta(days=1), datetime.min.time(), JST))
+    runs = sub.setdefault("runs", {})
+    history = sub.setdefault("history", {})
+    for day in [d for d in runs if d < prev_start.isoformat()]:
+        history[day[:7]] = round(history.get(day[:7], 0) + sum(float((e or {}).get("usd") or 0) for e in runs[day].values()), 6)
+        del runs[day]
+    return data
+
+
+def record_openai_usage(purpose: str, model: str, usage, now: datetime | None = None) -> float:
+    """1回の OpenAI の呼び出しの使用量を、自分の台帳のファイルの "openai" の欄に足す。戻り値はその回の米ドル"""
+    usd = openai_cost(model, usage)
+    RUN_COST["usd"] += usd
+    RUN_COST["calls"].append((purpose, model, usd))
+    data = _read_json(_ledger_path())
+    entry = _openai_entry(data, now)
+    entry["usd"] = round(float(entry.get("usd") or 0) + usd, 6)
+    entry.setdefault("calls", {})[purpose] = entry.get("calls", {}).get(purpose, 0) + 1
+    stat = entry.setdefault("by", {}).setdefault(f"{purpose}|{model}", {"n": 0, "usd": 0.0})
+    stat["n"] += 1
+    stat["usd"] = round(stat["usd"] + usd, 6)
+    usage = usage or {}
+    entry["in"] = entry.get("in", 0) + int(usage.get("input_tokens") or 0)
+    entry["out"] = entry.get("out", 0) + int(usage.get("output_tokens") or 0)
+    entry["cached"] = entry.get("cached", 0) + int((usage.get("input_tokens_details") or {}).get("cached_tokens") or 0)
+    _save_ledger(_prune_openai(data, now))
+    return usd
+
+
+def mark_openai_exhausted(reason: str, now: datetime | None = None) -> str:
+    """クレジット切れ（insufficient_quota）: 次の期間の最初の日（日本時間 8日 9:00＝0:00 UTC）まで使わない"""
+    now = now or _now()
+    _, end = openai_cycle_bounds(now)
+    until = datetime.combine(end + timedelta(days=1), datetime.min.time(), timezone.utc)
+    if until <= now:
+        until = now + timedelta(hours=3)
+    data = _read_json(_ledger_path())
+    sub = data.setdefault("openai", {})
+    sub["exhausted_until"] = until.strftime("%Y-%m-%dT%H:%M:%SZ")
+    sub["exhausted_reason"] = reason[:160]
+    _save_ledger(data)
+    return sub["exhausted_until"]
+
+
+def _openai_schema(schema: dict) -> dict:
+    """strict な構造化出力用: どの object も全部の項目を required にし、もともと任意の項目は null も許す"""
+    def walk(node):
+        if isinstance(node, list):
+            return [walk(v) for v in node]
+        if not isinstance(node, dict):
+            return node
+        out = {k: (({n: walk(s) for n, s in v.items()}) if k in ("properties", "$defs", "definitions") and isinstance(v, dict) else walk(v))
+               for k, v in node.items()}
+        kind = out.get("type")
+        if kind == "object" or (isinstance(kind, list) and "object" in kind):
+            props = out.get("properties") or {}
+            required = set(out.get("required") or [])
+            for name, sub in props.items():
+                if name in required or not isinstance(sub, dict):
+                    continue
+                t = sub.get("type")
+                if isinstance(t, str):
+                    sub["type"] = [t, "null"]
+                elif isinstance(t, list) and "null" not in t:
+                    sub["type"] = t + ["null"]
+                elif t is None:
+                    props[name] = {"anyOf": [sub, {"type": "null"}]}
+                if "enum" in sub and None not in sub["enum"]:
+                    sub["enum"] = list(sub["enum"]) + [None]
+            out["properties"] = props
+            out["required"] = list(props)
+            out["additionalProperties"] = False
+        return out
+
+    return walk(_api_schema(schema))
+
+
+class OpenAIError(RuntimeError):
+    def __init__(self, status: int | None, code: str, message: str):
+        super().__init__(f"{status} {code}: {message}")
+        self.status_code = status
+        self.code = code
+
+
+def _openai_request(model: str, system_instruction: str, prompt: str, schema: dict, max_output_tokens: int, use_schema: bool) -> dict:
+    """Responses API（POST /v1/responses）を1回呼ぶ。HTTP の失敗は OpenAIError"""
+    payload: dict = {
+        "model": model,
+        "instructions": system_instruction,
+        "input": prompt if use_schema else _plain_prompt("（instructions を参照）", prompt, schema),
+        "max_output_tokens": max_output_tokens,
+        "reasoning": {"effort": os.environ.get("OPENAI_REASONING_EFFORT") or "medium"},
+        "store": False,
+        "text": {"format": {"type": "json_schema", "name": "saisoku_output", "schema": _openai_schema(schema), "strict": True}}
+        if use_schema else {"format": {"type": "json_object"}},
+    }
+    request = urllib.request.Request(OPENAI_URL, data=json.dumps(payload).encode("utf-8"), headers={
+        "Content-Type": "application/json", "Authorization": f"Bearer {os.environ['OPENAI_API_KEY']}"})
+    try:
+        with urllib.request.urlopen(request, timeout=_env_float("OPENAI_API_TIMEOUT", OPENAI_TIMEOUT)) as response:
+            return json.loads(response.read().decode("utf-8"))
+    except urllib.error.HTTPError as error:
+        body = error.read().decode("utf-8", "ignore")
+        try:
+            detail = json.loads(body).get("error") or {}
+        except (ValueError, AttributeError):
+            detail = {}
+        raise OpenAIError(error.code, str(detail.get("code") or detail.get("type") or ""), str(detail.get("message") or body)[:200]) from error
+
+
+def _openai_error_kind(error: Exception) -> str:
+    status = getattr(error, "status_code", None)
+    code = str(getattr(error, "code", "") or "").lower()
+    text = str(error).lower()
+    if code == "insufficient_quota" or "insufficient_quota" in text or "exceeded your current quota" in text or status == 402:
+        return "exhausted"
+    if status in (401, 403):
+        return "auth"
+    if status == 404 or code == "model_not_found":
+        return "missing"
+    if status in (400, 413, 422):
+        return "invalid"
+    return "transient"
+
+
+def _openai_text(data: dict) -> tuple[str, str]:
+    """(本文, 止まった理由)。止まった理由は "" / "refusal" / "max_output_tokens" など"""
+    if data.get("status") == "incomplete":
+        return "", str((data.get("incomplete_details") or {}).get("reason") or "incomplete")
+    parts = []
+    for item in data.get("output") or []:
+        if item.get("type") != "message":
+            continue
+        for c in item.get("content") or []:
+            if c.get("type") == "refusal":
+                return "", "refusal"
+            if c.get("type") == "output_text":
+                parts.append(str(c.get("text") or ""))
+    return "".join(parts).strip(), ""
+
+
+def _try_openai_api(system_instruction: str, prompt: str, schema: dict, max_output_tokens: int, purpose: str) -> tuple[dict, str] | None:
+    """OpenAI API で1回作る。使えない・予算に届く・失敗したら None（呼び出し側が次の経路へ）。例外は外に出さない"""
+    global _openai_off, _openai_transient_failures
+    model = openai_model_for(purpose) or ""
+    max_tokens = min(64000, max(16000, max_output_tokens + 16000))  # 考える分も出力に入る
+    estimate = openai_estimate(model, len(system_instruction) + len(prompt), max_tokens)
+    why = openai_block_reason(purpose, estimate)
+    if why:
+        if (purpose, "openai", why) not in _limit_logged:
+            _limit_logged.add((purpose, "openai", why))
+            log(f"   [llm] OpenAI API を使わない（{why}） -> 次の経路へ")
+        return None
+    name = f"{OPENAI_PREFIX}{model}"
+    use_schema, repaired, body = True, False, prompt
+    for _ in range(3):
+        try:
+            data = _openai_request(model, system_instruction, body, schema, max_tokens, use_schema)
+        except Exception as error:  # noqa: BLE001 - どんな失敗でも次の経路へ
+            kind = _openai_error_kind(error)
+            detail = f"{type(error).__name__}: {str(error)[:160]}"
+            if kind == "exhausted":
+                until = mark_openai_exhausted(detail)
+                _openai_off = "OpenAI のクレジット切れ"
+                log(f"   [llm] OpenAI API: クレジット切れ（{detail}）。{until} まで使わない -> 次の経路へ")
+                return None
+            if kind == "auth":
+                _openai_off = "OpenAI の認証ができない（キーを確認）"
+            elif kind == "missing":
+                _openai_off = f"OpenAI のモデル {model} が見つからない"
+            elif kind == "invalid" and use_schema:
+                log(f"   [llm] OpenAI API: 400（{detail}） -> 構造化出力なしで1回だけ再試行")
+                use_schema = False
+                continue
+            elif kind == "transient":
+                _openai_transient_failures += 1
+                if _openai_transient_failures >= 2:
+                    _openai_off = "OpenAI の一時的なエラーが続いた"
+            log(f"   [llm] OpenAI API: 失敗（{detail}）{'。この実行ではもう使わない' if _openai_off else ''} -> 次の経路へ")
+            return None
+        _openai_transient_failures = 0
+        usage = data.get("usage") or {}
+        usd = record_openai_usage(purpose, model, usage)
+        _record_usage(name)
+        log(f"   [llm] OpenAI API {model}（{purpose}）: 入力 {usage.get('input_tokens', 0)}"
+            f"（キャッシュ {(usage.get('input_tokens_details') or {}).get('cached_tokens', 0)}）/ 出力 {usage.get('output_tokens', 0)} → ${usd:.4f}")
+        text, stop = _openai_text(data)
+        if stop:
+            log(f"   [llm] OpenAI API: 止まった（{stop}） -> 次の経路へ")
+            return None
+        try:
+            parsed = parse_json_lenient(text)
+        except (ValueError, json.JSONDecodeError) as error:
+            log(f"   [llm] OpenAI API: JSON を読めません（{str(error)[:80]}） -> 次の経路へ")
+            return None
+        # strict のために null にした任意の項目は、無かったことにする（Claude・Gemini の出力と同じ形にそろえる）
+        required = set(schema.get("required") or [])
+        parsed = {k: v for k, v in parsed.items() if v is not None or k in required}
+        missing = missing_keys(parsed, schema)
+        if missing and not repaired:
+            repaired = True
+            body = (prompt + "\n\n# 前回の出力の問題\n必須キーが足りませんでした: " + ", ".join(missing)
+                    + "\nすべての必須キー（" + ", ".join(schema.get("required", [])) + "）を含む JSON オブジェクトを、最初から全部出力してください。")
+            continue
+        if missing:
+            log(f"   [llm] OpenAI API: 必須キー不足（{', '.join(missing[:6])}） -> 次の経路へ")
+            return None
+        return parsed, name
+    return None
+
+
+def openai_summary_line(now: datetime | None = None) -> str:
+    s = openai_ledger_summary(now)
+    parts = " / ".join(f"{API_TIERS.get(p, (0, 0, 0, False, p))[4]} ${v:.2f}" for p, v in sorted(s["by_purpose"].items()) if v)
+    return (f"[llm] OpenAI API {_jst_day(now)}: 期間 {s['cycle_start']}〜{s['cycle_end']} ${s['spent']:.2f}/${s['budget']:.0f}"
+            f"（残り{s['days_left']}日・今日 ${s['spent_today']:.2f}／目安 ${s['daily_limit']:.2f}）{(' = ' + parts) if parts else ''}"
+            f"{' / クレジット切れ ' + s['exhausted_until'][:16] if s['exhausted_until'] else ''}")
+
+
 def api_available(purpose: str) -> bool:
     """この段で API を使える見込みがあるか（配分で無料モデルになっている段は False。回数は記録しない）"""
     if api_block_reason(purpose) is not None:
@@ -1625,9 +2087,14 @@ def generate_json(
     visibility = visibility or os.environ.get("LLM_DEFAULT_VISIBILITY") or None
     purpose = purpose or os.environ.get("LLM_DEFAULT_PURPOSE") or ""
     if purpose:
-        got = _try_anthropic_api(system_instruction, prompt, schema, max_output_tokens, purpose)
-        if got:
-            return got
+        # 有料の API を provider_order の順に（既定・OPENAI_API_KEY が無いときは Claude だけ＝今までどおり）
+        for provider in provider_order(purpose):
+            if provider == "openai":
+                got = _try_openai_api(system_instruction, prompt, schema, max_output_tokens, purpose)
+            else:
+                got = _try_anthropic_api(system_instruction, prompt, schema, max_output_tokens, purpose)
+            if got:
+                return got
     # Claude CLI（サブスクリプション）は速報・SNS・動画だけ（API が使えない・失敗したときの次の手）
     cli = visibility == "high" or purpose in API_CLI_PURPOSES
     if purpose in CLAUDE_ONLY_PURPOSES:
@@ -1753,7 +2220,7 @@ def generate_json(
 def all_exhausted(tier: str, visibility: str | None = None, purpose: str = "breaking") -> bool:
     """もう何も作れないか。Claude API が使えるうちは尽きていない扱い（記事も事実確認も API で書ける）。
     visibility="high" なら Claude CLI が使えるうちも尽きていない扱い。どちらも無ければ tier の無料モデルがすべて尽きたか"""
-    if api_block_reason("check") is None:
+    if paid_block_reason("check") is None:  # OpenAI か Claude の API（provider_order の中）が使えるうちは尽きていない
         return False
     if visibility == "high":
         if api_available(purpose) or (purpose in API_CLI_PURPOSES and any(m not in _exhausted for m in _claude_models())):
@@ -1771,7 +2238,7 @@ def _load_env_local() -> None:
     if not path.exists():
         return
     for line in path.read_text("utf-8").splitlines():
-        match = re.match(r"^(GEMINI_API_KEY|GOOGLE_API_KEY|GROQ_API_KEY|OPENROUTER_API_KEY|ANTHROPIC_API_KEY)=(.+)$", line.strip())
+        match = re.match(r"^(GEMINI_API_KEY|GOOGLE_API_KEY|GROQ_API_KEY|OPENROUTER_API_KEY|ANTHROPIC_API_KEY|OPENAI_API_KEY)=(.+)$", line.strip())
         if match and not os.environ.get(match.group(1)):
             os.environ[match.group(1)] = match.group(2).strip().strip("\"'")
 
@@ -1834,6 +2301,9 @@ if __name__ == "__main__":
     log(f"[llm] Claude CLI: {'有効' if claude_enabled() else '無効'}（visibility=high のみ。今日 {claude_calls_today()} 回 / 上限 {_claude_daily_max()}）")
     log(f"[llm] Claude API: {'キーあり' if os.environ.get('ANTHROPIC_API_KEY') else 'キーなし'}")
     log(api_summary_line())
+    log(f"[llm] OpenAI API: {'キーあり' if os.environ.get('OPENAI_API_KEY') else 'キーなし'} / 順番 "
+        + " ・ ".join(f"{p}={'→'.join(provider_order(p))}" for p in OPENAI_PURPOSE_MODELS))
+    log(openai_summary_line())
     if "--ping" in sys.argv:
         demo_schema = {"type": "OBJECT", "properties": {"answer": {"type": "STRING"}, "n": {"type": "INTEGER"}}, "required": ["answer", "n"]}
         result, used = generate_json("日本語で簡潔に答える。", "1+1は？ answer に一言の説明、n に数値。", demo_schema, tier=os.environ.get("LLM_PING_TIER", "bulk"), max_output_tokens=256)

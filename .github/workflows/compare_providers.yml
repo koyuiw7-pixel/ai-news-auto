@@ -1,0 +1,81 @@
+# Claude API と OpenAI API の比べ書き（公開しない・記事のファイルを書き換えない・SNS に出さない。2026-11-18）。
+# 最近の記事 N 本を、本番と同じ部品（scripts/trial_types.py の run_one）で会社ごとに書き直し、品質ゲートの合格率・
+# 公開できた記事1本あたりの額・段ごとの額を比べる（scripts/compare_providers.py）。結果は成果物（artifact）。
+# 使った額は台帳 state/claude_api_usage_provider_trial.json に残して main に push する（OpenAI の期間の予算に数えるため）。
+# 動かし方（1行）: gh workflow run compare_providers.yml -f n=8
+name: Compare LLM providers (dry run)
+
+on:
+  workflow_dispatch:
+    inputs:
+      n:
+        description: "最近の記事を何本"
+        default: "8"
+      purpose:
+        description: "書く段（core / sns / rest など）"
+        default: "core"
+      providers:
+        description: "比べる会社（カンマ区切り）"
+        default: "claude,openai"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: compare-providers
+  cancel-in-progress: false
+
+jobs:
+  compare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: main
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - name: Compare (dry run)
+        env:
+          # 試しは本番と別に数える（名前の末尾 _trial。台帳 O10）。お金は OpenAI・Claude それぞれの月の予算に数える
+          LLM_WORKFLOW: provider_trial
+          CLAUDE_API_LEDGER: provider_trial
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_API_MONTHLY_BUDGET_USD: ${{ vars.OPENAI_API_MONTHLY_BUDGET_USD }}
+          OPENAI_API_CYCLE_BUDGET_USD: ${{ vars.OPENAI_API_CYCLE_BUDGET_USD }}
+          OPENAI_API_CYCLE_BUDGET_UNTIL: ${{ vars.OPENAI_API_CYCLE_BUDGET_UNTIL }}
+          CLAUDE_API_MONTHLY_BUDGET_USD: ${{ vars.CLAUDE_API_MONTHLY_BUDGET_USD }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          JINA_API_KEY: ${{ secrets.JINA_API_KEY }}
+          CLAUDE_API_DAILY_CALLS_CORE: "999"
+          CLAUDE_API_DAILY_CALLS_SNS: "999"
+          CLAUDE_API_DAILY_CALLS_REST: "999"
+          CLAUDE_API_DAILY_CALLS_CHECK: "999"
+          CLAUDE_API_DAILY_CALLS_HELPER: "999"
+          N: ${{ inputs.n || '8' }}
+          PURPOSE: ${{ inputs.purpose || 'core' }}
+          PROVIDERS: ${{ inputs.providers || 'claude,openai' }}
+        run: |
+          mkdir -p work
+          python scripts/compare_providers.py --n "$N" --purpose "$PURPOSE" --providers "$PROVIDERS" --out work/provider_compare.json
+          if [ -f work/provider_compare.md ]; then cat work/provider_compare.md >> "$GITHUB_STEP_SUMMARY"; fi
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: provider-compare
+          path: work/provider_compare.*
+          if-no-files-found: warn
+      - name: Record API usage
+        if: always()
+        run: |
+          git checkout -- content/llm_usage.json 2>/dev/null || true
+          git add state/claude_api_usage_provider_trial.json 2>/dev/null || true
+          if git diff --cached --quiet; then exit 0; fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "chore(llm): API の使用量を記録（Claude と OpenAI の比べ書き）"
+          python3 scripts/git_safe_push.py && exit 0
+          echo "::warning::使用量を push できませんでした"

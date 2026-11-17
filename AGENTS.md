@@ -144,7 +144,7 @@
 
 ## 8. 主な秘密・設定の名前（値はここに書かない）
 
-- GitHub Secrets: `ANTHROPIC_API_KEY`（Claude API のクレジット。記事・動画の台本を段ごとのモデルで）, `CF_DEPLOY_TOKEN`, `BUFFER_API_KEY`, `RESEND_API_KEY`, `JINA_API_KEY`, `BLUESKY_APP_PASSWORD`, `VAPID_PRIVATE_KEY`, `PUSH_SEND_TOKEN`, `AFF_STATS_TOKEN` ほか
+- GitHub Secrets: `ANTHROPIC_API_KEY`（Claude API のクレジット。記事・動画の台本を段ごとのモデルで）, `OPENAI_API_KEY`（OpenAI API のクレジット 月 $100・8日〜翌月7日。台帳 O18。使う順番は変数 `LLM_PROVIDER_ORDER`（既定 claude）、予算で止まったあと Claude に回す段は `CLAUDE_API_FALLBACK_PURPOSES`。比べ書きは `gh workflow run compare_providers.yml -f n=8`）, `CF_DEPLOY_TOKEN`, `BUFFER_API_KEY`, `RESEND_API_KEY`, `JINA_API_KEY`, `BLUESKY_APP_PASSWORD`, `VAPID_PRIVATE_KEY`, `PUSH_SEND_TOKEN`, `AFF_STATS_TOKEN` ほか
 - GitHub Variables: `WEB_DAILY_CAP_BRAKE`（通常記事の1日上限を予定表より下げて止めるときだけ。2026-11-06 から予定表は100本/日・台帳 A47。古い `WEB_DAILY_CAP` は読まない）, `THREADS_MODE`, `BLUESKY_HANDLE`, `EVERGREEN_DAILY_CAP_BRAKE`（使い方ガイドの1日上限を下げるときだけ。既定16本）, `SNS_FORMAT`, `SNS_DIGEST`
 - Cloudflare: アカウント `51e37d82e15d397b9666dc3d09bd5b92`、KV（記事キャッシュ・画像・メルマガ・プッシュ・クリック計測）
 

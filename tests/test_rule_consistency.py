@@ -281,6 +281,7 @@ NON_PROSE = {
     "threads_learn.py": "投稿の学びの記録",
     "threads_post.py": "投稿の記録",
     "trial_types.py": "試し書き（trial.json。記事は書かない）",
+    "compare_providers.py": "Claude と OpenAI の比べ書き（trial_types.run_one を使う。記事は書かない）",
     "video_ladder.py": "動画の記録",
 }
 ARTICLE_DIR_RE = re.compile(r"\bARTICLES(?:_DIR)?\b|\"content\"\s*/\s*\"articles\"|content/articles|write_article\(")
