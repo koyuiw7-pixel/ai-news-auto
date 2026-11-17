@@ -1,12 +1,12 @@
 {
  "updatedAt": "2026-11-12T20:11:35.955353+00:00",
- "generatedAt": "2026-11-15T23:10:25+00:00",
+ "generatedAt": "2026-11-17T02:05:03+00:00",
  "stats": {
-  "articlesScanned": 1284,
-  "candidateArticles": 68,
-  "rowsVerified": 66,
-  "rowsRejected": 85,
-  "plans": 20,
+  "articlesScanned": 1402,
+  "candidateArticles": 69,
+  "rowsVerified": 77,
+  "rowsRejected": 86,
+  "plans": 24,
   "apis": 10
  },
  "items": [
@@ -282,7 +282,7 @@
     "quote": "| Free | $0/月 | | 制限された使用量(5 時間ごと・毎週) |"
    },
    "verdictSource": "claude-for-manufacturing-plugin",
-   "confirmedIn": 6,
+   "confirmedIn": 7,
    "legacy": false
   },
   {
@@ -297,8 +297,8 @@
    "input": null,
    "output": null,
    "cachedInput": null,
-   "japan": "unknown",
-   "status": "limited",
+   "japan": "ok",
+   "status": "available",
    "free": true,
    "source": {
     "slug": "claude-whiteboards-sheets-data",
@@ -306,8 +306,8 @@
     "publishedAt": "2026-11-09T15:00:00+00:00",
     "quote": "Proは月払いで$20です(Anthropic公式の料金ページ、11/10確認)。"
    },
-   "verdictSource": null,
-   "confirmedIn": 1,
+   "verdictSource": "claude-ultra-plan-price-limits",
+   "confirmedIn": 2,
    "legacy": false
   },
   {
@@ -386,6 +386,31 @@
    "legacy": false
   },
   {
+   "id": "plan-claude-team",
+   "kind": "plan",
+   "vendor": "Anthropic",
+   "companySlug": "anthropic",
+   "product": "Claude",
+   "plan": "Team(月払い)",
+   "currency": "USD",
+   "monthly": 25,
+   "input": null,
+   "output": null,
+   "cachedInput": null,
+   "japan": "ok",
+   "status": "available",
+   "free": true,
+   "source": {
+    "slug": "claude-ultra-plan-price-limits",
+    "title": "Claude Ultraプランとは？料金と日本での使い方",
+    "publishedAt": "2026-11-02T04:53:24.629000+00:00",
+    "quote": "| Team(スタンダードシート) | $20/人・月(年払い) / $25/人・月(月払い) | 約4,400円(税込みの目安) | すべてのClaude 機能、さらにProより多い使用量 |"
+   },
+   "verdictSource": null,
+   "confirmedIn": 1,
+   "legacy": false
+  },
+  {
    "id": "plan-claude-max",
    "kind": "plan",
    "vendor": "Anthropic",
@@ -407,7 +432,32 @@
     "quote": "| Max | $100/月(月払い) | 約17,520円(税込みの目安) | Pro の 5 倍の使用量(5 時間ごと・毎週)、Claude Platform での開発に利用できる月額 $100 分の API クレジット |"
    },
    "verdictSource": "claude-for-manufacturing-plugin",
-   "confirmedIn": 7,
+   "confirmedIn": 8,
+   "legacy": false
+  },
+  {
+   "id": "plan-claude-ultra",
+   "kind": "plan",
+   "vendor": "Anthropic",
+   "companySlug": "anthropic",
+   "product": "Claude",
+   "plan": "Ultra",
+   "currency": "USD",
+   "monthly": 200,
+   "input": null,
+   "output": null,
+   "cachedInput": null,
+   "japan": "ok",
+   "status": "available",
+   "free": true,
+   "source": {
+    "slug": "claude-ultra-plan-price-limits",
+    "title": "Claude Ultraプランとは？料金と日本での使い方",
+    "publishedAt": "2026-11-02T04:53:24.629000+00:00",
+    "quote": "| Ultra | $200(月払い) | Proの10倍 | なし(確認済みの場合) |"
+   },
+   "verdictSource": null,
+   "confirmedIn": 1,
    "legacy": false
   },
   {
@@ -430,6 +480,31 @@
     "title": "Gemini Daily Briefとは？AI Plus・Proの料金",
     "publishedAt": "2026-11-04T01:11:29.558002+00:00",
     "quote": "| 無料 | 0円/月 | | Gmail、Google ドライブ、Google フォト共通で利用できる 15 GB のクラウド ストレージ |"
+   },
+   "verdictSource": null,
+   "confirmedIn": 1,
+   "legacy": false
+  },
+  {
+   "id": "plan-gemini-geminienterprisebusiness",
+   "kind": "plan",
+   "vendor": "Google",
+   "companySlug": "google",
+   "product": "Gemini",
+   "plan": "Gemini Enterprise Business エディション",
+   "currency": "USD",
+   "monthly": 21,
+   "input": null,
+   "output": null,
+   "cachedInput": null,
+   "japan": "unknown",
+   "status": null,
+   "free": true,
+   "source": {
+    "slug": "gemini-4-hydrogen-launch-pricing",
+    "title": "Gemini 4 Hydrogenとは？料金と日本での使い方",
+    "publishedAt": "2026-11-12T18:00:50+00:00",
+    "quote": "| Gemini Enterprise Business エディション | $21/人・月から | 約3,680円(税込みの目安) | ユーザー数: 最大 300 人 |"
    },
    "verdictSource": null,
    "confirmedIn": 1,
@@ -476,13 +551,13 @@
    "status": "available",
    "free": true,
    "source": {
-    "slug": "gemini-plans-daily-brief-added",
-    "title": "Gemini Daily Briefとは？AI Plus・Proの料金",
-    "publishedAt": "2026-11-04T01:11:29.558002+00:00",
+    "slug": "gemini-4-hydrogen-launch-pricing",
+    "title": "Gemini 4 Hydrogenとは？料金と日本での使い方",
+    "publishedAt": "2026-11-12T18:00:50+00:00",
     "quote": "| Google AI Plus | 725円/月(月払い) | | 無料版の 2 倍の使用量上限、Gmail、Google ドライブ、Google フォト共通で利用できる 400 GB のクラウド ストレージ |"
    },
-   "verdictSource": null,
-   "confirmedIn": 1,
+   "verdictSource": "gemini-plans-daily-brief-added",
+   "confirmedIn": 2,
    "legacy": false
   },
   {
@@ -501,13 +576,13 @@
    "status": "available",
    "free": true,
    "source": {
-    "slug": "gemini-plans-daily-brief-added",
-    "title": "Gemini Daily Briefとは？AI Plus・Proの料金",
-    "publishedAt": "2026-11-04T01:11:29.558002+00:00",
+    "slug": "gemini-4-hydrogen-launch-pricing",
+    "title": "Gemini 4 Hydrogenとは？料金と日本での使い方",
+    "publishedAt": "2026-11-12T18:00:50+00:00",
     "quote": "| Google AI Pro | 2,900円/月(月払い) | | 無料版の 4 倍の使用量上限、Gmail、Google ドライブ、Google フォト共通で利用できる 5 TB のクラウド ストレージ |"
    },
-   "verdictSource": null,
-   "confirmedIn": 1,
+   "verdictSource": "gemini-plans-daily-brief-added",
+   "confirmedIn": 2,
    "legacy": false
   },
   {
@@ -526,13 +601,13 @@
    "status": "available",
    "free": true,
    "source": {
-    "slug": "gemini-plans-daily-brief-added",
-    "title": "Gemini Daily Briefとは？AI Plus・Proの料金",
-    "publishedAt": "2026-11-04T01:11:29.558002+00:00",
+    "slug": "gemini-4-hydrogen-launch-pricing",
+    "title": "Gemini 4 Hydrogenとは？料金と日本での使い方",
+    "publishedAt": "2026-11-12T18:00:50+00:00",
     "quote": "| Google AI Ultra(AI Pro の 5 倍) | 14,500円/月(月払い) | | AI Pro の 5 倍の使用量上限 |"
    },
-   "verdictSource": null,
-   "confirmedIn": 1,
+   "verdictSource": "gemini-plans-daily-brief-added",
+   "confirmedIn": 2,
    "legacy": false
   },
   {
@@ -551,13 +626,13 @@
    "status": "available",
    "free": true,
    "source": {
-    "slug": "gemini-plans-daily-brief-added",
-    "title": "Gemini Daily Briefとは？AI Plus・Proの料金",
-    "publishedAt": "2026-11-04T01:11:29.558002+00:00",
+    "slug": "gemini-4-hydrogen-launch-pricing",
+    "title": "Gemini 4 Hydrogenとは？料金と日本での使い方",
+    "publishedAt": "2026-11-12T18:00:50+00:00",
     "quote": "| Google AI Ultra(AI Pro の 20 倍) | 32,000円/月(月払い) | | AI Pro の 20 倍の使用量上限 |"
    },
-   "verdictSource": null,
-   "confirmedIn": 1,
+   "verdictSource": "gemini-plans-daily-brief-added",
+   "confirmedIn": 2,
    "legacy": false
   },
   {
@@ -593,7 +668,7 @@
    "product": "Gemini Enterprise",
    "plan": "Business エディション",
    "currency": "USD",
-   "monthly": 21.0,
+   "monthly": 21,
    "input": null,
    "output": null,
    "cachedInput": null,
@@ -601,13 +676,13 @@
    "status": null,
    "free": null,
    "source": {
-    "slug": "gemini-4-hydrogen-launch-pricing",
-    "title": "Gemini 4 Hydrogenとは？料金と日本での使い方",
-    "publishedAt": "2026-11-12T18:00:50+00:00",
-    "quote": "| Gemini Enterprise Business エディション | $21/人・月から | 約3,680円(税込みの目安) | ユーザー数: 最大 300 人 |"
+    "slug": "gemini-robotics-2-5-dexterity",
+    "title": "Gemini Robotics 2.5とは？提携先に提供、日本での提供は未発表",
+    "publishedAt": "2026-11-09T19:51:47+00:00",
+    "quote": "| Gemini Enterprise Business エディション | $21/人・月から | 約3,650円(税込みの目安) | ユーザー数: 最大 300 人 |"
    },
    "verdictSource": null,
-   "confirmedIn": 4,
+   "confirmedIn": 3,
    "legacy": false
   },
   {
@@ -733,6 +808,31 @@
    },
    "verdictSource": null,
    "confirmedIn": 3,
+   "legacy": false
+  },
+  {
+   "id": "plan-chatgpt-pro",
+   "kind": "plan",
+   "vendor": "OpenAI",
+   "companySlug": "openai",
+   "product": "ChatGPT",
+   "plan": "Pro",
+   "currency": "USD",
+   "monthly": 200,
+   "input": null,
+   "output": null,
+   "cachedInput": null,
+   "japan": "unknown",
+   "status": null,
+   "free": null,
+   "source": {
+    "slug": "claude-ultra-plan-price-limits",
+    "title": "Claude Ultraプランとは？料金と日本での使い方",
+    "publishedAt": "2026-11-02T04:53:24.629000+00:00",
+    "quote": "他社の最上位帯では、ChatGPT Proが$200、Google AI Ultraが月14,500円または32,000円です(各社公式の料金ページ、11/3確認)。使うモデルや機能で比べるとよいでしょう。"
+   },
+   "verdictSource": null,
+   "confirmedIn": 1,
    "legacy": false
   },
   {

@@ -115,8 +115,8 @@
   "rows": []
  },
  "chatgpt-work-complete-guide-features-matome": {
-  "at": "2026-11-13T23:51:52+00:00",
-  "hash": "45e9d03e816e4758",
+  "at": "2026-11-17T02:04:52+00:00",
+  "hash": "f5991b30bc33db36",
   "model": "gemini-3.5-flash-lite",
   "rows": []
  },
@@ -796,10 +796,136 @@
   ]
  },
  "claude-ultra-plan-price-limits": {
-  "at": "2026-11-12T23:52:48+00:00",
-  "hash": "53f208931f24ee50",
+  "at": "2026-11-17T02:05:03+00:00",
+  "hash": "4e519590d47a5dd7",
   "model": "gemini-3.5-flash-lite",
-  "rows": []
+  "rows": [
+   {
+    "currency": "USD",
+    "kind": "plan",
+    "monthlyPrice": 20,
+    "ok": true,
+    "plan": "Pro",
+    "product": "Claude",
+    "quote": "| Pro | $20（月払い） | 基準 | あり |",
+    "vendor": "Anthropic"
+   },
+   {
+    "currency": "USD",
+    "kind": "plan",
+    "monthlyPrice": 100,
+    "ok": true,
+    "plan": "Max",
+    "product": "Claude",
+    "quote": "| Max | $100（月払い） | Proの5倍 | あり |",
+    "vendor": "Anthropic"
+   },
+   {
+    "currency": "USD",
+    "kind": "plan",
+    "monthlyPrice": 200,
+    "ok": true,
+    "plan": "Ultra",
+    "product": "Claude",
+    "quote": "| Ultra | $200（月払い） | Proの10倍 | なし（確認済みの場合） |",
+    "vendor": "Anthropic"
+   },
+   {
+    "currency": "USD",
+    "kind": "plan",
+    "monthlyPrice": 200,
+    "ok": true,
+    "plan": "Pro",
+    "product": "ChatGPT",
+    "quote": "他社の最上位帯では、ChatGPT Proが$200、Google AI Ultraが月14,500円または32,000円です（各社公式の料金ページ、11/3確認）。使うモデルや機能で比べるとよいでしょう。",
+    "vendor": "OpenAI"
+   },
+   {
+    "currency": "JPY",
+    "kind": "plan",
+    "monthlyPrice": 14500,
+    "ok": false,
+    "plan": "Ultra",
+    "product": "Google AI",
+    "quote": "他社の最上位帯では、ChatGPT Proが$200、Google AI Ultraが月14,500円または32,000円です（各社公式の料金ページ、11/3確認）。使うモデルや機能で比べるとよいでしょう。",
+    "reason": "AIの製品名ではない",
+    "vendor": "Google"
+   },
+   {
+    "currency": "JPY",
+    "kind": "plan",
+    "monthlyPrice": 32000,
+    "ok": false,
+    "plan": "Ultra",
+    "product": "Google AI",
+    "quote": "他社の最上位帯では、ChatGPT Proが$200、Google AI Ultraが月14,500円または32,000円です（各社公式の料金ページ、11/3確認）。使うモデルや機能で比べるとよいでしょう。",
+    "reason": "AIの製品名ではない",
+    "vendor": "Google"
+   },
+   {
+    "currency": "USD",
+    "kind": "plan",
+    "monthlyPrice": 0,
+    "ok": true,
+    "plan": "Free",
+    "product": "Claude",
+    "quote": "| Free | $0/月 |  | 制限された使用量（5 時間ごと・毎週） |",
+    "vendor": "Anthropic"
+   },
+   {
+    "currency": "USD",
+    "kind": "plan",
+    "monthlyPrice": 20,
+    "ok": false,
+    "plan": "Pro",
+    "product": "Claude",
+    "quote": "| Pro | $17/月（年払い・一括$200） / $20/月（月払い） | 約3,520円（税込みの目安） | Free より多い使用量（5 時間ごと・毎週） |",
+    "reason": "比較表の行で製品が決まらない",
+    "vendor": "Anthropic"
+   },
+   {
+    "currency": "USD",
+    "kind": "plan",
+    "monthlyPrice": 100,
+    "ok": true,
+    "plan": "Max",
+    "product": "Claude",
+    "quote": "| Max | $100/月（月払い） | 約17,600円（税込みの目安） | Pro の 5 倍の使用量（5 時間ごと・毎週）、Claude Platform での開発に利用できる月額 $100 分の API クレジット |",
+    "vendor": "Anthropic"
+   },
+   {
+    "currency": "USD",
+    "kind": "plan",
+    "monthlyPrice": 200,
+    "ok": false,
+    "plan": "Ultra",
+    "product": "Claude",
+    "quote": "| Ultra | $200/月（月払い） | 約35,200円（税込みの目安） | 5 時間制限なし、Pro の 10 倍の使用量（毎週）、月額 $200 分の API クレジット（Max の $100 からアップグレード） |",
+    "reason": "比較表の行で製品が決まらない",
+    "vendor": "Anthropic"
+   },
+   {
+    "currency": "USD",
+    "kind": "plan",
+    "monthlyPrice": 25,
+    "ok": true,
+    "plan": "Team（月払い）",
+    "product": "Claude",
+    "quote": "| Team（スタンダードシート） | $20/人・月（年払い） / $25/人・月（月払い） | 約4,400円（税込みの目安） | すべてのClaude 機能、さらにProより多い使用量 |",
+    "vendor": "Anthropic"
+   },
+   {
+    "currency": "USD",
+    "kind": "plan",
+    "monthlyPrice": 125,
+    "ok": false,
+    "plan": "Team（月払い）",
+    "product": "Claude",
+    "quote": "| Team（プレミアムシート） | $100/人・月（年払い） / $125/人・月（月払い） | 約22,000円（税込みの目安） | スタンダードシートの5倍の使用量 |",
+    "reason": "比較表の行で製品が決まらない",
+    "vendor": "Anthropic"
+   }
+  ]
  },
  "claude-whiteboards-sheets-data": {
   "at": "2026-11-12T00:59:21+00:00",
@@ -1096,8 +1222,8 @@
   ]
  },
  "gemini-4-hydrogen-launch-pricing": {
-  "at": "2026-11-12T23:52:32+00:00",
-  "hash": "8feaad339e6de1f5",
+  "at": "2026-11-17T02:05:00+00:00",
+  "hash": "5f141d79ebe7f7ed",
   "model": "gemini-3.5-flash-lite",
   "rows": [
    {
@@ -1133,13 +1259,12 @@
     "currency": "JPY",
     "inputPerM": null,
     "kind": "plan",
-    "monthlyPrice": 725.0,
-    "ok": false,
+    "monthlyPrice": 725,
+    "ok": true,
     "outputPerM": null,
-    "plan": "Plus",
-    "product": "Google AI",
+    "plan": "Google AI Plus",
+    "product": "Gemini",
     "quote": "| Google AI Plus | 725円/月（月払い） |  | 無料版の 2 倍の使用量上限、Gmail、Google ドライブ、Google フォト共通で利用できる 400 GB のクラウド ストレージ |",
-    "reason": "AIの製品名ではない",
     "vendor": "Google"
    },
    {
@@ -1147,13 +1272,12 @@
     "currency": "JPY",
     "inputPerM": null,
     "kind": "plan",
-    "monthlyPrice": 2900.0,
-    "ok": false,
+    "monthlyPrice": 2900,
+    "ok": true,
     "outputPerM": null,
-    "plan": "Pro",
-    "product": "Google AI",
+    "plan": "Google AI Pro",
+    "product": "Gemini",
     "quote": "| Google AI Pro | 2,900円/月（月払い） |  | 無料版の 4 倍の使用量上限、Gmail、Google ドライブ、Google フォト共通で利用できる 5 TB のクラウド ストレージ |",
-    "reason": "AIの製品名ではない",
     "vendor": "Google"
    },
    {
@@ -1161,13 +1285,12 @@
     "currency": "JPY",
     "inputPerM": null,
     "kind": "plan",
-    "monthlyPrice": 14500.0,
-    "ok": false,
+    "monthlyPrice": 14500,
+    "ok": true,
     "outputPerM": null,
-    "plan": "Ultra（AI Pro の 5 倍）",
-    "product": "Google AI",
+    "plan": "Google AI Ultra（AI Pro の 5 倍）",
+    "product": "Gemini",
     "quote": "| Google AI Ultra（AI Pro の 5 倍） | 14,500円/月（月払い） |  | AI Pro の 5 倍の使用量上限 |",
-    "reason": "AIの製品名ではない",
     "vendor": "Google"
    },
    {
@@ -1175,13 +1298,12 @@
     "currency": "JPY",
     "inputPerM": null,
     "kind": "plan",
-    "monthlyPrice": 32000.0,
-    "ok": false,
+    "monthlyPrice": 32000,
+    "ok": true,
     "outputPerM": null,
-    "plan": "Ultra（AI Pro の 20 倍）",
-    "product": "Google AI",
+    "plan": "Google AI Ultra（AI Pro の 20 倍）",
+    "product": "Gemini",
     "quote": "| Google AI Ultra（AI Pro の 20 倍） | 32,000円/月（月払い） |  | AI Pro の 20 倍の使用量上限 |",
-    "reason": "AIの製品名ではない",
     "vendor": "Google"
    },
    {
@@ -1189,11 +1311,11 @@
     "currency": "USD",
     "inputPerM": null,
     "kind": "plan",
-    "monthlyPrice": 21.0,
+    "monthlyPrice": 21,
     "ok": true,
     "outputPerM": null,
-    "plan": "Business エディション",
-    "product": "Gemini Enterprise",
+    "plan": "Gemini Enterprise Business エディション",
+    "product": "Gemini",
     "quote": "| Gemini Enterprise Business エディション | $21/人・月から | 約3,680円（税込みの目安） | ユーザー数: 最大 300 人 |",
     "vendor": "Google"
    },
@@ -1202,11 +1324,11 @@
     "currency": "USD",
     "inputPerM": null,
     "kind": "plan",
-    "monthlyPrice": 30.0,
+    "monthlyPrice": 30,
     "ok": false,
     "outputPerM": null,
-    "plan": "Standard / Plus エディション",
-    "product": "Gemini Enterprise",
+    "plan": "Gemini Enterprise Standard / Plus エディション",
+    "product": "Gemini",
     "quote": "| Gemini Enterprise Standard / Plus エディション | $30/人・月から | 約5,260円（税込みの目安） |  |",
     "reason": "プラン名が1つに決まらない",
     "vendor": "Google"
@@ -2370,6 +2492,12 @@
  "openai-retail-shopping-agent-demo": {
   "at": "2026-11-04T23:55:35+00:00",
   "hash": "7bfe6434f38f30e6",
+  "model": "gemini-3.5-flash-lite",
+  "rows": []
+ },
+ "qwen4-max-ai-gateway": {
+  "at": "2026-11-17T02:04:58+00:00",
+  "hash": "bb9a67eca11de83f",
   "model": "gemini-3.5-flash-lite",
   "rows": []
  },
