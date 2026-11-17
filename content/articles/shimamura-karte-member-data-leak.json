@@ -82,9 +82,9 @@
     }
   ],
   "todayActions": [
-    "しまむらを名乗るメールやSMSのURLは開かず、認証コードも入力しない",
-    "不明な点は、しまむらのお問い合わせ窓口に連絡する（ログインが必要）",
-    "子どもの生年月を登録している人は、しまむらの公式サイトで続報を確認する"
+    "しまむらを名乗るメールやSMSが届いたら、本文のリンクを使わずに確認する",
+    "不審なリンク先にIDやパスワードを入力した人は、同じ情報を使うサービスのパスワードを変更する",
+    "しまむらへの問い合わせが必要なら、ログインして会員向け窓口を利用する"
   ],
   "relatedSlugs": [
     "club-tourism-karte-leak-406man"
@@ -162,5 +162,75 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/shimamura-karte-member-data-leak-figure-f013caa6.jpg"
-  }
+  },
+  "todaySteps": [
+    {
+      "action": "しまむらを名乗るメールやSMSが届いたら、本文のリンクを使わずに確認する",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "steps": [
+        "メールやSMS内のリンクは開かない",
+        "公式アプリや公式サイトから正しいサイトに接続する"
+      ],
+      "url": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html"
+    },
+    {
+      "action": "不審なリンク先にIDやパスワードを入力した人は、同じ情報を使うサービスのパスワードを変更する",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "steps": [
+        "同じIDやパスワードを使っているサービスを確認する",
+        "該当するサービスごとにパスワードを変更する"
+      ],
+      "url": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html"
+    },
+    {
+      "action": "しまむらへの問い合わせが必要なら、ログインして会員向け窓口を利用する",
+      "source": "https://www.shimamura.gr.jp/assets-c/uploads/release20261117_Informationleak.pdf",
+      "steps": [
+        "株式会社しまむら お問い合わせ先を開く",
+        "ログインする",
+        "問い合わせを送る"
+      ]
+    }
+  ],
+  "cause": {
+    "text": "しまむらが利用する外部サービス「KARTE」に第三者が不正アクセスし、情報の一部が漏えいしました。プレイドが11月13日に不正アクセスを検知してサービス全体を停止し、しまむらは経緯や影響範囲を確認中です。",
+    "status": "stated",
+    "source": "https://www.shimamura.gr.jp/assets-c/uploads/release20261117_Informationleak.pdf"
+  },
+  "worries": [
+    {
+      "q": "今回の漏えいにクレジットカード情報も含まれる？",
+      "a": "しまむらによると、クレジットカード情報は「KARTE」が保持していません。また、現時点で本件に関連するお客様情報の不正利用は確認されていません。",
+      "source": "https://www.shimamura.gr.jp/assets-c/uploads/release20261117_Informationleak.pdf",
+      "action": "身に覚えのないカード利用に気づいた場合は、クレジットカード会社に相談してください。",
+      "actionSource": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "actionGeneral": true
+    },
+    {
+      "q": "会員ページのログインパスワードは漏れたの？",
+      "a": "会員ページのログインパスワードは「KARTE」が保持していません。しまむらは、現時点で本件に関連するお客様情報の不正利用も確認していないと発表しています。",
+      "source": "https://www.shimamura.gr.jp/assets-c/uploads/release20261117_Informationleak.pdf",
+      "action": "不審なリンク先に普段使うIDやパスワードを入力した場合は、それらを使うすべてのサービスでパスワードを変更してください。",
+      "actionSource": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "actionGeneral": true
+    },
+    {
+      "q": "子どもの生年月を登録していた場合も対象になる？",
+      "a": "会員が登録した家族に関する情報は約5万件で、漏えいが確認された項目はお子様の生年月です。しまむらは、新たに知らせる事項が判明した場合、公式サイト等で公表するとしています。",
+      "source": "https://www.shimamura.gr.jp/assets-c/uploads/release20261117_Informationleak.pdf",
+      "action": "子どもの生年月を登録している人は、しまむらの公式サイト等で新たなお知らせが出ていないか確認してください。"
+    },
+    {
+      "q": "問い合わせれば自分の情報が漏れたか分かる？",
+      "a": "しまむらは、個人を特定できる情報の漏えいは判明していないとし、問い合わせを受けても個別の漏えい有無は確認できないと案内しています。お客様の特別な手続きは不要です。",
+      "source": "https://www.shimamura.gr.jp/assets-c/uploads/release20261117_Informationleak.pdf",
+      "action": "個別の漏えい有無を尋ねても確認できないため、特別な手続きはせず、しまむらの公式サイト等の続報を確認してください。"
+    }
+  ],
+  "depthHeadings": {
+    "cause": "外部サービスへの不正アクセスが発端",
+    "steps": "届いた連絡や入力済み情報に応じた行動",
+    "worries": "カードやパスワード、子どもの情報は？"
+  },
+  "depthAt": "2026-11-17T22:06:47+00:00"
 }
