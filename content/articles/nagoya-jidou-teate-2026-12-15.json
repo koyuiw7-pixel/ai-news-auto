@@ -73,7 +73,7 @@
   "videoTitle": "名古屋市の児童手当は2026年12月15日にいくら届くか 通帳で確かめる10月分・11月分",
   "publishedAt": "2025-10-16T00:53:48+00:00",
   "generatedAt": "2026-11-17T00:20:41.522282+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/nagoya-jidou-teate-2026-12-15-figure-5433078f.jpg",
   "model": "anthropic-api:claude-haiku-5-5",
   "affiliates": [],
   "newsType": "policy",
@@ -84,8 +84,8 @@
     }
   ],
   "todayActions": [
-    "12月15日以降に、通帳で10月分と11月分の2か月分が入ったかを確かめる",
-    "振込先の口座が受給者本人名義か、通帳やキャッシュカードで確かめる"
+    "12月15日以降に、通帳の記帳で10月分と11月分の入金額を確かめる。",
+    "振込先の口座が受給者本人名義か、通帳やキャッシュカードで確かめる。"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -112,5 +112,117 @@
   "sourcePublishedAt": "2025-10-16T00:53:48+00:00",
   "detectedAt": "2026-11-17T00:21:03+00:00",
   "layout": "noir",
-  "summaryLine": "名古屋市の児童手当は、12月15日に10月分と11月分の2か月分が振り込まれます。"
+  "summaryLine": "名古屋市の児童手当は、12月15日に10月分と11月分の2か月分が振り込まれます。",
+  "insight": [
+    {
+      "text": "振込先は「受給者本人名義（屋号等はないもの）」に限られ、配偶者・子どもの名義は不可です。",
+      "source": "https://www.city.nagoya.jp/_res/projects/default_project/_page_/001/008/973/jite_kouza_r5.pdf"
+    },
+    {
+      "text": "郵送の場合は区役所に届いた日が受付日になります。出生の場合は、出生から15日以内に書類が区役所へ到着するように投函するよう案内されています。",
+      "source": "https://www.city.nagoya.jp/kodomo/ninshin/1008971/1008973.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "子ども青少年局 子ども未来企画課 児童手当、ひとり親家庭等の福祉担当へのお問い合わせ",
+      "url": "https://www.city.nagoya.jp/cgi-bin/contacts/G110050010010",
+      "source": "https://www.city.nagoya.jp/kodomo/ninshin/1008971/1008973.html",
+      "note": "届出と相談は、お住まいの区役所民生子ども課、または支所区民福祉課です。"
+    },
+    {
+      "name": "区役所民生子ども課一覧",
+      "url": "https://www.city.nagoya.jp/kodomo/kosodate/1009320/1009332/1009333.html",
+      "source": "https://www.city.nagoya.jp/kodomo/ninshin/1008971/1008973.html",
+      "note": "届出・相談はこの区役所か支所区民福祉課へ。振込口座の変更は、ここで口座振替申込書を提出します。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "12月15日以降に、通帳の記帳で10月分と11月分の入金額を確かめる。",
+      "source": "https://www.city.nagoya.jp/kodomo/ninshin/1008971/1008973.html",
+      "steps": [
+        "支払日は12月15日（休日等なら直前の平日）",
+        "通帳を記帳して入金額を確かめる"
+      ],
+      "url": "https://www.city.nagoya.jp/kodomo/ninshin/1008971/1008973.html"
+    },
+    {
+      "action": "振込先の口座が受給者本人名義か、通帳やキャッシュカードで確かめる。",
+      "source": "https://www.city.nagoya.jp/_res/projects/default_project/_page_/001/008/973/jite_kouza_r5.pdf",
+      "steps": [
+        "通帳かキャッシュカードを用意する",
+        "口座名義が受給者本人名義か確かめる",
+        "屋号等のない本人名義に限られる",
+        "変えるなら区役所で口座振替申込書を出す"
+      ],
+      "url": "https://www.city.nagoya.jp/kodomo/ninshin/1008971/1008973.html"
+    }
+  ],
+  "cause": {
+    "text": "令和6年10月の児童手当制度改正に伴い、毎年度1回送っていた支払予定通知書は令和7年度分から廃止されました。今後は支払日以降に通帳の記帳で金額を確かめる方式になります。",
+    "status": "background",
+    "source": "https://www.city.nagoya.jp/kodomo/ninshin/1008971/1008973.html"
+  },
+  "worries": [
+    {
+      "q": "12月15日に通知が届かないけど、入金がないのでは？",
+      "a": "支払予定通知書は令和7年度分から廃止されました。12月15日以降に通帳の記帳で確かめ、届かないことを理由に入金がないと判断しないでくださいと案内されています。",
+      "source": "https://www.city.nagoya.jp/kodomo/ninshin/1008971/1008973.html",
+      "action": "12月15日を過ぎたら通知を待たず、通帳で10月分と11月分の入金を確かめる。"
+    },
+    {
+      "q": "所得が多くても児童手当はもらえる？",
+      "a": "名古屋市は、令和6年10月分（令和6年12月支給分）から所得制限が撤廃されたと案内しています。",
+      "source": "https://www.city.nagoya.jp/kodomo/ninshin/1008971/1008973.html",
+      "action": "所得を理由に諦めず、対象の子どもがいれば区役所民生子ども課に申請を相談する。"
+    },
+    {
+      "q": "振込先の口座を変えたいときは、どうすればいい？",
+      "a": "振込先は受給者本人名義の口座に限られます。変えたいときは、お住まいの区役所民生子ども課などで口座振替申込書を提出します。",
+      "source": "https://www.city.nagoya.jp/kodomo/ninshin/1008971/1008973.html",
+      "action": "変更する口座の通帳かキャッシュカードを持って、区役所で口座振替申込書を出す。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "奨学金の申請で支給額の証明が必要なとき",
+      "situation": "奨学金などで支給額の証明が必要",
+      "recommend": "区役所か支所に相談する",
+      "reason": "支払予定通知書は令和7年度分から廃止されました。金額の証明が必要な場合は、ページの案内どおり、お住まいの区役所民生子ども課か支所区民福祉課へ相談します。",
+      "source": "https://www.city.nagoya.jp/kodomo/ninshin/1008971/1008973.html"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "振込口座は本人名義で、屋号のないものに限る",
+    "cause": "支払予定通知が廃止された理由",
+    "steps": "12月15日以降にまず確かめること",
+    "desk": "相談と手続きができる区役所の窓口",
+    "worries": "通知が来ない、金額が合うか不安な人へ",
+    "guide": "奨学金などで金額の証明が要るときの相談先"
+  },
+  "depthAt": "2026-11-17T00:40:35+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "2か月分",
+    "label": "12月15日",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-17T00:42:20+00:00"
+  },
+  "imageFocus": {
+    "x": 0.442,
+    "y": 0.428,
+    "box": [
+      0.025,
+      0.036,
+      0.859,
+      0.821
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/nagoya-jidou-teate-2026-12-15-figure-5433078f.jpg"
+  }
 }

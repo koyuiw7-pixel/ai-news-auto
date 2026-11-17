@@ -60,7 +60,7 @@
   "videoTitle": "九州電力の2026年12月分、プランで単価の向きが分かれます　従量電灯Bの計算例は8,110円",
   "publishedAt": "2026-11-17T00:23:10.752914+00:00",
   "generatedAt": "2026-11-17T00:23:52.617009+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/kyushu-electric-fuel-adjustment-dec-2026-figure-f9c803ad.jpg",
   "model": "anthropic-api:claude-haiku-5-5",
   "affiliates": [],
   "newsType": "pricing",
@@ -71,9 +71,9 @@
     }
   ],
   "todayActions": [
-    "検針票で、自分のプラン名が従量電灯Bか、スマートファミリープランなどかを確かめる。",
-    "検針票の使用量（kWh）に、合計単価の差を掛けて、増減の目安を出す。",
-    "口座振替で払っている人は、前月分を1回目の振替日に振替えられたかを確かめる。"
+    "検針票で、契約のプラン名が従量電灯Bか、スマートファミリープランかを確かめる。",
+    "九州電力の過去の単価一覧で、2026年12月分の合計単価を確かめる。",
+    "口座振替の人は、前月分が1回目の振替日に引き落とされたかを確かめる。"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -112,5 +112,134 @@
   "detectedAt": "2026-11-17T00:25:19+00:00",
   "searchTitle": "九州電力12月分の単価、従量電灯Bなどは1.94円/kWh",
   "layout": "noir",
-  "summaryLine": "従量電灯Bなど特定小売供給約款の契約の合計は**1.94円**/kWhで、11月分より0.02円下がる"
+  "summaryLine": "従量電灯Bなど特定小売供給約款の契約の合計は**1.94円**/kWhで、11月分より0.02円下がる",
+  "insight": [
+    {
+      "text": "口座振替の55円割引は、前月分を1回目の振替日に振替えた場合だけ。口座振替日指定サービスを使っている人は対象外です。",
+      "source": "https://customer.kyuden.co.jp/download/pdf/rate-adj-electricity/rate-adjustment_electricity_202612.pdf"
+    },
+    {
+      "text": "単価の表には「消費税等相当額を含みます」とあるため、検針票の使用量に掛けた差は税込みの目安として見られます。",
+      "source": "https://customer.kyuden.co.jp/ja/electricity/system/adjustment-past-etc.html"
+    },
+    {
+      "text": "平均燃料価格が1,000円/kL変わると電気料金単価は0.136円/kWh動きます（従量制供給の場合。基準は27,400円/kL）。",
+      "source": "https://customer.kyuden.co.jp/download/pdf/rate-adj-electricity/rate-adjustment_electricity_202612.pdf"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "九州電力 過去の燃料費等調整単価",
+      "url": "https://customer.kyuden.co.jp/ja/electricity/system/adjustment-past-etc.html",
+      "source": "https://customer.kyuden.co.jp/ja/electricity/system/adjustment-past-etc.html",
+      "howTo": [
+        "九州電力（個人のお客さま）",
+        "電気",
+        "電気料金の仕組み",
+        "過去の燃料費等調整単価"
+      ],
+      "note": "「過去の燃料費等調整単価（2024年5月分以降）」の一覧から2026年12月を選ぶと、その月の単価が見られます。"
+    },
+    {
+      "name": "九州電力 2026年12月分 燃料費調整単価のお知らせ（PDF）",
+      "url": "https://customer.kyuden.co.jp/download/pdf/rate-adj-electricity/rate-adjustment_electricity_202612.pdf",
+      "source": "https://customer.kyuden.co.jp/download/pdf/rate-adj-electricity/rate-adjustment_electricity_202612.pdf",
+      "note": "単価の決め方と、従量電灯Bやスマートファミリープランの計算例が載っています。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "検針票で、契約のプラン名が従量電灯Bか、スマートファミリープランかを確かめる。",
+      "source": "https://customer.kyuden.co.jp/ja/electricity/system/adjustment-past-etc.html",
+      "steps": [
+        "検針票のプラン名の欄を見る",
+        "「従量電灯B」か「スマートファミリープラン」かを確かめる",
+        "使用量（kWh）を控える"
+      ],
+      "url": "https://customer.kyuden.co.jp/ja/moving/result/type.html"
+    },
+    {
+      "action": "九州電力の過去の単価一覧で、2026年12月分の合計単価を確かめる。",
+      "source": "https://customer.kyuden.co.jp/ja/electricity/system/adjustment-past-etc.html",
+      "steps": [
+        "「過去の燃料費等調整単価」の一覧を開く",
+        "2026年12月を選ぶ",
+        "プランに合う表の合計欄を見る"
+      ],
+      "url": "https://customer.kyuden.co.jp/ja/electricity/system/adjustment-past-etc.html"
+    },
+    {
+      "action": "口座振替の人は、前月分が1回目の振替日に引き落とされたかを確かめる。",
+      "source": "https://customer.kyuden.co.jp/download/pdf/rate-adj-electricity/rate-adjustment_electricity_202612.pdf",
+      "steps": [
+        "振替日の口座の入出金を見る",
+        "1回目の振替日に引き落とされたか確かめる",
+        "口座振替日指定サービスを使っていないか確かめる"
+      ],
+      "url": "https://customer.kyuden.co.jp/ja/moving/payment/account-transfer.html"
+    }
+  ],
+  "cause": {
+    "text": "火力発電に使う原油・液化天然ガス・石炭の値段の変化を、電気料金に反映させる仕組みです。3か月間の平均燃料価格が基準の27,400円/kLから変わると、その変動分で単価が調整されます。",
+    "status": "background",
+    "source": "https://customer.kyuden.co.jp/download/pdf/rate-adj-electricity/rate-adjustment_electricity_202612.pdf"
+  },
+  "worries": [
+    {
+      "q": "単価が下がると、電気代は全体で下がるの？",
+      "a": "電気料金は基本料金、電力量料金、燃料費調整額、離島ユニバーサルサービス調整額、再エネ賦課金、口座振替割引を合わせて決まります。単価だけでは全体は決まりません。",
+      "source": "https://customer.kyuden.co.jp/download/pdf/rate-adj-electricity/rate-adjustment_electricity_202612.pdf",
+      "action": "検針票の使用量に合計単価を掛けると、燃料費等の変わり方の目安が分かります。"
+    },
+    {
+      "q": "口座振替にしていると割引はどうなる？",
+      "a": "前月分の電気料金を1回目の振替日に振替えた場合、当月分の基本料金と電力量料金の合計から55.00円割引されます。口座振替日指定サービスの利用者は対象外です。",
+      "source": "https://customer.kyuden.co.jp/download/pdf/rate-adj-electricity/rate-adjustment_electricity_202612.pdf",
+      "action": "1回目の振替日に引き落とされたか、振替日指定サービスを使っていないかを確かめる。"
+    },
+    {
+      "q": "スマートファミリープランの単価が上がるのはなぜ？",
+      "a": "需給契約条件では上限の41,100円/kLは使われず、平均燃料価格47,700円/kLが反映されます。その結果、12月分の燃料費調整単価は2.76円/kWhになりました。",
+      "source": "https://customer.kyuden.co.jp/download/pdf/rate-adj-electricity/rate-adjustment_electricity_202612.pdf",
+      "action": "自分の契約が需給契約条件かを確かめ、過去の単価一覧で合計欄を見る。",
+      "actionSource": "https://customer.kyuden.co.jp/ja/electricity/system/adjustment-past-etc.html"
+    },
+    {
+      "q": "燃料価格が動くと、単価はどれくらい変わる？",
+      "a": "平均燃料価格が1,000円/kL変動した場合、電気料金単価への影響は0.136円/kWhです（従量制供給の場合）。単価の変動は、この基準の差で決まります。",
+      "source": "https://customer.kyuden.co.jp/download/pdf/rate-adj-electricity/rate-adjustment_electricity_202612.pdf",
+      "action": "使用量に0.136円を掛けると、燃料価格1,000円/kL分の影響の目安が出せる。"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "口座振替の割引と、単価に含まれる税",
+    "cause": "燃料費の動きが電気代に反映される仕組み",
+    "steps": "今日、検針票で確かめる3つのこと",
+    "desk": "単価を確かめられる九州電力のページ",
+    "worries": "電気代は本当に下がる？口座振替は？"
+  },
+  "depthAt": "2026-11-17T00:38:28+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "九州電力12月分、従量電灯Bは下がりスマートファミリーは上がる",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-17T00:43:23+00:00"
+  },
+  "imageFocus": {
+    "x": 0.542,
+    "y": 0.408,
+    "box": [
+      0.103,
+      0.042,
+      0.981,
+      0.774
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/kyushu-electric-fuel-adjustment-dec-2026-figure-f9c803ad.jpg"
+  }
 }

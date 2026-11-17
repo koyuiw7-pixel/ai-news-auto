@@ -64,14 +64,13 @@
   "videoTitle": "東北電力2026年12月分、燃料費等調整単価は▲5.84円でモデルは117円増えます",
   "publishedAt": "2026-11-17T00:25:40.631249+00:00",
   "generatedAt": "2026-11-17T00:26:47.328144+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/tohoku-epco-dec-2026-fuel-cost-adjustment-figure-a402e317.jpg",
   "model": "anthropic-api:claude-haiku-5-5",
   "affiliates": [],
   "newsType": "general",
   "todayActions": [
-    "検針票で、12月分の燃料費等調整の単価が▲5.84円になっているかを確かめる",
-    "検針票の使用量が260kWhより多いか少ないかを見て、単価差0.45円に使用量を掛けて自分の増え方を計算する",
-    "東北電力の公式サイトで、燃料費等調整単価の推移を確かめる"
+    "東北電力のお知らせ一覧で、2026年12月分の低圧の単価が▲5円84銭か確かめる",
+    "2026年12月分のお知らせのPDFを開き、モデルの電気料金の増減を確かめる"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -99,5 +98,102 @@
   "detectedAt": "2026-11-17T00:27:37+00:00",
   "searchTitle": "東北電力の12月分の燃料費等調整単価は？　▲5.84円",
   "layout": "noir",
-  "summaryLine": "東北電力の低圧の12月分の燃料費等調整単価は▲**5.84円**で、11月分から0.45円上がりました。"
+  "summaryLine": "東北電力の低圧の12月分の燃料費等調整単価は▲**5.84円**で、11月分から0.45円上がりました。",
+  "insight": [
+    {
+      "text": "国による電気料金軽減単価は月ごとに違い、低圧では2026年9月分が▲4円50銭、8月分と10月分が▲3円50銭で、その分が単価に含まれています",
+      "source": "https://www.tohoku-epco.co.jp/dprivate/attempt/adjust/adjust_value/"
+    },
+    {
+      "text": "平均燃料価格が1キロリットルあたり1,000円変動すると、低圧で従量制供給の場合は1キロワット時につき19銭7厘変わります（消費税等相当額を含みます）",
+      "source": "https://www.tohoku-epco.co.jp/news/fuel/__icsFiles/afieldfile/2026/10/29/1249254.pdf"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "東北電力 燃料費調整単価等のお知らせ",
+      "url": "https://www.tohoku-epco.co.jp/dprivate/attempt/adjust/adjust_value/",
+      "source": "https://www.tohoku-epco.co.jp/dprivate/attempt/adjust/adjust_value/",
+      "note": "高圧・特別高圧の2026年12月分の燃料費等調整単価は、2026年11月19日にお知らせ予定とされています。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "東北電力のお知らせ一覧で、2026年12月分の低圧の単価が▲5円84銭か確かめる",
+      "source": "https://www.tohoku-epco.co.jp/dprivate/attempt/adjust/adjust_value/",
+      "steps": [
+        "「燃料費調整単価等のお知らせ」のページを開く",
+        "「燃料費等調整単価一覧（2026年4月分以降）」の2026年12月分の行を見る",
+        "低圧の欄が▲5円84銭か確かめる"
+      ],
+      "url": "https://www.tohoku-epco.co.jp/dprivate/attempt/adjust/adjust_value/"
+    },
+    {
+      "action": "2026年12月分のお知らせのPDFを開き、モデルの電気料金の増減を確かめる",
+      "source": "https://www.tohoku-epco.co.jp/news/fuel/__icsFiles/afieldfile/2026/10/29/1249254.pdf",
+      "steps": [
+        "ページのリンクから「2026年12月分の燃料費調整等について」を開く",
+        "別紙1の「従量電灯の平均的なモデル」の表を見る",
+        "電気料金の差額の欄が117円か確かめる"
+      ],
+      "url": "https://www.tohoku-epco.co.jp/dprivate/attempt/adjust/adjust_value/pdf/202612.pdf"
+    }
+  ],
+  "cause": {
+    "text": "2026年7〜9月の平均燃料価格が53,700円/klとなり、6〜8月の51,400円/klより上がったため、単価が動きました。参考資料では、LNG価格が106,663円/tから116,778円/tへ上がったと示されています。",
+    "status": "stated",
+    "source": "https://www.tohoku-epco.co.jp/news/fuel/__icsFiles/afieldfile/2026/10/29/1249254.pdf"
+  },
+  "worries": [
+    {
+      "q": "12月分の電気代は、いくら増える？",
+      "a": "低圧で契約電流30A・使用電力量260kWhのモデルは、電気料金が9,807円で11月分より117円増えます。よりそう+eねっとバリューでは9,752円で、こちらも117円増えます。",
+      "source": "https://www.tohoku-epco.co.jp/news/fuel/__icsFiles/afieldfile/2026/10/29/1249254.pdf",
+      "action": "検針票の使用量に単価差0.45円を掛けると、自分の家の増える目安が分かります。"
+    },
+    {
+      "q": "12月分の請求は、どの期間に使った分？",
+      "a": "2026年11月の検針日から、2026年12月の検針日の前日までに使った分です。12月に使った分ではありません。",
+      "source": "https://www.tohoku-epco.co.jp/news/fuel/__icsFiles/afieldfile/2026/10/29/1249254.pdf",
+      "action": "検針票に書かれた検針日を見て、どの期間の使用分かを確かめておきましょう。"
+    },
+    {
+      "q": "高圧や特別高圧の契約でも同じ単価になる？",
+      "a": "高圧と特別高圧は別の単価が決まっています。12月分の高圧と特別高圧の単価は、2026年11月19日にお知らせ予定です。",
+      "source": "https://www.tohoku-epco.co.jp/news/fuel/__icsFiles/afieldfile/2026/10/29/1249254.pdf",
+      "action": "高圧や特別高圧で契約している場合は、11月19日以降に公式ページで単価を確かめてください。",
+      "actionSource": "https://www.tohoku-epco.co.jp/dprivate/attempt/adjust/adjust_value/"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "平均燃料価格が1000円動くと単価はどれだけ動く？",
+    "cause": "なぜ単価が上がったのか、いま分かっていること",
+    "steps": "検針票と公式ページで増える額を自分で計算する",
+    "desk": "12月分の単価を確かめる公式ページ",
+    "worries": "117円増の内訳と、12月分の使用期間は？"
+  },
+  "depthAt": "2026-11-17T00:37:18+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "5.84円",
+    "label": "燃料費等調整単価は▲",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-17T00:42:52+00:00"
+  },
+  "imageFocus": {
+    "x": 0.45,
+    "y": 0.42,
+    "box": [
+      0.031,
+      0.042,
+      0.869,
+      0.798
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/tohoku-epco-dec-2026-fuel-cost-adjustment-figure-a402e317.jpg"
+  }
 }

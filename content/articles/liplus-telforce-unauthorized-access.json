@@ -81,9 +81,8 @@
     }
   ],
   "todayActions": [
-    "SMSやメールで通知が届いていないか確認し、URLがあれば開かず info-telforce-incident@liplus-h.com に問い合わせる",
-    "問い合わせ時は、登録した電話番号をメールに書く",
-    "金銭の要求があったときは、警察相談専用電話 #9110 に相談する"
+    "心当たりのない連絡のURLは開かず、info-telforce-incident@liplus-h.comに問い合わせる",
+    "金銭や口座情報を求められたら、警察相談専用電話 #9110 に相談する"
   ],
   "publicInterest": "breach",
   "incident": {
@@ -127,5 +126,89 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/liplus-telforce-unauthorized-access-figure-ba93b903.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "本件のお知らせは2026年11月16日付で、LiPLUSホールディングスがWidsley社から不正アクセスの報告を受けたのは2026年10月21日です。",
+      "source": "https://liplus-h.com/news/telforce-notice/"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "本件に関するお問い合わせ窓口",
+      "url": "https://liplus-h.com/news/telforce-notice/",
+      "source": "https://liplus-h.com/news/telforce-notice/",
+      "howTo": [
+        "Newsニュース",
+        "不正アクセスによる個人情報漏えいのおそれに関するお知らせとお"
+      ],
+      "note": "メールアドレスは info-telforce-incident@liplus-h.com です。お問い合わせの際は、ご登録のお電話番号を記載してください。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "心当たりのない連絡のURLは開かず、info-telforce-incident@liplus-h.comに問い合わせる",
+      "source": "https://liplus-h.com/news/telforce-notice/",
+      "steps": [
+        "届いたSMS・メールにURLがあるか確認する",
+        "URLは開かず、添付ファイルも開かない",
+        "メールで info-telforce-incident@liplus-h.com に連絡する",
+        "その際、ご登録のお電話番号を書く"
+      ],
+      "url": "https://liplus-h.com/news/telforce-notice/"
+    },
+    {
+      "action": "金銭や口座情報を求められたら、警察相談専用電話 #9110 に相談する",
+      "source": "https://liplus-h.com/news/telforce-notice/",
+      "steps": [
+        "LiPLUSは電話・SMS・メールでパスワードや口座情報をたずねない",
+        "被害のおそれがあるときは相談する",
+        "最寄りの警察署にも相談できる"
+      ],
+      "url": "https://liplus-h.com/news/telforce-notice/"
+    }
+  ],
+  "cause": {
+    "text": "Widsley社の報告では、現時点で次の2点が原因と考えられています。架電システムの設定ファイルの一部が外部から閲覧可能な状態で、データベースへの接続情報等が第三者に知られた可能性があること。また、スマートフォンアプリ向けの接続口が認証なしでアクセスできる状態だったことです。",
+    "status": "stated",
+    "source": "https://liplus-h.com/news/telforce-notice/"
+  },
+  "worries": [
+    {
+      "q": "自分の電話番号や通話日時も漏れた？",
+      "a": "対象項目は、電話番号、お名前（登録がある場合）、ご住所（郵便番号のみの場合を含む）、会社名、お問い合わせ内容等の記録、通話日時です。対象の方にはSMSまたはメールで通知されています。",
+      "source": "https://liplus-h.com/news/telforce-notice/",
+      "action": "心当たりがあるのに通知が届かない場合は、登録した電話番号を書いて窓口に問い合わせる"
+    },
+    {
+      "q": "クレジットカードや口座は大丈夫？",
+      "a": "漏えいのおそれがあると案内された項目に、クレジットカード番号や口座情報は含まれていません。また、LiPLUSから電話・SMS・メールでパスワード、カード番号、口座情報をたずねることはありません。",
+      "source": "https://liplus-h.com/news/telforce-notice/",
+      "action": "カード番号や口座情報を求める連絡には答えず、ブックマークした公式サイトから確認する",
+      "actionSource": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "actionGeneral": true
+    },
+    {
+      "q": "不審な電話がかかってきたらどうする？",
+      "a": "当社や当社サービスを装った不審な電話・SMS・メールが届くおそれがあると案内されています。特殊詐欺対策では、何よりも「犯人と話をしない」ことが大切とされています。",
+      "source": "https://www.npa.go.jp/bureau/safetylife/sos47/case/",
+      "action": "知らない相手に金銭や口座の話をされたら会話を続けず、#9110 に相談する",
+      "actionSource": "https://liplus-h.com/news/telforce-notice/",
+      "general": true
+    },
+    {
+      "q": "乗っ取りや悪用は本当に起きている？",
+      "a": "現時点において、本件による二次被害は確認されていないと案内されています。ただし、アクセスの記録が残らない経路から情報が取得された可能性があり、漏えいの有無は確定していません。",
+      "source": "https://liplus-h.com/news/telforce-notice/",
+      "action": "心当たりのない連絡に記載されたURLにはアクセスせず、添付ファイルも開かない"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "お知らせは11月16日、報告を受けたのは10月21日",
+    "cause": "なぜ漏れたのか、いま分かっていること",
+    "steps": "心当たりのない連絡が来たときの手順",
+    "desk": "問い合わせ先と、警察への相談先",
+    "worries": "カードや口座、通話の記録は大丈夫？"
+  },
+  "depthAt": "2026-11-17T00:39:04+00:00"
 }
