@@ -14832,13 +14832,6 @@
       "skipped": true,
       "url": "https://www.gov-online.go.jp/press_conferences/minister_of_state/202611/video-327095.html"
     },
-    "9824d9cb50fa7b55": {
-      "at": "2026-11-03T18:01:56.252856+00:00",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "reason": "個別のマンションの宣伝であり、読者にとって実質的な新商品・サービスではないため。",
-      "skipped": true,
-      "url": "https://www.tokyu-fudosan-hd.co.jp/news/companies/pdf/c63f39dc2efcf88691dcd42fe07a304905d1074a.pdf"
-    },
     "9846c51911c44f70": {
       "at": "2026-11-04T11:25:33.483207+00:00",
       "model": "anthropic-api:claude-haiku-5-5",
@@ -14955,14 +14948,6 @@
       "reason": "prefilter: 価値の薄いお知らせ（を開催）",
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026111110"
-    },
-    "9aef92b29b8064d2": {
-      "at": "2026-11-03T17:53:08.207484+00:00",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "score": 93,
-      "section": "ai",
-      "slug": "google-ai-educator-series-expansion",
-      "url": "https://blog.google/products-and-platforms/products/education/google-ai-educator-series-global-expansion-november-2026/"
     },
     "9af6b6578ad8d65e": {
       "at": "2026-11-12T16:11:44.184827+00:00",
@@ -20938,6 +20923,19 @@
       "skipped": true,
       "url": "https://blog.google/authors/koray-kavukcuoglu/"
     },
+    "f6c89c33d8f4c4fb": {
+      "at": "2026-11-17T18:04:10.481279+00:00",
+      "costUsd": 0.0358,
+      "foreignAi": true,
+      "intent": "breaking",
+      "major": true,
+      "mix": "other",
+      "model": "openai-api:gpt-6.1-terra",
+      "score": 100,
+      "section": "ai",
+      "slug": "google-wallet-ios-us-launch",
+      "url": "https://blog.google/products-and-platforms/platforms/google-pay/wallet-available-ios-united-states/"
+    },
     "f6caead66b973478": {
       "at": "2026-11-09T07:48:12.505103+00:00",
       "costUsd": 0.0108,
@@ -23991,18 +23989,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-15T11:38:14.045928+00:00",
-      "attempt": 1,
-      "id": "66dd76b7a347bbf4",
-      "kind": "update",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "score": 92,
-      "source": "ntt-news",
-      "title": "データセンターの排熱を陸上養殖に活用する共同実証プロジェクトを開始"
-    },
     {
       "accepted": false,
       "at": "2026-11-15T11:39:11.325714+00:00",
@@ -31534,6 +31520,26 @@
       "warnings": [
         "初めて出たところで言い換えていない略語（YAM・RT・SO）"
       ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-17T18:04:03.512799+00:00",
+      "attempt": 1,
+      "id": "f6c89c33d8f4c4fb",
+      "kind": "ai",
+      "model": "openai-api:gpt-6.1-terra",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 74.7,
+        "avg_sentence": 44.8,
+        "long_share": 0.1,
+        "max_paragraph": 94,
+        "paragraphs": 6,
+        "sentences": 10
+      },
+      "score": 100,
+      "source": "google-ai-blog",
+      "title": "Google Wallet is now available on iOS in the U.S."
     }
   ],
   "short_text_retry": {},
