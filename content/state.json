@@ -1288,7 +1288,9 @@
       "url": "https://www.digital.go.jp/policies/mynumber/private-business"
     }
   },
-  "major_tries": {},
+  "major_tries": {
+    "96ff71f54c6e7b4d": 1
+  },
   "pi_reopened": {
     "25d126f469e81252": "2026-11-15T17:50:53.256695+00:00",
     "422a9590d5af8caa": "2026-11-15T17:31:05.012183+00:00",
@@ -8212,15 +8214,6 @@
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
       "skipped": true,
       "url": "https://www.mhlw.go.jp/toukei/saikin/hw/hihogosya/m2026/08.html"
-    },
-    "35cf51a18907f6ab": {
-      "at": "2026-11-03T20:35:29.627574+00:00",
-      "major": true,
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "score": 90,
-      "section": "ai",
-      "slug": "crowdstrike-ai-kill-switch-falcon-guardian",
-      "url": "https://www.cnbc.com/2026/11/03/crowdstrike-ai-kill-switch-rogue-agents.html"
     },
     "35d4f809f712f3e2": {
       "at": "2026-11-13T09:55:16.082736+00:00",
@@ -24095,56 +24088,6 @@
   },
   "quality_log": [
     {
-      "accepted": true,
-      "at": "2026-11-15T16:17:24.400950+00:00",
-      "attempt": 1,
-      "id": "8637362590f96969",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 85.1,
-        "avg_sentence": 42.6,
-        "long_share": 0.214,
-        "max_paragraph": 142,
-        "paragraphs": 7,
-        "sentences": 14
-      },
-      "score": 95,
-      "source": "mhlw",
-      "title": "インフルエンザに関する報道発表資料を更新しました",
-      "warnings": [
-        "見出しの書き方: 発表文の題名の言い直し（「〇〇が△△を発表」）。読者にとって何が変わるか（だれの・何が・いつから・いくら）を書く",
-        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-15T16:17:52.113513+00:00",
-      "attempt": 0,
-      "id": "8637362590f96969",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 55.7,
-        "avg_sentence": 29.3,
-        "long_share": 0.0,
-        "max_paragraph": 85,
-        "paragraphs": 10,
-        "sentences": 19
-      },
-      "score": 94,
-      "source": "mhlw",
-      "title": "インフルエンザに関する報道発表資料を更新しました",
-      "warnings": [
-        "見出しの書き方: 発表文の題名の言い直し（「〇〇が△△を発表」）。読者にとって何が変わるか（だれの・何が・いつから・いくら）を書く",
-        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
-      ]
-    },
-    {
       "accepted": false,
       "at": "2026-11-15T16:34:59.088658+00:00",
       "attempt": 1,
@@ -31609,6 +31552,47 @@
       "score": 100,
       "source": "trends",
       "title": "扶養"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-17T20:37:43.927811+00:00",
+      "attempt": 1,
+      "id": "96ff71f54c6e7b4d",
+      "kind": "update",
+      "model": "openai-api:gpt-6.1-terra",
+      "problems": [
+        "「既存記事で紹介したChatGPT WorkやCodexに加え、GitHub Copilotでも両モデルを利用できるようになります」→ 元記事と確認済みの文脈には、GPT-6.2 AstraとSolがChatGPT WorkやCodexでも利用できるという提供情報がありません。"
+      ],
+      "score": 86,
+      "source": "github-changelog",
+      "title": "OpenAI’s GPT-6.2 Astra and GPT-6.2 Sol now available"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-17T20:38:27.999624+00:00",
+      "attempt": 1,
+      "id": "96ff71f54c6e7b4d",
+      "kind": "ai",
+      "model": "openai-api:gpt-6.1-terra",
+      "problems": [
+        "題名で料金・価格を約束しているのに、本文に金額（円・ドル・無料など）が無い。元記事の金額を書くか、題名から料金の話を外す",
+        "元記事・確認済みの資料に無い画面の手順・メニュー名・ボタン名がある（「モデル選択画面」）。資料にある道順だけを書くか、「公式ヘルプの手順を確認してください」と書く"
+      ],
+      "readability": {
+        "avg_paragraph": 72.4,
+        "avg_sentence": 41.4,
+        "long_share": 0.095,
+        "max_paragraph": 104,
+        "paragraphs": 12,
+        "sentences": 21
+      },
+      "score": null,
+      "source": "github-changelog",
+      "title": "OpenAI’s GPT-6.2 Astra and GPT-6.2 Sol now available",
+      "warnings": [
+        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（CLI）"
+      ]
     }
   ],
   "short_text_retry": {},
