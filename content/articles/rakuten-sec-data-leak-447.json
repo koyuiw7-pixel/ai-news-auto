@@ -74,9 +74,9 @@
     }
   ],
   "todayActions": [
-    "楽天証券カスタマーサポートセンター（0120-862-274）の受付時間を控え、不安があれば問い合わせる",
-    "同社を装うメールやSMSのURLは開かず、個人情報も入力しない",
-    "パスキー未設定なら設定し、取引や出金の一時停止設定も検討する"
+    "楽天証券にログインし、セキュリティ設定ページで取引や出金の一時停止を検討する",
+    "パスキーが未設定なら、操作ガイドを見て端末で設定しておく",
+    "不安があれば、受付時間内に楽天証券カスタマーサポートセンターへ問い合わせる"
   ],
   "publicInterest": "breach",
   "incident": {
@@ -129,5 +129,142 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/rakuten-sec-data-leak-447-figure-fd9a5dfc.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "10月31日の発表の対象は「デジタル特典付き社債」の3銘柄で、近鉄グループ第135回は100万円以上購入されたお客様だけが対象でした。",
+      "source": "https://www.rakuten-sec.co.jp/web/info/info20261031-01.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "楽天証券カスタマーサポートセンター",
+      "url": "https://www.rakuten-sec.co.jp/smartphone/info/info20261117-02.html",
+      "source": "https://www.rakuten-sec.co.jp/smartphone/info/info20261117-02.html",
+      "howTo": [
+        "ホーム",
+        "お知らせ一覧",
+        "当社お客様の情報漏えいの可能性に関するお詫びとお知らせ"
+      ],
+      "phone": "0120-862-274",
+      "hours": "平日8：30～17：00 土日9：00～17：00",
+      "note": "本件に関するお客様からのお問い合わせ先として案内されています。フリーダイヤルで無料です。"
+    },
+    {
+      "name": "取引やサービスの一時的な利用停止",
+      "url": "https://www.rakuten-sec.co.jp/web/security/account_lock/",
+      "source": "https://www.rakuten-sec.co.jp/smartphone/info/info20261117-02.html",
+      "howTo": [
+        "セキュリティ設定ページ",
+        "取引やサービスの一時的な利用停止"
+      ],
+      "note": "取引や出金の一時的な利用停止を、お客様ご自身で設定できます。"
+    },
+    {
+      "name": "パスキー認証（FIDO2）操作ガイド",
+      "url": "https://www.rakuten-sec.co.jp/web/security/passkey/guide/",
+      "source": "https://www.rakuten-sec.co.jp/smartphone/info/info20261117-02.html",
+      "note": "日々ログインされる9割超のお客様が利用中です。パスキーの設定がお済みでない方は設定をお願いしています。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "楽天証券にログインし、セキュリティ設定ページで取引や出金の一時停止を検討する",
+      "source": "https://www.rakuten-sec.co.jp/smartphone/info/info20261117-02.html",
+      "steps": [
+        "楽天証券のウェブサイトにログインする",
+        "セキュリティ設定ページを開く",
+        "取引やサービスの一時的な利用停止を設定する"
+      ],
+      "url": "https://www.rakuten-sec.co.jp/web/security/account_lock/"
+    },
+    {
+      "action": "パスキーが未設定なら、操作ガイドを見て端末で設定しておく",
+      "source": "https://www.rakuten-sec.co.jp/smartphone/info/info20261117-02.html",
+      "steps": [
+        "パスキー認証（FIDO2）操作ガイドを開く",
+        "ガイドに沿って端末で設定する"
+      ],
+      "url": "https://www.rakuten-sec.co.jp/web/security/passkey/guide/"
+    },
+    {
+      "action": "不安があれば、受付時間内に楽天証券カスタマーサポートセンターへ問い合わせる",
+      "source": "https://www.rakuten-sec.co.jp/smartphone/info/info20261117-02.html",
+      "steps": [
+        "フリーダイヤル 0120-862-274（無料）にかける",
+        "平日8：30～17：00、土日9：00～17：00に電話する"
+      ],
+      "url": "https://www.rakuten-sec.co.jp/smartphone/info/info20261117-02.html"
+    }
+  ],
+  "cause": {
+    "text": "楽天証券は11月16日に、一部システムへの第三者による不正アクセスの可能性を検知しました。調査の結果、11月11日にテスト環境のシステム内で管理していた一部の情報が外部に漏えいしたおそれがあると確認したとしています。不正アクセスの原因や詳細な経緯は、引き続き調査中です。",
+    "status": "investigating",
+    "source": "https://www.rakuten-sec.co.jp/smartphone/info/info20261117-02.html"
+  },
+  "worries": [
+    {
+      "q": "パスワードや暗証番号も漏れてしまったの？",
+      "a": "楽天証券のログインに必要なパスワードと暗証番号を含む、取引に必要な各種情報は漏えいしていないと確認されています。現時点で、本件に起因すると考えられる不正アクセスや不正取引も確認されていません。",
+      "source": "https://www.rakuten-sec.co.jp/smartphone/info/info20261117-02.html",
+      "action": "パスキーを設定しておくと、パスワードに頼らず端末の本人確認でログインできるようになります。"
+    },
+    {
+      "q": "口座の出金先や資産の情報は大丈夫？",
+      "a": "出金先口座（金融機関・口座番号・名義人）や商品別資産情報は、最大約447万口座の範囲で漏えいした可能性がある情報に含まれています。",
+      "source": "https://www.rakuten-sec.co.jp/smartphone/info/info20261117-02.html",
+      "action": "当面取引や出金をしないなら、ログイン後のセキュリティ設定で一時的な利用停止を検討する。"
+    },
+    {
+      "q": "楽天証券を名乗る連絡が来たらどうすればいい？",
+      "a": "楽天証券や関係会社を装った不審なメール、SMS、電話、郵送物に十分注意するよう案内されています。同社はメールにURLを載せず、電話で個人情報やログインに関する情報を聞くこともないとしています。",
+      "source": "https://www.rakuten-sec.co.jp/smartphone/info/info20261117-02.html",
+      "action": "楽天証券を名乗る連絡は、メールのURLを開かず、個人情報も入力も回答もしないでください。"
+    },
+    {
+      "q": "自分が個別の報告の対象か、どう分かる？",
+      "a": "影響が確認されたお客様の特定は完了しており、該当のお客様には個別に報告するとしています。退会した人の情報も含まれています。",
+      "source": "https://www.rakuten-sec.co.jp/smartphone/info/info20261117-02.html",
+      "action": "個別の報告が届いたら、自分の情報がどの範囲に含まれるかを確認し、不審な連絡に警戒する。"
+    },
+    {
+      "q": "ほかのサービスで同じパスワードを使っていたら？",
+      "a": "同じIDやパスワードを複数のサイトで使っていると、一つでも盗まれた場合に他のサービスも乗っ取られるおそれがあります。サイトごとに違うIDやパスワードを使うよう案内されています。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "action": "同じパスワードを使っている他のサービスは、サイトごとに違うものへ変えていく。",
+      "general": true
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "当面の取引や出金を、一時的に止めるべき？",
+      "situation": "当面、取引や出金をしない",
+      "recommend": "一時停止の設定を検討する",
+      "reason": "ログイン後のセキュリティ設定ページで、取引や出金の一時的な利用停止を自分で設定できます。パスワードや暗証番号の漏えいは確認されていないとしています。",
+      "source": "https://www.rakuten-sec.co.jp/smartphone/info/info20261117-02.html"
+    },
+    {
+      "question": "当面の取引や出金を、一時的に止めるべき？",
+      "situation": "今後も取引や出金をする予定がある",
+      "recommend": "急がなくてよい。パスキーの設定を先に検討する",
+      "reason": "一時停止は任意の設定です。取引を続ける場合は、ログインを端末による本人確認に切り替えるパスキー認証の設定が案内されています。",
+      "source": "https://www.rakuten-sec.co.jp/smartphone/info/info20261117-02.html"
+    },
+    {
+      "question": "パスキー未設定なら、今すぐ設定したほうがいい？",
+      "situation": "パスキーをまだ設定していない",
+      "recommend": "設定を検討する価値がある",
+      "reason": "パスキー認証は、不正アクセスやフィッシング詐欺への耐性が高いとされています。パスワードの代わりに端末で本人確認する仕組みです。",
+      "source": "https://www.rakuten-sec.co.jp/smartphone/info/info20261117-02.html"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "10月の発表の対象は、社債の一部購入者だった",
+    "cause": "なぜ漏れたのか、いま分かっていること",
+    "steps": "今日やるなら、まず一時停止とパスキーから",
+    "desk": "問い合わせ先と設定ページの場所",
+    "worries": "パスワードや口座は大丈夫？よくある不安",
+    "guide": "取引を止めるか、パスキーを先にするか"
+  },
+  "depthAt": "2026-11-17T10:02:42+00:00"
 }
