@@ -64,13 +64,14 @@
   "videoTitle": "児童手当 2026年12月支給日 福岡市は10日 札幌市は11日 仙台市と横浜市と名古屋市は15日",
   "publishedAt": "2026-11-17T03:20:46.626608+00:00",
   "generatedAt": "2026-11-17T03:21:00.056080+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/child-allowance-december-2026-five-cities-figure-9a7d9364.jpg",
   "model": "anthropic-api:claude-haiku-5-5",
   "affiliates": [],
   "newsType": "policy",
   "todayActions": [
-    "自分の市の12月の支給日を、市の公式ページで確かめる",
-    "支給日を過ぎたら、指定口座の入金額を通帳やアプリで見る"
+    "札幌市の支払予定日12月11日を過ぎても入金がなければ、区の福祉助成係へ問い合わせる",
+    "名古屋市は、12月15日以降に通帳の記帳で支給金額を確かめる",
+    "福岡市に電話する前に、ページで受付期間を確かめる"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -112,5 +113,143 @@
   "detectedAt": "2026-11-17T03:21:31+00:00",
   "searchTitle": "児童手当の12月支給日は？　福岡市は10日、札幌市は11日",
   "layout": "noir",
-  "summaryLine": "福岡市は12月10日、札幌市は12月11日、仙台市と名古屋市は12月15日、横浜市は12月15日頃に支給"
+  "summaryLine": "福岡市は12月10日、札幌市は12月11日、仙台市と名古屋市は12月15日、横浜市は12月15日頃に支給",
+  "insight": [
+    {
+      "text": "札幌市は入金の通知を送らず、支払予定日を3～4日過ぎても振り込まれない場合は、区役所保健福祉課福祉助成係へ問い合わせるとしています。",
+      "source": "https://kosodate.city.sapporo.jp/mokuteki/money/kodomo/1124.html"
+    },
+    {
+      "text": "福岡市のコールセンターは、ページに「令和8年5月22日から令和8年10月30日まで」の平日の受付と書かれています。12月に問い合わせる前に、受付期間を確かめてください。",
+      "source": "https://kodomo.city.fukuoka.lg.jp/en/info/2038/"
+    },
+    {
+      "text": "仙台市は、15日が銀行の休業日の場合は、その直前の営業日に支払うとしています。",
+      "source": "https://www.city.sendai.jp/kodomo-jigyo/kurashi/kenkotofukushi/kosodate/teate/documents/zidouteatepanhurettoeigo.pdf"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "福岡市 児童手当コールセンター",
+      "url": "https://kodomo.city.fukuoka.lg.jp/en/info/2038/",
+      "source": "https://kodomo.city.fukuoka.lg.jp/en/info/2038/",
+      "phone": "092-711-5484",
+      "hours": "令和8年5月22日から令和8年10月30日までの平日 午前9時30分から午後5時30分（月曜は午後7時まで）",
+      "note": "ページに書かれた受付期間は令和8年10月30日までです。12月に電話する前に期間を確かめてください。"
+    },
+    {
+      "name": "札幌市 区役所保健福祉課福祉助成係",
+      "url": "https://kosodate.city.sapporo.jp/mokuteki/money/kodomo/1124.html",
+      "source": "https://kosodate.city.sapporo.jp/mokuteki/money/kodomo/1124.html",
+      "note": "支払予定日を3～4日過ぎても振り込まれない場合の問い合わせ先です。"
+    },
+    {
+      "name": "横浜市 こども青少年局こども家庭課 手当給付係（児童手当担当）",
+      "url": "https://www.city.yokohama.lg.jp/kosodate-kyoiku/oyakokenko/teate/teate/jite-gaiyou.html",
+      "source": "https://www.city.yokohama.lg.jp/kosodate-kyoiku/oyakokenko/teate/teate/jite-gaiyou.html",
+      "howTo": [
+        "横浜市トップページ",
+        "各種手当・助成",
+        "児童手当・児童扶養手当・特別児童扶養手当",
+        "児童手当－概要"
+      ],
+      "phone": "045-641-8411",
+      "hours": "月曜日から金曜日（祝日を除く）、午前9時から午後5時",
+      "note": "郵送・電子申請によるお手続きが推奨されています。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "札幌市の支払予定日12月11日を過ぎても入金がなければ、区の福祉助成係へ問い合わせる",
+      "source": "https://kosodate.city.sapporo.jp/mokuteki/money/kodomo/1124.html",
+      "steps": [
+        "12月11日以降に、受給者名義の口座の入金を確かめる",
+        "支払予定日から3～4日過ぎても振り込まれないとき",
+        "お住まいの区役所保健福祉課福祉助成係へ問い合わせる"
+      ],
+      "url": "https://kosodate.city.sapporo.jp/mokuteki/money/kodomo/1124.html"
+    },
+    {
+      "action": "名古屋市は、12月15日以降に通帳の記帳で支給金額を確かめる",
+      "source": "https://www.city.nagoya.jp/kodomo/ninshin/1008971/1008973.html",
+      "steps": [
+        "12月15日（休日なら直前の平日）以降に通帳を記帳する",
+        "通帳で支給金額を確かめる",
+        "証明が要るなら区役所民生子ども課へ相談する"
+      ],
+      "url": "https://www.city.nagoya.jp/kodomo/ninshin/1008971/1008973.html"
+    },
+    {
+      "action": "福岡市に電話する前に、ページで受付期間を確かめる",
+      "source": "https://kodomo.city.fukuoka.lg.jp/en/info/2038/",
+      "steps": [
+        "福岡市こども情報のページを開く",
+        "「About the Fukuoka City Child Allowance Call Center」を見る",
+        "受付期間（令和8年10月30日まで）を確かめる"
+      ],
+      "url": "https://kodomo.city.fukuoka.lg.jp/en/info/2038/"
+    }
+  ],
+  "cause": {
+    "text": "令和6年10月の制度改正で、支給回数が年3回から年6回（偶数月）に変わりました。所得制限も撤廃されています。対象月は2か月分ずつです。",
+    "status": "background",
+    "source": "https://kosodate.city.sapporo.jp/mokuteki/money/kodomo/1124.html"
+  },
+  "worries": [
+    {
+      "q": "入金が予定日より遅れたら、どうすればいい？",
+      "a": "札幌市は入金の通知を送らず、支払予定日を3～4日過ぎても振り込まれない場合は、お住まいの区の区役所保健福祉課福祉助成係へ問い合わせるよう案内しています。",
+      "source": "https://kosodate.city.sapporo.jp/mokuteki/money/kodomo/1124.html",
+      "action": "12月11日から3～4日過ぎても入金がなければ、区役所の福祉助成係へ問い合わせる"
+    },
+    {
+      "q": "支給日の通知が来なくても、未入金とは限らない？",
+      "a": "福岡市は、支給日ごとの支給通知を送りません。金額は原則として年1回、6月の現況届の更新後に決まり、最初の支給日の前（毎年10月1日ごろ）に知らされます。",
+      "source": "https://kodomo.city.fukuoka.lg.jp/en/info/2038/",
+      "action": "通知を待たず、12月10日以降に指定口座の入金額を確かめ、金額は10月1日ごろの案内で把握する"
+    },
+    {
+      "q": "振込前のはがきが届かなくなったのは、なぜ？",
+      "a": "横浜市では、各支給月の振込前に送っていた圧着はがき「児童手当振込通知書」を、令和7年4月支給分で送付終了しました。国の児童手当制度改正に伴う変更です。",
+      "source": "https://www.city.yokohama.lg.jp/kosodate-kyoiku/oyakokenko/teate/teate/jite-gaiyou.html",
+      "action": "12月15日頃に入金があったら、通帳等の記載で振込額を確かめる。はがきは届かない前提で見る"
+    },
+    {
+      "q": "支給金額の通知がないと、いくらもらえたか分からない？",
+      "a": "名古屋市では、支払予定通知書が令和7年度分から廃止されました。支給金額は支払日以降に通帳の記帳で確認できます。奨学金申請などで証明が必要なときは、区役所民生子ども課へ相談します。",
+      "source": "https://www.city.nagoya.jp/kodomo/ninshin/1008971/1008973.html",
+      "action": "支払日以降に通帳を記帳して支給金額を確かめる。証明が要るなら区役所民生子ども課へ相談する"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "入金が遅れたら、どこへ聞くかは市で違う",
+    "cause": "制度が変わった背景と、いま分かっていること",
+    "steps": "12月の入金を、いつ確かめればいいか",
+    "desk": "電話や窓口に聞くときの連絡先",
+    "worries": "通知が来ない、入金が遅いときの不安"
+  },
+  "depthAt": "2026-11-17T03:34:50+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "児童手当の12月支給日、福岡市は10日",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-17T03:38:34+00:00"
+  },
+  "imageFocus": {
+    "x": 0.46,
+    "y": 0.429,
+    "box": [
+      0.053,
+      0.06,
+      0.866,
+      0.798
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/child-allowance-december-2026-five-cities-figure-9a7d9364.jpg"
+  }
 }
