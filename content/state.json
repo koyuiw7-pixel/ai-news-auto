@@ -16825,6 +16825,20 @@
       "skipped": true,
       "url": "https://www.jfa.jp/news/00036983/"
     },
+    "b64337d2f902f92d": {
+      "at": "2026-11-17T18:25:22.622949+00:00",
+      "breaking": true,
+      "costUsd": 0.0426,
+      "foreignAi": true,
+      "intent": "breaking",
+      "major": true,
+      "mix": "enterprise_dev",
+      "model": "openai-api:gpt-6.1-terra",
+      "score": 100,
+      "section": "ai",
+      "slug": "microsoft-ai-transparency-initiative",
+      "url": "https://news.microsoft.com/source/2026/11/17/microsoft-and-organizations-across-industries-launch-ai-transparency-initiative-to-strengthen-enterprise-trust-in-ai-models-and-agents/"
+    },
     "b65c6137f01e091a": {
       "at": "2026-11-06T12:51:10.039670+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（会議）",
@@ -24019,63 +24033,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-15T15:15:06.795714+00:00",
-      "attempt": 1,
-      "id": "7b68f4d7345dbd5f",
-      "kind": "broad",
-      "model": "gemini-3.5-flash",
-      "problems": [
-        "本文「Xbox Game Pass PremiumおよびUltimateの加入者は、追加料金なしで」および仕事・お金の欄「追加費用なしで」→ 元記事に料金・追加費用の有無の記載はなく、無料で利用できるかのように読めるため、根拠のない提供条件の断定。",
-        "本文「本作もその主要タイトルとして位置づけられています」→ 元記事・確認済みの文脈に、Game Passの主要タイトルとしての位置づけを示す記述はない。",
-        "判定欄「初期費用を抑えて始められる」、および「追加のソフト購入費用を抑えて開始できる選択肢」→ 費用削減を示す元記事の記述がなく、料金に関する創作。",
-        "「限定の『IQ バーベナセット』」「限定の装備セット」→ 元記事は「限定」とは書いておらず、限定性は根拠がない。",
-        "「7日間の名声ブースト（ゲーム内通貨の獲得量を増やす効果）」→ 元記事は『名声ブースト』とだけ書いており、ゲーム内通貨の効果という説明は補足された創作。",
-        "リード「大会の閉幕に合わせ、初心者でもすぐにプレイを始められる環境が整っています」→ 閉幕に合わせた提供と明記されておらず、言い過ぎ。"
-      ],
-      "readability": {
-        "avg_paragraph": 151.0,
-        "avg_sentence": 60.4,
-        "long_share": 0.533,
-        "max_paragraph": 282,
-        "paragraphs": 6,
-        "sentences": 15
-      },
-      "score": 62,
-      "source": "xbox-wire-jp",
-      "title": "観戦の熱を、次の一戦へ:「BLAST R6 Osaka Major 2026」で見えた『Rainbow Six Siege』と XBOX Game Pass が",
-      "warnings": [
-        "見出しが59字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（FPS・ATC・BLAST）",
-        "読みやすさ: 文が長い（1文の平均 60.4字・60字超の文が 53% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-15T15:16:02.794101+00:00",
-      "attempt": 1,
-      "id": "7b68f4d7345dbd5f",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 121.5,
-        "avg_sentence": 56.1,
-        "long_share": 0.385,
-        "max_paragraph": 264,
-        "paragraphs": 6,
-        "sentences": 13
-      },
-      "score": 88,
-      "source": "xbox-wire-jp",
-      "title": "観戦の熱を、次の一戦へ:「BLAST R6 Osaka Major 2026」で見えた『Rainbow Six Siege』と XBOX Game Pass が",
-      "warnings": [
-        "見出しが57字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（FPS・ATC・BLAST）",
-        "読みやすさ: 文が長い（1文の平均 56.1字・60字超の文が 38% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-15T15:16:25.667143+00:00",
@@ -31567,6 +31524,58 @@
       "warnings": [
         "初めて出たところで言い換えていない略語（IQ）",
         "読みやすさ: 文が長い（1文の平均 45.8字・60字超の文が 20% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-17T18:24:44.295340+00:00",
+      "attempt": 1,
+      "id": "b64337d2f902f92d",
+      "kind": "ai",
+      "model": "openai-api:gpt-6.1-terra",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 88.0,
+        "avg_sentence": 47.7,
+        "long_share": 0.125,
+        "max_paragraph": 127,
+        "paragraphs": 13,
+        "sentences": 24
+      },
+      "score": 100,
+      "source": "microsoft-source",
+      "title": "Microsoft and organizations across industries launch AI Transparency Initiative ",
+      "warnings": [
+        "見出しが50字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（NIST・SI・KPMG）",
+        "読みやすさ: 文が長い（1文の平均 47.7字・60字超の文が 12% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-17T18:25:22.582138+00:00",
+      "attempt": 0,
+      "id": "b64337d2f902f92d",
+      "kind": "ai",
+      "model": "",
+      "problems": [
+        "読みやすさ基準外のまま受理: 書き直し後の確認に不合格: 「提供状況=demo」→ 元記事は共通基準の策定や製品への反映を進める取り組みを発表しており、デモの提供とは述べていません。"
+      ],
+      "readability": {
+        "avg_paragraph": 88.0,
+        "avg_sentence": 47.7,
+        "long_share": 0.125,
+        "max_paragraph": 127,
+        "paragraphs": 13,
+        "sentences": 24
+      },
+      "score": 100,
+      "source": "microsoft-source",
+      "title": "Microsoft and organizations across industries launch AI Transparency Initiative ",
+      "warnings": [
+        "見出しが50字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（NIST・SI・KPMG）",
+        "読みやすさ: 文が長い（1文の平均 47.7字・60字超の文が 12% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
       ]
     }
   ],
