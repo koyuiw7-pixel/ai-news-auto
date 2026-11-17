@@ -71,14 +71,13 @@
   "videoTitle": "スターバックス初のカプセルトイは11月18日発売、880円で全5種そろうまでいくらかかるか",
   "publishedAt": "2026-11-11T01:30:00+00:00",
   "generatedAt": "2026-11-17T12:26:59.917163+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/starbucks-joyful-capsule-nov18-figure-ae5b14a2.jpg",
   "model": "anthropic-api:claude-haiku-5-5",
   "affiliates": [],
   "newsType": "product",
   "todayActions": [
-    "11月18日に買うなら、ドライブスルーではなく店内で買う前提で出かける。",
-    "在庫は電話では確認できないため、行く前に店舗でたずねる準備をしておく。",
-    "ロースタリー 東京で買う場合は、1,100円で1会計2点までの条件を確かめておく。"
+    "在庫を電話で聞かず、行く前に店舗へ直接たずねる準備をする",
+    "ロースタリー 東京で買うなら、1会計2点までの条件を商品詳細で確かめる"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -112,5 +111,115 @@
   "detectedAt": "2026-11-17T12:27:07+00:00",
   "searchTitle": "スターバックス初のカプセルトイ　11月18日発売、1個880円",
   "layout": "noir",
-  "summaryLine": "スターバックス初のカプセルトイが11月18日に全国の店舗で発売。1個**880円**（税込）で、中身は全5種からランダム。"
+  "summaryLine": "スターバックス初のカプセルトイが11月18日に全国の店舗で発売。1個**880円**（税込）で、中身は全5種からランダム。",
+  "insight": [
+    {
+      "text": "公式ページには「販売方式は異なる場合がございます」とあり、店舗によって買い方が変わることがあります。",
+      "source": "https://stories.starbucks.co.jp/press/2026/pr-2026-1111/"
+    },
+    {
+      "text": "ロースタリー 東京の全4種は「発売から一定期間は1会計2点まで」とされ、通常の店舗より1個の値段が高い1,100円（税込）です。",
+      "source": "https://stories.starbucks.co.jp/press/2026/pr-2026-1111/"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "スターバックス ストーリーズ 発表ページ",
+      "url": "https://stories.starbucks.co.jp/press/2026/pr-2026-1111/",
+      "source": "https://stories.starbucks.co.jp/press/2026/pr-2026-1111/",
+      "note": "在庫・販売状況について、お電話でのお問い合わせはご対応いたしかねます。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "在庫を電話で聞かず、行く前に店舗へ直接たずねる準備をする",
+      "source": "https://stories.starbucks.co.jp/press/2026/pr-2026-1111/",
+      "steps": [
+        "在庫・販売状況は電話では問い合わせできない",
+        "店舗に直接行ってたずねる"
+      ]
+    },
+    {
+      "action": "ロースタリー 東京で買うなら、1会計2点までの条件を商品詳細で確かめる",
+      "source": "https://stories.starbucks.co.jp/press/2026/pr-2026-1111/",
+      "steps": [
+        "商品詳細の「スターバックス リザーブ ジョイフル カプセル」を開く",
+        "「発売から一定期間は1会計2点まで」の記載を見る"
+      ],
+      "url": "https://stories.starbucks.co.jp/press/2026/pr-2026-1111/"
+    }
+  ],
+  "cause": {
+    "text": "2026年8月2日発売予定だった商品は、熊本県を震源とする地震の「現在の状況を踏まえ」、発売が延期されました。",
+    "status": "stated",
+    "source": "https://www.starbucks.co.jp/notice/20260075/"
+  },
+  "worries": [
+    {
+      "q": "ほしい種類を選んで買えますか？",
+      "a": "カプセルの中身は全5種からランダムで、「種類の指定や交換はできません」とされています。1個880円（税込）で、1会計2点までです。",
+      "source": "https://stories.starbucks.co.jp/press/2026/pr-2026-1111/",
+      "action": "種類は選べないと割り切り、何回買うかを先に決めて予算を組む。"
+    },
+    {
+      "q": "電話で在庫を聞いてから行けますか？",
+      "a": "在庫・販売状況について、電話での問い合わせには「ご対応いたしかねます」とされています。販売は「無くなり次第終了」です。",
+      "source": "https://stories.starbucks.co.jp/press/2026/pr-2026-1111/",
+      "action": "電話での確認はあてにせず、行く前に店舗へ直接たずねて在庫と販売状況を確かめる。"
+    },
+    {
+      "q": "発売日の朝に行けばすぐ買えますか？",
+      "a": "発売日は開店直後から数時間混雑が予想され、ドライブスルーレーンでの販売は一時休止されます。休止時間は店舗によって異なります。",
+      "source": "https://stories.starbucks.co.jp/press/2026/pr-2026-1111/",
+      "action": "発売日はドライブスルーを使わず、店内で買う前提で出かける。休止時間は店舗ごとに確かめる。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "1回の買い物で何個買うか決めるには？",
+      "situation": "全5種のうち複数の種類をそろえたい人",
+      "recommend": "1会計2点を前提に、予算を先に決める",
+      "reason": "1会計2点まで、1個880円（税込）で、中身はランダムです。種類の指定や交換はできないため、何回買うかで予算を組むことになります。",
+      "source": "https://stories.starbucks.co.jp/press/2026/pr-2026-1111/"
+    },
+    {
+      "question": "ロースタリー 東京の商品を買いに行くか？",
+      "situation": "ロースタリー 東京に行ける人",
+      "recommend": "欲しい種類と値段を確かめてから決める",
+      "reason": "全4種・1個1,100円（税込）で、1会計2点までは発売から一定期間です。在庫は電話では確認できず、一時的な欠品の場合があるとされています。",
+      "source": "https://stories.starbucks.co.jp/press/2026/pr-2026-1111/"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "販売方式や店舗の違いは、店で確かめる",
+    "cause": "延期になった理由は、地震の影響",
+    "steps": "発売日に店で買う前に確かめること",
+    "desk": "在庫は電話では確認できない",
+    "worries": "種類は選べる？在庫は？発売日は混む？",
+    "guide": "ロースタリーか通常店か、迷ったときの決め方"
+  },
+  "depthAt": "2026-11-17T12:36:15+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "スターバックス初のカプセルトイ「ジョイフル カプセル」11月18日発売",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-17T12:36:25+00:00"
+  },
+  "imageFocus": {
+    "x": 0.472,
+    "y": 0.423,
+    "box": [
+      0.013,
+      0.036,
+      0.931,
+      0.81
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/starbucks-joyful-capsule-nov18-figure-ae5b14a2.jpg"
+  }
 }
