@@ -59,8 +59,8 @@
   "affiliates": [],
   "newsType": "product",
   "todayActions": [
-    "手元に「昆布〆大根」（内容量一本）があるかを確かめ、あれば問い合わせ先025-777-3844へ連絡する",
-    "買った店が分からない場合は、返品先の有限会社勢和商事に、この届出の内容を伝えて確かめる"
+    "手元の商品の商品名と内容量を見て、対象かどうかを確かめる",
+    "対象に当たれば、返品に関する問い合わせ先025-777-3844へ連絡する"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -113,5 +113,95 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/maruko-tsukemono-kombu-daikon-recall-figure-87a1af53.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "返品先は製造所（新潟市西区赤塚）とは別の「有限会社 勢和商事」で、住所は新潟県南魚沼市浦佐508-4です。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602897"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "有限会社 勢和商事（返品に関する問い合わせ先）",
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602897",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602897",
+      "phone": "025-777-3844",
+      "note": "返品に関する問い合わせはこの番号へ。届出には期限の記載がありません。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "手元の商品の商品名と内容量を見て、対象かどうかを確かめる",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602897",
+      "steps": [
+        "商品名が「昆布〆大根」か見る",
+        "内容量が「一本」か見る",
+        "両方当てはまれば次の問い合わせへ進む"
+      ],
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602897"
+    },
+    {
+      "action": "対象に当たれば、返品に関する問い合わせ先025-777-3844へ連絡する",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602897",
+      "steps": [
+        "電話番号025-777-3844にかける",
+        "整理番号RCL202602897を伝える",
+        "返品の方法を問い合わせる"
+      ],
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602897"
+    }
+  ],
+  "cause": {
+    "text": "回収の理由は、保存料（ソルビン酸）の使用基準の超過です。食品衛生法違反のおそれがあるとされ、食品衛生法第20条に該当するものとして扱われています。",
+    "status": "stated",
+    "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602897"
+  },
+  "worries": [
+    {
+      "q": "自分の買った商品は対象になる？",
+      "a": "回収の対象は、商品名「昆布〆大根」で内容量「一本」のものです。届出では販売状況が確認中とされ、どの店でどれだけ売られたかは、まだ分かっていません。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602897",
+      "action": "手元の商品の商品名と内容量が「昆布〆大根」「一本」か見て、当てはまれば返品先へ問い合わせる"
+    },
+    {
+      "q": "食べてしまったら、体に影響はある？",
+      "a": "届出では、体重60kgの人が本商品を約2.1kg摂取するとADIを超える可能性があるとされています。ADIは、一生涯毎日摂取し続けても健康への悪影響がないと考えられる1日の量です。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602897",
+      "action": "食べた量と自分の体重を、届出の目安（体重60kgで約2.1kg）と見比べて確かめておく"
+    },
+    {
+      "q": "返品はどこにすればいい？",
+      "a": "返品先は有限会社 勢和商事（新潟県南魚沼市浦佐508-4）で、返品に関する問い合わせ先は025-777-3844です。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602897",
+      "action": "返品に関する問い合わせ先025-777-3844へ連絡し、商品名と内容量を伝えて相談する"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "まだ食べていない商品はどうする？",
+      "situation": "内容量一本の商品が手元にある",
+      "recommend": "返品に関する問い合わせをする",
+      "reason": "返品先は有限会社 勢和商事で、問い合わせ先は025-777-3844です。届出には期限の記載がありません。販売状況と回収方法は確認中とされています。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602897"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "返品先は製造所とは別の会社です",
+    "cause": "なぜ回収されるのか、分かっていること",
+    "steps": "対象か確かめて、まず問い合わせる",
+    "desk": "返品と問い合わせの窓口",
+    "worries": "食べた量や返品先は大丈夫？",
+    "guide": "手元にあるとき、まず何をするか"
+  },
+  "depthAt": "2026-11-17T01:34:48+00:00",
+  "updatedAt": "2026-11-17T01:34:48+00:00",
+  "updates": [
+    {
+      "at": "2026-11-17T01:34:48+00:00",
+      "kind": "facts",
+      "title": "公式の資料をもとに、「なるほどの要点」・「公式の窓口」・「今日やること」・「理由」・「よくある不安」・「判断の目安」を追記しました",
+      "sourceUrl": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602897",
+      "sourceName": "厚生労働省 食品衛生申請等システム「公開回収事案詳細」（有限会社マルコ漬物の届出）"
+    }
+  ]
 }

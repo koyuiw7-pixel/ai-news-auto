@@ -62,8 +62,8 @@
   "affiliates": [],
   "newsType": "product",
   "todayActions": [
-    "袋の賞味期限2026年12月20日とJANコード4979432007535を確かめ、一致したら食べずに保管する",
-    "対象の商品は、株式会社谷貝食品へ着払いで返送する。問い合わせは電話0296-37-2884"
+    "袋の裏ラベルで賞味期限とJANコードを確かめ、一致したら食べずに保管する",
+    "対象の商品は、食べずに株式会社谷貝食品へ着払いで返送する"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -112,5 +112,112 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/turkish-apricot-recall-tanigai-foods-figure-9e6b1c29.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "健康への危険性の程度はCLASSⅢで、CLASSⅢの例に「添加物の使用基準違反食品」などが挙がっています。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602905"
+    },
+    {
+      "text": "ページの画像は「当該品」と「当該品裏ラベル」の2枚あり、袋の裏ラベルの表示と見比べて対象かを確かめられます。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602905"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "株式会社谷貝食品 回収の問合せ先",
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602905",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602905",
+      "phone": "0296-37-2884",
+      "note": "問合せ先の電話番号とメールアドレス（yagai283@yagaifoods.co.jp）が載っています。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "袋の裏ラベルで賞味期限とJANコードを確かめ、一致したら食べずに保管する",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602905",
+      "steps": [
+        "袋の裏ラベルの賞味期限を見る",
+        "JANコードが4979432007535か見る",
+        "一致したら食べずに手元に置く"
+      ],
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602905"
+    },
+    {
+      "action": "対象の商品は、食べずに株式会社谷貝食品へ着払いで返送する",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602905",
+      "steps": [
+        "食べずに手元に置く",
+        "返送先は茨城県筑西市関舘283-10",
+        "送料は着払いで出す"
+      ],
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602905"
+    }
+  ],
+  "cause": {
+    "text": "回収の理由は、酵母菌の発生による袋の膨張と品質劣化です。食品衛生法違反のおそれがあるとされ、食品衛生法第20条に該当すると書かれています。",
+    "status": "stated",
+    "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602905"
+  },
+  "worries": [
+    {
+      "q": "食べてしまったら体に害はある？",
+      "a": "健康への危険性の程度はCLASSⅢとされ、2026年11月13日時点で健康被害の報告は無しと書かれています。回収理由は酵母菌の発生による袋の膨張と品質劣化です。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602905",
+      "action": "袋の賞味期限とJANコードを確かめ、対象なら食べずに保管する"
+    },
+    {
+      "q": "返金や代替品はどうなる？",
+      "a": "回収後の対応は「返金対応」と「代替品対応」の2つと書かれています。回収方法は「着払いにて返送」です。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602905",
+      "action": "対象の商品を株式会社谷貝食品へ着払いで返送する"
+    },
+    {
+      "q": "自分の買ったものが対象か、どう見分ける？",
+      "a": "対象の商品名はトルコあんず、内容量160ｇ、形態は袋詰め、JANコードは4979432007535、賞味期限は2026年12月20日です。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602905",
+      "action": "裏ラベルのJANコードと賞味期限を、この表示と1つずつ見比べる"
+    },
+    {
+      "q": "まだ回収されていない分はどれくらい？",
+      "a": "2026年11月13日時点で回収数量は236個、回収割合は11％と書かれています。販売数量は2150個（納品数量）です。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602905",
+      "action": "電話かメールで、返送の手順を確かめてから送る"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "賞味期限が12月20日の袋、どうすればいい？",
+      "situation": "賞味期限とJANコードが一致する",
+      "recommend": "食べずに保管し、返送を検討する",
+      "reason": "回収の対象で、回収方法は着払いの返送と書かれています。回収後の対応は返金対応か代替品対応の2つです。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602905"
+    },
+    {
+      "question": "賞味期限は同じだがJANコードが違う場合は？",
+      "situation": "賞味期限は同じで、JANコードが一致しない",
+      "recommend": "急がず、問合せ先に確かめてから判断する",
+      "reason": "対象として書かれているのはJANコード4979432007535と賞味期限2026年12月20日の組み合わせです。一致しない場合は、電話かメールで谷貝食品に確かめられます。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602905"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "裏ラベルとJANコードで、対象かすぐ分かる",
+    "cause": "なぜ袋がふくらんだのか、分かっていること",
+    "steps": "食べずに、裏ラベルを見て確かめる",
+    "desk": "電話かメールで谷貝食品に聞く",
+    "worries": "食べても大丈夫？返金はどうなる？",
+    "guide": "持っている袋、返送するか迷ったら"
+  },
+  "depthAt": "2026-11-17T01:35:14+00:00",
+  "updatedAt": "2026-11-17T01:35:14+00:00",
+  "updates": [
+    {
+      "at": "2026-11-17T01:35:14+00:00",
+      "kind": "facts",
+      "title": "公式の資料をもとに、「なるほどの要点」・「公式の窓口」・「今日やること」・「理由」・「よくある不安」・「判断の目安」を追記しました",
+      "sourceUrl": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602905",
+      "sourceName": "厚生労働省 食品衛生公開 公開回収事案詳細（トルコあんず、谷貝食品）"
+    }
+  ]
 }
