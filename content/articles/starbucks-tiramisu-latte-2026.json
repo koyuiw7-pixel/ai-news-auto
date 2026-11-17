@@ -81,8 +81,9 @@
   "affiliates": [],
   "newsType": "product",
   "todayActions": [
-    "「ティラミス ラテ」の発売日と税込価格を、スターバックス ストーリーズの発表ページで確認する。",
-    "渋谷cocoti店とLINKS梅田2階店のイベント日程を、キャンペーンサイトで確認する。"
+    "Tallを注文する前に、店内利用か持ち帰りかに応じた税込価格を発表ページで確認する。",
+    "ポップアップに行く人は、訪問日が開催期間内かキャンペーンサイトで確認する。",
+    "ステッカーを希望する人は、開催期間中に対象店舗でアプリ画面を提示する。"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -145,5 +146,84 @@
     ],
     "ar": 1.3333,
     "src": "https://ai-tech-express.jp/img/starbucks-tiramisu-latte-2026-50facb20.jpg"
-  }
+  },
+  "officialDesk": [
+    {
+      "name": "スターバックス ストーリーズ『ティラミス ラテ』発売のお知らせ",
+      "url": "https://stories.starbucks.co.jp/press/2026/pr-2026-1117/",
+      "source": "https://stories.starbucks.co.jp/press/2026/pr-2026-1117/",
+      "note": "販売期間中でも、一時的に欠品したり早期に販売終了したりする場合があります。"
+    },
+    {
+      "name": "Merry & Meet Holiday Bingo Party キャンペーンサイト",
+      "url": "https://www.starbucks.co.jp/rewards/bingo_party2026_guest/",
+      "source": "https://stories.starbucks.co.jp/press/2026/pr-2026-1117/",
+      "note": "オリジナルステッカーはなくなり次第終了です。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "Tallを注文する前に、店内利用か持ち帰りかに応じた税込価格を発表ページで確認する。",
+      "source": "https://stories.starbucks.co.jp/press/2026/pr-2026-1117/",
+      "steps": [
+        "スターバックス ストーリーズの発表ページを開く",
+        "『ティラミス ラテ』の価格を確認する"
+      ],
+      "url": "https://stories.starbucks.co.jp/press/2026/pr-2026-1117/"
+    },
+    {
+      "action": "ポップアップに行く人は、訪問日が開催期間内かキャンペーンサイトで確認する。",
+      "source": "https://stories.starbucks.co.jp/press/2026/pr-2026-1117/",
+      "steps": [
+        "キャンペーンサイトを開く",
+        "渋谷cocoti店またはLINKS梅田2階店の日程を確認する"
+      ],
+      "url": "https://www.starbucks.co.jp/rewards/bingo_party2026_guest/"
+    },
+    {
+      "action": "ステッカーを希望する人は、開催期間中に対象店舗でアプリ画面を提示する。",
+      "source": "https://stories.starbucks.co.jp/press/2026/pr-2026-1117/",
+      "steps": [
+        "開催期間内に対象店舗へ行く",
+        "スターバックス アプリ内の「Holiday Bingo Party」画面を提示する"
+      ],
+      "url": "https://stories.starbucks.co.jp/press/2026/pr-2026-1117/"
+    }
+  ],
+  "cause": {
+    "text": "スターバックスは、ホリデーシーズンに向け、ティラミスの原点の味わいを目指して開発したホットビバレッジとして発売すると説明しています。エスプレッソを主役に、マスカルポーネクリームなどでティラミスらしさを表現したとしています。",
+    "status": "background",
+    "source": "https://stories.starbucks.co.jp/press/2026/pr-2026-1117/"
+  },
+  "worries": [
+    {
+      "q": "近くのスターバックスならどこでも買える？",
+      "a": "『ティラミス ラテ』は全国のスターバックス店舗で販売されますが、一部店舗は取り扱いの対象外です。また、一時的な欠品や早期の販売終了の場合もあります。",
+      "source": "https://stories.starbucks.co.jp/press/2026/pr-2026-1117/",
+      "action": "利用予定の店舗が取り扱い対象か、出かける前に店舗で確認してから向かう。"
+    },
+    {
+      "q": "イベント期間中ならステッカーは必ずもらえる？",
+      "a": "対象店舗でスターバックス アプリ内の「Holiday Bingo Party」画面を提示するとオリジナルステッカーがもらえますが、配布はなくなり次第終了です。",
+      "source": "https://stories.starbucks.co.jp/press/2026/pr-2026-1117/",
+      "action": "対象店舗で開催期間中にアプリ内の「Holiday Bingo Party」画面を提示する。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "イベントに行くなら、どちらの店舗を選ぶ？",
+      "situation": "開催期間や行きやすさで迷っている",
+      "recommend": "開催日と行きやすさで選ぶ",
+      "reason": "渋谷cocoti店は2026年12月5日（土）から12月13日（日）まで、LINKS梅田2階店は2026年11月27日（金）から12月6日（日）まで開催されます。訪問できる日と場所に合わせて選べます。",
+      "source": "https://stories.starbucks.co.jp/press/2026/pr-2026-1117/"
+    }
+  ],
+  "depthHeadings": {
+    "cause": "ホリデー向けに目指したティラミスの味わい",
+    "steps": "価格とイベント日程を確かめてから出かける",
+    "desk": "発売情報とイベント詳細の公式ページ",
+    "worries": "買える店舗やイベントのステッカーが気になる",
+    "guide": "イベントに行く店を日程から選ぶ"
+  },
+  "depthAt": "2026-11-17T21:28:10+00:00"
 }

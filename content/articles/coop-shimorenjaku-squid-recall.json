@@ -55,14 +55,14 @@
   "videoTitle": "コープ下連雀店「イカとにんにくの芽の黒胡椒和え」2026年11月回収 消費期限26.11.16と26.11.17午前6時が対象",
   "publishedAt": "2026-11-17T21:12:38.186951+00:00",
   "generatedAt": "2026-11-17T21:13:05.587784+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/coop-shimorenjaku-squid-recall-figure-fb6a1790.jpg",
   "model": "openai-api:gpt-6.1-terra",
   "affiliates": [],
   "newsType": "product",
   "todayActions": [
-    "コープ下連雀店の対象商品が手元にあれば、消費期限の日付と時刻を確かめる。",
-    "対象品は食べずにコープ下連雀店へ持ち込むか、0422-49-3201に連絡する。",
-    "電話する場合は、コープ下連雀店の受付時間が9時30分から19時か確認する。"
+    "対象商品が手元にある人は、消費期限の日付と時刻を照合する",
+    "対象品はコープ下連雀店で回収に出し、回収後の返金を受ける",
+    "対象か判断できない場合は、受付時間内にコープ下連雀店へ電話する"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -90,5 +90,105 @@
   "summaryLine": "コープ下連雀店の「イカとにんにくの芽の黒胡椒和え」は、卵の表示漏れで回収対象になりました。",
   "relatedSlugs": [
     "fujisawa-bakery-recall-chocokorone-2026"
-  ]
+  ],
+  "officialDesk": [
+    {
+      "name": "生活協同組合コープみらい コープ下連雀店",
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602942",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602942",
+      "phone": "0422-49-3201",
+      "hours": "9：30～19：00",
+      "note": "販売店で回収し、回収後は返金対応です。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "対象商品が手元にある人は、消費期限の日付と時刻を照合する",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602942",
+      "steps": [
+        "商品表示の消費期限を見る",
+        "26.11.16は全商品、26.11.17は午前6時の商品が対象"
+      ],
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602942"
+    },
+    {
+      "action": "対象品はコープ下連雀店で回収に出し、回収後の返金を受ける",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602942",
+      "steps": [
+        "コープ下連雀店へ対象品を持ち込む",
+        "回収後の返金対応を受ける"
+      ],
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602942"
+    },
+    {
+      "action": "対象か判断できない場合は、受付時間内にコープ下連雀店へ電話する",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602942",
+      "steps": [
+        "0422-49-3201へ電話する",
+        "受付時間は9：30～19：00"
+      ],
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602942"
+    }
+  ],
+  "cause": {
+    "text": "製造時に誤って旧原料のイカ唐揚げを使ったため、アレルゲン表示で義務表示の「卵」が抜けました。厚生労働省の公開情報は、これを食品表示法違反としています。",
+    "status": "stated",
+    "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602942"
+  },
+  "worries": [
+    {
+      "q": "消費期限が11月17日なら、すべて対象ですか？",
+      "a": "すべてではありません。公開情報では「26.11.16」は全商品が対象で、「26.11.17」は午前6時の商品が対象です。商品の製造時刻によって消費期限の日付・時刻が変わるとされています。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602942",
+      "action": "商品に表示された消費期限の日付と時刻を確認し、条件に当たる場合は店で回収に出してください。"
+    },
+    {
+      "q": "卵アレルギーの人が食べると、健康被害の恐れがありますか？",
+      "a": "公開情報では、卵アレルギーのある人が食べた場合、健康被害が発生する恐れがあるとされています。健康被害の発生は11月17日現在で報告されていません。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602942",
+      "action": "対象品が残っている場合は食べず、コープ下連雀店へ連絡して回収・返金について確認してください。"
+    },
+    {
+      "q": "対象商品を店に持っていくと、返金されますか？",
+      "a": "回収方法は販売店での回収で、回収後の対応は返金と記載されています。問い合わせ先は生活協同組合コープみらい コープ下連雀店で、受付時間は9：30～19：00です。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602942",
+      "action": "対象品をコープ下連雀店へ持ち込み、返金対応について確認してください。電話は0422-49-3201です。"
+    },
+    {
+      "q": "コープ下連雀店以外で買った商品も対象ですか？",
+      "a": "公開情報に記載された販売先はコープ下連雀店での消費者向け小売りで、販売地域は東京都三鷹市です。販売日は2026年11月16日とされています。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602942",
+      "action": "購入先がコープ下連雀店で、消費期限が対象条件に当たるか確認してください。"
+    }
+  ],
+  "depthHeadings": {
+    "cause": "旧原料の使用で卵表示が抜けた理由",
+    "steps": "消費期限を確かめて回収・返金へ",
+    "desk": "回収と返金を受け付ける店",
+    "worries": "対象品か、食べてしまったらどうする？"
+  },
+  "depthAt": "2026-11-17T21:29:33+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "コープ下連雀店「イカとにんにくの芽の黒胡椒和え」回収",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-17T21:32:02+00:00"
+  },
+  "imageFocus": {
+    "x": 0.537,
+    "y": 0.416,
+    "box": [
+      0.106,
+      0.083,
+      0.969,
+      0.75
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/coop-shimorenjaku-squid-recall-figure-fb6a1790.jpg"
+  }
 }

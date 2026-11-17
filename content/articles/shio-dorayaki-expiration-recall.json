@@ -54,14 +54,14 @@
   "videoTitle": "塩どら焼 2026年11月回収 12月17日と書かれた6個は本当は11月17日まで JAN4595056009313",
   "publishedAt": "2026-11-17T21:16:18.839169+00:00",
   "generatedAt": "2026-11-17T21:16:49.780995+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/shio-dorayaki-expiration-recall-figure-cf3a4fb4.jpg",
   "model": "openai-api:gpt-6.1-terra",
   "affiliates": [],
   "newsType": "product",
   "todayActions": [
-    "手元の塩どら焼のJANコードと消費期限を確認し、対象品は食べずに回収へ出す。",
-    "対象品は店頭へ持ち込むか、どら焼のどらやの会津若松市の住所へ着払いで郵送する。",
-    "交換や返金について不明な点は、土日祝日を除く9時30分〜17時30分に0242-23-7717へ問い合わせる。"
+    "手元の塩どら焼のJANコードと消費期限を対象情報と照合する",
+    "表示が一致する商品は食べず、店頭持ち込みか着払い郵送で回収を依頼する",
+    "回収方法が分からない場合は受付時間内に株式会社どら焼のどらやへ電話する"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -89,5 +89,116 @@
   "summaryLine": "「塩どら焼」は消費期限の表示に誤りがあり、会津若松市で販売された6個が回収対象です。",
   "relatedSlugs": [
     "fujisawa-bakery-recall-chocokorone-2026"
-  ]
+  ],
+  "officialDesk": [
+    {
+      "name": "株式会社どら焼のどらや",
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602934",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602934",
+      "phone": "0242-23-7717",
+      "hours": "9:30-17:30（土日祝日を除く）",
+      "note": "店頭への持ち込み、郵送の方法や交換・返金について問い合わせできます。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "手元の塩どら焼のJANコードと消費期限を対象情報と照合する",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602934",
+      "steps": [
+        "JANコード「4595056009313」を確認する",
+        "消費期限が「2026年12月17日」か確認する"
+      ],
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602934"
+    },
+    {
+      "action": "表示が一致する商品は食べず、店頭持ち込みか着払い郵送で回収を依頼する",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602934",
+      "steps": [
+        "店頭に持ち込んで商品交換・返金を依頼する",
+        "または料金着払いで記載の住所へ郵送する"
+      ],
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602934"
+    },
+    {
+      "action": "回収方法が分からない場合は受付時間内に株式会社どら焼のどらやへ電話する",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602934",
+      "steps": [
+        "土日祝日を除く9:30-17:30に電話する",
+        "電話番号「0242-23-7717」へ問い合わせる"
+      ],
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602934"
+    }
+  ],
+  "cause": {
+    "text": "本来は製造から4日後の2026年11月17日と記載すべき消費期限を、誤って2026年12月17日と表示したことが回収理由です。",
+    "status": "stated",
+    "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602934"
+  },
+  "worries": [
+    {
+      "q": "手元の塩どら焼が回収対象か、何を見れば分かる？",
+      "a": "対象は1個入りの個包装「塩どら焼」で、JANコードは4595056009313、表示された消費期限は2026年12月17日です。商品名やJANコードだけでなく、消費期限も確認してください。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602934",
+      "action": "商品名、JANコード、消費期限を公開回収情報の対象商品と照合してください。"
+    },
+    {
+      "q": "対象品を食べてしまったら、健康への影響がある？",
+      "a": "公開情報では、消費期限が過ぎた商品を食べることで健康被害が発生する可能性があるとされています。健康への危険性の程度は「CLASSⅡ」と掲載されています。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602934",
+      "action": "対象品が残っている場合は食べず、店頭持ち込みか料金着払い郵送で回収を依頼してください。"
+    },
+    {
+      "q": "店頭に行けない場合でも、交換や返金を受けられる？",
+      "a": "店頭への持ち込みのほか、料金着払いで指定住所へ郵送する方法が案内されています。回収後の対応は商品の交換または返金です。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602934",
+      "action": "店頭へ行けない場合は料金着払いで郵送し、方法が分からなければ受付時間内に電話で確認してください。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "回収品は店頭と郵送のどちらで返す？",
+      "situation": "店頭へ持ち込める",
+      "recommend": "店頭への持ち込みを選べます",
+      "reason": "店頭に持ち込むと商品交換・返金に対応すると案内されています。持ち込みが難しい場合は、料金着払いで郵送する方法もあります。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602934"
+    },
+    {
+      "question": "回収品は店頭と郵送のどちらで返す？",
+      "situation": "店頭へ持ち込めない",
+      "recommend": "料金着払いでの郵送を選べます",
+      "reason": "店頭への持ち込みのほか、料金着払いで指定住所へ郵送する方法が案内されています。どちらも商品の交換または返金に対応するとされています。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602934"
+    }
+  ],
+  "depthHeadings": {
+    "cause": "期限表示が誤った理由",
+    "steps": "対象品の確認から回収依頼まで",
+    "desk": "交換や返金を相談する窓口",
+    "worries": "対象品か、どう回収するかを確認",
+    "guide": "持ち込みと郵送、どちらにする？"
+  },
+  "depthAt": "2026-11-17T21:28:33+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "「塩どら焼」6個を回収",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-17T21:31:26+00:00"
+  },
+  "imageFocus": {
+    "x": 0.498,
+    "y": 0.42,
+    "box": [
+      0.05,
+      0.042,
+      0.947,
+      0.798
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/shio-dorayaki-expiration-recall-figure-cf3a4fb4.jpg"
+  }
 }

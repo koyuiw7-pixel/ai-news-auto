@@ -70,8 +70,8 @@
   "affiliates": [],
   "newsType": "research",
   "todayActions": [
-    "11月30日までにレジ横の対象商品を2個買ったら、レシートのクーポン印字を確かめる。",
-    "受け取った96円引き券は、12月7日までの次回の買い物に備えて残しておく。"
+    "11月30日までに対象商品を2個買い、レシートに96円引き券が印字されたか確認する。",
+    "受け取ったクーポンを、12月7日までの次の買い物で使う。"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -135,5 +135,89 @@
     ],
     "ar": 1.0,
     "src": "https://ai-tech-express.jp/img/familymart-fried-food-coupon-cc658398.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "96円引きの「96」は、ブラックフライデーの「クロ」にちなんだ設定です。値引き額は対象商品の価格に応じて変わるのではなく、クーポン1枚につき96円です。",
+      "source": "https://www.family.co.jp/company/news_releases/2026/20261116_03.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "「ファミマのブラック“フライ”デー」ニュースリリース",
+      "url": "https://www.family.co.jp/company/news_releases/2026/20261116_03.html",
+      "source": "https://www.family.co.jp/company/news_releases/2026/20261116_03.html"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "11月30日までに対象商品を2個買い、レシートに96円引き券が印字されたか確認する。",
+      "source": "https://www.family.co.jp/company/news_releases/2026/20261116_03.html",
+      "steps": [
+        "レジ横ケース内の揚げ物・お惣菜を2個購入する",
+        "買い物のレシートを受け取り、クーポンの印字を確かめる"
+      ],
+      "url": "https://www.family.co.jp/company/news_releases/2026/20261116_03.html"
+    },
+    {
+      "action": "受け取ったクーポンを、12月7日までの次の買い物で使う。",
+      "source": "https://www.family.co.jp/company/news_releases/2026/20261116_03.html",
+      "steps": [
+        "レシートのクーポンを保管する",
+        "次回、レジ横ケース内の揚げ物・お惣菜を買う際に使う",
+        "他のセール・割引券・引換券とは併用しない"
+      ],
+      "url": "https://www.family.co.jp/company/news_releases/2026/20261116_03.html"
+    }
+  ],
+  "cause": {
+    "text": "ファミリーマートは、昨今の物価高騰で生活防衛意識が高まるなか、「いちばんちょっとおトク」を追求する取り組みの一環として開催すると説明しています。揚げ物（フライ）とブラックフライデーを掛け合わせた企画です。",
+    "status": "background",
+    "source": "https://www.family.co.jp/company/news_releases/2026/20261116_03.html"
+  },
+  "worries": [
+    {
+      "q": "対象商品を4個買ったら、クーポンは何枚もらえる？",
+      "a": "レジ横ケース内の揚げ物・お惣菜を2個購入するごとに、次回使える96円引きのレシートクーポンが印字されます。",
+      "source": "https://www.family.co.jp/company/news_releases/2026/20261116_03.html",
+      "action": "対象商品を4個買う場合は、レシートを受け取り、クーポンが2枚印字されているか確認してください。"
+    },
+    {
+      "q": "買ったその場で、対象商品が96円引きになる？",
+      "a": "クーポンは次回のお買い物で使うものです。クーポンを受け取るために買った商品は、その場では割り引かれません。",
+      "source": "https://www.family.co.jp/company/news_releases/2026/20261116_03.html",
+      "action": "発券時の買い物では値引きされないため、レシートのクーポンを保管し、次回の買い物で使ってください。"
+    },
+    {
+      "q": "ほかの割引券や引換券と一緒に使える？",
+      "a": "他のセール・割引券・引換券との併用はできません。クーポンはレジ横ケース内の揚げ物・お惣菜に使えます。",
+      "source": "https://www.family.co.jp/company/news_releases/2026/20261116_03.html",
+      "action": "使うときは、他のセール・割引券・引換券と併用せず、対象商品を選んでください。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "クーポンのために対象商品を買う？",
+      "situation": "12月7日までに次の買い物をする予定がある",
+      "recommend": "次の買い物で使う予定なら検討する",
+      "reason": "対象商品を2個買うごとに、次回の買い物で使える96円引き券が発行されます。利用期限は12月7日までなので、期限内に使う買い物があるかを先に確認できます。",
+      "source": "https://www.family.co.jp/company/news_releases/2026/20261116_03.html"
+    },
+    {
+      "question": "クーポンのために対象商品を買う？",
+      "situation": "期限までに次の買い物をする予定がない",
+      "recommend": "クーポンのためだけに買う必要はない",
+      "reason": "クーポンは次回の買い物で使うもので、利用期間は12月7日までです。期限内に使う予定がなければ、割引を受けるために対象商品を買っても使い切れない可能性があります。",
+      "source": "https://www.family.co.jp/company/news_releases/2026/20261116_03.html"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "96円引きはブラックフライデーの「クロ」",
+    "cause": "物価高のなかで企画された割引",
+    "steps": "買う日と使う日を分けて確認",
+    "desk": "対象商品と期間は公式発表で確認",
+    "worries": "クーポンの使い方で迷ったら",
+    "guide": "クーポンのために買うか迷ったら"
+  },
+  "depthAt": "2026-11-17T21:29:03+00:00"
 }
