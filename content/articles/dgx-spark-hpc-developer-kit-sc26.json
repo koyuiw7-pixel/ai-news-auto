@@ -1,0 +1,166 @@
+{
+  "slug": "dgx-spark-hpc-developer-kit-sc26",
+  "sourceType": "web",
+  "sourceUrl": "https://blogs.nvidia.com/blog/dgx-spark-hpc-developer-kit-sc26/?ncid=so-twit-665515",
+  "sourceName": "NVIDIA公式ブログ",
+  "title": "DGX Spark 4台のクラスター「開発キット」販売開始　512GBメモリでスイッチ不要",
+  "seoTitle": "DGX Spark HPC開発キットとは？構成と販売先",
+  "threadsPost": "研究や開発で、GPUクラスターの順番待ちに悩む人に、知っておいてほしい話です。\n\nNVIDIAが、DGX Spark 4台をつないだ開発キットを発表しました。\n合計512GBのメモリで、最大700Bパラメーターのモデルを動かせます。\n\n計算の順番待ち、ふだんどのくらい発生しますか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "count",
+      "question": "計算の順番待ち、ふだんどのくらい発生しますか？"
+    },
+    {
+      "pattern": "tradeoff",
+      "question": "未公開データは、手元の機械と共有サーバーのどちらに置きたいですか？"
+    },
+    {
+      "pattern": "price",
+      "question": "研究用の机上クラスターに、いくらまでなら出せますか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "explainer",
+  "lede": "DGX Spark 4台を直結した「DGX Spark HPC Developer Kit」が、SC26の会場で展示され、販売も始まっています。4台合計で512GBのメモリと20TBのNVMeストレージを備え、ネットワークスイッチは不要です。価格は未発表で、日本での提供状況もまだ発表されていません。",
+  "description": "NVIDIAが発表したDGX Spark HPC Developer Kitは、DGX Spark 4台をリング状に直結。合計512GBメモリで最大700Bのモデルを手元で動かせます。構成、事例、販売先を整理します。",
+  "keywords": [
+    "DGX Spark",
+    "DGX Spark HPC Developer Kit",
+    "NVIDIA SC26",
+    "ローカルAI",
+    "GB10",
+    "NVFP4",
+    "NVIDIA HPC SDK",
+    "研究用ワークステーション",
+    "クラスター 4台",
+    "ConnectX-7"
+  ],
+  "tags": [
+    "NVIDIA",
+    "DGX Spark",
+    "ローカルAI",
+    "HPC",
+    "ハードウェア"
+  ],
+  "highlights": [
+    "DGX Spark 4台をリング状に直結した開発キットで、スイッチなしの4ノード構成",
+    "4台合計で512GBのメモリと20TBのNVMeを備え、NVFP4で最大700Bのモデルを実行",
+    "UC Berkeleyの研究室は、11時間の待ち行列なしで結果が15倍早く出たと報告"
+  ],
+  "timetable": [],
+  "verdict": {
+    "status": "available",
+    "japan": "unknown",
+    "price": "未発表",
+    "free": false,
+    "audience": "研究者・開発者",
+    "take": "価格と日本での販売は未発表なので、OEMパートナーやNVIDIA Marketplaceの案内を確認するとよいでしょう。",
+    "judgedAt": "2026-11-17T03:48:39.945183+00:00"
+  },
+  "workMoney": {
+    "relevance": "medium",
+    "points": [
+      "共有GPUクラスターの順番待ちがある研究者・開発者は、手元で開発とデバッグを済ませられます。",
+      "非公開の結果や独自データを社内に置いたまま作業できる点が、企業の研究部門に関係します。",
+      "価格は未発表です。導入を検討するなら、OEMパートナーへの問い合わせで確認するとよいでしょう。"
+    ]
+  },
+  "body": "このキットが関係するのは、共有のGPUクラスターで順番待ちをしている研究者や開発者です。ふだん単体の机上機で足りている人には、何も変わりません。\n\n「DGX Spark HPC Developer Kit」は、小型AIコンピューター「DGX Spark」を4台つないだ研究・開発用のキットです。NVIDIA公式ブログによると、SC26（米シカゴで開かれる年次のスーパーコンピューター会議）で発表されました。\n\n## 4台をスイッチなしで直結した構成\n\nキットは4台のDGX Sparkで構成します。各台は両隣の2台と、リング状に直接つながります。接続にはNVIDIA ConnectX-7（高速ネットワーク機能）を使います。ネットワークスイッチ（機器をつなぐ装置）を買って設定する必要はありません。\n\n1台から4台まで、段階的に増やせます。中核は、GB10 Grace Blackwell Superchipです。\n\n4台でそろう主な数字は次のとおりです。\n\n- 合計メモリ: 512GB\n- NVMeストレージ: 合計20TB\n- 実行できるモデル: NVFP4で最大700Bパラメーター（例としてDeepSeek V4.1）\n\nNVFP4は、モデルを小さく表現して動かす形式です。記事によると、こうした容量を使い、モデルや計算を4台に分けて載せられます。\n\n## 順番待ちを減らし、非公開データも手元に\n\n計算資源の割り当てが決まっている研究者は、これまでジョブのたびに順番を待つ必要がありました。このキットなら、開発とデバッグ（不具合探し）を自分たちで進められます。\n\nその分、サーバーの利用時間は本番の計算に回せます。未公開の結果や独自のデータセットも、社内の設備に置いたまま使えます。\n\n## 近日公開のHPC SDK手順書と動作実績\n\nNVIDIA HPC SDKは、GPUで高速化したC、C++、Fortranのコンパイラーとライブラリ、MPIのツールです。MPIは複数台で計算を分担する通信の仕組みです。スーパーコンピューターで使うものと同じ開発ツールです。\n\nDGX Sparkクラスター向けの導入手順書（プレイブック）は近日公開予定です。公開後は、4台でアプリを作って試し、通信の問題を大型システムに移す前に洗い出せます。\n\n4台での動作が示された例は、LAMMPS（Kokkos使用、材料シミュレーション）とNAMD（分子動力学）です。DGX Sparkのコミュニティーでは、次のソフトの動作も確認されています。\n\n- GROMACS（分子動力学）\n- OpenFOAM（流体力学）\n- WRF（気象予測）\n- NVIDIA NIMのOpenFold3、Boltz-2（生体分子の構造予測）\n\nNemotron 3.5 Super VLには、生命科学と化学向けに調整するための新しいオープンデータセットとポストトレーニングの手順が出ています。\n\n## 研究室の使い方と事例\n\n公式ブログは、使い道をいくつか挙げています。\n\n- エージェントが、シミュレーションの入力準備、実行、結果の要約を手伝い、研究者が設定と結論を確かめる\n- 遅いシミュレーションを近似するAIを学習し、翼の抵抗を減らす設計に使う\n- 1,000万セルのシミュレーションを、重要な50〜500の次元に絞ってからスパコンを使う\n\n具体的な事例も紹介されています。\n\n- Kvantify: 1台のDGX Sparkで、最大70量子ビット・975ゲートの量子化学回路を、cuQuantumのテンソルネットワークで計算。ペニシリンの基底状態エネルギー計算用の回路で検証\n- CYRAN AI（IIT Delhi発のスピンアウト）: PixelFluxライブラリで、大型衛星画像のJPEG 2000デコードを高速化\n- カリフォルニア大学バークレー校Rubin Lab: Evo 2で細菌の特性を遺伝子配列から予測。11時間のクラスター待ちがなく、結果は15倍早く届いた\n- 同校Hartwig Group: Nemotron 3 Super 120B-A12BをNVFP4で1台に載せ、LoRAでファインチューニング。8〜24時間の学習を連続で実行\n\n## 販売先と日本での提供\n\nキットはSC26で展示され、販売も始まっています。DGX Sparkの製品とケーブルは、OEMパートナーとNVIDIA Marketplaceで買えます。\n\nパートナーは、Acer、ASUS、Dell Technologies、GIGABYTE、H3C、HP、Lenovo、MSI、xFusionです。\n\nNVIDIAは10月、DGX Spark 64GBの発売と、手動構成で最大8台のクラスター対応を発表していました（[GTC BerlinのローカルAI製品群の記事](/articles/nvidia-local-ai-gtc-berlin-spark-station)）。8台構成は1TBの統合メモリです（サイソクの過去記事、11/17確認）。今回の4台キットは、直結の構成を研究向けのセットとして示したものです。\n\n## サイソクの見方：順番待ちが長い研究室ほど試算の価値が大きい\n\nバークレー校の例では、11時間の待ち行列がなくなり、結果が15倍早く届きました。待ち時間の長い研究室ほど、手元に置く効果が大きいとみられます。\n\n判断の目安は次のとおりです。\n\n- 共有クラスターの待ちが日常的で、開発・デバッグが多いなら、4台キットを候補に入れる。\n- 100B超のモデルを動かすだけなら、先に台数と容量を見積もる。4台で512GB、最大700Bが上限の目安になる。\n- 本番の大規模計算が中心なら、手元機は開発用と割り切り、スパコンの利用時間を本番に回す。\n\n## まだ分からないこと\n\n- キットの価格はまだ発表されていません。\n- 日本での販売や、日本のパートナー経由の提供はまだ発表されていません。\n- NVIDIA HPC SDKのプレイブックの公開日は「近日」とされ、日付は未定です。",
+  "easy": "## ひとことで言うと\n\nNVIDIAが、小型AIコンピューター「DGX Spark」4台をつないだ研究者向けのキットを出しました。共有のGPUクラスターを待たずに、机の上で大きな計算ができます。\n\n## 4台をつなぐだけで使える\n\nこのキットは、4台のDGX Sparkを、となり同士で直接つなぐ構成です。ネットワークスイッチ（機器をつなぐ装置）は要りません。\n\n4台あわせて、メモリは512GB、保存容量は20TBです。NVFP4という方式を使うと、最大700Bパラメーター（AIの規模を表す数）のモデルを手元で動かせます。\n\n## 順番待ちを減らせる\n\nふだん研究者は、共有のGPUクラスターの順番を待ちます。このキットなら、開発と動作確認を手元で進め、共有サーバーは本番の計算に取っておけます。\n\n未発表の研究結果や社内のデータも、自分たちの設備の中に置いたまま使えます。\n\n## 買える場所\n\nSC26の会場で展示され、販売も始まっています。Acer、ASUS、Dell Technologies、GIGABYTE、H3C、HP、Lenovo、MSI、xFusionなどのパートナーとNVIDIA Marketplaceで買えます。\n\n価格と日本での提供はまだ発表されていません。研究用ソフトの導入手順書（HPC SDKのプレイブック）は近日公開の予定です。",
+  "channel": "NVIDIA公式ブログ",
+  "channelId": "",
+  "channelSlug": "nvidia-blog",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "NVIDIA DGX Spark Developer Kit Turns a Desk Into a Supercomputing Lab",
+  "publishedAt": "2026-11-17T03:45:24.629000+00:00",
+  "generatedAt": "2026-11-17T03:48:39.945173+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/dgx-spark-hpc-developer-kit-sc26-ed57a354.jpg",
+  "model": "anthropic-api:claude-sonnet-5-5",
+  "affiliates": [
+    {
+      "name": "OZ GAMING",
+      "label": "OZ GAMING（GPU搭載のBTOパソコン）",
+      "url": "https://px.a8.net/svt/ejp?a8mat=4BELTP+BOXHGY+5U1O+5YJRM",
+      "note": "ローカルLLMや画像生成AIを手元で試すためのGPU搭載PCを、構成から選べるBTOショップ",
+      "pixel": "https://www14.a8.net/0.gif?a8mat=4BELTP+BOXHGY+5U1O+5YJRM"
+    }
+  ],
+  "newsType": "product",
+  "faq": [
+    {
+      "q": "HPC SDKの手順書があると何ができるようになりますか？",
+      "a": "複数台向けGPUアプリの開発、FP32や混合精度の検討、LAMMPS（Kokkos）での分子動力学と材料シミュレーションを、大型システムに移す前に試せます。"
+    }
+  ],
+  "todayActions": [
+    "共有クラスターの待ち時間とジョブ数を整理し、4台キットで手元に移せる作業を洗い出す",
+    "OEMパートナーかNVIDIA Marketplaceで、DGX Spark HPC Developer Kitの価格と日本での在庫を確認する",
+    "使うソフトがLAMMPS、NAMD、GROMACS、OpenFOAM、WRFのどれかを、動作実績の一覧と照らして確かめる"
+  ],
+  "relatedSlugs": [
+    "nvidia-local-ai-gtc-berlin-spark-station"
+  ],
+  "qualityBar": {
+    "score": 5,
+    "missing": [
+      1,
+      5,
+      6
+    ],
+    "notes": {
+      "1": "最初の3行にだれにが無い",
+      "5": "することは書いてあるが、どこで（窓口・ページ）・いつまでが無い",
+      "6": "言い換えの無い略語（SC・NVFP・MPI）"
+    },
+    "checkedAt": "2026-11-17T03:49:18+00:00",
+    "before": [
+      1,
+      5,
+      6
+    ],
+    "repaired": false,
+    "repairLater": true
+  },
+  "qualityScore": 88,
+  "factSources": [
+    {
+      "label": "過去記事",
+      "name": "サイソクの過去記事",
+      "url": "",
+      "checkedAt": "2026-11-17"
+    }
+  ],
+  "detectedAt": "2026-11-17T03:45:24+00:00",
+  "fastLane": true,
+  "layout": "noir",
+  "summaryLine": "DGX Spark **4台**をリング状に直結した開発キットで、スイッチなしの4ノード構成",
+  "imageCredit": {
+    "kind": "official",
+    "org": "NVIDIA",
+    "provider": "NVIDIA公式ブログ",
+    "sourceUrl": "https://blogs.nvidia.com/blog/dgx-spark-hpc-developer-kit-sc26/?ncid=so-twit-665515",
+    "original": "https://blogs.nvidia.com/wp-content/uploads/2026/11/SC-Local-AI-DGX-Spark-Clusters-Blog-Header.jpg",
+    "width": 1200,
+    "height": 638,
+    "at": "2026-11-17T03:49:22+00:00"
+  },
+  "heroOk": false,
+  "imageFocus": {
+    "x": 0.38,
+    "y": 0.523,
+    "box": [
+      0.0,
+      0.047,
+      0.759,
+      1.0
+    ],
+    "ar": 1.8809,
+    "src": "https://ai-tech-express.jp/img/dgx-spark-hpc-developer-kit-sc26-ed57a354.jpg"
+  }
+}

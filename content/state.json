@@ -17887,6 +17887,19 @@
       "skipped": true,
       "url": "https://j-net21.smrj.go.jp/news/bt5puv00000113qb.html"
     },
+    "cc5f23ce02ea0ca4": {
+      "at": "2026-11-17T03:49:18.420905+00:00",
+      "costUsd": 0.1246,
+      "foreignAi": true,
+      "intent": "breaking",
+      "major": true,
+      "mix": "enterprise_dev",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "score": 88,
+      "section": "ai",
+      "slug": "dgx-spark-hpc-developer-kit-sc26",
+      "url": "https://blogs.nvidia.com/blog/dgx-spark-hpc-developer-kit-sc26/?ncid=so-twit-665515"
+    },
     "cc786059d21aaa5e": {
       "at": "2026-11-10T11:56:22.573742+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（審議会）",
@@ -22187,6 +22200,14 @@
       "url": "https://www.meg-snow.com/news/detail/35147",
       "writer": "muse"
     },
+    "muse-7ab54d8e97": {
+      "at": "2026-11-17T03:41:31.138992+00:00",
+      "mix": "other",
+      "score": 92,
+      "slug": "seven-eleven-chukaman-60-yen-off",
+      "url": "https://www.sej.co.jp/cmp/chukaman2611.html",
+      "writer": "muse"
+    },
     "muse-7b39ef6a89": {
       "at": "2026-11-08T02:39:16.743647+00:00",
       "mix": "money",
@@ -23410,72 +23431,9 @@
       "slug": "fujiseika-kinpaku-hagoromo-recall",
       "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602845",
       "writer": "muse"
-    },
-    "muse-7ab54d8e97": {
-      "at": "2026-11-17T03:41:31.138992+00:00",
-      "mix": "other",
-      "score": 92,
-      "slug": "seven-eleven-chukaman-60-yen-off",
-      "url": "https://www.sej.co.jp/cmp/chukaman2611.html",
-      "writer": "muse"
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-14T16:46:22.007639+00:00",
-      "attempt": 1,
-      "id": "e7734d715bc69a22",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "タイトル「EVBus採用」→ 元記事に「EVBus」という製品名・社名はなく、本文と元記事の「eVersum社製」と食い違う固有名詞の誤り",
-        "本文「Imagry（アイマグリ）社」→ 元記事に読みの記載はなく、読み仮名は元記事の範囲外（軽微）",
-        "「今日やること」の「展示される自動運転バスを見に行く」→ 元記事は展示予定とあり、展示の詳細（場所・見学の可否）は記載がない（軽微）",
-        "「自治体や交通事業者は、地図の整備にかかる時間とコストを減らせるかどうかが今回の検証の焦点」→ 元記事は遠隔監視・法令適合・運行コストなど複数の課題を挙げており、焦点を地図・コストに絞るのは言い過ぎ（軽微）"
-      ],
-      "readability": {
-        "avg_paragraph": 85.6,
-        "avg_sentence": 55.0,
-        "long_share": 0.571,
-        "max_paragraph": 139,
-        "paragraphs": 9,
-        "sentences": 14
-      },
-      "score": 62,
-      "source": "ntt-news",
-      "title": "日本初！ HDマップレス型の自動運転バスの公道実証開始 -新規ルート展開負担を軽減できるE2E自動運転システム搭載バスを2月から公道で走行評価-",
-      "warnings": [
-        "見出しが48字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（ADK・HD・FORUM）",
-        "読みやすさ: 文が長い（1文の平均 55.0字・60字超の文が 57% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-14T16:46:41.067835+00:00",
-      "attempt": 1,
-      "id": "e7734d715bc69a22",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 84.8,
-        "avg_sentence": 54.5,
-        "long_share": 0.571,
-        "max_paragraph": 139,
-        "paragraphs": 9,
-        "sentences": 14
-      },
-      "score": 88,
-      "source": "ntt-news",
-      "title": "日本初！ HDマップレス型の自動運転バスの公道実証開始 -新規ルート展開負担を軽減できるE2E自動運転システム搭載バスを2月から公道で走行評価-",
-      "warnings": [
-        "見出しが53字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（ADK・HD・FORUM）",
-        "読みやすさ: 文が長い（1文の平均 54.5字・60字超の文が 57% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-14T16:47:07.917368+00:00",
@@ -30991,6 +30949,56 @@
       "title": "王貞治関連ニュース｜dメニューニュース（NTTドコモ）",
       "warnings": [
         "初めて出たところで言い換えていない略語（BEYOND・OH・PLAY）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-17T03:48:48.359681+00:00",
+      "attempt": 1,
+      "id": "cc5f23ce02ea0ca4",
+      "kind": "ai",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 75.5,
+        "avg_sentence": 41.2,
+        "long_share": 0.212,
+        "max_paragraph": 186,
+        "paragraphs": 18,
+        "sentences": 33
+      },
+      "score": 92,
+      "source": "nvidia-blog",
+      "title": "NVIDIA DGX Spark Developer Kit Turns a Desk Into a Supercomputing Lab",
+      "warnings": [
+        "見出しが45字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（DGX・HPC・SC）",
+        "同じ数字のくり返し（「4台」が11回）。本文では2〜3回までにする"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-17T03:49:18.396519+00:00",
+      "attempt": 0,
+      "id": "cc5f23ce02ea0ca4",
+      "kind": "ai",
+      "model": "anthropic-api:claude-haiku-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 71.9,
+        "avg_sentence": 38.0,
+        "long_share": 0.111,
+        "max_paragraph": 150,
+        "paragraphs": 19,
+        "sentences": 36
+      },
+      "score": 88,
+      "source": "nvidia-blog",
+      "title": "NVIDIA DGX Spark Developer Kit Turns a Desk Into a Supercomputing Lab",
+      "warnings": [
+        "見出しが45字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（DGX・HPC・SC）",
+        "同じ数字のくり返し（「4台」が11回）。本文では2〜3回までにする"
       ]
     }
   ],
