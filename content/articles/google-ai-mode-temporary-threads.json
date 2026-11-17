@@ -84,8 +84,8 @@
     }
   ],
   "todayActions": [
-    "AIモードの画面右上で、一時スレッドのアイコンが表示されているか確認する",
-    "履歴に残したくない質問がある場合は、一時スレッドを開いてから入力する"
+    "履歴に残したくない質問は、AIモードで一時スレッドを開いてから入力する",
+    "質問を終えたら一時スレッドを閉じ、通常の検索に戻る"
   ],
   "qualityBar": {
     "score": 7,
@@ -100,7 +100,8 @@
       5
     ],
     "repaired": false,
-    "repairLater": true
+    "repairLater": true,
+    "laterTriedAt": "2026-11-17T17:27:53+00:00"
   },
   "qualityScore": 100,
   "breaking": true,
@@ -151,5 +152,67 @@
     ],
     "ar": 1.7778,
     "src": "https://ai-tech-express.jp/img/google-ai-mode-temporary-threads-afcfcd22.jpg"
-  }
+  },
+  "todaySteps": [
+    {
+      "action": "履歴に残したくない質問は、AIモードで一時スレッドを開いてから入力する",
+      "source": "https://blog.google/products-and-platforms/products/search/temporary-threads-ai-mode/",
+      "steps": [
+        "AIモードを開く",
+        "画面右上の一時スレッドのアイコンをクリックする",
+        "質問を入力する"
+      ],
+      "url": "https://blog.google/products-and-platforms/products/search/temporary-threads-ai-mode/"
+    },
+    {
+      "action": "質問を終えたら一時スレッドを閉じ、通常の検索に戻る",
+      "source": "https://blog.google/products-and-platforms/products/search/temporary-threads-ai-mode/",
+      "steps": [
+        "一時スレッドを閉じる",
+        "通常の検索に戻る"
+      ],
+      "url": "https://blog.google/products-and-platforms/products/search/temporary-threads-ai-mode/"
+    }
+  ],
+  "cause": {
+    "text": "一時スレッドは、履歴や後のおすすめに再表示させたくない質問を調べるための機能として紹介されています。",
+    "status": "background",
+    "source": "https://blog.google/products-and-platforms/products/search/temporary-threads-ai-mode/"
+  },
+  "worries": [
+    {
+      "q": "質問や会話は検索履歴に残ってしまう？",
+      "a": "一時スレッドでは、質問は履歴に保存されず、スレッドを閉じると会話は消えます。閉じた後は通常の検索に戻れます。",
+      "source": "https://blog.google/products-and-platforms/products/search/temporary-threads-ai-mode/",
+      "action": "履歴に残したくない質問は、AIモード右上の一時スレッドのアイコンから始め、使い終えたら閉じてください。"
+    },
+    {
+      "q": "過去の好みが回答に反映されたり、後のおすすめに影響したりする？",
+      "a": "一時スレッドはアカウントから切り離されており、回答に過去の好みは反映されません。また、今後のパーソナライズにも影響しません。",
+      "source": "https://blog.google/products-and-platforms/products/search/temporary-threads-ai-mode/",
+      "action": "過去の好みを回答に反映させたくない質問では、一時スレッドを開いてから尋ねてください。"
+    },
+    {
+      "q": "一時スレッドを使うために設定変更が必要？",
+      "a": "設定を変更する必要はありません。AIモードの画面右上にある一時スレッドのアイコンから、質問を始められます。",
+      "source": "https://blog.google/products-and-platforms/products/search/temporary-threads-ai-mode/",
+      "action": "AIモードを開き、画面右上にある一時スレッドのアイコンから質問を始めてください。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "履歴に残したくない質問はどちらで調べる？",
+      "situation": "後で履歴やおすすめに再表示させたくない",
+      "recommend": "一時スレッドを使う",
+      "reason": "一時スレッドの質問は履歴に保存されず、後のパーソナライズにも影響しません。スレッドを閉じると会話は消えます。",
+      "source": "https://blog.google/products-and-platforms/products/search/temporary-threads-ai-mode/"
+    }
+  ],
+  "depthHeadings": {
+    "cause": "履歴や後のおすすめに残さないための機能",
+    "steps": "右上のアイコンから始め、閉じれば通常検索へ",
+    "worries": "質問や回答は履歴やおすすめに残る？",
+    "guide": "履歴に残さない質問は一時スレッドへ"
+  },
+  "depthAt": "2026-11-17T17:27:17+00:00"
 }

@@ -86,9 +86,8 @@
     }
   ],
   "todayActions": [
-    "勤務先から給与を受け取った年の源泉徴収票が手元にあるか確かめる。",
-    "退職後に届かない場合は交付期限を確かめ、期限後なら国税庁の不交付の届出案内を確認する。",
-    "同じ年に転職した人は、前の勤務先の給与や税額を源泉徴収票などで確認できるか確かめる。"
+    "電子交付で受け取った源泉徴収票を紙でも必要とする人は、勤務先に書面での交付を請求する。",
+    "退職した人は退職日を確認し、退職の日以後1か月以内に源泉徴収票が交付されるか確かめる。"
   ],
   "angleOf": "withholding-slip-issue-deadline-japan",
   "deepDive": "check",
@@ -138,5 +137,81 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/who-receives-withholding-tax-slip-figure-7948e6ed.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "本人に交付される給与所得の源泉徴収票には、マイナンバーも法人番号も記載されません。勤務先が税務署に提出するものとは記載内容が異なります。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/hotei/7411.htm"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "税についての相談窓口",
+      "url": "https://www.nta.go.jp/taxes/shiraberu/shirabekata/9200.htm",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/hotei/7411.htm"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "電子交付で受け取った源泉徴収票を紙でも必要とする人は、勤務先に書面での交付を請求する。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/hotei/7411.htm",
+      "steps": [
+        "電子交付された源泉徴収票を確認する",
+        "書面が必要なら勤務先に請求する"
+      ],
+      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/hotei/7411.htm"
+    },
+    {
+      "action": "退職した人は退職日を確認し、退職の日以後1か月以内に源泉徴収票が交付されるか確かめる。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/hotei/7411.htm",
+      "steps": [
+        "退職日を確認する",
+        "退職の日以後1か月以内の交付か確かめる"
+      ],
+      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/hotei/7411.htm"
+    }
+  ],
+  "cause": {
+    "text": "源泉徴収票は、給与を受け取ったすべての人に交付する書類です。一方、税務署への提出には別の提出範囲が定められており、本人への交付とは区別されています。",
+    "status": "background",
+    "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/hotei/7411.htm"
+  },
+  "worries": [
+    {
+      "q": "給与が少なくても源泉徴収票を受け取れますか？",
+      "a": "給与所得の源泉徴収票は、税務署への提出範囲にかかわらず、すべての受給者に交付されます。税務署への提出対象から外れることと、本人への交付は別です。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/hotei/7411.htm",
+      "action": "給与を受け取った勤務先に、本人へ交付する源泉徴収票の有無を確認する。"
+    },
+    {
+      "q": "受け取る源泉徴収票にマイナンバーは載っていますか？",
+      "a": "本人に交付する給与所得の源泉徴収票には、マイナンバーおよび法人番号は記載されません。勤務先が税務署に提出する源泉徴収票には、番号の記載が必要です。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/hotei/7411.htm",
+      "action": "自分に交付された書類と勤務先が税務署へ提出する書類を、別のものとして確認する。"
+    },
+    {
+      "q": "電子交付された後でも、紙で受け取れますか？",
+      "a": "電子交付を受けた後でも、本人から請求があれば、給与の支払者は書面で交付しなければなりません。電子交付には、あらかじめ本人の承諾を得るなどの要件もあります。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/hotei/7411.htm",
+      "action": "紙で手元に残したい場合は、源泉徴収票を交付した勤務先に書面交付を請求する。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "電子交付と紙、どちらで受け取ればいい？",
+      "situation": "電子交付を受けたが、紙の書類も必要",
+      "recommend": "勤務先に書面での交付を請求する",
+      "reason": "電子交付には、あらかじめ本人の承諾を得るなどの要件があります。電子交付後でも本人が請求すれば、勤務先は書面で交付する必要があります。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/hotei/7411.htm"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "本人に届く票にはマイナンバーは載らない",
+    "cause": "本人への交付と税務署提出は別の扱い",
+    "steps": "退職日と受け取り方法を確かめる",
+    "desk": "交付について迷ったときの相談先",
+    "worries": "少額給与や電子交付でも大丈夫？",
+    "guide": "電子交付か紙か、必要な受け取り方を選ぶ"
+  },
+  "depthAt": "2026-11-17T17:26:52+00:00"
 }

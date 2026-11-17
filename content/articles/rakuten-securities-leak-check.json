@@ -55,7 +55,7 @@
   "videoTitle": "楽天証券で情報漏えいの可能性　最大約447万口座、パスワードは対象外",
   "publishedAt": "2026-11-17T16:59:40.074254+00:00",
   "generatedAt": "2026-11-17T17:00:35.770376+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/rakuten-securities-leak-check-figure-e4bee3f6.jpg",
   "model": "openai-api:gpt-6.1-terra",
   "affiliates": [],
   "newsType": "security",
@@ -66,9 +66,9 @@
     }
   ],
   "todayActions": [
-    "対象か不安な場合は、楽天証券カスタマーサポートセンターの0120-862-274に相談する。",
-    "楽天証券を名乗る連絡にURLがあっても開かず、個人情報の入力や回答を控える。",
-    "届いたメールに不安があれば、パソコンでログイン後、直近2週間の配信履歴を確認する。"
+    "未設定なら、楽天証券の案内からパスキー認証を設定する",
+    "不正利用が心配なら、取引や出金の一時停止を設定する",
+    "対象か不安な人は、受付時間内にカスタマーサポートセンターへ相談する"
   ],
   "angleOf": "rakuten-sec-data-leak-447",
   "deepDive": "check",
@@ -90,5 +90,138 @@
   "titleStyle": "2026-11-03",
   "searchTitle": "楽天証券の情報漏えい　対象者への個別連絡と問い合わせ先",
   "layout": "noir",
-  "summaryLine": "楽天証券は情報漏えいの影響が確認された利用者を特定し、個別に連絡するとしています。"
+  "summaryLine": "楽天証券は情報漏えいの影響が確認された利用者を特定し、個別に連絡するとしています。",
+  "insight": [
+    {
+      "text": "楽天証券が情報漏えいのおそれを確認したのは、テスト環境のシステム内で管理していた情報です。漏えいは11月11日に起きた可能性があり、11月16日に不正アクセスの可能性を検知したと発表しています。",
+      "source": "https://www.rakuten-sec.co.jp/smartphone/info/info20261117-02.html"
+    },
+    {
+      "text": "楽天証券はパスキー認証の必須化を進めており、発表時点で日々ログインする利用者の9割超が利用しています。未設定の場合、同社は設定を呼びかけています。",
+      "source": "https://www.rakuten-sec.co.jp/smartphone/info/info20261117-02.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "楽天証券カスタマーサポートセンター",
+      "url": "https://www.rakuten-sec.co.jp/smartphone/info/info20261117-02.html",
+      "source": "https://www.rakuten-sec.co.jp/smartphone/info/info20261117-02.html",
+      "howTo": [
+        "ホーム",
+        "お知らせ一覧",
+        "当社お客様の情報漏えいの可能性に関するお詫びとお知らせ"
+      ],
+      "phone": "0120-862-274（無料）",
+      "hours": "平日8：30～17：00 土日9：00～17：00"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "未設定なら、楽天証券の案内からパスキー認証を設定する",
+      "source": "https://www.rakuten-sec.co.jp/smartphone/info/info20261117-02.html",
+      "steps": [
+        "「パスキー認証（FIDO2）操作ガイド」を開く",
+        "操作ガイドに沿って設定する"
+      ],
+      "url": "https://www.rakuten-sec.co.jp/web/security/passkey/guide/"
+    },
+    {
+      "action": "不正利用が心配なら、取引や出金の一時停止を設定する",
+      "source": "https://www.rakuten-sec.co.jp/smartphone/info/info20261117-02.html",
+      "steps": [
+        "楽天証券のウェブサイトにログインする",
+        "セキュリティ設定ページを開く",
+        "取引やサービスの一時的な利用停止を設定する"
+      ],
+      "url": "https://www.rakuten-sec.co.jp/web/security/account_lock/"
+    },
+    {
+      "action": "対象か不安な人は、受付時間内にカスタマーサポートセンターへ相談する",
+      "source": "https://www.rakuten-sec.co.jp/smartphone/info/info20261117-02.html",
+      "steps": [
+        "0120-862-274に電話する",
+        "平日8：30～17：00、土日9：00～17：00に相談する"
+      ],
+      "url": "https://www.rakuten-sec.co.jp/smartphone/info/info20261117-02.html"
+    }
+  ],
+  "cause": {
+    "text": "第三者による不正アクセスを受け、テスト環境のシステム内で管理していた情報が外部に漏えいしたおそれがあると発表されています。不正アクセスの原因や詳しい経緯は、引き続き調査中です。",
+    "status": "investigating",
+    "source": "https://www.rakuten-sec.co.jp/smartphone/info/info20261117-02.html"
+  },
+  "worries": [
+    {
+      "q": "ログイン用パスワードや暗証番号も漏れたの？",
+      "a": "楽天証券は、ログインに必要なパスワードや暗証番号を含む、取引に必要な各種情報の漏えいは確認していないと発表しています。",
+      "source": "https://www.rakuten-sec.co.jp/smartphone/info/info20261117-02.html",
+      "action": "未設定なら、楽天証券の案内に沿ってパスキー認証の設定を検討してください。"
+    },
+    {
+      "q": "出金先口座から不正に出金されていない？",
+      "a": "発表時点で、今回の件に起因すると考えられる不正アクセスや不正取引は確認されていないとしています。",
+      "source": "https://www.rakuten-sec.co.jp/smartphone/info/info20261117-02.html",
+      "action": "不正利用が心配な場合は、ログイン後にセキュリティ設定ページから取引や出金の一時停止を検討してください。"
+    },
+    {
+      "q": "退会した口座の情報も対象になるの？",
+      "a": "楽天証券が持ち出された可能性があるとする情報には、退会したお客様の情報も含まれています。対象と確認された人には個別に連絡するとしています。",
+      "source": "https://www.rakuten-sec.co.jp/smartphone/info/info20261117-02.html",
+      "action": "自分が対象か不安な場合は、楽天証券カスタマーサポートセンターに電話で相談してください。"
+    },
+    {
+      "q": "楽天証券を名乗る連絡は本物か確かめられる？",
+      "a": "今回、楽天証券から送るメールにURLはなく、電話で個人情報やログイン情報を尋ねることもないとしています。",
+      "source": "https://www.rakuten-sec.co.jp/smartphone/info/info20261117-02.html",
+      "action": "URL付きの連絡は開かず、個人情報などを入力・回答せずに、窓口へ相談してください。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "取引や出金を一時停止したほうがいい？",
+      "situation": "不正利用が心配",
+      "recommend": "不安があれば設定を検討する",
+      "reason": "楽天証券は、取引や出金などの一時的な利用停止を自分で設定できると案内しています。一時停止は利用を止める設定で、すでに漏えいした可能性のある情報を取り消すものではありません。",
+      "source": "https://www.rakuten-sec.co.jp/smartphone/info/info20261117-02.html"
+    },
+    {
+      "question": "パスキーを設定したほうがいい？",
+      "situation": "まだ設定していない",
+      "recommend": "設定を検討する",
+      "reason": "楽天証券は不正アクセスやフィッシング詐欺への耐性が高いとして、パスキー認証の設定を呼びかけています。ログイン時の対策であり、漏えいした可能性のある情報を取り戻すものではありません。",
+      "source": "https://www.rakuten-sec.co.jp/smartphone/info/info20261117-02.html"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "流出した可能性があるのはテスト環境の情報",
+    "cause": "不正アクセスの詳しい経緯は調査中",
+    "steps": "今日できる設定と問い合わせ",
+    "desk": "対象か不安なら電話で相談",
+    "worries": "ログインや出金への影響は？",
+    "guide": "口座の一時停止やパスキーを選ぶ"
+  },
+  "depthAt": "2026-11-17T17:27:53+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "約447万",
+    "label": "最大",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-17T17:28:27+00:00"
+  },
+  "imageFocus": {
+    "x": 0.477,
+    "y": 0.459,
+    "box": [
+      0.066,
+      0.054,
+      0.887,
+      0.863
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/rakuten-securities-leak-check-figure-e4bee3f6.jpg"
+  }
 }
