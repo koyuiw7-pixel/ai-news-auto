@@ -82,9 +82,9 @@
     }
   ],
   "todayActions": [
-    "SmartHRやNotion社を名乗るメール・SMSのリンクや添付ファイルは開かず、パスワードも入力しない",
-    "Notion AIを業務で使う場合は、10月6日〜24日の入力内容に機密が含まれていないか確認する",
-    "SmartHRの問い合わせ窓口（smarthr.co.jp/contact-2611/）と、Notion社のFireworks AI関連の発表を確認する"
+    "SmartHRやNotion社を名乗る連絡のリンクや添付ファイルは開かず、パスワードも入力しない",
+    "Notion社の発表ページで、Fireworks AIの件の情報を確認する",
+    "SmartHRの第一報ページで、対象情報や影響範囲の続報が出ていないか確認する"
   ],
   "publicInterest": "breach",
   "incident": {
@@ -126,5 +126,117 @@
     ],
     "ar": 1.3333,
     "src": "https://ai-tech-express.jp/img/smarthr-notion-ai-fireworks-incident-61f83785.jpg"
+  },
+  "insight": [
+    {
+      "text": "Notion社の発表は「Fireworks AIのインシデントについて」で、リンク先は notion.com のページです。本物かどうかは、このドメインで確かめられます。",
+      "source": "https://smarthr.co.jp/news/info/20261117/"
+    },
+    {
+      "text": "このページの記載は発表日（2026.11.17）現在のもので、予告なく変更されることがあると明記されています。",
+      "source": "https://smarthr.co.jp/news/info/20261117/"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "SmartHR 本件に関するお問い合わせ窓口",
+      "url": "https://smarthr.co.jp/contact-2611/",
+      "source": "https://smarthr.co.jp/news/info/20261117/",
+      "howTo": [
+        "本件に関するお問い合わせ先",
+        "https://smarthr.co.jp/contact-"
+      ],
+      "note": "調査中のため、問い合わせても現時点では詳細をお伝えできない場合があります。"
+    },
+    {
+      "name": "Notion Labs Japan合同会社 Fireworks AIのインシデントについて",
+      "url": "https://www.notion.com/ja/security/advisories/security-incident-involving-a-third-party-ai-vendor",
+      "source": "https://smarthr.co.jp/news/info/20261117/",
+      "howTo": [
+        "本件に関するNotion社の発表",
+        "Fireworks AIのインシデントについて"
+      ],
+      "note": "SmartHRの第一報にリンクされている、Notion社側の発表ページです。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "SmartHRやNotion社を名乗る連絡のリンクや添付ファイルは開かず、パスワードも入力しない",
+      "source": "https://smarthr.co.jp/news/info/20261117/",
+      "steps": [
+        "身に覚えのない連絡のリンクや添付ファイルは開かない",
+        "パスワードなどの認証情報は入力しない",
+        "本件の確認はお問い合わせ窓口から行う"
+      ],
+      "url": "https://smarthr.co.jp/contact-2611/"
+    },
+    {
+      "action": "Notion社の発表ページで、Fireworks AIの件の情報を確認する",
+      "source": "https://smarthr.co.jp/news/info/20261117/",
+      "steps": [
+        "第一報の「本件に関するNotion社の発表」を開く",
+        "「Fireworks AIのインシデントについて」を開く"
+      ],
+      "url": "https://www.notion.com/ja/security/advisories/security-incident-involving-a-third-party-ai-vendor"
+    },
+    {
+      "action": "SmartHRの第一報ページで、対象情報や影響範囲の続報が出ていないか確認する",
+      "source": "https://smarthr.co.jp/news/info/20261117/",
+      "steps": [
+        "第一報のページを開く",
+        "新たな事実は本ページで速やかに知らせるとされている"
+      ],
+      "url": "https://smarthr.co.jp/news/info/20261117/"
+    }
+  ],
+  "cause": {
+    "text": "Notion社の委託先Fireworks社で、第三者による不正アクセスが発生したことが原因とされています。SmartHRはNotion社から、Notion AIのチャット記録の一部が外部に流出した可能性があるとの報告を受けました。",
+    "status": "stated",
+    "source": "https://smarthr.co.jp/news/info/20261117/"
+  },
+  "worries": [
+    {
+      "q": "自分がSmartHRの役職員とやり取りした内容は流出した？",
+      "a": "流出のおそれがあるのは、SmartHRの役職員がNotion AIに入力したテキストと、AIの返答の一部です。対象は2026年10月6日〜10月24日の対話で、含まれる情報の内容は調査中です。",
+      "source": "https://smarthr.co.jp/news/info/20261117/",
+      "action": "SmartHRの第一報ページで、対象情報や影響範囲の続報が出ていないか確認する"
+    },
+    {
+      "q": "SmartHRやNotion社を名乗る偽の連絡が来ることはある？",
+      "a": "SmartHRやNotion社を装った不審なメール、電話、SMSに注意するよう案内されています。SmartHRは、パスワードなどの認証情報をメールや電話で尋ねることはないとしています。",
+      "source": "https://smarthr.co.jp/news/info/20261117/",
+      "action": "SmartHRやNotion社を名乗る連絡のリンクや添付ファイルは開かず、パスワードも入力しない"
+    },
+    {
+      "q": "うっかりパスワードを入力してしまったら、どうすればいい？",
+      "a": "ID・パスワードを入力してしまった場合は、そのIDとパスワードを利用している全てのサービスで、速やかに変更するよう案内されています。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "action": "入力してしまったIDとパスワードを使う全てのサービスで、速やかにパスワードを変更する",
+      "general": true
+    },
+    {
+      "q": "パスワードを複数のサイトで使い回していると、どうなる？",
+      "a": "複数のサイトで同じIDとパスワードを使っていると、一つでも盗まれた場合に、銀行やSNSなど全てのサービスが乗っ取られるおそれがあると案内されています。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "action": "サイトごとに違うパスワードを設定し、覚えられない場合はパスワード管理アプリを使う",
+      "general": true
+    }
+  ],
+  "depthHeadings": {
+    "insight": "本物の発表かは、リンク先のドメインで確かめる",
+    "cause": "なぜ漏れたのか、いま分かっていること",
+    "steps": "今日は不審な連絡に気をつけ、続報を待つ",
+    "desk": "問い合わせ先と、Notion社の発表の場所",
+    "worries": "自分の入力や、パスワードは大丈夫？"
+  },
+  "depthAt": "2026-11-17T08:51:03+00:00",
+  "coverImage": "https://ai-tech-express.jp/img/smarthr-notion-ai-fireworks-incident-cover-1976fe5f.jpg",
+  "coverCredit": {
+    "kind": "ai",
+    "model": "flux-2-klein-4b",
+    "prompt": "An over-the-shoulder view of an office worker's hands using a smartphone to access a chat assistant app with abstract chat bubbles on a screen.",
+    "provider": "Cloudflare Workers AI",
+    "relevant": true,
+    "at": "2026-11-17T08:52:15+00:00"
   }
 }

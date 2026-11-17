@@ -77,9 +77,8 @@
     }
   ],
   "todayActions": [
-    "2023年5月以降にMorisawa Fontsで購入した人は、モリサワからの個別の案内メールが届くか気をつけて確認する",
-    "モリサワや実在の企業を装うメールのリンクや添付ファイルは開かず、個人情報を入力しない",
-    "モリサワのWebサイトで、追加のお知らせが出ていないか確認する"
+    "2023年5月以降に購入した覚えがあれば、届くメールの送信元と内容を確かめる",
+    "フィッシングサイトにIDやパスワードを入れた覚えがあれば、その全サービスで変更する"
   ],
   "publicInterest": "breach",
   "incident": {
@@ -121,5 +120,112 @@
     ],
     "ar": 1.3333,
     "src": "https://ai-tech-express.jp/img/morisawa-fonts-karte-data-leak-41239394.jpg"
+  },
+  "officialDesk": [
+    {
+      "name": "本件に関するお問い合わせ（モリサワ）",
+      "url": "https://support.morisawafonts.com/hc/ja/requests/new?ticket_form_id=360001989372",
+      "source": "https://www.morisawa.co.jp/about/news/19310",
+      "note": "発表ページの「こちら」のリンクから問い合わせの申請画面に進む形式です。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "2023年5月以降に購入した覚えがあれば、届くメールの送信元と内容を確かめる",
+      "source": "https://www.morisawa.co.jp/about/news/19310",
+      "steps": [
+        "届いたメールの送信元名称を見る",
+        "本文のリンクや添付ファイルは開かない",
+        "心当たりがなければ「こちら」から問い合わせる"
+      ],
+      "url": "https://www.morisawa.co.jp/about/news/19310"
+    },
+    {
+      "action": "フィッシングサイトにIDやパスワードを入れた覚えがあれば、その全サービスで変更する",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "steps": [
+        "入力したIDとパスワードを思い出す",
+        "同じIDを使っているサービスを確認する",
+        "各サービスで速やかにパスワードを変更する"
+      ]
+    }
+  ],
+  "cause": {
+    "text": "委託先のプレイド社が提供するサービス「KARTE」に第三者による不正アクセスがあり、そこで扱っていた氏名などの個人情報の一部が外部に漏洩しました。",
+    "status": "stated",
+    "source": "https://www.morisawa.co.jp/about/news/19310"
+  },
+  "worries": [
+    {
+      "q": "クレジットカードの情報も漏れていませんか？",
+      "a": "今回漏れたのは氏名、メールアドレス、ユーザーIDで、クレジットカード情報は含まれていないと説明されています。KARTEでもカード情報は扱っていないとのことです。",
+      "source": "https://www.morisawa.co.jp/about/news/19310",
+      "action": "カード会社のサイトやアプリで利用明細を開き、身に覚えのない請求がないか念のため確かめておく",
+      "actionSource": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "actionGeneral": true
+    },
+    {
+      "q": "ログインパスワードを変えないと危険ですか？",
+      "a": "今回の漏洩対象に、ログインパスワードは含まれていないと発表されています。KARTEでもログインパスワードは取り扱っていないと説明されています。",
+      "source": "https://www.morisawa.co.jp/about/news/19310",
+      "action": "不審なサイトにIDやパスワードを入れた覚えがあれば、そのパスワードを使う全サービスで速やかに変える",
+      "actionSource": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "actionGeneral": true
+    },
+    {
+      "q": "漏れたメールアドレスで詐欺メールは来ますか？",
+      "a": "漏れたメールアドレスを悪用し、実在する企業などを装った不審なメール（フィッシングメール等）が送られる可能性があると注意されています。現時点で不正利用は確認されていません。",
+      "source": "https://www.morisawa.co.jp/about/news/19310",
+      "action": "届いたメールは、本文のリンクにアクセスせず、添付ファイルも開かず、個人情報も入力しない"
+    },
+    {
+      "q": "自分が対象かどうか、どう分かりますか？",
+      "a": "対象は2023年5月以降にMorisawa Fontsサービスサイトで購入した人の一部です。詳しい範囲は調査中と発表されています。",
+      "source": "https://www.morisawa.co.jp/about/news/19310",
+      "action": "2023年5月以降に購入した覚えがあるなら、モリサワからの個別の案内を待ち、届いたら内容を確かめる"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "ログインパスワードは今すぐ変える必要がある？",
+      "situation": "不審なサイトにIDを入力した覚えはない",
+      "recommend": "急ぐ必要はない",
+      "reason": "今回の漏洩対象にログインパスワードは含まれないと発表されています。一方、漏れたメールアドレスを使った不審なメールには注意が必要です。",
+      "source": "https://www.morisawa.co.jp/about/news/19310"
+    },
+    {
+      "question": "ログインパスワードは今すぐ変える必要がある？",
+      "situation": "不審なサイトに普段のIDやパスワードを入れた",
+      "recommend": "速やかに変更する",
+      "reason": "そのIDとパスワードを使う全てのサービスで、速やかに変更するよう警察庁の案内にあります。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "general": true
+    },
+    {
+      "question": "案内メールを待つか、自分から問い合わせるか？",
+      "situation": "2023年5月以降に購入した覚えがある",
+      "recommend": "案内を待ちつつ、必要なら問い合わせる",
+      "reason": "漏洩が確認された人に個別に案内する予定と発表されています。問い合わせは発表ページの「こちら」から送れます。",
+      "source": "https://www.morisawa.co.jp/about/news/19310"
+    }
+  ],
+  "depthHeadings": {
+    "cause": "なぜ漏れたのか、いま分かっていること",
+    "steps": "メールが届いたら、まず何をすればいい？",
+    "desk": "問い合わせはモリサワの発表ページから",
+    "worries": "カードやパスワードは大丈夫？",
+    "guide": "パスワードを変えるか迷ったときの決め方"
+  },
+  "depthAt": "2026-11-17T08:51:54+00:00",
+  "coverImage": "https://ai-tech-express.jp/img/morisawa-fonts-karte-data-leak-41239394.jpg",
+  "coverCredit": {
+    "kind": "ai",
+    "model": "flux-1-schnell",
+    "prompt": "A padlock lying on a laptop keyboard in a dim office.",
+    "provider": "Cloudflare Workers AI",
+    "relevant": true,
+    "original": "https://www.morisawa.co.jp/img/ogimage/common/corporate.png",
+    "at": "2026-11-17T08:44:53+00:00",
+    "reused": true
   }
 }
