@@ -99,9 +99,8 @@
     }
   ],
   "todayActions": [
-    "共有クラスターの待ち時間とジョブ数を整理し、4台キットで手元に移せる作業を洗い出す",
-    "OEMパートナーかNVIDIA Marketplaceで、DGX Spark HPC Developer Kitの価格と日本での在庫を確認する",
-    "使うソフトがLAMMPS、NAMD、GROMACS、OpenFOAM、WRFのどれかを、動作実績の一覧と照らして確かめる"
+    "NVIDIA Marketplaceで、DGX Spark製品とケーブルの販売先を確かめる",
+    "使うソフトが、ページの4台動作実績の一覧に入っているかを確かめる"
   ],
   "relatedSlugs": [
     "nvidia-local-ai-gtc-berlin-spark-station"
@@ -163,5 +162,108 @@
     "ar": 1.8809,
     "src": "https://ai-tech-express.jp/img/dgx-spark-hpc-developer-kit-sc26-ed57a354.jpg"
   },
-  "sectionsPolishedAt": "2026-11-17T03:57:46+00:00"
+  "sectionsPolishedAt": "2026-11-17T03:57:46+00:00",
+  "insight": [
+    {
+      "text": "4台は両隣の2台とリング状に直結し、ConnectX-7でつなぐ。ネットワークスイッチを買って設定する必要はないと書かれている",
+      "source": "https://blogs.nvidia.com/blog/dgx-spark-hpc-developer-kit-sc26/?ncid=so-twit-665515"
+    },
+    {
+      "text": "DGX Sparkの製品とケーブルは、OEMパートナー（Acer、ASUS、Dell Technologiesなど9社）かNVIDIA Marketplaceで買える",
+      "source": "https://blogs.nvidia.com/blog/dgx-spark-hpc-developer-kit-sc26/?ncid=so-twit-665515"
+    },
+    {
+      "text": "HPC SDKの導入手順書（プレイブック）は近日公開予定。公開後は4台でアプリを作り、通信の問題を大型機の前に確かめられる",
+      "source": "https://blogs.nvidia.com/blog/dgx-spark-hpc-developer-kit-sc26/?ncid=so-twit-665515"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "NVIDIA Marketplace",
+      "url": "https://marketplace.nvidia.com/en-us/enterprise/personal-ai-supercomputers/?manufacturer=NVIDIA&superchip=GB10&page=1&limit=15",
+      "source": "https://blogs.nvidia.com/blog/dgx-spark-hpc-developer-kit-sc26/?ncid=so-twit-665515",
+      "howTo": [
+        "Where to Find the Kit",
+        "NVIDIA Marketplace"
+      ],
+      "note": "DGX Spark製品とケーブルは、トップのOEMパートナーからも購入できると書かれている"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "NVIDIA Marketplaceで、DGX Spark製品とケーブルの販売先を確かめる",
+      "source": "https://blogs.nvidia.com/blog/dgx-spark-hpc-developer-kit-sc26/?ncid=so-twit-665515",
+      "steps": [
+        "本文の「Where to Find the Kit」を読む",
+        "「NVIDIA Marketplace」のリンクを開く",
+        "DGX Spark製品とケーブルを探す"
+      ],
+      "url": "https://marketplace.nvidia.com/en-us/enterprise/personal-ai-supercomputers/?manufacturer=NVIDIA&superchip=GB10&page=1&limit=15"
+    },
+    {
+      "action": "使うソフトが、ページの4台動作実績の一覧に入っているかを確かめる",
+      "source": "https://blogs.nvidia.com/blog/dgx-spark-hpc-developer-kit-sc26/?ncid=so-twit-665515",
+      "steps": [
+        "LAMMPS（Kokkos）とNAMDは4台での動作が示されている",
+        "GROMACS、OpenFOAM、WRFはコミュニティで動作確認済み",
+        "OpenFold3、Boltz-2などのNIMも確認済みと書かれている"
+      ]
+    }
+  ],
+  "cause": {
+    "text": "NVIDIAは、研究者が共有GPUクラスターで順番を待たずに、机の上で複数台の計算や開発を試せるようにするため、このキットを発表したと説明しています。",
+    "status": "background",
+    "source": "https://blogs.nvidia.com/blog/dgx-spark-hpc-developer-kit-sc26/?ncid=so-twit-665515"
+  },
+  "worries": [
+    {
+      "q": "今の1台のDGX Sparkから、あとで増やせますか？",
+      "a": "1台から4台まで段階的に増やせる構成だと書かれています。4台はConnectX-7で直接つながり、ネットワークスイッチは不要です。",
+      "source": "https://blogs.nvidia.com/blog/dgx-spark-hpc-developer-kit-sc26/?ncid=so-twit-665515",
+      "action": "1台で始めて、4台まで増やす計画を立て、設置場所を確かめておく"
+    },
+    {
+      "q": "ネットワークスイッチを別に買う必要はありますか？",
+      "a": "各台は両隣の2台とリング状に直接つながると説明されています。ネットワークスイッチを買って設定する必要はないとされています。",
+      "source": "https://blogs.nvidia.com/blog/dgx-spark-hpc-developer-kit-sc26/?ncid=so-twit-665515",
+      "action": "4台を並べる前に、両隣と直結するリング状の配線で置けるかを確かめる"
+    },
+    {
+      "q": "未公開の研究データを外に出さずに使えますか？",
+      "a": "未公開の結果や独自のデータセットは、社内の設備に置いたまま使えると説明されています。開発とデバッグも研究チームで進められます。",
+      "source": "https://blogs.nvidia.com/blog/dgx-spark-hpc-developer-kit-sc26/?ncid=so-twit-665515",
+      "action": "未公開データを扱うなら、社内設備に置いたまま使う運用を研究室で決めておく"
+    },
+    {
+      "q": "うちで使うソフトは4台で動きますか？",
+      "a": "LAMMPS（Kokkos）とNAMDは4台での動作が示されています。GROMACS、OpenFOAM、WRFなども、コミュニティで動作が確認されたと書かれています。",
+      "source": "https://blogs.nvidia.com/blog/dgx-spark-hpc-developer-kit-sc26/?ncid=so-twit-665515",
+      "action": "使うソフトが一覧にあるかを確かめ、導入手順書の公開を待つ"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "共有クラスターの待ちが長いとき、4台キットを候補にする？",
+      "situation": "順番待ちやジョブ数が多い",
+      "recommend": "候補に入れて、用途と販売先を確かめてから判断する",
+      "reason": "待ちを減らし、本番用のサーバー時間を温存できると説明されています。4台で512GB、NVFP4で最大700Bまでのモデルを扱えるとされています。",
+      "source": "https://blogs.nvidia.com/blog/dgx-spark-hpc-developer-kit-sc26/?ncid=so-twit-665515"
+    },
+    {
+      "question": "1台の机上機で足りている人は、買い足す？",
+      "situation": "順番待ちをほとんど感じていない",
+      "recommend": "急がなくてよい",
+      "reason": "ページは、計算資源の割り当てがあり順番待ちが課題の研究者向けに説明しています。順番待ちが少ない人には、用途が合いにくい可能性があります。",
+      "source": "https://blogs.nvidia.com/blog/dgx-spark-hpc-developer-kit-sc26/?ncid=so-twit-665515"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "4台をつないでも、スイッチは買わなくていい",
+    "cause": "なぜ作られたのか、ページの説明",
+    "steps": "今日試せること、ソフトの動作実績から",
+    "desk": "買うならどこか、販売先の確認",
+    "worries": "1台から増やせる？データは社内に残せる？",
+    "guide": "候補に入れるか、急がず待つか迷ったら"
+  },
+  "depthAt": "2026-11-17T04:11:57+00:00"
 }
