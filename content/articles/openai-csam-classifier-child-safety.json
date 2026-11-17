@@ -88,8 +88,8 @@
     }
   ],
   "todayActions": [
-    "画像を投稿できるサービスの運営者は、OpenAIの「CSAM guidance」で自社の通報の流れを確認する",
-    "利用を検討する団体は、OpenAIの申込フォームで分類器へのアクセスを申請する",
+    "画像を投稿できるサービスなら、CSAM guidanceで自社の通報の流れを確認する",
+    "利用を望む団体は、申込フォームから分類器へのアクセスを申請する",
     "分類器の評価条件と限界は、モデルカードで確認する"
   ],
   "qualityBar": {
@@ -111,7 +111,8 @@
       7
     ],
     "repaired": false,
-    "repairLater": true
+    "repairLater": true,
+    "laterTriedAt": "2026-11-17T05:12:36+00:00"
   },
   "qualityScore": 90,
   "breaking": true,
@@ -154,5 +155,122 @@
     ],
     "ar": 1.7778,
     "src": "https://ai-tech-express.jp/img/openai-csam-classifier-child-safety-75428bd4.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "開発者向けの手引きは、新しい画像分類器やModeration API、ROOSTのCoop、ThornのSaferと並べて使えるとされています。",
+      "source": "https://openai.com/index/strengthening-online-child-safety"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "OpenAI 申込フォーム（CSAM分類器）",
+      "url": "https://openai.com/form/csam-classifier-intake/",
+      "source": "https://openai.com/index/strengthening-online-child-safety",
+      "howTo": [
+        "Strengthening the fight agains",
+        "our intake form"
+      ],
+      "note": "利用を望む組織が、分類器へのアクセスをこの申込フォームから申請すると書かれています。"
+    },
+    {
+      "name": "OpenAI CSAM guidance（開発者向けの手引き）",
+      "url": "https://developers.openai.com/api/docs/guides/csam-guidance",
+      "source": "https://openai.com/index/strengthening-online-child-safety",
+      "howTo": [
+        "Strengthening the fight agains",
+        "CSAM guidance"
+      ],
+      "note": "ルールの作り方、利用者からの通報手段、検出ツール、疑わしい投稿の確認と通報の流れを扱います。"
+    },
+    {
+      "name": "CSAM classifier model card（モデルカード）",
+      "url": "https://deploymentsafety.openai.com/csam-image-classifier",
+      "source": "https://openai.com/index/strengthening-online-child-safety",
+      "howTo": [
+        "Strengthening the fight agains",
+        "CSAM classifier model card"
+      ],
+      "note": "分類器の性能や限界を説明する資料です。評価条件つきの結果が載っています。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "画像を投稿できるサービスなら、CSAM guidanceで自社の通報の流れを確認する",
+      "source": "https://openai.com/index/strengthening-online-child-safety",
+      "steps": [
+        "CSAM guidance を開く",
+        "rules と reporting の項目を見る",
+        "疑わしい投稿の確認と通報の流れを読む"
+      ],
+      "url": "https://developers.openai.com/api/docs/guides/csam-guidance"
+    },
+    {
+      "action": "利用を望む団体は、申込フォームから分類器へのアクセスを申請する",
+      "source": "https://openai.com/index/strengthening-online-child-safety",
+      "steps": [
+        "our intake form を開く",
+        "申請フォームに記入して送信する"
+      ],
+      "url": "https://openai.com/form/csam-classifier-intake/"
+    },
+    {
+      "action": "分類器の評価条件と限界は、モデルカードで確認する",
+      "source": "https://openai.com/index/strengthening-online-child-safety",
+      "steps": [
+        "CSAM classifier model card を開く",
+        "性能や限界の説明を読む"
+      ],
+      "url": "https://deploymentsafety.openai.com/csam-image-classifier"
+    }
+  ],
+  "cause": {
+    "text": "AI生成を含む児童性的虐待コンテンツを、審査を通った団体が見つけやすくするため、新しい画像分類器などを公開したと説明されています。オンラインの児童の性的搾取には、多くの組織の協力が必要だとされています。",
+    "status": "background",
+    "source": "https://openai.com/index/strengthening-online-child-safety"
+  },
+  "worries": [
+    {
+      "q": "AIで作られた画像も、検出の対象になるの？",
+      "a": "新しい分類器は、AIが作った画像も含めてCSAMの疑いを見つけます。AI生成かどうかを示す専用の信号を持つ、広く使える分類器としては初めてだと説明されています。",
+      "source": "https://openai.com/index/strengthening-online-child-safety",
+      "action": "画像を投稿できるサービスなら、AI生成画像も含めて通報の流れを見直す。手引きをCSAM guidanceで確認する"
+    },
+    {
+      "q": "この検出ツールは誰が使えるの？個人でも申請できる？",
+      "a": "分類器は審査を通った組織に、OpenAI APIで無料提供されます。小さなチームを含む組織が対象で、申請は申込フォームから行うと書かれています。",
+      "source": "https://openai.com/index/strengthening-online-child-safety",
+      "action": "利用を望む団体は、申込フォームから分類器へのアクセスを申請する。審査を通る必要がある"
+    },
+    {
+      "q": "ChatGPTで子どもの性的な内容を探したらどうなる？",
+      "a": "警告が表示され、該当の会話は削除され、24時間ChatGPTを使えなくなります。繰り返すと制限が長くなり、アカウントの閉鎖や当局への通報もあり得ます。",
+      "source": "https://openai.com/index/strengthening-online-child-safety",
+      "action": "子どもの性的な内容を求める依頼はしない。困っている場合は、警告で案内される支援先に相談する"
+    },
+    {
+      "q": "見つけた疑わしい画像は、どこに通報すればいい？",
+      "a": "児童の搾取を通報する窓口は、NCMECが運営するCyberTiplineです。オンラインの児童搾取に関する通報を集める中心の窓口だと説明されています。",
+      "source": "https://openai.com/index/strengthening-online-child-safety",
+      "action": "疑わしい画像は、NCMECが運営するCyberTiplineに通報する。NCMECのサイトで窓口を確認する"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "画像を扱う団体は、分類器を申請すべき？",
+      "situation": "画像を投稿できるサービスを運営している",
+      "recommend": "検討する価値がある",
+      "reason": "申請すれば無料でAPIを使え、確認対象を減らせる可能性があります。ただOpenAIの評価条件での結果で、自社の画像に同じ効果があるとは限りません。",
+      "source": "https://openai.com/index/strengthening-online-child-safety"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "手引きは、ほかのツールと組み合わせて使える",
+    "cause": "なぜこの検出ツールが作られた？",
+    "steps": "今日やること、画面の場所つき",
+    "desk": "公式の申込フォームと手引きはどこ？",
+    "worries": "AI画像は対象？通報はどこ？",
+    "guide": "団体として申請するか迷ったときは"
+  },
+  "depthAt": "2026-11-17T05:11:57+00:00"
 }
