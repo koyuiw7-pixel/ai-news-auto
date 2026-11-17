@@ -10252,6 +10252,20 @@
       "slug": "nichiyu-trinka-recall-brake-switch",
       "url": "http://www.mlit.go.jp/report/press/jidosha08_hh_005886.html"
     },
+    "549a77347d5e1e5f": {
+      "at": "2026-11-17T18:08:53.756306+00:00",
+      "breaking": true,
+      "costUsd": 0.0503,
+      "foreignAi": true,
+      "intent": "breaking",
+      "major": true,
+      "mix": "other",
+      "model": "openai-api:gpt-6.1-terra",
+      "score": 100,
+      "section": "ai",
+      "slug": "gpt-6-2-astra-sol-pricing",
+      "url": "https://openai.com/index/introducing-gpt-6-2-astra-sol"
+    },
     "549ea1a34d6ba220": {
       "at": "2026-11-12T00:22:41.842839+00:00",
       "costUsd": 0.0071,
@@ -23990,36 +24004,6 @@
   },
   "quality_log": [
     {
-      "accepted": false,
-      "at": "2026-11-15T11:39:11.325714+00:00",
-      "attempt": 1,
-      "id": "4900e4c5ca2e1aec",
-      "kind": "broad",
-      "model": "gemini-3.5-flash",
-      "problems": [
-        "今日やること「首相官邸や経済産業省が今後発表する『日本成長戦略実行計画』の更新情報」→ 元記事は発表主体を首相官邸としか示しておらず、経済産業省が発表するという記述は元記事・確認済みの文脈に無い",
-        "よくある質問「個別の制度内容は今後の政府計画で提示される予定です」→ 元記事は総理が城内大臣に予算額等を明らかにするよう指示したとのみ書いており、提示が予定されているとまでは言えない",
-        "「データ集積を促す枠組みを維持・拡大すること」→ 元記事の企業側要望は『データ集積を促す仕組みが不可欠』であり、『維持・拡大』は言い換えを超えた追加",
-        "「現時点で示されている申請の期限はないため」→ 元記事に申請期限の有無についての記述は無く、推測に基づく断定",
-        "「GENIAC（…生成AIの開発力を強化する政府の取組）」の括弧内説明→ 元記事に説明は無い補足だが、事実の誤りではない"
-      ],
-      "readability": {
-        "avg_paragraph": 116.2,
-        "avg_sentence": 54.7,
-        "long_share": 0.412,
-        "max_paragraph": 181,
-        "paragraphs": 8,
-        "sentences": 17
-      },
-      "score": 80,
-      "source": "kantei",
-      "title": "高市総理はフィジカルＡＩ関連企業との意見交換会を行いました",
-      "warnings": [
-        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "読みやすさ: 文が長い（1文の平均 54.7字・60字超の文が 41% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
       "accepted": true,
       "at": "2026-11-15T11:39:40.834414+00:00",
       "attempt": 1,
@@ -31540,6 +31524,29 @@
       "score": 100,
       "source": "google-ai-blog",
       "title": "Google Wallet is now available on iOS in the U.S."
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-17T18:08:53.682154+00:00",
+      "attempt": 1,
+      "id": "549a77347d5e1e5f",
+      "kind": "ai",
+      "model": "openai-api:gpt-6.1-terra",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 86.4,
+        "avg_sentence": 41.9,
+        "long_share": 0.086,
+        "max_paragraph": 161,
+        "paragraphs": 17,
+        "sentences": 35
+      },
+      "score": 100,
+      "source": "openai-news",
+      "title": "Introducing GPT-6.2 Astra and Sol",
+      "warnings": [
+        "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す"
+      ]
     }
   ],
   "short_text_retry": {},

@@ -1,0 +1,181 @@
+{
+  "slug": "gpt-6-2-astra-sol-pricing",
+  "sourceType": "web",
+  "sourceUrl": "https://openai.com/index/introducing-gpt-6-2-astra-sol",
+  "sourceName": "OpenAI公式ブログ",
+  "title": "「GPT-6.2 Astra」API料金が前モデルより20%安く　日常向けSolも登場",
+  "seoTitle": "GPT-6.2 Astraの料金とSolの違い：日本での提供",
+  "threadsPost": "仕事でAIを使う人に、知っておいてほしい話です。\n\nGPT-6.2 Astraは、資料やコードの作成に対応します。\n日常向けのSolも加わり、用途に応じて選べます。\n\n仕事の資料づくりは、どこまでAIに任せていますか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "line",
+      "question": "仕事の資料づくりは、どこまでAIに任せていますか？"
+    },
+    {
+      "pattern": "expert",
+      "question": "仕事用のAIを選ぶとき、回答の質と費用のどちらを重視しますか？"
+    },
+    {
+      "pattern": "price",
+      "question": "仕事で使うAIに、自分のお金で毎月いくらまでなら出せますか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "honest",
+  "lede": "「GPT-6.2 Astra」と「GPT-6.2 Sol」は、資料作成やプログラミングなどの仕事に使うOpenAIの新しいAIモデルです。AstraのAPI料金は前モデルより20%安く、Solは前の版と同じ料金を維持します。日本での今回のモデルの提供範囲や、ChatGPTの対象プランはまだ発表されていません。",
+  "description": "OpenAIの新AIモデル「GPT-6.2 Astra」と「GPT-6.2 Sol」の料金、仕事での用途、前モデルとの性能差を整理します。AstraのAPI料金は入力・出力とも20%安くなります。日本での提供範囲や利用条件も確認します。",
+  "keywords": [
+    "GPT-6.2 Astra",
+    "GPT-6.2 Sol",
+    "GPT-6.2 料金",
+    "GPT-6.2 日本",
+    "GPT-6.2 API",
+    "GPT-6.2 使い方",
+    "OpenAI 新モデル",
+    "GPT-6.2 性能比較",
+    "Astra for Law",
+    "生成AI 仕事"
+  ],
+  "tags": [
+    "GPT-6.2 Astra",
+    "GPT-6.2 Sol",
+    "OpenAI",
+    "生成AI",
+    "API"
+  ],
+  "highlights": [
+    "GPT-6.2 AstraとSolが登場。複雑な専門業務と日常業務で使い分ける構成です。",
+    "Astraは資料のひな形に沿ったスライド作成や、既存のプログラムの修正に対応します。",
+    "SolのAPI料金は前の版と同じで、100万トークンあたり入力2ドル、出力10ドルです。"
+  ],
+  "timetable": [],
+  "verdict": {
+    "status": "available",
+    "japan": "unknown",
+    "price": "API従量課金",
+    "free": null,
+    "audience": "仕事の利用者",
+    "take": "資料作成ならAstra、日常業務ならSolを候補に、対象プランと料金を確認するとよいでしょう。",
+    "judgedAt": "2026-11-17T18:08:36.980452+00:00"
+  },
+  "workMoney": {
+    "relevance": "high",
+    "points": [
+      "資料作成では、GPT-6.2 Astraに既存のひな形に沿ったスライドを作らせる用途が示されています。",
+      "開発者は、APIの入力・出力料金と、作業ごとの使用量を合わせて費用を比較できます。",
+      "セキュリティ担当者は、正当な調査でも一部の依頼が制限される点を確認できます。"
+    ]
+  },
+  "body": "資料作成やプログラミングにAIを使う人に関係する発表です。OpenAIは複雑な仕事向けの「GPT-6.2 Astra」と、日常業務向けの「GPT-6.2 Sol」を公開しました。\n\nAIモデルは、指示に応じて文章やコードなどを作る仕組みです。両モデルは、利用上限の範囲でより多くの作業をこなせるよう、出力の効率も重視しています。\n\nChatGPT自体は日本でも利用できます（当サイトの確認：11/3）。ただし、今回のモデルについて、日本での提供範囲は別途示されていません。\n\n## Astraはひな形に沿う資料、Solは日常業務を担当\n\nOpenAIの公式ブログによると、Astraはスライドや表計算、文書の作成を強化しました。元のファイルや画像で渡したひな形に合わせ、レイアウトや文字の大きさを再現できます。\n\n法律や会計など、専門分野の作法に沿った文書も対象です。プログラムでは、既存のコードに複雑な変更を加え、その動作をテストする能力を高めたとしています。\n\nSolは日常的な業務向けです。複数の手順を進める作業や文章作成のほか、技術者以外の仕事にも使えると説明しています。\n\n性能テストでは、前の版との差も示されました。実際のプロジェクトから課題を集めたOpenAIのGDPval v2で、AstraはGPT-6 Astraを6.2ポイント上回りました。出力に使うトークン（AIが文字を数える単位）は22%少なかったといいます。\n\nSolは同じテストでGPT-6.1 Solから5.3ポイント改善しました。実際のプログラムの変更を評価するFrontierCode 2.0では、最大設定のSolがAstraとの差を0.5ポイント以内に抑え、作業あたりの費用は約5分の1でした。\n\n法律業務向けの「Astra for Law」は、Astraに法律の検索範囲や専用の指示を組み合わせた構成です。法律課題のテストでは、すべての採点条件を満たした割合が20.8%でした。通常のAstraは15.0%です（OpenAI公式「Astra for Law leads in legal intelligence」、11/18確認）。\n\n## サイソクの見方：資料の複雑さと作業あたりの費用で選ぶ\n\n既存のひな形に沿う資料や専門的な文書を重視するなら、Astraを候補にするのがよいと考えます。一方、日常業務やコードの変更を幅広く扱うなら、Solの作業あたりの費用を先に比較する方法があります。\n\nFrontierCode 2.0の差は最大設定での結果です。実際の費用は作業内容や使うトークン数に左右されるため、自分の用途に近い条件で比べるのが目安になります。\n\n## まだ分からないこと\n\n- GPT-6.2 AstraとSolの日本での提供範囲はまだ発表されていません。\n- ChatGPTでの対象プラン、無料利用の可否、提供開始日はまだ発表されていません。\n\n## 開発者向けAPI料金はAstraが前モデルより安く\n\nAPI（アプリからAIを呼び出す仕組み）の料金は、入力と出力の量に応じてかかります。Astraの入力・出力の単価は、GPT-6 Astraよりそれぞれ20%安くなりました。\n\n**100万トークンあたりの入力・出力単価はSolの方が低い設定です。**\n\n| 比べること | GPT-6.2 Astra | GPT-6.2 Sol | 有利なのは |\n|---|---:|---:|---|\n| 入力 | 8ドル | 2ドル | **Sol** |\n| 出力 | 40ドル | 10ドル | **Sol** |\n\nSolは前のGPT-6.1 Solと同じ単価です。前モデルの料金は[GPT-6.1 Solを使った顧客対応の過去記事](/articles/devrev-self-service-agents)でも紹介しています（サイソクの過去記事、11/7確認）。\n\nAstraのキャッシュ入力（再利用する入力）の料金は、100万トークンあたり0.40ドルです。単価だけでなく、各作業に必要な入力と出力の量で費用は変わります。\n\n両モデルには、リスクの高いサイバーセキュリティ支援への制限も設けられています。OpenAIによると、正当な脆弱性調査や安全性のテストも一部制限されます。\n\n承認された防御担当者向けのOpenAI Daybreakでは、現在GPT-6 Astraなどを利用できます。OpenAIはGPT-6.2モデルも同サービスに加える方針です。",
+  "easy": "## ひとことで言うと\n\nOpenAIが、複雑な仕事向けのAstraと日常業務向けのSolを公開しました。資料作成やプログラミングに使うAIです。\n\n## 資料作成と日常業務で使い分ける\n\nAstraは、手元のひな形に合わせたスライドや文書の作成を得意としています。Solは日々の幅広い作業に向けたモデルです。\n\n開発者向けの料金は、Astraの入力と出力が前のモデルより20%安くなりました。Solの料金は前の版から変わりません。\n\nChatGPT自体は日本でも使えますが、今回のモデルが日本でどのプランから使えるかはまだ発表されていません。専門的な調査の依頼は、安全対策によって一部が制限されます。",
+  "channel": "OpenAI公式ブログ",
+  "channelId": "",
+  "channelSlug": "openai-news",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "Introducing GPT-6.2 Astra and Sol",
+  "publishedAt": "2026-11-17T17:45:00+00:00",
+  "generatedAt": "2026-11-17T18:08:36.980438+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/gpt-6-2-astra-sol-pricing-e4a7f1a9.jpg",
+  "model": "openai-api:gpt-6.1-terra",
+  "affiliates": [],
+  "newsType": "product",
+  "faq": [
+    {
+      "q": "GPT-6.2 Astraは設計やシミュレーションにも使えますか？",
+      "a": "OpenAIは、部品の組み合わせや設計変更を検討する用途を紹介しています。車の動きを立体的に再現する例も示しました。"
+    }
+  ],
+  "todayActions": [
+    "OpenAIのGPT-6.2公式発表で、自分の仕事に近い資料作成やコード作成の事例を確認する。",
+    "APIを使う場合は、AstraとSolの入力・出力単価を、自分の作業に必要な量と合わせて比べる。",
+    "セキュリティ調査に使う場合は、GPT-6.2で強化された利用制限とDaybreakの対象モデルを確認する。"
+  ],
+  "relatedSlugs": [
+    "devrev-self-service-agents"
+  ],
+  "qualityBar": {
+    "score": 7,
+    "missing": [
+      5
+    ],
+    "notes": {
+      "5": "することは書いてあるが、どこで（窓口・ページ）・いつまでが無い"
+    },
+    "checkedAt": "2026-11-17T18:08:53+00:00",
+    "before": [
+      5
+    ],
+    "repaired": false,
+    "repairLater": true
+  },
+  "qualityScore": 100,
+  "breaking": true,
+  "factSources": [
+    {
+      "label": "関連ページ",
+      "name": "OpenAI公式「Astra for Law leads in legal intelligence」",
+      "url": "https://openai.com/index/astra-law-6-2",
+      "checkedAt": "2026-11-18"
+    },
+    {
+      "label": "過去記事",
+      "name": "サイソクの過去記事",
+      "url": "",
+      "checkedAt": "2026-11-07"
+    }
+  ],
+  "sourcePublishedAt": "2026-11-17T17:45:00+00:00",
+  "detectedAt": "2026-11-17T18:06:20+00:00",
+  "fastLane": true,
+  "speedMinutes": 27,
+  "layout": "noir",
+  "summaryLine": "GPT-6.2 AstraとSolが登場。複雑な専門業務と日常業務で使い分ける構成です。",
+  "bodyImages": [
+    {
+      "src": "https://ai-tech-express.jp/img/gpt-6-2-astra-sol-pricing-fig1-94ed2326.jpg",
+      "width": 1200,
+      "height": 603,
+      "kind": "hero",
+      "credit": "OpenAI",
+      "sourceUrl": "https://openai.com/index/introducing-gpt-6-2-astra-sol",
+      "original": "https://cdn.openai.com/mdx-assets/e193aefe-5e58-431c-8cd2-adadac0c1496/44573edd-9653-49b3-ba07-7b3643545ef9.d3072be3.png"
+    },
+    {
+      "src": "https://ai-tech-express.jp/img/gpt-6-2-astra-sol-pricing-fig2-8206df1c.jpg",
+      "width": 1200,
+      "height": 675,
+      "kind": "dense",
+      "credit": "OpenAI",
+      "sourceUrl": "https://openai.com/index/introducing-gpt-6-2-astra-sol",
+      "original": "https://cdn.openai.com/mdx-assets/e193aefe-5e58-431c-8cd2-adadac0c1496/dfc3637f-e18c-4cad-9187-6e3f91ce4c7e.efe8559b.webp"
+    }
+  ],
+  "imageCredit": {
+    "kind": "official",
+    "org": "OpenAI",
+    "provider": "OpenAI公式ブログ",
+    "sourceUrl": "https://openai.com/index/introducing-gpt-6-2-astra-sol",
+    "original": "https://cdn.openai.com/mdx-assets/e193aefe-5e58-431c-8cd2-adadac0c1496/7a814a06-3d8b-4703-a24b-b1fb968ae1c8.eee9ea75.webp",
+    "width": 1200,
+    "height": 675,
+    "at": "2026-11-17T18:09:11+00:00"
+  },
+  "heroOk": true,
+  "imageFocus": {
+    "x": 0.47,
+    "y": 0.464,
+    "box": [
+      0.0,
+      0.0,
+      0.941,
+      0.928
+    ],
+    "ar": 1.7778,
+    "src": "https://ai-tech-express.jp/img/gpt-6-2-astra-sol-pricing-e4a7f1a9.jpg"
+  }
+}
