@@ -14607,6 +14607,19 @@
       "slug": "salesforce-agentforce-idc-marketscape-leader",
       "url": "https://www.salesforce.com/jp/news/press-releases/2026/11/09/idc-marketscape-agentic-ai-platforms/"
     },
+    "9bd3fa6508848646": {
+      "at": "2026-11-17T01:56:06.306513+00:00",
+      "costUsd": 0.1009,
+      "foreignAi": true,
+      "intent": "breaking",
+      "major": true,
+      "mix": "enterprise_dev",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "score": 91,
+      "section": "ai",
+      "slug": "garlic-llm-ps4-offline-ai",
+      "url": "https://huggingface.co/garlic-llm/garlic-llm-ps4"
+    },
     "9be8c44eaa315506": {
       "at": "2026-11-10T07:43:20.274587+00:00",
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・暮らしの交通/天気/値上げ/障害/給付/発売・日本のスポーツのどれでもない）",
@@ -23284,30 +23297,6 @@
   },
   "quality_log": [
     {
-      "accepted": true,
-      "at": "2026-11-14T16:16:01.493257+00:00",
-      "attempt": 0,
-      "id": "1ca0f9333fff5819",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 82.5,
-        "avg_sentence": 41.2,
-        "long_share": 0.0,
-        "max_paragraph": 124,
-        "paragraphs": 11,
-        "sentences": 22
-      },
-      "score": 88,
-      "source": "ntt-news",
-      "title": "NTT西日本がフィジカルAIの発展・振興に向け京都大学と連携を強化～フィジカルAIの社会実装を担う人材育成を推進～",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（XPAC・KUPAC・FORUM）",
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
-      ]
-    },
-    {
       "accepted": false,
       "at": "2026-11-14T16:34:26.115864+00:00",
       "attempt": 1,
@@ -30892,6 +30881,30 @@
       "warnings": [
         "見出しの書き方: 区切りの全角空白が2つ以上（補足は1つだけ）",
         "初めて出たところで言い換えていない略語（TBS・NEWS・DIG）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-17T01:56:06.277201+00:00",
+      "attempt": 1,
+      "id": "9bd3fa6508848646",
+      "kind": "ai",
+      "model": "anthropic-api:claude-sonnet-5-5",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 64.7,
+        "avg_sentence": 33.4,
+        "long_share": 0.032,
+        "max_paragraph": 111,
+        "paragraphs": 16,
+        "sentences": 31
+      },
+      "score": 91,
+      "source": "hugging-face-blog",
+      "title": "garlic-llm/garlic-llm-ps4 · Hugging Face",
+      "warnings": [
+        "見出しが49字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（PS・LLM・SHA）"
       ]
     }
   ],

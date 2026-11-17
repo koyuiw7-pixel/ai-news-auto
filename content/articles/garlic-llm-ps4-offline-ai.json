@@ -1,0 +1,166 @@
+{
+  "slug": "garlic-llm-ps4-offline-ai",
+  "sourceType": "web",
+  "sourceUrl": "https://huggingface.co/garlic-llm/garlic-llm-ps4",
+  "sourceName": "Hugging Face公式ブログ",
+  "title": "PS4で90億パラメーターのAIが単体で動く　「Garlic LLM」はネット不要のホームブリュー",
+  "seoTitle": "Garlic LLMとは？PS4で動くAIの使い方",
+  "threadsPost": "PS4を持っている人に、知っておいてほしい話です。\n\n「Garlic LLM」は、PS4の中だけで90億パラメーターのAIを動かすアプリです。\nPCもネット接続も使わず、会話や音声入力、Pythonの実行までできます。\n\n古いゲーム機をAIの実験に使うなら、どこまで試したいですか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "line",
+      "question": "古いゲーム機をAIの実験に使うなら、どこまで試したいですか？"
+    },
+    {
+      "pattern": "tradeoff",
+      "question": "ネットに送らないAIと、速くて賢いクラウドAI、どちらを選びますか？"
+    },
+    {
+      "pattern": "expert",
+      "question": "PS4を改造して遊んでいる人は、AIアプリに何を期待しますか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "honest",
+  "lede": "PS4の中だけで、90億パラメーターの言語モデル「Qwen3.5-9B」を動かすホームブリューアプリ「Garlic LLM」が公開されました。文章生成は毎秒31〜39トークンで、コードなら最大43トークンです。動かすにはGoldHENを入れたPS4と約6GBの空きが必要で、価格や日本語対応はまだ発表されていません。",
+  "description": "PS4単体でQwen3.5-9Bを動かすホームブリューアプリ「Garlic LLM」。ネット不要で毎秒31〜39トークン、音声会話やPython実行にも対応します。必要な環境、導入手順、各モデルのライセンスを整理します。",
+  "keywords": [
+    "Garlic LLM",
+    "PS4 AI",
+    "PS4 ホームブリュー",
+    "Qwen3.5-9B",
+    "オフラインAI",
+    "ローカルLLM",
+    "GoldHEN",
+    "PS4 LLM",
+    "音声認識",
+    "MicroPython"
+  ],
+  "tags": [
+    "生成AI",
+    "LLM",
+    "ローカルAI",
+    "PS4",
+    "ホームブリュー"
+  ],
+  "highlights": [
+    "PS4単体でQwen3.5-9Bが動く。PCもネット接続も使わない「Garlic LLM」",
+    "文章生成は毎秒31〜39トークン、コードは最大43トークン。文脈は16Kトークン",
+    "必要なのはGoldHEN入りのPS4と約6GBの空き。コードはGPLv3で公開"
+  ],
+  "timetable": [],
+  "verdict": {
+    "status": "available",
+    "japan": "unknown",
+    "price": "無料（GPLv3公開）",
+    "free": true,
+    "audience": "PS4所有者",
+    "take": "GoldHEN導入済みのPS4があり自己責任で試せる人向け。無い人は見送りで構いません。",
+    "judgedAt": "2026-11-17T01:55:58.598068+00:00"
+  },
+  "workMoney": {
+    "relevance": "low",
+    "points": [
+      "直接の仕事への影響は小さく、GoldHEN導入済みのPS4を持つ開発者や愛好家が対象です。",
+      "オフラインで動くAIの実例として、ローカルAIに関心がある人は仕様を確認できます。"
+    ]
+  },
+  "body": "対象は、改造ソフト「GoldHEN」を導入したPS4の持ち主です。通常のPS4には入れられず、PS5への対応も発表されていません。\n\n「Garlic LLM」は、PS4の非公式アプリ（ホームブリュー）です。AIの言語モデルを、PS4のGPUだけで動かします。Hugging Faceの公開ページによると、動作中はPCもインターネットも使いません。\n\n## Qwen3.5-9Bが毎秒31〜39トークンで動く\n\nアプリが動かすのは、Alibaba Qwenの「Qwen3.5-9B」（90億パラメーターのモデル）です。パラメーターとは、AIの規模を表す数です。\n\n速度は、トークン（AIが文字を数える単位）で毎秒31〜39です。コードの生成では最大43トークンです。コンテキストウィンドウ（一度に読める量）は16Kトークンです。\n\nモデルは、アプリ独自の形式に変換され、主に4ビットへ量子化（軽量化）されています。他のソフトでは使えません。\n\n**主な機能**\n\n| 機能 | 内容 |\n|---|---|\n| 文章チャット | Qwen3.5-9B。毎秒31〜39トークン |\n| 音声会話 | Chatterbox。スペイン語・英語・ポルトガル語・ロシア語・イタリア語・フランス語・ドイツ語 |\n| 音声入力 | Parakeet TDT 0.6B v3。欧州25言語 |\n| Pythonモード | MicroPythonを書き、PS4が実行 |\n| 考えるモード | 答える前に推論する。初期設定はオフ |\n\n音声会話と音声入力の対応言語に、日本語は挙がっていません。日本語への対応はまだ発表されていません。\n\n## 必要な環境と導入手順\n\n動作確認は、ファームウェア11.52の通常型またはSlimのPS4で行われました。利用者からは、Slimの9.04と14.00、PS4 Proの12.02でも動くという報告が出ています。\n\n空き容量は約6GBです。パッケージをPS4の内蔵ディスクにコピーしてから入れるなら、12GBが必要です。\n\n手順は次のとおりです。\n\n1. 「Garlic-LLM-1.19.pkg」（5.66GB）をダウンロードする\n2. 公式ヘルプの手順を確認してください（[Hugging Face公式ブログの案内](https://huggingface.co/garlic-llm/garlic-llm-ps4)）。\n3. ホーム画面から「Garlic LLM」を開く\n\n更新は、新しいパッケージを古いものの上に入れ直します。ファイルのSHA-256は、公開ページに記載されています。\n\n## アプリ本体はGPLv3、モデルはそれぞれのライセンス\n\nアプリのコードはGPLv3で、GitHubで公開されています。モデルは、それぞれのライセンスのままです。\n\n- Qwen3.5-9B（Alibaba Qwen）：Apache-2.0。文章チャット用\n- Chatterbox MultilingualとChatterbox-Turbo（Resemble AI）：MIT。音声合成用\n- Parakeet TDT 0.6B v3（NVIDIA）：CC-BY-4.0。音声認識用\n\n公開ページには、ソニー・インタラクティブエンタテインメントとは無関係で、同社の承認も受けていないと明記されています。アプリは通常のホームブリューのパッケージで、脆弱性を突くコード（エクスプロイト）は含まないとされています。\n\n## サイソクの見方：ローカルAIの実験向け、まず環境を確かめる\n\n毎秒31〜39トークンという速度は、旧世代のゲーム機で90億パラメーターのモデルが実用的な水準で動くことを示す数字とみられます。\n\nGoldHEN入りのPS4があるなら、1つのファイルを入れるだけで試せます。ファームウェアが11.52、9.04、14.00、12.02のいずれかなら、動作の報告があります。\n\n空き容量が6GBに満たない場合は、先に整理するとよいでしょう。日本語で使いたい人は、音声機能の対応言語に日本語が無いため、対応が示されるまで待つのが無難です。\n\n## まだ分からないこと\n\n- 日本語での会話や音声入力への対応は、まだ発表されていません。\n- 動作確認が済んだファームウェアの全範囲は、まだ発表されていません。",
+  "easy": "## ひとことで言うと\n\nPS4の中だけで動く、AIとおしゃべりできるアプリ「Garlic LLM」が公開されました。ネットにつながなくても、文章のやりとりや音声での会話ができます。\n\n## 何ができるのか\n\nAIは普通、遠くの大きなコンピューター（クラウド）で動きます。このアプリはそれをPS4の中だけで動かします。\n\n文章の会話のほか、声での会話や、声での入力もできます。AIが書いたプログラム（Python）をPS4が実行する機能もあります。\n\n## 使うために必要なもの\n\n改造ソフト「GoldHEN」が入ったPS4が必要です。空き容量は約6GBです。\n\n導入するファイルは1つだけで、サイズは5.66GBです。価格や日本語への対応は、まだ発表されていません。",
+  "channel": "Hugging Face公式ブログ",
+  "channelId": "",
+  "channelSlug": "hugging-face-blog",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "garlic-llm/garlic-llm-ps4 · Hugging Face",
+  "publishedAt": "2026-11-17T01:53:24.629000+00:00",
+  "generatedAt": "2026-11-17T01:55:58.598055+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/garlic-llm-ps4-offline-ai-dcdac389.jpg",
+  "model": "anthropic-api:claude-sonnet-5-5",
+  "affiliates": [
+    {
+      "name": "PLAUD",
+      "label": "PLAUD NOTE（AIボイスレコーダー）",
+      "url": "https://px.a8.net/svt/ejp?a8mat=4BELTP+BKRG8I+5J4W+5YZ76",
+      "note": "会議や取材の録音を、AIで文字起こし・要約できるカード型レコーダー",
+      "pixel": "https://www13.a8.net/0.gif?a8mat=4BELTP+BKRG8I+5J4W+5YZ76"
+    },
+    {
+      "name": "OZ GAMING",
+      "label": "OZ GAMING（GPU搭載のBTOパソコン）",
+      "url": "https://px.a8.net/svt/ejp?a8mat=4BELTP+BOXHGY+5U1O+5YJRM",
+      "note": "ローカルLLMや画像生成AIを手元で試すためのGPU搭載PCを、構成から選べるBTOショップ",
+      "pixel": "https://www14.a8.net/0.gif?a8mat=4BELTP+BOXHGY+5U1O+5YJRM"
+    }
+  ],
+  "newsType": "product",
+  "faq": [
+    {
+      "q": "Garlic LLMは通常のPS4にそのまま入れられる？",
+      "a": "動作にはGoldHENが必要です。公開ページは、動作確認をファームウェア11.52の通常型またはSlimで行ったと記しています。"
+    },
+    {
+      "q": "Garlic LLMの更新はどうやる？",
+      "a": "新しいパッケージをダウンロードし、古いものの上に入れ直します。初回の導入と同じ手順です。"
+    }
+  ],
+  "todayActions": [
+    "PS4のファームウェアが11.52・9.04・14.00・12.02のどれかを確認する",
+    "PS4の空き容量が約6GB（内蔵ディスクへコピーするなら12GB）あるか見る",
+    "GitHubのソースコードとモデルごとのライセンスを確認する"
+  ],
+  "qualityBar": {
+    "score": 5,
+    "missing": [
+      1,
+      5,
+      6
+    ],
+    "notes": {
+      "1": "最初の3行にだれに・いつからが無い",
+      "5": "することは書いてあるが、どこで（窓口・ページ）・いつまでが無い",
+      "6": "言い換えの無い略語（SHA・MIT・TDT）"
+    },
+    "checkedAt": "2026-11-17T01:56:06+00:00",
+    "before": [
+      1,
+      5,
+      6
+    ],
+    "repaired": false,
+    "repairLater": true
+  },
+  "qualityScore": 91,
+  "detectedAt": "2026-11-17T01:53:24+00:00",
+  "fastLane": true,
+  "layout": "noir",
+  "summaryLine": "PS4単体でQwen3.5-9Bが動く。PCもネット接続も使わない「Garlic LLM」",
+  "imageCredit": {
+    "kind": "official",
+    "org": "Hugging Face",
+    "provider": "Hugging Face公式ブログ",
+    "sourceUrl": "https://huggingface.co/garlic-llm/garlic-llm-ps4",
+    "original": "https://cdn-thumbnails.huggingface.co/social-thumbnails/models/garlic-llm/garlic-llm-ps4.png",
+    "width": 1200,
+    "height": 648,
+    "at": "2026-11-17T01:56:10+00:00",
+    "imageKind": "hero"
+  },
+  "heroOk": false,
+  "imageFocus": {
+    "x": 0.489,
+    "y": 0.558,
+    "box": [
+      0.0,
+      0.116,
+      0.978,
+      1.0
+    ],
+    "ar": 1.8519,
+    "src": "https://ai-tech-express.jp/img/garlic-llm-ps4-offline-ai-dcdac389.jpg"
+  }
+}
