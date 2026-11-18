@@ -86,8 +86,8 @@
     }
   ],
   "todayActions": [
-    "Android向けに周辺機器と連携するアプリを作る場合は、Chrome 158のWebHID対応条件を確認する。",
-    "社内サイトを管理する場合は、ウェブアプリのインストールを制御する企業向け設定を確認する。"
+    "ウェブアプリの開発者は、別オリジンでの導入に使うmanifest URLと任意のmanifest IDを確認する。",
+    "社内サイトの管理者は、全体の無効化と管理下サイト別の制御を分けて確認する。"
   ],
   "qualityBar": {
     "score": 7,
@@ -128,5 +128,88 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/chrome-158-android-web-apps-figure-af4074dd.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "Web Install APIとHTMLの<install>要素は、同じインストール機能への別々の入口です。管理者はWebAppInstallByUserEnabledで両方を含む利用者のインストール全般を無効にでき、web-app-installationでは管理下のサイトやiframeごとに許可・禁止できます。",
+      "source": "https://chromestatus.com/release-notes/158"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "WebAppInstallByUserEnabled",
+      "url": "https://chromeenterprise.google/policies/",
+      "source": "https://chromestatus.com/release-notes/158"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "ウェブアプリの開発者は、別オリジンでの導入に使うmanifest URLと任意のmanifest IDを確認する。",
+      "source": "https://chromestatus.com/release-notes/158",
+      "steps": [
+        "Chrome 158 Release Notesを開く",
+        "Web Install APIを確認する"
+      ],
+      "url": "https://chromestatus.com/release-notes/158"
+    },
+    {
+      "action": "社内サイトの管理者は、全体の無効化と管理下サイト別の制御を分けて確認する。",
+      "source": "https://chromestatus.com/release-notes/158",
+      "steps": [
+        "WebAppInstallByUserEnabledを確認する",
+        "web-app-installationを確認する"
+      ],
+      "url": "https://chromeenterprise.google/policies/"
+    }
+  ],
+  "cause": {
+    "text": "Chrome 158では、manifest URLと任意のmanifest IDを指定してウェブアプリのインストールを促すWeb Install APIが加わります。公式ページは、従来のbeforeinstallpromptイベントを扱う方法より開発者にとって使いやすい方法だと説明しています。",
+    "status": "background",
+    "source": "https://chromestatus.com/release-notes/158"
+  },
+  "worries": [
+    {
+      "q": "社内で利用者のWebアプリ導入を止められる？",
+      "a": "管理者はWebAppInstallByUserEnabledで、navigator.install()とHTMLの<install>要素による導入も含め、利用者によるウェブアプリのインストール全般を無効にできます。",
+      "source": "https://chromestatus.com/release-notes/158",
+      "action": "社内サイトの管理者は、WebAppInstallByUserEnabledの設定内容を確認する。"
+    },
+    {
+      "q": "社内サイトや埋め込み画面だけ導入を制御できる？",
+      "a": "web-app-installationの権限ポリシーで、管理者が管理するオリジンでの機能利用を許可または禁止できます。公式ページは内部サイトやiframeを例に挙げています。",
+      "source": "https://chromestatus.com/release-notes/158",
+      "action": "管理者は、対象の社内サイトやiframeでweb-app-installationをどう扱うか確認する。"
+    },
+    {
+      "q": "別のサイトにあるウェブアプリの導入も促せる？",
+      "a": "Web Install APIは、manifest URLと任意のmanifest IDを指定してインストールを促せます。公式ページは、navigator.install()により別オリジンのウェブアプリをインストールできると説明しています。",
+      "source": "https://chromestatus.com/release-notes/158",
+      "action": "開発者は対象アプリのmanifest URLを用意し、必要に応じてmanifest IDを指定する。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "導入制御は全体とサイト別のどちらにする？",
+      "situation": "利用者による導入全般を止めたい",
+      "recommend": "全体を無効にする設定を確認する",
+      "reason": "WebAppInstallByUserEnabledでは、navigator.install()と<install>による導入を含め、利用者によるウェブアプリのインストール全般を無効にできます。管理下サイトだけを選んで制御する設定とは範囲が異なります。",
+      "source": "https://chromestatus.com/release-notes/158"
+    },
+    {
+      "question": "導入制御は全体とサイト別のどちらにする？",
+      "situation": "管理下のサイトやiframeごとに決めたい",
+      "recommend": "web-app-installationで対象ごとに制御する",
+      "reason": "web-app-installationでは、管理者が管理するオリジンの機能利用を許可または禁止できます。公式ページは内部サイトやiframeを例に挙げており、利用者によるインストール全般を止める設定とは用途が異なります。",
+      "source": "https://chromestatus.com/release-notes/158"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "導入方法と管理者の制御は二段階",
+    "cause": "新しいインストール方法が加わる背景",
+    "steps": "開発者と管理者が確認すること",
+    "desk": "企業向けポリシーを確認",
+    "worries": "社内や別サイトでの導入はどうなる？",
+    "guide": "全体を止めるかサイト別に制御するか"
+  },
+  "depthAt": "2026-11-18T02:56:22+00:00"
 }

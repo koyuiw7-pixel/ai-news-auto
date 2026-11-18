@@ -358,6 +358,7 @@
     "3b2227e3b92d731d16c8620e8ecfba8e128ac4b7": 2,
     "3c1c183a7e66cce0aae08a8a2fe86e864c9c4fff": 2,
     "3c2294693e9adb48ab7aee35be20beca79052b37": 2,
+    "3c5698ff30816ec256b676f0cb8eb87df8d7db47": 1,
     "3ce60eccb71ba651a4d46e209f1142b119253369": 2,
     "3ce64e352cb193aedbf9075d2ad4fe5b149df54e": 2,
     "3cf608104151a7513949d9108546a5fe676748b0": 2,
@@ -578,6 +579,7 @@
     "6933ec87a3f23457cb6327b27043e24d59444a78": 2,
     "696d9285c57512124021673dadc36299b04b25a5": 2,
     "6983f5ea638d0ac131fd1a38678dcfe9bb96995a": 2,
+    "69a636b64b0b1f16b744103a78b5226872fed83c": 1,
     "6a085ae61e61c30362fc08d2f14cf4670cd55a6f": 2,
     "6a18e1449bedbb383e6d5eb108ba0da3716a8b03": 2,
     "6a9885b6733b694be274705ef5a1f8c49e2504e5": 2,
@@ -606,6 +608,7 @@
     "70095b0b465f79f95bbbc5d8a49179c357baa96f": 2,
     "70321c706480a943f64cddc81f27d1494b8acc35": 2,
     "7099134973d23ef2bc556f0b071ebffe8bbb358e": 2,
+    "70bb5b68d1dc1eeac8f420334b5fb4c17e312ca0": 1,
     "71293246945c51fbbaf19a6fb0adfa406f633294": 2,
     "712f96f68ce9c9c65293f146e3521ac29eea0c16": 2,
     "7205a23529a87f5002c3acbeb37753bdbb4bbc4e": 1,
@@ -887,6 +890,7 @@
     "a9aed43d17c541f2c1c849565f08955c69a9d49f": 2,
     "a9bba0845b77a3429d1361233e0a15b64e72d661": 2,
     "a9c4c3e8429415b1d963c9e6ff67dc55887ccd96": 2,
+    "a9cf7301f4e69873c35c5e80e8235961564b6b1b": 1,
     "a9f448879f4bb14d171b0737e603d561db17bb56": 2,
     "aa0517b1ae632803a6e805b212b8c7fccca6a173": 2,
     "aa306911776148bc688db54fc1b8d0027b6a93c0": 2,
@@ -1028,7 +1032,7 @@
     "cb38c0f18bde275cd511dc51cf4d86412e6d6724": 2,
     "cb93c845393a8d2016c8fe34f4d281b96688af01": 2,
     "cbbafc7f230c30467136cea1f183e83244917e67": 2,
-    "cbe59e20092c6e3fbd1702ed37d5461e15fa3f85": 1,
+    "cbe59e20092c6e3fbd1702ed37d5461e15fa3f85": 2,
     "cbf23270e2ff9df263df83eecef2599c1dccb01d": 2,
     "cc57b6d31b06794aad0503fff87f61350a8cd3b2": 2,
     "cc82b152ffed301b716fb402b93e9f94375ecace": 2,
@@ -5821,6 +5825,14 @@
       "slug": "aws-serverless-mcp-server-ecs-fargate",
       "url": "https://aws.amazon.com/blogs/machine-learning/serverless-mcp-server-for-ai-agent-data-lake-access-on-amazon-ecs-fargate/"
     },
+    "0f132983c84cb381": {
+      "at": "2026-11-18T02:55:10.094169+00:00",
+      "costUsd": 0.0053,
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 「名門ヨコハマの参戦終了と先輩への思い」→元記事の見出しはヨコハマのSUPER GT参戦終了と織戸学の引退に触れていますが、「名門」という評価は元記事にありません。; 「スーパーGTの未来」→本文は谷口選手の今後や参戦終了の範囲・時期が掲載情報だけでは分からないとするにとどまり、SUPER GTの未来について具体的に答えていません。; 「タイヤメーカーや関係者の今後の体制について",
+      "skipped": true,
+      "url": "https://topics.smt.docomo.ne.jp/latestnews/keywords/e843267977ddd0002fe31217512f1219153975a7839be93137bd28f625c92fd5"
+    },
     "0f281cabd4f69d19": {
       "at": "2026-11-04T10:23:03.225973+00:00",
       "model": "claude:sonnet",
@@ -6189,6 +6201,20 @@
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
       "skipped": true,
       "url": "https://www.digital.go.jp/policies/education/2025report"
+    },
+    "15346b35db8c9047": {
+      "at": "2026-11-18T02:53:31.415959+00:00",
+      "costUsd": 0.0103,
+      "intent": "query",
+      "kind": "trend",
+      "mix": "",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "tech-gadget",
+      "slug": "ai-phishing-scam-measures-softbank",
+      "trendKeyword": "詐欺",
+      "trendLane": true,
+      "url": "https://www.softbank.jp/sbnews/entry/20261117_01"
     },
     "155055bcd7588e50": {
       "at": "2026-11-07T00:14:55.723410+00:00",
@@ -12710,12 +12736,6 @@
       "reason": "trend: 公式の発表で記事にした（gemini-factory-partner-solutions）",
       "skipped": true,
       "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-hydrogen/"
-    },
-    "748ef40f3abf85ff": {
-      "at": "2026-11-04T02:39:06.294893+00:00",
-      "reason": "prefilter: お知らせ・統計の転載（listing）",
-      "skipped": true,
-      "url": "https://www.maff.go.jp/j/press/kanbo/hisyo/261104.html"
     },
     "74b1eb8c849d5a126d0757ec360f4e36be1b3f7c": {
       "at": "2026-11-16T09:42:00.810393+00:00",
@@ -21234,14 +21254,6 @@
       "slug": "nli-research-report-2026-11",
       "url": "https://www.nli-research.co.jp/topics_detail1/id=87285?site=nli"
     },
-    "f5a0d7153ecc99c8": {
-      "at": "2026-11-04T02:39:05.904361+00:00",
-      "model": "openrouter:nvidia/nemotron-3.5-super-vl:free",
-      "score": 88,
-      "section": "ai",
-      "slug": "google-cloud-agent-skill-evaluation-rules",
-      "url": "https://cloud.google.com/blog/topics/developers-practitioners/evaluate-agent-skills-before-they-bloat-your-context-window/"
-    },
     "f5b08a89b057a8d7": {
       "at": "2026-11-17T22:11:48.484784+00:00",
       "costUsd": 0.0012,
@@ -21591,6 +21603,12 @@
       "reason": "followup quality: 「今回の試合で過去のモロッコ戦は3試合となり、日本の通算成績は1勝2敗」→ 確認済みの文脈にあるのは過去の対戦成績1勝1敗のみで、今回の敗戦を足した3試合・1勝2敗は記事が自分で計算した数字であり、計算済みの数字欄にも元記事にもない",
       "skipped": true,
       "url": "https://www.jfa.jp/news/00036992/"
+    },
+    "fafb30afd195cdfd5f77a8a79705f4df39a72b1b": {
+      "at": "2026-11-18T02:53:31.416159+00:00",
+      "reason": "trend: 公式の発表で記事にした（ai-phishing-scam-measures-softbank）",
+      "skipped": true,
+      "url": "https://news.yahoo.co.jp/articles/dfc43e63d945ec47bd607462357c42295054736e"
     },
     "fb043847e5b56c24": {
       "at": "2026-11-04T03:01:26.970508+00:00",
@@ -24413,113 +24431,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-16T06:49:51.083553+00:00",
-      "attempt": 1,
-      "id": "e32a0808698f5340",
-      "kind": "broad",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 103.2,
-        "avg_sentence": 47.9,
-        "long_share": 0.286,
-        "max_paragraph": 173,
-        "paragraphs": 13,
-        "sentences": 28
-      },
-      "score": 95,
-      "source": "xbox-wire-jp",
-      "title": "XBOX プレイヤーの皆さん、25 年間ありがとう:『Wolfenstein 3』や『Halo』のファイアファイト、PC で遊べる初代 XBOX の名作集などの",
-      "warnings": [
-        "見出しが53字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（OG・MAX・GR）",
-        "読みやすさ: 文が長い（1文の平均 47.9字・60字超の文が 29% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-16T06:50:17.819260+00:00",
-      "attempt": 0,
-      "id": "e32a0808698f5340",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 104.5,
-        "avg_sentence": 42.5,
-        "long_share": 0.219,
-        "max_paragraph": 180,
-        "paragraphs": 13,
-        "sentences": 32
-      },
-      "score": 95,
-      "source": "xbox-wire-jp",
-      "title": "XBOX プレイヤーの皆さん、25 年間ありがとう:『Wolfenstein 3』や『Halo』のファイアファイト、PC で遊べる初代 XBOX の名作集などの",
-      "warnings": [
-        "見出しが53字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（OG・MAX・GR）",
-        "読みやすさ: 文が長い（1文の平均 42.5字・60字超の文が 22% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-16T07:17:43.178617+00:00",
-      "attempt": 1,
-      "id": "489aca3b9d1d410c",
-      "kind": "broad",
-      "model": "gemini-3.6-flash",
-      "problems": [
-        "リード「2026年11月16日から…PlayStation Storeで順次始まりました」→ PS Storeの「BLACK FRIDAY SALE」は元記事では11月4日開始で、11月16日は第二弾の開始日。開始日の取り違え。",
-        "「既存のPS Plus契約が自動で割引価格に更新されるわけではない」→ 元記事に無い記述。元記事はアップグレード割引が現在の加入プランの残期間に適用されると書くのみ。",
-        "「『METAL GEAR SOLID: MASTER COLLECTION Vol.2』…『Call of Duty: Black Ops II』…11月19日から販売されます」→ 元記事ではPS Store第二弾は11月16日〜30日。11月19日は日本語専用PS5本体の発売日であり、ソフトの販売日を取り違えている。",
-        "「最高位プランである『PlayStation Plus プレミアム』」→ 元記事に「最高位」の記述は無い（プレミアムプランへのアップグレードとのみ書かれている）。",
-        "「PS5周辺機器やPS Plus利用権の割引は年に数回程度に限られる」→ 割引の頻度について元記事にも確認済みの文脈にも根拠が無い。",
-        "「新発売の限定PS5本体を買うと」→ 元記事では「限定」の記述は無く、保証延長はPS5 デジタル・エディション 日本語専用の新規購入キャンペーン。"
-      ],
-      "readability": {
-        "avg_paragraph": 93.1,
-        "avg_sentence": 62.0,
-        "long_share": 0.542,
-        "max_paragraph": 166,
-        "paragraphs": 16,
-        "sentences": 24
-      },
-      "score": 45,
-      "source": "playstation-blog-jp",
-      "title": "全国のPlayStation®取扱店にて「Black Fridayセール」開催！ PS5®周辺機器やソフトウェアが期間限定でお買い得！",
-      "warnings": [
-        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（PS・EC・PULSE）",
-        "読みやすさ: 文が長い（1文の平均 62.0字・60字超の文が 54% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-16T07:18:19.069861+00:00",
-      "attempt": 1,
-      "id": "489aca3b9d1d410c",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 94.1,
-        "avg_sentence": 61.3,
-        "long_share": 0.522,
-        "max_paragraph": 179,
-        "paragraphs": 15,
-        "sentences": 23
-      },
-      "score": 92,
-      "source": "playstation-blog-jp",
-      "title": "全国のPlayStation®取扱店にて「Black Fridayセール」開催！ PS5®周辺機器やソフトウェアが期間限定でお買い得！",
-      "warnings": [
-        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（PS・EC・PULSE）",
-        "読みやすさ: 文が長い（1文の平均 61.3字・60字超の文が 52% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-16T07:18:56.350151+00:00",
@@ -31873,6 +31784,117 @@
       "warnings": [
         "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（CSS・SVG）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-18T02:52:25.749489+00:00",
+      "attempt": 1,
+      "id": "15346b35db8c9047",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "「フィッシング詐欺や投資詐欺の手口が巧妙化」→元記事はフィッシングの巧妙化を説明し、投資詐欺などはAI悪用の可能性を例示しているため、投資詐欺全般の手口も巧妙化したとするのは言い過ぎです。",
+        "「自然な日本語のメールが増えており」→元記事は自然な文面を作りやすくなったことや、最近届くメールの変化を述べていますが、メールが増加したとは明記していません。",
+        "「電話番号や通話内容からの詐欺検知といった技術的な対策の活用」→通話内容を分析する仕組みは元記事では「着目している」ものとして説明されており、読者がすでに利用できる対策のように書くのは提供状況を誤解させるおそれがあります。"
+      ],
+      "readability": {
+        "avg_paragraph": 143.6,
+        "avg_sentence": 65.3,
+        "long_share": 0.727,
+        "max_paragraph": 179,
+        "paragraphs": 5,
+        "sentences": 11
+      },
+      "score": 88,
+      "source": "softbank-news",
+      "title": "AIで変わった詐欺の「量」と「質」。巧妙化するフィッシング詐欺と身を守るための対策",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（SMS）",
+        "読みやすさ: 文が長い（1文の平均 65.3字・60字超の文が 73% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "読みやすさ: 段落が長い（平均 143.6字・最長 179字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-18T02:52:51.601375+00:00",
+      "attempt": 1,
+      "id": "15346b35db8c9047",
+      "kind": "broad",
+      "model": "openai-api:gpt-6-luna",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 150.4,
+        "avg_sentence": 62.7,
+        "long_share": 0.667,
+        "max_paragraph": 187,
+        "paragraphs": 5,
+        "sentences": 12
+      },
+      "score": 100,
+      "source": "softbank-news",
+      "title": "AIで変わった詐欺の「量」と「質」。巧妙化するフィッシング詐欺と身を守るための対策",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（SMS）",
+        "読みやすさ: 文が長い（1文の平均 62.7字・60字超の文が 67% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "読みやすさ: 段落が長い（平均 150.4字・最長 187字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-18T02:53:24.578739+00:00",
+      "attempt": 0,
+      "id": "15346b35db8c9047",
+      "kind": "broad",
+      "model": "",
+      "problems": [
+        "読みやすさ基準外のまま受理: 書き直し後の確認に不合格: 「SNSを通じた投資詐欺やロマンス詐欺にも、AIが悪用されています」→ 元記事は、こうした詐欺にAI生成の画像や動画が悪用される「可能性がある」としており、実際に悪用されていると断定する根拠はありません。; 「『なりすまし』の脅威も広がっています」→ 元記事はA"
+      ],
+      "readability": {
+        "avg_paragraph": 150.4,
+        "avg_sentence": 62.7,
+        "long_share": 0.667,
+        "max_paragraph": 187,
+        "paragraphs": 5,
+        "sentences": 12
+      },
+      "score": 100,
+      "source": "softbank-news",
+      "title": "AIで変わった詐欺の「量」と「質」。巧妙化するフィッシング詐欺と身を守るための対策",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（SMS）",
+        "読みやすさ: 文が長い（1文の平均 62.7字・60字超の文が 67% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "読みやすさ: 段落が長い（平均 150.4字・最長 187字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-18T02:55:10.094074+00:00",
+      "attempt": 1,
+      "id": "0f132983c84cb381",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "「名門ヨコハマの参戦終了と先輩への思い」→元記事の見出しはヨコハマのSUPER GT参戦終了と織戸学の引退に触れていますが、「名門」という評価は元記事にありません。",
+        "「スーパーGTの未来」→本文は谷口選手の今後や参戦終了の範囲・時期が掲載情報だけでは分からないとするにとどまり、SUPER GTの未来について具体的に答えていません。",
+        "「タイヤメーカーや関係者の今後の体制については、順次発表される予定です」→今後発表される予定だという情報は元記事にありません。",
+        "「2026年のシーズンオフを迎え」「国内のモータースポーツ界では大きな変化が起きています」→シーズンオフ入りや業界全体で大きな変化が起きているという説明は、元記事から確認できません。"
+      ],
+      "readability": {
+        "avg_paragraph": 194.2,
+        "avg_sentence": 54.6,
+        "long_share": 0.438,
+        "max_paragraph": 254,
+        "paragraphs": 9,
+        "sentences": 32
+      },
+      "score": 70,
+      "source": "radar-official",
+      "title": "SUPER GT関連ニュース｜dメニューニュース（NTTドコモ）",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（SUPER・GT・SPORTS）",
+        "読みやすさ: 文が長い（1文の平均 54.6字・60字超の文が 44% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "読みやすさ: 段落が長い（平均 194.2字・最長 254字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
       ]
     }
   ],
