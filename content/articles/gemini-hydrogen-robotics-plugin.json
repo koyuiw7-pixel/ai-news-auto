@@ -71,7 +71,7 @@
     ]
   },
   "body": "ロボットを使ったアプリを開発する人は、Google AntigravityにRobotics追加機能を入れて作業できます。AntigravityでGemini 4 Hydrogenと組み合わせて使うには、Google AI ProかUltraの契約が必要です。\n\nRoboticsは、ロボットの設定や動作の検証をAIに依頼するための追加機能です。実機を動かすための準備から、画面上での試験までを支援します。\n\nGoogle Developers Blogの11月17日付の発表によると、追加機能はその日から提供されました。Gemini 4 Hydrogenは、速さと効率を重視したモデルです。\n\nHydrogenは今回の追加機能より前に提供が始まっています。ロボット開発向けの機能が加わった形です（[Hydrogenの提供開始](/articles/gemini-4-hydrogen-launch-pricing)、サイソクの過去記事、11/13確認）。\n\n日本向けのGoogle AI Proは月額2,900円です。Google AI Ultraも対象プランに含まれます。なお、Antigravity自体には開始費用のかからない利用枠もあります（Google公式の料金ページ、11/16確認）。\n\n## YAMアームは約10分で作業の準備\n\n開発者は、目標を普段の言葉で伝え、カメラ映像を渡します。Hydrogenは作業を計画し、制御用のコードを書いて実行します。作業が終わるまで動きを調整する仕組みです。\n\n追加機能は、機器を動かすためのソフトの導入やカメラの検出を支援します。アームの位置合わせと、安全な動作の確認も行います。\n\nGoogleの実演では、I2RT YAMアームと外付けの深度カメラをパソコンに接続しました。アームの位置合わせを終え、作業できる状態になるまで約10分でした。SO-ARM101やFR3 Duoを動かす例も紹介しています。\n\n追加機能では、MuJoCoという仮想環境でロボットの動作を試せます。形や位置、物理的な性質を会話で調整し、実機に触れる前に腕が届くか、物をつかめるかを確かめます。\n\nお菓子の仕分けの実演では、実際の現場の画像から仮想環境を作りました。複数回の試験を経て、動くベルトからアームでお菓子を仕分けるまで、全体で約1時間かかったとしています。\n\nほかにも、2本のYAM Proアームで石けんの注文を梱包する例や、FR3 Duoでチェスをする例が紹介されました。\n\n## Hydrogenの実機テストは58点\n\nGoogleによると、Gemini 4 ArgonとCarbonもカメラ映像からアームを直接制御できます。Hydrogenはその能力を保ちながら、速さと効率を重視したモデルです。\n\nArtificial Analysis Robotics 0.1という性能テストでは、6軸の実機アームを使いました。飲み物を注ぐ、ブロックを箱に詰めるなど、卓上の8種類の作業が対象です。\n\nHydrogenは58点で、GoogleはArgonと同程度だったと説明しています。AIが文字を数える単位であるトークン当たりの費用は、Argonより低いとしています。\n\nまた、空間や身体の動きに関する能力を測る公開テスト「ERQA」では、Gemini Robotics ER 2を上回ったとしています。対象には、異なる視点の画像を対応づける作業や、立体的な軌道を考える作業が含まれます。\n\n## 実機を動かす前にMuJoCoで検証\n\n実機を使う前に動作を確かめたい開発者なら、Robotics追加機能のMuJoCoで試す方法が考えられます。Gemini Robotics ER 2を使っている開発者なら、空間を扱う同じ作業でHydrogenを試し、結果を比べるのがよさそうです。\n\n## 日本での提供範囲と追加料金\n\n- Robotics追加機能の日本での提供範囲は、今回の資料には記載されていません。\n- Robotics追加機能に別途料金がかかるかは、今回の資料には記載されていません。\n\n## AntigravityでのRoboticsの始め方\n\nAntigravityでは、Gemini 4 Hydrogenを選びます。追加機能は「Customizations」を開き、「Build With Google」から「Robotics」を検索して導入できます。\n\nHydrogen自体は、Gemini API（アプリから呼び出す仕組み）でも利用できます。Google AI Studioでは、ブラウザーから空間を扱う指示やカメラ映像を試せます。",
-  "easy": "## ひとことで言うと\n\nGoogleの新しい追加機能で、ロボットを動かす準備や動作の検証をAIが支援します。使うにはGoogle Antigravityと、有料のGoogle AI ProまたはUltraが必要です。\n\n## 実機を動かす前に画面で試せる\n\nAIはロボットやカメラの設定を支援します。実機を動かす前に、画面上で物をつかむ動きも確かめられます。\n\nGoogleの実演では、お菓子を仕分けるアームを約1時間で動かしました。日本での追加機能の提供範囲と、追加料金の有無はまだ発表されていません。",
+  "easy": "## ひとことで言うと\n\nGoogleの新しい追加機能で、ロボットを動かす準備や動作の検証をAIが支援します。使うにはGoogle Antigravityと、有料のGoogle AI ProまたはUltraが必要です。\n\n## 実機を動かす前に画面で試せる\n\nAIはロボットやカメラの設定を支援します。実機を動かす前に、画面上で物をつかむ動きも確かめられます。\n\nGoogleの実演では、お菓子を仕分けるアームを約1時間で動かしました。日本での追加機能の提供範囲と追加料金の有無は、まだ発表されていません。",
   "channel": "Google Developers Blog",
   "channelId": "",
   "channelSlug": "google-developers-blog",
@@ -312,5 +312,6 @@
       "sourceUrl": "https://developers.googleblog.com/gemini-hydrogen-for-robotics/",
       "sourceName": "Google Developers Blog"
     }
-  ]
+  ],
+  "sectionsPolishedAt": "2026-11-18T01:01:29+00:00"
 }
