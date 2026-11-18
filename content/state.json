@@ -14783,6 +14783,19 @@
       "skipped": true,
       "url": "https://www.gov-online.go.jp/press_conferences/prime_minister/202611/video-327331.html"
     },
+    "92edd4fbb05d8391": {
+      "at": "2026-11-18T23:39:11.267487+00:00",
+      "costUsd": 0.0038,
+      "intent": "breaking",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "score": 100,
+      "section": "public",
+      "slug": "toyota-wallet-karte-unauthorized-access",
+      "url": "https://tscubic.com/toyota-wallet/information/2026/20261118-01/"
+    },
     "931f0a30910a80d6": {
       "at": "2026-11-06T05:51:04.527889+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（審議会）",
@@ -24373,60 +24386,6 @@
   "quality_log": [
     {
       "accepted": true,
-      "at": "2026-11-17T01:56:06.277201+00:00",
-      "attempt": 1,
-      "id": "9bd3fa6508848646",
-      "kind": "ai",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 64.7,
-        "avg_sentence": 33.4,
-        "long_share": 0.032,
-        "max_paragraph": 111,
-        "paragraphs": 16,
-        "sentences": 31
-      },
-      "score": 91,
-      "source": "hugging-face-blog",
-      "title": "garlic-llm/garlic-llm-ps4 · Hugging Face",
-      "warnings": [
-        "見出しが49字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（PS・LLM・SHA）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-17T02:12:30.084696+00:00",
-      "attempt": 1,
-      "id": "7aded4e4b3cc0fca",
-      "kind": "ai",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [
-        "本文「一般の個人が直接使うものではなく、個人の利用者の手続きや料金が変わることもありません」→ 元記事に「個人の手続きや料金」への言及はなく、根拠のない断定である。",
-        "本文「対象は、画像を受け付けるサービスの運営者や審査チーム」→ 元記事は承認された組織への提供としか書いておらず、対象の種類を具体的に限定しているのは言い過ぎである。",
-        "見出し・小見出し「学習と評価の画像は50万点超と約4万7,000点」→ 50万点超は学習の陽性数、4万7,000点は評価の総数で、指す対象が混ざって読みにくい。",
-        "小見出し「医療・教育・家族写真は対象外として学習」→ 元記事では、これらは非CSAMの例として学習・評価の陰性データに含まれるもので、「対象外」という表現は誤解を招く。",
-        "かんたん版「最終的には、訓練を受けた人が確認します」→ 元記事は人による確認を補完的な安全策と位置づけており、「最終的に」は言い過ぎである。"
-      ],
-      "readability": {
-        "avg_paragraph": 98.4,
-        "avg_sentence": 42.6,
-        "long_share": 0.149,
-        "max_paragraph": 178,
-        "paragraphs": 29,
-        "sentences": 67
-      },
-      "score": 85,
-      "source": "radar-official",
-      "title": "OpenAI CSAM Image Classifier Model Card - OpenAI Deployment Safety Hub",
-      "warnings": [
-        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（CSAM・CLIP・MLP）"
-      ]
-    },
-    {
-      "accepted": true,
       "at": "2026-11-17T02:12:57.196934+00:00",
       "attempt": 1,
       "id": "7aded4e4b3cc0fca",
@@ -31818,6 +31777,56 @@
       "score": 100,
       "source": "fast",
       "title": "第三者による不正アクセスに伴う個人情報の流出に関するお詫びとお知らせ"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-18T23:38:29.304950+00:00",
+      "attempt": 1,
+      "id": "92edd4fbb05d8391",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "「対象の人には、info@tscubic.com のメールで個別に連絡が届きます」→ 元記事は、当社が連絡先を確認できる限り個別に連絡するとしており、対象者全員にメールが届くように読める表現です。"
+      ],
+      "readability": {
+        "avg_paragraph": 77.7,
+        "avg_sentence": 40.5,
+        "long_share": 0.087,
+        "max_paragraph": 183,
+        "paragraphs": 12,
+        "sentences": 23
+      },
+      "score": 89,
+      "source": "fast",
+      "title": "株式会社プレイドが提供する「KARTE」への不正アクセス事案に関するお詫びとお知らせ",
+      "warnings": [
+        "見出しが45字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（TOYOTA・KARTE）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-18T23:38:59.011476+00:00",
+      "attempt": 1,
+      "id": "92edd4fbb05d8391",
+      "kind": "broad",
+      "model": "openai-api:gpt-6-luna",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 77.5,
+        "avg_sentence": 42.3,
+        "long_share": 0.091,
+        "max_paragraph": 183,
+        "paragraphs": 12,
+        "sentences": 22
+      },
+      "score": 100,
+      "source": "fast",
+      "title": "株式会社プレイドが提供する「KARTE」への不正アクセス事案に関するお詫びとお知らせ",
+      "warnings": [
+        "見出しが45字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（TOYOTA・KARTE）"
+      ]
     }
   ],
   "short_text_retry": {
