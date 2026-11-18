@@ -11882,6 +11882,19 @@
       "slug": "google-adobe-acrobat-gmail-drive",
       "url": "https://blog.google/company-news/inside-google/company-announcements/adobe-google-partnership-integration/"
     },
+    "66fe983344b971cd": {
+      "at": "2026-11-18T23:22:30.374414+00:00",
+      "costUsd": 0.005,
+      "intent": "breaking",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "score": 100,
+      "section": "public",
+      "slug": "aeon-gift-system-data-leak",
+      "url": "https://www.aeon-st.co.jp/news/20261110_security-notice/AST261110.pdf"
+    },
     "6738fd2b368c3c70": {
       "at": "2026-11-10T06:57:35.981626+00:00",
       "costUsd": 0.0096,
@@ -24352,55 +24365,6 @@
   "quality_log": [
     {
       "accepted": true,
-      "at": "2026-11-17T01:33:19.003899+00:00",
-      "attempt": 1,
-      "id": "736d6ab08d7918a11db9d10e04bed16bd2306c61",
-      "kind": "trend",
-      "model": "gemini-3.6-flash",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 111.6,
-        "avg_sentence": 46.5,
-        "long_share": 0.167,
-        "max_paragraph": 148,
-        "paragraphs": 5,
-        "sentences": 12
-      },
-      "score": 88,
-      "source": "trends",
-      "title": "領空侵犯",
-      "warnings": [
-        "見出しの書き方: 区切りの全角空白が2つ以上（補足は1つだけ）",
-        "初めて出たところで言い換えていない略語（TBS・NEWS・DIG）",
-        "読みやすさ: 文が長い（1文の平均 46.5字・60字超の文が 17% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-17T01:33:40.288073+00:00",
-      "attempt": 0,
-      "id": "736d6ab08d7918a11db9d10e04bed16bd2306c61",
-      "kind": "trend",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 82.1,
-        "avg_sentence": 41.1,
-        "long_share": 0.0,
-        "max_paragraph": 128,
-        "paragraphs": 7,
-        "sentences": 14
-      },
-      "score": 85,
-      "source": "trends",
-      "title": "領空侵犯",
-      "warnings": [
-        "見出しの書き方: 区切りの全角空白が2つ以上（補足は1つだけ）",
-        "初めて出たところで言い換えていない略語（TBS・NEWS・DIG）"
-      ]
-    },
-    {
-      "accepted": true,
       "at": "2026-11-17T01:56:06.277201+00:00",
       "attempt": 1,
       "id": "9bd3fa6508848646",
@@ -31803,6 +31767,49 @@
         "答えになっていない見出し（「工業用水道利用者情報871件を含むHDDが所在不明」）。未定のことは「## まだ分からないこと」に1行で書き、章は作らない",
         "読みやすさ: 文が長い（1文の平均 47.9字・60字超の文が 24% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
       ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-18T23:21:50.813852+00:00",
+      "attempt": 1,
+      "id": "66fe983344b971cd",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "「ギフト承りシステムは、店頭などでギフトの注文を受け付けるためのものです」→システムの用途や店頭での受付について、元記事に記載がありません。",
+        "「不正に使われたという報告は出ていません」→元記事が述べているのは、本件に起因すると考えられる不正利用や二次被害を確認していないことです。「報告が出ていない」とは確認状況が異なります。"
+      ],
+      "readability": {
+        "avg_paragraph": 73.5,
+        "avg_sentence": 38.3,
+        "long_share": 0.043,
+        "max_paragraph": 127,
+        "paragraphs": 12,
+        "sentences": 23
+      },
+      "score": 92,
+      "source": "fast",
+      "title": "第三者による不正アクセスに伴う個人情報の流出に関するお詫びとお知らせ"
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-18T23:22:23.585963+00:00",
+      "attempt": 1,
+      "id": "66fe983344b971cd",
+      "kind": "broad",
+      "model": "openai-api:gpt-6-luna",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 66.1,
+        "avg_sentence": 37.8,
+        "long_share": 0.048,
+        "max_paragraph": 127,
+        "paragraphs": 12,
+        "sentences": 21
+      },
+      "score": 100,
+      "source": "fast",
+      "title": "第三者による不正アクセスに伴う個人情報の流出に関するお詫びとお知らせ"
     }
   ],
   "short_text_retry": {
