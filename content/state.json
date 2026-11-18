@@ -10084,13 +10084,6 @@
       "slug": "homes-hazard-map-polygon-used-property",
       "url": "https://lifull.com/news/50859/"
     },
-    "4ed107f4ce3d226c": {
-      "at": "2026-11-04T22:09:03.786499+00:00",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "reason": "quality: 公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください",
-      "skipped": true,
-      "url": "https://www.jfa.jp/news/00036972/"
-    },
     "4ed2b2ecee170934": {
       "at": "2026-11-12T01:06:31.375972+00:00",
       "costUsd": 0.0099,
@@ -19400,13 +19393,6 @@
       "skipped": true,
       "url": "https://www.boj.or.jp/statistics/boj/other/acmai/release/2026/ac261031.htm"
     },
-    "ddd64db69903db7d": {
-      "at": "2026-11-04T22:11:14.838922+00:00",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "reason": "quality: 公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください",
-      "skipped": true,
-      "url": "https://www.jfa.jp/news/00036974/"
-    },
     "de163d6a3eacfb30": {
       "at": "2026-11-06T17:31:15.026807+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（講演）",
@@ -19923,6 +19909,19 @@
       "section": "entertainment",
       "slug": "xbox-25th-anniversary-recap",
       "url": "https://news.xbox.com/ja-jp/2026/11/16/xbox-25th-anniversary-news-recap/"
+    },
+    "e37083216e1f5457": {
+      "at": "2026-11-18T22:23:37.098324+00:00",
+      "costUsd": 0.0106,
+      "intent": "breaking",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "score": 98,
+      "section": "public",
+      "slug": "meetsmore-karte-unauthorized-access",
+      "url": "https://company.meetsmore.com/page/notice-20261118-karte"
     },
     "e3915f7e4cf071c4": {
       "at": "2026-11-16T12:02:36.465563+00:00",
@@ -24276,49 +24275,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-16T23:15:58.833199+00:00",
-      "attempt": 1,
-      "id": "26400df62787d26d",
-      "kind": "broad",
-      "model": "claude:sonnet",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 70.6,
-        "avg_sentence": 40.3,
-        "long_share": 0.095,
-        "max_paragraph": 115,
-        "paragraphs": 12,
-        "sentences": 21
-      },
-      "score": 90,
-      "source": "fast",
-      "title": "清掃イベントの参加申込受付に利用した電子チケットサービス「teket」への不正アクセスについて",
-      "warnings": [
-        "見出しが45字（目安40字以内）。一覧・カードでは前半だけを出す"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-16T23:46:42.325548+00:00",
-      "attempt": 1,
-      "id": "f47fa2b38a05e5b6",
-      "kind": "broad",
-      "model": "claude:sonnet",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 60.7,
-        "avg_sentence": 35.7,
-        "long_share": 0.118,
-        "max_paragraph": 121,
-        "paragraphs": 10,
-        "sentences": 17
-      },
-      "score": 92,
-      "source": "fast",
-      "title": "阪急阪神ホテルズの情報流出に関するお知らせ"
-    },
     {
       "accepted": true,
       "at": "2026-11-17T00:22:41.269224+00:00",
@@ -31709,6 +31665,56 @@
       "score": 96,
       "source": "google-deepmind-blog",
       "title": "Introducing Gemini 4 Neon"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-18T22:21:55.293450+00:00",
+      "attempt": 1,
+      "id": "e37083216e1f5457",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "「KARTE（ウェブサイトやアプリの利用者へ、メールやLINEなどを配信するクラウドサービス）」→元記事が述べているのはミツモアがメールマガジンやLINE配信などに利用していたことまでで、ウェブサイトやアプリの利用者向けサービスという機能説明は確認できません。",
+        "「メールが届かなければ対象外ですか？…連絡の有無で不安がある場合は、ミツモアの問い合わせフォームから確認できます」→元記事はフォームでの問い合わせを案内していますが、対象かどうかを確認できるとは明記していません。",
+        "「いまのところ、不正に使われたという報告は出ていません」→元記事の表現は「情報の不正利用や二次被害は確認されていません」であり、「報告が出ていない」とは述べていません。"
+      ],
+      "readability": {
+        "avg_paragraph": 97.8,
+        "avg_sentence": 44.2,
+        "long_share": 0.194,
+        "max_paragraph": 194,
+        "paragraphs": 14,
+        "sentences": 31
+      },
+      "score": 91,
+      "source": "fast",
+      "title": "業務委託先のクラウドサービス「KARTE」への不正アクセスによる個人情報漏えいに関するお詫びとお知らせ",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（KARTE・SMS）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-18T22:23:26.431249+00:00",
+      "attempt": 1,
+      "id": "e37083216e1f5457",
+      "kind": "broad",
+      "model": "openai-api:gpt-6-luna",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 92.2,
+        "avg_sentence": 41.6,
+        "long_share": 0.129,
+        "max_paragraph": 194,
+        "paragraphs": 14,
+        "sentences": 31
+      },
+      "score": 98,
+      "source": "fast",
+      "title": "業務委託先のクラウドサービス「KARTE」への不正アクセスによる個人情報漏えいに関するお詫びとお知らせ",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（KARTE・SMS）"
+      ]
     }
   ],
   "short_text_retry": {
