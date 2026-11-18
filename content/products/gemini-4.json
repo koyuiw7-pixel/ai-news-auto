@@ -6,7 +6,7 @@
   "companyName": "Google",
   "category": "AIモデル",
   "overview": {
-    "text": "Gemini 4は、Googleが出したAIモデルの次世代フラッグシップです。2026年9月に事前学習の開始が公表されました。",
+    "text": "Gemini 4は、Googleが開発する次世代AIモデルです。事前学習の進行が公表され、エージェント機能などの開発が進められています。",
     "sources": [
       "google-deepmind-gemini-4-agi-agent"
     ]
@@ -14,42 +14,48 @@
   "facts": [
     {
       "label": "料金",
-      "value": "入力$2/出力$10（100万トークン）",
+      "value": "月2,900円〜（Pro）",
       "sources": [
-        "gemini-4-carbon-cybersecurity-model"
+        "gemini-4-neon-pricing-availability"
       ]
     },
     {
       "label": "提供開始",
-      "value": "2026年11月11日（Carbon）",
+      "value": "2026年11月",
       "sources": [
-        "gemini-4-carbon-cybersecurity-model"
+        "gemini-4-neon-pricing-availability"
       ]
     },
     {
-      "label": "向いている人",
-      "value": "開発者、企業、セキュリティ担当",
+      "label": "日本での提供",
+      "value": "アプリやAPIが利用可能",
       "sources": [
-        "google-ai-news-october-2026",
-        "gemini-4-carbon-cybersecurity-model"
+        "gemini-4-neon-pricing-availability",
+        "google-ai-news-october-2026"
       ]
     }
   ],
   "capabilities": [
     {
-      "text": "複雑なコード作成、財務分析、法務の作業向けに最先端の推論機能を提供します。",
+      "text": "一度に最大100万トークンを扱い、表計算やPDFなどをまとめて分析できます。",
+      "sources": [
+        "gemini-4-neon-pricing-availability"
+      ]
+    },
+    {
+      "text": "複数のファイルをまたいで不具合を調べ、必要な箇所を修正する用途を想定しています。",
+      "sources": [
+        "gemini-4-neon-pricing-availability"
+      ]
+    },
+    {
+      "text": "複雑なコーディング、金融分析、法務の作業向けに考えてから答える推論モデルです。",
       "sources": [
         "google-ai-news-october-2026"
       ]
     },
     {
-      "text": "脆弱性の発見やソフトウェアの修正などサイバー防御に対応します。",
-      "sources": [
-        "gemini-4-carbon-cybersecurity-model"
-      ]
-    },
-    {
-      "text": "複数のエージェントが協調するswarm機能で大規模な開発作業に対応します。",
+      "text": "脆弱性の発見からソフトウェアの修正まで対応します。",
       "sources": [
         "gemini-4-carbon-cybersecurity-model"
       ]
@@ -57,68 +63,87 @@
   ],
   "pricing": [
     {
-      "text": "Gemini 4 Carbonの価格は、入力100万トークンあたり2ドル、出力100万トークンあたり10ドルです。",
+      "text": "日本向けのGoogle AI Proは月払いで2,900円です。",
       "sources": [
-        "gemini-4-carbon-cybersecurity-model"
+        "gemini-4-neon-pricing-availability"
       ]
     },
     {
-      "text": "キャッシュ済みの入力は、入力価格から95%引きになります。",
+      "text": "APIの料金は、入力100万トークンあたり2ドル、出力100万トークンあたり10ドルです。",
       "sources": [
-        "gemini-4-carbon-cybersecurity-model"
+        "google-ai-news-october-2026"
       ]
     }
   ],
-  "japan": [],
-  "howto": [
+  "japan": [
     {
-      "text": "有料プランの開発者と企業は、Google AI StudioのAPIとGemini for businessで利用できます。",
+      "text": "Geminiアプリ自体は日本で使え、日本語にも対応しています。",
       "sources": [
-        "gemini-4-carbon-cybersecurity-model"
+        "gemini-4-neon-pricing-availability"
       ]
     },
     {
-      "text": "Google AI Ultraのユーザーには、Google Antigravity、Geminiアプリ、Google検索のAIモードで順次展開されます。",
+      "text": "Gemini APIも日本が対応地域に入っています。",
       "sources": [
-        "gemini-4-carbon-cybersecurity-model"
+        "google-ai-news-october-2026"
+      ]
+    }
+  ],
+  "howto": [
+    {
+      "text": "GeminiアプリのProやUltra契約者が利用できます。",
+      "sources": [
+        "gemini-4-neon-pricing-availability"
+      ]
+    },
+    {
+      "text": "開発者向けにはGoogle AI StudioのAPI有料枠で順次提供されます。",
+      "sources": [
+        "gemini-4-neon-pricing-availability"
       ]
     }
   ],
   "differences": [
     {
-      "text": "Argonは大半の開発や業務に最適で、Carbonは複雑な試行錯誤が必要な高度なタスク向けです。",
+      "text": "Carbonは、長い開発作業とサイバー防御でこれまででいちばん強いモデルと説明されています。",
       "sources": [
-        "gemini-4-carbon-cybersecurity-model"
+        "google-ai-news-october-2026"
+      ]
+    },
+    {
+      "text": "Neonは、同じGemini 4のCarbonとHydrogenの間で能力と効率の両立を狙っています。",
+      "sources": [
+        "gemini-4-neon-pricing-availability"
       ]
     }
   ],
   "faq": [
     {
       "q": "いつから使える？",
-      "a": "Gemini 4 Carbonは2026年11月11日に一般提供を開始しました。",
+      "a": "対象の契約者には11月18日から順次提供されています。",
       "sources": [
-        "gemini-4-carbon-cybersecurity-model"
+        "gemini-4-neon-pricing-availability"
       ]
     },
     {
       "q": "誰に向いている？",
-      "a": "有料プランの開発者や企業、セキュリティ担当者に向いています。",
+      "a": "資料の分析やプログラム作成など、複数の手順が必要な仕事に使うモデルです。",
+      "sources": [
+        "gemini-4-neon-pricing-availability"
+      ]
+    },
+    {
+      "q": "セキュリティの強みは？",
+      "a": "脆弱性の発見やソフトウェアの修正まで対応する能力を備えています。",
       "sources": [
         "gemini-4-carbon-cybersecurity-model"
       ]
     },
     {
-      "q": "どのような強みがある？",
-      "a": "長い時間をかけて進める開発作業とサイバー防御に重点を置いています。",
+      "q": "事前学習はどう進んでいる？",
+      "a": "Google DeepMind史上最も野心的な規模で事前学習が進められています。",
       "sources": [
-        "gemini-4-carbon-cybersecurity-model"
-      ]
-    },
-    {
-      "q": "どこで利用できる？",
-      "a": "Google AI StudioのAPIやGemini for businessなどで利用できます。",
-      "sources": [
-        "gemini-4-carbon-cybersecurity-model"
+        "google-deepmind-gemini-4-agi-agent"
       ]
     }
   ],
@@ -126,12 +151,17 @@
     {
       "date": "2026-09-02",
       "slug": "google-deepmind-gemini-4-agi-agent",
-      "event": "次世代AIモデルGemini 4の事前学習を公表"
+      "event": "Gemini 4の事前学習を公表"
     },
     {
       "date": "2026-11-03",
       "slug": "google-ai-news-october-2026",
-      "event": "Gemini 4 Argonを公開"
+      "event": "Gemini 4 Argon提供済み"
+    },
+    {
+      "date": "2026-11-19",
+      "slug": "gemini-4-neon-pricing-availability",
+      "event": "Gemini 4 Neon順次提供"
     }
   ],
   "related": [
@@ -141,16 +171,18 @@
     "genie-4"
   ],
   "articles": [
+    "gemini-4-neon-pricing-availability",
     "google-ai-news-october-2026",
     "gemini-4-carbon-cybersecurity-model",
     "google-deepmind-gemini-4-agi-agent"
   ],
   "linkFrom": [
+    "gemini-4-neon-pricing-availability",
     "google-deepmind-gemini-4-agi-agent"
   ],
-  "signature": "c57150898f49aba6",
-  "primarySignature": "6dc05224191d2e31",
+  "signature": "cb1cdbbf6b21a6c1",
+  "primarySignature": "c57069f8aac822e3",
   "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-11-02T18:45:04+00:00",
-  "updatedAt": "2026-11-10T21:03:01+00:00"
+  "updatedAt": "2026-11-18T21:53:07+00:00"
 }

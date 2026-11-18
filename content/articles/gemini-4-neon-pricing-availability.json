@@ -153,5 +153,98 @@
     ],
     "ar": 1.7937,
     "src": "https://ai-tech-express.jp/img/gemini-4-neon-pricing-availability-85a99354.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "日本向け料金ページではGoogle AI Plusの欄にも「Gemini 4 Neon を利用可能」と記載されています。公開ブログのPro・Ultra契約者向けという説明とは対象プランの記載が異なるため、契約前に料金ページを確認する材料になります。",
+      "source": "https://gemini.google/jp/subscriptions/?hl=ja"
+    },
+    {
+      "text": "Google AI Proは18歳以上が対象で、自分で管理する個人のGoogleアカウントも必要です。料金だけでなく、年齢とアカウントの条件も契約前に確認しておきましょう。",
+      "source": "https://gemini.google/jp/subscriptions/?hl=ja"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "Google AI のプラン",
+      "url": "https://gemini.google/jp/subscriptions/?hl=ja",
+      "source": "https://gemini.google/jp/subscriptions/?hl=ja",
+      "note": "Google AI Proは18歳以上で、自分で管理する個人のGoogleアカウントが必要です。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "Google AIの料金ページでNeonの対象プランと使用量上限を見比べる",
+      "source": "https://gemini.google/jp/subscriptions/?hl=ja",
+      "steps": [
+        "Google AI Plus・Pro・Ultraの欄を見る",
+        "Neonへのアクセスと使用量上限を確認する"
+      ],
+      "url": "https://gemini.google/jp/subscriptions/?hl=ja"
+    },
+    {
+      "action": "APIで使う開発者は、入力・保存済み入力・出力を分けて費用を見積もる",
+      "source": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/",
+      "steps": [
+        "入力トークン数を見積もる",
+        "保存済み入力と出力も分けて見積もる",
+        "公式ブログの100万トークン当たりの料金と照らす"
+      ],
+      "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/"
+    }
+  ],
+  "cause": {
+    "text": "Googleは、複雑なソフトウェア開発、知識労働、科学の作業を速く最後まで進めるモデルとして紹介しています。用途に合わせて4段階の思考レベルを選び、性能とトークン消費を調整できると説明しています。",
+    "status": "background",
+    "source": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/"
+  },
+  "worries": [
+    {
+      "q": "Google AI PlusでもNeonを使えるのでしょうか？",
+      "a": "日本向け料金ページでは、Google AI Plusの欄に「Gemini 4 Neon を利用可能」とあります。一方、公開ブログはGeminiアプリの対象をPro・Ultra契約者と説明しており、対象プランの記載に違いがあります。",
+      "source": "https://gemini.google/jp/subscriptions/?hl=ja",
+      "action": "契約を決める前に、日本向け料金ページで自分のプランのNeon利用条件を確認してください。"
+    },
+    {
+      "q": "Google AI Proは18歳未満でも契約できますか？",
+      "a": "Google AI Proは18歳以上のユーザーが対象です。また、自分で管理する個人のGoogleアカウントが必要と案内されています。",
+      "source": "https://gemini.google/jp/subscriptions/?hl=ja",
+      "action": "申し込む前に、年齢条件と利用するGoogleアカウントの種類を確認してください。"
+    },
+    {
+      "q": "APIなら使った分だけで、何がいくらかかりますか？",
+      "a": "入力は100万トークン当たり3ドル、保存済みの入力は0.15ドル、出力は15ドルです。保存済みの入力には、通常の入力料金に対して95％の割引が適用されます。",
+      "source": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/",
+      "action": "入力・保存済み入力・出力の量を分けて見積もり、それぞれの公式単価に当てはめてください。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "アプリ契約とAPI、どちらで使う？",
+      "situation": "Geminiアプリで資料を分析したい",
+      "recommend": "プランごとのNeon利用条件を確認する",
+      "reason": "日本向け料金ページにはGoogle AI Plus、Pro、Ultraの特典が掲載されています。月額プランの利用上限も異なるため、使いたい機能と上限を見比べてから選べます。",
+      "source": "https://gemini.google/jp/subscriptions/?hl=ja"
+    },
+    {
+      "question": "アプリ契約とAPI、どちらで使う？",
+      "situation": "自作アプリにNeonを組み込みたい",
+      "recommend": "APIの利用量から費用を見積もる",
+      "reason": "APIは入力が100万トークン当たり3ドル、保存済み入力が0.15ドル、出力が15ドルです。月額プランとは料金の見方が異なるため、各トークン数を分けて費用を見積もれます。",
+      "source": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "PlusにもNeonの記載、Proの年齢条件も確認",
+    "cause": "複雑な作業を速く進めるための設計",
+    "steps": "アプリ契約とAPI費用を用途別に確認",
+    "desk": "プラン別のNeon利用条件を確認",
+    "worries": "プランとAPI料金、契約条件の疑問",
+    "guide": "アプリ契約かAPIか、使い方で選ぶ"
+  },
+  "todayActions": [
+    "Google AIの料金ページでNeonの対象プランと使用量上限を見比べる",
+    "APIで使う開発者は、入力・保存済み入力・出力を分けて費用を見積もる"
+  ],
+  "depthAt": "2026-11-18T21:57:34+00:00"
 }

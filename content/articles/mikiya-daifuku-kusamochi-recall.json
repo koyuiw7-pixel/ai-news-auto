@@ -55,13 +55,13 @@
   "videoTitle": "健康被害の届出1件、味季屋の大福5種と草餅が2026年11月に回収へ",
   "publishedAt": "2026-11-18T21:35:07.348498+00:00",
   "generatedAt": "2026-11-18T21:35:34.822587+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/mikiya-daifuku-kusamochi-recall-figure-bd1e836e.jpg",
   "model": "openai-api:gpt-6.1-terra",
   "affiliates": [],
   "newsType": "product",
   "todayActions": [
-    "味季屋の大福4種と草餅が手元にあれば、商品名と消費期限を確認し、対象品は食べない。",
-    "対象品のレシートを持ち、あべのハルカス近鉄本店の売場係員か電話06-6624-1111に申し出る。"
+    "あべのハルカス近鉄本店で買った商品名と消費期限を、回収対象と照合する。",
+    "対象品は食べず、レシートを用意して売場か電話で回収を申し出る。"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -99,5 +99,103 @@
   "summaryLine": "味季屋の大福4種と草餅が乳成分の表示漏れで回収され、症状の届出が**1件**ありました。",
   "relatedSlugs": [
     "fujisawa-bakery-recall-chocokorone-2026"
-  ]
+  ],
+  "insight": [
+    {
+      "text": "乳成分のアレルゲン表示の欠落は、厚生労働省のページで健康への危険性「CLASSⅠ」の対象として挙げられています。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602962"
+    },
+    {
+      "text": "11月18日14時時点で回収数量は0個、回収終了予定日は11月21日です。期限前に申し出るか確認する目安になります。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602962"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "あべのハルカス近鉄本店 ウイング館地下2階イベントスペース担当",
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602962",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602962",
+      "phone": "06-6624-1111",
+      "hours": "10:00-20:00（土日祝を含む）",
+      "note": "レシートを持参し、電話または売場係員に申し出てください。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "あべのハルカス近鉄本店で買った商品名と消費期限を、回収対象と照合する。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602962",
+      "steps": [
+        "商品名が対象5商品に含まれるか確認する",
+        "消費期限が2026年11月17日または18日か確認する",
+        "販売先がウイング館地下2階イベントスペースか確認する"
+      ],
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602962"
+    },
+    {
+      "action": "対象品は食べず、レシートを用意して売場か電話で回収を申し出る。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602962",
+      "steps": [
+        "レシートを用意する",
+        "売場係員に申し出るか06-6624-1111へ電話する",
+        "電話受付は10:00-20:00（土日祝を含む）"
+      ],
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602962"
+    }
+  ],
+  "cause": {
+    "text": "回収理由は食品表示法違反で、特定原材料アレルゲンである乳成分の表示が欠落していました。厚生労働省の公開情報では、食品衛生法第20条に該当するとされています。",
+    "status": "stated",
+    "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602962"
+  },
+  "worries": [
+    {
+      "q": "回収対象の商品名と消費期限は何ですか？",
+      "a": "対象は黒豆塩大福、塩よもぎ大福、ずんだ大福、栗大福、草餅です。消費期限は5商品すべて2026年11月17日または18日で、販売先はあべのハルカス近鉄本店ウイング館地下2階イベントスペースです。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602962",
+      "action": "手元の商品名と消費期限を照合し、販売先も対象に当てはまる場合は食べずに申し出てください。"
+    },
+    {
+      "q": "乳成分のアレルギーがある人が食べるとどうなりますか？",
+      "a": "じんましん、かゆみ、腹痛、吐き気、喉の腫れなどが発生するおそれがあります。症状の届出は1件あり、11月17日夜に喉の腫れが出ましたが、11月18日現在は症状が落ち着いているとされています。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602962",
+      "action": "対象品が手元にある場合は食べず、レシートを持って売場係員か電話で回収を申し出てください。"
+    },
+    {
+      "q": "回収を申し出たあとは、返金してもらえますか？",
+      "a": "回収後の対応は返金とされています。申し出先は、あべのハルカス近鉄本店ウイング館地下2階イベントスペース担当で、レシートを持参し、電話または売場係員に申し出る案内です。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602962",
+      "action": "レシートを用意し、売場係員か06-6624-1111へ連絡して回収を申し出てください。"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "表示漏れは危険性CLASSⅠの対象",
+    "cause": "乳成分の表示が欠けた理由",
+    "steps": "対象品を確認して回収を申し出る",
+    "desk": "売場か電話で回収を相談",
+    "worries": "対象商品や返金のことが気になる"
+  },
+  "depthAt": "2026-11-18T21:57:58+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "味季屋の大福4種と草餅が回収対象に",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-18T22:00:02+00:00"
+  },
+  "imageFocus": {
+    "x": 0.505,
+    "y": 0.378,
+    "box": [
+      0.087,
+      0.042,
+      0.922,
+      0.714
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/mikiya-daifuku-kusamochi-recall-figure-bd1e836e.jpg"
+  }
 }

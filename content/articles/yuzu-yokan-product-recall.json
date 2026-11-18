@@ -54,13 +54,14 @@
   "videoTitle": "辻芙美子「柚子羊羹」が2026年11月に自主回収、対象は賞味期限2026年12月5日の198g箱入り",
   "publishedAt": "2026-11-18T21:37:14.096087+00:00",
   "generatedAt": "2026-11-18T21:37:38.707167+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/yuzu-yokan-product-recall-figure-359a4d79.jpg",
   "model": "openai-api:gpt-6.1-terra",
   "affiliates": [],
   "newsType": "product",
   "todayActions": [
-    "手元の「柚子羊羹」が198gの箱入りで、賞味期限が2026年12月5日か確認する。",
-    "対象品は料理旅館 朝日館へ料金着払いで郵送し、不明点は0746-54-0020に問い合わせる。"
+    "箱の商品名、内容量、形態、賞味期限が対象情報と一致するか確かめる",
+    "表示が対象情報と一致した人は、料理旅館 朝日館へ料金着払いで郵送する",
+    "対象か判断できない人は、朝日館へ受付時間内に電話で確認する"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -97,5 +98,112 @@
   "summaryLine": "「柚子羊羹」はカビらしきものが付着している恐れから自主回収の対象になっています",
   "relatedSlugs": [
     "fujisawa-bakery-recall-chocokorone-2026"
-  ]
+  ],
+  "insight": [
+    {
+      "text": "厚生労働省の説明では、健康への危険性を直ちに分類できない場合もCLASSⅡに分類し、その後の情報を踏まえて適切な分類に変更するとしています。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602969"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "箱の商品名、内容量、形態、賞味期限が対象情報と一致するか確かめる",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602969",
+      "steps": [
+        "商品名が「柚子羊羹」か確認する",
+        "内容量198g、箱入りか確かめる",
+        "賞味期限が令和8年12月5日か見る"
+      ],
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602969"
+    },
+    {
+      "action": "表示が対象情報と一致した人は、料理旅館 朝日館へ料金着払いで郵送する",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602969",
+      "steps": [
+        "〒639-3601 奈良県吉野郡川上村柏木154へ送る",
+        "返送後の対応は返金または商品交換"
+      ],
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602969"
+    },
+    {
+      "action": "対象か判断できない人は、朝日館へ受付時間内に電話で確認する",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602969",
+      "steps": [
+        "0746-54-0020へ電話する",
+        "受付時間は9:00-20：00"
+      ]
+    }
+  ],
+  "cause": {
+    "text": "回収理由は、柚子羊羹にカビらしきものが付着している恐れです。公開情報では、食品衛生法違反のおそれがあり、食品衛生法第20条に該当するとされています。",
+    "status": "stated",
+    "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602969"
+  },
+  "worries": [
+    {
+      "q": "対象品を返送すると、返金してもらえる？",
+      "a": "回収後の対応は「返金対応もしくは商品交換」とされています。対象品は料金着払いで料理旅館 朝日館へ郵送する方法が案内されています。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602969",
+      "action": "対象表示が一致する品を、指定住所へ料金着払いで郵送する。"
+    },
+    {
+      "q": "CLASSⅡは、どんな危険性の分類なの？",
+      "a": "公開情報では健康への危険性の程度はCLASSⅡです。厚生労働省は、直ちに分類が判断できない場合もCLASSⅡに分類し、その後の情報を踏まえて適切な分類に変更すると説明しています。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602969",
+      "action": "箱の表示が対象品と一致するか確認し、対象品は料金着払いで返送する。"
+    },
+    {
+      "q": "購入した場所を忘れても、対象か確認できる？",
+      "a": "対象商品は商品名「柚子羊羹」、内容量198g、箱入り、賞味期限は令和8年12月5日です。販売先として道の駅杉の湯川上と朝日館が記載されています。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602969",
+      "action": "箱の表示を確かめても判断できない場合は、朝日館へ受付時間内に電話する。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "手元の柚子羊羹は返送したほうがいい？",
+      "situation": "商品名・198g・箱入り・賞味期限が一致する",
+      "recommend": "対象品として返送する",
+      "reason": "対象商品は「柚子羊羹」、内容量198g、箱入り、賞味期限は令和8年12月5日です。一致する品は料金着払いで郵送でき、回収後は返金または商品交換とされています。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602969"
+    },
+    {
+      "question": "手元の柚子羊羹は返送したほうがいい？",
+      "situation": "表示が読めないなど、対象か判断できない",
+      "recommend": "朝日館に電話で確認する",
+      "reason": "対象商品は商品名・内容量・形態・賞味期限で示されています。判別できない場合は、朝日館の問い合わせ先に確認できます。受付時間は9:00-20：00です。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602969"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "CLASSⅡは後から分類が変わることもある",
+    "cause": "回収理由として公表されたこと",
+    "steps": "箱の表示を照合して返送する",
+    "worries": "返送後の対応と危険性の分類",
+    "guide": "表示が一致するかで返送を判断"
+  },
+  "depthAt": "2026-11-18T21:56:50+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "「柚子羊羹」を自主回収",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-18T21:59:51+00:00"
+  },
+  "imageFocus": {
+    "x": 0.457,
+    "y": 0.42,
+    "box": [
+      0.016,
+      0.042,
+      0.897,
+      0.798
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/yuzu-yokan-product-recall-figure-359a4d79.jpg"
+  }
 }
