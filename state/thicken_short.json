@@ -37,6 +37,14 @@
    "tries": 0,
    "why": "人が確かめた記事（Muse・編集部）"
   },
+  "aeon-topvalu-godiva-chocolate-2026": {
+   "at": "2026-11-18T18:23:26+00:00",
+   "before": 878,
+   "fetchTries": 1,
+   "status": "source-short",
+   "tries": 1,
+   "why": "元の資料が読めない・短い（458字）"
+  },
   "aeon-topvalu-greentea-price-cut": {
    "at": "2026-11-16T19:50:44+00:00",
    "before": 770,
@@ -207,6 +215,14 @@
    "status": "skipped",
    "tries": 0,
    "why": "別の切り口の記事（親の記事と同じ資料）"
+  },
+  "bird-flu-infection-report-maff-20261102": {
+   "at": "2026-11-18T18:23:26+00:00",
+   "before": 897,
+   "status": "transient",
+   "transientTries": 1,
+   "tries": 1,
+   "why": "失敗: 本文を取得できません（直接 HTTP 403 / 読み取り HTTP 401 / API Claude API を使わない（今月の予算 $4 に到達（$106.48）））: https://www.maff.go.jp/j/syouan/douei/tori/attach/pdf/index-1276.pdf"
   },
   "bleague-2026-27-salary-cap-contract": {
    "after": 1206,
@@ -438,6 +454,14 @@
    "status": "skipped",
    "tries": 0,
    "why": "まとめの記事（元の資料が1本ではない）"
+  },
+  "construction-orders-september": {
+   "at": "2026-11-18T18:23:26+00:00",
+   "before": 901,
+   "gateTries": 1,
+   "status": "not-thicker",
+   "tries": 1,
+   "why": "品質ゲートに合格しなかった（今の版のまま）"
   },
   "consumption-trend-index-september-2026": {
    "after": 1439,
@@ -716,6 +740,14 @@
    "tries": 0,
    "why": "人が確かめた記事（Muse・編集部）"
   },
+  "famima-saku-saku-triangle-cheesecake": {
+   "at": "2026-11-18T18:23:26+00:00",
+   "before": 890,
+   "gateTries": 1,
+   "status": "not-thicker",
+   "tries": 1,
+   "why": "品質ゲートに合格しなかった（今の版のまま）"
+  },
   "famima-tripster-collaboration-2026": {
    "after": 1326,
    "at": "2026-11-17T09:43:48+00:00",
@@ -879,11 +911,11 @@
    "why": "まとめの記事（元の資料が1本ではない）"
   },
   "google-ai-mode-temporary-threads": {
-   "at": "2026-11-18T09:06:04+00:00",
+   "at": "2026-11-18T18:23:26+00:00",
    "before": 568,
-   "gateTries": 1,
+   "gateTries": 2,
    "status": "not-thicker",
-   "tries": 1,
+   "tries": 2,
    "why": "品質ゲートに合格しなかった（今の版のまま）"
   },
   "google-labs-tabletop-group-spaces": {
@@ -895,12 +927,15 @@
    "why": "品質ゲートに合格しなかった（今の版のまま）"
   },
   "google-wallet-ios-us-launch": {
-   "at": "2026-11-18T09:06:04+00:00",
+   "after": 764,
+   "at": "2026-11-18T18:23:26+00:00",
+   "bar": [],
    "before": 406,
    "gateTries": 1,
-   "status": "gate-failed",
-   "tries": 1,
-   "why": "品質ゲートに合格しなかった（今の版のまま）（「なお、日本での提供については発表されておらず、現在のところ利用できません」→発表がないことは確認できますが、日本で現時点で利用できないという提供状況までは元記事に書かれていません。）"
+   "model": "gemini-3.5-flash-lite",
+   "status": "thickened",
+   "tries": 2,
+   "why": ""
   },
   "grammy-asia-pop-babymetal-lisa": {
    "at": "2026-11-17T09:43:48+00:00",
@@ -1129,6 +1164,14 @@
    "tries": 2,
    "why": "品質ゲートに合格しなかった（今の版のまま）（body に投資助言・売買のすすめの言い回しがある（「押し目買い」）。一般的な情報と判断材料の提示に直す）"
   },
+  "ipa-ai-security-bulletin-2026-11": {
+   "at": "2026-11-18T18:23:26+00:00",
+   "before": 868,
+   "gateTries": 1,
+   "status": "not-thicker",
+   "tries": 1,
+   "why": "品質ゲートに合格しなかった（今の版のまま）"
+  },
   "ipa-forum-2026-archive-release": {
    "after": 1683,
    "at": "2026-11-13T22:51:41+00:00",
@@ -1289,6 +1332,13 @@
    "tries": 2,
    "why": ""
   },
+  "jma-earthquake-alert-fix": {
+   "at": "2026-11-18T18:23:26+00:00",
+   "before": 638,
+   "status": "skipped",
+   "tries": 0,
+   "why": "まとめの記事（元の資料が1本ではない）"
+  },
   "jma-seismic-volcanic-activity-october": {
    "after": 1776,
    "at": "2026-11-14T21:40:45+00:00",
@@ -1335,6 +1385,14 @@
    "status": "skipped",
    "tries": 0,
    "why": "まとめの記事（元の資料が1本ではない）"
+  },
+  "kansai-wide-area-bousai-test-2026": {
+   "at": "2026-11-18T18:23:26+00:00",
+   "before": 902,
+   "gateTries": 1,
+   "status": "gate-failed",
+   "tries": 1,
+   "why": "品質ゲートに合格しなかった（今の版のまま）（「価格=無料（モニター参加）」→元記事は参加者募集やデジタルギフトのキャンペーンに触れていますが、参加が無料とは記していません。）"
   },
   "katsushika-deer-captured": {
    "at": "2026-11-17T09:43:48+00:00",
@@ -1420,6 +1478,14 @@
    "status": "skipped",
    "tries": 0,
    "why": "まとめの記事（元の資料が1本ではない）"
+  },
+  "kirin-business-pet-bottle-recycling": {
+   "at": "2026-11-18T18:23:26+00:00",
+   "before": 883,
+   "gateTries": 1,
+   "status": "not-thicker",
+   "tries": 1,
+   "why": "後処理のあと 1156字（1183字に届かない）"
   },
   "kirin-honshibori-apple-2026": {
    "after": 950,
@@ -2020,6 +2086,13 @@
    "tries": 1,
    "why": ""
   },
+  "nagasaki-earthquake-rakuten": {
+   "at": "2026-11-18T18:23:26+00:00",
+   "before": 433,
+   "status": "skipped",
+   "tries": 0,
+   "why": "まとめの記事（元の資料が1本ではない）"
+  },
   "nagatanien-food-price-increase": {
    "at": "2026-11-18T09:06:04+00:00",
    "before": 1184,
@@ -2431,11 +2504,11 @@
    "why": "人が確かめた記事（Muse・編集部）"
   },
   "ppih-tax-free-refund-fee-free": {
-   "at": "2026-11-18T09:06:04+00:00",
+   "at": "2026-11-18T18:23:26+00:00",
    "before": 860,
-   "gateTries": 1,
+   "gateTries": 2,
    "status": "not-thicker",
-   "tries": 1,
+   "tries": 2,
    "why": "品質ゲートに合格しなかった（今の版のまま）"
   },
   "prime-minister-asean-apec-visit-2026": {
@@ -2476,6 +2549,13 @@
   "quake-20261108010441": {
    "at": "2026-11-12T05:52:06+00:00",
    "before": 882,
+   "status": "skipped",
+   "tries": 0,
+   "why": "災害の記事（専用の手順で更新する）"
+  },
+  "quake-20261119022225": {
+   "at": "2026-11-18T18:23:26+00:00",
+   "before": 903,
    "status": "skipped",
    "tries": 0,
    "why": "災害の記事（専用の手順で更新する）"
@@ -2713,6 +2793,14 @@
    "tries": 0,
    "why": "人が確かめた記事（Muse・編集部）"
   },
+  "shizuoka-kodomo-nomihodai-kippu-2026": {
+   "at": "2026-11-18T18:23:26+00:00",
+   "before": 868,
+   "status": "transient",
+   "transientTries": 1,
+   "tries": 1,
+   "why": "失敗: 本文を取得できません（読み取り HTTP 401 / API Claude API を使わない（今月の予算 $4 に到達（$106.48）））: https://jr-central.co.jp/news/release/nws000001_00642.html"
+  },
   "shopify-cto-codex-ai-prototyping": {
    "at": "2026-11-12T05:52:06+00:00",
    "before": 1435,
@@ -2784,12 +2872,12 @@
    "why": ""
   },
   "soumu-fee-revision-2026": {
-   "at": "2026-11-18T09:06:04+00:00",
+   "at": "2026-11-18T18:23:26+00:00",
    "before": 865,
-   "gateTries": 1,
-   "status": "gate-failed",
-   "tries": 1,
-   "why": "品質ゲートに合格しなかった（今の版のまま）（タイトル「消防士や警備員の資格証の写真書換え、1,800円に値上げへ」→元資料で写真書換え手数料が1,600円から1,800円になるのは危険物取扱者免状と消防設備士免状であり、警備員関係の資格者証の書換えは確認済み資料では1,800円から2）"
+   "gateTries": 2,
+   "status": "not-thicker",
+   "tries": 2,
+   "why": "品質ゲートに合格しなかった（今の版のまま）"
   },
   "soumu-ict-economics-r8-01": {
    "at": "2026-11-13T17:22:23+00:00",
@@ -2965,6 +3053,14 @@
    "tries": 1,
    "why": ""
   },
+  "tokyo-energy-support-sme": {
+   "at": "2026-11-18T18:23:26+00:00",
+   "before": 895,
+   "fetchTries": 1,
+   "status": "source-short",
+   "tries": 1,
+   "why": "元の資料が読めない・短い（537字）"
+  },
   "tokyo-gas-dec-2026-gas-price-adjustment": {
    "at": "2026-11-16T19:50:44+00:00",
    "before": 1435,
@@ -3044,6 +3140,14 @@
    "status": "skipped",
    "tries": 0,
    "why": "まとめの記事（元の資料が1本ではない）"
+  },
+  "toyota-grmn-corolla-application-starts": {
+   "at": "2026-11-18T18:23:26+00:00",
+   "before": 875,
+   "gateTries": 1,
+   "status": "gate-failed",
+   "tries": 1,
+   "why": "品質ゲートに合格しなかった（今の版のまま）（本文冒頭「応募受付を12月4日から始めます」→受付期間は11月11日11時から11月22日23時55分までで、日付が誤っています。）"
   },
   "toyota-land-cruiser-fj-options": {
    "at": "2026-11-18T09:06:04+00:00",
@@ -3184,6 +3288,14 @@
    "status": "skipped",
    "tries": 0,
    "why": "人が確かめた記事（Muse・編集部）"
+  },
+  "under-10m-yen-bankruptcy-october-2026": {
+   "at": "2026-11-18T18:23:26+00:00",
+   "before": 888,
+   "gateTries": 1,
+   "status": "gate-failed",
+   "tries": 1,
+   "why": "品質ゲートに合格しなかった（今の版のまま）（「年間平均が40件台後半で高止まり」→ 元記事が示すのは2023年以降の年間平均が40件を上回ることと、2026年1〜10月の月平均42.7件であり、「40件台後半」は裏付けられていません。）"
   },
   "uniqlo-fleece-button-pullover-sale": {
    "at": "2026-11-14T07:59:49+00:00",
@@ -3475,6 +3587,12 @@
   {
    "at": "2026-11-18T09:06:04+00:00",
    "thickened": 3,
+   "tried": 15,
+   "usd": 0.0
+  },
+  {
+   "at": "2026-11-18T18:23:26+00:00",
+   "thickened": 1,
    "tried": 15,
    "usd": 0.0
   }
