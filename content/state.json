@@ -4683,15 +4683,6 @@
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026111008"
     },
-    "00829269e89181f3": {
-      "at": "2026-11-04T03:57:04.107139+00:00",
-      "major": true,
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "score": 90,
-      "section": "ai",
-      "slug": "chrome-157-release-notes",
-      "url": "https://chromestatus.com/release-notes/157"
-    },
     "009fa193f9a59ece": {
       "at": "2026-11-15T03:46:03.836891+00:00",
       "costUsd": 0.0157,
@@ -11388,13 +11379,6 @@
       "section": "business",
       "slug": "pension-revision-rules-guide",
       "url": "https://www.nli-research.co.jp/topics_detail1/id=87298?site=nli"
-    },
-    "60e8d80f76ce81f6": {
-      "at": "2026-11-04T03:53:47.957887+00:00",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "reason": "元記事は公表の告知と資料へのリンクだけで、マネタリーベースの数値や前月比などの中身が本文に含まれていません。確認できない数字で記事を書くと事実の裏付けがないため、今回は公開しません。PDFの本文を取得できれば改めて作成します。",
-      "skipped": true,
-      "url": "http://www.boj.or.jp/statistics/boj/other/mb/mb.htm"
     },
     "6108baa9bd6b1839": {
       "at": "2026-11-12T06:49:23.820826+00:00",
@@ -19336,6 +19320,19 @@
       "slug": "smile-e-point-unauthorized-exchange-ecomegane",
       "url": "https://nttse.com/news/pressrelease/2026/11-06/3292/"
     },
+    "d8c8d359d48e2a0f": {
+      "at": "2026-11-18T04:11:17.897640+00:00",
+      "costUsd": 0.0038,
+      "intent": "query",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "score": 100,
+      "section": "lifestyle",
+      "slug": "your-cellar-email-leak",
+      "url": "https://www.kirinholdings.com/jp/newsroom/release/2026/1118_03.pdf"
+    },
     "d8fa341b96c36837": {
       "at": "2026-11-05T15:22:56.109583+00:00",
       "mix": "enterprise_dev",
@@ -24408,58 +24405,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-16T08:13:42.398295+00:00",
-      "attempt": 1,
-      "id": "127a8c9ac839062e",
-      "kind": "broad",
-      "model": "gemini-3.5-flash",
-      "problems": [
-        "読めなかった開示資料（https://www.jfa.jp/social_action_programme/SDGs_report.pdf）があるのに「発表されていません」と書いている。資料を確かめられていないことは「未発表」と言い切らない（その文を消すか、「発表の本文では触れていません」のように確かめた範囲を書く）（"
-      ],
-      "readability": {
-        "avg_paragraph": 128.7,
-        "avg_sentence": 52.4,
-        "long_share": 0.37,
-        "max_paragraph": 224,
-        "paragraphs": 11,
-        "sentences": 27
-      },
-      "score": null,
-      "source": "jfa",
-      "title": "キリンチャレンジカップ2026 開催中止のお知らせ 12.30 大阪／パナソニック スタジアム 吹田 #jfa #daihyo",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（JFA・MIZUHO・THE）",
-        "読みやすさ: 文が長い（1文の平均 52.4字・60字超の文が 37% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "読みやすさ: 段落が長い（平均 128.7字・最長 224字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-16T08:14:01.962469+00:00",
-      "attempt": 1,
-      "id": "127a8c9ac839062e",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 128.7,
-        "avg_sentence": 52.4,
-        "long_share": 0.37,
-        "max_paragraph": 224,
-        "paragraphs": 11,
-        "sentences": 27
-      },
-      "score": 90,
-      "source": "jfa",
-      "title": "キリンチャレンジカップ2026 開催中止のお知らせ 12.30 大阪／パナソニック スタジアム 吹田 #jfa #daihyo",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（JFA・MIZUHO・THE）",
-        "読みやすさ: 文が長い（1文の平均 52.4字・60字超の文が 37% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "読みやすさ: 段落が長い（平均 128.7字・最長 224字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-16T08:14:28.516611+00:00",
@@ -31886,6 +31831,58 @@
       "warnings": [
         "見出しの書き方: 区切りの全角空白が2つ以上（補足は1つだけ）",
         "初めて出たところで言い換えていない略語（JR）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-18T04:10:45.527739+00:00",
+      "attempt": 1,
+      "id": "d8c8d359d48e2a0f",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "「連絡が届かない人に何も変わりはありません」→対象者への連絡は特定後に個別に行うとありますが、連絡が届かない人への影響について元記事に記載はなく、根拠のない安心を与えています。",
+        "「直接の金銭被害は発表されていません」→元記事は個人情報の不正利用などの二次被害が未確認としていますが、金銭被害の発表状況には触れていません。",
+        "「窓口へ問い合わせると確認できます」→窓口の案内はありますが、問い合わせれば漏えい対象か確認できるとは元記事に明記されていません。"
+      ],
+      "readability": {
+        "avg_paragraph": 80.5,
+        "avg_sentence": 37.8,
+        "long_share": 0.094,
+        "max_paragraph": 141,
+        "paragraphs": 15,
+        "sentences": 32
+      },
+      "score": 84,
+      "source": "kirin",
+      "title": "業務委託先への不正アクセスによるお客様情報漏えいに関するお詫びとお知らせ（第3報）",
+      "warnings": [
+        "見出しが48字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（EC・GMO・DRINX）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-18T04:11:09.812325+00:00",
+      "attempt": 1,
+      "id": "d8c8d359d48e2a0f",
+      "kind": "broad",
+      "model": "openai-api:gpt-6-luna",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 74.3,
+        "avg_sentence": 38.4,
+        "long_share": 0.103,
+        "max_paragraph": 132,
+        "paragraphs": 15,
+        "sentences": 29
+      },
+      "score": 100,
+      "source": "kirin",
+      "title": "業務委託先への不正アクセスによるお客様情報漏えいに関するお詫びとお知らせ（第3報）",
+      "warnings": [
+        "見出しが48字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（EC・GMO・DRINX）"
       ]
     }
   ],
