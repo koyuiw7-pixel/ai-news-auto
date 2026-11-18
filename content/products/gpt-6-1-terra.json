@@ -6,7 +6,7 @@
   "companyName": "OpenAI",
   "category": "AIモデル",
   "overview": {
-    "text": "GPT-6.1 Terraは、日常業務やパソコン操作を速く安くこなすためのAIモデルです。提供元はOpenAIで、2026年10月26日に発表されました。",
+    "text": "GPT-6.1 Terraは、日常的な事務作業やパソコン操作を速く安くこなすAIモデルです。OpenAIが2026年10月26日に発表しました。",
     "sources": [
       "openai-gpt-6-1-terra-announcement"
     ]
@@ -14,7 +14,7 @@
   "facts": [
     {
       "label": "料金",
-      "value": "入力100万トークン1ドル、出力5ドル",
+      "value": "入力100万トークン1ドル",
       "sources": [
         "openai-gpt-6-1-terra-announcement"
       ]
@@ -23,59 +23,46 @@
       "label": "提供開始",
       "value": "2026年10月26日",
       "sources": [
-        "gpt-6-1-terra-sol-astra-comparison"
+        "openai-gpt-6-1-terra-announcement"
       ]
     },
     {
       "label": "向いている人",
-      "value": "日常の事務作業やデータ処理を行う開発者・企業",
+      "value": "開発者および業務自動化を求める企業",
       "sources": [
-        "openai-gpt-61-terra-amazon-bedrock",
-        "gpt-6-1-terra-sol-astra-comparison"
+        "openai-gpt-6-1-terra-announcement"
       ]
     }
   ],
   "capabilities": [
     {
-      "text": "請求書の画像を読み取り、会計ソフトへ転記する作業ができます。",
+      "text": "請求書の画像を読み取り、内容を会計ソフトへ転記する作業ができます。",
       "sources": [
         "chatgpt-gpt-6-1-terra-plans-guide"
       ]
     },
     {
-      "text": "一度に最大100万トークンの入力に対応し、長い契約書や仕様書を読み込めます。",
+      "text": "最大100万トークンの入力に対応し、長い契約書を読み込めます。",
       "sources": [
         "openai-gpt-61-terra-amazon-bedrock"
       ]
     },
     {
-      "text": "Terminal-Bench 4.0の最大の推論設定で50.3%を解くコーディング能力を持ちます。",
+      "text": "コマンドラインでの問題を解くTerminal-Bench 4.0で50.3%を記録しました。",
       "sources": [
         "openai-gpt-6-1-terra-announcement"
-      ]
-    },
-    {
-      "text": "提案書のドラフト作成や技術図面の読み取り、フォームの自動入力が行えます。",
-      "sources": [
-        "chatgpt-gpt-6-1-terra-plans-guide"
       ]
     }
   ],
   "pricing": [
     {
-      "text": "APIの標準料金は、入力100万トークンあたり1ドル、出力5ドルです。",
+      "text": "入力は100万トークンあたり1ドル、出力は5ドルです。",
       "sources": [
         "openai-gpt-6-1-terra-announcement"
       ]
     },
     {
-      "text": "キャッシュされた入力は100万トークンあたり0.05ドルです。",
-      "sources": [
-        "openai-gpt-6-1-terra-announcement"
-      ]
-    },
-    {
-      "text": "ChatGPT WorkやCodexの対象有料プランでは、追加料金なしで利用できます。",
+      "text": "ChatGPT Plusなどの有料プランに含まれており、追加料金なしで利用できます。",
       "sources": [
         "chatgpt-gpt-6-1-terra-plans-guide"
       ]
@@ -83,7 +70,7 @@
   ],
   "japan": [
     {
-      "text": "ChatGPTとOpenAIのAPIは日本で利用できます。",
+      "text": "日本のユーザーもChatGPTから利用できます。",
       "sources": [
         "openai-gpt-6-1-terra-announcement"
       ]
@@ -91,40 +78,27 @@
   ],
   "howto": [
     {
-      "text": "ChatGPT WorkやCodexで、Plus、Pro、Enterprise、Eduのプランに加入して選びます。",
+      "text": "ChatGPTの有料プランに加入し、モデル選択メニューから選択します。",
       "sources": [
-        "gpt-6-1-terra-sol-astra-comparison"
+        "chatgpt-gpt-6-1-terra-plans-guide"
       ]
     },
     {
       "text": "開発者はOpenAI APIでモデル名に「gpt-6.1-terra」を指定します。",
       "sources": [
-        "gpt-6-1-terra-sol-astra-comparison"
-      ]
-    },
-    {
-      "text": "GitHub Copilotの対象プランなら、モデル選択画面から選べます。",
-      "sources": [
-        "gpt-6-1-terra-sol-astra-comparison"
+        "openai-gpt-6-1-terra-announcement"
       ]
     }
   ],
   "differences": [
     {
-      "text": "API単価が前モデルのGPT-5.6 TerraやGPT-6.1 Solより50%安くなっています。",
+      "text": "前モデルのGPT-5.6 Terraと比べてAPI料金が50%安くなりました。",
       "sources": [
-        "chatgpt-work-complete-guide-features-matome",
-        "openai-gpt-61-terra-amazon-bedrock"
+        "openai-gpt-6-1-terra-announcement"
       ]
     },
     {
-      "text": "Agents' Last Examの評価で、GPT-5.6 Terraを15ポイント上回っています。",
-      "sources": [
-        "openai-gpt-61-terra-amazon-bedrock"
-      ]
-    },
-    {
-      "text": "誤りを誘う質問での誤答率が、低い推論設定で53.6%から16.7%に低下しました。",
+      "text": "中程度の推論設定で、GPT-5.6 Terraより15ポイント高いスコアを出します。",
       "sources": [
         "openai-gpt-6-1-terra-announcement"
       ]
@@ -132,38 +106,31 @@
   ],
   "faq": [
     {
-      "q": "SolやAstraとの違いは？",
-      "a": "Terraは速度とコストのバランス型です。最難関のコーディングにはSolやAstraが向いています。",
-      "sources": [
-        "gpt-6-1-terra-sol-astra-comparison"
-      ]
-    },
-    {
       "q": "いつから使える？",
-      "a": "2026年10月26日の発表当日から提供が始まっています。",
+      "a": "2026年10月26日から提供が始まっています。",
       "sources": [
-        "gpt-6-1-terra-sol-astra-comparison"
-      ]
-    },
-    {
-      "q": "GitHub Copilotで使える？",
-      "a": "Pro、Pro+、Max、Business、Enterpriseの各プランで一般提供されています。",
-      "sources": [
-        "chatgpt-gpt-6-1-terra-plans-guide"
+        "openai-gpt-6-1-terra-announcement"
       ]
     },
     {
       "q": "誰に向いている？",
-      "a": "日々の問い合わせ対応や文書作成、定型操作の自動化を行いたい人に向いています。",
+      "a": "件数の多い定型業務を安く自動化したい開発者や企業に向いています。",
       "sources": [
-        "openai-gpt-61-terra-amazon-bedrock"
+        "openai-gpt-6-1-terra-announcement"
+      ]
+    },
+    {
+      "q": "対応しているプランは？",
+      "a": "ChatGPTのPlus、Pro、Enterprise、Eduなどで利用できます。",
+      "sources": [
+        "openai-gpt-6-1-terra-announcement"
       ]
     }
   ],
   "timeline": [
     {
       "date": "2026-10-26",
-      "slug": "gpt-6-1-terra-sol-astra-comparison",
+      "slug": "openai-gpt-6-1-terra-announcement",
       "event": "GPT-6.1 Terraを発表"
     },
     {
@@ -191,9 +158,9 @@
     "openai-gpt-6-1-terra-announcement",
     "gpt-6-1-terra-sol-astra-comparison"
   ],
-  "signature": "dceb79f8ef81ae35",
+  "signature": "db041982601d5206",
   "primarySignature": "a96c91ca40889126",
   "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-10-27T10:32:48+00:00",
-  "updatedAt": "2026-11-15T23:52:10+00:00"
+  "updatedAt": "2026-11-18T23:55:43+00:00"
 }

@@ -81,9 +81,8 @@
     }
   ],
   "todayActions": [
-    "info@tscubic.com から届くメールがないか、受信箱と迷惑メールフォルダを確認する",
-    "TOYOTA Walletを装う不審なメールは、リンクを開かずに03-4326-8522（東京）などへ確認する",
-    "不明点は、9:00～17:30受付のTOYOTA Walletお問い合わせデスクに問い合わせる"
+    "対象か確認したい人は、TOYOTA Walletお問い合わせデスクへ電話する",
+    "不審なメールのリンク先でIDやパスワードを入力した人は、使い回しているパスワードを変更する"
   ],
   "publicInterest": "breach",
   "incident": {
@@ -127,5 +126,85 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/toyota-wallet-karte-unauthorized-access-figure-397824af.jpg"
-  }
+  },
+  "officialDesk": [
+    {
+      "name": "TOYOTA Walletお問い合わせデスク",
+      "url": "https://tscubic.com/toyota-wallet/information/2026/20261118-01/",
+      "source": "https://tscubic.com/toyota-wallet/information/2026/20261118-01/",
+      "phone": "東京：03-4326-8522、名古屋：052-728-8522",
+      "hours": "9:00～17:30 年中無休（年末年始除く）",
+      "note": "本事案について不明な点がある場合の問い合わせ先です。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "対象か確認したい人は、TOYOTA Walletお問い合わせデスクへ電話する",
+      "source": "https://tscubic.com/toyota-wallet/information/2026/20261118-01/",
+      "steps": [
+        "東京または名古屋の窓口を選ぶ",
+        "受付時間内に電話する"
+      ],
+      "url": "https://tscubic.com/toyota-wallet/information/2026/20261118-01/"
+    },
+    {
+      "action": "不審なメールのリンク先でIDやパスワードを入力した人は、使い回しているパスワードを変更する",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "steps": [
+        "入力したIDやパスワードを確認する",
+        "同じものを使う全サービスで速やかに変更する"
+      ],
+      "url": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html"
+    }
+  ],
+  "cause": {
+    "text": "TOYOTA Walletで使用している外部サービス「KARTE」で第三者による不正アクセスが発生しました。TOYOTA Walletのシステム自体への不正アクセスは確認されておらず、プレイドが事実確認と原因究明を進めています。",
+    "status": "investigating",
+    "source": "https://tscubic.com/toyota-wallet/information/2026/20261118-01/"
+  },
+  "worries": [
+    {
+      "q": "漏れたお客様番号だけでログインや決済をされる？",
+      "a": "お客様番号は社内管理に使う識別番号で、ログインIDではありません。番号だけでは本人の特定、TOYOTA Walletへのログイン、決済、各種サービスの利用はできないと発表されています。",
+      "source": "https://tscubic.com/toyota-wallet/information/2026/20261118-01/",
+      "action": "不明な点があれば、TOYOTA Walletお問い合わせデスクへ受付時間内に電話してください。"
+    },
+    {
+      "q": "TOYOTA Walletのシステム自体にも侵入されたの？",
+      "a": "不正アクセスが発生したのは、TOYOTA Walletが使用している外部サービス「KARTE」です。TOYOTA Walletのシステム自体への不正アクセスは確認されていないと発表されています。",
+      "source": "https://tscubic.com/toyota-wallet/information/2026/20261118-01/",
+      "action": "個別の不明点は、TOYOTA Walletお問い合わせデスクに確認してください。"
+    },
+    {
+      "q": "アプリの機能は全部使えなくなっているの？",
+      "a": "不正アクセス事案の影響で一部の機能は停止中ですが、それ以外のTOYOTA Walletアプリの機能は通常どおり利用できると発表されています。",
+      "source": "https://tscubic.com/toyota-wallet/information/2026/20261118-01/",
+      "action": "利用したい機能について不明な点があれば、TOYOTA Walletお問い合わせデスクに確認してください。"
+    },
+    {
+      "q": "info@tscubic.comからのメールなら本物と考えていい？",
+      "a": "警察庁は、メールの送信元名称やメールアドレスは偽装でき、表示だけで真偽を判断するのは困難と説明しています。メールアプリによっては表示項目が少ない場合もあるとしています。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "action": "メール内のリンクは開かず、事前に登録した公式サイトや公式アプリから確認してください。",
+      "general": true
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "送信元がinfo@tscubic.comなら信じていい？",
+      "situation": "表示された送信元が案内と一致する",
+      "recommend": "表示だけで本物と決めない",
+      "reason": "警察庁は、メールの送信元名称やメールアドレスは偽装でき、表示だけで真偽を判断するのは困難と説明しています。メール内のリンクを使わず、公式サイトや公式アプリから確認する方法も示しています。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "general": true
+    }
+  ],
+  "depthHeadings": {
+    "cause": "KARTEで起きた不正アクセスの調査状況",
+    "steps": "対象確認と、入力してしまった場合の対応",
+    "desk": "TOYOTA Walletへの問い合わせ先",
+    "worries": "決済やアプリ、届いたメールは大丈夫？",
+    "guide": "メールの送信元だけで信じてよいか"
+  },
+  "depthAt": "2026-11-18T23:56:25+00:00"
 }
