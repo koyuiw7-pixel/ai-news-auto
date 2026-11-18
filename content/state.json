@@ -1390,7 +1390,7 @@
     }
   },
   "major_tries": {
-    "50e3ea47cbae988d": 2
+    "50e3ea47cbae988d": 3
   },
   "pi_reopened": {
     "25d126f469e81252": "2026-11-15T17:50:53.256695+00:00",
@@ -24026,31 +24026,6 @@
   "quality_log": [
     {
       "accepted": true,
-      "at": "2026-11-16T16:54:58.837831+00:00",
-      "attempt": 1,
-      "id": "1a45a81e9082a5e2",
-      "kind": "ai",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 82.2,
-        "avg_sentence": 48.6,
-        "long_share": 0.227,
-        "max_paragraph": 131,
-        "paragraphs": 13,
-        "sentences": 22
-      },
-      "score": 90,
-      "source": "google-blog-all",
-      "title": "New AI training performance benchmarks for Google TPUs",
-      "warnings": [
-        "見出しが63字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（TPU）",
-        "読みやすさ: 文が長い（1文の平均 48.6字・60字超の文が 23% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
       "at": "2026-11-16T16:55:18.901321+00:00",
       "attempt": 0,
       "id": "1a45a81e9082a5e2",
@@ -31498,6 +31473,28 @@
         "avg_sentence": 39.0,
         "long_share": 0.033,
         "max_paragraph": 127,
+        "paragraphs": 14,
+        "sentences": 30
+      },
+      "score": null,
+      "source": "google-deepmind-blog",
+      "title": "Genie 4 is now available"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-18T18:28:11.877422+00:00",
+      "attempt": 1,
+      "id": "50e3ea47cbae988d",
+      "kind": "ai",
+      "model": "openai-api:gpt-6.1-terra",
+      "problems": [
+        "題名で料金・価格を約束しているのに、本文に金額（円・ドル・無料など）が無い。元記事の金額を書くか、題名から料金の話を外す"
+      ],
+      "readability": {
+        "avg_paragraph": 77.0,
+        "avg_sentence": 35.9,
+        "long_share": 0.033,
+        "max_paragraph": 106,
         "paragraphs": 14,
         "sentences": 30
       },
