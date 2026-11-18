@@ -6,89 +6,75 @@
   "companyName": "OpenAI",
   "category": "開発ツール",
   "overview": {
-    "text": "Codexは、プログラムの作成や修正をAIに任せられるOpenAIのコード生成支援モデルです。開発プロセスの効率化や自律開発エージェントの基盤として、企業の社内開発や法務・金融などの様々なツールに活用されています。",
+    "text": "Codexは、プログラムの作成や修正をAIに任せるOpenAIの開発支援ツールです。2026年10月の発表では、非エンジニアによる業務ツールの内製化や障害の自動復旧などの事例が紹介されています。",
     "sources": [
       "chatgpt-codex-shared-usage-limits",
-      "sullivan-cromwell-openai-codex-legal-tool",
-      "openai-codex-benefit-street-partners-financial-tool"
+      "openai-codex-astra-merge-ceo-interview",
+      "openai-codex-production-monitoring-demo"
     ]
   },
   "facts": [
     {
-      "label": "料金",
-      "value": "API従量課金、有料プランあり",
+      "label": "提供開始",
+      "value": "提供中（機能により一部プレビューや準備中）",
       "sources": [
-        "cultfit-codex-internal-apps",
-        "sullivan-cromwell-openai-codex-legal-tool",
-        "openai-codex-benefit-street-partners-financial-tool"
+        "amplitude-wave-openai-product-improvements",
+        "openai-codex-astra-merge-ceo-interview",
+        "openai-codex-production-monitoring-demo"
       ]
     },
     {
       "label": "日本での提供",
-      "value": "ChatGPTやAPIが利用可能",
+      "value": "ChatGPTやAPIは利用可能",
       "sources": [
         "cultfit-codex-internal-apps",
-        "openai-codex-benefit-street-partners-financial-tool",
-        "gamma-ceo-openai-innovation-velocity"
+        "openai-codex-astra-merge-ceo-interview"
       ]
     }
   ],
   "capabilities": [
     {
-      "text": "システム障害の自動検知から原因特定、修正パッチの生成や適用までを自動化できます。",
+      "text": "自然言語の指示をもとにプログラムのコードを自動生成や修正します。",
+      "sources": [
+        "amplitude-wave-openai-product-improvements",
+        "openai-codex-astra-merge-ceo-interview"
+      ]
+    },
+    {
+      "text": "障害発生時にログやコードの差分を分析し、数分で自動修正パッチを作成します。",
       "sources": [
         "openai-codex-production-monitoring-demo"
       ]
     },
     {
-      "text": "自然言語の指示から、金融データや契約書を分析するカスタムアプリケーションを内製できます。",
+      "text": "非エンジニアでもプログラミングなしで業務用の社内アプリや分析ツールを自作できます。",
+      "sources": [
+        "cultfit-codex-internal-apps",
+        "openai-codex-production-monitoring-demo"
+      ]
+    },
+    {
+      "text": "金融データの自動スクレイピングや、契約書と判例を突合した修正案の作成を支援します。",
       "sources": [
         "sullivan-cromwell-openai-codex-legal-tool",
         "openai-codex-benefit-street-partners-financial-tool"
       ]
-    },
-    {
-      "text": "非エンジニアでも社内向けの業務アプリやツールを自分で作成することができます。",
-      "sources": [
-        "cultfit-codex-internal-apps",
-        "openai-codex-astra-merge-ceo-interview"
-      ]
     }
   ],
-  "pricing": [
-    {
-      "text": "APIを利用する場合は、モデルに応じたトークン単位の従量課金制となります。",
-      "sources": [
-        "cultfit-codex-internal-apps",
-        "openai-codex-benefit-street-partners-financial-tool"
-      ]
-    },
-    {
-      "text": "12月からは、Plus、Pro、Businessの各プランでChatGPTとCodexの利用枠が共通化されます。",
-      "sources": [
-        "chatgpt-codex-shared-usage-limits"
-      ]
-    }
-  ],
+  "pricing": [],
   "japan": [
     {
       "text": "ChatGPTとOpenAIのAPIは日本から利用できます。",
       "sources": [
-        "cultfit-codex-internal-apps"
-      ]
-    }
-  ],
-  "howto": [
-    {
-      "text": "OpenAIの公式アカウントを作成し、ChatGPTの有料プランに加入するかAPI利用手続きを行います。",
-      "sources": [
+        "cultfit-codex-internal-apps",
         "openai-codex-astra-merge-ceo-interview"
       ]
     }
   ],
+  "howto": [],
   "differences": [
     {
-      "text": "従来のツールとは異なり、人間の細かな指示がなくてもAIが常識に基づいて指示の抜け漏れを自動で補完します。",
+      "text": "従来のツールでは細かい仕様の指定が必要でしたが、AIが常識や文脈を使って指示の抜け漏れを自動補完するようになりました。",
       "sources": [
         "openai-codex-astra-merge-ceo-interview"
       ]
@@ -96,31 +82,24 @@
   ],
   "faq": [
     {
-      "q": "いつから利用枠が共通化されますか？",
-      "a": "12月からPlus、Pro、Businessの3プランでChatGPTとCodexの利用枠が共通化されます。",
+      "q": "何をするツールですか？",
+      "a": "プログラムの作成や修正をAIに任せられる開発支援ツールです。",
       "sources": [
-        "chatgpt-codex-shared-usage-limits"
-      ]
-    },
-    {
-      "q": "プログラミングの知識がなくても使えますか？",
-      "a": "エンジニア以外の非技術者でも、社内アプリや分析ツールを自作した事例があります。",
-      "sources": [
-        "cultfit-codex-internal-apps",
+        "chatgpt-codex-shared-usage-limits",
         "openai-codex-astra-merge-ceo-interview"
       ]
     },
     {
-      "q": "どのような用途に活用されていますか？",
-      "a": "プログラムの作成やアプリの開発だけでなく、契約書のレビューや金融データの分析にも活用されています。",
+      "q": "プログラミングの知識がなくても使えますか？",
+      "a": "非エンジニアが社内アプリや分析ツールを自作する事例が紹介されています。",
       "sources": [
-        "sullivan-cromwell-openai-codex-legal-tool",
+        "cultfit-codex-internal-apps",
         "openai-codex-benefit-street-partners-financial-tool"
       ]
     },
     {
-      "q": "利用上限に達した場合はどうなりますか？",
-      "a": "枠が回復するのを待つか、上位プランへの変更、またはクレジットの購入を選択できます。",
+      "q": "利用枠はどう変わりますか？",
+      "a": "12月からPlusやProなどのプランで、ChatGPTと利用枠が共通化されます。",
       "sources": [
         "chatgpt-codex-shared-usage-limits"
       ]
@@ -130,7 +109,7 @@
     {
       "date": "2026-07-24",
       "slug": "gamma-ceo-openai-innovation-velocity",
-      "event": "Gamma CEOがCodexの活用を語る"
+      "event": "Gammaが開発にCodexを導入"
     },
     {
       "date": "2026-10-08",
@@ -140,27 +119,27 @@
     {
       "date": "2026-10-09",
       "slug": "openai-codex-production-monitoring-demo",
-      "event": "障害自動復旧のデモを公開"
+      "event": "障害自動復旧デモを公開"
     },
     {
       "date": "2026-10-24",
       "slug": "openai-codex-benefit-street-partners-financial-tool",
-      "event": "金融分析ツールの開発事例を公開"
+      "event": "金融分析ツールを1日で開発"
     },
     {
       "date": "2026-10-27",
       "slug": "sullivan-cromwell-openai-codex-legal-tool",
-      "event": "法律事務所でのCodex活用事例を公開"
+      "event": "法律事務所の契約書分析ツール開発を公開"
     },
     {
       "date": "2026-10-28",
       "slug": "openai-codex-astra-merge-ceo-interview",
-      "event": "MergeのCEOがCodexとAstraの活用法を語る"
+      "event": "MergeのCEOがAstra活用法を語る"
     },
     {
       "date": "2026-11-02",
       "slug": "chatgpt-codex-shared-usage-limits",
-      "event": "12月から利用枠をChatGPTと共通化へ"
+      "event": "12月からChatGPTと利用枠共通化と発表"
     },
     {
       "date": "2026-11-06",
@@ -217,9 +196,9 @@
     "stack-overflow-devday-2026-codex",
     "gamma-ceo-openai-innovation-velocity"
   ],
-  "signature": "4497e6bad4545f22",
+  "signature": "5ddbf762464571d0",
   "primarySignature": "e7e19af5d9dc4bb3",
   "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-10-27T10:42:14+00:00",
-  "updatedAt": "2026-11-15T10:51:43+00:00"
+  "updatedAt": "2026-11-18T11:06:19+00:00"
 }
