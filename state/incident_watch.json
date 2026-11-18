@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-18T04:24:43+00:00",
+  "updated": "2026-11-18T04:36:26+00:00",
   "items": {
     "breach:api接続設定不備": {
       "key": "breach:api接続設定不備",
@@ -6866,6 +6866,32 @@
       "discoveredAt": "2026-11-15T00:00:50+00:00",
       "status": "skipped",
       "reason": "規模が小さい（1,464件・下限 100,000）",
+      "needScale": false,
+      "tries": 0,
+      "dispatches": 0
+    },
+    "outage:icloudやapp@20261118": {
+      "key": "outage:icloudやapp@20261118",
+      "kind": "outage",
+      "name": "iCloudやApp",
+      "aliases": [],
+      "scale": 0,
+      "scaleText": "",
+      "title": "iCloudやApp Storeなど複数のAppleサービスで障害が発生",
+      "discovery": [
+        {
+          "source": "GIGAZINE",
+          "url": "https://gigazine.net/news/20261118-apple-down/",
+          "title": "iCloudやApp Storeなど複数のAppleサービスで障害が発生",
+          "publishedAt": "2026-11-17T22:14:00+00:00",
+          "official": false
+        }
+      ],
+      "day": "20261118",
+      "detectedAt": "2026-11-18T04:36:26+00:00",
+      "discoveredAt": "2026-11-17T22:14:00+00:00",
+      "status": "skipped",
+      "reason": "規模が分からず、伝えた発信元も1つだけ",
       "needScale": false,
       "tries": 0,
       "dispatches": 0
