@@ -77,9 +77,8 @@
     }
   ],
   "todayActions": [
-    "「CoCoRo Plus」「kids fest」「GOODS DEPO」のどれかに登録した覚えがあるか確認する",
-    "平和堂を名乗る電話・メール・SMSは、個別連絡やパスワードの確認はしないとされているため、応じない",
-    "ソニックムーブのお知らせ（sonicmoov.com/news/5ttj9ndzh）で、同社の対策の詳細を確認する"
+    "自分が対象のLINE公式アカウントに登録したか、平和堂の発表で条件を確認する",
+    "ソニックムーブのお知らせで、不正アクセスへの対策内容を確認する"
   ],
   "relatedSlugs": [
     "lifull-homes-line-comsbi-leak"
@@ -147,5 +146,72 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/heiwado-line-comsbi-data-leak-figure-b7692a7d.jpg"
-  }
+  },
+  "officialDesk": [
+    {
+      "name": "株式会社ソニックムーブ COMSBI サポート",
+      "url": "https://forms.gle/mpkmDfGMwGAVACd1A",
+      "source": "https://www.heiwado.jp/news/2026/1117_shop.html",
+      "howTo": [
+        "弊社LINE公式アカウントの運用に利用する外部サービスへの不",
+        "本件に関するお問い合わせ先",
+        "お問い合わせフォーム"
+      ]
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "自分が対象のLINE公式アカウントに登録したか、平和堂の発表で条件を確認する",
+      "source": "https://www.heiwado.jp/news/2026/1117_shop.html",
+      "steps": [
+        "平和堂の発表を開く",
+        "「対象のLINE公式アカウント」を確認する",
+        "登録時期が2026年11月10日までか確かめる"
+      ],
+      "url": "https://www.heiwado.jp/news/2026/1117_shop.html"
+    },
+    {
+      "action": "ソニックムーブのお知らせで、不正アクセスへの対策内容を確認する",
+      "source": "https://www.heiwado.jp/news/2026/1117_shop.html",
+      "steps": [
+        "ソニックムーブのお知らせを開く",
+        "不正アクセスへの対策の詳細を読む"
+      ],
+      "url": "https://sonicmoov.com/news/5ttj9ndzh"
+    }
+  ],
+  "cause": {
+    "text": "第三者が運用に使う外部サービス「COMSBI（SaaS版）」へ2026年11月9日から10日に不正アクセスし、情報を取得しました。11月10日に異常を検知して遮断しましたが、平和堂は委託先に原因の究明を求めています。",
+    "status": "investigating",
+    "source": "https://www.heiwado.jp/news/2026/1117_shop.html"
+  },
+  "worries": [
+    {
+      "q": "電話番号やカード情報まで流出したの？",
+      "a": "平和堂によると、電話番号、メールアドレス、番地以降の住所、クレジットカード情報などの決済情報は本サービスでは取得されておらず、流出対象にも含まれません。",
+      "source": "https://www.heiwado.jp/news/2026/1117_shop.html",
+      "action": "発表ページの流出情報と対象外の項目を見比べ、自分が心配している情報が含まれるか確認する。"
+    },
+    {
+      "q": "LINEのパスワードはすぐ変えたほうがいい？",
+      "a": "平和堂は、LINEアカウントのパスワード変更など、現時点で特別な手続きはないと案内しています。不正利用された認証情報は無効化・遮断済みで、二次被害は確認されていません。",
+      "source": "https://www.heiwado.jp/news/2026/1117_shop.html",
+      "action": "平和堂の発表で特別な手続きが不要と確認し、今回の件を理由にしたパスワード変更を急がない。"
+    },
+    {
+      "q": "平和堂を名乗るSMSが届いたらどうすればいい？",
+      "a": "平和堂は電話・メール・SMSなどで個別連絡せず、パスワードやクレジットカード情報を尋ねないとしています。現時点で、平和堂のLINE公式アカウントから不審なメッセージ配信などの二次被害は確認されていません。",
+      "source": "https://www.heiwado.jp/news/2026/1117_shop.html",
+      "action": "SMSやメール内のリンクは開かず、あらかじめ登録した公式サイトや公式アプリから確認する。",
+      "actionSource": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "actionGeneral": true
+    }
+  ],
+  "depthHeadings": {
+    "cause": "外部サービスへの不正アクセス、原因究明は続く",
+    "steps": "登録の有無と対策内容を確かめる",
+    "desk": "問い合わせフォームはソニックムーブへ",
+    "worries": "漏れた情報と不審な連絡への不安"
+  },
+  "depthAt": "2026-11-18T07:08:39+00:00"
 }
