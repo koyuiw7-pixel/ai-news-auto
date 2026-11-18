@@ -740,7 +740,7 @@
     "87fab0539fb2fe95412a15738ab4de4b6f170217": 2,
     "883f1e578f4aa0d619113d87162138311c172d86": 2,
     "888d9cc421c1822c9d0e7dfd28a20ce5616b293a": 2,
-    "88e677f50f31093bf89871acd1816e7e9088e77d": 1,
+    "88e677f50f31093bf89871acd1816e7e9088e77d": 2,
     "898eb62891cee2e16be9d82d40a9bb68a469fc26": 2,
     "899e0c0e563201d11f934771b2c70082d1e3310f": 2,
     "89a7ead54ac388701c0dee085744c704ce27685f": 2,
@@ -994,7 +994,7 @@
     "c0a84a74dd2b4210149bb864786e0741df5306ee": 3,
     "c0f4ada03d86b918cb0186f5bcaa1969ff6bb862": 2,
     "c107aa2d6e9d9b08eca018b37e97901ebbd9534e": 2,
-    "c113b59a2eb616e5ae11a34246bd8c4e19ea2e5b": 1,
+    "c113b59a2eb616e5ae11a34246bd8c4e19ea2e5b": 2,
     "c13bbe86281276749fc60b483f6ab5dab8bc8b1c": 2,
     "c1ac357b8e34194131f89712fe86fdf8efcd6c58": 2,
     "c20b6d33922fa0720e9289660775a502f609ee21": 2,
@@ -1192,6 +1192,7 @@
     "e860e10fa74d35044e8df32f3b4466604c6c682d": 2,
     "e8892f927c1550caa39848db7107d8ba9df15371": 2,
     "e89d905323187a823c33cb81c481a2aa6b23ec98": 2,
+    "e8a4a3acc8373438c66bca25f28308035da7ad61": 1,
     "e8b6cf53a1ee1d2bd867881543ce993ac31b253f": 3,
     "e8cdd2e9d88c4e60c9dae196fcfd5f8a6145a7cc": 2,
     "e8f284e5ef3a30e03fe8f1b5fc4511b211cfb737": 2,
@@ -1224,7 +1225,7 @@
     "ef3e2363af1471d74f25f9f26bec8ffc7c551e06": 2,
     "ef732af380f6095584a115d4a58e9d26d54a84cb": 2,
     "ef94c54d1ff23f460f72bc601d2bec8549d46095": 2,
-    "f00810db77857fab0761e93b29f9fe053241e2f2": 1,
+    "f00810db77857fab0761e93b29f9fe053241e2f2": 2,
     "f070572d887b625a87e6df3f3cfb2c8fdc15212b": 1,
     "f08c3c4cbbbb1994e4a205f13eebac5501c57947": 2,
     "f09667001c58453e444a99e31a381a2f395bb10d": 2,
@@ -10543,6 +10544,17 @@
       "reason": "trend: 公式の発表で記事にした（iphone-15-refurbished-apple-japan）",
       "skipped": true,
       "url": "https://iphone-mania.jp/sale-608784/"
+    },
+    "577faf32600bb20e9401eeb5c18feb8358d510d2": {
+      "at": "2026-11-18T18:17:01.875735+00:00",
+      "kind": "trend",
+      "model": "gemini-3.5-flash-lite",
+      "pressReport": true,
+      "score": 98,
+      "slug": "nagasaki-earthquake-rakuten",
+      "trendKeyword": "長崎 地震",
+      "trendLane": true,
+      "url": "https://corporate.japanet.co.jp/notice/20261117/"
     },
     "57865a1d5d8a712d": {
       "at": "2026-11-11T02:42:41.035714+00:00",
@@ -20065,13 +20077,6 @@
       "skipped": true,
       "url": "https://www.soumu.go.jp/main_sosiki/singi/toukei/kijun/kaigi/02shingi05_02000843.html"
     },
-    "e92adb95112b5264": {
-      "at": "2026-11-04T18:14:00.043207+00:00",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "reason": "Amazonのショッピング機能（Shop Direct Merchant Workspace）の販売者向けポータル発表で、AI・テクノロジーの技術的中身を実質的に扱っていない。小売・EC事業者向けの業務案内に当たり、ジャンルの対象範囲（AI・ソフトウェア・ハードウェア・開発ツールに関する技術発表）から外れると判断した。",
-      "skipped": true,
-      "url": "https://www.aboutamazon.com/news/retail/amazon-shop-direct-merchant-workspace?utm_source=rss"
-    },
     "e9657751164169cb": {
       "at": "2026-11-07T19:52:10.047218+00:00",
       "reason": "stale: 発表から55時間（48時間を超えた発表は通常の記事にしない）",
@@ -24017,73 +24022,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-16T16:39:52.732803+00:00",
-      "attempt": 0,
-      "id": "6a7418d1e96df8b8",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 84.5,
-        "avg_sentence": 39.0,
-        "long_share": 0.077,
-        "max_paragraph": 123,
-        "paragraphs": 12,
-        "sentences": 26
-      },
-      "score": 93,
-      "source": "nli-research",
-      "title": "QE速報：2026年7-9月期の実質ＧＤＰは前期比▲0.0％（年率▲0.1％）－民間消費の落ち込みを主因として4四半期ぶりのマイナス成長",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（GDP）",
-        "要点の1つ目がリードの文の写し。一番のニュースを、リードとは違う言い方で書く"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-16T16:40:24.457664+00:00",
-      "attempt": 1,
-      "id": "518d076fe8585766",
-      "kind": "update",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "score": 96,
-      "source": "mof",
-      "title": "システム障害に伴うメール受信不具合の復旧について"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-16T16:41:46.527088+00:00",
-      "attempt": 1,
-      "id": "90c9538fa27aa89b",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "本文「スマートフォンなどからいつでも無料で利用可能です」→ 元記事・確認済みの文脈に「無料」の記載はなく、価格の創作にあたる。",
-        "「ひとことで言うと」「誰でも無料で使えます」の見出しと本文 →「無料」は元記事に無く、見出しでも強調されているため問題。",
-        "「判定: 提供状況=available 価格=無料」→ 元記事に無い価格情報の創作。",
-        "「事故は30歳代以下が全件数の76.5％を占めており」→ 数字は確認済みの文脈（1月の警視庁ホームページ経由の情報）にあるが、記事は「警視庁の交通年鑑によると」と出典を誤って結び付けている。元記事は交通年鑑を参考として挙げるのみで、この数字の年は示されていない。",
-        "「スマートフォンやパソコンのブラウザ」→ 元記事はパソコンでの利用に触れておらず、環境の記述が元記事を超えている。"
-      ],
-      "readability": {
-        "avg_paragraph": 102.1,
-        "avg_sentence": 51.1,
-        "long_share": 0.312,
-        "max_paragraph": 135,
-        "paragraphs": 8,
-        "sentences": 16
-      },
-      "score": 55,
-      "source": "tokyo-metro",
-      "title": "「特チャレ」正式リリース！！特定小型原動機付自転車安全運転チャレンジ",
-      "warnings": [
-        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（NOP）",
-        "読みやすさ: 文が長い（1文の平均 51.1字・60字超の文が 31% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-16T16:42:37.519385+00:00",
@@ -31487,6 +31425,87 @@
       "title": "「楽天市場」、熊本地震で被害を受けた地域の事業者を支援する特設ページ「買って応援！食べて応援！ 熊本応援セレクション」を公開",
       "warnings": [
         "見出しが50字（目安40字以内）。一覧・カードでは前半だけを出す"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-18T18:16:06.253555+00:00",
+      "attempt": 1,
+      "id": "577faf32600bb20e9401eeb5c18feb8358d510d2",
+      "kind": "trend",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "タイトル「長崎の地震」→地震の震源は熊本県天草・芦北地方で、長崎県では揺れが観測されたという内容です。長崎県で発生した地震と誤解させます。",
+        "「関係各所による状況の確認が進められています」→元記事に、関係各所が状況を確認しているとの記述はありません。",
+        "「同時期に長崎市では」→楽天カードの立地協定の記事は11月10日、地震の記事は11月19日で、同時期とするのは時系列を誤解させます。"
+      ],
+      "readability": {
+        "avg_paragraph": 133.0,
+        "avg_sentence": 49.9,
+        "long_share": 0.5,
+        "max_paragraph": 167,
+        "paragraphs": 3,
+        "sentences": 8
+      },
+      "score": 72,
+      "source": "trends",
+      "title": "長崎 地震",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（TBS・NEWS・DIG）",
+        "読みやすさ: 文が長い（1文の平均 49.9字・60字超の文が 50% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "読みやすさ: 段落が長い（平均 133.0字・最長 167字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-18T18:16:25.363367+00:00",
+      "attempt": 1,
+      "id": "577faf32600bb20e9401eeb5c18feb8358d510d2",
+      "kind": "trend",
+      "model": "openai-api:gpt-6-luna",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 131.7,
+        "avg_sentence": 49.4,
+        "long_share": 0.5,
+        "max_paragraph": 167,
+        "paragraphs": 3,
+        "sentences": 8
+      },
+      "score": 98,
+      "source": "trends",
+      "title": "長崎 地震",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（TBS・NEWS・DIG）",
+        "読みやすさ: 文が長い（1文の平均 49.4字・60字超の文が 50% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "読みやすさ: 段落が長い（平均 131.7字・最長 167字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-18T18:16:55.830565+00:00",
+      "attempt": 0,
+      "id": "577faf32600bb20e9401eeb5c18feb8358d510d2",
+      "kind": "trend",
+      "model": "",
+      "problems": [
+        "読みやすさ基準外のまま受理: 書き直し後の確認に不合格: タイトル「楽天カードの新拠点設立」→ 元記事で確認できるのは立地協定の締結と今後の事業所開設計画で、すでに新拠点が設立されたと受け取れる表現は進捗を強く言い過ぎています。"
+      ],
+      "readability": {
+        "avg_paragraph": 131.7,
+        "avg_sentence": 49.4,
+        "long_share": 0.5,
+        "max_paragraph": 167,
+        "paragraphs": 3,
+        "sentences": 8
+      },
+      "score": 98,
+      "source": "trends",
+      "title": "長崎 地震",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（TBS・NEWS・DIG）",
+        "読みやすさ: 文が長い（1文の平均 49.4字・60字超の文が 50% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "読みやすさ: 段落が長い（平均 131.7字・最長 167字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
       ]
     }
   ],
