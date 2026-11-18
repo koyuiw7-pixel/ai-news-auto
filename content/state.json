@@ -5259,14 +5259,6 @@
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026111231"
     },
-    "08c83caa0e384585": {
-      "at": "2026-11-04T12:32:31.274647+00:00",
-      "model": "claude:sonnet",
-      "score": 93,
-      "section": "ai",
-      "slug": "gemini-robotics-er-2-google-cloud",
-      "url": "https://cloud.google.com/blog/ja/products/ai-machine-learning/gemini-robotics-embodied-reasoning-2-is-now-available-on-google-cloud/"
-    },
     "08da68245310bd6c": {
       "at": "2026-11-13T21:28:32.130574+00:00",
       "costUsd": 0.0146,
@@ -11830,6 +11822,13 @@
       "skipped": true,
       "url": "https://www.mhlw.go.jp/stf/newpage_77319.html"
     },
+    "687731b7d50a99a4": {
+      "at": "2026-11-18T12:34:38.615365+00:00",
+      "model": "openai-api:gpt-6.1-terra",
+      "reason": "followup quality: 「11月9日の第四報では」→ 元記事は11月9日から手続き再開としていますが、それを第四報とする記載はなく、報告番号を特定できません。",
+      "skipped": true,
+      "url": "https://www.docomo.ne.jp/info/notice/page/261118_00_m.html"
+    },
     "688f16e6a4687153": {
       "at": "2026-11-12T05:22:25.548680+00:00",
       "costUsd": 0.0138,
@@ -13172,14 +13171,6 @@
       "section": "ai",
       "slug": "nvidia-groot-2-corl-simulation",
       "url": "https://blogs.nvidia.com/blog/robotics-simulation-advancements-corl/"
-    },
-    "7ce238c684b996e7": {
-      "at": "2026-11-04T12:19:55.229451+00:00",
-      "model": "claude:sonnet",
-      "score": 92,
-      "section": "ai",
-      "slug": "torchtpu-open-source-pytorch-tpu",
-      "url": "https://cloud.google.com/blog/ja/topics/ai-infrastructure/torchtpu-is-now-open-source-run-native-pytorch-on-tpus/"
     },
     "7d05b5f2458e8b8a7ca750bce00824bd1237b915": {
       "at": "2026-11-16T05:55:43.500137+00:00",
@@ -24171,29 +24162,6 @@
   },
   "quality_log": [
     {
-      "accepted": true,
-      "at": "2026-11-16T15:26:54.080362+00:00",
-      "attempt": 0,
-      "id": "534ec91e7a5db234f0287c4375284cc6f5c0145f",
-      "kind": "trend",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 81.5,
-        "avg_sentence": 37.6,
-        "long_share": 0.0,
-        "max_paragraph": 108,
-        "paragraphs": 6,
-        "sentences": 13
-      },
-      "score": 85,
-      "source": "trends",
-      "title": "マニラ",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（OSA・AZEC・ASEAN）"
-      ]
-    },
-    {
       "accepted": false,
       "at": "2026-11-16T15:28:15.995162+00:00",
       "attempt": 1,
@@ -31636,6 +31604,20 @@
         "見出しが45字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（KARTE・EC・SMS）"
       ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-18T12:34:38.615137+00:00",
+      "attempt": 1,
+      "id": "687731b7d50a99a4",
+      "kind": "update",
+      "model": "openai-api:gpt-6.1-terra",
+      "problems": [
+        "「11月9日の第四報では」→ 元記事は11月9日から手続き再開としていますが、それを第四報とする記載はなく、報告番号を特定できません。"
+      ],
+      "score": 94,
+      "source": "docomo-notice",
+      "title": "【お詫び】ドコモオンラインショップ、My docomoの緊急メンテナンス実施について/当社サーバーへの不正アクセスによるお客さま情報流出に関するお知らせ（第五報"
     }
   ],
   "short_text_retry": {},
