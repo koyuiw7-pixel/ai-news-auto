@@ -96,7 +96,7 @@
     "0187ebd8136138e9dd6260926b0bf8b46008ccf3": 2,
     "018c94c44ce86c1ffbc3ce4e8f029f0725e22a8d": 2,
     "019b888342ef6e70a1fddae240b9c8a92227aa2d": 2,
-    "01c5de754dfab177d57e1acb37b938ef1bab964f": 1,
+    "01c5de754dfab177d57e1acb37b938ef1bab964f": 2,
     "01fabf2e2e190e2a6636270f65e509ba9d7eea83": 2,
     "0269f82fdb77239e929f5e757e09d832210990a5": 2,
     "029ad6f8729d083724721e0d2fdade990ac6af34": 2,
@@ -389,6 +389,7 @@
     "442e2fb1bcca45cafb5eb07bc85461af80b523f1": 2,
     "4455eab7c4d0fb1229a76f30a7299d216e4cac0e": 2,
     "4483458205c9f670b741cf2fb3a28b864d6db1d8": 2,
+    "44eea9782c758ad290c422882671023ff88468b0": 1,
     "44f91dba6c0d43ffe4c0190b517a3a88ee324208": 2,
     "4510c542b5f903662258ed6f75965a8d5e8b96d4": 1,
     "451c03211a860ebf19fd8c9d68416a2d05a38121": 2,
@@ -1122,6 +1123,7 @@
     "df70bbbecfcbafffe5b2e7a411b835f92df9709c": 2,
     "dfeb49fd0cb09ec9ceffcba2358722ffae620162": 2,
     "e0044a35612807353258548534ecd679669a4661": 2,
+    "e025219fd157a0dac6080834aebbe76428342418": 1,
     "e0c693177f987f7ac427a482d7cd6e09640a1f22": 2,
     "e0f3068d2b93265561638094d558aee9c83e174e": 2,
     "e0f8a5a212938a7be907d0a582780c42bbb0c2ec": 2,
@@ -6990,13 +6992,6 @@
       "slug": "claude-meetings-beta",
       "url": "https://claude.com/resources/articles/claude-meetings"
     },
-    "21b9ad530469352ed79e298118d1b253bad891fc": {
-      "at": "2026-11-04T01:57:48.878910+00:00",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "reason": "quality: 公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください",
-      "skipped": true,
-      "url": "https://eetimes.itmedia.co.jp/ee/articles/2611/02/news047.html"
-    },
     "21efe9d9333210ec": {
       "at": "2026-11-05T10:14:28.898341+00:00",
       "model": "anthropic-api:claude-haiku-5-5",
@@ -9316,6 +9311,12 @@
       "trendLane": true,
       "url": "https://news.yahoo.co.jp/articles/02bfa2db965e6df909dd078029de0b69fc9b08f2"
     },
+    "450807c2457532d64e0e8fe99c41ee0e8796b54d": {
+      "at": "2026-11-18T01:58:49.585339+00:00",
+      "reason": "trend: 重複: 固有名詞が一致（infobar・zero）: infobar-zero-kddi-release",
+      "skipped": true,
+      "url": "https://newsroom.kddi.com/news/detail/kddi_nr-1245_4832.html"
+    },
     "450ccc1c8f7f169a3f1736d6c60402ac77577f40": {
       "at": "2026-11-13T10:31:21.397650+00:00",
       "reason": "trend: 公式の発表で記事にした（asia-pro-baseball-championship-taiwan-cheer）",
@@ -9761,6 +9762,12 @@
       "reason": "prefilter: 価値の薄いお知らせ（開催について）",
       "skipped": true,
       "url": "https://www.kantei.go.jp/jp/tyoukanpress/202611/6_a.html"
+    },
+    "4b0b8cecf0d01447bd0b617107e970840d03a046": {
+      "at": "2026-11-18T01:58:45.490849+00:00",
+      "reason": "trend: 公式の発表で記事にした（mhlw-nursing-committee-7th）",
+      "skipped": true,
+      "url": "https://news.yahoo.co.jp/expert/articles/41c191f273464ae35419e5db1298b57f86ad3f1e"
     },
     "4b1197b04ca5a948": {
       "at": "2026-11-13T11:17:04.003715+00:00",
@@ -10418,12 +10425,6 @@
       "section": "ai",
       "slug": "gpt-6-cyber-aligned-security-agents",
       "url": "https://openai.com/index/introducing-gpt-6-cyber"
-    },
-    "53d51277d465aacd5d03dcf4acadb6994b79bb44": {
-      "at": "2026-11-04T01:49:24.074095+00:00",
-      "reason": "trend sources 1",
-      "skipped": true,
-      "url": "https://news.yahoo.co.jp/articles/c268b87edb0093f3a33980a1ef1e24c8e749b816"
     },
     "53de781ab1274c39": {
       "at": "2026-11-12T01:03:45.259591+00:00",
@@ -14256,6 +14257,18 @@
       "skipped": true,
       "url": "https://www.nittoatpfinals.com/ja/news/alcaraz-tiafoe-nitto-atp-finals-2026-monday"
     },
+    "8aa9660a7bd5bb1a": {
+      "at": "2026-11-18T01:52:54.645049+00:00",
+      "costUsd": 0.0443,
+      "intent": "breaking",
+      "major": true,
+      "mix": "brand",
+      "model": "openai-api:gpt-6.1-terra",
+      "score": 100,
+      "section": "tech-gadget",
+      "slug": "infobar-zero-kddi-release",
+      "url": "https://newsroom.kddi.com/news/detail/kddi_nr-1245_4832.html"
+    },
     "8aab0b887c9cb468": {
       "at": "2026-11-06T05:53:43.726756+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（部会）",
@@ -14826,13 +14839,6 @@
       "reason": "prefilter: 価値の薄いお知らせ（会議）",
       "skipped": true,
       "url": "https://www.cfa.go.jp/councils/shingikai/hinkon_hitorioya/db5ea08f"
-    },
-    "93b612d519cf77e4b14aa268b9cdd3b9e53107fd": {
-      "at": "2026-11-04T01:43:30.517432+00:00",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "reason": "quality: 公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください",
-      "skipped": true,
-      "url": "https://eetimes.itmedia.co.jp/ee/articles/2611/02/news034.html"
     },
     "93f213c8b146306d": {
       "at": "2026-11-11T06:04:53.721335+00:00",
@@ -15902,13 +15908,6 @@
       "reason": "prefilter: お知らせ・統計の転載（statistics）",
       "skipped": true,
       "url": "https://www.boj.or.jp/statistics/money/ms/ms2610.pdf"
-    },
-    "a66582ed2e2eb175addce91dcd8c3db3910baf4e": {
-      "at": "2026-11-04T01:46:56.089337+00:00",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "reason": "quality: 公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください",
-      "skipped": true,
-      "url": "https://www.nikkei.com/article/DGXZQOFL300VDTQ6A031C2000000/"
     },
     "a69cdb2fc7dee248": {
       "at": "2026-11-12T02:08:10.526182+00:00",
@@ -17621,13 +17620,6 @@
       "skipped": true,
       "url": "https://cloud.google.com/blog/products/ai-machine-learning/gemini-omni-1-2-flash-generally-available/"
     },
-    "bd77db82486b50a500f6bc90bee4f34482b22617": {
-      "at": "2026-11-04T01:49:11.275801+00:00",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "reason": "quality: 公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください",
-      "skipped": true,
-      "url": "https://kabutan.jp/news/marketnews/?b=n202611040052"
-    },
     "bd9342f2217520d0": {
       "at": "2026-11-11T05:30:41.859731+00:00",
       "costUsd": 0.1188,
@@ -18215,6 +18207,20 @@
       "skipped": true,
       "url": "https://cq.ifeng.com/c/8y390q7QSPb"
     },
+    "c72afc6720d98a07": {
+      "at": "2026-11-18T01:58:45.490644+00:00",
+      "costUsd": 0.0106,
+      "intent": "neutral",
+      "kind": "trend",
+      "mix": "",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "public",
+      "slug": "mhlw-nursing-committee-7th",
+      "trendKeyword": "看護",
+      "trendLane": true,
+      "url": "https://www.mhlw.go.jp/stf/newpage_77291.html"
+    },
     "c73d5d469180761e": {
       "at": "2026-11-07T19:52:10.047425+00:00",
       "reason": "stale: 発表から53時間（48時間を超えた発表は通常の記事にしない）",
@@ -18650,6 +18656,12 @@
       "reason": "followup: 新しい事実なし（household-consumption-survey-september-2026）",
       "skipped": true,
       "url": "https://www.soumu.go.jp/menu_news/s-news/01toukei07_01000296.html"
+    },
+    "cd7e2781973d447705c4fffd18723d2239f5f84d": {
+      "at": "2026-11-18T01:56:34.261276+00:00",
+      "reason": "trend: 報道が出典の記事の形が崩れた: 題名が報道の内容を確定した事実のように言い切っている（「〜と報道」「NHKなど」「〜か」のいずれかを入れる）",
+      "skipped": true,
+      "url": "https://www.sankei.com/article/20261117-D4PLG365MJON5NP7APFV3B4C6U/"
     },
     "cd95aed615ca864de14a8e7bc3ac16424d40050c": {
       "at": "2026-11-15T03:46:03.837101+00:00",
@@ -20293,13 +20305,6 @@
       "skipped": true,
       "url": "https://www.mext.go.jp/b_menu/saiyou/hijyoukin/1421780_00221.html"
     },
-    "e5a5675e2d1ffd241d6b2d7e041969ccd68c838e": {
-      "at": "2026-11-04T01:51:40.324156+00:00",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "reason": "quality: 公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください",
-      "skipped": true,
-      "url": "https://finance.yahoo.co.jp/news/detail/78ba3698b7b696fa28b4b36508bad08462e5ac0c"
-    },
     "e5b75fb5559cea9b": {
       "at": "2026-11-08T02:34:51.372149+00:00",
       "costUsd": 0.0098,
@@ -21530,13 +21535,6 @@
       "section": "lifestyle",
       "slug": "yonden-electricity-bill-relief-2027",
       "url": "https://www.yonden.co.jp/press/2026/__icsFiles/afieldfile/2026/11/11/pr002.pdf"
-    },
-    "fa5cf1d88191aa9356e9ecf426acce1aabb663dd": {
-      "at": "2026-11-04T01:54:23.431121+00:00",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "reason": "quality: 公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください",
-      "skipped": true,
-      "url": "https://kabutan.jp/news/marketnews/?b=n202611020205"
     },
     "fa64c96016689a62": {
       "at": "2026-11-16T18:22:20.435037+00:00",
@@ -23263,14 +23261,6 @@
       "url": "https://www.yamamori.co.jp/wp-content/uploads/2026/09/%E3%80%90PRESS-RELEASE%E3%80%91%E3%83%A4%E3%83%9E%E3%83%A2%E3%83%AA%E6%A0%AA%E5%BC%8F%E4%BC%9A%E7%A4%BE-%E6%A5%AD%E5%8B%99%E7%94%A8%E5%95%86%E5%93%81%E4%BE%A1%E6%A0%BC%E6%94%B9%E5%AE%9A%E3%81%AE%E3%81%8A%E7%9F%A5%E3%82%89%E3%81%9BHP.pdf",
       "writer": "muse"
     },
-    "muse-904b165dff": {
-      "at": "2026-11-18T01:50:35.495361+00:00",
-      "mix": "money",
-      "score": 100,
-      "slug": "smartphone-debut-family-discounts",
-      "url": "https://www.softbank.jp/corp/news/press/sbkk/2026/20261116_02/",
-      "writer": "muse"
-    },
     "muse-906060de7d": {
       "at": "2026-11-12T14:01:55.465253+00:00",
       "mix": "money",
@@ -24414,190 +24404,17 @@
       "slug": "fujiseika-kinpaku-hagoromo-recall",
       "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602845",
       "writer": "muse"
+    },
+    "muse-904b165dff": {
+      "at": "2026-11-18T01:50:35.495361+00:00",
+      "mix": "money",
+      "score": 100,
+      "slug": "smartphone-debut-family-discounts",
+      "url": "https://www.softbank.jp/corp/news/press/sbkk/2026/20261116_02/",
+      "writer": "muse"
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-16T03:33:19.098027+00:00",
-      "attempt": 1,
-      "id": "b4d3bec562b6b6b0",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 126.0,
-        "avg_sentence": 63.0,
-        "long_share": 0.5,
-        "max_paragraph": 168,
-        "paragraphs": 5,
-        "sentences": 10
-      },
-      "score": 90,
-      "source": "radar-official",
-      "title": "5g sa",
-      "warnings": [
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
-        "読みやすさ: 文が長い（1文の平均 63.0字・60字超の文が 50% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "読みやすさ: 段落が長い（平均 126.0字・最長 168字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-16T03:33:38.346390+00:00",
-      "attempt": 0,
-      "id": "b4d3bec562b6b6b0",
-      "kind": "broad",
-      "model": "",
-      "problems": [
-        "読みやすさ基準外のまま受理: 書き直し後の確認に不合格: 仕事・お金にどう活かせる？の「個人や法人の通信環境に影響」→ 元記事は「5G SAサービスをご契約のお客さま」とだけ書いており、法人契約への影響には言及していないため、対象の範囲を広げている"
-      ],
-      "readability": {
-        "avg_paragraph": 126.0,
-        "avg_sentence": 63.0,
-        "long_share": 0.5,
-        "max_paragraph": 168,
-        "paragraphs": 5,
-        "sentences": 10
-      },
-      "score": 90,
-      "source": "radar-official",
-      "title": "5g sa",
-      "warnings": [
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
-        "読みやすさ: 文が長い（1文の平均 63.0字・60字超の文が 50% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "読みやすさ: 段落が長い（平均 126.0字・最長 168字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-16T03:51:26.619946+00:00",
-      "attempt": 1,
-      "id": "9298b7130534669f",
-      "kind": "broad",
-      "model": "gemini-flash-latest",
-      "problems": [
-        "元記事・確認済みの事実の束・計算済みの数字のどれにも無い数字がある（「の請求をデジタル化 民間17社」）。元記事か束の数字に直すか、その文を削る。簡単な計算（かけ算・足し算など）をするなら、確かめた数字だけを使って式を書き「（サイソク編集部の計算）」と添える"
-      ],
-      "readability": {
-        "avg_paragraph": 132.6,
-        "avg_sentence": 63.1,
-        "long_share": 0.476,
-        "max_paragraph": 189,
-        "paragraphs": 10,
-        "sentences": 21
-      },
-      "score": null,
-      "source": "digital-agency",
-      "title": "JP PINT 民間事業者の取組（政府調達編）―デジタル庁を更新しました",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（PINT・GEPS）",
-        "読みやすさ: 文が長い（1文の平均 63.1字・60字超の文が 48% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "読みやすさ: 段落が長い（平均 132.6字・最長 189字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-16T04:02:45.083073+00:00",
-      "attempt": 1,
-      "id": "9fc3555f4f7d50a3",
-      "kind": "broad",
-      "model": "claude:sonnet",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 76.6,
-        "avg_sentence": 38.3,
-        "long_share": 0.031,
-        "max_paragraph": 144,
-        "paragraphs": 16,
-        "sentences": 32
-      },
-      "score": 92,
-      "source": "kirin",
-      "title": "業務委託先への不正アクセスによるお客様情報漏えいに関するお詫びとお知らせ",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（DRINX・EC・GMO）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-16T04:04:25.923054+00:00",
-      "attempt": 1,
-      "id": "27e6b66630f26d7c0606307988b1388ef1578e7f",
-      "kind": "trend",
-      "model": "gemini-flash-latest",
-      "problems": [
-        "今日やること・本文の「国道6号などの一般道へ迂回」→ 元記事に国道6号への迂回は無く、具体的な迂回先を創作している",
-        "本文「朝日新聞によると、現場は片側3車線の直線道路」→ 片側3車線の記載は読売新聞（県警高速隊）のもので、朝日の記事にはない。出典の取り違え",
-        "本文「現地を通らない方への直接の影響はありません」→ 元記事に無い断定で、根拠が示されていない",
-        "今日やること「土浦北ICで降りて」→ 元記事は通行止め区間を示すのみで、降りる場所の具体的な指示は元記事に無い"
-      ],
-      "readability": {
-        "avg_paragraph": 87.6,
-        "avg_sentence": 47.2,
-        "long_share": 0.154,
-        "max_paragraph": 144,
-        "paragraphs": 7,
-        "sentences": 13
-      },
-      "score": 76,
-      "source": "trends",
-      "title": "常磐道 事故 速報",
-      "warnings": [
-        "見出しの書き方: 区切りの全角空白が2つ以上（補足は1つだけ）",
-        "初めて出たところで言い換えていない略語（IC・NEXCO）",
-        "読みやすさ: 文が長い（1文の平均 47.2字・60字超の文が 15% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-16T04:04:48.169743+00:00",
-      "attempt": 1,
-      "id": "27e6b66630f26d7c0606307988b1388ef1578e7f",
-      "kind": "trend",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 74.4,
-        "avg_sentence": 47.4,
-        "long_share": 0.182,
-        "max_paragraph": 122,
-        "paragraphs": 7,
-        "sentences": 11
-      },
-      "score": 92,
-      "source": "trends",
-      "title": "常磐道 事故 速報",
-      "warnings": [
-        "見出しの書き方: 区切りの全角空白が2つ以上（補足は1つだけ）",
-        "初めて出たところで言い換えていない略語（IC・NEXCO）",
-        "読みやすさ: 文が長い（1文の平均 47.4字・60字超の文が 18% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-16T04:05:06.098827+00:00",
-      "attempt": 0,
-      "id": "27e6b66630f26d7c0606307988b1388ef1578e7f",
-      "kind": "trend",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 64.9,
-        "avg_sentence": 43.2,
-        "long_share": 0.083,
-        "max_paragraph": 114,
-        "paragraphs": 8,
-        "sentences": 12
-      },
-      "score": 93,
-      "source": "trends",
-      "title": "常磐道 事故 速報",
-      "warnings": [
-        "見出しの書き方: 区切りの全角空白が2つ以上（補足は1つだけ）",
-        "初めて出たところで言い換えていない略語（IC・NEXCO）"
-      ]
-    },
     {
       "accepted": false,
       "at": "2026-11-16T04:06:21.643133+00:00",
@@ -31891,6 +31708,174 @@
       "warnings": [
         "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
       ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-18T01:52:54.593511+00:00",
+      "attempt": 1,
+      "id": "8aa9660a7bd5bb1a",
+      "kind": "broad",
+      "model": "openai-api:gpt-6.1-terra",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 63.9,
+        "avg_sentence": 33.2,
+        "long_share": 0.04,
+        "max_paragraph": 96,
+        "paragraphs": 13,
+        "sentences": 25
+      },
+      "score": 100,
+      "source": "kddi-news",
+      "title": "「INFOBAR ZERO」をau Flex Styleから12月25日に発売",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（ZERO・ROM・RAM）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-18T01:56:00.391279+00:00",
+      "attempt": 1,
+      "id": "cd7e2781973d447705c4fffd18723d2239f5f84d",
+      "kind": "trend",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "タイトルの「竹島上陸の過去めぐり」→入国拒否が竹島上陸を理由に行われたかのように読めますが、元記事は両者の因果関係を示していません。",
+        "本文の「日本を訪れていました」→入国を拒否されたと報じられており、実際に日本を訪問できたかのような表現は不正確です。元記事が確認しているのは、セミナー出席のため羽田空港に到着したことです。"
+      ],
+      "readability": {
+        "avg_paragraph": 92.3,
+        "avg_sentence": 55.4,
+        "long_share": 0.4,
+        "max_paragraph": 109,
+        "paragraphs": 3,
+        "sentences": 5
+      },
+      "score": 82,
+      "source": "trends",
+      "title": "入国拒否",
+      "warnings": [
+        "読みやすさ: 文が長い（1文の平均 55.4字・60字超の文が 40% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-18T01:56:15.152577+00:00",
+      "attempt": 1,
+      "id": "cd7e2781973d447705c4fffd18723d2239f5f84d",
+      "kind": "trend",
+      "model": "openai-api:gpt-6-luna",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 93.0,
+        "avg_sentence": 55.8,
+        "long_share": 0.4,
+        "max_paragraph": 111,
+        "paragraphs": 3,
+        "sentences": 5
+      },
+      "score": 100,
+      "source": "trends",
+      "title": "入国拒否",
+      "warnings": [
+        "work_money（「仕事・お金にどう活かせる？」欄）が無い",
+        "読みやすさ: 文が長い（1文の平均 55.8字・60字超の文が 40% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-18T01:56:34.257268+00:00",
+      "attempt": 0,
+      "id": "cd7e2781973d447705c4fffd18723d2239f5f84d",
+      "kind": "trend",
+      "model": "openai-api:gpt-6-luna",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 94.7,
+        "avg_sentence": 35.5,
+        "long_share": 0.0,
+        "max_paragraph": 111,
+        "paragraphs": 3,
+        "sentences": 8
+      },
+      "score": 100,
+      "source": "trends",
+      "title": "入国拒否",
+      "warnings": [
+        "work_money（「仕事・お金にどう活かせる？」欄）が無い"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-18T01:57:40.245182+00:00",
+      "attempt": 1,
+      "id": "c72afc6720d98a07",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "「会場で紙の資料を配るのではなく」→元記事はペーパーレス化への協力を求め、端末への保存や掲載資料の閲覧を案内していますが、紙資料を配らないとは明記していません。",
+        "「会議中の撮影・録画はできません」→元記事は写真撮影やビデオカメラ等の使用は事務局の指示に従うよう案内し、カメラ撮りは会議冒頭までとしていますが、録画を一律に禁止するとは記していません。",
+        "「コメント機能は使えない仕様になっています」→元記事にあるのはYouTubeコメントへの対応を実施しないという説明で、コメント機能自体が使えないとはしていません。"
+      ],
+      "readability": {
+        "avg_paragraph": 174.6,
+        "avg_sentence": 46.2,
+        "long_share": 0.235,
+        "max_paragraph": 243,
+        "paragraphs": 9,
+        "sentences": 34
+      },
+      "score": 78,
+      "source": "mhlw",
+      "title": "第７回2040年に向けた看護職員の養成・確保の在り方に関する検討会の開催について：開催案内",
+      "warnings": [
+        "読みやすさ: 文が長い（1文の平均 46.2字・60字超の文が 24% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "読みやすさ: 段落が長い（平均 174.6字・最長 243字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-18T01:58:12.000305+00:00",
+      "attempt": 1,
+      "id": "c72afc6720d98a07",
+      "kind": "broad",
+      "model": "strike:本文 2 文・かんたん版 1 文",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 163.9,
+        "avg_sentence": 46.1,
+        "long_share": 0.219,
+        "max_paragraph": 243,
+        "paragraphs": 9,
+        "sentences": 32
+      },
+      "score": 100,
+      "source": "mhlw",
+      "title": "第７回2040年に向けた看護職員の養成・確保の在り方に関する検討会の開催について：開催案内",
+      "warnings": [
+        "読みやすさ: 文が長い（1文の平均 46.1字・60字超の文が 22% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "読みやすさ: 段落が長い（平均 163.9字・最長 243字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-18T01:58:45.472246+00:00",
+      "attempt": 0,
+      "id": "c72afc6720d98a07",
+      "kind": "broad",
+      "model": "openai-api:gpt-6-luna",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 65.5,
+        "avg_sentence": 32.8,
+        "long_share": 0.022,
+        "max_paragraph": 94,
+        "paragraphs": 23,
+        "sentences": 46
+      },
+      "score": 100,
+      "source": "mhlw",
+      "title": "第７回2040年に向けた看護職員の養成・確保の在り方に関する検討会の開催について：開催案内"
     }
   ],
   "short_text_retry": {},
