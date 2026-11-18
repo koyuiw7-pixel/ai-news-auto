@@ -14844,14 +14844,6 @@
       "skipped": true,
       "url": "https://www.rfi.fr/cn/%E4%B8%93%E6%A0%8F%E6%A3%80%E7%B4%A2/%E6%B3%95%E5%9B%BD%E4%B8%96%E7%95%8C%E6%8A%A5/20261117-%E4%B8%AD%E5%9B%BD%E6%AD%A3%E7%AB%AD%E5%B0%BD%E5%85%A8%E5%8A%9B%EF%BC%8C%E8%AE%A9%E4%B8%96%E7%95%8C%E5%85%B6%E4%BB%96%E5%9B%BD%E5%AE%B6%E6%97%A0%E6%B3%95%E6%91%86%E8%84%B1%E5%AF%B9%E8%87%AA%E5%B7%B1%E7%9A%84%E4%BE%9D%E8%B5%96"
     },
-    "954aea6925799b60": {
-      "at": "2026-11-04T08:32:59.223079+00:00",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "score": 88,
-      "section": "ai",
-      "slug": "atlassian-context-graph-agents-teamwork-graph",
-      "url": "https://www.atlassian.com/blog/context/inside-a-context-graph"
-    },
     "956410f66b8c757a": {
       "at": "2026-11-06T03:35:44.468737+00:00",
       "model": "anthropic-api:claude-haiku-5-5",
@@ -19256,13 +19248,6 @@
       "skipped": true,
       "url": "https://www.mof.go.jp/about_mof/councils/fiscal_system_council/sub-of_fiscal_system/proceedings/material/20261113zaiseia.html"
     },
-    "d89377dc82be1e74": {
-      "at": "2026-11-04T08:35:11.026955+00:00",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "reason": "抽出された本文はChrome Releasesブログのメニューやラベル、アーカイブ一覧だけで、Chromeのバージョン番号・修正内容・セキュリティ修正などの具体的な情報が含まれていない。記事化できる事実が確認できないため見送る。",
-      "skipped": true,
-      "url": "https://chromereleases.googleblog.com/2026/11/stable-channel-update-for-desktop.html"
-    },
     "d8b27fed6c7237fa": {
       "at": "2026-11-06T06:53:11.196484+00:00",
       "major": true,
@@ -21786,6 +21771,19 @@
       "section": "public",
       "slug": "soumu-ict-economics-r8-01",
       "url": "https://www.soumu.go.jp/main_sosiki/kenkyu/keizaiken/R8_01.html"
+    },
+    "ffc3eb0d979d9491": {
+      "at": "2026-11-18T08:36:23.769690+00:00",
+      "costUsd": 0.0062,
+      "intent": "breaking",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "score": 100,
+      "section": "public",
+      "slug": "campfire-unauthorized-access-report",
+      "url": "https://campfire.co.jp/press/2026/06/02/campfire/"
     },
     "ffdf52027929ad7f": {
       "at": "2026-11-17T07:27:30.357565+00:00",
@@ -24345,58 +24343,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-16T15:25:20.772746+00:00",
-      "attempt": 1,
-      "id": "05b7c979204565d2",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 128.6,
-        "avg_sentence": 58.5,
-        "long_share": 0.455,
-        "max_paragraph": 199,
-        "paragraphs": 5,
-        "sentences": 11
-      },
-      "score": 88,
-      "source": "kantei",
-      "title": "高市総理大臣によるフィリピン・デイリー・インクワイヤラー紙、フィリピン・スター紙、マニラ・ブレティン紙、星洲日報及びＮｉｋｋｅｉ Ａｓｉａへの寄稿",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（AZEC・ASEAN・APEC）",
-        "読みやすさ: 文が長い（1文の平均 58.5字・60字超の文が 46% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "読みやすさ: 段落が長い（平均 128.6字・最長 199字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-16T15:25:48.476163+00:00",
-      "attempt": 0,
-      "id": "05b7c979204565d2",
-      "kind": "broad",
-      "model": "",
-      "problems": [
-        "読みやすさ基準外のまま受理: 書き直し後の確認に不合格: 「今後は、共同声明に基づいた具体的な支援策や、各企業が活用できる枠組みの詳細が順次示される見通し」→ 元記事に、詳細が順次示されるという見通しは無く、根拠のない見通しである。; 「エネルギーやサプライチェーンの強靱化は、日本企業の海外事業の安定性にも直結します」"
-      ],
-      "readability": {
-        "avg_paragraph": 128.6,
-        "avg_sentence": 58.5,
-        "long_share": 0.455,
-        "max_paragraph": 199,
-        "paragraphs": 5,
-        "sentences": 11
-      },
-      "score": 88,
-      "source": "kantei",
-      "title": "高市総理大臣によるフィリピン・デイリー・インクワイヤラー紙、フィリピン・スター紙、マニラ・ブレティン紙、星洲日報及びＮｉｋｋｅｉ Ａｓｉａへの寄稿",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（AZEC・ASEAN・APEC）",
-        "読みやすさ: 文が長い（1文の平均 58.5字・60字超の文が 46% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "読みやすさ: 段落が長い（平均 128.6字・最長 199字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": false,
       "at": "2026-11-16T15:26:18.832366+00:00",
@@ -31808,6 +31754,57 @@
       "warnings": [
         "見出しが53字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（TOKYO）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-18T08:35:37.043246+00:00",
+      "attempt": 1,
+      "id": "ffc3eb0d979d9491",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "「個別に連絡が届いていない人は、今回の対象とはされていません」→発表は対象者に個別通知したと述べるだけで、通知が届いていない人は対象外だとはしていません。",
+        "「個人情報を含む1件のデータが、問い合わせの結果として出力された」→元記事の「クエリ結果」を「問い合わせの結果」とすると、顧客からの問い合わせへの回答のように誤解されるおそれがあります。"
+      ],
+      "readability": {
+        "avg_paragraph": 77.1,
+        "avg_sentence": 37.5,
+        "long_share": 0.054,
+        "max_paragraph": 166,
+        "paragraphs": 18,
+        "sentences": 37
+      },
+      "score": 78,
+      "source": "fast",
+      "title": "不正アクセス事案にかかる調査結果について",
+      "warnings": [
+        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（NICT）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-18T08:36:12.837744+00:00",
+      "attempt": 1,
+      "id": "ffc3eb0d979d9491",
+      "kind": "broad",
+      "model": "openai-api:gpt-6-luna",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 75.4,
+        "avg_sentence": 37.7,
+        "long_share": 0.056,
+        "max_paragraph": 166,
+        "paragraphs": 18,
+        "sentences": 36
+      },
+      "score": 100,
+      "source": "fast",
+      "title": "不正アクセス事案にかかる調査結果について",
+      "warnings": [
+        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（NICT）"
       ]
     }
   ],
