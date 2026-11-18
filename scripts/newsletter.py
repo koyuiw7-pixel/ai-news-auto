@@ -52,7 +52,8 @@ def provider() -> str | None:
 
 
 def _request(url: str, method: str = "GET", data: bytes | None = None, headers: dict | None = None) -> tuple[int, bytes]:
-    req = urllib.request.Request(url, data=data, method=method, headers=headers or {})
+    # 2026-11-18: Python 既定の User-Agent だと Resend の前段（Cloudflare）が 403「error code: 1010」で弾き、11/12〜18 の朝刊が全部届いていなかった
+    req = urllib.request.Request(url, data=data, method=method, headers={"User-Agent": "saisoku-newsletter/1.0", **(headers or {})})
     try:
         with urllib.request.urlopen(req, timeout=30) as res:
             return res.status, res.read()
@@ -312,7 +313,8 @@ def main() -> int:
     if sent or not active:
         kv_put("meta:last_sent", campaign)
     log(f"[done] 送信 {sent} / 失敗 {failed}")
-    return 0
+    # 1通も届かず失敗だけのときは、実行を失敗にする（管理画面の「成功」で見落とさないため）
+    return 1 if failed and not sent else 0
 
 
 if __name__ == "__main__":
