@@ -60,8 +60,8 @@
   "affiliates": [],
   "newsType": "product",
   "todayActions": [
-    "PLANT-2坂井店で11月15日8時から12時に買ったパンが対象か確認する。",
-    "対象の可能性がある場合は0776-72-0011に電話し、回収方法を確認する。"
+    "手元のコロッケパンを販売時間、消費期限、JANコードで対象と照らし合わせる。",
+    "対象の可能性があれば、回収方法と返金について店舗の担当窓口に確認する。"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -122,5 +122,103 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/plant-sakai-croquette-bread-recall-figure-31bbeb47.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "届出ページの画像欄では、正しく貼る予定のラベルが「あんぱんラベル.jpg」、誤って貼られたものが「コロッケパンラベル.jpg」と掲載されています。別商品のラベルが貼られたことが分かります。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602914"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "SUPERCENTER PLANT-2坂井店",
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602914",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602914",
+      "phone": "0776-72-0011",
+      "hours": "8：00～21：00",
+      "note": "店舗回収またはお客様宅にお伺いしての回収で、回収後はご返金対応です。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "手元のコロッケパンを販売時間、消費期限、JANコードで対象と照らし合わせる。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602914",
+      "steps": [
+        "商品名「コロッケパン」を確認する",
+        "消費期限が2026年11月15日か確認する",
+        "販売日時とJANコード0250351001502を照合する"
+      ],
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602914"
+    },
+    {
+      "action": "対象の可能性があれば、回収方法と返金について店舗の担当窓口に確認する。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602914",
+      "steps": [
+        "0776-72-0011に電話する",
+        "受付時間は8：00～21：00",
+        "店舗回収か自宅訪問での回収か相談する"
+      ],
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602914"
+    }
+  ],
+  "cause": {
+    "text": "届出では、コロッケパンに貼るはずのラベルではなく、別のラベルを誤って貼って販売したことが原因とされています。その結果、特定原材料に準ずるものの鶏肉・りんごの表示が欠けました。",
+    "status": "stated",
+    "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602914"
+  },
+  "worries": [
+    {
+      "q": "11月15日に買ったコロッケパンなら、全部が対象ですか？",
+      "a": "対象はPLANT-2坂井店で2026年11月15日8：00～12：00に販売された「コロッケパン」です。JANコードは0250351001502、消費期限は2026年11月15日です。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602914",
+      "action": "商品名、販売時間、消費期限、JANコードを確認し、対象か迷う場合は0776-72-0011に問い合わせてください。"
+    },
+    {
+      "q": "店に持って行けない場合、回収してもらえますか？",
+      "a": "届出には、店舗への持ち込みのほか、お客様宅に訪問して回収する方法も記載されています。回収後は返金対応です。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602914",
+      "action": "0776-72-0011に電話し、自宅訪問での回収を希望することを伝えて方法を確認してください。"
+    },
+    {
+      "q": "回収を頼むと、商品代は返してもらえますか？",
+      "a": "届出では、回収後の対応は「ご返金対応」とされています。店舗回収または自宅訪問での回収方法が案内されています。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602914",
+      "action": "対象商品か確認したうえで、回収方法と返金について0776-72-0011に問い合わせてください。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "持ち込むか訪問回収か、どうする？",
+      "situation": "店舗に持ち込める",
+      "recommend": "店舗回収を選べます",
+      "reason": "届出には、店舗回収とお客様宅への訪問回収の両方が記載されています。都合に合わせて回収方法を確認できます。回収後は返金対応です。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602914"
+    },
+    {
+      "question": "持ち込むか訪問回収か、どうする？",
+      "situation": "店舗への持ち込みが難しい",
+      "recommend": "自宅訪問での回収を相談できます",
+      "reason": "届出には、お客様宅に訪問して回収する方法も記載されています。問い合わせ先は0776-72-0011、受付時間は8：00～21：00です。回収後は返金対応です。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602914"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "貼られたのは別商品のラベル",
+    "cause": "鶏肉とりんごの表示が欠けた理由",
+    "steps": "対象確認から回収相談まで",
+    "desk": "回収と返金の問い合わせ先",
+    "worries": "対象か、どう回収するかを確認",
+    "guide": "店舗回収か自宅訪問か"
+  },
+  "depthAt": "2026-11-18T22:10:13+00:00",
+  "updatedAt": "2026-11-18T22:10:13+00:00",
+  "updates": [
+    {
+      "at": "2026-11-18T22:10:13+00:00",
+      "kind": "facts",
+      "title": "公式の資料をもとに、「なるほどの要点」・「公式の窓口」・「今日やること」・「理由」・「よくある不安」・「判断の目安」を追記しました",
+      "sourceUrl": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602914",
+      "sourceName": "厚生労働省 食品衛生申請等システム「公開回収事案詳細」（整理番号RCL202602914、株式会社PLANT「コロッケパン」）"
+    }
+  ]
 }

@@ -83,9 +83,9 @@
   "affiliates": [],
   "newsType": "product",
   "todayActions": [
-    "VAIO F14とF16の製品ページで、画面の大きさと本体の重さを比べる。",
-    "12月24日午前9時59分までの割引について、選ぶモデルがどちらの対象か確かめる。",
-    "VAIOの保証案内で、手持ちの機種が落下・水濡れ対応の対象か確かめる。"
+    "F16を検討中なら、WUXGAとWQXGAの作業領域や価格を見比べる",
+    "特別デザインを検討中なら、通常モデルとの割引額と購入先を確認する",
+    "手持ちのVAIOを登録し、VAIOオーナーサイトで保証情報と期限を確認する"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -154,5 +154,120 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/vaio-f14-f16-release-warranty-6110bc89.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "F16のWQXGA（2560×1600ピクセル）は、WUXGA（1920×1200ピクセル）と比べて作業領域が約77%増えます。画面の広さを重視するなら、解像度の選択も確認できます。",
+      "source": "https://store.vaio.com/shop/pages/f163.aspx"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "VAIO F14",
+      "url": "https://store.vaio.com/shop/pages/f143.aspx",
+      "source": "https://store.vaio.com/shop/pages/f143.aspx"
+    },
+    {
+      "name": "VAIO F16",
+      "url": "https://store.vaio.com/shop/pages/f163.aspx",
+      "source": "https://store.vaio.com/shop/pages/f163.aspx"
+    },
+    {
+      "name": "メーカー保証1年（落下・水濡れ等 対応）",
+      "url": "https://vaio.com/warranty",
+      "source": "https://vaio.com/news/warranty_261117/"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "F16を検討中なら、WUXGAとWQXGAの作業領域や価格を見比べる",
+      "source": "https://store.vaio.com/shop/pages/f163.aspx",
+      "steps": [
+        "VAIO F16の製品ページを開く",
+        "「仕様」や「ラインアップ・価格を見る」を確認する"
+      ],
+      "url": "https://store.vaio.com/shop/pages/f163.aspx"
+    },
+    {
+      "action": "特別デザインを検討中なら、通常モデルとの割引額と購入先を確認する",
+      "source": "https://vaio.com/news/f16_probm_f14_probk_261117/",
+      "steps": [
+        "新モデル発表ページを開く",
+        "「発売記念キャンペーンを実施」を確認する",
+        "対象製品・対象販路・期間を見比べる"
+      ],
+      "url": "https://vaio.com/news/f16_probm_f14_probk_261117/"
+    },
+    {
+      "action": "手持ちのVAIOを登録し、VAIOオーナーサイトで保証情報と期限を確認する",
+      "source": "https://store.vaio.com/shop/pages/f143.aspx",
+      "steps": [
+        "VAIO F14またはF16の製品ページを開く",
+        "「VAIOオーナーサイト」を開く",
+        "製品登録後、保証情報と保証期限を確認する"
+      ],
+      "url": "https://owner.vaio.com/"
+    }
+  ],
+  "cause": {
+    "text": "VAIOは、長年の品質改善活動に加え、近年の製品の品質実績や修理データを総合的に検証し、従来は対象外だった利用者の過失による故障も保証に加えたと説明しています。PC市場では関連部材価格が上昇し、購入後も安心して長く使える重要性が高まったともしています。",
+    "status": "background",
+    "source": "https://vaio.com/news/warranty_261117/"
+  },
+  "worries": [
+    {
+      "q": "買ったVAIOが落下や水濡れの無償修理対象か知りたい",
+      "a": "対象は2026年11月発表のVAIO F14・F16などと、2026年9月発表のVAIO T・T workです。2026年11月17日以前に発売されたモデルは従来の保証内容で、落下や水濡れに備える「あんしんサポート」を別途選べます。",
+      "source": "https://vaio.com/news/warranty_261117/",
+      "action": "保証案内で対象モデルを確認し、手持ちの製品はVAIOオーナーサイトで保証情報を確認する。",
+      "actionSource": "https://store.vaio.com/shop/pages/f143.aspx"
+    },
+    {
+      "q": "落下や水濡れの修理に金額や回数の上限はある？",
+      "a": "新メーカー保証は、対象モデルの落下・破損、画面割れ、水濡れなどの偶発事故による故障を無償修理します。審査は不要で、金額上限や回数制限もありません。保証期間は購入日から1年間です。",
+      "source": "https://vaio.com/news/warranty_261117/",
+      "action": "対象モデルと保証期間を、VAIOの新メーカー保証の案内で確認する。"
+    },
+    {
+      "q": "バッテリーが弱ったときも無償交換してもらえる？",
+      "a": "個人向けモデルは、購入から3年以内に満充電容量が80％以下になった場合、バッテリーを無償交換するとしています。使用環境や条件によっては、バッテリーの劣化を抑える効果を得られない場合があります。",
+      "source": "https://vaio.com/news/f16_probm_f14_probk_261117/",
+      "action": "VAIOのバッテリー総合保証の案内で条件を確認し、製品の購入日を確かめる。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "通常モデルと特別デザイン、どちらを選ぶ？",
+      "situation": "ディズニーまたはトイ・ストーリーモデルを検討",
+      "recommend": "割引額とデザインを見比べて選ぶ",
+      "reason": "通常モデルは個人向け全販路で税込33,000円引きですが、ディズニー・トイ・ストーリーモデルはこのキャンペーンの対象外で、VAIO直営オンラインストアでは税込20,000円引きです。キャンペーン期間は2026年12月24日午前9時59分までです。",
+      "source": "https://vaio.com/news/f16_probm_f14_probk_261117/"
+    },
+    {
+      "question": "F14とF16、画面の広さと持ち運びやすさはどちらを優先？",
+      "situation": "持ち運ぶ頻度と画面の広さで迷っている",
+      "recommend": "重さと画面サイズを比べて選ぶ",
+      "reason": "F14は14.0型で約1.32kg、F16は16.0型で約1.57〜1.59kgです。F16は解像度も選べるため、持ち運びやすさと画面の広さ、解像度を製品ページで比べられます。",
+      "source": "https://vaio.com/news/f16_probm_f14_probk_261117/"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "F16は解像度で作業領域が変わる",
+    "cause": "落下や水濡れも保証対象になった背景",
+    "steps": "購入前に構成と保証を確かめる",
+    "desk": "製品や保証を確認できる公式ページ",
+    "worries": "保証やバッテリー交換の条件は？",
+    "guide": "割引額と画面の違いで選ぶ"
+  },
+  "depthAt": "2026-11-18T22:09:36+00:00",
+  "updatedAt": "2026-11-18T22:09:36+00:00",
+  "updates": [
+    {
+      "at": "2026-11-18T22:09:36+00:00",
+      "kind": "facts",
+      "title": "公式の資料をもとに、「なるほどの要点」・「公式の窓口」・「今日やること」・「理由」・「よくある不安」・「判断の目安」を追記しました",
+      "sourceUrl": "https://vaio.com/news/f16_probm_f14_probk_261117/",
+      "sourceName": "VAIO公式 ニュースリリース「AI時代の『定番』PCへ進化『VAIO F16 / Pro BM』『VAIO F14 / Pro BK』の新モデルを発表」（2026年11月17日、vaio.com）"
+    }
+  ]
 }
