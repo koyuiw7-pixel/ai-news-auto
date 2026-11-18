@@ -15699,6 +15699,19 @@
       "slug": "kddi-fy2027-h1-results",
       "url": "https://newsroom.kddi.com/ir-news/detail/kddi_ir-1251_4778.html"
     },
+    "a30c9eedc8c540e1": {
+      "at": "2026-11-18T04:49:15.119119+00:00",
+      "costUsd": 0.0449,
+      "foreignAi": true,
+      "intent": "breaking",
+      "major": true,
+      "mix": "quirky",
+      "model": "openai-api:gpt-6.1-terra",
+      "score": 100,
+      "section": "ai",
+      "slug": "nvidia-vera-cpu-science-rack",
+      "url": "https://blogs.nvidia.co.jp/blog/nvidia-expands-vera-cpu-platform-to-accelerate-scientific-discovery/"
+    },
     "a31895744c54c87c": {
       "at": "2026-11-05T13:12:04.999215+00:00",
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
@@ -24388,62 +24401,6 @@
   },
   "quality_log": [
     {
-      "accepted": false,
-      "at": "2026-11-16T09:41:14.808086+00:00",
-      "attempt": 1,
-      "id": "b92c386a7c503175",
-      "kind": "broad",
-      "model": "gemini-3.5-flash",
-      "problems": [
-        "「富山は今節、フリースロー成功率で75.0%と三河（68.3%）を上回った」→ 元記事のFG%・3P%・FT%はシーズン平均で、今節（この試合）の成功率ではない。試合のスタッツとして書くのは元記事との矛盾。",
-        "「三河のフィールドゴール成功率50.4%に対し富山は40.7%となり、得点面で大差がつく展開」→ 同じくシーズン平均を試合の結果のように書いており、この試合の数字として読める点で誤り。",
-        "「アウトサイドシュートの精度向上と守備の再構築が求められるとみられます」→ 元記事に守備に関するデータは無く、「守備の再構築」は根拠のない推測。",
-        "「地区ごとの勝率争いが注目を集めていました」→ 元記事は順位表の公開のみを示しており、注目を集めていたという記述は元資料にない。",
-        "「通算9勝8敗と勝ち越しを維持している」→ 「維持」は過去の推移を示す表現で、元記事に推移の情報はない。"
-      ],
-      "readability": {
-        "avg_paragraph": 91.4,
-        "avg_sentence": 63.3,
-        "long_share": 0.615,
-        "max_paragraph": 167,
-        "paragraphs": 9,
-        "sentences": 13
-      },
-      "score": 72,
-      "source": "radar-official",
-      "title": "りそなグループ B.LEAGUE 2026-27 B.LEAGUE PREMIER リーグ戦 2026/11/14 三河 VS 富山 | B.LEAGUE（Bリ",
-      "warnings": [
-        "見出しが46字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（LIVE・LEAGUE・TIP）",
-        "読みやすさ: 文が長い（1文の平均 63.3字・60字超の文が 62% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-16T09:41:41.836691+00:00",
-      "attempt": 1,
-      "id": "b92c386a7c503175",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 91.0,
-        "avg_sentence": 56.0,
-        "long_share": 0.462,
-        "max_paragraph": 167,
-        "paragraphs": 8,
-        "sentences": 13
-      },
-      "score": 90,
-      "source": "radar-official",
-      "title": "りそなグループ B.LEAGUE 2026-27 B.LEAGUE PREMIER リーグ戦 2026/11/14 三河 VS 富山 | B.LEAGUE（Bリ",
-      "warnings": [
-        "見出しが46字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（LIVE・LEAGUE・TIP）",
-        "読みやすさ: 文が長い（1文の平均 56.0字・60字超の文が 46% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
       "accepted": true,
       "at": "2026-11-16T09:42:00.778378+00:00",
       "attempt": 0,
@@ -31876,6 +31833,53 @@
       "warnings": [
         "初めて出たところで言い換えていない略語（EC・SMS）",
         "読みやすさ: 文が長い（1文の平均 47.5字・60字超の文が 21% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-18T04:48:15.435861+00:00",
+      "attempt": 1,
+      "id": "a30c9eedc8c540e1",
+      "kind": "ai",
+      "model": "openai-api:gpt-6.1-terra",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 100.2,
+        "avg_sentence": 46.5,
+        "long_share": 0.214,
+        "max_paragraph": 159,
+        "paragraphs": 13,
+        "sentences": 28
+      },
+      "score": 100,
+      "source": "radar-official",
+      "title": "NVIDIA、Vera CPU プラットフォームを拡充し、科学的発見を加速",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（HPE・OCI・NVL）",
+        "読みやすさ: 文が長い（1文の平均 46.5字・60字超の文が 21% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-18T04:49:15.084251+00:00",
+      "attempt": 0,
+      "id": "a30c9eedc8c540e1",
+      "kind": "ai",
+      "model": "openai-api:gpt-6-luna",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 89.9,
+        "avg_sentence": 37.0,
+        "long_share": 0.088,
+        "max_paragraph": 160,
+        "paragraphs": 14,
+        "sentences": 34
+      },
+      "score": 100,
+      "source": "radar-official",
+      "title": "NVIDIA、Vera CPU プラットフォームを拡充し、科学的発見を加速",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（HPE・OCI・NVL）"
       ]
     }
   ],

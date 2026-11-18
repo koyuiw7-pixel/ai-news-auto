@@ -1,0 +1,147 @@
+{
+  "slug": "nvidia-vera-cpu-science-rack",
+  "sourceType": "web",
+  "sourceUrl": "https://blogs.nvidia.co.jp/blog/nvidia-expands-vera-cpu-platform-to-accelerate-scientific-discovery/",
+  "sourceName": "NVIDIA日本版ブログ",
+  "title": "「Vera CPU」を192基搭載　科学計算向けラックが2027年初頭に提供へ",
+  "seoTitle": "NVIDIA Vera CPUとは　科学計算向けラックの性能と提供時期",
+  "threadsPost": "科学計算に携わる人に、知っておいてほしい話です。\n\nNVIDIAの「Vera CPU」を192基使う計算システムは、2027年初頭に提供予定です。\n気流の計算では、x86方式のシステムと比べて電力あたりの性能が2.4倍でした。\n\n計算環境を選ぶとき、性能と電力効率のどちらを重視しますか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "ab",
+      "question": "計算環境を選ぶとき、性能と電力効率のどちらを重視しますか？"
+    },
+    {
+      "pattern": "expert",
+      "question": "科学計算の環境を選ぶとき、どんな性能テストを重視しますか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "honest",
+  "lede": "「Vera CPU」を使う科学計算向けの新しいラック型システムが、2027年初頭から提供される予定です。NVIDIAの設計では192基のCPUを接続し、気候や分子のシミュレーションに使います。導入を検討する研究者は、用途に近い性能テストの条件を確かめる必要があります。",
+  "description": "NVIDIAのVera CPUを192基搭載する科学計算向けラックは、2027年初頭から提供予定です。x86との性能比較、メモリ構成、気候研究での採用例、ソフトウェアの提供状況を整理します。",
+  "keywords": [
+    "NVIDIA Vera CPU",
+    "Vera CPU ラック",
+    "Vera CPU 科学計算",
+    "Vera CPU 性能",
+    "Vera CPU 価格",
+    "Vera CPU 提供時期",
+    "Vera CPU x86 比較",
+    "NVIDIA HPC SDK",
+    "HLRE-5 気候シミュレーション",
+    "NVIDIA Fortran コンパイラ"
+  ],
+  "tags": [
+    "NVIDIA",
+    "Vera CPU",
+    "科学計算",
+    "半導体",
+    "スーパーコンピューター"
+  ],
+  "highlights": [
+    "Vera CPUを192基接続する科学計算向けラックを、2027年初頭から提供予定です。",
+    "OpenFOAMの気流計算では、x86システムに対する電力あたりの性能が2.4倍でした。",
+    "Vera向けに最適化した開発ツール「NVIDIA HPC SDK 26.11」は提供中です。"
+  ],
+  "timetable": [],
+  "verdict": {
+    "status": "soon",
+    "japan": "unknown",
+    "price": "不明",
+    "free": null,
+    "audience": "科学研究者",
+    "take": "科学計算への導入を検討するなら、用途に近い性能テストの条件を確認するとよいでしょう。",
+    "judgedAt": "2026-11-18T04:48:08.798071+00:00"
+  },
+  "workMoney": {
+    "relevance": "medium",
+    "points": [
+      "科学計算の担当者は、Vera向けの開発ツールを利用でき、ラックの導入は2027年初頭から検討できます。",
+      "既存のFortranプログラムを使う開発者は、書き直さずに実行できる公開ベータ版の発表を確認できます。"
+    ]
+  },
+  "body": "研究機関や科学計算のシステムを選ぶ担当者に関係する発表です。ラックの提供はまだ始まっていません。\n\nラック型システムは、複数の計算機を棚状の設備にまとめたものです。気候や分子の動きを、大量のデータを使って計算する用途を想定しています。\n\n[NVIDIA日本版ブログ](https://blogs.nvidia.co.jp/blog/nvidia-expands-vera-cpu-platform-to-accelerate-scientific-discovery/)によると、ラックではVera CPUを高速な通信機器で接続します。Dell Technologies、HPE、Lenovo、Supermicroから提供される予定です。\n\n以前からあるVera CPUを、今回は科学計算向けのラック全体に組み合わせた点が新しいところです。Oracle Cloud Infrastructureでは、Vera CPUの一般提供も始まっています（[OCIでVera CPUを提供](/articles/oci-vera-cpu-vera-rubin-nvl72)、サイソクの過去記事、11/9）。\n\n## Vera CPUのラックは大容量メモリと液冷を採用\n\nラック全体には、約300TBのメモリと1ペタバイトの保存領域を搭載します。水などの液体で熱を逃がす液冷方式です。既存のNVL72ラックの筐体や冷却設備などを再利用します。\n\n各CPUの仕様は次の通りです。\n\n- 計算を担うコアは88基です。\n- 処理を並行して進めるスレッドは176あります。\n- CPUあたりのメモリ帯域幅（データの読み書きの幅）は最大1.2TB/秒です。\n\nCPU同士は「NVIDIA Quantum-X800 InfiniBand」という高速ネットワークで接続します。ネットワーク内で処理を行う技術も使います。CPU間の処理の調整にかかる時間を減らす設計です。\n\nNVIDIAの性能テストでは、OpenFOAMの「motorBike Large」という気流の計算を使いました。Veraの性能は、比較したx86システムの1.9倍でした。同じ電力あたりの性能は2.4倍です。\n\n別の気象研究用モデル「Weather Research and Forecasting」では、x86との比較で性能が1.6倍、電力効率が2倍になるとNVIDIAは予測しています。こちらは予測値です。気流計算のテスト結果とは区別する必要があります。詳しい測定条件は、NVIDIAの「Vera CPU HPC性能概要」で確認できます。\n\nドイツ気候計算センターの次期スーパーコンピューター「HLRE-5」もVera CPUを採用します。NVIDIA GB200 Grace Blackwellなどと組み合わせます。2028年初頭に利用可能になる予定です。\n\n## サイソクの見方：ラック導入は用途に近い測定条件で比較\n\nVera CPUラックの導入を検討するなら、OpenFOAMの結果だけで判断しないことが目安です。自分の用途に近い計算と測定条件を比べます。\n\n既存のプログラムを使う開発者なら、提供中のNVIDIA HPC SDK 26.11を先に確認できます。公開ベータ版が発表されたFortran向けの開発ツールも確認できます。\n\n## まだ分からないこと\n\n- Vera CPUラックの価格はまだ発表されていません。\n- 日本での提供時期はまだ発表されていません。\n\n## Vera向け開発ツールは提供中、Fortran版も公開ベータへ\n\n「NVIDIA HPC SDK 26.11」はすでに提供されています。Vera向けに最適化したコンパイラ（プログラムを実行用に変換するソフト）を利用できます。ライブラリ（共通の処理をまとめた部品）も使えます。\n\nNVIDIAは次世代Fortranコンパイラの公開ベータ版も発表しました。科学計算で使われるFortranの既存プログラムを、書き直さずにNVIDIAのプラットフォーム上でより速く実行できるとしています。",
+  "easy": "## ひとことで言うと\n\nNVIDIAは、気候や分子の研究に使う大型の計算システムを用意します。提供は2027年初頭の予定です。\n\nこのシステムは、計算の中心になる部品「Vera CPU」を192基つなぎます。研究機関などが、大量のデータを使う計算に利用する構成です。\n\n気流の計算を使ったNVIDIAのテストでは、比較したx86方式のシステムより、同じ電力あたりの性能が2.4倍でした。別の気象計算では、電力効率が2倍になると予測しています。\n\n研究者向けの開発ツールはすでに提供中です。一方、ラックの価格と日本での提供時期はまだ発表されていません。",
+  "channel": "NVIDIA日本版ブログ",
+  "channelId": "",
+  "channelSlug": "radar-official",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "NVIDIA、Vera CPU プラットフォームを拡充し、科学的発見を加速",
+  "publishedAt": "2026-11-18T04:41:24.629000+00:00",
+  "generatedAt": "2026-11-18T04:48:08.798057+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/nvidia-vera-cpu-science-rack-figure-a6abeb9a.jpg",
+  "model": "openai-api:gpt-6.1-terra",
+  "affiliates": [],
+  "newsType": "product",
+  "faq": [],
+  "todayActions": [
+    "NVIDIAの「Vera CPU HPC性能概要」で、気流や気象の計算に使った測定条件を確認する。",
+    "科学計算の開発者は、提供中のNVIDIA HPC SDK 26.11で使えるVera向けのツールを確認する。"
+  ],
+  "relatedSlugs": [
+    "oci-vera-cpu-vera-rubin-nvl72"
+  ],
+  "qualityBar": {
+    "score": 5,
+    "missing": [
+      1,
+      5,
+      6
+    ],
+    "notes": {
+      "1": "最初の3行にだれにが無い",
+      "5": "することは書いてあるが、どこで（窓口・ページ）・いつまでが無い",
+      "6": "言い換えの無い略語（HPE・OCI・NVL）"
+    },
+    "checkedAt": "2026-11-18T04:49:15+00:00",
+    "before": [
+      1,
+      5,
+      6
+    ],
+    "repaired": false,
+    "repairLater": true
+  },
+  "qualityScore": 100,
+  "factSources": [
+    {
+      "label": "過去記事",
+      "name": "サイソクの過去記事",
+      "url": "",
+      "checkedAt": "2026-11-17"
+    }
+  ],
+  "detectedAt": "2026-11-18T04:41:24+00:00",
+  "fastLane": true,
+  "layout": "noir",
+  "summaryLine": "Vera CPUを192基接続する科学計算向けラックを、2027年初頭から提供予定です。",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "「Vera CPU」を192基搭載",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-18T04:49:31+00:00"
+  },
+  "imageFocus": {
+    "x": 0.455,
+    "y": 0.417,
+    "box": [
+      0.009,
+      0.042,
+      0.9,
+      0.792
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/nvidia-vera-cpu-science-rack-figure-a6abeb9a.jpg"
+  }
+}
