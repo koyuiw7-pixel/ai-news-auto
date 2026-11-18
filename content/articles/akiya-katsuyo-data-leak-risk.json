@@ -77,9 +77,9 @@
     }
   ],
   "todayActions": [
-    "自分が対象か確かめるため、privacy-contact@aki-katsu.co.jp に氏名・住所・連絡先を書いてメールする",
-    "空き家活用や自治体を名乗るメール・SMSのURLは開かず、添付ファイルも開かない",
-    "電話でパスワードやカード情報を求められたら切り、同社の窓口に確認する"
+    "氏名・住所・連絡先を記載し、個人情報保護相談窓口に対象かどうかを照合してもらう",
+    "本件に便乗した不審なメールや電話は、その場で対応せず同社窓口に確かめる",
+    "不審なページに普段使うIDやパスワードを入力した場合は、利用中のサービスで変更する"
   ],
   "publicInterest": "breach",
   "incident": {
@@ -124,5 +124,108 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/akiya-katsuyo-data-leak-risk-figure-6e0a1c96.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "最大290,664件は漏えい確認数でも対象者の実人数でもなく、データベースの元記録数です。同じ人が複数の記録に含まれる可能性があり、漏えい自体も確認されていません。",
+      "source": "https://corporate.aki-katsu.co.jp/news/server-security-notice-20261117"
+    },
+    {
+      "text": "AKIDAS分の空き家所有者情報は、公開されている不動産登記簿をもとに取得・整理されたものです。同社と直接やり取りのない所有者なども対象候補に含まれます。",
+      "source": "https://corporate.aki-katsu.co.jp/news/server-security-notice-20261117"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "空き家活用株式会社 個人情報保護相談窓口",
+      "url": "https://corporate.aki-katsu.co.jp/news/server-security-notice-20261117",
+      "source": "https://corporate.aki-katsu.co.jp/news/server-security-notice-20261117",
+      "howTo": [
+        "当社利用サーバーの接続制限設定不備について お知らせとお詫び",
+        "07 お問い合わせ窓口"
+      ],
+      "note": "問い合わせはメールで受け付け、担当者がメールまたは電話で順次折り返します。電話を希望する場合は、メールに電話番号を記入します。回答は対象に含まれるかどうかのみです。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "氏名・住所・連絡先を記載し、個人情報保護相談窓口に対象かどうかを照合してもらう",
+      "source": "https://corporate.aki-katsu.co.jp/news/server-security-notice-20261117",
+      "steps": [
+        "privacy-contact@aki-katsu.co.jp宛てにメールを作成",
+        "氏名・住所・連絡先を記入",
+        "電話での折り返し希望なら電話番号も記入"
+      ],
+      "url": "https://corporate.aki-katsu.co.jp/news/server-security-notice-20261117"
+    },
+    {
+      "action": "本件に便乗した不審なメールや電話は、その場で対応せず同社窓口に確かめる",
+      "source": "https://corporate.aki-katsu.co.jp/news/server-security-notice-20261117",
+      "steps": [
+        "メール・SMSのURLや添付ファイルを開かない",
+        "電話でパスワードやカード情報を求められたら切る",
+        "窓口にメールで確認する"
+      ],
+      "url": "https://corporate.aki-katsu.co.jp/news/server-security-notice-20261117"
+    },
+    {
+      "action": "不審なページに普段使うIDやパスワードを入力した場合は、利用中のサービスで変更する",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "steps": [
+        "そのIDやパスワードを使うサービスを確認",
+        "利用しているすべてのサービスで速やかに変更"
+      ],
+      "url": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html"
+    }
+  ],
+  "cause": {
+    "text": "同社は、データベースの接続元制限設定に不備があり、設定内容を定期的に確認する仕組みが十分でなかったことが背景と説明しています。設定不備は2026年7月14日に修正済みですが、詳細は外部専門機関の調査と並行して確認中です。",
+    "status": "stated",
+    "source": "https://corporate.aki-katsu.co.jp/news/server-security-notice-20261117"
+  },
+  "worries": [
+    {
+      "q": "最大29万664件と聞くと、実際に何人分が漏えいしたの？",
+      "a": "最大290,664件はデータベースに保存されていた元記録の数で、同じ人の情報が複数の記録に含まれる場合があります。実人数とは一致せず、いずれの数値も漏えいが確認されたことを意味しません。",
+      "source": "https://corporate.aki-katsu.co.jp/news/server-security-notice-20261117",
+      "action": "自分の情報が対象かどうかは、氏名・住所・連絡先を添えて同社窓口に照合を依頼する。"
+    },
+    {
+      "q": "クレジットカード番号やマイナンバーも対象に含まれるの？",
+      "a": "同社は、マイナンバー、クレジットカード情報、要配慮個人情報を当該データベースに保有していないとしています。漏えいのおそれがある情報は対象者によって異なり、氏名、住所、電話番号、メールアドレスです。",
+      "source": "https://corporate.aki-katsu.co.jp/news/server-security-notice-20261117",
+      "action": "氏名・住所・連絡先を記載して、同社窓口に自分の情報が対象か照合を依頼する。"
+    },
+    {
+      "q": "空き家活用と直接やり取りしていなくても対象になる？",
+      "a": "対象候補には、公開されている不動産登記簿をもとに記録された空き家所有者や、自治体と連携する調査・相談で情報を取り扱った人などが含まれます。同社と直接の接点がない人も対象になり得ます。",
+      "source": "https://corporate.aki-katsu.co.jp/news/server-security-notice-20261117",
+      "action": "心当たりがなくても、対象かどうかを知りたい場合は同社窓口に照合を依頼する。"
+    },
+    {
+      "q": "不審なページにパスワードを入力してしまったらどうする？",
+      "a": "警察庁は、フィッシングサイトなどに普段利用しているIDやパスワードを入力した場合、そのIDやパスワードを利用しているすべてのサービスで速やかに変更するよう案内しています。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "action": "入力したIDやパスワードを使っているすべてのサービスで、速やかに変更する。",
+      "general": true
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "通知を待つか、自分から照合する？",
+      "situation": "空き家の所有者や自治体の相談利用者など、対象の可能性がある",
+      "recommend": "窓口に対象かどうかの照合を依頼する",
+      "reason": "対象候補には同社と直接の接点がない人も含まれます。問い合わせでは氏名・住所・連絡先を記録と照合し、対象か否かのみ回答されます。通知は準備後に順次ですが、連絡先がなく個別通知できない人は公表をもって案内とされます。",
+      "source": "https://corporate.aki-katsu.co.jp/news/server-security-notice-20261117"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "29万件は人数でも漏えい確認数でもない",
+    "cause": "設定の点検が十分でなかったことが背景",
+    "steps": "自分が対象か照合し、不審な連絡に備える",
+    "desk": "対象かどうかは同社の窓口で照合",
+    "worries": "自分やカード情報は対象なのか",
+    "guide": "通知を待つか、自分から照合するか"
+  },
+  "depthAt": "2026-11-18T07:58:30+00:00"
 }
