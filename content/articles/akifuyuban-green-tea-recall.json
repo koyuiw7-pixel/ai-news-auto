@@ -55,13 +55,13 @@
   "videoTitle": "高知県農業協同組合の普通せん茶「秋冬番」2026年11月にゴム片混入で回収、25キロ袋で合計3,522キロ",
   "publishedAt": "2026-11-18T00:39:18.293766+00:00",
   "generatedAt": "2026-11-18T00:39:41.563592+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/akifuyuban-green-tea-recall-figure-7b9aa513.jpg",
   "model": "openai-api:gpt-6.1-terra",
   "affiliates": [],
   "newsType": "product",
   "todayActions": [
-    "手元のお茶に「秋冬番」が使われているか気になる場合は、購入した店に確かめる。",
-    "厚生労働省の公開回収事案詳細で、整理番号RCL202602948の対象商品を確認する。"
+    "公開回収事案詳細で「秋冬番」と対象の荷姿を照合する",
+    "購入したお茶への使用が気になる場合は、購入店に確認する"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -83,5 +83,97 @@
   "summaryLine": "高知県農業協同組合のせん茶「秋冬番」は、ゴム片の混入により回収対象になりました",
   "relatedSlugs": [
     "fujisawa-bakery-recall-chocokorone-2026"
-  ]
+  ],
+  "insight": [
+    {
+      "text": "回収理由の詳細には、異物混入について「食品衛生法第20条に該当」と記載されています。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602948"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "厚生労働省 食品衛生公開「公開回収事案詳細」",
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602948",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602948",
+      "note": "対象商品、販売先、回収状況を確認できます。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "公開回収事案詳細で「秋冬番」と対象の荷姿を照合する",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602948",
+      "steps": [
+        "公開回収事案詳細を開く",
+        "「商品情報等」の対象商品を確認する",
+        "商品名と「大海袋（25㎏）」を照合する"
+      ],
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602948"
+    },
+    {
+      "action": "購入したお茶への使用が気になる場合は、購入店に確認する",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602948",
+      "steps": [
+        "公開回収事案詳細の商品情報を確認する",
+        "購入店に商品名と公開情報の画像を示す",
+        "「秋冬番」の使用有無を尋ねる"
+      ],
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602948"
+    }
+  ],
+  "cause": {
+    "text": "回収理由は、製品にベルトコンベア由来のゴム片が混入したことです。公開情報は、飲用した際に誤嚥する可能性があるとして、食品衛生法違反のおそれを示しています。",
+    "status": "stated",
+    "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602948"
+  },
+  "worries": [
+    {
+      "q": "家で買ったお茶も回収対象に含まれるのでしょうか？",
+      "a": "対象商品は「秋冬番」の大海袋（25㎏）で、販売先は2社のみです。販売地域は高知市・高知県高岡郡佐川町とされていますが、どの小売商品に使われたかは公開情報から特定できません。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602948",
+      "action": "公開情報の商品表示を確認し、購入したお茶への使用が気になる場合は購入店に確認してください。"
+    },
+    {
+      "q": "公表された3,522㎏は、すでに回収済みという意味ですか？",
+      "a": "公開情報には回収数量として合計3,522㎏と記載されています。一方で回収割合は2026/11/16時点で0％です。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602948",
+      "action": "公開回収事案詳細の「回収状況」で、回収数量と回収割合をあわせて確認してください。"
+    },
+    {
+      "q": "対象のお茶を飲んだ場合、健康への危険性はありますか？",
+      "a": "公開情報は、飲用した際に誤嚥する可能性があると記載し、健康への危険性の程度をCLASSⅠとしています。回収理由は製品へのベルトコンベア由来のゴム片の混入です。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602948",
+      "action": "手元のお茶が対象か購入店に確認し、対象商品に該当する場合は回収情報をもとに対応を相談してください。"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "異物混入の根拠は食品衛生法第20条",
+    "cause": "ベルトコンベア由来のゴム片が混入",
+    "steps": "対象商品と購入店での確認から",
+    "desk": "厚労省の回収詳細で対象を照合",
+    "worries": "家のお茶や飲んだ後の不安を確認"
+  },
+  "depthAt": "2026-11-18T00:53:41+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "せん茶「秋冬番」販売数量3,522キロ",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-18T00:57:40+00:00"
+  },
+  "imageFocus": {
+    "x": 0.506,
+    "y": 0.411,
+    "box": [
+      0.069,
+      0.048,
+      0.944,
+      0.774
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/akifuyuban-green-tea-recall-figure-7b9aa513.jpg"
+  }
 }

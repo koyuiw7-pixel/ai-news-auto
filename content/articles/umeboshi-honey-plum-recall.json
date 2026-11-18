@@ -54,13 +54,14 @@
   "videoTitle": "株式会社バンブーカット「立ち喰い梅干し屋のまかない瓶」はちみつ梅 2026年11月回収 賞味期限の誤記載で332個が対象",
   "publishedAt": "2026-11-18T00:34:58.154542+00:00",
   "generatedAt": "2026-11-18T00:35:22.216893+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/umeboshi-honey-plum-recall-figure-964acf1a.jpg",
   "model": "openai-api:gpt-6.1-terra",
   "affiliates": [],
   "newsType": "product",
   "todayActions": [
-    "手元のはちみつ梅の瓶で、賞味期限2027.10.20とJANコード4589735080335を確認する。",
-    "対象品は03-5246-4277に連絡するか、住所と名前などを書き添えて商品回収係へ着払いで送る。"
+    "手元の瓶で商品名、味、賞味期限、JANコードを照合する。",
+    "対象品か判断に迷ったら、受付時間内にバンブーカットへ電話する。",
+    "対象品なら、必要事項を書き添えて商品回収係へ着払いで送る。"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -88,5 +89,126 @@
   "summaryLine": "「立ち喰い梅干し屋のまかない瓶」はちみつ梅は、賞味期限の誤記載で332個が回収対象です。",
   "relatedSlugs": [
     "fujisawa-bakery-recall-chocokorone-2026"
-  ]
+  ],
+  "insight": [
+    {
+      "text": "厚生労働省の説明では、CLASS IIは直ちに分類を判断できない場合にも使われ、その後の情報を踏まえて分類が変更されることがあります。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602940"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "株式会社バンブーカット 回収窓口",
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602940",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602940",
+      "phone": "03-5246-4277",
+      "hours": "10:00～17:00、土日祝日・年末年始を除く",
+      "note": "送付時は郵便番号、住所、名前、電話番号を書き添え、送料着払いで送るよう案内されています。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "手元の瓶で商品名、味、賞味期限、JANコードを照合する。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602940",
+      "steps": [
+        "「立ち喰い梅干し屋のまかない瓶」か確認する",
+        "はちみつ梅、100gの瓶詰めか確かめる",
+        "賞味期限2027.10.20とJANコード4589735080335を確認する"
+      ],
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602940"
+    },
+    {
+      "action": "対象品か判断に迷ったら、受付時間内にバンブーカットへ電話する。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602940",
+      "steps": [
+        "10:00～17:00の受付時間を確認する",
+        "03-5246-4277へ電話する",
+        "土日祝日・年末年始は受付対象外"
+      ],
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602940"
+    },
+    {
+      "action": "対象品なら、必要事項を書き添えて商品回収係へ着払いで送る。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602940",
+      "steps": [
+        "郵便番号、住所、名前、電話番号を書き添える",
+        "送料着払いで送付する",
+        "〒111-0032 東京都台東区浅草2-2-4 株式会社バンブーカット 商品回収係 宛"
+      ],
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602940"
+    }
+  ],
+  "cause": {
+    "text": "回収理由は食品表示法違反で、賞味期限の誤記載です。商品には「2027.10.20」と表示されていますが、正しい賞味期限は「2027.06.19」とされています。",
+    "status": "stated",
+    "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602940"
+  },
+  "worries": [
+    {
+      "q": "この商品は、どの表示が一致すれば回収対象？",
+      "a": "対象は「立ち喰い梅干し屋のまかない瓶」のはちみつ梅、内容量100gの瓶詰めです。賞味期限の誤表示は2027.10.20、正しい期限は2027.06.19で、JANコードは4589735080335です。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602940",
+      "action": "手元の瓶で商品名、はちみつ梅、賞味期限、JANコードを一つずつ照合してください。"
+    },
+    {
+      "q": "対象品を着払いで送ると、品代は返金される？",
+      "a": "回収方法として着払いで送付するよう案内され、送付された商品について品代を返金するとしています。送付時には郵便番号、住所、名前、電話番号を書き添える必要があります。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602940",
+      "action": "対象品と確認できたら、必要事項を書き添えて指定先へ送料着払いで送ってください。"
+    },
+    {
+      "q": "電話窓口はいつなら受け付けてもらえる？",
+      "a": "電話番号は03-5246-4277で、受付時間は10:00～17:00です。土日祝日と年末年始は受け付けていません。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602940",
+      "action": "電話で確認したい場合は、受付時間内に03-5246-4277へ連絡してください。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "電話と着払い、どちらで回収を頼む？",
+      "situation": "対象品か判断に迷っている",
+      "recommend": "受付時間内に電話で確認する",
+      "reason": "対象か迷う場合は、受付時間内に窓口へ連絡できます。受付は10:00～17:00で、土日祝日・年末年始を除きます。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602940"
+    },
+    {
+      "question": "電話と着払い、どちらで回収を頼む？",
+      "situation": "対象品と確認でき、送付したい",
+      "recommend": "必要事項を添えて着払いで送る",
+      "reason": "対象品を送る場合は、指定先へ送料着払いで送付し、郵便番号・住所・名前・電話番号を書き添えるよう案内されています。送付された商品について品代が返金されます。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602940"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "CLASS IIは後から変わることがある",
+    "cause": "瓶の賞味期限表示に誤り",
+    "steps": "瓶の表示を確かめて回収を頼む",
+    "desk": "回収窓口の電話と受付時間",
+    "worries": "対象品の見分け方と返金方法",
+    "guide": "電話か着払いか、回収の頼み方"
+  },
+  "depthAt": "2026-11-18T00:55:32+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "「立ち喰い梅干し屋のまかない瓶」はちみつ梅332個を回収",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-18T00:56:59+00:00"
+  },
+  "imageFocus": {
+    "x": 0.545,
+    "y": 0.395,
+    "box": [
+      0.109,
+      0.065,
+      0.981,
+      0.726
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/umeboshi-honey-plum-recall-figure-964acf1a.jpg"
+  }
 }

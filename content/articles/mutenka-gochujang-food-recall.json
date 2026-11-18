@@ -54,13 +54,13 @@
   "videoTitle": "無添加コチュジャン 2026年11月回収 賞味期限2027年4月26日でもカビのおそれで対象",
   "publishedAt": "2026-11-18T00:36:39.338570+00:00",
   "generatedAt": "2026-11-18T00:37:07.171117+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/mutenka-gochujang-food-recall-figure-a5999579.jpg",
   "model": "openai-api:gpt-6.1-terra",
   "affiliates": [],
   "newsType": "product",
   "todayActions": [
-    "手元の「無添加コチュジャン」が110g瓶で、賞味期限が2027年4月26日か確かめる。",
-    "CASICAとROBYNの店頭、またはBRIDGE the gapのホームページで回収告知を確認する。"
+    "手元の瓶の内容量・形態・賞味期限を、厚労省の回収情報と照合する",
+    "対象条件に合う瓶なら、販売店の店頭回収告知で回収・返金の案内を確認する"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -88,5 +88,104 @@
   "summaryLine": "「無添加コチュジャン」はカビによる汚染のおそれで、賞味期限内の商品も回収対象です。",
   "relatedSlugs": [
     "fujisawa-bakery-recall-chocokorone-2026"
-  ]
+  ],
+  "insight": [
+    {
+      "text": "この商品のCLASSⅡ分類は固定とは限りません。厚労省は、直ちに判断できない場合にCLASSⅡとし、その後の情報を踏まえて適切な分類に変更すると説明しています。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602412"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "公開回収事案詳細（RCL202602412）",
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602412",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602412"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "手元の瓶の内容量・形態・賞味期限を、厚労省の回収情報と照合する",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602412",
+      "steps": [
+        "公開回収事案詳細を開く",
+        "110g・瓶詰・賞味期限を照合する"
+      ],
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602412"
+    },
+    {
+      "action": "対象条件に合う瓶なら、販売店の店頭回収告知で回収・返金の案内を確認する",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602412",
+      "steps": [
+        "CASICAまたはROBYNの店頭へ行く",
+        "店頭の回収告知を確認する"
+      ],
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602412"
+    }
+  ],
+  "cause": {
+    "text": "回収理由はカビによる汚染のおそれで、食品衛生法違反のおそれがあり、食品衛生法第20条に該当するとされています。",
+    "status": "stated",
+    "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602412"
+  },
+  "worries": [
+    {
+      "q": "賞味期限が同じなら、別の店で買った瓶も対象ですか？",
+      "a": "厚労省の公開情報で販売先として示されているのは、東京都のCASICAと京都府のROBYNの2店舗です。対象商品情報は110gの瓶詰、賞味期限2027年4月26日です。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602412",
+      "action": "賞味期限だけで決めず、内容量と購入店も厚労省の公開情報に照らして確認してください。"
+    },
+    {
+      "q": "いつ購入した商品が回収告知の対象ですか？",
+      "a": "公開情報では、2026年5月7日から8月24日まで、CASICA（東京）とROBYN（京都）で消費者向けに販売されたとされています。販売数量は128個です。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602412",
+      "action": "購入店と購入時期を確認し、該当する場合はその店舗の店頭回収告知を見てください。"
+    },
+    {
+      "q": "回収に応じた場合、返金を受けられますか？",
+      "a": "厚労省の公開回収情報には、回収後の対応として返金対応と記載されています。販売店舗の在庫回収と、2店舗の店頭での回収告知も回収方法に挙げられています。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602412",
+      "action": "CASICAまたはROBYNの店頭回収告知を確認し、回収・返金について案内を確かめてください。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "表示が対象条件に合うとき、どう動く？",
+      "situation": "110g瓶で賞味期限が2027年4月26日",
+      "recommend": "販売店の回収告知を確認する",
+      "reason": "公開情報の対象商品は110gの瓶詰で、賞味期限は2027年4月26日です。販売先はCASICAとROBYNで、回収後は返金対応とされています。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602412"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "CLASSⅡの分類は後から変わることも",
+    "cause": "回収理由として公表されたこと",
+    "steps": "瓶の表示を照合して回収告知へ",
+    "desk": "回収情報を確認できる厚労省ページ",
+    "worries": "購入店や返金対応が気になる",
+    "guide": "対象条件に合ったときの動き方"
+  },
+  "depthAt": "2026-11-18T00:54:56+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "「無添加コチュジャン」が回収対象に",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-18T00:56:44+00:00"
+  },
+  "imageFocus": {
+    "x": 0.522,
+    "y": 0.384,
+    "box": [
+      0.094,
+      0.048,
+      0.95,
+      0.72
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/mutenka-gochujang-food-recall-figure-a5999579.jpg"
+  }
 }

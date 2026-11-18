@@ -55,13 +55,14 @@
   "videoTitle": "JA全農Aコープ「砂肝焼（レモンペッパー）」2026年11月回収 消費期限5種類が対象で保存温度の表示なし",
   "publishedAt": "2026-11-18T00:38:09.002160+00:00",
   "generatedAt": "2026-11-18T00:38:35.488050+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/acoop-sunagimo-recall-morioka-figure-0b948104.jpg",
   "model": "openai-api:gpt-6.1-terra",
   "affiliates": [],
   "newsType": "product",
   "todayActions": [
-    "Aコープ飯岡駅前店で買った砂肝焼の消費期限を、対象の5種類と照らし合わせる。",
-    "対象商品を買った場合は、レシートを用意してAコープ飯岡駅前店で返金を受ける。"
+    "厚生労働省の公開回収事案詳細で、商品名・消費期限・販売先を照合する",
+    "対象商品を買った人は、レシートを持参して店頭で返金を受ける",
+    "店に来られない対象購入者は、訪問による返金対応を利用する"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -90,5 +91,117 @@
   "summaryLine": "Aコープ飯岡駅前店の「砂肝焼（レモンペッパー）」は、消費期限5種類の商品が回収対象です。",
   "relatedSlugs": [
     "fujisawa-bakery-recall-chocokorone-2026"
-  ]
+  ],
+  "insight": [
+    {
+      "text": "公開資料はCLASSⅡについて、直ちに分類を判断できない場合に用い、その後の情報を踏まえて変更することがあると説明しています。危険性の分類は固定ではありません。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602946"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "JA全農Aコープ株式会社Ａコープ飯岡駅前店",
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602946",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602946",
+      "note": "レシートを持参した人に返金し、来店できない場合は訪問したうえで返金するとしています。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "厚生労働省の公開回収事案詳細で、商品名・消費期限・販売先を照合する",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602946",
+      "steps": [
+        "公開回収事案詳細を開く",
+        "商品名と5種類の消費期限を確認する",
+        "販売先と販売日を確認する"
+      ],
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602946"
+    },
+    {
+      "action": "対象商品を買った人は、レシートを持参して店頭で返金を受ける",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602946",
+      "steps": [
+        "対象商品か確認する",
+        "レシートを用意する",
+        "Ａコープ飯岡駅前店へ持参する"
+      ],
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602946"
+    },
+    {
+      "action": "店に来られない対象購入者は、訪問による返金対応を利用する",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602946",
+      "steps": [
+        "対象商品か確認する",
+        "来店できない場合は訪問による返金対応を利用する"
+      ],
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602946"
+    }
+  ],
+  "cause": {
+    "text": "回収理由は保存温度の表示が欠けていたことです。公開情報は、適正な温度で保存しない場合、細菌やウイルスによる健康被害を引き起こすおそれがあると説明しています。",
+    "status": "stated",
+    "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602946"
+  },
+  "worries": [
+    {
+      "q": "商品名と消費期限が合えば、どの店で買っても対象？",
+      "a": "対象商品は「砂肝焼（レモンペッパー）」で、販売先はＡコープ飯岡駅前店、販売日は2026年11月5日～2026年11月12日までとされています。消費期限は2026年11月5日、7日、8日、11日、12日の5種類です。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602946",
+      "action": "商品名・消費期限に加えて、購入先と購入日も公開回収事案詳細で照合してください。"
+    },
+    {
+      "q": "店まで行けない場合でも、返金してもらえる？",
+      "a": "公開情報では、Ａコープ飯岡駅前店に来店できない場合、店側が訪問したうえで返金するとしています。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602946",
+      "action": "対象商品を確認し、来店できない場合は店側の訪問による返金対応を利用してください。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "対象商品があったら、返金をどう受ける？",
+      "situation": "Ａコープ飯岡駅前店に行ける",
+      "recommend": "レシートを持参して店頭で返金を受ける",
+      "reason": "公開情報では、Ａコープ飯岡駅前店でレシートを持参した人に返金するとしています。店頭対応は示されていますが、返金額や回収期限は記載されていません。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602946"
+    },
+    {
+      "question": "対象商品があったら、返金をどう受ける？",
+      "situation": "店に来られない",
+      "recommend": "訪問による返金対応を利用する",
+      "reason": "公開情報では、来店できない場合は店側が訪問したうえで返金するとしています。訪問対応は示されていますが、申し込み方法や訪問日時は掲載されていません。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602946"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "CLASSⅡは後から変更されることもある",
+    "cause": "保存温度の表示が欠けていた",
+    "steps": "対象期限を確認して返金へ",
+    "desk": "飯岡駅前店で返金対応",
+    "worries": "対象か、返金できるかを確認",
+    "guide": "来店できるかで返金方法を選ぶ"
+  },
+  "depthAt": "2026-11-18T00:54:17+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "JA全農Aコープ「砂肝焼（レモンペッパー）」回収",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-18T00:56:29+00:00"
+  },
+  "imageFocus": {
+    "x": 0.516,
+    "y": 0.416,
+    "box": [
+      0.091,
+      0.065,
+      0.941,
+      0.768
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/acoop-sunagimo-recall-morioka-figure-0b948104.jpg"
+  }
 }
