@@ -81,8 +81,8 @@
   "newsType": "product",
   "faq": [],
   "todayActions": [
-    "NVIDIAの「Vera CPU HPC性能概要」で、気流や気象の計算に使った測定条件を確認する。",
-    "科学計算の開発者は、提供中のNVIDIA HPC SDK 26.11で使えるVera向けのツールを確認する。"
+    "用途に近い計算の測定条件を、NVIDIAの性能概要で確かめる。",
+    "科学計算の開発者は、提供中のSDKでVera向け機能を確認する。"
   ],
   "relatedSlugs": [
     "oci-vera-cpu-vera-rubin-nvl72"
@@ -143,5 +143,94 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/nvidia-vera-cpu-science-rack-figure-a6abeb9a.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "ラックは1UトレイごとにVera CPU 8基とNVMeストレージ、管理機能をまとめています。ラック全体の仕様だけでなく、トレイ単位の構成も確認材料になります。",
+      "source": "https://blogs.nvidia.co.jp/blog/nvidia-expands-vera-cpu-platform-to-accelerate-scientific-discovery/"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "NVIDIA Vera CPU HPC 性能概要",
+      "url": "https://dam-cdn.nvd.orangelogic.com/AssetLink/b8ip35u047q24s1600wns7rtilf0qcru.pdf",
+      "source": "https://blogs.nvidia.co.jp/blog/nvidia-expands-vera-cpu-platform-to-accelerate-scientific-discovery/"
+    },
+    {
+      "name": "NVIDIA HPC SDK 26.11",
+      "url": "https://developer.nvidia.com/hpc-sdk",
+      "source": "https://blogs.nvidia.co.jp/blog/nvidia-expands-vera-cpu-platform-to-accelerate-scientific-discovery/"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "用途に近い計算の測定条件を、NVIDIAの性能概要で確かめる。",
+      "source": "https://blogs.nvidia.co.jp/blog/nvidia-expands-vera-cpu-platform-to-accelerate-scientific-discovery/",
+      "steps": [
+        "NVIDIA日本版ブログを開く",
+        "「NVIDIA Vera CPU HPC 性能概要」を開く",
+        "ベンチマーク結果とテスト構成を確認する"
+      ],
+      "url": "https://dam-cdn.nvd.orangelogic.com/AssetLink/b8ip35u047q24s1600wns7rtilf0qcru.pdf"
+    },
+    {
+      "action": "科学計算の開発者は、提供中のSDKでVera向け機能を確認する。",
+      "source": "https://blogs.nvidia.co.jp/blog/nvidia-expands-vera-cpu-platform-to-accelerate-scientific-discovery/",
+      "steps": [
+        "NVIDIA HPC SDK 26.11のページを開く",
+        "Vera向けに最適化されたコンパイラとライブラリを確認する"
+      ],
+      "url": "https://developer.nvidia.com/hpc-sdk"
+    }
+  ],
+  "cause": {
+    "text": "科学シミュレーションでは、大規模なデータセットを継続的に処理し、アプリケーションが拡大しても性能を保つCPUが必要だとNVIDIAは説明しています。Veraはカスタム設計のCPUコア、高帯域幅メモリ、InfiniBandネットワーキングを組み合わせ、こうしたボトルネックに対処する設計です。",
+    "status": "background",
+    "source": "https://blogs.nvidia.co.jp/blog/nvidia-expands-vera-cpu-platform-to-accelerate-scientific-discovery/"
+  },
+  "worries": [
+    {
+      "q": "Vera CPUラックは、いつどのメーカーから提供されますか？",
+      "a": "NVIDIAは、Vera CPUラックが2027年初頭からDell Technologies、HPE、Lenovo、Supermicroより提供される予定と発表しています。",
+      "source": "https://blogs.nvidia.co.jp/blog/nvidia-expands-vera-cpu-platform-to-accelerate-scientific-discovery/",
+      "action": "導入時期を検討する際は、発表された提供予定時期と提供元を確認する。"
+    },
+    {
+      "q": "気象モデルの性能向上は、実測された結果ですか？",
+      "a": "Weather Research and Forecastingモデルでは、x86と比較した性能1.6倍、エネルギー効率2倍は予測値とされています。OpenFOAMのmotorBike Largeでの結果とは区別が必要です。",
+      "source": "https://blogs.nvidia.co.jp/blog/nvidia-expands-vera-cpu-platform-to-accelerate-scientific-discovery/",
+      "action": "性能概要を開き、ベンチマーク結果とテスト構成を用途に照らして確認する。"
+    },
+    {
+      "q": "Vera向けの開発ツールは、もう使えるのでしょうか？",
+      "a": "NVIDIA HPC SDK 26.11は現在提供されており、Vera向けに最適化されたコンパイラとライブラリを利用できます。次世代Fortranコンパイラについては、パブリックベータ版が発表されています。",
+      "source": "https://blogs.nvidia.co.jp/blog/nvidia-expands-vera-cpu-platform-to-accelerate-scientific-discovery/",
+      "action": "NVIDIA HPC SDK 26.11のページで、Vera向けのコンパイラとライブラリを確認する。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "公表された性能値だけで導入を判断していい？",
+      "situation": "自分の計算がOpenFOAMの気流シミュレーションに近い",
+      "recommend": "テスト条件を確認して比較する",
+      "reason": "NVIDIAのテストではOpenFOAMのmotorBike Largeでx86システムの1.9倍の性能でした。測定条件を自分の用途と照らし合わせる材料になりますが、別の計算の性能を直接示すものではありません。",
+      "source": "https://blogs.nvidia.co.jp/blog/nvidia-expands-vera-cpu-platform-to-accelerate-scientific-discovery/"
+    },
+    {
+      "question": "公表された性能値だけで導入を判断していい？",
+      "situation": "気象モデルや別の計算を使う",
+      "recommend": "用途に近い条件を優先して確かめる",
+      "reason": "Weather Research and Forecastingモデルの性能1.6倍、エネルギー効率2倍は予測値です。実測結果とは区別し、詳細なベンチマーク結果とテスト構成を確認するのが判断材料になります。",
+      "source": "https://blogs.nvidia.co.jp/blog/nvidia-expands-vera-cpu-platform-to-accelerate-scientific-discovery/"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "1UトレイにはCPU 8基とNVMeストレージ",
+    "cause": "科学計算のボトルネックに対処する設計",
+    "steps": "ベンチマーク条件と開発ツールを確認",
+    "desk": "性能概要とSDKの公式ページ",
+    "worries": "提供時期や性能、開発環境はどうなる？",
+    "guide": "性能値を導入判断に使うときの見方"
+  },
+  "depthAt": "2026-11-18T05:00:31+00:00"
 }
