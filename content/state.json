@@ -190,6 +190,7 @@
     "14bb9a3a6d185acda974156a41b133ff85df6f68": 2,
     "14e2d8f33b7cbd34b06aee23b4ec1d97a7b3437a": 2,
     "15fa38c24faf5c43eacc1bd2c22267975a96fb20": 2,
+    "166e9c411d5ac73920a706deaf428a1658e9bf62": 1,
     "16a55cdbb702bd9cdaf46e301e6b621720294cf4": 2,
     "16abeaa560e8ddba9509f07cf5a3adeaa2bed98c": 2,
     "17043be4fc1d76b7ed88736180708a644ef602e4": 2,
@@ -890,7 +891,6 @@
     "a9aed43d17c541f2c1c849565f08955c69a9d49f": 2,
     "a9bba0845b77a3429d1361233e0a15b64e72d661": 2,
     "a9c4c3e8429415b1d963c9e6ff67dc55887ccd96": 2,
-    "a9cf7301f4e69873c35c5e80e8235961564b6b1b": 1,
     "a9f448879f4bb14d171b0737e603d561db17bb56": 2,
     "aa0517b1ae632803a6e805b212b8c7fccca6a173": 2,
     "aa306911776148bc688db54fc1b8d0027b6a93c0": 2,
@@ -8188,12 +8188,6 @@
       "slug": "wage-cut-rules-after-profit-drop",
       "url": "https://j-net21.smrj.go.jp/solution/qa/vision/Q1548.html"
     },
-    "32379469880e6096": {
-      "at": "2026-11-04T03:01:26.970536+00:00",
-      "reason": "prefilter: 価値の薄いお知らせ（セミナー）",
-      "skipped": true,
-      "url": "https://j-net21.smrj.go.jp/news/bt5puv0000010b3o.html"
-    },
     "3262b66b6c2f38b6": {
       "at": "2026-11-12T06:24:20.939309+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（募集）",
@@ -9198,12 +9192,6 @@
       "reason": "quality: 記事の基準に足りない（自動で手直ししても残った）: 5.読者がすること（何を・どこで・期限）（することは書いてあるが、どこで（窓口・ページ）・いつまでが無い）",
       "skipped": true,
       "url": "https://www.nli-research.co.jp/topics_detail1/id=87338?site=nli"
-    },
-    "416541329c8b23f2": {
-      "at": "2026-11-04T03:01:26.969501+00:00",
-      "reason": "stale: 発表から307時間（記事ページの日付）",
-      "skipped": true,
-      "url": "https://j-net21.smrj.go.jp/news/bt5puv0000010bb3.html"
     },
     "4173bdbd6aa55cf1": {
       "at": "2026-11-04T15:41:53.027006+00:00",
@@ -13251,12 +13239,6 @@
       "trendLane": true,
       "url": "https://www.jfa.jp/news/00037026/"
     },
-    "7b989b7aa0d3bfd4": {
-      "at": "2026-11-04T03:01:31.453588+00:00",
-      "reason": "stale: 発表から307時間（記事ページの日付）",
-      "skipped": true,
-      "url": "https://j-net21.smrj.go.jp/news/bt5puv00000108j9.html"
-    },
     "7bdf2a70db0a49fb": {
       "at": "2026-11-10T00:08:20.620888+00:00",
       "reason": "prefilter: お知らせ・統計の転載（statistics）",
@@ -16282,6 +16264,17 @@
       "section": "lifestyle",
       "slug": "tepco-energy-support-december",
       "url": "https://www.tepco.co.jp/ep/notice/pressrelease/2026/pdf/26x4801.pdf"
+    },
+    "a9cf7301f4e69873c35c5e80e8235961564b6b1b": {
+      "at": "2026-11-18T03:07:23.885264+00:00",
+      "kind": "trend",
+      "model": "gemini-3.5-flash-lite",
+      "pressReport": true,
+      "score": 96,
+      "slug": "shinbashi-station-fire-update",
+      "trendKeyword": "新橋 火事",
+      "trendLane": true,
+      "url": "https://newsdig.tbs.co.jp/articles/-/3093454?display=1"
     },
     "a9f8fc0979118b50": {
       "at": "2026-11-07T19:12:12.188901+00:00",
@@ -21610,12 +21603,6 @@
       "skipped": true,
       "url": "https://news.yahoo.co.jp/articles/dfc43e63d945ec47bd607462357c42295054736e"
     },
-    "fb043847e5b56c24": {
-      "at": "2026-11-04T03:01:26.970508+00:00",
-      "reason": "prefilter: 価値の薄いお知らせ（セミナー）",
-      "skipped": true,
-      "url": "https://j-net21.smrj.go.jp/news/bt5puv0000010b7d.html"
-    },
     "fb0ffbd5b615719e": {
       "at": "2026-11-13T10:11:33.298036+00:00",
       "reason": "dedupe: 見出しが類似（0.62）: キム・スヒョン関連ニュース｜dメニューニュース（NTTドコモ）",
@@ -24431,70 +24418,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-16T07:18:56.350151+00:00",
-      "attempt": 0,
-      "id": "489aca3b9d1d410c",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 55.5,
-        "avg_sentence": 45.6,
-        "long_share": 0.286,
-        "max_paragraph": 89,
-        "paragraphs": 23,
-        "sentences": 28
-      },
-      "score": 88,
-      "source": "playstation-blog-jp",
-      "title": "全国のPlayStation®取扱店にて「Black Fridayセール」開催！ PS5®周辺機器やソフトウェアが期間限定でお買い得！",
-      "warnings": [
-        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（PS・EC・PULSE）",
-        "読みやすさ: 文が長い（1文の平均 45.6字・60字超の文が 29% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-16T07:40:01.242457+00:00",
-      "attempt": 1,
-      "id": "08053551a22b7de2",
-      "kind": "broad",
-      "model": "claude:sonnet",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 82.1,
-        "avg_sentence": 35.7,
-        "long_share": 0.0,
-        "max_paragraph": 161,
-        "paragraphs": 10,
-        "sentences": 23
-      },
-      "score": 88,
-      "source": "fast",
-      "title": "大阪府行政オンラインシステムでの情報漏えいについて",
-      "warnings": [
-        "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-16T07:40:39.149045+00:00",
-      "attempt": 1,
-      "id": "d6afe6951c435fb4",
-      "kind": "update",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [
-        "本文「当初は第三報まで「継続中」だった障害」→ 元記事に第三報や「継続中」という表示の記述はなく、創作である",
-        "簡単版「5G SAを使う人の通信が一か所に集中した」→ 元記事は「交換機への通信の集中」とするのみで、「一か所」は言い過ぎ",
-        "本文「当初は調査中としていた原因が示されたことになります」→ 元記事に「当初は調査中」との直接の記述はなく、確認済みの文脈の要約からの推測で、根拠が弱い"
-      ],
-      "score": 62,
-      "source": "docomo-news-release",
-      "title": "NTTドコモの障害に関するお知らせ"
-    },
     {
       "accepted": false,
       "at": "2026-11-16T08:13:42.398295+00:00",
@@ -31895,6 +31818,84 @@
         "初めて出たところで言い換えていない略語（SUPER・GT・SPORTS）",
         "読みやすさ: 文が長い（1文の平均 54.6字・60字超の文が 44% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
         "読みやすさ: 段落が長い（平均 194.2字・最長 254字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-18T03:06:27.075397+00:00",
+      "attempt": 1,
+      "id": "a9cf7301f4e69873c35c5e80e8235961564b6b1b",
+      "kind": "trend",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "リード「警察や消防が詳しい状況や原因の確認を急いでいる」→ 元記事は詳しい状況の確認には触れていますが、原因を確認中とは述べていません。",
+        "リード「けが人や逃げ遅れの情報は入っていない」→ NHKが「けが人などの情報は入っていない」と報じた一方、逃げ遅れについては朝日新聞が有無を確認中としており、情報がないと断定できません。",
+        "「警察や消防によるその後の発表が待たれる状況」→ 元記事は交通への影響や今後の発表予定に触れておらず、警察や消防の発表を待つ状況とする根拠はありません。"
+      ],
+      "readability": {
+        "avg_paragraph": 67.8,
+        "avg_sentence": 56.5,
+        "long_share": 0.333,
+        "max_paragraph": 119,
+        "paragraphs": 5,
+        "sentences": 6
+      },
+      "score": 78,
+      "source": "trends",
+      "title": "新橋 火事",
+      "warnings": [
+        "見出しの書き方: 区切りの全角空白が2つ以上（補足は1つだけ）",
+        "初めて出たところで言い換えていない略語（JR）",
+        "読みやすさ: 文が長い（1文の平均 56.5字・60字超の文が 33% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-18T03:06:48.934290+00:00",
+      "attempt": 1,
+      "id": "a9cf7301f4e69873c35c5e80e8235961564b6b1b",
+      "kind": "trend",
+      "model": "openai-api:gpt-6-luna",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 70.8,
+        "avg_sentence": 56.6,
+        "long_share": 0.4,
+        "max_paragraph": 119,
+        "paragraphs": 4,
+        "sentences": 5
+      },
+      "score": 100,
+      "source": "trends",
+      "title": "新橋 火事",
+      "warnings": [
+        "見出しの書き方: 区切りの全角空白が2つ以上（補足は1つだけ）",
+        "初めて出たところで言い換えていない略語（JR）",
+        "読みやすさ: 文が長い（1文の平均 56.6字・60字超の文が 40% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-18T03:07:18.378077+00:00",
+      "attempt": 0,
+      "id": "a9cf7301f4e69873c35c5e80e8235961564b6b1b",
+      "kind": "trend",
+      "model": "openai-api:gpt-6-luna",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 60.2,
+        "avg_sentence": 27.4,
+        "long_share": 0.0,
+        "max_paragraph": 83,
+        "paragraphs": 5,
+        "sentences": 11
+      },
+      "score": 96,
+      "source": "trends",
+      "title": "新橋 火事",
+      "warnings": [
+        "見出しの書き方: 区切りの全角空白が2つ以上（補足は1つだけ）",
+        "初めて出たところで言い換えていない略語（JR）"
       ]
     }
   ],
