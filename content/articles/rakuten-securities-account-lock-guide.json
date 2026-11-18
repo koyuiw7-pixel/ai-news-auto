@@ -56,7 +56,7 @@
   "videoTitle": "楽天証券で情報漏えいの可能性　最大約447万口座、パスワードは対象外",
   "publishedAt": "2026-11-17T23:55:22.114446+00:00",
   "generatedAt": "2026-11-17T23:56:11.585690+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/rakuten-securities-account-lock-guide-figure-8e4def79.jpg",
   "model": "openai-api:gpt-6.1-terra",
   "affiliates": [],
   "newsType": "security",
@@ -71,13 +71,15 @@
     }
   ],
   "todayActions": [
-    "取引や出金を止めたい場合は、楽天証券のセキュリティ設定か0120-852-638で手続きする。",
-    "11月15日午前3時より前に利用停止を設定した人は、出金先口座の変更制限を確認する。",
-    "不審な連絡については、楽天証券カスタマーサポートセンターの0120-862-274に問い合わせる。"
+    "楽天証券のウェブサイトにログインし、取引やサービスの一時停止を設定する",
+    "パスキー認証が未設定なら、楽天証券の操作ガイドから設定を進める",
+    "不審な連絡を受けたら、楽天証券カスタマーサポートセンターへ電話で相談する"
   ],
   "angleOf": "rakuten-sec-data-leak-447",
   "deepDive": "procedure",
   "relatedSlugs": [
+    "rakuten-securities-leak-check",
+    "rakuten-securities-leak-questions",
     "rakuten-sec-data-leak-447"
   ],
   "qualityBar": {
@@ -97,5 +99,132 @@
   "titleStyle": "2026-11-03",
   "searchTitle": "楽天証券の一時停止はどうする？　ウェブと電話で設定",
   "layout": "noir",
-  "summaryLine": "楽天証券の口座は、ウェブサイトや自動音声ダイヤルで取引や出金を一時停止できます。"
+  "summaryLine": "楽天証券の口座は、ウェブサイトや自動音声ダイヤルで取引や出金を一時停止できます。",
+  "insight": [
+    {
+      "text": "漏えいのおそれがある情報は一括で最大約447万口座分だけではありません。部店・お客様コードとログインIDは最大約1,125万口座分と、情報の組み合わせで口座数が異なります。",
+      "source": "https://www.rakuten-sec.co.jp/smartphone/info/info20261117-02.html"
+    },
+    {
+      "text": "楽天証券のログインパスワードや暗証番号を含む取引情報の漏えいは確認されていません。本件に起因すると考えられる不正アクセス・不正取引も、現時点では確認されていません。",
+      "source": "https://www.rakuten-sec.co.jp/smartphone/info/info20261117-02.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "楽天証券カスタマーサポートセンター",
+      "url": "https://www.rakuten-sec.co.jp/smartphone/info/info20261117-02.html",
+      "source": "https://www.rakuten-sec.co.jp/smartphone/info/info20261117-02.html",
+      "howTo": [
+        "ホーム",
+        "お知らせ一覧",
+        "当社お客様の情報漏えいの可能性に関するお詫びとお知らせ"
+      ],
+      "phone": "0120-862-274",
+      "hours": "平日8：30～17：00 土日9：00～17：00",
+      "note": "楽天証券から電話で個人情報やログインに関する情報を尋ねることはありません。"
+    },
+    {
+      "name": "取引やサービスの一時的な利用停止",
+      "url": "https://www.rakuten-sec.co.jp/web/security/account_lock/",
+      "source": "https://www.rakuten-sec.co.jp/smartphone/info/info20261117-02.html",
+      "howTo": [
+        "当社ウェブサイトへログイン",
+        "セキュリティ設定ページ",
+        "取引やサービスの一時的な利用停止"
+      ]
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "楽天証券のウェブサイトにログインし、取引やサービスの一時停止を設定する",
+      "source": "https://www.rakuten-sec.co.jp/smartphone/info/info20261117-02.html",
+      "steps": [
+        "当社ウェブサイトへログイン",
+        "セキュリティ設定ページを開く",
+        "取引やサービスの一時的な利用停止へ進む"
+      ],
+      "url": "https://www.rakuten-sec.co.jp/web/security/account_lock/"
+    },
+    {
+      "action": "パスキー認証が未設定なら、楽天証券の操作ガイドから設定を進める",
+      "source": "https://www.rakuten-sec.co.jp/smartphone/info/info20261117-02.html",
+      "steps": [
+        "パスキー認証（FIDO2）操作ガイドを開く",
+        "案内に沿ってパスキー認証を設定する"
+      ],
+      "url": "https://www.rakuten-sec.co.jp/web/security/passkey/guide/"
+    },
+    {
+      "action": "不審な連絡を受けたら、楽天証券カスタマーサポートセンターへ電話で相談する",
+      "source": "https://www.rakuten-sec.co.jp/smartphone/info/info20261117-02.html",
+      "steps": [
+        "楽天証券カスタマーサポートセンターへ電話する",
+        "0120-862-274に連絡する"
+      ],
+      "url": "https://www.rakuten-sec.co.jp/smartphone/info/info20261117-02.html"
+    }
+  ],
+  "cause": {
+    "text": "楽天証券は、2026年11月16日に一部システムへの第三者による不正アクセスの可能性を検知し、アクセスの遮断や修正を実施しました。調査で11月11日にテスト環境で管理していた情報が外部に漏えいしたおそれを確認し、不正アクセスの原因や詳しい経緯は引き続き調査しています。",
+    "status": "investigating",
+    "source": "https://www.rakuten-sec.co.jp/smartphone/info/info20261117-02.html"
+  },
+  "worries": [
+    {
+      "q": "ログインパスワードや暗証番号も漏れたのでしょうか？",
+      "a": "楽天証券は、ログインに必要なパスワードや暗証番号を含む取引に必要な各種情報の漏えいは確認していないとしています。現時点で本件に起因すると考えられる不正アクセスや不正取引も確認されていません。",
+      "source": "https://www.rakuten-sec.co.jp/smartphone/info/info20261117-02.html",
+      "action": "未設定なら、楽天証券が案内するパスキー認証を操作ガイドから設定する。"
+    },
+    {
+      "q": "自分が情報漏えいの対象かどうか分かるのでしょうか？",
+      "a": "楽天証券は、影響が確認されたお客様の特定は完了しており、該当するお客様には個別に報告するとしています。新たに知らせるべき事項が判明した場合も、あらためて連絡するとしています。",
+      "source": "https://www.rakuten-sec.co.jp/smartphone/info/info20261117-02.html",
+      "action": "楽天証券からの個別報告を確認し、連絡にURLが記載されていたら開かない。"
+    },
+    {
+      "q": "漏えいした情報を使った不正取引は起きていますか？",
+      "a": "楽天証券は、現時点で本件に起因すると考えられる不正アクセスまたは不正取引は確認していないと発表しています。今後、新たに知らせるべき事項が判明した場合は、あらためて連絡するとしています。",
+      "source": "https://www.rakuten-sec.co.jp/smartphone/info/info20261117-02.html",
+      "action": "不審な連絡などを受けて心配な場合は、楽天証券カスタマーサポートセンターへ相談する。"
+    },
+    {
+      "q": "楽天証券を名乗るメールや電話はどう見分ければいい？",
+      "a": "楽天証券は、本件に関するメールにURLを記載せず、電話で個人情報やログインに関する情報を尋ねることもないとしています。不審な連絡のURLにアクセスしたり、個人情報を入力・回答したりしないよう呼びかけています。",
+      "source": "https://www.rakuten-sec.co.jp/smartphone/info/info20261117-02.html",
+      "action": "連絡内のURLは開かず、個人情報やログイン情報を入力したり電話で答えたりしない。"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "漏えい情報の範囲と、確認されていないこと",
+    "cause": "不正アクセスの原因は引き続き調査中",
+    "steps": "停止設定とパスキーを確認する",
+    "desk": "楽天証券への連絡先",
+    "worries": "口座や個別連絡についての不安"
+  },
+  "depthAt": "2026-11-18T00:21:35+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "楽天証券の口座を一時停止する方法",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-18T00:22:26+00:00"
+  },
+  "imageFocus": {
+    "x": 0.49,
+    "y": 0.399,
+    "box": [
+      0.072,
+      0.048,
+      0.909,
+      0.75
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/rakuten-securities-account-lock-guide-figure-8e4def79.jpg"
+  }
 }

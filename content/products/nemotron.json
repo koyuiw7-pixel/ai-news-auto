@@ -6,69 +6,68 @@
   "companyName": "NVIDIA",
   "category": "AIモデル",
   "overview": {
-    "text": "Nemotronは、NVIDIAが提供するAIエージェント構築のためのオープンなモデル、データ、技術群です。2026年10月以降、科学研究や音声処理、個人情報検出など多岐にわたる用途で順次発表されています。",
+    "text": "Nemotronは、NVIDIAが提供する特化型で効率的なAIエージェントを作るためのオープンなモデルやデータの技術群です。2026年10月から11月にかけて、音声認識や化学研究向けのモデルが発表されました。",
     "sources": [
-      "nvidia-nemotron-for-science",
-      "nemotron-pii-japan-finance-datasets",
-      "korea-openshell-agentic-ai-security",
-      "nvidia-nemotron-35-transcribe"
+      "nvidia-nemotron-35-transcribe",
+      "nvidia-nemotron-for-science"
     ]
   },
   "facts": [
     {
       "label": "提供開始",
-      "value": "2026年10月より順次",
+      "value": "2026年10月〜11月",
       "sources": [
         "nvidia-nemotron-35-transcribe",
-        "nvidia-nemoclaw-agent-platform"
+        "nemotron-science-riken-research"
       ]
     },
     {
       "label": "日本での提供",
-      "value": "利用可能",
+      "value": "日本から利用可能",
       "sources": [
-        "nemotron-pii-japan-finance-datasets",
-        "nvidia-nemotron-35-transcribe"
+        "nvidia-nemotron-35-transcribe",
+        "nemotron-pii-japan-finance-datasets"
       ]
     },
     {
       "label": "向いている人",
       "value": "AI開発者・研究者",
       "sources": [
-        "nemotron-pii-japan-finance-datasets",
-        "nvidia-nemotron-35-transcribe"
+        "nvidia-nemotron-35-transcribe",
+        "nvidia-nemotron-for-science"
       ]
     }
   ],
   "capabilities": [
     {
-      "text": "化学推論の学習・評価用データ（約5万問）の提供。",
-      "sources": [
-        "nvidia-nemotron-for-science"
-      ]
-    },
-    {
-      "text": "日本語文書の個人情報検出・マスキング用合成データ（約10万件）の提供。",
-      "sources": [
-        "nemotron-pii-japan-finance-datasets"
-      ]
-    },
-    {
-      "text": "多言語音声認識、話者識別、翻訳を1つのモデルで処理。",
+      "text": "40言語の文字起こしや31言語の翻訳、最大8人までの話者識別を1つのモデルで処理できます。",
       "sources": [
         "nvidia-nemotron-35-transcribe"
       ]
     },
     {
-      "text": "金融向け合成ペルソナ（900万件）を用いたシミュレーション。",
+      "text": "分子動力学ソフトGROMACSの設定修復を81%のケースで成功させています。",
+      "sources": [
+        "nvidia-nemotron-for-science",
+        "nemotron-science-riken-research"
+      ]
+    },
+    {
+      "text": "日本語文書向けの個人情報検出用データセット約10万件を活用できます。",
       "sources": [
         "nemotron-pii-japan-finance-datasets"
+      ]
+    },
+    {
+      "text": "化学分野の推論評価や追加学習に使える約5万問のLitmusBench v0.2を利用できます。",
+      "sources": [
+        "nvidia-nemotron-for-science"
       ]
     }
   ],
   "pricing": [
     {
-      "text": "モデルやデータはオープンウェイトとして無償公開されています。",
+      "text": "モデルの重みやデータパイプラインはHugging FaceやModelScopeで無償公開されています。",
       "sources": [
         "nvidia-nemotron-35-transcribe"
       ]
@@ -76,37 +75,36 @@
   ],
   "japan": [
     {
-      "text": "Hugging Face等からダウンロードして利用可能です。",
+      "text": "理化学研究所の計算基盤「RIKYU」上でNemotron 3.5 Super VLが利用可能です。",
       "sources": [
-        "nvidia-nemotron-35-transcribe"
+        "nemotron-science-riken-research"
       ]
     },
     {
-      "text": "理化学研究所のAIスーパーコンピューターでも利用できます。",
+      "text": "Hugging Faceなどのプラットフォームにアクセスできる環境があれば日本から利用できます。",
       "sources": [
-        "nvidia-nemotron-for-science"
+        "nvidia-nemotron-35-transcribe"
       ]
     }
   ],
   "howto": [
     {
-      "text": "Hugging FaceやModelScopeからモデルやデータを取得します。",
+      "text": "Hugging FaceやModelScopeからモデルやデータセットをダウンロードして利用できます。",
       "sources": [
         "nvidia-nemotron-for-science",
         "nvidia-nemotron-35-transcribe"
       ]
     },
     {
-      "text": "DGX Spark等の環境でローカル実行が可能です。",
+      "text": "TensorRT Edge-LLMを使い、数コマンドで対応モデルを動かして検証できます。",
       "sources": [
-        "nvidia-nemotron-for-science",
         "nvidia-tensorrt-edge-llm-edge-ai"
       ]
     }
   ],
   "differences": [
     {
-      "text": "音声処理において、複数タスクを1つのモデルで統合処理可能になりました。",
+      "text": "Nemotron 3.5 Transcribeでは、文字起こし、話者識別、翻訳が1つのモデルに統合されています。",
       "sources": [
         "nvidia-nemotron-35-transcribe"
       ]
@@ -114,25 +112,31 @@
   ],
   "faq": [
     {
-      "q": "無料で使えますか？",
-      "a": "モデルやデータはオープンウェイトとして無償公開されています。",
+      "q": "無料で使える？",
+      "a": "モデルの重みやデータパイプラインはHugging Faceなどで無償公開されています。",
       "sources": [
         "nvidia-nemotron-35-transcribe"
       ]
     },
     {
-      "q": "どのような用途に向いていますか？",
-      "a": "科学推論、個人情報検出、音声認識など用途に応じたモデル群です。",
+      "q": "どこからダウンロードできる？",
+      "a": "Hugging FaceやModelScopeから入手できます。",
       "sources": [
         "nvidia-nemotron-for-science",
         "nvidia-nemotron-35-transcribe"
       ]
     },
     {
-      "q": "誰が使うことを想定していますか？",
-      "a": "AI開発者や研究者向けに設計されています。",
+      "q": "どんな言語に対応している？",
+      "a": "音声認識では40言語の文字起こしや31言語から英語への翻訳などに対応しています。",
       "sources": [
-        "nemotron-pii-japan-finance-datasets",
+        "nvidia-nemotron-35-transcribe"
+      ]
+    },
+    {
+      "q": "モデルはどこの環境で動かせる？",
+      "a": "DGX SparkからBlackwellまでの単一GPUで稼働します。",
+      "sources": [
         "nvidia-nemotron-35-transcribe"
       ]
     }
@@ -144,14 +148,19 @@
       "event": "Nemotron 3.5 Transcribeを発表"
     },
     {
-      "date": "2026-11-10",
-      "slug": "nemotron-pii-japan-finance-datasets",
-      "event": "日本語個人情報検出データ等を公開"
+      "date": "2026-10-31",
+      "slug": "nvidia-nemotron-halloween-monsterhouse",
+      "event": "音声エージェントMonsterHouseの仕組みを公開"
     },
     {
-      "date": "2026-11-17",
-      "slug": "nvidia-nemotron-for-science",
-      "event": "科学AI向けNemotron for Scienceを発表"
+      "date": "2026-11-10",
+      "slug": "nemotron-pii-japan-finance-datasets",
+      "event": "日本語の個人情報検出データなどを公開"
+    },
+    {
+      "date": "2026-11-18",
+      "slug": "nemotron-science-riken-research",
+      "event": "理研のRIKYUでNemotronが利用可能に"
     }
   ],
   "related": [
@@ -161,6 +170,7 @@
     "rtx-spark"
   ],
   "articles": [
+    "nemotron-science-riken-research",
     "nvidia-nemotron-for-science",
     "nemotron-pii-japan-finance-datasets",
     "korea-openshell-agentic-ai-security",
@@ -171,14 +181,14 @@
     "nvidia-gtc-berlin-2026-vera-rubin-openshell"
   ],
   "linkFrom": [
-    "nvidia-nemotron-for-science",
+    "nemotron-science-riken-research",
     "nemotron-pii-japan-finance-datasets",
     "nvidia-nemotron-halloween-monsterhouse",
     "nvidia-nemotron-35-transcribe"
   ],
-  "signature": "8ff3cf43d538f613",
-  "primarySignature": "2576ed36181a2336",
-  "model": "gemini-3.1-flash-lite",
+  "signature": "2d827f6e582aebda",
+  "primarySignature": "7bd18a2cdc0d358e",
+  "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-10-29T17:50:17+00:00",
-  "updatedAt": "2026-11-16T18:13:37+00:00"
+  "updatedAt": "2026-11-18T00:19:47+00:00"
 }

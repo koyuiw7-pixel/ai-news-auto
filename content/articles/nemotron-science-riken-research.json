@@ -1,0 +1,227 @@
+{
+  "slug": "nemotron-science-riken-research",
+  "sourceType": "web",
+  "sourceUrl": "https://blogs.nvidia.co.jp/blog/nvidia-introduces-nemotron-for-science-to-accelerate-discoveries-with-agents/",
+  "sourceName": "NVIDIA日本版ブログ",
+  "title": "理研の「RIKYU」でNemotronが利用可能に　AIが研究設定の81%を修復した例も",
+  "seoTitle": "Nemotron for Scienceの使い方と理研の研究活用",
+  "threadsPost": "科学研究にAIを使う人に、知っておいてほしい話です。\n\n理化学研究所の研究基盤で、NVIDIAのNemotronが使えるようになりました。\n海外では、実験やシミュレーションの設定に使った研究例も紹介されています。\n\n研究や開発の作業で、AIにはどこまで任せたいですか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "line",
+      "question": "研究や開発の作業で、AIにはどこまで任せたいですか？"
+    },
+    {
+      "pattern": "ab",
+      "question": "仕事でAIを使うなら、手元の環境と外部サービスのどちらを重視しますか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "honest",
+  "lede": "Nemotron for Scienceで使うAIモデルが、理化学研究所の研究基盤「RIKYU」でも利用可能になりました。海外では、科学計算の設定を修復する研究例もあり、テストケースの81%を修復しています。NVIDIAのモデルと化学データはHugging Faceで入手でき、研究者は自分の用途に合わせた活用を検討できます。",
+  "description": "理化学研究所のRIKYUでNemotron 3.5 Super VLが利用可能に。アルゴンヌ国立研究所の治療薬候補の研究や、科学計算の設定修復で81%を記録した事例、モデルの入手先を紹介します。",
+  "keywords": [
+    "Nemotron for Science",
+    "Nemotron 3.5 Super VL",
+    "RIKYU Nemotron",
+    "理化学研究所 AI",
+    "RiVault",
+    "科学研究 AIエージェント",
+    "LitmusBench v0.2",
+    "NVIDIA 創薬 AI",
+    "StructBioReasoner",
+    "GROMACS AI"
+  ],
+  "tags": [
+    "NVIDIA",
+    "Nemotron for Science",
+    "AIエージェント",
+    "科学研究",
+    "生成AI"
+  ],
+  "highlights": [
+    "理化学研究所のRIKYUでNemotron 3.5 Super VLを研究に利用可能",
+    "アルゴンヌ国立研究所はStructBioReasonerにNemotronを統合",
+    "KTHのエージェントはGROMACSの設定をテストケースの81%で修復"
+  ],
+  "timetable": [],
+  "verdict": {
+    "status": "available",
+    "japan": "unknown",
+    "price": "不明",
+    "free": null,
+    "audience": "研究者",
+    "take": "科学研究に使う人は、Hugging Faceでモデルとデータを確認するとよいでしょう。",
+    "judgedAt": "2026-11-18T00:17:05.183062+00:00"
+  },
+  "workMoney": {
+    "relevance": "medium",
+    "points": [
+      "化学や材料の研究者は、公開されたモデルとデータを専門作業向けのAI開発に使えます。",
+      "研究用の計算環境を扱う人は、設定修復や実験計画に使った事例を参考にできます。"
+    ]
+  },
+  "body": "理化学研究所の研究者は、研究基盤「RIKYU」上でNemotronのモデルを利用できます。NVIDIA日本版ブログは、研究や計算の高速化に向けたアプリ開発で使えると説明しています。\n\nNemotron for Scienceは、科学研究向けのAIを作るための仕組みです。モデルに化学データや追加学習の手順を組み合わせ、専門の研究作業に合わせて調整します。\n\n## 日本のRIKYUとアルゴンヌで使われるNemotron\n\n理化学研究所は、AIに計算を依頼する窓口「RiVault」を通じ、NemotronシリーズをRIKYU上で利用可能にしました。対象にはNemotron 3.5 Super VLが含まれます。\n\n米アルゴンヌ国立研究所は、複数のAIが連携して作業する「StructBioReasoner」にNemotronを組み込んでいます。タンパク質を使った治療薬候補の設計と評価が目的です。\n\nNemotron for Scienceの構成は、[化学データとモデルの公開を伝えた記事](/articles/nvidia-nemotron-for-science)でも紹介しています。今回の日本版ブログでは、研究機関の具体的な利用先も示されました。\n\n研究者は専門分野のデータでモデルを追加学習できます。調整後のモデルは、AIエージェントに組み込めます。\n\nAIエージェント（自分で手順を進めるAI）は、情報を解釈します。プログラムを作成し、計算ツールを呼び出します。\n\n化学の学習と評価に使うLitmusBench v0.2には、約5万件の質問が収録されています。分子の性質や実験的な創薬データを基に、溶けやすさなどの予測に使うデータです。\n\n## GROMACSの設定修復は81%、実験設計にも活用\n\nスウェーデン王立工科大学（KTH）は、Nemotronを使って科学計算の設定を修復するエージェントを作りました。対象は、分子の動きを計算するGROMACSの正常に動かない設定です。\n\nNVIDIA DGX Sparkを1台使い、一晩実行したテストでは、考える処理を有効にしたエージェントが81%のケースを修復しました。修復内容はすべてGROMACS自体で検証されています。\n\nLila Sciencesは、実験室で実行する手順の設計にNemotronを利用しました。実験室からの結果を使って追加学習したところ、量子ドット（微小な結晶）の合成に関するモデルの精度は61%になりました。\n\n同社の比較では、GPT-6 Astraの精度は54%でした。NVIDIAは、Nemotronの推論コスト（AIを動かす費用）が、比較対象の10分の1〜20分の1だったとしています。これらは量子ドット合成の事例で示された結果です。\n\nTerray Therapeuticsは、化学反応の図から情報を取り出すようモデルを追加学習しました。対象の情報は、反応物や生成物、反応条件です。\n\nRxnScribeのテストでは、照合基準に基づき、正解情報が付いた反応の約76%を抽出しています。\n\nNemotron 3.5 Super VLとLitmusBench v0.2は、Hugging Faceで入手できます。モデルは、128GBのNVIDIA DGX Sparkで端末内から動かせるようにも最適化されています。\n\n## サイソクの見方：化学データを使うか、研究環境で動かすか\n\n化学分野のAIを調整したい人は、LitmusBench v0.2の質問と自分の研究課題が合うかを確かめるのが先です。手元の環境で動かしたい人は、128GBのDGX Spark向けに最適化されたモデルの条件を確認するのが目安になります。\n\nKTHやLila Sciencesの数値は、それぞれ特定の作業で得られた結果です。別の研究に使う場合も、同じ精度や費用になるとは限らないと考えられます。\n\n## まだ分からないこと\n\n- モデルとデータセットの価格はまだ発表されていません。\n- 日本からHugging Faceを通じて利用する際の条件はまだ発表されていません。",
+  "easy": "## ひとことで言うと\n\n理化学研究所の研究基盤で、科学研究向けのNVIDIAのAIモデルが利用可能になりました。海外でも、治療薬候補の設計や科学計算の設定修復に使われています。\n\n## 研究に合わせてAIを調整\n\nNemotron for Scienceは、研究者が専門分野の作業に合わせてAIを作るための仕組みです。AIモデルに加え、化学の問題集や追加学習の手順を組み合わせています。\n\nモデルと化学の問題集はHugging Faceで入手できます。理化学研究所は、RiVaultを通して研究基盤RIKYU上でモデルを使えるようにしました。\n\nスウェーデン王立工科大学の研究では、AIが分子の動きを調べる計算の設定を修復しました。対象のテストケースでは81%を修復し、修復内容は計算ソフト自体で検証されています。\n\nモデルとデータの価格や、日本からHugging Faceを通じて利用する際の条件は、まだ発表されていません。",
+  "channel": "NVIDIA日本版ブログ",
+  "channelId": "",
+  "channelSlug": "nvidia-japan-blog",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "NVIDIA、エージェントによる科学的発見を加速する Nemotron for Science を発表",
+  "publishedAt": "2026-11-18T00:01:52+00:00",
+  "generatedAt": "2026-11-18T00:17:05.183051+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/nemotron-science-riken-research-9e4699cd.jpg",
+  "model": "openai-api:gpt-6.1-terra",
+  "affiliates": [],
+  "newsType": "product",
+  "todayActions": [
+    "Nemotron 3.5 Super VLのモデルページで公開内容を確認する。",
+    "LitmusBench v0.2のデータセットページで内容を確認する。",
+    "科学分野向けの追加学習についてNVIDIAの技術ブログを読む。"
+  ],
+  "relatedSlugs": [
+    "nvidia-nemotron-for-science"
+  ],
+  "qualityBar": {
+    "score": 5,
+    "missing": [
+      1,
+      5,
+      6
+    ],
+    "notes": {
+      "1": "最初の3行にだれに・いつからが無い",
+      "5": "することは書いてあるが、どこで（窓口・ページ）・いつまでが無い",
+      "6": "言い換えの無い略語（VL・DGX）"
+    },
+    "checkedAt": "2026-11-18T00:17:52+00:00",
+    "before": [
+      1,
+      5,
+      6
+    ],
+    "repaired": false,
+    "repairLater": true
+  },
+  "qualityScore": 100,
+  "followupOf": "nvidia-nemotron-for-science",
+  "breaking": true,
+  "sourcePublishedAt": "2026-11-18T00:01:52+00:00",
+  "detectedAt": "2026-11-18T00:14:56+00:00",
+  "speedMinutes": 20,
+  "layout": "noir",
+  "summaryLine": "理化学研究所のRIKYUでNemotron 3.5 Super VLを研究に利用可能",
+  "insight": [
+    {
+      "text": "Lila Sciencesは追加のファインチューニングなしでもフロンティアレベルの性能を達成し、その後、ラボのフィードバックを使ったポストトレーニングで量子ドット合成の精度を61%に高めました。",
+      "source": "https://blogs.nvidia.co.jp/blog/nvidia-introduces-nemotron-for-science-to-accelerate-discoveries-with-agents/"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "Nemotron 3.5 Super VLのモデルページで公開内容を確認する。",
+      "source": "https://blogs.nvidia.co.jp/blog/nvidia-introduces-nemotron-for-science-to-accelerate-discoveries-with-agents/",
+      "steps": [
+        "NVIDIA Nemotron 3.5 Super VLを開く",
+        "掲載されているモデル情報を確認する"
+      ],
+      "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-BF16"
+    },
+    {
+      "action": "LitmusBench v0.2のデータセットページで内容を確認する。",
+      "source": "https://blogs.nvidia.co.jp/blog/nvidia-introduces-nemotron-for-science-to-accelerate-discoveries-with-agents/",
+      "steps": [
+        "LitmusBench v0.2を開く",
+        "データセットの掲載内容を確認する"
+      ],
+      "url": "https://huggingface.co/datasets/nvidia/Nemotron-RL-litmus-bench-v0.2/tree/cf18cb1b2392d04a2ac578637462261d62da11d7"
+    },
+    {
+      "action": "科学分野向けの追加学習についてNVIDIAの技術ブログを読む。",
+      "source": "https://blogs.nvidia.co.jp/blog/nvidia-introduces-nemotron-for-science-to-accelerate-discoveries-with-agents/",
+      "steps": [
+        "技術ブログを開く",
+        "Nemotronのポストトレーニングの説明を確認する"
+      ],
+      "url": "https://developer.nvidia.com/blog/post-training-nvidia-nemotron-to-increase-accuracy-in-your-scientific-domain/"
+    }
+  ],
+  "cause": {
+    "text": "Nemotron for Scienceは、Nemotron 3.5 Super VL、科学分野の評価手法、オープンな化学データセット、ポストトレーニングのレシピを組み合わせ、研究者が専門分野に特化した科学エージェントを構築できるよう支援する仕組みです。",
+    "status": "background",
+    "source": "https://blogs.nvidia.co.jp/blog/nvidia-introduces-nemotron-for-science-to-accelerate-discoveries-with-agents/"
+  },
+  "worries": [
+    {
+      "q": "GROMACSの設定修復81%は、別の研究でも期待できる？",
+      "a": "81%は、KTHがNemotronを基盤に構築したエージェントを、1台のNVIDIA DGX Sparkシステムで一晩実行したテストケースの結果です。対象は正常に動作しないGROMACSの設定で、修復内容はすべてGROMACS自体が独立して検証しました。",
+      "source": "https://blogs.nvidia.co.jp/blog/nvidia-introduces-nemotron-for-science-to-accelerate-discoveries-with-agents/",
+      "action": "GROMACSの設定修復に関心がある場合は、テスト対象と実行条件を確認してから結果を参照する。"
+    },
+    {
+      "q": "手元のパソコンでNemotronを動かせる？",
+      "a": "NVIDIAは、Nemotron 3.5 Super VLを128 GBのNVIDIA DGX Sparkシステム上でローカル実行できるよう最適化したと説明しています。",
+      "source": "https://blogs.nvidia.co.jp/blog/nvidia-introduces-nemotron-for-science-to-accelerate-discoveries-with-agents/",
+      "action": "ローカル実行を考えている場合は、NVIDIA DGX Sparkの製品ページでシステム情報を確認する。"
+    },
+    {
+      "q": "LitmusBench v0.2はどんな化学の課題を扱う？",
+      "a": "約5万件の質問を収録し、分子の特性と実験的な創薬データに基づいています。溶解度や人体内での処理のされ方など、分子の挙動についてモデルの予測能力を向上させるのに役立つデータセットです。",
+      "source": "https://blogs.nvidia.co.jp/blog/nvidia-introduces-nemotron-for-science-to-accelerate-discoveries-with-agents/",
+      "action": "LitmusBench v0.2のデータセットページで、収録内容を自分の研究課題と照らし合わせる。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "化学分野の評価や追加学習に使う？",
+      "situation": "化学リーズニングの評価やモデル適応を考えている",
+      "recommend": "LitmusBench v0.2の内容を確認する",
+      "reason": "約5万件の質問を収録し、化学リーズニングの評価とポストトレーニングの両方に対応します。分子の特性や実験的な創薬データに基づくため、研究課題との適合を確認できます。",
+      "source": "https://blogs.nvidia.co.jp/blog/nvidia-introduces-nemotron-for-science-to-accelerate-discoveries-with-agents/"
+    },
+    {
+      "question": "モデルを手元の環境で動かしたい？",
+      "situation": "研究者のデスクトップでのローカル実行を考えている",
+      "recommend": "DGX Spark向けの条件を確認する",
+      "reason": "Nemotron 3.5 Super VLは128 GBのNVIDIA DGX Sparkシステム上でローカル実行できるよう最適化されています。この記載を、自分の利用環境を検討する際の確認材料にできます。",
+      "source": "https://blogs.nvidia.co.jp/blog/nvidia-introduces-nemotron-for-science-to-accelerate-discoveries-with-agents/"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "追加学習の前後で変わったこと",
+    "cause": "研究向けの仕組みとして組み合わされた要素",
+    "steps": "モデルとデータを確かめる",
+    "worries": "結果や利用環境はどこまで確認できる？",
+    "guide": "評価に使うか、手元で動かすか"
+  },
+  "depthAt": "2026-11-18T00:20:14+00:00",
+  "imageCredit": {
+    "kind": "official",
+    "org": "NVIDIA",
+    "provider": "NVIDIA日本版ブログ",
+    "sourceUrl": "https://blogs.nvidia.co.jp/blog/nvidia-introduces-nemotron-for-science-to-accelerate-discoveries-with-agents/",
+    "original": "https://blogs.nvidia.co.jp/wp-content/uploads/sites/11/2026/11/nvidia-nemotron-for-science-scaled.jpg",
+    "width": 1200,
+    "height": 675,
+    "at": "2026-11-18T00:22:32+00:00",
+    "imageKind": "hero"
+  },
+  "heroOk": true,
+  "imageFocus": {
+    "x": 0.504,
+    "y": 0.428,
+    "box": [
+      0.178,
+      0.028,
+      0.831,
+      0.828
+    ],
+    "ar": 1.7778,
+    "src": "https://ai-tech-express.jp/img/nemotron-science-riken-research-9e4699cd.jpg"
+  }
+}
