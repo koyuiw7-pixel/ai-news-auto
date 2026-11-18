@@ -6549,6 +6549,19 @@
       "trendLane": true,
       "url": "https://www.microsoft.com/en-us/research/podcast/microsoft-research-focus-edition-98/"
     },
+    "1abfd671891da31f": {
+      "at": "2026-11-18T05:10:39.118938+00:00",
+      "costUsd": 0.0039,
+      "intent": "breaking",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "score": 100,
+      "section": "public",
+      "slug": "docomo-finance-karte-leak",
+      "url": "https://finance.docomo.ne.jp/member/news/release261117.pdf"
+    },
     "1ac5292da0d36770": {
       "at": "2026-11-12T05:23:23.924537+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（公募）",
@@ -24396,54 +24409,6 @@
   "quality_log": [
     {
       "accepted": true,
-      "at": "2026-11-16T09:42:00.778378+00:00",
-      "attempt": 0,
-      "id": "b92c386a7c503175",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 67.5,
-        "avg_sentence": 46.4,
-        "long_share": 0.188,
-        "max_paragraph": 90,
-        "paragraphs": 11,
-        "sentences": 16
-      },
-      "score": 88,
-      "source": "radar-official",
-      "title": "りそなグループ B.LEAGUE 2026-27 B.LEAGUE PREMIER リーグ戦 2026/11/14 三河 VS 富山 | B.LEAGUE（Bリ",
-      "warnings": [
-        "見出しが46字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（LIVE・LEAGUE・TIP）",
-        "読みやすさ: 文が長い（1文の平均 46.4字・60字超の文が 19% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-16T10:13:00.005102+00:00",
-      "attempt": 1,
-      "id": "7e5a61e8c8564b64",
-      "kind": "broad",
-      "model": "claude:sonnet",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 84.5,
-        "avg_sentence": 35.5,
-        "long_share": 0.032,
-        "max_paragraph": 153,
-        "paragraphs": 13,
-        "sentences": 31
-      },
-      "score": 95,
-      "source": "fast",
-      "title": "不正アクセスによる個人情報漏えいに関するお詫びとお知らせ",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（SMS）"
-      ]
-    },
-    {
-      "accepted": true,
       "at": "2026-11-16T10:16:26.983249+00:00",
       "attempt": 1,
       "id": "91e58e2ea930c2fa",
@@ -31874,6 +31839,55 @@
       "title": "NVIDIA、Vera CPU プラットフォームを拡充し、科学的発見を加速",
       "warnings": [
         "初めて出たところで言い換えていない略語（HPE・OCI・NVL）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-18T05:09:55.372762+00:00",
+      "attempt": 1,
+      "id": "1abfd671891da31f",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 91.6,
+        "avg_sentence": 48.0,
+        "long_share": 0.143,
+        "max_paragraph": 135,
+        "paragraphs": 11,
+        "sentences": 21
+      },
+      "score": 99,
+      "source": "fast",
+      "title": "個人情報漏えいの可能性に伴う当社対応について",
+      "warnings": [
+        "見出しが49字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（KARTE・SMS・TEL）",
+        "読みやすさ: 文が長い（1文の平均 48.0字・60字超の文が 14% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-18T05:10:24.312774+00:00",
+      "attempt": 0,
+      "id": "1abfd671891da31f",
+      "kind": "broad",
+      "model": "openai-api:gpt-6-luna",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 93.3,
+        "avg_sentence": 39.5,
+        "long_share": 0.077,
+        "max_paragraph": 144,
+        "paragraphs": 11,
+        "sentences": 26
+      },
+      "score": 100,
+      "source": "fast",
+      "title": "個人情報漏えいの可能性に伴う当社対応について",
+      "warnings": [
+        "見出しが49字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（KARTE・SMS・TEL）"
       ]
     }
   ],
