@@ -5070,6 +5070,19 @@
       "slug": "nemotron-personas-finance-japan",
       "url": "https://huggingface.co/blog/nvidia/nemotron-personas-finance-japan"
     },
+    "0594bff9915793e7": {
+      "at": "2026-11-18T06:54:06.438798+00:00",
+      "costUsd": 0.0057,
+      "intent": "breaking",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "score": 100,
+      "section": "public",
+      "slug": "heiwado-line-comsbi-data-leak",
+      "url": "https://www.heiwado.jp/news/2026/1117_shop.html"
+    },
     "0656b695035ed990": {
       "at": "2026-11-06T02:04:06.978977+00:00",
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
@@ -24460,63 +24473,6 @@
   },
   "quality_log": [
     {
-      "accepted": false,
-      "at": "2026-11-16T12:01:56.701193+00:00",
-      "attempt": 1,
-      "id": "e3915f7e4cf071c4",
-      "kind": "ai",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [
-        "タイトル「1億ポンド…ではなく100万ポンド」→元記事に1億ポンドという数字は無く、存在しない金額を引き合いに出している",
-        "リード「日本の利用者の料金やサービスは変わらず」→元記事に日本の利用者への言及は無く、確認済みの文脈（Kakaoのヘルプ）も日本の料金には触れていないため、根拠のない断定",
-        "本文「日本の利用者の料金やサービスは変わりません」→元記事・確認済みの文脈に無い提供状況の断定",
-        "「仕事・お金にどう活かせる？」「日本の働く人に直接の影響は小さく、手続きや費用の変更もありません」→日本の費用・手続きに変更がないことは元記事に書かれていない",
-        "「今日やること」「日本の人への影響」の「料金や手続きは変わりません」→同じく元記事に無い日本向けの提供状況の断定",
-        "「公的に認められた資格」→元記事は nationally recognized（全国的に認められた）であり、公的認定とは別物"
-      ],
-      "readability": {
-        "avg_paragraph": 93.2,
-        "avg_sentence": 46.6,
-        "long_share": 0.208,
-        "max_paragraph": 127,
-        "paragraphs": 12,
-        "sentences": 24
-      },
-      "score": 55,
-      "source": "openai-news",
-      "title": "The King’s Trust and OpenAI launch £1m partnership",
-      "warnings": [
-        "見出しが59字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（NEET・VP・EMEA）",
-        "読みやすさ: 文が長い（1文の平均 46.6字・60字超の文が 21% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-16T12:02:16.856672+00:00",
-      "attempt": 1,
-      "id": "e3915f7e4cf071c4",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 88.7,
-        "avg_sentence": 46.3,
-        "long_share": 0.217,
-        "max_paragraph": 127,
-        "paragraphs": 12,
-        "sentences": 23
-      },
-      "score": 92,
-      "source": "openai-news",
-      "title": "The King’s Trust and OpenAI launch £1m partnership",
-      "warnings": [
-        "見出しが49字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（NEET・VP・EMEA）",
-        "読みやすさ: 文が長い（1文の平均 46.3字・60字超の文が 22% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
       "accepted": true,
       "at": "2026-11-16T12:02:36.429798+00:00",
       "attempt": 0,
@@ -31922,6 +31878,58 @@
       "warnings": [
         "初めて出たところで言い換えていない略語（PTH・QUO）",
         "要点の1つ目がリードの文の写し。一番のニュースを、リードとは違う言い方で書く"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-18T06:53:17.358798+00:00",
+      "attempt": 1,
+      "id": "0594bff9915793e7",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "「直接の金銭的な被害は報告されていません」→ 元記事は金銭被害の報告状況に触れておらず、確認できない発表内容を加えています。",
+        "「問い合わせ窓口は、株式会社ソニックムーブのCOMSBIサポートです」ではなく要点の「問い合わせ窓口は委託先のソニックムーブが設けています」→ 元記事は平和堂が専用窓口を設置したとし、窓口の連絡先としてソニックムーブのサポートを案内しており、設置主体をソニックムーブとする根拠はありません。",
+        "「これらのアカウントを友だち登録していない人には、何も変わりません」→ 元記事が示すのは登録者が対象ということまでで、未登録者に影響が一切ないとは明記していません。"
+      ],
+      "readability": {
+        "avg_paragraph": 102.2,
+        "avg_sentence": 40.9,
+        "long_share": 0.133,
+        "max_paragraph": 200,
+        "paragraphs": 12,
+        "sentences": 30
+      },
+      "score": 82,
+      "source": "fast",
+      "title": "弊社LINE公式アカウントの運用に利用する外部サービスへの不正アクセスに関するお詫びとお知らせ | 株式会社 平和堂",
+      "warnings": [
+        "見出しが50字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（GOODS・DEPO・LIFULL）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-18T06:53:58.743492+00:00",
+      "attempt": 1,
+      "id": "0594bff9915793e7",
+      "kind": "broad",
+      "model": "openai-api:gpt-6-luna",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 101.8,
+        "avg_sentence": 42.1,
+        "long_share": 0.172,
+        "max_paragraph": 200,
+        "paragraphs": 12,
+        "sentences": 29
+      },
+      "score": 100,
+      "source": "fast",
+      "title": "弊社LINE公式アカウントの運用に利用する外部サービスへの不正アクセスに関するお詫びとお知らせ | 株式会社 平和堂",
+      "warnings": [
+        "見出しが50字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（GOODS・DEPO・LIFULL）"
       ]
     }
   ],
