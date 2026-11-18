@@ -1,7 +1,7 @@
 {
  "pages": {
   "chatgpt-pricing": {
-   "hash": "2cf63d272fbcbaf4",
+   "hash": "892dd5fd92438858",
    "lines": [
     "About",
     "Features",
@@ -70,7 +70,7 @@
     "Learn more",
     "Individual",
     "Business & Enterprise",
-    "Best for trying out ChatGPT",
+    "Intelligence for everyday tasks",
     "/ month",
     "Get Free",
     "Unlimited text chats with GPT-6",
@@ -83,7 +83,7 @@
     "Limited ChatGPT Work access on desktop",
     "Have an existing plan? See billing help⁠",
     "Unlimited text chats subject to abuse guardrails. Learn more⁠",
-    "Best for longer conversations",
+    "Expanded access",
     "Get Go",
     "Everything in Free and:",
     "More messages with tools",
@@ -92,7 +92,7 @@
     "More voice chats",
     "Longer memory",
     "This plan may include ads. Learn more⁠",
-    "Best for advanced work and productivity",
+    "Do more with advanced intelligence",
     "Get Plus",
     "Everything in Go and:",
     "Advanced reasoning models with GPT-6",
@@ -105,7 +105,7 @@
     "Expanded access to ChatGPT Work on desktop, web, and mobile",
     "Early access to new features",
     "Limits apply⁠",
-    "Best for research and coding",
+    "Maximize your productivity",
     "From",
     "Get Pro",
     "Everything in Plus and:",
@@ -429,7 +429,7 @@
    "since": "2026-11-16T18:22:18+00:00"
   },
   "chatgpt-release-notes": {
-   "last_date": "2026-11-16",
+   "last_date": "2026-11-17",
    "minor": [
     {
      "date": "2026-11-16",
@@ -1352,6 +1352,20 @@
    "summary": "【Claude モデルの提供終了予定（https://platform.claude.com/docs/en/about-claude/model-deprecations.md）の変更点。前回の確認（2026-11-02T04:41:50+00:00）から 2026-11-18T15:41+00:00 までの差分】\n（下の「- 削除:」「- 追加:」の行は公式ページの表示の差分そのもの。記事には貼らず、何がどう変わったかを日本語の文か表で説明する）\n- 削除: Once a model is deprecated, migrate all usage to a suitable replacement before the retirement date. Requests to models past the retirement date will fail.\n- 追加: Once a model is deprecated, migrate all usage to a suitable replacement before the retirement date. Once the model is retired, requests to it fail.\n\n【現在のページの内容】\ntitle: Model deprecations\nurl: https://platf",
    "title": "Claudeの料金・プランのページが更新（利用上限の記載が変更）",
    "url": "https://platform.claude.com/docs/en/about-claude/model-deprecations.md#entry-2026-11-19-1fb873"
+  },
+  {
+   "content": "【ChatGPT リリースノートの 2026-11-17 の項目】（https://help.openai.com/en/articles/6825453-chatgpt-release-notes）\n## Two new models in Work\nGPT-6.2 Astra follows your template more closely when turning source documents into slides and writes titles that make each slide’s point clearer. When you ask Astra to edit a document, it’s better at matching the voice of your draft. You can choose Astra or GPT-6.2 Sol in the Work model picker. Sol can combine text, images and tools in one task. This rollout does not add either model to regular Chat.\nSee ChatGPT Work and Codex for model availability and usage.\n\n【項目のリンク先の公式ページ: ChatGPT Work and Codex | OpenAI Help Center（https://help.openai.com/en/articles/20001275）】\nChatGPT Work and Codex\nUse Chat or Work in ChatGPT, or switch to Codex for software development.\nUpdated: 23 hours ago\nGPT-6.2 rollout: GPT-6.2 Astra and GPT-6.2 Sol are rolling out today in ChatGPT Work and Codex. This rollout does not add either model to regular Chat.\nUpdate the ChatGPT desktop app to the latest version through Menu > Check for Updates, then restart the app. If you use Codex CLI, update it to the latest version as well.\nAvailability depends on your plan, workspace permissions, and rollout progress. If you don’t see the models after updating, they may not be available for your account yet.\nOverview\nChatGPT includes Chat and Work. Codex is available in the desktop app, and Codex Cloud lets you start and continue coding tasks from desktop, web, or mobile. Chat is for fast, conversational assistance and everyday questions. Work is an agent designed for longer, multi-step work and finished deliverables. Codex remains dedicated to software development and technical work.\nChatGPT Voice adds a live voice interface to Work on web and mobile, and to Work and Codex in the ChatGPT desktop app. You can speak, interrupt naturally, and use the tools and permissions available to the selected experience.\nWork follows the same usage structure as Codex. The Codex pricing page explains included usage and additional credits; its examples are based on coding tasks, so Work usage will vary by task.\nModels in Work and Codex\nGPT-6.2 Astra is designed for complex coding and professional work, such as tracing a bug across services or turning source documents into a slide deck. GPT-6.2 Sol works with text, images and tools. When the rollout reaches you, open the model picker in Work to choose the model for your task. This rollout does not add either model to regular Chat. The rollout covers Plus, Pro, Business, Enterprise, Edu, ChatGPT for Healthcare and FedRAMP workspaces as access becomes available.\nWhen the rollout reaches you, existing Work chats using Astra or Sol may show an optional prompt to switch to the new default. You can keep your current model. For new Work chats already using Astra or Sol through Default, the upgrade happens in place; the announcement has no switch button. Work home does not show this announcement when Default is on GPT-6 Luna or when a specific model is selected. Existing chats using other models do not receive this upgrade prompt.\nYou may also see GPT-6.1 Sol, GPT-6.1 Terra, GPT-6 Sol or GPT-6 Luna in Work and Codex, depending on your plan and workspace settings. In regular Chat, GPT-6 Sol powers GPT-6 and does not appear as a separate Sol option. GPT-6.1 Sol, GPT-6.1 Terra and GPT-6 Luna do not appear in the regular Chat picker.\nGPT-6.1 Sol has a default context window of 500,000 tokens in ChatGPT Work and Codex.\nThere’s no additional long-context surcharge for GPT-6.1 Sol usage covered by your subscription’s included allowance. Longer conversations and tasks still count toward your usage limits. Usage paid with purchased credits, Enterprise pay-as-you-go usage, and API usage follow their existing pricing rules.\nIn Work, choose Default to use the reasoning slider or select a specific model to see its available reasoning levels. Codex CLI does not use the Work slider.\nFor earlier Codex models, Codex keeps the model you select manually.\nFor workspace model access and usage details, see ChatGPT Business models and limits or ChatGPT Enterprise and Edu - Models & Limits.\nGPT-6 Astra usage in Work and Codex\nFor GPT-6 Astra at Standard speed or in Fast mode, usage draws from your plan’s included Work and Codex allowance. Pro $100 and Pro $200 plans and Business Premium seats can use their full existing allowance for GPT-6 Astra. Plus and Business Standard seats include limited GPT-6 Astra usage, with optional credits for additional usage afterward.\nGPT-6 Astra may use your allowance faster than GPT-5.6 Sol. The amount depends on the task, input and output size, reasoning level, and speed setting. Ultrafast has the plan and billing rules described below.\nSigning in to Codex with ChatGPT uses your ChatGPT plan’s usage and billing. Using your own API key uses API pricing.\nFor usage paid in credits, see personal-plan credit pricing or the Business, Enterprise and Edu credit rate card, as applicable. Enterprise customers billed in USD should use their Enterprise USD rate card and agreement.\nUltrafast in Work and Codex\nUltrafast provides lower-latency GPT-6.2 Astra, GPT-6.2 Sol, GPT-6 Astra and GPT-6.1 Sol responses for eligible accounts.\nFor Pro $500 and eligible Enterprise and Edu workspaces, the launch billing rules are:\nPro $500: For GPT-6.2 Astra and GPT-6.2 Sol, Ultrafast uses your included Work and Codex allowance at 6× the Standard rate for the selected model. After that allowance is used, purchased-credit usage is charged at a promotional 3× Standard rate through February 28, 2027. GPT-6 Astra and GPT-6.1 Sol continue to use included allowance at 8× and purchased credits at 6× Standard",
+   "detectedAt": "2026-11-18T17:51:54+00:00",
+   "entity": "openai",
+   "id": "73a035046df1a77c",
+   "lang": "en",
+   "published_at": "2026-11-18T17:51:54.349393+00:00",
+   "published_guessed": true,
+   "source_name": "ChatGPT リリースノート",
+   "source_slug": "watch-chatgpt-release-notes",
+   "summary": "【ChatGPT リリースノートの 2026-11-17 の項目】（https://help.openai.com/en/articles/6825453-chatgpt-release-notes）\n## Two new models in Work\nGPT-6.2 Astra follows your template more closely when turning source documents into slides and writes titles that make each slide’s point clearer. When you ask Astra to edit a document, it’s better at matching the voice of your draft. You can choose Astra or GPT-6.2 Sol in the Work model picker. Sol can combine text, images and tools in one task. This rollout does not add either model to regular Chat.\nSee ChatGPT Work and Codex for model availability and usage.\n\n【項目のリン",
+   "title": "ChatGPT: Two new models in Work",
+   "url": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes#entry-2026-11-17"
   }
  ]
 }
