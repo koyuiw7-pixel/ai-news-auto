@@ -69,13 +69,13 @@
   "videoTitle": "永谷園のお茶づけ海苔など市販用39品、2027年2月1日納品分から値上げ",
   "publishedAt": "2026-11-18T06:24:47.295760+00:00",
   "generatedAt": "2026-11-18T06:25:22.927427+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/nagatanien-food-price-increase-figure-5e8cfb43.jpg",
   "model": "openai-api:gpt-6.1-terra",
   "affiliates": [],
   "newsType": "pricing",
   "todayActions": [
-    "永谷園の価格改定のお知らせで、お茶づけやみそ汁など対象のカテゴリーを確かめる。",
-    "自宅の「お茶づけ海苔」や「あさげ」の在庫を確認し、必要な購入量を考える。"
+    "改定対象の区分と納品日を、永谷園の価格改定のお知らせで確認する。",
+    "購入予定の商品が対象か確認したい場合は、永谷園の広報室に問い合わせる。"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -125,5 +125,90 @@
   "detectedAt": "2026-11-18T06:26:20+00:00",
   "searchTitle": "永谷園の値上げはいつ？2027年2月1日納品分から",
   "layout": "noir",
-  "summaryLine": "永谷園の市販用39品は、2027年2月1日付の納品分から価格が改定されます。"
+  "summaryLine": "永谷園の市販用39品は、2027年2月1日付の納品分から価格が改定されます。",
+  "officialDesk": [
+    {
+      "name": "株式会社永谷園 広報室",
+      "url": "https://www.nagatanien.co.jp/a.php?id=2126",
+      "source": "https://www.nagatanien.co.jp/a.php?id=2126",
+      "phone": "03 （5401 ）7665"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "改定対象の区分と納品日を、永谷園の価格改定のお知らせで確認する。",
+      "source": "https://www.nagatanien.co.jp/a.php?id=2126",
+      "steps": [
+        "「商品価格改定に関するお知らせ」を開く",
+        "「1. 実施日」と「2. 対象商品」を確認する",
+        "「3. 対象カテゴリー」を確認する"
+      ],
+      "url": "https://www.nagatanien.co.jp/a.php?id=2126"
+    },
+    {
+      "action": "購入予定の商品が対象か確認したい場合は、永谷園の広報室に問い合わせる。",
+      "source": "https://www.nagatanien.co.jp/a.php?id=2126",
+      "steps": [
+        "「商品価格改定に関するお知らせ」を開く",
+        "記載された電話番号を確認する",
+        "株式会社永谷園 広報室へ問い合わせる"
+      ],
+      "url": "https://www.nagatanien.co.jp/a.php?id=2126"
+    }
+  ],
+  "cause": {
+    "text": "原材料価格の高騰が続き、包装資材や電力などのエネルギーコスト、物流費、人件費も上昇しているためです。生産性向上やコスト削減に取り組んできたものの、自助努力だけで上昇分を吸収するのは極めて困難と判断したと説明しています。",
+    "status": "background",
+    "source": "https://www.nagatanien.co.jp/a.php?id=2126"
+  },
+  "worries": [
+    {
+      "q": "みそ汁なら、どの商品も価格改定の対象になる？",
+      "a": "対象カテゴリーには「みそ汁」が含まれますが、発表の対象は一部商品です。",
+      "source": "https://www.nagatanien.co.jp/a.php?id=2126",
+      "action": "購入予定の商品が対象か確かめるため、永谷園の広報室へ問い合わせる。"
+    },
+    {
+      "q": "通販専用の商品も価格改定の対象になる？",
+      "a": "対象商品にはEC専用商品17品が含まれます。",
+      "source": "https://www.nagatanien.co.jp/a.php?id=2126",
+      "action": "購入予定のEC専用商品が対象か、永谷園の広報室へ問い合わせて確認する。"
+    },
+    {
+      "q": "原材料以外では、何が値上げの理由になっている？",
+      "a": "永谷園は、原材料価格の高騰に加え、包装資材、電力などのエネルギーコスト、物流費、人件費の上昇を理由に挙げています。",
+      "source": "https://www.nagatanien.co.jp/a.php?id=2126",
+      "action": "「商品価格改定に関するお知らせ」で、改定理由の説明を確認する。"
+    }
+  ],
+  "depthHeadings": {
+    "cause": "原材料や物流費など、値上げの理由",
+    "steps": "対象商品と納品日を確かめる",
+    "desk": "永谷園への問い合わせ先",
+    "worries": "対象商品や値上げの理由が気になる"
+  },
+  "depthAt": "2026-11-18T06:39:05+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "「お茶づけ海苔」など39品が値上げ",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-18T06:41:53+00:00"
+  },
+  "imageFocus": {
+    "x": 0.507,
+    "y": 0.408,
+    "box": [
+      0.062,
+      0.042,
+      0.953,
+      0.774
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/nagatanien-food-price-increase-figure-5e8cfb43.jpg"
+  }
 }

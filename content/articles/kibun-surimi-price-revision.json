@@ -69,13 +69,13 @@
   "videoTitle": "紀文のスリミ製品が2027年2月から約3～20％の値上げ、惣菜の一部も対象です",
   "publishedAt": "2026-11-18T06:26:37.315166+00:00",
   "generatedAt": "2026-11-18T06:28:28.503313+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/kibun-surimi-price-revision-figure-e2f78b58.jpg",
   "model": "openai-api:gpt-6.1-terra",
   "affiliates": [],
   "newsType": "pricing",
   "todayActions": [
-    "紀文食品の報道用資料で、価格改定の対象と一部商品の例外を確かめる。",
-    "普段買う紀文の練り製品や惣菜の表示価格を、店頭で確かめておく。"
+    "値上げの基準日を確認し、購入日と店着日を混同しないようにする",
+    "改定率の幅と例外を確かめ、全商品が同じ率だと思い込まない"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -94,5 +94,89 @@
   "detectedAt": "2026-11-18T06:29:16+00:00",
   "searchTitle": "紀文の値上げはいつ？　2027年2月1日店着分から約3〜20％",
   "layout": "noir",
-  "summaryLine": "紀文のスリミ製品と惣菜の一部は、2027年2月1日店着分から価格が改定されます。"
+  "summaryLine": "紀文のスリミ製品と惣菜の一部は、2027年2月1日店着分から価格が改定されます。",
+  "officialDesk": [
+    {
+      "name": "商品価格改定に関するお知らせ",
+      "url": "https://www.kibun.co.jp/cms1/kibuncontent/uploads/261109_kaitei.pdf",
+      "source": "https://www.kibun.co.jp/cms1/kibuncontent/uploads/261109_kaitei.pdf"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "値上げの基準日を確認し、購入日と店着日を混同しないようにする",
+      "source": "https://www.kibun.co.jp/cms1/kibuncontent/uploads/261109_kaitei.pdf",
+      "steps": [
+        "報道用資料を開く",
+        "「価格改定時期」を確認する",
+        "2027年2月1日店着分よりと記載されているか見る"
+      ],
+      "url": "https://www.kibun.co.jp/cms1/kibuncontent/uploads/261109_kaitei.pdf"
+    },
+    {
+      "action": "改定率の幅と例外を確かめ、全商品が同じ率だと思い込まない",
+      "source": "https://www.kibun.co.jp/cms1/kibuncontent/uploads/261109_kaitei.pdf",
+      "steps": [
+        "報道用資料を開く",
+        "「価格改定率」と注記を確認する",
+        "商品により異なり、一部は約3〜20％を超えることを確認する"
+      ],
+      "url": "https://www.kibun.co.jp/cms1/kibuncontent/uploads/261109_kaitei.pdf"
+    }
+  ],
+  "cause": {
+    "text": "魚肉すり身に加え、輸入小麦価格の引き上げを受けた小麦粉や副原料、容器包材、物流、エネルギー、人件費の費用が上昇しています。代替原材料の研究や効率化を進めても、コスト上昇の規模と速度が想定以上となり、自助努力で吸収できる限度を超えたと説明しています。",
+    "status": "background",
+    "source": "https://www.kibun.co.jp/cms1/kibuncontent/uploads/261109_kaitei.pdf"
+  },
+  "worries": [
+    {
+      "q": "対象商品はすべて同じ割合で値上がりするの？",
+      "a": "価格改定率は商品により異なります。公表された約3〜20％は一律の率ではなく、一部の商品ではこの改定率を超える改定になると紀文食品は説明しています。",
+      "source": "https://www.kibun.co.jp/cms1/kibuncontent/uploads/261109_kaitei.pdf",
+      "action": "報道用資料の「価格改定率」と注記を確認し、約3〜20％を一律の値上げ幅と見なさないようにする。"
+    },
+    {
+      "q": "約20％を超える値上げになる商品もあるの？",
+      "a": "あります。紀文食品は、一部の商品では公表した約3〜20％の改定率を超える改定になるとしています。",
+      "source": "https://www.kibun.co.jp/cms1/kibuncontent/uploads/261109_kaitei.pdf",
+      "action": "資料の注記で例外があることを確認し、個別商品の価格を判断する際は商品ごとの情報を確かめる。"
+    },
+    {
+      "q": "値上げはいつ店頭の商品から始まるの？",
+      "a": "価格改定の時期は、2027年2月1日店着分よりと発表されています。これは商品が店に届く日の基準で、資料は購入日ではなく店着日を示しています。",
+      "source": "https://www.kibun.co.jp/cms1/kibuncontent/uploads/261109_kaitei.pdf",
+      "action": "報道用資料の「価格改定時期」を見て、2027年2月1日店着分よりという基準を確認する。"
+    }
+  ],
+  "depthHeadings": {
+    "cause": "値上げの背景にあるコスト上昇",
+    "steps": "店着日と改定率を資料で確認",
+    "desk": "紀文食品の価格改定資料",
+    "worries": "改定幅や開始日をどう見ればいい？"
+  },
+  "depthAt": "2026-11-18T06:38:37+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "紀文のスリミ製品が2027年2月から値上げ",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-18T06:41:00+00:00"
+  },
+  "imageFocus": {
+    "x": 0.515,
+    "y": 0.414,
+    "box": [
+      0.084,
+      0.06,
+      0.947,
+      0.768
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/kibun-surimi-price-revision-figure-e2f78b58.jpg"
+  }
 }

@@ -1393,9 +1393,7 @@
       "url": "https://www.digital.go.jp/policies/mynumber/private-business"
     }
   },
-  "major_tries": {
-    "4207e796746206c2": 1
-  },
+  "major_tries": {},
   "pi_reopened": {
     "25d126f469e81252": "2026-11-15T17:50:53.256695+00:00",
     "422a9590d5af8caa": "2026-11-15T17:31:05.012183+00:00",
@@ -9010,14 +9008,6 @@
       "skipped": true,
       "url": "https://developer.nvidia.com/blog/how-nvidia-uses-ai-agents-to-streamline-ai-factory-operations/"
     },
-    "3d509e27bae229a3": {
-      "at": "2026-11-04T06:24:57.339843+00:00",
-      "model": "gemini-3.5-flash",
-      "score": 80,
-      "section": "ai",
-      "slug": "openai-appoints-jill-hazelbaker-chief-corporate-affairs-offi",
-      "url": "https://openai.com/index/jill-hazelbaker-chief-corporate-affairs-officer"
-    },
     "3d5755b211bb25e5": {
       "at": "2026-11-16T20:02:00.134537+00:00",
       "reason": "review: AdSense の審査の期間は海外の AI の発表を自動で記事にしない（速報だけ。scripts/news_mix.py review_ai_blocks）",
@@ -9221,6 +9211,19 @@
       "section": "business",
       "slug": "mof-trade-statistics-sep-2026",
       "url": "https://www.mof.go.jp/outside_link/20261109104812.html"
+    },
+    "4207e796746206c2": {
+      "at": "2026-11-18T06:35:50.019783+00:00",
+      "costUsd": 0.0078,
+      "intent": "query",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "recall",
+      "score": 100,
+      "section": "business",
+      "slug": "mercedes-s560-recall-eco-stop-restart",
+      "url": "http://www.mlit.go.jp/report/press/jidosha08_hh_005892.html"
     },
     "422a9590d5af8caa": {
       "at": "2026-11-15T17:34:05.258357+00:00",
@@ -13059,6 +13062,19 @@
       "reason": "prefilter: 価値の薄いお知らせ（アワード）",
       "skipped": true,
       "url": "https://j-net21.smrj.go.jp/news/bt5puv0000011ggy.html"
+    },
+    "78ba4a2dbeae665c": {
+      "at": "2026-11-18T06:37:34.726592+00:00",
+      "costUsd": 0.0019,
+      "intent": "query",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "recall",
+      "score": 100,
+      "section": "lifestyle",
+      "slug": "smart-wireless-earphone-recall-caa-listing",
+      "url": "https://www.recall.caa.go.jp/images/rci/img/product/00000036150_1.jpg"
     },
     "78c84a67076a2566": {
       "at": "2026-11-10T02:57:49.051765+00:00",
@@ -24445,112 +24461,6 @@
   "quality_log": [
     {
       "accepted": false,
-      "at": "2026-11-16T10:53:47.964089+00:00",
-      "attempt": 1,
-      "id": "22621d8055e8103e",
-      "kind": "broad",
-      "model": "gemini-3.6-flash",
-      "problems": [
-        "Q&A「取適法は…指定取引の60日以内支払いを規定しています」→ 元記事・確認済み文脈に「指定取引」という区分は無く、取適法の規定内容を誤って言い換えている。",
-        "Q&A「手形払いを継続した場合…公正取引委員会などからの指導や勧告の対象となります」→ 勧告・指導の対象となるとの記述は元記事・確認済み文脈に無く、制裁の範囲を言い過ぎている。",
-        "本文「中小企業や個人事業主が受注する製造・役務提供取引」→ 元記事は個人事業主に言及しておらず、対象者を広げて書いている。",
-        "本文「60日を超える満期の電子記録債権などの利用も原則禁止」→ 元記事は「支払期日を超える満期」と書いており、60日という基準を当てはめた言い換えは厳密には一致しない。",
-        "「取適法相談窓口（電話 03-3581-3373）」→ 元記事の問い合わせ先は同番号だが、窓口名は元記事に無く、「中小受託取引適正化法相談窓口」と言い換えている。",
-        "「サイソクの見方」の「親会社からの回収が60日超のまま…中間事業者が一時的に資金繰り悪化のシワ寄せを受ける構図」→ 元記事の注意点を基にした解釈だが、事実として断定するほどの根拠は示されていない。"
-      ],
-      "readability": {
-        "avg_paragraph": 118.8,
-        "avg_sentence": 61.8,
-        "long_share": 0.4,
-        "max_paragraph": 180,
-        "paragraphs": 13,
-        "sentences": 25
-      },
-      "score": 78,
-      "source": "radar-official",
-      "title": "令和8年度支払の適正化に関する調査」の結果について",
-      "warnings": [
-        "読みやすさ: 文が長い（1文の平均 61.8字・60字超の文が 40% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-16T10:56:21.296128+00:00",
-      "attempt": 1,
-      "id": "e241ce91d03dc8cb18cae98858be85e30e46a371",
-      "kind": "trend",
-      "model": "gemini-3.6-flash",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 98.2,
-        "avg_sentence": 54.6,
-        "long_share": 0.556,
-        "max_paragraph": 162,
-        "paragraphs": 5,
-        "sentences": 9
-      },
-      "score": 93,
-      "source": "trends",
-      "title": "首里城 火災",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（NEWS）",
-        "読みやすさ: 文が長い（1文の平均 54.6字・60字超の文が 56% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-16T10:56:37.061904+00:00",
-      "attempt": 0,
-      "id": "e241ce91d03dc8cb18cae98858be85e30e46a371",
-      "kind": "trend",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 100.0,
-        "avg_sentence": 38.5,
-        "long_share": 0.154,
-        "max_paragraph": 165,
-        "paragraphs": 5,
-        "sentences": 13
-      },
-      "score": 94,
-      "source": "trends",
-      "title": "首里城 火災",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（NEWS）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-16T11:57:53.918361+00:00",
-      "attempt": 1,
-      "id": "e3915f7e4cf071c4",
-      "kind": "ai",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [
-        "「今回の提携は英国の若者が対象で、日本の利用者の手続きや料金に変わりはありません」「ChatGPTの料金や機能にも変更はありません」→ 元記事にChatGPTの料金・機能や日本の利用者への影響についての記述がなく、無根拠の断定である",
-        "「日本の利用者に影響はなく」（リード）→ 元記事は対象を英国の若者とするのみで、日本の利用者への影響には触れていない",
-        "「AI学習は企業の支援から、公的な資格へ広がるとみられます」→ 元記事は「nationally recognized」の資格とするだけで、「公的」とは書かれていない。「就職で評価される証明に結びつく」も元記事・確認済みの文脈に根拠がない",
-        "「学んだ成果は、全国的に認められるAI資格として示せるようにする計画です」→ 元記事は資格を含むプログラムを開発中とするのみで、成果を資格として示す計画とまでは書かれていない"
-      ],
-      "readability": {
-        "avg_paragraph": 78.4,
-        "avg_sentence": 40.5,
-        "long_share": 0.161,
-        "max_paragraph": 136,
-        "paragraphs": 16,
-        "sentences": 31
-      },
-      "score": 72,
-      "source": "openai-news",
-      "title": "The King’s Trust and OpenAI launch £1m partnership",
-      "warnings": [
-        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（NEET・EMEA）"
-      ]
-    },
-    {
-      "accepted": false,
       "at": "2026-11-16T12:01:56.701193+00:00",
       "attempt": 1,
       "id": "e3915f7e4cf071c4",
@@ -31915,6 +31825,103 @@
       "warnings": [
         "初めて出たところで言い換えていない略語（UFJ・KARTE・SMS）",
         "読みやすさ: 段落が長い（平均 95.9字・最長 246字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-18T06:34:40.642433+00:00",
+      "attempt": 1,
+      "id": "4207e796746206c2",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "「対象外の車には何も変わりません」→対象外車に何が起きるかは元資料に記載がなく、断定できません。",
+        "「信号待ちなどでエンジンを自動で止めて燃料を節約する機能」→ECOストップの具体的な作動場面や燃費効果は、元資料で確認できません。",
+        "「無償修理」「費用はかかりません」→無償であるとの記載は、提示された元資料・確認済みの文脈にありません。",
+        "「車台番号を販売店に伝えれば、複数の届出をまとめて確認できるとみられます」→複数の届出をまとめて確認できるという根拠は示されていません。",
+        "「作業の負担は大きくないと考えられます」→プログラム書き換えだけで負担が大きくないとする見立ては、作業時間や負担に関する資料がなく裏付けられていません。",
+        "「エンジンが再始動しないおそれ」→元資料は「速やかに」再始動できなくなるおそれとしており、再始動そのものができないようにも読める表現です。"
+      ],
+      "readability": {
+        "avg_paragraph": 80.1,
+        "avg_sentence": 38.7,
+        "long_share": 0.069,
+        "max_paragraph": 154,
+        "paragraphs": 14,
+        "sentences": 29
+      },
+      "score": 82,
+      "source": "mlit-press",
+      "title": "リコールの届出について（メルセデス・ベンツ S560 他）",
+      "warnings": [
+        "見出しが48字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（ECO・DBA・MATIC）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-18T06:35:40.079525+00:00",
+      "attempt": 1,
+      "id": "4207e796746206c2",
+      "kind": "broad",
+      "model": "openai-api:gpt-6-luna",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 67.9,
+        "avg_sentence": 38.4,
+        "long_share": 0.043,
+        "max_paragraph": 154,
+        "paragraphs": 13,
+        "sentences": 23
+      },
+      "score": 100,
+      "source": "mlit-press",
+      "title": "リコールの届出について（メルセデス・ベンツ S560 他）",
+      "warnings": [
+        "見出しが55字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（ECO・DBA・MATIC）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-18T06:36:22.956970+00:00",
+      "attempt": 1,
+      "id": "78ba4a2dbeae665c",
+      "kind": "update",
+      "model": "openai-api:gpt-6.1-terra",
+      "problems": [
+        "タイトル「消費者庁も回収情報を掲載、対応は返金／回収」→元記事の画像データから掲載の有無や対応区分を確認できず、タイトルの主張を裏付けられません。",
+        "「消費者庁のリコール情報サイトは11月18日」→掲載日を示す情報を元記事から確認できません。",
+        "「エレマテックの『Smartワイヤレスイヤホン』」→元記事から発信元・製品名を確認できず、固有名詞の裏付けがありません。",
+        "「対応方法が『返金／回収』」→この表記を元記事の画像から読み取れず、確認できません。",
+        "要点「回収キットとお詫びのQUOカード1,500円分は12月中旬から順次発送」→確認済みの文脈で12月中旬から順次発送とされているのは回収キットで、QUOカードも同じ時期に発送されるとは確認できません。"
+      ],
+      "score": 52,
+      "source": "caa-recall",
+      "title": "家電製品 エレマテック「Smartワイヤレスイヤホン」 - 返金／回収"
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-18T06:37:12.628997+00:00",
+      "attempt": 1,
+      "id": "78ba4a2dbeae665c",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 83.8,
+        "avg_sentence": 39.4,
+        "long_share": 0.059,
+        "max_paragraph": 178,
+        "paragraphs": 8,
+        "sentences": 17
+      },
+      "score": 100,
+      "source": "caa-recall",
+      "title": "家電製品 エレマテック「Smartワイヤレスイヤホン」 - 返金／回収",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（PTH・QUO）",
+        "要点の1つ目がリードの文の写し。一番のニュースを、リードとは違う言い方で書く"
       ]
     }
   ],
