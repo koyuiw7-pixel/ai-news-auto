@@ -10943,6 +10943,19 @@
       "updated": "yonden-electricity-bill-relief-2027",
       "url": "https://miraiz.chuden.co.jp/info/press/1218638_1938.html"
     },
+    "5b52b6fbc9845f31": {
+      "at": "2026-11-18T04:45:07.200563+00:00",
+      "costUsd": 0.0079,
+      "intent": "breaking",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "score": 100,
+      "section": "public",
+      "slug": "uniformnext-karte-data-leak",
+      "url": "https://www.uniformnext.com/info/20261118/"
+    },
     "5ba746bd936b96dbfb33a8adc2e7baa0b59f0281": {
       "at": "2026-11-17T19:00:35.797061+00:00",
       "reason": "trend: 公式の発表で記事にした（nadeshiko-brazil-hello-kitty-2026）",
@@ -24375,73 +24388,6 @@
   },
   "quality_log": [
     {
-      "accepted": true,
-      "at": "2026-11-16T08:14:28.516611+00:00",
-      "attempt": 0,
-      "id": "127a8c9ac839062e",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 84.1,
-        "avg_sentence": 38.4,
-        "long_share": 0.057,
-        "max_paragraph": 161,
-        "paragraphs": 16,
-        "sentences": 35
-      },
-      "score": 93,
-      "source": "jfa",
-      "title": "キリンチャレンジカップ2026 開催中止のお知らせ 12.30 大阪／パナソニック スタジアム 吹田 #jfa #daihyo",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（JFA・MIZUHO・THE）",
-        "本文が見出しで始まっている（最初の段落は見出しなしで、だれに関係するか・関係しない人はどうかを書く）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-16T08:46:33.826171+00:00",
-      "attempt": 1,
-      "id": "c6636c5ed8743eb5",
-      "kind": "broad",
-      "model": "gemini-3.5-flash",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 100.4,
-        "avg_sentence": 42.6,
-        "long_share": 0.182,
-        "max_paragraph": 199,
-        "paragraphs": 14,
-        "sentences": 33
-      },
-      "score": 88,
-      "source": "radar-official",
-      "title": "行司関連ニュース｜dメニューニュース（NTTドコモ）",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（ABEMA）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-16T09:35:19.475896+00:00",
-      "attempt": 1,
-      "id": "ecf180b07bc28fbf",
-      "kind": "broad",
-      "model": "claude:sonnet",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 75.1,
-        "avg_sentence": 33.0,
-        "long_share": 0.04,
-        "max_paragraph": 112,
-        "paragraphs": 11,
-        "sentences": 25
-      },
-      "score": 90,
-      "source": "fast",
-      "title": "焚火台30周年記念マグ（品番：LF-004 / LF-005 / LF-006）に関する自主回収のお詫びとお願い | 新着情報 | スノーピーク ＊ Snow "
-    },
-    {
       "accepted": false,
       "at": "2026-11-16T09:41:14.808086+00:00",
       "attempt": 1,
@@ -31852,6 +31798,84 @@
       "warnings": [
         "見出しが48字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（EC・GMO・DRINX）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-18T04:43:39.002194+00:00",
+      "attempt": 1,
+      "id": "5b52b6fbc9845f31",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "「対象外の人には何も変わらず」→元記事が述べるのはサイトの買い物や会員機能を安全に利用できることまでで、対象外の人に何も変化がないとは確認できません。",
+        "「KARTEは、サイト上の表示やメールを利用者ごとに出し分ける外部サービス」→元記事はWeb接客やメール配信等に使うサービスと説明するだけで、利用者ごとに表示やメールを出し分ける機能までは確認できません。",
+        "「いまのところ不正に使われたという報告は出ていません」→元記事の表現は「二次被害は確認されておりません」であり、「報告が出ていない」と言い換えると確認状況が異なります。"
+      ],
+      "readability": {
+        "avg_paragraph": 91.2,
+        "avg_sentence": 48.0,
+        "long_share": 0.211,
+        "max_paragraph": 144,
+        "paragraphs": 10,
+        "sentences": 19
+      },
+      "score": 82,
+      "source": "fast",
+      "title": "ユニフォームネクストの情報流出に関するお知らせ",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（EC・SMS）",
+        "読みやすさ: 文が長い（1文の平均 48.0字・60字超の文が 21% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-18T04:44:09.140576+00:00",
+      "attempt": 1,
+      "id": "5b52b6fbc9845f31",
+      "kind": "broad",
+      "model": "openai-api:gpt-6-luna",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 90.2,
+        "avg_sentence": 47.5,
+        "long_share": 0.211,
+        "max_paragraph": 130,
+        "paragraphs": 10,
+        "sentences": 19
+      },
+      "score": 100,
+      "source": "fast",
+      "title": "ユニフォームネクストの情報流出に関するお知らせ",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（EC・SMS）",
+        "読みやすさ: 文が長い（1文の平均 47.5字・60字超の文が 21% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-18T04:44:55.085913+00:00",
+      "attempt": 0,
+      "id": "5b52b6fbc9845f31",
+      "kind": "broad",
+      "model": "",
+      "problems": [
+        "読みやすさ基準外のまま受理: 書き直し後の確認に不合格: タイトル・リードの「系列ECサイト」→元記事が述べているのはユニフォームネクストが運営するECサイトであり、系列会社のサイトだとは確認できません。; タイトルの「最大170万件」→元記事の上限は1,701,006件で、170万件をわずかに上回ります。本文には正確"
+      ],
+      "readability": {
+        "avg_paragraph": 90.2,
+        "avg_sentence": 47.5,
+        "long_share": 0.211,
+        "max_paragraph": 130,
+        "paragraphs": 10,
+        "sentences": 19
+      },
+      "score": 100,
+      "source": "fast",
+      "title": "ユニフォームネクストの情報流出に関するお知らせ",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（EC・SMS）",
+        "読みやすさ: 文が長い（1文の平均 47.5字・60字超の文が 21% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
       ]
     }
   ],
