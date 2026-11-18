@@ -18934,6 +18934,19 @@
       "skipped": true,
       "url": "https://topics.smt.docomo.ne.jp/latestnews/keywords/cdfed2ba3709c3a0d88cb688bd959ddb0a9918a80c109949fd9f9e66fe90fedd"
     },
+    "d355628847b8fd37": {
+      "at": "2026-11-18T06:21:16.052393+00:00",
+      "costUsd": 0.006,
+      "intent": "breaking",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "score": 96,
+      "section": "public",
+      "slug": "mufg-esmart-securities-karte-leak",
+      "url": "https://kabu.com/company/pressrelease/20261118_1.html"
+    },
     "d36a2594a91f32ac": {
       "at": "2026-11-11T06:49:49.454549+00:00",
       "costUsd": 0.0088,
@@ -24414,54 +24427,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-16T10:51:51.245914+00:00",
-      "attempt": 1,
-      "id": "76afe1ba6c6f825b",
-      "kind": "broad",
-      "model": "strike:本文 5 文・リード・要点 1 個",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 90.6,
-        "avg_sentence": 63.4,
-        "long_share": 0.4,
-        "max_paragraph": 170,
-        "paragraphs": 7,
-        "sentences": 10
-      },
-      "score": 82,
-      "source": "radar-official",
-      "title": "公正取引委員会",
-      "warnings": [
-        "読みやすさ: 文が長い（1文の平均 63.4字・60字超の文が 40% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-16T10:52:11.607419+00:00",
-      "attempt": 0,
-      "id": "76afe1ba6c6f825b",
-      "kind": "broad",
-      "model": "",
-      "problems": [
-        "読みやすさ基準外のまま受理: 書き直し後の確認に不合格: 「仕事・お金にどう活かせる？」→「令和8年1月以降の発注で手形交付をやめ、60日以内の決済方法へ切り替える必要があります」→60日以内払いは元記事では令和9年4月1日施行の支払告示の内容で、令和8年1月発注分の要件ではないため、施行時期を取り違えている; 本文冒"
-      ],
-      "readability": {
-        "avg_paragraph": 90.6,
-        "avg_sentence": 63.4,
-        "long_share": 0.4,
-        "max_paragraph": 170,
-        "paragraphs": 7,
-        "sentences": 10
-      },
-      "score": 82,
-      "source": "radar-official",
-      "title": "公正取引委員会",
-      "warnings": [
-        "読みやすさ: 文が長い（1文の平均 63.4字・60字超の文が 40% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": false,
       "at": "2026-11-16T10:53:47.964089+00:00",
@@ -31879,6 +31844,61 @@
       "warnings": [
         "見出しが48字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（ECO・DBA・DM）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-18T06:20:31.212186+00:00",
+      "attempt": 1,
+      "id": "d355628847b8fd37",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "「サイトやアプリの訪問者に合わせて案内を出すための顧客体験の管理サービス」→ KARTEの機能説明は元記事に記載がなく、確認済みの文脈にもない具体的な補足です。",
+        "「対象の人には遅くとも11月19日中にメールが届きます」→ 元記事はメールが何らかの理由で届かない場合があるとしており、必ず届くかのような表現は誤りです。",
+        "「対象外の人には何も変わりません」→ 元記事が示すのは取引への影響がないことなどであり、対象外の人に何も変化がないとまでは述べていません。",
+        "「漏れたのは…サービス『KARTE』です」→ 元記事ではKARTEで不正アクセスが起き、顧客に関連する情報が漏えいしたとしており、サービス自体が漏れたという意味に読める表現は不正確です。"
+      ],
+      "readability": {
+        "avg_paragraph": 96.7,
+        "avg_sentence": 41.9,
+        "long_share": 0.133,
+        "max_paragraph": 246,
+        "paragraphs": 13,
+        "sentences": 30
+      },
+      "score": 82,
+      "source": "fast",
+      "title": "（お知らせ）当社委託先が提供するサービスへの不正アクセスについて | 三菱UFJ eスマート証券（旧社名：auカブコム証券）",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（UFJ・KARTE・SMS）",
+        "読みやすさ: 段落が長い（平均 96.7字・最長 246字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-18T06:21:08.741369+00:00",
+      "attempt": 1,
+      "id": "d355628847b8fd37",
+      "kind": "broad",
+      "model": "openai-api:gpt-6-luna",
+      "problems": [
+        "「口座番号が悪用の手がかりにされ」→ 元記事は便乗した不審な連絡の可能性に注意を促していますが、口座番号がその手がかりに使われるとは具体的に述べていません。"
+      ],
+      "readability": {
+        "avg_paragraph": 95.9,
+        "avg_sentence": 43.0,
+        "long_share": 0.172,
+        "max_paragraph": 246,
+        "paragraphs": 13,
+        "sentences": 29
+      },
+      "score": 96,
+      "source": "fast",
+      "title": "（お知らせ）当社委託先が提供するサービスへの不正アクセスについて | 三菱UFJ eスマート証券（旧社名：auカブコム証券）",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（UFJ・KARTE・SMS）",
+        "読みやすさ: 段落が長い（平均 95.9字・最長 246字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
       ]
     }
   ],
