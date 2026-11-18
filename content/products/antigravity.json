@@ -8,31 +8,24 @@
   "companyName": "Google",
   "category": "開発ツール",
   "overview": {
-    "text": "Google Antigravityは、AIエージェントが目標に沿ってコードの作成から検証までを進める開発ツールです。2026年9月にスマートフォンの遠隔操作機能が発表され、ハードウェア試作やコード開発の事例が公開されています。",
+    "text": "Google Antigravityは、文章での指示をもとにAIエージェントがプログラムの実装や検証を進める開発ツールです。Googleから提供されています。",
     "sources": [
       "google-antigravity-autonomous-software-development",
-      "google-deepmind-antigravity-remote-control",
-      "google-gemini-4-argon-surf-clock-hardware"
+      "google-deepmind-antigravity-remote-control"
     ]
   },
   "facts": [
     {
-      "label": "提供開始",
-      "value": "2026年9月までに提供",
+      "label": "料金",
+      "value": "Google AI Proなどは月2,900円",
       "sources": [
-        "google-deepmind-antigravity-remote-control"
-      ]
-    },
-    {
-      "label": "日本での提供",
-      "value": "利用できる",
-      "sources": [
+        "gemini-hydrogen-robotics-plugin",
         "gemini-4-hydrogen-developers"
       ]
     },
     {
       "label": "向いている人",
-      "value": "プログラムを書く開発者",
+      "value": "プログラムを書く開発者や法人",
       "sources": [
         "gemini-4-hydrogen-developers"
       ]
@@ -40,89 +33,103 @@
   ],
   "capabilities": [
     {
-      "text": "開発者が文章で伝えた目標に沿って、AIエージェントが作業を分けて実装から検証までを進めます。",
+      "text": "目標を文章で伝えると、AIエージェントが作業を分けて実装から検証までを進めます。",
       "sources": [
         "google-antigravity-autonomous-software-development"
       ]
     },
     {
-      "text": "新機能のOrchestratorにより、HydrogenとCarbonを組み合わせて使えます。",
+      "text": "複数のモデルを同じセッション内で切り替える「Orchestrator」機能が使えます。",
       "sources": [
-        "gemini-4-hydrogen-developers"
+        "gemini-4-hydrogen-launch-pricing"
       ]
     },
     {
-      "text": "スマートフォンやブラウザから、稼働中のエージェントを遠隔監視・操作できます。",
+      "text": "ロボット開発向けのRobotics追加機能により、設定や動作の検証を支援します。",
+      "sources": [
+        "gemini-hydrogen-robotics-plugin"
+      ]
+    },
+    {
+      "text": "スマートフォンからAI開発エージェントを遠隔監視・操作できます。",
       "sources": [
         "google-deepmind-antigravity-remote-control"
-      ]
-    },
-    {
-      "text": "AIモデルを使い、3Dモデリングや電子工作の配線ガイドなどを自動生成できます。",
-      "sources": [
-        "google-gemini-4-argon-surf-clock-hardware"
       ]
     }
   ],
   "pricing": [
     {
-      "text": "有料のGoogle AI ProまたはUltraの契約者向けに提供されています。",
+      "text": "Google Antigravityを利用するには、有料のGoogle AI ProまたはUltraの契約が必要です。",
       "sources": [
+        "gemini-hydrogen-robotics-plugin",
         "gemini-4-hydrogen-developers"
+      ]
+    },
+    {
+      "text": "Antigravity自体には開始費用のかからない利用枠もあります。",
+      "sources": [
+        "gemini-hydrogen-robotics-plugin"
       ]
     }
   ],
   "japan": [
     {
-      "text": "日本からも利用できます。",
+      "text": "日本向けのGoogle AI Proは月額2,900円で提供されています。",
       "sources": [
+        "gemini-hydrogen-robotics-plugin",
         "gemini-4-hydrogen-developers"
       ]
     }
   ],
   "howto": [
     {
-      "text": "有料のGoogle AI ProまたはUltraを契約して利用します。",
+      "text": "AntigravityではGemini 4 Hydrogenを選んで利用できます。",
       "sources": [
-        "gemini-4-hydrogen-developers"
+        "gemini-hydrogen-robotics-plugin"
       ]
     },
     {
-      "text": "専用アプリやWebブラウザからリモートコントロール機能を利用できます。",
+      "text": "追加機能は「Customizations」を開いて導入できます。",
       "sources": [
-        "google-deepmind-antigravity-remote-control"
+        "gemini-hydrogen-robotics-plugin"
       ]
     }
   ],
-  "differences": [],
+  "differences": [
+    {
+      "text": "複数のモデルを同じセッション内で切り替えるOrchestrator機能が導入されています。",
+      "sources": [
+        "gemini-4-hydrogen-launch-pricing"
+      ]
+    }
+  ],
   "faq": [
     {
-      "q": "誰に向いている？",
-      "a": "プログラムを書く開発者や法人でGeminiを使う人に向いています。",
+      "q": "どのような人が使えますか？",
+      "a": "プログラムを書く開発者や、法人でGeminiを使う人に向いています。",
       "sources": [
         "gemini-4-hydrogen-developers"
       ]
     },
     {
-      "q": "スマートフォンから操作できる？",
-      "a": "スマートフォンやブラウザから稼働中のエージェントを遠隔監視・操作できます。",
+      "q": "どのようなモデルが使えますか？",
+      "a": "Gemini 4 Hydrogenなどを選択して利用できます。",
+      "sources": [
+        "gemini-hydrogen-robotics-plugin"
+      ]
+    },
+    {
+      "q": "スマートフォンから操作できますか？",
+      "a": "モバイル端末やブラウザから稼働中のエージェントを遠隔監視・操作できます。",
       "sources": [
         "google-deepmind-antigravity-remote-control"
       ]
     },
     {
-      "q": "どのようなモデルを組み合わせられる？",
-      "a": "新機能のOrchestratorにより、HydrogenとCarbonを組み合わせて使えます。",
+      "q": "ロボット開発に使えますか？",
+      "a": "Robotics追加機能を入れて、設定や動作の検証をAIに依頼できます。",
       "sources": [
-        "gemini-4-hydrogen-developers"
-      ]
-    },
-    {
-      "q": "どのような作業に使える？",
-      "a": "日常のコーディングやハードウェア開発の自動化などに使えます。",
-      "sources": [
-        "gemini-4-hydrogen-developers",
-        "google-gemini-4-argon-surf-clock-hardware"
+        "gemini-hydrogen-robotics-plugin"
       ]
     }
   ],
@@ -140,7 +147,7 @@
     {
       "date": "2026-11-12",
       "slug": "gemini-4-hydrogen-developers",
-      "event": "有料のAntigravityでも利用可"
+      "event": "Gemini 4 Hydrogenに対応"
     }
   ],
   "related": [
@@ -166,9 +173,9 @@
     "google-antigravity-autonomous-software-development",
     "google-deepmind-antigravity-remote-control"
   ],
-  "signature": "b3b2b22559da3dc9",
+  "signature": "7bbb38a165f4b81c",
   "primarySignature": "06553f098aaa1168",
   "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-10-27T10:45:54+00:00",
-  "updatedAt": "2026-11-15T18:47:05+00:00"
+  "updatedAt": "2026-11-18T19:01:43+00:00"
 }
