@@ -77,9 +77,9 @@
     }
   ],
   "todayActions": [
-    "PCやスマホのWebからは入れないため、ドコモ・ファイナンス公式アプリに専用IDとパスワードでログインする",
-    "カードの暗証番号変更は専用ダイヤル0120-919-457へ。平日9:00〜18:00のオペレーター対応になる",
-    "同社を装うメールやSMSのリンクは開かず、認証コードも入力しない。相談は0120-20-8765へ"
+    "Webから入れない人は、公式アプリをダウンロードしてログインする",
+    "カードの暗証番号を変更したい人は、専用ダイヤルに電話する",
+    "メールやSMSのリンクを使わず、公式アプリから正しいサイトに接続する"
   ],
   "publicInterest": "breach",
   "incident": {
@@ -125,5 +125,99 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/docomo-finance-karte-leak-figure-f0978059.jpg"
-  }
+  },
+  "officialDesk": [
+    {
+      "name": "カード暗証番号変更専用ダイヤル",
+      "url": "https://finance.docomo.ne.jp/member/news/release261117.pdf",
+      "source": "https://finance.docomo.ne.jp/member/news/release261117.pdf",
+      "phone": "0120-919-457",
+      "hours": "平日9:00~18:00"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "Webから入れない人は、公式アプリをダウンロードしてログインする",
+      "source": "https://finance.docomo.ne.jp/member/news/release261117.pdf",
+      "steps": [
+        "「ドコモ・ファイナンス公式アプリ」をダウンロード",
+        "会員サイトで利用中の「専用 IDとパスワード」でログイン"
+      ],
+      "url": "https://finance.docomo.ne.jp/member/news/release261117.pdf"
+    },
+    {
+      "action": "カードの暗証番号を変更したい人は、専用ダイヤルに電話する",
+      "source": "https://finance.docomo.ne.jp/member/news/release261117.pdf",
+      "steps": [
+        "0120-919-457に電話する",
+        "受付時間の平日9:00~18:00にオペレーターへ相談する"
+      ],
+      "url": "https://finance.docomo.ne.jp/member/news/release261117.pdf"
+    },
+    {
+      "action": "メールやSMSのリンクを使わず、公式アプリから正しいサイトに接続する",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "steps": [
+        "メールやSMS内のリンクをクリックしない",
+        "公式アプリを活用して接続する"
+      ],
+      "url": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html"
+    }
+  ],
+  "cause": {
+    "text": "ドコモ・ファイナンスが利用する「KARTE」で第三者による不正アクセスが発生し、同サービス上で管理していた個人情報等が外部に漏えいした可能性が判明しました。漏えいの有無と影響範囲は、プレイド社と連携して調査中です。",
+    "status": "investigating",
+    "source": "https://finance.docomo.ne.jp/member/news/release261117.pdf"
+  },
+  "worries": [
+    {
+      "q": "個人情報は実際に漏れてしまったのでしょうか？",
+      "a": "ドコモ・ファイナンスは、個人情報等が外部に漏えいした可能性があると発表しています。漏えいの有無と影響範囲は、プレイド社と連携して調査中です。",
+      "source": "https://finance.docomo.ne.jp/member/news/release261117.pdf",
+      "action": "調査の進展や対応状況は、ドコモ・ファイナンスのWebサイトなどで確認する。"
+    },
+    {
+      "q": "Webの会員サイトにログインできない間はどうすれば？",
+      "a": "Webサイト経由のログインは一時停止中ですが、「ドコモ・ファイナンス公式アプリ」からは会員サイトへログインできます。アプリではWebの会員サイトで使っている「専用 IDとパスワード」を利用できます。",
+      "source": "https://finance.docomo.ne.jp/member/news/release261117.pdf",
+      "action": "公式アプリをダウンロードし、会員サイトで使っている専用IDとパスワードでログインする。"
+    },
+    {
+      "q": "メールやSMSのリンクからログインを求められたら？",
+      "a": "警察庁は、メールやSMSのリンクは偽装でき、見た目で真偽を判断するのは非常に困難と説明しています。リンクを安易にクリックせず、公式アプリなどから正しいサイトに接続するよう案内しています。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "action": "メールやSMS内のリンクは開かず、公式アプリを使って接続する。",
+      "general": true
+    },
+    {
+      "q": "暗証番号の変更を電話で相談できますか？",
+      "a": "カード暗証番号変更専用ダイヤルは、現在オペレーターによる対応に切り替わっています。電話の受付時間は平日9:00~18:00です。",
+      "source": "https://finance.docomo.ne.jp/member/news/release261117.pdf",
+      "action": "平日9:00~18:00に、カード暗証番号変更専用ダイヤル0120-919-457へ電話する。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "Webで入れないときはどうする？",
+      "situation": "会員サイトにログインしたい",
+      "recommend": "まず公式アプリでのログインを試す",
+      "reason": "会員サイトへのWeb経由のログインは一時停止中ですが、公式アプリからはログインできます。アプリではWebの会員サイトで使っている「専用 IDとパスワード」を利用できます。ただしWebログインの再開時期は分かりません。",
+      "source": "https://finance.docomo.ne.jp/member/news/release261117.pdf"
+    },
+    {
+      "question": "カードの暗証番号を変えたいときは？",
+      "situation": "暗証番号の変更を希望している",
+      "recommend": "専用ダイヤルへ電話して相談する",
+      "reason": "カード暗証番号変更専用ダイヤルは、現在オペレーター対応に切り替わっています。受付は平日9:00~18:00です。変更手続きの方法は、電話で確認できます。",
+      "source": "https://finance.docomo.ne.jp/member/news/release261117.pdf"
+    }
+  ],
+  "depthHeadings": {
+    "cause": "KARTEでの不正アクセスと調査状況",
+    "steps": "Webに入れない間にできること",
+    "desk": "暗証番号変更と問い合わせの窓口",
+    "worries": "ログイン停止や情報漏えいの不安",
+    "guide": "アプリか電話か、用件別の選び方"
+  },
+  "depthAt": "2026-11-18T05:18:30+00:00"
 }
