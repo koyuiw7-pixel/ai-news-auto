@@ -7716,6 +7716,12 @@
       "slug": "physical-ai-kantei-meeting-2026",
       "url": "https://www.gov-online.go.jp/press_conferences/prime_minister/202611/video-327313.html"
     },
+    "2ae759d919a56deb": {
+      "at": "2026-11-18T08:23:40.853594+00:00",
+      "reason": "public-interest: 資料が短い 990字",
+      "skipped": true,
+      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026111811"
+    },
     "2b0713e881081515": {
       "at": "2026-11-10T07:47:14.982157+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（開催について）",
@@ -14018,6 +14024,19 @@
       "reason": "prefilter: 価値の薄いお知らせ（を掲載しました）",
       "skipped": true,
       "url": "https://www.gpif.go.jp/operation/6436gyaghliu/2026_2Q_1106_jp.pdf"
+    },
+    "8822ea9d57f8d477": {
+      "at": "2026-11-18T08:24:57.840802+00:00",
+      "costUsd": 0.0044,
+      "intent": "query",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "score": 100,
+      "section": "public",
+      "slug": "tokyo-delicious-museum-data-leak",
+      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026111801"
     },
     "884b8cc2f43ba1f5": {
       "at": "2026-11-06T01:26:31.285882+00:00",
@@ -23972,6 +23991,14 @@
       "url": "https://www.mext.go.jp/a_menu/shotou/mushouka/1342600.htm",
       "writer": "muse"
     },
+    "muse-df9bf40847": {
+      "at": "2026-11-18T08:06:06.365610+00:00",
+      "mix": "other",
+      "score": 100,
+      "slug": "fujii-kaze-piano-recital-livestream",
+      "url": "https://fujiikaze.com/news-article/news261029/",
+      "writer": "muse"
+    },
     "muse-e0717b22f9": {
       "at": "2026-11-10T21:34:28.641677+00:00",
       "mix": "money",
@@ -24315,68 +24342,9 @@
       "slug": "fujiseika-kinpaku-hagoromo-recall",
       "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602845",
       "writer": "muse"
-    },
-    "muse-df9bf40847": {
-      "at": "2026-11-18T08:06:06.365610+00:00",
-      "mix": "other",
-      "score": 100,
-      "slug": "fujii-kaze-piano-recital-livestream",
-      "url": "https://fujiikaze.com/news-article/news261029/",
-      "writer": "muse"
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-16T14:07:59.518536+00:00",
-      "attempt": 1,
-      "id": "0bc322583e6f0775",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 76.4,
-        "avg_sentence": 39.6,
-        "long_share": 0.111,
-        "max_paragraph": 115,
-        "paragraphs": 14,
-        "sentences": 27
-      },
-      "score": 93,
-      "source": "google-ai-blog",
-      "title": "New Ask Maps features to help with holiday travel and prep",
-      "warnings": [
-        "見出しの書き方: 記号: かっこの直後に「、」",
-        "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-16T15:25:01.607887+00:00",
-      "attempt": 1,
-      "id": "05b7c979204565d2",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "言葉の問題がある文が1か所（「高市総理は2026年11月16日、マニラでのASEAN（東南」→中国の簡体字（圳）が混ざっている）。中国語・訳し残しの英単語を自然な日本語にし、用語集どおりに訳す"
-      ],
-      "readability": {
-        "avg_paragraph": 128.6,
-        "avg_sentence": 58.5,
-        "long_share": 0.455,
-        "max_paragraph": 199,
-        "paragraphs": 5,
-        "sentences": 11
-      },
-      "score": null,
-      "source": "kantei",
-      "title": "高市総理大臣によるフィリピン・デイリー・インクワイヤラー紙、フィリピン・スター紙、マニラ・ブレティン紙、星洲日報及びＮｉｋｋｅｉ Ａｓｉａへの寄稿",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（AZEC・ASEAN・APEC）",
-        "読みやすさ: 文が長い（1文の平均 58.5字・60字超の文が 46% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "読みやすさ: 段落が長い（平均 128.6字・最長 199字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-16T15:25:20.772746+00:00",
@@ -31790,6 +31758,56 @@
       "title": "（第2報）ノジマオンラインの不正アクセスに伴う<br>個人情報漏えいに関するお詫びとお知らせ",
       "warnings": [
         "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-18T08:24:28.442977+00:00",
+      "attempt": 1,
+      "id": "8822ea9d57f8d477",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "「直接の影響は小さい話です」→ 漏えいした情報には連絡先やアレルギー情報も含まれており、影響が小さいと評価する根拠は元記事にありません。"
+      ],
+      "readability": {
+        "avg_paragraph": 65.8,
+        "avg_sentence": 36.2,
+        "long_share": 0.1,
+        "max_paragraph": 162,
+        "paragraphs": 11,
+        "sentences": 20
+      },
+      "score": 93,
+      "source": "tokyo-metro",
+      "title": "予約サービスの外部分析ツールへの不正アクセスによる個人情報の漏えいについて",
+      "warnings": [
+        "見出しが53字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（TOKYO）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-18T08:24:47.815453+00:00",
+      "attempt": 1,
+      "id": "8822ea9d57f8d477",
+      "kind": "broad",
+      "model": "openai-api:gpt-6-luna",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 65.8,
+        "avg_sentence": 36.2,
+        "long_share": 0.1,
+        "max_paragraph": 162,
+        "paragraphs": 11,
+        "sentences": 20
+      },
+      "score": 100,
+      "source": "tokyo-metro",
+      "title": "予約サービスの外部分析ツールへの不正アクセスによる個人情報の漏えいについて",
+      "warnings": [
+        "見出しが53字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（TOKYO）"
       ]
     }
   ],

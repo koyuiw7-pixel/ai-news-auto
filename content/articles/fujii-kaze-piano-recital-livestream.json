@@ -92,9 +92,9 @@
     }
   ],
   "todayActions": [
-    "11月20日19時の配信に向け、公式サイトが案内するYouTube生中継ページを確認する。",
-    "会場でグッズを買う人は、イープラスの申込み履歴で整理券用のシリアルコードを確認する。",
-    "21日公演の整理券を希望する人は、11月18日18時からの受付と時間枠を確認する。"
+    "11月20日の配信を見る人は、公式サイトが案内するYouTube生中継ページを確認する。",
+    "グッズ整理券を申し込む人は、申込み履歴で対象公演のシリアルコードを確認する。",
+    "21日公演分の整理券を希望する人は、11月18日18時から専用アプリで申し込む。"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -156,5 +156,101 @@
     ],
     "ar": 1.0,
     "src": "https://ai-tech-express.jp/img/fujii-kaze-piano-recital-livestream-de20136e.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "会場グッズは当日販売だけでなく、11月20日〜22日限定の公式グッズ受注販売もあります。特設サイトには「どなたでもご利用いただけます」とあります。",
+      "source": "https://hehn.fujiikaze.com/fpr/"
+    },
+    {
+      "text": "整理券用コードは申込者にだけ表示され、時間枠は30分ごとです。同行者が整理券を申し込む場合も、まず申込者にコードを確認する必要があります。",
+      "source": "https://hehn.fujiikaze.com/fpr/"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "DISK GARAGE",
+      "url": "https://www.diskgarage.com/form/info",
+      "source": "https://hehn.fujiikaze.com/fpr/",
+      "howTo": [
+        "藤井風 ピアノリサイタル",
+        "お問合せ",
+        "DISK GARAGE"
+      ]
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "11月20日の配信を見る人は、公式サイトが案内するYouTube生中継ページを確認する。",
+      "source": "https://fujiikaze.com/news-article/news261029/",
+      "steps": [
+        "藤井風 OFFICIAL SITEのお知らせを開く",
+        "「藤井風 ピアノリサイタル at 東京ドーム生中継」を開く"
+      ],
+      "url": "https://www.youtube.com/live/GhLJsD7zpG0"
+    },
+    {
+      "action": "グッズ整理券を申し込む人は、申込み履歴で対象公演のシリアルコードを確認する。",
+      "source": "https://hehn.fujiikaze.com/fpr/",
+      "steps": [
+        "イープラスの申込み履歴にログイン",
+        "対象公演の「申込み内容」を開く",
+        "「その他」に表示されるシリアルコードを確認"
+      ],
+      "url": "https://eplus.jp/jyoukyou/"
+    },
+    {
+      "action": "21日公演分の整理券を希望する人は、11月18日18時から専用アプリで申し込む。",
+      "source": "https://hehn.fujiikaze.com/fpr/",
+      "steps": [
+        "「Fujii Kaze Goods」をダウンロード",
+        "シリアルコードを専用アプリに入力",
+        "11月21日の来場時間枠を指定"
+      ],
+      "url": "https://pages-goods.hehnrecords.com/usage"
+    }
+  ],
+  "worries": [
+    {
+      "q": "21日の公演もYouTubeで生中継を見ることができますか？",
+      "a": "公式サイトが生中継すると案内しているのは11月20日の初日公演です。11月21日の生中継はありません。",
+      "source": "https://fujiikaze.com/news-article/news261029/",
+      "action": "11月20日に視聴する人は、公式サイトが案内するYouTube生中継ページを開いておく。"
+    },
+    {
+      "q": "同行者も整理券用のシリアルコードを確認できますか？",
+      "a": "シリアルコードは申込者のみに表示されます。同行者は、申込み履歴を確認できる申込者にコードを確認するよう特設サイトが案内しています。",
+      "source": "https://hehn.fujiikaze.com/fpr/",
+      "action": "申込者にコードを確認し、申込者はイープラスの申込み履歴で対象公演の「申込み内容」から「その他」を見る。"
+    },
+    {
+      "q": "整理券の指定時間に間に合わなかったらどうなりますか？",
+      "a": "指定された時間枠を過ぎた場合、整理券は無効です。各時間枠は先着順で、定員に達した枠から受付が締め切られます。",
+      "source": "https://hehn.fujiikaze.com/fpr/",
+      "action": "整理券を申し込んだら指定時間枠を確認し、その枠内にグッズ販売へ行く。"
+    },
+    {
+      "q": "公演チケットがなくても会場でグッズを買えますか？",
+      "a": "会場での購入には公演チケットと専用アプリ「Fujii Kaze Goods」のダウンロードが必要です。一方、11月20日〜22日限定の公式グッズ受注販売は、どなたでも利用できます。",
+      "source": "https://hehn.fujiikaze.com/fpr/",
+      "action": "会場販売を利用しない場合は、11月20日〜22日限定のオフィシャルグッズ受注販売を確認する。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "会場に行かずに公式グッズを買える？",
+      "situation": "会場販売を利用しない",
+      "recommend": "受注販売を確認する",
+      "reason": "特設サイトでは、11月20日〜22日限定のオフィシャルグッズ受注販売を「どなたでもご利用いただけます」と案内しています。会場販売に必要な公演チケットや専用アプリとは別に利用できます。",
+      "source": "https://hehn.fujiikaze.com/fpr/"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "会場に行かなくてもグッズを買える",
+    "steps": "配信と整理券の準備を確認",
+    "desk": "公演の問い合わせ先",
+    "worries": "配信やグッズ購入で迷うこと",
+    "guide": "会場以外でグッズを買う方法"
+  },
+  "depthAt": "2026-11-18T08:26:40+00:00"
 }

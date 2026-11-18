@@ -83,9 +83,9 @@
     }
   ],
   "todayActions": [
-    "スマホ買取・中古スマホ販売サイトを使った人は、通帳や明細で不審な入出金がないか確認する",
-    "ノジマや金融機関を名乗るメールやSMSのリンク・添付ファイルは開かない",
-    "不安があれば、ノジマカスタマーセンター（0120-574-853、9:30〜19:00）に問い合わせる"
+    "スマホ買取サイト・中古スマホ販売サイトの利用者は、通帳や明細を確認する",
+    "その他5サイトの利用者は、登録メールアドレスや郵送物への個別連絡を確認する",
+    "対象や漏えい情報について確認したい場合は、ノジマカスタマーセンターへ電話する"
   ],
   "publicInterest": "breach",
   "incident": {
@@ -106,7 +106,8 @@
       1
     ],
     "repaired": false,
-    "repairLater": true
+    "repairLater": true,
+    "laterTriedAt": "2026-11-18T08:26:40+00:00"
   },
   "qualityScore": 99,
   "sourcePublishedAt": "2026-11-17T15:00:00+00:00",
@@ -137,5 +138,98 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/nojima-data-leak-second-report-figure-d0ea6f41.jpg"
+  },
+  "insight": [
+    {
+      "text": "口座情報を含む4,223名は、スマホ買取サイト最大4,829名と中古スマホ販売サイト最大2,749名の合算人数ではありません。サイト別人数は重複を含む延べ人数として公表されています。",
+      "source": "https://www.nojima.co.jp/news/category/press/746679/"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "ノジマカスタマーセンター",
+      "url": "https://www.nojima.co.jp/news/category/press/746679/",
+      "source": "https://www.nojima.co.jp/news/category/press/746679/",
+      "phone": "0120-574-853",
+      "hours": "9:30～19:00"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "スマホ買取サイト・中古スマホ販売サイトの利用者は、通帳や明細を確認する",
+      "source": "https://www.nojima.co.jp/news/category/press/746679/",
+      "steps": [
+        "通帳または明細を用意する",
+        "不審な入出金がないか確認する"
+      ],
+      "url": "https://www.nojima.co.jp/news/category/press/746679/"
+    },
+    {
+      "action": "その他5サイトの利用者は、登録メールアドレスや郵送物への個別連絡を確認する",
+      "source": "https://www.nojima.co.jp/news/category/press/746679/",
+      "steps": [
+        "登録したメールアドレスを確認する",
+        "登録がない場合は郵送等の案内を確認する"
+      ],
+      "url": "https://www.nojima.co.jp/news/category/press/746679/"
+    },
+    {
+      "action": "対象や漏えい情報について確認したい場合は、ノジマカスタマーセンターへ電話する",
+      "source": "https://www.nojima.co.jp/news/category/press/746679/",
+      "steps": [
+        "0120-574-853へ電話する",
+        "受付時間は9:30～19:00"
+      ],
+      "url": "https://www.nojima.co.jp/news/category/press/746679/"
+    }
+  ],
+  "cause": {
+    "text": "詳細調査で、業務委託先が管理・運用するスマホ買取サイトと、同一環境上の他4サイトへの第三者による不正アクセスが判明しました。これらはノジマオンラインとは別環境で、現時点で両事案の関連は確認されていません。",
+    "status": "stated",
+    "source": "https://www.nojima.co.jp/news/category/press/746679/"
+  },
+  "worries": [
+    {
+      "q": "口座番号などが漏れたのは、どのサイトの利用者ですか？",
+      "a": "口座情報が漏えいした対象は、スマホ買取サイトと中古スマホ販売サイトの利用者です。口座情報を含む対象者は4,223名で、金融機関・支店名やコード、口座種別、口座番号、名義人氏名・カナが含まれます。",
+      "source": "https://www.nojima.co.jp/news/category/press/746679/",
+      "action": "スマホ買取サイトか中古スマホ販売サイトを使った人は、通帳や明細で不審な入出金がないか確認してください。"
+    },
+    {
+      "q": "クレジットカードやマイナンバーも漏れたのでしょうか？",
+      "a": "発表によると、いずれのサイトもマイナンバーとクレジットカード情報は保持しておらず、漏えいはありません。",
+      "source": "https://www.nojima.co.jp/news/category/press/746679/",
+      "action": "ノジマや金融機関を装う不審な連絡に注意し、身に覚えのないリンクや添付ファイルは開かないでください。"
+    },
+    {
+      "q": "対象だった場合、いつ、どの方法で連絡が来ますか？",
+      "a": "その他のサイトの対象者には、準備が整い次第、登録メールアドレスに個別のお詫びと案内が届きます。登録がない場合は郵送等で連絡されます。ノジマオンラインの対象者には案内済みです。",
+      "source": "https://www.nojima.co.jp/news/category/press/746679/",
+      "action": "登録メールアドレスを確認し、登録がない場合は郵送等の個別案内が届いていないか確認してください。"
+    },
+    {
+      "q": "メールのリンク先でパスワードを入力してしまったら？",
+      "a": "警察庁は、フィッシングサイトなどに普段使っているIDやパスワードを入力した場合、そのIDやパスワードを使っているすべてのサービスで速やかに変更するよう案内しています。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "action": "入力したIDやパスワードを使っているすべてのサービスで、パスワードを速やかに変更してください。",
+      "general": true
+    }
+  ],
+  "depthHeadings": {
+    "insight": "口座情報の4,223名は別集計",
+    "cause": "別環境の5サイトにも不正アクセス",
+    "steps": "口座明細と個別連絡を確認",
+    "desk": "ノジマへの問い合わせ先",
+    "worries": "口座情報や対象通知が気になる"
+  },
+  "depthAt": "2026-11-18T08:26:15+00:00",
+  "coverImage": "https://ai-tech-express.jp/img/nojima-data-leak-second-report-cover-3622e7de.jpg",
+  "coverCredit": {
+    "kind": "ai",
+    "model": "flux-2-klein-4b",
+    "prompt": "Close-up of a person's hands using a smartphone to check their account information",
+    "provider": "Cloudflare Workers AI",
+    "relevant": true,
+    "at": "2026-11-18T08:29:01+00:00"
   }
 }
