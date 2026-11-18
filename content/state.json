@@ -7847,6 +7847,19 @@
       "slug": "povo-gacha-double-eleven-2026",
       "url": "https://povo.jp/news/newsrelease/20261111_01/"
     },
+    "2c30af58e1bcd323": {
+      "at": "2026-11-18T09:01:03.097781+00:00",
+      "costUsd": 0.0043,
+      "intent": "breaking",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "score": 97,
+      "section": "public",
+      "slug": "pocket-marche-karte-leak",
+      "url": "https://ame-kaze-taiyo.jp/news/2026111811574585/"
+    },
     "2c30b3df655e51daf1bf80584b98c0fe192ca68f": {
       "at": "2026-11-13T09:41:02.607479+00:00",
       "kind": "trend",
@@ -24267,14 +24280,6 @@
       "url": "https://www.westjr.co.jp/press/article/2026/10/16/items/261016_00_press_shinkansen_ryoukin.pdf",
       "writer": "muse"
     },
-    "muse-f9b3b457c8": {
-      "at": "2026-11-18T08:57:47.772731+00:00",
-      "mix": "other",
-      "score": 100,
-      "slug": "gta6-release-preload-guide",
-      "url": "https://support.rockstargames.com/articles/29jV3Cv2cCgvwM1XgtMO5o/grand-theft-auto-vi-regional-pre-load-and-release-times-on-playstation-5-and-xbox-series-x-or-s",
-      "writer": "muse"
-    },
     "muse-fa0915e9e0": {
       "at": "2026-11-14T06:18:31.216911+00:00",
       "mix": "other",
@@ -24354,59 +24359,17 @@
       "slug": "fujiseika-kinpaku-hagoromo-recall",
       "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602845",
       "writer": "muse"
+    },
+    "muse-f9b3b457c8": {
+      "at": "2026-11-18T08:57:47.772731+00:00",
+      "mix": "other",
+      "score": 100,
+      "slug": "gta6-release-preload-guide",
+      "url": "https://support.rockstargames.com/articles/29jV3Cv2cCgvwM1XgtMO5o/grand-theft-auto-vi-regional-pre-load-and-release-times-on-playstation-5-and-xbox-series-x-or-s",
+      "writer": "muse"
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-16T15:26:18.832366+00:00",
-      "attempt": 1,
-      "id": "534ec91e7a5db234f0287c4375284cc6f5c0145f",
-      "kind": "trend",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "本文「エネルギー供給の安定化を目指す方針です」→ 元記事は石油調達枠組みを踏まえた「アジアの経済強靱性」での一致のみで、供給安定化という目的は書かれていない（小さな補足の創作）"
-      ],
-      "readability": {
-        "avg_paragraph": 117.8,
-        "avg_sentence": 58.9,
-        "long_share": 0.5,
-        "max_paragraph": 156,
-        "paragraphs": 4,
-        "sentences": 8
-      },
-      "score": 85,
-      "source": "trends",
-      "title": "マニラ",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（OSA・AZEC・ASEAN）",
-        "読みやすさ: 文が長い（1文の平均 58.9字・60字超の文が 50% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-16T15:26:36.008444+00:00",
-      "attempt": 1,
-      "id": "534ec91e7a5db234f0287c4375284cc6f5c0145f",
-      "kind": "trend",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 115.8,
-        "avg_sentence": 57.9,
-        "long_share": 0.5,
-        "max_paragraph": 156,
-        "paragraphs": 4,
-        "sentences": 8
-      },
-      "score": 88,
-      "source": "trends",
-      "title": "マニラ",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（OSA・AZEC・ASEAN）",
-        "読みやすさ: 文が長い（1文の平均 57.9字・60字超の文が 50% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-16T15:26:54.080362+00:00",
@@ -31819,6 +31782,59 @@
       "warnings": [
         "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（NICT）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-18T09:00:17.965152+00:00",
+      "attempt": 1,
+      "id": "2c30af58e1bcd323",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "「KARTEは株式会社プレイドが提供する、顧客情報の管理やメール配信などに使うサービス」→元記事は顧客情報の管理・案内に利用しているとしていますが、メール配信に使うとは明記していません。",
+        "「漏れたのはパスワードやカード情報ではなく」→元記事が確認しているのは、これらをKARTEに連携しておらず、現時点で漏えいが確認されていないということです。漏れていないと断定する表現は強すぎます。"
+      ],
+      "readability": {
+        "avg_paragraph": 75.0,
+        "avg_sentence": 37.5,
+        "long_share": 0.0,
+        "max_paragraph": 122,
+        "paragraphs": 12,
+        "sentences": 24
+      },
+      "score": 90,
+      "source": "fast",
+      "title": "【重要なお知らせ】外部サービス「KARTE」への不正アクセスに伴う個人情報漏えいに関するお知らせとお詫び | 株式会社雨風太陽",
+      "warnings": [
+        "見出しが45字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（KARTE・EC・SMS）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-18T09:00:53.272991+00:00",
+      "attempt": 1,
+      "id": "2c30af58e1bcd323",
+      "kind": "broad",
+      "model": "openai-api:gpt-6-luna",
+      "problems": [
+        "「ポケットマルシェは、農家や漁師から食材を直接買える」→元記事は産直ECサービスと説明していますが、農家・漁師からの直接購入という具体的な説明までは確認できません。"
+      ],
+      "readability": {
+        "avg_paragraph": 77.4,
+        "avg_sentence": 37.2,
+        "long_share": 0.0,
+        "max_paragraph": 122,
+        "paragraphs": 12,
+        "sentences": 25
+      },
+      "score": 97,
+      "source": "fast",
+      "title": "【重要なお知らせ】外部サービス「KARTE」への不正アクセスに伴う個人情報漏えいに関するお知らせとお詫び | 株式会社雨風太陽",
+      "warnings": [
+        "見出しが45字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（KARTE・EC・SMS）"
       ]
     }
   ],
