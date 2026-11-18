@@ -1390,7 +1390,7 @@
     }
   },
   "major_tries": {
-    "50e3ea47cbae988d": 1
+    "50e3ea47cbae988d": 2
   },
   "pi_reopened": {
     "25d126f469e81252": "2026-11-15T17:50:53.256695+00:00",
@@ -24026,31 +24026,6 @@
   "quality_log": [
     {
       "accepted": true,
-      "at": "2026-11-16T16:42:53.949431+00:00",
-      "attempt": 0,
-      "id": "90c9538fa27aa89b",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 93.9,
-        "avg_sentence": 43.8,
-        "long_share": 0.2,
-        "max_paragraph": 126,
-        "paragraphs": 7,
-        "sentences": 15
-      },
-      "score": 92,
-      "source": "tokyo-metro",
-      "title": "「特チャレ」正式リリース！！特定小型原動機付自転車安全運転チャレンジ",
-      "warnings": [
-        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（NOP）",
-        "本文が見出しで始まっている（最初の段落は見出しなしで、だれに関係するか・関係しない人はどうかを書く）"
-      ]
-    },
-    {
-      "accepted": true,
       "at": "2026-11-16T16:54:58.837831+00:00",
       "attempt": 1,
       "id": "1a45a81e9082a5e2",
@@ -31503,6 +31478,28 @@
         "max_paragraph": 106,
         "paragraphs": 12,
         "sentences": 25
+      },
+      "score": null,
+      "source": "google-deepmind-blog",
+      "title": "Genie 4 is now available"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-18T18:23:56.368302+00:00",
+      "attempt": 1,
+      "id": "50e3ea47cbae988d",
+      "kind": "ai",
+      "model": "openai-api:gpt-6.1-terra",
+      "problems": [
+        "題名で料金・価格を約束しているのに、本文に金額（円・ドル・無料など）が無い。元記事の金額を書くか、題名から料金の話を外す"
+      ],
+      "readability": {
+        "avg_paragraph": 83.6,
+        "avg_sentence": 39.0,
+        "long_share": 0.033,
+        "max_paragraph": 127,
+        "paragraphs": 14,
+        "sentences": 30
       },
       "score": null,
       "source": "google-deepmind-blog",
