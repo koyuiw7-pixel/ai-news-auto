@@ -90,8 +90,8 @@
     }
   ],
   "todayActions": [
-    "自社情報の管理を考える事業者は、Business Hubで登録の利用条件を確認する。",
-    "Shopifyのストアを運営している場合は、ストア接続による認証手続きの案内を確認する。"
+    "利用条件を満たす企業か確認し、Business Hubで事業者登録に進む",
+    "Shopifyストアの事業者は、ストア連携から認証手続きを進める"
   ],
   "relatedSlugs": [
     "businesses-in-chatgpt-business-agents",
@@ -177,5 +177,105 @@
     ],
     "ar": 1.7778,
     "src": "https://ai-tech-express.jp/img/businesses-chatgpt-company-insights-f2d13568.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "Business Agentは、企業が設定・管理するガイドラインに沿い、商品やポリシーの情報をもとに回答します。導入を考える際は、自社で応答の指針を設定できる点が判断材料になります。",
+      "source": "https://openai.com/business/businesses-in-chatgpt?utm_source=openai&utm_medium=blog&utm_campaign=business_agents_launch&utm_content=smb_launch_primary_cta"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "Business Hub",
+      "url": "https://chatgpt.com/business-hub",
+      "source": "https://openai.com/ja-JP/index/introducing-businesses-chatgpt/",
+      "howTo": [
+        "Businesses in ChatGPT のご紹介",
+        "ChatGPT で事業者として登録する",
+        "Business Hub"
+      ],
+      "note": "ChatGPT が利用可能な地域に所在し、利用条件を満たす企業が登録できます。"
+    },
+    {
+      "name": "Shopify ストアを連携",
+      "url": "https://apps.shopify.com/chatgpt",
+      "source": "https://openai.com/business/businesses-in-chatgpt?utm_source=openai&utm_medium=blog&utm_campaign=business_agents_launch&utm_content=smb_launch_primary_cta",
+      "note": "Shopify の管理画面からストアを接続すると、認証手続きを簡略化できます。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "利用条件を満たす企業か確認し、Business Hubで事業者登録に進む",
+      "source": "https://openai.com/ja-JP/index/introducing-businesses-chatgpt/",
+      "steps": [
+        "ChatGPT が利用可能な地域か確認する",
+        "利用条件を確認する",
+        "Business Hubで事業者として登録する"
+      ],
+      "url": "https://chatgpt.com/business-hub"
+    },
+    {
+      "action": "Shopifyストアの事業者は、ストア連携から認証手続きを進める",
+      "source": "https://openai.com/business/businesses-in-chatgpt?utm_source=openai&utm_medium=blog&utm_campaign=business_agents_launch&utm_content=smb_launch_primary_cta",
+      "steps": [
+        "Shopifyの管理画面を開く",
+        "「Shopify ストアを連携」を選ぶ"
+      ],
+      "url": "https://apps.shopify.com/chatgpt"
+    }
+  ],
+  "cause": {
+    "text": "OpenAIは、AIが商品探しや選択肢の比較、意思決定に使われるなか、ChatGPTを人々と企業をつなぐプラットフォームと位置づけています。企業が正確な情報を届け、ユーザーの判断を支えるための初期の取り組みとして発表しました。",
+    "status": "background",
+    "source": "https://openai.com/ja-JP/index/introducing-businesses-chatgpt/"
+  },
+  "worries": [
+    {
+      "q": "顧客がBusiness Agentに話した内容を自社で見られる？",
+      "a": "OpenAIは、ユーザーの会話やBusiness Agentとのチャットを企業と共有しないと説明しています。企業が確認できるインサイトは集計された形で、会話ややり取りの数が一定の基準に達した場合に利用できます。",
+      "source": "https://openai.com/ja-JP/index/introducing-businesses-chatgpt/",
+      "action": "Business Hubのインサイトは、会話本文ではなく、基準に達した場合の集計情報として確認する。"
+    },
+    {
+      "q": "価格や在庫を載せれば、回答に必ず反映される？",
+      "a": "小売事業者は、価格や在庫状況を含む商品フィードをアップロードできます。ChatGPTは質問への回答でその情報を参照することがあります。",
+      "source": "https://openai.com/business/businesses-in-chatgpt?utm_source=openai&utm_medium=blog&utm_campaign=business_agents_launch&utm_content=smb_launch_primary_cta",
+      "action": "Business Hubで価格や在庫状況を含む商品フィードを追加し、提供する商品情報を整える。"
+    },
+    {
+      "q": "Business Agentの会話はChatGPTの回答と区別される？",
+      "a": "Business Agentとの会話にはその旨が明確に表示され、顧客の元のChatGPTでの会話とは別に扱われます。ChatGPTが独立して提供する回答とも区別されます。",
+      "source": "https://openai.com/ja-JP/index/introducing-businesses-chatgpt/",
+      "action": "Business Agentを構築・テストする際は、顧客向けの表示と独立した回答との区別を確認する。"
+    },
+    {
+      "q": "スポンサー付きエージェントは通常の回答に混ざる？",
+      "a": "スポンサー枠の広告は広告であることが明示され、ChatGPTの回答とは分けて表示されます。企業はBusiness Agentをスポンサー付きエージェントとして設定できます。",
+      "source": "https://openai.com/ja-JP/index/introducing-businesses-chatgpt/",
+      "action": "スポンサー付きエージェントを検討する場合は、広告として明示され、回答と分けて表示される点を確認する。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "Business Agentをすぐ導入したい？",
+      "situation": "米国の対象企業ではない",
+      "recommend": "提供拡大を待つ",
+      "reason": "Business Agentは現在、米国の対象となるEコマース企業とオンラインサービス企業で利用できます。OpenAIは今後、より多くの市場や業種へ拡大する予定としています。",
+      "source": "https://openai.com/ja-JP/index/introducing-businesses-chatgpt/"
+    },
+    {
+      "question": "自社情報の登録を先に進める？",
+      "situation": "利用可能地域にあり利用条件を満たす企業",
+      "recommend": "条件を確認し、該当すれば進める",
+      "reason": "ChatGPTが利用可能な地域に所在し、利用条件を満たす企業はBusiness Hubから登録できます。登録後は基本情報を更新し、商品フィードを追加できます。",
+      "source": "https://openai.com/ja-JP/index/introducing-businesses-chatgpt/"
+    }
+  ],
+  "depthHeadings": {
+    "cause": "企業がChatGPTに参加するための初期の取り組み",
+    "steps": "登録条件とShopify連携を確認",
+    "worries": "顧客との会話や商品情報はどう扱われる？",
+    "guide": "登録と顧客対応AIは分けて判断"
+  },
+  "depthAt": "2026-11-18T02:28:58+00:00"
 }
