@@ -1389,7 +1389,9 @@
       "url": "https://www.mhlw.go.jp/stf/newpage_77273.html"
     }
   },
-  "major_tries": {},
+  "major_tries": {
+    "50e3ea47cbae988d": 1
+  },
   "pi_reopened": {
     "25d126f469e81252": "2026-11-15T17:50:53.256695+00:00",
     "422a9590d5af8caa": "2026-11-15T17:31:05.012183+00:00",
@@ -24024,31 +24026,6 @@
   "quality_log": [
     {
       "accepted": true,
-      "at": "2026-11-16T16:42:37.519385+00:00",
-      "attempt": 1,
-      "id": "90c9538fa27aa89b",
-      "kind": "broad",
-      "model": "strike:本文 1 文・仕事・お金の欄",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 95.3,
-        "avg_sentence": 47.6,
-        "long_share": 0.286,
-        "max_paragraph": 130,
-        "paragraphs": 7,
-        "sentences": 14
-      },
-      "score": 92,
-      "source": "tokyo-metro",
-      "title": "「特チャレ」正式リリース！！特定小型原動機付自転車安全運転チャレンジ",
-      "warnings": [
-        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（NOP）",
-        "本文が見出しで始まっている（最初の段落は見出しなしで、だれに関係するか・関係しない人はどうかを書く）"
-      ]
-    },
-    {
-      "accepted": true,
       "at": "2026-11-16T16:42:53.949431+00:00",
       "attempt": 0,
       "id": "90c9538fa27aa89b",
@@ -31507,6 +31484,29 @@
         "読みやすさ: 文が長い（1文の平均 49.4字・60字超の文が 50% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
         "読みやすさ: 段落が長い（平均 131.7字・最長 167字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
       ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-18T18:20:30.762964+00:00",
+      "attempt": 1,
+      "id": "50e3ea47cbae988d",
+      "kind": "ai",
+      "model": "openai-api:gpt-6.1-terra",
+      "problems": [
+        "題名で料金・価格を約束しているのに、本文に金額（円・ドル・無料など）が無い。元記事の金額を書くか、題名から料金の話を外す",
+        "元記事・確認済みの資料に無い画面の手順・メニュー名・ボタン名がある（「モデル選択画面」）。資料にある道順だけを書くか、「公式ヘルプの手順を確認してください」と書く"
+      ],
+      "readability": {
+        "avg_paragraph": 82.3,
+        "avg_sentence": 39.5,
+        "long_share": 0.08,
+        "max_paragraph": 106,
+        "paragraphs": 12,
+        "sentences": 25
+      },
+      "score": null,
+      "source": "google-deepmind-blog",
+      "title": "Genie 4 is now available"
     }
   ],
   "short_text_retry": {},
