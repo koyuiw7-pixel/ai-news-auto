@@ -68,9 +68,8 @@
     }
   ],
   "todayActions": [
-    "ミツモアからの連絡メールは、送信元が no-reply@meetsmore.com か確認する",
-    "ミツモアを名乗る電話・SMSでパスワードやカード番号を聞かれても答えない",
-    "心当たりの問い合わせは、ミツモアの問い合わせフォームから送る"
+    "登録メールを確認し、ミツモアからの対象連絡か送信元を照合する",
+    "対象かどうかなど心当たりがある人は、ミツモアの問い合わせフォームから連絡する"
   ],
   "relatedSlugs": [
     "meetsmore-unauthorized-access-leak"
@@ -119,5 +118,90 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/meetsmore-karte-unauthorized-access-7b8b4745.jpg"
-  }
+  },
+  "officialDesk": [
+    {
+      "name": "本件に関するお問い合わせ",
+      "url": "https://meetsmore.zendesk.com/hc/ja/requests/new?ticket_form_id=64434915732121",
+      "source": "https://company.meetsmore.com/page/notice-20261118-karte"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "登録メールを確認し、ミツモアからの対象連絡か送信元を照合する",
+      "source": "https://company.meetsmore.com/page/notice-20261118-karte",
+      "steps": [
+        "登録したメールアドレスの受信箱を確認",
+        "送信元が no-reply@meetsmore.com か確認"
+      ],
+      "url": "https://company.meetsmore.com/page/notice-20261118-karte"
+    },
+    {
+      "action": "対象かどうかなど心当たりがある人は、ミツモアの問い合わせフォームから連絡する",
+      "source": "https://company.meetsmore.com/page/notice-20261118-karte",
+      "steps": [
+        "本件のお問い合わせフォームを開く",
+        "フォームから問い合わせを送る"
+      ],
+      "url": "https://meetsmore.zendesk.com/hc/ja/requests/new?ticket_form_id=64434915732121"
+    }
+  ],
+  "cause": {
+    "text": "プレイド社の報告では、第三者が同社サーバーの脆弱性を悪用して認証情報を盗み、データベースなどから情報を読み出しました。KARTEに連携されていたミツモア会員情報も含まれており、調査は継続しています。",
+    "status": "stated",
+    "source": "https://company.meetsmore.com/page/notice-20261118-karte"
+  },
+  "worries": [
+    {
+      "q": "パスワードやクレジットカード情報も漏れている？",
+      "a": "ミツモアは、漏えいした情報にパスワードとクレジットカード情報は含まれていないとしています。本件を理由とするパスワード変更も必要ないとしています。",
+      "source": "https://company.meetsmore.com/page/notice-20261118-karte",
+      "action": "ミツモアを名乗る連絡でパスワードやカード番号を尋ねられても伝えず、心当たりは問い合わせフォームへ。"
+    },
+    {
+      "q": "会員の識別番号だけでログインされる心配はある？",
+      "a": "ミツモアによると、識別番号は会員を区別するための番号で、それだけでミツモアにログインすることはできません。",
+      "source": "https://company.meetsmore.com/page/notice-20261118-karte",
+      "action": "ミツモアや事業者を名乗る不審なメール・SMS・電話が届いたら、パスワードやカード番号を伝えないでください。"
+    },
+    {
+      "q": "自宅の詳しい住所やLINE IDも漏れたの？",
+      "a": "ミツモアは、都道府県より詳細な住所とLINE IDは漏えいした情報に含まれていないとしています。識別番号と都道府県のみの対象者もいます。",
+      "source": "https://company.meetsmore.com/page/notice-20261118-karte",
+      "action": "住所やLINE IDなどを聞き出そうとする不審な連絡には応じず、心当たりがあればミツモアのフォームへ問い合わせてください。"
+    },
+    {
+      "q": "届いたメールは送信元を見れば本物と判断できる？",
+      "a": "ミツモアが案内する対象者向け連絡の送信元は no-reply@meetsmore.com で、本件メールにパスワード入力を求めるリンクは載せないとしています。",
+      "source": "https://company.meetsmore.com/page/notice-20261118-karte",
+      "action": "表示された送信元だけで真偽を決めず、メールやSMS内のリンクは開かずに公式サイトや公式アプリから確認してください。",
+      "actionSource": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "actionGeneral": true
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "パスワードを今すぐ変更したほうがいい？",
+      "situation": "本件の連絡を受けただけで、パスワードを入力していない",
+      "recommend": "本件を理由にした変更は不要",
+      "reason": "ミツモアは、本件ではパスワードは漏えいしておらず、変更は必要ないとしています。ただし、不審なサイトにパスワードを入力した場合は別の対応が必要です。",
+      "source": "https://company.meetsmore.com/page/notice-20261118-karte"
+    },
+    {
+      "question": "パスワードを今すぐ変更したほうがいい？",
+      "situation": "不審なサイトに普段使うIDやパスワードを入力した",
+      "recommend": "同じ認証情報を使うサービスも速やかに変更",
+      "reason": "警察庁は、フィッシングサイトなどに普段利用しているIDやパスワードを入力した場合、その認証情報を使う全てのサービスで速やかに変更するよう案内しています。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "general": true
+    }
+  ],
+  "depthHeadings": {
+    "cause": "KARTEのサーバーで何が起きたのか",
+    "steps": "連絡メールの確認と問い合わせ先",
+    "desk": "ミツモアへの問い合わせ先",
+    "worries": "自分の情報やアカウントは大丈夫？",
+    "guide": "パスワード変更が必要かの分かれ目"
+  },
+  "depthAt": "2026-11-18T22:27:38+00:00"
 }
