@@ -69,7 +69,7 @@
   "videoTitle": "HARIO価格改定2027年2月、V60透過ドリッパー01は500円から600円へ",
   "publishedAt": "2026-11-12T17:31:25+00:00",
   "generatedAt": "2026-11-18T03:32:42.629762+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/hario-v60-price-revision-2027-e1d2baa8.jpg",
   "model": "openai-api:gpt-6.1-terra",
   "affiliates": [],
   "newsType": "pricing",
@@ -80,8 +80,8 @@
     }
   ],
   "todayActions": [
-    "買い足し予定のV60フィルターの品番を、HARIOの価格改定一覧表と照らし合わせる。",
-    "買い替えを考えているコーヒー器具の税抜価格を、公式一覧表で改定前後とも確かめる。"
+    "買い足すV60フィルターの品番と枚数を、一覧表の現・新価格に照らし合わせる。",
+    "茶器やグラスなども含め、購入予定品が価格改定対象か品番で確認する。"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -113,5 +113,112 @@
   "detectedAt": "2026-11-18T03:33:36+00:00",
   "searchTitle": "HARIO V60透過ドリッパー01は2027年2月から600円",
   "layout": "noir",
-  "summaryLine": "HARIO「V60透過ドリッパー01」は税抜**600円**へ、2027年2月1日から随時改定されます。"
+  "summaryLine": "HARIO「V60透過ドリッパー01」は税抜**600円**へ、2027年2月1日から随時改定されます。",
+  "insight": [
+    {
+      "text": "100枚入りだけでなく、V60用ペーパーフィルター01Wの40枚入りも対象です。品番「VCF-01-40W」は税抜190円から200円に改定されるため、枚数も含めて照合を。",
+      "source": "https://cdn.shopify.com/s/files/1/0245/7006/9070/files/2027_2_1.pdf?v=1794471097"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "製品価格改定一覧表",
+      "url": "https://cdn.shopify.com/s/files/1/0245/7006/9070/files/2027_2_1.pdf?v=1794471097",
+      "source": "https://shop.hariocorp.co.jp/blogs/news/20261112",
+      "howTo": [
+        "【重要】価格改定のお知らせ",
+        "製品価格改定一覧表"
+      ]
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "買い足すV60フィルターの品番と枚数を、一覧表の現・新価格に照らし合わせる。",
+      "source": "https://cdn.shopify.com/s/files/1/0245/7006/9070/files/2027_2_1.pdf?v=1794471097",
+      "steps": [
+        "「製品価格改定一覧表」を開く",
+        "購入予定品の品番を確認する",
+        "現本体価格と新本体価格を比べる"
+      ],
+      "url": "https://cdn.shopify.com/s/files/1/0245/7006/9070/files/2027_2_1.pdf?v=1794471097"
+    },
+    {
+      "action": "茶器やグラスなども含め、購入予定品が価格改定対象か品番で確認する。",
+      "source": "https://cdn.shopify.com/s/files/1/0245/7006/9070/files/2027_2_1.pdf?v=1794471097",
+      "steps": [
+        "一覧表を開く",
+        "購入予定品の品名・品番を探す",
+        "現本体価格と新本体価格を見る"
+      ],
+      "url": "https://cdn.shopify.com/s/files/1/0245/7006/9070/files/2027_2_1.pdf?v=1794471097"
+    }
+  ],
+  "cause": {
+    "text": "HARIO NETSHOPは、原材料費や物流費などの上昇で、従来通りの価格を維持することが困難になったとして、一部製品の価格改定を案内しています。",
+    "status": "background",
+    "source": "https://shop.hariocorp.co.jp/blogs/news/20261112"
+  },
+  "worries": [
+    {
+      "q": "コーヒー用品以外のHARIO製品も対象になりますか？",
+      "a": "案内の対象は一部製品です。価格改定一覧表には、コーヒー用品のほか「HARIO COLORS スタックマグカップ」やビーカーなども掲載されています。",
+      "source": "https://cdn.shopify.com/s/files/1/0245/7006/9070/files/2027_2_1.pdf?v=1794471097",
+      "action": "購入予定品の品名と品番を一覧表で探し、現本体価格と新本体価格を確認してください。"
+    },
+    {
+      "q": "製品名が同じなら、どの色やサイズでも同じ価格ですか？",
+      "a": "一覧表では、V60透過ドリッパー01のホワイト、レッド、クリアが別の品番で掲載されています。フィルターも種類や枚数ごとに品番と価格が分かれています。",
+      "source": "https://cdn.shopify.com/s/files/1/0245/7006/9070/files/2027_2_1.pdf?v=1794471097",
+      "action": "手元の商品や購入予定品の品番を確認して、同じ品番の行を見てください。"
+    },
+    {
+      "q": "一覧表の価格は、店頭で払う税込価格と同じですか？",
+      "a": "一覧表の価格欄は「現本体価格(税抜)」「新本体価格(税抜)」です。税抜の本体価格が掲載されており、税込の販売価格とは表示条件が異なります。",
+      "source": "https://cdn.shopify.com/s/files/1/0245/7006/9070/files/2027_2_1.pdf?v=1794471097",
+      "action": "価格を比べるときは税抜・税込の表示条件をそろえて確認してください。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "改定前に買うか、いったん待つか？",
+      "situation": "購入予定品の価格差が気になる",
+      "recommend": "品番ごとの現・新価格を比べて判断",
+      "reason": "一覧表では品番ごとに現本体価格と新本体価格を確認できます。価格差の比較には使えますが、購入時の販売価格そのものを示す一覧ではありません。",
+      "source": "https://cdn.shopify.com/s/files/1/0245/7006/9070/files/2027_2_1.pdf?v=1794471097"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "40枚入りフィルターも対象",
+    "cause": "原材料費や物流費の上昇が背景",
+    "steps": "買う予定の品番で価格を比べる",
+    "desk": "改定前後の価格一覧を確認",
+    "worries": "対象品や表示価格の見方が気になる",
+    "guide": "買う時期に迷ったら品番と価格を確認"
+  },
+  "depthAt": "2026-11-18T03:55:02+00:00",
+  "imageCredit": {
+    "kind": "official",
+    "org": "HARIO NETSHOP「価格改定のお知らせ」（公式ネットショップの案内）",
+    "provider": "HARIO NETSHOP「価格改定のお知らせ」（公式ネットショップの案内）",
+    "sourceUrl": "https://shop.hariocorp.co.jp/blogs/news/20261112",
+    "original": "http://shop.hariocorp.co.jp/cdn/shop/files/header_logo_PC_fc0f053c-230a-4d56-ad46-e11d3d08208a_1200x1200.png?v=1613768763",
+    "width": 1200,
+    "height": 630,
+    "at": "2026-11-18T03:56:41+00:00",
+    "imageKind": "logo",
+    "ownOg": true
+  },
+  "heroOk": false,
+  "imageFocus": {
+    "x": 0.486,
+    "y": 0.497,
+    "box": [
+      0.194,
+      0.256,
+      0.778,
+      0.738
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/hario-v60-price-revision-2027-e1d2baa8.jpg"
+  }
 }

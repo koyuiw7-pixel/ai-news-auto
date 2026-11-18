@@ -59,9 +59,9 @@
   "affiliates": [],
   "newsType": "explainer",
   "todayActions": [
-    "手元のNutree デーツバーが対象の5種類に含まれるか、商品名とJANコードを確かめる。",
-    "対象商品は食べずに分け、クローマライフの商品回収係へ着払いで返送する。",
-    "返送について不明な点があれば、お客様相談窓口0120-719612に問い合わせる。"
+    "手元の商品名とJANコードを、消費者庁の対象商品一覧と照らし合わせる。",
+    "対象商品は食べずに分け、商品回収係へ着払いで返送する。",
+    "商品名や番号、返送について不明な点は受付時間内に窓口へ確認する。"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -109,5 +109,88 @@
     ],
     "ar": 1.0,
     "src": "https://ai-tech-express.jp/img/nutree-date-bars-recall-00fc6495.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "この回収は一般のお客様だけでなく、納品先様からの着払い返品も受け付けています。小売店など納品先に関わる人も、返品受付の対象です。",
+      "source": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036142&screenkbn=03"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "株式会社クローマライフ お客様相談窓口",
+      "url": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036142&screenkbn=03",
+      "source": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036142&screenkbn=03",
+      "phone": "0120-719612",
+      "hours": "10:00～17:00（土・日・祝日を除く）"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "手元の商品名とJANコードを、消費者庁の対象商品一覧と照らし合わせる。",
+      "source": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036142&screenkbn=03",
+      "steps": [
+        "消費者庁リコール情報サイトの詳細ページを開く",
+        "対象の特定情報で商品名とJANコードを確認する"
+      ],
+      "url": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036142&screenkbn=03"
+    },
+    {
+      "action": "対象商品は食べずに分け、商品回収係へ着払いで返送する。",
+      "source": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036142&screenkbn=03",
+      "steps": [
+        "株式会社クローマライフ「商品回収係」宛に送る",
+        "〒063-0849 北海道札幌市西区八軒9条西10丁目448-9"
+      ],
+      "url": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036142&screenkbn=03"
+    },
+    {
+      "action": "商品名や番号、返送について不明な点は受付時間内に窓口へ確認する。",
+      "source": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036142&screenkbn=03",
+      "steps": [
+        "0120-719612へ電話する",
+        "受付時間は10:00～17:00（土・日・祝日を除く）"
+      ],
+      "url": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036142&screenkbn=03"
+    }
+  ],
+  "cause": {
+    "text": "ブラウニー＆ヘーゼルナッツの箱に、バナナ＆アーモンドバターが入っていたため、バナナとアーモンドの表示が欠落しました。これに加えて、対象商品でカビの発生が確認されたことも回収理由です。",
+    "status": "stated",
+    "source": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036142&screenkbn=03"
+  },
+  "worries": [
+    {
+      "q": "箱の商品名が対象外なら、回収対象ではない？",
+      "a": "ブラウニー＆ヘーゼルナッツの箱に、バナナ＆アーモンドバターが入っていたケースがあります。対象商品は箱の表示だけで判断せず、公式ページの5種類の商品名とJANコードを確認してください。",
+      "source": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036142&screenkbn=03",
+      "action": "公式ページの対象5種類とJANコードを確認し、該当する商品は食べずに分けて着払いで返送する。"
+    },
+    {
+      "q": "バナナやアーモンドのアレルギーがあっても大丈夫？",
+      "a": "ブラウニー＆ヘーゼルナッツの箱に別の商品が入っていたことにより、バナナとアーモンドの表示が欠落したとされています。対象商品は5種類として掲載されています。",
+      "source": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036142&screenkbn=03",
+      "action": "対象の商品名やJANコードに該当するバーは食べずに分け、商品回収係へ着払いで返送する。"
+    },
+    {
+      "q": "カビが見えない商品も回収に出したほうがいい？",
+      "a": "カビの発生は回収理由の一つですが、回収対象はカビの有無でなく、掲載された5種類の商品です。商品名とJANコードが対象に当てはまるか確認してください。",
+      "source": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036142&screenkbn=03",
+      "action": "見た目だけで判断せず、商品名とJANコードを対象一覧に照らし、該当すれば食べずに返送する。"
+    },
+    {
+      "q": "返送したあとは、どのような方法で返金される？",
+      "a": "公式ページでは、回収後の対応としてクオカードによる返金が案内されています。一般のお客様からの返送は着払いで受け付けています。",
+      "source": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036142&screenkbn=03",
+      "action": "対象商品を商品回収係へ着払いで返送し、返金方法について確認が必要ならお客様相談窓口へ電話する。"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "納品先からの返品も対象",
+    "cause": "表示欠落とカビが回収理由",
+    "steps": "商品名と番号を確かめて返送",
+    "desk": "クローマライフへの確認先",
+    "worries": "対象商品や返金方法を確認"
+  },
+  "depthAt": "2026-11-18T03:55:32+00:00"
 }

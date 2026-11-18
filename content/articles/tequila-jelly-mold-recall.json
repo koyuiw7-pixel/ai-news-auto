@@ -58,8 +58,8 @@
   "affiliates": [],
   "newsType": "product",
   "todayActions": [
-    "手元の「テキーラゼリー」が14g×3個入りか、賞味期限が2026年12月11日かを確認する。",
-    "対象品があれば、KRT&Co.の回収担当部門に連絡した上で着払いで送付する。"
+    "手元の商品が対象条件すべてに合うか、商品名・内容量・形態・賞味期限を照合する。",
+    "対象品なら食べずに回収担当部門へ連絡し、案内に従って着払いで送る。"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -107,5 +107,88 @@
     ],
     "ar": 2.1186,
     "src": "https://ai-tech-express.jp/img/tequila-jelly-mold-recall-a080fb24.jpg"
-  }
+  },
+  "officialDesk": [
+    {
+      "name": "消費者庁リコール情報サイト 商品情報詳細",
+      "url": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036141&screenkbn=03",
+      "source": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036141&screenkbn=03",
+      "howTo": [
+        "ホーム",
+        "食料品"
+      ],
+      "note": "追加情報があれば掲載内容が更新される場合があります。リコール品の取扱いは事業者のサイトや電話などで最新情報を確認してください。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "手元の商品が対象条件すべてに合うか、商品名・内容量・形態・賞味期限を照合する。",
+      "source": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036141&screenkbn=03",
+      "steps": [
+        "商品名が「テキーラゼリー」か確認する",
+        "内容量が14g×３、外装袋内３個入りか見る",
+        "賞味期限が2026年12月11日か確認する"
+      ],
+      "url": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036141&screenkbn=03"
+    },
+    {
+      "action": "対象品なら食べずに回収担当部門へ連絡し、案内に従って着払いで送る。",
+      "source": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036141&screenkbn=03",
+      "steps": [
+        "回収担当部門に連絡する",
+        "送付方法を確認する",
+        "着払いにて送付する"
+      ],
+      "url": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036141&screenkbn=03"
+    }
+  ],
+  "cause": {
+    "text": "回収理由はカビの発生です。掲載情報では、カビの発生により腹痛、嘔吐などの健康被害が発生する可能性があるため、回収するとしています。",
+    "status": "stated",
+    "source": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036141&screenkbn=03"
+  },
+  "worries": [
+    {
+      "q": "対象品を食べると、どんな健康被害のおそれがありますか？",
+      "a": "消費者庁の掲載情報では、カビの発生により腹痛、嘔吐などの健康被害が発生する可能性があるとされています。",
+      "source": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036141&screenkbn=03",
+      "action": "商品名・内容量・形態・賞味期限を照合し、合致したら食べずに回収担当部門へ連絡してください。"
+    },
+    {
+      "q": "飲食店で購入した商品も回収の対象になりますか？",
+      "a": "対象商品の販売先は、飲食店舗と消費者向けの小売りです。販売地域は全国と掲載されているため、購入先が飲食店でも対象条件を確認してください。",
+      "source": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036141&screenkbn=03",
+      "action": "飲食店で購入した商品も、商品名・内容量・形態・賞味期限を確認し、条件が合えば回収担当部門へ連絡してください。"
+    },
+    {
+      "q": "対象品を送るとき、連絡前に発送してもよいですか？",
+      "a": "回収方法は、回収担当部門に連絡した上で着払いにて送付する案内です。掲載情報では、連絡先の分かる購入者には個別に連絡するとしています。",
+      "source": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036141&screenkbn=03",
+      "action": "まず回収担当部門へ連絡し、送付方法を確認してから着払いで送ってください。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "手元の商品が対象条件に合うならどうする？",
+      "situation": "商品名・内容量・形態・賞味期限が一致",
+      "recommend": "食べずに回収担当部門へ連絡する",
+      "reason": "対象品はカビの発生により腹痛、嘔吐などの健康被害が発生する可能性があるとして回収されています。連絡後、案内に従って着払いで送付してください。",
+      "source": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036141&screenkbn=03"
+    },
+    {
+      "question": "条件の一部しか分からないときはどうする？",
+      "situation": "対象かどうか自分で判断しにくい",
+      "recommend": "回収担当部門に確認してから対応する",
+      "reason": "掲載された対象条件は商品名、内容量、形態、賞味期限です。回収方法は、回収担当部門に連絡した上で着払いにて送付する案内です。",
+      "source": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036141&screenkbn=03"
+    }
+  ],
+  "depthHeadings": {
+    "cause": "カビの発生を理由に回収",
+    "steps": "手元の商品を照合して回収へ",
+    "desk": "対象条件と回収方法を確認",
+    "worries": "食べた場合や購入先が気になる",
+    "guide": "対象か迷ったときの確認方法"
+  },
+  "depthAt": "2026-11-18T03:55:57+00:00"
 }
