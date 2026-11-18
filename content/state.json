@@ -7147,6 +7147,19 @@
       "skipped": true,
       "url": "https://global.toyota/jp/newsroom/toyota/44960600.html"
     },
+    "22baaf920d7a416b": {
+      "at": "2026-11-18T07:41:19.572086+00:00",
+      "costUsd": 0.0051,
+      "intent": "neutral",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "score": 100,
+      "section": "public",
+      "slug": "mhlw-drug-supply-system-unauthorized-access",
+      "url": "https://www.mhlw.go.jp/stf/newpage_77515.html"
+    },
     "22c4a44305e6af16c7614c042bd5c35ba52f2216": {
       "at": "2026-11-17T18:53:30.995949+00:00",
       "kind": "trend",
@@ -15329,12 +15342,6 @@
       "slug": "tokyo-tax-commission-report-2026",
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026110911"
     },
-    "9c5664d4a65f8bd4": {
-      "at": "2026-11-04T07:24:39.551889+00:00",
-      "reason": "stale: 発表から4352時間（記事ページの日付）",
-      "skipped": true,
-      "url": "https://www.mof.go.jp/about_mof/councils/fiscal_system_council/sub-of_fiscal_system/proceedings/material/20261104zaiseia.html"
-    },
     "9c570f1844586ed99562a76612e5672cf530aa39": {
       "at": "2026-11-15T02:56:12.343114+00:00",
       "reason": "trend: 扱わない話題: うわさ・ゴシップ（関連報道1/2本に「結婚」）",
@@ -20155,14 +20162,6 @@
       "slug": "xbox-25th-anniversary-recap",
       "url": "https://news.xbox.com/ja-jp/2026/11/16/xbox-25th-anniversary-news-recap/"
     },
-    "e34c16449eb87ea4": {
-      "at": "2026-11-04T07:26:29.601692+00:00",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "score": 92,
-      "section": "business",
-      "slug": "renova-biomass-third-party-verification",
-      "url": "https://www.ntt-ae.co.jp/news/%e3%83%90%e3%82%a4%e3%82%aa%e3%83%9e%e3%82%b9%e7%99%ba%e9%9b%bb%e3%81%ae%e6%8c%81%e7%b6%9a%e5%8f%af%e8%83%bd%e6%80%a7%e3%81%ab%e9%96%a2%e3%81%99%e3%82%8b%e7%ac%ac%e4%b8%89%e8%80%85%e6%a4%9c%e8%a8%bc-2/"
-    },
     "e3915f7e4cf071c4": {
       "at": "2026-11-16T12:02:36.465563+00:00",
       "breaking": true,
@@ -24457,54 +24456,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-16T12:02:36.429798+00:00",
-      "attempt": 0,
-      "id": "e3915f7e4cf071c4",
-      "kind": "ai",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 84.6,
-        "avg_sentence": 39.0,
-        "long_share": 0.077,
-        "max_paragraph": 130,
-        "paragraphs": 12,
-        "sentences": 26
-      },
-      "score": 92,
-      "source": "openai-news",
-      "title": "The King’s Trust and OpenAI launch £1m partnership",
-      "warnings": [
-        "見出しが49字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（NEET・VP・EMEA）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-16T12:19:37.631260+00:00",
-      "attempt": 1,
-      "id": "c3ecca85e37a357618a75b987fff200758a5845a",
-      "kind": "trend",
-      "model": "gemini-3.6-flash",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 90.2,
-        "avg_sentence": 45.1,
-        "long_share": 0.1,
-        "max_paragraph": 135,
-        "paragraphs": 5,
-        "sentences": 10
-      },
-      "score": 85,
-      "source": "trends",
-      "title": "ロト",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（NEWS）",
-        "読みやすさ: 文が長い（1文の平均 45.1字・60字超の文が 10% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-16T12:19:54.730751+00:00",
@@ -31915,6 +31866,57 @@
       "warnings": [
         "見出しが50字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（GOODS・DEPO・LIFULL）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-18T07:40:38.558930+00:00",
+      "attempt": 1,
+      "id": "22baaf920d7a416b",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "「影響を受ける可能性があるのは、システムに登録している一部企業の担当者です」→ 元記事が漏えいの可能性を示しているのは一部企業の担当者の氏名・連絡先であり、担当者がシステムに登録しているとは明記していません。",
+        "「メーカーの報告担当者は、停止中の報告方法を…（03-5253-1111）に問い合わせる」→ この番号は元記事で報道関係者向けの照会先として示されており、メーカーの報告方法に関する問い合わせ窓口とは確認できません。"
+      ],
+      "readability": {
+        "avg_paragraph": 82.8,
+        "avg_sentence": 39.9,
+        "long_share": 0.148,
+        "max_paragraph": 147,
+        "paragraphs": 13,
+        "sentences": 27
+      },
+      "score": 92,
+      "source": "mhlw",
+      "title": "医薬品安定供給・流通確認システムへの不正アクセスに係る 個人情報の漏えいについて",
+      "warnings": [
+        "見出しが46字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（IP）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-18T07:41:13.186749+00:00",
+      "attempt": 1,
+      "id": "22baaf920d7a416b",
+      "kind": "broad",
+      "model": "openai-api:gpt-6-luna",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 78.8,
+        "avg_sentence": 39.4,
+        "long_share": 0.154,
+        "max_paragraph": 146,
+        "paragraphs": 13,
+        "sentences": 26
+      },
+      "score": 100,
+      "source": "mhlw",
+      "title": "医薬品安定供給・流通確認システムへの不正アクセスに係る 個人情報の漏えいについて",
+      "warnings": [
+        "見出しが46字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（IP）"
       ]
     }
   ],
