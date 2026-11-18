@@ -91,9 +91,9 @@
     }
   ],
   "todayActions": [
-    "デビューセット割を検討する場合は、指定する家族回線が対象7プランに入っているか確認する。",
-    "ワイモバ親子割を検討する場合は、過去の親子割や学割の適用歴と家族グループを確認する。",
-    "ゴールドカードの年会費と、自宅の通信サービスの料金を含めて契約内容を確認する。"
+    "ソフトバンクの家族回線を指定する前に、対象プランと使用者、過去の指定状況を照合する。",
+    "ワイモバイルを検討する家族は、過去の親子割・学割の適用歴と家族割引グループを確認する。",
+    "ワイモバイルの親子割対象プランと家族構成を料金シミュレーションに入力する。"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -163,5 +163,120 @@
     ],
     "ar": 2.3301,
     "src": "https://ai-tech-express.jp/img/smartphone-debut-family-discounts-01617bd2.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "家族回線は対象プランに入っているだけでなく、指定後に別の回線へ変更できません。店頭ではプラン申込と同時だけ指定でき、後日ならMy SoftBankで手続きします。",
+      "source": "https://www.softbank.jp/mobile/set/common/pdf/legal/spguide/campaigns/debut-set-wari.pdf"
+    },
+    {
+      "text": "指定する家族回線は、過去に指定されたことがあっても、その指定先の割引が適用中でなければ条件を満たす場合があります。指定を受ける側の使用者は、子ども側の使用者と別人である必要があります。",
+      "source": "https://www.softbank.jp/mobile/set/common/pdf/legal/spguide/campaigns/debut-set-wari.pdf"
+    },
+    {
+      "text": "ワイモバ親子割は、過去の適用歴の対象に2018年の「ワイモバ学割」も含みます。現在の家族回線だけでなく、以前の親子割・学割の適用歴も確認が必要です。",
+      "source": "https://www.softbank.jp/corp/news/press/sbkk/2026/20261116_01/"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "ソフトバンクデビュー割",
+      "url": "https://www.softbank.jp/mobile/special/softbank-debut-wari/",
+      "source": "https://www.softbank.jp/mobile/special/softbank-debut-wari/",
+      "note": "使用者の年齢が分かる書類と、支払いに使うカードが必要です。"
+    },
+    {
+      "name": "ワイモバ親子割",
+      "url": "https://www.ymobile.jp/sp/oyako/",
+      "source": "https://www.ymobile.jp/sp/oyako/"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "ソフトバンクの家族回線を指定する前に、対象プランと使用者、過去の指定状況を照合する。",
+      "source": "https://www.softbank.jp/mobile/set/common/pdf/legal/spguide/campaigns/debut-set-wari.pdf",
+      "steps": [
+        "対象家族プランの7つを確認する",
+        "子ども側と家族回線の使用者が別人か確認する",
+        "指定後は変更できないことを確認する"
+      ],
+      "url": "https://www.softbank.jp/mobile/set/common/pdf/legal/spguide/campaigns/debut-set-wari.pdf"
+    },
+    {
+      "action": "ワイモバイルを検討する家族は、過去の親子割・学割の適用歴と家族割引グループを確認する。",
+      "source": "https://www.softbank.jp/corp/news/press/sbkk/2026/20261116_01/",
+      "steps": [
+        "適用条件にある過去の割引名を確認する",
+        "家族が同じ家族割引グループか確認する",
+        "家族の加入期限を確認する"
+      ],
+      "url": "https://www.softbank.jp/corp/news/press/sbkk/2026/20261116_01/"
+    },
+    {
+      "action": "ワイモバイルの親子割対象プランと家族構成を料金シミュレーションに入力する。",
+      "source": "https://www.ymobile.jp/sp/oyako/",
+      "steps": [
+        "「自分の条件ではいくら？料金シミュレーションはこちら」を開く",
+        "対象プランと家族の条件を入力する",
+        "表示された料金例を確認する"
+      ],
+      "url": "https://www.ymobile.jp/sp/oyako/simulator/"
+    }
+  ],
+  "cause": {
+    "text": "これは障害などの発生原因ではなく、料金制度の案内です。公式発表では、5～18歳のお客さまが対象プランを申し込み、家族回線など所定の条件を満たした場合に、デビューセット割を半年間適用するキャンペーンとして説明しています。",
+    "status": "background",
+    "source": "https://www.softbank.jp/corp/news/press/sbkk/2026/20261116_02/"
+  },
+  "worries": [
+    {
+      "q": "月額基本料が0円でも、別に請求される料金はありますか？",
+      "a": "0円の例は月額基本料についてです。通話料や端末代金は含まれず、SMSや海外利用分なども別途料金が発生する場合があります。",
+      "source": "https://www.softbank.jp/mobile/price_plan/data/sumaho-debut-plan2/",
+      "action": "申し込み前に、通話料・端末代金・SMSや海外利用分の扱いを料金プランページで確認してください。"
+    },
+    {
+      "q": "指定した家族回線を、あとから別の回線に変えられますか？",
+      "a": "家族回線は対象回線1回線あたり1つを1度だけ指定でき、手続き完了後に指定先を別の家族回線へ変更することはできません。店頭ではプラン申込と同時に指定する場合に限られます。",
+      "source": "https://www.softbank.jp/mobile/set/common/pdf/legal/spguide/campaigns/debut-set-wari.pdf",
+      "action": "指定手続きを完了する前に、対象プラン・使用者・家族割引グループを確認してください。"
+    },
+    {
+      "q": "以前に親子割や学割を使った家族は、対象になりますか？",
+      "a": "ワイモバ親子割では、今回の親子割のほか、指定された過去の親子割・学割の適用歴がある回線は対象外です。対象には2018年12月5日～2019年5月31日の「ワイモバ学割」も含まれます。",
+      "source": "https://www.softbank.jp/corp/news/press/sbkk/2026/20261116_01/",
+      "action": "家族の契約履歴を確認し、発表に列挙された親子割・学割の適用歴と照合してください。"
+    },
+    {
+      "q": "デビューセット割は、条件を外れると途中で終わりますか？",
+      "a": "対象プランの適用が終わった場合や使用者を変更した場合などは、割引が終了する条件があります。家族回線が対象プラン以外に変更した場合や、同じ家族割引グループでなくなった場合も終了条件に該当します。",
+      "source": "https://www.softbank.jp/mobile/set/common/pdf/legal/spguide/campaigns/debut-set-wari.pdf",
+      "action": "申し込み前に提供条件書の終了条件を確認し、対象回線と家族回線の契約変更に注意してください。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "ソフトバンクとワイモバイル、どちらを比べる？",
+      "situation": "対象プランの家族が3回線以上いる",
+      "recommend": "指定条件と割引後の料金を比較する",
+      "reason": "ソフトバンクの0円例は、家族3回線以上やPayPayカード ゴールド払いなどが条件です。指定できる家族回線の対象プランや使用者の条件も、申込前に確認してください。",
+      "source": "https://www.softbank.jp/corp/news/press/sbkk/2026/20261116_02/"
+    },
+    {
+      "question": "ソフトバンクとワイモバイル、どちらを比べる？",
+      "situation": "家族にワイモバイルの過去割引歴がある",
+      "recommend": "対象外の条件を確認してから比べる",
+      "reason": "ワイモバ親子割は、指定された過去の親子割や学割の適用歴がある回線を対象外としています。家族も受付期間終了までに子どもと同じ家族割引グループに加入する必要があります。",
+      "source": "https://www.softbank.jp/corp/news/press/sbkk/2026/20261116_01/"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "家族回線は指定後に変えられない",
+    "cause": "半年割引の対象になる条件",
+    "steps": "申し込み前に家族条件を照合",
+    "desk": "公式ページで条件を確認",
+    "worries": "0円のほかにかかる費用は？",
+    "guide": "家族条件に合わせて選ぶには"
+  },
+  "depthAt": "2026-11-18T02:08:32+00:00"
 }
