@@ -6564,6 +6564,20 @@
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026110907"
     },
+    "1b4570880872c03e": {
+      "at": "2026-11-18T02:11:54.168885+00:00",
+      "breaking": true,
+      "costUsd": 0.0441,
+      "foreignAi": true,
+      "intent": "breaking",
+      "major": true,
+      "mix": "enterprise_dev",
+      "model": "openai-api:gpt-6.1-terra",
+      "score": 99,
+      "section": "ai",
+      "slug": "businesses-chatgpt-company-insights",
+      "url": "https://openai.com/ja-JP/index/introducing-businesses-chatgpt/"
+    },
     "1b638c120302af51": {
       "at": "2026-11-16T15:42:01.653327+00:00",
       "reason": "review: AdSense の審査の期間は海外の AI の発表を自動で記事にしない（速報だけ。scripts/news_mix.py review_ai_blocks）",
@@ -24400,36 +24414,6 @@
   },
   "quality_log": [
     {
-      "accepted": false,
-      "at": "2026-11-16T04:06:21.643133+00:00",
-      "attempt": 1,
-      "id": "4cd1aae9d3a907f0",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "タイトル「切除後の発症率が44％減少」→ 元記事は再発率（直径6ミリ以上のポリープに限る）の44％減少であり、発症率ではない。対象の限定も抜けている",
-        "リード「直径6ミリ以上のポリープを切除した患者を対象とした調査で、再発率が44％減少」→ 6ミリ以上に限定した結果であることは正しいが、タイトルとの食い違いが読者に誤解を与える",
-        "本文冒頭「大腸のできものの再発を抑える働きがあることが分かりました」→ 元記事は『確かめた』と書いているが、全体のポリープ再発率には差がなく、効果は6ミリ以上に限られるため、働きがあると断定するのは言い過ぎ",
-        "「サイソクの見方」の章が2つあり、同じ内容を重複して書いている",
-        "よくある質問・今日やること・要点の数値（26施設・約600人・2年・44％）は元記事と一致しており問題なし"
-      ],
-      "readability": {
-        "avg_paragraph": 168.1,
-        "avg_sentence": 53.8,
-        "long_share": 0.32,
-        "max_paragraph": 271,
-        "paragraphs": 8,
-        "sentences": 25
-      },
-      "score": 60,
-      "source": "radar-official",
-      "title": "副作用関連ニュース｜dメニューニュース（NTTドコモ）",
-      "warnings": [
-        "読みやすさ: 文が長い（1文の平均 53.8字・60字超の文が 32% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "読みやすさ: 段落が長い（平均 168.1字・最長 271字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
       "accepted": true,
       "at": "2026-11-16T05:55:27.844752+00:00",
       "attempt": 1,
@@ -31860,6 +31844,29 @@
       "score": 100,
       "source": "mhlw",
       "title": "第７回2040年に向けた看護職員の養成・確保の在り方に関する検討会の開催について：開催案内"
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-18T02:11:54.139152+00:00",
+      "attempt": 1,
+      "id": "1b4570880872c03e",
+      "kind": "ai",
+      "model": "openai-api:gpt-6.1-terra",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 89.6,
+        "avg_sentence": 42.0,
+        "long_share": 0.094,
+        "max_paragraph": 139,
+        "paragraphs": 15,
+        "sentences": 32
+      },
+      "score": 99,
+      "source": "openai-news",
+      "title": "わが社はChatGPTでどう紹介されている？ OpenAIが企業向けの確認機能を提供開始",
+      "warnings": [
+        "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す"
+      ]
     }
   ],
   "short_text_retry": {},
