@@ -8259,6 +8259,19 @@
       "skipped": true,
       "url": "https://j-net21.smrj.go.jp/news/bt5puv0000010z2u.html"
     },
+    "34102c5342819934": {
+      "at": "2026-11-18T02:37:34.277346+00:00",
+      "costUsd": 0.0484,
+      "foreignAi": true,
+      "intent": "breaking",
+      "major": true,
+      "mix": "other",
+      "model": "openai-api:gpt-6.1-terra",
+      "score": 98,
+      "section": "ai",
+      "slug": "chrome-158-android-web-apps",
+      "url": "https://chromestatus.com/release-notes/158"
+    },
     "3421b19126f9fb9f": {
       "at": "2026-11-10T06:55:40.505889+00:00",
       "reason": "prefilter: お知らせ・統計の書き写しになる発表（記事にしない）",
@@ -24402,78 +24415,6 @@
   "quality_log": [
     {
       "accepted": true,
-      "at": "2026-11-16T05:55:27.844752+00:00",
-      "attempt": 1,
-      "id": "dcddc7a7eb4a8679",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 108.9,
-        "avg_sentence": 54.4,
-        "long_share": 0.429,
-        "max_paragraph": 165,
-        "paragraphs": 7,
-        "sentences": 14
-      },
-      "score": 93,
-      "source": "radar-official",
-      "title": "18歳・中井亜美236.81点！ SPに続く今季世界最高得点の完璧演技で２年連続GPファイナル進出決定！ 松生理乃３位で日本女子W表彰台【GPアメリカ】",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（THE・ANSWER・DIGEST）",
-        "読みやすさ: 文が長い（1文の平均 54.4字・60字超の文が 43% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-16T05:55:43.464908+00:00",
-      "attempt": 0,
-      "id": "dcddc7a7eb4a8679",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 110.1,
-        "avg_sentence": 42.8,
-        "long_share": 0.222,
-        "max_paragraph": 169,
-        "paragraphs": 7,
-        "sentences": 18
-      },
-      "score": 95,
-      "source": "radar-official",
-      "title": "18歳・中井亜美236.81点！ SPに続く今季世界最高得点の完璧演技で２年連続GPファイナル進出決定！ 松生理乃３位で日本女子W表彰台【GPアメリカ】",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（THE・ANSWER・DIGEST）",
-        "読みやすさ: 文が長い（1文の平均 42.8字・60字超の文が 22% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-16T06:10:10.655159+00:00",
-      "attempt": 1,
-      "id": "559572c5514c54f4",
-      "kind": "broad",
-      "model": "claude:sonnet",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 106.1,
-        "avg_sentence": 41.2,
-        "long_share": 0.194,
-        "max_paragraph": 185,
-        "paragraphs": 14,
-        "sentences": 36
-      },
-      "score": 95,
-      "source": "nissin",
-      "title": "清食品 外部サービスへの不正アクセスによる 個人情報漏えいに関するお知らせとお詫び",
-      "warnings": [
-        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（TOPPAN・SMS）"
-      ]
-    },
-    {
-      "accepted": true,
       "at": "2026-11-16T06:49:51.083553+00:00",
       "attempt": 1,
       "id": "e32a0808698f5340",
@@ -31853,6 +31794,85 @@
       "title": "わが社はChatGPTでどう紹介されている？ OpenAIが企業向けの確認機能を提供開始",
       "warnings": [
         "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-18T02:36:11.701485+00:00",
+      "attempt": 1,
+      "id": "34102c5342819934",
+      "kind": "ai",
+      "model": "openai-api:gpt-6.1-terra",
+      "problems": [
+        "「別のアプリに埋め込まれたブラウザー画面では、この機能に対応しません」→ 元記事が非対応としているのはWebViewであり、別アプリ内のブラウザー画面すべてに広げた表現です。",
+        "「従来のChromeは両方の指定を無視し、表示領域全体に引き伸ばしていました」→ 元記事の「両方」は埋め込みSVG文書に対するobject-fitとobject-positionを指しますが、直前のメディア要素の状態に応じたCSS指定と結び付いて読めるため、変更内容を誤解させます。",
+        "「埋め込んだ画像の大きさの調整ができます」→ 元記事が説明するのは<object>や<embed>で読み込んだSVG文書への対応であり、埋め込み画像全般に適用されるように読めます。",
+        "「公式ヘルプの手順を確認してください」→ リンク先はChrome Platform Statusのリリースノートで、元記事には手順の案内はありません。"
+      ],
+      "readability": {
+        "avg_paragraph": 95.1,
+        "avg_sentence": 47.6,
+        "long_share": 0.133,
+        "max_paragraph": 122,
+        "paragraphs": 15,
+        "sentences": 30
+      },
+      "score": 78,
+      "source": "radar-official",
+      "title": "Chrome 158 Release Notes",
+      "warnings": [
+        "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（CSS）",
+        "読みやすさ: 文が長い（1文の平均 47.6字・60字超の文が 13% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-18T02:37:10.075999+00:00",
+      "attempt": 1,
+      "id": "34102c5342819934",
+      "kind": "ai",
+      "model": "openai-api:gpt-6-luna",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 93.3,
+        "avg_sentence": 46.7,
+        "long_share": 0.1,
+        "max_paragraph": 121,
+        "paragraphs": 15,
+        "sentences": 30
+      },
+      "score": 96,
+      "source": "radar-official",
+      "title": "Chrome 158 Release Notes",
+      "warnings": [
+        "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（CSS・SVG）",
+        "読みやすさ: 文が長い（1文の平均 46.7字・60字超の文が 10% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-18T02:37:34.253164+00:00",
+      "attempt": 0,
+      "id": "34102c5342819934",
+      "kind": "ai",
+      "model": "openai-api:gpt-6-luna",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 94.4,
+        "avg_sentence": 40.5,
+        "long_share": 0.057,
+        "max_paragraph": 121,
+        "paragraphs": 15,
+        "sentences": 35
+      },
+      "score": 98,
+      "source": "radar-official",
+      "title": "Chrome 158 Release Notes",
+      "warnings": [
+        "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（CSS・SVG）"
       ]
     }
   ],

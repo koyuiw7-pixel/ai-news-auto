@@ -1,0 +1,132 @@
+{
+  "slug": "chrome-158-android-web-apps",
+  "sourceType": "web",
+  "sourceUrl": "https://chromestatus.com/release-notes/158",
+  "sourceName": "Chrome Platform Status（Google公式）",
+  "title": "「Chrome 158」でAndroidの周辺機器に対応　ウェブアプリの導入方法も拡充",
+  "seoTitle": "Chrome 158の使い方と新機能　Androidの周辺機器に対応",
+  "threadsPost": "ウェブアプリを開発する人に、押さえておきたい変更です。\n\nChrome 158では、Androidでも周辺機器と連携する仕組みに対応します。\nウェブアプリのインストールを促す新しい方法も加わります。\n\n仕事で使う道具は、専用アプリとブラウザーのどちらをよく使いますか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "expert",
+      "question": "仕事で使う道具は、専用アプリとブラウザーのどちらをよく使いますか？"
+    },
+    {
+      "pattern": "count",
+      "question": "仕事で使うウェブアプリはいくつありますか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "senpai",
+  "lede": "「Chrome 158」では、Androidのブラウザーから周辺機器と連携するウェブアプリを使えるようになります。対象はAndroid 17以降で、ウェブアプリのインストールを促す新しい方法も加わります。GoogleのChrome Platform Statusは変更内容を公開していますが、Chrome 158の配信開始日はまだ発表されていません。",
+  "description": "Chrome 158では、Android 17以降でウェブアプリと周辺機器の連携に対応します。ウェブアプリのインストール方法や動画表示、企業の管理設定も変わります。対象条件と従来版との違いを紹介します。",
+  "keywords": [
+    "Chrome 158",
+    "Chrome 158 新機能",
+    "Chrome Android 周辺機器",
+    "Android 17 WebHID",
+    "WebHID API",
+    "Web Install API",
+    "ウェブアプリ インストール",
+    "Chrome 企業ポリシー",
+    "Chrome CSS 新機能",
+    "WebTransport Chrome"
+  ],
+  "tags": [
+    "Google Chrome",
+    "Android",
+    "ウェブ開発",
+    "Web API",
+    "CSS"
+  ],
+  "highlights": [
+    "Chrome 158ではAndroid版もWebHIDに対応し、周辺機器との連携が可能になります",
+    "Web Install APIとHTMLの新しい要素で、別のサイトのウェブアプリもインストールを促せます",
+    "企業の管理者はウェブアプリのインストールや周辺機器への接続をポリシーで制御できます"
+  ],
+  "timetable": [],
+  "verdict": {
+    "status": "available",
+    "japan": "unknown",
+    "price": "不明",
+    "free": null,
+    "audience": "ウェブ開発者",
+    "take": "周辺機器との連携を考える開発者は、Androidの対応条件と管理設定を確認するとよいでしょう。",
+    "judgedAt": "2026-11-18T02:35:47.495290+00:00"
+  },
+  "workMoney": {
+    "relevance": "medium",
+    "points": [
+      "ウェブアプリの開発者は、Android向けの周辺機器連携を検討する際に、対応するOSの条件を確認できます。",
+      "社内サイトの管理者は、ウェブアプリのインストールや周辺機器への接続を制御する設定を確認できます。"
+    ]
+  },
+  "body": "Androidで周辺機器と連携するウェブアプリを使う人が対象です。アプリ側が対応し、利用者が接続を許可すると、機器と通信できます。\n\nこれは、ブラウザーで動くアプリがキーボードなどと情報をやり取りする仕組みです。WebViewでは、この機能に対応しません。\n\nChrome Platform Statusによると、今回の対応はWebHID API（周辺機器をウェブアプリから扱う仕組み）をAndroidに広げるものです。パソコン版ではChrome 89から提供されています。\n\n対象となる機器には、設定を変更できるキーボードやゲーム用マウスがあります。通話操作に対応したヘッドセットも例です。アプリは利用者に接続の許可を求めたうえで、機器とデータを送受信できます。\n\n## ウェブアプリのインストールを促す方法も追加\n\nWeb Install API（ウェブアプリのインストールを促す仕組み）は、Chrome 158から利用できます。サイトは、アプリの情報を記したファイルのURLを指定します。必要に応じて、アプリの識別子も指定します。\n\n別のサイトにあるウェブアプリのインストールを促せる点が特徴です。リリースノートを確認してください（[Chrome Platform Status（Google公式）の案内](https://chromestatus.com/release-notes/158)）。\n\nChromeには、ウェブページの表示を指定するCSSにも変更があります。動画や音声の再生中、停止中、読み込み中など、状態に応じて見た目を指定できます。\n\nリリースノートを確認してください（[Chrome Platform Status（Google公式）の案内](https://chromestatus.com/release-notes/158)）。Chrome 158では、SVG文書の表示方法にも変更があります。\n\n## サイソクの見方：Android向けは端末とアプリの両方を確かめる\n\nAndroid向けに周辺機器を扱うウェブアプリを作るなら、WebHIDの対応条件を先に確認するとよいでしょう。WebViewを使う場合、WebHIDには対応しません。そのため、Chromeで使う場合と分けて検討する必要があります。\n\nリリースノートを確認してください（[Chrome Platform Status（Google公式）の案内](https://chromestatus.com/release-notes/158)）。社内向けなら、管理者の設定も合わせて確認するのがよさそうです。\n\n## まだ分からないこと\n\n- Chrome 158の配信開始日はまだ発表されていません。\n- Chrome 158の料金はまだ発表されていません。\n\n## 社内サイトとウェブアプリの開発者向けの変更\n\n管理者は企業向けの設定「WebAppInstallByUserEnabled」で、利用者によるウェブアプリのインストールを無効にできます。リリースノートを確認してください（[Chrome Platform Status（Google公式）の案内](https://chromestatus.com/release-notes/158)）。\n\n権限ポリシーは、サイトや埋め込み画面に機能を許可する設定です。`web-app-installation`では、管理下のサイトや埋め込み画面での利用を許可・禁止できます。WebHIDにも、接続を制御する企業向けの設定があります。\n\n埋め込み画面の操作には、`focus-without-user-activation`という権限ポリシーも加わります。これを禁止すると、利用者が直前に操作していない場合などに、プログラムによる入力先の切り替えを制限できます。\n\n開発者向けの通信機能WebTransportでは、同時に開く受信の通信経路数を事前に指定できるようになります。サーバーから通信の終了予定が示されたときは、既存の通信を使いながら代わりの接続を準備できます。\n\n音声処理のOfflineAudioContextにも、データを少しずつ処理する仕組みが加わります。最初に音声データ全体の領域を確保せずに済みます。そのため、大量のデータを扱う際のメモリー要件を抑えられます。",
+  "easy": "## ひとことで言うと\n\nChrome 158では、Androidのブラウザーで動くアプリが、利用者の許可を得て周辺機器と通信できるようになります。アプリのインストールを促す新しい方法も加わります。\n\n対象はAndroid 17以降です。WebViewでは、周辺機器との接続に対応しません。\n\nウェブアプリを作る人は、別のサイトにあるアプリのインストールも促せます。管理者は、社内の設定でインストールや周辺機器への接続を制御できます。\n\nウェブページの表示にも変更があります。動画の再生状態に応じた見た目の指定や、SVG文書の表示方法にも変更があります。\n\nChrome 158の配信開始日と料金はまだ発表されていません。",
+  "channel": "Chrome Platform Status（Google公式）",
+  "channelId": "",
+  "channelSlug": "radar-official",
+  "genre": "テクノロジー・ガジェット",
+  "genreSlug": "tech-gadget",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。価格・仕様・提供時期は変更される場合があるため、購入・利用の前に発表元の一次情報をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "Chrome 158 Release Notes",
+  "publishedAt": "2026-11-18T02:33:24.629000+00:00",
+  "generatedAt": "2026-11-18T02:35:47.495278+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/chrome-158-android-web-apps-figure-af4074dd.jpg",
+  "model": "openai-api:gpt-6.1-terra",
+  "affiliates": [],
+  "newsType": "product",
+  "faq": [
+    {
+      "q": "Chrome 158で入力先を制限すると、クリック操作も止まりますか？",
+      "a": "クリックやTabキーによる利用者自身の操作は制限されません。また、ポリシーで入力先の切り替えを制限しても、ダイアログやポップオーバーを開くこと自体は妨げません。"
+    }
+  ],
+  "todayActions": [
+    "Android向けに周辺機器と連携するアプリを作る場合は、Chrome 158のWebHID対応条件を確認する。",
+    "社内サイトを管理する場合は、ウェブアプリのインストールを制御する企業向け設定を確認する。"
+  ],
+  "qualityBar": {
+    "score": 7,
+    "missing": [
+      6
+    ],
+    "notes": {
+      "6": "言い換えの無い略語（SVG）"
+    },
+    "checkedAt": "2026-11-18T02:37:34+00:00",
+    "before": [],
+    "repaired": false
+  },
+  "qualityScore": 98,
+  "detectedAt": "2026-11-18T02:33:24+00:00",
+  "fastLane": true,
+  "layout": "noir",
+  "summaryLine": "Chrome 158ではAndroid版もWebHIDに対応し、周辺機器との連携が可能になります",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "「Chrome 158」でAndroidの周辺機器に対応",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-18T02:38:12+00:00"
+  },
+  "imageFocus": {
+    "x": 0.52,
+    "y": 0.405,
+    "box": [
+      0.103,
+      0.054,
+      0.938,
+      0.756
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/chrome-158-android-web-apps-figure-af4074dd.jpg"
+  }
+}
