@@ -1688,14 +1688,6 @@
       "tries": 1,
       "url": "https://www.mhlw.go.jp/stf/newpage_77272.html"
     },
-    "90c9538fa27aa89b": {
-      "first": "2026-11-16T16:42:53.950686+00:00",
-      "next": "2026-11-16T19:42:53.950686+00:00",
-      "reason": "記事の基準に足りない（自動で手直ししても残った）: 1.最初の3行で、だれに・どのくらい・いつから（最初の3行にだれにが無い） / 3.自分の場合（早見の表・計算・判断の目安）（早見の表・式つきの計算・「〜の人は〜」の判断の目安が無い）",
-      "title": "「特チャレ」正式リリース！！特定小型原動機付自転車安全運転チャレンジ",
-      "tries": 1,
-      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026111608"
-    },
     "bc694f035c39c35a": {
       "first": "2026-11-18T22:54:52.709110+00:00",
       "next": "2026-11-19T01:54:52.709110+00:00",
@@ -13893,6 +13885,19 @@
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026111205"
     },
+    "836ccfc1a040903e": {
+      "at": "2026-11-19T16:56:31.802894+00:00",
+      "costUsd": 0.0441,
+      "foreignAi": true,
+      "intent": "breaking",
+      "major": true,
+      "mix": "other",
+      "model": "openai-api:gpt-6.1-terra",
+      "score": 97,
+      "section": "ai",
+      "slug": "anthropic-ipo-price-voting",
+      "url": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026074944/anthropicpbc-424b4.htm"
+    },
     "8370742c394a744c": {
       "at": "2026-11-12T02:12:04.585478+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（委員会）",
@@ -13972,13 +13977,6 @@
       "trendKeyword": "ceo",
       "trendLane": true,
       "url": "https://blogs.nvidia.co.jp/blog/nvidia-announces-ceo-transition/"
-    },
-    "84d6e3eaec4fdab1": {
-      "at": "2026-11-05T16:46:40.467358+00:00",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "reason": "quality: 公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください",
-      "skipped": true,
-      "url": "https://www.ipa.go.jp/shiken/2026/cbt-202701-yotei.html"
     },
     "84fa858f94041e1f": {
       "at": "2026-11-16T04:06:42.770738+00:00",
@@ -24376,36 +24374,6 @@
   },
   "quality_log": [
     {
-      "accepted": false,
-      "at": "2026-11-17T18:55:49.064313+00:00",
-      "attempt": 1,
-      "id": "62e6db3d47dd1ce9",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "タイトルの「ミセス政府広報」→ 元記事にない名称で、発行物は点字・大活字広報誌「ふれあいらしんばん」です。",
-        "「音声広報CD…の内容を活字や点字におこしたもの」→ 確認できる説明は、音声広報CDの内容の主なものを活字におこした冊子というものです。点字におこしたとの説明は確認できません。",
-        "「問い合わせに14日間応答がない場合に申請できます」→ 元資料は、利用申込受付用ではない連絡先に問い合わせても14日間応答がない場合と条件を限定しています。",
-        "「かかりつけ医を…決めておくことで余計な費用や待ち時間を避けられます」→ 元資料が述べるのは待ち時間や費用を抑えられる場合であり、余計な費用や待ち時間を避けられると一般化しています。"
-      ],
-      "readability": {
-        "avg_paragraph": 230.6,
-        "avg_sentence": 100.9,
-        "long_share": 1.0,
-        "max_paragraph": 396,
-        "paragraphs": 7,
-        "sentences": 16
-      },
-      "score": 78,
-      "source": "gov-online",
-      "title": "点字・大活字広報誌「ふれあいらしんばん」令和8年(2026年)11月発行",
-      "warnings": [
-        "見出しの書き方: 「〜とは？〜を解説」の決まり文句（「を解説」）。読む人が得る答え（対処法・期限・金額）を書く",
-        "読みやすさ: 文が長い（1文の平均 100.9字・60字超の文が 100% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "読みやすさ: 段落が長い（平均 230.6字・最長 396字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
       "accepted": true,
       "at": "2026-11-17T18:57:36.826874+00:00",
       "attempt": 1,
@@ -31942,6 +31910,29 @@
       "title": "[トヨタイムズ記事] 米国自動車殿堂入りを祝福したい！近社長が仕掛けた、豊田会長との公開収録",
       "warnings": [
         "初めて出たところで言い換えていない略語（TQM）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-19T16:56:21.382246+00:00",
+      "attempt": 1,
+      "id": "836ccfc1a040903e",
+      "kind": "ai",
+      "model": "openai-api:gpt-6.1-terra",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 79.9,
+        "avg_sentence": 40.0,
+        "long_share": 0.094,
+        "max_paragraph": 132,
+        "paragraphs": 16,
+        "sentences": 32
+      },
+      "score": 97,
+      "source": "radar-official",
+      "title": "Anthropic, PBC - 424(b)(4)",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（ANT）"
       ]
     }
   ],
