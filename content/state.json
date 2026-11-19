@@ -9372,12 +9372,6 @@
       "skipped": true,
       "url": "https://openai.com/chatgpt/pricing/#entry-2026-11-14-3ca870"
     },
-    "408d83e364fa3424": {
-      "at": "2026-11-05T18:23:10.492398+00:00",
-      "reason": "prefilter: 扱わない話題（事件事故・ゴシップ・選挙・医療効果・噂）",
-      "skipped": true,
-      "url": "https://www.gov-online.go.jp/media/commercials/202611/video-327032.html"
-    },
     "40c291b15767c544": {
       "at": "2026-11-06T19:21:43.560375+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（開催について）",
@@ -11237,13 +11231,6 @@
       "reason": "quality: タイトルの「全国店舗」→ 元記事はアベイルでの発売を伝えていますが、全国の店舗で販売するとは明記していません。; 「店頭とオンラインで販売開始の時刻は同じではなく」→ 元記事に店頭の販売開始時刻はなく、両者の時刻が異なるとは確認できません。",
       "skipped": true,
       "url": "https://itunes.apple.com/jp/podcast/id1391532328"
-    },
-    "5c50ec5a21173eae": {
-      "at": "2026-11-05T18:23:21.768503+00:00",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "reason": "首相官邸での会計検査院の令和7年度決算検査報告の受け取りを伝える行事のお知らせで、元資料に具体的な数字や読者が使う・受けるものの条件がなく、投資・マネーの対象範囲にも当たらないため。",
-      "skipped": true,
-      "url": "https://www.gov-online.go.jp/press_conferences/prime_minister/202611/video-327089.html"
     },
     "5c5c439c3a5adbf4": {
       "at": "2026-11-07T08:53:36.548826+00:00",
@@ -13724,12 +13711,6 @@
       "slug": "cabinet-office-economy-watcher-survey-october-2026",
       "url": "https://www5.cao.go.jp/keizai3/watcher_index.html"
     },
-    "80e79a78498c7241": {
-      "at": "2026-11-05T18:23:10.492895+00:00",
-      "reason": "prefilter: 扱わない話題（事件事故・ゴシップ・選挙・医療効果・噂）",
-      "skipped": true,
-      "url": "https://www.gov-online.go.jp/article/200810/entry-9113.html"
-    },
     "810ba2334f6ba2ed4c667850571d3ad4e940b13f": {
       "at": "2026-11-19T07:00:05.833061+00:00",
       "kind": "trend",
@@ -16062,12 +16043,6 @@
       "slug": "jp-bank-h1-fy2027-results",
       "url": "https://www.jp-bank.japanpost.jp/aboutus/press/2026/abt_prs_id002139.html"
     },
-    "a77360a4ea150a6d": {
-      "at": "2026-11-05T18:23:10.492476+00:00",
-      "reason": "prefilter: タイトルが短すぎる（一覧リンク等）",
-      "skipped": true,
-      "url": "https://www.gov-online.go.jp/article/202611/tv-6667.html"
-    },
     "a7796ed9e6381222f550fec7f36539306cb4e09e": {
       "at": "2026-11-14T01:52:38.402009+00:00",
       "kind": "trend",
@@ -16632,6 +16607,20 @@
       "reason": "文部科学省による「令和8年度 文部科学省日本語教育大会」の開催案内および参加者募集のお知らせであり、イベント・会議の参加者募集のみに関する発表に該当するため。",
       "skipped": true,
       "url": "https://www.mext.go.jp/a_menu/nihongo_kyoiku/mext_00236.html"
+    },
+    "b00f82b6db94c2e5": {
+      "at": "2026-11-19T18:34:05.192417+00:00",
+      "breaking": true,
+      "costUsd": 0.0397,
+      "foreignAi": true,
+      "intent": "breaking",
+      "major": true,
+      "mix": "enterprise_dev",
+      "model": "openai-api:gpt-6.1-terra",
+      "score": 98,
+      "section": "ai",
+      "slug": "gemini-api-tool-retrieval-preview",
+      "url": "https://blog.google/innovation-and-ai/technology/developers-tools/gemini-api-tool-retrieval/"
     },
     "b0433dc4cdc059e1": {
       "at": "2026-11-16T20:46:04.389345+00:00",
@@ -20284,13 +20273,6 @@
       "reason": "trend: 重複: 同じ言葉の記事がある（nissan-skyline-news-summary）",
       "skipped": true,
       "url": "https://news.yahoo.co.jp/articles/68cb4eb2d9a47fae410d8b06a70d5c000b18ae24"
-    },
-    "e6c9c7fda0339b68": {
-      "at": "2026-11-05T18:23:09.959059+00:00",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "reason": "quality: 公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください",
-      "skipped": true,
-      "url": "https://toyotatimes.jp/toyota_news/financial_results_2027/002.html?padid=ag478_from_newsroom"
     },
     "e763967d3f7f6ad0": {
       "at": "2026-11-09T07:15:42.667752+00:00",
@@ -24410,33 +24392,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-17T20:53:08.035172+00:00",
-      "attempt": 1,
-      "id": "42efbbf4bd8001de",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "かんたん版「40代以降は追加のオプション検査を組み合わせる必要があります」→元記事は追加検査を検討するよう勧めており、必須とするのは言い過ぎです。"
-      ],
-      "readability": {
-        "avg_paragraph": 121.2,
-        "avg_sentence": 60.6,
-        "long_share": 0.542,
-        "max_paragraph": 198,
-        "paragraphs": 12,
-        "sentences": 24
-      },
-      "score": 95,
-      "source": "radar-official",
-      "title": "がん関連ニュース｜dメニューニュース（NTTドコモ）",
-      "warnings": [
-        "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（PSA）",
-        "要点の1つ目（「会社の健康診断では基本的な11項目のみが義務づけ…」）が一番のニュースになっていない。題名・リードの1文目と同じ中心の事実（検診・40・オプション・費用）を、リードとは違う言い方で1つ目に書く"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-17T20:54:18.383264+00:00",
@@ -32007,6 +31962,29 @@
         "見出しの書き方: 発表文の題名の言い直し（「〇〇が△△を発表」）。読者にとって何が変わるか（だれの・何が・いつから・いくら）を書く",
         "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
         "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-19T18:34:05.163076+00:00",
+      "attempt": 1,
+      "id": "b00f82b6db94c2e5",
+      "kind": "ai",
+      "model": "openai-api:gpt-6.1-terra",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 77.7,
+        "avg_sentence": 38.8,
+        "long_share": 0.028,
+        "max_paragraph": 120,
+        "paragraphs": 18,
+        "sentences": 36
+      },
+      "score": 98,
+      "source": "google-blog-all",
+      "title": "Introducing Tool Retrieval in the Gemini API",
+      "warnings": [
+        "見出しが50字（目安40字以内）。一覧・カードでは前半だけを出す"
       ]
     }
   ],

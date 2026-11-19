@@ -1,0 +1,161 @@
+{
+  "slug": "gemini-api-tool-retrieval-preview",
+  "sourceType": "web",
+  "sourceUrl": "https://blog.google/innovation-and-ai/technology/developers-tools/gemini-api-tool-retrieval/",
+  "sourceName": "Google公式ブログ",
+  "title": "「Tool Retrieval」でAIの道具を必要なときだけ読み込み　Gemini 3.6以降に対応",
+  "seoTitle": "Tool Retrievalの使い方と料金：Gemini APIの新機能",
+  "threadsPost": "Gemini APIで開発する人に、知っておいてほしい話です。\n\nGoogleの新機能では、AIが使う道具の詳細を必要なときだけ読み込めます。\n追加料金はなく、使ったAIモデルの通常料金がかかります。\n\nAIを組み込む開発では、費用と応答の速さのどちらを重視しますか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "ab",
+      "question": "AIを組み込む開発では、費用と応答の速さのどちらを重視しますか？"
+    },
+    {
+      "pattern": "expert",
+      "question": "AIアプリの開発で、道具の説明はどのように管理していますか？"
+    },
+    {
+      "pattern": "count",
+      "question": "普段の開発で、AIに連携させている道具はいくつありますか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "explainer",
+  "lede": "「Tool Retrieval」は、Gemini APIでAIが使う道具の詳細を必要なときだけ読み込む新機能です。従来のように毎回すべての詳細を送る必要がなく、Googleがプレビュー版の提供を始めました。対応モデルはGemini 3.6以降で、機能自体の追加料金はありません。",
+  "description": "Gemini APIのTool Retrievalは、AIが使う道具の詳細を必要なときだけ読み込むプレビュー機能です。対応モデル、通常のAPI料金がかかる条件、開発者向けの設定方法を説明します。",
+  "keywords": [
+    "Tool Retrieval",
+    "Tool Retrieval 使い方",
+    "Tool Retrieval 料金",
+    "Gemini API 新機能",
+    "Gemini API ツール検索",
+    "Gemini Interactions API",
+    "Gemini エージェント",
+    "Gemini API 入力トークン",
+    "defer_loading",
+    "Gemini MCP"
+  ],
+  "tags": [
+    "生成AI",
+    "Gemini API",
+    "Tool Retrieval",
+    "AIエージェント",
+    "開発ツール"
+  ],
+  "highlights": [
+    "Gemini APIのTool Retrievalは、必要な道具の詳細だけを読み込むプレビュー機能です。",
+    "道具の名前と説明は先に渡し、引数の詳細は必要になったときに同じリクエスト内で読み込みます。",
+    "独自の検索を使う設定にも対応しますが、検索ごとにアプリとの追加の通信が発生します。"
+  ],
+  "timetable": [],
+  "verdict": {
+    "status": "limited",
+    "japan": "unknown",
+    "price": "API従量課金",
+    "free": null,
+    "audience": "開発者",
+    "take": "多数の道具を使う開発者は、通常のAPI料金と実際の通信量を比べて導入を検討できます。",
+    "judgedAt": "2026-11-19T18:33:55.781777+00:00"
+  },
+  "workMoney": {
+    "relevance": "medium",
+    "points": [
+      "多くの道具を使うAIアプリの開発者は、読み込む情報を絞る設定を試せます。",
+      "追加料金はありませんが、利用するモデルの通常料金はかかるため、実際の通信量で費用を比べられます。"
+    ]
+  },
+  "body": "Gemini APIを使い、多数の道具を扱うAIアプリを開発する人が対象です。道具の詳しい情報を毎回すべて送る代わりに、必要な分だけを渡せます。\n\nAPI（アプリから呼び出す仕組み）は、アプリにAIの機能を組み込むための窓口です。Tool Retrievalは、そのAIが外部の道具を選んで使う際の情報量を抑える機能です。\n\nGoogleの公式ブログによると、道具の数が増えると、すべての詳細を毎回送る方法では入力が増えます。応答に時間がかかり、道具の選択精度も下がるといいます。\n\n新機能では、後から読み込む道具についても、名前と説明は先にモデルへ渡します。一方、引数の定義（道具に渡す情報の形式）は、必要になるまで読み込みません。\n\nモデルが道具を指定すると、APIが定義を読み込みます。その後、モデルは同じリクエストの中で呼び出しを指示します。\n\nGoogleの例では、破損した注文の返金に使う関数を検索し、必要な定義を読み込んで呼び出しを指示します。実際の返金処理は、アプリ側のコードが実行します。\n\n## サイソクの見方：道具の数と実際の料金で選ぶ\n\n多数の道具を扱い、使わない定義が多いアプリなら、Tool Retrievalを試す価値があると考えられます。一方、読み込む定義が多いアプリなら、設定前後の通信量を比べて判断するのがよさそうです。\n\n頻繁に使う道具が決まっているなら、その道具は先に読み込み、残りを必要に応じて読み込む方法が考えられます。\n\n## まだ分からないこと\n\n- Tool Retrievalの日本での提供状況は、まだ発表されていません。Gemini API自体は日本で利用できます。（Google公式の対応地域一覧、11/3確認）\n\n## Gemini APIでの使い方と料金\n\nTool Retrievalは、Gemini Interactions APIのプレビュー版として提供されています。Gemini 3.6以降のモデルが対象で、Gemini 4の全モデルも含みます。\n\n機能を使う場合、リクエストに`tool_search`を追加します。読み込みを後に回す道具には、`defer_loading: true`を設定します。\n\n検索はGoogle側で行うため、検索用の索引を作って管理する必要はありません。よく使う道具は先に読み込み、残りだけを後回しにする設定もできます。\n\n検索と呼び出しの各段階は`interaction.steps`で確認できます。道具の名前や説明を調整するときに、どの道具が検討されたかを調べられます。\n\nMCP（AIと外部の道具をつなぐ仕組み）の外部サーバーにも対応します。サーバー側の設定を指定すると、そのサーバーが提供する道具を個別に列挙せず、必要に応じて読み込めます。\n\n独自の道具一覧や利用者ごとの権限管理を使う場合は、アプリ側で検索する設定も選べます。この方法では、検索ごとにアプリとの追加の通信が発生します。道具を最初にすべて宣言する必要はなく、会話の途中で追加することもできます。\n\n機能自体に別料金はありません。ただし、入力と出力には利用するモデルの通常料金がかかります。\n\n`tool_search`を有効にすると、少量の入力が固定で追加されます。読み込んだ定義も、その後の会話で入力として課金されます。費用が減るかは、読み込まずに済んだ定義の量によって変わるため、Googleは実際の利用状況での測定を勧めています。\n\n料金の一例として、Gemini 3.8 Flashは入力100万トークン（AIが文字を数える単位）あたり0.75ドル、出力は3.75ドルです。（Google公式の料金ページ、11/19確認）\n\n詳しい設定例は、Googleが案内するTool Retrievalの公式ドキュメントで確認できます。",
+  "easy": "## ひとことで言うと\n\nTool Retrievalは、AIが使う道具の詳しい情報を必要なときだけ渡す機能です。多くの道具を扱うアプリで、AIに送る情報量を減らすために使います。\n\n## 道具の名前は先に伝える\n\nAIには、使える道具の名前と説明を先に渡します。詳しい設定は、必要になったときに読み込みます。\n\n機能自体の追加料金はありません。ただし、AIに送った情報やAIの回答には通常の料金がかかります。実際に費用が減るかは、アプリの使い方によって変わります。\n\n開発者は、よく使う道具を先に読み込み、使う機会が少ない道具だけを後から読み込む設定もできます。",
+  "channel": "Google公式ブログ",
+  "channelId": "",
+  "channelSlug": "google-blog-all",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "Introducing Tool Retrieval in the Gemini API",
+  "publishedAt": "2026-11-19T18:00:00+00:00",
+  "generatedAt": "2026-11-19T18:33:55.781765+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/gemini-api-tool-retrieval-preview-62a3cd30.jpg",
+  "model": "openai-api:gpt-6.1-terra",
+  "affiliates": [],
+  "newsType": "product",
+  "todayActions": [
+    "Gemini APIで使う道具のうち、毎回読み込む必要があるものを確認する。",
+    "Tool Retrievalの公式ドキュメントで設定例を確認し、利用前後の通信量を比べる。"
+  ],
+  "relatedSlugs": [
+    "gemini-4-hydrogen-launch-pricing",
+    "oracle-ai-database-agentic-update"
+  ],
+  "qualityBar": {
+    "score": 7,
+    "missing": [
+      1
+    ],
+    "notes": {
+      "1": "最初の3行にだれに・どのくらいが無い"
+    },
+    "checkedAt": "2026-11-19T18:34:05+00:00",
+    "before": [
+      1,
+      7
+    ],
+    "repaired": false,
+    "repairLater": true
+  },
+  "qualityScore": 98,
+  "breaking": true,
+  "factSources": [
+    {
+      "label": "料金",
+      "name": "Google公式の料金ページ",
+      "url": "https://ai.google.dev/gemini-api/docs/pricing",
+      "checkedAt": "2026-11-19"
+    }
+  ],
+  "sourcePublishedAt": "2026-11-19T18:00:00+00:00",
+  "detectedAt": "2026-11-19T18:32:20+00:00",
+  "fastLane": true,
+  "speedMinutes": 38,
+  "layout": "noir",
+  "summaryLine": "Gemini APIのTool Retrievalは、必要な道具の詳細だけを読み込むプレビュー機能です。",
+  "bodyImages": [
+    {
+      "src": "https://ai-tech-express.jp/img/gemini-api-tool-retrieval-preview-fig1-c7f6c957.jpg",
+      "width": 1200,
+      "height": 675,
+      "kind": "hero",
+      "credit": "Google",
+      "sourceUrl": "https://blog.google/innovation-and-ai/technology/developers-tools/gemini-api-tool-retrieval/",
+      "original": "https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Tool_retrieval_hero.width-2200.format-webp.webp"
+    }
+  ],
+  "imageCredit": {
+    "kind": "official",
+    "org": "Google",
+    "provider": "Google公式ブログ",
+    "sourceUrl": "https://blog.google/innovation-and-ai/technology/developers-tools/gemini-api-tool-retrieval/",
+    "original": "https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Tool_retrieval_hero.width-1300.png",
+    "width": 1200,
+    "height": 675,
+    "at": "2026-11-19T18:34:15+00:00",
+    "imageKind": "hero"
+  },
+  "heroOk": true,
+  "imageFocus": {
+    "x": 0.539,
+    "y": 0.5,
+    "box": [
+      0.078,
+      0.0,
+      1.0,
+      1.0
+    ],
+    "ar": 1.7778,
+    "src": "https://ai-tech-express.jp/img/gemini-api-tool-retrieval-preview-62a3cd30.jpg"
+  }
+}
