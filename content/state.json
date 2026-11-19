@@ -6643,6 +6643,19 @@
       "skipped": true,
       "url": "https://www.cfa.go.jp/press/dd847759-44c6-4bd2-858d-81038a60a74f"
     },
+    "19eaac3a071eaf36": {
+      "at": "2026-11-19T06:41:03.900162+00:00",
+      "costUsd": 0.0047,
+      "intent": "breaking",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "score": 98,
+      "section": "public",
+      "slug": "timee-karte-data-leak-employers",
+      "url": "https://corp.timee.co.jp/news/detail-7442/"
+    },
     "19f6d88c9d76c05e": {
       "at": "2026-11-12T06:55:02.113938+00:00",
       "costUsd": 0.0066,
@@ -15924,17 +15937,6 @@
       "skipped": true,
       "url": "https://www.morinaga.co.jp/company/newsrelease/detail.php?no=3232"
     },
-    "a4481c2c2c90565d": {
-      "at": "2026-11-05T06:33:52.396018+00:00",
-      "breaking": true,
-      "major": true,
-      "mix": "other",
-      "model": "claude:sonnet",
-      "score": 92,
-      "section": "ai",
-      "slug": "kao-2026-q3-results-operating-profit",
-      "url": "https://www.release.tdnet.info/inbs/140120261105565753.pdf"
-    },
     "a4be397947dfe597": {
       "at": "2026-11-09T05:06:17.558023+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（部会）",
@@ -20841,17 +20843,6 @@
       "skipped": true,
       "url": "https://www.fsa.go.jp/common/conference/minister/2026b/20261015-1.html"
     },
-    "f029953cc78abfc4": {
-      "at": "2026-11-05T06:38:02.850650+00:00",
-      "breaking": true,
-      "major": true,
-      "mix": "jp_corp",
-      "model": "claude:sonnet",
-      "score": 93,
-      "section": "ai",
-      "slug": "nintendo-fy2027-interim-results",
-      "url": "https://www.release.tdnet.info/inbs/140120261027557139.pdf"
-    },
     "f036bddff3367d6a": {
       "at": "2026-11-14T04:14:54.252803+00:00",
       "costUsd": 0.0079,
@@ -24570,62 +24561,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-17T08:01:09.836773+00:00",
-      "attempt": 1,
-      "id": "665c7246cabc8f41191848f42a8dff73b76551f5",
-      "kind": "trend",
-      "model": "gemini-flash-latest",
-      "problems": [
-        "タイトル「店舗の営業は継続」→ 元記事に店舗営業の継続についての記述はなく、本文の「現時点で影響は出ていない」を超えて断定している",
-        "本文「2026年11月に締め切られた2次入札」→ 元記事は「11月に締め切った2次入札」とだけ書き年は示していないため、2026年は元記事にない日付の追加",
-        "本文「既存のポイントやギフト券、店頭での決済方法も従来通り利用できます」→ 元記事・確認済みの文脈にないサービス内容の断定",
-        "本文「外食チェーンが投資ファンドの傘下に入る場合でも、日々の店舗運営や味の提供体制は維持されることが一般的です」→ 元記事にない一般論を根拠なく述べている",
-        "かんたん版「お店を利用する側にとって、今すぐ影響が出る手続きや変更点はない状況です」→ 元記事に無い利用者向けの状況断定",
-        "本文「壱番屋は、全国にカレー専門店を展開する外食大手です」→ 元記事に店舗展開規模の記述はなく、補足として根拠が不足"
-      ],
-      "readability": {
-        "avg_paragraph": 89.6,
-        "avg_sentence": 52.2,
-        "long_share": 0.333,
-        "max_paragraph": 145,
-        "paragraphs": 7,
-        "sentences": 12
-      },
-      "score": 55,
-      "source": "trends",
-      "title": "壱番屋",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（KKR）",
-        "読みやすさ: 文が長い（1文の平均 52.2字・60字超の文が 33% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-17T08:01:54.003150+00:00",
-      "attempt": 1,
-      "id": "665c7246cabc8f41191848f42a8dff73b76551f5",
-      "kind": "trend",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 70.0,
-        "avg_sentence": 58.3,
-        "long_share": 0.5,
-        "max_paragraph": 80,
-        "paragraphs": 5,
-        "sentences": 6
-      },
-      "score": 88,
-      "source": "trends",
-      "title": "壱番屋",
-      "warnings": [
-        "材料の無い章がある（日本の店舗利用や料金に今すぐ変わる点はあるか）。表示では隠す",
-        "初めて出たところで言い換えていない略語（KKR）",
-        "読みやすさ: 文が長い（1文の平均 58.3字・60字超の文が 50% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-17T08:02:04.884285+00:00",
@@ -32087,6 +32022,57 @@
       "title": "リコールの届出について（三菱 ふそうスーパーグレート）",
       "warnings": [
         "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-19T06:40:18.773455+00:00",
+      "attempt": 1,
+      "id": "19eaac3a071eaf36",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "「ワーカーとして使っている人は影響を受けません」→ 元記事が明記しているのは求職者（ワーカー）の情報に漏えいがないことです。求人事業者の担当者でもある人まで影響を受けないとは確認できません。",
+        "「漏れた情報はメールアドレスが中心」→ メールアドレスは226,662件ですが、顧客管理IDは227,561件で、メールアドレスが中心とする根拠は示されていません。"
+      ],
+      "readability": {
+        "avg_paragraph": 76.2,
+        "avg_sentence": 36.8,
+        "long_share": 0.034,
+        "max_paragraph": 213,
+        "paragraphs": 14,
+        "sentences": 29
+      },
+      "score": 86,
+      "source": "fast",
+      "title": "当社委託先システムへの不正アクセスに伴う、「タイミー」ご利用事業者様の一部情報漏えいについて｜ニュース｜株式会社タイミー(Timee,Inc.)",
+      "warnings": [
+        "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（SMS・KARTE）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-19T06:40:54.491261+00:00",
+      "attempt": 1,
+      "id": "19eaac3a071eaf36",
+      "kind": "broad",
+      "model": "openai-api:gpt-6-luna",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 74.9,
+        "avg_sentence": 36.1,
+        "long_share": 0.034,
+        "max_paragraph": 213,
+        "paragraphs": 14,
+        "sentences": 29
+      },
+      "score": 98,
+      "source": "fast",
+      "title": "当社委託先システムへの不正アクセスに伴う、「タイミー」ご利用事業者様の一部情報漏えいについて｜ニュース｜株式会社タイミー(Timee,Inc.)",
+      "warnings": [
+        "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（SMS・KARTE）"
       ]
     }
   ],
