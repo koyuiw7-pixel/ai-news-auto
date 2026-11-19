@@ -84,8 +84,8 @@
   "affiliates": [],
   "newsType": "product",
   "todayActions": [
-    "Gemini APIで使う道具のうち、毎回読み込む必要があるものを確認する。",
-    "Tool Retrievalの公式ドキュメントで設定例を確認し、利用前後の通信量を比べる。"
+    "公式ドキュメントでTool Retrievalの設定例を確認し、試す道具を選ぶ。",
+    "実際の利用状況で入力トークン量を測り、導入前後の差を比べる。"
   ],
   "relatedSlugs": [
     "gemini-4-hydrogen-launch-pricing",
@@ -105,7 +105,8 @@
       7
     ],
     "repaired": false,
-    "repairLater": true
+    "repairLater": true,
+    "laterTriedAt": "2026-11-19T19:02:56+00:00"
   },
   "qualityScore": 98,
   "breaking": true,
@@ -157,5 +158,101 @@
     ],
     "ar": 1.7778,
     "src": "https://ai-tech-express.jp/img/gemini-api-tool-retrieval-preview-62a3cd30.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "遅延読み込みした定義はプロンプトの先頭ではなく後から会話に加わるため、ターンごとにキャッシュされる先頭部分を同じに保てます。prefix cachingを使う構成では設計上の利点になります。",
+      "source": "https://blog.google/innovation-and-ai/technology/developers-tools/gemini-api-tool-retrieval/"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "Tool Retrieval documentation",
+      "url": "https://aistudio.google.com/docs/tool-retrieval",
+      "source": "https://blog.google/innovation-and-ai/technology/developers-tools/gemini-api-tool-retrieval/",
+      "howTo": [
+        "Introducing Tool Retrieval in ",
+        "Read the documentation"
+      ]
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "公式ドキュメントでTool Retrievalの設定例を確認し、試す道具を選ぶ。",
+      "source": "https://blog.google/innovation-and-ai/technology/developers-tools/gemini-api-tool-retrieval/",
+      "steps": [
+        "Introducing Tool Retrieval in the Gemini API",
+        "Read the documentation",
+        "tool_searchとdefer_loadingの設定例を確認"
+      ],
+      "url": "https://aistudio.google.com/docs/tool-retrieval"
+    },
+    {
+      "action": "実際の利用状況で入力トークン量を測り、導入前後の差を比べる。",
+      "source": "https://blog.google/innovation-and-ai/technology/developers-tools/gemini-api-tool-retrieval/",
+      "steps": [
+        "Tool Retrievalを有効にする",
+        "実際の利用状況で測定する",
+        "interaction.stepsで検索と呼び出しを確認する"
+      ],
+      "url": "https://blog.google/innovation-and-ai/technology/developers-tools/gemini-api-tool-retrieval/"
+    }
+  ],
+  "cause": {
+    "text": "道具が数十から数百に増えると、すべての引数定義を毎回送ることで入力トークンが増え、応答が遅くなり、候補が増えるほど道具の選択精度も下がるとGoogleは説明しています。",
+    "status": "background",
+    "source": "https://blog.google/innovation-and-ai/technology/developers-tools/gemini-api-tool-retrieval/"
+  },
+  "worries": [
+    {
+      "q": "Tool Retrievalを使うと、利用料金は別にかかりますか？",
+      "a": "Tool Retrieval自体に別料金はありません。ただし、tool_searchを有効にすると少量の入力トークンが固定で追加され、読み込んだ定義も会話の残りで入力として課金されます。入力量と出力量には、利用モデルの通常料金がかかります。",
+      "source": "https://blog.google/innovation-and-ai/technology/developers-tools/gemini-api-tool-retrieval/",
+      "action": "実際の利用状況で入力トークンを測り、読み込まずに済む定義量と追加分を比べる。"
+    },
+    {
+      "q": "後回しにした道具の情報は、モデルに何も見えませんか？",
+      "a": "後回しにした道具も、名前と説明はモデルに渡され、何が利用可能か分かります。一方、引数の定義は文脈に含まれず、モデルがその道具を必要としたときにAPIが読み込みます。",
+      "source": "https://blog.google/innovation-and-ai/technology/developers-tools/gemini-api-tool-retrieval/",
+      "action": "設定例を見て、後回しにする道具にdefer_loading: trueを指定する。"
+    },
+    {
+      "q": "返金などの処理まで、Tool Retrievalが実行しますか？",
+      "a": "Tool Retrievalが読み込んで呼び出しを指示するのは関数の定義です。実際の関数呼び出し後の処理は通常の関数呼び出しと同じで、返金の例ではアプリ側のコードが返金を実行します。",
+      "source": "https://blog.google/innovation-and-ai/technology/developers-tools/gemini-api-tool-retrieval/",
+      "action": "返金などの処理を組み込む場合は、関数呼び出し後にアプリ側のコードが実行する設計を確認する。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "道具定義を後から読み込ませる？",
+      "situation": "使わない定義が多い",
+      "recommend": "試す価値がある",
+      "reason": "道具の候補が増えると、全定義を毎回送る方法は入力トークンや応答時間、選択精度に影響します。ただし節約量は読み込まずに済む定義の量次第なので、実際の利用状況で測定します。",
+      "source": "https://blog.google/innovation-and-ai/technology/developers-tools/gemini-api-tool-retrieval/"
+    },
+    {
+      "question": "利用頻度の高い道具も後回しにする？",
+      "situation": "よく使う道具が決まっている",
+      "recommend": "頻繁に使うものは先に読み込む",
+      "reason": "Googleは、よく使う道具は先に読み込み、残りを後回しにできると説明しています。どの道具が検討されたかはinteraction.stepsで確認でき、名前や説明の調整に役立ちます。",
+      "source": "https://blog.google/innovation-and-ai/technology/developers-tools/gemini-api-tool-retrieval/"
+    },
+    {
+      "question": "独自の道具検索を使うべき？",
+      "situation": "独自一覧や利用者ごとの権限がある",
+      "recommend": "クライアント側検索を検討する",
+      "reason": "独自の道具一覧や利用者ごとの権限管理を使う場合、アプリ側で検索する設定を選べます。一方、検索のたびに追加の通信が1往復発生するため、その点も含めて構成を選びます。",
+      "source": "https://blog.google/innovation-and-ai/technology/developers-tools/gemini-api-tool-retrieval/"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "遅延読み込みはキャッシュにも利点",
+    "cause": "道具が増えたときの負担を抑える",
+    "steps": "設定と実際のトークン量を確かめる",
+    "desk": "設定例を確認できる公式ドキュメント",
+    "worries": "料金や実行の仕組みはどうなる？",
+    "guide": "どの道具を後回しにするか"
+  },
+  "depthAt": "2026-11-19T19:02:56+00:00"
 }
