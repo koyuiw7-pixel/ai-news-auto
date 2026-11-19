@@ -112,6 +112,7 @@
     "0357ce98f386ad16c3aa6c3c5496d531a1196757": 2,
     "036b93df554c7fca82002aea66d22297d8850351": 2,
     "03b8ebc7e674a796dac6799747645087c77b43a7": 2,
+    "03ceddb0fd0ae577c3167cec54fa5f364aa7b022": 1,
     "03edddba0087185f82c13c46763b1f61b2891259": 2,
     "041393fccf950219753091a6d8f98b19dacf82ed": 2,
     "042e34a718dcdda1227372431b7791a0cd32f8b6": 2,
@@ -726,6 +727,7 @@
     "7018bf3a2b27f3188ef9d96ecf45c219c625188b": 2,
     "702b42311c72b1f5e2134315505e5bbcf2ce82aa": 2,
     "70321c706480a943f64cddc81f27d1494b8acc35": 2,
+    "70957c97cb3c5b3788df72a4e3fb0b382672096f": 1,
     "7099134973d23ef2bc556f0b071ebffe8bbb358e": 2,
     "70bb5b68d1dc1eeac8f420334b5fb4c17e312ca0": 1,
     "70f2f274444a5acbffd6dfa07607d9df5ca82031": 2,
@@ -5801,12 +5803,6 @@
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・暮らしの交通/天気/値上げ/障害/給付/発売・日本のスポーツのどれでもない）",
       "skipped": true,
       "url": "https://www.soumu.go.jp/menu_news/s-news/01cyber01_02000001_00310.html"
-    },
-    "0c6ee60017e73383": {
-      "at": "2026-11-05T13:27:08.357470+00:00",
-      "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
-      "skipped": true,
-      "url": "https://www.kantei.go.jp/jp/105/actions/202611/05tel_kaidan.html"
     },
     "0c7522e7eafda0fc": {
       "at": "2026-11-18T18:56:11.500004+00:00",
@@ -12612,6 +12608,13 @@
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026111010"
     },
+    "7126ef760030e9de191960a3943c282636fabdbd": {
+      "at": "2026-11-19T13:38:30.157835+00:00",
+      "model": "openai-api:gpt-6.1-terra",
+      "reason": "quality: threads_post が「書き出し／事実2文／問いかけ」の3つのかたまりになっていない",
+      "skipped": true,
+      "url": "https://news.yahoo.co.jp/pickup/6603160"
+    },
     "716755f19ab6192d": {
       "at": "2026-11-06T06:03:10.187441+00:00",
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
@@ -14633,13 +14636,6 @@
       "slug": "groove-energy-renewable-energy-levy-delinquency",
       "url": "https://www.meti.go.jp/press/2026/11/20261111002.html"
     },
-    "8ec46f72407133f6": {
-      "at": "2026-11-05T13:27:07.777102+00:00",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "reason": "quality: 公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください",
-      "skipped": true,
-      "url": "https://www.nli-research.co.jp/topics_detail1/id=87103?site=nli"
-    },
     "8ed2a5ebe510310e": {
       "at": "2026-11-05T15:11:11.514196+00:00",
       "mix": "money",
@@ -15707,12 +15703,6 @@
       "reason": "trend: 重複: 同じ言葉の記事がある（tokyo-underpass-flood-prevention-2026）",
       "skipped": true,
       "url": "https://mezha.net/ch/news/7c74bb90_nuclear_regulators_warn_russian/"
-    },
-    "a1d85a4a9d1883e3": {
-      "at": "2026-11-05T13:27:08.357543+00:00",
-      "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
-      "skipped": true,
-      "url": "https://www.kantei.go.jp/jp/105/statement/2026/1105kaiken.html"
     },
     "a1fc87295e085166318b82f1502015e0bd2fee63": {
       "at": "2026-11-15T21:56:13.699506+00:00",
@@ -24371,26 +24361,6 @@
   },
   "quality_log": [
     {
-      "accepted": true,
-      "at": "2026-11-17T17:02:01.643175+00:00",
-      "attempt": 1,
-      "id": "2b5359386136f7fb",
-      "kind": "ai",
-      "model": "openai-api:gpt-6.1-terra",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 75.1,
-        "avg_sentence": 35.1,
-        "long_share": 0.0,
-        "max_paragraph": 97,
-        "paragraphs": 7,
-        "sentences": 15
-      },
-      "score": 100,
-      "source": "google-blog-all",
-      "title": "Temporary threads are now available in AI Mode in Search."
-    },
-    {
       "accepted": false,
       "at": "2026-11-17T17:25:20.590026+00:00",
       "attempt": 1,
@@ -31902,6 +31872,31 @@
       "warnings": [
         "初めて出たところで言い換えていない略語（LIFULL・HOME・SMS）",
         "要点の1つ目がリードの文の写し。一番のニュースを、リードとは違う言い方で書く"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-19T13:38:02.160634+00:00",
+      "attempt": 2,
+      "id": "7126ef760030e9de191960a3943c282636fabdbd",
+      "kind": "trend",
+      "model": "openai-api:gpt-6.1-terra",
+      "problems": [
+        "threads_post が「書き出し／事実2文／問いかけ」の3つのかたまりになっていない"
+      ],
+      "readability": {
+        "avg_paragraph": 74.5,
+        "avg_sentence": 33.1,
+        "long_share": 0.0,
+        "max_paragraph": 90,
+        "paragraphs": 4,
+        "sentences": 9
+      },
+      "score": null,
+      "source": "trends",
+      "title": "前橋市",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（NEWS）"
       ]
     }
   ],
