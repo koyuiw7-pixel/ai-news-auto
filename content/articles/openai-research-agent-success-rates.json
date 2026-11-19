@@ -93,8 +93,8 @@
     }
   ],
   "todayActions": [
-    "OpenAIの公式ブログで、研究作業の種類ごとの成功率と測定条件を確かめる。",
-    "自分がAIに任せている作業を、監視とコード作成などの種類に分けて見直す。"
+    "AIに任せる作業を3種類に分け、公式報告の成功率と照らし合わせる。",
+    "AI利用額を費用比較に使う前に、公開定価換算の数字と確認する。"
   ],
   "qualityBar": {
     "score": 6,
@@ -112,7 +112,8 @@
       6
     ],
     "repaired": false,
-    "repairLater": true
+    "repairLater": true,
+    "laterTriedAt": "2026-11-19T01:30:02+00:00"
   },
   "qualityScore": 96,
   "sourcePublishedAt": "2026-11-18T08:00:00+00:00",
@@ -163,5 +164,84 @@
     ],
     "ar": 1.7778,
     "src": "https://ai-tech-express.jp/img/openai-research-agent-success-rates-c905b2af.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "利用額の90パーセンタイルは9月から105%増の1日23,000ドルでした。中央値の62%増とは伸び方が異なり、どちらもAPIの公開定価での換算額です。",
+      "source": "https://openai.com/index/research-acceleration-jagged-frontier"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "Research acceleration: The jagged frontier",
+      "url": "https://openai.com/index/research-acceleration-jagged-frontier",
+      "source": "https://openai.com/index/research-acceleration-jagged-frontier",
+      "note": "OpenAIの社内測定に基づく報告です。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "AIに任せる作業を3種類に分け、公式報告の成功率と照らし合わせる。",
+      "source": "https://openai.com/index/research-acceleration-jagged-frontier",
+      "steps": [
+        "公式ブログを開く",
+        "task-level breakdownの成功率を確認する",
+        "監視、実行開始、コード作成を分けて比べる"
+      ],
+      "url": "https://openai.com/index/research-acceleration-jagged-frontier"
+    },
+    {
+      "action": "AI利用額を費用比較に使う前に、公開定価換算の数字と確認する。",
+      "source": "https://openai.com/index/research-acceleration-jagged-frontier",
+      "steps": [
+        "公式ブログを開く",
+        "Internal agent usageを確認する",
+        "API list pricesでの換算額と確かめる"
+      ],
+      "url": "https://openai.com/index/research-acceleration-jagged-frontier"
+    }
+  ],
+  "cause": {
+    "text": "これはOpenAIの研究組織での内部測定です。成功率は作業の種類によって異なり、同社は報告全体も研究の変化を示す「broader, though still partial, picture」と説明しています。",
+    "status": "background",
+    "source": "https://openai.com/index/research-acceleration-jagged-frontier"
+  },
+  "worries": [
+    {
+      "q": "社外の仕事にも成功率46%を当てはめていい？",
+      "a": "46%は、OpenAI社内で人が2〜4時間かけると見積もられた研究作業についての推定成功率です。同社の報告は社内測定に基づき、研究の変化を示す全体像としても部分的なものとされています。",
+      "source": "https://openai.com/index/research-acceleration-jagged-frontier",
+      "action": "自分の作業を種類別に分け、社内測定の数字をそのまま自分の成功率として扱わない。"
+    },
+    {
+      "q": "1日2,400ドルはOpenAIが実際に払った額？",
+      "a": "中央値の1日2,400ドルはAPIの公開定価で換算した利用額で、実際に社内で支払った費用ではありません。利用額には活動量や高価なモデルへの変更、モデルやエージェントの動作の変化も含まれます。",
+      "source": "https://openai.com/index/research-acceleration-jagged-frontier",
+      "action": "費用を比べるときは、2,400ドルを実際の支払額や作業量と同一視しない。"
+    },
+    {
+      "q": "学習の監視なら、AIは毎回79%成功するの？",
+      "a": "79%は学習の実行中に問題を監視する作業について示された自律エージェントの成功率です。報告は作業別の推定値を示しており、個々の作業が必ず同じ結果になるという説明ではありません。",
+      "source": "https://openai.com/index/research-acceleration-jagged-frontier",
+      "action": "任せる作業を監視・実行開始・コード作成に分け、成功率をそれぞれ確認する。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "監視とコード作成、どちらを任せる？",
+      "situation": "AIに任せる作業を選びたい",
+      "recommend": "作業の種類を分けて判断する",
+      "reason": "社内測定の自律成功率は、学習の監視が79%、推論・提供基盤のコード作成が25%でした。作業別の差を判断材料にできますが、社外の仕事に同じ成功率を当てはめる数値ではありません。",
+      "source": "https://openai.com/index/research-acceleration-jagged-frontier"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "利用額の伸びは中央値と上位層で違う",
+    "cause": "社内測定で見えた数字",
+    "steps": "作業別に成功率を見比べる",
+    "desk": "調査結果を公式ブログで確認",
+    "worries": "成功率や利用額をどう読めばいい？",
+    "guide": "どの作業をAIに任せるか"
+  },
+  "depthAt": "2026-11-19T01:30:02+00:00"
 }
