@@ -78,8 +78,9 @@
   "affiliates": [],
   "newsType": "product",
   "todayActions": [
-    "公式ニュースのブラックフライデー特集から、購入を考えている商品が対象か確認する。",
-    "店舗で買うなら11月30日まで、オンラインなら12月1日9時59分までの日程を控える。"
+    "公式ニュースから特集へ進み、購入候補がセール対象かを確かめる。",
+    "買う場所を決め、店舗とオンラインそれぞれの終了日・時刻を控える。",
+    "店舗でセール品を買う前に、お客様都合の返品・交換条件を確認する。"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -123,5 +124,99 @@
     ],
     "ar": 1.0,
     "src": "https://ai-tech-express.jp/img/disney-store-black-friday-2026-343adb53.jpg"
-  }
+  },
+  "officialDesk": [
+    {
+      "name": "『ブラックフライデー』特集",
+      "url": "https://store.disney.co.jp/special/black-friday-sale.html?ex_cmp=TDS_djp_new",
+      "source": "https://www.disney.co.jp/store/news/new/black-friday/2026_261118"
+    },
+    {
+      "name": "店舗・商品・サービスに関するよくあるご質問",
+      "url": "https://www.disney.co.jp/store/storeinfo/faq",
+      "source": "https://www.disney.co.jp/store/storeinfo/faq",
+      "phone": "0570-01-3932",
+      "hours": "平日：9:00～17:00 / 土曜日：9:00～13:00（日曜・祝日・年末年始は休業）",
+      "note": "お客様からの電話は、正確な応対のため録音されることがあります。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "公式ニュースから特集へ進み、購入候補がセール対象かを確かめる。",
+      "source": "https://www.disney.co.jp/store/news/new/black-friday/2026_261118",
+      "steps": [
+        "ウォルト・ディズニー・ジャパンの公式ニュースを開く",
+        "「『ブラックフライデー』の特集はこちら」を選ぶ",
+        "購入候補が対象か、表示価格を確認する"
+      ],
+      "url": "https://store.disney.co.jp/special/black-friday-sale.html?ex_cmp=TDS_djp_new"
+    },
+    {
+      "action": "買う場所を決め、店舗とオンラインそれぞれの終了日・時刻を控える。",
+      "source": "https://www.disney.co.jp/store/news/new/black-friday/2026_261118",
+      "steps": [
+        "店舗で買う場合は11月30日までの日程を控える",
+        "オンラインで買う場合は12月1日（火）9時59分を控える"
+      ],
+      "url": "https://www.disney.co.jp/store/news/new/black-friday/2026_261118"
+    },
+    {
+      "action": "店舗でセール品を買う前に、お客様都合の返品・交換条件を確認する。",
+      "source": "https://www.disney.co.jp/store/storeinfo/faq",
+      "steps": [
+        "店舗・商品・サービスに関するよくあるご質問を開く",
+        "「店舗で購入した商品ですが、返品をしたいのですが？」を確認する"
+      ],
+      "url": "https://www.disney.co.jp/store/storeinfo/faq"
+    }
+  ],
+  "cause": {
+    "text": "公式発表では、ブラックフライデーは年に一度のお得なセールイベントとして開催されます。限定・最新アイテムを含む商品を最大40%OFFで提供し、ホリデーシーズン向けのギフトや自分へのご褒美に向く商品もそろえるとしています。",
+    "status": "background",
+    "source": "https://www.disney.co.jp/store/news/new/black-friday/2026_261118"
+  },
+  "worries": [
+    {
+      "q": "対象商品はどれも40％引きになるの？",
+      "a": "40%OFFセールの対象として明記されているのは、『ティム・バートン ナイトメアー・ビフォア・クリスマス』やディズニーヴィランズなど、“ブラック”が似合うキャラクターのアイテムです。その他は特別価格と案内され、割引率は一律ではありません。",
+      "source": "https://www.disney.co.jp/store/news/new/black-friday/2026_261118",
+      "action": "特集ページで購入候補が対象かを確認し、表示された価格を商品ごとに見てから購入を決めましょう。"
+    },
+    {
+      "q": "セール品は買った後に返品できる？",
+      "a": "お客様理由の返品・交換は、購入翌日から3日以内かつ未開封で再販売可能な場合に限られますが、返品を受け付けない商品の例にセール（割引）商品が挙がっています。初期不良品は除く案内です。",
+      "source": "https://www.disney.co.jp/store/storeinfo/faq",
+      "action": "購入前に条件を確認し、初期不良ならレシートを用意して購入後翌日から3ヶ月以内に購入店へ相談しましょう。"
+    },
+    {
+      "q": "オンラインは最終日の何時まで買えるの？",
+      "a": "ディズニー公式オンラインストアの開催期間は、11月20日（金）10：00から12月1日（火）9：59までです。店舗の終了日は11月30日で、オンラインは最終日の朝に終了します。",
+      "source": "https://www.disney.co.jp/store/news/new/black-friday/2026_261118",
+      "action": "オンラインで買う予定なら、終了時刻の12月1日（火）9時59分を予定に控えておきましょう。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "店舗とオンライン、どちらで買うのがよさそう？",
+      "situation": "店舗で商品を見てから買いたい",
+      "recommend": "店舗での購入を選ぶ",
+      "reason": "店舗は11月30日まで、オンラインは12月1日（火）9時59分までです。店舗で買う選択は現物を見て購入する機会につながりますが、オンラインの終了時刻より早くセールが終わります。",
+      "source": "https://www.disney.co.jp/store/news/new/black-friday/2026_261118"
+    },
+    {
+      "question": "店舗とオンライン、どちらで買うのがよさそう？",
+      "situation": "オンラインで購入する予定",
+      "recommend": "オンラインでの購入を選ぶ",
+      "reason": "オンラインは12月1日（火）9時59分までで、店舗の11月30日までより遅く終了します。オンラインを選べば期限が後になりますが、商品ごとの割引率や対象かどうかは別途確認が必要です。",
+      "source": "https://www.disney.co.jp/store/news/new/black-friday/2026_261118"
+    }
+  ],
+  "depthHeadings": {
+    "cause": "年に一度のセールとして開催",
+    "steps": "対象商品と買う場所の期限を確認",
+    "desk": "特集ページと返品条件を確認する",
+    "worries": "値引きや返品の条件はどうなっている？",
+    "guide": "店舗かオンラインか、期限で選ぶ"
+  },
+  "depthAt": "2026-11-19T00:46:37+00:00"
 }

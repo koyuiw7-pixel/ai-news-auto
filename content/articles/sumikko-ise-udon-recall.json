@@ -60,8 +60,8 @@
   "affiliates": [],
   "newsType": "product",
   "todayActions": [
-    "手元の伊勢うどんの箱で、JANコード4589928203206と外箱の賞味期限を確かめる。",
-    "対象品なら、商品かレシートを用意して寺子屋のお客様相談室0120-975-316に連絡する。"
+    "手元の箱でJANコードと外箱の賞味期限を照合し、対象品か確かめる。",
+    "対象品なら商品かレシートを用意し、お客様相談室へ返金を申し出る。"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -118,5 +118,98 @@
     ],
     "ar": 1.2563,
     "src": "https://ai-tech-express.jp/img/sumikko-ise-udon-recall-eb1c5eb4.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "厚生労働省のページでは健康への危険性の程度を「CLASSⅡ」とし、分類説明ではCLASSⅠの対象となる表示事項を除く表示などを挙げています。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602791"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "株式会社寺子屋 お客様相談室",
+      "url": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036091&screenkbn=01",
+      "source": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036091&screenkbn=01",
+      "howTo": [
+        "ホーム",
+        "食料品"
+      ],
+      "phone": "0120-975-316",
+      "hours": "平日10:00-17:00",
+      "note": "商品またはレシートを確認するため、どちらかを用意してください。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "手元の箱でJANコードと外箱の賞味期限を照合し、対象品か確かめる。",
+      "source": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036091&screenkbn=01",
+      "steps": [
+        "商品名を確認する",
+        "JANコード4589928203206を確認する",
+        "外箱の賞味期限が2026年11月17日～2027年1月18日か確認する"
+      ],
+      "url": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036091&screenkbn=01"
+    },
+    {
+      "action": "対象品なら商品かレシートを用意し、お客様相談室へ返金を申し出る。",
+      "source": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036091&screenkbn=01",
+      "steps": [
+        "商品またはレシートを用意する",
+        "株式会社寺子屋 お客様相談室に連絡する",
+        "平日10:00-17:00に電話する"
+      ],
+      "url": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036091&screenkbn=01"
+    }
+  ],
+  "cause": {
+    "text": "商品に同梱されているタレの賞味期限「2026.11.4」が、外箱に記載された賞味期限より短いことが判明したためです。回収理由は食品表示法違反とされています。",
+    "status": "stated",
+    "source": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036091&screenkbn=01"
+  },
+  "worries": [
+    {
+      "q": "手元の伊勢うどんが回収対象か、何を見れば分かる？",
+      "a": "対象は商品名「すみっコぐらし堂伊勢 伊勢うどん」、JANコード4589928203206、外箱の賞味期限が2026年11月17日～2027年1月18日の商品です。販売店と販売日はすみっコぐらし堂伊勢、2026年10月2日から10月27日までとされています。",
+      "source": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036091&screenkbn=01",
+      "action": "商品名、JANコード、外箱の賞味期限を回収情報の対象条件と照らし合わせてください。"
+    },
+    {
+      "q": "CLASSⅡとあるけれど、健康への危険性はどう分類されている？",
+      "a": "厚生労働省の公開ページでは、健康への危険性の程度は「CLASSⅡ」です。分類説明では、CLASSⅠの対象となる表示事項を除く表示などがCLASSⅡとして挙げられています。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602791",
+      "action": "対象品に当たる場合は、商品またはレシートを用意して回収と返金について相談してください。",
+      "actionSource": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036091&screenkbn=01"
+    },
+    {
+      "q": "商品を捨ててしまった場合、レシートだけでも相談できる？",
+      "a": "消費者庁の回収情報では、販売店店頭または相談室への連絡時に、商品またはレシートを確認すると案内されています。レシートが残っている場合は、それを用意して相談できます。",
+      "source": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036091&screenkbn=01",
+      "action": "レシートを用意し、株式会社寺子屋 お客様相談室へ平日10:00-17:00に電話してください。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "回収の申し出に何を用意すればいい？",
+      "situation": "商品が手元にある",
+      "recommend": "商品を用意して販売店か相談室へ連絡する",
+      "reason": "回収方法として販売店店頭または相談室への連絡が案内され、商品またはレシートを確認するとされています。回収後の対応は返金です。",
+      "source": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036091&screenkbn=01"
+    },
+    {
+      "question": "回収の申し出に何を用意すればいい？",
+      "situation": "商品はなく、レシートがある",
+      "recommend": "レシートを用意して相談する",
+      "reason": "回収時に確認するものは商品またはレシートと案内されています。レシートを用意して相談室へ連絡できます。回収後の対応は返金です。",
+      "source": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036091&screenkbn=01"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "CLASSⅡは表示上の危険性区分",
+    "cause": "タレと外箱の期限が違った理由",
+    "steps": "対象品の確認から返金の申し出まで",
+    "desk": "相談室の受付時間と連絡先",
+    "worries": "対象か、返金や健康面が気になる人へ",
+    "guide": "商品かレシート、何を用意して申し出る？"
+  },
+  "depthAt": "2026-11-19T00:45:57+00:00"
 }

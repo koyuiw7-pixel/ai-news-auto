@@ -58,9 +58,9 @@
   "affiliates": [],
   "newsType": "product",
   "todayActions": [
-    "10月29日に東武百貨店池袋本店で買ったクリームの内容量と賞味期限を確認する。",
-    "対象品は食べずに、荒川区のAbbeyまたは東武百貨店池袋店へ料金着払いで郵送する。",
-    "対象か迷う場合は、Abbeyの070-8507-5956へ受付時間内に問い合わせる。"
+    "10月29日に池袋本店で買ったクリームの表示を照合し、対象品か確認する。",
+    "対象品なら食べずに、どちらかの返送先へ料金着払いで郵送する。",
+    "対象か迷う場合は、受付時間内にAbbeyか東武百貨店へ電話で確認する。"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -118,5 +118,83 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/cornish-clotted-cream-recall-f0118b15.jpg"
-  }
+  },
+  "officialDesk": [
+    {
+      "name": "Abbey合同会社 スコーン専門店Abbey",
+      "url": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036081&screenkbn=01",
+      "source": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036081&screenkbn=01",
+      "howTo": [
+        "ホーム",
+        "食料品"
+      ],
+      "phone": "070-8507-5956",
+      "hours": "午前11時～午後6時（日・月・火を除く）"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "10月29日に池袋本店で買ったクリームの表示を照合し、対象品か確認する。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602803",
+      "steps": [
+        "商品名が「クローテッドクリーム」か見る",
+        "内容量が28gか確かめる",
+        "賞味期限が2029年11月9日か見る"
+      ],
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602803"
+    },
+    {
+      "action": "対象品なら食べずに、どちらかの返送先へ料金着払いで郵送する。",
+      "source": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036081&screenkbn=01",
+      "steps": [
+        "Abbey合同会社または東武百貨店池袋店を選ぶ",
+        "対象品を料金着払いで郵送する"
+      ],
+      "url": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036081&screenkbn=01"
+    },
+    {
+      "action": "対象か迷う場合は、受付時間内にAbbeyか東武百貨店へ電話で確認する。",
+      "source": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036081&screenkbn=01",
+      "steps": [
+        "Abbeyは070-8507-5956へ電話する",
+        "午前11時～午後6時（日・月・火を除く）に連絡する",
+        "東武百貨店は03-5951-5131へ電話する",
+        "午前10時～午後6時に連絡する"
+      ],
+      "url": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036081&screenkbn=01"
+    }
+  ],
+  "cause": {
+    "text": "食品表示法違反にあたり、2026年10月29日に販売した商品の一部に、賞味期限を誤って印字したことが判明したため自主回収となりました。",
+    "status": "stated",
+    "source": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036081&screenkbn=01"
+  },
+  "worries": [
+    {
+      "q": "自分のクリームが回収対象か、何を照らし合わせればいい？",
+      "a": "対象商品は商品名がクローテッドクリーム、内容量28g、賞味期限が2026年11月9日（正しい日付）または2029年11月9日（誤表示）です。JANコード、製造番号、ロット番号はありません。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602803",
+      "action": "購入日・販売場所と商品名、内容量、賞味期限を照合し、対象なら食べずに料金着払いで返送してください。",
+      "actionSource": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036081&screenkbn=01"
+    },
+    {
+      "q": "誤った期限まで食べられると思って食べても大丈夫？",
+      "a": "発表時点で健康被害の申し出はありませんが、本来の賞味期限を超えて食べた場合には健康被害が生じるおそれがあり、腹痛、嘔吐、下痢が想定されています。",
+      "source": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036081&screenkbn=01",
+      "action": "対象の表示がある商品は食べず、料金着払いでAbbeyか東武百貨店池袋店へ返送してください。"
+    },
+    {
+      "q": "返送するときの送料や回収後の対応はどうなる？",
+      "a": "対象品は料金着払いでAbbey合同会社または東武百貨店池袋店へ郵送できます。回収後の対応は返金です。",
+      "source": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036081&screenkbn=01",
+      "action": "対象品をいずれかの指定先へ料金着払いで郵送し、返金対応を受けてください。"
+    }
+  ],
+  "depthHeadings": {
+    "cause": "賞味期限の誤印字が回収の理由",
+    "steps": "対象表示の確認と返送方法",
+    "desk": "返送や確認の連絡先",
+    "worries": "対象品や食べた場合の心配"
+  },
+  "depthAt": "2026-11-19T00:47:06+00:00"
 }

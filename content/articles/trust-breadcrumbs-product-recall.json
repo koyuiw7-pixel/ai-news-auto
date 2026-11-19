@@ -59,8 +59,8 @@
   "affiliates": [],
   "newsType": "product",
   "todayActions": [
-    "手元の「トラスト 粗挽き生パン粉120g」の賞味期限とJANコードを確認する。",
-    "対象の商品は使わず、着払いで送るか店舗へ持ち込む方法を確認する。"
+    "袋の賞味期限とJANコードを照合し、対象商品の条件に合うか確かめる。",
+    "対象商品なら、着払いで送るか店舗へ持ち込む方法で回収を依頼する。"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -133,5 +133,101 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/trust-breadcrumbs-product-recall-d7a3f55f.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "厚生労働省の情報では危険性の程度は「CLASSⅡ」。同ページは、直ちに分類を判断できない場合もCLASSⅡに分類し、その後の情報を踏まえて変更すると説明しています。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602884"
+    },
+    {
+      "text": "旭トラストフーズへメールする場合、件名は「製品に関する事」などから選んで記入します。内容によって回答に時間がかかり、土・日・祝日などの問い合わせは翌営業日以降の回答です。",
+      "source": "https://www.asahi-trustfoods.co.jp/company/contact.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "旭トラストフーズ株式会社 本社・岡山工場",
+      "url": "https://www.asahi-trustfoods.co.jp/company/contact.html",
+      "source": "https://www.asahi-trustfoods.co.jp/company/contact.html",
+      "howTo": [
+        "旭トラストフーズ株式会社",
+        "お問い合わせ"
+      ],
+      "phone": "086-279-1135",
+      "hours": "平日 9:00～17:00",
+      "note": "メールの件名は「製品に関する事」などから選びます。内容によっては回答に時間がかかり、土・日・祝日・休業日の問い合わせは翌営業日以降順次回答です。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "袋の賞味期限とJANコードを照合し、対象商品の条件に合うか確かめる。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602884",
+      "steps": [
+        "商品名が「トラスト 粗挽き生パン粉120g」か確認",
+        "JANコード4901592885869を確認",
+        "賞味期限2027年1月17日を確認"
+      ],
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602884"
+    },
+    {
+      "action": "対象商品なら、着払いで送るか店舗へ持ち込む方法で回収を依頼する。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602884",
+      "steps": [
+        "対象商品の条件に合うか照合する",
+        "着払いによる送付または店舗への持ち込みを選ぶ",
+        "送付先などは旭トラストフーズへ確認する"
+      ],
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602884"
+    }
+  ],
+  "cause": {
+    "text": "今回の回収理由は、製品内でカビが発生する可能性があるためです。厚生労働省は、食品衛生法第20条に該当するおそれがあるとしています。",
+    "status": "stated",
+    "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602884"
+  },
+  "worries": [
+    {
+      "q": "この商品で健康被害は確認されている？",
+      "a": "厚生労働省の公開回収情報では、健康被害の発生は確認されていないとしています。危険性の程度はCLASSⅡに分類されています。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602884",
+      "action": "手元の商品が対象条件に合うか袋のJANコードと賞味期限を確かめ、対象なら回収を依頼してください。"
+    },
+    {
+      "q": "回収に出した後、返金されるの？",
+      "a": "回収後の対応として、後日、商品代相当品を送ると案内されています。現金での返金ではなく、商品代相当品を送付する内容です。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602884",
+      "action": "対象商品を回収に出し、送付先などの詳細は旭トラストフーズの公式窓口で確認してください。"
+    },
+    {
+      "q": "商品名が同じなら対象と考えていい？",
+      "a": "対象として示されているのは、商品名「トラスト 粗挽き生パン粉120g」、JANコード4901592885869、賞味期限2027年1月17日の商品です。商品名だけでなく、番号と期限も確認できます。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602884",
+      "action": "袋の表示で商品名、JANコード4901592885869、賞味期限2027年1月17日の3点を照合してください。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "この袋は回収に出すべき？",
+      "situation": "商品名・JANコード・賞味期限がすべて一致する",
+      "recommend": "回収を依頼する",
+      "reason": "対象商品は「トラスト 粗挽き生パン粉120g」、JANコード4901592885869、賞味期限2027年1月17日です。回収方法は着払いによる送付または店舗への持ち込みです。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602884"
+    },
+    {
+      "question": "この袋は回収に出すべき？",
+      "situation": "商品名・JANコード・賞味期限のいずれかが一致しない",
+      "recommend": "今回の対象条件には当たらない",
+      "reason": "公表された対象条件は商品名、JANコード4901592885869、賞味期限2027年1月17日です。いずれかが異なる商品は、この回収情報に示された対象条件とは一致しません。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602884"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "CLASSⅡの分類と問い合わせ時の注意点",
+    "cause": "カビ発生の可能性を理由に回収",
+    "steps": "袋の表示を照合して回収を依頼",
+    "desk": "回収方法を確認できる連絡先",
+    "worries": "健康被害や回収後の対応は？",
+    "guide": "手元の商品を回収に出すかの判断"
+  },
+  "depthAt": "2026-11-19T00:45:29+00:00"
 }
