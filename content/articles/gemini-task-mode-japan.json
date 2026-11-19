@@ -94,9 +94,8 @@
     }
   ],
   "todayActions": [
-    "Geminiアプリのホーム画面で、チャットからタスクに切り替えられるか確かめる。",
-    "買い物を依頼する場合は、Geminiで設定できる支出の上限と購入前の確認内容を確かめる。",
-    "予定を依頼した場合は、Geminiの作業結果とGoogle Calendarへの登録内容を確かめる。"
+    "Geminiの買い物機能が使える場合、依頼前に支出上限と購入前の確認方法を決める",
+    "使わなくなった連携アプリを切断し、必要ならGeminiのチャット履歴を削除する"
   ],
   "qualityBar": {
     "score": 7,
@@ -160,5 +159,81 @@
     ],
     "ar": 1.5,
     "src": "https://ai-tech-express.jp/img/gemini-task-mode-japan-1f145e02.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "Googleによると、Geminiでの買い物のレシートと追跡情報はGoogle Walletに届きます。購入後の記録を確認する場所として、Google Walletも想定されています。",
+      "source": "https://blog.google/innovation-and-ai/products/gemini-app/tasks-in-gemini-free-new-features/"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "Geminiの買い物機能が使える場合、依頼前に支出上限と購入前の確認方法を決める",
+      "source": "https://blog.google/innovation-and-ai/products/gemini-app/tasks-in-gemini-free-new-features/",
+      "steps": [
+        "Geminiに買い物を依頼する",
+        "事前に支出の上限を設定する",
+        "「Buy」の前の確認または事前許可を確認する"
+      ],
+      "url": "https://blog.google/innovation-and-ai/products/gemini-app/tasks-in-gemini-free-new-features/"
+    },
+    {
+      "action": "使わなくなった連携アプリを切断し、必要ならGeminiのチャット履歴を削除する",
+      "source": "https://blog.google/innovation-and-ai/products/gemini-app/tasks-in-gemini-free-new-features/",
+      "steps": [
+        "Geminiの設定とツールを開く",
+        "Googleやサードパーティーアプリを切断する",
+        "チャット履歴を削除する"
+      ],
+      "url": "https://blog.google/innovation-and-ai/products/gemini-app/tasks-in-gemini-free-new-features/"
+    }
+  ],
+  "cause": {
+    "text": "Googleは、授業や会議、子どもの送り迎えなどで用事が積み重なる人の時間とお金を節約することを目標に、この更新を進めたと説明しています。",
+    "status": "background",
+    "source": "https://blog.google/innovation-and-ai/products/gemini-app/tasks-in-gemini-free-new-features/"
+  },
+  "worries": [
+    {
+      "q": "Geminiが確認なしで購入まで進めることはある？",
+      "a": "Googleは、購入などの重要な操作の前に確認または事前許可を求める設計だと説明しています。一方、日常的な操作は「Always allow」に設定できます。",
+      "source": "https://blog.google/innovation-and-ai/products/gemini-app/tasks-in-gemini-free-new-features/",
+      "action": "買い物を任せる前に支出上限を設定し、「Buy」の前に確認を求める設定を使う。"
+    },
+    {
+      "q": "カード番号をGeminiに渡さずに買える？",
+      "a": "Googleは、対応カードでデジタルトークンを使い、購入を保護すると説明しています。American Expressへの対応は今後の予定です。",
+      "source": "https://blog.google/innovation-and-ai/products/gemini-app/tasks-in-gemini-free-new-features/",
+      "action": "Geminiで買い物をする前に、使うカードが対応対象かを確認し、支出上限を設定する。"
+    },
+    {
+      "q": "タスクに渡したアカウント情報は他人と共有される？",
+      "a": "Googleによると、タスクは利用者のアカウント専用で、他の利用者とは共有されないハードウェア分離の仮想マシンで処理されます。さらに、仮想マシンは隔離された環境で動きます。",
+      "source": "https://blog.google/innovation-and-ai/products/gemini-app/tasks-in-gemini-free-new-features/",
+      "action": "使わなくなったGoogleやサードパーティーアプリを切断し、必要ならチャット履歴を削除する。"
+    },
+    {
+      "q": "依頼した作業が途中で止まったり、間違ったりしない？",
+      "a": "Googleは、間違いを減らすために広くテストしたものの、すべてをなくしたわけではなく、タスクが完了しなかったり、意図と違う結果になったりする場合があると説明しています。",
+      "source": "https://blog.google/innovation-and-ai/products/gemini-app/tasks-in-gemini-free-new-features/",
+      "action": "依頼した作業の完了結果を確認し、予約や購入が意図どおりか確かめる。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "買い物をGeminiに任せてもいい？",
+      "situation": "支出上限と購入前確認を使える",
+      "recommend": "上限を決め、購入前確認を使う",
+      "reason": "Googleは、購入前に確認または事前許可を求め、「Buy」の前にも確認する設計だと説明しています。支出上限も設定できますが、タスクの誤りをすべてなくしたとはしていません。",
+      "source": "https://blog.google/innovation-and-ai/products/gemini-app/tasks-in-gemini-free-new-features/"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "買い物の記録はGoogle Walletへ",
+    "cause": "日々の用事を減らすための更新",
+    "steps": "上限と購入前の確認を決める",
+    "worries": "購入や個人データを任せて大丈夫？",
+    "guide": "買い物を任せる前に決めたいこと"
+  },
+  "depthAt": "2026-11-19T02:41:58+00:00"
 }

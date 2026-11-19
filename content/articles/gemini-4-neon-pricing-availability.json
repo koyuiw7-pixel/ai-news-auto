@@ -24,7 +24,7 @@
   "threadsStyle": 3,
   "writingVoice": "honest",
   "lede": "「Gemini 4 Neon」は、複雑な資料分析やプログラム作成に対応するGoogleの新しいAIモデルです。11月18日から順次提供が始まり、Geminiアプリでは有料のPro・Ultra契約者が対象です。日本でのNeonの提供時期はまだ発表されていません。",
-  "description": "Googleの新AIモデル「Gemini 4 Neon」は、GeminiアプリのPro・Ultra契約者などに順次提供されます。日本での提供状況、月額料金、API料金、Carbonとの性能・費用の違いを整理します。",
+  "description": "Googleの新AIモデル「Gemini 4 Neon」は、GeminiアプリのPro・Ultra契約者などに順次提供されます。日本での提供状況と月額料金に加え、開発者向けAPIの料金、ほかの提供先、Carbonとの性能・費用の違いを整理します。",
   "keywords": [
     "Gemini 4 Neon",
     "Gemini 4 Neon 料金",
@@ -45,9 +45,9 @@
     "API"
   ],
   "highlights": [
-    "Gemini 4 Neonは、複雑な分析や開発向けの新モデルとして順次提供される",
-    "一度に最大100万トークンを扱い、表計算やPDFなどをまとめて分析できる",
-    "Googleによると、標準設定の課題当たりの費用はCarbonより32％低い"
+    "Gemini 4 Neonは、GeminiアプリのPro・Ultra契約者などを対象に順次提供される",
+    "Gemini APIの料金は入力100万トークン当たり3ドル、出力は同15ドルと発表された",
+    "一度に最大100万トークンを扱え、標準設定の課題当たりの費用はCarbonより32％低い"
   ],
   "timetable": [],
   "verdict": {
@@ -66,8 +66,8 @@
       "Neonは表計算やPDFを一緒に扱えるため、複数資料を使う分析の用途を検討できます。"
     ]
   },
-  "body": "Geminiアプリでは、Google AI ProとUltraの契約者がNeonを利用できます。対象の契約者には、11月18日から順次提供されます。\n\nNeonは、資料の分析やプログラム作成など、複数の手順が必要な仕事に使うAIモデルです。Google公式ブログによると、同じGemini 4のCarbonとHydrogenの間で、能力と効率の両立を狙っています。\n\nGeminiアプリ自体は日本で使えます。日本語にも対応しています。（Google公式ヘルプ、当サイトの確認：11月3日）\n\n## 日本向けProの料金は月2,900円\n\nGeminiアプリでNeonを利用できるのは、ProとUltraの契約者です。日本向けのGoogle AI Proは、月払いで2,900円です。（Google公式料金ページ、11月16日確認）\n\n提供は段階的に進むため、対象プランでも表示される時期は一律ではありません。\n\nNeonは表計算やPDF、グラフ、音声、動画をまとめて扱えます。一度に扱える量は最大100万トークンです。トークンは、AIが文字などを数える単位です。\n\nGoogleは用途として、複数の資料を基にした報告書や要約を挙げています。GmailやGoogle Docsの関連情報を取り込むこともできます。\n\n### Gemini（Google AI プラン）のプランと料金（公式の料金と円の目安）\n\n| プラン | 料金（公式） | 円の目安 | 主な上限・違い |\n| --- | --- | --- | --- |\n| 無料 | 0円/月 |  | Gmail、Google ドライブ、Google フォト共通で利用できる 15 GB のクラウド ストレージ |\n| Google AI Plus | 725円/月（月払い） |  | 無料版の 2 倍の使用量上限、Gmail、Google ドライブ、Google フォト共通で利用できる 400 GB のクラウド ストレージ |\n| Google AI Pro | 2,900円/月（月払い） |  | 無料版の 4 倍の使用量上限、Gmail、Google ドライブ、Google フォト共通で利用できる 5 TB のクラウド ストレージ |\n| Google AI Ultra（AI Pro の 5 倍） | 14,500円/月（月払い） |  | AI Pro の 5 倍の使用量上限 |\n| Google AI Ultra（AI Pro の 20 倍） | 32,000円/月（月払い） |  | AI Pro の 20 倍の使用量上限 |\n| Gemini Enterprise Business エディション | $21/人・月から | 約3,680円（税込みの目安） | ユーザー数: 最大 300 人 |\n| Gemini Enterprise Standard / Plus エディション | $30/人・月から | 約5,260円（税込みの目安） |  |\n\n出典：Gemini（Google AI プラン）の公式ページ（https://gemini.google/jp/subscriptions/?hl=ja）／確認日：2026-11-16\n円は1ドル=159.30円（2026-11-17、ECB参照レート（ユーロ経由で計算））で計算した目安です。ドルのプランは消費税10%を足しています。実際の請求額は為替とカード会社の手数料で変わります。\n\n## Carbonより課題当たりの費用が32％低い\n\nGoogleによると、Neonには考える深さを調整する4段階の設定があります。標準の「high」は、性能テストでCarbonより課題当たりの費用が32％低かったとしています。\n\nより深く考える「xhigh」では、Artificial Analysis Intelligence Indexで61点でした。Googleは、比較できるモデルを上回り、全体では3位だったと説明しています。\n\n開発向けのテストでは、Artificial Analysis Coding Agent Indexで58.6点を取り、全体1位でした。AIが複数のファイルをまたいで不具合を調べ、必要な箇所を修正する用途を想定しています。\n\n安全面では、AIが読み込む文書などに悪意ある指示を混ぜる攻撃への耐性も測定しました。Googleによると、Gray Swanのテストでは最高設定とリアルタイムの保護策を組み合わせ、攻撃成功率は0.0％でした。これは、そのテスト条件での結果です。\n\n## サイソクの見方：アプリ利用か開発用途かで費用を分けて見る\n\nGeminiアプリで資料を分析したいPro・Ultra契約者は、Neonの利用方法を公式ヘルプで確認してください。APIで組み込む開発者なら、月額プランとは別の従量料金を基に費用を見積もる必要があります。\n\nCarbonとの費用差は、Googleが示した性能テストの課題当たりの数字です。実際の用途を選ぶ際は、標準のhigh設定で測った比較である点も押さえておくとよいでしょう。\n\n## まだ分からないこと\n\n- Gemini 4 Neonの日本での提供時期は、まだ発表されていません。\n\n## Gemini APIと法人向けの提供先\n\n開発者向けには、Google AI StudioとAndroid StudioのGemini API有料枠で順次提供されます。APIは、アプリからAIを呼び出す仕組みです。\n\nAPIの料金は、トークン数に応じた従量課金です。\n\n- 入力：100万トークン当たり3ドル\n- 保存済みの入力：100万トークン当たり0.15ドル\n- 出力：100万トークン当たり15ドル\n\n保存済みの入力には、通常の入力料金に対して95％の割引が適用されます。\n\n法人向けには、Gemini for businessのAPI経由でも提供されます。Google Antigravityでは、有料のPro・Ultra契約者が利用対象です。\n\nGemini API自体は日本でも利用できます。（Google公式の対応地域一覧、当サイトの確認：11月3日）\n\n出典：[Google公式ブログ](https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/)",
-  "easy": "## ひとことで言うと\n\nGemini 4 Neonは、資料の分析やプログラム作成に使う新しいAIです。Geminiアプリでは、有料プランの契約者に順次提供されます。\n\n## 資料をまとめて読み、仕事に使える形に\n\n表計算、PDF、画像などをまとめて読み、報告書や要約を作れます。複数手順の作業やプログラムの修正にも対応します。\n\nGeminiアプリはGoogle AI ProとUltraの契約者が対象です。日本向けProは月払いで2,900円です。\n\nGeminiアプリは日本で使えますが、Neonの日本での提供時期はまだ発表されていません。",
+  "body": "## 続報（11月19日）：Gemini APIの料金と提供先が明らかに\n\nGoogle Japan Blogは11月18日、Gemini 4 NeonのGemini API料金や、Geminiアプリ以外の提供先を発表しました。APIの料金は、入力100万トークン当たり3米ドル、キャッシュされた入力は同0.15米ドル、出力は同15米ドルです。これは開発者向けの料金で、Geminiアプリを使うGoogle AI Proなどの月額料金とは別です。\n\n提供先には、Google AI StudioのGemini APIと、Gemini for business、Google Antigravityも含まれます。Gemini for businessではAPIとモデル選択メニューから利用できます。Antigravityでは、有料のGoogle AI ProとUltraのユーザーが対象です。いずれも11月18日から順次提供を始めるとしています。\n\nGoogleは性能評価の結果も公表しました。既報のArtificial Analysis Intelligence Indexでの総合3位に加え、Vals Indexでは70.9％で2位だったとしています。また、Legal Research BenchとTax Agent Benchではそれぞれ1位だったと説明しています。\n\nサイバーセキュリティ向けのNeonについては、Fairwind Programに参加するセキュリティ担当者に対し、発表から数日以内に順次提供を始める予定です。\n\n出典：[Google Japan Blog「Gemini 4 Neon を発表」](https://blog.google/intl/ja-jp/company-news/technology/introducing-gemini-4-neon/)（2026年11月18日公開）\n\n出典: [Google Japan Blog「Gemini 4 Neon を発表」](https://blog.google/intl/ja-jp/company-news/technology/introducing-gemini-4-neon/)\n\nGeminiアプリでは、Google AI ProとUltraの契約者がNeonを利用できます。対象の契約者には、11月18日から順次提供されます。\n\nNeonは、資料の分析やプログラム作成など、複数の手順が必要な仕事に使うAIモデルです。Google公式ブログによると、同じGemini 4のCarbonとHydrogenの間で、能力と効率の両立を狙っています。\n\nGeminiアプリ自体は日本で使えます。日本語にも対応しています。（Google公式ヘルプ、当サイトの確認：11月3日）\n\n## 日本向けProの料金は月2,900円\n\nGeminiアプリでNeonを利用できるのは、ProとUltraの契約者です。日本向けのGoogle AI Proは、月払いで2,900円です。（Google公式料金ページ、11月16日確認）\n\n提供は段階的に進むため、対象プランでも表示される時期は一律ではありません。\n\nNeonは表計算やPDF、グラフ、音声、動画をまとめて扱えます。一度に扱える量は最大100万トークンです。トークンは、AIが文字などを数える単位です。\n\nGoogleは用途として、複数の資料を基にした報告書や要約を挙げています。GmailやGoogle Docsの関連情報を取り込むこともできます。\n\n### Gemini（Google AI プラン）のプランと料金（公式の料金と円の目安）\n\n| プラン | 料金（公式） | 円の目安 | 主な上限・違い |\n| --- | --- | --- | --- |\n| 無料 | 0円/月 |  | Gmail、Google ドライブ、Google フォト共通で利用できる 15 GB のクラウド ストレージ |\n| Google AI Plus | 725円/月（月払い） |  | 無料版の 2 倍の使用量上限、Gmail、Google ドライブ、Google フォト共通で利用できる 400 GB のクラウド ストレージ |\n| Google AI Pro | 2,900円/月（月払い） |  | 無料版の 4 倍の使用量上限、Gmail、Google ドライブ、Google フォト共通で利用できる 5 TB のクラウド ストレージ |\n| Google AI Ultra（AI Pro の 5 倍） | 14,500円/月（月払い） |  | AI Pro の 5 倍の使用量上限 |\n| Google AI Ultra（AI Pro の 20 倍） | 32,000円/月（月払い） |  | AI Pro の 20 倍の使用量上限 |\n| Gemini Enterprise Business エディション | $21/人・月から | 約3,680円（税込みの目安） | ユーザー数: 最大 300 人 |\n| Gemini Enterprise Standard / Plus エディション | $30/人・月から | 約5,260円（税込みの目安） |  |\n\n出典：Gemini（Google AI プラン）の公式ページ（https://gemini.google/jp/subscriptions/?hl=ja）／確認日：2026-11-16\n円は1ドル=159.30円（2026-11-17、ECB参照レート（ユーロ経由で計算））で計算した目安です。ドルのプランは消費税10%を足しています。実際の請求額は為替とカード会社の手数料で変わります。\n\n## Carbonより課題当たりの費用が32％低い\n\nGoogleによると、Neonには考える深さを調整する4段階の設定があります。標準の「high」は、性能テストでCarbonより課題当たりの費用が32％低かったとしています。\n\nより深く考える「xhigh」では、Artificial Analysis Intelligence Indexで61点でした。Googleは、比較できるモデルを上回り、全体では3位だったと説明しています。\n\n開発向けのテストでは、Artificial Analysis Coding Agent Indexで58.6点を取り、全体1位でした。AIが複数のファイルをまたいで不具合を調べ、必要な箇所を修正する用途を想定しています。\n\n安全面では、AIが読み込む文書などに悪意ある指示を混ぜる攻撃への耐性も測定しました。Googleによると、Gray Swanのテストでは最高設定とリアルタイムの保護策を組み合わせ、攻撃成功率は0.0％でした。これは、そのテスト条件での結果です。\n\n## サイソクの見方：アプリ利用か開発用途かで費用を分けて見る\n\nGeminiアプリで資料を分析したいPro・Ultra契約者は、Neonの利用方法を公式ヘルプで確認してください。APIで組み込む開発者なら、月額プランとは別の従量料金を基に費用を見積もる必要があります。\n\nCarbonとの費用差は、Googleが示した性能テストの課題当たりの数字です。実際の用途を選ぶ際は、標準のhigh設定で測った比較である点も押さえておくとよいでしょう。\n\n## まだ分からないこと\n\n- Gemini 4 Neonの日本での提供時期は、まだ発表されていません。\n\n## Gemini APIと法人向けの提供先\n\n開発者向けには、Google AI StudioとAndroid StudioのGemini API有料枠で順次提供されます。APIは、アプリからAIを呼び出す仕組みです。\n\nAPIの料金は、トークン数に応じた従量課金です。\n\n- 入力：100万トークン当たり3ドル\n- 保存済みの入力：100万トークン当たり0.15ドル\n- 出力：100万トークン当たり15ドル\n\n保存済みの入力には、通常の入力料金に対して95％の割引が適用されます。\n\n法人向けには、Gemini for businessのAPI経由でも提供されます。Google Antigravityでは、有料のPro・Ultra契約者が利用対象です。\n\nGemini API自体は日本でも利用できます。（Google公式の対応地域一覧、当サイトの確認：11月3日）\n\n出典：[Google公式ブログ](https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/)",
+  "easy": "## ひとことで言うと\n\nGemini 4 Neonは、資料の分析やプログラム作成に使う新しいAIです。Geminiアプリでは、有料プランの契約者に順次提供されます。\n\n## 続報（11月19日）\n\nGoogleは、アプリ以外でもNeonを順次使えるようにすると発表しました。ソフトを作る人向けには、扱った情報の量に応じた料金も示しました。また、仕事に関する能力を調べるテストで2位だったとしています。\n\n## 資料をまとめて読み、仕事に使える形に\n\n表計算、PDF、画像などをまとめて読み、報告書や要約を作れます。複数手順の作業やプログラムの修正にも対応します。\n\nGeminiアプリはGoogle AI ProとUltraの契約者が対象です。日本向けProは月払いで2,900円です。\n\nGeminiアプリは日本で使えますが、Neonの日本での提供時期はまだ発表されていません。",
   "channel": "Google公式ブログ",
   "channelId": "",
   "channelSlug": "google-blog-all",
@@ -247,5 +247,27 @@
     "APIで使う開発者は、入力・保存済み入力・出力を分けて費用を見積もる"
   ],
   "depthAt": "2026-11-18T21:57:34+00:00",
-  "sectionsPolishedAt": "2026-11-18T22:59:22+00:00"
+  "sectionsPolishedAt": "2026-11-18T22:59:22+00:00",
+  "sources": [
+    {
+      "title": "Introducing Gemini 4 Neon",
+      "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/",
+      "source": "Google公式ブログ"
+    },
+    {
+      "title": "Gemini 4 Neon を発表",
+      "url": "https://blog.google/intl/ja-jp/company-news/technology/introducing-gemini-4-neon/",
+      "source": "Google Japan Blog"
+    }
+  ],
+  "updatedAt": "2026-11-19T02:40:19.968282+00:00",
+  "updates": [
+    {
+      "at": "2026-11-19T02:40:19.968282+00:00",
+      "kind": "followup",
+      "title": "Gemini APIの料金と提供先が明らかに",
+      "sourceUrl": "https://blog.google/intl/ja-jp/company-news/technology/introducing-gemini-4-neon/",
+      "sourceName": "Google Japan Blog"
+    }
+  ]
 }
