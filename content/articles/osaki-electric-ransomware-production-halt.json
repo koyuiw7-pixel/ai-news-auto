@@ -73,9 +73,8 @@
     }
   ],
   "todayActions": [
-    "大崎電気工業の取引先は、事業部または資材部門に納期への影響を問い合わせる",
-    "同社を名乗る不審なメール・電話は対応せず、社内で注意を共有する",
-    "最新の状況は、同社の「お知らせ一覧」で続報を確認する"
+    "発注済みの取引先は、事業部または資材部門に自社分の納期を確認する",
+    "大崎電気工業の「お知らせ一覧」で、生産・出荷停止に関する続報を確認する"
   ],
   "publicInterest": "breach",
   "incident": {
@@ -99,7 +98,8 @@
       6
     ],
     "repaired": false,
-    "repairLater": true
+    "repairLater": true,
+    "laterTriedAt": "2026-11-19T03:56:52+00:00"
   },
   "qualityScore": 100,
   "sourcePublishedAt": "2026-11-17T15:00:00+00:00",
@@ -130,6 +130,96 @@
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/osaki-electric-ransomware-production-halt-figure-2ab537b3.jpg"
   },
+  "insight": [
+    {
+      "text": "生産関連システムを止めたのは、ランサムウェアによる被害の拡大を防ぐためと説明されています。",
+      "source": "https://www.osaki.co.jp/ja/notice/20261118.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "当社事業部または資材部門",
+      "url": "https://www.osaki.co.jp/ja/notice/20261118.html",
+      "source": "https://www.osaki.co.jp/ja/notice/20261118.html",
+      "note": "お客様各社へは、生産・出荷停止について個別に説明しています。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "発注済みの取引先は、事業部または資材部門に自社分の納期を確認する",
+      "source": "https://www.osaki.co.jp/ja/notice/20261118.html",
+      "steps": [
+        "お客様・お取引先様の問い合わせ先を確認",
+        "当社事業部または資材部門へお問い合わせ"
+      ],
+      "url": "https://www.osaki.co.jp/ja/notice/20261118.html"
+    },
+    {
+      "action": "大崎電気工業の「お知らせ一覧」で、生産・出荷停止に関する続報を確認する",
+      "source": "https://www.osaki.co.jp/ja/notice/20261118.html",
+      "steps": [
+        "大崎電気工業株式会社のサイトを開く",
+        "「お知らせ一覧」を開く",
+        "生産停止に関するお知らせを確認する"
+      ],
+      "url": "https://www.osaki.co.jp/ja/notice.html"
+    }
+  ],
+  "cause": {
+    "text": "ランサムウェアによるサイバー攻撃を受けたことを確認し、11月17日10時35分ごろにサーバー内データの暗号化を確認しました。同日正午以降、外部ネットワークとの接続を遮断し、外部の専門機関と調査を進めています。",
+    "status": "stated",
+    "source": "https://www.osaki.co.jp/ja/notice/20261118.html"
+  },
+  "worries": [
+    {
+      "q": "発注したスマートメーターの納期はいつ分かりますか？",
+      "a": "生産・出荷の再開時期は現時点で未定です。お客様各社には停止について個別に説明しており、今後の影響は調査の進展を踏まえ、確認できた時点で知らせるとしています。",
+      "source": "https://www.osaki.co.jp/ja/notice/20261118.html",
+      "action": "発注済みの取引先は、事業部または資材部門に自社分の納期を確認してください。"
+    },
+    {
+      "q": "取引先の情報が外部に流出した可能性はありますか？",
+      "a": "データが外部に流出した可能性も含め、外部の専門機関と調査を進めています。お客様への今後の影響は、調査の進展を踏まえて確認できた時点で知らせるとしています。",
+      "source": "https://www.osaki.co.jp/ja/notice/20261118.html",
+      "action": "大崎電気工業の「お知らせ一覧」で、調査結果や今後の影響に関する続報を確認してください。"
+    },
+    {
+      "q": "同社を名乗る不審なメールや電話にはどう対応すればいい？",
+      "a": "大崎電気工業は、同社を名乗る不審なメール・電話に注意するよう呼びかけています。警察庁は、メール等の送信元名称やメールアドレスだけで真偽を判断するのは困難と説明しています。",
+      "source": "https://www.osaki.co.jp/ja/notice/20261118.html",
+      "action": "不審なメールのリンクは開かず、取引先窓口の事業部または資材部門に確認してください。",
+      "actionSource": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "actionGeneral": true
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "納期の見通しを今すぐ確認したほうがいい？",
+      "situation": "発注済みで納期への影響が気になる",
+      "recommend": "事業部または資材部門に確認する",
+      "reason": "再開時期は現時点で未定で、お客様各社には停止について個別に説明しています。問い合わせは案内されていますが、連絡しても再開日が確定しているとは限りません。",
+      "source": "https://www.osaki.co.jp/ja/notice/20261118.html"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "生産システム停止は被害拡大を防ぐため",
+    "cause": "暗号化確認後に外部接続を遮断",
+    "steps": "納期と続報を確かめるには",
+    "desk": "取引先は事業部か資材部門へ",
+    "worries": "納期や情報流出、怪しい連絡が心配",
+    "guide": "納期確認を待つか連絡するか"
+  },
+  "depthAt": "2026-11-19T03:56:09+00:00",
+  "updatedAt": "2026-11-19T03:56:09+00:00",
+  "updates": [
+    {
+      "at": "2026-11-19T03:56:09+00:00",
+      "kind": "facts",
+      "title": "公式の資料をもとに、「なるほどの要点」・「公式の窓口」・「今日やること」・「理由」・「よくある不安」・「判断の目安」を追記しました",
+      "sourceUrl": "https://www.osaki.co.jp/ja/notice/20261118.html",
+      "sourceName": "大崎電気工業"
+    }
+  ],
   "gptReview": {
     "reviewedBy": "gpt-6.1-terra",
     "reviewedAt": "2026-11-19T03:56:25+00:00",
