@@ -59,9 +59,8 @@
   "affiliates": [],
   "newsType": "product",
   "todayActions": [
-    "相馬パン「生マシュマロ」の袋で、JANコードと賞味期限が回収対象に当てはまるか確かめる。",
-    "対象商品は食べずに、販売店舗での回収方法を確かめる。",
-    "送付先の案内が必要な場合は、相馬パンの053-437-0181に問い合わせる。"
+    "袋のJANコードと賞味期限を、消費者庁の対象条件に照らして確認する。",
+    "対象商品の送付を希望する人は、相馬パンに電話して送付先を確認する。"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -119,5 +118,95 @@
     ],
     "ar": 1.3889,
     "src": "https://ai-tech-express.jp/img/soma-pan-marshmallow-recall-1099ff80.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "厚生労働省のページでは、危険性の分類を直ちに判断できない場合はCLASSⅡとし、その後の情報を踏まえて適切な分類に変更すると説明しています。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602930"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "有限会社相馬パン",
+      "url": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036156&screenkbn=01",
+      "source": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036156&screenkbn=01",
+      "howTo": [
+        "ホーム",
+        "食料品"
+      ],
+      "phone": "053-437-0181",
+      "note": "販売店舗での回収のほか、電話で問い合わせると対象商品の送付先を案内します。回収後は返金対応です。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "袋のJANコードと賞味期限を、消費者庁の対象条件に照らして確認する。",
+      "source": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036156&screenkbn=01",
+      "steps": [
+        "袋に印字されたJANコードを確認する",
+        "賞味期限を確認する",
+        "商品情報詳細の対象条件と照合する"
+      ],
+      "url": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036156&screenkbn=01"
+    },
+    {
+      "action": "対象商品の送付を希望する人は、相馬パンに電話して送付先を確認する。",
+      "source": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036156&screenkbn=01",
+      "steps": [
+        "有限会社相馬パン 053-437-0181 まで問い合わせる",
+        "対象商品の送付先を確認する"
+      ],
+      "url": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036156&screenkbn=01"
+    }
+  ],
+  "cause": {
+    "text": "回収理由はカビによる汚染です。厚生労働省の公開情報では、食品衛生法違反のおそれがあり、食品衛生法第20条に該当するとされています。",
+    "status": "stated",
+    "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602930"
+  },
+  "worries": [
+    {
+      "q": "手元の袋が対象か、どの表示を見れば分かる？",
+      "a": "対象は「生マシュマロ」、内容量6個の袋詰めで、JANコード4543734100708、賞味期限2026年11月14日～2026年11月26日分の条件に当てはまる商品です。",
+      "source": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036156&screenkbn=01",
+      "action": "袋のJANコードと賞味期限を確認し、商品情報詳細の対象条件と照合してください。"
+    },
+    {
+      "q": "対象商品を回収してもらった後、返金される？",
+      "a": "回収後の対応は返金です。回収方法として、販売店舗での回収と、相馬パンへの問い合わせによる対象商品の送付先案内が示されています。",
+      "source": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036156&screenkbn=01",
+      "action": "販売店舗での回収か送付かを決め、送付を希望する場合は相馬パンに送付先を確認してください。"
+    },
+    {
+      "q": "販売店舗に持ち込めない場合、送付できる？",
+      "a": "相馬パンに問い合わせると、対象商品の送付先を案内するとされています。問い合わせ先は有限会社相馬パン、電話番号は053-437-0181です。",
+      "source": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036156&screenkbn=01",
+      "action": "送付する前に、有限会社相馬パンへ電話して対象商品の送付先を確認してください。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "店舗に持ち込むか送るか、どちらがよい？",
+      "situation": "販売店舗での回収を利用したい",
+      "recommend": "販売店舗での回収方法を確認する",
+      "reason": "回収方法として販売店舗での回収が案内されています。回収後の対応は返金です。",
+      "source": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036156&screenkbn=01"
+    },
+    {
+      "question": "店舗に持ち込むか送るか、どちらがよい？",
+      "situation": "対象商品を送付したい",
+      "recommend": "電話で送付先を確認してから送る",
+      "reason": "送付を希望する場合は、相馬パンへの問い合わせで対象商品の送付先を案内するとされています。回収後の対応は返金です。",
+      "source": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036156&screenkbn=01"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "CLASSⅡは後から変更される場合も",
+    "cause": "回収理由はカビによる汚染",
+    "steps": "袋の表示と回収方法を確認",
+    "desk": "送付先は相馬パンに電話で確認",
+    "worries": "対象条件や返金方法を確認",
+    "guide": "店舗回収か送付かを選ぶ"
+  },
+  "depthAt": "2026-11-19T06:35:09+00:00"
 }

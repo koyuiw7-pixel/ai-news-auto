@@ -73,9 +73,9 @@
   "affiliates": [],
   "newsType": "general",
   "todayActions": [
-    "欲しいグッズの発売日時を、スターバックスの各商品ページで確認する。",
-    "ビバレッジカードを贈る場合は、チケットの上限額と2027年5月16日の期限を確認する。",
-    "アドベントカレンダーやブランケットを検討する場合は、公式オンラインストアの商品ページを確認する。"
+    "ボトルやタンブラーを狙う人は、商品ページで発売時間と店舗発売日を確認する。",
+    "アドベントカレンダーを検討する人は、オンライン商品表示と発売時間を確認する。",
+    "コールドカップを買う前に、フタの密閉性と手入れの注意を確認する。"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -172,5 +172,107 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/starbucks-holiday-2026-second-goods-d0a78fb6.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "ボトルとコールドカップタンブラーは、電子レンジや食器洗い乾燥機に対応していません。買う前に、使い方や手入れの条件も商品ごとに確認できます。",
+      "source": "https://menu.starbucks.co.jp/4524785640511?nid=seasonal-goods_27holiday2_261116"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "SEASONAL GOODS｜スターバックス コーヒー ジャパン",
+      "url": "https://www.starbucks.co.jp/seasonal-goods/",
+      "source": "https://www.starbucks.co.jp/seasonal-goods/",
+      "note": "商品によって購入数の制限があり、売り切れや一部店舗での取り扱いがない場合があります。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "ボトルやタンブラーを狙う人は、商品ページで発売時間と店舗発売日を確認する。",
+      "source": "https://menu.starbucks.co.jp/4524785640511?nid=seasonal-goods_27holiday2_261116",
+      "steps": [
+        "欲しい商品の公式商品ページを開く",
+        "オンラインストア発売時間を確認する",
+        "店舗での発売日も確認する"
+      ],
+      "url": "https://menu.starbucks.co.jp/4524785640511?nid=seasonal-goods_27holiday2_261116"
+    },
+    {
+      "action": "アドベントカレンダーを検討する人は、オンライン商品表示と発売時間を確認する。",
+      "source": "https://menu.starbucks.co.jp/4524785640566?nid=seasonal-goods_27holiday2_261116",
+      "steps": [
+        "アドベントカレンダーの商品ページを開く",
+        "「オンライン商品」の表示を確認する",
+        "発売時間が前後する可能性も確認する"
+      ],
+      "url": "https://menu.starbucks.co.jp/4524785640566?nid=seasonal-goods_27holiday2_261116"
+    },
+    {
+      "action": "コールドカップを買う前に、フタの密閉性と手入れの注意を確認する。",
+      "source": "https://menu.starbucks.co.jp/4524785640528?nid=seasonal-goods_27holiday2_261116",
+      "steps": [
+        "コールドカップの商品ページを開く",
+        "フタが完全密封ではないことを確認する",
+        "電子レンジ・食器洗い乾燥機に非対応と確認する"
+      ],
+      "url": "https://menu.starbucks.co.jp/4524785640528?nid=seasonal-goods_27holiday2_261116"
+    }
+  ],
+  "cause": {
+    "text": "ホリデーシーズンのカフェタイムに向け、チェック柄や雪の結晶をモチーフにしたグッズが登場します。公式ページでは「心地よいカフェタイムにぴったり」と案内されています。",
+    "status": "background",
+    "source": "https://www.starbucks.co.jp/seasonal-goods/"
+  },
+  "worries": [
+    {
+      "q": "オンライン発売は必ず20時ちょうどに始まりますか？",
+      "a": "ボトル、タンブラー、マグ、アドベントカレンダーの商品ページには、オンラインストアの発売時間は前後する可能性があると記載されています。",
+      "source": "https://menu.starbucks.co.jp/4524785640511?nid=seasonal-goods_27holiday2_261116",
+      "action": "購入したい商品の公式ページで発売情報を確認し、開始時間が前後する可能性も踏まえておきましょう。"
+    },
+    {
+      "q": "コールドカップはバッグに入れて持ち歩けますか？",
+      "a": "コールドカップタンブラーのフタは完全密封ではなく、フタが外れたりこぼれたりしないよう注意が必要と商品ページにあります。",
+      "source": "https://menu.starbucks.co.jp/4524785640528?nid=seasonal-goods_27holiday2_261116",
+      "action": "持ち運び方を決める前に商品ページの注意を確認し、フタが完全密封ではない点を踏まえて扱いましょう。"
+    },
+    {
+      "q": "発売日に行けば必ず商品を買えますか？",
+      "a": "公式ページは、商品が売り切れの場合や、購入数の制限がある場合を案内しています。一部店舗では価格が異なる場合や取り扱いがない場合もあります。",
+      "source": "https://www.starbucks.co.jp/seasonal-goods/",
+      "action": "商品一覧で注意事項を確認し、欲しい商品の個別ページで発売日を確かめてから購入先を選びましょう。"
+    },
+    {
+      "q": "ボトルやタンブラーは食洗機で洗えますか？",
+      "a": "ステンレスTOGOボトルチェックとコールドカップタンブラーリボンは、商品ページに電子レンジ、食器洗い乾燥機には対応していないと記載されています。",
+      "source": "https://menu.starbucks.co.jp/4524785640511?nid=seasonal-goods_27holiday2_261116",
+      "action": "購入を決める前に該当商品の説明を開き、電子レンジや食器洗い乾燥機への対応を確認しましょう。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "オンライン先行か店頭発売を待つか？",
+      "situation": "アドベントカレンダーを希望",
+      "recommend": "オンライン商品ページを確認する",
+      "reason": "アドベントカレンダーは「オンライン商品」と表示され、11月19日20時発売です。オンラインストアの発売時間は前後する可能性があるため、商品ページで発売情報を確認できます。",
+      "source": "https://menu.starbucks.co.jp/4524785640566?nid=seasonal-goods_27holiday2_261116"
+    },
+    {
+      "question": "オンライン先行か店頭発売を待つか？",
+      "situation": "ボトルを店頭で選びたい",
+      "recommend": "店舗発売日の11月20日を確認する",
+      "reason": "ボトルの商品ページには、店舗での発売日は11月20日とあります。オンラインストアの発売時間は前後する可能性があるため、オンラインで買う場合は商品ページの時間も確認できます。",
+      "source": "https://menu.starbucks.co.jp/4524785640511?nid=seasonal-goods_27holiday2_261116"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "タンブラーは密閉性と手入れも確認",
+    "cause": "ホリデー向けの柄をそろえたシリーズ",
+    "steps": "発売日と商品ごとの注意を確認",
+    "desk": "公式の商品一覧はこちら",
+    "worries": "発売時間や使い方で迷ったら",
+    "guide": "オンライン先行か店頭発売か"
+  },
+  "depthAt": "2026-11-19T06:35:50+00:00"
 }

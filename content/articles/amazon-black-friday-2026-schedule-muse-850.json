@@ -85,9 +85,9 @@
   "affiliates": [],
   "newsType": "product",
   "todayActions": [
-    "ポイントアップの詳細ページで、12月7日23時59分までにエントリーする。",
-    "dポイントを使う予定があれば、連携キャンペーンの参加条件を確認する。",
-    "Amazonふるさと納税の抽選イベントページを訪問し、参加する。"
+    "ポイントアップに参加する人は、詳細ページでエントリーを完了する。",
+    "dポイントを使う予定なら、連携とエントリー、利用条件を確認する。",
+    "ふるさと納税の抽選に参加する人は、イベントページを訪問する。"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -144,5 +144,95 @@
     ],
     "ar": 3.0,
     "src": "https://ai-tech-express.jp/img/amazon-black-friday-2026-schedule-muse-850-31a268a5.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "ポイントアップのポイントはセール終了後すぐではなく、終了後40日間程度で付与されます。付与状況は「マイポイントページ」で確認できます。",
+      "source": "https://www.amazon.co.jp/events/pointupcampaign/"
+    },
+    {
+      "text": "対象エリア限定の「Amazon Now」は11月27日6時～12月7日23時45分、プライム会員なら1,200円（税込）未満の注文で配送料290円と小口注文手数料220円が0円です。",
+      "source": "https://press.aboutamazon.com/jp/2026/11/black-friday-2026"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "ポイントアップキャンペーン＆大抽選会",
+      "url": "https://www.amazon.co.jp/events/pointupcampaign/",
+      "source": "https://www.amazon.co.jp/events/pointupcampaign/"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "ポイントアップに参加する人は、詳細ページでエントリーを完了する。",
+      "source": "https://www.amazon.co.jp/events/pointupcampaign/",
+      "steps": [
+        "ポイントアップキャンペーン詳細ページを開く",
+        "エントリーボタンを押して完了"
+      ],
+      "url": "https://www.amazon.co.jp/events/pointupcampaign/"
+    },
+    {
+      "action": "dポイントを使う予定なら、連携とエントリー、利用条件を確認する。",
+      "source": "https://press.aboutamazon.com/jp/2026/11/black-friday-2026",
+      "steps": [
+        "キャンペーン詳細ページを開く",
+        "Amazonアカウントとdアカウントを連携",
+        "エントリーし、dポイントを累計200ポイント以上利用"
+      ],
+      "url": "https://www.amazon.co.jp/b/?node=222846665051"
+    },
+    {
+      "action": "ふるさと納税の抽選に参加する人は、イベントページを訪問する。",
+      "source": "https://press.aboutamazon.com/jp/2026/11/black-friday-2026",
+      "steps": [
+        "Amazonふるさと納税のイベント詳細ページを開く",
+        "イベントページを訪問して抽選に参加する"
+      ],
+      "url": "https://www.amazon.co.jp/fmc/furusato/special/furusatomatsuri_week"
+    }
+  ],
+  "cause": {
+    "text": "Amazonは、身近な商品の値上がりが続き、家計負担を感じる人が多いとの認識を示しています。負担を少しでも軽くする買い物機会として、400万点以上の商品やポイントアップなどの企画を用意したと説明しています。",
+    "status": "background",
+    "source": "https://press.aboutamazon.com/jp/2026/11/black-friday-2026"
+  },
+  "worries": [
+    {
+      "q": "税込1万円に届かないと、ポイントアップは受けられない？",
+      "a": "ポイントアップの条件は、キャンペーンへのエントリーと、買い物対象期間中の合計10,000円（税込）以上の買い物です。条件に届かない場合、ポイントアップの追加還元や大抽選会の対象条件を満たしません。",
+      "source": "https://press.aboutamazon.com/jp/2026/11/black-friday-2026",
+      "action": "対象期間の購入額を見積もり、届かなければ「ポイントDeal」バッジ付きの商品を確認する。"
+    },
+    {
+      "q": "ポイントはいつ付与され、どこで確認できる？",
+      "a": "ポイントアップのポイントは、セール終了後40日間程度で付与されます。付与上限は10,000ポイントの期間限定ポイントで、キャンペーンページでは「マイポイントページ」で確認するよう案内されています。",
+      "source": "https://www.amazon.co.jp/events/pointupcampaign/",
+      "action": "セール終了後40日間程度を目安に、マイポイントページで付与状況を確認する。"
+    },
+    {
+      "q": "dポイントはアカウントを連携するだけで参加できる？",
+      "a": "山分け参加にはAmazonアカウントとdアカウントの連携に加え、キャンペーンへのエントリーと、dポイントの累計200ポイント以上の利用が必要です。初めて連携する人には、初回購入金額の20%が上限1,000ポイントで還元されます。",
+      "source": "https://press.aboutamazon.com/jp/2026/11/black-friday-2026",
+      "action": "参加する場合は詳細ページで条件を確認し、エントリー後にdポイントを累計200ポイント以上使う。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "税込1万円に届かなそうならどうする？",
+      "situation": "対象期間の合計購入額が1万円未満",
+      "recommend": "ポイントDeal対象商品を確認",
+      "reason": "ポイントアップはエントリーに加え、期間中の合計10,000円（税込）以上が条件です。届かない場合はその条件を満たせませんが、ポイントDeal祭りは対象商品に5%以上のAmazonポイントが付き、バッジで見分けられます。",
+      "source": "https://press.aboutamazon.com/jp/2026/11/black-friday-2026"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "ポイント付与はセール終了後40日程度",
+    "cause": "値上がりが続く中の年末セール",
+    "steps": "参加する企画ごとに条件を確認",
+    "desk": "エントリーはキャンペーン詳細ページで",
+    "worries": "1万円未満やポイント付与が気になる？",
+    "guide": "1万円未満なら見る企画を切り替える"
+  },
+  "depthAt": "2026-11-19T06:34:37+00:00"
 }
