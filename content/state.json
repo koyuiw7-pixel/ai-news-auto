@@ -819,6 +819,7 @@
     "7c162848ecbb96b2aabec87c483511e2f180e38e": 2,
     "7c1f954d99a2e4e3cb718b7c4fc1ddba61f069a9": 2,
     "7c276630dbdd64d3fb45b57ff6c3eb90770001cd": 2,
+    "7c3c1c5a1b3cf92fccadfee54dd5ea3673f9fcf0": 1,
     "7c9c7bcd04317646cfe2143d634d5b3c2255ebb0": 2,
     "7ce150f45a6d5c360127e73083aa6ed9e3fb5e7b": 2,
     "7d03f20a4ff7fd057c013ac35d1ca913e222f5db": 2,
@@ -967,7 +968,7 @@
     "94d128c45597baf713b25659404df5d68eadc44b": 2,
     "94eed6ff6c3495680ed25a58f9e91b4f7d880e07": 2,
     "95430257fbc73b69d542543596656221fa9155c4": 2,
-    "9548d9cdb65cdb532e6eab8ab2588d76bc9b3e21": 1,
+    "9548d9cdb65cdb532e6eab8ab2588d76bc9b3e21": 2,
     "956b86d0964bb16d41e076a6cf14c09979c0e853": 2,
     "95824b48a448520ffe29a2dd626053a522c8f6a1": 2,
     "95a061c63e881967837418e660e1085f201acfc2": 2,
@@ -1559,7 +1560,7 @@
     "f88725d8244597f809337266f8d8cf44adcb07c0": 2,
     "f8a6188c1cf445bdb0eb1106b47648df9f386ce6": 2,
     "f8b70f1aa911dc897fcb572bab04041f5b09d1a2": 2,
-    "f8c300c621fa6d025f2fc384f8e5b4b8ab869c1e": 1,
+    "f8c300c621fa6d025f2fc384f8e5b4b8ab869c1e": 2,
     "f9282eafa613a4dfd706f8a2c7550d6c62721152": 2,
     "f95b4647430c48d5b1e01278c9057a4960978b19": 2,
     "f9a1b7810dfc6cec6bca400b2e71e236d2e6df33": 2,
@@ -7005,6 +7006,12 @@
       "skipped": true,
       "url": "https://www.mhlw.go.jp/stf/newpage_77345.html"
     },
+    "1d63eb6a0e290c3b": {
+      "at": "2026-11-19T16:42:04.199501+00:00",
+      "reason": "stale: 発表から166時間（記事ページの日付）",
+      "skipped": true,
+      "url": "https://newsroom.amd.com/news/neysa-scales-ai-infrastructure-india/"
+    },
     "1d76284dfb48095d": {
       "at": "2026-11-09T06:49:47.117079+00:00",
       "reason": "prefilter: お知らせ・統計の転載（statistics）",
@@ -9050,13 +9057,6 @@
       "trendLane": true,
       "url": "https://topics.smt.docomo.ne.jp/latestnews/keywords/a293034981e1a8c89ec53d57a66df46f7f2b974650032c6a2a58d7f5b577aff3"
     },
-    "3af0ef7d790a050b": {
-      "at": "2026-11-05T16:34:20.814883+00:00",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "reason": "quality: 公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください",
-      "skipped": true,
-      "url": "https://www.softbank.jp/sbnews/entry/20261105_01"
-    },
     "3b1130adffa15b86": {
       "at": "2026-11-11T02:55:40.959800+00:00",
       "reason": "stale: 発表から475時間（記事ページの日付）",
@@ -9733,13 +9733,6 @@
       "skipped": true,
       "url": "https://www.family.co.jp/company/news_releases/2026/20261105_02.html"
     },
-    "477cff6d6b4c7941": {
-      "at": "2026-11-05T16:31:21.264381+00:00",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "reason": "NVIDIAのエンジニアを紹介する社内カルチャー記事（NVIDIA Life）で、技術発表・技術解説・デモが中心ではなく、AI・テクノロジーの実質的な情報価値がないため対象外です。",
-      "skipped": true,
-      "url": "https://blogs.nvidia.com/blog/nvidia-life-chris-alexiuk/"
-    },
     "47a0ffa7d422ad9d": {
       "at": "2026-11-12T15:55:31.678134+00:00",
       "costUsd": 0.0051,
@@ -10322,13 +10315,6 @@
       "section": "business",
       "slug": "household-survey-2026-09-spending",
       "url": "https://www.stat.go.jp/data/kakei/sokuhou/tsuki/pdf/fies_mr.pdf?period=2026-09"
-    },
-    "4f67ee389287d817": {
-      "at": "2026-11-05T16:41:30.580542+00:00",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "reason": "quality: 公開前の門: 本文が短すぎます。元記事にある事実だけで、背景・要点・読者への影響を補い、本文を1500字以上にしてください",
-      "skipped": true,
-      "url": "https://www.ipa.go.jp/news/2026/shiken_20261105.html"
     },
     "4faa980a30277cf4": {
       "at": "2026-11-17T21:35:28.191145+00:00",
@@ -17950,6 +17936,17 @@
       "skipped": true,
       "url": "https://blog.ja.playstation.com/2026/11/12/20261112-vdf-title-announcement-o/"
     },
+    "c2bea17c9b845e7a": {
+      "at": "2026-11-19T16:44:55.308791+00:00",
+      "costUsd": 0.0125,
+      "intent": "neutral",
+      "mix": "brand",
+      "model": "gemini-3.1-flash-lite",
+      "score": 97,
+      "section": "business",
+      "slug": "toyoda-automotive-hall-of-fame",
+      "url": "https://toyotatimes.jp/newscast/218.html?padid=ag478_from_newsroom"
+    },
     "c359a7f98d33b7b2": {
       "at": "2026-11-18T19:11:50.503157+00:00",
       "reason": "review: AdSense の審査の期間は海外の AI の発表を自動で記事にしない（速報だけ。scripts/news_mix.py review_ai_blocks）",
@@ -24378,68 +24375,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-17T18:53:20.791848+00:00",
-      "attempt": 1,
-      "id": "22c4a44305e6af16c7614c042bd5c35ba52f2216",
-      "kind": "trend",
-      "model": "openai-api:gpt-6.1-terra",
-      "problems": [
-        "タイトルの「ジェン・スン・フアン氏」→氏名の表記が「ジェンスン・フアン氏」と異なり、誤記です。"
-      ],
-      "readability": {
-        "avg_paragraph": 57.2,
-        "avg_sentence": 32.7,
-        "long_share": 0.0,
-        "max_paragraph": 69,
-        "paragraphs": 4,
-        "sentences": 7
-      },
-      "score": 92,
-      "source": "trends",
-      "title": "ジェン・スン・フアン",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（TBS・NEWS・DIG）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-17T18:53:30.979080+00:00",
-      "attempt": 1,
-      "id": "22c4a44305e6af16c7614c042bd5c35ba52f2216",
-      "kind": "trend",
-      "model": "openai-api:gpt-6-luna",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 57.2,
-        "avg_sentence": 32.7,
-        "long_share": 0.0,
-        "max_paragraph": 69,
-        "paragraphs": 4,
-        "sentences": 7
-      },
-      "score": 100,
-      "source": "trends",
-      "title": "ジェン・スン・フアン",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（TBS・NEWS・DIG）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-17T18:54:15.432976+00:00",
-      "attempt": 1,
-      "id": "2bed98db2b548c61",
-      "kind": "update",
-      "model": "openai-api:gpt-6.1-terra",
-      "problems": [
-        "「決勝の組み合わせがまだ分かっていなかった既存記事の時点から」→ 元記事と確認済みの文脈には、既存記事の時点で決勝の組み合わせが不明だったとの記載がありません。"
-      ],
-      "score": 88,
-      "source": "radar-official",
-      "title": "秋広優人関連ニュース｜dメニューニュース（NTTドコモ）"
-    },
     {
       "accepted": false,
       "at": "2026-11-17T18:55:49.064313+00:00",
@@ -31932,6 +31867,81 @@
       "warnings": [
         "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（RAV・NASVA）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-19T16:43:41.407174+00:00",
+      "attempt": 1,
+      "id": "c2bea17c9b845e7a",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "「強い想いで出席していた」→元記事は式典への出席を決めた背景と、受賞の裏側にある強い思いをそれぞれ紹介しており、強い思いが出席の理由だったとは明記していません。"
+      ],
+      "readability": {
+        "avg_paragraph": 181.5,
+        "avg_sentence": 56.7,
+        "long_share": 0.438,
+        "max_paragraph": 293,
+        "paragraphs": 10,
+        "sentences": 32
+      },
+      "score": 96,
+      "source": "toyota",
+      "title": "[トヨタイムズ記事] 米国自動車殿堂入りを祝福したい！近社長が仕掛けた、豊田会長との公開収録",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（TQM）",
+        "読みやすさ: 文が長い（1文の平均 56.7字・60字超の文が 44% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "読みやすさ: 段落が長い（平均 181.5字・最長 293字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-19T16:44:13.109405+00:00",
+      "attempt": 1,
+      "id": "c2bea17c9b845e7a",
+      "kind": "broad",
+      "model": "openai-api:gpt-6-luna",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 181.5,
+        "avg_sentence": 56.7,
+        "long_share": 0.438,
+        "max_paragraph": 293,
+        "paragraphs": 10,
+        "sentences": 32
+      },
+      "score": 100,
+      "source": "toyota",
+      "title": "[トヨタイムズ記事] 米国自動車殿堂入りを祝福したい！近社長が仕掛けた、豊田会長との公開収録",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（TQM）",
+        "読みやすさ: 文が長い（1文の平均 56.7字・60字超の文が 44% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "読みやすさ: 段落が長い（平均 181.5字・最長 293字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-19T16:44:55.274849+00:00",
+      "attempt": 0,
+      "id": "c2bea17c9b845e7a",
+      "kind": "broad",
+      "model": "openai-api:gpt-6-luna",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 73.0,
+        "avg_sentence": 37.4,
+        "long_share": 0.07,
+        "max_paragraph": 119,
+        "paragraphs": 22,
+        "sentences": 43
+      },
+      "score": 97,
+      "source": "toyota",
+      "title": "[トヨタイムズ記事] 米国自動車殿堂入りを祝福したい！近社長が仕掛けた、豊田会長との公開収録",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（TQM）"
       ]
     }
   ],
