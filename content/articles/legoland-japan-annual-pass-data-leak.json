@@ -77,9 +77,8 @@
     }
   ],
   "todayActions": [
-    "年間パスポートを買ったことがあるなら、登録メールの受信箱でレゴランド・ジャパンからの連絡を確認する",
-    "レゴランドをかたる支払いや認証コードの要求は、返信もリンクのクリックもしない",
-    "不審な連絡や不安は、レゴランド・ジャパンの専用お問い合わせフォームに連絡する"
+    "期限切れを含む年間パスポート購入者は、専用フォームで不安や対象かどうかを問い合わせる",
+    "支払いや認証コードなどを求める連絡が来たら、返信せず専用フォームに知らせる"
   ],
   "publicInterest": "breach",
   "incident": {
@@ -122,5 +121,106 @@
     "ar": 1.3333,
     "src": "https://ai-tech-express.jp/img/legoland-japan-annual-pass-data-leak-1d07537d.jpg"
   },
-  "coverTries": 1
+  "insight": [
+    {
+      "text": "専用フォームは、すでに退会した年間パスポート購入者も対象です。問い合わせでは「お問い合わせの種類」「お問い合わせの内容」「メールアドレス」を入力します。",
+      "source": "https://www.legoland.jp/about-us/contact-us/accesso-inquiries/"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "専用お問い合わせフォーム",
+      "url": "https://www.legoland.jp/about-us/contact-us/accesso-inquiries/",
+      "source": "https://www.legoland.jp/about-us/contact-us/accesso-inquiries/",
+      "howTo": [
+        "トップページ",
+        "レゴランド・ジャパンについて",
+        "お問い合わせ",
+        "お問い合わせフォーム"
+      ],
+      "note": "年間パスポートを購入したお客様（すでに退会されたお客様含む）の専用フォームです。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "期限切れを含む年間パスポート購入者は、専用フォームで不安や対象かどうかを問い合わせる",
+      "source": "https://www.legoland.jp/about-us/contact-us/accesso-inquiries/",
+      "steps": [
+        "「専用お問い合わせフォーム」を開く",
+        "「お問い合わせの種類」を選ぶ",
+        "内容とメールアドレスを入力する"
+      ],
+      "url": "https://www.legoland.jp/about-us/contact-us/accesso-inquiries/"
+    },
+    {
+      "action": "支払いや認証コードなどを求める連絡が来たら、返信せず専用フォームに知らせる",
+      "source": "https://www.legoland.jp/operation/news/news-release/news20261118/",
+      "steps": [
+        "メールやSMSなどのリンクはクリックしない",
+        "返信せず、専用お問い合わせフォームを開く",
+        "お問い合わせの内容を入力する"
+      ],
+      "url": "https://www.legoland.jp/about-us/contact-us/accesso-inquiries/"
+    }
+  ],
+  "cause": {
+    "text": "年間パスポートの販売に利用しているプラットフォームで、第三者がaccesso社のプラットフォームの脆弱性を利用して不正アクセスしたと報告されました。脆弱性のある接続箇所の除去と修正プログラムの適用後も、外部の専門機関による調査が続いています。",
+    "status": "stated",
+    "source": "https://www.legoland.jp/operation/news/news-release/news20261118/"
+  },
+  "worries": [
+    {
+      "q": "クレジットカード番号や銀行口座も漏れたの？",
+      "a": "発表では、現時点でクレジットカード情報と銀行口座情報は今回の漏えいの対象に含まれていないとしています。",
+      "source": "https://www.legoland.jp/operation/news/news-release/news20261118/",
+      "action": "カード番号や認証コードなどを求める不審な連絡には応じず、専用フォームに連絡してください。"
+    },
+    {
+      "q": "年間パスポートの期限が切れていても対象になるの？",
+      "a": "年間パスポート購入者が対象で、すでに有効期限が切れたお客様も含まれます。対象となるお客様には順次メールで連絡すると発表されています。",
+      "source": "https://www.legoland.jp/operation/news/news-release/news20261118/",
+      "action": "購入したことがあり対象かどうか不安なら、専用お問い合わせフォームから問い合わせてください。",
+      "actionSource": "https://www.legoland.jp/about-us/contact-us/accesso-inquiries/"
+    },
+    {
+      "q": "漏えいしたことは、もう確定しているの？",
+      "a": "発表は「漏えいした可能性がある」という内容です。accesso社が外部の専門機関による調査を続けており、実際に漏えいしたかどうかは確定していません。",
+      "source": "https://www.legoland.jp/operation/news/news-release/news20261118/",
+      "action": "新たに公表すべき事実は公式ウェブサイトで知らせるとしているため、発表ページを確認してください。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "自分も対象か、問い合わせたほうがいい？",
+      "situation": "年間パスポートを購入したことがある",
+      "recommend": "専用フォームで確認する",
+      "reason": "有効期限が切れた購入者も対象に含まれます。対象となるお客様には順次メールで連絡すると発表されていますが、対象かどうか不安な場合は専用フォームを利用できます。",
+      "source": "https://www.legoland.jp/operation/news/news-release/news20261118/"
+    },
+    {
+      "question": "自分も対象か、問い合わせたほうがいい？",
+      "situation": "年間パスポートを購入していない",
+      "recommend": "今回の対象としての問い合わせは急がなくてよい",
+      "reason": "発表の対象は、年間パスポートを購入したお客様です。すでに有効期限が切れたお客様も含まれますが、購入していない人は対象に当たりません。",
+      "source": "https://www.legoland.jp/operation/news/news-release/news20261118/"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "退会後でも専用フォームを使える",
+    "cause": "販売システムの脆弱性が報告された",
+    "steps": "不安や不審な連絡は専用フォームへ",
+    "desk": "年間パスポート購入者向けの問い合わせ先",
+    "worries": "カードや期限切れのパスポートはどうなる？",
+    "guide": "対象か迷ったらフォームで確認"
+  },
+  "depthAt": "2026-11-19T08:16:55+00:00",
+  "coverImage": "https://ai-tech-express.jp/img/legoland-japan-annual-pass-data-leak-cover-f9d56446.jpg",
+  "coverCredit": {
+    "kind": "ai",
+    "model": "flux-2-klein-4b",
+    "prompt": "Over‑the‑shoulder view of a person's hands typing personal information into a laptop while holding a colorful, passport‑style annual pass card.",
+    "provider": "Cloudflare Workers AI",
+    "relevant": true,
+    "at": "2026-11-19T08:17:45+00:00"
+  }
 }
