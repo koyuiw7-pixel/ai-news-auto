@@ -16090,6 +16090,19 @@
       "skipped": true,
       "url": "https://www.cfa.go.jp/press/e6c80e6c-f7e7-4205-9dd7-215023b7577f"
     },
+    "a6cab5708444e3fc": {
+      "at": "2026-11-19T23:38:04.586854+00:00",
+      "breaking": true,
+      "costUsd": 0.0483,
+      "intent": "breaking",
+      "major": true,
+      "mix": "other",
+      "model": "openai-api:gpt-6.1-terra",
+      "score": 100,
+      "section": "business",
+      "slug": "japan-cpi-october-2026",
+      "url": "https://www.stat.go.jp/data/cpi/sokuhou/tsuki/pdf/zenkoku.pdf?period=2026-10"
+    },
     "a70ba3dfd8935eab": {
       "at": "2026-11-11T09:23:48.274652+00:00",
       "reason": "dedupe: 固有名詞が一致（compute・engine）: google-cloud-z4m-storage-optimized-ga",
@@ -24527,34 +24540,6 @@
   },
   "quality_log": [
     {
-      "accepted": false,
-      "at": "2026-11-17T22:09:59.480601+00:00",
-      "attempt": 1,
-      "id": "01dbd0dccb71b365",
-      "kind": "broad",
-      "model": "claude:sonnet",
-      "problems": [
-        "「KARTEは、サイト上の行動を分析して顧客への案内に使うサービス」→元記事はマーケティングプラットフォームと説明するのみで、この具体的な機能は確認できません。",
-        "「手続きは求められていません」→元記事は手続き不要とは明記しておらず、公式発表の内容を超えています。"
-      ],
-      "readability": {
-        "avg_paragraph": 92.0,
-        "avg_sentence": 48.0,
-        "long_share": 0.217,
-        "max_paragraph": 160,
-        "paragraphs": 12,
-        "sentences": 23
-      },
-      "score": 91,
-      "source": "fast",
-      "title": "【お詫び】外部サービス「KARTE」への不正アクセスによる個人情報漏えいの可能性および一部サービスの一時停止について｜チョコザップ｜運動も美容もリフレッシュも！",
-      "warnings": [
-        "見出しが46字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（ZAP・RIZAP・KARTE）",
-        "読みやすさ: 文が長い（1文の平均 48.0字・60字超の文が 22% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
       "accepted": true,
       "at": "2026-11-17T22:11:42.366625+00:00",
       "attempt": 1,
@@ -32133,6 +32118,26 @@
         "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（HD・WEB・SMS）"
       ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-19T23:38:04.481406+00:00",
+      "attempt": 1,
+      "id": "a6cab5708444e3fc",
+      "kind": "broad",
+      "model": "openai-api:gpt-6.1-terra",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 63.9,
+        "avg_sentence": 30.4,
+        "long_share": 0.0,
+        "max_paragraph": 127,
+        "paragraphs": 10,
+        "sentences": 21
+      },
+      "score": 100,
+      "source": "fast",
+      "title": "全国消費者物価指数 2026年10月分（総合・生鮮食品を除く総合）"
     }
   ],
   "short_text_retry": {
