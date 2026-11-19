@@ -1532,7 +1532,9 @@
       "url": "https://www.mof.go.jp/about_mof/councils/fiscal_system_council/sub-of_filp/proceedings/material/zaitoa20261117.html"
     }
   },
-  "major_tries": {},
+  "major_tries": {
+    "14a287c3c204660f": 1
+  },
   "pi_reopened": {
     "25d126f469e81252": "2026-11-15T17:50:53.256695+00:00",
     "422a9590d5af8caa": "2026-11-15T17:31:05.012183+00:00",
@@ -8197,15 +8199,6 @@
       "skipped": true,
       "url": "http://global.nissannews.com/ja-JP/releases/261113-00-j"
     },
-    "31173fb106fd7dde": {
-      "at": "2026-11-05T02:55:16.641282+00:00",
-      "mix": "other",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "score": 96,
-      "section": "business",
-      "slug": "meal-cancel-skip-vs-cannot-eat-nli",
-      "url": "https://www.nli-research.co.jp/topics_detail1/id=87263?site=nli"
-    },
     "311efa190498b7d5": {
       "at": "2026-11-10T00:27:50.261696+00:00",
       "reason": "dedupe: 固有名詞が一致（8tx・max・tpu）: google-tpu-8tx-8i-max",
@@ -10243,6 +10236,14 @@
       "trendKeyword": "熱海富士",
       "trendLane": true,
       "url": "https://www.nikkansports.com/m/battle/sumo/news/202611170000267_m.html?mode=all"
+    },
+    "505ac6b91fecc061": {
+      "at": "2026-11-19T02:40:19.990418+00:00",
+      "kind": "update",
+      "model": "openai-api:gpt-6.1-terra",
+      "score": 100,
+      "updated": "gemini-4-neon-pricing-availability",
+      "url": "https://blog.google/intl/ja-jp/company-news/technology/introducing-gemini-4-neon/"
     },
     "507181e993a841c9": {
       "at": "2026-11-06T05:51:04.527880+00:00",
@@ -24443,41 +24444,9 @@
       "slug": "fujiseika-kinpaku-hagoromo-recall",
       "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602845",
       "writer": "muse"
-    },
-    "505ac6b91fecc061": {
-      "at": "2026-11-19T02:40:19.990418+00:00",
-      "kind": "update",
-      "model": "openai-api:gpt-6.1-terra",
-      "score": 100,
-      "updated": "gemini-4-neon-pricing-availability",
-      "url": "https://blog.google/intl/ja-jp/company-news/technology/introducing-gemini-4-neon/"
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-17T04:04:18.451482+00:00",
-      "attempt": 1,
-      "id": "1c0506f26f773311",
-      "kind": "broad",
-      "model": "claude:sonnet",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 110.5,
-        "avg_sentence": 46.8,
-        "long_share": 0.192,
-        "max_paragraph": 217,
-        "paragraphs": 11,
-        "sentences": 26
-      },
-      "score": 88,
-      "source": "kirin",
-      "title": "業務委託先への不正アクセスによるお客様情報漏えいに関するお詫びとお知らせ（第2報）",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（GMO・DRINX・SMS）",
-        "読みやすさ: 文が長い（1文の平均 46.8字・60字超の文が 19% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-17T04:04:40.467009+00:00",
@@ -31939,6 +31908,31 @@
       "score": 100,
       "source": "google-japan-blog",
       "title": "Gemini 4 Neon を発表"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-19T02:56:32.406222+00:00",
+      "attempt": 1,
+      "id": "14a287c3c204660f",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "確かなことと、まだ分かっていないこと（調査中・現時点では公表されていない など）を分けて書く"
+      ],
+      "readability": {
+        "avg_paragraph": 72.9,
+        "avg_sentence": 36.4,
+        "long_share": 0.033,
+        "max_paragraph": 119,
+        "paragraphs": 15,
+        "sentences": 30
+      },
+      "score": null,
+      "source": "fast",
+      "title": "【第二報】第三者による不正アクセスに伴う化粧品ブランド「akyrise（あきゅらいず）」の会員情報漏えいに関するお詫びとお知らせ",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（EC・SMS）"
+      ]
     }
   ],
   "short_text_retry": {
