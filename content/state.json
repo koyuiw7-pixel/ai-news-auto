@@ -5541,6 +5541,19 @@
       "skipped": true,
       "url": "https://www.morinaga.co.jp/company/newsrelease/detail.php?no=3231"
     },
+    "0a78bbcddd119e15": {
+      "at": "2026-11-19T03:24:06.201530+00:00",
+      "costUsd": 0.0033,
+      "intent": "breaking",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "score": 100,
+      "section": "public",
+      "slug": "osaki-electric-ransomware-production-halt",
+      "url": "https://www.osaki.co.jp/ja/notice/20261118.html"
+    },
     "0a828f19444799c7": {
       "at": "2026-11-11T01:54:41.177243+00:00",
       "costUsd": 0.0155,
@@ -24457,56 +24470,6 @@
   "quality_log": [
     {
       "accepted": true,
-      "at": "2026-11-17T04:07:37.542110+00:00",
-      "attempt": 1,
-      "id": "107fdf1aa7deb782",
-      "kind": "broad",
-      "model": "gemini-3.6-flash",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 125.4,
-        "avg_sentence": 58.2,
-        "long_share": 0.286,
-        "max_paragraph": 274,
-        "paragraphs": 13,
-        "sentences": 28
-      },
-      "score": 85,
-      "source": "radar-official",
-      "title": "cve 2026 99288",
-      "warnings": [
-        "見出しが52字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（NULL・CVSS・IPA）",
-        "読みやすさ: 文が長い（1文の平均 58.2字・60字超の文が 29% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-17T04:08:07.964949+00:00",
-      "attempt": 0,
-      "id": "107fdf1aa7deb782",
-      "kind": "broad",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 92.5,
-        "avg_sentence": 46.2,
-        "long_share": 0.083,
-        "max_paragraph": 274,
-        "paragraphs": 18,
-        "sentences": 36
-      },
-      "score": 82,
-      "source": "radar-official",
-      "title": "cve 2026 99288",
-      "warnings": [
-        "見出しが52字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（NULL・CVSS・IPA）",
-        "読みやすさ: 文が長い（1文の平均 46.2字・60字超の文が 8% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
       "at": "2026-11-17T04:39:50.177138+00:00",
       "attempt": 1,
       "id": "6f02b176d576abc9",
@@ -31941,6 +31904,58 @@
         "初めて出たところで言い換えていない略語（WE・KARTE）",
         "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
         "faq の質問が疑問文になっていない（「退会済みの利用者の情報も対象に含まれてい」）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-19T03:23:39.782518+00:00",
+      "attempt": 1,
+      "id": "0a78bbcddd119e15",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "「生産・出荷が止まっていること以外は調査中」→ 発表では攻撃の確認時刻や外部ネットワーク遮断、対策本部の設置なども確認済みであり、調査中なのは主に流出の可能性や今後の影響です。",
+        "「お客様各社（個別に説明済み）」→ 発表は「個別にご説明しております」としており、すべての説明が完了したとは確認できません。",
+        "「対象はスマートメーター等の生産・出荷に関わる取引先です」→ 発表は生産・出荷停止と顧客への個別説明を述べていますが、対象をその取引先に限定してはいません。"
+      ],
+      "readability": {
+        "avg_paragraph": 81.6,
+        "avg_sentence": 38.1,
+        "long_share": 0.067,
+        "max_paragraph": 150,
+        "paragraphs": 7,
+        "sentences": 15
+      },
+      "score": 87,
+      "source": "fast",
+      "title": "大崎電気工業の情報流出に関するお知らせ",
+      "warnings": [
+        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（COO）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-19T03:23:59.568794+00:00",
+      "attempt": 1,
+      "id": "0a78bbcddd119e15",
+      "kind": "broad",
+      "model": "openai-api:gpt-6-luna",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 76.4,
+        "avg_sentence": 38.2,
+        "long_share": 0.071,
+        "max_paragraph": 156,
+        "paragraphs": 7,
+        "sentences": 14
+      },
+      "score": 100,
+      "source": "fast",
+      "title": "大崎電気工業の情報流出に関するお知らせ",
+      "warnings": [
+        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（COO）"
       ]
     }
   ],
