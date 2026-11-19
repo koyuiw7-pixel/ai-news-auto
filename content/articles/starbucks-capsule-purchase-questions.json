@@ -81,9 +81,9 @@
   "affiliates": [],
   "newsType": "product",
   "todayActions": [
-    "通常版を買う前に、種類を指定できず交換もできない条件を確認する。",
-    "ロースタリー 東京に行く場合は、通常版ではなくリザーブ版の販売店だと確認する。",
-    "通常版は1会計2点までで、なくなり次第終了することを購入前に確認する。"
+    "買いに行く店舗が通常版の取扱対象外に当たらないか、商品詳細で確認する。",
+    "欲しい種類が決まっている人は、ランダムで指定・交換不可の条件を見て購入を判断する。",
+    "通常版を買う予定なら、1会計2点までの条件と価格を購入前に確認する。"
   ],
   "angleOf": "starbucks-joyful-capsule-nov18",
   "deepDive": "qa",
@@ -147,5 +147,108 @@
     ],
     "ar": 1.3333,
     "src": "https://ai-tech-express.jp/img/starbucks-capsule-purchase-questions-b4688f6c.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "通常版の全5種は、ダブル トール ラテ（To Go）、キャラメル マキアート（For Here）、TOKYO ロースト、抹茶 クリーム フラペチーノ、シュガードーナツです。",
+      "source": "https://stories.starbucks.co.jp/press/2026/pr-2026-1111/"
+    },
+    {
+      "text": "通常版のチャームは約50～80mm前後で、デザインによってサイズが異なります。対象年齢は15歳以上です。",
+      "source": "https://stories.starbucks.co.jp/press/2026/pr-2026-1111/"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "スターバックス ジョイフル カプセル 商品詳細",
+      "url": "https://stories.starbucks.co.jp/press/2026/pr-2026-1111/",
+      "source": "https://stories.starbucks.co.jp/press/2026/pr-2026-1111/",
+      "note": "在庫・販売状況について、電話での問い合わせには対応していません。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "買いに行く店舗が通常版の取扱対象外に当たらないか、商品詳細で確認する。",
+      "source": "https://stories.starbucks.co.jp/press/2026/pr-2026-1111/",
+      "steps": [
+        "商品詳細の「取り扱い店舗」を確認する",
+        "リザーブ ロースタリー 東京などの対象外店舗を確認する"
+      ],
+      "url": "https://stories.starbucks.co.jp/press/2026/pr-2026-1111/"
+    },
+    {
+      "action": "欲しい種類が決まっている人は、ランダムで指定・交換不可の条件を見て購入を判断する。",
+      "source": "https://stories.starbucks.co.jp/press/2026/pr-2026-1111/",
+      "steps": [
+        "商品詳細の「商品詳細」を確認する",
+        "中身はランダムで、種類の指定や交換はできないと確認する"
+      ],
+      "url": "https://stories.starbucks.co.jp/press/2026/pr-2026-1111/"
+    },
+    {
+      "action": "通常版を買う予定なら、1会計2点までの条件と価格を購入前に確認する。",
+      "source": "https://stories.starbucks.co.jp/press/2026/pr-2026-1111/",
+      "steps": [
+        "通常版の価格が880円（税込）と確認する",
+        "1会計2点までと確認する"
+      ],
+      "url": "https://stories.starbucks.co.jp/press/2026/pr-2026-1111/"
+    }
+  ],
+  "cause": {
+    "text": "スターバックスは、近年「ぬい活」やチャームブームが広がる中、人気ビバレッジやフードをモチーフにしたぬいチャームを、新しい体験として届けると説明しています。",
+    "status": "background",
+    "source": "https://stories.starbucks.co.jp/press/2026/pr-2026-1111/"
+  },
+  "worries": [
+    {
+      "q": "欲しいデザインを指定して買ったり、交換したりできる？",
+      "a": "通常版の中身はランダムで、種類の指定や交換はできません。1カプセルにつき1個入りです。",
+      "source": "https://stories.starbucks.co.jp/press/2026/pr-2026-1111/",
+      "action": "特定の種類が必要な人は、指定・交換ができない条件を踏まえて購入するか決めましょう。"
+    },
+    {
+      "q": "近くのスターバックスなら、どこでも買える？",
+      "a": "全国のスターバックス店舗で販売しますが、一部店舗は対象外です。STARBUCKS RESERVE® ROASTERY TOKYO、STARBUCKS RESERVE® Cafe、STARBUCKS RESERVE® STORE、STARBUCKS Tea & Cafeなどでは通常版を取り扱いません。",
+      "source": "https://stories.starbucks.co.jp/press/2026/pr-2026-1111/",
+      "action": "出かける前に商品詳細の対象外店舗を確認し、通常版とリザーブ版を取り違えないようにしましょう。"
+    },
+    {
+      "q": "子ども向けに買うとき、対象年齢は何歳から？",
+      "a": "通常版、スターバックス リザーブ ジョイフル カプセルともに対象年齢は15歳以上です。",
+      "source": "https://stories.starbucks.co.jp/press/2026/pr-2026-1111/",
+      "action": "子ども向けに購入する場合は、商品詳細の対象年齢を確認してから選びましょう。"
+    },
+    {
+      "q": "行く前に電話で在庫があるか聞ける？",
+      "a": "通常版もリザーブ版も、在庫・販売状況について電話での問い合わせには対応していません。通常版はなくなり次第終了で、リザーブ版は一時的に欠品する場合があります。",
+      "source": "https://stories.starbucks.co.jp/press/2026/pr-2026-1111/",
+      "action": "電話で在庫確認はできないため、商品詳細で販売条件を確認し、販売状況は店舗で確かめましょう。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "欲しいデザインが決まっているなら買う？",
+      "situation": "特定の種類を狙っている",
+      "recommend": "ランダムでもよいか考えてから決める",
+      "reason": "通常版は全5種のうち1種類がランダムで入り、種類の指定や交換はできません。特定のデザインが必ず手に入る買い方ではないため、どの種類でも受け入れられるかが判断のポイントです。",
+      "source": "https://stories.starbucks.co.jp/press/2026/pr-2026-1111/"
+    },
+    {
+      "question": "ロースタリー 東京ではどちらを買う？",
+      "situation": "ロースタリー 東京に行く予定",
+      "recommend": "リザーブ版として選ぶ",
+      "reason": "通常版の取扱店舗にはSTARBUCKS RESERVE® ROASTERY TOKYOは含まれず、同店では全4種類の「スターバックス リザーブ ジョイフル カプセル」を販売します。通常版とは商品が異なります。",
+      "source": "https://stories.starbucks.co.jp/press/2026/pr-2026-1111/"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "全5種の中身とサイズを先に確認",
+    "cause": "ぬいチャームの広がりを受けた新商品",
+    "steps": "買う前に種類と対象店舗を確認",
+    "desk": "在庫の電話確認は受け付けていない",
+    "worries": "中身や対象年齢、販売店が気になる",
+    "guide": "通常版とリザーブ版、どちらを選ぶか"
+  },
+  "depthAt": "2026-11-19T03:00:56+00:00"
 }
