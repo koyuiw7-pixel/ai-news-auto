@@ -13419,6 +13419,20 @@
       "skipped": true,
       "url": "https://topics.smt.docomo.ne.jp/article/abematimes/sports/abematimes-10289233"
     },
+    "7d178e69df61c35b": {
+      "at": "2026-11-19T17:10:56.436905+00:00",
+      "breaking": true,
+      "costUsd": 0.0448,
+      "foreignAi": true,
+      "intent": "breaking",
+      "major": true,
+      "mix": "enterprise_dev",
+      "model": "openai-api:gpt-6.1-terra",
+      "score": 98,
+      "section": "ai",
+      "slug": "nvidia-daqiri-gpu-data-acquisition",
+      "url": "https://developer.nvidia.com/blog/enabling-real-time-ai-for-scientific-instruments-with-gpu-native-data-acquisition/"
+    },
     "7d35dbd94e2102ad1a84e0e9aa1ee16566a94062": {
       "at": "2026-11-14T19:04:30.305269+00:00",
       "kind": "trend",
@@ -24375,56 +24389,6 @@
   "quality_log": [
     {
       "accepted": true,
-      "at": "2026-11-17T18:57:36.826874+00:00",
-      "attempt": 1,
-      "id": "62e6db3d47dd1ce9",
-      "kind": "broad",
-      "model": "strike:本文 1 文・よくある質問",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 221.0,
-        "avg_sentence": 103.1,
-        "long_share": 1.0,
-        "max_paragraph": 315,
-        "paragraphs": 7,
-        "sentences": 15
-      },
-      "score": 98,
-      "source": "gov-online",
-      "title": "点字・大活字広報誌「ふれあいらしんばん」令和8年(2026年)11月発行",
-      "warnings": [
-        "見出しの書き方: 「〜とは？〜を解説」の決まり文句（「を解説」）。読む人が得る答え（対処法・期限・金額）を書く",
-        "見出しが53字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "読みやすさ: 文が長い（1文の平均 103.1字・60字超の文が 100% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-17T18:58:13.960180+00:00",
-      "attempt": 0,
-      "id": "62e6db3d47dd1ce9",
-      "kind": "broad",
-      "model": "openai-api:gpt-6-luna",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 110.9,
-        "avg_sentence": 55.5,
-        "long_share": 0.464,
-        "max_paragraph": 168,
-        "paragraphs": 14,
-        "sentences": 28
-      },
-      "score": 98,
-      "source": "gov-online",
-      "title": "点字・大活字広報誌「ふれあいらしんばん」令和8年(2026年)11月発行",
-      "warnings": [
-        "見出しの書き方: 「〜とは？〜を解説」の決まり文句（「を解説」）。読む人が得る答え（対処法・期限・金額）を書く",
-        "見出しが53字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "読みやすさ: 文が長い（1文の平均 55.5字・60字超の文が 46% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
       "at": "2026-11-17T18:59:37.031532+00:00",
       "attempt": 1,
       "id": "2b7340c50d9a177d",
@@ -31933,6 +31897,53 @@
       "title": "Anthropic, PBC - 424(b)(4)",
       "warnings": [
         "初めて出たところで言い換えていない略語（ANT）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-19T17:10:13.884298+00:00",
+      "attempt": 1,
+      "id": "7d178e69df61c35b",
+      "kind": "ai",
+      "model": "openai-api:gpt-6.1-terra",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 96.3,
+        "avg_sentence": 45.5,
+        "long_share": 0.167,
+        "max_paragraph": 148,
+        "paragraphs": 17,
+        "sentences": 36
+      },
+      "score": 100,
+      "source": "nvidia-developer-blog",
+      "title": "Enabling Real-Time AI for Scientific Instruments with GPU-Native Data Acquisitio",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（DAQIRI・EELS・DPDK）",
+        "読みやすさ: 文が長い（1文の平均 45.5字・60字超の文が 17% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-19T17:10:56.413064+00:00",
+      "attempt": 0,
+      "id": "7d178e69df61c35b",
+      "kind": "ai",
+      "model": "openai-api:gpt-6-luna",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 96.6,
+        "avg_sentence": 36.5,
+        "long_share": 0.067,
+        "max_paragraph": 149,
+        "paragraphs": 17,
+        "sentences": 45
+      },
+      "score": 98,
+      "source": "nvidia-developer-blog",
+      "title": "Enabling Real-Time AI for Scientific Instruments with GPU-Native Data Acquisitio",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（DAQIRI・EELS・NIC）"
       ]
     }
   ],
