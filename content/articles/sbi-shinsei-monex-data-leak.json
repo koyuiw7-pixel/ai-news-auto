@@ -78,9 +78,8 @@
     }
   ],
   "todayActions": [
-    "SBI新生銀行からの案内を待つ。メールやSMSのリンクからはログインしない",
-    "パスキーが未登録なら、マネックス証券の公式サイトからログインして登録する",
-    "不安な点はパワーコール（固定電話0120-456-007、平日9:00-17:00）に電話する"
+    "パスキーが未登録なら、マネックス証券の公式サイトから設定する",
+    "銀行からの案内で迷ったら、パワーコールの受付時間内に問い合わせる"
   ],
   "relatedSlugs": [
     "monex-account-opening-data-leak"
@@ -129,5 +128,83 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/sbi-shinsei-monex-data-leak-figure-f4c7a147.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "SBI新生銀行のWebご相談フォームでは、お取引やお取引にかかわる照会を受け付けていません。フォームで送れば個別の取引照会が済むとは限らないため、対応窓口を確認するよう案内されています。",
+      "source": "https://www.sbishinseibank.co.jp/crm/form/n00/?intcid=news2611_monex_btn_01"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "パワーコール（コンタクトセンター）",
+      "url": "https://www.sbishinseibank.co.jp/info/news2611_monex.html",
+      "source": "https://www.sbishinseibank.co.jp/info/news2611_monex.html",
+      "phone": "固定電話から 0120-456-007／携帯電話から 0570-016-007",
+      "hours": "平日 9:00-17:00（年末年始除く）",
+      "note": "固定電話は通話料無料、携帯電話は通話料有料です。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "パスキーが未登録なら、マネックス証券の公式サイトから設定する",
+      "source": "https://www.sbishinseibank.co.jp/info/news2611_monex.html",
+      "steps": [
+        "マネックス証券の公式サイトを開く",
+        "ログインし、パスキーを登録する"
+      ]
+    },
+    {
+      "action": "銀行からの案内で迷ったら、パワーコールの受付時間内に問い合わせる",
+      "source": "https://www.sbishinseibank.co.jp/info/news2611_monex.html",
+      "steps": [
+        "固定電話または携帯電話から連絡する",
+        "平日 9:00-17:00（年末年始除く）に問い合わせる"
+      ],
+      "url": "https://www.sbishinseibank.co.jp/info/news2611_monex.html"
+    }
+  ],
+  "cause": {
+    "text": "外部委託先が運営・管理する一部の口座開設システムへの不正アクセスがありました。発生原因や影響範囲、再発防止策は、SBI新生銀行がマネックス証券に確認し、実効性も検証するとしています。",
+    "status": "investigating",
+    "source": "https://www.sbishinseibank.co.jp/info/news2611_monex.html"
+  },
+  "worries": [
+    {
+      "q": "自分が対象かどうか、いつ分かるの？",
+      "a": "マネックス証券で対象となる顧客の確認が進められています。対象者が確認された場合、SBI新生銀行は速やかに必要な案内をするとしています。",
+      "source": "https://www.sbishinseibank.co.jp/info/news2611_monex.html",
+      "action": "SBI新生銀行からの案内を待ち、対象かどうか不明な場合はパワーコールに問い合わせる。"
+    },
+    {
+      "q": "口座番号やログイン情報も漏れたの？",
+      "a": "2026年11月13日時点で、個人番号（マイナンバー）、口座番号、ログイン・取引パスワードは、マネックス証券によると漏えいが確認されていません。",
+      "source": "https://www.sbishinseibank.co.jp/info/news2611_monex.html",
+      "action": "金融機関を名乗る不審なメールやSMSのURLにはアクセスせず、パスワード入力や返信もしない。"
+    },
+    {
+      "q": "パスキーが未登録でも、すぐに登録が必要？",
+      "a": "マネックス証券では2026年6月30日以降、ログイン時のパスキー認証が必須です。パスキーを未登録の場合は早めに登録するよう、SBI新生銀行が案内しています。",
+      "source": "https://www.sbishinseibank.co.jp/info/news2611_monex.html",
+      "action": "メールやSMSのリンクは使わず、マネックス証券の公式サイトからログインしてパスキーを登録する。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "未登録のパスキーを今設定する？",
+      "situation": "マネックス証券のパスキーが未登録",
+      "recommend": "早めに設定する",
+      "reason": "マネックス証券では2026年6月30日以降、ログイン時のパスキー認証が必須です。現時点でログインパスワード等の漏えいは確認されていませんが、未登録の場合は公式サイトから登録するよう銀行が案内しています。",
+      "source": "https://www.sbishinseibank.co.jp/info/news2611_monex.html"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "Web相談フォームでは取引照会ができない",
+    "cause": "不正アクセスの原因は確認中",
+    "steps": "パスキーと問い合わせ先を確認",
+    "desk": "迷ったときの銀行窓口",
+    "worries": "対象か、口座情報は大丈夫？",
+    "guide": "未登録のパスキーは今設定する？"
+  },
+  "depthAt": "2026-11-19T00:33:10+00:00"
 }
