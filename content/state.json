@@ -16257,15 +16257,6 @@
       "skipped": true,
       "url": "https://www.post.japanpost.jp/newsrelease/pressrelease/833741085416.html"
     },
-    "aada06cff4e4c0f6": {
-      "at": "2026-11-05T02:32:41.265587+00:00",
-      "mix": "other",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "score": 85,
-      "section": "business",
-      "slug": "jcci-lobo-oct-2026-business-di",
-      "url": "https://j-net21.smrj.go.jp/news/bt5puv0000010o1i.html"
-    },
     "aae003694bcfc930": {
       "at": "2026-11-06T02:01:42.544819+00:00",
       "reason": "dedupe: 見出しが類似（0.71）: 金融研究所ディスカッション・ペーパー・シリーズ（E-Series : 英語版）（",
@@ -18410,6 +18401,19 @@
       "trendLane": true,
       "url": "https://www.esri.cao.go.jp/jp/sna/menu.html"
     },
+    "cb1d8f8bc84f7e6a": {
+      "at": "2026-11-19T02:34:07.073400+00:00",
+      "costUsd": 0.0453,
+      "foreignAi": true,
+      "intent": "breaking",
+      "major": true,
+      "mix": "ai_consumer",
+      "model": "openai-api:gpt-6.1-terra",
+      "score": 100,
+      "section": "ai",
+      "slug": "gemini-task-mode-japan",
+      "url": "https://blog.google/innovation-and-ai/products/gemini-app/tasks-in-gemini-free-new-features/"
+    },
     "cb2a5e060c5427e5c4e2f9dc32818b98b5e0fec4": {
       "at": "2026-11-15T02:23:45.343018+00:00",
       "reason": "trend: 重複: 見出しが類似（0.67）: high-school-soccer-championship-miyazaki",
@@ -18784,13 +18788,6 @@
       "reason": "prefilter: 価値の薄いお知らせ（を掲載しました）",
       "skipped": true,
       "url": "https://housefoods-group.com/newsrelease/pdf/261109_osirase.pdf"
-    },
-    "d112edf000570969": {
-      "at": "2026-11-05T02:24:51.780292+00:00",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "reason": "ハンドブックの公開は製品・サービスの提供ではなく情報提供のみであるため",
-      "skipped": true,
-      "url": "https://www.ipa.go.jp/digital/kaihatsu/youkyu-kanri.html"
     },
     "d13214cd5fe72faf": {
       "at": "2026-11-09T07:14:24.541278+00:00",
@@ -24427,31 +24424,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-17T03:48:48.359681+00:00",
-      "attempt": 1,
-      "id": "cc5f23ce02ea0ca4",
-      "kind": "ai",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 75.5,
-        "avg_sentence": 41.2,
-        "long_share": 0.212,
-        "max_paragraph": 186,
-        "paragraphs": 18,
-        "sentences": 33
-      },
-      "score": 92,
-      "source": "nvidia-blog",
-      "title": "NVIDIA DGX Spark Developer Kit Turns a Desk Into a Supercomputing Lab",
-      "warnings": [
-        "見出しが45字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（DGX・HPC・SC）",
-        "同じ数字のくり返し（「4台」が11回）。本文では2〜3回までにする"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-17T03:49:18.396519+00:00",
@@ -31926,6 +31898,29 @@
       "warnings": [
         "読みやすさ: 文が長い（1文の平均 53.5字・60字超の文が 25% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
         "読みやすさ: 段落が長い（平均 142.7字・最長 173字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-19T02:34:07.023699+00:00",
+      "attempt": 1,
+      "id": "cb1d8f8bc84f7e6a",
+      "kind": "ai",
+      "model": "openai-api:gpt-6.1-terra",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 83.4,
+        "avg_sentence": 39.4,
+        "long_share": 0.028,
+        "max_paragraph": 111,
+        "paragraphs": 17,
+        "sentences": 36
+      },
+      "score": 100,
+      "source": "google-ai-blog",
+      "title": "Put Gemini to work for you",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（AP・UCP）"
       ]
     }
   ],
