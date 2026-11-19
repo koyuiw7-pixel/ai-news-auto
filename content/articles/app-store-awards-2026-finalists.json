@@ -75,8 +75,8 @@
   "affiliates": [],
   "newsType": "product",
   "todayActions": [
-    "日本向けApp Store公式ページで使っている端末の部門を開き、気になる候補名を控える。",
-    "Apple NewsroomのApp Store Awards 2026ファイナリスト発表ページをブックマークし、受賞者発表時に候補作と照合する。"
+    "Apple Newsroomの候補一覧で、使っている端末の部門と候補を確認する",
+    "受賞者の発表後に、ファイナリスト一覧と照らし合わせる"
   ],
   "qualityBar": {
     "score": 5,
@@ -97,7 +97,8 @@
       6
     ],
     "repaired": false,
-    "repairLater": true
+    "repairLater": true,
+    "laterTriedAt": "2026-11-19T04:42:01+00:00"
   },
   "qualityScore": 100,
   "sourcePublishedAt": "2026-11-18T14:00:58+00:00",
@@ -148,5 +149,65 @@
     ],
     "ar": 1.7778,
     "src": "https://ai-tech-express.jp/img/app-store-awards-2026-finalists-5f9244a9.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "45本のファイナリストは、グローバルApp Storeエディターが「卓越したユーザー体験、デザイン、イノベーション、文化的影響」をもたらしたデベロッパとして選出しています。",
+      "source": "https://www.apple.com/jp/newsroom/2026/11/meet-the-2026-app-store-award-finalists/"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "Apple Newsroomの候補一覧で、使っている端末の部門と候補を確認する",
+      "source": "https://www.apple.com/jp/newsroom/2026/11/meet-the-2026-app-store-award-finalists/",
+      "steps": [
+        "ファイナリスト発表ページを開く",
+        "使っている端末の部門を探す",
+        "候補名と紹介文を確認する"
+      ],
+      "url": "https://www.apple.com/jp/newsroom/2026/11/meet-the-2026-app-store-award-finalists/"
+    },
+    {
+      "action": "受賞者の発表後に、ファイナリスト一覧と照らし合わせる",
+      "source": "https://www.apple.com/jp/newsroom/2026/11/meet-the-2026-app-store-award-finalists/",
+      "steps": [
+        "ファイナリスト発表ページを後日開く",
+        "受賞者の発表を確認する",
+        "気になった候補名と照らし合わせる"
+      ],
+      "url": "https://www.apple.com/jp/newsroom/2026/11/meet-the-2026-app-store-award-finalists/"
+    }
+  ],
+  "cause": {
+    "text": "App Store Awardsは、アプリやゲームとそのデベロッパをたたえる賞です。2026年は、グローバルApp Storeエディターが、ユーザー体験やデザイン、イノベーション、文化的影響をもたらしたとして45本を選びました。",
+    "status": "background",
+    "source": "https://www.apple.com/jp/newsroom/2026/11/meet-the-2026-app-store-award-finalists/"
+  },
+  "worries": [
+    {
+      "q": "候補に選ばれた作品は、もう受賞が決まったの？",
+      "a": "今回発表されたのは45本のファイナリストです。受賞者は数週間以内に発表される予定で、候補入りと受賞決定は別です。",
+      "source": "https://www.apple.com/jp/newsroom/2026/11/meet-the-2026-app-store-award-finalists/",
+      "action": "Apple Newsroomのファイナリスト発表ページを後日開き、受賞者の発表を確認する。"
+    },
+    {
+      "q": "どんな基準でファイナリストが選ばれたの？",
+      "a": "グローバルApp Storeエディターが、卓越したユーザー体験、デザイン、イノベーション、文化的影響をもたらした45本のアプリとゲームのデベロッパを選出しました。",
+      "source": "https://www.apple.com/jp/newsroom/2026/11/meet-the-2026-app-store-award-finalists/",
+      "action": "候補一覧の紹介文を読み、気になる作品がどのような体験を提供するか確かめる。"
+    },
+    {
+      "q": "自分が使っている端末向けの候補はどう探せばいい？",
+      "a": "ファイナリストはiPhone、iPad、Mac、Apple Vision Pro、Apple Watch、Apple TV、Apple Arcade、カルチャーインパクトのカテゴリーにわたります。発表ページには部門別に候補が掲載されています。",
+      "source": "https://www.apple.com/jp/newsroom/2026/11/meet-the-2026-app-store-award-finalists/",
+      "action": "Apple Newsroomの発表ページを開き、使っている端末の部門から候補を確認する。"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "候補を選んだのは誰で、何を見た？",
+    "cause": "45本が選ばれた基準",
+    "steps": "端末別に候補を確認する",
+    "worries": "候補と受賞作の違いは？"
+  },
+  "depthAt": "2026-11-19T04:42:01+00:00"
 }
