@@ -66,8 +66,9 @@
   "affiliates": [],
   "newsType": "filing",
   "todayActions": [
-    "SECの目論見書で、クラスA株の議決権と経営体制に関するリスクを確認する。",
-    "Anthropicの売り出し株数と、会社に入る資金の内訳を目論見書で確認する。"
+    "経営構造に関するリスクを目論見書の該当項目で読む",
+    "会社と既存株主の受取額を目論見書の価格表で見比べる",
+    "クラスA株の権利と取締役の選び方を目論見書で確認する"
   ],
   "relatedSlugs": [
     "anthropic-s1-sec-ipo-filing"
@@ -88,7 +89,8 @@
       6
     ],
     "repaired": false,
-    "repairLater": true
+    "repairLater": true,
+    "laterTriedAt": "2026-11-19T17:51:33+00:00"
   },
   "qualityScore": 97,
   "factSources": [
@@ -127,5 +129,113 @@
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/anthropic-ipo-price-voting-figure-5a2575c5.jpg"
   },
-  "discoverCandidate": true
+  "discoverCandidate": true,
+  "insight": [
+    {
+      "text": "目論見書では、従業員（共同創業者を除く）に発行されるクラスE株は、限られた事項だけに投票でき、経済的権利はないとされています。公開株以外の種類も確認すると、議決権の全体像をつかめます。",
+      "source": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026074944/anthropicpbc-424b4.htm"
+    },
+    {
+      "text": "Anthropicは、Nasdaqのコーポレートガバナンス要件上「controlled company」とされています。議決権の配分だけでなく、上場規則上の扱いも目論見書で確かめられます。",
+      "source": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026074944/anthropicpbc-424b4.htm"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "Anthropic, PBC - 424(b)(4)",
+      "url": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026074944/anthropicpbc-424b4.htm",
+      "source": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026074944/anthropicpbc-424b4.htm"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "経営構造に関するリスクを目論見書の該当項目で読む",
+      "source": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026074944/anthropicpbc-424b4.htm",
+      "steps": [
+        "SECの目論見書を開く",
+        "「Risk Factors—Risks Related to our Governance Structure」を読む"
+      ],
+      "url": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026074944/anthropicpbc-424b4.htm"
+    },
+    {
+      "action": "会社と既存株主の受取額を目論見書の価格表で見比べる",
+      "source": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026074944/anthropicpbc-424b4.htm",
+      "steps": [
+        "SECの目論見書を開く",
+        "「Proceeds, before expenses, to Anthropic, PBC」を確認する",
+        "「Proceeds, before expenses, to selling stockholders」を確認する"
+      ],
+      "url": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026074944/anthropicpbc-424b4.htm"
+    },
+    {
+      "action": "クラスA株の権利と取締役の選び方を目論見書で確認する",
+      "source": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026074944/anthropicpbc-424b4.htm",
+      "steps": [
+        "SECの目論見書を開く",
+        "「Our Governance Structure and Its Goals」を読む",
+        "「Description of Capital Stock」を読む"
+      ],
+      "url": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026074944/anthropicpbc-424b4.htm"
+    }
+  ],
+  "cause": {
+    "text": "Anthropicはデラウェア州法上の公益法人として設立されています。目論見書によると、株主の経済的利益、事業の影響を受ける人々の利益、責任ある先進AIの開発・維持という公益目的のバランスを取ることが求められています。",
+    "status": "background",
+    "source": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026074944/anthropicpbc-424b4.htm"
+  },
+  "worries": [
+    {
+      "q": "クラスA株を持てば、取締役の選任にも影響できますか？",
+      "a": "クラスA株は1株につき1票です。一方、創業者側のクラスF株は一般の株主投票事項で議決権の50.1%を持ち、Long-Term Benefit TrustはクラスT取締役の選任・解任権限を原則として持ちます。",
+      "source": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026074944/anthropicpbc-424b4.htm",
+      "action": "目論見書の「Our Governance Structure and Its Goals」と「Description of Capital Stock」を読み、権限の分かれ方を確認してください。"
+    },
+    {
+      "q": "SECに提出された目論見書なら、株の内容も承認済みですか？",
+      "a": "目論見書は、SECや他の規制機関が証券を承認・不承認したり、目論見書の正確性や十分性を審査したりしたわけではないと明記しています。",
+      "source": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026074944/anthropicpbc-424b4.htm",
+      "action": "購入を検討する場合は、目論見書の「Risk Factors」を読み、SECの承認と誤解しないよう確認してください。"
+    },
+    {
+      "q": "売り出し額はすべてAnthropicの資金になるのですか？",
+      "a": "公開価格での売り出しのうち、会社が売るのは9億5,635万1,354株で、既存株主が売るのは2,364万8,646株です。既存株主が売る株式の代金は会社に入らず、費用を引く前の受取額は会社が788億4,043万8,875ドル、既存株主が19億4,956万5,525ドルです。",
+      "source": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026074944/anthropicpbc-424b4.htm",
+      "action": "目論見書の価格表で、会社と既存株主それぞれの「Proceeds, before expenses」を見比べてください。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "株価だけを見て購入を決めてもいい？",
+      "situation": "投資するかまだ決めていない",
+      "recommend": "権利とリスクも読んで判断する",
+      "reason": "目論見書には公開価格のほか、議決権の仕組みや経営構造に関するリスクが記載されています。内容を読むことで株式の権利やリスクを確認できますが、将来の値動きまでは分かりません。",
+      "source": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026074944/anthropicpbc-424b4.htm"
+    },
+    {
+      "question": "取締役の選び方を重視して判断したい？",
+      "situation": "株主としての議決権を重視する",
+      "recommend": "クラスAの議決権と信託の権限を読む",
+      "reason": "クラスA株は1株につき1票ですが、目論見書では創業者側のクラスF株が一般の株主投票事項で議決権の50.1%を持ち、Long-Term Benefit TrustがクラスT取締役の選任・解任権限を原則持つと説明しています。",
+      "source": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026074944/anthropicpbc-424b4.htm"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "公開株以外の議決権も確認",
+    "cause": "公益法人の目的が経営の仕組みに反映",
+    "steps": "目論見書で読む項目",
+    "desk": "SECの目論見書を確認",
+    "worries": "議決権や会社の受取額はどうなる？",
+    "guide": "価格だけで決めず権利も確認"
+  },
+  "depthAt": "2026-11-19T17:51:33+00:00",
+  "updatedAt": "2026-11-19T17:51:33+00:00",
+  "updates": [
+    {
+      "at": "2026-11-19T17:51:33+00:00",
+      "kind": "facts",
+      "title": "公式の資料をもとに、「なるほどの要点」・「公式の窓口」・「今日やること」・「理由」・「よくある不安」・「判断の目安」を追記しました",
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026074944/anthropicpbc-424b4.htm",
+      "sourceName": "米証券取引委員会（SEC）"
+    }
+  ]
 }

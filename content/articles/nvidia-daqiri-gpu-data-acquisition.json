@@ -77,8 +77,8 @@
     }
   ],
   "todayActions": [
-    "DAQIRIの公式ドキュメントと機器別の設定例で、使っている機器に合う構成を確認する。",
-    "DAQIRIの性能テストで、使用する機器のデータ処理量と通信の遅延を評価する。"
+    "使っている機器に合うDAQIRIの設定例を確認する。",
+    "自分のプラットフォームで処理量と通信遅延を測る。"
   ],
   "qualityBar": {
     "score": 6,
@@ -96,7 +96,8 @@
       6
     ],
     "repaired": false,
-    "repairLater": true
+    "repairLater": true,
+    "laterTriedAt": "2026-11-19T17:51:33+00:00"
   },
   "qualityScore": 98,
   "breaking": true,
@@ -149,6 +150,102 @@
     "ar": 1.4981,
     "src": "https://ai-tech-express.jp/img/nvidia-daqiri-gpu-data-acquisition-04a88e75.jpg"
   },
+  "insight": [
+    {
+      "text": "ハードウェアによる並べ替えは、特定の受信待ち行列ごとに設定します。パケット番号の読み取り方や、欠けたパケットの扱いも設定で決めます。",
+      "source": "https://developer.nvidia.com/blog/enabling-real-time-ai-for-scientific-instruments-with-gpu-native-data-acquisition/"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "DAQIRI documentation",
+      "url": "https://nvidia.github.io/daqiri/getting-started/",
+      "source": "https://developer.nvidia.com/blog/enabling-real-time-ai-for-scientific-instruments-with-gpu-native-data-acquisition/"
+    },
+    {
+      "name": "DAQIRI configuration examples",
+      "url": "https://nvidia.github.io/daqiri/config-generation/",
+      "source": "https://developer.nvidia.com/blog/enabling-real-time-ai-for-scientific-instruments-with-gpu-native-data-acquisition/"
+    },
+    {
+      "name": "DAQIRI benchmarks",
+      "url": "https://nvidia.github.io/daqiri/benchmarks/performance-igx-thor/",
+      "source": "https://developer.nvidia.com/blog/enabling-real-time-ai-for-scientific-instruments-with-gpu-native-data-acquisition/"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "使っている機器に合うDAQIRIの設定例を確認する。",
+      "source": "https://developer.nvidia.com/blog/enabling-real-time-ai-for-scientific-instruments-with-gpu-native-data-acquisition/",
+      "steps": [
+        "DAQIRI configuration examplesを開く",
+        "機器に合う設定例を確認する"
+      ],
+      "url": "https://nvidia.github.io/daqiri/config-generation/"
+    },
+    {
+      "action": "自分のプラットフォームで処理量と通信遅延を測る。",
+      "source": "https://developer.nvidia.com/blog/enabling-real-time-ai-for-scientific-instruments-with-gpu-native-data-acquisition/",
+      "steps": [
+        "DAQIRI benchmarksを開く",
+        "自分のプラットフォームで評価する"
+      ],
+      "url": "https://nvidia.github.io/daqiri/benchmarks/performance-igx-thor/"
+    }
+  ],
+  "cause": {
+    "text": "測定データを運ぶ速さや処理する速さの限界は、機器の設計や測定タイミングにも影響します。DAQIRIの新機能は、データの並べ替えや転送を効率化し、測定中の分析や低遅延の通信を可能にするためのものです。",
+    "status": "background",
+    "source": "https://developer.nvidia.com/blog/enabling-real-time-ai-for-scientific-instruments-with-gpu-native-data-acquisition/"
+  },
+  "worries": [
+    {
+      "q": "測定データは保存してからでないと分析できない？",
+      "a": "DAQIRIは測定データをディスクに書き込む前に、GPU対応の処理へ送り、測定中に分析できます。電子顕微鏡の事例では、GPUが画像を組み立てて補正し、エネルギー損失スペクトルにまとめています。",
+      "source": "https://developer.nvidia.com/blog/enabling-real-time-ai-for-scientific-instruments-with-gpu-native-data-acquisition/",
+      "action": "DAQIRI documentationを開き、測定中のデータ処理に必要な構成を確認する。"
+    },
+    {
+      "q": "受信パケットの並べ替えはどの機器でも使える？",
+      "a": "ハードウェアによる並べ替えは、対応するNVIDIA ConnectX-7以降のNICで利用できます。さらに、NICが番号を読み取れる互換性のある形式であることが条件です。",
+      "source": "https://developer.nvidia.com/blog/enabling-real-time-ai-for-scientific-instruments-with-gpu-native-data-acquisition/",
+      "action": "設定例で使っているNICとパケットの番号形式が対応するかを確かめる。"
+    },
+    {
+      "q": "小さいパケットなら自分の環境でも処理量が約2倍？",
+      "a": "NVIDIAの性能テストでは、小さいパケットでCPUのコア当たりの処理量がほぼ2倍になりました。これはテストでの結果で、NVIDIAは自分のプラットフォームで処理量や通信遅延を評価するよう案内しています。",
+      "source": "https://developer.nvidia.com/blog/enabling-real-time-ai-for-scientific-instruments-with-gpu-native-data-acquisition/",
+      "action": "DAQIRI benchmarksを使い、自分のプラットフォームの処理量と通信遅延を測る。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "NICにパケットの並べ替えを任せるべき？",
+      "situation": "対応するConnectX-7以降のNICを使う",
+      "recommend": "対応する番号形式なら設定を検討する",
+      "reason": "対応するConnectX-7以降のNICは、互換性のある番号形式のパケットをメモリー上の正しい位置に配置できます。別のソフトで並べ替えてコピーする工程を省けますが、対応NICと番号形式が必要です。",
+      "source": "https://developer.nvidia.com/blog/enabling-real-time-ai-for-scientific-instruments-with-gpu-native-data-acquisition/"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "並べ替え設定は受信待ち行列ごと",
+    "cause": "データ移動の限界に対応する新機能",
+    "steps": "機器に合わせて処理量と遅延を測る",
+    "desk": "設定例と性能テストを確認する",
+    "worries": "測定中の処理や対応機器が気になる",
+    "guide": "NICの並べ替え機能を使えるか"
+  },
+  "depthAt": "2026-11-19T17:50:59+00:00",
+  "updatedAt": "2026-11-19T17:50:59+00:00",
+  "updates": [
+    {
+      "at": "2026-11-19T17:50:59+00:00",
+      "kind": "facts",
+      "title": "公式の資料をもとに、「なるほどの要点」・「公式の窓口」・「今日やること」・「理由」・「よくある不安」・「判断の目安」を追記しました",
+      "sourceUrl": "https://developer.nvidia.com/blog/enabling-real-time-ai-for-scientific-instruments-with-gpu-native-data-acquisition/",
+      "sourceName": "NVIDIA Developer Blog"
+    }
+  ],
   "gptReview": {
     "reviewedBy": "gpt-6.1-terra",
     "reviewedAt": "2026-11-19T17:29:28+00:00",
