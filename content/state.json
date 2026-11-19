@@ -11924,6 +11924,19 @@
       "skipped": true,
       "url": "https://www.jp-bank.japanpost.jp/aboutus/press/2026/abt_prs_id002130.html"
     },
+    "6756aab904931135": {
+      "at": "2026-11-19T00:16:37.601627+00:00",
+      "costUsd": 0.0056,
+      "intent": "breaking",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "score": 100,
+      "section": "public",
+      "slug": "sbi-shinsei-monex-data-leak",
+      "url": "https://www.sbishinseibank.co.jp/info/news2611_monex.html"
+    },
     "67610270dd28eed4": {
       "at": "2026-11-17T21:20:40.818069+00:00",
       "reason": "dedupe: 見出しが類似（0.83）: 硫黄島南岸沖の火山活動について~新たな陸地形成 を確認",
@@ -24398,42 +24411,6 @@
   "quality_log": [
     {
       "accepted": true,
-      "at": "2026-11-17T02:12:57.196934+00:00",
-      "attempt": 1,
-      "id": "7aded4e4b3cc0fca",
-      "kind": "ai",
-      "model": "strike:本文 2 文・かんたん版 1 文",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 95.9,
-        "avg_sentence": 42.8,
-        "long_share": 0.154,
-        "max_paragraph": 178,
-        "paragraphs": 29,
-        "sentences": 65
-      },
-      "score": 90,
-      "source": "radar-official",
-      "title": "OpenAI CSAM Image Classifier Model Card - OpenAI Deployment Safety Hub",
-      "warnings": [
-        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（CSAM・CLIP・MLP）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-17T02:28:21.704131+00:00",
-      "attempt": 1,
-      "id": "fef01f44b8804945",
-      "kind": "update",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "score": 94,
-      "source": "ntt-news",
-      "title": "ドコモ、「AQUOS sense11 SH-53G」を11月26日に発売"
-    },
-    {
-      "accepted": true,
       "at": "2026-11-17T02:44:43.543934+00:00",
       "attempt": 1,
       "id": "9de6caca8bbfa64442f53d1265571a8a95898524",
@@ -31838,6 +31815,58 @@
       "warnings": [
         "見出しが45字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（TOYOTA・KARTE）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-19T00:15:40.190307+00:00",
+      "attempt": 1,
+      "id": "6756aab904931135",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "タイトルの「情報流出」およびかんたん版の「メールアドレスや本人確認書類の画像が漏れた」は、漏えいが確認されたように読めますが、元記事が示すのは漏えいのおそれです。",
+        "「本人確認書類の画像が流出した人は1,592件」は、元記事の「本人確認書類の画像データ：1,592件」を人数に置き換えており、人数は確認されていません。",
+        "「マネックス証券を使っていない人には、今回の件で変わることはありません」は対象外と断定していますが、元記事は口座開設を申し込んだ顧客の情報が対象としており、現在利用していない人が対象外とは示していません。"
+      ],
+      "readability": {
+        "avg_paragraph": 78.4,
+        "avg_sentence": 42.8,
+        "long_share": 0.045,
+        "max_paragraph": 125,
+        "paragraphs": 12,
+        "sentences": 22
+      },
+      "score": 74,
+      "source": "fast",
+      "title": "マネックス証券で発生した個人情報漏えいに関する当行のお客さまへの影響について | SBI新生銀行",
+      "warnings": [
+        "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（SBI・SMS）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-19T00:16:18.163343+00:00",
+      "attempt": 1,
+      "id": "6756aab904931135",
+      "kind": "broad",
+      "model": "openai-api:gpt-6-luna",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 75.2,
+        "avg_sentence": 43.0,
+        "long_share": 0.048,
+        "max_paragraph": 125,
+        "paragraphs": 12,
+        "sentences": 21
+      },
+      "score": 100,
+      "source": "fast",
+      "title": "マネックス証券で発生した個人情報漏えいに関する当行のお客さまへの影響について | SBI新生銀行",
+      "warnings": [
+        "見出しが49字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（SBI・SMS）"
       ]
     }
   ],
