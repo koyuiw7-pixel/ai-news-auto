@@ -152,7 +152,7 @@
     "0ac1c55dabe5fd8317abf8ee6c05cffc8786427f": 2,
     "0b2e5956a91a72224e0f066ac9f1b5ab1aee5248": 2,
     "0b34440c65358da9fcbce322630db7ce15dca993": 2,
-    "0b3cb11610dea05982a610a0049a7f27b838971d": 1,
+    "0b3cb11610dea05982a610a0049a7f27b838971d": 2,
     "0b84ee4074eb60c6deb61bdf2ce70eeece2e7682": 2,
     "0b86d134992a6d501b8b793e236a39c2fc5099e8": 2,
     "0bc9d8405b3a82356b986462ed6380f815211be0": 2,
@@ -809,6 +809,7 @@
     "832b77fbd8631044c65ba7d52360b4bfdbc10425": 2,
     "8371ac2e51bfde814f0d0e595a93effd9543584d": 2,
     "83d93179493cf461a143956d961d77f587be89ee": 2,
+    "8414f3eba122a3590762c90322ce01fcdd6538de": 1,
     "8478ec4b5b1a77a86d332e7ec2aa41c495d997af": 2,
     "847c02ee7e45b41bb3623fe5722f32a163948417": 2,
     "84e91c2fe8979ba08e8539ed8bbf90a1136a437a": 2,
@@ -834,7 +835,7 @@
     "8a073f220f5fea3c75e0f8afc52f1df347d44a64": 2,
     "8a16921b5055266738dbba73be7dab3991c05bf8": 2,
     "8a1f2f4cd37957e862b22286c3388592e0dd7b7f": 2,
-    "8a26d8d70d9ad431d2bd7dd30e6fa7fc7a81bfef": 1,
+    "8a26d8d70d9ad431d2bd7dd30e6fa7fc7a81bfef": 2,
     "8a418d39e190f221da2d2929e5da3bb558553ea5": 2,
     "8a44431825f94a209c3255ba6619225b04e8de3f": 2,
     "8aa105368fa557be41bd644ef4e527b3351a7e2c": 2,
@@ -843,8 +844,8 @@
     "8bd50306e3b2ea3c9c98b7d867915b6bc91951c1": 1,
     "8c2bea575e85c56ee85844f61a8b81f8c5ae7d11": 2,
     "8c77e21a118ba2b5cc107e6df7ce19bb16272e36": 2,
-    "8c8293f7e4cd9295afd707f66ecf586897d65f80": 1,
-    "8c885396bb348c3fb17d1c229cc3d9e5d2a03600": 1,
+    "8c8293f7e4cd9295afd707f66ecf586897d65f80": 2,
+    "8c885396bb348c3fb17d1c229cc3d9e5d2a03600": 2,
     "8c8fd8253dfee9c7ec2c72686defc2cdb58d4696": 2,
     "8cbdab04fbc60184159c7f16796209f16857fe55": 2,
     "8d12993bc2ce46cd913aee03ea56242d587b3c39": 2,
@@ -875,7 +876,7 @@
     "90996d67f69e11107107db138755b339e1a1c115": 2,
     "91742b66dae3d34855cb8e61021356870923938d": 2,
     "91763922d3db01a3165833f1082e66300e6451bb": 2,
-    "9186fbc14ef02375f6bdd490d40dccd35b1129f6": 1,
+    "9186fbc14ef02375f6bdd490d40dccd35b1129f6": 2,
     "919a77c248cacdd7bfc5e6ef2b4a9a36cca3af4f": 2,
     "91bde832cd09edc784193c58bee595c50010684a": 2,
     "920e5ca163bd43a1e3f499799ef9865ec0093350": 1,
@@ -1582,9 +1583,7 @@
       "url": "https://www.mof.go.jp/about_mof/councils/fiscal_system_council/sub-of_filp/proceedings/material/zaitoa20261117.html"
     }
   },
-  "major_tries": {
-    "81bc37a7defdb281": 1
-  },
+  "major_tries": {},
   "pi_reopened": {
     "25d126f469e81252": "2026-11-15T17:50:53.256695+00:00",
     "422a9590d5af8caa": "2026-11-15T17:31:05.012183+00:00",
@@ -13703,6 +13702,19 @@
       "slug": "legacy-ai-modernization-survey",
       "url": "https://cloud.google.com/blog/products/ai-machine-learning/new-survey-finds-enterprises-trapped-between-legacy-software-and-ai-modernization/"
     },
+    "81bc37a7defdb281": {
+      "at": "2026-11-19T06:18:17.331291+00:00",
+      "costUsd": 0.008,
+      "intent": "neutral",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "disaster",
+      "score": 93,
+      "section": "business",
+      "slug": "kanagawa-disaster-assessment-simplified",
+      "url": "http://www.mlit.go.jp/report/press/mizukokudo06_hh_000366.html"
+    },
     "81bf65c7110bea2e": {
       "at": "2026-11-09T12:13:06.323956+00:00",
       "costUsd": 0.0017,
@@ -17611,6 +17623,17 @@
       "section": "ai",
       "slug": "elevenlabs-voice-cloning-workflow-guide",
       "url": "https://elevenlabs.io/blog/voice-cloning-for-content-creators"
+    },
+    "bc11dd74f5077eadcf08a0b4e50f34754d6b00fc": {
+      "at": "2026-11-19T06:19:49.805342+00:00",
+      "kind": "trend",
+      "model": "openai-api:gpt-6-luna",
+      "pressReport": true,
+      "score": 100,
+      "slug": "tank-shell-burst-cause",
+      "trendKeyword": "砲弾",
+      "trendLane": true,
+      "url": "https://news.yahoo.co.jp/articles/894f61ec75ee2a12e07e55987aecc892d692d1de"
     },
     "bc1666a52ebeee4a10f3785f8b132653d108dd80": {
       "at": "2026-11-15T21:56:50.864427+00:00",
@@ -22223,14 +22246,6 @@
       "url": "https://subway.co.jp/news/20261108-01/",
       "writer": "muse"
     },
-    "muse-2549e2b7e3": {
-      "at": "2026-11-19T06:17:00.043621+00:00",
-      "mix": "other",
-      "score": 100,
-      "slug": "starbucks-holiday-2026-second-goods",
-      "url": "https://www.starbucks.co.jp/seasonal-goods/",
-      "writer": "muse"
-    },
     "muse-25881c0ebe": {
       "at": "2026-11-17T03:22:02.233326+00:00",
       "mix": "money",
@@ -23159,14 +23174,6 @@
       "url": "https://www.nenkin.go.jp/service/kokunen/menjo/20150331.html?id=3651",
       "writer": "muse"
     },
-    "muse-850af294af": {
-      "at": "2026-11-19T06:19:39.985561+00:00",
-      "mix": "money",
-      "score": 100,
-      "slug": "amazon-black-friday-2026-schedule-muse-850",
-      "url": "https://press.aboutamazon.com/jp/2026/11/black-friday-2026",
-      "writer": "muse"
-    },
     "muse-8545ec4c33": {
       "at": "2026-11-09T10:54:18.181428+00:00",
       "mix": "other",
@@ -24079,14 +24086,6 @@
       "url": "https://vivant.toho-movie.jp/news.html",
       "writer": "muse"
     },
-    "muse-d6077bee22": {
-      "at": "2026-11-19T06:18:43.872450+00:00",
-      "mix": "other",
-      "score": 100,
-      "slug": "soma-pan-marshmallow-recall",
-      "url": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036156&screenkbn=01",
-      "writer": "muse"
-    },
     "muse-d6774df341": {
       "at": "2026-11-11T06:42:48.292316+00:00",
       "mix": "money",
@@ -24542,84 +24541,33 @@
       "slug": "fujiseika-kinpaku-hagoromo-recall",
       "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602845",
       "writer": "muse"
+    },
+    "muse-2549e2b7e3": {
+      "at": "2026-11-19T06:17:00.043621+00:00",
+      "mix": "other",
+      "score": 100,
+      "slug": "starbucks-holiday-2026-second-goods",
+      "url": "https://www.starbucks.co.jp/seasonal-goods/",
+      "writer": "muse"
+    },
+    "muse-850af294af": {
+      "at": "2026-11-19T06:19:39.985561+00:00",
+      "mix": "money",
+      "score": 100,
+      "slug": "amazon-black-friday-2026-schedule-muse-850",
+      "url": "https://press.aboutamazon.com/jp/2026/11/black-friday-2026",
+      "writer": "muse"
+    },
+    "muse-d6077bee22": {
+      "at": "2026-11-19T06:18:43.872450+00:00",
+      "mix": "other",
+      "score": 100,
+      "slug": "soma-pan-marshmallow-recall",
+      "url": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036156&screenkbn=01",
+      "writer": "muse"
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-17T07:33:43.809759+00:00",
-      "attempt": 0,
-      "id": "38fee4ec119a4fc8a4b3e85281836e571a34e063",
-      "kind": "trend",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 78.5,
-        "avg_sentence": 34.9,
-        "long_share": 0.0,
-        "max_paragraph": 107,
-        "paragraphs": 4,
-        "sentences": 9
-      },
-      "score": 94,
-      "source": "trends",
-      "title": "葛飾 シカ",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（TBS・NEWS・DIG）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-17T07:38:50.876690+00:00",
-      "attempt": 1,
-      "id": "fc92a8f788c0bc89",
-      "kind": "broad",
-      "model": "claude:sonnet",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 81.7,
-        "avg_sentence": 37.7,
-        "long_share": 0.115,
-        "max_paragraph": 137,
-        "paragraphs": 12,
-        "sentences": 26
-      },
-      "score": 85,
-      "source": "fast",
-      "title": "「Style」ショップLINE公式アカウントの外部サービス提供元における不正アクセスの発生について | MTG News | 株式会社MTG",
-      "warnings": [
-        "見出しが47字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（MTG・LIFULL・HOME）",
-        "決まった型の見出し（「何が起きたか」）。その記事でしか使えない中身の言葉にするか、見出しを消す"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-17T07:41:32.878062+00:00",
-      "attempt": 1,
-      "id": "62f14b70e27c1e6e",
-      "kind": "ai",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [
-        "判定: 提供状況=limited → 元記事に「limited（限定提供）」という提供状況の記載はなく、内部用の判定ラベルが本文に残っている（事実の裏付けがない）。"
-      ],
-      "readability": {
-        "avg_paragraph": 85.3,
-        "avg_sentence": 47.6,
-        "long_share": 0.206,
-        "max_paragraph": 148,
-        "paragraphs": 19,
-        "sentences": 34
-      },
-      "score": 88,
-      "source": "nttdata-news",
-      "title": "生成AIでCOBOLの基幹システムを保守性の高いJavaへ再設計する「クリーンモダナイゼーション™」を提供開始",
-      "warnings": [
-        "見出しが49字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（SQUARE・SOMPO・TEL）",
-        "読みやすさ: 文が長い（1文の平均 47.6字・60字超の文が 21% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-17T07:41:54.229721+00:00",
@@ -32066,6 +32014,80 @@
       "warnings": [
         "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す"
       ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-19T06:17:15.840875+00:00",
+      "attempt": 1,
+      "id": "81bc37a7defdb281",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "「11月19日から簡素化の対象に加わりました」→発表日は11月19日ですが、適用開始日が同日だとは元記事に明記されていません。",
+        "「個人の手続きは変わりません」→対象が自治体の公共土木施設の災害査定であることは確認できますが、個人の手続きに変更がないという説明は元記事にありません。",
+        "「通常は、現地で国が確認する工事が多くなります」→通常時に現地確認となる工事が多いという説明は、元記事にありません。"
+      ],
+      "readability": {
+        "avg_paragraph": 78.9,
+        "avg_sentence": 39.4,
+        "long_share": 0.094,
+        "max_paragraph": 147,
+        "paragraphs": 16,
+        "sentences": 32
+      },
+      "score": 84,
+      "source": "mlit-press",
+      "title": "令和８年梅雨前線豪雨から台風第25号までの一連の気象現象による災害（仮称）で被災した、道路・河川等の迅速な復旧を支援～大規模災害時の災害査定の効率化（簡素化）の",
+      "warnings": [
+        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-19T06:18:17.279973+00:00",
+      "attempt": 1,
+      "id": "81bc37a7defdb281",
+      "kind": "broad",
+      "model": "openai-api:gpt-6-luna",
+      "problems": [
+        "「神奈川県の被災自治体は通知された内容に沿って手続きを進めます」→自治体が実際にその手順で進めるという記述は元記事にありません。",
+        "「災害査定とは、災害で壊れた公共の施設を国の補助で復旧するとき」→元記事は災害査定の効率化を説明していますが、国の補助による復旧という制度説明までは記載していません。"
+      ],
+      "readability": {
+        "avg_paragraph": 75.7,
+        "avg_sentence": 40.4,
+        "long_share": 0.1,
+        "max_paragraph": 125,
+        "paragraphs": 16,
+        "sentences": 30
+      },
+      "score": 93,
+      "source": "mlit-press",
+      "title": "令和８年梅雨前線豪雨から台風第25号までの一連の気象現象による災害（仮称）で被災した、道路・河川等の迅速な復旧を支援～大規模災害時の災害査定の効率化（簡素化）の",
+      "warnings": [
+        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-19T06:19:49.800474+00:00",
+      "attempt": 1,
+      "id": "bc11dd74f5077eadcf08a0b4e50f34754d6b00fc",
+      "kind": "trend",
+      "model": "openai-api:gpt-6-luna",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 107.6,
+        "avg_sentence": 44.8,
+        "long_share": 0.083,
+        "max_paragraph": 145,
+        "paragraphs": 5,
+        "sentences": 12
+      },
+      "score": 100,
+      "source": "trends",
+      "title": "砲弾"
     }
   ],
   "short_text_retry": {
