@@ -5124,12 +5124,6 @@
       "skipped": true,
       "url": "https://news.yahoo.co.jp/articles/0482fa227dc26d9dccd2e557195920356c67a4ea"
     },
-    "03ef0f6a91d8d82a": {
-      "at": "2026-11-05T03:31:35.241449+00:00",
-      "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
-      "skipped": true,
-      "url": "https://www.mhlw.go.jp/stf/newpage_77023.html"
-    },
     "03f5c72eb20ae4f3": {
       "at": "2026-11-16T10:55:12.389891+00:00",
       "reason": "dedupe: 見出しが類似（1.00）: 公正取引委員会",
@@ -5540,6 +5534,19 @@
       "reason": "dedupe: 同じ出典URL",
       "skipped": true,
       "url": "https://www.morinaga.co.jp/company/newsrelease/detail.php?no=3231"
+    },
+    "0a78bbcddd119e15": {
+      "at": "2026-11-19T03:24:06.201530+00:00",
+      "costUsd": 0.0033,
+      "intent": "breaking",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "score": 100,
+      "section": "public",
+      "slug": "osaki-electric-ransomware-production-halt",
+      "url": "https://www.osaki.co.jp/ja/notice/20261118.html"
     },
     "0a828f19444799c7": {
       "at": "2026-11-11T01:54:41.177243+00:00",
@@ -6232,6 +6239,19 @@
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・暮らしの交通/天気/値上げ/障害/給付/発売・日本のスポーツのどれでもない）",
       "skipped": true,
       "url": "https://www.soumu.go.jp/main_sosiki/kenkyu/tokeihoto/02toukatsu01_04000556.html"
+    },
+    "14a287c3c204660f": {
+      "at": "2026-11-19T03:31:29.831154+00:00",
+      "costUsd": 0.0048,
+      "intent": "breaking",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "score": 96,
+      "section": "public",
+      "slug": "akyrise-euglena-data-leak-second-report",
+      "url": "https://www.euglena.jp/news/20261116-1/"
     },
     "14a41cb4200d3186": {
       "at": "2026-11-09T06:22:21.556552+00:00",
@@ -7308,6 +7328,20 @@
       "section": "ai",
       "slug": "ai-shift-fde-tracing-platform",
       "url": "https://developers.cyberagent.co.jp/blog/archives/67361/"
+    },
+    "242d4064023b0929": {
+      "at": "2026-11-19T03:19:16.103367+00:00",
+      "costUsd": 0.0123,
+      "intent": "neutral",
+      "kind": "trend",
+      "mix": "",
+      "model": "gemini-3.5-flash-lite",
+      "score": 98,
+      "section": "public",
+      "slug": "jleague-ticket-data-leak-2026",
+      "trendKeyword": "Jリーグ・WEリーグ 情報流出",
+      "trendLane": true,
+      "url": "https://www.jleague.jp/news/article/35384/"
     },
     "246785620fc97f8d": {
       "at": "2026-11-08T02:54:39.323417+00:00",
@@ -8425,12 +8459,6 @@
       "reason": "stale: 発表から51時間（48時間を超えた発表は通常の記事にしない）",
       "skipped": true,
       "url": "https://developer.nvidia.com/blog/five-ways-nvidia-co-design-maximizes-the-value-of-every-byte-in-the-ai-factory/"
-    },
-    "34d4227e6799f3d6": {
-      "at": "2026-11-05T03:31:16.377461+00:00",
-      "reason": "prefilter: 価値の薄いお知らせ（受賞）",
-      "skipped": true,
-      "url": "https://j-net21.smrj.go.jp/news/bt5puv0000010nxw.html"
     },
     "34f25059f477b0ff": {
       "at": "2026-11-11T08:15:46.028680+00:00",
@@ -11321,6 +11349,12 @@
       "skipped": true,
       "url": "https://www.mext.go.jp/b_menu/shingi/gijyutu/gijyutu2/108/kaisai/1419839_00013.htm"
     },
+    "5f8b71a08c4869d06b37eddf29b1c1dae66dfce7": {
+      "at": "2026-11-19T03:19:16.103523+00:00",
+      "reason": "trend: 公式の発表で記事にした（jleague-ticket-data-leak-2026）",
+      "skipped": true,
+      "url": "https://rocket-boys.co.jp/security-measures-lab/jleague_weleague_karte_2383616_breach_2026/"
+    },
     "5fbdb3b82c2d9bf9": {
       "at": "2026-11-13T07:05:25.803955+00:00",
       "costUsd": 0.0015,
@@ -12053,13 +12087,6 @@
       "slug": "yeny-member-data-leak",
       "url": "https://yeny.jp/pressrelease/1547/"
     },
-    "69e577618434b437": {
-      "at": "2026-11-05T03:31:35.238166+00:00",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "reason": "地権者による市街地再開発の準備組合設立と事業協力者の選定を伝える発表だが、事業はまだ計画策定の前段階で、読者が今すぐ使う・申し込む・判断する具体的な条件や数字が元資料にほぼありません。1,600字を満たすには水増しが必要になるため、公開対象から外します。",
-      "skipped": true,
-      "url": "https://www.nttud.co.jp/news/detail/id/n28053.html"
-    },
     "69e65332b4e3ff04": {
       "at": "2026-11-12T03:27:49.307462+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（会議）",
@@ -12594,12 +12621,6 @@
       "reason": "quality: 元記事・確認済みの事実の束・計算済みの数字のどれにも無い数字がある（「1機関 | **認定率 25%」、「0機関から230機関へと2.3倍」）。元記事か束の数字に直すか、その文を削る。簡単な計算（かけ算・足し算など）をするなら、確かめた数字だけを使って式を書き「（サイソク編集部の計算）」と添える",
       "skipped": true,
       "url": "https://www.mext.go.jp/a_menu/nihongo_kyoiku/1420729_00022.htm"
-    },
-    "721d11173ef6c6c4": {
-      "at": "2026-11-05T03:31:16.377491+00:00",
-      "reason": "prefilter: 価値の薄いお知らせ（アワード）",
-      "skipped": true,
-      "url": "https://j-net21.smrj.go.jp/news/bt5puv0000010lfg.html"
     },
     "72267dd9cced1a56": {
       "at": "2026-11-09T06:54:37.845882+00:00",
@@ -15546,6 +15567,19 @@
       "reason": "prefilter: 価値の薄いお知らせ（調達）",
       "skipped": true,
       "url": "https://www.nli-research.co.jp/topics_detail1/id=87283?site=nli"
+    },
+    "a0afdf0b0cc84f52": {
+      "at": "2026-11-19T03:32:25.847692+00:00",
+      "costUsd": 0.0014,
+      "intent": "breaking",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "score": 98,
+      "section": "public",
+      "slug": "jointex-karte-unauthorized-access",
+      "url": "https://www.plus.co.jp/news/202611/infoqmg2h0mviu/"
     },
     "a0fcaf0edce3456c": {
       "at": "2026-11-06T19:18:02.541177+00:00",
@@ -24440,117 +24474,9 @@
       "slug": "fujiseika-kinpaku-hagoromo-recall",
       "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602845",
       "writer": "muse"
-    },
-    "0a78bbcddd119e15": {
-      "at": "2026-11-19T03:24:06.201530+00:00",
-      "costUsd": 0.0033,
-      "intent": "breaking",
-      "major": true,
-      "mix": "alert",
-      "model": "claude:sonnet",
-      "publicInterest": "breach",
-      "score": 100,
-      "section": "public",
-      "slug": "osaki-electric-ransomware-production-halt",
-      "url": "https://www.osaki.co.jp/ja/notice/20261118.html"
-    },
-    "242d4064023b0929": {
-      "at": "2026-11-19T03:19:16.103367+00:00",
-      "costUsd": 0.0123,
-      "intent": "neutral",
-      "kind": "trend",
-      "mix": "",
-      "model": "gemini-3.5-flash-lite",
-      "score": 98,
-      "section": "public",
-      "slug": "jleague-ticket-data-leak-2026",
-      "trendKeyword": "Jリーグ・WEリーグ 情報流出",
-      "trendLane": true,
-      "url": "https://www.jleague.jp/news/article/35384/"
-    },
-    "5f8b71a08c4869d06b37eddf29b1c1dae66dfce7": {
-      "at": "2026-11-19T03:19:16.103523+00:00",
-      "reason": "trend: 公式の発表で記事にした（jleague-ticket-data-leak-2026）",
-      "skipped": true,
-      "url": "https://rocket-boys.co.jp/security-measures-lab/jleague_weleague_karte_2383616_breach_2026/"
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-17T04:39:50.177138+00:00",
-      "attempt": 1,
-      "id": "6f02b176d576abc9",
-      "kind": "broad",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 66.5,
-        "avg_sentence": 37.7,
-        "long_share": 0.2,
-        "max_paragraph": 154,
-        "paragraphs": 17,
-        "sentences": 30
-      },
-      "score": 93,
-      "source": "samsung-jp",
-      "title": "Samsung、インテリジェントアイウェアを12月に発売。AIで世界の見え方を、もっとスマートに。",
-      "warnings": [
-        "見出しが45字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（AR・HDR・IPX）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-17T04:51:47.471629+00:00",
-      "attempt": 1,
-      "id": "b1c71d07875ac772",
-      "kind": "ai",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 93.2,
-        "avg_sentence": 38.8,
-        "long_share": 0.062,
-        "max_paragraph": 140,
-        "paragraphs": 20,
-        "sentences": 48
-      },
-      "score": 90,
-      "source": "openai-news",
-      "title": "Strengthening the fight against online child sexual abuse with new tools and sup",
-      "warnings": [
-        "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（CSAM・ROOST）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-17T05:08:35.980923+00:00",
-      "attempt": 1,
-      "id": "a89e1f88c60f52a5",
-      "kind": "broad",
-      "model": "claude:sonnet",
-      "problems": [
-        "本文「モンスターボールの形をした」→ 元記事に製品の外観の記述がなく、形状は裏付けられない。",
-        "本文「フォームの場所は、ポケットモンスターオフィシャルサイトのリコール告知ページで案内されています」→ 元記事は告知ページのURLを載せるだけで、専用フォームがそのページで案内されているとは確認できない。",
-        "タイトル「回収中」→ 対応開始日は2021年7月2日で、現在も回収中と言える根拠は元記事にない（受付中の表現は確認できていない）。"
-      ],
-      "readability": {
-        "avg_paragraph": 91.3,
-        "avg_sentence": 37.6,
-        "long_share": 0.059,
-        "max_paragraph": 159,
-        "paragraphs": 7,
-        "sentences": 17
-      },
-      "score": 88,
-      "source": "caa-recall",
-      "title": "家電製品 ポケモン「モンスターボール モバイルバッテリー Anker 10000mAh」 - 返金／回収",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（JAN）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-17T05:08:54.213298+00:00",
@@ -31964,6 +31890,79 @@
       "warnings": [
         "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（COO）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-19T03:30:40.792103+00:00",
+      "attempt": 1,
+      "id": "14a287c3c204660f",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "「不正アクセスの原因は、調査が続いており」→ 元記事は原因調査を進めたと述べていますが、現在も調査が続いているとは明記していません。",
+        "「メールなどが届いたら削除する」→ 元記事は不審なメールやSMSのURL・添付ファイルを開かないよう求めていますが、対象者への個別案内もメール等で行う予定です。すべて削除するよう勧めると、正式な案内まで見落とすおそれがあります。"
+      ],
+      "readability": {
+        "avg_paragraph": 79.5,
+        "avg_sentence": 38.3,
+        "long_share": 0.111,
+        "max_paragraph": 154,
+        "paragraphs": 13,
+        "sentences": 27
+      },
+      "score": 88,
+      "source": "fast",
+      "title": "【第二報】第三者による不正アクセスに伴う化粧品ブランド「akyrise（あきゅらいず）」の会員情報漏えいに関するお詫びとお知らせ",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（EC・SMS）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-19T03:31:13.788916+00:00",
+      "attempt": 1,
+      "id": "14a287c3c204660f",
+      "kind": "broad",
+      "model": "openai-api:gpt-6-luna",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 79.5,
+        "avg_sentence": 38.3,
+        "long_share": 0.111,
+        "max_paragraph": 154,
+        "paragraphs": 13,
+        "sentences": 27
+      },
+      "score": 96,
+      "source": "fast",
+      "title": "【第二報】第三者による不正アクセスに伴う化粧品ブランド「akyrise（あきゅらいず）」の会員情報漏えいに関するお詫びとお知らせ",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（EC・SMS）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-19T03:32:14.279021+00:00",
+      "attempt": 1,
+      "id": "a0afdf0b0cc84f52",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 77.1,
+        "avg_sentence": 38.5,
+        "long_share": 0.038,
+        "max_paragraph": 141,
+        "paragraphs": 13,
+        "sentences": 26
+      },
+      "score": 98,
+      "source": "fast",
+      "title": "【ジョインテックス】委託先事業者で発生した不正アクセスに伴うメールアドレス等の漏えいについて｜PLUS プラス株式会社／PLUSグループ",
+      "warnings": [
+        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（KARTE）"
       ]
     }
   ],
