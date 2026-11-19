@@ -5922,6 +5922,19 @@
       "skipped": true,
       "url": "https://news.yahoo.co.jp/pickup/6602638"
     },
+    "0cb69f7a99b81e9c": {
+      "at": "2026-11-19T23:32:38.265292+00:00",
+      "costUsd": 0.0117,
+      "intent": "breaking",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "score": 92,
+      "section": "public",
+      "slug": "ymir-link-cuenote-fc-breach-third-report",
+      "url": "https://www.ymir.co.jp/info/ymir-information20261111.html"
+    },
     "0ccbb3019957b07f": {
       "at": "2026-11-13T07:28:06.365990+00:00",
       "breaking": true,
@@ -20994,6 +21007,19 @@
       "skipped": true,
       "url": "https://openai.com/index/control-room"
     },
+    "f3935d1d01ced953": {
+      "at": "2026-11-19T23:34:56.541569+00:00",
+      "costUsd": 0.0062,
+      "intent": "breaking",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "score": 100,
+      "section": "public",
+      "slug": "andst-data-leak-2740000-hotline",
+      "url": "https://www.andst-hd.co.jp/news/notice/entry-17245/"
+    },
     "f3a3fc028a84123e": {
       "at": "2026-11-10T09:07:57.676452+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（会議）",
@@ -24500,97 +24526,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-17T21:55:22.935539+00:00",
-      "attempt": 1,
-      "id": "31687b5bbeeef9fb",
-      "kind": "update",
-      "model": "openai-api:gpt-6.1-terra",
-      "problems": [],
-      "score": 100,
-      "source": "fast",
-      "title": "当社が利用する外部サービス「KARTE」への不正アクセスによるお客様情報の漏えいに関するお詫びとお知らせ | ゴルフダイジェスト・オンライン"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-17T22:04:02.630075+00:00",
-      "attempt": 1,
-      "id": "83d17ad4fd911ffd",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "タイトルの「2億1,796万円」→元資料の217,967千円は2億1,796万7,000円で、7,000円少ない表記です。",
-        "「前回の3回目内示」「直近の3回目内示」→確認済み資料は繰越分についても「4回目内示」として公表されており、3回目とする根拠がありません。",
-        "「愛知県に…交付されます」「交付を受ける」→資料が示すのは交付額の内示であり、実際に交付済み・交付確定であるかのような表現は強すぎます。",
-        "「一般の個人が申請したり契約したりする制度ではなく」→都道府県別の内示額は確認できますが、個人の申請・契約可否までは資料に記載されていません。",
-        "「価格=総額2億1,796万円」→補助金の内示額を価格とする根拠はなく、金額も正確な内示額より7,000円少なくなっています。"
-      ],
-      "readability": {
-        "avg_paragraph": 140.6,
-        "avg_sentence": 53.6,
-        "long_share": 0.381,
-        "max_paragraph": 259,
-        "paragraphs": 8,
-        "sentences": 21
-      },
-      "score": 65,
-      "source": "mhlw",
-      "title": "令和８年度医療施設等施設整備費補助金の交付額の内示について （4回目内示）",
-      "warnings": [
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
-        "読みやすさ: 文が長い（1文の平均 53.6字・60字超の文が 38% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "読みやすさ: 段落が長い（平均 140.6字・最長 259字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-17T22:05:33.272132+00:00",
-      "attempt": 1,
-      "id": "83d17ad4fd911ffd",
-      "kind": "broad",
-      "model": "strike:判定カード",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 137.6,
-        "avg_sentence": 52.4,
-        "long_share": 0.381,
-        "max_paragraph": 259,
-        "paragraphs": 8,
-        "sentences": 21
-      },
-      "score": 98,
-      "source": "mhlw",
-      "title": "令和８年度医療施設等施設整備費補助金の交付額の内示について （4回目内示）",
-      "warnings": [
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
-        "読みやすさ: 文が長い（1文の平均 52.4字・60字超の文が 38% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "読みやすさ: 段落が長い（平均 137.6字・最長 259字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-17T22:06:02.696916+00:00",
-      "attempt": 0,
-      "id": "83d17ad4fd911ffd",
-      "kind": "broad",
-      "model": "openai-api:gpt-6-luna",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 75.9,
-        "avg_sentence": 32.5,
-        "long_share": 0.029,
-        "max_paragraph": 109,
-        "paragraphs": 15,
-        "sentences": 35
-      },
-      "score": 100,
-      "source": "mhlw",
-      "title": "令和８年度医療施設等施設整備費補助金の交付額の内示について （4回目内示）",
-      "warnings": [
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
-      ]
-    },
     {
       "accepted": false,
       "at": "2026-11-17T22:09:59.480601+00:00",
@@ -32092,6 +32027,112 @@
       "score": 97,
       "source": "radar-official",
       "title": "ホーム｜厚生労働省"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-19T23:30:33.925415+00:00",
+      "attempt": 1,
+      "id": "0cb69f7a99b81e9c",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "「Cuenote SR-S ほか6サービス」→元記事にある対象サービスはSR-Sを含めて計6サービスであり、「ほか6サービス」では計7サービスになります。",
+        "「流出が確認されたのはCuenote FCとCuenote BASEの2つ」→元記事がBASEについて確認しているのは契約者情報が閲覧可能な状態だったことで、外部への流出が確認されたと断定するのは不正確です。",
+        "「同じ人が複数の企業の配信リストに入っていれば、その分も数えられます」→延べ件数の説明としては考えられますが、元記事は個人の重複計上の扱いを明示していません。"
+      ],
+      "readability": {
+        "avg_paragraph": 75.2,
+        "avg_sentence": 36.6,
+        "long_share": 0.077,
+        "max_paragraph": 172,
+        "paragraphs": 19,
+        "sentences": 39
+      },
+      "score": 86,
+      "source": "fast",
+      "title": "当社システムへの不正なアクセスに関するご報告（第三報）｜NEWS｜メッセージングソリューションのユミルリンク",
+      "warnings": [
+        "見出しが47字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（FC・BASE・CSV）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-19T23:32:29.981696+00:00",
+      "attempt": 1,
+      "id": "0cb69f7a99b81e9c",
+      "kind": "broad",
+      "model": "openai-api:gpt-6-luna",
+      "problems": [
+        "「自分の情報が含まれるかは、配信元の企業からの連絡で確かめることになります」→第三報は影響が確認された顧客への個別連絡に触れていますが、個人が情報の有無を配信元企業への連絡で確認できるとは述べていません。",
+        "「2026年12月期の業績への影響は精査中です。最終報の公表を待つ形になります」→業績への影響が精査中であることと最終報を公表予定であることは記載されていますが、業績への影響の確認に最終報を待つ必要があるとは述べていません。"
+      ],
+      "readability": {
+        "avg_paragraph": 73.7,
+        "avg_sentence": 36.9,
+        "long_share": 0.079,
+        "max_paragraph": 172,
+        "paragraphs": 19,
+        "sentences": 38
+      },
+      "score": 92,
+      "source": "fast",
+      "title": "当社システムへの不正なアクセスに関するご報告（第三報）｜NEWS｜メッセージングソリューションのユミルリンク",
+      "warnings": [
+        "見出しが47字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（FC・BASE・CSV）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-19T23:33:53.521499+00:00",
+      "attempt": 1,
+      "id": "f3935d1d01ced953",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "タイトル「アンドエスティの個人情報流出」→ 元記事が伝えているのは流出の「可能性」であり、実際に流出したと確定した表現は強すぎます。",
+        "「『社会保険算出情報』とは、保険料などを計算するための情報」→ 元記事は情報の名称を示すだけで、保険料を計算する情報だとは説明していません。",
+        "「問い合わせフォームで対象か尋ねる」→ 元記事にはフォームの案内はありますが、対象者かどうかの確認に使えるとは明記されていません。"
+      ],
+      "readability": {
+        "avg_paragraph": 84.4,
+        "avg_sentence": 39.9,
+        "long_share": 0.083,
+        "max_paragraph": 175,
+        "paragraphs": 17,
+        "sentences": 36
+      },
+      "score": 87,
+      "source": "fast",
+      "title": "当社業務サーバーへの不正アクセスに関する調査結果およびお客さま情報に関する専用窓口設置のお知らせ | 重要なお知らせ | ニュース | 株式会社アンドエスティH",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（HD・WEB・SMS）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-19T23:34:43.548305+00:00",
+      "attempt": 1,
+      "id": "f3935d1d01ced953",
+      "kind": "broad",
+      "model": "openai-api:gpt-6-luna",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 82.4,
+        "avg_sentence": 40.0,
+        "long_share": 0.086,
+        "max_paragraph": 175,
+        "paragraphs": 17,
+        "sentences": 35
+      },
+      "score": 100,
+      "source": "fast",
+      "title": "当社業務サーバーへの不正アクセスに関する調査結果およびお客さま情報に関する専用窓口設置のお知らせ | 重要なお知らせ | ニュース | 株式会社アンドエスティH",
+      "warnings": [
+        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（HD・WEB・SMS）"
+      ]
     }
   ],
   "short_text_retry": {
