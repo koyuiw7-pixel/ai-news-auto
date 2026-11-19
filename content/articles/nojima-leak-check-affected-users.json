@@ -54,18 +54,19 @@
   "videoTitle": "ノジマの漏えい、対象は717万9,818名に　スマホ買取サイトなど5サイトで口座情報も",
   "publishedAt": "2026-11-19T20:53:26.308265+00:00",
   "generatedAt": "2026-11-19T20:54:20.186930+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/nojima-leak-check-affected-users-ae54a57f.jpg",
   "model": "openai-api:gpt-6.1-terra",
   "affiliates": [],
   "newsType": "policy",
   "todayActions": [
-    "スマホ買取サイトや中古スマホ販売サイトを利用した人は、通帳や明細で不審な入出金を確認する。",
-    "ノジマオンラインの会員だった人は、対象者向けに送られた案内を確認する。",
-    "対象か不安な場合は、ノジマカスタマーセンター（0120-574-853）に問い合わせる。"
+    "スマホ買取サイトか中古スマホ販売サイトを利用した人は、通帳や明細の入出金を確認する",
+    "ノジマオンラインの会員だった人は、対象者向けに送られた案内を確認する",
+    "その他のサイトを利用した人は、登録時期を対象期間と照らし、個別案内を確認する"
   ],
   "angleOf": "nojima-data-leak-second-report",
   "deepDive": "qa",
   "relatedSlugs": [
+    "nojima-leak-sites-and-periods",
     "nojima-data-leak-second-report"
   ],
   "qualityBar": {
@@ -83,5 +84,127 @@
   "detectedAt": "2026-11-19T20:55:44+00:00",
   "searchTitle": "ノジマの漏えい対象は？　口座情報を含む4,223人",
   "layout": "noir",
-  "summaryLine": "ノジマの情報漏えいでは、対象者のうち**4,223人**の情報に口座情報が含まれています。"
+  "summaryLine": "ノジマの情報漏えいでは、対象者のうち**4,223人**の情報に口座情報が含まれています。",
+  "insight": [
+    {
+      "text": "ノジマは不正アクセス検知後、今回判明したサイトを一時停止し、外部からのアクセスを遮断しました。現時点で被害の拡大は確認されていないとしています。",
+      "source": "https://www.nojima.co.jp/news/category/press/746679/"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "ノジマカスタマーセンター",
+      "url": "https://www.nojima.co.jp/news/category/press/746679/",
+      "source": "https://www.nojima.co.jp/news/category/press/746679/",
+      "phone": "0120-574-853",
+      "hours": "9:30～19:00",
+      "note": "スマホ買取サイト・中古スマホ販売サイトを利用した人は、通帳や明細等で不審な入出金がないか確認するよう案内されています。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "スマホ買取サイトか中古スマホ販売サイトを利用した人は、通帳や明細の入出金を確認する",
+      "source": "https://www.nojima.co.jp/news/category/press/746679/",
+      "steps": [
+        "通帳や明細等を用意する",
+        "不審な入出金がないか確認する"
+      ],
+      "url": "https://www.nojima.co.jp/news/category/press/746679/"
+    },
+    {
+      "action": "ノジマオンラインの会員だった人は、対象者向けに送られた案内を確認する",
+      "source": "https://www.nojima.co.jp/news/category/press/746679/",
+      "steps": [
+        "2026年11月1日時点で会員だったか確認する",
+        "対象者向けに送られた案内を確認する"
+      ],
+      "url": "https://www.nojima.co.jp/news/category/press/746679/"
+    },
+    {
+      "action": "その他のサイトを利用した人は、登録時期を対象期間と照らし、個別案内を確認する",
+      "source": "https://www.nojima.co.jp/news/category/press/746679/",
+      "steps": [
+        "利用したサイト名を確認する",
+        "登録・入力した時期を対象期間と照らす",
+        "登録メールアドレスや郵送等の個別案内を確認する"
+      ],
+      "url": "https://www.nojima.co.jp/news/category/press/746679/"
+    }
+  ],
+  "cause": {
+    "text": "詳細調査で、第三者が業務委託先の管理・運用するスマホ買取サイトと同一環境上の他4サイトに不正アクセスしていたと判明しました。ノジマオンラインとは別環境で運営され、現時点で両事案の関連は確認されていません。",
+    "status": "stated",
+    "source": "https://www.nojima.co.jp/news/category/press/746679/"
+  },
+  "worries": [
+    {
+      "q": "口座番号や名義まで漏れた可能性があるのはどの利用者？",
+      "a": "口座情報が含まれるのはスマホ買取サイトと中古スマホ販売サイトの対象者です。情報には金融機関・支店の名称およびコード、口座種別、口座番号、口座名義人氏名・カナが含まれます。",
+      "source": "https://www.nojima.co.jp/news/category/press/746679/",
+      "action": "スマホ買取サイトか中古スマホ販売サイトを利用した人は、通帳や明細等で不審な入出金がないか確認してください。"
+    },
+    {
+      "q": "クレジットカードやマイナンバーも漏れたのでしょうか？",
+      "a": "ノジマによると、いずれのサイトもマイナンバーとクレジットカード情報は保持しておらず、漏えいはありません。口座情報が含まれていたのはスマホ買取サイトと中古スマホ販売サイトです。",
+      "source": "https://www.nojima.co.jp/news/category/press/746679/",
+      "action": "口座情報を含む2サイトを利用した人は、カード情報ではなく通帳や明細の入出金を確認してください。"
+    },
+    {
+      "q": "ノジマや金融機関を名乗るメールのリンクは信用していい？",
+      "a": "ノジマは、漏えい情報がなりすましメールやフィッシング詐欺等に悪用される恐れがあると注意喚起しています。警察庁は、メールの送信元名称やアドレスだけで真偽を判断するのは困難と説明しています。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "action": "メールやSMSのリンクは安易に開かず、あらかじめ登録した公式サイトや公式アプリから接続してください。",
+      "general": true
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "案内を待つか、問い合わせるべき？",
+      "situation": "ノジマオンラインの会員だった",
+      "recommend": "すでに届いた対象者向け案内を確認する",
+      "reason": "ノジマオンラインは2026年11月1日時点の会員が対象で、対象者への案内は済んでいると説明されています。案内を確認しても不安が残る場合は、カスタマーセンターに問い合わせられます。",
+      "source": "https://www.nojima.co.jp/news/category/press/746679/"
+    },
+    {
+      "question": "案内を待つか、問い合わせるべき？",
+      "situation": "その他の5サイトを利用した",
+      "recommend": "登録時期を確認し、個別案内を待つ",
+      "reason": "その他のサイトは登録・入力期間が対象の目安ですが、期間に当てはまるだけでは対象と確定できません。対象者には準備が整い次第、登録メールアドレスまたは郵送等で個別に案内されます。",
+      "source": "https://www.nojima.co.jp/news/category/press/746679/"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "不正アクセス後に取られた対応",
+    "cause": "委託先の管理サイトへの不正アクセス",
+    "steps": "利用サイト別に今確認すること",
+    "desk": "問い合わせ先と受付時間",
+    "worries": "対象や口座情報、怪しい連絡が不安",
+    "guide": "案内を待つか問い合わせるか"
+  },
+  "depthAt": "2026-11-19T21:11:34+00:00",
+  "imageCredit": {
+    "kind": "official",
+    "org": "ノジマ",
+    "provider": "ノジマ",
+    "sourceUrl": "https://www.nojima.co.jp/news/category/press/746679/",
+    "original": "https://www.nojima.co.jp/img/app-icon-logo.png",
+    "width": 1200,
+    "height": 630,
+    "at": "2026-11-19T21:12:58+00:00",
+    "imageKind": "logo",
+    "ownOg": true
+  },
+  "heroOk": false,
+  "imageFocus": {
+    "x": 0.494,
+    "y": 0.494,
+    "box": [
+      0.2,
+      0.268,
+      0.787,
+      0.72
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/nojima-leak-check-affected-users-ae54a57f.jpg"
+  }
 }
