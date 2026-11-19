@@ -8297,6 +8297,13 @@
       "skipped": true,
       "url": "https://www.maff.go.jp/j/press/keiei/seisaku/261106.html"
     },
+    "2f744659d90551a0": {
+      "at": "2026-11-19T17:13:05.689174+00:00",
+      "model": "openai-api:gpt-6.1-terra",
+      "reason": "followup quality: 「Genie 3との違いや料金、日本での提供状況も整理します」→本文ではこれらの違い・料金・日本での提供状況を説明しておらず、リードで予告した内容が記事内にありません。",
+      "skipped": true,
+      "url": "https://blog.google/innovation-and-ai/technology/developers-tools/genie-4-in-gemini-api/"
+    },
     "2f7ff3d5ef40d974": {
       "at": "2026-11-17T18:12:50.025053+00:00",
       "breaking": true,
@@ -24389,31 +24396,6 @@
   "quality_log": [
     {
       "accepted": true,
-      "at": "2026-11-17T18:59:37.031532+00:00",
-      "attempt": 1,
-      "id": "2b7340c50d9a177d",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 155.2,
-        "avg_sentence": 46.6,
-        "long_share": 0.133,
-        "max_paragraph": 205,
-        "paragraphs": 9,
-        "sentences": 30
-      },
-      "score": 100,
-      "source": "jfa",
-      "title": "ハローキティの登場が決定！ なでしこジャパン 対 ブラジル女子代表（11.29(日) 広島／エディオンピースウイング広島） #jfa #daihyo #nade",
-      "warnings": [
-        "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（JFA・MIZUHO・BLUE）",
-        "読みやすさ: 文が長い（1文の平均 46.6字・60字超の文が 13% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
       "at": "2026-11-17T19:00:25.069448+00:00",
       "attempt": 0,
       "id": "2b7340c50d9a177d",
@@ -31945,6 +31927,20 @@
       "warnings": [
         "初めて出たところで言い換えていない略語（DAQIRI・EELS・NIC）"
       ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-19T17:13:05.689044+00:00",
+      "attempt": 1,
+      "id": "2f744659d90551a0",
+      "kind": "update",
+      "model": "openai-api:gpt-6.1-terra",
+      "problems": [
+        "「Genie 3との違いや料金、日本での提供状況も整理します」→本文ではこれらの違い・料金・日本での提供状況を説明しておらず、リードで予告した内容が記事内にありません。"
+      ],
+      "score": 96,
+      "source": "google-blog-all",
+      "title": "Genie 4 is now available on the Gemini API."
     }
   ],
   "short_text_retry": {
