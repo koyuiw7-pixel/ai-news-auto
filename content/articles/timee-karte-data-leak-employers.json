@@ -80,9 +80,8 @@
     }
   ],
   "todayActions": [
-    "タイミーやプレイド社を名乗るメール・SMS・電話は、URLや添付を開かず対応しない",
-    "企業用管理画面の「セキュリティ設定」で、2要素認証が有効か確認する",
-    "ネットワークを制限している会社は、12月16日までに「*.awswaf.com」を許可するよう担当者に伝える"
+    "タイミーやプレイド社を名乗る不審な連絡は開かず、必要ならタイミーの窓口へ問い合わせる",
+    "不審なサイトに普段使うパスワードを入力した場合は、使っている全サービスで変更する"
   ],
   "publicInterest": "breach",
   "incident": {
@@ -126,5 +125,72 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/timee-karte-data-leak-employers-figure-281fcdd1.jpg"
-  }
+  },
+  "officialDesk": [
+    {
+      "name": "株式会社タイミー カスタマーサポート",
+      "url": "https://taimee.zendesk.com/hc/ja/requests/new",
+      "source": "https://corp.timee.co.jp/news/detail-7442/"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "タイミーやプレイド社を名乗る不審な連絡は開かず、必要ならタイミーの窓口へ問い合わせる",
+      "source": "https://corp.timee.co.jp/news/detail-7442/",
+      "steps": [
+        "心当たりのない送信元からの連絡に注意する",
+        "不審なURLや添付ファイルを開かない",
+        "「本件に関するお問合せ窓口」から連絡する"
+      ],
+      "url": "https://taimee.zendesk.com/hc/ja/requests/new"
+    },
+    {
+      "action": "不審なサイトに普段使うパスワードを入力した場合は、使っている全サービスで変更する",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "steps": [
+        "入力したID・パスワードを使うサービスを確認する",
+        "該当するすべてのサービスで速やかに変更する"
+      ],
+      "url": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html"
+    }
+  ],
+  "cause": {
+    "text": "2026年11月13日、委託先のプレイド社が提供する「KARTE」に第三者が不正アクセスし、タイミーが連携していた求人事業者情報の一部が不正取得されました。タイミー本体のシステムへの不正アクセスではないと説明しています。",
+    "status": "stated",
+    "source": "https://corp.timee.co.jp/news/detail-7442/"
+  },
+  "worries": [
+    {
+      "q": "ワーカーとして使っている自分の情報も漏れたのでしょうか？",
+      "a": "タイミーは、求職者（ワーカー様）に関する情報の漏えいはないと発表しています。今回の対象は、タイミーを利用する求人事業者の担当者です。",
+      "source": "https://corp.timee.co.jp/news/detail-7442/",
+      "action": "自分の利用区分が求人事業者の担当者か、求職者（ワーカー）かを確認してください。"
+    },
+    {
+      "q": "タイミーのログインIDやパスワードも漏れたのでしょうか？",
+      "a": "タイミーの発表では、サービスにログインするためのID、パスワードなどの認証情報は漏えいした情報に含まれていません。",
+      "source": "https://corp.timee.co.jp/news/detail-7442/",
+      "action": "パスワードや認証情報を尋ねるメール・SMSには答えず、疑問があれば掲載窓口へ連絡してください。"
+    },
+    {
+      "q": "今のところ、漏れた情報の不正利用は確認されていますか？",
+      "a": "タイミーは、発表時点で今回の事案に起因する情報の不正利用や二次被害の発生は確認されていないとしています。",
+      "source": "https://corp.timee.co.jp/news/detail-7442/",
+      "action": "タイミーやプレイド社を名乗る不審な連絡には応じず、不審なURLや添付ファイルを開かないでください。"
+    },
+    {
+      "q": "不審なリンク先に、使い回しのパスワードを入力してしまったら？",
+      "a": "警察庁は、フィッシングサイトなどに普段利用するIDやパスワードを入力した場合、それらを使っているすべてのサービスでパスワードを速やかに変更するよう案内しています。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "action": "入力したID・パスワードを使うすべてのサービスで、パスワードを速やかに変更してください。",
+      "general": true
+    }
+  ],
+  "depthHeadings": {
+    "cause": "原因は委託先KARTEへの不正アクセス",
+    "steps": "不審な連絡と入力後の対応を確認",
+    "desk": "問い合わせ先はタイミーの窓口",
+    "worries": "ワーカーやログイン情報も対象？"
+  },
+  "depthAt": "2026-11-19T07:01:22+00:00"
 }
