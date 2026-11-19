@@ -20809,6 +20809,19 @@
       "skipped": true,
       "url": "https://www.gov-online.go.jp/press_conferences/prime_minister/202610/video-327119.html"
     },
+    "ed89ecff40a9faec": {
+      "at": "2026-11-19T08:05:48.733333+00:00",
+      "costUsd": 0.0033,
+      "intent": "breaking",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "score": 100,
+      "section": "public",
+      "slug": "legoland-japan-annual-pass-data-leak",
+      "url": "https://www.legoland.jp/operation/news/news-release/news20261118/"
+    },
     "ee2555cc16099e14": {
       "at": "2026-11-05T10:43:12.084298+00:00",
       "mix": "other",
@@ -24608,52 +24621,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-17T09:31:32.103285+00:00",
-      "attempt": 2,
-      "id": "503d13ad7458a3d97f939451ffe9a929907ef77c",
-      "kind": "trend",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 79.0,
-        "avg_sentence": 29.6,
-        "long_share": 0.0,
-        "max_paragraph": 123,
-        "paragraphs": 6,
-        "sentences": 16
-      },
-      "score": 85,
-      "source": "trends",
-      "title": "熱海富士",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（TBS・NEWS・DIG）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-17T09:48:23.387904+00:00",
-      "attempt": 1,
-      "id": "999dde7067e722a9",
-      "kind": "broad",
-      "model": "claude:sonnet",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 77.4,
-        "avg_sentence": 37.3,
-        "long_share": 0.074,
-        "max_paragraph": 166,
-        "paragraphs": 13,
-        "sentences": 27
-      },
-      "score": 95,
-      "source": "fast",
-      "title": "当社お客様の情報漏えいの可能性に関するお詫びとお知らせ:楽天証券",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（SMS）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-17T11:42:00.778556+00:00",
@@ -32136,6 +32103,57 @@
         "初めて出たところで言い換えていない略語（COCORO）",
         "読みやすさ: 文が長い（1文の平均 62.4字・60字超の文が 36% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
         "読みやすさ: 段落が長い（平均 109.2字・最長 258字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-19T08:05:14.567879+00:00",
+      "attempt": 1,
+      "id": "ed89ecff40a9faec",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "タイトルの「情報流出」→ 元記事は個人情報が漏えいした「可能性」が判明したとしており、流出が実際に起きたと断定する表現は強すぎます。",
+        "タイトルの「最大約15万名」および要点・かんたん版の「最大約15万名」→ 元記事は影響を受けた可能性があるお客様を「約15万名」としており、「最大」という上限は示していません。"
+      ],
+      "readability": {
+        "avg_paragraph": 62.2,
+        "avg_sentence": 38.5,
+        "long_share": 0.048,
+        "max_paragraph": 109,
+        "paragraphs": 13,
+        "sentences": 21
+      },
+      "score": 82,
+      "source": "fast",
+      "title": "News20261118",
+      "warnings": [
+        "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（SMS）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-19T08:05:40.263833+00:00",
+      "attempt": 1,
+      "id": "ed89ecff40a9faec",
+      "kind": "broad",
+      "model": "openai-api:gpt-6-luna",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 62.2,
+        "avg_sentence": 38.5,
+        "long_share": 0.048,
+        "max_paragraph": 109,
+        "paragraphs": 13,
+        "sentences": 21
+      },
+      "score": 100,
+      "source": "fast",
+      "title": "News20261118",
+      "warnings": [
+        "見出しが46字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（SMS）"
       ]
     }
   ],
