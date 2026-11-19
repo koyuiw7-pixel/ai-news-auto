@@ -7258,15 +7258,6 @@
       "slug": "github-copilot-slack-teams-ga",
       "url": "https://github.blog/changelog/2026-11-06-github-copilot-in-slack-and-teams-is-generally-available"
     },
-    "237bc1e259371f3e": {
-      "at": "2026-11-05T01:06:31.124449+00:00",
-      "mix": "brand",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "score": 88,
-      "section": "business",
-      "slug": "nissan-serena-luxion-price-cut-2026",
-      "url": "http://global.nissannews.com/ja-JP/releases/261105-01-j"
-    },
     "237f1071ce7ef262": {
       "at": "2026-11-12T05:05:52.535224+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（開催について）",
@@ -11934,12 +11925,6 @@
       "slug": "tax-delinquency-bankruptcies-record-high-2026",
       "url": "https://www.tsr-net.co.jp/data/detail/1203426_1527.html"
     },
-    "674606b2c14036da": {
-      "at": "2026-11-05T01:01:36.592319+00:00",
-      "reason": "prefilter: 投資・マネーの話題ではない",
-      "skipped": true,
-      "url": "https://www.jp-bank.japanpost.jp/aboutus/press/2026/abt_prs_id002130.html"
-    },
     "6756aab904931135": {
       "at": "2026-11-19T00:16:37.601627+00:00",
       "costUsd": 0.0056,
@@ -15490,6 +15475,19 @@
       "reason": "trend: 重複: 見出しが類似（0.80）: high-school-soccer-championship-miyazaki",
       "skipped": true,
       "url": "https://news.yahoo.co.jp/articles/e06fbab5bd90ee8bfa800242e8526a1fa3966dd0"
+    },
+    "9fa731b0ef6c1da9": {
+      "at": "2026-11-19T01:12:12.681102+00:00",
+      "costUsd": 0.0446,
+      "foreignAi": true,
+      "intent": "breaking",
+      "major": true,
+      "mix": "other",
+      "model": "openai-api:gpt-6.1-terra",
+      "score": 96,
+      "section": "ai",
+      "slug": "openai-research-agent-success-rates",
+      "url": "https://openai.com/index/research-acceleration-jagged-frontier"
     },
     "9fc3555f4f7d50a3": {
       "at": "2026-11-16T04:02:53.676085+00:00",
@@ -24440,29 +24438,6 @@
   "quality_log": [
     {
       "accepted": true,
-      "at": "2026-11-17T02:44:57.926440+00:00",
-      "attempt": 0,
-      "id": "9de6caca8bbfa64442f53d1265571a8a95898524",
-      "kind": "trend",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 61.7,
-        "avg_sentence": 42.7,
-        "long_share": 0.154,
-        "max_paragraph": 88,
-        "paragraphs": 9,
-        "sentences": 13
-      },
-      "score": 90,
-      "source": "trends",
-      "title": "首相",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（ASEAN・APEC）"
-      ]
-    },
-    {
-      "accepted": true,
       "at": "2026-11-17T03:00:51.584120+00:00",
       "attempt": 1,
       "id": "6129f2defae75f79374b6586553526af9ed8991b",
@@ -31904,6 +31879,26 @@
         "初めて出たところで言い換えていない略語（CD）",
         "要点の1つ目（「音声広報CD「明日への声」第112号が2026年…」）が一番のニュースになっていない。題名・リードの1文目と同じ中心の事実（紹介状・受診・7,000）を、リードとは違う言い方で1つ目に書く"
       ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-19T01:12:12.625827+00:00",
+      "attempt": 1,
+      "id": "9fa731b0ef6c1da9",
+      "kind": "ai",
+      "model": "openai-api:gpt-6.1-terra",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 79.1,
+        "avg_sentence": 37.1,
+        "long_share": 0.031,
+        "max_paragraph": 109,
+        "paragraphs": 15,
+        "sentences": 32
+      },
+      "score": 96,
+      "source": "openai-news",
+      "title": "Research acceleration: The jagged frontier"
     }
   ],
   "short_text_retry": {

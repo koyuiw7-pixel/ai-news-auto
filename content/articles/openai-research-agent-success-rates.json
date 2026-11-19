@@ -1,0 +1,167 @@
+{
+  "slug": "openai-research-agent-success-rates",
+  "sourceType": "web",
+  "sourceUrl": "https://openai.com/index/research-acceleration-jagged-frontier",
+  "sourceName": "OpenAI公式ブログ",
+  "title": "AIによる研究作業の成功率が46%に　OpenAIの社内調査で見えた得意・不得意",
+  "seoTitle": "OpenAIの研究加速調査：AIの作業成功率と費用",
+  "threadsPost": "AIで開発する人に、知っておいてほしい調査です。\n\nOpenAI社内では、AIが研究作業を自律的に終える割合が上がりました。\nただし、学習の監視とコード作成では成功率に差があります。\n\n仕事のどの作業までなら、AIに任せたいですか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "line",
+      "question": "仕事のどの作業までなら、AIに任せたいですか？"
+    },
+    {
+      "pattern": "expert",
+      "question": "開発でAIを使うとき、どんな作業を先に任せていますか？"
+    },
+    {
+      "pattern": "ab",
+      "question": "AIに任せるなら、コード作成と監視のどちらを重視しますか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "explainer",
+  "lede": "OpenAIの社内調査で、AIに任せた研究作業の自律的な成功率が、2026年3月から10月にかけて上がりました。人が2〜4時間かけると見積もられた作業では、成功率が23%から46%になっています。ただし作業の種類による差は大きく、この結果をそのまま社外の仕事に当てはめることはできません。",
+  "description": "OpenAIの社内調査では、人が2〜4時間かける研究作業をAIが自律的に終える成功率が46%に上昇しました。学習の監視とコード作成の差、利用額の計算方法、人の関与が残る理由を整理します。",
+  "keywords": [
+    "OpenAI 研究加速",
+    "OpenAI AIエージェント",
+    "AI 研究作業 成功率",
+    "AI コーディング 研究",
+    "AIエージェント 自律作業",
+    "OpenAI 研究者 AI利用額",
+    "AI開発 自動化",
+    "AI 安全性 研究",
+    "AI研究 人間の関与",
+    "AI 自己改善"
+  ],
+  "tags": [
+    "OpenAI",
+    "生成AI",
+    "AIエージェント",
+    "AI研究"
+  ],
+  "highlights": [
+    "OpenAI社内では、2〜4時間の研究作業をAIが自律的に終える推定成功率が46%に上がりました。",
+    "学習作業の監視は成功率79%でしたが、推論や提供基盤のコード作成は25%にとどまりました。",
+    "安全性に関する研究の記録上の作業量は、採用と担当変更により1月から9月に77%増えました。"
+  ],
+  "timetable": [],
+  "verdict": {
+    "status": "demo",
+    "japan": "unknown",
+    "price": "不明",
+    "free": null,
+    "audience": "AI開発者",
+    "take": "社内調査の結果として、作業ごとの成功率と利用額の計算条件を確認するとよいでしょう。",
+    "judgedAt": "2026-11-19T01:11:51.392748+00:00"
+  },
+  "workMoney": {
+    "relevance": "medium",
+    "points": [
+      "AIを開発に使う人は、OpenAI社内でも作業の種類によって成功率に差がある点を参考にできます。",
+      "費用を考える際は、1日2,400ドルがAPIの定価換算であり、実際の請求額ではない点に注意が必要です。"
+    ]
+  },
+  "body": "今回の数字は、OpenAIの研究者が社内でAIに任せた作業を対象にした調査です。開発の仕事でAIを使う人は、作業ごとの得意・不得意を見る材料にできますが、社外の作業に同じ成功率を当てはめることはできません。\n\n対象のコーディングエージェントは、コードの作成などを自分で進めるAIです。[OpenAIの公式ブログ](https://openai.com/index/research-acceleration-jagged-frontier)は、2026年11月18日に社内測定の結果を公開しました。\n\n人が4〜8時間かけると見積もられた作業でも、介入なしの推定成功率は3月の13%から10月の35%に上がりました。\n\nただし、成功率の変化はAIの能力向上だけを表すとは限りません。研究者が同じ時間枠の中で、AIに任せる作業の種類を変えた影響も含まれます。\n\n作業別の成功率にも差がありました。以下は8月1日から10月18日までの推定値です。\n\n- 学習の実行中に問題を監視する作業：79%\n- 学習の実行を開始する作業：35%\n- AIが答えを出す処理や提供基盤のコードを書く作業：25%\n\nOpenAIは、成功率の低い作業が研究全体の加速を妨げる要因になり得ると説明しています。AIの利用は増えても、人は研究の中心に残っているというのが同社の結論です。\n\n## 研究者1人のAI利用額は定価換算で1日2,400ドル\n\n10月の研究者の1日当たりのAI利用額は、中央値で2,400ドルでした。9月から62%増えています。\n\n利用量の多い側の90パーセンタイルでは、1日2万3,000ドルでした。これはAPI（アプリから呼び出す仕組み）の公開定価で換算した額で、実際に社内で支払った費用ではありません。\n\n利用額の増加には、利用量だけでなく、高価なモデルへの変更やAIの動作の変化も含まれます。そのため、金額だけでは作業量の増加を測れません。\n\n同社は、AIの稼働8時間を「エージェントの1勤務日」として集計しました。研究者1人当たりの平均は、1日0.5勤務日から5.7勤務日に増えています。複数のAIを並行して動かせるため、1人当たりでも1勤務日を超えます。\n\nこの指標は主に対話的な利用を含みます。自動化された処理は十分に数えられていない可能性があります。\n\n9月には、研究組織のAI利用額をAPIの定価で換算すると、研究者への株式報酬を除く報酬の約2倍でした。ただし比較には株式報酬が含まれません。OpenAIによると、株式報酬は研究者の目標報酬の通常70〜80%を占めます。\n\n一方、安全性と、人が意図する方向にAIを動かすための研究も増えました。記録から推計した作業量は、1月から9月に77%増加しています。新規採用と既存研究者の担当変更の両方による増加です。\n\n## サイソクの見方：AIに任せる仕事は種類ごとに見る\n\nOpenAIの調査では、学習の監視と提供基盤のコード作成で成功率に差がありました。開発にAIを使うなら、監視などの作業とコード作成を分けて結果を確かめるのがよいと考えられます。\n\nまた、費用を検討するなら、1日2,400ドルを社外の利用料金として扱わず、自分の利用条件と区別して見る必要があります。研究者がAIに任せる作業も変わっているため、成功率の上昇だけで能力の伸びを判断しないことが大切です。",
+  "easy": "## ひとことで言うと\n\nOpenAIの社内では、AIが人の介入なしに研究作業を終える割合が上がりました。ただし、作業によって成功率は大きく異なります。\n\n学習の進行を監視する作業は79%が成功しました。一方、AIが答えを出す仕組みや提供する基盤のコードを書く作業は25%でした。\n\n研究者によるAIの利用も増えています。10月の利用額は、公開されているAPIの料金に換算すると、研究者の中央値で1日2,400ドルでした。実際の社内費用を示す数字ではありません。\n\nAIの利用が増えても、OpenAIは人が研究の中心に残っていると説明しています。社外の仕事に同じ成功率を当てはめることはできません。",
+  "channel": "OpenAI公式ブログ",
+  "channelId": "",
+  "channelSlug": "openai-news",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "Research acceleration: The jagged frontier",
+  "publishedAt": "2026-11-18T08:00:00+00:00",
+  "generatedAt": "2026-11-19T01:11:51.392735+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/openai-research-agent-success-rates-c905b2af.jpg",
+  "model": "openai-api:gpt-6.1-terra",
+  "affiliates": [],
+  "newsType": "product",
+  "faq": [
+    {
+      "q": "OpenAIの研究者はAIを同時にいくつ動かしている？",
+      "a": "10月中旬までに、集計対象の研究者の3分の2超は、1日当たりの同時稼働数のピークが平均で4つ以上でした。10%超は平均16以上でした。"
+    },
+    {
+      "q": "OpenAIの社内AI利用は研究用計算資源のどれくらい？",
+      "a": "社内のCodex、ChatGPT、APIを合わせた利用は、研究用の計算資源全体の2%を占めるとOpenAIは説明しています。"
+    }
+  ],
+  "todayActions": [
+    "OpenAIの公式ブログで、研究作業の種類ごとの成功率と測定条件を確かめる。",
+    "自分がAIに任せている作業を、監視とコード作成などの種類に分けて見直す。"
+  ],
+  "qualityBar": {
+    "score": 6,
+    "missing": [
+      5,
+      6
+    ],
+    "notes": {
+      "5": "することは書いてあるが、どこで（窓口・ページ）・いつまでが無い",
+      "6": "数字が15個あるのに表も図も無い"
+    },
+    "checkedAt": "2026-11-19T01:12:12+00:00",
+    "before": [
+      5,
+      6
+    ],
+    "repaired": false,
+    "repairLater": true
+  },
+  "qualityScore": 96,
+  "sourcePublishedAt": "2026-11-18T08:00:00+00:00",
+  "detectedAt": "2026-11-19T01:09:24+00:00",
+  "fastLane": true,
+  "layout": "noir",
+  "summaryLine": "OpenAI社内では、2〜4時間の研究作業をAIが自律的に終える推定成功率が**46%**に上がりました。",
+  "bodyImages": [
+    {
+      "src": "https://ai-tech-express.jp/img/openai-research-agent-success-rates-fig1-f43151c9.jpg",
+      "width": 1080,
+      "height": 1080,
+      "kind": "hero",
+      "credit": "OpenAI",
+      "sourceUrl": "https://openai.com/index/research-acceleration-jagged-frontier",
+      "original": "https://images.ctfassets.net/kftzwdyauwt9/2wgLGyEPUNlB5pI0rK8Pld/a33fa3e03c8833d03b3876d6cf91d0ac/managing-frontier-ai-risk-cover.png?w=3840&q=90&fm=webp"
+    },
+    {
+      "src": "https://ai-tech-express.jp/img/openai-research-agent-success-rates-fig2-d992773b.jpg",
+      "width": 1200,
+      "height": 1200,
+      "kind": "hero",
+      "credit": "OpenAI",
+      "sourceUrl": "https://openai.com/index/research-acceleration-jagged-frontier",
+      "original": "https://images.ctfassets.net/kftzwdyauwt9/1FaKIo74WEGULSjb4ooTrV/718f3bc75e7b2ddd276d43a0fc97760a/academic-researchers-art-card.png?w=3840&q=90&fm=webp"
+    }
+  ],
+  "imageCredit": {
+    "kind": "official",
+    "org": "OpenAI",
+    "provider": "OpenAI公式ブログ",
+    "sourceUrl": "https://openai.com/index/research-acceleration-jagged-frontier",
+    "original": "https://images.ctfassets.net/kftzwdyauwt9/2YS8yWiGpKflhlEnAkcLU/f51ead4391706f6c3198f0d61a0f147a/research-acceleration-the-jagged-frontier-social.png",
+    "width": 1200,
+    "height": 675,
+    "at": "2026-11-19T01:12:30+00:00",
+    "imageKind": "hero"
+  },
+  "heroOk": false,
+  "imageFocus": {
+    "x": 0.525,
+    "y": 0.655,
+    "box": [
+      0.05,
+      0.311,
+      1.0,
+      1.0
+    ],
+    "ar": 1.7778,
+    "src": "https://ai-tech-express.jp/img/openai-research-agent-success-rates-c905b2af.jpg"
+  }
+}
