@@ -484,6 +484,7 @@
     "39ab73a66bdc9abf54383ebd372ce5f9390f3f3c": 2,
     "39d22897087e2b6eedc165fc218a3893137eb238": 2,
     "39f915321085690f1fb80dbe566a1cc95ae59aba": 2,
+    "3a228f551bcc4e8c64f71ed0dd1c23b9a68f4ce6": 1,
     "3a3456fd50c5bf1c7758af18151c86d0188b0210": 2,
     "3a502c3ed3a016b9bbf3929d6b3cce70f4329a7c": 2,
     "3a7b953e2b9b2d0fdf6ecafb073e49e9698140fd": 2,
@@ -1417,7 +1418,7 @@
     "bdab99c57742e563731152e5e5dbb52ce1d71c7f": 2,
     "bdd108c634dc284ad63f9cf3e0d398c76f08c75c": 2,
     "bdf608d32fbb5f17ced216c9852416f35ab958fd": 2,
-    "be1eb1bb50023cc04746abe57879ea5f789a4ea7": 1,
+    "be1eb1bb50023cc04746abe57879ea5f789a4ea7": 2,
     "be45ac30bd08317944f1ec9d469c8974803512eb": 2,
     "be6af38c4511de86cc465a80e2b7b926c5ffd8fe": 2,
     "bede5a134991b3a34084941b0d18639be042e311": 2,
@@ -10227,16 +10228,6 @@
       "slug": "tsr-successor-absence-rate-2026",
       "url": "https://www.tsr-net.co.jp/data/detail/1203434_1527.html"
     },
-    "492e59f67d7a29e5": {
-      "at": "2026-11-06T19:46:11.334280+00:00",
-      "costUsd": 0.1502,
-      "mix": "other",
-      "model": "anthropic-api:claude-sonnet-5-5+anthropic-api:claude-haiku-5-5",
-      "score": 92,
-      "section": "ai",
-      "slug": "toyota-basispilot-sap-aws",
-      "url": "https://aws.amazon.com/jp/blogs/news/how-toyota-built-basispilot-an-ai-assisted-sap-operations-platform-on-aws/"
-    },
     "4959e00fe1aa5744": {
       "at": "2026-11-10T02:34:35.701684+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（メンテナンス）",
@@ -16762,6 +16753,17 @@
       "section": "business",
       "slug": "nagano-otari-hotel-renovation-mlit",
       "url": "http://www.mlit.go.jp/report/press/toshi05_hh_000535.html"
+    },
+    "b24cb57cd0262b0ed1348c898e02a75a68fc3d8e": {
+      "at": "2026-11-20T20:01:12.034120+00:00",
+      "kind": "trend",
+      "model": "gemini-3.5-flash-lite",
+      "pressReport": true,
+      "score": 98,
+      "slug": "mhi-h3-rocket-privatization",
+      "trendKeyword": "三菱重工業",
+      "trendLane": true,
+      "url": "https://news.yahoo.co.jp/pickup/6603289"
     },
     "b27dbe786cd219cb": {
       "at": "2026-11-11T06:08:09.862885+00:00",
@@ -24232,83 +24234,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-19T03:18:57.586551+00:00",
-      "attempt": 0,
-      "id": "242d4064023b0929",
-      "kind": "broad",
-      "model": "openai-api:gpt-6-luna",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 71.5,
-        "avg_sentence": 39.3,
-        "long_share": 0.1,
-        "max_paragraph": 127,
-        "paragraphs": 22,
-        "sentences": 40
-      },
-      "score": 98,
-      "source": "radar-official",
-      "title": "【公式】Ｊリーグ公式サービスで利用する外部ウェブツールへの不正アクセスについて | Ｊリーグ公式サイト",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（WE・KARTE）",
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
-        "faq の質問が疑問文になっていない（「退会済みの利用者の情報も対象に含まれてい」）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-19T03:23:39.782518+00:00",
-      "attempt": 1,
-      "id": "0a78bbcddd119e15",
-      "kind": "broad",
-      "model": "claude:sonnet",
-      "problems": [
-        "「生産・出荷が止まっていること以外は調査中」→ 発表では攻撃の確認時刻や外部ネットワーク遮断、対策本部の設置なども確認済みであり、調査中なのは主に流出の可能性や今後の影響です。",
-        "「お客様各社（個別に説明済み）」→ 発表は「個別にご説明しております」としており、すべての説明が完了したとは確認できません。",
-        "「対象はスマートメーター等の生産・出荷に関わる取引先です」→ 発表は生産・出荷停止と顧客への個別説明を述べていますが、対象をその取引先に限定してはいません。"
-      ],
-      "readability": {
-        "avg_paragraph": 81.6,
-        "avg_sentence": 38.1,
-        "long_share": 0.067,
-        "max_paragraph": 150,
-        "paragraphs": 7,
-        "sentences": 15
-      },
-      "score": 87,
-      "source": "fast",
-      "title": "大崎電気工業の情報流出に関するお知らせ",
-      "warnings": [
-        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（COO）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-19T03:23:59.568794+00:00",
-      "attempt": 1,
-      "id": "0a78bbcddd119e15",
-      "kind": "broad",
-      "model": "openai-api:gpt-6-luna",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 76.4,
-        "avg_sentence": 38.2,
-        "long_share": 0.071,
-        "max_paragraph": 156,
-        "paragraphs": 7,
-        "sentences": 14
-      },
-      "score": 100,
-      "source": "fast",
-      "title": "大崎電気工業の情報流出に関するお知らせ",
-      "warnings": [
-        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（COO）"
-      ]
-    },
     {
       "accepted": false,
       "at": "2026-11-19T03:30:40.792103+00:00",
@@ -31846,6 +31771,86 @@
       "score": 100,
       "source": "trends",
       "title": "佐川急便"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-20T20:00:03.005020+00:00",
+      "attempt": 1,
+      "id": "b24cb57cd0262b0ed1348c898e02a75a68fc3d8e",
+      "kind": "trend",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "タイトル「三菱重工業のH3ロケット」→ 元記事は国の大型基幹ロケット「H3」としており、三菱重工業のロケットだとは述べていません。",
+        "本文「国際的な競争力を高める狙い」→ 元記事はJAXAが開発に注力し、16基の小型衛星を搭載できるよう改良するとしていますが、国際競争力向上を狙いとして明示していません。",
+        "本文・かんたん版「最大16基」→ 元記事は16基を搭載できるよう改良するとしており、「最大」とは記していません。"
+      ],
+      "readability": {
+        "avg_paragraph": 109.3,
+        "avg_sentence": 54.7,
+        "long_share": 0.5,
+        "max_paragraph": 195,
+        "paragraphs": 3,
+        "sentences": 6
+      },
+      "score": 82,
+      "source": "trends",
+      "title": "三菱重工業",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（JAXA）",
+        "読みやすさ: 文が長い（1文の平均 54.7字・60字超の文が 50% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-20T20:00:42.165761+00:00",
+      "attempt": 1,
+      "id": "b24cb57cd0262b0ed1348c898e02a75a68fc3d8e",
+      "kind": "trend",
+      "model": "openai-api:gpt-6-luna",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 103.7,
+        "avg_sentence": 51.8,
+        "long_share": 0.333,
+        "max_paragraph": 178,
+        "paragraphs": 3,
+        "sentences": 6
+      },
+      "score": 98,
+      "source": "trends",
+      "title": "三菱重工業",
+      "warnings": [
+        "見出しの書き方: 記号: かっこの直後に「、」",
+        "初めて出たところで言い換えていない略語（JAXA）",
+        "work_money（「仕事・お金にどう活かせる？」欄）が無い"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-20T20:01:01.536879+00:00",
+      "attempt": 0,
+      "id": "b24cb57cd0262b0ed1348c898e02a75a68fc3d8e",
+      "kind": "trend",
+      "model": "",
+      "problems": [
+        "読みやすさ基準外のまま受理: 書き直し後の確認に不合格: 「JAXAは、業務の移行によって開発により多くの力を注ぐ」→ 元記事は開発に注力するとしているが、従来より注力の度合いが増すとは明記していない。; 「JAXAはロケットの打ち上げ業務から離れることで」→ 元記事が示すのは打ち上げ業務の移管であり、JAXAが打ち上"
+      ],
+      "readability": {
+        "avg_paragraph": 103.7,
+        "avg_sentence": 51.8,
+        "long_share": 0.333,
+        "max_paragraph": 178,
+        "paragraphs": 3,
+        "sentences": 6
+      },
+      "score": 98,
+      "source": "trends",
+      "title": "三菱重工業",
+      "warnings": [
+        "見出しの書き方: 記号: かっこの直後に「、」",
+        "初めて出たところで言い換えていない略語（JAXA）",
+        "work_money（「仕事・お金にどう活かせる？」欄）が無い"
+      ]
     }
   ],
   "short_text_retry": {
