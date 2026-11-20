@@ -1967,7 +1967,9 @@
       "url": "https://www.mof.go.jp/about_mof/councils/fiscal_system_council/sub-of_filp/proceedings/material/zaitoa20261117.html"
     }
   },
-  "major_tries": {},
+  "major_tries": {
+    "6cbb77b10942201d": 1
+  },
   "pi_reopened": {
     "05b7c979204565d2": "2026-11-19T18:21:01.412347+00:00",
     "37d71722552567cd": "2026-11-19T18:21:01.412347+00:00",
@@ -11806,16 +11808,6 @@
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・暮らしの交通/天気/値上げ/障害/給付/発売・日本のスポーツのどれでもない）",
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026111217"
-    },
-    "629587542f71fe41": {
-      "at": "2026-11-06T07:19:39.493480+00:00",
-      "major": true,
-      "mix": "other",
-      "model": "claude:sonnet",
-      "score": 88,
-      "section": "ai",
-      "slug": "geforce-8800-gtx-20-years-steam-demo",
-      "url": "https://www.nvidia.com/en-us/geforce/news/8800-gtx-gpu-20-year-celebration-dlss-4-5-path-tracing-steam-demo/?linkId=100000446672258"
     },
     "62a0e92c4c3260e9": {
       "at": "2026-11-08T23:01:48.994674+00:00",
@@ -24366,33 +24358,6 @@
   },
   "quality_log": [
     {
-      "accepted": false,
-      "at": "2026-11-18T09:00:17.965152+00:00",
-      "attempt": 1,
-      "id": "2c30af58e1bcd323",
-      "kind": "broad",
-      "model": "claude:sonnet",
-      "problems": [
-        "「KARTEは株式会社プレイドが提供する、顧客情報の管理やメール配信などに使うサービス」→元記事は顧客情報の管理・案内に利用しているとしていますが、メール配信に使うとは明記していません。",
-        "「漏れたのはパスワードやカード情報ではなく」→元記事が確認しているのは、これらをKARTEに連携しておらず、現時点で漏えいが確認されていないということです。漏れていないと断定する表現は強すぎます。"
-      ],
-      "readability": {
-        "avg_paragraph": 75.0,
-        "avg_sentence": 37.5,
-        "long_share": 0.0,
-        "max_paragraph": 122,
-        "paragraphs": 12,
-        "sentences": 24
-      },
-      "score": 90,
-      "source": "fast",
-      "title": "【重要なお知らせ】外部サービス「KARTE」への不正アクセスに伴う個人情報漏えいに関するお知らせとお詫び | 株式会社雨風太陽",
-      "warnings": [
-        "見出しが45字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（KARTE・EC・SMS）"
-      ]
-    },
-    {
       "accepted": true,
       "at": "2026-11-18T09:00:53.272991+00:00",
       "attempt": 1,
@@ -31968,6 +31933,32 @@
         "初めて出たところで言い換えていない略語（ATM・MFA）",
         "要点の1つ目（「セブン銀行ATMやクレカでのチャージ機能は再開し…」）が一番のニュースになっていない。題名・リードの1文目と同じ中心の事実（ペイ・不正・アクセス）を、リードとは違う言い方で1つ目に書く",
         "読みやすさ: 文が長い（1文の平均 57.1字・60字超の文が 43% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-20T07:19:15.942535+00:00",
+      "attempt": 1,
+      "id": "6cbb77b10942201d",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "元記事・確認済みの資料に無い画面の手順・メニュー名・ボタン名がある（「加盟店管理画面の「入金」メニュー」）。資料にある道順だけを書くか、「公式ヘルプの手順を確認してください」と書く"
+      ],
+      "readability": {
+        "avg_paragraph": 98.1,
+        "avg_sentence": 50.9,
+        "long_share": 0.333,
+        "max_paragraph": 161,
+        "paragraphs": 14,
+        "sentences": 27
+      },
+      "score": null,
+      "source": "fast",
+      "title": "「メルペイ加盟店サービス」への不正ログインによる一部情報等の閲覧・取得の可能性について",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（SMS）",
+        "読みやすさ: 文が長い（1文の平均 50.9字・60字超の文が 33% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
       ]
     }
   ],
