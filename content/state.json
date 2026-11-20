@@ -12569,6 +12569,19 @@
       "skipped": true,
       "url": "https://www.fsa.go.jp/inter/bis/20261112/20261112.html"
     },
+    "6ea92368b1448d92": {
+      "at": "2026-11-20T06:17:43.061690+00:00",
+      "costUsd": 0.0049,
+      "intent": "breaking",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "score": 100,
+      "section": "public",
+      "slug": "daiki-suisan-app-breach-final-report",
+      "url": "https://www.daiki-suisan.co.jp/files/optionallink/00000171_file.pdf"
+    },
     "6eb817c648b53f55935a0bf5103de1975687eaf8": {
       "at": "2026-11-17T04:19:58.166957+00:00",
       "reason": "trend: 重複: 報道の見出しと同じ話題の記事がある（同じ出典URL）",
@@ -14803,6 +14816,19 @@
       "trendKeyword": "新潟 天気",
       "trendLane": true,
       "url": "https://news.yahoo.co.jp/articles/2c5b7f725ea5e46bce145303edca3c642ad374a9"
+    },
+    "8fa601b97c8b3964": {
+      "at": "2026-11-20T06:18:33.640412+00:00",
+      "costUsd": 0.0012,
+      "intent": "breaking",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "score": 100,
+      "section": "public",
+      "slug": "peach-ymirlink-cuenote-leak",
+      "url": "https://www.flypeach.com/application/files/3617/9515/4415/20261120_INFO_JP.pdf"
     },
     "8fbbba12a75606c5": {
       "at": "2026-11-09T04:13:55.028594+00:00",
@@ -24354,76 +24380,6 @@
   },
   "quality_log": [
     {
-      "accepted": false,
-      "at": "2026-11-18T06:36:22.956970+00:00",
-      "attempt": 1,
-      "id": "78ba4a2dbeae665c",
-      "kind": "update",
-      "model": "openai-api:gpt-6.1-terra",
-      "problems": [
-        "タイトル「消費者庁も回収情報を掲載、対応は返金／回収」→元記事の画像データから掲載の有無や対応区分を確認できず、タイトルの主張を裏付けられません。",
-        "「消費者庁のリコール情報サイトは11月18日」→掲載日を示す情報を元記事から確認できません。",
-        "「エレマテックの『Smartワイヤレスイヤホン』」→元記事から発信元・製品名を確認できず、固有名詞の裏付けがありません。",
-        "「対応方法が『返金／回収』」→この表記を元記事の画像から読み取れず、確認できません。",
-        "要点「回収キットとお詫びのQUOカード1,500円分は12月中旬から順次発送」→確認済みの文脈で12月中旬から順次発送とされているのは回収キットで、QUOカードも同じ時期に発送されるとは確認できません。"
-      ],
-      "score": 52,
-      "source": "caa-recall",
-      "title": "家電製品 エレマテック「Smartワイヤレスイヤホン」 - 返金／回収"
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-18T06:37:12.628997+00:00",
-      "attempt": 1,
-      "id": "78ba4a2dbeae665c",
-      "kind": "broad",
-      "model": "claude:sonnet",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 83.8,
-        "avg_sentence": 39.4,
-        "long_share": 0.059,
-        "max_paragraph": 178,
-        "paragraphs": 8,
-        "sentences": 17
-      },
-      "score": 100,
-      "source": "caa-recall",
-      "title": "家電製品 エレマテック「Smartワイヤレスイヤホン」 - 返金／回収",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（PTH・QUO）",
-        "要点の1つ目がリードの文の写し。一番のニュースを、リードとは違う言い方で書く"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-18T06:53:17.358798+00:00",
-      "attempt": 1,
-      "id": "0594bff9915793e7",
-      "kind": "broad",
-      "model": "claude:sonnet",
-      "problems": [
-        "「直接の金銭的な被害は報告されていません」→ 元記事は金銭被害の報告状況に触れておらず、確認できない発表内容を加えています。",
-        "「問い合わせ窓口は、株式会社ソニックムーブのCOMSBIサポートです」ではなく要点の「問い合わせ窓口は委託先のソニックムーブが設けています」→ 元記事は平和堂が専用窓口を設置したとし、窓口の連絡先としてソニックムーブのサポートを案内しており、設置主体をソニックムーブとする根拠はありません。",
-        "「これらのアカウントを友だち登録していない人には、何も変わりません」→ 元記事が示すのは登録者が対象ということまでで、未登録者に影響が一切ないとは明記していません。"
-      ],
-      "readability": {
-        "avg_paragraph": 102.2,
-        "avg_sentence": 40.9,
-        "long_share": 0.133,
-        "max_paragraph": 200,
-        "paragraphs": 12,
-        "sentences": 30
-      },
-      "score": 82,
-      "source": "fast",
-      "title": "弊社LINE公式アカウントの運用に利用する外部サービスへの不正アクセスに関するお詫びとお知らせ | 株式会社 平和堂",
-      "warnings": [
-        "見出しが50字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（GOODS・DEPO・LIFULL）"
-      ]
-    },
-    {
       "accepted": true,
       "at": "2026-11-18T06:53:58.743492+00:00",
       "attempt": 1,
@@ -31942,6 +31898,81 @@
       "title": "ポケモンジェット",
       "warnings": [
         "初めて出たところで言い換えていない略語（TBS・NEWS・DIG）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-20T06:17:01.207761+00:00",
+      "attempt": 1,
+      "id": "6ea92368b1448d92",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "タイトルの「流出の痕跡なし」→ 個人情報については明確な流出痕跡が確認されなかった一方、システムの管理・運用に関する情報の一部は外部に漏えいしたと確認されており、対象を限定しない表現は誤解を招きます。",
+        "本文冒頭の「アプリは引き続き使える状態で、利用者側に新しい手続きは求められていません」→ 最終報にはアプリの利用状況や利用者に手続きが不要との記載がなく、確認できない情報を事実として加えています。"
+      ],
+      "readability": {
+        "avg_paragraph": 84.8,
+        "avg_sentence": 42.4,
+        "long_share": 0.136,
+        "max_paragraph": 154,
+        "paragraphs": 11,
+        "sentences": 22
+      },
+      "score": 78,
+      "source": "fast",
+      "title": "【最終報】大起水産公式アプリへの不正アクセスに関する調査結果および再発防止策について",
+      "warnings": [
+        "見出しが48字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（SMS）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-20T06:17:33.836177+00:00",
+      "attempt": 1,
+      "id": "6ea92368b1448d92",
+      "kind": "broad",
+      "model": "openai-api:gpt-6-luna",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 79.4,
+        "avg_sentence": 41.6,
+        "long_share": 0.143,
+        "max_paragraph": 152,
+        "paragraphs": 11,
+        "sentences": 21
+      },
+      "score": 100,
+      "source": "fast",
+      "title": "【最終報】大起水産公式アプリへの不正アクセスに関する調査結果および再発防止策について",
+      "warnings": [
+        "見出しが55字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（SMS）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-20T06:18:23.306241+00:00",
+      "attempt": 1,
+      "id": "8fa601b97c8b3964",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 79.6,
+        "avg_sentence": 43.4,
+        "long_share": 0.045,
+        "max_paragraph": 150,
+        "paragraphs": 12,
+        "sentences": 22
+      },
+      "score": 100,
+      "source": "fast",
+      "title": "ユミルリンク株式会社で発生した不正アクセスに伴うメールアドレス等の漏えいのお詫びとお知らせ",
+      "warnings": [
+        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（FC・EDM・PPC）"
       ]
     }
   ],
