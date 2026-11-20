@@ -1930,7 +1930,7 @@
     }
   },
   "major_tries": {
-    "568782698f4b9cb3": 1
+    "568782698f4b9cb3": 2
   },
   "pi_reopened": {
     "05b7c979204565d2": "2026-11-19T18:21:01.412347+00:00",
@@ -24488,30 +24488,6 @@
   "quality_log": [
     {
       "accepted": true,
-      "at": "2026-11-18T04:48:15.435861+00:00",
-      "attempt": 1,
-      "id": "a30c9eedc8c540e1",
-      "kind": "ai",
-      "model": "openai-api:gpt-6.1-terra",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 100.2,
-        "avg_sentence": 46.5,
-        "long_share": 0.214,
-        "max_paragraph": 159,
-        "paragraphs": 13,
-        "sentences": 28
-      },
-      "score": 100,
-      "source": "radar-official",
-      "title": "NVIDIA、Vera CPU プラットフォームを拡充し、科学的発見を加速",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（HPE・OCI・NVL）",
-        "読みやすさ: 文が長い（1文の平均 46.5字・60字超の文が 21% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
       "at": "2026-11-18T04:49:15.084251+00:00",
       "attempt": 0,
       "id": "a30c9eedc8c540e1",
@@ -32065,6 +32041,32 @@
       "source": "microsoft-365-blog",
       "title": "Security for the agentic era, powered by Microsoft Perception  | Microsoft Secur",
       "warnings": [
+        "初めて出たところで言い換えていない略語（MDASH）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-20T05:16:05.448571+00:00",
+      "attempt": 1,
+      "id": "568782698f4b9cb3",
+      "kind": "ai",
+      "model": "openai-api:gpt-6.1-terra",
+      "problems": [
+        "題名で料金・価格を約束しているのに、本文に金額（円・ドル・無料など）が無い。元記事の金額を書くか、題名から料金の話を外す"
+      ],
+      "readability": {
+        "avg_paragraph": 84.2,
+        "avg_sentence": 43.2,
+        "long_share": 0.081,
+        "max_paragraph": 147,
+        "paragraphs": 19,
+        "sentences": 37
+      },
+      "score": null,
+      "source": "microsoft-365-blog",
+      "title": "Security for the agentic era, powered by Microsoft Perception  | Microsoft Secur",
+      "warnings": [
+        "見出しが47字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（MDASH）"
       ]
     }
