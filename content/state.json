@@ -364,6 +364,7 @@
     "2c3f8dfeb3098aba38f3b7669df9b6a01f4f4f73": 2,
     "2c6286114f833d222ee71c5606df5d0048f3bb44": 1,
     "2c79cecac0e19ea76c062110dc08f94184a0b2ec": 2,
+    "2c9d613e6a2ea47b4a9a9c6fd0f6a3650f90d2e8": 1,
     "2ca40f6fe1469aec7b2ea01d37585a4860dca615": 2,
     "2cbe1287011231a1f4b6b6a9ec9c449c89666dc3": 2,
     "2cec344d40d099959bec1e0ac0e1d58afd9f49b4": 2,
@@ -394,6 +395,7 @@
     "30a87ba425eef94db9a0ab4571a09229f2e60658": 2,
     "313fc340e36d3d2dd42a4d8bcca28d48bebc1a59": 2,
     "319b4ba93dd7bedaf58f8dc08f01c50d422b0cd7": 2,
+    "31eb7dcc2d9c914b9a7dec0209078f83565e33e9": 1,
     "320bcb6427ffe112d8bbebb91976b28ec46ac4eb": 2,
     "326837a29e36f5ff2b7190022a3ddad1b5f59783": 2,
     "3283600f8dedbf1fefb8db40196b3097b249fed4": 2,
@@ -930,7 +932,7 @@
     "8593fa2a781ca3ad8bb6cf66c7147f5f76e8f9de": 2,
     "85c2a98c80bbdec64d2ecb315597716ed6fc0bd1": 2,
     "863e734fc8722e8f631a243b1aed16709aa38206": 2,
-    "86544de0cbd306c57dda86a86286a012c4fa940d": 1,
+    "86544de0cbd306c57dda86a86286a012c4fa940d": 2,
     "86aedfe4edc3cfb608c5fa8b963937dee5f09847": 2,
     "86be01432908377fe28952b8d241ff50744e63c2": 2,
     "86be64dd4e71eb046a9b9470f9f3110976b5a8eb": 2,
@@ -1210,6 +1212,7 @@
     "b1169b8f7b6cfe51fa39c22e17093b971530a6d5": 2,
     "b12257167b41a3cc835fa4684eae382c42b72592": 2,
     "b1399a1dd49080b787e401c1ab483b2ab1b55179": 2,
+    "b1e1e0b0ac123f65a46b8907f58db00b1194e656": 1,
     "b1e93e2d4bf767684f0395f217f1a17c6c9b4097": 2,
     "b24ac0323b8a035e0bc70ab1a75be59bacd17237": 2,
     "b2a2a91f8cf44d352966391c0e041cb62c9fcca5": 2,
@@ -1871,9 +1874,7 @@
       "url": "https://www.mof.go.jp/about_mof/councils/fiscal_system_council/sub-of_filp/proceedings/material/zaitoa20261117.html"
     }
   },
-  "major_tries": {
-    "eef1f372bd0f0b70": 2
-  },
+  "major_tries": {},
   "pi_reopened": {
     "05b7c979204565d2": "2026-11-19T18:21:01.412347+00:00",
     "37d71722552567cd": "2026-11-19T18:21:01.412347+00:00",
@@ -20708,6 +20709,12 @@
       "slug": "labor-shortage-bankruptcies-2026",
       "url": "https://www.tsr-net.co.jp/data/detail/1203405_1527.html"
     },
+    "eef1f372bd0f0b70": {
+      "at": "2026-11-20T02:19:32.748891+00:00",
+      "reason": "major gave up x3: reject: 確かなことと、まだ分かっていないこと（調査中・現時点では公表されていない など）を分けて書く",
+      "skipped": true,
+      "url": "https://www.pref.aichi.jp/press-release/kohyo081120.html"
+    },
     "efbc8616a719b6f9abd036f382c6a8ab40a84a69": {
       "at": "2026-11-16T21:49:46.525941+00:00",
       "reason": "trend: 重複: 見出しが類似（0.50）: snow-weather-low-pressure-warning",
@@ -24457,30 +24464,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-18T00:52:24.348210+00:00",
-      "attempt": 1,
-      "id": "b4363a31dd9629bc11510d9edbc85ba77b7ce9f7",
-      "kind": "trend",
-      "model": "openai-api:gpt-6-luna",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 67.0,
-        "avg_sentence": 47.9,
-        "long_share": 0.286,
-        "max_paragraph": 105,
-        "paragraphs": 5,
-        "sentences": 7
-      },
-      "score": 98,
-      "source": "trends",
-      "title": "トンネル",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（NEWS・TBS・DIG）",
-        "読みやすさ: 文が長い（1文の平均 47.9字・60字超の文が 29% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-18T00:52:44.094959+00:00",
@@ -32046,6 +32029,28 @@
       "score": 98,
       "source": "mof",
       "title": "イラク前政権の高官又はその関係者等に対する資産凍結等の措置の対象者の削除を実施します"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-20T02:18:49.848317+00:00",
+      "attempt": 1,
+      "id": "eef1f372bd0f0b70",
+      "kind": "broad",
+      "model": "openai-api:gpt-6.1-terra",
+      "problems": [
+        "確かなことと、まだ分かっていないこと（調査中・現時点では公表されていない など）を分けて書く"
+      ],
+      "readability": {
+        "avg_paragraph": 70.1,
+        "avg_sentence": 35.0,
+        "long_share": 0.0,
+        "max_paragraph": 120,
+        "paragraphs": 10,
+        "sentences": 20
+      },
+      "score": null,
+      "source": "pref-aichi",
+      "title": "土砂災害防止法に基づく土砂災害警戒区域等の基礎調査の結果の公表について（2026年11月20日発表）"
     }
   ],
   "short_text_retry": {
