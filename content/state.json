@@ -1929,9 +1929,7 @@
       "url": "https://www.mof.go.jp/about_mof/councils/fiscal_system_council/sub-of_filp/proceedings/material/zaitoa20261117.html"
     }
   },
-  "major_tries": {
-    "568782698f4b9cb3": 2
-  },
+  "major_tries": {},
   "pi_reopened": {
     "05b7c979204565d2": "2026-11-19T18:21:01.412347+00:00",
     "37d71722552567cd": "2026-11-19T18:21:01.412347+00:00",
@@ -10958,6 +10956,12 @@
       "reason": "本文は「本日指名停止措置を行いました。詳細は別紙のとおりです」という一文と添付PDFだけで、対象の企業、期間、理由が本文から確認できません。読者が仕事やお金で判断できる情報が足りないため、記事にしません。",
       "skipped": true,
       "url": "http://www.mlit.go.jp/report/press/eizen01_hh_000295.html"
+    },
+    "568782698f4b9cb3": {
+      "at": "2026-11-20T05:20:34.201948+00:00",
+      "reason": "major gave up x3: reject: 題名で料金・価格を約束しているのに、本文に金額（円・ドル・無料など）が無い。元記事の金額を書くか、題名から料金の話を外す",
+      "skipped": true,
+      "url": "https://www.microsoft.com/en-us/security/blog/2026/11/17/security-for-the-agentic-era-powered-by-microsoft-perception/"
     },
     "56a03da12c0bbf17": {
       "at": "2026-11-07T08:13:24.282819+00:00",
@@ -24488,29 +24492,6 @@
   "quality_log": [
     {
       "accepted": true,
-      "at": "2026-11-18T04:49:15.084251+00:00",
-      "attempt": 0,
-      "id": "a30c9eedc8c540e1",
-      "kind": "ai",
-      "model": "openai-api:gpt-6-luna",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 89.9,
-        "avg_sentence": 37.0,
-        "long_share": 0.088,
-        "max_paragraph": 160,
-        "paragraphs": 14,
-        "sentences": 34
-      },
-      "score": 100,
-      "source": "radar-official",
-      "title": "NVIDIA、Vera CPU プラットフォームを拡充し、科学的発見を加速",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（HPE・OCI・NVL）"
-      ]
-    },
-    {
-      "accepted": true,
       "at": "2026-11-18T05:09:55.372762+00:00",
       "attempt": 1,
       "id": "1abfd671891da31f",
@@ -32068,6 +32049,32 @@
       "warnings": [
         "見出しが47字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（MDASH）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-20T05:19:46.472003+00:00",
+      "attempt": 1,
+      "id": "568782698f4b9cb3",
+      "kind": "ai",
+      "model": "openai-api:gpt-6.1-terra",
+      "problems": [
+        "題名で料金・価格を約束しているのに、本文に金額（円・ドル・無料など）が無い。元記事の金額を書くか、題名から料金の話を外す"
+      ],
+      "readability": {
+        "avg_paragraph": 92.9,
+        "avg_sentence": 43.9,
+        "long_share": 0.083,
+        "max_paragraph": 135,
+        "paragraphs": 17,
+        "sentences": 36
+      },
+      "score": null,
+      "source": "microsoft-365-blog",
+      "title": "Security for the agentic era, powered by Microsoft Perception  | Microsoft Secur",
+      "warnings": [
+        "見出しが46字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（ISOC・MDASH）"
       ]
     }
   ],
