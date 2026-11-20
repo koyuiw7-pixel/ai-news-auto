@@ -8,20 +8,19 @@
   "companyName": "Microsoft",
   "category": "開発ツール",
   "overview": {
-    "text": "Microsoft Foundryは、AIモデルの選定やエージェント作成を1つの画面で行える開発基盤です。Microsoftが提供しています。",
+    "text": "Microsoft Foundryは、AIモデルの選定やエージェント作成を行えるプラットフォームです。Microsoftが提供し、2026年8月から11月にかけて機能が発表されました。",
     "sources": [
       "microsoft-foundry-complete-agent-platform-guide-matome",
-      "microsoft-foundry-agent-tutorial-azure",
-      "microsoft-foundry-model-router-update"
+      "microsoft-foundry-agent-tutorial-azure"
     ]
   },
   "facts": [
     {
-      "label": "提供開始",
-      "value": "2026年8月",
+      "label": "料金",
+      "value": "Azure従量課金、無料枠あり",
       "sources": [
-        "microsoft-foundry-complete-agent-platform-guide-matome",
-        "microsoft-foundry-model-router-update"
+        "microsoft-foundry-agent-playground-test",
+        "microsoft-foundry-agent-tutorial-azure"
       ]
     },
     {
@@ -29,56 +28,60 @@
       "value": "利用できる",
       "sources": [
         "microsoft-foundry-agent-playground-test",
-        "microsoft-foundry-agent-tutorial-azure",
-        "microsoft-copilot-harness-foundry-agent-builder"
+        "microsoft-foundry-agent-tutorial-azure"
       ]
     },
     {
       "label": "向いている人",
-      "value": "開発者",
+      "value": "AIエージェントの開発者",
       "sources": [
         "microsoft-foundry-agent-playground-test",
-        "microsoft-foundry-agent-tutorial-azure",
-        "microsoft-foundry-video-models-fal"
+        "microsoft-foundry-agent-tutorial-azure"
       ]
     }
   ],
   "capabilities": [
     {
-      "text": "Copilot harnessを使い、コンテナの準備なしでチェック操作のみでエージェントを稼働できます。",
-      "sources": [
-        "microsoft-foundry-complete-agent-platform-guide-matome"
-      ]
-    },
-    {
-      "text": "Model Routerにより、入力内容に応じた複数の大規模言語モデルの自動振り分けが可能です。",
-      "sources": [
-        "microsoft-foundry-complete-agent-platform-guide-matome",
-        "microsoft-foundry-model-router-update"
-      ]
-    },
-    {
-      "text": "Agent Optimizerを活用して、会話ログに基づくプロンプトと構成の自動改善を行えます。",
-      "sources": [
-        "microsoft-foundry-complete-agent-platform-guide-matome"
-      ]
-    },
-    {
-      "text": "ブラウザ自動化ツールにより、APIが公開されていないWebシステムをAIが直接操作できます。",
-      "sources": [
-        "dotnet-11-rc2-python-arm64-foundry-browser-automation"
-      ]
-    }
-  ],
-  "pricing": [
-    {
-      "text": "200ドル分の無料クレジットが付与され、初期テストを進められます。",
+      "text": "モデルカタログから主要モデルを同一画面で切り替えて比較検証できます。",
       "sources": [
         "microsoft-foundry-agent-tutorial-azure"
       ]
     },
     {
-      "text": "動画生成AIモデルでは、MiniMax H3 Max Turboの480pが1秒あたり0.025ドルから利用できます。",
+      "text": "画面上の設定だけでエージェントの指示文調整や応答確認を行えます。",
+      "sources": [
+        "microsoft-foundry-agent-playground-test"
+      ]
+    },
+    {
+      "text": "複数の大規模言語モデルを単一のAPIエンドポイントから自動的に振り分けられます。",
+      "sources": [
+        "microsoft-foundry-model-router-update"
+      ]
+    },
+    {
+      "text": "コンテナ構築不要でエージェントを実行できるCopilot harnessを利用できます。",
+      "sources": [
+        "microsoft-foundry-complete-agent-platform-guide-matome",
+        "microsoft-foundry-agent-service-copilot-harness"
+      ]
+    },
+    {
+      "text": "文章や画像から動画を作る5つの動画生成AIモデルを利用できます。",
+      "sources": [
+        "microsoft-foundry-video-models-fal"
+      ]
+    }
+  ],
+  "pricing": [
+    {
+      "text": "登録時には200ドル分の無料クレジットが付与されます。",
+      "sources": [
+        "microsoft-foundry-agent-tutorial-azure"
+      ]
+    },
+    {
+      "text": "動画生成AIは1秒あたりの単価で利用できます。最安は0.025ドルです。",
       "sources": [
         "microsoft-foundry-video-models-fal"
       ]
@@ -86,22 +89,23 @@
   ],
   "japan": [
     {
-      "text": "ポータルサイトや日本語のプロンプトが問題なく動作し、今日からすぐ試すことができます。",
+      "text": "日本国内から利用できます。",
       "sources": [
-        "microsoft-copilot-harness-foundry-agent-builder"
+        "microsoft-foundry-agent-playground-test",
+        "microsoft-foundry-agent-tutorial-azure"
       ]
     }
   ],
   "howto": [
     {
-      "text": "ポータルサイト（ai.azure.com）にアクセスし、Azureのアカウントとサブスクリプションを連携させます。",
+      "text": "ポータルサイトにアクセスし、Azureサブスクリプションを登録します。",
       "sources": [
         "microsoft-foundry-complete-agent-platform-guide-matome",
         "microsoft-foundry-agent-tutorial-azure"
       ]
     },
     {
-      "text": "画面上のBuild an agentから新しいAIエージェントを作成し、対話モードや名前を設定します。",
+      "text": "画面上の「Build an agent」から新しいAIエージェントを作成できます。",
       "sources": [
         "microsoft-foundry-agent-tutorial-azure"
       ]
@@ -109,7 +113,7 @@
   ],
   "differences": [
     {
-      "text": "従来はコンテナ構築や認証処理を自前で記述する必要がありましたが、自動化・抽象化されました。",
+      "text": "従来はモデルの切り替えやインフラ構築を自前で行う必要がありました。",
       "sources": [
         "microsoft-foundry-complete-agent-platform-guide-matome"
       ]
@@ -117,29 +121,29 @@
   ],
   "faq": [
     {
-      "q": "無料で試すことはできる？",
-      "a": "登録時に200ドル分の無料クレジットが付与され、費用をかけずに初期テストを進められます。",
+      "q": "無料で使える？",
+      "a": "登録時に200ドル分の無料クレジットが付与され、初期テストを進められます。",
       "sources": [
         "microsoft-foundry-agent-tutorial-azure"
       ]
     },
     {
-      "q": "どのようなモデルを選べる？",
-      "a": "OpenAIのGPTシリーズだけでなく、AnthropicのClaudeやDeepSeekなど多様なモデルが揃っています。",
+      "q": "どのようなモデルが選べる？",
+      "a": "OpenAIやAnthropicなどの多様なモデルが揃っています。",
       "sources": [
         "microsoft-foundry-agent-tutorial-azure"
       ]
     },
     {
-      "q": "対応している言語モデルの切り替えは自動で行える？",
-      "a": "Model Routerを使うことで、入力内容に応じて適切なモデルへと要求を自動的にルーティングできます。",
+      "q": "誰に向いている？",
+      "a": "AIエージェントの自社ツール開発を考えている開発者に向いています。",
       "sources": [
-        "microsoft-foundry-model-router-update"
+        "microsoft-foundry-agent-tutorial-azure"
       ]
     },
     {
-      "q": "作成したエージェントは公開できる？",
-      "a": "画面上のPublishボタンからWebアプリとしてすぐに公開できます。",
+      "q": "外部ツールと連携できる？",
+      "a": "Zapierなどの外部サービスと安全に連携できます。",
       "sources": [
         "microsoft-foundry-agent-tutorial-azure"
       ]
@@ -149,37 +153,37 @@
     {
       "date": "2026-09-26",
       "slug": "microsoft-foundry-model-router-update",
-      "event": "Model Routerが更新されマルチベンダー切り替えに対応"
+      "event": "Model Routerを更新"
     },
     {
-      "date": "2026-10-26",
-      "slug": "dotnet-11-rc2-python-arm64-foundry-browser-automation",
-      "event": "ブラウザ自動化ツールが一般提供に移行"
+      "date": "2026-10-29",
+      "slug": "microsoft-copilot-harness-foundry",
+      "event": "Copilot harnessを提供開始"
     },
     {
       "date": "2026-11-07",
       "slug": "microsoft-foundry-video-models-fal",
-      "event": "動画生成AI5種が公開プレビューで追加"
+      "event": "動画生成AI5種を公開プレビュー"
     },
     {
       "date": "2026-11-07",
       "slug": "microsoft-foundry-agent-service-copilot-harness",
-      "event": "Copilot harnessのパブリックプレビューを開始"
+      "event": "Copilot harnessのプレビュー開始"
     },
     {
       "date": "2026-11-10",
       "slug": "microsoft-foundry-agent-tutorial-azure",
-      "event": "200ドル分の無料枠を使った構築ガイドが公開"
+      "event": "無料枠と使い方を公開"
     },
     {
       "date": "2026-11-11",
       "slug": "microsoft-foundry-agent-playground-test",
-      "event": "Playgroundでの事前テスト機能を解説"
+      "event": "Playgroundの操作手順を公開"
     },
     {
       "date": "2026-11-12",
       "slug": "microsoft-foundry-complete-agent-platform-guide-matome",
-      "event": "コンテナ不要のCopilot harnessがプレビュー公開"
+      "event": "Microsoft Foundryの機能拡張を発表"
     }
   ],
   "related": [
@@ -225,9 +229,9 @@
     "microsoft-foundry-model-router-auto-evaluation",
     "microsoft-foundry-model-router-update"
   ],
-  "signature": "d6e62685c5f1d272",
+  "signature": "24f3856ea7cdeeaf",
   "primarySignature": "9c1f040590488c15",
   "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-10-27T10:43:54+00:00",
-  "updatedAt": "2026-11-17T03:32:12+00:00"
+  "updatedAt": "2026-11-20T03:44:52+00:00"
 }
