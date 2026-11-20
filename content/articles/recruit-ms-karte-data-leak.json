@@ -68,9 +68,8 @@
   "affiliates": [],
   "newsType": "security",
   "todayActions": [
-    "11月17〜19日に届いた案内メールの有無を確認する。届かず心配なら、リクルートマネジメントスクール事務局（0120-878-396）へ連絡する",
-    "同社や「リクルートマネジメントスクール」を装う不審なメール・SMS・電話のURLや添付ファイルは開かない",
-    "事務局の受付は平日8:30〜18:00。問い合わせフォームも使える"
+    "公開型研修の管理者だった人は、11月17日以降の個別案内メールを確認する",
+    "同社などを装うメール・SMS・電話が届いても、URLや添付ファイルを開かない"
   ],
   "publicInterest": "breach",
   "incident": {
@@ -115,5 +114,97 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/recruit-ms-karte-data-leak-figure-247ce256.jpg"
+  },
+  "insight": [
+    {
+      "text": "漏えい対象者には11月19日までに個別メールを送付。メールアドレスの失効などで連絡が難しい人には、この公表を通知に代えるとしています。",
+      "source": "https://www.recruit-ms.co.jp/news/information/4943354776/"
+    },
+    {
+      "text": "同社は、今回の対応について「お客様ご自身に特段の手続きをお願いするものではございません」と説明しています。",
+      "source": "https://www.recruit-ms.co.jp/news/information/4943354776/"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "リクルートマネジメントスクール事務局",
+      "url": "https://www.recruit-ms.co.jp/service/contact/s_contact/",
+      "source": "https://www.recruit-ms.co.jp/news/information/4943354776/",
+      "howTo": [
+        "＜本件に対するお問い合わせ窓口＞",
+        "問い合わせフォーム"
+      ],
+      "phone": "0120-878-396",
+      "hours": "8:30～18:00 月～金（祝日除く）"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "公開型研修の管理者だった人は、11月17日以降の個別案内メールを確認する",
+      "source": "https://www.recruit-ms.co.jp/news/information/4943354776/",
+      "steps": [
+        "公開型研修の管理者として登録していたか確認する",
+        "11月17日以降の個別案内メールを確認する",
+        "届かない場合は事務局に問い合わせる"
+      ],
+      "url": "https://www.recruit-ms.co.jp/news/information/4943354776/"
+    },
+    {
+      "action": "同社などを装うメール・SMS・電話が届いても、URLや添付ファイルを開かない",
+      "source": "https://www.recruit-ms.co.jp/news/information/4943354776/",
+      "steps": [
+        "同社や「リクルートマネジメントスクール」を装う連絡に注意する",
+        "URLへのアクセスや添付ファイルを開かない"
+      ],
+      "url": "https://www.recruit-ms.co.jp/news/information/4943354776/"
+    }
+  ],
+  "cause": {
+    "text": "第三者による不正アクセスが、株式会社プレイドのサービス「KARTE」で発生しました。リクルートマネジメントソリューションズは11月13日に連絡を受けて利用を停止し、11月15日深夜の情報提供で一部漏えいを確認しています。",
+    "status": "stated",
+    "source": "https://www.recruit-ms.co.jp/news/information/4943354776/"
+  },
+  "worries": [
+    {
+      "q": "公開型研修を受講しただけでも対象になるの？",
+      "a": "漏えいが確認されたのは、リクルートマネジメントスクール（公開型研修）の管理者情報12,421件です。受講者情報は漏えいしていないと発表されています。",
+      "source": "https://www.recruit-ms.co.jp/news/information/4943354776/",
+      "action": "申込窓口の管理者として登録していたか振り返り、該当する場合は事務局へ確認する。"
+    },
+    {
+      "q": "自分の氏名や連絡先は、全部漏れたのでしょうか？",
+      "a": "公表された項目は顧客管理者氏名、電話番号、メールアドレス、会社所在地住所です。ただし対象者ごとに異なり、4項目すべてが各人に含まれるわけではありません。",
+      "source": "https://www.recruit-ms.co.jp/news/information/4943354776/",
+      "action": "自身に含まれる項目を確認したい場合は、事務局へ電話または問い合わせフォームで確認する。"
+    },
+    {
+      "q": "対象者なのに案内メールが届いていない場合は？",
+      "a": "対象者には11月17日以降、順次個別メールを送り、11月19日までに案内したとしています。メールアドレスの失効などで連絡が難しい人には、この公表が通知に代わります。",
+      "source": "https://www.recruit-ms.co.jp/news/information/4943354776/",
+      "action": "11月17日以降の個別案内メールを確認し、届かない場合は事務局に問い合わせる。"
+    },
+    {
+      "q": "研修事務局を装う連絡で被害に遭う心配は？",
+      "a": "現時点で、本件に起因すると考えられる情報の不正利用などの二次被害は確認されていません。一方、同社などを装うメール・SMS・電話への注意を呼びかけています。",
+      "source": "https://www.recruit-ms.co.jp/news/information/4943354776/",
+      "action": "不審な連絡が届いてもURLへのアクセスや添付ファイルの開封はせず、事務局に確認する。"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "対象者に追加の手続きは求めていない",
+    "cause": "KARTEへの不正アクセスで何が起きた？",
+    "steps": "案内メールと不審な連絡を確認",
+    "desk": "事務局への連絡先",
+    "worries": "自分や受講者の情報は対象？"
+  },
+  "depthAt": "2026-11-20T08:12:14+00:00",
+  "coverImage": "https://ai-tech-express.jp/img/recruit-ms-karte-data-leak-cover-e83b6983.jpg",
+  "coverCredit": {
+    "kind": "ai",
+    "model": "flux-2-klein-4b",
+    "prompt": "A close‑up of a pile of printed enrollment forms and a USB flash drive lying beside a locked filing cabinet, representing the personal administrator data that was exposed.",
+    "provider": "Cloudflare Workers AI",
+    "relevant": true,
+    "at": "2026-11-20T08:14:24+00:00"
   }
 }

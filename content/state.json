@@ -1973,9 +1973,7 @@
       "url": "https://www.mof.go.jp/about_mof/councils/fiscal_system_council/sub-of_filp/proceedings/material/zaitoa20261117.html"
     }
   },
-  "major_tries": {
-    "5d5830bd4b50960a": 3
-  },
+  "major_tries": {},
   "pi_reopened": {
     "05b7c979204565d2": "2026-11-19T18:21:01.412347+00:00",
     "37d71722552567cd": "2026-11-19T18:21:01.412347+00:00",
@@ -11956,6 +11954,19 @@
       "skipped": true,
       "url": "https://blog.ja.playstation.com/2026/11/17/20261117-ps5-qssr-o/"
     },
+    "6474fb3b9ff1bf0b": {
+      "at": "2026-11-20T08:11:05.846883+00:00",
+      "costUsd": 0.0046,
+      "intent": "query",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "score": 99,
+      "section": "business",
+      "slug": "smbc-karte-unauthorized-access",
+      "url": "https://www.smbc.co.jp/news/pdf/j20261120_01.pdf"
+    },
     "648331e2e6f4eac2": {
       "at": "2026-11-10T10:45:34.578429+00:00",
       "costUsd": 0.0078,
@@ -18908,13 +18919,6 @@
       "skipped": true,
       "url": "https://www.mhlw.go.jp/stf/wp/hakusyo/shiinkyuumei/26/index.html"
     },
-    "d552556087747423": {
-      "at": "2026-11-06T08:08:19.192048+00:00",
-      "model": "openrouter:nvidia/nemotron-3-ultra-550b-a55b:free",
-      "reason": "quality: 要点の1つ目（「組織的要因がAIインパクトの2倍以上を占め、技術…」）が一番のニュースになっていない。題名・リードの1文目と同じ中心の事実（エージェント・全社展開）を、リードとは違う言い方で1つ目に書く; 元記事・確認済みの事実の束・計算済みの数字のどれにも無い数字がある（「- PwCは36万人」）。元記事か束の数字に直すか、その文を削る。割合・差・換算などを自分で計算しない（計",
-      "skipped": true,
-      "url": "https://blogs.windows.com/japan/2026/11/06/from-pilots-to-programs-a-structured-approach-to-scaling-ai-and-agents-for-real/"
-    },
     "d5613956d7cc6578": {
       "at": "2026-11-07T15:31:54.967353+00:00",
       "reason": "public-interest: 資料が短い 1085字",
@@ -24370,59 +24374,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-18T15:33:32.237343+00:00",
-      "attempt": 0,
-      "id": "516cfae7a2fcab25",
-      "kind": "broad",
-      "model": "openai-api:gpt-6-luna",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 72.7,
-        "avg_sentence": 35.2,
-        "long_share": 0.161,
-        "max_paragraph": 124,
-        "paragraphs": 15,
-        "sentences": 31
-      },
-      "score": 100,
-      "source": "tokyu-fudosan",
-      "title": "11月28日・29日、Shibuya Sakura Stageにて 「おかやまCity DAYS in 渋谷」開催 〜 建物管理を起点に、自治体との共創で地域の",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（DAYS・BLOOM・LED）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-18T15:44:18.595767+00:00",
-      "attempt": 1,
-      "id": "0c7522e7eafda0fc",
-      "kind": "broad",
-      "model": "gemini-3.7-flash",
-      "problems": [
-        "タイトル「東急不動産とNEC系が優先出資」→元記事が明記するのは、東急不動産が優先出資で参画中の物件にNEC側が新たに加わることまでで、NEC側も優先出資を行うとは確認できません。",
-        "「一般の賃貸契約者や個人投資家の手続きに直接の影響はなく」「保有する資産や住居の契約が自動で変わることもありません」→元記事はこうした影響の有無を説明しておらず、断定する根拠がありません。",
-        "「優先出資には、メザニン投資や劣後ローン投資が含まれます。安定した配当や元本回収を優先的に狙う」「リスクの低い投資手法」→元記事の注記は「優先出資等」にこれらを含むとしているだけで、優先出資自体の仕組みやリスク、配当・元本回収については述べていません。",
-        "「累計21件」「投資総額は約3億2,000万ドル」→元記事では投資案件数に回収済みの3物件を含み、投資額には開発案件のコミットメント額も含むとしていますが、記事は数字の近くでこの条件を示していません。",
-        "かんたん版の「優先出資を行った物件はこれで21件目」→元記事が示すのは累計投資案件数21件であり、21物件目と数えたことや今回の件がその21件目に当たることまでは確認できません。"
-      ],
-      "readability": {
-        "avg_paragraph": 109.8,
-        "avg_sentence": 54.9,
-        "long_share": 0.375,
-        "max_paragraph": 186,
-        "paragraphs": 8,
-        "sentences": 16
-      },
-      "score": 68,
-      "source": "tokyu-fudosan",
-      "title": "優先出資による米国賃貸住宅投資で共同事業を開始 ～ニュージャージー州ベイヨン市「Edge Avenue F」～",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（TLUS）",
-        "読みやすさ: 文が長い（1文の平均 54.9字・60字超の文が 38% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-18T15:45:41.430183+00:00",
@@ -31980,6 +31931,54 @@
       "title": "エンタープライズのクラウドセキュリティを横断管理する「A-gate View™」を提供開始",
       "warnings": [
         "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-20T08:10:23.271928+00:00",
+      "attempt": 1,
+      "id": "6474fb3b9ff1bf0b",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "「特に変わった連絡がないなら、現時点で必要な手続きはありません」→ 元記事は資産や取引への影響を確認していないとしていますが、手続きが不要とは明記していません。"
+      ],
+      "readability": {
+        "avg_paragraph": 52.0,
+        "avg_sentence": 34.7,
+        "long_share": 0.048,
+        "max_paragraph": 104,
+        "paragraphs": 14,
+        "sentences": 21
+      },
+      "score": 95,
+      "source": "smbc",
+      "title": "業務委託先への不正アクセスによる情報漏えいについて",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（KARTE）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-20T08:10:54.117788+00:00",
+      "attempt": 1,
+      "id": "6474fb3b9ff1bf0b",
+      "kind": "broad",
+      "model": "openai-api:gpt-6-luna",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 52.0,
+        "avg_sentence": 34.7,
+        "long_share": 0.048,
+        "max_paragraph": 104,
+        "paragraphs": 14,
+        "sentences": 21
+      },
+      "score": 99,
+      "source": "smbc",
+      "title": "業務委託先への不正アクセスによる情報漏えいについて",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（KARTE）"
       ]
     }
   ],
