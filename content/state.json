@@ -12858,6 +12858,19 @@
       "skipped": true,
       "url": "https://www.mhlw.go.jp/stf/newpage_77269.html"
     },
+    "70d8e10185631b8d": {
+      "at": "2026-11-20T22:21:38.395795+00:00",
+      "breaking": true,
+      "costUsd": 0.0388,
+      "intent": "breaking",
+      "major": true,
+      "mix": "alert",
+      "model": "openai-api:gpt-6.1-terra",
+      "score": 100,
+      "section": "ai",
+      "slug": "marui-epos-karte-data-breach",
+      "url": "https://www.0101maruigroup.co.jp/nr/26_1120_1"
+    },
     "7110d262fd40c555": {
       "at": "2026-11-10T08:50:02.053744+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（募集）",
@@ -24282,31 +24295,6 @@
   "quality_log": [
     {
       "accepted": true,
-      "at": "2026-11-19T04:23:58.717499+00:00",
-      "attempt": 1,
-      "id": "4e473394ad54a861",
-      "kind": "broad",
-      "model": "openai-api:gpt-6-luna",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 98.9,
-        "avg_sentence": 57.3,
-        "long_share": 0.526,
-        "max_paragraph": 151,
-        "paragraphs": 11,
-        "sentences": 19
-      },
-      "score": 100,
-      "source": "subaru",
-      "title": "SUBARU 米国生産 3列SUV「アセント」を日本市場に150台限定で導入",
-      "warnings": [
-        "見出しの書き方: 記号: かっこの直後に「、」",
-        "初めて出たところで言い換えていない略語（SUBARU・SUV・DOHC）",
-        "読みやすさ: 文が長い（1文の平均 57.3字・60字超の文が 53% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
       "at": "2026-11-19T04:24:28.446502+00:00",
       "attempt": 0,
       "id": "4e473394ad54a861",
@@ -31895,6 +31883,29 @@
         "初めて出たところで言い換えていない略語（NA）",
         "つなぎの文が1か所（「判断材料になります」）",
         "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-20T22:21:38.375340+00:00",
+      "attempt": 1,
+      "id": "70d8e10185631b8d",
+      "kind": "ai",
+      "model": "openai-api:gpt-6.1-terra",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 73.1,
+        "avg_sentence": 38.0,
+        "long_share": 0.0,
+        "max_paragraph": 100,
+        "paragraphs": 13,
+        "sentences": 25
+      },
+      "score": 100,
+      "source": "fast",
+      "title": "当社グループが利用するマーケティング支援ツール「KARTE」への不正アクセスによるお客さまの個人情報の一部漏えいについて｜ニュースリリース｜株式会社 丸井グルー",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（KARTE）"
       ]
     }
   ],
