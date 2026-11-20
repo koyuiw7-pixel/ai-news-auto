@@ -1,0 +1,159 @@
+{
+  "slug": "windows-rdma-usb4-local-ai",
+  "sourceType": "web",
+  "sourceUrl": "https://techcommunity.microsoft.com/blog/microsoftusbblog/introducing-rdma-over-usb4%C2%AE-on-windows-run-larger-local-ai-models-across-pcs/4574602",
+  "sourceName": "Microsoft公式",
+  "title": "「RDMA over USB4」でPC 2台からAIを分散処理　Microsoftが開発者向けに提供へ",
+  "seoTitle": "RDMA over USB4とは　Windowsの複数PCでAIを実行",
+  "threadsPost": "手元のPCでAIを動かす開発者に、知っておいてほしい話です。\n\nMicrosoftは、複数のWindows PCで1つのAIを動かす機能を開発者向けに提供する予定です。\n専用の通信機器は不要ですが、対応するPCとUSB4ケーブルが必要です。\n\nAIを使うなら、手元のPCとクラウドのどちらを重視しますか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "ab",
+      "question": "AIを使うなら、手元のPCとクラウドのどちらを重視しますか？"
+    },
+    {
+      "pattern": "count",
+      "question": "普段、仕事や開発に使うPCは何台ありますか？"
+    },
+    {
+      "pattern": "expert",
+      "question": "手元でAIを動かすとき、PC選びで何を重視しますか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "senpai",
+  "lede": "「RDMA over USB4」は、複数のWindows PCのメモリと画像処理能力を使い、1つのAIモデルを手元で動かす機能です。Microsoftは、USB4対応PCを2台以上つなぐ開発者向けプレビューを近く提供する予定で、専用の通信アダプターは必要ありません。対応するWindowsの試験版と料金の詳しい条件は、まだ発表されていません。",
+  "description": "Microsoftの「RDMA over USB4」は、USB4対応のWindows PCを複数つなぎ、1台に収まらないAIモデルを分散実行する機能です。開発者向けプレビューの提供予定、必要な接続、速度の測定例と注意点を紹介します。",
+  "keywords": [
+    "RDMA over USB4",
+    "RDMA over USB4 使い方",
+    "Windows USB4 AI",
+    "Windows ローカルAI",
+    "複数PC AI 分散処理",
+    "USB4 クラスター",
+    "NetworkDirect",
+    "llama.cpp Windows",
+    "Windows Insider 開発者プレビュー",
+    "USB4 AI 対応条件"
+  ],
+  "tags": [
+    "Microsoft",
+    "Windows",
+    "RDMA over USB4",
+    "生成AI",
+    "ローカルAI",
+    "USB4"
+  ],
+  "highlights": [
+    "RDMA over USB4は、USB4対応のWindows PCを2台以上つなぎ、1つのAIモデルを分散して実行する機能です。",
+    "Microsoftの測定では、小さなデータの往復時間は同じUSB4接続上のEthernetと比べて約4分の1でした。",
+    "試験には専用PCを推奨しており、プレビューではSecure Bootを無効にしてテスト署名を有効にする必要があります。"
+  ],
+  "timetable": [],
+  "verdict": {
+    "status": "soon",
+    "japan": "unknown",
+    "price": "不明",
+    "free": null,
+    "audience": "AI開発者",
+    "take": "手元で大きなAIモデルを試す開発者は、対応端子と専用の試験用PCを先に確認するとよいでしょう。",
+    "judgedAt": "2026-11-20T02:47:51.353305+00:00"
+  },
+  "workMoney": {
+    "relevance": "medium",
+    "points": [
+      "ローカルAIの開発者は、複数PCのメモリを使う構成を検討できます。対応する試験版は提供待ちです。",
+      "専用のRDMA通信アダプターは不要ですが、対応PCと各PC間を直接つなぐUSB4ケーブルが必要です。"
+    ]
+  },
+  "body": "対象は、手元のWindows PCで大きなAIモデルを動かしたい開発者です。対応する試験版は提供前で、今使っているPCの設定は自動では変わりません。\n\nRDMA over USB4は、複数台のメモリとGPUを使う仕組みです。GPUは、画像などを並列処理する装置です。1つのAIモデルを分けて動かします。対応するAI実行ソフトが必要です。\n\nMicrosoftの公式ブログによると、開発者向けプレビューは近く提供されます。提供先はWindows Insider ProgramのExperimental Channel（Future Platforms）です。一般向けの完成版ではありません。\n\nRDMAは、別のPCのメモリとの間でデータを直接やり取りする技術です。従来、Windowsで使うには専用の通信アダプターが必要でした。今回の仕組みでは、USB4ケーブルでPC同士をつなぎます。専用アダプターやスイッチ、別会社のドライバーは不要です。\n\nアプリはNetworkDirectというWindowsのAPIを使います。APIは、アプリから機能を呼び出す仕組みです。Microsoftは、USB4向けの部品と、AI実行ソフト「llama.cpp」を基にした試験用コードを公開しています。どちらもオープンソース（ソースコードが公開されたソフト）です。\n\n## USB4での通信とAIモデルの測定結果\n\nAIモデルを複数のPCに分けます。回答を作るたびにPC間でデータを何度も交換します。そのため、通信の待ち時間が性能に関わります。\n\nMicrosoftは、PC 2台の間で測定しました。小さなデータの往復時間は約28〜50マイクロ秒でした。同じUSB4接続上のEthernet通信と比べ、約4分の1です。これは通信の測定結果であり、AIの回答全体が同じ割合で速くなることを示す数字ではありません。\n\nMicrosoftは、AMD Ryzen AI Max搭載の小型PC 3台で試験しました。Qwen3-235B-A22Bは1秒当たり約18.5トークンを生成しました。トークンはAIが文字を数える単位です。各PCの統合メモリは128GBで、モデルを4ビットに圧縮した条件です。\n\nIntelの測定では、Intel Core Ultra Series 3搭載のPCを使いました。GPT-OSS-120Bを動かし、入力の長さが1,000トークンの条件で測定しました。回答の生成速度は3台で毎秒49.4トークン、4台で毎秒54.2トークンです。各PCのメモリは64GBでした。\n\nこれらの速度は、モデルや実行ソフトの構成、PCのメモリとGPUによって変わります。\n\n## サイソクの見方：試験用PCとUSB4端子が判断の分かれ目\n\n手元にUSB4対応の試験用PCが複数ある開発者は、公開済みのコードを先に確認できます。一方、普段使うPCしかない場合は、Secure Bootを無効にする試験版を避ける選択が適切と考えられます。提供条件の更新を待つ選択も適切と考えられます。\n\n## まだ分からないこと\n\n- 対応するWindowsの試験版の具体的な提供日は、まだ発表されていません。\n- RDMA over USB4の料金と、日本での提供条件はまだ発表されていません。\n\n## 開発者向けの始め方は全PC間の直接接続から\n\n各PCは、ほかのすべてのPCとUSB4ケーブルで直接つなぎます。たとえば3台で組む場合は、それぞれにUSB4端子が2つ必要です。数珠つなぎでは性能が大きく落ちるとMicrosoftは説明しています。\n\nすべてのPCに、同じ対応版のWindowsとプレビュー用ドライバー、NetworkDirectの部品が必要です。性能を出すには、40Gbps以上のUSB4端子と、モデルに見合うメモリやGPUも求められます。\n\nプレビューでは機能が初期状態で無効です。有効化にはテスト署名が必要です。Secure Boot（起動時にソフトの正当性を確かめる機能）も無効にします。Microsoftは、普段使う端末ではなく専用の試験用PCを勧めています。\n\n試験後はテスト署名を無効にし、Secure Bootを再び有効にします。\n\n接続が切れた場合、自動で再試行されない点にも注意が必要です。アプリ側で接続を張り直します。\n\n開発者は、公開済みの[NetworkDirect向けコードと接続テストツール](https://aka.ms/usb4-rdma-nd-provider)を確認できます。[llama.cppの試験用コード](https://aka.ms/usb4-rdma-llama-cpp-sample)も確認できます。対応版の提供後は、Microsoftが公式ブログの設定手順を更新する予定です。",
+  "easy": "## ひとことで言うと\n\n複数のWindows PCをUSB4ケーブルでつなぎ、1台では収まらない大きなAIを動かす機能です。開発者向けの試験版は、これから提供されます。\n\n## PC同士を直接つないで使う\n\n対応するPCは、組み合わせごとにケーブルで直接つなぎます。専用の通信アダプターや、別会社のドライバーは必要ありません。\n\n試験版では、起動時の安全を守る機能を一時的に無効にする必要があります。Microsoftは、普段使うPCではなく、試験専用のPCを使うよう勧めています。",
+  "channel": "Microsoft公式",
+  "channelId": "",
+  "channelSlug": "radar-official",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "Windows PCを複数台接続して1個のAI処理クラスターとして扱う機能「RDMA over USB4」をMicrosoftが発表、USBケーブルのみで接続可能で専用機材不要",
+  "publishedAt": "2026-11-20T02:41:24.629000+00:00",
+  "generatedAt": "2026-11-20T02:47:51.353291+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/windows-rdma-usb4-local-ai-0dd14640.jpg",
+  "model": "openai-api:gpt-6.1-terra",
+  "affiliates": [
+    {
+      "name": "OZ GAMING",
+      "label": "OZ GAMING（GPU搭載のBTOパソコン）",
+      "url": "https://px.a8.net/svt/ejp?a8mat=4BELTP+BOXHGY+5U1O+5YJRM",
+      "note": "ローカルLLMや画像生成AIを手元で試すためのGPU搭載PCを、構成から選べるBTOショップ",
+      "pixel": "https://www14.a8.net/0.gif?a8mat=4BELTP+BOXHGY+5U1O+5YJRM"
+    }
+  ],
+  "newsType": "product",
+  "faq": [
+    {
+      "q": "RDMA over USB4の試験では何台まで接続していますか？",
+      "a": "MicrosoftはAMD Ryzen AI Max搭載PCで最大3台、Intel Core Ultra Series 3搭載PCで最大4台の構成を試験しています。試験済みの機種だけが対応対象という意味ではありません。"
+    },
+    {
+      "q": "USB4接続ではRDMA以外にファイル共有もできますか？",
+      "a": "Windows 11のUSB4接続では、既存のネットワーク共有機能を使ってフォルダーを共有できます。これは今回のRDMAプレビューとは別の機能です。（Microsoft公式ページ、11/20確認）"
+    }
+  ],
+  "todayActions": [
+    "試験に使えるWindows PCのUSB4端子を確認し、各PC同士を直接つなげる数があるか確かめる。",
+    "Microsoft公開のNetworkDirect向けコードとllama.cppの試験用コードを確認する。",
+    "普段使うPCとは別に、Secure Bootを無効にして試せる専用PCを用意できるか確認する。"
+  ],
+  "qualityBar": {
+    "score": 5,
+    "missing": [
+      1,
+      5,
+      6
+    ],
+    "notes": {
+      "1": "最初の3行にだれに・いつからが無い",
+      "5": "することは書いてあるが、どこで（窓口・ページ）・いつまでが無い",
+      "6": "言い換えの無い略語（OSS）"
+    },
+    "checkedAt": "2026-11-20T02:48:58+00:00",
+    "before": [
+      1,
+      5,
+      6
+    ],
+    "repaired": false,
+    "repairLater": true
+  },
+  "qualityScore": 100,
+  "detectedAt": "2026-11-20T02:41:24+00:00",
+  "fastLane": true,
+  "layout": "noir",
+  "summaryLine": "RDMA over USB4は、USB4対応のWindows PCを**2台**以上つなぎ、1つのAIモデルを分散して実行する機能です。",
+  "imageCredit": {
+    "kind": "official",
+    "org": "Microsoft",
+    "provider": "Microsoft公式",
+    "sourceUrl": "https://techcommunity.microsoft.com/blog/microsoftusbblog/introducing-rdma-over-usb4%C2%AE-on-windows-run-larger-local-ai-models-across-pcs/4574602",
+    "original": "https://techcommunity.microsoft.com/t5/s/gxcuf89792/images/bS00NTc0NjAyLW11SmRkUA?revision=6",
+    "width": 720,
+    "height": 405,
+    "at": "2026-11-20T02:49:06+00:00"
+  },
+  "heroOk": true,
+  "imageFocus": {
+    "x": 0.463,
+    "y": 0.473,
+    "box": [
+      0.025,
+      0.039,
+      0.9,
+      0.906
+    ],
+    "ar": 1.7778,
+    "src": "https://ai-tech-express.jp/img/windows-rdma-usb4-local-ai-0dd14640.jpg"
+  }
+}

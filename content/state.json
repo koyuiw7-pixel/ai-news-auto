@@ -1879,9 +1879,7 @@
       "url": "https://www.mof.go.jp/about_mof/councils/fiscal_system_council/sub-of_filp/proceedings/material/zaitoa20261117.html"
     }
   },
-  "major_tries": {
-    "235d79472336bbb0": 1
-  },
+  "major_tries": {},
   "pi_reopened": {
     "05b7c979204565d2": "2026-11-19T18:21:01.412347+00:00",
     "37d71722552567cd": "2026-11-19T18:21:01.412347+00:00",
@@ -7575,6 +7573,19 @@
       "section": "ai",
       "slug": "github-copilot-slack-teams-ga",
       "url": "https://github.blog/changelog/2026-11-06-github-copilot-in-slack-and-teams-is-generally-available"
+    },
+    "235d79472336bbb0": {
+      "at": "2026-11-20T02:48:58.675789+00:00",
+      "costUsd": 0.054,
+      "foreignAi": true,
+      "intent": "breaking",
+      "major": true,
+      "mix": "other",
+      "model": "openai-api:gpt-6.1-terra",
+      "score": 100,
+      "section": "ai",
+      "slug": "windows-rdma-usb4-local-ai",
+      "url": "https://techcommunity.microsoft.com/blog/microsoftusbblog/introducing-rdma-over-usb4%C2%AE-on-windows-run-larger-local-ai-models-across-pcs/4574602"
     },
     "237f1071ce7ef262": {
       "at": "2026-11-12T05:05:52.535224+00:00",
@@ -24482,79 +24493,6 @@
   "quality_log": [
     {
       "accepted": true,
-      "at": "2026-11-18T01:52:54.593511+00:00",
-      "attempt": 1,
-      "id": "8aa9660a7bd5bb1a",
-      "kind": "broad",
-      "model": "openai-api:gpt-6.1-terra",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 63.9,
-        "avg_sentence": 33.2,
-        "long_share": 0.04,
-        "max_paragraph": 96,
-        "paragraphs": 13,
-        "sentences": 25
-      },
-      "score": 100,
-      "source": "kddi-news",
-      "title": "「INFOBAR ZERO」をau Flex Styleから12月25日に発売",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（ZERO・ROM・RAM）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-18T01:56:00.391279+00:00",
-      "attempt": 1,
-      "id": "cd7e2781973d447705c4fffd18723d2239f5f84d",
-      "kind": "trend",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "タイトルの「竹島上陸の過去めぐり」→入国拒否が竹島上陸を理由に行われたかのように読めますが、元記事は両者の因果関係を示していません。",
-        "本文の「日本を訪れていました」→入国を拒否されたと報じられており、実際に日本を訪問できたかのような表現は不正確です。元記事が確認しているのは、セミナー出席のため羽田空港に到着したことです。"
-      ],
-      "readability": {
-        "avg_paragraph": 92.3,
-        "avg_sentence": 55.4,
-        "long_share": 0.4,
-        "max_paragraph": 109,
-        "paragraphs": 3,
-        "sentences": 5
-      },
-      "score": 82,
-      "source": "trends",
-      "title": "入国拒否",
-      "warnings": [
-        "読みやすさ: 文が長い（1文の平均 55.4字・60字超の文が 40% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-18T01:56:15.152577+00:00",
-      "attempt": 1,
-      "id": "cd7e2781973d447705c4fffd18723d2239f5f84d",
-      "kind": "trend",
-      "model": "openai-api:gpt-6-luna",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 93.0,
-        "avg_sentence": 55.8,
-        "long_share": 0.4,
-        "max_paragraph": 111,
-        "paragraphs": 3,
-        "sentences": 5
-      },
-      "score": 100,
-      "source": "trends",
-      "title": "入国拒否",
-      "warnings": [
-        "work_money（「仕事・お金にどう活かせる？」欄）が無い",
-        "読みやすさ: 文が長い（1文の平均 55.8字・60字超の文が 40% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
       "at": "2026-11-18T01:56:34.257268+00:00",
       "attempt": 0,
       "id": "cd7e2781973d447705c4fffd18723d2239f5f84d",
@@ -32063,6 +32001,82 @@
       "title": "Windows PCを複数台接続して1個のAI処理クラスターとして扱う機能「RDMA over USB4」をMicrosoftが発表、USBケーブルのみで接続可",
       "warnings": [
         "見出しが47字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（RDMA・OSS）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-20T02:48:03.419870+00:00",
+      "attempt": 1,
+      "id": "235d79472336bbb0",
+      "kind": "ai",
+      "model": "openai-api:gpt-6.1-terra",
+      "problems": [
+        "「オープンソース（無料で公開されたソフト）」→ 元記事が確認しているのはコードがオープンソースであることまでで、無料であるとは述べていません。"
+      ],
+      "readability": {
+        "avg_paragraph": 102.4,
+        "avg_sentence": 43.1,
+        "long_share": 0.211,
+        "max_paragraph": 144,
+        "paragraphs": 16,
+        "sentences": 38
+      },
+      "score": 94,
+      "source": "radar-official",
+      "title": "Windows PCを複数台接続して1個のAI処理クラスターとして扱う機能「RDMA over USB4」をMicrosoftが発表、USBケーブルのみで接続可",
+      "warnings": [
+        "見出しが51字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（RDMA・OSS）",
+        "読みやすさ: 文が長い（1文の平均 43.1字・60字超の文が 21% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-20T02:48:25.084247+00:00",
+      "attempt": 1,
+      "id": "235d79472336bbb0",
+      "kind": "ai",
+      "model": "openai-api:gpt-6-luna",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 102.7,
+        "avg_sentence": 43.2,
+        "long_share": 0.211,
+        "max_paragraph": 144,
+        "paragraphs": 16,
+        "sentences": 38
+      },
+      "score": 100,
+      "source": "radar-official",
+      "title": "Windows PCを複数台接続して1個のAI処理クラスターとして扱う機能「RDMA over USB4」をMicrosoftが発表、USBケーブルのみで接続可",
+      "warnings": [
+        "見出しが51字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（RDMA・OSS）",
+        "読みやすさ: 文が長い（1文の平均 43.2字・60字超の文が 21% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-20T02:48:58.623981+00:00",
+      "attempt": 0,
+      "id": "235d79472336bbb0",
+      "kind": "ai",
+      "model": "openai-api:gpt-6-luna",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 99.3,
+        "avg_sentence": 33.1,
+        "long_share": 0.02,
+        "max_paragraph": 151,
+        "paragraphs": 17,
+        "sentences": 51
+      },
+      "score": 100,
+      "source": "radar-official",
+      "title": "Windows PCを複数台接続して1個のAI処理クラスターとして扱う機能「RDMA over USB4」をMicrosoftが発表、USBケーブルのみで接続可",
+      "warnings": [
+        "見出しが51字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（RDMA・OSS）"
       ]
     }
