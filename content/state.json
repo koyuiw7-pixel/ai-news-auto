@@ -1879,7 +1879,9 @@
       "url": "https://www.mof.go.jp/about_mof/councils/fiscal_system_council/sub-of_filp/proceedings/material/zaitoa20261117.html"
     }
   },
-  "major_tries": {},
+  "major_tries": {
+    "235d79472336bbb0": 1
+  },
   "pi_reopened": {
     "05b7c979204565d2": "2026-11-19T18:21:01.412347+00:00",
     "37d71722552567cd": "2026-11-19T18:21:01.412347+00:00",
@@ -11854,12 +11856,6 @@
       "slug": "kids-sports-fes-ryogoku-2026",
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026110913"
     },
-    "63454807800a7d74": {
-      "at": "2026-11-06T02:41:09.363437+00:00",
-      "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
-      "skipped": true,
-      "url": "https://www.fsa.go.jp/news/r8/sonota/20261106-2/20261106-2.html"
-    },
     "6364a33e6aa3e450": {
       "at": "2026-11-06T19:34:38.916847+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（キャンペーン）",
@@ -18113,12 +18109,6 @@
       "skipped": true,
       "url": "https://carview.yahoo.co.jp/news/detail/f33d375b19307897e802d758bd04a98240a3566a/"
     },
-    "c4e71bb457dc199b": {
-      "at": "2026-11-06T02:41:09.371089+00:00",
-      "reason": "prefilter: 扱わない話題（事件事故・ゴシップ・選挙・医療効果・噂）",
-      "skipped": true,
-      "url": "https://www.jfa.jp/news/00036987/"
-    },
     "c5536f6e12371c5d": {
       "at": "2026-11-09T06:55:43.206465+00:00",
       "reason": "dedupe: 固有名詞が一致（korea・nvidia）: From Chips to Skills, NVIDIA and Korea E",
@@ -19567,6 +19557,16 @@
       "url": "https://www.nojima.co.jp/news/category/press/746679/",
       "writer": "deep_dive"
     },
+    "deep-0427faaab8": {
+      "angleOf": "tsukiji-gindaco-price-hike-2026-12",
+      "at": "2026-11-20T02:32:34.670540+00:00",
+      "deepDive": "check",
+      "mix": "other",
+      "score": 100,
+      "slug": "gindaco-paper-stamp-card-transfer",
+      "url": "https://www.gindaco.com/news/detail/2797/",
+      "writer": "deep_dive"
+    },
     "deep-13c591a510": {
       "angleOf": "daihatsu-rocky-raize-rex-recall",
       "at": "2026-11-13T01:22:11.115974+00:00",
@@ -19585,6 +19585,16 @@
       "score": 88,
       "slug": "child-allowance-eligibility-check",
       "url": "https://www.cfa.go.jp/assets/contents/node/basic_page/field_ref_resources/e8adaa7f-8595-4662-88bd-dac21bac9382/7c795743/20260203_policies_budget_r8ebpmsiryou_030.pdf",
+      "writer": "deep_dive"
+    },
+    "deep-2432ad0767": {
+      "angleOf": "tsukiji-gindaco-price-hike-2026-12",
+      "at": "2026-11-20T02:34:52.833443+00:00",
+      "deepDive": "procedure",
+      "mix": "life",
+      "score": 100,
+      "slug": "gindaco-stamp-card-transfer",
+      "url": "https://www.gindaco.com/news/detail/2797/",
       "writer": "deep_dive"
     },
     "deep-28e7f7e03f": {
@@ -24467,52 +24477,9 @@
       "slug": "fujiseika-kinpaku-hagoromo-recall",
       "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602845",
       "writer": "muse"
-    },
-    "deep-0427faaab8": {
-      "angleOf": "tsukiji-gindaco-price-hike-2026-12",
-      "at": "2026-11-20T02:32:34.670540+00:00",
-      "deepDive": "check",
-      "mix": "other",
-      "score": 100,
-      "slug": "gindaco-paper-stamp-card-transfer",
-      "url": "https://www.gindaco.com/news/detail/2797/",
-      "writer": "deep_dive"
-    },
-    "deep-2432ad0767": {
-      "angleOf": "tsukiji-gindaco-price-hike-2026-12",
-      "at": "2026-11-20T02:34:52.833443+00:00",
-      "deepDive": "procedure",
-      "mix": "life",
-      "score": 100,
-      "slug": "gindaco-stamp-card-transfer",
-      "url": "https://www.gindaco.com/news/detail/2797/",
-      "writer": "deep_dive"
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-18T01:40:48.625422+00:00",
-      "attempt": 0,
-      "id": "49af7447039e90dc",
-      "kind": "broad",
-      "model": "openai-api:gpt-6-luna",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 78.9,
-        "avg_sentence": 37.1,
-        "long_share": 0.088,
-        "max_paragraph": 143,
-        "paragraphs": 16,
-        "sentences": 34
-      },
-      "score": 98,
-      "source": "radar-official",
-      "title": "大江竜聖関連ニュース｜dメニューニュース（NTTドコモ）",
-      "warnings": [
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-18T01:52:54.593511+00:00",
@@ -32071,6 +32038,32 @@
       "title": "第179回博覧会国際事務局（BIE）総会に出席しました～草間国土交通大臣政務官がGREEN×EXPO 2027の開幕に向けた決意を世界に発信～",
       "warnings": [
         "初めて出たところで言い換えていない略語（GREEN・EXPO・BIE）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-20T02:44:20.440513+00:00",
+      "attempt": 1,
+      "id": "235d79472336bbb0",
+      "kind": "ai",
+      "model": "openai-api:gpt-6.1-terra",
+      "problems": [
+        "サイソクが自分で試したように読める書き方がある（「サイソクの見方：試す前に端子とテスト」）。サイソクは試していない。元記事の書き手が試した結果なら「〇〇（媒体名）の記者が試したところ」と誰が試したかを書く"
+      ],
+      "readability": {
+        "avg_paragraph": 83.3,
+        "avg_sentence": 40.7,
+        "long_share": 0.064,
+        "max_paragraph": 116,
+        "paragraphs": 23,
+        "sentences": 47
+      },
+      "score": null,
+      "source": "radar-official",
+      "title": "Windows PCを複数台接続して1個のAI処理クラスターとして扱う機能「RDMA over USB4」をMicrosoftが発表、USBケーブルのみで接続可",
+      "warnings": [
+        "見出しが47字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（RDMA・OSS）"
       ]
     }
   ],
