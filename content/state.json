@@ -21429,6 +21429,19 @@
       "slug": "yonden-electricity-bill-relief-2027",
       "url": "https://www.yonden.co.jp/press/2026/__icsFiles/afieldfile/2026/11/11/pr002.pdf"
     },
+    "fa4a9c83bb449546": {
+      "at": "2026-11-20T04:59:51.522137+00:00",
+      "breaking": true,
+      "costUsd": 0.039,
+      "intent": "breaking",
+      "major": true,
+      "mix": "brand",
+      "model": "openai-api:gpt-6.1-terra",
+      "score": 100,
+      "section": "tech-gadget",
+      "slug": "galaxy-ring-sleep-apnea-detection",
+      "url": "https://news.samsung.com/jp/upgraded-sleep-apnea-feature?utm_source=rss&utm_medium=direct"
+    },
     "fa64c96016689a62": {
       "at": "2026-11-16T18:22:20.435037+00:00",
       "reason": "review: AdSense の審査の期間は海外の AI の発表を自動で記事にしない（速報だけ。scripts/news_mix.py review_ai_blocks）",
@@ -24495,30 +24508,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-18T04:44:09.140576+00:00",
-      "attempt": 1,
-      "id": "5b52b6fbc9845f31",
-      "kind": "broad",
-      "model": "openai-api:gpt-6-luna",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 90.2,
-        "avg_sentence": 47.5,
-        "long_share": 0.211,
-        "max_paragraph": 130,
-        "paragraphs": 10,
-        "sentences": 19
-      },
-      "score": 100,
-      "source": "fast",
-      "title": "ユニフォームネクストの情報流出に関するお知らせ",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（EC・SMS）",
-        "読みやすさ: 文が長い（1文の平均 47.5字・60字超の文が 21% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-18T04:44:55.085913+00:00",
@@ -32077,6 +32066,29 @@
       "title": "竜王戦",
       "warnings": [
         "初めて出たところで言い換えていない略語（NEWS）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-20T04:59:51.500502+00:00",
+      "attempt": 1,
+      "id": "fa4a9c83bb449546",
+      "kind": "broad",
+      "model": "openai-api:gpt-6.1-terra",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 86.6,
+        "avg_sentence": 40.4,
+        "long_share": 0.133,
+        "max_paragraph": 128,
+        "paragraphs": 7,
+        "sentences": 15
+      },
+      "score": 100,
+      "source": "samsung-jp",
+      "title": "Samsung Galaxy Ringの進化した睡眠時無呼吸検知機能 米国FDAおよび韓国MFDSの承認を受け提供開始",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（FDA・MFDS）"
       ]
     }
   ],
