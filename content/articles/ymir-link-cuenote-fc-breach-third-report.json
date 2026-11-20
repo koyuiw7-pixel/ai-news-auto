@@ -64,7 +64,7 @@
   "videoTitle": "当社システムへの不正なアクセスに関するご報告（第三報）　NEWS　メッセージングソリューションのユミルリンク",
   "publishedAt": "2026-11-10T15:00:00+00:00",
   "generatedAt": "2026-11-19T23:30:11.378228+00:00",
-  "thumbnail": "https://www.ymir.co.jp/asset/img/ogp/ogp.png",
+  "thumbnail": "https://ai-tech-express.jp/img/ymir-link-cuenote-fc-breach-third-report-figure-5d97c558.jpg",
   "model": "claude:sonnet",
   "affiliates": [],
   "newsType": "security",
@@ -79,9 +79,9 @@
     }
   ],
   "todayActions": [
-    "利用中のサービスの運営企業から、配信システム流出の連絡が届いていないかメールを確認する",
-    "連絡でパスワード再設定を求められた場合は、運営企業の案内に従う",
-    "ユミルリンクの公式サイトで、最終報の公表を確認する"
+    "ユミルリンクの第三報で、対象サービスと流出項目の公表内容を確認する",
+    "メール配信を受けているサービスの運営企業から、個別連絡が届いていないか確認する",
+    "フィッシングサイトに普段使うIDやパスワードを入力した人は、使う全サービスで変更する"
   ],
   "publicInterest": "breach",
   "incident": {
@@ -105,7 +105,8 @@
       6
     ],
     "repaired": false,
-    "repairLater": true
+    "repairLater": true,
+    "laterTriedAt": "2026-11-19T23:57:35+00:00"
   },
   "qualityScore": 92,
   "late": true,
@@ -115,16 +116,107 @@
   "searchTitle": "Cuenote FCの流出件数は？　延べ約4,786万件",
   "layout": "noir",
   "summaryLine": "Cuenote FCの流出は延べ**47,864,147件**で、専用ASPの49システムが対象になりました",
+  "todaySteps": [
+    {
+      "action": "ユミルリンクの第三報で、対象サービスと流出項目の公表内容を確認する",
+      "source": "https://www.ymir.co.jp/info/ymir-information20261111.html",
+      "steps": [
+        "ユミルリンクの「新着情報」を開く",
+        "「当社システムへの不正なアクセスに関するご報告（第三報）」を確認する"
+      ],
+      "url": "https://www.ymir.co.jp/info/ymir-information20261111.html"
+    },
+    {
+      "action": "メール配信を受けているサービスの運営企業から、個別連絡が届いていないか確認する",
+      "source": "https://www.ymir.co.jp/info/ymir-information20261111.html",
+      "steps": [
+        "メール配信を受けているサービスを確認する",
+        "受信箱で運営企業からの連絡を探す"
+      ]
+    },
+    {
+      "action": "フィッシングサイトに普段使うIDやパスワードを入力した人は、使う全サービスで変更する",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "steps": [
+        "入力したIDやパスワードを使うサービスを確認する",
+        "該当する全サービスのパスワードを速やかに変更する"
+      ],
+      "url": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html"
+    }
+  ],
+  "cause": {
+    "text": "ユミルリンクは、プログラムの脆弱性を突く攻撃があったと説明しています。初期侵害拠点から盗まれた有効なセッション情報で正規利用者になりすまし、管理画面のCSV出力機能からデータをダウンロードする手法も確認されました。",
+    "status": "stated",
+    "source": "https://www.ymir.co.jp/info/ymir-information20261111.html"
+  },
+  "worries": [
+    {
+      "q": "クレジットカードなどの決済情報も流出した？",
+      "a": "ユミルリンクは、クレジットカード情報等の決済情報の流出は現時点では確認されていないと発表しています。",
+      "source": "https://www.ymir.co.jp/info/ymir-information20261111.html",
+      "action": "利用明細に身に覚えのない支払いがあれば、カード会社に相談してください。",
+      "actionSource": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "actionGeneral": true
+    },
+    {
+      "q": "Cuenote FC以外のサービスも情報が漏れた？",
+      "a": "第三報では、Cuenote SR-S、Cuenote SMS、Cuenote Auth、Cuenote Survey、Cuenote Push、安否確認サービスは不正アクセス・情報漏洩なし、0件とされています。Cuenote BASEは契約者情報190件が閲覧可能な状態でした。",
+      "source": "https://www.ymir.co.jp/info/ymir-information20261111.html",
+      "action": "第三報のサービス別一覧で、利用しているサービスの状況を確認してください。"
+    },
+    {
+      "q": "この件に便乗した偽メールが届くことはある？",
+      "a": "警察庁は、実在のサービスや企業をかたるメールやSMSで偽サイトへ誘導し、IDやパスワードなどを盗む手口を説明しています。送信元の名称やメールアドレスだけで真偽を判断するのは困難としています。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "action": "メールやSMS内のリンクは安易に押さず、ブックマークや公式アプリからサイトを開いてください。",
+      "general": true
+    },
+    {
+      "q": "偽サイトにパスワードを入力してしまったら？",
+      "a": "警察庁は、フィッシングサイトに普段使うIDやパスワードを入力した場合、その情報を使う全てのサービスでパスワード等を速やかに変更するよう案内しています。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "action": "入力したIDやパスワードを使う全てのサービスで、パスワードを速やかに変更してください。",
+      "general": true
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "パスワードを今すぐ変えるべき？",
+      "situation": "フィッシングサイトにIDやパスワードを入力した",
+      "recommend": "使い回した全サービスで速やかに変更",
+      "reason": "警察庁は、フィッシングサイトに普段使うIDやパスワードを入力した場合、その情報を使う全サービスで速やかに変更するよう案内しています。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "general": true
+    }
+  ],
+  "depthHeadings": {
+    "cause": "脆弱性とセッション情報の盗用が原因",
+    "steps": "連絡と公表内容を確かめる",
+    "worries": "決済情報や偽メールは大丈夫？",
+    "guide": "入力してしまった場合のパスワード対応"
+  },
+  "depthAt": "2026-11-19T23:57:35+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "約4,786万件",
+    "label": "Cuenote FCの流出は延べ",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-19T23:59:55+00:00"
+  },
   "imageFocus": {
-    "x": 0.456,
-    "y": 0.508,
+    "x": 0.518,
+    "y": 0.399,
     "box": [
-      0.1,
-      0.071,
-      0.812,
-      0.946
+      0.084,
+      0.054,
+      0.953,
+      0.744
     ],
     "ar": 1.9048,
-    "src": "https://www.ymir.co.jp/asset/img/ogp/ogp.png"
+    "src": "https://ai-tech-express.jp/img/ymir-link-cuenote-fc-breach-third-report-figure-5d97c558.jpg"
   }
 }

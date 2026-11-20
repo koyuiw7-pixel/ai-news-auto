@@ -77,8 +77,8 @@
     }
   ],
   "todayActions": [
-    "総務省統計局の10月分の資料で、生鮮野菜や穀類の前年同月比を確かめる。",
-    "自宅の電気代や食費の明細を見て、全国の指数とは分けて支出の変化を確認する。"
+    "全国の生鮮野菜と穀類の上昇・下落幅を、品目別に見比べる。",
+    "電気代が気になる人は、全国の指数と自宅の請求額を分けて確かめる。"
   ],
   "scheduledRelease": {
     "id": "cpi-2026-10",
@@ -150,5 +150,73 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/japan-cpi-october-2026-figure-4e029104.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "前月比の季節調整値は、毎年12月結果の公表時に過去に遡って改定されます。以前に見た月次の数値が、後の資料では変わる可能性があります。",
+      "source": "https://www.stat.go.jp/data/cpi/sokuhou/tsuki/pdf/zenkoku.pdf?period=2026-10"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "全国消費者物価指数 2026年10月分",
+      "url": "https://www.stat.go.jp/data/cpi/sokuhou/tsuki/pdf/zenkoku.pdf?period=2026-10",
+      "source": "https://www.stat.go.jp/data/cpi/sokuhou/tsuki/pdf/zenkoku.pdf?period=2026-10"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "全国の生鮮野菜と穀類の上昇・下落幅を、品目別に見比べる。",
+      "source": "https://www.stat.go.jp/data/cpi/sokuhou/tsuki/pdf/zenkoku.pdf?period=2026-10",
+      "steps": [
+        "10月分の資料を開く",
+        "表3「総合指数の前年同月比に寄与した主な内訳」を見る",
+        "生鮮野菜と穀類の前年同月比を確認する"
+      ],
+      "url": "https://www.stat.go.jp/data/cpi/sokuhou/tsuki/pdf/zenkoku.pdf?period=2026-10"
+    },
+    {
+      "action": "電気代が気になる人は、全国の指数と自宅の請求額を分けて確かめる。",
+      "source": "https://www.stat.go.jp/data/cpi/sokuhou/tsuki/pdf/zenkoku.pdf?period=2026-10",
+      "steps": [
+        "資料の表5で電気代の前年同月比を見る",
+        "自宅の電気代の明細を確認する",
+        "全国の指数と自宅の金額を別々に比べる"
+      ],
+      "url": "https://www.stat.go.jp/data/cpi/sokuhou/tsuki/pdf/zenkoku.pdf?period=2026-10"
+    }
+  ],
+  "cause": {
+    "text": "総合の前年同月比の上昇幅は、9月の2.1％から10月の2.3％へ拡大しました。総務省統計局は、エネルギーが上昇幅を0.20ポイント、生鮮食品が0.16ポイント広げた一方、生鮮食品を除く食料は0.16ポイント縮めたとしています。",
+    "status": "stated",
+    "source": "https://www.stat.go.jp/data/cpi/sokuhou/tsuki/pdf/zenkoku.pdf?period=2026-10"
+  },
+  "worries": [
+    {
+      "q": "電気代は全国で前年よりどれくらい上がったの？",
+      "a": "2026年10月の電気代は前年同月比1.6％上昇しました。エネルギー全体は同2.2％上昇しています。これは全国の消費者物価指数で、自宅の請求額そのものを示す数字ではありません。",
+      "source": "https://www.stat.go.jp/data/cpi/sokuhou/tsuki/pdf/zenkoku.pdf?period=2026-10",
+      "action": "自宅の電気代の明細を見て、前年の同じ時期の金額と比べてみましょう。"
+    },
+    {
+      "q": "野菜と米が違う動きなら、食費はどう見ればいい？",
+      "a": "生鮮野菜は前年同月比8.1％上昇し、穀類は8.8％下落しました。うるち米のうちコシヒカリを除く品目は29.8％下落しています。食料の品目によって動きが異なります。",
+      "source": "https://www.stat.go.jp/data/cpi/sokuhou/tsuki/pdf/zenkoku.pdf?period=2026-10",
+      "action": "家計簿や購入記録で、野菜と穀類など普段買う品目の支出を別々に確かめましょう。"
+    },
+    {
+      "q": "前月比の数字は、あとから変わることがある？",
+      "a": "前月比の季節調整値は、毎年12月結果の公表時に過去に遡って改定されます。そのため、以前に確認した月の数値が、後の資料では改定されている場合があります。",
+      "source": "https://www.stat.go.jp/data/cpi/sokuhou/tsuki/pdf/zenkoku.pdf?period=2026-10",
+      "action": "月ごとの動きを比べるときは、最新の資料に載っている季節調整値を確認しましょう。"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "月次の季節調整値は後から改定される",
+    "cause": "上昇幅を広げたもの、縮めたもの",
+    "steps": "品目と自宅の支出を分けて確認",
+    "desk": "10月分の全国消費者物価指数",
+    "worries": "食費や電気代の数字、どう読む？"
+  },
+  "depthAt": "2026-11-19T23:56:01+00:00"
 }
