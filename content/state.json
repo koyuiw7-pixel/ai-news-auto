@@ -12319,12 +12319,6 @@
       "skipped": true,
       "url": "https://www.gov-online.go.jp/press_conferences/prime_minister/202611/video-327219.html"
     },
-    "6a17625077ae1262": {
-      "at": "2026-11-06T07:41:26.428429+00:00",
-      "reason": "public-interest: 資料が短い 679字",
-      "skipped": true,
-      "url": "https://www.caa.go.jp/notice/entry/048056/"
-    },
     "6a7418d1e96df8b8": {
       "at": "2026-11-17T16:11:08.076785+00:00",
       "costUsd": 0.0179,
@@ -19838,6 +19832,19 @@
       "skipped": true,
       "url": "https://www.soumu.go.jp/menu_news/s-news/01shoubo01_02001288.html"
     },
+    "e079e317c50f0801": {
+      "at": "2026-11-20T07:44:58.934990+00:00",
+      "costUsd": 0.0077,
+      "intent": "breaking",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "score": 100,
+      "section": "public",
+      "slug": "recruit-ms-karte-data-leak",
+      "url": "https://www.recruit-ms.co.jp/news/information/4943354776/"
+    },
     "e0c14d11f94efd57f22f8d2070f2f402544eabf2": {
       "at": "2026-11-16T00:36:39.468886+00:00",
       "kind": "trend",
@@ -24361,46 +24368,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-18T09:00:53.272991+00:00",
-      "attempt": 1,
-      "id": "2c30af58e1bcd323",
-      "kind": "broad",
-      "model": "openai-api:gpt-6-luna",
-      "problems": [
-        "「ポケットマルシェは、農家や漁師から食材を直接買える」→元記事は産直ECサービスと説明していますが、農家・漁師からの直接購入という具体的な説明までは確認できません。"
-      ],
-      "readability": {
-        "avg_paragraph": 77.4,
-        "avg_sentence": 37.2,
-        "long_share": 0.0,
-        "max_paragraph": 122,
-        "paragraphs": 12,
-        "sentences": 25
-      },
-      "score": 97,
-      "source": "fast",
-      "title": "【重要なお知らせ】外部サービス「KARTE」への不正アクセスに伴う個人情報漏えいに関するお知らせとお詫び | 株式会社雨風太陽",
-      "warnings": [
-        "見出しが45字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（KARTE・EC・SMS）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-18T12:34:38.615137+00:00",
-      "attempt": 1,
-      "id": "687731b7d50a99a4",
-      "kind": "update",
-      "model": "openai-api:gpt-6.1-terra",
-      "problems": [
-        "「11月9日の第四報では」→ 元記事は11月9日から手続き再開としていますが、それを第四報とする記載はなく、報告番号を特定できません。"
-      ],
-      "score": 94,
-      "source": "docomo-notice",
-      "title": "【お詫び】ドコモオンラインショップ、My docomoの緊急メンテナンス実施について/当社サーバーへの不正アクセスによるお客さま情報流出に関するお知らせ（第五報"
-    },
     {
       "accepted": false,
       "at": "2026-11-18T15:30:14.048759+00:00",
@@ -31963,6 +31930,58 @@
       "warnings": [
         "初めて出たところで言い換えていない略語（SMS）",
         "読みやすさ: 文が長い（1文の平均 50.9字・60字超の文が 33% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-20T07:43:43.057235+00:00",
+      "attempt": 1,
+      "id": "e079e317c50f0801",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "リードの「対象の人には11月19日までにメールで個別の案内が届いており」→メールアドレス失効などで個別連絡が困難な人もおり、公表を通知に代えると発表されています。",
+        "FAQの「個別の確認は事務局の窓口で受け付けています」→窓口の連絡先は掲載されていますが、個別確認を受け付けるとの説明は元記事にありません。",
+        "「同社は11月13日に『KARTE』と自社システムとの連携も遮断しました」→元記事はプレイドからの連絡後に連携を遮断したとしていますが、遮断日を11月13日と特定していません。"
+      ],
+      "readability": {
+        "avg_paragraph": 93.2,
+        "avg_sentence": 39.4,
+        "long_share": 0.0,
+        "max_paragraph": 184,
+        "paragraphs": 11,
+        "sentences": 26
+      },
+      "score": 84,
+      "source": "fast",
+      "title": "外部サービス「KARTE」に対する不正アクセスによる個人情報漏えいに関するお詫びとお知らせ｜人材育成・研修のリクルートマネジメントソリューションズ",
+      "warnings": [
+        "見出しが48字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（KARTE・WEB・SMS）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-20T07:44:47.921479+00:00",
+      "attempt": 1,
+      "id": "e079e317c50f0801",
+      "kind": "broad",
+      "model": "strike:本文 1 文・リード・よくある質問",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 88.4,
+        "avg_sentence": 38.9,
+        "long_share": 0.0,
+        "max_paragraph": 184,
+        "paragraphs": 11,
+        "sentences": 25
+      },
+      "score": 100,
+      "source": "fast",
+      "title": "外部サービス「KARTE」に対する不正アクセスによる個人情報漏えいに関するお詫びとお知らせ｜人材育成・研修のリクルートマネジメントソリューションズ",
+      "warnings": [
+        "見出しが48字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（KARTE・WEB・SMS）"
       ]
     }
   ],
