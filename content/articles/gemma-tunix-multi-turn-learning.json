@@ -1,0 +1,233 @@
+{
+  "slug": "gemma-tunix-multi-turn-learning",
+  "sourceType": "web",
+  "sourceUrl": "https://developers.googleblog.com/multi-turn-agentic-reinforcement-learning-with-tunix-and-gemma-4-on-google-tpus/",
+  "sourceName": "Google Developers Blog",
+  "title": "「Gemma 4」のゲーム勝率が95%に　Tunixで複数手順を学習",
+  "seoTitle": "Gemma 4とTunixの使い方：ゲーム勝率95%の学習事例",
+  "threadsPost": "AIエージェントを開発する人へ、学習事例の紹介です。\n\nGoogleはGemma 4に、盤面を見ながら道具を使う方法を学習させました。\n学習後の勝率は95%に達しましたが、ゲームでの結果です。\n\nAIの開発では、正確さと処理の速さのどちらを重視しますか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "ab",
+      "question": "AIの開発では、正確さと処理の速さのどちらを重視しますか？"
+    },
+    {
+      "pattern": "expert",
+      "question": "AIエージェントの開発では、どんな課題を使って動作を確かめていますか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "honest",
+  "lede": "Gemma 4 E2Bを使う複数手順型AIエージェントの開発者向けに、Googleは2026年11月19日、Tunixで追加学習する実例を公開しました。Plane Strikeでは、100ステップの学習後に勝率が95%となり、平均攻撃回数は約16回でした。",
+  "description": "GoogleがGemma 4とTunixを使い、複数の手順で道具を使うAIの学習事例を公開しました。盤面ゲームの勝率は学習後に95%へ。Cloud TPUの構成、学習前の評価との条件の違い、公開コードの使い方を紹介します。",
+  "keywords": [
+    "Gemma 4 Tunix",
+    "Gemma 4 強化学習",
+    "Tunix 使い方",
+    "Gemma 4 E2B",
+    "AIエージェント 学習",
+    "マルチターン 強化学習",
+    "Cloud TPU v6e",
+    "GRPO 学習",
+    "Google AI 開発",
+    "ツール呼び出し AI"
+  ],
+  "tags": [
+    "生成AI",
+    "Gemma 4",
+    "Tunix",
+    "AIエージェント",
+    "強化学習",
+    "Cloud TPU"
+  ],
+  "highlights": [
+    "Gemma 4とTunixを使ったゲーム実験で、学習後の勝率は95%に達しました。",
+    "6×6の盤面で、隠れた飛行機の8マスを23回以内に探す課題を使いました。",
+    "Cloud TPU v6e-8の1台で学習し、複数のゲームを同時に進める構成を示しました。"
+  ],
+  "timetable": [],
+  "verdict": {
+    "status": "demo",
+    "japan": "unknown",
+    "price": "不明",
+    "free": null,
+    "audience": "AI開発者",
+    "take": "ゲームでの実験結果として受け止め、構成を再現したい開発者は公開コードを確認できます。",
+    "judgedAt": "2026-11-20T16:42:29.203368+00:00"
+  },
+  "workMoney": {
+    "relevance": "medium",
+    "points": [
+      "AIエージェントの開発者は、道具の呼び出しと複数手順の学習を組み合わせた公開コードを参照できます。",
+      "実験にはCloud TPU v6e-8を使っています。業務への応用を考える場合は、ゲームでの評価条件を確かめる必要があります。"
+    ]
+  },
+  "body": "一般利用者向けの新機能を追加する発表ではありません。\n\n今回の対象は、エージェント（自分で手順を進めるAI）です。結果を受け取るたびに次の行動を選ぶよう、Gemma 4 E2Bを追加で学習させました。\n\n題材の「Plane Strike」は、6×6の盤面に隠れた飛行機を探すゲームです。AIは1マスを調べる道具を呼び出し、当たりか外れかを見て次のマスを選びます。飛行機を構成する8マスをすべて当てるか、23回調べると終了します。\n\n学習前のモデルは、学習に使っていない盤面で勝率9.4%でした。平均で22.44回の攻撃を要しました。\n\nGoogleは、100ステップの学習後に勝率が95%に達したと説明しています。学習中の勝率は約0.20から約0.95に上がりました。平均の攻撃回数は約16回になりました。\n\nただし、学習後の95%を測った盤面の内訳は示されていません。学習前の未使用盤面での値と、同じ条件で比較した結果とは限りません。\n\n## Tunixの使い方　盤面の反応を次の行動につなぐ\n\nTunixは、AIモデルの追加学習に使う仕組みです。今回の例では、報酬を手がかりに行動を改善する「強化学習」を使いました。\n\n学習方法にはGRPO（複数の行動結果を比べて学ぶ手法）を採用しました。同じ盤面で8回のゲームを行い、その結果を学習に使います。1ステップでは8種類の盤面を扱いました。\n\nGemma 4は道具を呼び出すと、結果が返るまで生成を止めます。盤面の情報を受け取ると、同じ応答の中で考え方と次の操作を続けます。学習中は、正しい道具の呼び出しが約100%に近づきました。\n\n計算にはCloud TPU v6e-8の1台を使用しました。モデルやゲームの進行を担う処理が8個のチップを共有します。vllm-tpu（複数のゲームを非同期で進める仕組み）を使い、複数のゲームを待ち合わせずに進める構成です。\n\n現在の構成では、ゲーム内の各攻撃が同じ一連の行動に対する報酬を共有します。Googleは、各手の貢献をより細かく評価すれば、さらなる改善が可能だと説明しています。\n\n## Plane Strikeの条件と学習結果\n\n| 項目 | 数値・内容 |\n|---|---|\n| 盤面と飛行機 | 6×6マス、飛行機は8マス、向きは4通り |\n| ゲームの終了条件 | 飛行機の8マスをすべて当てるか、23回調べる |\n| 学習前 | 未使用盤面で勝率9.4%、平均22.44回の攻撃 |\n| 学習後 | 100ステップ後の勝率95%、平均約16回の攻撃 |\n| 学習中の1ステップ | 8種類の盤面で各8回ゲームを実施 |\n\n## サイソクの見方：95%はゲームの条件と合わせて見る\n\nAIエージェントの学習方法を検討するなら、Tunixの公開コードで盤面と道具をつなぐ構成を確認するとよいでしょう。一方、業務での性能を判断したいなら、Plane Strikeの勝率だけでなく、自分の課題で評価する必要があると考えられます。\n\n## Gemma 4の学習コードと文書の参照先\n\n[Google Developers Blogの発表](https://developers.googleblog.com/multi-turn-agentic-reinforcement-learning-with-tunix-and-gemma-4-on-google-tpus/)から、完全なコードを収めたGitHubリポジトリとTunixの文書に進めます。発表には、コードや文書を参照する期限は記載されていません。コードには、ゲーム環境、道具の呼び出し、学習処理の構成が含まれています。\n",
+  "easy": "## ひとことで言うと\n\nGoogleは、AIがゲームの結果を見ながら次の手を選ぶように学習させた事例を公開しました。学習後の勝率は95%に達したとしています。\n\n対象は、複数の手順を進めるAIを開発する人です。ゲームで得られた結果であり、仕事のあらゆる作業で同じ成績が出ると示したものではありません。\n\n実験では、盤面に隠れた飛行機を探します。AIは1マスを選ぶたびに結果を受け取り、次に調べる場所を決めます。\n\nGoogleは学習用のコードをGitHubで公開しています。構成に関心がある開発者は、発表ページからコードとTunixの文書を参照できます。",
+  "channel": "Google Developers Blog",
+  "channelId": "",
+  "channelSlug": "google-developers-blog",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "Multi-Turn Agentic Reinforcement Learning with Tunix and Gemma 4 on Google TPUs",
+  "publishedAt": "2026-11-18T15:00:00+00:00",
+  "generatedAt": "2026-11-20T16:42:29.203355+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/gemma-tunix-multi-turn-learning-9278a5b6.jpg",
+  "model": "openai-api:gpt-6.1-terra",
+  "affiliates": [],
+  "newsType": "general",
+  "faq": [
+    {
+      "q": "Tunixではゲーム用の環境を必ず自作する必要がありますか？",
+      "a": "Googleによると、一般的な複数の道具を使うAI向けに、環境や道具を管理する仕組みが用意されています。今回のゲームでは、手順を細かく制御するために環境を実装しています。"
+    }
+  ],
+  "todayActions": [
+    "Plane Strikeの完全な学習コードを開き、環境・道具・学習処理のファイルを確認する。",
+    "Tunixに用意された道具連携の仕組みと、今回の独自実装を見比べる。"
+  ],
+  "searchTrend": "on",
+  "trendKeyword": "on",
+  "qualityBar": {
+    "score": 7,
+    "missing": [
+      5
+    ],
+    "notes": {
+      "5": "することは書いてあるが、どこで（窓口・ページ）・いつまでが無い"
+    },
+    "checkedAt": "2026-11-20T16:43:04+00:00",
+    "before": [
+      1,
+      5,
+      6
+    ],
+    "repaired": true
+  },
+  "qualityScore": 98,
+  "late": true,
+  "sourcePublishedAt": "2026-11-18T15:00:00+00:00",
+  "detectedAt": "2026-11-20T16:40:59+00:00",
+  "layout": "noir",
+  "summaryLine": "Gemma 4とTunixを使ったゲーム実験で、学習後の勝率は**95%**に達しました。",
+  "insight": [
+    {
+      "text": "学習時のGRPOでは、同じグループの8回のゲームをまったく同じ盤面で実施します。異なる盤面の結果を比べる設定ではない点は、公開コードを読む際の確認ポイントです。",
+      "source": "https://developers.googleblog.com/multi-turn-agentic-reinforcement-learning-with-tunix-and-gemma-4-on-google-tpus/"
+    },
+    {
+      "text": "公開実装では、モデルの応答から有効な攻撃呼び出しが1つだけ確認できた場合に有効な座標として扱い、それ以外は「INVALID_ACTION」になります。勝率だけでなく、行動の判定方法も確認できます。",
+      "source": "https://developers.googleblog.com/multi-turn-agentic-reinforcement-learning-with-tunix-and-gemma-4-on-google-tpus/"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "Plane Strikeの完全な学習コードを開き、環境・道具・学習処理のファイルを確認する。",
+      "source": "https://developers.googleblog.com/multi-turn-agentic-reinforcement-learning-with-tunix-and-gemma-4-on-google-tpus/",
+      "steps": [
+        "Google Developers Blogの発表を開く",
+        "this GitHub repositoryを開く",
+        "env.py、strike_tool.py、train_planestrike.pyを見る"
+      ],
+      "url": "https://github.com/windmaple/planestrike-gemma4-rl"
+    },
+    {
+      "action": "Tunixに用意された道具連携の仕組みと、今回の独自実装を見比べる。",
+      "source": "https://developers.googleblog.com/multi-turn-agentic-reinforcement-learning-with-tunix-and-gemma-4-on-google-tpus/",
+      "steps": [
+        "Google Developers Blogの発表を開く",
+        "Tunix documentationを開く",
+        "ToolEnvironment、ToolAgent、ToolManagerを確認する"
+      ],
+      "url": "https://tunix.readthedocs.io/en/latest/"
+    }
+  ],
+  "cause": {
+    "text": "背景には、実際のAIエージェントは1回の応答で仕事を終えるとは限らず、途中の観察をもとに考え、道具を使い、環境からの反応を受けて複数の手順で戦略を変える必要があるという課題があります。",
+    "status": "background",
+    "source": "https://developers.googleblog.com/multi-turn-agentic-reinforcement-learning-with-tunix-and-gemma-4-on-google-tpus/"
+  },
+  "worries": [
+    {
+      "q": "学習後の平均攻撃回数はどれくらい減った？",
+      "a": "Googleの発表では、学習前は平均22.44回、100ステップの学習後は約16回の攻撃でした。ゲームは飛行機の8マスをすべて当てるか、23回攻撃すると終了します。",
+      "source": "https://developers.googleblog.com/multi-turn-agentic-reinforcement-learning-with-tunix-and-gemma-4-on-google-tpus/",
+      "action": "公開コードのenv.pyを開き、ゲームの終了条件と攻撃回数の扱いを確認する。"
+    },
+    {
+      "q": "学習中は同じ盤面を何度も使うの？",
+      "a": "GRPOのグループでは、8回のゲームが同じ盤面で行われます。発表では、1ステップで8種類の盤面を扱うとも説明されています。",
+      "source": "https://developers.googleblog.com/multi-turn-agentic-reinforcement-learning-with-tunix-and-gemma-4-on-google-tpus/",
+      "action": "公開コードのenv.pyと学習処理を開き、盤面のseedとグループ設定を確認する。"
+    },
+    {
+      "q": "道具を呼び出した後、モデルは続けて動ける？",
+      "a": "Gemma 4は道具の呼び出し後、tool_responseでいったん生成を止め、結果を受け取ってから同じassistant turn内で次の考えや道具の呼び出しを続けます。",
+      "source": "https://developers.googleblog.com/multi-turn-agentic-reinforcement-learning-with-tunix-and-gemma-4-on-google-tpus/",
+      "action": "公開コードのstrike_tool.pyを開き、道具の応答を同じターンに戻す処理を見る。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "95%の勝率を業務導入の根拠にできる？",
+      "situation": "Plane Strike以外の課題で性能を判断したい",
+      "recommend": "自分の課題でも評価する",
+      "reason": "この結果はPlane Strikeでの学習後の勝率で、ゲームは6×6の盤面と隠れた8マスの飛行機を使います。業務の課題で同じ性能が出るとは示されていないため、自分の環境で確かめる判断が必要です。",
+      "source": "https://developers.googleblog.com/multi-turn-agentic-reinforcement-learning-with-tunix-and-gemma-4-on-google-tpus/"
+    },
+    {
+      "question": "道具連携を独自に実装するべき？",
+      "situation": "標準的な複数手順の道具連携を作る",
+      "recommend": "まずTunixの既存機能を確認する",
+      "reason": "TunixにはToolEnvironment、ToolAgent、ToolManagerが用意されており、独自のメッセージや観察の受け渡しを実装せずに使えます。独自のターン制御が必要な場合は、個別実装が選択肢になります。",
+      "source": "https://developers.googleblog.com/multi-turn-agentic-reinforcement-learning-with-tunix-and-gemma-4-on-google-tpus/"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "同じ盤面での反復と、行動の判定方法",
+    "cause": "複数手順の学習が必要な背景",
+    "steps": "学習コードと道具連携を確認する",
+    "worries": "勝率やゲームの条件はどう見る？",
+    "guide": "公開結果を導入判断に使うとき"
+  },
+  "depthAt": "2026-11-20T16:50:11+00:00",
+  "bodyImages": [
+    {
+      "src": "https://ai-tech-express.jp/img/gemma-tunix-multi-turn-learning-fig1-620cc298.jpg",
+      "width": 820,
+      "height": 512,
+      "kind": "dense",
+      "credit": "Google Developers",
+      "sourceUrl": "https://developers.googleblog.com/multi-turn-agentic-reinforcement-learning-with-tunix-and-gemma-4-on-google-tpus/",
+      "original": "https://storage.googleapis.com/gweb-developer-goog-blog-assets/original_videos/wagtailvideo-r09ehgru_thumb.jpg"
+    }
+  ],
+  "imageCredit": {
+    "kind": "official",
+    "org": "Google Developers",
+    "provider": "Google Developers Blog",
+    "sourceUrl": "https://developers.googleblog.com/multi-turn-agentic-reinforcement-learning-with-tunix-and-gemma-4-on-google-tpus/",
+    "original": "https://storage.googleapis.com/gweb-developer-goog-blog-assets/images/Ai-1-meta_4.2e16d0ba.fill-1200x600.png",
+    "width": 1200,
+    "height": 600,
+    "at": "2026-11-20T16:53:07+00:00",
+    "imageKind": "hero"
+  },
+  "heroOk": true,
+  "imageFocus": {
+    "x": 0.534,
+    "y": 0.516,
+    "box": [
+      0.128,
+      0.106,
+      0.941,
+      0.925
+    ],
+    "ar": 2.0,
+    "src": "https://ai-tech-express.jp/img/gemma-tunix-multi-turn-learning-9278a5b6.jpg"
+  }
+}
