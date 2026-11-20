@@ -84,8 +84,9 @@
     }
   ],
   "todayActions": [
-    "Anthropicの公式発表からClaudeの論文と形式的な証明を開き、研究内容を確認する",
-    "Anthropicが公開したClaudeの作業記録で、先行研究の確認と証明の進め方を読む"
+    "Claudeが示した下限の論文を、Anthropicの公式発表から開いて確認する",
+    "結果の形式的な証明を、Anthropicが案内するLeanのページで確認する",
+    "Claudeが成果に至った手順を、公式発表の作業記録からたどる"
   ],
   "qualityBar": {
     "score": 6,
@@ -143,5 +144,116 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/claude-riemann-zeta-research-5ac13408.jpg"
-  }
+  },
+  "sectionTitles": {
+    "body": {
+      "日本で使えるClaude Codeと未公開の研究版": "研究版は未公開、通常版は日本で利用可能"
+    }
+  },
+  "sectionsPolishedAt": "2026-11-20T23:17:19+00:00",
+  "insight": [
+    {
+      "text": "Claudeは反例を探したうえで、arXivから54本の論文をダウンロードして既出の成果でないか確かめ、別の方法で最初から証明し直しました。",
+      "source": "https://www.anthropic.com/research/riemann-zeta"
+    },
+    {
+      "text": "形式的な証明はLeanで作られ、標準の検証ツール「comparator」を通過したとAnthropicは説明しています。",
+      "source": "https://www.anthropic.com/research/riemann-zeta"
+    },
+    {
+      "text": "Anthropicは8月13日に論文の更新を告知しています。公式発表から論文を読む場合は、更新後の版が掲載されている点も確認できます。",
+      "source": "https://www.anthropic.com/research/riemann-zeta"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "Claude’s paper",
+      "url": "https://assets.claude.com/95c246936988e43127bc6b2ceb7077c1dad2d68e.pdf",
+      "source": "https://www.anthropic.com/research/riemann-zeta",
+      "howTo": [
+        "Further reading",
+        "Claude’s paper"
+      ]
+    },
+    {
+      "name": "Claude’s formalization",
+      "url": "https://github.com/anthropics/zeta-23-lean",
+      "source": "https://www.anthropic.com/research/riemann-zeta",
+      "howTo": [
+        "Further reading",
+        "Claude’s formalization"
+      ]
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "Claudeが示した下限の論文を、Anthropicの公式発表から開いて確認する",
+      "source": "https://www.anthropic.com/research/riemann-zeta",
+      "steps": [
+        "Anthropic research postを開く",
+        "Further readingを確認する",
+        "Claude’s paperを開く"
+      ],
+      "url": "https://assets.claude.com/95c246936988e43127bc6b2ceb7077c1dad2d68e.pdf"
+    },
+    {
+      "action": "結果の形式的な証明を、Anthropicが案内するLeanのページで確認する",
+      "source": "https://www.anthropic.com/research/riemann-zeta",
+      "steps": [
+        "Anthropic research postを開く",
+        "Further readingを確認する",
+        "Claude’s formalizationを開く"
+      ],
+      "url": "https://github.com/anthropics/zeta-23-lean"
+    },
+    {
+      "action": "Claudeが成果に至った手順を、公式発表の作業記録からたどる",
+      "source": "https://www.anthropic.com/research/riemann-zeta",
+      "steps": [
+        "Anthropic research postを開く",
+        "Further readingを確認する",
+        "Detailed transcripts of Claude's processを開く"
+      ],
+      "url": "https://assets.claude.com/8a0d1add3c637b858a9a181e98c40e9548c3f44f.pdf"
+    }
+  ],
+  "cause": {
+    "text": "AnthropicのスタッフがClaudeにリーマン予想への挑戦を依頼したところ、予想そのものは証明できませんでした。その試みの中で、Claudeは数学者たちの先行研究とBombieriの研究を組み合わせ、ゼロ点の割合の下限を引き上げる関連成果を得たと説明されています。",
+    "status": "background",
+    "source": "https://www.anthropic.com/research/riemann-zeta"
+  },
+  "worries": [
+    {
+      "q": "今回の成果でリーマン予想は解決したの？",
+      "a": "いいえ。Anthropicは、リーマン予想を証明も反証もできていないと説明しています。今回示されたのは、予想を満たすゼロ点の割合についての下限を41.6％から67.2％に引き上げた関連成果です。",
+      "source": "https://www.anthropic.com/research/riemann-zeta",
+      "action": "論文で扱っているゼロ点の割合の下限と、リーマン予想そのものの主張を分けて確認する。"
+    },
+    {
+      "q": "論文や証明は数学者にも確認されているの？",
+      "a": "Anthropicの数学者Levent Alpöge氏とRalph Furman氏が論文を調べて検証し、専門家のBrian Conrey氏とDan Goldston氏も論文を確認したと発表しています。また、結果はLeanで形式化され、標準の検証ツールを通過したとしています。",
+      "source": "https://www.anthropic.com/research/riemann-zeta",
+      "action": "公式発表から論文と形式証明の両方を開き、確認内容を照らし合わせる。"
+    },
+    {
+      "q": "この成果を出した研究版のClaudeを使えるの？",
+      "a": "今回の成果を得たのは、Anthropicが「unreleased research version」と説明するClaudeです。",
+      "source": "https://www.anthropic.com/research/riemann-zeta",
+      "action": "研究版を使う前提にせず、公開されている論文や形式証明を読んで研究内容を確認する。"
+    },
+    {
+      "q": "同じ結果がすでに発表されていないか確かめたの？",
+      "a": "Anthropicによると、Claudeは成果を見つけた後、arXivから54本の論文をダウンロードして、すでに発表された結果ではないか確認しました。さらに反例を探し、別のエージェントに最初から証明させたとしています。",
+      "source": "https://www.anthropic.com/research/riemann-zeta",
+      "action": "Claudeの作業記録を開き、先行研究の確認や証明の再検討の過程を読む。"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "54本の論文も照合して検証",
+    "cause": "挑戦の途中で関連成果が生まれた",
+    "steps": "論文と形式証明を公式リンクから読む",
+    "desk": "論文と形式証明の公開先",
+    "worries": "予想を解いたのか、証明は確かか"
+  },
+  "depthAt": "2026-11-20T23:18:29+00:00"
 }
