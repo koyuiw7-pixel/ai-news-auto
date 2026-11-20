@@ -81,8 +81,8 @@
   "affiliates": [],
   "newsType": "product",
   "todayActions": [
-    "Metaニュースルームの科学研究向け会議の記事で、UMA Nitroの紹介を確認する。",
-    "高校の化学教師は、Discovery EducationのUMA Playground用授業ガイドを確認する。"
+    "研究で使う人は、Metaの記事からUMA Nitroの公開先を確認する。",
+    "高校の化学教師は、UMA Playgroundと授業用ガイドを確認する。"
   ],
   "qualityBar": {
     "score": 4,
@@ -105,7 +105,8 @@
       6
     ],
     "repaired": false,
-    "repairLater": true
+    "repairLater": true,
+    "laterTriedAt": "2026-11-20T19:09:05+00:00"
   },
   "qualityScore": 100,
   "breaking": true,
@@ -158,5 +159,74 @@
     ],
     "ar": 1.7778,
     "src": "https://ai-tech-express.jp/img/meta-uma-nitro-science-summit-87cad891.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "Metaの説明では、Discovery Educationはmore than 4 million educators and 45 million studentsに届きます。UMA Playgroundの提供元が持つ教育者・学生への到達規模を知る手掛かりです。",
+      "source": "https://about.fb.com/news/2026/11/advancing-science-together-highlights-from-the-open-source-ai-for-science-summit/"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "研究で使う人は、Metaの記事からUMA Nitroの公開先を確認する。",
+      "source": "https://about.fb.com/news/2026/11/advancing-science-together-highlights-from-the-open-source-ai-for-science-summit/",
+      "steps": [
+        "Meta Newsroomの記事を開く",
+        "「UMA Nitro」を選ぶ"
+      ],
+      "url": "https://facebookresearch.github.io/fairchem/ase-calculator/"
+    },
+    {
+      "action": "高校の化学教師は、UMA Playgroundと授業用ガイドを確認する。",
+      "source": "https://about.fb.com/news/2026/11/advancing-science-together-highlights-from-the-open-source-ai-for-science-summit/",
+      "steps": [
+        "Meta Newsroomの記事を開く",
+        "「UMA Playground」を選ぶ",
+        "「classroom guides」を確認する"
+      ],
+      "url": "https://aidemos.atmeta.com/uma"
+    }
+  ],
+  "cause": {
+    "text": "科学者は、研究室で試す前に有望な材料や薬を見つけるため、コンピューターシミュレーションを使います。UMA Nitroは、その用途に使うUMAの高速版として公開されました。",
+    "status": "background",
+    "source": "https://about.fb.com/news/2026/11/advancing-science-together-highlights-from-the-open-source-ai-for-science-summit/"
+  },
+  "worries": [
+    {
+      "q": "UMA Playgroundでは授業でどんなことができる？",
+      "a": "分子を組み立てたり、結び付きが切れたりできる様子を見たり、化学反応を探ったりできます。Metaは、高校の化学教師向けに授業用ガイドとともに提供が始まったと説明しています。",
+      "source": "https://about.fb.com/news/2026/11/advancing-science-together-highlights-from-the-open-source-ai-for-science-summit/",
+      "action": "UMA Playgroundを開き、分子の組み立てや授業用ガイドを確認する。"
+    },
+    {
+      "q": "薬の結晶形を調べると、何が分かるの？",
+      "a": "薬の結晶形を知ることは、錠剤がどう溶けるかを研究者が理解する手掛かりになります。Metaは、カーネギーメロン大学とカリフォルニア大学リバーサイド校との研究で、UMAモデルが追加の学習データなしに薬の分子の多くの結晶形を特定したと説明しています。",
+      "source": "https://about.fb.com/news/2026/11/advancing-science-together-highlights-from-the-open-source-ai-for-science-summit/",
+      "action": "Metaの記事で、カーネギーメロン大学とカリフォルニア大学リバーサイド校との研究内容を確認する。"
+    },
+    {
+      "q": "公開される脳データから個人が分かるの？",
+      "a": "Digital Brain Projectは、個人を特定できない形にした脳データを研究者が集め、公開する取り組みです。Metaは、データ収集目標を15,000時間から25,000時間に増やすと説明しています。",
+      "source": "https://about.fb.com/news/2026/11/advancing-science-together-highlights-from-the-open-source-ai-for-science-summit/",
+      "action": "Metaの記事からDigital Brain Projectのリンクを開き、プロジェクトの説明を確認する。"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "提供元の教育者・学生への到達規模",
+    "cause": "研究室で試す前の計算を支えるモデル",
+    "steps": "研究用と授業用、それぞれの公開先へ",
+    "worries": "授業や研究、脳データはどう扱われる？"
+  },
+  "depthAt": "2026-11-20T19:09:05+00:00",
+  "updatedAt": "2026-11-20T19:09:05+00:00",
+  "updates": [
+    {
+      "at": "2026-11-20T19:09:05+00:00",
+      "kind": "facts",
+      "title": "公式の資料をもとに、「なるほどの要点」・「今日やること」・「理由」・「よくある不安」を追記しました",
+      "sourceUrl": "https://about.fb.com/news/2026/11/advancing-science-together-highlights-from-the-open-source-ai-for-science-summit/",
+      "sourceName": "Metaニュースルーム"
+    }
+  ]
 }

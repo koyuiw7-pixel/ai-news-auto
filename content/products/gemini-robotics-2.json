@@ -8,86 +8,60 @@
   "companyName": "Google",
   "category": "ロボット",
   "overview": {
-    "text": "Gemini Robotics 2は、Google DeepMindが開発する次世代のロボット制御用AI基盤モデルです。ロボットに高度な身体的知能を与え、物理世界で自律的に動作させることができます。2026年7月に発表されました。",
+    "text": "Gemini Robotics 2は、Google DeepMindが開発する次世代のロボット制御用AI基盤モデルです。視覚と言葉を理解してロボットの手足を動かし、2026年7月から8月にかけて発表されました。",
     "sources": [
-      "gemini-robotics-2-comprehensive-summary-matome",
-      "google-deepmind-gemini-robotics-2-apollo"
+      "google-deepmind-gemini-robotics-2-apollo",
+      "gemini-robotics-2-comprehensive-summary-matome"
     ]
   },
   "facts": [
     {
-      "label": "提供開始",
-      "value": "研究・デモ段階",
-      "sources": [
-        "google-deepmind-gemini-robotics-2-apollo"
-      ]
-    },
-    {
-      "label": "日本での提供",
-      "value": "未提供",
-      "sources": [
-        "gemini-robotics-2-5-dexterity",
-        "google-deepmind-gemini-robotics-2-apollo"
-      ]
-    },
-    {
-      "label": "使える場所",
-      "value": "研究・開発段階",
-      "sources": [
-        "google-deepmind-gemini-robotics-2-apollo"
-      ]
-    },
-    {
       "label": "向いている人",
-      "value": "ロボット開発者",
+      "value": "ロボット開発企業や提携先",
       "sources": [
-        "gemini-robotics-2-5-dexterity",
-        "google-deepmind-gemini-robotics-2-apollo"
+        "gemini-robotics-2-5-dexterity"
       ]
     }
   ],
   "capabilities": [
     {
-      "text": "全身協調制御により、床面からのじょうろやバッグの自律的回収やバランス保持を行うことができます。",
+      "text": "22個の独立した関節を持つハンドを使い、薄手のゴミ袋の紐結びや電球の取り外しを行います。",
       "sources": [
         "gemini-robotics-2-comprehensive-summary-matome"
       ]
     },
     {
-      "text": "22個の独立した関節を持つハンドを使い、ゴミ袋の紐結びや電球の取り外しを行えます。",
+      "text": "膝を深く曲げる全身のバランス制御を行い、二足歩行ロボットの転倒を防ぎます。",
       "sources": [
-        "gemini-robotics-2-comprehensive-summary-matome",
-        "google-deepmind-gemini-robotics-2-apollo"
+        "gemini-robotics-2-comprehensive-summary-matome"
       ]
     },
     {
-      "text": "複数ロボットが自然言語を介して対話し、自律的に役割分担と協調動作を行います。",
+      "text": "複数のロボット同士が自然言語の指示を介して役割を分担し、協調して作業を行います。",
       "sources": [
-        "gemini-robotics-2-comprehensive-summary-matome",
-        "google-deepmind-gemini-robotics-2-apollo"
+        "google-deepmind-gemini-robotics-2-apollo",
+        "gemini-robotics-2-comprehensive-summary-matome"
       ]
     },
     {
-      "text": "Gemini Robotics 2.5では200種類の作業で成功率が30〜100%向上しました。",
+      "text": "200種類の作業で従来の方式より成功率が30〜100%高くなりました。",
+      "sources": [
+        "gemini-robotics-2-5-dexterity"
+      ]
+    },
+    {
+      "text": "作業にかかる時間が20〜30%短くなりました。",
       "sources": [
         "gemini-robotics-2-5-dexterity"
       ]
     }
   ],
   "pricing": [],
-  "japan": [
-    {
-      "text": "現時点では研究段階の発表であるため、日本の一般ユーザーが直接導入して試す方法はありません。",
-      "sources": [
-        "gemini-robotics-2-5-dexterity",
-        "google-deepmind-gemini-robotics-2-apollo"
-      ]
-    }
-  ],
+  "japan": [],
   "howto": [],
   "differences": [
     {
-      "text": "Gemini Robotics 2.5では、作業にかかる時間が20〜30%短くなりました。",
+      "text": "人型ロボットに全身の動きを扱う能力が加わりました。",
       "sources": [
         "gemini-robotics-2-5-dexterity"
       ]
@@ -95,25 +69,31 @@
   ],
   "faq": [
     {
-      "q": "どんなロボットを動かせる？",
-      "a": "人型ロボットのApolloやApollo 2、多関節ハンドのSharpa handなどを同一モデルで制御できます。",
+      "q": "いつ発表されましたか？",
+      "a": "2026年7月30日から8月7日にかけて発表されました。",
       "sources": [
-        "gemini-robotics-2-5-dexterity",
         "gemini-robotics-2-comprehensive-summary-matome"
       ]
     },
     {
-      "q": "どのような動作を実演している？",
-      "a": "ゴミ袋を結ぶ動作やスポーツ用具の梱包、複数ロボットによるガレージの片付けなどを実演しています。",
+      "q": "どんなロボットを動かせますか？",
+      "a": "人型ロボットのApolloやApollo 2などを制御できます。",
+      "sources": [
+        "gemini-robotics-2-comprehensive-summary-matome"
+      ]
+    },
+    {
+      "q": "一般の人は使えますか？",
+      "a": "研究段階であり、一般の人が購入して使うことはできません。",
       "sources": [
         "google-deepmind-gemini-robotics-2-apollo"
       ]
     },
     {
-      "q": "音声対話はできる？",
-      "a": "ロボットが周囲の環境を視覚的に認識して自発的に問いかけたり、人間の質問に応答したりできます。",
+      "q": "誰に向いていますか？",
+      "a": "ロボット開発企業や提携先を対象としています。",
       "sources": [
-        "google-deepmind-gemini-robotics-2-apollo"
+        "gemini-robotics-2-5-dexterity"
       ]
     }
   ],
@@ -126,7 +106,7 @@
     {
       "date": "2026-08-07",
       "slug": "google-deepmind-gemini-robotics-2-apollo",
-      "event": "搭載ロボットのデモを公開"
+      "event": "Apollo 2のデモ動画を公開"
     },
     {
       "date": "2026-11-10",
@@ -152,9 +132,9 @@
     "gemini-robotics-2-comprehensive-summary-matome",
     "google-deepmind-gemini-robotics-2-apollo"
   ],
-  "signature": "2fbfa3c05a580dd4",
+  "signature": "b82b9cbc221b2b1c",
   "primarySignature": "7c384c78f01be104",
   "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-10-27T10:41:38+00:00",
-  "updatedAt": "2026-11-17T19:02:49+00:00"
+  "updatedAt": "2026-11-20T19:08:31+00:00"
 }
