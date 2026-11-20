@@ -1,13 +1,13 @@
 {
  "updatedAt": "2026-11-18T21:00:00+00:00",
- "generatedAt": "2026-11-19T00:44:20+00:00",
+ "generatedAt": "2026-11-20T00:54:37+00:00",
  "stats": {
-  "articlesScanned": 1561,
+  "articlesScanned": 1617,
   "candidateArticles": 72,
-  "rowsVerified": 87,
-  "rowsRejected": 95,
+  "rowsVerified": 88,
+  "rowsRejected": 94,
   "plans": 30,
-  "apis": 10
+  "apis": 11
  },
  "items": [
   {
@@ -158,6 +158,31 @@
    },
    "verdictSource": "google-ai-news-october-2026",
    "confirmedIn": 2,
+   "legacy": false
+  },
+  {
+   "id": "api-gemini4neon",
+   "kind": "api",
+   "vendor": "Google",
+   "companySlug": "google",
+   "product": "Gemini 4 Neon",
+   "plan": null,
+   "currency": "USD",
+   "monthly": null,
+   "input": 3,
+   "output": 15,
+   "cachedInput": 0.15,
+   "japan": "unknown",
+   "status": "limited",
+   "free": null,
+   "source": {
+    "slug": "gemini-4-neon-pricing-availability",
+    "title": "Gemini 4 Neonの料金と使い方：日本での提供状況",
+    "publishedAt": "2026-11-18T21:00:00+00:00",
+    "quote": "APIの料金は、入力100万トークン当たり3米ドル、キャッシュされた入力は同0.15米ドル、出力は同15米ドルです。"
+   },
+   "verdictSource": null,
+   "confirmedIn": 1,
    "legacy": false
   },
   {
@@ -836,31 +861,6 @@
    "legacy": false
   },
   {
-   "id": "plan-chatgpt-pro",
-   "kind": "plan",
-   "vendor": "OpenAI",
-   "companySlug": "openai",
-   "product": "ChatGPT",
-   "plan": "Pro",
-   "currency": "USD",
-   "monthly": 200,
-   "input": null,
-   "output": null,
-   "cachedInput": null,
-   "japan": "unknown",
-   "status": null,
-   "free": true,
-   "source": {
-    "slug": "claude-ultra-plan-price-limits",
-    "title": "Claude Ultraプランとは？料金と日本での使い方",
-    "publishedAt": "2026-11-02T04:53:24.629000+00:00",
-    "quote": "他社の最上位帯では、ChatGPT Proが$200、Google AI Ultraが月14,500円または32,000円です(各社公式の料金ページ、11/3確認)。使うモデルや機能で比べるとよいでしょう。"
-   },
-   "verdictSource": null,
-   "confirmedIn": 1,
-   "legacy": false
-  },
-  {
    "id": "plan-chatgpt-pro200",
    "kind": "plan",
    "vendor": "OpenAI",
@@ -880,6 +880,31 @@
     "title": "Businesses in ChatGPTの使い方と日本の提供状況",
     "publishedAt": "2026-11-18T02:09:24.629000+00:00",
     "quote": "| Pro 200 | $200/月(月払い) | 約35,110円(税込みの目安) | Ultrafast: Not included、月額 ¥30,000 分の API クレジット(日本向けページ) |"
+   },
+   "verdictSource": null,
+   "confirmedIn": 1,
+   "legacy": false
+  },
+  {
+   "id": "plan-chatgpt-pro",
+   "kind": "plan",
+   "vendor": "OpenAI",
+   "companySlug": "openai",
+   "product": "ChatGPT",
+   "plan": "Pro",
+   "currency": "USD",
+   "monthly": 200,
+   "input": null,
+   "output": null,
+   "cachedInput": null,
+   "japan": "unknown",
+   "status": null,
+   "free": true,
+   "source": {
+    "slug": "claude-ultra-plan-price-limits",
+    "title": "Claude Ultraプランとは？料金と日本での使い方",
+    "publishedAt": "2026-11-02T04:53:24.629000+00:00",
+    "quote": "他社の最上位帯では、ChatGPT Proが$200、Google AI Ultraが月14,500円または32,000円です(各社公式の料金ページ、11/3確認)。使うモデルや機能で比べるとよいでしょう。"
    },
    "verdictSource": null,
    "confirmedIn": 1,
