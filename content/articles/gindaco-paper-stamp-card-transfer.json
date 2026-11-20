@@ -92,9 +92,8 @@
     }
   ],
   "todayActions": [
-    "手元に銀だこの紙スタンプカードがあるか、たまった無料交換分と合わせて確認する。",
-    "アプリへ移したい場合は、無料の「築地銀だこ」アプリを用意して店舗に相談する。",
-    "紙への押印終了日と、延長予定の移行受付期限を公式サイトで確認する。"
+    "アプリの登録やログインで困ったら、専用フォームから問い合わせる。",
+    "来店前に、店舗検索の各店舗ページで営業時間を確認する。"
   ],
   "angleOf": "tsukiji-gindaco-price-hike-2026-12",
   "deepDive": "check",
@@ -160,5 +159,90 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/gindaco-paper-stamp-card-transfer-0c391acb.jpg"
-  }
+  },
+  "officialDesk": [
+    {
+      "name": "銀だこアプリ専用お問合せフォーム",
+      "url": "https://gindaco-app-support.zendesk.com/hc/ja/requests/new?ticket_form_id=35478112318617",
+      "source": "https://www.gindaco.com/contact",
+      "howTo": [
+        "お問い合わせ",
+        "アプリに関するお問い合わせ",
+        "銀だこアプリ専用お問合せフォーム"
+      ],
+      "note": "アプリの登録・ログイン方法など、アプリに関する不明点を問い合わせられます。"
+    },
+    {
+      "name": "ホットランドホールディングス お客様相談室",
+      "url": "https://www.gindaco.com/contact",
+      "source": "https://www.gindaco.com/contact",
+      "phone": "0120-87-5577",
+      "hours": "平日10:00〜17:00",
+      "note": "時間外・夏期・年末年始休暇時は留守番電話となります。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "アプリの登録やログインで困ったら、専用フォームから問い合わせる。",
+      "source": "https://www.gindaco.com/contact",
+      "steps": [
+        "お問い合わせを開く",
+        "アプリに関するお問い合わせを選ぶ",
+        "銀だこアプリ専用お問合せフォームへ進む"
+      ],
+      "url": "https://gindaco-app-support.zendesk.com/hc/ja/requests/new?ticket_form_id=35478112318617"
+    },
+    {
+      "action": "来店前に、店舗検索の各店舗ページで営業時間を確認する。",
+      "source": "https://www.gindaco.com/contact",
+      "steps": [
+        "店舗検索を開く",
+        "確認したい店舗のページを見る",
+        "営業時間を確認する"
+      ],
+      "url": "https://stores.gindaco.com/"
+    }
+  ],
+  "cause": {
+    "text": "銀だこアプリの開始に伴い、今後は紙のスタンプカードのサービスを終了し、アプリ内のデジタルスタンプカードへ移行すると案内されています。",
+    "status": "background",
+    "source": "https://www.gindaco.com/contact"
+  },
+  "worries": [
+    {
+      "q": "どんなたこ焼を買えばスタンプが付く？",
+      "a": "たこ焼1舟（6個入り以上）の購入ごとに、スタンプが1つ貯まります。毎月8日・18日・28日はスタンプ2倍デーです。",
+      "source": "https://www.gindaco.com/contact",
+      "action": "購入するたこ焼が6個入り以上か確かめ、8日・18日・28日はスタンプ2倍デーとして確認する。"
+    },
+    {
+      "q": "アプリの登録やログインで困ったらどこに聞けばいい？",
+      "a": "アプリの登録・ログイン方法など、アプリに関する不明点は銀だこアプリ専用お問合せフォームから問い合わせできます。",
+      "source": "https://www.gindaco.com/contact",
+      "action": "登録やログインの不明点を整理し、銀だこアプリ専用お問合せフォームから問い合わせる。"
+    },
+    {
+      "q": "行く予定の店舗の営業時間はどこで分かる？",
+      "a": "店舗検索内の各店舗ページに営業時間が記載されています。不明な場合は、各店舗に問い合わせるよう案内されています。",
+      "source": "https://www.gindaco.com/contact",
+      "action": "店舗検索で該当店舗のページを開き、営業時間を確認する。不明なら店舗へ問い合わせる。"
+    }
+  ],
+  "depthHeadings": {
+    "cause": "紙カードからデジタルへ移る背景",
+    "steps": "アプリの問い合わせ先と店舗情報を確認",
+    "desk": "アプリの疑問やカードの相談先",
+    "worries": "スタンプやアプリで迷ったら"
+  },
+  "depthAt": "2026-11-20T03:08:43+00:00",
+  "updatedAt": "2026-11-20T03:08:43+00:00",
+  "updates": [
+    {
+      "at": "2026-11-20T03:08:43+00:00",
+      "kind": "facts",
+      "title": "公式の資料をもとに、「公式の窓口」・「今日やること」・「理由」・「よくある不安」を追記しました",
+      "sourceUrl": "https://www.gindaco.com/news/detail/2797/",
+      "sourceName": "築地銀だこ「価格改定のお知らせ」"
+    }
+  ]
 }

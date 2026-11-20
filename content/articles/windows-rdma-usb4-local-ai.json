@@ -103,9 +103,9 @@
     }
   ],
   "todayActions": [
-    "試験に使えるWindows PCのUSB4端子を確認し、各PC同士を直接つなげる数があるか確かめる。",
-    "Microsoft公開のNetworkDirect向けコードとllama.cppの試験用コードを確認する。",
-    "普段使うPCとは別に、Secure Bootを無効にして試せる専用PCを用意できるか確認する。"
+    "試験候補のPCで、USB4ポートの速度と全PCを直接つなぐための数を確認する",
+    "公開済みのNetworkDirect向けプロバイダーと接続テストツールを確認する",
+    "llama.cppを基にした試験用コードを開き、試験内容を確認する"
   ],
   "qualityBar": {
     "score": 5,
@@ -155,5 +155,77 @@
     ],
     "ar": 1.7778,
     "src": "https://ai-tech-express.jp/img/windows-rdma-usb4-local-ai-0dd14640.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "Microsoftの測定で約28〜50µsだったのは、小さなデータの往復時間です。同じUSB4接続のEthernet（UDP）より約4倍低い値で、AIの回答全体が4倍速くなる意味ではありません。",
+      "source": "https://techcommunity.microsoft.com/blog/microsoftusbblog/introducing-rdma-over-usb4%C2%AE-on-windows-run-larger-local-ai-models-across-pcs/4574602"
+    },
+    {
+      "text": "複数PCを使うときは、各PCをほかのすべてのPCに直接つなぎます。PCごとのUSB4ポート数やDMAリング数が、組めるクラスターの上限を左右します。",
+      "source": "https://techcommunity.microsoft.com/blog/microsoftusbblog/introducing-rdma-over-usb4%C2%AE-on-windows-run-larger-local-ai-models-across-pcs/4574602"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "試験候補のPCで、USB4ポートの速度と全PCを直接つなぐための数を確認する",
+      "source": "https://techcommunity.microsoft.com/blog/microsoftusbblog/introducing-rdma-over-usb4%C2%AE-on-windows-run-larger-local-ai-models-across-pcs/4574602",
+      "steps": [
+        "各PCのUSB4ポートを確認する",
+        "40Gbps以上かを確認する",
+        "全PCを直接接続できるポート数か照合する"
+      ],
+      "url": "https://techcommunity.microsoft.com/blog/microsoftusbblog/introducing-rdma-over-usb4%C2%AE-on-windows-run-larger-local-ai-models-across-pcs/4574602"
+    },
+    {
+      "action": "公開済みのNetworkDirect向けプロバイダーと接続テストツールを確認する",
+      "source": "https://techcommunity.microsoft.com/blog/microsoftusbblog/introducing-rdma-over-usb4%C2%AE-on-windows-run-larger-local-ai-models-across-pcs/4574602",
+      "steps": [
+        "NetworkDirect向けコードを開く",
+        "プロバイダー、サンプル、接続テストツールを確認する"
+      ],
+      "url": "https://aka.ms/usb4-rdma-nd-provider"
+    },
+    {
+      "action": "llama.cppを基にした試験用コードを開き、試験内容を確認する",
+      "source": "https://techcommunity.microsoft.com/blog/microsoftusbblog/introducing-rdma-over-usb4%C2%AE-on-windows-run-larger-local-ai-models-across-pcs/4574602",
+      "steps": [
+        "llama.cppの試験用コードを開く",
+        "NetworkDirectを使うRPCバックエンドを確認する"
+      ],
+      "url": "https://aka.ms/usb4-rdma-llama-cpp-sample"
+    }
+  ],
+  "cause": {
+    "text": "Microsoftは、現在の高性能なオープンウェイトAIモデルの多くは一般的なPCのメモリに収まらず、モデルを小さくする、クラウドに送る、専用ネットワーク機器を使うクラスターを組む選択肢があったと説明しています。複数PCのメモリとGPU演算力を合わせ、より大きなモデルを手元で動かす狙いです。",
+    "status": "background",
+    "source": "https://techcommunity.microsoft.com/blog/microsoftusbblog/introducing-rdma-over-usb4%C2%AE-on-windows-run-larger-local-ai-models-across-pcs/4574602"
+  },
+  "worries": [
+    {
+      "q": "専用のRDMAネットワークアダプターを買わないと使えませんか？",
+      "a": "Microsoftのプレビューは、USB4対応PCをUSB4ケーブルでつなぐ構成です。RDMAネットワークアダプターやスイッチの購入、第三者ドライバーの導入は不要と説明しています。",
+      "source": "https://techcommunity.microsoft.com/blog/microsoftusbblog/introducing-rdma-over-usb4%C2%AE-on-windows-run-larger-local-ai-models-across-pcs/4574602",
+      "action": "試験候補の各PCにUSB4ポートがあるか、全PCを直接つなぐポート数があるか確認してください。"
+    },
+    {
+      "q": "通信が約4倍低遅延なら、AIの回答も4倍速くなりますか？",
+      "a": "約28〜50µsは、2台間で小さなメッセージをやり取りする往復時間で、同じUSB4リンク上のEthernet（UDP）より約4倍低い値です。モデルや実行環境、各PCのメモリとGPUによって結果は変わります。",
+      "source": "https://techcommunity.microsoft.com/blog/microsoftusbblog/introducing-rdma-over-usb4%C2%AE-on-windows-run-larger-local-ai-models-across-pcs/4574602",
+      "action": "公式ブログの通信測定と、モデルや実行環境ごとの生成速度を分けて確認してください。"
+    },
+    {
+      "q": "USB4対応なら、手元のPCはどれでも試せますか？",
+      "a": "対象は要件を満たすUSB4対応PCです。最良の性能には40Gbps以上のポート、全PCを直接つなげるポート数、十分なメモリやGPU演算力が必要です。これまで検証した機種だけが動作するという意味ではないとしています。",
+      "source": "https://techcommunity.microsoft.com/blog/microsoftusbblog/introducing-rdma-over-usb4%C2%AE-on-windows-run-larger-local-ai-models-across-pcs/4574602",
+      "action": "各PCのUSB4ポート速度と、メモリ・GPU、直接接続に必要なポート数を照らし合わせてください。"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "4倍低いのは通信の待ち時間",
+    "cause": "大きなモデルを手元で動かす狙い",
+    "steps": "試験前にPCと公開コードを確認",
+    "worries": "速度や手持ちPCで気になること"
+  },
+  "depthAt": "2026-11-20T03:07:51+00:00"
 }
