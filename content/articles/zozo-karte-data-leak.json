@@ -85,9 +85,9 @@
     }
   ],
   "todayActions": [
-    "ZOZOを名乗るメール・SMSのリンクや添付ファイルは開かず、削除する",
-    "ZOZOから個別連絡が届いたら、本文のリンクでなく公式の問い合わせ窓口で内容を確かめる",
-    "出店ブランド担当者は、個別連絡を待ちつつ、不明点をZOZOの営業担当に問い合わせる"
+    "個別連絡を受けたZOZOTOWN会員は、本文のリンクを使わず窓口で内容を確かめる",
+    "個別連絡を受けたWEAR会員は、本文のリンクを使わず問い合わせ窓口で確認する",
+    "出店ブランド担当者は個別連絡を待ち、不明点をZOZOの営業担当に尋ねる"
   ],
   "publicInterest": "breach",
   "incident": {
@@ -138,5 +138,84 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/zozo-karte-data-leak-figure-75c6f56e.jpg"
-  }
+  },
+  "officialDesk": [
+    {
+      "name": "ZOZOTOWNをご利用のお客様",
+      "url": "https://zozo.jp/_help/help_faq_info.html",
+      "source": "https://corp.zozo.com/information/20261120-482917/"
+    },
+    {
+      "name": "WEAR by ZOZOをご利用のお客様",
+      "url": "https://wear.jp/contact/",
+      "source": "https://corp.zozo.com/information/20261120-482917/"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "個別連絡を受けたZOZOTOWN会員は、本文のリンクを使わず窓口で内容を確かめる",
+      "source": "https://corp.zozo.com/information/20261120-482917/",
+      "steps": [
+        "ZOZOTOWNをご利用のお客様向け窓口を開く",
+        "個別連絡の内容を問い合わせる"
+      ],
+      "url": "https://zozo.jp/_help/help_faq_info.html"
+    },
+    {
+      "action": "個別連絡を受けたWEAR会員は、本文のリンクを使わず問い合わせ窓口で確認する",
+      "source": "https://corp.zozo.com/information/20261120-482917/",
+      "steps": [
+        "WEAR by ZOZOをご利用のお客様向け窓口を開く",
+        "個別連絡の内容を問い合わせる"
+      ],
+      "url": "https://wear.jp/contact/"
+    },
+    {
+      "action": "出店ブランド担当者は個別連絡を待ち、不明点をZOZOの営業担当に尋ねる",
+      "source": "https://corp.zozo.com/information/20261120-482917/",
+      "steps": [
+        "対象者への個別連絡を待つ",
+        "不明点をZOZOの営業担当に問い合わせる"
+      ]
+    }
+  ],
+  "cause": {
+    "text": "プレイド社によると、2026年11月13日未明にKARTEで第三者による不正アクセスがあり、同社のデータベース等からデータが外部に取得されました。ZOZOは、プレイド社の原因調査結果を踏まえて必要な対策を実施する方針です。",
+    "status": "stated",
+    "source": "https://corp.zozo.com/information/20261120-482917/"
+  },
+  "worries": [
+    {
+      "q": "今回、ZOZOTOWNのパスワードも漏れた？",
+      "a": "パスワードはKARTE上で管理していなかったため、今回の漏えい対象には含まれていません。",
+      "source": "https://corp.zozo.com/information/20261120-482917/",
+      "action": "ZOZOを名乗るメールなどでパスワードを尋ねられても入力せず、不審な連絡は削除してください。"
+    },
+    {
+      "q": "クレジットカード情報も一緒に流出した？",
+      "a": "クレジットカード情報の漏えいは、現時点で確認されていません。ZOZOはメールなどでパスワードやクレジットカード情報を尋ねることはないとしています。",
+      "source": "https://corp.zozo.com/information/20261120-482917/",
+      "action": "カード情報を尋ねるZOZO名義のメールなどは本物と判断せず、リンクや添付ファイルを開かず削除してください。"
+    },
+    {
+      "q": "メールアドレスや電話番号は全会員分が漏れた？",
+      "a": "ZOZOTOWNでは、会員ID・年齢・性別・郵便番号に加えてログイン名・メールアドレス・電話番号が対象となった人は約4.7万人です。漏えい項目は人によって異なり、対象者にはZOZOから順次個別連絡があります。",
+      "source": "https://corp.zozo.com/information/20261120-482917/",
+      "action": "個別連絡を受けたら、本文のリンクではなくZOZOTOWNの問い合わせ窓口から内容を確認してください。"
+    },
+    {
+      "q": "不審なリンクにパスワードを入力してしまったら？",
+      "a": "フィッシングサイトなどに普段使っているIDやパスワードを入力した場合、警察庁は、そのIDやパスワードを利用しているすべてのサービスで速やかに変更するよう案内しています。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "action": "入力したIDやパスワードを使っているサービスを確認し、該当するパスワードを速やかに変更してください。",
+      "general": true
+    }
+  ],
+  "depthHeadings": {
+    "cause": "KARTEへの不正アクセスと情報取得",
+    "steps": "個別連絡は本文のリンクを使わず確認",
+    "desk": "ZOZOTOWNとWEARの問い合わせ先",
+    "worries": "パスワードやカード情報まで漏れた？"
+  },
+  "depthAt": "2026-11-20T23:47:20+00:00"
 }
