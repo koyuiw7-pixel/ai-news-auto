@@ -484,7 +484,7 @@
     "39ab73a66bdc9abf54383ebd372ce5f9390f3f3c": 2,
     "39d22897087e2b6eedc165fc218a3893137eb238": 2,
     "39f915321085690f1fb80dbe566a1cc95ae59aba": 2,
-    "3a228f551bcc4e8c64f71ed0dd1c23b9a68f4ce6": 1,
+    "3a228f551bcc4e8c64f71ed0dd1c23b9a68f4ce6": 2,
     "3a3456fd50c5bf1c7758af18151c86d0188b0210": 2,
     "3a502c3ed3a016b9bbf3929d6b3cce70f4329a7c": 2,
     "3a7b953e2b9b2d0fdf6ecafb073e49e9698140fd": 2,
@@ -836,6 +836,7 @@
     "6bf47a1f74be45c51748534ad33e9f4a1ddf97e2": 2,
     "6c306bf3fb03e5bb4fa63ac5b63e97ecaa2a28db": 2,
     "6c4ab56dfc38e75499c45e44a8a9dff39c70cff3": 2,
+    "6c693fe42ba21d8c91cb51e4ff81910ed8403a4a": 1,
     "6cdd26adf3fd1222b39c412b59c87767888a63af": 2,
     "6cf7f441c2c17fc812dd87c3a873f6f443ec506a": 2,
     "6d235be63087f1c3fac14d06be1e9d561d6f7e21": 2,
@@ -2042,6 +2043,14 @@
       "title": "令和８年度医療施設等施設整備費補助金の交付額の内示について （4回目内示）",
       "tries": 1,
       "url": "https://www.mhlw.go.jp/stf/newpage_77272.html"
+    },
+    "876916212f4f32cc": {
+      "first": "2026-11-20T20:23:25.352912+00:00",
+      "next": "2026-11-20T23:23:25.352912+00:00",
+      "reason": "「通常の乗車券やICカードで利用できます」→ 元記事に乗車券・ICカードの利用条件は記載されておらず、断定できません。; 「価格=運賃は通常通り」→ 通常運賃が適用されるとの情報は元記事にありません。; 「通常とは異なる時刻での移動になります」→ 臨時列車の発車時刻は示されていますが、通常の列車時刻との比較は元記事にありません。",
+      "title": "運輸サービス 北九州メッセ「THE RAMPAGE カウントダウンライブ」に合わせて臨時列車を運転",
+      "tries": 1,
+      "url": "https://www.jrkyushu.co.jp/common/inc/news/newtopics/__icsFiles/afieldfile/2026/11/19/20261120_Kitakyushu_Countdown_Live_Special_Train.pdf"
     },
     "b890c3a05d541ea1": {
       "first": "2026-11-20T04:20:39.006400+00:00",
@@ -9060,6 +9069,12 @@
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026111211"
     },
+    "3647309ae8aff356d006cc1350a38f26c182b2b4": {
+      "at": "2026-11-20T20:23:34.302633+00:00",
+      "reason": "trend: 重複: 報道の見出しと同じ話題の記事がある（固有名詞が一致（アンソロピック・ナスダック）: cpi-october-2026-anthropic-ipo）",
+      "skipped": true,
+      "url": "https://www.nikkei.com/article/DGXZQOGN19CX30Z11C26A1000000/"
+    },
     "369a1f1607101c0b": {
       "at": "2026-11-12T16:11:44.146946+00:00",
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・暮らしの交通/天気/値上げ/障害/給付/発売・日本のスポーツのどれでもない）",
@@ -11583,17 +11598,6 @@
       "section": "ai",
       "slug": "openai-control-room-ai-workload-stop",
       "url": "https://openai.com/index/introducing-control-room"
-    },
-    "5d5b1a298658a8df": {
-      "at": "2026-11-06T20:04:26.412863+00:00",
-      "costUsd": 0.0257,
-      "intent": "neutral",
-      "mix": "other",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "score": 90,
-      "section": "ai",
-      "slug": "lookml-knowledge-catalog-ga",
-      "url": "https://cloud.google.com/blog/ja/products/business-intelligence/lookml-metadata-indexing-in-knowledge-catalog-is-now-ga/"
     },
     "5d70a086523ce35a": {
       "at": "2026-11-16T12:26:49.595543+00:00",
@@ -20499,13 +20503,6 @@
       "skipped": true,
       "url": "https://news.yahoo.co.jp/articles/95bdb1f9fae834432fc802ad81685cf1135d4626"
     },
-    "efd5a4fa858ee3e3": {
-      "at": "2026-11-06T20:22:15.011310+00:00",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "reason": "followup quality: 「プレビュー版を数か月以内に提供予定」→ 元記事にも確認済みの文脈にもプレビュー提供の時期は書かれておらず、「数か月以内」は創作。提供時期の取り違えにあたる; 「従来のVMとコンテナの課題を踏まえ、分離性と起動速度を両立させる設計とした」→ 元記事の趣旨の要約として概ね妥当だが、「両立」という評価語は元記事の直接表現ではなく言い過ぎ寄り; 「コンテナは…root",
-      "skipped": true,
-      "url": "https://cloud.google.com/blog/ja/topics/ai-infrastructure/agent-compute-engine-deep-dive/"
-    },
     "efe0878e91e7de62": {
       "at": "2026-11-15T05:37:35.184545+00:00",
       "costUsd": 0.0077,
@@ -24234,32 +24231,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-19T03:30:40.792103+00:00",
-      "attempt": 1,
-      "id": "14a287c3c204660f",
-      "kind": "broad",
-      "model": "claude:sonnet",
-      "problems": [
-        "「不正アクセスの原因は、調査が続いており」→ 元記事は原因調査を進めたと述べていますが、現在も調査が続いているとは明記していません。",
-        "「メールなどが届いたら削除する」→ 元記事は不審なメールやSMSのURL・添付ファイルを開かないよう求めていますが、対象者への個別案内もメール等で行う予定です。すべて削除するよう勧めると、正式な案内まで見落とすおそれがあります。"
-      ],
-      "readability": {
-        "avg_paragraph": 79.5,
-        "avg_sentence": 38.3,
-        "long_share": 0.111,
-        "max_paragraph": 154,
-        "paragraphs": 13,
-        "sentences": 27
-      },
-      "score": 88,
-      "source": "fast",
-      "title": "【第二報】第三者による不正アクセスに伴う化粧品ブランド「akyrise（あきゅらいず）」の会員情報漏えいに関するお詫びとお知らせ",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（EC・SMS）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-19T03:31:13.788916+00:00",
@@ -31851,6 +31822,35 @@
         "初めて出たところで言い換えていない略語（JAXA）",
         "work_money（「仕事・お金にどう活かせる？」欄）が無い"
       ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-20T20:22:36.113715+00:00",
+      "attempt": 1,
+      "id": "876916212f4f32cc",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "「通常の乗車券やICカードで利用できます」→ 元記事に乗車券・ICカードの利用条件は記載されておらず、断定できません。",
+        "「価格=運賃は通常通り」→ 通常運賃が適用されるとの情報は元記事にありません。",
+        "「通常とは異なる時刻での移動になります」→ 臨時列車の発車時刻は示されていますが、通常の列車時刻との比較は元記事にありません。"
+      ],
+      "readability": {
+        "avg_paragraph": 143.0,
+        "avg_sentence": 55.6,
+        "long_share": 0.278,
+        "max_paragraph": 214,
+        "paragraphs": 7,
+        "sentences": 18
+      },
+      "score": 78,
+      "source": "jrkyushu",
+      "title": "運輸サービス 北九州メッセ「THE RAMPAGE カウントダウンライブ」に合わせて臨時列車を運転",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（JR・THE）",
+        "読みやすさ: 文が長い（1文の平均 55.6字・60字超の文が 28% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "読みやすさ: 段落が長い（平均 143.0字・最長 214字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
     }
   ],
   "short_text_retry": {
@@ -31867,16 +31867,16 @@
       "467aee4fdececb11": "2026-11-19T17:31:20.044301+00:00",
       "4b42b27e406bfb0b": "2026-11-19T18:21:15.018232+00:00",
       "5fcfe0db82abcdd5": "2026-11-16T17:18:58.557176+00:00",
+      "7e8c98a3fdf39394": "2026-11-20T20:21:11.312032+00:00",
+      "8cc844d220a2cfcb": "2026-11-20T20:21:11.312032+00:00",
       "9bfd9c1f738fffc8": "2026-11-10T17:11:11.024399+00:00",
       "9c3e6deca06f19fe": "2026-11-12T19:31:12.774311+00:00",
       "a0ad6f8b6a6e1b65": "2026-11-17T20:11:33.830840+00:00",
       "af8fcea84a6e869e": "2026-11-12T20:41:09.936521+00:00",
-      "b0d16b78d77a4b37": "baseline",
       "b8021f4e498193b3": "2026-11-16T21:01:15.934670+00:00",
       "c0cefde0d0d2fd7c": "2026-11-09T12:11:37.155951+00:00",
       "ca044c8f8cfa1a6e": "2026-11-06T16:31:07.791091+00:00",
       "d2b711c4c75d2e8b": "2026-11-09T20:41:09.367879+00:00",
-      "d56ce964f320141c": "baseline",
       "de5d8c3372c230d4": "2026-11-03T17:31:24.877334+00:00",
       "e08c0282dc5f680b": "2026-11-17T17:21:10.102154+00:00",
       "f0fcd2d8fa862f6c": "2026-11-16T16:31:07.469568+00:00"
