@@ -17210,6 +17210,19 @@
       "slug": "ai-knowledge-spine-enterprise-strategy",
       "url": "https://blogs.windows.com/japan/2026/11/11/the-ai-advantage-your-company-can-keep/"
     },
+    "b60df0943a50d0a1": {
+      "at": "2026-11-20T23:31:36.240274+00:00",
+      "costUsd": 0.0066,
+      "intent": "breaking",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "score": 98,
+      "section": "public",
+      "slug": "zozo-karte-data-leak",
+      "url": "https://corp.zozo.com/information/20261120-482917/"
+    },
     "b64337d2f902f92d": {
       "at": "2026-11-17T18:25:22.622949+00:00",
       "breaking": true,
@@ -24393,61 +24406,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-19T07:00:05.826909+00:00",
-      "attempt": 0,
-      "id": "810ba2334f6ba2ed4c667850571d3ad4e940b13f",
-      "kind": "trend",
-      "model": "openai-api:gpt-6-luna",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 70.2,
-        "avg_sentence": 35.1,
-        "long_share": 0.0,
-        "max_paragraph": 103,
-        "paragraphs": 6,
-        "sentences": 12
-      },
-      "score": 100,
-      "source": "trends",
-      "title": "スタディサプリ",
-      "warnings": [
-        "見出しが52字（目安40字以内）。一覧・カードでは前半だけを出す"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-19T07:59:45.863654+00:00",
-      "attempt": 1,
-      "id": "e2d9850cdb12842f",
-      "kind": "broad",
-      "model": "gemini-3.5-flash",
-      "problems": [
-        "タイトルの「氏名やカード情報は対象外」→カード情報は連携されていませんが、氏名について元記事が述べているのは「流出は確認されていない」であり、対象外と断定できません。",
-        "リードや本文の「氏名や住所、メールアドレスは流出対象に含まれておらず」→元記事はこれらの流出が確認されていないとしており、流出対象外とまでは述べていません。",
-        "本文の「11月19日までにツールとの連携を停止・無効化」→停止・無効化したことは確認できますが、停止日が11月19日までだったという記載はありません。",
-        "FAQの「カードの変更や停止手続きは不要」および仕事・お金欄の「差し替え手続きなどは原則不要」→カード情報がKARTEに連携されていないことは元記事にありますが、カード変更等の手続きが不要との案内はありません。",
-        "本文冒頭の「COCORO STOREを利用したことがある人は」→対象はKARTEに連携していた顧客情報であり、過去に利用したことがある人全員が対象だとは確認できません。",
-        "仕事・お金欄の「架空請求」→元記事は不審なメールや連絡、身に覚えのないURLへの注意を呼びかけていますが、架空請求については触れていません。"
-      ],
-      "readability": {
-        "avg_paragraph": 109.2,
-        "avg_sentence": 62.4,
-        "long_share": 0.357,
-        "max_paragraph": 258,
-        "paragraphs": 8,
-        "sentences": 14
-      },
-      "score": 67,
-      "source": "radar-official",
-      "title": "シャープ株式会社",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（COCORO）",
-        "読みやすさ: 文が長い（1文の平均 62.4字・60字超の文が 36% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "読みやすさ: 段落が長い（平均 109.2字・最長 258字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": false,
       "at": "2026-11-19T08:05:14.567879+00:00",
@@ -31991,6 +31949,57 @@
       "title": "大韓民国及び中華人民共和国（香港地域及びマカオ地域を除く。）を原産地とする水酸化カリウムに対して不当廉売関税を課する期間を延長することについての答申 （令和8年",
       "warnings": [
         "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-20T23:30:40.962610+00:00",
+      "attempt": 1,
+      "id": "b60df0943a50d0a1",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "リードの「クレジットカード情報は対象外です」や要点の「カード情報は対象外」は、元記事が「漏えいは現時点で確認されていない」としている内容を、漏えいしていないと断定しています。",
+        "「約1,518万人の会員は郵便番号・年齢・性別が対象で、連絡先は含まれていません」は、約1,518万人の中にメールアドレス・電話番号も対象となる約4.7万人が含まれるという記事内の説明と矛盾します。",
+        "「偽のメールやSMSが届きやすいのは、この人たちだと考えられます」は、連絡先情報が対象となった人に偽連絡が届きやすいという根拠や見通しを、元記事は示していません。",
+        "「ZOZOはここで会員情報などを管理していました」は、KARTE上で管理していたのが一部の情報である点がやや伝わりにくく、広範な会員情報を管理していたように読めます。"
+      ],
+      "readability": {
+        "avg_paragraph": 85.1,
+        "avg_sentence": 38.7,
+        "long_share": 0.03,
+        "max_paragraph": 163,
+        "paragraphs": 15,
+        "sentences": 33
+      },
+      "score": 76,
+      "source": "fast",
+      "title": "当社利用の外部サービス「KARTE」への不正アクセスについて - 株式会社ZOZO",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（WEAR・SMS）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-20T23:31:27.845323+00:00",
+      "attempt": 1,
+      "id": "b60df0943a50d0a1",
+      "kind": "broad",
+      "model": "strike:本文 1 文",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 73.3,
+        "avg_sentence": 37.9,
+        "long_share": 0.0,
+        "max_paragraph": 163,
+        "paragraphs": 15,
+        "sentences": 29
+      },
+      "score": 98,
+      "source": "fast",
+      "title": "当社利用の外部サービス「KARTE」への不正アクセスについて - 株式会社ZOZO",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（WEAR・SMS）"
       ]
     }
   ],
