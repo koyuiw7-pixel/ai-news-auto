@@ -10490,12 +10490,6 @@
       "skipped": true,
       "url": "https://www.boj.or.jp/statistics/dl/depo/kashi/kasi2610.pdf"
     },
-    "50154ae2203c3887": {
-      "at": "2026-11-06T05:21:14.214675+00:00",
-      "reason": "prefilter: 価値の薄いお知らせ（の開催）",
-      "skipped": true,
-      "url": "https://www.boj.or.jp/about/release_2026/rel261106a.htm"
-    },
     "503d13ad7458a3d97f939451ffe9a929907ef77c": {
       "at": "2026-11-17T09:31:32.120875+00:00",
       "kind": "trend",
@@ -16247,15 +16241,6 @@
       "trendLane": true,
       "url": "https://news.web.nhk/newsweb/na/nd-20261114de75976"
     },
-    "a874e3b4a06b5092": {
-      "at": "2026-11-06T05:23:48.145293+00:00",
-      "mix": "other",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "score": 95,
-      "section": "business",
-      "slug": "ping-an-quick-service-ai-agent",
-      "url": "https://www.nli-research.co.jp/topics_detail1/id=87269?site=nli"
-    },
     "a89e1f88c60f52a5": {
       "at": "2026-11-17T05:09:08.301230+00:00",
       "costUsd": 0.0069,
@@ -16752,12 +16737,6 @@
       "section": "ai",
       "slug": "claude-interactive-connectors-open-apps",
       "url": "https://claude.com/ja/resources/articles/interactive-connectors-full-tool"
-    },
-    "b0e817bd7ec6205b": {
-      "at": "2026-11-06T05:21:28.240945+00:00",
-      "reason": "dedupe: 見出しが類似（0.71）: 金融研究所ディスカッション・ペーパー・シリーズ（E-Series : 英語版）（",
-      "skipped": true,
-      "url": "https://www.boj.or.jp/research/imes/dps/dps26.htm"
     },
     "b103ad4b765b408e": {
       "at": "2026-11-09T01:34:53.222411+00:00",
@@ -20812,13 +20791,6 @@
       "skipped": true,
       "url": "https://www.nintendo.com/jp/topics/article/5280ccbd-f23c-4820-8cbb-6f1e9bdf5998"
     },
-    "f1634bc812752b21": {
-      "at": "2026-11-06T05:21:28.238967+00:00",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "reason": "元記事は日本銀行金融研究所のディスカッション・ペーパーの一覧ページで、個々の研究の中身は抜粋に含まれていません。個別論文の要旨だけでは、1,600字以上の本文を水増しせずに書けないため見送ります。",
-      "skipped": true,
-      "url": "https://www.boj.or.jp/research/imes/dps/dps26_e.htm"
-    },
     "f186579694cf5b321349c08fd77ca41c4da7fcf8": {
       "at": "2026-11-19T23:52:22.385490+00:00",
       "reason": "trend: 重複: 同じ言葉の記事がある（ukraine-nato-donbas-peace-proposal）",
@@ -21050,6 +21022,20 @@
       "section": "ai",
       "slug": "pokemon-future-ishihara-app-store",
       "url": "https://apps.apple.com/jp/story/id1861698108"
+    },
+    "f4de69806535b424": {
+      "at": "2026-11-20T05:24:50.412159+00:00",
+      "breaking": true,
+      "costUsd": 0.0535,
+      "foreignAi": true,
+      "intent": "breaking",
+      "major": true,
+      "mix": "ai_consumer",
+      "model": "openai-api:gpt-6.1-terra",
+      "score": 96,
+      "section": "ai",
+      "slug": "chatgpt-for-sales-plugins",
+      "url": "https://openai.com/ja-JP/index/introducing-chatgpt-for-sales/"
     },
     "f53fd8b42eaaef82": {
       "at": "2026-11-12T15:09:10.235159+00:00",
@@ -24490,67 +24476,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-18T05:09:55.372762+00:00",
-      "attempt": 1,
-      "id": "1abfd671891da31f",
-      "kind": "broad",
-      "model": "claude:sonnet",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 91.6,
-        "avg_sentence": 48.0,
-        "long_share": 0.143,
-        "max_paragraph": 135,
-        "paragraphs": 11,
-        "sentences": 21
-      },
-      "score": 99,
-      "source": "fast",
-      "title": "個人情報漏えいの可能性に伴う当社対応について",
-      "warnings": [
-        "見出しが49字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（KARTE・SMS・TEL）",
-        "読みやすさ: 文が長い（1文の平均 48.0字・60字超の文が 14% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-18T05:10:24.312774+00:00",
-      "attempt": 0,
-      "id": "1abfd671891da31f",
-      "kind": "broad",
-      "model": "openai-api:gpt-6-luna",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 93.3,
-        "avg_sentence": 39.5,
-        "long_share": 0.077,
-        "max_paragraph": 144,
-        "paragraphs": 11,
-        "sentences": 26
-      },
-      "score": 100,
-      "source": "fast",
-      "title": "個人情報漏えいの可能性に伴う当社対応について",
-      "warnings": [
-        "見出しが49字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（KARTE・SMS・TEL）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-18T05:43:36.899796+00:00",
-      "attempt": 1,
-      "id": "de4a7480db965082",
-      "kind": "update",
-      "model": "openai-api:gpt-6.1-terra",
-      "problems": [],
-      "score": 100,
-      "source": "radar-official",
-      "title": "Microsoft makes Word, Excel, and PowerPoint generally available inside Copilot, "
-    },
     {
       "accepted": false,
       "at": "2026-11-18T06:00:50.782272+00:00",
@@ -32075,6 +32000,82 @@
       "warnings": [
         "見出しが46字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（ISOC・MDASH）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-20T05:23:52.011865+00:00",
+      "attempt": 1,
+      "id": "f4de69806535b424",
+      "kind": "ai",
+      "model": "openai-api:gpt-6.1-terra",
+      "problems": [
+        "「Salesプラグインの対象プランと料金は、まだ発表されていません」→ 料金は元記事に記載がありませんが、ChatGPT BusinessとEnterpriseの管理者がチーム向けに有効化できると明記されているため、対象プランが未発表という記述は誤りです。"
+      ],
+      "readability": {
+        "avg_paragraph": 94.9,
+        "avg_sentence": 45.4,
+        "long_share": 0.13,
+        "max_paragraph": 120,
+        "paragraphs": 11,
+        "sentences": 23
+      },
+      "score": 84,
+      "source": "openai-news",
+      "title": "OpenAI、営業の作業をサポートするプラグイン「ChatGPT for Sales」をリリース",
+      "warnings": [
+        "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "読みやすさ: 文が長い（1文の平均 45.4字・60字超の文が 13% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-20T05:24:25.624879+00:00",
+      "attempt": 1,
+      "id": "f4de69806535b424",
+      "kind": "ai",
+      "model": "openai-api:gpt-6-luna",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 94.9,
+        "avg_sentence": 45.4,
+        "long_share": 0.13,
+        "max_paragraph": 120,
+        "paragraphs": 11,
+        "sentences": 23
+      },
+      "score": 96,
+      "source": "openai-news",
+      "title": "OpenAI、営業の作業をサポートするプラグイン「ChatGPT for Sales」をリリース",
+      "warnings": [
+        "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "読みやすさ: 文が長い（1文の平均 45.4字・60字超の文が 13% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-20T05:24:50.383578+00:00",
+      "attempt": 0,
+      "id": "f4de69806535b424",
+      "kind": "ai",
+      "model": "",
+      "problems": [
+        "読みやすさ基準外のまま受理: 書き直し後の確認に不合格: タイトルの「30以上の連携機能」→ 元記事が30以上としているのは新規・機能強化されたパートナープラグインであり、「連携機能」と数えるのは内容を取り違えています。"
+      ],
+      "readability": {
+        "avg_paragraph": 94.9,
+        "avg_sentence": 45.4,
+        "long_share": 0.13,
+        "max_paragraph": 120,
+        "paragraphs": 11,
+        "sentences": 23
+      },
+      "score": 96,
+      "source": "openai-news",
+      "title": "OpenAI、営業の作業をサポートするプラグイン「ChatGPT for Sales」をリリース",
+      "warnings": [
+        "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "読みやすさ: 文が長い（1文の平均 45.4字・60字超の文が 13% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
       ]
     }
   ],
