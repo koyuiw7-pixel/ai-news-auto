@@ -6169,6 +6169,19 @@
       "slug": "softbank-business-internet-line-selection",
       "url": "https://www.softbank.jp/sbnews/entry/2026/11/09/000000"
     },
+    "0b2744e224d2a974": {
+      "at": "2026-11-20T22:56:31.895596+00:00",
+      "costUsd": 0.0466,
+      "foreignAi": true,
+      "intent": "breaking",
+      "major": true,
+      "mix": "ai_consumer",
+      "model": "openai-api:gpt-6.1-terra",
+      "score": 98,
+      "section": "ai",
+      "slug": "claude-riemann-zeta-research",
+      "url": "https://www.anthropic.com/research/riemann-zeta"
+    },
     "0b420e4a633bfb3f": {
       "at": "2026-11-09T08:32:11.403924+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（部会）",
@@ -24326,80 +24339,6 @@
   "quality_log": [
     {
       "accepted": true,
-      "at": "2026-11-19T06:18:17.279973+00:00",
-      "attempt": 1,
-      "id": "81bc37a7defdb281",
-      "kind": "broad",
-      "model": "openai-api:gpt-6-luna",
-      "problems": [
-        "「神奈川県の被災自治体は通知された内容に沿って手続きを進めます」→自治体が実際にその手順で進めるという記述は元記事にありません。",
-        "「災害査定とは、災害で壊れた公共の施設を国の補助で復旧するとき」→元記事は災害査定の効率化を説明していますが、国の補助による復旧という制度説明までは記載していません。"
-      ],
-      "readability": {
-        "avg_paragraph": 75.7,
-        "avg_sentence": 40.4,
-        "long_share": 0.1,
-        "max_paragraph": 125,
-        "paragraphs": 16,
-        "sentences": 30
-      },
-      "score": 93,
-      "source": "mlit-press",
-      "title": "令和８年梅雨前線豪雨から台風第25号までの一連の気象現象による災害（仮称）で被災した、道路・河川等の迅速な復旧を支援～大規模災害時の災害査定の効率化（簡素化）の",
-      "warnings": [
-        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-19T06:19:49.800474+00:00",
-      "attempt": 1,
-      "id": "bc11dd74f5077eadcf08a0b4e50f34754d6b00fc",
-      "kind": "trend",
-      "model": "openai-api:gpt-6-luna",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 107.6,
-        "avg_sentence": 44.8,
-        "long_share": 0.083,
-        "max_paragraph": 145,
-        "paragraphs": 5,
-        "sentences": 12
-      },
-      "score": 100,
-      "source": "trends",
-      "title": "砲弾"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-19T06:32:40.774279+00:00",
-      "attempt": 1,
-      "id": "1c7834b8f8e82724",
-      "kind": "broad",
-      "model": "claude:sonnet",
-      "problems": [
-        "「スーパーグレートを保有・運行している人が対象です」→対象車はクラッチハウジングのシリアル番号を確認して判定されるため、スーパーグレートの保有者・運行者全員が対象と読めるのは誤りです。",
-        "「リコール（無料の回収・修理）」→元記事・確認済み資料に無料との記載はなく、費用を断定しています。",
-        "「公式ヘルプの手順を確認してください」→リンク先は国土交通省の報道発表で、対象確認の手順を案内するヘルプページとは確認できません。"
-      ],
-      "readability": {
-        "avg_paragraph": 76.3,
-        "avg_sentence": 34.7,
-        "long_share": 0.0,
-        "max_paragraph": 132,
-        "paragraphs": 10,
-        "sentences": 22
-      },
-      "score": 68,
-      "source": "mlit-press",
-      "title": "リコールの届出について（三菱 ふそうスーパーグレート）",
-      "warnings": [
-        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す"
-      ]
-    },
-    {
-      "accepted": true,
       "at": "2026-11-19T06:33:14.769249+00:00",
       "attempt": 1,
       "id": "1c7834b8f8e82724",
@@ -31942,6 +31881,71 @@
         "初めて出たところで言い換えていない略語（GSS）",
         "work_money（「仕事・お金にどう活かせる？」欄）が無い"
       ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-20T22:55:50.580334+00:00",
+      "attempt": 1,
+      "id": "0b2744e224d2a974",
+      "kind": "ai",
+      "model": "openai-api:gpt-6.1-terra",
+      "problems": [
+        "「Aryan氏らによる研究とBombieri氏の研究」→ 元記事はAryanの研究に加え、Baluyot、Goldston、Suriajaya、Turnage-Butterbaughらの研究も挙げており、研究者の帰属と組み合わせた先行研究の説明が不正確です。"
+      ],
+      "readability": {
+        "avg_paragraph": 92.8,
+        "avg_sentence": 44.7,
+        "long_share": 0.111,
+        "max_paragraph": 123,
+        "paragraphs": 13,
+        "sentences": 27
+      },
+      "score": 91,
+      "source": "anthropic-news",
+      "title": "Claude has improved on a longstanding lower bound for the fraction of zeros of t"
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-20T22:56:10.620432+00:00",
+      "attempt": 1,
+      "id": "0b2744e224d2a974",
+      "kind": "ai",
+      "model": "openai-api:gpt-6-luna",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 96.6,
+        "avg_sentence": 46.5,
+        "long_share": 0.148,
+        "max_paragraph": 152,
+        "paragraphs": 13,
+        "sentences": 27
+      },
+      "score": 98,
+      "source": "anthropic-news",
+      "title": "Claude has improved on a longstanding lower bound for the fraction of zeros of t",
+      "warnings": [
+        "読みやすさ: 文が長い（1文の平均 46.5字・60字超の文が 15% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-20T22:56:31.869142+00:00",
+      "attempt": 0,
+      "id": "0b2744e224d2a974",
+      "kind": "ai",
+      "model": "openai-api:gpt-6-luna",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 98.8,
+        "avg_sentence": 38.9,
+        "long_share": 0.061,
+        "max_paragraph": 168,
+        "paragraphs": 13,
+        "sentences": 33
+      },
+      "score": 98,
+      "source": "anthropic-news",
+      "title": "Claude has improved on a longstanding lower bound for the fraction of zeros of t"
     }
   ],
   "short_text_retry": {

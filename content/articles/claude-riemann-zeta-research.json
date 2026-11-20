@@ -1,0 +1,147 @@
+{
+  "slug": "claude-riemann-zeta-research",
+  "sourceType": "web",
+  "sourceUrl": "https://www.anthropic.com/research/riemann-zeta",
+  "sourceName": "Anthropic公式ニュース",
+  "title": "「Claude」が数学の未解決問題で成果　ゼロ点の割合の下限を67.2％に",
+  "seoTitle": "Claudeの数学研究　リーマン予想に関連する成果と検証",
+  "threadsPost": "数学研究にAIを使う人に、知っておいてほしい話です。\n\n未公開のClaudeが、リーマン予想に関連する割合の下限を41.6％から67.2％に引き上げたとAnthropicが説明しています。\n予想そのものは解けておらず、研究版は未公開です。\n\nAIの研究結果は、どこまで人が確かめるべきだと考えますか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "line",
+      "question": "AIの研究結果は、どこまで人が確かめるべきだと考えますか？"
+    },
+    {
+      "pattern": "ab",
+      "question": "AIの回答を確かめるとき、先に見るのは出典と計算過程のどちらですか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "honest",
+  "lede": "未公開の「Claude」研究版が、数学の未解決問題「リーマン予想」に関連する成果を得ました。Anthropicが2026年8月10日に公表した内容では、予想を満たすゼロ点の割合の下限が41.6％から67.2％に上がりました。予想そのものは解決しておらず、研究版の提供時期もまだ発表されていません。",
+  "description": "未公開のClaude研究版が、リーマン予想に関連するゼロ点の割合の下限を41.6％から67.2％に引き上げたとAnthropicが説明しました。予想自体は未解決です。研究の進め方と数学者による検証、通常版との違いを整理します。",
+  "keywords": [
+    "Claude リーマン予想",
+    "Claude 数学研究",
+    "Anthropic リーマンゼータ関数",
+    "リーマン予想 AI",
+    "ゼロ点 67.2%",
+    "Claude 未公開研究版",
+    "Claude Code 数学",
+    "AI 数学 証明",
+    "Lean 形式的証明"
+  ],
+  "tags": [
+    "Claude",
+    "Anthropic",
+    "生成AI",
+    "数学研究",
+    "AIエージェント"
+  ],
+  "highlights": [
+    "Claudeの未公開研究版が、リーマン予想を満たすゼロ点の割合の下限を67.2％に引き上げたとAnthropicは説明",
+    "Claude Codeで約60のAIを使い、先行研究の確認や証明の検討を進め、論文も作成した",
+    "Anthropicの数学者が論文を検証し、ClaudeはLeanによる形式的な証明も作成した"
+  ],
+  "timetable": [],
+  "verdict": {
+    "status": "demo",
+    "japan": "unknown",
+    "price": "不明",
+    "free": null,
+    "audience": "数学研究者",
+    "take": "研究内容を調べる人は論文と証明を確認し、研究版を使いたい人は提供情報を待つのが適切です。",
+    "judgedAt": "2026-11-20T22:55:37.475406+00:00"
+  },
+  "workMoney": {
+    "relevance": "low",
+    "points": [
+      "一般の仕事や支出への直接の影響は小さく、数学研究に関わる人は公開論文と証明を確認できます。"
+    ]
+  },
+  "body": "数学研究者は、Claudeが作成した論文と証明をAnthropicの公式発表から読めます。今回の成果に使われたのは未公開の研究版で、一般向けの提供ではありません。\n\nリーマン予想は、素数の分布に関わる未解決の数学の問題です。焦点となるのは、リーマンゼータ関数という関数の値がゼロになる点です。\n\n予想は、素数の分布を決めるゼロ点が、すべて特定の直線上にあるとするものです。Claudeが取り組んだ関連問題は、その直線上にあるゼロ点の割合を扱います。少なくともどこまで言えるかを調べるものでした。\n\nAnthropic公式ニュースによると、従来の下限は41.6％でした。Claudeは先行研究を組み合わせ、下限を67.2％に引き上げたとしています。これは全てのゼロ点が直線上にあると証明したことを意味しません。\n\nClaudeは、Aryan氏やBaluyot氏、Goldston氏、Suriajaya氏らの研究を組み合わせました。Turnage-Butterbaugh氏らの研究と、Bombieri氏の研究も組み合わせました。直線上と直線外のゼロ点をそれぞれ扱いました。二次形式（数式で対象の性質を表す仕組み）を使って不等式を導いたと説明しています。\n\n## 日本で使えるClaude Codeと未公開の研究版\n\n通常のClaudeとClaude Codeは日本でも使えます（当サイトの確認：11/3）。ただし、今回の成果を出した研究版は未公開です。\n\nAnthropicのスタッフはClaudeにリーマン予想への挑戦を依頼しました。数学的な方針の選択はモデルに任せました。Claudeは最初に650の案を試しましたが、いずれもうまくいきませんでした。\n\n再挑戦では、Claude Code上で約60のエージェント（自分で手順を進めるAI）を連携させました。約1日半をかけて数値の確認や互いの検証を進めています。\n\nClaudeは成果を得た後も、反例を探し、先行研究を調べました。別のエージェントに最初から証明させました。2回のセッションで使った出力は、合計3,100万トークン（AIが文字を数える単位）でした。\n\nAnthropicの数学者Levent Alpöge氏とRalph Furman氏は、Claudeの論文を調べて検証しました。ClaudeはスタッフのEric Easley氏とともに、Leanでも結果を証明しています。Leanは、証明を形式的に記述する仕組みです。\n\nAnthropicはBrian Conrey氏とDan Goldston氏という専門家にも論文を確認してもらったと説明しています。一方、今回の手法からリーマン予想の証明につながるとは考えていないとしています。\n\n## サイソクの見方：研究成果の確認と研究版の利用は分けて考える\n\n数学の内容を確かめたい人は、Anthropicが公開したClaudeの論文と形式的な証明を読むのがよいでしょう。Claude Codeで同じ研究版を使いたい人は、今回のモデルが未公開であるため、提供情報を待つ必要があります。\n\nAnthropicの説明では、今回の成果は先行研究と数学者による検証を伴っています。AIだけでリーマン予想を解決した事例ではなく、関連問題の研究成果として読むのが適切です。\n\n## まだ分からないこと\n\n- 今回使われたClaude研究版の提供時期は、まだ発表されていません。\n\n出典：[Anthropic公式ニュース](https://www.anthropic.com/research/riemann-zeta)",
+  "easy": "## ひとことで言うと\n\n未公開のClaude研究版が、リーマン予想に関係する数学の成果を出したとAnthropicは説明しています。予想そのものが解けたわけではありません。\n\nリーマン予想は、素数の並び方に関わる未解決の問題です。今回Claudeは、予想が正しいと分かっている範囲に関する下限を引き上げました。\n\nClaudeは複数のAIに調査や確認を分担させ、先行研究を組み合わせました。Anthropicの数学者も論文を検証し、証明を短くまとめた文書を作っています。\n\n通常のClaudeとClaude Codeは日本でも使えます。ただし、今回使われた研究版は未公開です（当サイトの確認：11/3）。",
+  "channel": "Anthropic公式ニュース",
+  "channelId": "",
+  "channelSlug": "anthropic-news",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "Claude has improved on a longstanding lower bound for the fraction of zeros of the Riemann zeta function that satisfy the Riemann hypothesis",
+  "publishedAt": "2026-11-20T22:53:24.629000+00:00",
+  "generatedAt": "2026-11-20T22:55:37.475395+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/claude-riemann-zeta-research-5ac13408.jpg",
+  "model": "openai-api:gpt-6.1-terra",
+  "affiliates": [],
+  "newsType": "general",
+  "faq": [
+    {
+      "q": "Claudeの数学論文は公開後に更新されましたか？",
+      "a": "Anthropicによると、Claudeは証明を分かりやすくし、研究の歴史的な背景を加えるために論文を改訂しました。公式記事は2026年8月13日に更新されています。"
+    }
+  ],
+  "todayActions": [
+    "Anthropicの公式発表からClaudeの論文と形式的な証明を開き、研究内容を確認する",
+    "Anthropicが公開したClaudeの作業記録で、先行研究の確認と証明の進め方を読む"
+  ],
+  "qualityBar": {
+    "score": 6,
+    "missing": [
+      1,
+      5
+    ],
+    "notes": {
+      "1": "最初の3行にだれにが無い",
+      "5": "することは書いてあるが、どこで（窓口・ページ）・いつまでが無い"
+    },
+    "checkedAt": "2026-11-20T22:56:31+00:00",
+    "before": [
+      1,
+      5
+    ],
+    "repaired": false,
+    "repairLater": true
+  },
+  "qualityScore": 98,
+  "detectedAt": "2026-11-20T22:53:24+00:00",
+  "fastLane": true,
+  "layout": "noir",
+  "summaryLine": "Claudeの未公開研究版が、リーマン予想を満たすゼロ点の割合の下限を**67.2％**に引き上げたとAnthropicは説明",
+  "bodyImages": [
+    {
+      "src": "https://ai-tech-express.jp/img/claude-riemann-zeta-research-fig1-5e964b21.jpg",
+      "width": 1200,
+      "height": 675,
+      "kind": "hero",
+      "credit": "Anthropic",
+      "sourceUrl": "https://www.anthropic.com/research/riemann-zeta",
+      "original": "https://assets.claude.com/bef57997da7ed04887fc161d08313e997c35b3a6.jpg?w=1920&q=75&fm=webp&fit=max"
+    }
+  ],
+  "imageCredit": {
+    "kind": "official",
+    "org": "Anthropic",
+    "provider": "Anthropic公式ニュース",
+    "sourceUrl": "https://www.anthropic.com/research/riemann-zeta",
+    "original": "https://assets.claude.com/2a5bfa6a6e156afe9da451ec5c38e6f37f2a34f0.jpg",
+    "width": 1200,
+    "height": 630,
+    "at": "2026-11-20T22:56:40+00:00"
+  },
+  "heroOk": true,
+  "imageFocus": {
+    "x": 0.597,
+    "y": 0.425,
+    "box": [
+      0.194,
+      0.0,
+      1.0,
+      0.851
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/claude-riemann-zeta-research-5ac13408.jpg"
+  }
+}
