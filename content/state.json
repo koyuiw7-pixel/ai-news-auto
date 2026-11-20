@@ -1929,7 +1929,9 @@
       "url": "https://www.mof.go.jp/about_mof/councils/fiscal_system_council/sub-of_filp/proceedings/material/zaitoa20261117.html"
     }
   },
-  "major_tries": {},
+  "major_tries": {
+    "568782698f4b9cb3": 1
+  },
   "pi_reopened": {
     "05b7c979204565d2": "2026-11-19T18:21:01.412347+00:00",
     "37d71722552567cd": "2026-11-19T18:21:01.412347+00:00",
@@ -6664,12 +6666,6 @@
       "trendLane": true,
       "url": "https://news.yahoo.co.jp/articles/b642188f816bfbaa7fa235e88f4d203124212f04"
     },
-    "1583ff136c8cf96e": {
-      "at": "2026-11-06T05:01:15.377484+00:00",
-      "reason": "prefilter: 価値の薄いお知らせ（審議会）",
-      "skipped": true,
-      "url": "https://www.mhlw.go.jp/stf/newpage_77191.html"
-    },
     "15a7df0fab82f311": {
       "at": "2026-11-07T15:31:54.986757+00:00",
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・暮らしの交通/天気/値上げ/障害/給付/発売・日本のスポーツのどれでもない）",
@@ -7955,12 +7951,6 @@
       "trendKeyword": "常磐道 事故 速報",
       "trendLane": true,
       "url": "https://news.yahoo.co.jp/pickup/6602763"
-    },
-    "2823e8997f1efd7b": {
-      "at": "2026-11-06T05:01:15.375233+00:00",
-      "reason": "prefilter: 価値の薄いお知らせ（求人）",
-      "skipped": true,
-      "url": "https://lifull.com/news/50904/"
     },
     "28258fa4fb0f947b": {
       "at": "2026-11-06T19:18:02.541447+00:00",
@@ -10246,12 +10236,6 @@
       "reason": "quality: 記事の基準に足りない（自動で手直ししても残った）: 5.読者がすること（何を・どこで・期限）（することは書いてあるが、どこで（窓口・ページ）・いつまでが無い）",
       "skipped": true,
       "url": "https://topics.smt.docomo.ne.jp/latestnews/keywords/4633738dabc9c54ff4db6817e45a8d727b4d1cc8a195590ce2b17856d81a0eab"
-    },
-    "4be4160850983eb6": {
-      "at": "2026-11-06T05:01:15.377472+00:00",
-      "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・日本のスポーツのどれでもない）",
-      "skipped": true,
-      "url": "https://www.soumu.go.jp/menu_news/kaiken/01koho01_02001590.html"
     },
     "4c00daffcb3d6bea": {
       "at": "2026-11-07T19:15:33.109205+00:00",
@@ -18995,12 +18979,6 @@
       "skipped": true,
       "url": "https://www.sumitomo-rd.co.jp/news/2026111122520/"
     },
-    "d4bb9d43157ae4ed": {
-      "at": "2026-11-06T05:01:15.385085+00:00",
-      "reason": "prefilter: 価値の薄いお知らせ（審議会）",
-      "skipped": true,
-      "url": "https://www.mhlw.go.jp/stf/newpage_77210.html"
-    },
     "d4bbe016faffe69d": {
       "at": "2026-11-10T02:51:45.097677+00:00",
       "costUsd": 0.0071,
@@ -24508,32 +24486,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-18T04:44:55.085913+00:00",
-      "attempt": 0,
-      "id": "5b52b6fbc9845f31",
-      "kind": "broad",
-      "model": "",
-      "problems": [
-        "読みやすさ基準外のまま受理: 書き直し後の確認に不合格: タイトル・リードの「系列ECサイト」→元記事が述べているのはユニフォームネクストが運営するECサイトであり、系列会社のサイトだとは確認できません。; タイトルの「最大170万件」→元記事の上限は1,701,006件で、170万件をわずかに上回ります。本文には正確"
-      ],
-      "readability": {
-        "avg_paragraph": 90.2,
-        "avg_sentence": 47.5,
-        "long_share": 0.211,
-        "max_paragraph": 130,
-        "paragraphs": 10,
-        "sentences": 19
-      },
-      "score": 100,
-      "source": "fast",
-      "title": "ユニフォームネクストの情報流出に関するお知らせ",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（EC・SMS）",
-        "読みやすさ: 文が長い（1文の平均 47.5字・60字超の文が 21% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-18T04:48:15.435861+00:00",
@@ -32089,6 +32041,31 @@
       "title": "Samsung Galaxy Ringの進化した睡眠時無呼吸検知機能 米国FDAおよび韓国MFDSの承認を受け提供開始",
       "warnings": [
         "初めて出たところで言い換えていない略語（FDA・MFDS）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-20T05:12:01.582607+00:00",
+      "attempt": 1,
+      "id": "568782698f4b9cb3",
+      "kind": "ai",
+      "model": "openai-api:gpt-6.1-terra",
+      "problems": [
+        "題名で料金・価格を約束しているのに、本文に金額（円・ドル・無料など）が無い。元記事の金額を書くか、題名から料金の話を外す"
+      ],
+      "readability": {
+        "avg_paragraph": 84.8,
+        "avg_sentence": 40.4,
+        "long_share": 0.048,
+        "max_paragraph": 127,
+        "paragraphs": 20,
+        "sentences": 42
+      },
+      "score": null,
+      "source": "microsoft-365-blog",
+      "title": "Security for the agentic era, powered by Microsoft Perception  | Microsoft Secur",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（MDASH）"
       ]
     }
   ],
