@@ -81,9 +81,9 @@
     }
   ],
   "todayActions": [
-    "ピーチの登録メールアドレス宛てに、11月20日以降のお詫びメールが届いていないか確認する",
-    "ピーチを名乗るメールやSMSの、身に覚えのないURLや添付ファイルは開かない",
-    "失効ピーチポイントなどの通知が必要なときは、メールのURLではなくピーチの公式サイトから確認する"
+    "ピーチに登録したメールアドレスで、11月20日以降のお詫びとお知らせを確認する",
+    "ピーチを名乗る連絡のリンクは使わず、公式サイトをブックマークから開く",
+    "不審なサイトにIDやパスワードを入力した場合は、使っている全サービスで変更する"
   ],
   "relatedSlugs": [
     "ymir-link-cuenote-fc-breach-third-report"
@@ -144,5 +144,81 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/peach-ymirlink-cuenote-leak-figure-78e426f5.jpg"
-  }
+  },
+  "todaySteps": [
+    {
+      "action": "ピーチに登録したメールアドレスで、11月20日以降のお詫びとお知らせを確認する",
+      "source": "https://www.flypeach.com/application/files/3617/9515/4415/20261120_INFO_JP.pdf",
+      "steps": [
+        "ピーチに登録したメールアドレスを開く",
+        "11月20日以降のメールを確認する",
+        "お詫びとお知らせが届いているか探す"
+      ],
+      "url": "https://www.flypeach.com/application/files/3617/9515/4415/20261120_INFO_JP.pdf"
+    },
+    {
+      "action": "ピーチを名乗る連絡のリンクは使わず、公式サイトをブックマークから開く",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "steps": [
+        "メールやSMS内のリンクをクリックしない",
+        "公式サイトをブックマークから開く"
+      ],
+      "url": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html"
+    },
+    {
+      "action": "不審なサイトにIDやパスワードを入力した場合は、使っている全サービスで変更する",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "steps": [
+        "入力したIDやパスワードを確認する",
+        "同じ情報を使う全サービスで変更する"
+      ],
+      "url": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html"
+    }
+  ],
+  "cause": {
+    "text": "委託先ユミルリンク社の「Cuenote FC」のサーバー環境で第三者からの不正アクセスが検知され、サーバー停止とサービス全面停止に至りました。ランサムウェアによるものではないと確認されていますが、侵入経路や詳細な影響範囲は調査中です。",
+    "status": "investigating",
+    "source": "https://www.flypeach.com/application/files/3617/9515/4415/20261120_INFO_JP.pdf"
+  },
+  "worries": [
+    {
+      "q": "カード番号やパスポート情報まで漏れてしまったの？",
+      "a": "ピーチは、クレジットカード情報やパスポート情報などの重要情報は今回の漏えい対象に一切含まれていないと発表しています。",
+      "source": "https://www.flypeach.com/application/files/3617/9515/4415/20261120_INFO_JP.pdf",
+      "action": "カードの利用明細に心当たりのない支払いがあれば、カード会社に相談してください。",
+      "actionSource": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "actionGeneral": true
+    },
+    {
+      "q": "予約の変更や、飛行機の運航に影響が出るの？",
+      "a": "ピーチは、予約（予約変更を含む）や航空機の運航への影響はないと発表しています。",
+      "source": "https://www.flypeach.com/application/files/3617/9515/4415/20261120_INFO_JP.pdf",
+      "action": "予約や運航については、今回の漏えいによる影響がないというピーチの発表を確認してください。"
+    },
+    {
+      "q": "漏れた情報が、すでに不正利用されたりしているの？",
+      "a": "ピーチは、現時点で本件に係る個人情報の不正利用や二次被害の発生は確認されていないとしています。",
+      "source": "https://www.flypeach.com/application/files/3617/9515/4415/20261120_INFO_JP.pdf",
+      "action": "ピーチを装った身に覚えのないメールやSMSのURL、添付ファイルは開かないでください。"
+    },
+    {
+      "q": "届いたお詫びメールが、本当にピーチからのものか不安です",
+      "a": "対象者には登録メールアドレス宛てにお詫びとお知らせが順次送られます。一方、メールの送信元名称やアドレスは偽装できるため、それだけで真偽を判断するのは困難です。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "action": "メール内のリンクは使わず、公式サイトをブックマークから開いて情報を確認してください。",
+      "general": true
+    },
+    {
+      "q": "失効ポイントのお知らせや返金の手続きはどうなるの？",
+      "a": "失効ピーチポイントのお知らせなどの自動配信メールと、空港などで使う返金払い戻しフォームは停止中です。返金手続きが発生した場合は、代替運用で対応するとしています。",
+      "source": "https://www.flypeach.com/application/files/3617/9515/4415/20261120_INFO_JP.pdf",
+      "action": "返金手続きが必要になった場合は、ピーチが案内する代替運用で手続きを進めてください。"
+    }
+  ],
+  "depthHeadings": {
+    "cause": "侵入経路は調査中、分かっている範囲",
+    "steps": "通知確認と不審な連絡への備え",
+    "worries": "カードや予約、通知メールへの影響"
+  },
+  "depthAt": "2026-11-20T06:42:08+00:00"
 }

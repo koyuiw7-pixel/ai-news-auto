@@ -70,7 +70,7 @@
   "videoTitle": "【最終報】大起水産公式アプリへの不正アクセスに関する調査結果および再発防止策について",
   "publishedAt": "2026-11-15T15:00:00+00:00",
   "generatedAt": "2026-11-20T06:16:42.326421+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/daiki-suisan-app-breach-final-report-figure-e66ce0f2.jpg",
   "model": "claude:sonnet",
   "affiliates": [],
   "newsType": "security",
@@ -89,9 +89,9 @@
     }
   ],
   "todayActions": [
-    "0120-811-266（9:00〜18:00）に聞きたいことがあれば、電話受付が終わる11月30日までに連絡する",
-    "登録メールアドレス宛ての10月5日付の案内が届いているか、迷惑メールフォルダも含めて確認する",
-    "大起水産を名乗り、パスワードや認証コードの入力を求める連絡は、URLを開かず無視する"
+    "電話で確認したいことがある対象者は、受付終了前に窓口へ連絡する",
+    "対象期間に登録した人は、10月5日付の案内が届いているか確認する",
+    "大起水産を名乗る連絡で入力を求められても、URLや入力欄に応じない"
   ],
   "publicInterest": "breach",
   "incident": {
@@ -122,5 +122,130 @@
   "fastLane": true,
   "searchTitle": "大起水産公式アプリの不正アクセス対象は？17万4,933人",
   "layout": "noir",
-  "summaryLine": "大起水産公式アプリの不正アクセスで、第三者機関は個人情報流出の明確な痕跡を確認せず、可能性の否定も不可と結論"
+  "summaryLine": "大起水産公式アプリの不正アクセスで、第三者機関は個人情報流出の明確な痕跡を確認せず、可能性の否定も不可と結論",
+  "officialDesk": [
+    {
+      "name": "大起水産公式アプリ 不正アクセスに関するお問い合わせ窓口",
+      "url": "https://www.daiki-suisan.co.jp/files/optionallink/00000171_file.pdf",
+      "source": "https://www.daiki-suisan.co.jp/files/optionallink/00000171_file.pdf",
+      "phone": "0120-811-266",
+      "hours": "9:00~18:00(土日祝を含む)",
+      "note": "電話窓口は2026年11月30日(月)で終了し、12月1日(火)以降はメール受付に切り替わります。メールの問い合わせ先は同日から本ページに掲載されます。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "電話で確認したいことがある対象者は、受付終了前に窓口へ連絡する",
+      "source": "https://www.daiki-suisan.co.jp/files/optionallink/00000171_file.pdf",
+      "steps": [
+        "0120-811-266に電話する",
+        "受付時間は9:00~18:00（土日祝を含む）",
+        "電話受付は2026年11月30日(月)まで"
+      ],
+      "url": "https://www.daiki-suisan.co.jp/files/optionallink/00000171_file.pdf"
+    },
+    {
+      "action": "対象期間に登録した人は、10月5日付の案内が届いているか確認する",
+      "source": "https://www.daiki-suisan.co.jp/files/optionallink/00000164_file.pdf",
+      "steps": [
+        "アプリに登録したメールアドレスの受信箱を見る",
+        "メールがなければ迷惑メールフォルダも確認する",
+        "登録メールアドレスが現在受信可能か確認する"
+      ],
+      "url": "https://www.daiki-suisan.co.jp/files/optionallink/00000164_file.pdf"
+    },
+    {
+      "action": "大起水産を名乗る連絡で入力を求められても、URLや入力欄に応じない",
+      "source": "https://www.daiki-suisan.co.jp/files/optionallink/00000164_file.pdf",
+      "steps": [
+        "身に覚えのないメール・SMS・電話に注意する",
+        "記載されたURLにアクセスしない",
+        "個人情報を入力しない"
+      ],
+      "url": "https://www.daiki-suisan.co.jp/files/optionallink/00000164_file.pdf"
+    }
+  ],
+  "cause": {
+    "text": "第三者機関の調査では、システムの一部に存在した脆弱性を悪用した不正アクセスで、システムの管理・運用に関する情報の一部が外部に漏えいしたと確認されています。個人情報の流出は明確な痕跡が確認されていませんが、可能性は完全には否定できないとしています。",
+    "status": "stated",
+    "source": "https://www.daiki-suisan.co.jp/files/optionallink/00000171_file.pdf"
+  },
+  "worries": [
+    {
+      "q": "今回の不正アクセスで、アプリのパスワードも漏れたのでしょうか？",
+      "a": "パスワードは別のサーバーで管理されており、漏えいした可能性のある情報には含まれていないと大起水産は説明しています。",
+      "source": "https://www.daiki-suisan.co.jp/files/optionallink/00000164_file.pdf"
+    },
+    {
+      "q": "住所や生年月日も、対象者全員分が登録されていたのでしょうか？",
+      "a": "iOS版では住所と生年月日、Android版では生年月日が任意登録です。そのため、対象者全員に漏えいした可能性のある情報がすべて登録されているわけではありません。",
+      "source": "https://www.daiki-suisan.co.jp/files/optionallink/00000164_file.pdf",
+      "action": "対象期間に登録した人は、10月5日付の案内が登録メールに届いているか、迷惑メールフォルダも含めて確認してください。"
+    },
+    {
+      "q": "個人情報が実際に外部へ流出したと確定したのでしょうか？",
+      "a": "第三者機関の調査では、個人情報が外部へ流出した明確な痕跡は確認されませんでした。一方で、大起水産は情報流出の可能性を完全には否定できないとしています。",
+      "source": "https://www.daiki-suisan.co.jp/files/optionallink/00000171_file.pdf",
+      "action": "詳しい確認が必要なら、電話窓口の受付が終わる2026年11月30日までに問い合わせてください。"
+    },
+    {
+      "q": "退会していた場合も、今回の対象に含まれるのでしょうか？",
+      "a": "2024年11月1日から2026年9月15日までに登録した人が対象で、退会した人も含まれます。大起水産は、退会したお客様の情報を削除したと報告しています。",
+      "source": "https://www.daiki-suisan.co.jp/files/optionallink/00000164_file.pdf",
+      "action": "対象期間に登録していたかを確認し、案内が見当たらない場合は登録メールの迷惑メールフォルダも確認してください。"
+    },
+    {
+      "q": "大起水産を名乗る連絡で、パスワードや認証コードを求められたら？",
+      "a": "大起水産は本件に関してパスワードや認証コード等の入力をお願いすることはないとしています。身に覚えのない連絡には注意するよう案内しています。",
+      "source": "https://www.daiki-suisan.co.jp/files/optionallink/00000164_file.pdf",
+      "action": "連絡に記載されたURLにはアクセスせず、個人情報を入力しないでください。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "電話で今すぐ確認したほうがいい？",
+      "situation": "電話で聞きたいことがある",
+      "recommend": "11月30日までの電話受付中に連絡する",
+      "reason": "電話窓口は2026年11月30日(月)で終了します。受付時間は9:00~18:00(土日祝を含む)です。電話で確認したいことがある人は、この期限内に問い合わせる選択肢があります。",
+      "source": "https://www.daiki-suisan.co.jp/files/optionallink/00000171_file.pdf"
+    },
+    {
+      "question": "電話で今すぐ確認したほうがいい？",
+      "situation": "急いで確認する必要はない",
+      "recommend": "12月1日以降のメール窓口を待つ方法もある",
+      "reason": "2026年12月1日(火)以降はメールでの問い合わせ受付に切り替わり、メールの問い合わせ先は同日から本ページに掲載されます。電話受付の終了後も、問い合わせ手段がメールに切り替わります。",
+      "source": "https://www.daiki-suisan.co.jp/files/optionallink/00000171_file.pdf"
+    }
+  ],
+  "depthHeadings": {
+    "cause": "脆弱性を悪用した不正アクセスの調査結果",
+    "steps": "電話受付が終わる前に確認すること",
+    "desk": "電話は11月30日まで、以降はメール",
+    "worries": "登録情報や不審な連絡が心配なとき",
+    "guide": "電話で聞くか、メール窓口を待つか"
+  },
+  "depthAt": "2026-11-20T06:42:45+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "17万4,933人",
+    "label": "対象",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-20T06:44:27+00:00"
+  },
+  "imageFocus": {
+    "x": 0.52,
+    "y": 0.417,
+    "box": [
+      0.069,
+      0.048,
+      0.972,
+      0.786
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/daiki-suisan-app-breach-final-report-figure-e66ce0f2.jpg"
+  }
 }
