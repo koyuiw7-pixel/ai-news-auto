@@ -255,7 +255,7 @@
     "15fa38c24faf5c43eacc1bd2c22267975a96fb20": 2,
     "1602113d38d2e7c8cf20b9d2354915966e2b0b75": 2,
     "163b350664ce440f8362f92442bfa6e97bbe901e": 2,
-    "163e391a1f889cddf0395901398bc504812c50cf": 1,
+    "163e391a1f889cddf0395901398bc504812c50cf": 2,
     "166e9c411d5ac73920a706deaf428a1658e9bf62": 1,
     "16a4960e4ef15346c1ebfc945cf9aceb5f6bab59": 2,
     "16a55cdbb702bd9cdaf46e301e6b621720294cf4": 2,
@@ -601,6 +601,7 @@
     "43a36bb499a6b5f7f781fe9484ee834c6b06dc39": 2,
     "43d8d9863a2174c9543150c08fdf678e20f6b6a5": 2,
     "43f46f039e8833524d75b8acaf6ca68df4c2dbed": 2,
+    "4415b3dc4a4b4cb32bf26b1a7ba05a9e4a6b2f94": 1,
     "442e2fb1bcca45cafb5eb07bc85461af80b523f1": 2,
     "4455eab7c4d0fb1229a76f30a7299d216e4cac0e": 2,
     "446509b8a497ed704f37e68ad235981f0f5c72f9": 2,
@@ -885,7 +886,7 @@
     "673f42f05eff175855c8f266cea687ad5691293a": 2,
     "674525db6ead73e57b3595674f0c51e1dc4cd353": 2,
     "676c06cf97b06a46475ba16f9df556e4881fb4d6": 2,
-    "67764fadaf7e908e7f07428d2c5a1e0987c97a24": 1,
+    "67764fadaf7e908e7f07428d2c5a1e0987c97a24": 2,
     "67a9b39034ca6a122a2f6758e01bfaba49b0c571": 2,
     "67b61fe84008f2c041d7f63d7b17f27a74c8ad0c": 2,
     "67f99672b98c6b5ea5b3ad781484a0dd0213fe8f": 2,
@@ -1041,7 +1042,7 @@
     "788ca18cfc00a6220a18a02b78c1240d275d10e1": 2,
     "78923c31e801abc3205f4fc21b1e38b40ab33560": 2,
     "78e8ee66c1355ff26134e34e765165d1523b34de": 2,
-    "78f206f0e8b425ad08f2d49a2a6819d5cdc137cf": 1,
+    "78f206f0e8b425ad08f2d49a2a6819d5cdc137cf": 2,
     "793e8fe9eb53b18a10a3061b7ceb33caaf9ba33c": 2,
     "7944eb4f9ce36eac5ef434f06ba62b7570202ca8": 2,
     "7955248eacb235579657bf1550ac7c4533891c7b": 2,
@@ -2019,6 +2020,7 @@
     "f2a6f5bb8a634ca095a8b9df31ce89d75a3c6376": 1,
     "f2fe19a11a97379189ae86a5aa5b0e464c14d518": 2,
     "f34d48bb141fab6b8abe10d52880ac7ca5265458": 2,
+    "f353116b0ae3c5a4b6a9735607bd8247411d3dad": 1,
     "f397fa8c0c29627c2e13e8488b9537ee48a1ec09": 2,
     "f39b4043d4e5bed91d5aa421cadfc98888039a43": 2,
     "f3a7777d673e7a860c44e2f1506568fc779ac601": 2,
@@ -2346,14 +2348,6 @@
       "title": "事業適応のための債務保証、産業用地の整備を行う地方公共団体への資金貸付け・助言業務を開始",
       "tries": 1,
       "url": "https://j-net21.smrj.go.jp/news/bt5puv000001295s.html"
-    },
-    "e6deaab86d4b8b03": {
-      "first": "2026-11-21T15:16:34.308235+00:00",
-      "next": "2026-11-21T18:16:34.308235+00:00",
-      "reason": "記事の基準に足りない（自動で手直ししても残った）: 5.読者がすること（何を・どこで・期限）（することは書いてあるが、どこで（窓口・ページ）・いつまでが無い）",
-      "title": "設備投資主導の成長戦略に危うさ",
-      "tries": 1,
-      "url": "https://www.nli-research.co.jp/topics_detail1/id=87410?site=nli"
     },
     "ea000ab4e8ef1054": {
       "first": "2026-11-21T16:17:44.551379+00:00",
@@ -20710,6 +20704,17 @@
       "skipped": true,
       "url": "https://news.yahoo.co.jp/articles/68cb4eb2d9a47fae410d8b06a70d5c000b18ae24"
     },
+    "e6deaab86d4b8b03": {
+      "at": "2026-11-21T22:03:07.525476+00:00",
+      "costUsd": 0.017,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "gemini-3.5-flash",
+      "score": 98,
+      "section": "business",
+      "slug": "equipment-investment-strategy-risks-japan",
+      "url": "https://www.nli-research.co.jp/topics_detail1/id=87410?site=nli"
+    },
     "e763967d3f7f6ad0": {
       "at": "2026-11-09T07:15:42.667752+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（開催について）",
@@ -24916,82 +24921,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-20T05:23:52.011865+00:00",
-      "attempt": 1,
-      "id": "f4de69806535b424",
-      "kind": "ai",
-      "model": "openai-api:gpt-6.1-terra",
-      "problems": [
-        "「Salesプラグインの対象プランと料金は、まだ発表されていません」→ 料金は元記事に記載がありませんが、ChatGPT BusinessとEnterpriseの管理者がチーム向けに有効化できると明記されているため、対象プランが未発表という記述は誤りです。"
-      ],
-      "readability": {
-        "avg_paragraph": 94.9,
-        "avg_sentence": 45.4,
-        "long_share": 0.13,
-        "max_paragraph": 120,
-        "paragraphs": 11,
-        "sentences": 23
-      },
-      "score": 84,
-      "source": "openai-news",
-      "title": "OpenAI、営業の作業をサポートするプラグイン「ChatGPT for Sales」をリリース",
-      "warnings": [
-        "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "読みやすさ: 文が長い（1文の平均 45.4字・60字超の文が 13% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-20T05:24:25.624879+00:00",
-      "attempt": 1,
-      "id": "f4de69806535b424",
-      "kind": "ai",
-      "model": "openai-api:gpt-6-luna",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 94.9,
-        "avg_sentence": 45.4,
-        "long_share": 0.13,
-        "max_paragraph": 120,
-        "paragraphs": 11,
-        "sentences": 23
-      },
-      "score": 96,
-      "source": "openai-news",
-      "title": "OpenAI、営業の作業をサポートするプラグイン「ChatGPT for Sales」をリリース",
-      "warnings": [
-        "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "読みやすさ: 文が長い（1文の平均 45.4字・60字超の文が 13% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-20T05:24:50.383578+00:00",
-      "attempt": 0,
-      "id": "f4de69806535b424",
-      "kind": "ai",
-      "model": "",
-      "problems": [
-        "読みやすさ基準外のまま受理: 書き直し後の確認に不合格: タイトルの「30以上の連携機能」→ 元記事が30以上としているのは新規・機能強化されたパートナープラグインであり、「連携機能」と数えるのは内容を取り違えています。"
-      ],
-      "readability": {
-        "avg_paragraph": 94.9,
-        "avg_sentence": 45.4,
-        "long_share": 0.13,
-        "max_paragraph": 120,
-        "paragraphs": 11,
-        "sentences": 23
-      },
-      "score": 96,
-      "source": "openai-news",
-      "title": "OpenAI、営業の作業をサポートするプラグイン「ChatGPT for Sales」をリリース",
-      "warnings": [
-        "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "読みやすさ: 文が長い（1文の平均 45.4字・60字超の文が 13% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": false,
       "at": "2026-11-20T05:40:59.121490+00:00",
@@ -32585,6 +32514,82 @@
       "warnings": [
         "初めて出たところで言い換えていない略語（SB）",
         "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-21T22:01:05.276951+00:00",
+      "attempt": 1,
+      "id": "e6deaab86d4b8b03",
+      "kind": "broad",
+      "model": "gemini-3.5-flash",
+      "problems": [
+        "「ニッセイ系列の民間シンクタンク」→元記事はニッセイ基礎研究所を発信元としているだけで、系列関係までは示していません。",
+        "「日本経済における最大の問題」→元記事は個人消費の弱さを問題の本質としていますが、「最大」とは述べていません。",
+        "「給料を増やして消費を活発にすることが先決だと指摘」→元記事は家計の購買力向上と国内需要の拡大を求めていますが、賃上げを先決とする提言ではありません。",
+        "「買い手がいない投資は無駄になる恐れ」→元記事が述べるのは最終需要を伴わない投資が過剰ストックにつながる恐れであり、買い手がいない、または投資が無駄だとは断定していません。"
+      ],
+      "readability": {
+        "avg_paragraph": 59.4,
+        "avg_sentence": 59.4,
+        "long_share": 0.5,
+        "max_paragraph": 83,
+        "paragraphs": 14,
+        "sentences": 14
+      },
+      "score": 84,
+      "source": "nli-research",
+      "title": "設備投資主導の成長戦略に危うさ",
+      "warnings": [
+        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "読みやすさ: 文が長い（1文の平均 59.4字・60字超の文が 50% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-21T22:02:32.950810+00:00",
+      "attempt": 1,
+      "id": "e6deaab86d4b8b03",
+      "kind": "broad",
+      "model": "strike:本文 1 文・かんたん版 1 文",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 56.3,
+        "avg_sentence": 56.3,
+        "long_share": 0.462,
+        "max_paragraph": 80,
+        "paragraphs": 13,
+        "sentences": 13
+      },
+      "score": 98,
+      "source": "nli-research",
+      "title": "設備投資主導の成長戦略に危うさ",
+      "warnings": [
+        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "読みやすさ: 文が長い（1文の平均 56.3字・60字超の文が 46% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-21T22:03:07.501415+00:00",
+      "attempt": 0,
+      "id": "e6deaab86d4b8b03",
+      "kind": "broad",
+      "model": "openai-api:gpt-6-luna",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 59.1,
+        "avg_sentence": 38.4,
+        "long_share": 0.05,
+        "max_paragraph": 89,
+        "paragraphs": 13,
+        "sentences": 20
+      },
+      "score": 98,
+      "source": "nli-research",
+      "title": "設備投資主導の成長戦略に危うさ",
+      "warnings": [
+        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す"
       ]
     }
   ],

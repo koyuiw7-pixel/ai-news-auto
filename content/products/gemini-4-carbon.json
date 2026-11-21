@@ -6,30 +6,23 @@
   "companyName": "Google",
   "category": "AIモデル",
   "overview": {
-    "text": "Gemini 4 Carbonは、Googleが提供するAIモデルです。複雑な開発作業やサイバーセキュリティの防御に強く、2026年10月28日に発表されました。",
+    "text": "Gemini 4 Carbonは、Googleが開発したAIモデルの最上位モデルです。複雑なソフトウェア開発やサイバーセキュリティ対策に強みを持つとされ、2026年10月28日に発表されました。",
     "sources": [
+      "google-ai-news-october-2026",
       "gemini-4-carbon-cybersecurity-model"
     ]
   },
   "facts": [
     {
-      "label": "料金",
-      "value": "入力$2、出力$10（100万トークンあたり）",
-      "sources": [
-        "gemini-4-carbon-ai-gateway-half-price",
-        "gemini-4-carbon-cybersecurity-model"
-      ]
-    },
-    {
       "label": "提供開始",
-      "value": "2026年11月11日一般提供開始",
+      "value": "2026年11月11日",
       "sources": [
         "gemini-4-carbon-cybersecurity-model"
       ]
     },
     {
       "label": "向いている人",
-      "value": "開発者やセキュリティ担当者",
+      "value": "開発者、企業、セキュリティ担当",
       "sources": [
         "gemini-4-carbon-cybersecurity-model"
       ]
@@ -37,47 +30,41 @@
   ],
   "capabilities": [
     {
-      "text": "一度に100万トークンを扱い、大きなコードベースや長い入力を処理できます。",
+      "text": "一度に最大100万トークンの入力や出力に対応しています。",
       "sources": [
         "gemini-4-carbon-ai-gateway-half-price"
       ]
     },
     {
-      "text": "ソフトウェアの脆弱性の発見、リスクの検証、修正パッチの作成までを行います。",
+      "text": "ソフトウェアの脆弱性発見から原因究明、修正パッチの作成まで対応します。",
+      "sources": [
+        "google-ai-news-october-2026",
+        "gemini-4-carbon-cybersecurity-model"
+      ]
+    },
+    {
+      "text": "複数段階の計画や、数日間に及ぶ長い開発作業を確実に実行します。",
       "sources": [
         "gemini-4-carbon-ai-gateway-half-price",
         "gemini-4-carbon-cybersecurity-model"
       ]
     },
     {
-      "text": "複数段階の計画を確実に実行し、根拠のない主張を減らした設計になっています。",
+      "text": "CursorBench 4.0などのベンチマークで1位を獲得しています。",
       "sources": [
-        "gemini-4-carbon-ai-gateway-half-price"
-      ]
-    },
-    {
-      "text": "Google DeepMindの検証で、Signalの暗号コードに活用されました。",
-      "sources": [
-        "alphaproof-code-signal-verification"
+        "gemini-4-carbon-cybersecurity-model"
       ]
     }
   ],
   "pricing": [
     {
-      "text": "導入価格は100万トークンあたり入力2ドル、出力10ドルです。",
-      "sources": [
-        "gemini-4-carbon-ai-gateway-half-price",
-        "gemini-4-carbon-cybersecurity-model"
-      ]
-    },
-    {
-      "text": "Vercel AI Gatewayでは、11月30日まで50%引きで呼び出せます。",
+      "text": "Gemini APIでの通常価格は、12月1日から入力100万トークンあたり4ドル、出力は20ドルとなります。",
       "sources": [
         "gemini-4-carbon-ai-gateway-half-price"
       ]
     },
     {
-      "text": "Google公式料金ページでは、12月1日から入力4ドル、出力20ドルになります。",
+      "text": "Vercel AI Gatewayでは、11月30日まで入力2ドル、出力10ドルの半額で利用できます。",
       "sources": [
         "gemini-4-carbon-ai-gateway-half-price"
       ]
@@ -86,19 +73,19 @@
   "japan": [],
   "howto": [
     {
-      "text": "有料プランの開発者と企業は、Google AI StudioのAPIで利用できます。",
+      "text": "Google AI StudioのAPIやGemini for businessで利用できます。",
       "sources": [
         "gemini-4-carbon-cybersecurity-model"
       ]
     },
     {
-      "text": "Google AI Ultraのユーザーは、Geminiアプリなどで順次使えます。",
+      "text": "有料のGoogle AI UltraユーザーはGoogle AntigravityやGeminiアプリ、Google検索のAIモードで利用できます。",
       "sources": [
         "gemini-4-carbon-cybersecurity-model"
       ]
     },
     {
-      "text": "VercelのAI Gatewayから、モデル名を指定して呼び出せます。",
+      "text": "Vercel AI Gateway経由で、モデル名にgoogle/gemini-4-carbonを指定して呼び出せます。",
       "sources": [
         "gemini-4-carbon-ai-gateway-half-price"
       ]
@@ -106,59 +93,40 @@
   ],
   "differences": [
     {
-      "text": "Argonと比べて、長い開発作業やサイバーセキュリティ防御に優れています。",
+      "text": "下位モデルのArgonと比べて、安全なコードを生成できる成功率が2倍以上高くなっています。",
       "sources": [
         "gemini-4-carbon-cybersecurity-model"
       ]
     },
     {
-      "text": "安全なコードを生成できる成功率は、Argonの2倍以上とされています。",
+      "text": "Argonよりも長い開発作業やサイバー防御、複雑な試行錯誤を要する高度なタスク向けに位置づけられています。",
       "sources": [
         "gemini-4-carbon-cybersecurity-model"
-      ]
-    },
-    {
-      "text": "標準設定の課題当たりの費用はNeonより32%高くなっています。",
-      "sources": [
-        "gemini-4-neon-pricing-availability"
       ]
     }
   ],
   "faq": [
     {
-      "q": "いつ発表されましたか？",
-      "a": "2026年10月28日に発表されました。",
+      "q": "Gemini 4 Carbonはいつ発表されましたか？",
+      "a": "2026年10月28日に発表され、同年11月11日に一般提供が開始されました。",
+      "sources": [
+        "google-ai-news-october-2026",
+        "gemini-4-carbon-cybersecurity-model"
+      ]
+    },
+    {
+      "q": "どこから利用できますか？",
+      "a": "Google AI StudioのAPIやGemini for business、Google Antigravityなどで利用できます。",
       "sources": [
         "gemini-4-carbon-cybersecurity-model"
       ]
     },
     {
-      "q": "誰に向いていますか？",
-      "a": "複雑な開発やサイバーセキュリティの防御を担当する人に向いています。",
-      "sources": [
-        "gemini-4-carbon-cybersecurity-model"
-      ]
-    },
-    {
-      "q": "どこから使えますか？",
-      "a": "Google AI StudioやVercel AI Gatewayなどから利用できます。",
+      "q": "どのような作業に向いていますか？",
+      "a": "複雑なソフトウェア開発や、セキュリティの脆弱性発見などの高度なタスクに向いています。",
       "sources": [
         "gemini-4-carbon-ai-gateway-half-price",
         "gemini-4-carbon-cybersecurity-model"
-      ]
-    },
-    {
-      "q": "一度にどれくらいの量を読めますか？",
-      "a": "一度に100万トークンを扱うことができます。",
-      "sources": [
-        "gemini-4-carbon-ai-gateway-half-price"
-      ]
-    },
-    {
-      "q": "Neonとの費用の違いは？",
-      "a": "標準設定の課題当たりの費用はCarbonの方が32%高くなっています。",
-      "sources": [
-        "gemini-4-neon-pricing-availability"
       ]
     }
   ],
@@ -166,12 +134,12 @@
     {
       "date": "2026-10-29",
       "slug": "gemini-4-carbon-cybersecurity-model",
-      "event": "Gemini 4 Carbonを発表"
+      "event": "新AIモデル「Gemini 4 Carbon」を発表"
     },
     {
       "date": "2026-11-10",
       "slug": "gemini-4-carbon-ai-gateway-half-price",
-      "event": "Vercel AI Gatewayで提供開始"
+      "event": "Vercel AI Gatewayで半額提供を開始"
     }
   ],
   "related": [
@@ -192,9 +160,9 @@
     "gemini-4-carbon-ai-gateway-half-price",
     "gemini-4-carbon-cybersecurity-model"
   ],
-  "signature": "bc10bea8edc0e9b1",
+  "signature": "01ced332380858cd",
   "primarySignature": "ae84dd1ddf740286",
   "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-10-29T12:27:16+00:00",
-  "updatedAt": "2026-11-18T21:53:19+00:00"
+  "updatedAt": "2026-11-21T22:03:35+00:00"
 }
