@@ -26,7 +26,7 @@ class LiveCapCount(unittest.TestCase):
             "1": {"slug": "live-a", "at": at(2).isoformat()},
             "2": {"slug": "live-b", "at": at(9).isoformat()},
             "3": {"slug": "retired-thin", "at": at(3).isoformat()},  # 取り下げ（JSON なし）
-            "4": {"slug": "off-live", "at": at(4).isoformat(), "offPersona": True},  # 別の上限
+            "4": {"slug": "off-live", "at": at(4).isoformat(), "offPersona": True},  # 2026-11-22（台帳 A74）から30本に数える
             "5": {"skipped": True, "at": at(5).isoformat()},
             "6": {"slug": "live-a", "at": at(23, day=2).isoformat()},  # 昨日
         }}
@@ -35,11 +35,11 @@ class LiveCapCount(unittest.TestCase):
         self.tmp.cleanup()
 
     def test_counts_only_live_articles_made_today(self):
-        self.assertEqual(pacing.live_today(self.state, at(12), self.dir), 2)
+        self.assertEqual(pacing.live_today(self.state, at(12), self.dir), 3)
 
     def test_retired_articles_free_up_the_cap(self):
         (self.dir / "live-b.json").unlink()
-        self.assertEqual(pacing.live_today(self.state, at(12), self.dir), 1)
+        self.assertEqual(pacing.live_today(self.state, at(12), self.dir), 2)
 
     def test_by_hour_shows_made_and_live(self):
         rows = pacing.by_hour(self.state, at(12), self.dir)
@@ -53,7 +53,7 @@ class LiveCapCount(unittest.TestCase):
         with patch.object(pacing, "ARTICLES_DIR", self.dir), patch.object(pacing, "datetime") as fake:
             fake.now.return_value = at(12)
             fake.fromisoformat = datetime.fromisoformat
-            self.assertEqual(web_articles.generated_today(self.state), 2)
+            self.assertEqual(web_articles.generated_today(self.state), 3)
 
 
 class Pacing(unittest.TestCase):

@@ -21,6 +21,11 @@ import os
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
+import sys
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import ramp  # noqa: E402
+
 JST = timezone(timedelta(hours=9))
 ROOT = Path(__file__).resolve().parent.parent
 ARTICLES_DIR = ROOT / "content" / "articles"
@@ -51,12 +56,42 @@ def is_live(slug: str, articles_dir: Path | None = None) -> bool:
     return ((articles_dir or ARTICLES_DIR) / f"{slug}.json").exists()
 
 
+def _article(slug: str, articles_dir: Path | None = None) -> dict:
+    try:
+        data = json.loads(((articles_dir or ARTICLES_DIR) / f"{slug}.json").read_text("utf-8"))
+    except (OSError, ValueError):
+        return {}
+    return data if isinstance(data, dict) else {}
+
+
+def cap_exempt(entry: dict, article: dict | None = None) -> bool:
+    """1日30本（台帳 A74）に数えない記事か。速報・大きなニュース（速報レーンの記事もこの印）・安全情報（S41）と、
+    Muse・オーナーの指示の記事。記録（processed_web）と記事の両方の印を見る"""
+    article = article or {}
+    if entry.get("major") or entry.get("breaking") or entry.get("safetyLane") or entry.get("writer") == "muse":
+        return True
+    return any(article.get(key) for key in ("breaking", "fastLane", "disaster", "safetyAlert", "museFile"))
+
+
 def live_today(state: dict, now: datetime | None = None, articles_dir: Path | None = None) -> int:
-    """1日の上限に数える本数: 今日作った記事のうち、いま公開中のもの。読者像から外れた一般の話題は数えない（別の上限）"""
+    """1日の上限（台帳 A74 の30本）に数える本数: 今日作って、いま公開中のふだんの自動の記事。
+    話題のレーン・読者像から外れた話題・深掘り・動画・まとめは数え、cap_exempt の記事は数えない"""
     now = now or datetime.now(JST)
-    # 話題のレーンの記事（trendLane。2026-11-13）も数えない: 自分の上限（scripts/ramp.py の TREND_DAILY_CAP）で数える。速報と同じく審査の期間の30本の外
     return sum(1 for _, v in _today_entries(state, now)
-               if not v.get("offPersona") and not v.get("trendLane") and is_live(v["slug"], articles_dir))
+               if is_live(v["slug"], articles_dir) and not cap_exempt(v, _article(v["slug"], articles_dir)))
+
+
+def routine_full(state: dict, now: datetime | None = None, articles_dir: Path | None = None) -> bool:
+    """今日のふだんの自動の記事が上限に達したか（上限を引数で受け取らない経路: 動画の記事・まとめ記事）"""
+    now = now or datetime.now(JST)
+    return live_today(state, now, articles_dir) >= ramp.routine_cap(now.astimezone(JST).strftime("%Y-%m-%d"))
+
+
+def register_routine(state: dict, key: str, slug: str, url: str, writer: str) -> None:
+    """processed_web に入らない経路（動画の記事・まとめ記事）の記事を、今日の本数に数える"""
+    state.setdefault("processed_web", {})[key] = {
+        "url": url, "at": datetime.now(timezone.utc).isoformat(), "slug": slug, "writer": writer,
+    }
 
 
 def allowed_by(cap: int, now: datetime | None = None, night_share: float | None = None, lookahead_min: int | None = None) -> int:

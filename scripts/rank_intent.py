@@ -129,6 +129,29 @@ def mix_order(item: dict, counts: dict[str, int], now: datetime | None = None) -
     return 2
 
 
+# 2026-11-22 オーナー決定（台帳 A74）: 30本の中は「自分は対象か・何をすればいいか」を確かめられる記事を先に。
+# 式典・人事などの発表は後ろに回すだけで、禁止はしない（急上昇の話題は後ろに回さない）
+READER_ACTION_RE = re.compile(
+    r"返金|返品|返還|還付|無償(?:交換|修理)|値上げ|値下げ|価格改定|料金改定|増税|減税|給付|補助金?|助成|支給|手当|"
+    r"期限|締め?切り?|いつまで|いつから|手続き?|申請|申し込み|申込|届出|確定申告|年末調整|"
+    r"リコール|自主回収|回収|サービス終了|提供終了|対象者|対象(?:の|は|に)|受付"
+)
+NEAR_DATE_RE = re.compile(r"本日|今日|明日|今週|来週|今月|来月|年内|今年度中|\d{1,2}月\d{1,2}日|\d{1,2}月末|\d{1,2}/\d{1,2}")
+CEREMONY_RE = re.compile(
+    r"式典|記念式|祝賀|人事|就任|退任|社長交代|役員|異動|表彰|授賞|受賞|受章|叙勲|感謝状|"
+    r"会議(?:を)?開催|開催(?:について|しました|します)|審議会|懇談会|検討会|議事|大臣会見|視察|表敬|"
+    r"調査(?:結果)?(?:を|の)?(?:公表|発表)|白書|協定(?:を)?締結"
+)
+
+
+def reader_action_rank(item: dict, trending: bool = False) -> int:
+    """0: 読者が動ける話題で日付が近い / 1: 読者が動ける話題 / 2: ふつう / 3: 式典・人事などの発表（急上昇の話題は 2）"""
+    title = _title(item)
+    if READER_ACTION_RE.search(title):
+        return 0 if NEAR_DATE_RE.search(title) else 1
+    return 3 if CEREMONY_RE.search(title) and not trending else 2
+
+
 def sort_key(item: dict, counts: dict[str, int], now: datetime | None = None) -> tuple[int, int]:
     """レーンの中の並び（web_articles.py が demand_rank の次に使う）"""
     return (rank_of(item, now), mix_order(item, counts, now))

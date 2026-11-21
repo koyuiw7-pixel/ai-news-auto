@@ -392,6 +392,15 @@ def public_interest_pick(item: dict, left: int, signals: list[dict] | None = Non
     return public_interest.category(item.get("title") or "", item.get("summary") or "")
 
 
+SAFETY_CATEGORIES = ("missile", "disaster", "breach", "recall", "scam")
+
+
+def is_safety_item(item: dict) -> bool:
+    """命・安全・被害の確認にかかわる話題か（ミサイル・災害・流出・リコール・詐欺・障害）。1日30本の外（台帳 A74・S41）"""
+    title = item.get("title") or ""
+    return public_interest.category(title) in SAFETY_CATEGORIES or public_interest.wide_category(title) == "outage"
+
+
 def major_max_runs(item: dict) -> int:
     """大きなニュースを何回の実行まで再挑戦するか（本家・公式の発表は長めに粘る）"""
     return MAJOR_MAX_RUNS_TOP if feeds.source_rank(item) <= 1 else MAJOR_MAX_RUNS
@@ -2255,9 +2264,11 @@ def main() -> int:
         return 0
     if cap_reached:
         log(f"[info] 今日の公開中 {done_today} 本で{why}に達しています（上限 {args.daily_cap}）。大きなニュースだけ確認します")
-    # 話題のレーンは1日の上限（審査の期間の30本）と時刻ごとの配分の外（速報と同じ扱い）。自分の上限（scripts/ramp.py）で止まる
+    # 話題のレーンは時刻ごとの配分の外。自分の上限（scripts/ramp.py）と1日の上限（台帳 A74）で止まる
     trend_done = trend_lane.done_today(state)
     trend_limit = 0 if (fast_mode or not TREND_LANE or args.only or args.source) else max(0, min(args.trends, ramp.TREND_DAILY_CAP - trend_done))
+    # 2026-11-22（台帳 A74）: 話題のレーンも1日30本の中。時刻ごとの配分は見ない（話題は鮮度が命）が、1日の残りは超えない
+    trend_limit = min(trend_limit, max(by_cap, 0))
     if args.trends > 0 and not fast_mode:
         log(f"[trend] 話題のレーン: 今日 {trend_done} 本 / 1日の上限 {ramp.TREND_DAILY_CAP} 本 → この回 {trend_limit} 本まで"
             f"{'' if TREND_FROM_PRESS else '（報道だけの話題は作らない設定）'}")
@@ -2458,7 +2469,13 @@ def main() -> int:
     if not ai_limit:
         ai_items = []
     if not broad_limit:
-        broad_items = []
+        # 2026-11-22（台帳 A74・S41）: 上限に達しても、安全の話題（流出・リコール・詐欺・災害・障害）は止めない。この回はそれだけ作る
+        safety_items = [i for i in broad_items if is_safety_item(i)] if cap_reached and not fast_mode and args.section in ("broad", "all") else []
+        broad_items = safety_items
+        if safety_items:
+            broad_limit = max(args.max_broad, 1)
+            remaining = broad_limit + trend_limit
+            log(f"[cap] 今日の上限の外で作る安全の話題 {len(safety_items)} 件（この回 {broad_limit} 本まで）")
     lanes = build_lanes(
         [i for i in ai_items if i["id"] not in major_ids], [i for i in broad_items if i["id"] not in major_ids], args.section
     )
@@ -2470,7 +2487,9 @@ def main() -> int:
     for lane in lanes:
         for i in lanes[lane]:
             i["_mix"] = news_mix.classify(i)
-        lanes[lane].sort(key=lambda i: (demand_rank(i, pi_signals), rank_intent.sort_key(i, intent_counts), news_mix.order_key(i, mix_counts), rank_bucket(i),
+        # 読者が確かめる・動ける話題を先に、式典・人事などの発表を後ろに（台帳 A74。並びだけで禁止はしない）
+        lanes[lane].sort(key=lambda i: (rank_intent.reader_action_rank(i, trending=demand_rank(i, pi_signals) == 0),
+                                        demand_rank(i, pi_signals), rank_intent.sort_key(i, intent_counts), news_mix.order_key(i, mix_counts), rank_bucket(i),
                                         0 if lane == "ai" else persona_rank(i)))
     log(f"[mix] 今日の配分（作った/めやす）: {news_mix.summary(mix_counts)}")
     if news_mix.life_behind(mix_counts):
@@ -2590,8 +2609,8 @@ def main() -> int:
         return sum(created.values())
 
     def lane_created() -> int:
-        """1回の上限（remaining）に数える本数。話題のレーンは自分の上限で数えるので除く"""
-        return sum(created.values()) - created["trend"]
+        """1回の上限（remaining）に数える本数（台帳 A74: 話題のレーン・読者像の外も数える。大きなニュース・速報は数えない）"""
+        return created["ai"] + created["broad"] + created["trend"] + created_off[0]
 
     attempt_counter = [0]  # 生成（gated）に回した回数
     taken_counter = [0]    # 見送らずに手を付けた候補の数（本文の取得から）
@@ -3236,6 +3255,7 @@ def main() -> int:
         mark(state, item, slug=record["slug"], model=model_name, section=lane, score=record.get("qualityScore"),
              **({"offPersona": True} if item.get("_off_persona") else {}),
              **({"major": True} if major else {}), **({"breaking": True} if record.get("breaking") else {}),
+             **({"safetyLane": True} if is_safety_item(item) else {}),  # 1日30本に数えない（台帳 A74・S41）
              **({"publicInterest": item["_public_interest"]} if item.get("_public_interest") else {}),
              **({"foreignAi": True} if is_ai and is_foreign_ai(item) and not trend_term else {}),
              # 話題のレーンの記事は、1日の上限・種類別の配分に数えない（trendLane の印。mix を空にする）
@@ -3571,7 +3591,7 @@ def main() -> int:
                     process_web(extra, lane, target)
         # 読者像から外れた一般の話題は、読者像の候補を回し終えてから、1日 OFF_PERSONA_DAILY_CAP 本まで（上限・本数には数えない）
         for lane, cand in deferred_off:
-            if off_done_today + created_off[0] >= off_cap or time_up() or llm.all_exhausted(args.tier) or rescue_exhausted():
+            if off_done_today + created_off[0] >= off_cap or lane_created() >= remaining or time_up() or llm.all_exhausted(args.tier) or rescue_exhausted():
                 if deferred_off:
                     log(f"[persona] 読者像から外れた一般の話題 {len(deferred_off)} 件は見送り（今日 {off_done_today + created_off[0]} 本 / 上限 {off_cap}）")
                 break

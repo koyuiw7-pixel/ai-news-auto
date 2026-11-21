@@ -17,7 +17,7 @@ class AdsenseReviewTest(unittest.TestCase):
         self.assertEqual(ramp.review_cap(200, "2026-11-26"), 30)
 
     def test_cap_after_review(self):
-        self.assertEqual(ramp.review_cap(200, "2026-11-27"), 200)
+        self.assertEqual(ramp.review_cap(200, "2026-11-27"), 30)  # 2026-11-22 オーナー決定（台帳 A74）で期限なしの30本
 
     def test_outputs_stop_ai_lane(self):
         env = dict(os.environ, GITHUB_OUTPUT=str(ROOT / "tests" / ".ramp_out_tmp"))

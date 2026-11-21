@@ -36,6 +36,7 @@ import headline_normalize  # noqa: E402
 import section_gate  # noqa: E402
 import news_types  # noqa: E402
 import article_style  # noqa: E402
+import pacing  # noqa: E402  1日30本の数え方（台帳 A74）
 import public_interest  # noqa: E402  ミサイル・災害の記事の公式の安全情報のリンク（台帳 A39）
 import noir_layout  # noqa: E402  新しい記事の見た目（台帳 W36）
 import own_view  # noqa: E402  サイソクの見方の章と中身の下限（2026-11-12 オーナー）
@@ -1115,6 +1116,9 @@ def main() -> int:
                 raise SystemExit(f"該当するチャンネルがありません: {args.channel}")
         candidates = collect_candidates(channels, args.days, state)
 
+    if not args.video and not args.dry_run and pacing.routine_full(state):
+        log("[info] 今日のふだんの自動の記事が上限（台帳 A74）に達しているので、動画の記事は次の日に回します")
+        return 0
     log(f"[info] 候補 {len(candidates)} 件 / 上限 {args.max} 件")
     # 記事化の価値なし（skip）と判定される動画が多いので、上限は「生成できた本数」で数える。
     # 解析を試す動画は多めに確保し、試行回数と経過時間の上限で無料枠とジョブ時間を守る。
@@ -1140,7 +1144,7 @@ def main() -> int:
 
     run_started = time.time()
     for index, entry in enumerate(targets, start=1):
-        if created >= args.max:
+        if created >= args.max or (not args.video and pacing.routine_full(state)):
             break
         if time.time() - run_started > RUN_TIME_BUDGET_SEC:
             log("[info] 時間の上限に達したため、残りは次回に回します")
@@ -1237,6 +1241,8 @@ def main() -> int:
             "at": record["generatedAt"],
         }
         state["failed"].pop(video_id, None)
+        if not args.video:  # 指定した動画（オーナーの指示）は1日30本に数えない（台帳 A74）
+            pacing.register_routine(state, f"video:{video_id}", record["slug"], record.get("sourceUrl") or "", "video")
         created += 1
         log(
             f"   [OK] {path.relative_to(ROOT)} "

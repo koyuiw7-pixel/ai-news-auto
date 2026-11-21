@@ -322,7 +322,7 @@ class CapsAndExemptionTest(unittest.TestCase):
         self.assertIn("--trends \"${{ vars.TREND_MAX_PER_RUN || steps.ramp.outputs.trend_per_run || '3' }}\"", wf)
         self.assertIn('(.trendKeyword // "") != ""', wf)  # 話題のレーンの記事は待たずにデプロイ
 
-    def test_trend_articles_do_not_use_the_daily_cap(self):
+    def test_trend_articles_count_toward_the_daily_cap(self):  # 2026-11-22 オーナー決定（台帳 A74）
         at = datetime.now(pacing.JST).isoformat()
         with tempfile.TemporaryDirectory() as tmp:
             for slug in ("a", "b", "c"):
@@ -330,7 +330,7 @@ class CapsAndExemptionTest(unittest.TestCase):
             state = {"processed_web": {"1": {"slug": "a", "at": at, "mix": "money"}, "2": {"slug": "b", "at": at, "trendLane": True, "kind": "trend"},
                                        "3": {"slug": "c", "at": at, "trendLane": True, "pressReport": True},
                                        "4": {"at": at, "skipped": True, "trendLane": True}}}
-            self.assertEqual(pacing.live_today(state, articles_dir=Path(tmp)), 1)
+            self.assertEqual(pacing.live_today(state, articles_dir=Path(tmp)), 3)
             self.assertEqual(tl.done_today(state), 2)
 
     def test_pipeline_wiring(self):
@@ -357,7 +357,7 @@ class CapsAndExemptionTest(unittest.TestCase):
         self.assertLess(loop.rindex("trend_lane.press_record_problems("), loop.index("m.write_article(record)"))
         self.assertIn("trendLane=True, pressReport=True", loop)
         # ふつうのレーンの1回の本数に、話題のレーンの本数を数えない
-        self.assertEqual(SRC.count("lane_created() >= remaining"), 3)
+        self.assertEqual(SRC.count("lane_created() >= remaining"), 4)  # 読者像の外の回も30本の中（台帳 A74）
         # 公式の候補は process_web を通る（公式が出典のふつうの作り方）。種類別の上限・審査の期間の門の外
         self.assertIn('process_web(cand, lane, target, trend_term=q["title"])', SRC)
         self.assertIn("action, target = pick(cand, lane == \"ai\", trend=True)", SRC)

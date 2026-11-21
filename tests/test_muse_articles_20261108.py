@@ -65,7 +65,7 @@ class FormatTest(unittest.TestCase):
 
 
 class PipelineTest(unittest.TestCase):
-    def test_published_muse_article_counts_toward_daily_stage(self):
+    def test_published_muse_article_does_not_use_the_daily_cap(self):  # 2026-11-22 オーナー決定（台帳 A74）
         import muse_articles
         import pacing
 
@@ -75,7 +75,7 @@ class PipelineTest(unittest.TestCase):
             state: dict = {"processed_web": {}}
             muse_articles.register_today(state, "muse-abc", {"slug": "muse-slug", "sourceUrl": "https://www.nta.go.jp/a.pdf",
                                                               "title": "会社員の平均給与は487万円"})
-            self.assertEqual(pacing.live_today(state, articles_dir=articles), 1)
+            self.assertEqual(pacing.live_today(state, articles_dir=articles), 0)
             self.assertEqual(state["processed_web"]["muse-abc"]["writer"], "muse")
 
     def test_genres_map_to_site_lanes_and_procedures_need_90(self):

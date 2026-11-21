@@ -16,7 +16,7 @@ class ReviewPeriodCap(unittest.TestCase):
     def test_ends_on_nov_6_owner_decision(self):
         self.assertEqual(ramp.review_cap(100, "2026-11-06"), 100)
         # 11/12〜11/26 は AdSense の2回目の審査の期間（別の決まり）。そのあとは元どおり
-        self.assertEqual(ramp.review_cap(100, "2026-11-30"), 100)
+        self.assertEqual(ramp.review_cap(100, "2026-11-30"), 30)  # 2026-11-22 オーナー決定（台帳 A74）
 
     def test_never_raises_a_lower_cap(self):
         self.assertEqual(ramp.review_cap(25, "2026-11-04"), 25)

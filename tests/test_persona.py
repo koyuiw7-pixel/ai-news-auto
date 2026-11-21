@@ -223,7 +223,7 @@ class OffPersonaCandidates(unittest.TestCase):
         self.assertEqual(persona.candidate_rank("NISAの新しい制度"), 0)
         self.assertEqual(w.persona_rank({"title": "令和８年秋の褒章について", "summary": ""}), 2)
 
-    def test_off_persona_not_counted_in_daily_cap(self):
+    def test_off_persona_counted_in_daily_cap(self):  # 2026-11-22 オーナー決定（台帳 A74）
         now = datetime.now(timezone.utc).isoformat()
         state = {"processed_web": {
             "a": {"slug": "a", "at": now},
@@ -231,9 +231,9 @@ class OffPersonaCandidates(unittest.TestCase):
             "c": {"slug": "c", "at": now, "offPersona": True},
             "d": {"skipped": True, "at": now},
         }}
-        # 上限は公開中の記事だけで数える（scripts/pacing.py）。ここでは読者像外を数えないことだけを見る
+        # 上限は公開中の記事だけで数える（scripts/pacing.py）。読者像外も30本の中
         with unittest.mock.patch.object(w.pacing, "is_live", return_value=True):
-            self.assertEqual(w.generated_today(state), 1)
+            self.assertEqual(w.generated_today(state), 3)
         self.assertEqual(w.off_persona_today(state), 2)
 
 

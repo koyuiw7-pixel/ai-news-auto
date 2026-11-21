@@ -27,6 +27,8 @@ import headline_normalize  # noqa: E402
 import article_style  # noqa: E402
 import news_types  # noqa: E402
 import section_gate  # noqa: E402
+import main as main_module  # noqa: E402
+import pacing  # noqa: E402  1日30本の数え方（台帳 A74）
 from cluster import build_clusters  # noqa: E402
 import question_patterns  # noqa: E402
 import threads_hooks  # noqa: E402
@@ -405,6 +407,14 @@ def main() -> int:
     client = build_client()
     created = 0
 
+    web_state = main_module.load_state()
+    if not args.force:
+        # 新しいまとめは1日30本の中（台帳 A74）。既にあるまとめの更新は本数が増えないので止めない
+        full = pacing.routine_full(web_state)
+        if full and any(not old for _, old in pending):
+            log("[info] 今日のふだんの自動の記事が上限（台帳 A74）に達しているので、新しいまとめは次の日に回します")
+        pending = [(cluster, old) for cluster, old in pending if old or not full]
+
     for cluster, old in pending[: args.max]:
         members = [by_slug[s] for s in cluster.slugs if s in by_slug]
         log(f"\n[統合中] 「{cluster.key}」 {len(members)}本")
@@ -465,6 +475,9 @@ def main() -> int:
                 encoding="utf-8",
             )
 
+        if not old and not args.force:
+            pacing.register_routine(web_state, f"roundup:{record['slug']}", record["slug"], "", "roundup")
+            main_module.save_state(web_state)
         created += 1
         log(
             f"   [OK] {path.relative_to(ROOT)} "

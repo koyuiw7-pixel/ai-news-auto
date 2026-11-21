@@ -13,7 +13,7 @@
      2026-11-21: 話題の公式のページ（自治体・官公庁など。support_pages）を探して読み、窓口・やることの事実を足して 800字以上を目安にする
 
 ここには通信しない部品（選ぶ・確かめる・指示文）と、主要な報道機関の RSS を読む小さな関数だけを置く。記事の生成・門は web_articles.py。
-1日の本数は scripts/ramp.py の TREND_PER_RUN / TREND_DAILY_CAP（審査の期間の「暮らしとお金だけ・1日30本」の外。速報と同じ扱い）。
+1日の本数は scripts/ramp.py の TREND_PER_RUN / TREND_DAILY_CAP（2026-11-22 から1日30本の中で数える。台帳 A74）。
 """
 from __future__ import annotations
 

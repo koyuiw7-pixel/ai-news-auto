@@ -29,10 +29,10 @@ class DailyTargetTest(unittest.TestCase):
         self.assertEqual(ramp.review_cap(ramp.pick(ramp.WEB_RAMP, "2026-11-06"), "2026-11-06"), 100)
         # 2026-11-09 オーナー「目標を妨げるルールは消そう」: 100本は最低ライン、上限は 200
         # 2026-11-12〜11-26 は AdSense の審査の期間で30本（tests/test_adsense_review_20261112.py）。その前後は200本
-        for day in ("2026-11-09", "2026-11-27", "2026-12-31"):
-            cap = ramp.review_cap(ramp.pick(ramp.WEB_RAMP, day), day)
-            self.assertEqual(cap, ramp.WEB_CEILING, day)
-            self.assertGreaterEqual(cap, 100, day)
+        self.assertEqual(ramp.review_cap(ramp.pick(ramp.WEB_RAMP, "2026-11-09"), "2026-11-09"), ramp.WEB_CEILING)
+        # 2026-11-22 オーナー決定（台帳 A74）: ふだんの自動の記事は期限なしで30本
+        for day in ("2026-11-27", "2026-12-31"):
+            self.assertEqual(ramp.review_cap(ramp.pick(ramp.WEB_RAMP, day), day), 30, day)
 
     def test_per_run_counts_make_100_reachable(self):
         # 実際に回るのは日中1時間に3回ほど（約54回）。2026-11-09 オーナー「100本/日は必須」: 国内のレーンを1回4本・AI を1回2本にする
