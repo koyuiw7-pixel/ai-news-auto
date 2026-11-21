@@ -2073,14 +2073,6 @@
       "tries": 1,
       "url": "https://j-net21.smrj.go.jp/news/bt5puv0000011q7z.html"
     },
-    "2c44b43d065d4263": {
-      "first": "2026-11-21T07:45:44.837855+00:00",
-      "next": "2026-11-21T10:45:44.837855+00:00",
-      "reason": "「タイヤの側面にある『プラットホーム』」→元記事はプラットホームで溝深さを確認するよう求めていますが、側面にあるとは記しておらず、確認済み資料が側面にあるとしているのはタイヤの冬用表示です。; 「チェーンの早めの一斉装着」→元記事は立ち往生前の早めの装着を求めており、一斉に装着する対策とはしていません。; 「今年度の対策」→元記事の表現は「今冬」の対策で、年度単位の対策としては示していません。; ",
-      "title": "物流・自動車局での大雪時の大型車立ち往生防止対策について～今冬の立ち往生の発生を抑止するために～",
-      "tries": 1,
-      "url": "http://www.mlit.go.jp/report/press/jidosha08_hh_005895.html"
-    },
     "39c5570a65e7b9b7": {
       "first": "2026-11-19T12:36:12.596563+00:00",
       "next": "2026-11-19T15:36:12.596563+00:00",
@@ -2128,14 +2120,6 @@
       "title": "SUBARU 米国生産 3列SUV「アセント」を日本市場に150台限定で導入",
       "tries": 1,
       "url": "https://www.subaru.co.jp/news/2026_11_19_153939"
-    },
-    "5e1a884b88d07776": {
-      "first": "2026-11-21T07:11:03.290879+00:00",
-      "next": "2026-11-21T10:11:03.290879+00:00",
-      "reason": "題名で料金・価格を約束しているのに、本文に金額（円・ドル・無料など）が無い。元記事の金額を書くか、題名から料金の話を外す",
-      "title": "第94回公共料金等専門調査会【11月27日開催】",
-      "tries": 1,
-      "url": "https://www.cao.go.jp/consumer/kabusoshiki/kokyoryokin/senmon/094/kaisai/index.html"
     },
     "6687f7be62c34e4a": {
       "first": "2026-11-20T19:07:28.898717+00:00",
@@ -8729,6 +8713,17 @@
       "trendLane": true,
       "url": "https://news.yahoo.co.jp/articles/966c7c7910608c7ab45117faa47a627d4bd01b44"
     },
+    "2c44b43d065d4263": {
+      "at": "2026-11-21T11:00:31.818871+00:00",
+      "costUsd": 0.0084,
+      "intent": "neutral",
+      "mix": "life",
+      "model": "gemini-3.5-flash-lite",
+      "score": 96,
+      "section": "business",
+      "slug": "mlit-heavy-vehicle-snow-prevention",
+      "url": "http://www.mlit.go.jp/report/press/jidosha08_hh_005895.html"
+    },
     "2c616836327a8b64": {
       "at": "2026-11-17T17:50:48.088586+00:00",
       "breaking": true,
@@ -11903,6 +11898,14 @@
       "slug": "kfc-app-renewal-reward-2026",
       "url": "https://japan.kfc.co.jp/news_release/8196"
     },
+    "5e1a884b88d07776": {
+      "at": "2026-11-21T10:58:44.208737+00:00",
+      "costUsd": 0.0065,
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 題名で料金・価格を約束しているのに、本文に金額（円・ドル・無料など）が無い。元記事の金額を書くか、題名から料金の話を外す",
+      "skipped": true,
+      "url": "https://www.cao.go.jp/consumer/kabusoshiki/kokyoryokin/senmon/094/kaisai/index.html"
+    },
     "5e225945ad61e8c3": {
       "at": "2026-11-08T06:48:43.457227+00:00",
       "costUsd": 0.0165,
@@ -14738,18 +14741,6 @@
       "trendKeyword": "スペースx",
       "trendLane": true,
       "url": "https://www.afpbb.com/articles/-/3662401"
-    },
-    "8983d20a0c94de9b": {
-      "at": "2026-11-07T10:53:30.903229+00:00",
-      "costUsd": 0.0188,
-      "foreignAi": true,
-      "intent": "neutral",
-      "mix": "enterprise_dev",
-      "model": "anthropic-api:claude-haiku-5-5+anthropic-api:claude-haiku-5-5",
-      "score": 92,
-      "section": "ai",
-      "slug": "figma-code-layers-open-beta-design",
-      "url": "https://www.figma.com/blog/in-conversation-dylan-field-and-david-friedberg/"
     },
     "898ce27c1731271a": {
       "at": "2026-11-21T07:45:45.202744+00:00",
@@ -24758,101 +24749,6 @@
   "quality_log": [
     {
       "accepted": true,
-      "at": "2026-11-19T18:34:05.163076+00:00",
-      "attempt": 1,
-      "id": "b00f82b6db94c2e5",
-      "kind": "ai",
-      "model": "openai-api:gpt-6.1-terra",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 77.7,
-        "avg_sentence": 38.8,
-        "long_share": 0.028,
-        "max_paragraph": 120,
-        "paragraphs": 18,
-        "sentences": 36
-      },
-      "score": 98,
-      "source": "google-blog-all",
-      "title": "Introducing Tool Retrieval in the Gemini API",
-      "warnings": [
-        "見出しが50字（目安40字以内）。一覧・カードでは前半だけを出す"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-19T19:53:36.539825+00:00",
-      "attempt": 1,
-      "id": "f994b5e2901299b7",
-      "kind": "broad",
-      "model": "openai-api:gpt-6-luna",
-      "problems": [
-        "threads_post が「書き出し／事実2文／問いかけ」の3つのかたまりになっていない"
-      ],
-      "readability": {
-        "avg_paragraph": 116.1,
-        "avg_sentence": 51.6,
-        "long_share": 0.222,
-        "max_paragraph": 186,
-        "paragraphs": 8,
-        "sentences": 18
-      },
-      "score": null,
-      "source": "jpcert",
-      "title": "Weekly Report: N-able N-centralに複数の脆弱性",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（JPCERT・CC・XML）",
-        "読みやすさ: 文が長い（1文の平均 51.6字・60字超の文が 22% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-19T19:56:08.540273+00:00",
-      "attempt": 1,
-      "id": "e1b0d63e53071625",
-      "kind": "broad",
-      "model": "openai-api:gpt-6.1-terra",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 77.3,
-        "avg_sentence": 35.7,
-        "long_share": 0.0,
-        "max_paragraph": 130,
-        "paragraphs": 12,
-        "sentences": 26
-      },
-      "score": 100,
-      "source": "nissan",
-      "title": "「ルークス」を一部仕様向上、あわせて「ROCK CREEK」を追加",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（ROCK・CREEK・WD）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-19T19:57:06.583225+00:00",
-      "attempt": 1,
-      "id": "a9354594c3495770",
-      "kind": "broad",
-      "model": "openai-api:gpt-6.1-terra",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 72.8,
-        "avg_sentence": 33.6,
-        "long_share": 0.0,
-        "max_paragraph": 132,
-        "paragraphs": 12,
-        "sentences": 26
-      },
-      "score": 100,
-      "source": "ntt-news",
-      "title": "「ドコモ光／ahamo光 10ギガ 1年まるっと割」を2026年12月1日から開始",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（OCN）"
-      ]
-    },
-    {
-      "accepted": true,
       "at": "2026-11-19T21:09:45.948325+00:00",
       "attempt": 1,
       "id": "80d5e14bf1202719",
@@ -32350,6 +32246,110 @@
       "title": "消費者物価（全国26年10月）－コアCPI上昇率は12月に3％台へ",
       "warnings": [
         "初めて出たところで言い換えていない略語（CPI）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-21T10:58:18.648010+00:00",
+      "attempt": 1,
+      "id": "5e1a884b88d07776",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "題名で料金・価格を約束しているのに、本文に金額（円・ドル・無料など）が無い。元記事の金額を書くか、題名から料金の話を外す"
+      ],
+      "readability": {
+        "avg_paragraph": 127.6,
+        "avg_sentence": 47.0,
+        "long_share": 0.105,
+        "max_paragraph": 195,
+        "paragraphs": 7,
+        "sentences": 19
+      },
+      "score": null,
+      "source": "cao",
+      "title": "第94回公共料金等専門調査会【11月27日開催】",
+      "warnings": [
+        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
+        "読みやすさ: 文が長い（1文の平均 47.0字・60字超の文が 10% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-21T10:59:26.503043+00:00",
+      "attempt": 1,
+      "id": "2c44b43d065d4263",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "リード「対策が不十分なまま立ち往生を引き起こした場合には、監査のうえ行政処分の対象」→ 元記事は「雪道において悪質な立ち往生事案が発生した場合」に監査し、措置が不十分なら処分対象と説明しており、対象となる事案の条件が広がっています。",
+        "かんたん版「不十分な場合は処分の対象になります」→ 立ち往生事案の発生や監査を経る条件が省かれ、措置が不十分なら直ちに処分対象となるように読めます。",
+        "本文「長時間の車両滞留」→ 元記事は大量の車両が路上に滞留したとしていますが、滞留が長時間に及んだとは記していません。"
+      ],
+      "readability": {
+        "avg_paragraph": 157.8,
+        "avg_sentence": 74.2,
+        "long_share": 0.706,
+        "max_paragraph": 301,
+        "paragraphs": 8,
+        "sentences": 17
+      },
+      "score": 82,
+      "source": "mlit-press",
+      "title": "物流・自動車局での大雪時の大型車立ち往生防止対策について～今冬の立ち往生の発生を抑止するために～",
+      "warnings": [
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
+        "読みやすさ: 文が長い（1文の平均 74.2字・60字超の文が 71% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "読みやすさ: 段落が長い（平均 157.8字・最長 301字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-21T10:59:54.815427+00:00",
+      "attempt": 1,
+      "id": "2c44b43d065d4263",
+      "kind": "broad",
+      "model": "openai-api:gpt-6-luna",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 158.6,
+        "avg_sentence": 74.6,
+        "long_share": 0.706,
+        "max_paragraph": 301,
+        "paragraphs": 8,
+        "sentences": 17
+      },
+      "score": 96,
+      "source": "mlit-press",
+      "title": "物流・自動車局での大雪時の大型車立ち往生防止対策について～今冬の立ち往生の発生を抑止するために～",
+      "warnings": [
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
+        "読みやすさ: 文が長い（1文の平均 74.6字・60字超の文が 71% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "読みやすさ: 段落が長い（平均 158.6字・最長 301字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-21T11:00:31.791412+00:00",
+      "attempt": 0,
+      "id": "2c44b43d065d4263",
+      "kind": "broad",
+      "model": "openai-api:gpt-6-luna",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 73.3,
+        "avg_sentence": 36.7,
+        "long_share": 0.028,
+        "max_paragraph": 106,
+        "paragraphs": 18,
+        "sentences": 36
+      },
+      "score": 96,
+      "source": "mlit-press",
+      "title": "物流・自動車局での大雪時の大型車立ち往生防止対策について～今冬の立ち往生の発生を抑止するために～",
+      "warnings": [
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
       ]
     }
   ],
