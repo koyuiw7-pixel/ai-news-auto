@@ -1,3 +1,4 @@
+import { RECALL_HARM } from "@/lib/keyword-products";
 import type { ArticleSummary } from "@/lib/articles";
 
 /**
@@ -102,6 +103,8 @@ export function rakutenPageUrl(page: string): string {
 export function shopLinkForArticle(article: Pick<ArticleSummary, "title" | "seoTitle" | "genreSlug">): ShopLink | undefined {
   if (!GENRES.has(article.genreSlug)) return undefined;
   const title = `${article.title} ${article.seoTitle ?? ""}`;
+  // 回収・発火などの記事に、同じ種類の品物の買い物リンクを出さない
+  if (RECALL_HARM.test(title)) return undefined;
   const rule = RULES.find((r) => r.match.test(title) && !r.exclude?.test(title));
   if (!rule) return undefined;
   return { name: rule.name, query: rule.query, amazon: amazonUrl(rule), rakuten: rakutenSearchUrl(rule.query) };

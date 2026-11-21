@@ -19,6 +19,13 @@ export type ProductCategory = {
 // 情報の流出・不正アクセスの記事は製品の記事ではない（JFA STORE の流出の記事にサッカーボールが出ていた。2026-11-17）
 const NOT_PRODUCT = /決算|株価|倒産|脆弱性|アップデート|ソフトウェア更新|障害|リコール|漏え?い|漏洩|流出|不正アクセス|上方修正|下方修正/;
 
+/**
+ * 製品の回収・発火・混入など、読者が困っている記事の見出し（2026-11-21 オーナー「無関係な広告で埋めない」）。
+ * 同じ種類の品物の通販の検索を出さない（電動アシスト自転車のバッテリー発火の記事に自転車の検索が出ていた）。
+ * 「資金回収」「資源回収」など、製品の回収でない語は当てない
+ */
+export const RECALL_HARM = /(?<!資金|投資|債権|費用|資源|古紙|廃品|使用済み)回収|リコール|発火|発煙|異常発熱|異物混入|混入|食中毒/;
+
 export const PRODUCT_CATEGORIES: ProductCategory[] = [
   // 自転車・乗り物
   { name: "電動アシストマウンテンバイク", query: "電動アシスト マウンテンバイク", match: /e-?MTB|電動(アシスト)?マウンテンバイク|電動アシスト.{0,4}MTB/i },
@@ -74,14 +81,14 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
 /** 見出しの語だけで決まる製品カテゴリ（記事の品物そのもの）。製品そのものの記事でなければ undefined */
 export function productCategoryForTitle(article: Pick<ArticleSummary, "title" | "seoTitle">): ProductCategory | undefined {
   const title = `${article.title} ${article.seoTitle ?? ""}`;
-  if (NOT_PRODUCT.test(title)) return undefined;
+  if (NOT_PRODUCT.test(title) || RECALL_HARM.test(title)) return undefined;
   return PRODUCT_CATEGORIES.find((c) => c.match.test(title) && !c.exclude?.test(title));
 }
 
 /** 記事の製品カテゴリ（見出し → タグの順）。製品そのものの記事でなければ undefined */
 export function productCategoryForArticle(article: Pick<ArticleSummary, "title" | "seoTitle" | "tags">): ProductCategory | undefined {
   const title = `${article.title} ${article.seoTitle ?? ""}`;
-  if (NOT_PRODUCT.test(title)) return undefined;
+  if (NOT_PRODUCT.test(title) || RECALL_HARM.test(title)) return undefined;
   const tags = (article.tags ?? []).join(" / ");
   for (const text of [title, tags]) {
     const found = PRODUCT_CATEGORIES.find((c) => c.match.test(text) && !c.exclude?.test(title));

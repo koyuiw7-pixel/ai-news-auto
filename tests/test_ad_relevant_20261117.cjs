@@ -66,13 +66,11 @@ test("実データ: ナゲットの記事（ノワール）に、同じ種類の
   assert.ok(box.items.every((item) => item.price == null && !item.priceText && isValidAffiliateUrl(item.url)));
 });
 
-test("実データ: イヤホン回収の記事（ノワール）に、イヤホンの専門店と同じ種類の検索の囲みが出る", (t) => {
+// 2026-11-21 オーナー「無関係な広告で埋めない」: 回収の記事に同じ種類の品物の広告を出さない決まりに変更
+test("実データ: イヤホン回収の記事（ノワール）に、イヤホンの専門店や同じ種類の検索の囲みを出さない", (t) => {
   const a = articleJson("shinken-zemi-earphone-recall-pth077b");
   if (!a) return t.skip("記事が無い");
-  const box = noirBox(a);
-  assert.ok(box, "囲みが出る");
-  assert.equal(box.topic, "shop-earphone");
-  assert.deepEqual(keys(box), ["e-earphone", "rakuten-search:ワイヤレスイヤホン", "amazon-search:ワイヤレスイヤホン"]);
+  assert.equal(noirBox(a), undefined);
 });
 
 test("年金の記事には証券会社を出さない（2026-11-10 の決まりのまま）", () => {

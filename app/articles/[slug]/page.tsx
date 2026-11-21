@@ -51,7 +51,7 @@ import ShareButtons from "@/components/ShareButtons";
 import MoneyCheckLink from "@/components/MoneyCheckLink";
 import { moneyLinkFor } from "@/lib/money-pages";
 import ThreadsFollow from "@/components/ThreadsFollow";
-import { afterBodyOffer, offerPlanForArticle } from "@/lib/offers";
+import { afterBodyOffer, offerPlanForArticle, relevantPlan } from "@/lib/offers";
 import { getCta } from "@/lib/monetization";
 import { inlineReadForArticle, readNextForArticle } from "@/lib/read-next";
 import ReadNextBox from "@/components/ReadNextBox";
@@ -251,11 +251,13 @@ export default async function ArticlePage({ params }: Props) {
   const actionAd = compareOffers || noPr || adReview ? undefined : actionAdWithBenefits(actionAdForArticle(article), benefitContext);
   const offerPlan = noPr
     ? { offer: undefined, rail: undefined, inline: undefined }
-    : offerPlanForArticle(
+    : relevantPlan(offerPlanForArticle(
         article,
         [...(actionAd?.items ?? []), ...(compareOffers?.items ?? [])].map((x) => x.item.key),
         actionAd?.intent ? actionAd.items.slice(0, 1).map((x) => x.item.key) : [],
-      );
+      ));
+  // 話題が当たらない記事に、ジャンルの既定の広告を出さない（2026-11-21 オーナー「無関係な広告で埋めない」。lib/offers.ts relevantPlan）。枠の置き場所は変えない
+  const onlyDefaultAd = "droppedDefault" in offerPlan && offerPlan.droppedDefault === true;
   const offerAll = offerWithBenefits(offerPlan.offer, benefitContext);
   const offer = adReview ? undefined : offerWithBenefits(offerPlan.rail, benefitContext);
   // 審査の期間は本文の後ろの1つだけの囲みに、記事に合う候補をすべて渡す（右側に回した分で囲みが空にならないように。lib/offers.ts afterBodyOffer）
@@ -275,12 +277,14 @@ export default async function ArticlePage({ params }: Props) {
     chooseGuide && `/choose/${chooseGuide.slug}`,
     buyingGuide && `/compare/${buyingGuide.slug}`,
   ].filter((href): href is string => Boolean(href));
-  // 広告枠は全記事に出す（合う話題が無ければジャンルの既定の広告）。ガイドは記事に合うものがあるときだけ、広告に添えて出す
-  const readNext = readNextForArticle(article, shownGuides).find((link) => link.kind !== "category" || !offer);
+  // 広告は記事に合うものだけ。ガイドは記事に合うものがあるときだけ、広告に添えて出す
+  // 既定の広告を外しただけの記事は、案内の出方を今までのままにする（右側に案内を増やさない）
+  const railEmpty = !offer && !onlyDefaultAd;
+  const readNext = readNextForArticle(article, shownGuides).find((link) => link.kind !== "category" || railEmpty);
   // 本文中は、選び方ガイドの囲みが無いときだけ（同じ見た目の囲みを並べない）
   const readNextInline = !chooseGuide ? readNext : undefined;
   // 右側に広告が無いときは右側の先頭にも出す。PC は右側、スマホは本文中（1画面に1つだけ）
-  const readNextRail = !offer ? readNext : undefined;
+  const readNextRail = railEmpty ? readNext : undefined;
   const readNextInlineClass = readNextRail && readNextInline ? "lg:hidden" : "";
   // 日本語の黙読はおよそ毎分600字
 
@@ -365,8 +369,8 @@ export default async function ArticlePage({ params }: Props) {
   // 本文中の PR は1か所だけ（PC は右側の1〜3位＋本文中1つ、スマホは本文中1つ＋ページ下の1〜3位の最大2つ）。
   // 同じページに PR の囲みが3つ以上並ぶと広告だらけに見えるため（2026-11-03 監査）。優先順:
   // 本文中の4〜6位（Amazon/楽天の1行は同じ囲みの中）→ Amazon/楽天の1行だけ → 収益導線（monetization.json）の中盤 → 記事末
-  const inlineCta = !noPr && !adReview && bodyTail && !actionAd && !inlineOffer && !shopLink && getCta(article.genreSlug, "inline") ? "inline" : undefined;
-  const primaryCta = !noPr && !adReview && !actionAd && !inlineOffer && !shopLink && !inlineCta && getCta(article.genreSlug, "primary") ? "primary" : undefined;
+  const inlineCta = !noPr && !adReview && bodyTail && !onlyDefaultAd && !actionAd && !inlineOffer && !shopLink && getCta(article.genreSlug, "inline") ? "inline" : undefined;
+  const primaryCta = !noPr && !adReview && !actionAd && !onlyDefaultAd && !inlineOffer && !shopLink && !inlineCta && getCta(article.genreSlug, "primary") ? "primary" : undefined;
   const hasInlinePr = Boolean(actionAd || inlineOffer || shopLink || inlineCta || primaryCta);
   const headings = tocOf(body, article.sectionTitles);
   // 読み終えた人に「次の1本」を大きく見せる。本文の途中にも1本だけ差し込む

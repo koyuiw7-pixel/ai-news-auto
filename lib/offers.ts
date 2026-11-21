@@ -2,7 +2,7 @@ import fs from "@/lib/content-fs";
 import path from "node:path";
 import type { ArticleSummary } from "@/lib/articles";
 import { AMAZON_TAG, amazonUrl, rakutenPageUrl, rakutenSearchUrl } from "@/lib/amazon";
-import { productCategoryForArticle, productCategoryForTitle } from "@/lib/keyword-products";
+import { RECALL_HARM, productCategoryForArticle, productCategoryForTitle } from "@/lib/keyword-products";
 import { MONEY_PAGES, type MoneyTarget } from "@/lib/money-pages";
 import type { Benefit } from "@/lib/ad-benefits";
 
@@ -458,6 +458,8 @@ export function scoreTopics(article: ArticleSummary): TopicScore[] {
     // ジャンルの違う話題（スポーツ記事に回線、AI記事に投資の本など）は出さない
     if (!genresOf(topic).includes(article.genreSlug)) continue;
     if (regex(topic.articleExclude)?.test(text.title)) continue;
+    // 回収・発火などの記事に、同じ種類の品物の広告を出さない（2026-11-21）。備えの話題（life-*）と流出・セキュリティの話題は今までのまま
+    if (!/^(?:life-|leak|security)/.test(topic.key) && RECALL_HARM.test(text.title)) continue;
     // まとめ記事: AIツール・スキル・仕事・お金の話題だけ（「詐欺対策も」のような脇の1語でセキュリティソフトなどを出さない）
     if (roundup && !roundup.preferTopics.includes(topic.key)) continue;
     const pattern = topic.alsoMatch ? `${topic.match}|${topic.alsoMatch}` : topic.match;
@@ -786,6 +788,20 @@ export function offerPlanForArticle(article: ArticleSummary, exclude: Iterable<s
   // 右側と本文中が同じ見出し（「毎日使う道具とネット環境を見直す」が2回）にならないよう、本文中は別の見出しにする（2026-11-03 の点検）
   const inline = inlineBox && inlineBox.headline === rail.headline ? { ...inlineBox, ...secondHeading(inlineBox) } : inlineBox;
   return { offer: { ...offer, ...headingFor(railItems, base) }, rail, inline };
+}
+
+/**
+ * 記事に合う広告だけを通す。話題が当たらないときのジャンルの既定の広告（fallback-*）は記事ページに出さない
+ * （2026-11-21 オーナー「無関係な広告で埋めない」。新しい見た目の記事は 2026-11-10 から同じ決まり）
+ */
+export function relevantOffer<T extends { topic?: string }>(offer: T | undefined): T | undefined {
+  return offer && !String(offer.topic ?? "").startsWith("fallback-") ? offer : undefined;
+}
+
+/** 枠の割り当てから既定の広告を除く。除いたときは droppedDefault を立てる（代わりの既定の導線も出さないため） */
+export function relevantPlan(plan: OfferPlan): OfferPlan & { droppedDefault?: boolean } {
+  if (!plan.offer || relevantOffer(plan.offer)) return plan;
+  return { offer: undefined, rail: undefined, inline: undefined, droppedDefault: true };
 }
 
 /**
