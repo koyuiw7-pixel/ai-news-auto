@@ -38,10 +38,11 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
   { name: "スマートフォン", query: "SIMフリー スマートフォン", match: /スマホ|スマートフォン|iPhone|Galaxy\s?S\d|Pixel\s?\d|Xperia|AQUOS\s?(sense|R)/i, exclude: /iOS|料金|プラン|回線|ふるさと|研究|手法|論文|自動操作|教育|モラル|アプリ/ },
   { name: "ゲーミングPC", query: "ゲーミングPC", match: /ゲーミングPC/ },
   { name: "ミニPC", query: "ミニPC", match: /ミニPC/ },
-  { name: "ノートパソコン", query: "ノートパソコン", match: /ノートPC|ノートパソコン|MacBook|Copilot\+ ?PC|Chromebook/i },
+  { name: "iMac", query: "iMac", match: /iMac/, exclude: /回収|発火/ },
+  { name: "ノートパソコン", query: "ノートパソコン", match: /ノートPC|ノートパソコン|MacBook|VAIO|dynabook|ダイナブック|Copilot\+ ?PC|Chromebook/i, exclude: /回収|発火/ },
   { name: "PCモニター", query: "PCモニター", match: /モニター|ディスプレイ/, exclude: /監視|モニタリング/ },
   { name: "カメラ", query: "ミラーレス一眼", match: /ミラーレス|一眼|デジタルカメラ|デジカメ|アクションカメラ|GoPro/i },
-  { name: "テレビ", query: "4Kテレビ", match: /有機ELテレビ|液晶テレビ|4Kテレビ|プロジェクター/ },
+  { name: "テレビ", query: "4Kテレビ", match: /有機ELテレビ|液晶テレビ|4Kテレビ|テレビの選び方|プロジェクター/ },
   // ゲーム
   { name: "Nintendo Switch 2のソフト", query: "Nintendo Switch 2 ソフト", match: /Switch\s?2/i },
   { name: "Nintendo Switchのソフト", query: "Nintendo Switch ソフト", match: /Nintendo\s?Switch|ニンテンドースイッチ|任天堂|スプラトゥーン/i },
