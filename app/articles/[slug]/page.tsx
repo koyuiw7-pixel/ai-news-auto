@@ -190,9 +190,10 @@ export default async function ArticlePage({ params }: Props) {
   const isRoundup = article.type === "roundup";
   // 検索に出さない記事（本文なし・重複・14日間訪問0 など）には AdSense の広告枠を出さない。
   // 「有用性の低いコンテンツ」「複製されたコンテンツ」の画面に広告を載せないため（AdSense のパブリッシャー ポリシー）。
-  // 本文が短いだけの記事（short。2026-11-21 オーナー承認）は検索からだけ外し、広告は出す（オーナーの決まり「広告の無いページを作らない」）
+  // 本文が短いだけの記事（short。2026-11-21 オーナー承認）も AdSense の枠は出さず、A8 などの提携の囲みだけを出す
+  // （オーナー 11/21「短い記事はA8だけでいいよ」。広告の無いページは作らない＝提携の囲みは noPr のときだけ消す）
   const indexReason = noindexReason({ ...article, duplicate: getArticleSummary(article.slug)?.duplicate });
-  const showAds = indexReason === null || indexReason === "short";
+  const showAds = indexReason === null;
   // 公式ブログ・プレスリリースから作った記事（動画の埋め込み・タイムテーブルを出さない）
   const web = isWeb(article);
   const video = isVideo(article);

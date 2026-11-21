@@ -121,9 +121,9 @@ class ShortNotRetiredTest(unittest.TestCase):
 
 
 class ShortPageKeepsAdsTest(unittest.TestCase):
-    def test_article_page_keeps_ads_for_short(self):
+    def test_article_page_shows_only_affiliates_for_short(self):
         page = (ROOT / "app" / "articles" / "[slug]" / "page.tsx").read_text("utf-8")
-        self.assertIn('const showAds = indexReason === null || indexReason === "short";', page)
+        self.assertIn('const showAds = indexReason === null;', page)
         # 提携の囲み・PR を消すのは14日間訪問0の記事だけ（short では消さない）
         self.assertIn("const noPr = isZeroVisit(article.slug);", page)
         # robots の noindex は isIndexable で決める（short も noindex になる）
