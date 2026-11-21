@@ -21691,6 +21691,18 @@
       "skipped": true,
       "url": "https://claude.com/pricing#entry-2026-11-18-0cd68d"
     },
+    "fdbacb4d9a167c07": {
+      "at": "2026-11-21T03:10:10.285155+00:00",
+      "costUsd": 0.0426,
+      "intent": "breaking",
+      "major": true,
+      "mix": "alert",
+      "model": "openai-api:gpt-6.1-terra",
+      "score": 100,
+      "section": "public",
+      "slug": "rakuten-mobile-docomo-network-outage",
+      "url": "https://network.mobile.rakuten.co.jp/information/failure/4001/"
+    },
     "fdbafc07f945204c": {
       "at": "2026-11-17T15:43:06.444430+00:00",
       "costUsd": 0.0107,
@@ -24506,31 +24518,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-19T11:18:13.134399+00:00",
-      "attempt": 1,
-      "id": "28954e1931ecccd3",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 124.6,
-        "avg_sentence": 49.9,
-        "long_share": 0.15,
-        "max_paragraph": 214,
-        "paragraphs": 8,
-        "sentences": 20
-      },
-      "score": 100,
-      "source": "radar-official",
-      "title": "ローラ関連ニュース｜dメニューニュース（NTTドコモ）",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（ORICON・NEWS・THE）",
-        "読みやすさ: 文が長い（1文の平均 49.9字・60字超の文が 15% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "読みやすさ: 段落が長い（平均 124.6字・最長 214字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-19T11:18:47.953927+00:00",
@@ -32106,6 +32093,26 @@
       "score": 96,
       "source": "mof",
       "title": "「マネロン・テロ資金供与・拡散金融対策の推進に関する基本方針」を改訂しました（令和8年11月19日）"
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-21T03:10:10.260360+00:00",
+      "attempt": 1,
+      "id": "fdbacb4d9a167c07",
+      "kind": "broad",
+      "model": "openai-api:gpt-6.1-terra",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 73.1,
+        "avg_sentence": 39.4,
+        "long_share": 0.154,
+        "max_paragraph": 112,
+        "paragraphs": 7,
+        "sentences": 13
+      },
+      "score": 100,
+      "source": "fast",
+      "title": "【災害影響】ドコモ回線をご利用の一部のお客様において、通信サービスがご利用できない、またはご利用しづらい状況について（11月21日 午前11時50分時点） | "
     }
   ],
   "short_text_retry": {
