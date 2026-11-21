@@ -2233,14 +2233,6 @@
       "tries": 1,
       "url": "https://www.kantei.go.jp/jp/105/actions/202611/19apec.html"
     },
-    "f3db62ecfcc4ba2a": {
-      "first": "2026-11-21T10:05:41.346862+00:00",
-      "next": "2026-11-21T13:05:41.346862+00:00",
-      "reason": "サイソクが自分で試したように読める書き方がある（「筆者」）。サイソクは試していない。元記事の書き手が試した結果なら「〇〇（媒体名）の記者が試したところ」と誰が試したかを書く",
-      "title": "（論文）家計のインフレ予想の形成メカニズム：インフレ実感とインフレ経験の役割",
-      "tries": 1,
-      "url": "http://www.boj.or.jp/research/wps_rev/wps_2026/wp26j12.htm"
-    },
     "f4ab494c2e8159ad": {
       "first": "2026-11-19T00:31:06.826847+00:00",
       "next": "2026-11-19T03:31:06.826847+00:00",
@@ -12353,6 +12345,12 @@
       "skipped": true,
       "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE5NY1FFSFQ3b0x0WE0zYzBZTUFPdmY3bTFSQ3hRM25DbHQ5bUxpY29QM2djbllvYWhoWUhsTXBhbGZDRVlZbXJJZnAyVDB4eHA4VTVjeExuR1EwdEN2OFppY3NDdVBqN1VCc0xyUzZuREl5YUJKTGVFMVpzcWFIZzA?oc=5"
     },
+    "654c72fbe5c26518": {
+      "at": "2026-11-21T13:17:04.844427+00:00",
+      "reason": "prefilter: タイトルが短すぎる（一覧リンク等）",
+      "skipped": true,
+      "url": "https://www.mof.go.jp/policy/national_property/list/stocks/kabushiki/index.htm"
+    },
     "657cfa792b136170": {
       "at": "2026-11-12T01:41:13.590109+00:00",
       "costUsd": 0.0152,
@@ -14550,18 +14548,6 @@
       "section": "lifestyle",
       "slug": "house-foods-price-revision-2027",
       "url": "https://housefoods-group.com/newsrelease/pdf/newsrelease_20261109_01.pdf"
-    },
-    "8701fa3f5588adb9": {
-      "at": "2026-11-07T13:14:13.044297+00:00",
-      "costUsd": 0.0242,
-      "foreignAi": true,
-      "intent": "neutral",
-      "mix": "enterprise_dev",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "score": 92,
-      "section": "ai",
-      "slug": "mito-ai-video-world-cup-tv-spot",
-      "url": "https://cloud.google.com/blog/products/media-entertainment/how-mito-orchestrated-5000-plus-ai-assets-for-a-world-cup-tv-spot/"
     },
     "874ce4e4f9a343e9": {
       "at": "2026-11-12T15:05:58.950072+00:00",
@@ -21199,6 +21185,14 @@
       "slug": "jr-kyushu-huis-ten-bosch-countdown-train",
       "url": "https://www.jrkyushu.co.jp/common/inc/news/newtopics/__icsFiles/afieldfile/2026/11/18/20261119_Huis_Ten_Bosch_Countdown_Fireworks_Special_Train.pdf"
     },
+    "f3db62ecfcc4ba2a": {
+      "at": "2026-11-21T13:17:04.392880+00:00",
+      "costUsd": 0.008,
+      "model": "gemini-3.1-flash-lite",
+      "reason": "quality: サイソクが自分で試したように読める書き方がある（「筆者」）。サイソクは試していない。元記事の書き手が試した結果なら「〇〇（媒体名）の記者が試したところ」と誰が試したかを書く",
+      "skipped": true,
+      "url": "http://www.boj.or.jp/research/wps_rev/wps_2026/wp26j12.htm"
+    },
     "f423424e36ede3ad": {
       "at": "2026-11-09T01:31:36.840800+00:00",
       "reason": "prefilter: サイトの主題外（エンタメのビジネス・テックの話題ではない。料金・決算・販売本数・AI・規約などがない）",
@@ -21647,6 +21641,17 @@
       "section": "lifestyle",
       "slug": "yonden-electricity-bill-relief-2027",
       "url": "https://www.yonden.co.jp/press/2026/__icsFiles/afieldfile/2026/11/11/pr002.pdf"
+    },
+    "fa3222d0cf7a4e37": {
+      "at": "2026-11-21T13:19:08.046566+00:00",
+      "costUsd": 0.013,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "gemini-3.1-flash-lite",
+      "score": 100,
+      "section": "business",
+      "slug": "nobel-chemistry-prize-investment-strategy",
+      "url": "https://www.nli-research.co.jp/topics_detail1/id=87412?site=nli"
     },
     "fa4a9c83bb449546": {
       "at": "2026-11-20T04:59:51.522137+00:00",
@@ -24715,107 +24720,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-19T21:09:45.948325+00:00",
-      "attempt": 1,
-      "id": "80d5e14bf1202719",
-      "kind": "broad",
-      "model": "openai-api:gpt-6.1-terra",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 88.6,
-        "avg_sentence": 39.9,
-        "long_share": 0.0,
-        "max_paragraph": 128,
-        "paragraphs": 9,
-        "sentences": 20
-      },
-      "score": 99,
-      "source": "nissan",
-      "title": "日産自動車とフードリボン社、パイナップル葉を活用した天然繊維強化プラスチックを共同開発"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-19T21:41:21.479155+00:00",
-      "attempt": 1,
-      "id": "157d55a130ff6c4c90e4b28cd65041ab4181cea1",
-      "kind": "trend",
-      "model": "gemini-3.5-flash",
-      "problems": [
-        "タイトルの「住宅全焼」および本文の「住宅はほぼ全焼」→元記事は火災発生と焼け跡からの遺体発見を伝えていますが、焼損の程度は示していません。",
-        "本文の「札幌市東区」→元記事にあるのは北海道札幌市までで、東区との記載はありません。",
-        "本文の「1階の焼け跡から」→元記事は焼け跡から遺体を発見したとしていますが、場所が1階とは述べていません。",
-        "本文の「窓から飛び降りて」→元記事は2階から飛び降りたと伝えており、窓からとは特定していません。",
-        "本文の「警察と消防が出火原因の調査を進めています」→元記事に出火原因の調査に関する記述はありません。",
-        "「灯油の状態を確かめることが求められます」→元記事は古い灯油を使わないよう呼びかけていますが、状態確認を求めるとは述べていません。"
-      ],
-      "readability": {
-        "avg_paragraph": 102.8,
-        "avg_sentence": 45.7,
-        "long_share": 0.111,
-        "max_paragraph": 115,
-        "paragraphs": 4,
-        "sentences": 9
-      },
-      "score": 62,
-      "source": "trends",
-      "title": "火災",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（NEWS・TBS・DIG）",
-        "要点の1つ目（「日テレNEWSなどによると、札幌市東区で住宅が全…」）が一番のニュースになっていない。題名・リードの1文目と同じ中心の事実（注意）を、リードとは違う言い方で1つ目に書く",
-        "読みやすさ: 文が長い（1文の平均 45.7字・60字超の文が 11% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-19T21:42:08.675181+00:00",
-      "attempt": 1,
-      "id": "157d55a130ff6c4c90e4b28cd65041ab4181cea1",
-      "kind": "trend",
-      "model": "openai-api:gpt-6-luna",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 95.8,
-        "avg_sentence": 47.9,
-        "long_share": 0.125,
-        "max_paragraph": 118,
-        "paragraphs": 4,
-        "sentences": 8
-      },
-      "score": 96,
-      "source": "trends",
-      "title": "火災",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（NEWS・TBS・DIG）",
-        "要点の1つ目（「日テレNEWSなどによると、札幌市で住宅火災が発…」）が一番のニュースになっていない。題名・リードの1文目と同じ中心の事実（注意）を、リードとは違う言い方で1つ目に書く",
-        "読みやすさ: 文が長い（1文の平均 47.9字・60字超の文が 12% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-19T21:42:26.474018+00:00",
-      "attempt": 0,
-      "id": "157d55a130ff6c4c90e4b28cd65041ab4181cea1",
-      "kind": "trend",
-      "model": "openai-api:gpt-6-luna",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 95.8,
-        "avg_sentence": 38.3,
-        "long_share": 0.1,
-        "max_paragraph": 120,
-        "paragraphs": 4,
-        "sentences": 10
-      },
-      "score": 98,
-      "source": "trends",
-      "title": "火災",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（NEWS・TBS・DIG）",
-        "要点の1つ目（「日テレNEWSなどによると、札幌市で住宅火災が発…」）が一番のニュースになっていない。題名・リードの1文目と同じ中心の事実（注意）を、リードとは違う言い方で1つ目に書く"
-      ]
-    },
     {
       "accepted": false,
       "at": "2026-11-19T21:58:24.829584+00:00",
@@ -32318,6 +32222,112 @@
       "title": "物流・自動車局での大雪時の大型車立ち往生防止対策について～今冬の立ち往生の発生を抑止するために～",
       "warnings": [
         "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-21T13:16:40.853578+00:00",
+      "attempt": 1,
+      "id": "f3db62ecfcc4ba2a",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "サイソクが自分で試したように読める書き方がある（「筆者」）。サイソクは試していない。元記事の書き手が試した結果なら「〇〇（媒体名）の記者が試したところ」と誰が試したかを書く"
+      ],
+      "readability": {
+        "avg_paragraph": 148.6,
+        "avg_sentence": 59.5,
+        "long_share": 0.5,
+        "max_paragraph": 240,
+        "paragraphs": 8,
+        "sentences": 20
+      },
+      "score": null,
+      "source": "boj",
+      "title": "（論文）家計のインフレ予想の形成メカニズム：インフレ実感とインフレ経験の役割",
+      "warnings": [
+        "読みやすさ: 文が長い（1文の平均 59.5字・60字超の文が 50% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "読みやすさ: 段落が長い（平均 148.6字・最長 240字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-21T13:18:12.948980+00:00",
+      "attempt": 1,
+      "id": "fa3222d0cf7a4e37",
+      "kind": "broad",
+      "model": "gemini-3.1-flash-lite",
+      "problems": [
+        "タイトルの「ノーベル化学賞が示す『知の分散投資』」および要点・かんたん版の「研究成果から…必要性が示されました」「小さな発見が積み重なって…技術革新につながることを示しました」→元記事は化学研究を知の分散投資の比喩として用いており、研究自体が知の分散投資や発見の積み重ねによる技術革新を示したとは述べていません。",
+        "「多様な研究領域を幅広く支える『知の分散投資』が不可欠」→元記事は重要性を説いていますが、「不可欠」と断定する表現は元記事より強い言い方です。"
+      ],
+      "readability": {
+        "avg_paragraph": 191.7,
+        "avg_sentence": 67.6,
+        "long_share": 0.588,
+        "max_paragraph": 313,
+        "paragraphs": 6,
+        "sentences": 17
+      },
+      "score": 78,
+      "source": "nli-research",
+      "title": "「右手と左手」の化学と「株式と債券」の経済学－ノーベル化学賞から考える「知の分散投資」と日本経済の未来",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（GDP）",
+        "同じ数字が多い（「60兆円」が5回）",
+        "読みやすさ: 文が長い（1文の平均 67.6字・60字超の文が 59% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-21T13:18:36.085455+00:00",
+      "attempt": 1,
+      "id": "fa3222d0cf7a4e37",
+      "kind": "broad",
+      "model": "openai-api:gpt-6-luna",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 191.5,
+        "avg_sentence": 67.6,
+        "long_share": 0.588,
+        "max_paragraph": 313,
+        "paragraphs": 6,
+        "sentences": 17
+      },
+      "score": 100,
+      "source": "nli-research",
+      "title": "「右手と左手」の化学と「株式と債券」の経済学－ノーベル化学賞から考える「知の分散投資」と日本経済の未来",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（GDP）",
+        "同じ数字が多い（「60兆円」が5回）",
+        "読みやすさ: 文が長い（1文の平均 67.6字・60字超の文が 59% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-21T13:19:03.359080+00:00",
+      "attempt": 0,
+      "id": "fa3222d0cf7a4e37",
+      "kind": "broad",
+      "model": "",
+      "problems": [
+        "読みやすさ基準外のまま受理: 書き直し後の確認に不合格: 「株式と債券のような組み合わせで、価格変動のリスクを軽減します」→ 元記事は、両者が逆相関の場合にリスク軽減が期待できると説明しており、常に軽減するような表現は強すぎます。; 「物価の安定と持続的な経済成長の両立が、金融市場の安定に寄与します」→ 元記事は両立の"
+      ],
+      "readability": {
+        "avg_paragraph": 191.5,
+        "avg_sentence": 67.6,
+        "long_share": 0.588,
+        "max_paragraph": 313,
+        "paragraphs": 6,
+        "sentences": 17
+      },
+      "score": 100,
+      "source": "nli-research",
+      "title": "「右手と左手」の化学と「株式と債券」の経済学－ノーベル化学賞から考える「知の分散投資」と日本経済の未来",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（GDP）",
+        "同じ数字が多い（「60兆円」が5回）",
+        "読みやすさ: 文が長い（1文の平均 67.6字・60字超の文が 59% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
       ]
     }
   ],
