@@ -6,55 +6,52 @@
   "companyName": "NVIDIA",
   "category": "半導体・インフラ",
   "overview": {
-    "text": "Vera CPUは、NVIDIAが開発した次世代AIプラットフォーム向けのCPUです。AIエージェントの処理や科学計算を効率化するプロセッサとして、2026年8月に発表されました。",
+    "text": "Vera CPUはNVIDIAが開発した次世代のCPUです。AIエージェントの処理や科学計算を高速化します。",
     "sources": [
-      "nvidia-vera-cpu-science-rack",
-      "oci-vera-cpu-vera-rubin-nvl72",
+      "nvidia-vera-cpu-agents-per-watt",
       "nvidia-vera-rubin-performance-coreweave"
     ]
   },
   "facts": [
     {
       "label": "提供開始",
-      "value": "2026年11月（OCIなどで一般提供）",
+      "value": "Oracle Cloud Infrastructureなどで一般提供中",
       "sources": [
-        "oci-vera-cpu-vera-rubin-nvl72"
-      ]
-    },
-    {
-      "label": "日本での提供",
-      "value": "未確認",
-      "sources": [
-        "nvidia-vera-cpu-science-rack",
         "oci-vera-cpu-vera-rubin-nvl72"
       ]
     },
     {
       "label": "向いている人",
-      "value": "AIデータセンターの運営や科学研究者",
+      "value": "AI基盤担当者や科学研究者",
       "sources": [
         "nvidia-vera-cpu-science-rack",
-        "nvidia-vera-cpu-agents-per-watt"
+        "nvidia-ai-supply-chain-expansion"
       ]
     }
   ],
   "capabilities": [
     {
-      "text": "最速のx86 CPUと比べて、1ワットあたりのエージェント数が1.6倍になっています。",
+      "text": "x86の最速CPUと比べて、1ワットあたりのエージェント数が1.6倍になっています。",
       "sources": [
         "nvidia-vera-cpu-agents-per-watt"
       ]
     },
     {
-      "text": "OpenFOAMの気流計算で、x86システムに対する電力あたりの性能が2.4倍でした。",
+      "text": "従来のx86プロセッサと比較して、コア単体で最大1.8倍の処理性能を達成しています。",
+      "sources": [
+        "nvidia-vera-rubin-performance-coreweave"
+      ]
+    },
+    {
+      "text": "Vera CPUを192基接続する科学計算向けのラックが2027年初頭から提供予定です。",
       "sources": [
         "nvidia-vera-cpu-science-rack"
       ]
     },
     {
-      "text": "1,000個のエージェント用サンドボックス起動が10.8秒で行えます。",
+      "text": "OpenFOAMの気流計算では、x86システムに対する電力あたりの性能が2.4倍でした。",
       "sources": [
-        "nvidia-vera-cpu-agents-per-watt"
+        "nvidia-vera-cpu-science-rack"
       ]
     }
   ],
@@ -62,14 +59,13 @@
   "japan": [],
   "howto": [
     {
-      "text": "OCI（Oracle Cloud Infrastructure）などで利用できます。",
+      "text": "Oracle Cloud Infrastructureなどで利用できます。",
       "sources": [
-        "nvidia-vera-cpu-science-rack",
         "oci-vera-cpu-vera-rubin-nvl72"
       ]
     },
     {
-      "text": "Vera向けに最適化した開発ツール「NVIDIA HPC SDK 26.11」が提供されています。",
+      "text": "Vera向けに最適化した開発ツール「NVIDIA HPC SDK 26.11」を利用できます。",
       "sources": [
         "nvidia-vera-cpu-science-rack"
       ]
@@ -81,51 +77,42 @@
       "sources": [
         "nvidia-vera-rubin-performance-coreweave"
       ]
-    },
-    {
-      "text": "x86の最速CPUと比べて、1ワットあたりのエージェント数が1.6倍になっています。",
-      "sources": [
-        "nvidia-vera-cpu-agents-per-watt"
-      ]
     }
   ],
   "faq": [
     {
-      "q": "誰に向いている？",
-      "a": "AIエージェントの処理や大規模な科学計算を行う企業や研究者に向いています。",
+      "q": "Vera CPUとは何ですか？",
+      "a": "NVIDIAが開発した次世代CPUで、AIエージェントの処理や科学計算を高速化します。",
       "sources": [
-        "nvidia-vera-cpu-science-rack",
-        "oci-vera-cpu-vera-rubin-nvl72"
-      ]
-    },
-    {
-      "q": "従来のCPUと何が違う？",
-      "a": "従来のx86プロセッサと比較して、コア単体で最大1.8倍の処理性能を誇ります。",
-      "sources": [
+        "nvidia-vera-cpu-agents-per-watt",
         "nvidia-vera-rubin-performance-coreweave"
       ]
     },
     {
-      "q": "どのクラウドで提供されている？",
-      "a": "Oracle Cloud Infrastructureなどで一般提供が始まっています。",
+      "q": "誰に向いている製品ですか？",
+      "a": "AI基盤を導入する企業の担当者や、科学研究者を対象としています。",
       "sources": [
-        "oci-vera-cpu-vera-rubin-nvl72"
+        "nvidia-vera-cpu-science-rack",
+        "nvidia-ai-supply-chain-expansion"
       ]
     },
     {
-      "q": "開発ツールはある？",
-      "a": "Vera向けに最適化した「NVIDIA HPC SDK 26.11」が提供されています。",
+      "q": "開発向けのツールはありますか？",
+      "a": "Vera向けに最適化した「NVIDIA HPC SDK 26.11」などが提供されています。",
       "sources": [
         "nvidia-vera-cpu-science-rack"
+      ]
+    },
+    {
+      "q": "どのようなシステムで使われますか？",
+      "a": "OCIなどで一般提供が始まっているほか、192基搭載した科学計算向けラックも予定されています。",
+      "sources": [
+        "nvidia-vera-cpu-science-rack",
+        "oci-vera-cpu-vera-rubin-nvl72"
       ]
     }
   ],
   "timeline": [
-    {
-      "date": "2026-11-06",
-      "slug": "nvidia-vera-cpu-agents-per-watt",
-      "event": "電力1ワットあたりのエージェント数を公表"
-    },
     {
       "date": "2026-11-09",
       "slug": "oci-vera-cpu-vera-rubin-nvl72",
@@ -134,7 +121,7 @@
     {
       "date": "2026-11-18",
       "slug": "nvidia-vera-cpu-science-rack",
-      "event": "Vera CPUを192基搭載の科学計算向けラックを発表"
+      "event": "Vera CPUを192基搭載するラック発表"
     }
   ],
   "related": [
@@ -156,9 +143,9 @@
     "oci-vera-cpu-vera-rubin-nvl72",
     "nvidia-vera-cpu-agents-per-watt"
   ],
-  "signature": "d3072042df9745d0",
+  "signature": "43f16f729e3a497e",
   "primarySignature": "8f39be8c0cbc4a8a",
   "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-11-09T00:06:42+00:00",
-  "updatedAt": "2026-11-18T04:59:55+00:00"
+  "updatedAt": "2026-11-21T05:03:42+00:00"
 }
