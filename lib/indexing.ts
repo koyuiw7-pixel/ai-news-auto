@@ -12,6 +12,7 @@ import listGuard from "../content/list_pages_protected.json";
  * scripts/indexnow.py の is_indexable と同じ基準にしておくこと。
  *
  * 検索に出す条件は noindexReason（下）。2026-11-13 から、公開した記事は 手動の指定・本文なし・重複・14日間訪問0 以外すべて検索に出す。
+ * 2026-11-21 オーナー承認から、本文が短い記事（空白を除いて800字未満・short）も検索に出さない（記事は公開したまま・広告も出す）。
  * 下の 1〜4 は 2026-11-08 までの基準（focusReason。説明・集計用で、robots には使わない）:
  *  1. プレスリリース配信サービスではない。個人・他媒体の YouTube チャンネルの要約記事ではない（CREATOR_CHANNELS）
  *  2. 本文が THIN_BODY 文字以上（薄い要約を出さない）
@@ -154,16 +155,24 @@ export function isZeroVisit(slug: string | undefined | null): boolean {
 
 /** 本文が無いとみなす字数（scripts/indexnow.py の NO_BODY） */
 export const NO_BODY: number = rules.noBody;
+/**
+ * 本文が短いとみなす字数（空白を除く。scripts/indexnow.py の SHORT_BODY）。2026-11-21 オーナー承認（AdSense の3回目の申請の前の準備）:
+ * これより短い記事は検索に出さない。記事は消さず、公開したまま一覧・リンクに残し、広告・提携の囲みも出す
+ */
+export const SHORT_BODY: number = rules.shortBody;
 
 /**
  * 検索に出さない理由（出すなら null）。scripts/indexnow.py の noindex_reason と同じ。
  * 2026-11-13 オーナー「とにかく数字」（台帳 A61）: 公開した記事は検索に出す。出さないのは 手動の指定（indexable: false）・
- * 本文が無い記事・本当の重複（duplicateOf）・14日間訪問0の一覧の記事だけ。題名の語・主題・日本の読者向けの章・本文の長さでは外さない。
+ * 本文が無い記事・本文が短い記事（short）・本当の重複（duplicateOf）・14日間訪問0の一覧の記事だけ。題名の語・主題・日本の読者向けの章では外さない。
+ * 2026-11-21 オーナー承認（AdSense の3回目の申請の前の準備）: 本文の長さで外すのは、空白を除いて SHORT_BODY 字未満（short）の1つだけ。
  */
 export function noindexReason(article: ArticleSummary): string | null {
   if (typeof article.indexable === "boolean") return article.indexable ? null : "manual";
   if (article.type === "roundup") return null;
   if ((article.bodyLength ?? 0) < NO_BODY) return "no-body";
+  // 2026-11-21 オーナー承認: 空白を除いた本文が 800字未満は検索に出さない（bodyChars が無い古い索引では bodyLength で見る）
+  if ((article.bodyChars ?? article.bodyLength ?? 0) < SHORT_BODY) return "short";
   // 重複の印は記事 JSON の duplicateOf と、索引を作るときの予備の判定（lib/article-index.mjs の markDuplicates）
   if (article.duplicate || (article.duplicateOf && article.duplicateOf !== article.slug)) return "duplicate";
   // 14日間訪問0の記事（content/noindex_zero_visit.json。2026-11-10 オーナー承認。記事は消さない）

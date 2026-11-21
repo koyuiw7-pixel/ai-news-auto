@@ -479,6 +479,10 @@ def is_focus(article: dict) -> bool:
 # 配信サービス（wire）・動画の要約（creator-video）でも、公開している記事は検索に出す（幅広い話題の方針。台帳 A56）。
 # 公開前の門（publish_block_reason）の「主題外」も 2026-11-08 の台帳の見直しから同じ軸（on_axis）で見る
 NO_BODY = 200  # これより短い本文は「本文が無い」として検索に出さない（字数。公式の短いお知らせは 800字ほどあるので当たらない）
+# 2026-11-21 オーナー承認（AdSense の3回目の申請の前の準備。2回「有用性の低いコンテンツ」で不承認）: 本文が 800字未満（空白を除いた字数。
+# scripts/thicken_short.py の chars と同じ数え方）の記事は検索に出さない（noindex・理由 short）。記事は消さず、公開したまま一覧・リンクにも残す。
+# 厚くできなかった記事と、話題のまとめの記事（trendKeyword）が当たる。11/18〜11/21 の検索などからの訪問は 137本で3（ほかは344）だった
+SHORT_BODY = 800
 
 # 2026-11-08 オーナー決定（台帳 A61）: サイトの軸は「暮らしとお金の『自分ごと』ニュース」（あなたのお金と暮らしに、何が変わる？）。
 # 公開前の門（on_axis）・取り下げた記事を戻すの基準は「お金か暮らしにつながる話題か」を題名で見る（検索に出す基準では 2026-11-13 から見ない）。（エンタメ・ゲーム・スポーツも、値段・料金・
@@ -538,19 +542,24 @@ def trend_topic(article: dict) -> bool:
 
 def noindex_reason(article: dict, dups: set[str] | frozenset = frozenset()) -> str | None:
     """検索に出さない理由（出すなら None）。サイトの lib/indexing.ts の noindexReason と同じ。
-    出さないのは 手動の指定（manual）・本文が無い（no-body）・本当の重複（duplicate）・14日間訪問0の一覧（zero-visit）だけ"""
+    出さないのは 手動の指定（manual）・本文が無い（no-body）・本文が短い（short。800字未満・2026-11-21 オーナー承認）・
+    本当の重複（duplicate）・14日間訪問0の一覧（zero-visit）だけ"""
     if isinstance(article.get("indexable"), bool):
         return None if article["indexable"] else "manual"
     if article.get("type") == "roundup":
         return None
     if len(str(article.get("body", "")).strip()) < NO_BODY:
         return "no-body"
+    # 2026-11-21 オーナー承認（AdSense の3回目の申請の前の準備）: 本文が 800字未満（空白を除く）の記事は検索に出さない。
+    # 台帳 A61 の「本文の長さでは外さない」の例外はこの1つだけ（題名の語・主題では今までどおり外さない）。広告・提携の囲みは出す
+    if len(re.sub(r"\s", "", str(article.get("body", "")))) < SHORT_BODY:
+        return "short"
     if article.get("slug") in dups or (article.get("duplicateOf") and article.get("duplicateOf") != article.get("slug")):
         return "duplicate"
     # 14日間訪問0の記事（content/noindex_zero_visit.json。2026-11-10 オーナー承認。公開したまま・広告なし）
     if article.get("slug") in ZERO_VISIT:
         return "zero-visit"
-    # 2026-11-13 オーナー「とにかく数字」: 公開した記事は検索に出す。題名の語（life_link）・主題（is_focus）では外さない
+    # 2026-11-13 オーナー「とにかく数字」: 公開した記事は検索に出す。題名の語（life_link）・主題（is_focus）では外さない（本文の長さは上の short だけ）
     # （紅白の出場歌手一覧・年賀状の引受日の記事が、題名に軸の語が無いだけで検索から外れていた）。
     # 軸から外れた話題は公開前の門（publish_block_reason の off-focus）で止める。公開した後に検索からだけ外すことはしない
     return None
@@ -559,6 +568,7 @@ def noindex_reason(article: dict, dups: set[str] | frozenset = frozenset()) -> s
 NOINDEX_LABELS = {
     "manual": "手動の指定 indexable: false",
     "no-body": f"本文が無い（{NO_BODY}字未満）",
+    "short": f"本文が短い（空白を除いて{SHORT_BODY}字未満。2026-11-21 オーナー承認）",
     "duplicate": "同じ出来事・同じ切り口の記事の重複（代表の記事を検索に出す）",
     "zero-visit": "14日間訪問0の一覧",
 }
@@ -687,6 +697,7 @@ def index_rules() -> dict:
         "_note": "scripts/indexnow.py --export-rules で生成。手で直さない（正本は scripts/indexnow.py・scripts/persona.py・scripts/genre_focus.py）",
         "thinBody": THIN_BODY,
         "noBody": NO_BODY,
+        "shortBody": SHORT_BODY,
         "lifeMoney": _js_regex(LIFE_MONEY_RE),
         "noLifeLink": _js_regex(NO_LIFE_LINK_RE),
         "lifeGeneral": _js_regex(LIFE_GENERAL_RE),

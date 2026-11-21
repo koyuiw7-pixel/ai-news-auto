@@ -57,6 +57,21 @@ test('手動指定・配信元・まとめ記事の扱いと、既存の配信�
   assert.equal(isDistributionEligible({ ...short, channelSlug: 'prtimes' }), false);
 });
 
+test('本文が空白を除いて800字未満の記事は検索に出さない（short。2026-11-21 オーナー承認・AdSense の申請の前の準備）', () => {
+  assert.equal(noindexReason({ ...good, bodyChars: 799 }), 'short');
+  assert.equal(noindexReason({ ...good, bodyChars: 800 }), null);
+  // 空白を除いた字数（bodyChars）で見る。bodyLength が長くても空白ばかりなら short
+  assert.equal(noindexReason({ ...good, bodyLength: 3000, bodyChars: 700 }), 'short');
+  // bodyChars が無い古い索引では bodyLength で見る
+  assert.equal(noindexReason({ ...good, bodyLength: 799 }), 'short');
+  assert.equal(noindexReason({ ...good, bodyLength: 800 }), null);
+  // まとめの記事・手動の指定・本文なしは今までどおり先に決まる
+  assert.equal(noindexReason({ ...good, bodyChars: 300, type: 'roundup' }), null);
+  assert.equal(noindexReason({ ...good, bodyChars: 300, indexable: true }), null);
+  assert.equal(noindexReason({ ...good, bodyLength: 100, bodyChars: 100 }), 'no-body');
+  assert.equal(isIndexable({ ...good, bodyChars: 799, trendKeyword: '紅白' }), false);
+});
+
 test('一覧ページは検索対象の記事が3本以上・公開の記事が5本以上で検索に出す（2026-11-12 AdSense 監査）', () => {
   assert.equal(isListingIndexable([good, good]), false);
   assert.equal(isListingIndexable([good, good, { ...good, bodyLength: 1 }]), false);

@@ -2,7 +2,7 @@
 
 きっかけ: その日いちばんの話題の記事（紅白歌合戦の出場歌手一覧）が noindex で出て、Google に登録されなかった。
 見張り: 直近3日に載せた Muse の記事（writer == "muse"）と話題のレーンの記事（trendKeyword・searchTrend・trendLane）は、
-検索に出さない理由（indexnow.noindex_reason）が None か "duplicate" だけ。手で検索から外すときは記事に noindexNote（理由の文）を書く。
+検索に出さない理由（indexnow.noindex_reason）が None か "duplicate" か "short"（2026-11-21 オーナー承認）だけ。手で検索から外すときは記事に noindexNote（理由の文）を書く。
 ネットワーク・LLM は使わない。
 """
 import json
@@ -42,7 +42,8 @@ def silent_noindex(articles: list[dict], days: int = DAYS) -> list[str]:
         if not ordered(a) or t is None or t < since:
             continue
         reason = indexnow.noindex_reason(a, dups)
-        if reason in (None, "duplicate"):
+        # 本文が短い記事（short。空白を除いて800字未満）は 2026-11-21 オーナー承認で検索に出さない（AdSense の申請の前の準備）
+        if reason in (None, "duplicate", "short"):
             continue
         if reason == "manual" and str(a.get("noindexNote") or "").strip():
             continue  # 手で外した（理由が書いてある）

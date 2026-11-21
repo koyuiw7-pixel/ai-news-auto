@@ -292,7 +292,8 @@ def plan_noindex(articles: list[dict], now: datetime) -> tuple[dict[str, dict], 
     for a in articles:
         reason = reasons[a["slug"]]
         # 14日間訪問0の記事（zero-visit）は検索に出さないだけで公開したまま（2026-11-10 オーナー承認）。取り下げない
-        if not reason or reason in ("manual", "zero-visit"):
+        # 本文が短い記事（short。800字未満）も同じ: 検索に出さないだけで、記事は消さない（2026-11-21 オーナー承認）
+        if not reason or reason in ("manual", "zero-visit", "short"):
             continue
         if a["slug"] in protected:
             kept.append({"slug": a["slug"], "title": a.get("title", ""), "reason": reason, "why": PROTECTED_WHY})

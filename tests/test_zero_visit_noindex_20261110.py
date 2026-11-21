@@ -96,8 +96,9 @@ class ZeroVisitRuleTest(unittest.TestCase):
         bene = (ROOT / "lib" / "ad-benefits.ts").read_text("utf-8")
         self.assertIn("return ad ? { ...ad, items: withArticleBenefits(ad.items, slug) } : ad;", bene)
         self.assertIn("return offer ? { ...offer, items: itemsWithArticleBenefits(offer.items, slug) } : offer;", bene)
-        # AdSense の枠は検索に出す記事だけ（showAds = isIndexable）。zero-visit は isIndexable が false
-        self.assertIn("const showAds = isIndexable(", page)
+        # AdSense の枠は検索に出す記事と、本文が短いだけで外した記事（short。2026-11-21 オーナー承認）だけ。zero-visit は出さない
+        self.assertIn("const indexReason = noindexReason(", page)
+        self.assertIn('const showAds = indexReason === null || indexReason === "short";', page)
 
 
 if __name__ == "__main__":

@@ -7,6 +7,7 @@
  *   gh variable set ADSENSE_SLOT_ARTICLE_MIDDLE --body 1234567890
  *   gh variable set ADSENSE_SLOT_SIDEBAR        --body 1234567890
  * 検索に出さない記事（lib/indexing.ts）には枠を出さない（app/articles/[slug]/page.tsx の showAds）。
+ * ただし本文が短いだけで検索から外した記事（short。2026-11-21 オーナー承認）には出す。
  *
  * 未設定の間、本番では何も表示しない（空の広告枠は読者の邪魔になり、AdSense審査でも
  * 「中身のない枠」と見なされうるため）。開発中だけ位置確認用のダミー枠を出す。

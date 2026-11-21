@@ -8,7 +8,7 @@ import { ANSWER_TABLE_ID, extractAnswerTable } from "@/lib/answer-table";
 import { readerActions } from "@/lib/reader-urgency";
 import { topicPages } from "@/lib/related";
 import { nextStepsFor } from "@/lib/next-steps";
-import { canonicalPathOf, isIndexable, isZeroVisit } from "@/lib/indexing";
+import { canonicalPathOf, isIndexable, isZeroVisit, noindexReason } from "@/lib/indexing";
 import type { Metadata } from "next";
 import Thumb from "@/components/Thumb";
 import ImageCredit from "@/components/ImageCredit";
@@ -188,9 +188,11 @@ export default async function ArticlePage({ params }: Props) {
   const article = withLiveRoundup(found, isLiveArticleSlug);
 
   const isRoundup = article.type === "roundup";
-  // 検索に出さない記事（薄い・主題外・重複・他人の動画の要約など）には AdSense の広告枠を出さない。
-  // 「有用性の低いコンテンツ」「複製されたコンテンツ」の画面に広告を載せないため（AdSense のパブリッシャー ポリシー）
-  const showAds = isIndexable({ ...article, duplicate: getArticleSummary(article.slug)?.duplicate });
+  // 検索に出さない記事（本文なし・重複・14日間訪問0 など）には AdSense の広告枠を出さない。
+  // 「有用性の低いコンテンツ」「複製されたコンテンツ」の画面に広告を載せないため（AdSense のパブリッシャー ポリシー）。
+  // 本文が短いだけの記事（short。2026-11-21 オーナー承認）は検索からだけ外し、広告は出す（オーナーの決まり「広告の無いページを作らない」）
+  const indexReason = noindexReason({ ...article, duplicate: getArticleSummary(article.slug)?.duplicate });
+  const showAds = indexReason === null || indexReason === "short";
   // 公式ブログ・プレスリリースから作った記事（動画の埋め込み・タイムテーブルを出さない）
   const web = isWeb(article);
   const video = isVideo(article);

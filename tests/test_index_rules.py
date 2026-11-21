@@ -5,6 +5,7 @@
 ネットワークは使わない。
 """
 import json
+import re
 import shutil
 import subprocess
 import sys
@@ -68,7 +69,7 @@ SAMPLES = [
 ]
 
 
-def _summary(article: dict, body_length: int, japan_value: bool) -> dict:
+def _summary(article: dict, body_length: int, japan_value: bool, body=None) -> dict:
     keys = ("slug", "type", "title", "seoTitle", "tags", "genreSlug", "channelSlug", "sourceType", "indexable", "verdict", "breaking", "newsType",
             "trendKeyword")
     out = {k: article.get(k) for k in keys if article.get(k) is not None}
@@ -77,6 +78,8 @@ def _summary(article: dict, body_length: int, japan_value: bool) -> dict:
     out.setdefault("genreSlug", "ai")
     out.setdefault("channelSlug", "")
     out.update(bodyLength=body_length, hasJapanValue=japan_value)
+    if body is not None:
+        out["bodyChars"] = len(re.sub(r"\s", "", body))  # lib/article-index.mjs の derivedOf（2026-11-21 short）
     return out
 
 
@@ -107,7 +110,7 @@ class IndexRulesTest(unittest.TestCase):
             article = {k: v for k, v in article.items() if k != "duplicateOf"}  # 重複は別の仕組み（索引側）で付く
             body = article.get("body", "")
             expected.append(indexnow.noindex_reason(article))
-            summaries.append(_summary(article, len(body), bool(article.get("scheduledRelease")) or bool(indexnow.JAPAN_VALUE.search(body))))
+            summaries.append(_summary(article, len(body), bool(article.get("scheduledRelease")) or bool(indexnow.JAPAN_VALUE.search(body)), body))
         out = subprocess.run([node, "-e", NODE_SCRIPT], cwd=ROOT, input=json.dumps(summaries), capture_output=True,
                              text=True, check=True)
         got = json.loads(out.stdout)
@@ -140,7 +143,7 @@ class IndexRulesTest(unittest.TestCase):
         self.assertEqual(expected, [None, "stale-source", None, "stale-source", "stale-source", "old", "late"])
         summaries = []
         for a in articles:
-            row = _summary(a, len(a["body"]), True)
+            row = _summary(a, len(a["body"]), True, a["body"])
             row.update({k: a[k] for k in ("publishedAt", "generatedAt", "sourcePublishedAt", "kind", "late") if k in a})
             summaries.append(row)
         script = NODE_SCRIPT.replace("m.exports.noindexReason(a)", f"m.exports.newsSitemapReason(a, Date.parse('{now}'))")

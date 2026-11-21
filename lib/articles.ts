@@ -273,8 +273,10 @@ export type ArticlePhoto = {
 export type ArticleDerived = {
   /** 一覧・トップに出す写真（無ければ undefined。トップの大きな枠には出さない） */
   photo?: ArticlePhoto;
-  /** 本文の文字数（読了時間・従来の外部配信選定。検索可否は短さだけでは決めない） */
+  /** 本文の文字数（読了時間・従来の外部配信選定） */
   bodyLength: number;
+  /** 空白を除いた本文の字数（2026-11-21 オーナー承認: 800字未満は検索に出さない。lib/indexing.ts の noindexReason の short） */
+  bodyChars?: number;
   /** 「かんたんに読む」版があるか */
   hasEasy: boolean;
   /** 「日本で使える？無料？料金・使い方」の見出しがあるか（検索に出す条件） */

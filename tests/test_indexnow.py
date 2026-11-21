@@ -183,7 +183,8 @@ class IndexNowChangedOnlyTest(IndexNowFixture):
     """seo A2・LLMO-A3（2026-11-10）: 公開後に、変わったURLだけ送り、結果を state/indexnow_sent.json に残す"""
 
     def article(self, slug, **fields):
-        article = {"slug": slug, "title": f"{slug} の料金が12月から変わる", "body": "本文" * 300, "generatedAt": NEW, **fields}
+        # 2026-11-21: 本文が 800字未満は short で検索に出さない（IndexNow にも送らない）ので、ふつうの記事は 1000字にする
+        article = {"slug": slug, "title": f"{slug} の料金が12月から変わる", "body": "本文" * 500, "generatedAt": NEW, **fields}
         (self.articles / f"{slug}.json").write_text(json.dumps(article, ensure_ascii=False))
         return article
 
