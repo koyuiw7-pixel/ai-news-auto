@@ -9936,6 +9936,17 @@
       "skipped": true,
       "url": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes#entry-2026-11-13"
     },
+    "4046be760ecc3e44": {
+      "at": "2026-11-21T08:30:32.044220+00:00",
+      "costUsd": 0.0418,
+      "intent": "neutral",
+      "mix": "brand",
+      "model": "openai-api:gpt-6.1-terra",
+      "score": 100,
+      "section": "business",
+      "slug": "rakuten-planning-ai-usage-survey",
+      "url": "https://corp.rakuten.co.jp/news/press/2026/1120_01.html"
+    },
     "405fdcad1ce1a75c": {
       "at": "2026-11-10T16:52:08.221712+00:00",
       "reason": "dedupe: 固有名詞が一致（open・source）: nvidia-open-source-6g-research-tools",
@@ -24753,31 +24764,6 @@
   "quality_log": [
     {
       "accepted": true,
-      "at": "2026-11-19T18:05:47.488543+00:00",
-      "attempt": 1,
-      "id": "12a4862c69314527",
-      "kind": "broad",
-      "model": "strike:本文 1 文",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 156.9,
-        "avg_sentence": 61.0,
-        "long_share": 0.556,
-        "max_paragraph": 265,
-        "paragraphs": 7,
-        "sentences": 18
-      },
-      "score": 100,
-      "source": "mof",
-      "title": "イラク前政権の高官又はその関係者等に対する資産凍結等の措置の対象者の削除を実施します",
-      "warnings": [
-        "work_money（「仕事・お金にどう活かせる？」欄）が無い",
-        "読みやすさ: 文が長い（1文の平均 61.0字・60字超の文が 56% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "読みやすさ: 段落が長い（平均 156.9字・最長 265字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
       "at": "2026-11-19T18:06:16.004395+00:00",
       "attempt": 0,
       "id": "12a4862c69314527",
@@ -32354,6 +32340,26 @@
       "warnings": [
         "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
       ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-21T08:30:32.022848+00:00",
+      "attempt": 1,
+      "id": "4046be760ecc3e44",
+      "kind": "broad",
+      "model": "openai-api:gpt-6.1-terra",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 71.2,
+        "avg_sentence": 37.3,
+        "long_share": 0.048,
+        "max_paragraph": 113,
+        "paragraphs": 11,
+        "sentences": 21
+      },
+      "score": 100,
+      "source": "rakuten",
+      "title": "楽天インサイト、「企画職におけるAI活用の実態調査」結果を発表"
     }
   ],
   "short_text_retry": {
