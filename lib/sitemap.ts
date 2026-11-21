@@ -16,7 +16,7 @@ import {
 import corrections from "@/content/corrections.json";
 import { companyCounts, companyOf } from "@/lib/companies";
 import { getAllGuides, guideArticles, isThinGuide } from "@/lib/guides";
-import { getAllHowtos } from "@/lib/howto";
+import { getAllHowtos, isThinHowto } from "@/lib/howto";
 import { getIndexableBuyingGuides } from "@/lib/buying-guides";
 import { eventArticles, getAllEvents, isEventIndexable } from "@/lib/events";
 import { getAllMoneyDates } from "@/lib/money-dates";
@@ -96,7 +96,7 @@ export function sitemapEntries(): SitemapEntry[] {
   // 図鑑は中身がそろった製品だけ（ほかは noindex。2026-11-03 台帳 W13）
   const products = listedProducts();
   const guides = getAllGuides().filter((guide) => !supersedesGuide(guide.slug) && !isThinGuide(guide));
-  const howtos = getAllHowtos();
+  const howtos = getAllHowtos().filter((guide) => !isThinHowto(guide));
   // 一覧ページの最終更新は、載っている記事のいちばん新しい日時（ビルドの時刻や、全ページ同じ日時は使わない。SEO A16）
   const newestArticle = newestOf(articles);
   const fixed = (path: string) => ({ url: `${base}${path}`, lastModified: toDate(STATIC_LASTMOD[path]) });

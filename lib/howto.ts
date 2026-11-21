@@ -88,6 +88,17 @@ const HOWTO_DIR = [process.cwd(), "content", "howto"].join(path.sep);
 let cache: HowtoGuide[] | null = null;
 
 /** 新しい順 */
+/**
+ * 公式ページの中身を取れず、手順や金額を載せられていないガイド（2026-11-21 の AdSense の点検）。
+ * sumaho-norikae は取得できたのが「ページが見つかりません」の画面、saitei-chingin は金額も適用日も載っていない。
+ * ページは残し、検索とサイトマップから外す。公式の資料で中身を書き直したら、ここから消す
+ */
+const THIN_HOWTOS = new Set(["sumaho-norikae", "saitei-chingin"]);
+
+export function isThinHowto(guide: Pick<HowtoGuide, "slug">): boolean {
+  return THIN_HOWTOS.has(guide.slug);
+}
+
 export function getAllHowtos(): HowtoGuide[] {
   if (cache) return cache;
   if (!fs.existsSync(HOWTO_DIR)) return (cache = []);

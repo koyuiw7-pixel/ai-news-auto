@@ -13,7 +13,7 @@ import { coverPath, formatDate, getAllArticles, type AffiliateLink } from "@/lib
 import { companyPageSlugs, getCompany, OTHER } from "@/lib/companies";
 import { getAllGuides, getGuide, guideArticles, isThinGuide } from "@/lib/guides";
 import { Highlight } from "@/lib/highlight";
-import { getAllHowtos, getHowto } from "@/lib/howto";
+import { getAllHowtos, getHowto, isThinHowto } from "@/lib/howto";
 import { siteConfig } from "@/site.config";
 import { stripListNumber } from "@/lib/list-number";
 import { withItemImage } from "@/lib/page-share-items";
@@ -36,6 +36,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: howto.seoTitle,
       description: howto.description,
       alternates: { canonical: `/guides/${howto.slug}` },
+      // 公式の中身を載せられていないガイドは検索に出さない（lib/howto.ts isThinHowto。サイトマップも同じ）
+      ...(isThinHowto(howto) ? { robots: { index: false, follow: true } } : {}),
       openGraph: { siteName: siteConfig.siteName, locale: siteConfig.locale, type: "article", url: `/guides/${howto.slug}`, title: howto.title, description: howto.description },
     }, "guide", howto.slug, howto.title);
   }
