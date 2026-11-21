@@ -84,8 +84,8 @@
     }
   ],
   "todayActions": [
-    "ハート席を利用する人は、対象の3種類の手帳のいずれかを持っているか確認する。",
-    "付き添いと来場する人は、手帳と付き添いの本人確認書類を入場前に用意する。"
+    "申込みを確定する前に、公演日・枚数・支払方法を見直す",
+    "枚数制限を超える希望がある人は、分けて申し込む場合の座席条件を確認する"
   ],
   "angleOf": "fujii-kaze-piano-recital-livestream",
   "deepDive": "check",
@@ -143,5 +143,89 @@
     ],
     "ar": 1.0,
     "src": "https://ai-tech-express.jp/img/fujii-kaze-heart-seat-eligibility-de20136e.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "申込完了後は、公演日・枚数・支払方法を含めて変更やキャンセルができず、お客様都合の払い戻しもできません。申し込みを確定する前の確認が重要です。",
+      "source": "https://diskgarage.com/help/detail/1024"
+    },
+    {
+      "text": "枚数制限を超える申込みは代表者を分ける方法が案内されていますが、指定席公演では当選しても全ての座席が連番になるとは限りません。",
+      "source": "https://diskgarage.com/help/detail/1203"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "DISK GARAGE お問合せ",
+      "url": "https://diskgarage.com/inquiry/138",
+      "source": "https://diskgarage.com/help/detail/1024",
+      "howTo": [
+        "FAQ",
+        "お問合せはこちら"
+      ]
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "申込みを確定する前に、公演日・枚数・支払方法を見直す",
+      "source": "https://diskgarage.com/help/detail/1024",
+      "steps": [
+        "DISK GARAGEのFAQを開く",
+        "公演日・チケット枚数・支払方法を確認する"
+      ],
+      "url": "https://diskgarage.com/help/detail/1024"
+    },
+    {
+      "action": "枚数制限を超える希望がある人は、分けて申し込む場合の座席条件を確認する",
+      "source": "https://diskgarage.com/help/detail/1203",
+      "steps": [
+        "FAQの「家族5人分のチケット申込み」を開く",
+        "申込枚数と座席が連番にならない場合を確認する"
+      ],
+      "url": "https://diskgarage.com/help/detail/1203"
+    }
+  ],
+  "cause": {
+    "text": "申込制限や注意事項は、公演ページや受付を実施しているプレイガイドのチケット受付ページで確認するよう案内されています。",
+    "status": "background",
+    "source": "https://diskgarage.com/help/detail/1204"
+  },
+  "worries": [
+    {
+      "q": "申し込みが終わった後に、内容を変えたり取り消したりできる？",
+      "a": "DISK GARAGEのFAQでは、申込完了後はいかなる場合でも内容変更やキャンセルはできず、お客様都合の払い戻しもできないと案内されています。",
+      "source": "https://diskgarage.com/help/detail/1024",
+      "action": "申し込みを確定する前に、公演日・チケット枚数・支払方法をそれぞれ確認してください。"
+    },
+    {
+      "q": "家族分を分けて申し込むと、席が離れてしまう？",
+      "a": "申込制限を超える枚数は代表者を分けて申し込む方法がありますが、別々の申込みとなり、指定席公演では全ての座席が連番になるとは限りません。",
+      "source": "https://diskgarage.com/help/detail/1203",
+      "action": "申込枚数が制限を超える場合は、分けて申し込む前に座席が連番にならない可能性を確認してください。"
+    },
+    {
+      "q": "代表者と同行者を入れ替えて申し込んでも大丈夫？",
+      "a": "受付の申込制限や注意事項は、公演ページやLIVE情報、受付を実施しているプレイガイド各社のチケット受付ページで確認するよう案内されています。",
+      "source": "https://diskgarage.com/help/detail/1204",
+      "action": "申し込む前に、公演ページと受付ページで申込条件や注意事項を確認してください。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "枚数制限を超えて申し込んでもいい？",
+      "situation": "希望枚数が申込制限を超えている",
+      "recommend": "座席が離れてもよい場合に検討する",
+      "reason": "FAQでは、申込制限を超える希望は代表者を分けて申し込む方法が案内されています。ただし、別々の申込みになるため、指定席公演では全ての座席が連番になるとは限りません。",
+      "source": "https://diskgarage.com/help/detail/1203"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "申し込んだ後は変更も払い戻しもできない",
+    "cause": "公演ごとの条件は受付ページで確認",
+    "steps": "確定前に枚数と申込内容を見直す",
+    "desk": "申込みで困ったときの問い合わせ先",
+    "worries": "申込後の変更や座席の並びが心配",
+    "guide": "枚数を分けて申し込むか迷ったら"
+  },
+  "depthAt": "2026-11-21T03:07:55+00:00"
 }
