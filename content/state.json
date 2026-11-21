@@ -11650,12 +11650,6 @@
       "slug": "sompo-japan-gemini-enterprise-adoption",
       "url": "https://cloud.google.com/blog/ja/topics/customers/sompo-japan-promotes-the-use-of-gemini-enterprise/"
     },
-    "5afc49da7bd40515": {
-      "at": "2026-11-07T09:31:35.720623+00:00",
-      "reason": "stale: 発表から63時間（48時間を超えた発表は通常の記事にしない）",
-      "skipped": true,
-      "url": "https://huggingface.co/blog/Dharma-AI/dharma-field-extractor"
-    },
     "5b061eec48c6e775": {
       "at": "2026-11-18T18:58:23.861003+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（会議）",
@@ -11794,18 +11788,6 @@
       "reason": "quality: タイトルの「全国店舗」→ 元記事はアベイルでの発売を伝えていますが、全国の店舗で販売するとは明記していません。; 「店頭とオンラインで販売開始の時刻は同じではなく」→ 元記事に店頭の販売開始時刻はなく、両者の時刻が異なるとは確認できません。",
       "skipped": true,
       "url": "https://itunes.apple.com/jp/podcast/id1391532328"
-    },
-    "5c5c439c3a5adbf4": {
-      "at": "2026-11-07T08:53:36.548826+00:00",
-      "costUsd": 0.0181,
-      "foreignAi": true,
-      "intent": "neutral",
-      "mix": "enterprise_dev",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "score": 85,
-      "section": "ai",
-      "slug": "pdd-kit-verify-ai-code-login",
-      "url": "https://www.microsoft.com/en-us/research/blog/formally-verifying-agent-written-full-stack-web-apps-with-pdd-kit/"
     },
     "5c8653b59486e73c033e5c909325790255d1824b": {
       "at": "2026-11-14T15:34:55.170838+00:00",
@@ -18593,6 +18575,17 @@
       "skipped": true,
       "url": "https://global.honda/jp/news/2026/c261110a.html"
     },
+    "c7b24ccda724f3a3": {
+      "at": "2026-11-21T09:34:55.565650+00:00",
+      "costUsd": 0.0178,
+      "intent": "neutral",
+      "mix": "brand",
+      "model": "gemini-3.5-flash",
+      "score": 100,
+      "section": "business",
+      "slug": "toyota-dakar-rally-2027-fcev-hilux",
+      "url": "https://toyotagazooracing.com/jp/dakar/release/2026/1119-01/"
+    },
     "c7e0a430e8ef1d93": {
       "at": "2026-11-09T08:59:15.700376+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（議事）",
@@ -18704,18 +18697,6 @@
       "section": "public",
       "slug": "pension-system-standardization-mhlw",
       "url": "https://www.mhlw.go.jp/stf/nenkin_kenkyuukai-siryo02_00168.html"
-    },
-    "ca6f08fa829e8403": {
-      "at": "2026-11-07T09:33:49.424432+00:00",
-      "costUsd": 0.0471,
-      "foreignAi": true,
-      "intent": "neutral",
-      "mix": "enterprise_dev",
-      "model": "anthropic-api:claude-haiku-5-5+anthropic-api:claude-sonnet-5-5",
-      "score": 92,
-      "section": "ai",
-      "slug": "json-render-chat-sdk-cards",
-      "url": "https://vercel.com/changelog/json-render-and-chat-sdk-agents"
     },
     "ca7a6e8f8515fc6d": {
       "at": "2026-11-07T18:31:38.196966+00:00",
@@ -19459,6 +19440,12 @@
       "reason": "元記事がApple App Storeの404エラーページ（The page you're looking for can't be found.）であり、実質的なニュースや新規の発表・情報が含まれていないため。",
       "skipped": true,
       "url": "https://apps.apple.com/pk/app/the-express-tribune/id415861272"
+    },
+    "d758485e38f74192": {
+      "at": "2026-11-21T09:31:29.477343+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（選出）",
+      "skipped": true,
+      "url": "http://global.nissannews.com/ja-JP/releases/261120-01-j"
     },
     "d766247d0af6597d": {
       "at": "2026-11-07T15:31:54.986698+00:00",
@@ -24762,80 +24749,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-19T18:06:16.004395+00:00",
-      "attempt": 0,
-      "id": "12a4862c69314527",
-      "kind": "broad",
-      "model": "openai-api:gpt-6-luna",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 90.9,
-        "avg_sentence": 43.6,
-        "long_share": 0.12,
-        "max_paragraph": 134,
-        "paragraphs": 12,
-        "sentences": 25
-      },
-      "score": 98,
-      "source": "mof",
-      "title": "イラク前政権の高官又はその関係者等に対する資産凍結等の措置の対象者の削除を実施します",
-      "warnings": [
-        "work_money（「仕事・お金にどう活かせる？」欄）が無い"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-19T18:07:33.403549+00:00",
-      "attempt": 1,
-      "id": "13393e56029e0be8",
-      "kind": "broad",
-      "model": "gemini-3.1-flash-lite",
-      "problems": [
-        "「農業者年金の被保険者（ただし、農業者年金の被保険者は付加保険料を納付しなければなりません）」→加入できない人のリストに入れながら納付義務も記しており矛盾します。確認済みの日本年金機構情報では、農業者年金の被保険者は付加保険料を納付しなければなりません。",
-        "「マイナポータルから24時間申請が可能」「24時間いつでも可能」→確認できるのは付加保険料の電子申請が可能なことまでで、マイナポータルから24時間申請できるとの情報はありません。育児免除の手続きに関する説明を付加保険料の手続きにも当てはめています。"
-      ],
-      "readability": {
-        "avg_paragraph": 104.0,
-        "avg_sentence": 49.5,
-        "long_share": 0.286,
-        "max_paragraph": 249,
-        "paragraphs": 10,
-        "sentences": 21
-      },
-      "score": 68,
-      "source": "gov-online",
-      "title": "付加保険料 月400円で将来の年金額を増やせます",
-      "warnings": [
-        "読みやすさ: 文が長い（1文の平均 49.5字・60字超の文が 29% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "読みやすさ: 段落が長い（平均 104.0字・最長 249字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-19T18:08:01.652091+00:00",
-      "attempt": 1,
-      "id": "13393e56029e0be8",
-      "kind": "broad",
-      "model": "openai-api:gpt-6-luna",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 93.1,
-        "avg_sentence": 48.8,
-        "long_share": 0.286,
-        "max_paragraph": 249,
-        "paragraphs": 11,
-        "sentences": 21
-      },
-      "score": 100,
-      "source": "gov-online",
-      "title": "付加保険料 月400円で将来の年金額を増やせます",
-      "warnings": [
-        "読みやすさ: 文が長い（1文の平均 48.8字・60字超の文が 29% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "読みやすさ: 段落が長い（平均 93.1字・最長 249字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-19T18:08:39.521251+00:00",
@@ -32360,6 +32273,84 @@
       "score": 100,
       "source": "rakuten",
       "title": "楽天インサイト、「企画職におけるAI活用の実態調査」結果を発表"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-21T09:33:23.188918+00:00",
+      "attempt": 1,
+      "id": "c7b24ccda724f3a3",
+      "kind": "broad",
+      "model": "gemini-3.5-flash",
+      "problems": [
+        "「世界最高峰のラリーレイド」→ 元記事はダカールラリーを「世界一過酷なイベント」としており、「世界最高峰」とする評価は確認できません。",
+        "「エンジンは…V35A型…をベースに専用開発」→ 元記事が述べているのはV35A型エンジンをベースにすることまでで、エンジン自体を専用開発したとは確認できません。",
+        "「過酷な環境で壊れない耐久性を確かめます」→ 元情報は燃料電池技術の性能・安全性・信頼性の実証を目指すとしており、「壊れない」と言い切るのは誇張です。"
+      ],
+      "readability": {
+        "avg_paragraph": 148.4,
+        "avg_sentence": 70.3,
+        "long_share": 0.579,
+        "max_paragraph": 307,
+        "paragraphs": 9,
+        "sentences": 19
+      },
+      "score": 89,
+      "source": "toyota",
+      "title": "GAZOO Racing TOYOTA、ダカールラリー2027の参戦体制を発表 2カテゴリーでのダカール制覇を目指す",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（DKR・GR・FC）",
+        "読みやすさ: 文が長い（1文の平均 70.3字・60字超の文が 58% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "読みやすさ: 段落が長い（平均 148.4字・最長 307字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-21T09:34:27.980158+00:00",
+      "attempt": 1,
+      "id": "c7b24ccda724f3a3",
+      "kind": "broad",
+      "model": "openai-api:gpt-6-luna",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 149.9,
+        "avg_sentence": 71.0,
+        "long_share": 0.632,
+        "max_paragraph": 307,
+        "paragraphs": 9,
+        "sentences": 19
+      },
+      "score": 98,
+      "source": "toyota",
+      "title": "GAZOO Racing TOYOTA、ダカールラリー2027の参戦体制を発表 2カテゴリーでのダカール制覇を目指す",
+      "warnings": [
+        "見出しが46字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（DKR・GR・FC）",
+        "読みやすさ: 文が長い（1文の平均 71.0字・60字超の文が 63% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-21T09:34:54.246926+00:00",
+      "attempt": 0,
+      "id": "c7b24ccda724f3a3",
+      "kind": "broad",
+      "model": "openai-api:gpt-6-luna",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 89.0,
+        "avg_sentence": 40.2,
+        "long_share": 0.097,
+        "max_paragraph": 148,
+        "paragraphs": 14,
+        "sentences": 31
+      },
+      "score": 100,
+      "source": "toyota",
+      "title": "GAZOO Racing TOYOTA、ダカールラリー2027の参戦体制を発表 2カテゴリーでのダカール制覇を目指す",
+      "warnings": [
+        "見出しが46字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（DKR・GR・FC）"
+      ]
     }
   ],
   "short_text_retry": {
