@@ -60,9 +60,8 @@
   "affiliates": [],
   "newsType": "policy",
   "todayActions": [
-    "契約情報で、対象の3プランとドコモ回線を使っているか確認する",
-    "NTTドコモのホームページで、利用場所が影響エリアに含まれるか確認する",
-    "災害用伝言板を使う前に、契約に応じた利用条件をNTTドコモの公式サイトで確認する"
+    "利用場所が今回の影響エリアに含まれるか、NTTドコモの案内で確認する。",
+    "楽天モバイルの障害情報で、対象プランと障害の状況を確認する。"
   ],
   "incident": {
     "key": "outage:楽天モバイル@20261121",
@@ -106,5 +105,71 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/rakuten-mobile-docomo-network-outage-figure-3aba2b9d.jpg"
-  }
+  },
+  "officialDesk": [
+    {
+      "name": "NTTドコモのホームページ",
+      "url": "https://www.docomo.ne.jp/info/notice/tohoku/",
+      "source": "https://network.mobile.rakuten.co.jp/information/failure/4001/",
+      "note": "影響エリアなどの詳細を確認できます。"
+    },
+    {
+      "name": "障害情報のお知らせ",
+      "url": "https://network.mobile.rakuten.co.jp/information/failure/",
+      "source": "https://network.mobile.rakuten.co.jp/information/failure/4001/",
+      "howTo": [
+        "トップ",
+        "お知らせ",
+        "障害情報のお知らせ"
+      ]
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "利用場所が今回の影響エリアに含まれるか、NTTドコモの案内で確認する。",
+      "source": "https://network.mobile.rakuten.co.jp/information/failure/4001/",
+      "steps": [
+        "NTTドコモのホームページを開く",
+        "影響エリアなどの詳細を確認する"
+      ],
+      "url": "https://www.docomo.ne.jp/info/notice/tohoku/"
+    },
+    {
+      "action": "楽天モバイルの障害情報で、対象プランと障害の状況を確認する。",
+      "source": "https://network.mobile.rakuten.co.jp/information/failure/4001/",
+      "steps": [
+        "トップを開く",
+        "お知らせを選ぶ",
+        "障害情報のお知らせを開く",
+        "対象サービスと影響を確認する"
+      ],
+      "url": "https://network.mobile.rakuten.co.jp/information/failure/4001/"
+    }
+  ],
+  "cause": {
+    "text": "楽天モバイルは、今回の通信障害を災害の影響によるものと発表しています。",
+    "status": "stated",
+    "source": "https://network.mobile.rakuten.co.jp/information/failure/4001/"
+  },
+  "worries": [
+    {
+      "q": "自分が契約しているプランも今回の対象ですか？",
+      "a": "対象サービスは「スーパーホーダイ」「組み合わせプラン」「コミコミプラン」です。いずれもドコモ回線で利用している一部のお客様に、通信サービスの利用不可または利用しづらい状況が発生しています。",
+      "source": "https://network.mobile.rakuten.co.jp/information/failure/4001/",
+      "action": "契約中のプランと回線を確認し、対象に当たる場合はNTTドコモの案内で利用場所の影響を確認する。"
+    },
+    {
+      "q": "通信障害のとき、緊急通報も利用できなくなりますか？",
+      "a": "楽天モバイルは、対象サービスをドコモ回線で利用する一部のお客様について、緊急通報も利用できない、または利用しづらい状況だと案内しています。",
+      "source": "https://network.mobile.rakuten.co.jp/information/failure/4001/",
+      "action": "利用場所が影響エリアに含まれるか、NTTドコモのホームページで確認する。"
+    }
+  ],
+  "depthHeadings": {
+    "cause": "今回の障害は災害の影響",
+    "steps": "影響エリアと対象プランを確かめる",
+    "desk": "影響エリアと障害状況の公式情報",
+    "worries": "自分のプランや緊急通報は大丈夫？"
+  },
+  "depthAt": "2026-11-21T03:21:55+00:00"
 }
