@@ -1212,8 +1212,11 @@ def _article_for_check(record: dict) -> str:
 
 
 def source_cap(record: dict | None) -> int:
-    """事実確認・手直しに渡す出典の長さ。出典が2本以上ある Muse の記事（record["museSources"]）は長め"""
-    return MULTI_SOURCE_CAP if len((record or {}).get("museSources") or []) > 1 else SOURCE_CAP
+    """事実確認・手直しに渡す出典の長さ。出典が2本以上ある Muse の記事（record["museSources"]）は長め。
+    話題のレーンの報道の記事に公式の資料（factSources）を添えたもの（2026-11-21）も、報道3社＋公式の資料が全部入るよう長め"""
+    rec = record or {}
+    many = len(rec.get("museSources") or []) > 1 or bool(rec.get("pressReport") and rec.get("factSources"))
+    return MULTI_SOURCE_CAP if many else SOURCE_CAP
 
 
 def fact_check(record: dict, source_text: str, context: str = "", require_usefulness: bool = False) -> dict:

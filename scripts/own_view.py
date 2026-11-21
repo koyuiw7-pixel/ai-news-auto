@@ -222,9 +222,10 @@ def _context_block(context: str) -> str:
     return f"\n# 確認済みの文脈（事実の束・計算済みの数字・過去記事。ここにある事実も使ってよい）\n<<<\n{context[:8000]}\n>>>\n" if (context or "").strip() else ""
 
 
-def ensure(record: dict, source_text: str, context: str = "", *, urgent: bool = False, log=print, generate=None) -> list[str]:
+def ensure(record: dict, source_text: str, context: str = "", *, urgent: bool = False, log=print, generate=None, note: str = "") -> list[str]:
     """足りなければ、1回だけ書き足す・章を足す（record をその場で書き換える）。したことの説明を返す。
-    このあとふつうの事実確認（quality.evaluate）を通す。generate は llm.generate_json と同じ形（テスト用に差し替える）"""
+    このあとふつうの事実確認（quality.evaluate）を通す。generate は llm.generate_json と同じ形（テスト用に差し替える）。
+    note は経路ごとの決まり（話題のレーンの報道の記事の「2社以上の報道が共通して伝えていることだけ」など。指示文の最後に足す）"""
     need = needs(record, urgent)
     if not (need["view"] or need["expand"]):
         return []
@@ -240,6 +241,7 @@ def ensure(record: dict, source_text: str, context: str = "", *, urgent: bool = 
         if need["expand"]:
             prompt = EXPAND_PROMPT.format(length=len(body), aim=EXPAND_BELOW + 300, label=VIEW_LABEL, rule=rule, source=source,
                                           context=_context_block(context), title=record.get("title", ""), body=body)
+            prompt += f"\n\n{note}" if note else ""
             data, model = generate(REPAIR_SYSTEM, prompt, BODY_SCHEMA, temperature=0.3, max_output_tokens=8192, tier="bulk", purpose="helper")
             new_body = re.sub(r"^#(?!#)\s*", "## ", str(data.get("body_markdown") or "").strip(), flags=re.M).replace("\uff5c", "\u3000")
             added = _new_numbers(new_body, body, source_text, context)
@@ -254,6 +256,7 @@ def ensure(record: dict, source_text: str, context: str = "", *, urgent: bool = 
         if required(record) and view_problems(record):
             prompt = VIEW_PROMPT.format(label=VIEW_LABEL, rule=PROMPT_RULE, source=source, context=_context_block(context),
                                         title=record.get("title", ""), body=body)
+            prompt += f"\n\n{note}" if note else ""
             data, model = generate(REPAIR_SYSTEM, prompt, VIEW_SCHEMA, temperature=0.3, max_output_tokens=2048, tier="bulk", purpose="helper")
             view = _clean_view(str(data.get("view_markdown") or ""))
             added = _new_numbers(view, body, source_text, context)

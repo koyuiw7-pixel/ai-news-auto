@@ -81,6 +81,7 @@ import persona  # noqa: E402
 import quality  # noqa: E402
 import release_quality  # noqa: E402  発表時刻が決まった速報（統計・決算）の書き方と門（台帳 W35）
 import research_firms  # noqa: E402  調査会社・情報会社の記事は「報道」（台帳 A37）
+import research  # noqa: E402  話題のレーンの報道の記事に添える公式の資料を探す（Yahoo! JAPAN の検索。2026-11-21）
 import rivals  # noqa: E402
 import story  # noqa: E402
 import trends  # noqa: E402
@@ -940,8 +941,38 @@ def pre_gate(record: dict, source_text: str = "", context: str = "") -> None:
 
 
 def view_urgent(item: dict) -> bool:
-    """急ぐ記事（速報レーン・大きなニュース・話題のレーンの報道が出典の短い記事）。「サイソクの見方」の書き足し・中身の下限の保留をしない（scripts/own_view.py）"""
+    """急ぐ記事（速報レーン・大きなニュース・話題のレーンの報道が出典の記事）。中身の下限・「サイソクの見方」で保留をしない（scripts/own_view.py）"""
     return bool(item.get("fast") or item.get("_press_report") or quality.MAJOR)
+
+
+def expand_urgent(item: dict) -> bool:
+    """書き足し・「サイソクの見方」の章の追加（own_view.ensure）を飛ばす記事。速報レーン・大きなニュースだけ。
+    2026-11-21 オーナー承認（AdSense の準備）: 話題のレーンの報道の記事は保留はしない（view_urgent）が、書き足しと章の追加は1回する
+    （報道2社の共通の事実だけでは 300〜700字で終わり、800字未満で検索に出なかった。書き足しは報道と公式の資料の事実だけ・同じ事実確認を通す）"""
+    return bool(item.get("fast") or quality.MAJOR)
+
+
+TREND_SUPPORT_BUDGET = 25  # 秒。報道の記事に添える公式の資料を探す時間（検索2回・ページ2本まで）
+
+
+def trend_support_fetch(term: str):
+    """公式の資料のページを読む（本文は言葉・数字のある行を抜き出して trend_lane.SUPPORT_CAP 字まで）"""
+    keywords = set(research.subject_words(term, 6))
+
+    def _fetch(url: str) -> dict:
+        page = feeds.fetch_article_text(url)
+        return {**page, "text": source_links.excerpt(page.get("text") or "", f"{page.get('title') or ''} {term}", keywords,
+                                                     cap=trend_lane.SUPPORT_CAP)}
+    return _fetch
+
+
+def trend_support_hosts(term: str, titles: str, hosts: set[str]) -> set[str]:
+    """公式の資料として読んでよい発信元（登録済みの公式の発信元＋名前の出た会社の公式ドメイン research.KNOWN_OFFICIAL）"""
+    out = set(hosts)
+    for pattern, domains in research.KNOWN_OFFICIAL.items():
+        if re.search(pattern, f"{term} {titles}", re.I):
+            out |= set(domains)
+    return out
 
 
 def write_tier(tier: str) -> str:
@@ -2736,7 +2767,8 @@ def main() -> int:
                     return "skip", None, model_name, f"公開前の門: {indexnow.PUBLISH_FEEDBACK[blocked]}"
                 if not blocked:
                     # 「サイソクの見方」の章が無い・本文が薄い記事は、事実確認の前に1回だけ足す（足したものも下の事実確認を通す。scripts/own_view.py）
-                    own_view.ensure(record, source_text, context, urgent=view_urgent(item), log=log)
+                    own_view.ensure(record, source_text, context, urgent=expand_urgent(item), log=log,
+                                    note=trend_lane.PRESS_EXPAND_NOTE if item.get("_press_report") else "")
                     # 記事の8つの基準（scripts/quality_bar.py）: 足りない点を公式の資料の事実で1回だけ手直しする（下の事実確認をそのまま通す）
                     quality_bar.ensure(record, source_text, context, urgent=view_urgent(item), log=log)
                 # ニュースの種類に必要な事実（決算の前年比・脆弱性の対象の版・製品の価格など）が、資料にあるのに本文に無い:
@@ -3359,6 +3391,7 @@ def main() -> int:
             # 公式のリンクを探すためだけに、急上昇の一覧に付いていたほかの媒体の記事も読む（リンクを見るだけ。出典にはしない）
             link_pages = fetched + fetch_trend_sources({"sources": trend_lane.link_only_sources(q)})
             made = False
+            off_read: list[dict] = []  # 読んだが出典にしなかった公式のページ（報道の記事に「公式の資料」として添える候補）
             for url in trend_lane.official_links(link_pages, off_hosts):
                 if recent.has_url(url) or feeds.item_id(url) in state["processed_web"]:
                     continue
@@ -3367,6 +3400,8 @@ def main() -> int:
                 except Exception as error:  # noqa: BLE001
                     log(f"   [warn] 公式のページの取得に失敗（{str(error)[:80]}）: {url[:80]}")
                     continue
+                off_read.append({"url": url, "page": {**page, "text": source_links.excerpt(
+                    page.get("text") or "", f"{page.get('title') or ''} {term}", set(research.subject_words(term, 6)), cap=trend_lane.SUPPORT_CAP)}})
                 if not trend_lane.official_page_ok(term, page):
                     continue
                 found = feeds.page_published(page)
@@ -3409,23 +3444,35 @@ def main() -> int:
             genre = GENRES_BY_SLUG.get(q.get("genre") or "", GENRES_BY_SLUG.get("public", AI))
             related = arch.related(term, source_text, chosen[0]["url"], genre.slug)
             context = archive.prompt_block(related)
+            # 公式の資料（自治体・官公庁・会社の公式ページ）: 窓口・やること・制度の説明の事実を足す（2026-11-21。見つからなくても記事は作る）
+            support = [] if time_up() else trend_lane.support_pages(
+                term, trend_support_hosts(term, " ".join(s_.get("title") or "" for s_ in chosen), off_hosts), pages=off_read,
+                search=research.search_links, fetch=trend_support_fetch(term), skip={s_["url"] for s_ in chosen},
+                deadline=time.time() + TREND_SUPPORT_BUDGET, log=log)
+            if support:
+                log(f"   [support] 公式の資料 {len(support)} 本: {' / '.join(p_['url'][:70] for p_ in support)}")
+                # 事実確認・書き足しの資料。公式の資料を先に（書き足し〔own_view.ensure〕は資料の頭 12,000字を読む）
+                source_text = trend_lane.support_source_text(support) + "\n\n" + source_text
             voice_key, voice_text = m.pick_voice()
             system = (
                 f"{m.SYSTEM_INSTRUCTION_BASE}\n\n{genre.persona}\n\n"
                 f"{TREND_SOURCE_NOTE.format(rules=trend_lane.PRESS_RULES)}\n\n{glossary.prompt_block()}\n\n## 今回の語り口\n{voice_text}"
             )
             prompt = (build_trend_prompt(q, chosen, genre, context) + trend_lane.RELEVANT_NOTE
-                      + trend_lane.title_note(term, q["id"]) + trend_lane.press_note(chosen))
+                      + trend_lane.title_note(term, q["id"]) + trend_lane.press_note(chosen, support))
 
-            def build_press(data, model, q=q, chosen=chosen, voice_key=voice_key, related=related, term=term):
+            def build_press(data, model, q=q, chosen=chosen, voice_key=voice_key, related=related, term=term, support=support):
                 rec = attach_related(build_trend_record(q, chosen, data, model, voice_key), data, related)
                 trend_lane.press_fields(rec, term, chosen)
+                if support:
+                    rec["factSources"] = trend_lane.support_fact_sources(support)  # 出典（sources）は報道のまま。公式の資料は確かめた資料の欄に
                 rec["title"] = re.sub(r"\s*[｜|]\s*", "　", rec["title"]).strip()
                 if problems := trend_lane.press_record_problems(rec):
                     raise ValueError("報道が出典の記事の形: " + "; ".join(problems))
                 return rec
 
-            log(f"   [press] 公式の発表は見つからず。主要な報道機関 {len(chosen)} 社（{'・'.join(s_['source'] for s_ in chosen)}）の報道で短い記事にします")
+            log(f"   [press] 公式の発表は見つからず。主要な報道機関 {len(chosen)} 社（{'・'.join(s_['source'] for s_ in chosen)}）の報道"
+                f"{f'と公式の資料 {len(support)} 本' if support else ''}で記事にします")
             started = time.time()
             status, record, model_name, info = gated(
                 q, "trend", system, prompt, schema_for(TREND_SCHEMA, genre.slug), source_text, build_press,

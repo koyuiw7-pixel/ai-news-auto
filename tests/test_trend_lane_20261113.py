@@ -424,9 +424,10 @@ class TitleNoteTest(unittest.TestCase):
 
     def test_notes_are_in_the_prompts(self):
         self.assertIn("prompt += trend_lane.RELEVANT_NOTE + trend_lane.title_note(trend_term, item[\"id\"])", SRC)
-        self.assertIn("+ trend_lane.title_note(term, q[\"id\"]) + trend_lane.press_note(chosen))", SRC)
+        self.assertIn("+ trend_lane.title_note(term, q[\"id\"]) + trend_lane.press_note(chosen, support))", SRC)
         note = tl.press_note([NHK, ASAHI])
-        for needle in ("NHK・朝日新聞", "NHKなどが報じた", "2社以上の報道が共通して伝えていること", "書き写さない", "600〜1,100字"):
+        # 2026-11-21: 長さの目安は 900〜1,600字（公式の資料の事実で 800字以上にする。tests/test_trend_press_depth_20261121.py）
+        for needle in ("NHK・朝日新聞", "NHKなどが報じた", "2社以上の報道が共通して伝えていること", "書き写さない", "900〜1,600字"):
             self.assertIn(needle, note)
         self.assertIn("私人", tl.RELEVANT_NOTE)
 
