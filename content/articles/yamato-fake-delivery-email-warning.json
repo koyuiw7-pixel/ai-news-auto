@@ -68,9 +68,9 @@
   "affiliates": [],
   "newsType": "product",
   "todayActions": [
-    "住所確認や再配達の請求を求める不審なメールは、リンクを開かず削除する。",
-    "荷物の予定は、ヤマト運輸の「荷物お問い合わせシステム」で確認する。",
-    "不審なメールを相談する場合は、サービスセンターの0570-200-000に連絡する。"
+    "メールのリンクではなく、荷物お問い合わせシステムでお届け予定を確認する。",
+    "配達予定や不在連絡を受け取るため、ヤマト運輸の公式アプリを利用する。",
+    "不審なメールを相談するなら、公式のお知らせに記載されたWeb窓口を利用する。"
   ],
   "qualityBar": {
     "score": 6,
@@ -130,5 +130,93 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/yamato-fake-delivery-email-warning-bebecc13.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "「@kuronekoyamato.co.jp」は公式メールのドメインですが、同じドメインを装った迷惑メールも確認されています。ドメインだけでは本物と判断できません。",
+      "source": "https://www.yamato-hd.co.jp/important/info_181212.html"
+    },
+    {
+      "text": "メールにヤマト運輸のロゴが表示されないことだけで偽物とは判断できません。受信環境によってロゴが出ない場合や、なりすましメール対策がなく迷惑メールに振り分けられない場合があります。",
+      "source": "https://www.yamato-hd.co.jp/important/info_181212.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "ヤマト運輸サービスセンター",
+      "url": "https://www.kuronekoyamato.co.jp/ytc/center/servicecenter_list.html",
+      "source": "https://www.yamato-hd.co.jp/important/info_181212.html",
+      "phone": "0570₋200₋000",
+      "note": "通話料有料です。"
+    },
+    {
+      "name": "Web問い合わせ窓口",
+      "url": "https://faq.kuronekoyamato.co.jp/app/ask",
+      "source": "https://www.yamato-hd.co.jp/important/info_181212.html"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "メールのリンクではなく、荷物お問い合わせシステムでお届け予定を確認する。",
+      "source": "https://www.yamato-hd.co.jp/important/info_181212.html",
+      "steps": [
+        "「荷物お問い合わせシステム」を開く",
+        "お届け予定のお荷物を確認する"
+      ],
+      "url": "https://toi.kuronekoyamato.co.jp/cgi-bin/tneko"
+    },
+    {
+      "action": "配達予定や不在連絡を受け取るため、ヤマト運輸の公式アプリを利用する。",
+      "source": "https://www.yamato-hd.co.jp/important/info_181212.html",
+      "steps": [
+        "「ヤマト運輸の公式アプリについて」を開く",
+        "アプリをダウンロードする",
+        "プッシュ通知でお届け予定や不在連絡を受け取る"
+      ],
+      "url": "https://www.kuronekoyamato.co.jp/ytc/campaign/app2015/lp_001.html"
+    },
+    {
+      "action": "不審なメールを相談するなら、公式のお知らせに記載されたWeb窓口を利用する。",
+      "source": "https://www.yamato-hd.co.jp/important/info_181212.html",
+      "steps": [
+        "公式のお知らせにある「Web」を開く",
+        "問い合わせ内容を入力する"
+      ],
+      "url": "https://faq.kuronekoyamato.co.jp/app/ask"
+    }
+  ],
+  "worries": [
+    {
+      "q": "ヤマト運輸のドメインから届けば本物と思っていい？",
+      "a": "公式メールは「@kuronekoyamato.co.jp」のドメインを使いますが、このドメインを装った迷惑メールも確認されています。メールアドレスだけで判別するのは難しいと案内されています。",
+      "source": "https://www.yamato-hd.co.jp/important/info_181212.html",
+      "action": "送信元だけで決めず、文面を確認し、荷物は荷物お問い合わせシステムで調べてください。"
+    },
+    {
+      "q": "メールにヤマト運輸のロゴが出なければ偽物？",
+      "a": "ヤマト運輸はBIMIによるロゴ表示に対応していますが、メールソフトやサービスによってはロゴが表示されない場合があります。",
+      "source": "https://www.yamato-hd.co.jp/important/info_181212.html",
+      "action": "ロゴの有無だけで判断せず、荷物の予定は荷物お問い合わせシステムで確認してください。"
+    },
+    {
+      "q": "不在を知らせるSMSが届いたけれど、本物の連絡？",
+      "a": "ヤマト運輸は、ショートメールによる不在連絡やお届け予定のお知らせを送らないとしています。お届け予定のお荷物は、荷物お問い合わせシステムで確認できます。",
+      "source": "https://www.yamato-hd.co.jp/important/info_181212.html",
+      "action": "SMS内のリンクには触れず、荷物お問い合わせシステムでお届け予定を確認してください。"
+    },
+    {
+      "q": "偽サイトにカード情報を入力したら、補償される？",
+      "a": "不正利用の被害に遭った場合、クレジットカード会社が補償制度やトラブル相談窓口を設けていることがあります。警察庁は、被害に遭ったサービスを提供している会社に相談するよう案内しています。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "action": "カード会社に連絡し、身に覚えのない利用がないか確認して相談してください。",
+      "general": true
+    }
+  ],
+  "depthHeadings": {
+    "insight": "ドメインやロゴだけでは見分けられない",
+    "steps": "荷物の確認と相談先はこちら",
+    "desk": "ヤマト運輸に相談する窓口",
+    "worries": "メールや荷物通知が心配なとき"
+  },
+  "depthAt": "2026-11-21T22:43:00+00:00"
 }
