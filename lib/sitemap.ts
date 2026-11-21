@@ -18,7 +18,7 @@ import { companyCounts, companyOf } from "@/lib/companies";
 import { getAllGuides, guideArticles, isThinGuide } from "@/lib/guides";
 import { getAllHowtos } from "@/lib/howto";
 import { getIndexableBuyingGuides } from "@/lib/buying-guides";
-import { eventArticles, getAllEvents } from "@/lib/events";
+import { eventArticles, getAllEvents, isEventIndexable } from "@/lib/events";
 import { getAllMoneyDates } from "@/lib/money-dates";
 import { getPricing } from "@/lib/pricing";
 import { listedProducts, productProfile, supersedesGuide } from "@/lib/products";
@@ -172,7 +172,8 @@ export function sitemapEntries(): SitemapEntry[] {
     ...getAllMoneyDates().map((d) => ({ url: `${base}/dates/${d.slug}`, lastModified: toDate(`${d.verifiedAt}T09:00:00+09:00`) })),
     { url: `${base}/events`, lastModified: newestOf(getAllEvents().flatMap((event) => eventArticles(event))) },
     // 行事のページは、その行事の記事のいちばん新しい日時（記事が無ければ書かない）
-    ...getAllEvents().map((event) => ({
+    // 終わった行事で記事が1本も無いページは入れない（ページも noindex。lib/events.ts isEventIndexable）
+    ...getAllEvents().filter((event) => isEventIndexable(event)).map((event) => ({
       url: `${base}/events/${event.slug}`,
       lastModified: newestOf(eventArticles(event))
     })),

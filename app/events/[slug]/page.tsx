@@ -14,6 +14,7 @@ import {
   formatJst,
   getAllEvents,
   getEvent,
+  isEventIndexable,
   localDateRange,
   localDay,
   localTime,
@@ -75,6 +76,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: titleOf(event),
     description,
     alternates: { canonical: `/events/${event.slug}` },
+    // 終わった行事で記事が1本も無いページは検索に出さない（lib/events.ts isEventIndexable。サイトマップも同じ）
+    ...(isEventIndexable(event) ? {} : { robots: { index: false, follow: true } }),
     openGraph: { siteName: siteConfig.siteName, locale: siteConfig.locale, type: "article", url: `/events/${event.slug}`, title: titleOf(event), description },
   }, "event", event.slug, titleOf(event));
 }
@@ -239,7 +242,7 @@ export default async function EventPage({ params }: Props) {
           {articles.length > 0 ? (
             <ArticleList articles={articles} />
           ) : (
-            <p className="rounded-xl bg-surface px-4 py-3 text-note text-muted">まだ記事はありません。発表があり次第、ここに並びます。</p>
+            <p className="rounded-xl bg-surface px-4 py-3 text-note text-muted">{status === "ended" ? "この行事の発表を取り上げた記事はありません。" : "まだ記事はありません。発表があり次第、ここに並びます。"}</p>
           )}
         </section>
       )}

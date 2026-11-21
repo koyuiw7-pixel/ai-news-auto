@@ -15,6 +15,11 @@
 export const RADAR_OFFICIAL = "radar-official";
 /** 話題のキーワード（複数の報道・公式をまとめた記事） */
 export const TRENDS = "trends";
+/**
+ * 速報の経路で、決まった発信元の表に無いところから拾った記事（楽天証券・ノジマ・日本銀行など80社以上が混ざる。scripts/web_articles.py）。
+ * 2026-11-21 の AdSense の点検: 発信元ページが最初の記事の社名で「ZOZOの最新発表まとめ」になり、足元の「情報源」にも「ZOZO」と出ていた
+ */
+export const FAST = "fast";
 
 /**
  * 調査会社・情報会社（東京商工リサーチ・帝国データバンク・ニッセイ基礎研究所など）の発信元（2026-11-04 オーナー決定 D2・台帳 A37）。
@@ -42,15 +47,16 @@ export function isNewsOutletChannel(slug?: string | null): boolean {
   return s.startsWith("radar-") && s !== RADAR_OFFICIAL;
 }
 
-/** 発信元ページを検索に出さない・サイトマップに入れない・足元に並べないか（報道機関と、各社が混ざった radar-official） */
+/** 発信元ページを検索に出さない・サイトマップに入れない・足元に並べないか（報道機関と、各社が混ざった radar-official・fast） */
 export function isThinSourceChannel(slug?: string | null): boolean {
-  return isNewsOutletChannel(slug) || slug === RADAR_OFFICIAL;
+  return isNewsOutletChannel(slug) || slug === RADAR_OFFICIAL || slug === FAST;
 }
 
 /** 発信元ページの名前（記事の channel の先頭のもの＝「米証券取引委員会（SEC）」などではなく、発信元の実態に合わせる） */
 export function channelDisplayLabel(slug: string, label: string): string {
   if (slug === RADAR_OFFICIAL) return "各社・機関の公式発表（話題から）";
   if (slug === TRENDS) return "話題のニュース";
+  if (slug === FAST) return "各社・機関の発表（速報）";
   return label.trim();
 }
 
@@ -67,6 +73,9 @@ export function channelTitleTail(channel: string): string {
 export function channelDescription(channel: string, label: string, web: boolean, count: number): string {
   if (channel === RADAR_OFFICIAL) {
     return `話題になったニュースのうち、企業・官公庁の公式発表や提出書類までさかのぼって確かめた記事 ${count} 本です。発表元は記事ごとに異なります。`;
+  }
+  if (channel === FAST) {
+    return `企業・官公庁などの発表をもとに、早く伝えた記事 ${count} 本です。発表元は記事ごとに異なり、出典は記事ごとに示しています。`;
   }
   if (channel === TRENDS) {
     return `話題になったキーワードを、複数の報道と公式の資料をもとにまとめた記事 ${count} 本です。出典は記事ごとに示しています。`;

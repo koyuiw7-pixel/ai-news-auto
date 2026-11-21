@@ -107,6 +107,15 @@ export function eventArticles(event: TechEvent): ArticleSummary[] {
   return found;
 }
 
+/**
+ * 行事のページを検索に出すか（2026-11-21 の AdSense の点検）。終わった行事で、記事が1本も無いページは
+ * 「終了しました」と「まだ記事はありません」だけの空のページになるので、検索とサイトマップから外す（ページは残す）。
+ * 開催前・開催中のページは日程（日本時間）と見方の案内があるので出す。あとから記事が付けば、また出す
+ */
+export function isEventIndexable(event: TechEvent, now = Date.now()): boolean {
+  return eventStatus(event, now) !== "ended" || eventArticles(event).length > 0;
+}
+
 /** 開催前の文脈: 直前45日の関連ニュース（主催企業・製品の最近の動き） */
 export function eventLeadUp(event: TechEvent, limit = 6): ArticleSummary[] {
   const pattern = new RegExp(event.match, "i");

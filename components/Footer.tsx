@@ -5,6 +5,7 @@ import { guideShortName, LIFE_COMPARE_SLUGS, lifeCompareGuide } from "@/lib/buyi
 import { ROUNDUP_CHANNEL, getAllArticles, getAllChannels, getAllTags } from "@/lib/articles";
 import { companyCounts } from "@/lib/companies";
 import { CREATOR_CHANNELS, WIRE_SOURCES } from "@/lib/indexing";
+import { hasChannelLabel } from "@/lib/channel-labels";
 import { isThinSourceChannel } from "@/lib/news-outlets";
 import { genreNav } from "@/lib/nav";
 import { siteConfig } from "@/site.config";
@@ -50,9 +51,12 @@ export default function Footer() {
   // 足元の「情報源」には企業・機関の公式の発信元だけを並べる（個人・他媒体の動画やプレスリリース配信は出さない）
   // 報道機関の発信元（radar-<報道機関>）・話題のまとめも並べない（公式の発信元ではない。台帳 W12）。
   // 同じ名前の発信元（「NTT ニュースリリース」の全体版と AI 版など）は1つだけ（記事の多い方。2026-11-03 の点検で2回出ていた）
+  // 名前の表（content/channel_labels.json）にある組織だけを並べる（2026-11-21 の AdSense の点検: 各社が混ざる速報の発信元 fast が
+  // 「ZOZO」、回収情報の発信元が「…公開回収事案詳細（整理番号 RCL…）」と、記事1本の資料名で並んでいた。サイトマップと同じ条件）
   const seenLabels = new Set<string>();
   const channels = getAllChannels()
-    .filter((c) => !ROUNDUP_CHANNEL.test(c.label) && !CREATOR_CHANNELS.has(c.slug) && !WIRE_SOURCES.has(c.slug) && !isThinSourceChannel(c.slug))
+    .filter((c) => !ROUNDUP_CHANNEL.test(c.label) && !CREATOR_CHANNELS.has(c.slug) && !WIRE_SOURCES.has(c.slug) && !isThinSourceChannel(c.slug)
+      && hasChannelLabel(c.slug))
     .filter((c) => {
       const key = c.label.replace(/\s+/g, "");
       if (seenLabels.has(key)) return false;
