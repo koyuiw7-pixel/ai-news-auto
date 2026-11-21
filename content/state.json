@@ -10256,6 +10256,19 @@
       "skipped": true,
       "url": "https://www.pref.aichi.jp/press-release/zero-kisosannsennyatomi261108.html"
     },
+    "43fedc9f4ab8d4a5": {
+      "at": "2026-11-21T22:23:46.930368+00:00",
+      "breaking": true,
+      "costUsd": 0.0387,
+      "intent": "breaking",
+      "major": true,
+      "mix": "alert",
+      "model": "openai-api:gpt-6.1-terra",
+      "score": 100,
+      "section": "ai",
+      "slug": "yamato-fake-delivery-email-warning",
+      "url": "https://www.yamato-hd.co.jp/important/info_181212.html"
+    },
     "449487e8b42ed81b": {
       "at": "2026-11-19T22:49:40.969342+00:00",
       "costUsd": 0.0078,
@@ -24934,33 +24947,6 @@
   },
   "quality_log": [
     {
-      "accepted": false,
-      "at": "2026-11-20T05:47:35.003310+00:00",
-      "attempt": 1,
-      "id": "4dd3771527ef3c3b",
-      "kind": "broad",
-      "model": "gemini-3.7-flash",
-      "problems": [
-        "「後面は直線と直角を基調としたランプ類でワイド感を強調」→ 元記事が述べるのはフェンダーの張り出しを際立たせ、スポーティーな姿勢を生むデザインであり、「ワイド感を強調」は確認できません。",
-        "「ハイブリッド生産設備の増強が進められており」→ 確認できるのは生産拡大に向けた投資の発表・計画で、設備増強がすでに進行中とは確認できません。",
-        "「長距離ドライブでも疲れを感じさせない落ち着いたデザイン」→ 元記事は長距離走行で自信と快適さを感じさせるスタイリングと説明しており、「疲れを感じさせない」という効果までは示していません。"
-      ],
-      "readability": {
-        "avg_paragraph": 89.1,
-        "avg_sentence": 66.8,
-        "long_share": 0.5,
-        "max_paragraph": 204,
-        "paragraphs": 9,
-        "sentences": 12
-      },
-      "score": 84,
-      "source": "radar-official",
-      "title": "NewsRoom | Honda Global Corporate Website",
-      "warnings": [
-        "読みやすさ: 文が長い（1文の平均 66.8字・60字超の文が 50% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
       "accepted": true,
       "at": "2026-11-20T05:48:46.247876+00:00",
       "attempt": 1,
@@ -32599,6 +32585,29 @@
       "warnings": [
         "見出しが46字（目安40字以内）。一覧・カードでは前半だけを出す",
         "読みやすさ: 文が長い（1文の平均 50.0字・60字超の文が 38% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-21T22:23:46.901285+00:00",
+      "attempt": 1,
+      "id": "43fedc9f4ab8d4a5",
+      "kind": "ai",
+      "model": "openai-api:gpt-6.1-terra",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 93.5,
+        "avg_sentence": 37.4,
+        "long_share": 0.0,
+        "max_paragraph": 127,
+        "paragraphs": 8,
+        "sentences": 20
+      },
+      "score": 100,
+      "source": "fast",
+      "title": "ヤマト運輸の名前を装った「迷惑メール」が多発しています。「なりすましサイト」への誘導に十分ご注意ください | ヤマトホールディングス株式会社",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（SMS・BIMI・DMARC）"
       ]
     }
   ],
