@@ -54,14 +54,14 @@
   "videoTitle": "エイ・エス・ケイ「かりんとう饅頭」40個が2026年11月に回収、賞味期限2026年12月17日は誤表示で正しくは11月19日",
   "publishedAt": "2026-11-22T05:25:47.455399+00:00",
   "generatedAt": "2026-11-22T05:26:12.614360+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/karinto-manju-recall-saitama-figure-e6a3edb9.jpg",
   "model": "openai-api:gpt-6.1-terra",
   "affiliates": [],
   "newsType": "product",
   "todayActions": [
-    "浦和美園店で11月13〜15日に買った「かりんとう饅頭」の賞味期限表示を確かめる。",
-    "対象商品はシャトレーゼ浦和美園店に持ち込むか、同店へ料金着払いで郵送する。",
-    "対象か迷う場合は048-812-7353に、9時30分から21時までの間に問い合わせる。"
+    "購入日と期限表示を照合し、対象なら浦和美園店へ回収を申し出る。",
+    "対象商品を浦和美園店へ持ち込むか、料金着払いで郵送する。",
+    "対象か判断できない場合は、受付時間内に浦和美園店へ電話で確認する。"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -88,5 +88,129 @@
   "summaryLine": "「かりんとう饅頭」の販売数量は40個で、11月18日時点の回収数は2個です。正しい期限は2026年11月19日です。",
   "relatedSlugs": [
     "fujisawa-bakery-recall-chocokorone-2026"
-  ]
+  ],
+  "insight": [
+    {
+      "text": "回収理由の詳細には、賞味期限の誤表示だけでなく「食品衛生法第20条に該当」と記載されています。届出上の法的な記載も確認できます。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602987"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "シャトレーゼ浦和美園店",
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602987",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602987",
+      "phone": "048-812-7353",
+      "hours": "9:30-21:00",
+      "note": "回収後は返金対応です。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "購入日と期限表示を照合し、対象なら浦和美園店へ回収を申し出る。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602987",
+      "steps": [
+        "厚生労働省の公開回収事案詳細を開く",
+        "商品名「かりんとう饅頭」と賞味期限2026年12月17日を照合する"
+      ],
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602987"
+    },
+    {
+      "action": "対象商品を浦和美園店へ持ち込むか、料金着払いで郵送する。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602987",
+      "steps": [
+        "対象商品と賞味期限の表示を確認する",
+        "販売店舗へ持ち込むか、記載の住所へ料金着払いで郵送する"
+      ],
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602987"
+    },
+    {
+      "action": "対象か判断できない場合は、受付時間内に浦和美園店へ電話で確認する。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602987",
+      "steps": [
+        "048-812-7353へ電話する",
+        "受付時間の9:30-21:00に問い合わせる"
+      ],
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602987"
+    }
+  ],
+  "cause": {
+    "text": "届出によると、2026年11月13日に売店担当者が賞味期限ラベルを印字機で発行する際に操作を誤り、本来と異なる期限が印字されました。誤りに気付かず商品に貼って販売したとされています。",
+    "status": "stated",
+    "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602987"
+  },
+  "worries": [
+    {
+      "q": "買った商品が回収対象か、何を見れば分かる？",
+      "a": "対象は、2026年11月13日から15日までにシャトレーゼ浦和美園店で販売された「かりんとう饅頭」です。食品等の特定情報には、賞味期限2026年12月17日と記載されています。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602987",
+      "action": "購入日と購入店を確かめ、商品の名前と賞味期限表示が一致するか確認する。"
+    },
+    {
+      "q": "回収に出したら、商品代金は返金される？",
+      "a": "届出の回収後の対応には「返金対応」と記載されています。回収方法は販売店舗での回収、または料金着払いでの郵送です。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602987",
+      "action": "対象商品を浦和美園店へ持ち込むか、料金着払いで郵送して回収を申し出る。"
+    },
+    {
+      "q": "郵送で返すとき、送料はどう扱われる？",
+      "a": "届出には、対象商品を料金着払いで浦和美園店へ郵送する方法が記載されています。送り先は〒339-0028 さいたま市岩槻区美園東1-19-1 シャトレーゼ浦和美園店です。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602987",
+      "action": "記載された送り先を確認し、対象商品を料金着払いで浦和美園店へ送る。"
+    },
+    {
+      "q": "すでに食べた場合、健康被害の報告はある？",
+      "a": "届出には、2026年11月18日時点で健康被害は発生していないとあります。健康への危険性の程度はCLASSⅡに分類されています。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602987",
+      "action": "商品や表示について確認したいことがあれば、受付時間内に浦和美園店へ電話で問い合わせる。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "店に持ち込むか郵送するか、どちらがいい？",
+      "situation": "浦和美園店へ持ち込める",
+      "recommend": "販売店舗へ持ち込む",
+      "reason": "届出では販売店舗で回収すると記載されています。回収後は返金対応です。持ち込みが難しい場合は、料金着払いで郵送する方法も示されています。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602987"
+    },
+    {
+      "question": "店に持ち込むか郵送するか、どちらがいい？",
+      "situation": "店舗へ持ち込むのが難しい",
+      "recommend": "料金着払いで郵送する",
+      "reason": "届出では料金着払いで浦和美園店へ郵送する方法が示されています。販売店舗で回収する方法もあり、いずれも回収後は返金対応です。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602987"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "回収届には食品衛生法第20条の記載も",
+    "cause": "期限ラベルを誤って印字した経緯",
+    "steps": "購入日と期限を照合して回収へ",
+    "desk": "浦和美園店への確認と回収",
+    "worries": "対象商品や返金、健康被害が気になる",
+    "guide": "店頭に持ち込むか郵送するか"
+  },
+  "depthAt": "2026-11-22T05:50:45+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "「かりんとう饅頭」40個を販売、回収は2個",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-22T05:54:11+00:00"
+  },
+  "imageFocus": {
+    "x": 0.525,
+    "y": 0.422,
+    "box": [
+      0.097,
+      0.071,
+      0.953,
+      0.774
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/karinto-manju-recall-saitama-figure-e6a3edb9.jpg"
+  }
 }

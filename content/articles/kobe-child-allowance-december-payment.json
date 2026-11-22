@@ -73,14 +73,14 @@
   "videoTitle": "神戸市の児童手当2026年12月は10日、通知なしで口座に入ります",
   "publishedAt": "2026-11-22T05:16:13.664452+00:00",
   "generatedAt": "2026-11-22T05:16:54.815715+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/kobe-child-allowance-december-payment-figure-62a3d208.jpg",
   "model": "openai-api:gpt-6.1-terra",
   "affiliates": [],
   "newsType": "policy",
   "todayActions": [
-    "12月10日以降、児童手当を指定した受給者名義の口座で入金を確認する。",
-    "出生や市外転入があった人は、翌日から15日以内の申請期限を確かめる。",
-    "口座変更を郵送する人は、神戸市行政事務センター宛ての送付先を確認する。"
+    "12月10日以降、児童手当が受給者名義の指定口座に入ったか確認する。",
+    "出生・市外転入後の申請が必要な人は、e-KOBEから手続きしマイページで状況を確認する。",
+    "口座変更届を郵送する人は、神戸市行政事務センター宛てに配達記録が残る方法で送る。"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -110,5 +110,141 @@
   "detectedAt": "2026-11-22T05:17:20+00:00",
   "searchTitle": "神戸市の児童手当はいつ支給？　12月10日、通知なし",
   "layout": "noir",
-  "summaryLine": "神戸市の児童手当は2026年12月10日に支給され、支払い通知は送られません。"
+  "summaryLine": "神戸市の児童手当は2026年12月10日に支給され、支払い通知は送られません。",
+  "insight": [
+    {
+      "text": "口座変更届を郵送する場合、区役所・支所に届いた日が受理日です。郵便事故による不着や遅延に市は責任を負わず、配達記録が残る方法を勧めています。",
+      "source": "https://www.city.kobe.lg.jp/a32986/kosodate/shien/support/b016/index.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "神戸市行政事務センターコールセンター",
+      "url": "https://www.city.kobe.lg.jp/a32986/kosodate/shien/support/b016/index.html",
+      "source": "https://www.city.kobe.lg.jp/a32986/kosodate/shien/support/b016/index.html",
+      "phone": "078-291-5952",
+      "hours": "平日：8時45分～17時30分まで",
+      "note": "電子申請に関する問い合わせ先です。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "12月10日以降、児童手当が受給者名義の指定口座に入ったか確認する。",
+      "source": "https://www.city.kobe.lg.jp/a32986/kosodate/shien/support/b016/index.html",
+      "steps": [
+        "指定した受給者名義の口座を確認する",
+        "通帳等で入金を確認する"
+      ],
+      "url": "https://www.city.kobe.lg.jp/a32986/kosodate/shien/support/b016/index.html"
+    },
+    {
+      "action": "出生・市外転入後の申請が必要な人は、e-KOBEから手続きしマイページで状況を確認する。",
+      "source": "https://www.city.kobe.lg.jp/a32986/kosodate/shien/support/b016/index.html",
+      "steps": [
+        "新規申請・増額申請のフォームを開く",
+        "e-KOBEに登録・ログインする",
+        "申請状況をマイページで確認する"
+      ],
+      "url": "https://lgpos.task-asp.net/cu/281000/ea/residents/procedures/apply/bb14b03f-5faf-40ec-9a99-48fcca2256e0/start"
+    },
+    {
+      "action": "口座変更届を郵送する人は、神戸市行政事務センター宛てに配達記録が残る方法で送る。",
+      "source": "https://www.city.kobe.lg.jp/a32986/kosodate/shien/support/b016/index.html",
+      "steps": [
+        "口座変更の送付先を確認する",
+        "神戸市行政事務センター行（児童手当）宛てに送る",
+        "配達記録が残る方法を選ぶ"
+      ],
+      "url": "https://www.city.kobe.lg.jp/a32986/kosodate/shien/support/b016/index.html"
+    }
+  ],
+  "cause": {
+    "text": "児童手当は、家庭等における生活の安定に寄与し、次代の社会を担う子どもの健やかな育ちを支援することを目的とした制度です。",
+    "status": "background",
+    "source": "https://faq.city.kobe.lg.jp/print/faq/383?site_domain=default"
+  },
+  "worries": [
+    {
+      "q": "支給日に通知が来なくても、振り込みはありますか？",
+      "a": "神戸市は支払いの通知をしません。偶数月の10日に指定の受給者名義の口座へ振り込み、10日が土曜・日曜・祝日の場合は直前の平日が支給日です。支給日以降に通帳等で確認します。",
+      "source": "https://www.city.kobe.lg.jp/a32986/kosodate/shien/support/b016/index.html",
+      "action": "支給日以降に、児童手当の指定先として届け出た受給者名義の口座を通帳等で確認してください。"
+    },
+    {
+      "q": "出生や転入の申請が遅れたら、受け取れない月が出ますか？",
+      "a": "事由発生日の翌日から15日以内に申請が受理されると、出生や転出予定日の属する月の翌月分から支給できる場合があります。申請が遅れると、手当を受給できない月が発生します。",
+      "source": "https://www.city.kobe.lg.jp/a32986/kosodate/shien/support/b016/index.html",
+      "action": "出生や転入後は、事由発生日の翌日から15日以内に申請が受理されるよう手続きを確認してください。"
+    },
+    {
+      "q": "e-KOBEの申請後にメールが届かないと、未受付ですか？",
+      "a": "申請完了や差戻しなど、申請状況に関する通知メールは送信できない状況です。申請手続きが完了していれば正常に受け付けられており、状況はe-KOBEのマイページで確認できます。",
+      "source": "https://www.city.kobe.lg.jp/a32986/kosodate/shien/support/b016/index.html",
+      "action": "e-KOBEにログインし、マイページから申請状況を確認してください。"
+    },
+    {
+      "q": "口座変更届を郵送したのに受理日が心配です。",
+      "a": "郵送・窓口申請は、区役所・支所に届いた日が受理日です。郵便の不着や遅延について神戸市は責任を負わず、特定記録郵便や簡易書留など配達記録が残る方法での郵送を勧めています。",
+      "source": "https://www.city.kobe.lg.jp/a32986/kosodate/shien/support/b016/index.html",
+      "action": "口座変更届は指定の送付先を確認し、配達記録が残る方法で郵送してください。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "出生や転入の申請はどの方法にする？",
+      "situation": "父母以外が申請するなど、窓口手続きが必要",
+      "recommend": "郵送・窓口での手続きを確認する",
+      "reason": "申請者が父母以外の場合などは窓口での手続きが必要です。電子申請できる手続きかを確認し、対象外なら住んでいる区の区役所または支所のこども福祉担当へ相談してください。",
+      "source": "https://www.city.kobe.lg.jp/a32986/kosodate/shien/support/b016/index.html"
+    },
+    {
+      "question": "申請状況はメールを待つ？",
+      "situation": "e-KOBEで申請を済ませ、通知が届かない",
+      "recommend": "マイページで申請状況を確認する",
+      "reason": "申請完了や差戻しなどの通知メールは送信できない状況です。申請手続きが完了していれば正常に受け付けられており、状況はe-KOBEのマイページから確認できます。",
+      "source": "https://www.city.kobe.lg.jp/a32986/kosodate/shien/support/b016/index.html"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "郵送は届いた日が受理日",
+    "cause": "児童手当が支えるもの",
+    "steps": "入金と申請状況を確認",
+    "desk": "電子申請の問い合わせ先",
+    "worries": "入金や申請で気になること",
+    "guide": "申請方法を選ぶときの確認点"
+  },
+  "depthAt": "2026-11-22T05:52:57+00:00",
+  "updatedAt": "2026-11-22T05:52:57+00:00",
+  "updates": [
+    {
+      "at": "2026-11-22T05:52:57+00:00",
+      "kind": "facts",
+      "title": "公式の資料をもとに、「なるほどの要点」・「公式の窓口」・「今日やること」・「理由」・「よくある不安」・「判断の目安」を追記しました",
+      "sourceUrl": "https://www.city.kobe.lg.jp/a32986/kosodate/shien/support/b016/index.html",
+      "sourceName": "神戸市「児童手当」"
+    }
+  ],
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "神戸市の児童手当は12月10日に支給",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-22T05:57:54+00:00"
+  },
+  "imageFocus": {
+    "x": 0.509,
+    "y": 0.402,
+    "box": [
+      0.069,
+      0.048,
+      0.95,
+      0.756
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/kobe-child-allowance-december-payment-figure-62a3d208.jpg"
+  }
 }

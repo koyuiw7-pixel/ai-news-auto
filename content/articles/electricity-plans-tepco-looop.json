@@ -69,7 +69,7 @@
   "videoTitle": "Looopでんき スマートタイムONEと東京電力 従量電灯B・スタンダードSはどう比べる 2026年11月",
   "publishedAt": "2026-11-22T05:18:45.109424+00:00",
   "generatedAt": "2026-11-22T05:20:26.133028+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/electricity-plans-tepco-looop-figure-302374f8.jpg",
   "model": "openai-api:gpt-6.1-terra",
   "affiliates": [
     {
@@ -88,9 +88,9 @@
     }
   ],
   "todayActions": [
-    "東京電力の従量電灯B・Cの料金表で、契約アンペアに対応する基本料金を確認する。",
-    "スタンダードSを候補にする場合は、東京電力の公式料金表で単価と燃料費調整の条件を確認する。",
-    "従量電灯Bへの切り替えを希望する場合は、東京電力の窓口0120-995-001に申し込む。"
+    "契約アンペアを確認し、従量電灯Bの基本料金を料金表で照合する。",
+    "電気を使わない月の基本料金が半額になる条件を料金表で確認する。",
+    "従量電灯Bへの切り替えを希望する場合は、受付時間内に電話で申し込む。"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -136,5 +136,124 @@
   "detectedAt": "2026-11-22T05:20:59+00:00",
   "searchTitle": "従量電灯Bの30A基本料金は月1,176.18円",
   "layout": "noir",
-  "summaryLine": "従量電灯Bは2026年11月から基本料金を改定し、30Aの契約では月**1,176.18円**になりました。"
+  "summaryLine": "従量電灯Bは2026年11月から基本料金を改定し、30Aの契約では月**1,176.18円**になりました。",
+  "insight": [
+    {
+      "text": "電気をまったく使わない月でも基本料金がゼロになるわけではなく、従量電灯Bでは基本料金が半額になります。使わない月の請求を見積もる際は、この点も確認できます。",
+      "source": "https://www.tepco.co.jp/ep/private/plan/old01.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "東京電力エナジーパートナー 従量電灯B・C",
+      "url": "https://www.tepco.co.jp/ep/private/plan/old01.html",
+      "source": "https://www.tepco.co.jp/ep/private/plan/old01.html",
+      "howTo": [
+        "従量電灯B・C",
+        "お手続きについて",
+        "規制料金プラン（従量電灯等）に切り替える"
+      ],
+      "phone": "0120-995-001",
+      "hours": "9時～17時（日曜・休・祝日除く）"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "契約アンペアを確認し、従量電灯Bの基本料金を料金表で照合する。",
+      "source": "https://www.tepco.co.jp/ep/private/plan/old01.html",
+      "steps": [
+        "料金表の「従量電灯B」を開く",
+        "契約アンペアに対応する基本料金を確認する"
+      ],
+      "url": "https://www.tepco.co.jp/ep/private/plan/old01.html"
+    },
+    {
+      "action": "電気を使わない月の基本料金が半額になる条件を料金表で確認する。",
+      "source": "https://www.tepco.co.jp/ep/private/plan/old01.html",
+      "steps": [
+        "「従量電灯B」の料金表を開く",
+        "まったく電気を使用しない場合の基本料金を確認する"
+      ],
+      "url": "https://www.tepco.co.jp/ep/private/plan/old01.html"
+    },
+    {
+      "action": "従量電灯Bへの切り替えを希望する場合は、受付時間内に電話で申し込む。",
+      "source": "https://www.tepco.co.jp/ep/private/plan/old01.html",
+      "steps": [
+        "0120-995-001に電話する",
+        "受付時間は9時～17時（日曜・休・祝日除く）"
+      ],
+      "url": "https://www.tepco.co.jp/ep/private/plan/old01.html"
+    }
+  ],
+  "worries": [
+    {
+      "q": "電気をまったく使わない月も基本料金はかかる？",
+      "a": "従量電灯Bでは、まったく電気を使用しない場合の基本料金は半額です。通常の基本料金が全額かからない一方、基本料金がゼロになるわけではありません。",
+      "source": "https://www.tepco.co.jp/ep/private/plan/old01.html",
+      "action": "自分の契約アンペアの基本料金を確認し、使わない月はその半額を目安にする。"
+    },
+    {
+      "q": "電力量料金は使った分すべて同じ単価で計算される？",
+      "a": "従量電灯Bの電力量料金は3段階です。最初の120kWhまで、120kWhをこえ300kWhまで、300kWhを超える分で、それぞれ異なる1kWh当たりの単価が適用されます。",
+      "source": "https://www.tepco.co.jp/ep/private/plan/old01.html",
+      "action": "料金表の3段階の区分と単価を、直近の月間使用量に照らして確認する。"
+    },
+    {
+      "q": "燃料価格が上がると、スタンダードSも従量電灯Bと同じ上限？",
+      "a": "従量電灯などの規制料金プランには、加算される燃料費調整額の変動単価に上限があります。スタンダードなどの自由料金プランには上限がなく、燃料価格が高騰した場合、燃料費調整額が高くなる可能性があります。",
+      "source": "https://www.tepco.co.jp/ep/private/plan/index-j.html",
+      "action": "スタンダードSを候補にする前に、燃料費調整額の上限の有無を料金プラン案内で確認する。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "燃料費調整の上限を重視して選ぶべき？",
+      "situation": "燃料価格の上昇による請求増が気になる",
+      "recommend": "規制料金プランを比較する",
+      "reason": "従量電灯などの規制料金プランには、加算される燃料費調整額の変動単価に上限があります。一方、スタンダードなどの自由料金プランには上限がなく、燃料価格が高騰した場合は燃料費調整額が高くなる可能性があります。",
+      "source": "https://www.tepco.co.jp/ep/private/plan/index-j.html"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "使わない月も基本料金は半額",
+    "steps": "契約アンペアと基本料金を料金表で確認",
+    "desk": "従量電灯Bへの切り替えは電話で申し込む",
+    "worries": "請求額や燃料費調整の上限はどうなる？",
+    "guide": "燃料費調整の上限を重視するなら"
+  },
+  "depthAt": "2026-11-22T05:51:50+00:00",
+  "updatedAt": "2026-11-22T05:51:50+00:00",
+  "updates": [
+    {
+      "at": "2026-11-22T05:51:50+00:00",
+      "kind": "facts",
+      "title": "公式の資料をもとに、「なるほどの要点」・「公式の窓口」・「今日やること」・「よくある不安」・「判断の目安」を追記しました",
+      "sourceUrl": "https://www.tepco.co.jp/ep/private/plan/old01.html",
+      "sourceName": "東京電力エナジーパートナー 従量電灯B・C（公式）"
+    }
+  ],
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "月1,176.18円",
+    "label": "従量電灯Bは30A",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-22T05:56:31+00:00"
+  },
+  "imageFocus": {
+    "x": 0.504,
+    "y": 0.515,
+    "box": [
+      0.05,
+      0.048,
+      0.959,
+      0.982
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/electricity-plans-tepco-looop-figure-302374f8.jpg"
+  }
 }

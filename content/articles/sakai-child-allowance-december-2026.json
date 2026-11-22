@@ -76,14 +76,14 @@
   "videoTitle": "堺市の児童手当2026年12月分は10月分と11月分、支払いは12月の10日前後です",
   "publishedAt": "2026-11-22T05:21:12.675825+00:00",
   "generatedAt": "2026-11-22T05:22:03.424742+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/sakai-child-allowance-december-2026-figure-c682e0f0.jpg",
   "model": "openai-api:gpt-6.1-terra",
   "affiliates": [],
   "newsType": "policy",
   "todayActions": [
-    "児童手当の支給状況を、受給者のマイナンバーカードを使ってマイナポータルで確認する。",
-    "出生や転入で新たに対象となった人は、翌日から15日以内の申請を区の子育て支援課で確認する。",
-    "振込先を変更した人は、堺市への口座変更手続きが済んでいるか確かめる。"
+    "受給者本人のマイナンバーカードで児童手当の支給状況を確認する。",
+    "出生・転入で新たに対象になった人は、翌日から15日以内に申請する。",
+    "振込先口座を変更した人は、変更手続きが済んでいるか確かめる。"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -103,5 +103,134 @@
   "detectedAt": "2026-11-22T05:22:28+00:00",
   "searchTitle": "堺市の児童手当はいつ支給？　12月10日前後に10月・11月分",
   "layout": "noir",
-  "summaryLine": "堺市の児童手当は、2026年12月の支払いで10月分と11月分をまとめて受け取る予定です。"
+  "summaryLine": "堺市の児童手当は、2026年12月の支払いで10月分と11月分をまとめて受け取る予定です。",
+  "insight": [
+    {
+      "text": "所得制限は令和6年10月分（令和6年12月支給分）から撤廃されています。収入を理由に対象外と思っていた人も、受給資格を確認する余地があります。",
+      "source": "https://www.city.sakai.lg.jp/kosodate/hughug/kosodatekankyo/kosodate/jidoteate.html"
+    },
+    {
+      "text": "別居の大学生年代でも、定期的な連絡や面会をし、生活費などを負担していれば養育・監護に該当します。第3子加算に数えるには「監護申立書」の届出が必要です。",
+      "source": "https://www.city.sakai.lg.jp/kosodate/hughug/kosodatekankyo/kosodate/jidoteate.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "堺市役所こども家庭課",
+      "url": "https://www.city.sakai.lg.jp/kosodate/hughug/kosodatekankyo/kosodate/jidoteate.html",
+      "source": "https://www.city.sakai.lg.jp/kosodate/hughug/kosodatekankyo/kosodate/jidoteate.html",
+      "phone": "228-7331"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "受給者本人のマイナンバーカードで児童手当の支給状況を確認する。",
+      "source": "https://www.city.sakai.lg.jp/kosodate/hughug/kosodatekankyo/kosodate/jidoteate.html",
+      "steps": [
+        "マイナポータルを開く",
+        "受給者のマイナンバーカードを用意する",
+        "児童手当の支給状況を確認する"
+      ],
+      "url": "https://myna.go.jp/"
+    },
+    {
+      "action": "出生・転入で新たに対象になった人は、翌日から15日以内に申請する。",
+      "source": "https://www.city.sakai.lg.jp/kosodate/hughug/kosodatekankyo/kosodate/jidoteate.html",
+      "steps": [
+        "住んでいる区の子育て支援課かマイナポータルを選ぶ",
+        "本人確認書類を用意する",
+        "受給者と配偶者の個人番号が分かる書類を用意する",
+        "受給者名義の口座番号が分かるものを用意する"
+      ],
+      "url": "https://myna.go.jp/"
+    },
+    {
+      "action": "振込先口座を変更した人は、変更手続きが済んでいるか確かめる。",
+      "source": "https://www.city.sakai.lg.jp/kosodate/hughug/kosodatekankyo/kosodate/jidoteate.html",
+      "steps": [
+        "住んでいる区の子育て支援課かマイナポータルで手続きする",
+        "毎月15日までの申請なら翌月の支払いから変更"
+      ],
+      "url": "https://myna.go.jp/"
+    }
+  ],
+  "cause": {
+    "text": "児童手当は、家庭等における生活の安定に寄与し、次代の社会を担う児童の健やかな成長に資することを目的に、児童を養育している方に支給されます。",
+    "status": "background",
+    "source": "https://www.city.sakai.lg.jp/kosodate/hughug/kosodatekankyo/kosodate/jidoteate.html"
+  },
+  "worries": [
+    {
+      "q": "出生や転入の申請が15日を過ぎたら、前の月分も受け取れる？",
+      "a": "申請が遅れると、遅れた分の手当は受けられません。出生や転入などの事実発生日の翌日から15日以内に申請すると、事実発生日の翌月分から支給されます。",
+      "source": "https://www.city.sakai.lg.jp/kosodate/hughug/kosodatekankyo/kosodate/jidoteate.html",
+      "action": "まだ申請していない場合は、住んでいる区の子育て支援課で必要な手続きを確認する。"
+    },
+    {
+      "q": "電子申請が完了しなかったら、新規申請はどうすればいい？",
+      "a": "堺市電子申請システムの不具合により、申請手続きが正常に完了しない場合があります。電子申請が完了しなかった場合、支給開始月に影響が生じることがあります。",
+      "source": "https://www.city.sakai.lg.jp/kosodate/hughug/kosodatekankyo/kosodate/jidoteate.html",
+      "action": "当面は住んでいる区の子育て支援課の窓口か、マイナポータルで申請する。"
+    },
+    {
+      "q": "振込口座を変えたのに手続きしないと、どうなる？",
+      "a": "口座変更の手続きをしていない場合、児童手当を振り込めず、受け取りが遅れることがあります。毎月15日までに申請すると、翌月の支払いから変更されます。",
+      "source": "https://www.city.sakai.lg.jp/kosodate/hughug/kosodatekankyo/kosodate/jidoteate.html",
+      "action": "住んでいる区の子育て支援課かマイナポータルで口座変更を申請する。"
+    },
+    {
+      "q": "別居している大学生の子も、第3子の人数に含められる？",
+      "a": "別居していても、定期的な連絡や面会などを行い、生活費などを負担していれば養育・監護に該当します。大学生年代の子を第3子以降の加算に含めるには、監護申立書の届出が必要です。",
+      "source": "https://www.city.sakai.lg.jp/kosodate/hughug/kosodatekankyo/kosodate/jidoteate.html",
+      "action": "養育・監護の状況を確認し、住んでいる区の子育て支援課で監護申立書を届け出る。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "不具合中の申請はどこから出せばいい？",
+      "situation": "堺市電子申請システムに不具合がある間",
+      "recommend": "窓口かマイナポータルを使う",
+      "reason": "堺市は当面、区の子育て支援課の窓口かマイナポータルでの申請を案内しています。電子申請が正常に完了しない場合、支給開始月に影響することがあります。",
+      "source": "https://www.city.sakai.lg.jp/kosodate/hughug/kosodatekankyo/kosodate/jidoteate.html"
+    },
+    {
+      "question": "大学生年代の子を第3子の人数に含める？",
+      "situation": "養育・監護している大学生年代の子がいる",
+      "recommend": "条件を確認し監護申立書を届け出る",
+      "reason": "大学生年代の子は、養育・監護している場合に人数へ含められます。第3子以降の加算を受けるには監護申立書が必要で、届出がない場合はカウントされません。",
+      "source": "https://www.city.sakai.lg.jp/kosodate/hughug/kosodatekankyo/kosodate/jidoteate.html"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "所得制限と大学生年代の数え方",
+    "cause": "児童手当が支給される目的",
+    "steps": "支給確認と申請、口座変更を確認",
+    "desk": "申請先と制度の問い合わせ先",
+    "worries": "申請遅れや振込、大学生の子の扱い",
+    "guide": "申請先と第3子加算の確認方法"
+  },
+  "depthAt": "2026-11-22T05:51:22+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "堺市の児童手当は12月10日前後に支払い",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-22T05:55:44+00:00"
+  },
+  "imageFocus": {
+    "x": 0.487,
+    "y": 0.414,
+    "box": [
+      0.075,
+      0.06,
+      0.9,
+      0.768
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/sakai-child-allowance-december-2026-figure-c682e0f0.jpg"
+  }
 }

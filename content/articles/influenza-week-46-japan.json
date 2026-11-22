@@ -55,14 +55,14 @@
   "videoTitle": "11.94人で4週連続増、北海道30.63人が警報の目安を超えた第46週",
   "publishedAt": "2026-11-22T05:17:31.663587+00:00",
   "generatedAt": "2026-11-22T05:18:02.403511+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/influenza-week-46-japan-figure-974f4781.jpg",
   "model": "openai-api:gpt-6.1-terra",
   "affiliates": [],
   "newsType": "general",
   "todayActions": [
-    "厚生労働省の第46週資料で、住んでいる都道府県の報告数と推移を確認する。",
-    "子どもがインフルエンザにかかった場合は、出席停止の期間を学校に確認する。",
-    "感染症や予防接種の相談は、9時〜17時に0120-995-956へ電話する。"
+    "住んでいる都道府県の定点報告数を、直近の週と比べて確認する。",
+    "インフルエンザの症状が出たら、抗インフルエンザウイルス薬の適切な開始時期を医療機関に相談する。",
+    "インフルエンザの子どもが自宅療養する場合、発熱から2日間は転落事故を防ぐ対策をする。"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -116,5 +116,133 @@
   "detectedAt": "2026-11-22T05:18:27+00:00",
   "searchTitle": "インフルエンザ第46週の定点当たり報告数は？全国11.94人",
   "layout": "noir",
-  "summaryLine": "インフルエンザの全国の定点当たり報告数は第46週に**11.94人**となり、4週続けて増えました。"
+  "summaryLine": "インフルエンザの全国の定点当たり報告数は第46週に**11.94人**となり、4週続けて増えました。",
+  "insight": [
+    {
+      "text": "厚生労働省はインフルエンザの発生状況を9月～4月に毎週金曜日14時に発表します。祝日・年末年始などで曜日が変わる場合もあります。",
+      "source": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/kenkou/kekkaku-kansenshou/infulenza/index.html"
+    },
+    {
+      "text": "定期接種の対象は65歳以上だけではありません。60～64歳で一定の基礎疾患がある方も、インフルエンザワクチンを毎年1回接種できます。",
+      "source": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/kenkou/kekkaku-kansenshou/infulenza/index.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "感染症・予防接種相談窓口",
+      "url": "https://www.mhlw.go.jp/content/001770872.pdf",
+      "source": "https://www.mhlw.go.jp/content/001770872.pdf",
+      "phone": "0120-995-956",
+      "hours": "9:00~17:00",
+      "note": "報道関係者以外の方は、この窓口で承ります。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "住んでいる都道府県の定点報告数を、直近の週と比べて確認する。",
+      "source": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/kenkou/kekkaku-kansenshou01/houdou_00025.html",
+      "steps": [
+        "厚生労働省の報道発表資料を開く",
+        "「各都道府県別の定点報告数の推移はこちら」を開く",
+        "自分の都道府県の推移を見る"
+      ],
+      "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/houkokusuunosuii_00007.html"
+    },
+    {
+      "action": "インフルエンザの症状が出たら、抗インフルエンザウイルス薬の適切な開始時期を医療機関に相談する。",
+      "source": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/kenkou/kekkaku-kansenshou/infulenza/index.html",
+      "steps": [
+        "症状が出た時刻を確認する",
+        "発症から48時間以内かを伝える",
+        "薬の服用について医療機関に相談する"
+      ],
+      "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/kenkou/kekkaku-kansenshou/infulenza/index.html"
+    },
+    {
+      "action": "インフルエンザの子どもが自宅療養する場合、発熱から2日間は転落事故を防ぐ対策をする。",
+      "source": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/kenkou/kekkaku-kansenshou/infulenza/QA2026.html",
+      "steps": [
+        "玄関や全ての部屋の窓を施錠する",
+        "ベランダに面していない部屋で寝かせる",
+        "できる限り1階で寝かせる"
+      ],
+      "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/kenkou/kekkaku-kansenshou/infulenza/QA2026.html"
+    }
+  ],
+  "cause": {
+    "text": "インフルエンザはインフルエンザウイルスへの感染で起こります。患者の咳やくしゃみの飛まつを吸い込む飛まつ感染や、患者との接触、ウイルスが付いた手で口や鼻に触れる接触感染が知られています。",
+    "status": "background",
+    "source": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/kenkou/kekkaku-kansenshou/infulenza/index.html"
+  },
+  "worries": [
+    {
+      "q": "ワクチンを受ければインフルエンザにかからない？",
+      "a": "厚生労働省は、インフルエンザワクチンについて、感染後に発症する可能性を低減させる効果と、重症化防止に有効と報告されています。感染や発症を完全に防ぐとは説明されていません。",
+      "source": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/kenkou/kekkaku-kansenshou/infulenza/index.html",
+      "action": "定期接種の対象に当たるか、接種できる医療機関とあわせて市町村やかかりつけ医に確認する。"
+    },
+    {
+      "q": "家族がかかったら、いつまでウイルスを出すの？",
+      "a": "発症前日から発症後3～7日間は、鼻やのどからウイルスを排出するといわれています。ウイルスを排出している間は、外出を控える必要があります。",
+      "source": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/kenkou/kekkaku-kansenshou/infulenza/index.html",
+      "action": "家族が発症したら、発症日を確認し、ウイルスを排出している間は外出を控える。"
+    },
+    {
+      "q": "抗インフルエンザウイルス薬は、いつから効きにくくなる？",
+      "a": "抗インフルエンザウイルス薬の服用を発症から48時間以内に開始すると、発熱期間は通常1～2日間短縮され、ウイルス排出量も減少します。症状が出てから2日（48時間）以降に開始した場合、十分な効果は期待できません。",
+      "source": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/kenkou/kekkaku-kansenshou/infulenza/index.html",
+      "action": "症状が出た時刻を確認し、薬の服用について医療機関に相談する。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "自分は定期接種の対象に当たる？",
+      "situation": "65歳以上、または60～64歳で一定の基礎疾患がある",
+      "recommend": "市町村やかかりつけ医に確認する",
+      "reason": "65歳以上の方と、60～64歳で一定の基礎疾患がある方は、定期の予防接種として毎年1回接種できます。対象に当たるかや接種できる医療機関は、市町村やかかりつけ医に確認できます。",
+      "source": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/kenkou/kekkaku-kansenshou/infulenza/index.html"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "発表の曜日とワクチン対象を確認",
+    "cause": "感染は飛まつや接触で広がる",
+    "steps": "地域の推移と家庭の備えを確認",
+    "desk": "感染症や予防接種の相談先",
+    "worries": "薬やワクチン、家族への感染は？",
+    "guide": "定期接種の対象か確認する"
+  },
+  "depthAt": "2026-11-22T05:52:32+00:00",
+  "updatedAt": "2026-11-22T05:52:32+00:00",
+  "updates": [
+    {
+      "at": "2026-11-22T05:52:32+00:00",
+      "kind": "facts",
+      "title": "公式の資料をもとに、「なるほどの要点」・「公式の窓口」・「今日やること」・「理由」・「よくある不安」・「判断の目安」を追記しました",
+      "sourceUrl": "https://www.mhlw.go.jp/content/001770872.pdf",
+      "sourceName": "厚生労働省「インフルエンザの発生状況について」（2026年11月20日公表、第46週分）"
+    }
+  ],
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "11.94人",
+    "label": "インフルエンザ全国",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-22T05:59:48+00:00"
+  },
+  "imageFocus": {
+    "x": 0.439,
+    "y": 0.459,
+    "box": [
+      0.019,
+      0.042,
+      0.859,
+      0.875
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/influenza-week-46-japan-figure-974f4781.jpg"
+  }
 }
