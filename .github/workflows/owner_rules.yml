@@ -38,7 +38,7 @@ jobs:
           SNS_RULES_NO_ISSUE: "1"
         run: |
           python -m unittest -v \
-            tests.test_routine_cap_30_20261122 tests.test_big_news_narrow_20261122 tests.test_owner_rules_ledger tests.test_owner_rules_audit tests.test_owner_rules_gaps \
+            tests.test_routine_cap_30_20261122 tests.test_owner_delegated_20261122 tests.test_big_news_narrow_20261122 tests.test_owner_rules_ledger tests.test_owner_rules_audit tests.test_owner_rules_gaps \
             tests.test_search_title_20261110 tests.test_zero_visit_noindex_20261110 tests.test_short_body_noindex_20261121 tests.test_partner_feed_description_20261110 \
             tests.test_sns_owner_rules_20261103 tests.test_retired_sources tests.test_images_official tests.test_official_images_20261118 \
             tests.test_rivals tests.test_verdict_scope tests.test_persona tests.test_article_quickwins \
