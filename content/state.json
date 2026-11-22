@@ -768,6 +768,7 @@
     "5287042453c67884b69cfd95ab0f8c72009496d4": 2,
     "52c50734ae1143386f1f770e4e94dc8bec48639b": 2,
     "52e9cd7271902c35e695686c4dc9981c87550d81": 2,
+    "5316148529af2cffa0cfc86adefbf3ed58fc955f": 1,
     "532d4c8807079e908b1b2841a0f023519cd49ad8": 3,
     "533b258d1b87b1b3d645057fb7eb7a5a52acb769": 2,
     "533fa9949cc80ec4591b38dbd90a0123b53c30c7": 2,
@@ -860,6 +861,7 @@
     "5d4f2152bdaea4c9c457d425fd0404a2f96cfdbb": 2,
     "5d6a7f14593d8e0c6c095cc0a42f30f40a75363e": 2,
     "5d75503129e9d9cd3a3d3c4702488e17e6f7bc22": 2,
+    "5d81f9ce12bfdbb48a42bacd1fee45771f85c44f": 1,
     "5da5b5f779a15f1e49171dd4941b813b56769528": 2,
     "5db24b847296072a7677bd4d6e8e0c8939ee89b5": 2,
     "5dd4f95edf5ab2f977cba55964766919725c48d7": 2,
@@ -1071,6 +1073,7 @@
     "7460b8e0a40c44baebad84517929fde27b9a5baa": 2,
     "748433c2dce4d929ea57e1c89b4b61bc9b2ec00d": 2,
     "74bdab2ffac63bff13c58975012abb1b92d12dab": 2,
+    "74c61176cf7e9ab338cdd75cce9456e7d6b5c727": 1,
     "74ea6040d8639c2f62eecf3a448e073b005d5988": 2,
     "74eb2b4896c12e4191dea5848723f68a3e9498a2": 1,
     "75006fe46a2f5bc4adc13b5629752bd0fd7fd34b": 2,
@@ -2545,7 +2548,9 @@
       "url": "https://network.mobile.rakuten.co.jp/information/news/service/3990/"
     }
   },
-  "major_tries": {},
+  "major_tries": {
+    "fd285f2db69a5f1e": 1
+  },
   "pi_reopened": {
     "009f6a0d6eedbb24": "2026-11-21T17:20:55.701553+00:00",
     "05b7c979204565d2": "2026-11-19T18:21:01.412347+00:00",
@@ -9333,6 +9338,12 @@
       "trendKeyword": "友野一希",
       "trendLane": true,
       "url": "https://topics.smt.docomo.ne.jp/latestnews/keywords/fca4b55a0e0b9fe06d4714d7ac4bb4b1a6a0db3b96553e520968525e7799bd5c"
+    },
+    "32b5bf7cfcc00b5d9482845166c34d775b671fa3": {
+      "at": "2026-11-22T08:37:11.462505+00:00",
+      "reason": "trend: 重複: 同じ言葉の記事がある（atami-fuji-kyushu-basho-day10）",
+      "skipped": true,
+      "url": "https://www.asahi.com/articles/ASVCP3F7KVCPUTQP014M.html"
     },
     "32ba5952e956378c": {
       "at": "2026-11-12T06:35:06.570726+00:00",
@@ -18351,12 +18362,6 @@
       "trendLane": true,
       "url": "https://trafficinfo.westjr.co.jp/chugoku.html"
     },
-    "beb702ab069a8b1b": {
-      "at": "2026-11-08T08:31:37.137507+00:00",
-      "reason": "dedupe: 固有名詞が一致（daihyo・jfa）: afc-asian-cup-2027-schedule-change",
-      "skipped": true,
-      "url": "https://www.jfa.jp/news/00036993/"
-    },
     "bef28d4c21272f61c38e2ac8005c49513a086120": {
       "at": "2026-11-15T00:26:32.649248+00:00",
       "model": "gemini-3.5-flash",
@@ -25452,55 +25457,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-20T09:54:33.186897+00:00",
-      "attempt": 1,
-      "id": "15e9799dfbd2bb9b",
-      "kind": "broad",
-      "model": "openai-api:gpt-6-luna",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 117.9,
-        "avg_sentence": 64.8,
-        "long_share": 0.4,
-        "max_paragraph": 231,
-        "paragraphs": 11,
-        "sentences": 20
-      },
-      "score": 98,
-      "source": "tokyo-metro",
-      "title": "埼玉県・千葉県・神奈川県の主張に対する都の見解について",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（EC）",
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
-        "読みやすさ: 文が長い（1文の平均 64.8字・60字超の文が 40% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-20T09:54:59.885074+00:00",
-      "attempt": 0,
-      "id": "15e9799dfbd2bb9b",
-      "kind": "broad",
-      "model": "openai-api:gpt-6-luna",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 64.0,
-        "avg_sentence": 38.4,
-        "long_share": 0.0,
-        "max_paragraph": 99,
-        "paragraphs": 18,
-        "sentences": 30
-      },
-      "score": 100,
-      "source": "tokyo-metro",
-      "title": "埼玉県・千葉県・神奈川県の主張に対する都の見解について",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（EC）",
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
-      ]
-    },
     {
       "accepted": false,
       "at": "2026-11-20T09:56:23.774739+00:00",
@@ -33099,6 +33055,46 @@
         "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（TOKYO・CITY・CANVAS）",
         "読みやすさ: 文が長い（1文の平均 58.1字・60字超の文が 40% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-22T08:35:58.483462+00:00",
+      "attempt": 1,
+      "id": "fd285f2db69a5f1e",
+      "kind": "update",
+      "model": "openai-api:gpt-6.1-terra",
+      "problems": [
+        "「上の表に記載した9項目に加え」→「トータル」の変更・解約やマルチアカウントの手続きは、元記事の利用できない手続きの1項目目に含まれており、9項目とは別の追加項目であるかのような記述は不正確です。"
+      ],
+      "score": 90,
+      "source": "docomo-notice",
+      "title": "【お詫び】ドコモオンラインショップ、My docomoの緊急メンテナンス実施について/当社サーバーへの不正アクセスによるお客さま情報流出に関するお知らせ（第六報"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-22T08:36:33.170606+00:00",
+      "attempt": 1,
+      "id": "fd285f2db69a5f1e",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "題名で料金・価格を約束しているのに、本文に金額（円・ドル・無料など）が無い。元記事の金額を書くか、題名から料金の話を外す"
+      ],
+      "readability": {
+        "avg_paragraph": 74.3,
+        "avg_sentence": 42.8,
+        "long_share": 0.115,
+        "max_paragraph": 137,
+        "paragraphs": 15,
+        "sentences": 26
+      },
+      "score": null,
+      "source": "docomo-notice",
+      "title": "【お詫び】ドコモオンラインショップ、My docomoの緊急メンテナンス実施について/当社サーバーへの不正アクセスによるお客さま情報流出に関するお知らせ（第六報",
+      "warnings": [
+        "見出しが49字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（JAL・SMS）"
       ]
     }
   ],
