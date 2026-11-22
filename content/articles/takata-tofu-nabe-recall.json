@@ -53,13 +53,13 @@
   "videoTitle": "株式会社たかた「豆腐をとろとろにする鍋」190個が2026年11月に回収、さばと鶏肉の表示欠落",
   "publishedAt": "2026-11-22T04:35:06.210677+00:00",
   "generatedAt": "2026-11-22T04:35:32.287489+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/takata-tofu-nabe-recall-figure-d318fb95.jpg",
   "model": "openai-api:gpt-6.1-terra",
   "affiliates": [],
   "newsType": "product",
   "todayActions": [
-    "手元の「豆腐をとろとろにする鍋」のJANコードと、2027年の賞味期限を確認する。",
-    "対象品は販売店舗で回収を申し出るか、たかたのお客様相談室0120-014161に連絡する。"
+    "手元の商品のJANコードと賞味期限を、回収対象の記載と照らし合わせる。",
+    "対象品なら食べずに、販売店舗で回収を申し出るかメーカーへ連絡する。"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -97,5 +97,101 @@
   "summaryLine": "「豆腐をとろとろにする鍋」は、さばと鶏肉の表示が欠けた商品190個が回収対象です。",
   "relatedSlugs": [
     "fujisawa-bakery-recall-chocokorone-2026"
-  ]
+  ],
+  "officialDesk": [
+    {
+      "name": "㈱たかたお客様相談室",
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602960",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602960",
+      "phone": "0120-014161",
+      "hours": "8:30-17:00（土日祝日を除く）",
+      "note": "回収後の対応は代替品の発送です。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "手元の商品のJANコードと賞味期限を、回収対象の記載と照らし合わせる。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602960",
+      "steps": [
+        "JANコードが4904686900189か確認する",
+        "賞味期限が対象の6種類のいずれか確認する"
+      ],
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602960"
+    },
+    {
+      "action": "対象品なら食べずに、販売店舗で回収を申し出るかメーカーへ連絡する。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602960",
+      "steps": [
+        "販売店舗に回収を申し出る",
+        "または㈱たかたお客様相談室へ電話する",
+        "受付時間は8:30-17:00（土日祝日を除く）"
+      ],
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602960"
+    }
+  ],
+  "cause": {
+    "text": "一括表示内容に誤りがあり、原材料名、添加物、特定原材料に準ずるものの表示の一部が欠落していました。正しい表示に含まれる「さば」「鶏肉」も表示されていませんでした。",
+    "status": "stated",
+    "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602960"
+  },
+  "worries": [
+    {
+      "q": "さばや鶏肉にアレルギーがある家族は、食べたらどうなる？",
+      "a": "表示ラベルでは「さば」「鶏肉」が抜けており、該当する人が食べた場合、重篤な健康被害または死亡の原因となり得る可能性が高いとされています。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602960",
+      "action": "商品のJANコードと賞味期限を照合し、対象なら食べずに販売店舗かメーカーへ回収を申し出てください。"
+    },
+    {
+      "q": "手元の鍋は、商品名だけで回収対象と判断できる？",
+      "a": "公開情報では、商品名に加えて内容量150ｇ、パウチ品、JANコード4904686900189、6種類の賞味期限が対象情報として示されています。商品名だけでなく、これらを照合できます。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602960",
+      "action": "JANコード4904686900189と、賞味期限6種類のいずれかが一致するか確認してください。"
+    },
+    {
+      "q": "店に持ち込めないとき、メーカーへ直接連絡できる？",
+      "a": "回収方法は販売店舗での回収またはメーカーへの直接連絡です。問い合わせ先は㈱たかたお客様相談室で、受付時間は8:30-17:00（土日祝日を除く）です。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602960",
+      "action": "対象品を確認したら、㈱たかたお客様相談室0120-014161へ受付時間内に連絡してください。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "対象品と分かったら、食べてもよい？",
+      "situation": "JANコードと賞味期限が対象情報に一致する",
+      "recommend": "食べずに回収を申し出る",
+      "reason": "届出は、さば・鶏肉アレルギーの人が食べた場合、重篤な健康被害または死亡の原因となり得る可能性が高いとしています。対象品は販売店舗で回収、またはメーカーへ連絡できます。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602960"
+    }
+  ],
+  "depthHeadings": {
+    "cause": "表示のどこが誤っていたのか",
+    "steps": "手元の商品を照合して回収を申し出る",
+    "desk": "回収を申し出る窓口と受付時間",
+    "worries": "アレルギーや対象品の見分け方が心配",
+    "guide": "対象品と分かったら食べずに回収へ"
+  },
+  "depthAt": "2026-11-22T04:46:10+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "「豆腐をとろとろにする鍋」190個を回収",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-22T04:47:50+00:00"
+  },
+  "imageFocus": {
+    "x": 0.517,
+    "y": 0.417,
+    "box": [
+      0.084,
+      0.06,
+      0.95,
+      0.774
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/takata-tofu-nabe-recall-figure-d318fb95.jpg"
+  }
 }

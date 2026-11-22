@@ -55,13 +55,13 @@
   "videoTitle": "イオンフードスタイル「すけそうだらと海老入り天ぷら盛合せ1人前」2026年11月、マックスバリュ野田七光台店の2個を回収",
   "publishedAt": "2026-11-22T04:38:04.264574+00:00",
   "generatedAt": "2026-11-22T04:38:31.684215+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/nodananakodai-tempura-salmon-recall-figure-f98c85d0.jpg",
   "model": "openai-api:gpt-6.1-terra",
   "affiliates": [],
   "newsType": "product",
   "todayActions": [
-    "野田七光台店で買った天ぷら盛合せの商品名と消費期限を確認する。",
-    "対象商品が手元にある場合は食べずに、野田七光台店の回収案内と返金対応を確認する。"
+    "野田七光台店で購入した商品を、商品名と消費期限で回収条件に照合する。",
+    "条件が一致する商品は食べず、販売店のPOPで回収と返金の案内を確認する。"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -95,5 +95,100 @@
   "summaryLine": "野田七光台店の天ぷら盛合せは「さけ」の表示が欠けたため、販売された2個が回収対象です。",
   "relatedSlugs": [
     "fujisawa-bakery-recall-chocokorone-2026"
-  ]
+  ],
+  "officialDesk": [
+    {
+      "name": "マックスバリュ野田七光台店",
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602900",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602900",
+      "note": "販売店のPOPで周知し、回収後は返金対応とされています。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "野田七光台店で購入した商品を、商品名と消費期限で回収条件に照合する。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602900",
+      "steps": [
+        "商品名が「すけそうだらと海老入り天ぷら盛合せ１人前」か確認",
+        "消費期限が2026年11月12日か確認",
+        "販売店がマックスバリュ野田七光台店か確認"
+      ],
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602900"
+    },
+    {
+      "action": "条件が一致する商品は食べず、販売店のPOPで回収と返金の案内を確認する。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602900",
+      "steps": [
+        "対象条件に一致するか確認",
+        "販売店の店頭POPで回収方法を確認",
+        "回収後の返金対応を確認"
+      ],
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602900"
+    }
+  ],
+  "cause": {
+    "text": "製造時、加工担当者が「すけそうだら」ではなく「サーモン」の天ぷらを製造して商品化したため、必要なアレルギー表示「さけ」が欠落しました。",
+    "status": "stated",
+    "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602900"
+  },
+  "worries": [
+    {
+      "q": "さけアレルギーの人が食べると症状が出る？",
+      "a": "届出では、さけアレルギーのある人が食べた場合、アレルギー症状が発症する可能性があるとされています。健康への危険性の程度は「CLASSⅠ」です。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602900",
+      "action": "商品名・購入店・消費期限が対象条件に合う場合は食べず、販売店の店頭POPを確認する。"
+    },
+    {
+      "q": "野田七光台店以外で買った同じ商品も対象なの？",
+      "a": "届出に記載された販売先はマックスバリュ野田七光台店で、販売地域は千葉県野田市近郊です。商品名だけでなく、購入店や消費期限も照合してください。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602900",
+      "action": "購入店と商品名、消費期限を、届出に記載された対象条件と照らし合わせる。"
+    },
+    {
+      "q": "回収品を持っていたら、どこで返金を受けられる？",
+      "a": "届出では、販売店のPOPで周知し、回収後に返金対応するとされています。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602900",
+      "action": "マックスバリュ野田七光台店の店頭POPで、回収と返金の案内を確認する。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "条件に合う天ぷらを手元に持っていたら？",
+      "situation": "購入店・商品名・消費期限が一致する",
+      "recommend": "食べずに店頭の回収案内を確認する",
+      "reason": "届出では、さけの表示が欠落した商品について、さけアレルギーのある人が食べると症状が出る可能性があるとされています。販売店のPOPで周知し、回収後は返金対応とされています。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602900"
+    }
+  ],
+  "depthHeadings": {
+    "cause": "サーモンを使い、さけ表示が欠落",
+    "steps": "店と消費期限を照合して店頭案内へ",
+    "desk": "回収と返金は販売店のPOPで確認",
+    "worries": "対象範囲や返金、アレルギーが心配",
+    "guide": "手元の商品が対象条件に合うとき"
+  },
+  "depthAt": "2026-11-22T04:45:00+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "1人",
+    "label": "「すけそうだらと海老入り天ぷら盛合せ",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-22T04:47:25+00:00"
+  },
+  "imageFocus": {
+    "x": 0.434,
+    "y": 0.468,
+    "box": [
+      0.019,
+      0.048,
+      0.85,
+      0.887
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/nodananakodai-tempura-salmon-recall-figure-f98c85d0.jpg"
+  }
 }
