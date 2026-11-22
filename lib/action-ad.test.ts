@@ -88,7 +88,7 @@ test("地震・防災の記事：防災の商品が本文中と記事末にも�
   assert.equal(ad?.key, "disaster");
   for (const box of [plan.inline, plan.rail]) {
     assert.ok(box);
-    for (const key of keysOf(box!.items)) assert.match(key, /^(jackery|bluetti|akamaru-bousai|alpha-foods|stoole|bang-kasai)$/);
+    for (const key of keysOf(box!.items)) assert.match(key, /^(jackery|bluetti|akamaru-bousai|alpha-foods|stoole|oken-water)$/);
   }
 });
 
