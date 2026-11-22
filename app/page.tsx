@@ -22,7 +22,7 @@ import { siteConfig } from "@/site.config";
 import { pageShareImage } from "@/lib/page-share";
 import { coverPath } from "@/lib/cover-path";
 import { containPhoto } from "@/lib/photo-fit";
-import { pickHomeHeadlines, pickHomeLead, pickLifeMoney, pickTrendingStrip, STRIP_VISIBLE, viewsOf } from "@/lib/home-lead";
+import { featuredBundles, homeFeatureable, pickHomeHeadlines, pickHomeLead, pickLifeMoney, pickTrendingStrip, preferFeatured, STRIP_VISIBLE, viewsOf } from "@/lib/home-lead";
 import { alsoCoveredSentence } from "@/lib/coverage";
 import { guideShortName, lifeCompareGuide, type LifeCompareSlug } from "@/lib/buying-guides";
 
@@ -81,15 +81,16 @@ export default function HomePage() {
 
   // 主役は暮らしとお金の記事から、読まれている・新しい・写真のあるものを選ぶ（2026-11-10 オーナー「ホームは玄関」。lib/home-lead.ts）。
   // 公式の発表から選ぶ（報道をもとにした記事を主役にしない。台帳 W17）・写真の無い記事は主役にしない
-  const lead = pickHomeLead(all) ?? all[0];
+  // 主な枠には本文 800字以上の記事だけ（2026-11-22 台帳 W49。短い記事は公開のまま一覧に残る。枠が空になる日は全部の記事から）
+  const lead = pickHomeLead(all.filter(homeFeatureable)) ?? pickHomeLead(all) ?? all[0];
   // 主役のすぐ下は暮らしとお金の列（写真のある記事だけ）。AI の新着はその下（AI は脇役。台帳 A61）
   // スマホの最初の画面に、暮らしとお金の見出しを文字だけで並べる（2026-11-11 読者目線レビュー 2位。Yahoo!ニュースは最初の画面に6本）
-  const headlines = pickHomeHeadlines(all, new Set([lead.slug]), 6);
+  const headlines = preferFeatured(all, (pool) => pickHomeHeadlines(pool, new Set([lead.slug]), 6));
   // 「いま話題」の欄（話題の記事を1記事1行で全部。上の主役・見出しに出た記事は二重に並べない。lib/home-lead.ts の pickTrendingStrip）
-  const trendingStrip = pickTrendingStrip(all, new Set([lead.slug, ...headlines.map((a) => a.slug)]));
+  const trendingStrip = pickTrendingStrip(all.filter(homeFeatureable), new Set([lead.slug, ...headlines.map((a) => a.slug)]));
   // 写真の列には、「いま話題」の最初から見えている記事を重ねて出さない（トップからたどれる記事を増やす）
-  const lifeMoney = pickLifeMoney(all, new Set([lead.slug, ...headlines.map((a) => a.slug), ...trendingStrip.slice(0, STRIP_VISIBLE).map((a) => a.slug)]), NEWS_SIZE);
-  const timeline = ai.filter((a) => a.slug !== lead.slug).slice(0, TIMELINE_SIZE);
+  const lifeMoney = preferFeatured(all, (pool) => pickLifeMoney(pool, new Set([lead.slug, ...headlines.map((a) => a.slug), ...trendingStrip.slice(0, STRIP_VISIBLE).map((a) => a.slug)]), NEWS_SIZE));
+  const timeline = preferFeatured(ai, (pool) => pool.filter((a) => a.slug !== lead.slug).slice(0, TIMELINE_SIZE));
   const roundups = ai.filter((a) => a.type === "roundup" && a.slug !== lead.slug).slice(0, 5);
 
   // トップにもPR枠。いちばん新しい話題に合う商品を出す。主役の話題に合う商品が無いときは、最初の画面に並ぶ見出し・暮らしとお金の列の
@@ -116,7 +117,7 @@ export default function HomePage() {
   // 以前扱っていた分野（不動産・投資など）。幅広い話題は「ニュース」側に出すので除く
   const otherGenres = getAllGenres().filter((g) => g.slug !== "ai" && !isBroadGenre(g.slug));
 
-  const bundles = getStoryRailBundles();
+  const bundles = featuredBundles(getStoryRailBundles(), all);
   const homeMoney = homeMoneyLinks();
 
   return (

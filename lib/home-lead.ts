@@ -2,7 +2,7 @@ import popular from "@/content/popular.json";
 import type { ArticleSummary } from "@/lib/articles";
 import { isNewsOutletChannel } from "@/lib/news-outlets";
 import { containPhoto } from "@/lib/photo-fit";
-import { lifeLink, trendTopic } from "@/lib/indexing";
+import { lifeLink, SHORT_BODY, trendTopic } from "@/lib/indexing";
 import { topicCluster } from "@/lib/related";
 import { noReaderAction } from "@/lib/reader-urgency";
 
@@ -33,6 +33,27 @@ const views: Map<string, number> = new Map(
 /** 今日と昨日に外から読まれた回数（計測が無ければ 0） */
 export function viewsOf(slug: string): number {
   return views.get(slug) ?? 0;
+}
+
+/**
+ * トップの主な枠に置いてよいか（2026-11-22 台帳 W49）: 空白を除いた本文が 800字以上（台帳 A72 の SHORT_BODY と同じ数え方）。
+ * 短い記事は公開したままで、一覧・ジャンル・検索からは今までどおりたどれる
+ */
+export function homeFeatureable(a: Pick<ArticleSummary, "bodyChars" | "bodyLength">): boolean {
+  return (a.bodyChars ?? a.bodyLength ?? 0) >= SHORT_BODY;
+}
+
+/** 長い記事だけで枠を作る。1本も無ければ、枠を空にしないよう全部の記事から作る */
+export function preferFeatured<T>(all: ArticleSummary[], pick: (pool: ArticleSummary[]) => T[]): T[] {
+  const got = pick(all.filter(homeFeatureable));
+  return got.length > 0 ? got : pick(all);
+}
+
+/** ストーリーの丸から短い記事を外す。外すと空になる丸は出さない。全部空になるなら元のまま */
+export function featuredBundles<B extends { items: { slug: string }[] }>(bundles: B[], all: ArticleSummary[]): B[] {
+  const ok = new Set(all.filter(homeFeatureable).map((a) => a.slug));
+  const kept = bundles.map((b) => ({ ...b, items: b.items.filter((item) => ok.has(item.slug)) })).filter((b) => b.items.length > 0);
+  return kept.length > 0 ? kept : bundles;
 }
 
 function ageHours(a: ArticleSummary, now: number): number {

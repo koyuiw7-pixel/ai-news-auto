@@ -78,7 +78,7 @@ test("写真の列: 話題の記事は暮らしとお金の分野でなくても
 test("索引は書き手（writer）を持つ（Muse の記事の判定に使う）", () => {
   const src = fs.readFileSync(path.join(root, "lib/article-index.mjs"), "utf8");
   assert.match(src, /writer: a\.writer \|\| \(a\.museFile \? "muse" : undefined\)/);
-  assert.match(fs.readFileSync(path.join(root, "app/page.tsx"), "utf8"), /pickHomeHeadlines\(all, new Set\(\[lead\.slug\]\), 6\)/);
+  assert.match(fs.readFileSync(path.join(root, "app/page.tsx"), "utf8"), /pickHomeHeadlines\(pool, new Set\(\[lead\.slug\]\), 6\)/);
 });
 
 test("「いま話題」の欄: 話題の記事を1記事1行で新しい順に全部。上の欄に出た記事は重ねない。3本に満たない日は出さない", () => {
