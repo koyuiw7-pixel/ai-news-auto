@@ -73,14 +73,14 @@
   "videoTitle": "国民年金2026年度 前納は2年が17,370円安い 口座振替と月払いの選び方",
   "publishedAt": "2026-11-22T05:07:39.751301+00:00",
   "generatedAt": "2026-11-22T05:08:17.378752+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/national-pension-prepayment-2026-figure-8f9905e3.jpg",
   "model": "openai-api:gpt-6.1-terra",
   "affiliates": [],
   "newsType": "policy",
   "todayActions": [
-    "手元の国民年金保険料の納付書で、対象の月と使用期限を確認する。",
-    "年度途中から前納したい場合は、年金事務所で対象期間と納付額を確認する。",
-    "口座振替を希望する場合は、日本年金機構の案内で申出書と依頼書を確認する。"
+    "手元の納付書で納付期間と使用期限を確認する。",
+    "年度途中から前納したい人は、年金事務所に対象期間の納付書を相談する。",
+    "口座振替の前納を希望する人は、申出書と依頼書の提出方法を確認する。"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -109,5 +109,134 @@
   "qualityScore": 100,
   "detectedAt": "2026-11-22T05:08:30+00:00",
   "layout": "noir",
-  "summaryLine": "国民年金の2026年度は、4月から2年分を口座振替で前納すると**17,370円**の割引です。"
+  "summaryLine": "国民年金の2026年度は、4月から2年分を口座振替で前納すると**17,370円**の割引です。",
+  "insight": [
+    {
+      "text": "令和8年4月30日を過ぎた1年分前納の納付書は使えませんが、年金事務所で令和8年5月分から令和9年3月分までの納付書を発行できます。4月分は各月納付用で納めます。",
+      "source": "https://www.nenkin.go.jp/oshirase/taisetu/kojin/2026/202603/0302.files/04.pdf"
+    },
+    {
+      "text": "口座振替のオンライン申込みは一部の金融機関に限られます。インターネット専業銀行では、イオン銀行とGMOあおぞらネット銀行以外は口座振替を利用できません。",
+      "source": "https://www.nenkin.go.jp/oshirase/taisetu/kojin/2026/202603/0302.files/04.pdf"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "お近くの年金事務所",
+      "url": "https://www.nenkin.go.jp/oshirase/taisetu/kojin/2026/202603/0302.files/04.pdf",
+      "source": "https://www.nenkin.go.jp/oshirase/taisetu/kojin/2026/202603/0302.files/04.pdf",
+      "note": "2年分の前納用納付書は同封されていないため、希望する場合は問い合わせてください。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "手元の納付書で納付期間と使用期限を確認する。",
+      "source": "https://www.nenkin.go.jp/oshirase/taisetu/kojin/2026/202603/0302.files/04.pdf",
+      "steps": [
+        "納付書の「納付期間」欄を確認する",
+        "「領収(納付受託)日付等」欄を確認する",
+        "前納用納付書の使用期限を確認する"
+      ],
+      "url": "https://www.nenkin.go.jp/oshirase/taisetu/kojin/2026/202603/0302.files/04.pdf"
+    },
+    {
+      "action": "年度途中から前納したい人は、年金事務所に対象期間の納付書を相談する。",
+      "source": "https://www.nenkin.go.jp/oshirase/taisetu/kojin/2026/202603/0302.files/04.pdf",
+      "steps": [
+        "お近くの年金事務所に問い合わせる",
+        "前納したい期間の納付書発行を相談する",
+        "発行された納付書の使用期限を確認する"
+      ],
+      "url": "https://www.nenkin.go.jp/oshirase/taisetu/kojin/2026/202603/0302.files/04.pdf"
+    },
+    {
+      "action": "口座振替の前納を希望する人は、申出書と依頼書の提出方法を確認する。",
+      "source": "https://www.nenkin.go.jp/oshirase/taisetu/kojin/2026/202603/0302.files/04.pdf",
+      "steps": [
+        "「国民年金保険料口座振替納付申出書 兼還付金振込方法申出書」を確認する",
+        "「国民年金保険料口座振替依頼書」を確認する",
+        "年金事務所、金融機関等または郵便局に提出する"
+      ],
+      "url": "https://www.nenkin.go.jp/oshirase/taisetu/kojin/2026/202603/0302.files/04.pdf"
+    }
+  ],
+  "cause": {
+    "text": "前納は保険料をまとめて前払いする方法で、保険料が割引されます。口座振替を使うと、現金・クレジットカード払いより割引額が大きくなります。",
+    "status": "background",
+    "source": "https://www.city.kobe.lg.jp/a52670/kurashi/support/pension/10.html"
+  },
+  "worries": [
+    {
+      "q": "前納用納付書の使用期限を過ぎたら、もう前納できない？",
+      "a": "期限を過ぎた納付書は使えませんが、年金事務所に問い合わせると、前納できる期間の納付書を新たに発行してもらえます。例として、令和8年4月30日が期限の納付書を過ぎた場合、令和8年5月分から令和9年3月分までの納付書が発行され、4月分は各月納付用で納めます。",
+      "source": "https://www.nenkin.go.jp/oshirase/taisetu/kojin/2026/202603/0302.files/04.pdf",
+      "action": "年金事務所に前納したい期間を伝え、新たな納付書の発行と使用期限を確認する。"
+    },
+    {
+      "q": "2年分の前納用納付書が手元になくても前納できる？",
+      "a": "2年分の前納用納付書は同封されていません。希望する場合はお近くの年金事務所に問い合わせます。前納は最大で令和10年3月分までできます。",
+      "source": "https://www.nenkin.go.jp/oshirase/taisetu/kojin/2026/202603/0302.files/04.pdf",
+      "action": "お近くの年金事務所に問い合わせ、希望する期間の前納用納付書を相談する。"
+    },
+    {
+      "q": "口座振替を申し込んだ後、納付書での支払いは必要？",
+      "a": "口座振替が開始されるまで1〜2カ月程度かかります。開始されるまでは、同封の納付書で納付してください。手続き完了後、口座振替のスケジュールや引き落とし金額は通知書で知らされます。",
+      "source": "https://www.nenkin.go.jp/oshirase/taisetu/kojin/2026/202603/0302.files/04.pdf",
+      "action": "口座振替の開始通知を確認するまでは、手元の納付書で納付する。"
+    },
+    {
+      "q": "国民年金保険料を市役所や区役所で支払える？",
+      "a": "市役所や区役所では支払えません。納付書を使う場合は、金融機関、郵便局またはコンビニエンスストアで納付できます。",
+      "source": "https://www.city.kobe.lg.jp/a52670/kurashi/support/pension/10.html",
+      "action": "納付書を使う場合は、金融機関、郵便局またはコンビニエンスストアで納付する。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "まとまった前払いと月払い、どちらにする？",
+      "situation": "2年分をまとめて前払いできる",
+      "recommend": "口座振替の2年前納を比較する",
+      "reason": "令和8年度の2年前納は、口座振替なら417,150円で割引額は17,370円です。毎月納付と比べた額ですが、途中から始める場合は表の全期間の金額ではなく対象期間と納付額の確認が必要です。",
+      "source": "https://www.nenkin.go.jp/oshirase/taisetu/kojin/2026/202603/0302.files/04.pdf"
+    },
+    {
+      "question": "まとまった前払いと月払い、どちらにする？",
+      "situation": "まとめて払うのを避けたい",
+      "recommend": "月払いの早割も比較する",
+      "reason": "口座振替の早割は、翌月末の引き落としを当月末にする仕組みで、毎月60円割引されます。前納のようにまとめて払う方法とは支払い方が異なるため、金額と合わせて比べられます。",
+      "source": "https://www.nenkin.go.jp/oshirase/taisetu/kojin/2026/202603/0302.files/04.pdf"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "期限切れでも途中から前納できる",
+    "cause": "前払いで保険料が割引に",
+    "steps": "納付書と申込み方法を確認",
+    "desk": "前納の納付書は年金事務所へ",
+    "worries": "期限や申込み後の納付が心配",
+    "guide": "一括払いと月払いの選び方"
+  },
+  "depthAt": "2026-11-22T05:17:38+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "国民年金2026年度",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-22T05:19:37+00:00"
+  },
+  "imageFocus": {
+    "x": 0.483,
+    "y": 0.426,
+    "box": [
+      0.041,
+      0.042,
+      0.925,
+      0.81
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/national-pension-prepayment-2026-figure-8f9905e3.jpg"
+  }
 }

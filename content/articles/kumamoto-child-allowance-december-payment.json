@@ -76,13 +76,14 @@
   "videoTitle": "12月15日に2か月分　熊本市の児童手当2026年12月、3人目からは月3万円",
   "publishedAt": "2026-11-22T04:56:41.454543+00:00",
   "generatedAt": "2026-11-22T04:57:19.540677+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/kumamoto-child-allowance-december-payment-figure-ea622eb0.jpg",
   "model": "openai-api:gpt-6.1-terra",
   "affiliates": [],
   "newsType": "policy",
   "todayActions": [
-    "出生や転入をした人は、同月中の申請に向けて住まいの区の保健こども課を確認する。",
-    "熊本市の児童手当の受給者は、登録した本人名義の振込口座に変更がないか確かめる。"
+    "出生・転入で新規申請する人は、同月中の申請期限を確認して電子申請する。",
+    "受給中に子どもが生まれた人は、手当額の改定申請が必要か確認する。",
+    "振込口座を解約・名義変更した人は、金融機関変更届の提出方法を確認する。"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -112,5 +113,137 @@
   "detectedAt": "2026-11-22T04:57:56+00:00",
   "searchTitle": "熊本市の児童手当はいくら？　第3子以降は月3万円",
   "layout": "noir",
-  "summaryLine": "熊本市の児童手当は、2026年12月15日に支払月の前2か月分を振り込みます。"
+  "summaryLine": "熊本市の児童手当は、2026年12月15日に支払月の前2か月分を振り込みます。",
+  "insight": [
+    {
+      "text": "第3子以降の人数には、22歳年度末までの子も含まれます。就職していても養育していれば数えますが、自立して生活している子は含みません。",
+      "source": "https://www.city.kumamoto.jp/kiji0031996/index.html"
+    },
+    {
+      "text": "電子申請には「マイナンバーカード」と、対応のスマートフォンまたはパソコンとICカードリーダーが必要です。手元の機器で申請できるか、先に確認できます。",
+      "source": "https://www.city.kumamoto.jp/kiji0031996/index.html"
+    },
+    {
+      "text": "公金受取口座は、登録済みでも児童手当で初めて使う場合は区の保健こども課・総合出張所への利用申請が必要です。入金日の1か月前までを目途に手続きします。",
+      "source": "https://www.city.kumamoto.jp/kiji0031996/index.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "児童手当について",
+      "url": "https://www.city.kumamoto.jp/kiji0031996/index.html",
+      "source": "https://www.city.kumamoto.jp/kiji0031996/index.html"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "出生・転入で新規申請する人は、同月中の申請期限を確認して電子申請する。",
+      "source": "https://www.city.kumamoto.jp/kiji0031996/index.html",
+      "steps": [
+        "熊本市「児童手当について」を開く",
+        "「電子申請について」を確認する",
+        "「児童手当の受給資格及び児童手当の額についての認定請求」へ進む"
+      ],
+      "url": "https://app.oss.myna.go.jp/Application/procdetail/initGet?q/hzDunCFIzYL6en4BZiUVE56BoIDjCGL5lO3Yl+McuvXRV4RkRaGxVIGN2W4ilsEfz1NqvScH7N6HLiHD/ppWju6ntKrdhL40zniXAMTSqdanA3TAQgM5Z5lyN7NPfrSDlmVoN6nBtzcIFuZhoxuw=="
+    },
+    {
+      "action": "受給中に子どもが生まれた人は、手当額の改定申請が必要か確認する。",
+      "source": "https://www.city.kumamoto.jp/kiji0031996/index.html",
+      "steps": [
+        "熊本市「児童手当について」を開く",
+        "「電子申請について」を確認する",
+        "「児童手当の額の改定の請求及び届出」へ進む"
+      ],
+      "url": "https://app.oss.myna.go.jp/Application/procdetail/initGet?q/hzDunCFIzYL6en4BZiUVE56BoIDjCGL5lO3Yl+McuvXRV4RkRaGxVIGN2W4ilsFqi/7K9JgWGYD2nQXLAfDAS5jz/Y+NxdN6XsBWdiLbytf2eyeXWLoHpA/x7JXFy/IPFluXl4anRBMJHhEg8rTA=="
+    },
+    {
+      "action": "振込口座を解約・名義変更した人は、金融機関変更届の提出方法を確認する。",
+      "source": "https://www.city.kumamoto.jp/kiji0031996/index.html",
+      "steps": [
+        "熊本市「児童手当について」を開く",
+        "「届出が必要な場合」を確認する",
+        "「金融機関変更届」を確認する"
+      ],
+      "url": "https://www.city.kumamoto.jp/kiji0031996/3_1996_up_x53xg1jc.pdf"
+    }
+  ],
+  "cause": {
+    "text": "児童手当は、子育てについて保護者が第一義的責任を持つという考えの下、家庭等の生活の安定と、次代を担う児童の健やかな成長を目的に支給される制度です。",
+    "status": "background",
+    "source": "https://www.city.kumamoto.jp/kiji0031996/index.html"
+  },
+  "worries": [
+    {
+      "q": "22歳年度末までの子は、働いていても第3子の数に入りますか？",
+      "a": "22歳年度末までの子は、進学・就職・婚姻・出産などに関わらず、受給者が養育していれば算定対象です。就職などで自立して生活し、養育していない場合は対象外です。",
+      "source": "https://www.city.kumamoto.jp/kiji0031996/index.html",
+      "action": "22歳年度末までの子について、現在も養育しているかを確認し、対象に当たる場合は算定に関する手続きを確認する。"
+    },
+    {
+      "q": "必要書類が申請期限までに全部そろわないと、申請できませんか？",
+      "a": "必要書類が不足していても仮受付ができ、不足分は後日提出できます。ただし期限を過ぎると、手当を受給できない月が発生する場合があります。",
+      "source": "https://www.city.kumamoto.jp/kiji0031996/index.html",
+      "action": "書類が不足していても、まず期限内に申請し、不足分を後から提出する。"
+    },
+    {
+      "q": "子どもや配偶者の名義の口座を振込先にできますか？",
+      "a": "原則として請求者・受給者名義の口座しか登録できず、子どもや配偶者名義の口座は登録できません。新規認定請求では、請求者名義の普通口座の通帳またはキャッシュカードの写しが必要です。",
+      "source": "https://www.city.kumamoto.jp/kiji0031996/index.html",
+      "action": "申請する人の名義の普通口座を用意し、通帳またはキャッシュカードの写しが必要か確認する。"
+    },
+    {
+      "q": "12月15日の支給日に、朝から口座へ入金されますか？",
+      "a": "口座への入金時間は金融機関によって異なり、支給日の午後に振り込まれる場合があります。支払日が土曜・日曜・祝日の場合は、直前の平日に支払われます。",
+      "source": "https://www.city.kumamoto.jp/kiji0031996/index.html",
+      "action": "支給日の朝に入金が見当たらない場合も、午後の入金となる可能性を踏まえて登録口座を確認する。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "申請は電子と郵送のどちらにする？",
+      "situation": "マイナンバーカードと対応機器がある",
+      "recommend": "電子申請を利用できる",
+      "reason": "電子申請にはマイナンバーカードと、対応のスマートフォンまたはパソコンとICカードリーダーが必要です。これらがあれば、熊本市が案内する電子申請を利用できます。",
+      "source": "https://www.city.kumamoto.jp/kiji0031996/index.html"
+    },
+    {
+      "question": "申請は電子と郵送のどちらにする？",
+      "situation": "電子申請に必要な機器がない",
+      "recommend": "郵送での提出も選べる",
+      "reason": "熊本市は児童手当の申請を郵送でも受け付けます。郵便局等の受付日が申請の受付日となり、送料は申請者負担です。配達記録が残る簡易書留や特定記録郵便などの利用を勧めています。",
+      "source": "https://www.city.kumamoto.jp/kiji0031996/index.html"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "第3子の数え方と申請の準備",
+    "cause": "児童手当が支給される目的",
+    "steps": "期限と申請方法を確認する",
+    "desk": "熊本市の手続き案内",
+    "worries": "申請や振込口座で迷ったら",
+    "guide": "電子申請と郵送、どちらにする？"
+  },
+  "depthAt": "2026-11-22T05:18:51+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "2か月分",
+    "label": "12月15日",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-22T05:21:29+00:00"
+  },
+  "imageFocus": {
+    "x": 0.461,
+    "y": 0.42,
+    "box": [
+      0.019,
+      0.036,
+      0.903,
+      0.804
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/kumamoto-child-allowance-december-payment-figure-ea622eb0.jpg"
+  }
 }

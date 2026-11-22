@@ -73,14 +73,14 @@
   "videoTitle": "2026年12月15日にいくら入る？ 新潟市の児童手当は10月・11月分の2か月分です",
   "publishedAt": "2026-11-22T04:55:20.290360+00:00",
   "generatedAt": "2026-11-22T04:56:00.530321+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/niigata-child-allowance-december-payment-figure-b6531b79.jpg",
   "model": "openai-api:gpt-6.1-terra",
   "affiliates": [],
   "newsType": "policy",
   "todayActions": [
-    "児童手当の認定通知書や額改定通知書で、現在の手当月額を確かめる。",
-    "出生や転入後に未請求なら、翌日から15日以内の期限と区役所の窓口を確認する。",
-    "子が3人以上いる人は、兄姉を数えるための確認書が必要か区役所に相談する。"
+    "受給中なら、認定通知書や額改定通知書で記載された手当月額を確認する。",
+    "出生・転入後に未請求なら、認定請求の方法を選び、請求日を確かめて申請する。",
+    "子が3人以上なら、18歳年度末を過ぎた兄姉を数える条件と確認書を確認する。"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -114,5 +114,127 @@
   "detectedAt": "2026-11-22T04:56:33+00:00",
   "searchTitle": "新潟市の児童手当はいくら？　年齢と何人目かで月額が変わる",
   "layout": "noir",
-  "summaryLine": "新潟市の児童手当は2026年12月15日に、10月・11月の2か月分を支給します。"
+  "summaryLine": "新潟市の児童手当は2026年12月15日に、10月・11月の2か月分を支給します。",
+  "insight": [
+    {
+      "text": "18歳年度末を過ぎた兄姉も、22歳年度末までで経済的負担がある場合は算定対象に数えられることがあります。子が3人以上なら「監護相当・生計費の負担についての確認書」の提出が必要です。",
+      "source": "https://www.city.niigata.lg.jp/kosodate/ninshin/shien/teate/jidoteate/mirai.html"
+    },
+    {
+      "text": "児童手当の受給証明が必要でも、手当額が変わっていなければ、手元の「児童手当認定通知書」「児童手当額改定通知書」に記載された月額を使える場合があります。",
+      "source": "https://www.city.niigata.lg.jp/kosodate/ninshin/shien/teate/jidoteate/mirai.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "お住まいの区の区役所健康福祉課",
+      "url": "https://www.city.niigata.lg.jp/kosodate/ninshin/shien/teate/jidoteate/mirai.html",
+      "source": "https://www.city.niigata.lg.jp/kosodate/ninshin/shien/teate/jidoteate/mirai.html",
+      "note": "児童手当の問い合わせ先は区ごとに異なるため、お住まいの区の窓口を確認してください。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "受給中なら、認定通知書や額改定通知書で記載された手当月額を確認する。",
+      "source": "https://www.city.niigata.lg.jp/kosodate/ninshin/shien/teate/jidoteate/mirai.html",
+      "steps": [
+        "「児童手当認定通知書」を探す",
+        "通知書に記載された手当月額を確認する"
+      ],
+      "url": "https://www.city.niigata.lg.jp/kosodate/ninshin/shien/teate/jidoteate/mirai.html"
+    },
+    {
+      "action": "出生・転入後に未請求なら、認定請求の方法を選び、請求日を確かめて申請する。",
+      "source": "https://www.city.niigata.lg.jp/kosodate/ninshin/shien/teate/jidoteate/jukyuu.html",
+      "steps": [
+        "「児童手当を受給するには」を開く",
+        "認定請求の方法と必要書類を確認する",
+        "郵送は消印日、窓口は受付日を請求日として確認する"
+      ],
+      "url": "https://www.city.niigata.lg.jp/kosodate/ninshin/shien/teate/jidoteate/jukyuu.html"
+    },
+    {
+      "action": "子が3人以上なら、18歳年度末を過ぎた兄姉を数える条件と確認書を確認する。",
+      "source": "https://www.city.niigata.lg.jp/kosodate/ninshin/shien/teate/jidoteate/mirai.html",
+      "steps": [
+        "18歳年度末から22歳年度末までの子を確認する",
+        "経済的負担があるか確認する",
+        "「監護相当・生計費の負担についての確認書」を確認する"
+      ],
+      "url": "https://www.city.niigata.lg.jp/kosodate/ninshin/shien/teate/jidoteate/mirai.files/kangosoutouseikeihifutankakuninsyo.pdf"
+    }
+  ],
+  "cause": {
+    "text": "児童手当は、家庭等における生活の安定に寄与するとともに、次代の社会を担う児童の健やかな成長に資することを目的とする制度です。",
+    "status": "background",
+    "source": "https://www.city.niigata.lg.jp/kosodate/ninshin/shien/teate/jidoteate/mirai.html"
+  },
+  "worries": [
+    {
+      "q": "18歳年度末を過ぎた兄姉も第3子の計算に入りますか？",
+      "a": "18歳年度末から22歳年度末までの兄姉等は、請求者や受給者に経済的負担がある場合、算定対象として数えられることがあります。該当する子がいて子が3人以上の場合、確認書の提出が必要です。",
+      "source": "https://www.city.niigata.lg.jp/kosodate/ninshin/shien/teate/jidoteate/mirai.html",
+      "action": "子が3人以上なら、兄姉の年齢と経済的負担を確認し、該当時は確認書を用意してください。"
+    },
+    {
+      "q": "郵送で請求するとき、いつの日付が請求日になりますか？",
+      "a": "郵送請求の場合は郵便物の消印日が請求日です。区役所へ持参する場合は、開庁日に窓口で受け付けた日が請求日になります。",
+      "source": "https://www.city.niigata.lg.jp/kosodate/ninshin/shien/teate/jidoteate/jukyuu.html",
+      "action": "郵送なら投函前に消印日を確認し、本人確認書類の写しを同封してください。"
+    },
+    {
+      "q": "児童や配偶者名義の口座に振り込んでもらえますか？",
+      "a": "振込先は受給者本人名義の口座に限られます。児童や請求者の配偶者の口座は指定できません。",
+      "source": "https://www.city.niigata.lg.jp/kosodate/ninshin/shien/teate/jidoteate/mirai.html",
+      "action": "認定請求や口座変更の前に、振込先が受給者本人名義か確認してください。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "郵送と窓口、どちらで請求する？",
+      "situation": "郵送で請求書を出す",
+      "recommend": "消印日を請求日として確認する",
+      "reason": "郵送請求の場合は郵便物の消印日が請求日です。出生・転入後の請求が遅れると、受給できない期間が生じる場合があります。",
+      "source": "https://www.city.niigata.lg.jp/kosodate/ninshin/shien/teate/jidoteate/jukyuu.html"
+    },
+    {
+      "question": "郵送と窓口、どちらで請求する？",
+      "situation": "区役所の窓口へ持参する",
+      "recommend": "開庁日に受け付けられる日を確認する",
+      "reason": "窓口へ持参する場合は、開庁日に窓口で受け付けた日が請求日です。郵送の場合は消印日が請求日となるため、提出方法で請求日の扱いが異なります。",
+      "source": "https://www.city.niigata.lg.jp/kosodate/ninshin/shien/teate/jidoteate/jukyuu.html"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "兄姉の年齢と手元の通知書も確認",
+    "cause": "児童手当が支給される制度の目的",
+    "steps": "通知書と請求日を今日チェック",
+    "desk": "児童手当の申請・問い合わせ先",
+    "worries": "振込額や申請日はどうなる？",
+    "guide": "郵送か窓口か、請求日の違い"
+  },
+  "depthAt": "2026-11-22T05:19:21+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "新潟市の児童手当は12月15日支給",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-22T05:23:26+00:00"
+  },
+  "imageFocus": {
+    "x": 0.512,
+    "y": 0.402,
+    "box": [
+      0.072,
+      0.048,
+      0.953,
+      0.756
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/niigata-child-allowance-december-payment-figure-b6531b79.jpg"
+  }
 }
