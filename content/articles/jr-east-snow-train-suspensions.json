@@ -56,13 +56,13 @@
   "videoTitle": "2026年11月23日のJR東北、大雪で磐越西線と奥羽本線が終日運休",
   "publishedAt": "2026-11-22T15:47:14.049698+00:00",
   "generatedAt": "2026-11-22T15:47:44.290832+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/jr-east-snow-train-suspensions-figure-58f2201e.jpg",
   "model": "openai-api:gpt-6.1-terra",
   "affiliates": [],
   "newsType": "general",
   "todayActions": [
-    "磐越西線の郡山〜会津若松間を利用する予定なら、JR東日本の東北エリア運行情報を確認する。",
-    "奥羽本線の新庄〜院内間を利用する予定なら、見合わせ時間について最新の公式案内を確認する。"
+    "磐越西線を使う人は、郡山〜会津若松間と折返し区間の運行情報を確認する",
+    "奥羽本線を使う人は、新庄〜院内間の見合わせ時間を出発前に確かめる"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -91,5 +91,103 @@
   "qualityScore": 98,
   "detectedAt": "2026-11-22T15:48:04+00:00",
   "layout": "noir",
-  "summaryLine": "11月23日は大雪のため磐越西線と奥羽本線に終日見合わせの案内が出ており、対象区間に代行輸送はありません。"
+  "summaryLine": "11月23日は大雪のため磐越西線と奥羽本線に終日見合わせの案内が出ており、対象区間に代行輸送はありません。",
+  "insight": [
+    {
+      "text": "JR東日本は、4時～翌2時に30分以上の遅れが発生または見込まれる場合を「遅延」と案内します。運行情報の「遅延」は、この基準で表示されます。",
+      "source": "https://traininfo.jreast.co.jp/train_info/tohoku.aspx"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "JR東日本 東北エリア運行情報",
+      "url": "https://traininfo.jreast.co.jp/train_info/tohoku.aspx",
+      "source": "https://traininfo.jreast.co.jp/train_info/tohoku.aspx",
+      "howTo": [
+        "運行情報・運休情報",
+        "東北エリア",
+        "現在の運行情報"
+      ],
+      "note": "実際の運行状況と本ページの情報が異なる場合があります。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "磐越西線を使う人は、郡山〜会津若松間と折返し区間の運行情報を確認する",
+      "source": "https://traininfo.jreast.co.jp/train_info/tohoku.aspx",
+      "steps": [
+        "磐越西線の運行情報を開く",
+        "郡山～会津若松駅間の状況を確認する",
+        "会津若松～喜多方駅間の案内も確認する"
+      ],
+      "url": "https://traininfo.jreast.co.jp/train_info/line.aspx?gid=4&lineid=ban-etsu-westline"
+    },
+    {
+      "action": "奥羽本線を使う人は、新庄〜院内間の見合わせ時間を出発前に確かめる",
+      "source": "https://traininfo.jreast.co.jp/train_info/tohoku.aspx",
+      "steps": [
+        "東北エリアの運行情報を開く",
+        "奥羽本線の項目を確認する",
+        "新庄～院内駅間の最新案内を確認する"
+      ],
+      "url": "https://traininfo.jreast.co.jp/train_info/tohoku.aspx"
+    }
+  ],
+  "cause": {
+    "text": "磐越西線の郡山～会津若松駅間と奥羽本線の新庄～院内駅間は、大雪の影響で運転を見合わせています。喜多方～津川駅間は、20日の倒木と列車の衝突による脱線に加え、複数箇所で倒木を確認し、伐採作業を行うため運転を見合わせています。",
+    "status": "stated",
+    "source": "https://traininfo.jreast.co.jp/train_info/tohoku.aspx"
+  },
+  "worries": [
+    {
+      "q": "郡山〜会津若松間に代わりの輸送手段はある？",
+      "a": "JR東日本は、磐越西線の郡山～会津若松駅間について、終日運転を見合わせ、代行輸送は行わないと案内しています。",
+      "source": "https://traininfo.jreast.co.jp/train_info/tohoku.aspx",
+      "action": "郡山〜会津若松間を利用する予定なら、出発前に運行情報を見直し、代行輸送がないことも踏まえて移動計画を確認してください。"
+    },
+    {
+      "q": "会津若松〜喜多方間も終日運転を見合わせるの？",
+      "a": "会津若松～喜多方駅間は始発から折返し運転を行いますが、一部列車は運休です。喜多方駅から新津方面への初列車は会津若松駅8時14分発、新津方面からの初列車は喜多方駅10時33分発と案内されています。",
+      "source": "https://traininfo.jreast.co.jp/train_info/tohoku.aspx",
+      "action": "会津若松〜喜多方間を使う人は、初列車の発車駅と時刻を確認し、利用する列車が運休対象でないか運行情報を見てください。"
+    },
+    {
+      "q": "奥羽本線の新庄〜院内間に代行輸送はある？",
+      "a": "JR東日本の案内では、新庄～院内駅間は終日運転見合わせの案内と、始発から11時頃まで見合わせる案内の両方があり、どちらも代行輸送は行わないとしています。",
+      "source": "https://traininfo.jreast.co.jp/train_info/tohoku.aspx",
+      "action": "利用予定がある人は、出発前に東北エリア運行情報を開き、新庄〜院内間の見合わせ時間が更新されていないか確かめてください。"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "運行情報の「遅延」には30分以上の基準がある",
+    "cause": "大雪のほか、倒木による脱線の影響も",
+    "steps": "出発前に区間ごとの最新状況を確認",
+    "desk": "JR東日本の東北エリア運行情報",
+    "worries": "折返し区間や代行輸送はどうなる？"
+  },
+  "depthAt": "2026-11-22T15:59:47+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "磐越西線と奥羽本線が大雪で運転見合わせ",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-22T16:01:05+00:00"
+  },
+  "imageFocus": {
+    "x": 0.484,
+    "y": 0.405,
+    "box": [
+      0.081,
+      0.054,
+      0.887,
+      0.756
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/jr-east-snow-train-suspensions-figure-58f2201e.jpg"
+  },
+  "discoverCandidate": true
 }
