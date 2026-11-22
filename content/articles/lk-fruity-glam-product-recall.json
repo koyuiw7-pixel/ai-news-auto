@@ -59,8 +59,8 @@
   "affiliates": [],
   "newsType": "product",
   "todayActions": [
-    "手元の「LKフルーティーグラム」がTG120かTG124か、ロットと合わせて確かめる。",
-    "対象品を持っている場合は、JT品質管理チームの03-6230-9602に対応を問い合わせる。"
+    "手元の品の販売名とロットをPMDAの回収対象一覧と照合する。",
+    "対象ロットなら、JT品質管理チームに購入後の対応を問い合わせる。"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -107,5 +107,75 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/lk-fruity-glam-product-recall-figure-bca0b545.jpg"
-  }
+  },
+  "officialDesk": [
+    {
+      "name": "株式会社JT 品質管理チーム",
+      "url": "https://www.info.pmda.go.jp/rgo/MainServlet?recallno=2-13045",
+      "source": "https://www.info.pmda.go.jp/rgo/MainServlet?recallno=2-13045",
+      "phone": "03-6230-9602"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "手元の品の販売名とロットをPMDAの回収対象一覧と照合する。",
+      "source": "https://www.info.pmda.go.jp/rgo/MainServlet?recallno=2-13045",
+      "steps": [
+        "回収概要の「対象ロット、数量及び出荷時期」を見る",
+        "TG120・TG124とロットを照合する"
+      ],
+      "url": "https://www.info.pmda.go.jp/rgo/MainServlet?recallno=2-13045"
+    },
+    {
+      "action": "対象ロットなら、JT品質管理チームに購入後の対応を問い合わせる。",
+      "source": "https://www.info.pmda.go.jp/rgo/MainServlet?recallno=2-13045",
+      "steps": [
+        "対象ロットに該当するか確認する",
+        "株式会社JT 品質管理チームへ電話する"
+      ],
+      "url": "https://www.info.pmda.go.jp/rgo/MainServlet?recallno=2-13045"
+    }
+  ],
+  "cause": {
+    "text": "成分表示の一部に記載漏れと記載ミスが判明したため、対象ロットを自主回収すると発表されています。",
+    "status": "stated",
+    "source": "https://www.info.pmda.go.jp/rgo/MainServlet?recallno=2-13045"
+  },
+  "worries": [
+    {
+      "q": "手元の品が今回の回収対象か、どう見分ければいい？",
+      "a": "対象は販売名がＬＫフルーティーグラムＴＧ１２０またはＴＧ１２４で、対象ロットがＦＪ００１、ＦＪ００２、ＦＪ００３のものです。",
+      "source": "https://www.info.pmda.go.jp/rgo/MainServlet?recallno=2-13045",
+      "action": "手元の販売名とロットを確かめ、PMDAの回収概要にある対象ロットと照合してください。"
+    },
+    {
+      "q": "成分表示の誤りで、健康被害が起きる可能性はある？",
+      "a": "JTは、化粧品基準を満たす成分のみを配合しており、製品の品質に問題はないと説明しています。重篤な健康被害の可能性はないと考えており、健康被害の報告は今のところないとしています。",
+      "source": "https://www.info.pmda.go.jp/rgo/MainServlet?recallno=2-13045",
+      "action": "健康面や対象品の扱いが気になる場合は、JT品質管理チームに問い合わせてください。"
+    },
+    {
+      "q": "回収の文書が届く前でも、対象品か確認できますか？",
+      "a": "対象ロットはPMDAの回収概要に掲載されています。JTは出荷先をすべて把握し、文書により回収を通知するとしています。",
+      "source": "https://www.info.pmda.go.jp/rgo/MainServlet?recallno=2-13045",
+      "action": "文書を待つだけでなく、販売名とロットを回収概要の対象一覧と照合してください。"
+    }
+  ],
+  "depthHeadings": {
+    "cause": "成分表示の漏れと誤記が判明",
+    "steps": "ロット確認からJTへの問い合わせまで",
+    "desk": "購入後の対応を聞くJT窓口",
+    "worries": "回収対象と健康面が気になる"
+  },
+  "depthAt": "2026-11-22T06:49:46+00:00",
+  "updatedAt": "2026-11-22T06:49:46+00:00",
+  "updates": [
+    {
+      "at": "2026-11-22T06:49:46+00:00",
+      "kind": "facts",
+      "title": "公式の資料をもとに、「公式の窓口」・「今日やること」・「理由」・「よくある不安」を追記しました",
+      "sourceUrl": "https://www.info.pmda.go.jp/rgo/MainServlet?recallno=2-13045",
+      "sourceName": "PMDA 医薬品等の回収情報 回収概要（回収番号2-13045、株式会社JT「LKフルーティーグラムTG120・TG124」、令和8年11月19日作成）"
+    }
+  ]
 }
