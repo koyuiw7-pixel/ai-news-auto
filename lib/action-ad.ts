@@ -1,7 +1,7 @@
 import type { ArticleSummary } from "@/lib/articles";
 import { lifeCompareGuide, guideShortName, type LifeCompareSlug } from "@/lib/buying-guides";
 import { MONEY_PAGES, moneyLinkFor, type MoneyTarget } from "@/lib/money-pages";
-import { actionAdRules, intentFor, isRoundupArticle, MIN_SCORE, orderByIntent, partnerItem, relevanceScore, type ActionAdRule, type OfferItem } from "@/lib/offers";
+import { actionAdRules, insuranceAdBlocked, INSURANCE_PARTNERS, intentFor, isRoundupArticle, MIN_SCORE, orderByIntent, partnerItem, relevanceScore, type ActionAdRule, type OfferItem } from "@/lib/offers";
 
 /**
  * 記事の「すぐにできること」（読者がこのあと取る行動）のすぐ下に出す、PR の囲み1つ。
@@ -85,7 +85,9 @@ export function actionAdRuleMatches(rule: ActionAdRule, article: ArticleSummary)
 export function actionAdRuleFor(article: ArticleSummary, rules: ActionAdRule[] = actionAdRules()): ActionAdRule | undefined {
   // まとめ記事（「…の発表まとめ、詐欺対策も」など）は脇の1語で当たるので出さない
   if (isRoundupArticle(article)) return undefined;
-  return rules.find((rule) => actionAdRuleMatches(rule, article));
+  // 災害・事故の記事では、保険の提携先しかない話題を飛ばし、次に合う話題（防災の備えなど）を使う（台帳 W48）
+  const blocked = insuranceAdBlocked(article);
+  return rules.find((rule) => !(blocked && rule.partners.every((key) => INSURANCE_PARTNERS.has(key))) && actionAdRuleMatches(rule, article));
 }
 
 /**
@@ -103,7 +105,9 @@ export function actionAdForArticle(
   // 記事の場面（停電・地震など）に当たれば、その場面の商品を先頭に固定する（記事ごとにずらさない）。
   // 当たらなければ今までどおり記事ごとにずらし、表示が1社に偏らないようにする
   const intent = intentFor(rule.intents, article);
-  const available = orderByIntent(rule.partners, intent).map((key) => pick(key)).filter((x): x is { item: OfferItem; pixel?: string } => Boolean(x));
+  // 災害・事故の記事には火災保険の広告を出さない（2026-11-22 台帳 W48。防災用品・セキュリティソフトはそのまま）
+  const partners = insuranceAdBlocked(article) ? rule.partners.filter((key) => !INSURANCE_PARTNERS.has(key)) : rule.partners;
+  const available = orderByIntent(partners, intent).map((key) => pick(key)).filter((x): x is { item: OfferItem; pixel?: string } => Boolean(x));
   if (available.length === 0) return undefined;
   const internal = internalCardFor(rule, article);
   const compare = compareLinkForRule(rule.key);

@@ -995,9 +995,23 @@ function finishOffer(topic: Topic, built: Built[], extra: Partial<Offer> = {}): 
  * - 本は題名が話題の require にも当たるものだけ、同じ話題の提携商品より1点下
  * 別の話題の本や既定の話題で枠を埋めることはしない。
  */
+/** 火災保険の提携先（2026-11-22 台帳 W48: 災害・事故の記事には出さない） */
+export const INSURANCE_PARTNERS: ReadonlySet<string> = new Set(["bang-kasai"]);
+const INSURANCE_WORDS = /火災保険|地震保険|水災補償|損害保険料/g;
+const INCIDENT_SUBJECT = /地震|津波|台風|大雨|豪雨|土砂|洪水|氾濫|噴火|停電|断水|避難|警報|大雪|線状降水帯|災害|被災|火災|火事|全焼|爆発|事故|衝突|脱線|墜落|転覆|死亡|死傷|負傷|けが人|行方不明/;
+
+/**
+ * 災害・事故の記事か（題名で見る）。保険の語を除いてから見るので、保険そのものの記事（「地震保険料の控除」など）は当たらず、
+ * 実際の災害に保険の語が添えられた記事（「静岡県西部の地震、余震…地震保険の確認点」）は当たる
+ */
+export function insuranceAdBlocked(article: Pick<ArticleSummary, "title" | "seoTitle">): boolean {
+  return INCIDENT_SUBJECT.test(`${article.title ?? ""} ${article.seoTitle ?? ""}`.replace(INSURANCE_WORDS, ""));
+}
+
 function buildArticleOffer(article: ArticleSummary, scored: TopicScore[], maxItems: number): Offer | undefined {
   const { offers, products } = load();
   const text = articleText(article);
+  const noInsurance = insuranceAdBlocked(article);
   // 法人・企業向けの記事には、個人向けのレンタルサーバー・VPS を出さない（記事の話題がサーバーのときを除く）
   const hosting = blocksHosting(article, text) ? new Set(offers.b2b?.hostingPartners ?? []) : new Set<string>();
   const best = new Map<string, Built & { relevance: number; topic: string }>();
@@ -1013,6 +1027,7 @@ function buildArticleOffer(article: ArticleSummary, scored: TopicScore[], maxIte
         const partner = offers.partners[key];
         const named = partner && [partner.program, partner.name].some((name) => name && regex(escapeRegex(name))?.test(text.title));
         if (hosting.has(key) && !named) return;
+        if (noInsurance && INSURANCE_PARTNERS.has(key)) return;
         consider(partnerOffer(key), score - index * 0.1 + (named ? 3 : 0), topic.key);
       });
     }
