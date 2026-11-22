@@ -54,14 +54,14 @@
   "videoTitle": "わくわく広場で買った夢造りパン工房のパン8個、消費期限が1日長く表示され2026年11月に回収",
   "publishedAt": "2026-11-22T05:43:42.345313+00:00",
   "generatedAt": "2026-11-22T05:44:12.910246+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/yumetsukuri-bread-recall-figure-b7e83e1a.jpg",
   "model": "openai-api:gpt-6.1-terra",
   "affiliates": [],
   "newsType": "product",
   "todayActions": [
-    "11月16日に対象の2店舗で買ったパンの名前と、消費期限の表示を確認する。",
-    "対象のパンが手元にあれば食べずに、販売店舗へ申し出るか相模原本店に電話で相談する。",
-    "対象か迷う場合は、夢造りパン工房相模原本店の042-714-9114に問い合わせる。"
+    "手元のパンが対象候補か、商品名・購入店・販売日時・期限表示を照合する。",
+    "対象条件が合うパンは、購入した販売店舗に申し出て回収・返金対応を確認する。",
+    "対象か判断できない場合は、夢造りパン工房相模原本店へ問い合わせる。"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -89,5 +89,118 @@
   "summaryLine": "わくわく広場で販売された夢造りパン工房のパン計8個が、消費期限の誤表示で回収対象です。",
   "relatedSlugs": [
     "fujisawa-bakery-recall-chocokorone-2026"
-  ]
+  ],
+  "insight": [
+    {
+      "text": "CLASSⅠの分類例には、消費期限の誤表示でも「本来よりも長く設定」したケースが含まれます。期限を短く表示した誤りはCLASSⅢの例として別扱いです。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602944"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "夢造りパン工房相模原本店",
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602944",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602944",
+      "phone": "0427149114",
+      "note": "回収後の対応は返金対応です。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "手元のパンが対象候補か、商品名・購入店・販売日時・期限表示を照合する。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602944",
+      "steps": [
+        "公開回収事案詳細を開く",
+        "対象商品の商品名を確認する",
+        "購入店と販売日時を照合する",
+        "消費期限が2026年11月17日か確かめる"
+      ],
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602944"
+    },
+    {
+      "action": "対象条件が合うパンは、購入した販売店舗に申し出て回収・返金対応を確認する。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602944",
+      "steps": [
+        "購入した販売店舗を確認する",
+        "販売店舗に申し出る",
+        "回収後の返金対応を確認する"
+      ],
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602944"
+    },
+    {
+      "action": "対象か判断できない場合は、夢造りパン工房相模原本店へ問い合わせる。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602944",
+      "steps": [
+        "対象商品と購入店・日時を確認する",
+        "0427149114に問い合わせる"
+      ],
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602944"
+    }
+  ],
+  "cause": {
+    "text": "事業者の記載ミスにより、本来の消費期限が2026年11月16日のパンに、11月17日と表示したことが回収理由です。公開回収情報は食品表示法違反とし、消費期限を本来より長く設定した誤表示をCLASSⅠの分類例に挙げています。",
+    "status": "stated",
+    "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602944"
+  },
+  "worries": [
+    {
+      "q": "商品名が対象一覧にあれば、必ず回収対象ですか？",
+      "a": "いいえ。公開情報は、一覧の商品がすべて回収対象という意味ではありません。2026年11月16日9時半頃から13時頃までに指定の店舗で購入した商品か、消費期限の表示も含めて確認してください。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602944",
+      "action": "公開回収事案詳細で商品名を見たうえ、購入店・日時・消費期限の表示を照合してください。"
+    },
+    {
+      "q": "回収に出した後、返金してもらえますか？",
+      "a": "公開回収情報では、各販売店舗で回収し、回収後の対応は返金としています。問い合わせ先として夢造りパン工房相模原本店の電話番号も記載されています。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602944",
+      "action": "購入した販売店舗に申し出て回収・返金対応を確認し、不明点は相模原本店へ問い合わせてください。"
+    },
+    {
+      "q": "公開されている商品画像は、実際の対象パンですか？",
+      "a": "いいえ。公開回収情報の画像は「見本例（該当商品がないため参考として掲載）」とされ、該当商品そのものではありません。画像だけで対象かどうかを判断する材料にはできません。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602944",
+      "action": "画像との見た目の比較ではなく、商品名・購入店・販売日時・消費期限の表示を確認してください。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "手元のパンが回収対象か迷ったら？",
+      "situation": "商品名は合うが、対象か確信がない",
+      "recommend": "購入店・日時・期限を照合し、窓口に確認する",
+      "reason": "商品名の一覧にあるパンがすべて対象ではありません。対象は2026年11月16日9時半頃から13時頃までに指定の2店舗で販売された商品に限られ、期限表示は2026年11月17日です。相模原本店が問い合わせ先として案内されています。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602944"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "期限を長く誤表示するとCLASSⅠの例",
+    "cause": "消費期限を1日長く表示した理由",
+    "steps": "手元のパンを条件と照合する",
+    "desk": "回収と返金を相談する窓口",
+    "worries": "対象か、返金できるかが気になる",
+    "guide": "対象か迷うパンをどうするか"
+  },
+  "depthAt": "2026-11-22T06:06:02+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "わくわく広場のパン8個を回収",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-22T06:09:25+00:00"
+  },
+  "imageFocus": {
+    "x": 0.45,
+    "y": 0.408,
+    "box": [
+      0.034,
+      0.042,
+      0.866,
+      0.774
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/yumetsukuri-bread-recall-figure-b7e83e1a.jpg"
+  }
 }

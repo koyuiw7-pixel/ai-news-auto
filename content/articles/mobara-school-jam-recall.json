@@ -54,14 +54,14 @@
   "videoTitle": "880瓶が千葉県内で販売、千葉県立茂原樟陽高等学校のジャム2種が2026年11月に回収",
   "publishedAt": "2026-11-22T05:51:20.488671+00:00",
   "generatedAt": "2026-11-22T05:51:45.949621+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/mobara-school-jam-recall-figure-a4136421.jpg",
   "model": "openai-api:gpt-6.1-terra",
   "affiliates": [],
   "newsType": "product",
   "todayActions": [
-    "手元のイチゴジャムとブルーベリージャムの賞味期限が2027年9月か確かめる。",
-    "対象品は千葉県立茂原樟陽高等学校の事務室へ持参する。",
-    "事務室への持参が難しい場合は、同校の案内を確認して回収方法を相談する。"
+    "手元の瓶の内容量と賞味期限を確認し、販売先も照合する",
+    "対象品を千葉県立茂原樟陽高等学校の事務室へ持参する",
+    "事務室への持参が難しい場合は、学校の回収案内を確認して相談する"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -83,5 +83,114 @@
   "summaryLine": "茂原樟陽高校製造のジャム2種が回収対象になり、千葉県内で販売されました。",
   "relatedSlugs": [
     "fujisawa-bakery-recall-chocokorone-2026"
-  ]
+  ],
+  "insight": [
+    {
+      "text": "回収後の返金は金融機関口座への振り込みで、回収したジャムは廃棄処分になります。返金を受ける方法と、回収品の扱いがあらかじめ示されています。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602958"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "手元の瓶の内容量と賞味期限を確認し、販売先も照合する",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602958",
+      "steps": [
+        "商品名を確認する",
+        "内容量が190gか確認する",
+        "賞味期限が2027年9月か確認する",
+        "販売先が記載の場所か確認する"
+      ],
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602958"
+    },
+    {
+      "action": "対象品を千葉県立茂原樟陽高等学校の事務室へ持参する",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602958",
+      "steps": [
+        "対象品を確認する",
+        "茂原市上林283番地の事務室へ持参する"
+      ],
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602958"
+    },
+    {
+      "action": "事務室への持参が難しい場合は、学校の回収案内を確認して相談する",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602958",
+      "steps": [
+        "茂原樟陽高等学校ホームページを開く",
+        "回収案内を確認する",
+        "持参が難しい場合は学校に相談する"
+      ]
+    }
+  ],
+  "cause": {
+    "text": "本校で製造したイチゴジャム1瓶にカビとみられるものが確認されたため、同一製造工程で製造したブルーベリージャムを含む製品を回収するとしています。",
+    "status": "stated",
+    "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602958"
+  },
+  "worries": [
+    {
+      "q": "家にある瓶は、どの表示なら回収対象ですか？",
+      "a": "対象は商品名が「イチゴジャム・ブルーベリージャム」、内容量190gの瓶詰めで、賞味期限が2027年9月のものです。販売地域は千葉県で、販売先としてイオンモール幕張新都心と千葉県立茂原樟陽高等学校が記載されています。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602958",
+      "action": "瓶の内容量と賞味期限を見て、販売先が記載の場所に当たるか確認してください。"
+    },
+    {
+      "q": "買った場所が記載の2か所と違っても対象ですか？",
+      "a": "公開情報の販売先は、イオンモール幕張新都心1階グランコート・グランドスクエアと千葉県立茂原樟陽高等学校です。販売地域は千葉県とされています。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602958",
+      "action": "購入した場所を確認し、公開回収事案詳細に記載された販売先と照合してください。"
+    },
+    {
+      "q": "回収した瓶の返金はどう受け取れますか？",
+      "a": "回収後の返金は金融機関口座への振り込みと案内されています。回収したジャムは廃棄処分になります。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602958",
+      "action": "対象品を事務室へ持参し、持参が難しい場合は学校に相談してください。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "対象品を事務室へ持参できないときは？",
+      "situation": "事務室への持参が難しい",
+      "recommend": "学校に相談する",
+      "reason": "回収方法は学校事務室への持参で、持参が難しい場合は要相談とされています。対象品の回収を希望する場合は、学校に相談してください。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602958"
+    },
+    {
+      "question": "対象品を持参できるならどうする？",
+      "situation": "事務室へ持参できる",
+      "recommend": "事務室へ持参する",
+      "reason": "公開情報では、回収方法として千葉県立茂原樟陽高等学校事務室への持参が案内されています。回収後の返金は金融機関口座への振り込みです。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602958"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "返金は口座振込、回収品は廃棄処分",
+    "cause": "カビの確認が回収のきっかけ",
+    "steps": "対象確認から持参・相談まで",
+    "worries": "対象品か、返金や持参方法が気になる",
+    "guide": "持参できるかで回収方法を選ぶ"
+  },
+  "depthAt": "2026-11-22T06:04:58+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "ジャム2種を回収",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-22T06:07:16+00:00"
+  },
+  "imageFocus": {
+    "x": 0.449,
+    "y": 0.521,
+    "box": [
+      0.006,
+      0.048,
+      0.891,
+      0.994
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/mobara-school-jam-recall-figure-a4136421.jpg"
+  }
 }

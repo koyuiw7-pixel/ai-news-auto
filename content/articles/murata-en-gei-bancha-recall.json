@@ -55,13 +55,13 @@
   "videoTitle": "村田園芸「番茶」2商品が2026年11月に回収、買った時期を問わず令和5年からの販売分が対象",
   "publishedAt": "2026-11-22T05:48:13.239645+00:00",
   "generatedAt": "2026-11-22T05:48:40.097362+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/murata-en-gei-bancha-recall-figure-5487bff0.jpg",
   "model": "openai-api:gpt-6.1-terra",
   "affiliates": [],
   "newsType": "product",
   "todayActions": [
-    "手元の村田園芸「番茶」と「番茶ティーバッグ」の袋で、賞味期限とJANコードを確認する。",
-    "対象商品に該当する場合は、問い合わせ先の有限会社村田園芸に着払い返品の方法を確認する。"
+    "袋の内容量・賞味期限・JANコードを公表情報と照合する",
+    "表示が対象商品と一致したら、有限会社村田園芸に返品方法を確認する"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -90,5 +90,98 @@
   "summaryLine": "村田園芸の「番茶」と「番茶ティーバッグ」が、高知県内で販売された分を対象に回収されます",
   "relatedSlugs": [
     "fujisawa-bakery-recall-chocokorone-2026"
-  ]
+  ],
+  "officialDesk": [
+    {
+      "name": "有限会社村田園芸",
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602983",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602983",
+      "note": "販売済み商品は着払い配送で返品すると、新しい商品が送付されます。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "袋の内容量・賞味期限・JANコードを公表情報と照合する",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602983",
+      "steps": [
+        "「番茶」は180ｇ、賞味期限2027.4.30、JANコード4595123726129を確認",
+        "「番茶ティーバッグ」は80ｇ、賞味期限2027.5、JANコード4595123726358を確認"
+      ],
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602983"
+    },
+    {
+      "action": "表示が対象商品と一致したら、有限会社村田園芸に返品方法を確認する",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602983",
+      "steps": [
+        "公開回収事案詳細の商品情報と画像を確認する",
+        "有限会社村田園芸に返品方法を確認する"
+      ],
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602983"
+    }
+  ],
+  "cause": {
+    "text": "原料の番茶を製造したJA高知県の製造ラインで、ベルトコンベアのゴム片が確認されました。このため、村田園芸の2商品は食品衛生法違反のおそれがあるとして回収対象になっています。",
+    "status": "stated",
+    "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602983"
+  },
+  "worries": [
+    {
+      "q": "対象商品を食べてしまったけれど、健康被害は出ている？",
+      "a": "健康被害の発生は、2026年11月19日時点で確認されていないと公表されています。健康への危険性の程度はCLASSⅡで、直ちに分類を判断できない場合などに用い、その後の情報を踏まえて変更されることがあります。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602983",
+      "action": "手元の商品が対象か、商品名・内容量・賞味期限・JANコードを公表情報と照合してください。"
+    },
+    {
+      "q": "賞味期限が違って見える商品も回収対象になる？",
+      "a": "公表された対象品は、「番茶」が180ｇ、賞味期限2027.4.30、JANコード4595123726129。「番茶ティーバッグ」は80ｇ(4g×20包)、賞味期限2027.5、JANコード4595123726358です。商品情報を照合できます。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602983",
+      "action": "袋の賞味期限だけで判断せず、内容量とJANコードも公開回収事案詳細で照合してください。"
+    },
+    {
+      "q": "対象品なら返品後に新しい商品を受け取れる？",
+      "a": "販売済み商品は着払い配送にて返品してもらい、新しい商品を送付すると公表されています。問い合わせ先と回収品の一時保管場所は村田園芸で、最終的にはJA高知県に返品する予定です。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602983",
+      "action": "対象表示と一致したら、返品する前に有限会社村田園芸へ方法を確認してください。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "手元の商品が対象表示と一致したらどうする？",
+      "situation": "商品情報が公表された対象品と一致する",
+      "recommend": "村田園芸に返品方法を確認する",
+      "reason": "販売済み商品は着払い配送で返品を受け付け、新しい商品を送付すると公表されています。回収終了予定は令和9年2月28日です。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602983"
+    }
+  ],
+  "depthHeadings": {
+    "cause": "原料の製造ラインでゴム片を確認",
+    "steps": "袋の表示を照合して返品方法を確認",
+    "desk": "返品方法を確認する窓口",
+    "worries": "健康被害や返品について気になること",
+    "guide": "対象表示と一致したときの対応"
+  },
+  "depthAt": "2026-11-22T06:05:38+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "村田園芸「番茶」2商品を回収",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-22T06:07:51+00:00"
+  },
+  "imageFocus": {
+    "x": 0.447,
+    "y": 0.414,
+    "box": [
+      0.025,
+      0.036,
+      0.869,
+      0.792
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/murata-en-gei-bancha-recall-figure-5487bff0.jpg"
+  }
 }

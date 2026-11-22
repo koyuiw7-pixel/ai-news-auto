@@ -54,14 +54,13 @@
   "videoTitle": "フジ「国産若どりむね肉」2パック、消費期限は2026年11月20日が正しいのに11月30日と表示され2026年11月に回収",
   "publishedAt": "2026-11-22T05:40:01.276034+00:00",
   "generatedAt": "2026-11-22T05:42:06.453437+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/fuji-chicken-recall-expiry-figure-3052b446.jpg",
   "model": "openai-api:gpt-6.1-terra",
   "affiliates": [],
   "newsType": "product",
   "todayActions": [
-    "マルナカ桜井店で11月18日に買った鶏肉の消費期限を確認する。",
-    "対象商品が残っている場合は、フジ桜井店のサービスカウンターへ申し出る。",
-    "返金についてはフジ桜井店の電話088-878-1011で確認する。"
+    "手元の鶏肉が回収対象か、商品名と販売日、期限表示を照らし合わせる。",
+    "対象商品が手元に残っている場合は、フジ桜井店のサービスカウンターへ申し出る。"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -88,5 +87,97 @@
   "summaryLine": "フジ「国産若どりむね肉」2パックは、消費期限を11月30日と誤表示したため回収対象です。",
   "relatedSlugs": [
     "fujisawa-bakery-recall-chocokorone-2026"
-  ]
+  ],
+  "officialDesk": [
+    {
+      "name": "株式会社フジ フジ桜井店 サービスカウンター",
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602998",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602998",
+      "howTo": [
+        "食品衛生公開",
+        "公開回収事案詳細",
+        "回収方法",
+        "フジ桜井店 サービスカウンター"
+      ],
+      "phone": "088-878-1011",
+      "hours": "9:00 – 18:00",
+      "note": "回収後は返金対応です。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "手元の鶏肉が回収対象か、商品名と販売日、期限表示を照らし合わせる。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602998",
+      "steps": [
+        "「国産若どりむね肉」か確認する",
+        "販売店がマルナカ桜井店か確認する",
+        "販売日と消費期限の表示を確認する"
+      ],
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602998"
+    },
+    {
+      "action": "対象商品が手元に残っている場合は、フジ桜井店のサービスカウンターへ申し出る。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602998",
+      "steps": [
+        "対象商品を食べずに保管する",
+        "フジ桜井店のサービスカウンターへ申し出る"
+      ],
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602998"
+    }
+  ],
+  "cause": {
+    "text": "国産若どりむね肉の正しい消費期限は「26.11.20」でしたが、「26.11.30」と誤表示して2パックを販売したため、食品表示法違反として回収されています。",
+    "status": "stated",
+    "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602998"
+  },
+  "worries": [
+    {
+      "q": "期限表示が11月30日なら食べても大丈夫？",
+      "a": "正しい消費期限は2026年11月20日です。表示の2026年11月30日ではなく、正しい期限を過ぎて食べた場合は体調不良となる可能性があるとされています。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602998",
+      "action": "正しい期限を過ぎている場合は食べず、対象商品ならフジ桜井店のサービスカウンターへ申し出てください。"
+    },
+    {
+      "q": "すでに食べた人に健康被害は出ている？",
+      "a": "厚生労働省の公開情報では、2026年11月19日時点で健康被害の報告はありません。同日時点で、連絡が取れた客1人が商品を食べたことは確認されています。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602998",
+      "action": "商品が対象に当たる場合は、フジ桜井店のサービスカウンターへ回収について申し出てください。"
+    },
+    {
+      "q": "販売された2パックは、もう回収されている？",
+      "a": "回収に着手した2026年11月19日時点の回収数量は0パック、回収割合は0%です。販売された2パックのうち、その時点で回収できた数を示しています。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602998",
+      "action": "対象商品が手元に残っている場合は、フジ桜井店のサービスカウンターへ申し出てください。"
+    }
+  ],
+  "depthHeadings": {
+    "cause": "期限が誤って表示された経緯",
+    "steps": "対象か確かめて回収を申し出る",
+    "desk": "回収と返金の連絡先",
+    "worries": "食べた場合や回収状況が心配"
+  },
+  "depthAt": "2026-11-22T06:06:33+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "フジ「国産若どりむね肉」2パック回収",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-22T06:09:35+00:00"
+  },
+  "imageFocus": {
+    "x": 0.518,
+    "y": 0.39,
+    "box": [
+      0.084,
+      0.042,
+      0.953,
+      0.738
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/fuji-chicken-recall-expiry-figure-3052b446.jpg"
+  }
 }
