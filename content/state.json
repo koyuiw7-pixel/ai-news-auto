@@ -1974,6 +1974,7 @@
     "dc0998a04fa26ef706965780b6f5a2e4335e7e08": 2,
     "dc2529adddb7f0583f9f19bd8857863fae42ecfa": 3,
     "dc3b879b232cf6409609a5d9077113d96536f66f": 2,
+    "dc692a296bd1b53e485fe2fb2bf7ff7bf4641d5d": 1,
     "dc8c4472c136586f2946cb9c3a1820279b02e147": 2,
     "dc94bbe9b264bc3616817643a539d59675d38ae7": 2,
     "dcbf931b4e0998f186a5dd7822ce9b76f8b74d09": 2,
@@ -2548,9 +2549,7 @@
       "url": "https://network.mobile.rakuten.co.jp/information/news/service/3990/"
     }
   },
-  "major_tries": {
-    "fd285f2db69a5f1e": 1
-  },
+  "major_tries": {},
   "pi_reopened": {
     "009f6a0d6eedbb24": "2026-11-21T17:20:55.701553+00:00",
     "05b7c979204565d2": "2026-11-19T18:21:01.412347+00:00",
@@ -11595,6 +11594,17 @@
       "reason": "trend: 公式の発表で記事にした（nhk-nodojiman-guest-lineup-november）",
       "skipped": true,
       "url": "https://topics.smt.docomo.ne.jp/article/ggtnews/entertainment/ggtnews-qtqZq"
+    },
+    "54f34b96edd4399acb459150bfac2258ef613be5": {
+      "at": "2026-11-22T08:53:19.373095+00:00",
+      "kind": "trend",
+      "model": "openai-api:gpt-6-luna",
+      "pressReport": true,
+      "score": 100,
+      "slug": "sumo-kyushu-tournament-onosato-title",
+      "trendKeyword": "相撲",
+      "trendLane": true,
+      "url": "https://news.yahoo.co.jp/articles/d7b7688fcdfe9d126db2267320bc5afaf3d1d1f9"
     },
     "55328b65857ec447": {
       "at": "2026-11-09T06:28:27.069136+00:00",
@@ -22296,6 +22306,14 @@
       "skipped": true,
       "url": "https://www.mof.go.jp/about_mof/councils/fiscal_system_council/sub-of_filp/proceedings/material/zaitoa20261117.html"
     },
+    "fd285f2db69a5f1e": {
+      "at": "2026-11-22T08:51:51.652945+00:00",
+      "kind": "update",
+      "model": "openai-api:gpt-6.1-terra",
+      "score": 100,
+      "updated": "docomo-my-docomo-resume-procedures",
+      "url": "https://www.docomo.ne.jp/info/notice/page/261122_00_m.html"
+    },
     "fd8a9ba2ef087e49": {
       "at": "2026-11-18T20:01:53.630174+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（議事）",
@@ -25457,47 +25475,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-20T09:56:23.774739+00:00",
-      "attempt": 1,
-      "id": "eda009181836fc7f",
-      "kind": "update",
-      "model": "openai-api:gpt-6.1-terra",
-      "problems": [
-        "「2026年11月18日」→ 元記事に発表日が記載されておらず、確認済みの文脈にもない日付です。"
-      ],
-      "score": 84,
-      "source": "cyberagent",
-      "title": "QualiArtsとカバーが共同開発する「ホロライブ」初のスマホゲーム 『hololive Dreams』（略称「ホロドリ」）が「Google Play ベスト"
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-20T09:57:07.836444+00:00",
-      "attempt": 1,
-      "id": "eda009181836fc7f",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "「多くのユーザーに支持されてきた結果を示すものです」→ 元記事はリリース以来多くの人がプレイしたとしていますが、受賞がその支持の結果だとは述べていません。",
-        "「50名以上のタレント参加という規模感が、今年のAndroid向けゲームの中で高く評価されました」→ 元記事は受賞理由やAndroid向けゲームとの比較を示しておらず、評価された要因を事実のように断定しています。"
-      ],
-      "readability": {
-        "avg_paragraph": 122.0,
-        "avg_sentence": 66.5,
-        "long_share": 0.727,
-        "max_paragraph": 198,
-        "paragraphs": 6,
-        "sentences": 11
-      },
-      "score": 84,
-      "source": "cyberagent",
-      "title": "QualiArtsとカバーが共同開発する「ホロライブ」初のスマホゲーム 『hololive Dreams』（略称「ホロドリ」）が「Google Play ベスト",
-      "warnings": [
-        "読みやすさ: 文が長い（1文の平均 66.5字・60字超の文が 73% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "読みやすさ: 段落が長い（平均 122.0字・最長 198字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-20T09:57:37.327329+00:00",
@@ -33096,6 +33073,38 @@
         "見出しが49字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（JAL・SMS）"
       ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-22T08:51:51.632680+00:00",
+      "attempt": 1,
+      "id": "fd285f2db69a5f1e",
+      "kind": "update",
+      "model": "openai-api:gpt-6.1-terra",
+      "problems": [],
+      "score": 100,
+      "source": "docomo-notice",
+      "title": "【お詫び】ドコモオンラインショップ、My docomoの緊急メンテナンス実施について/当社サーバーへの不正アクセスによるお客さま情報流出に関するお知らせ（第六報"
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-22T08:53:19.354603+00:00",
+      "attempt": 1,
+      "id": "54f34b96edd4399acb459150bfac2258ef613be5",
+      "kind": "trend",
+      "model": "openai-api:gpt-6-luna",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 87.8,
+        "avg_sentence": 37.6,
+        "long_share": 0.0,
+        "max_paragraph": 100,
+        "paragraphs": 6,
+        "sentences": 14
+      },
+      "score": 100,
+      "source": "trends",
+      "title": "相撲"
     }
   ],
   "short_text_retry": {
