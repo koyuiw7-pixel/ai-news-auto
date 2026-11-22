@@ -92,9 +92,9 @@
     }
   ],
   "todayActions": [
-    "自分の勤務先の都道府県（岩手県または熊本県）での12月1日以降の適用時給を給与明細や契約内容で確認する",
-    "月給制の場合は基本給から通勤手当・残業代を除き、1箇月平均所定労働時間で割って時給換算してみる",
-    "不明な点がある場合は岩手労働局賃金室（019-604-3008）や熊本労働局賃金室（096-355-3202）等の窓口へ相談する"
+    "勤務先の県の新しい時間額と発効日を、厚労省の全国一覧で照合する",
+    "岩手県で働いていて賃金に疑問があれば、岩手労働局の賃金室へ確認する",
+    "熊本県で働いていて賃金に疑問があれば、熊本労働局の賃金室へ確認する"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -156,5 +156,118 @@
     "category": "earnings",
     "at": "2026-11-22T09:38:14+00:00"
   },
-  "coverTries": 1
+  "insight": [
+    {
+      "text": "熊本県では地域別最低賃金のほか、電子部品・デバイス等、自動車・船舶関連、百貨店・総合スーパーの特定（産業別）最低賃金も掲載されています。適用範囲があるため、業種だけで判断せず確認を。",
+      "source": "https://www.pref.kumamoto.jp/soshiki/62/186613.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "岩手労働局労働基準部賃金室",
+      "url": "https://jsite.mhlw.go.jp/iwate-roudoukyoku/news_topics/houdou/chinginhoudou060828.html",
+      "source": "https://jsite.mhlw.go.jp/iwate-roudoukyoku/news_topics/houdou/chinginhoudou060828.html",
+      "howTo": [
+        "岩手労働局",
+        "ニュース＆トピックス",
+        "報道発表資料"
+      ],
+      "phone": "019(604)3008"
+    },
+    {
+      "name": "熊本労働局 賃金室",
+      "url": "https://jsite.mhlw.go.jp/kumamoto-roudoukyoku/madoguchi_annai/gosoudan_naiyou_madoguchi.html",
+      "source": "https://jsite.mhlw.go.jp/kumamoto-roudoukyoku/madoguchi_annai/gosoudan_naiyou_madoguchi.html",
+      "howTo": [
+        "熊本労働局",
+        "窓口案内",
+        "相談窓口のご案内",
+        "最低賃金に関すること"
+      ],
+      "phone": "096-355-3202"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "勤務先の県の新しい時間額と発効日を、厚労省の全国一覧で照合する",
+      "source": "https://www.mhlw.go.jp/content/11200000/001753404.pdf",
+      "steps": [
+        "「令和8年度 地域別最低賃金 全国一覧」を開く",
+        "勤務先の都道府県の改定額と発効日を見る"
+      ],
+      "url": "https://www.mhlw.go.jp/content/11200000/001753404.pdf"
+    },
+    {
+      "action": "岩手県で働いていて賃金に疑問があれば、岩手労働局の賃金室へ確認する",
+      "source": "https://jsite.mhlw.go.jp/iwate-roudoukyoku/news_topics/houdou/chinginhoudou060828.html",
+      "steps": [
+        "岩手労働局の照会先を確認する",
+        "労働基準部賃金室へ電話する"
+      ],
+      "url": "https://jsite.mhlw.go.jp/iwate-roudoukyoku/news_topics/houdou/chinginhoudou060828.html"
+    },
+    {
+      "action": "熊本県で働いていて賃金に疑問があれば、熊本労働局の賃金室へ確認する",
+      "source": "https://jsite.mhlw.go.jp/kumamoto-roudoukyoku/madoguchi_annai/gosoudan_naiyou_madoguchi.html",
+      "steps": [
+        "熊本労働局「窓口案内」を開く",
+        "「相談窓口のご案内」を見る",
+        "「最低賃金に関すること」の賃金室を確認する"
+      ],
+      "url": "https://jsite.mhlw.go.jp/kumamoto-roudoukyoku/madoguchi_annai/gosoudan_naiyou_madoguchi.html"
+    }
+  ],
+  "cause": {
+    "text": "改定額は、中央最低賃金審議会が示した目安などを参考に、各地方最低賃金審議会が調査・審議して答申しました。その後、関係労使からの異議申出手続を経て、都道府県労働局長が決定します。",
+    "status": "background",
+    "source": "https://www.mhlw.go.jp/stf/newpage_75950.html"
+  },
+  "worries": [
+    {
+      "q": "熊本県の特定業種は、地域別最低賃金だけ見ればいい？",
+      "a": "熊本県ページには、電子部品・デバイス等、自動車・船舶関連、百貨店・総合スーパーの特定（産業別）最低賃金も載っています。特定最低賃金には適用範囲があるとされています。",
+      "source": "https://www.pref.kumamoto.jp/soshiki/62/186613.html",
+      "action": "該当する業種なら、適用範囲を熊本労働局賃金室か最寄りの労働基準監督署に確認する。"
+    },
+    {
+      "q": "最低賃金の発効日は、全国で同じ日なの？",
+      "a": "全国一覧では、都道府県によって発効日が異なります。岩手県と熊本県は令和8年12月1日、沖縄県は令和8年12月2日で、一覧には令和8年10月1日から12月2日までの日付が掲載されています。",
+      "source": "https://www.mhlw.go.jp/content/11200000/001753404.pdf",
+      "action": "勤務先の都道府県の行を全国一覧で見て、改定額と発効日を確認し、給与の適用時期を照合する。"
+    },
+    {
+      "q": "答申された改定額は、発表後すぐ適用されるの？",
+      "a": "厚生労働省は、答申された改定額について、関係労使からの異議申出手続を経た上で、都道府県労働局長の決定により順次発効すると説明しています。全国一覧には各県の改定額と発効日が掲載されています。",
+      "source": "https://www.mhlw.go.jp/stf/newpage_75950.html",
+      "action": "厚労省の全国一覧で、自分の勤務先の県の改定額と発効日を確認する。",
+      "actionSource": "https://www.mhlw.go.jp/content/11200000/001753404.pdf"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "熊本の特定業種なら、どの最低賃金を見る？",
+      "situation": "熊本県の特定業種で働いている",
+      "recommend": "適用範囲を賃金室などに確認する",
+      "reason": "熊本県は特定（産業別）最低賃金を掲載し、適用範囲があると案内しています。自分の仕事に該当するかを確認すれば、どの最低賃金を照合するか判断できます。",
+      "source": "https://www.pref.kumamoto.jp/soshiki/62/186613.html"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "熊本県は特定の業種にも最低賃金がある",
+    "cause": "改定額が決まるまでの手続き",
+    "steps": "県別の額と発効日を確認する",
+    "desk": "賃金の疑問は労働局の賃金室へ",
+    "worries": "業種や県で最低賃金は変わる？",
+    "guide": "熊本の特定業種で働く人の確認先"
+  },
+  "depthAt": "2026-11-22T09:56:22+00:00",
+  "coverImage": "https://ai-tech-express.jp/img/minimum-wage-iwate-kumamoto-december-2026-cover-eb5d0ff1.jpg",
+  "coverCredit": {
+    "kind": "ai",
+    "model": "flux-2-klein-4b",
+    "prompt": "A close-up of a worker's hands counting a stack of Japanese yen banknotes and coins on a wooden table.",
+    "provider": "Cloudflare Workers AI",
+    "relevant": true,
+    "at": "2026-11-22T09:57:53+00:00"
+  }
 }

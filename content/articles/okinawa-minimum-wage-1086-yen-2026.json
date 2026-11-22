@@ -88,9 +88,9 @@
     }
   ],
   "todayActions": [
-    "現在の時給や月給から通勤手当等を除いた時間額を計算する",
-    "12月2日以降の給与について勤務先から案内が出ているか確認する",
-    "疑問がある場合は沖縄労働局賃金室（098-868-3421）の案内ページを調べる"
+    "月給・日給の賃金を時間額に換算し、最低賃金と比べる",
+    "精皆勤手当や通勤手当、家族手当を除いて賃金を見直す",
+    "賃金額に疑問が残る人は、総合労働相談コーナーへ相談する"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -170,5 +170,108 @@
     "category": "earnings",
     "at": "2026-11-22T09:39:43+00:00"
   },
-  "coverTries": 1
+  "insight": [
+    {
+      "text": "基本給が日給、手当が月給のように賃金の形が混在する場合、それぞれ別の式で時間額に換算してから合計します。通勤手当は計算に含めません。",
+      "source": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/koyou_roudou/roudoukijun/chingin/newpage_43899.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "沖縄労働局 労働基準部 賃金室",
+      "url": "https://jsite.mhlw.go.jp/okinawa-roudoukyoku/content/contents/002840324.pdf",
+      "source": "https://jsite.mhlw.go.jp/okinawa-roudoukyoku/content/contents/002840324.pdf",
+      "phone": "098-868-3421"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "月給・日給の賃金を時間額に換算し、最低賃金と比べる",
+      "source": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/koyou_roudou/roudoukijun/chingin/newpage_43899.html",
+      "steps": [
+        "時間給は時間給そのものを比較する",
+        "日給は日給÷1日の所定労働時間で換算する",
+        "月給は月給÷1箇月平均所定労働時間で換算する"
+      ],
+      "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/koyou_roudou/roudoukijun/chingin/newpage_43899.html"
+    },
+    {
+      "action": "精皆勤手当や通勤手当、家族手当を除いて賃金を見直す",
+      "source": "https://jsite.mhlw.go.jp/okinawa-roudoukyoku/content/contents/002840324.pdf",
+      "steps": [
+        "最低賃金に算入されない手当を確認する",
+        "対象となる賃金額で時間額を計算する",
+        "時間額1,086円と比べる"
+      ],
+      "url": "https://jsite.mhlw.go.jp/okinawa-roudoukyoku/content/contents/002840324.pdf"
+    },
+    {
+      "action": "賃金額に疑問が残る人は、総合労働相談コーナーへ相談する",
+      "source": "https://jsite.mhlw.go.jp/okinawa-roudoukyoku/madoguchi_annai/sougou.html",
+      "steps": [
+        "沖縄県内の総合労働相談コーナーを確認する",
+        "土、日、祝祭日を除く日の午前9時から午後5時までに連絡する",
+        "正午から午後1時までを除く"
+      ],
+      "url": "https://jsite.mhlw.go.jp/okinawa-roudoukyoku/madoguchi_annai/sougou.html"
+    }
+  ],
+  "cause": {
+    "text": "地域別最低賃金は、労働者の生計費や賃金、通常の事業の賃金支払能力を総合的に勘案して定められます。生計費を考慮する際は、生活保護に係る施策との整合性にも配慮するとされています。",
+    "status": "background",
+    "source": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/koyou_roudou/roudoukijun/chingin/newpage_43885.html"
+  },
+  "worries": [
+    {
+      "q": "通勤手当や残業代を足して、基準額を超えればよい？",
+      "a": "最低賃金と比べる賃金額からは、通勤手当や時間外手当など対象外の賃金を除きます。厚生労働省の例では、通勤手当と時間外手当を差し引いて時間額に換算しています。",
+      "source": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/koyou_roudou/roudoukijun/chingin/newpage_43899.html",
+      "action": "通勤手当などを含めず、最低賃金の対象となる賃金額で時間額を計算し直してください。"
+    },
+    {
+      "q": "月給制の場合、最低賃金と比べる時間額はどう計算する？",
+      "a": "月給制の場合は、月給を1箇月平均所定労働時間で割って時間額に換算し、適用される最低賃金額と比較します。賃金の対象外となる手当は、換算前に除きます。",
+      "source": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/koyou_roudou/roudoukijun/chingin/newpage_43899.html",
+      "action": "月給と1箇月平均所定労働時間を確認し、対象外の手当を除いて時間額を計算してください。"
+    },
+    {
+      "q": "本社が県外でも、沖縄県の最低賃金が適用される？",
+      "a": "地域別最低賃金は、都道府県内の事業場で働くすべての労働者と使用者に適用されます。厚生労働省は、産業や職種にかかわらず、都道府県ごとに定めると説明しています。",
+      "source": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/koyou_roudou/roudoukijun/chingin/newpage_43885.html",
+      "action": "実際に働いている事業場の所在地に対応する地域別最低賃金を確認してください。"
+    },
+    {
+      "q": "賃金の計算に納得できないとき、無料で相談できる？",
+      "a": "沖縄労働局の総合労働相談コーナーでは、賃金を含む労働問題全般について、専門家が無料で相談を受け付けています。受付は土、日、祝祭日を除く日の午前9時から午後5時までです（正午から午後1時までを除く）。",
+      "source": "https://jsite.mhlw.go.jp/okinawa-roudoukyoku/madoguchi_annai/sougou.html",
+      "action": "沖縄県内の総合労働相談コーナーを確認し、受付時間内に相談してください。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "計算後に最低賃金を下回ったら、どこへ相談する？",
+      "situation": "対象外の手当を除くと時間額が最低額未満",
+      "recommend": "総合労働相談コーナーに相談する",
+      "reason": "沖縄労働局の総合労働相談コーナーでは、賃金を含む労働問題全般について無料で相談できます。受付は土、日、祝祭日を除く日の午前9時から午後5時までで、正午から午後1時までは除きます。",
+      "source": "https://jsite.mhlw.go.jp/okinawa-roudoukyoku/madoguchi_annai/sougou.html"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "月給と日給の手当は別々に時間額へ",
+    "cause": "最低賃金を決めるときの考え方",
+    "steps": "自分の賃金を時間額に直して確かめる",
+    "desk": "賃金額に疑問が残ったときの連絡先",
+    "worries": "手当込みの計算や月給の換算が不安",
+    "guide": "基準額に届かないときの相談先"
+  },
+  "depthAt": "2026-11-22T09:57:00+00:00",
+  "coverImage": "https://ai-tech-express.jp/img/okinawa-minimum-wage-1086-yen-2026-cover-199c1c69.jpg",
+  "coverCredit": {
+    "kind": "ai",
+    "model": "flux-2-klein-4b",
+    "prompt": "A close-up of a worker's hands counting a stack of small yen coins and a few banknotes in a casual workplace setting.",
+    "provider": "Cloudflare Workers AI",
+    "relevant": true,
+    "at": "2026-11-22T09:58:09+00:00"
+  }
 }
