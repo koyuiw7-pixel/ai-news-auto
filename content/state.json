@@ -1151,6 +1151,7 @@
     "82813ceaa9ed691d7a2af71ca6fe0fb3268489e7": 2,
     "8292e46b74f2f6f1ff97717e775f475a77816015": 2,
     "82a9a033893304c240d92ea7ef9b790b0de1643f": 2,
+    "82b77fa43d55527e023206ee070624138847d1d1": 1,
     "82be940e045b46eb20e2e36082e5e7b15c41e1d6": 2,
     "82e3fce42f3974efc2e64cacd3cc3258f95b6ead": 2,
     "82f22794f14d493f3945d161bab13a6d499534eb": 2,
@@ -1707,7 +1708,7 @@
     "c890dba7135f2af68f74fb8dc47d85bc3135be27": 2,
     "c8a072baa518b9fcd6f8f2b49aafa31a3eb31161": 3,
     "c8e0546d2617732ec647d4f6b640d03551a9d260": 1,
-    "c8ed09b77a7a9aa8921439d68cdbf115c05ac85d": 1,
+    "c8ed09b77a7a9aa8921439d68cdbf115c05ac85d": 2,
     "c921c470aa182ec4c48eb1bd86fe41df03db75a4": 2,
     "c92850a818058f3a7fdf6b84f8fd743aa02459ec": 3,
     "c946e23a81d7f40099632701adaf89e77d0414ba": 2,
@@ -1742,6 +1743,7 @@
     "cbbed7cfc0336e4078a6d1e06f8421b0edea0dac": 2,
     "cbe59e20092c6e3fbd1702ed37d5461e15fa3f85": 2,
     "cbf23270e2ff9df263df83eecef2599c1dccb01d": 2,
+    "cc15854c9c6772c0099980060224ec7e0eac6f7c": 1,
     "cc1d43518ef61bf1a4300647a5ab9cc1216e9ee6": 2,
     "cc57b6d31b06794aad0503fff87f61350a8cd3b2": 2,
     "cc82b152ffed301b716fb402b93e9f94375ecace": 2,
@@ -6789,6 +6791,12 @@
       "section": "tech-gadget",
       "slug": "johoshori-jitsumu-koshu-ipa",
       "url": "https://www.ipa.go.jp/jinzai/riss/forriss/practical.html"
+    },
+    "0ef5ed00c62e89861687eab190a669d24d17ec8f": {
+      "at": "2026-11-22T01:05:47.433645+00:00",
+      "reason": "trend: 公式の発表で記事にした（takeda-rio-yoshida-lpga-final）",
+      "skipped": true,
+      "url": "https://news.yahoo.co.jp/articles/8191ed533ef88cb3e00482d632cc02a5c0bfacf3"
     },
     "0f0cb95e5bb05a5c": {
       "at": "2026-11-08T15:22:50.384187+00:00",
@@ -16904,6 +16912,20 @@
       "slug": "akiya-katsuyo-data-leak-risk",
       "url": "https://corporate.aki-katsu.co.jp/news/server-security-notice-20261117"
     },
+    "aa231fda9c845168": {
+      "at": "2026-11-22T01:05:47.433468+00:00",
+      "costUsd": 0.0141,
+      "intent": "neutral",
+      "kind": "trend",
+      "mix": "",
+      "model": "gemini-flash-latest",
+      "score": 100,
+      "section": "sports",
+      "slug": "takeda-rio-yoshida-lpga-final",
+      "trendKeyword": "竹田麗央",
+      "trendLane": true,
+      "url": "https://topics.smt.docomo.ne.jp/latestnews/keywords/ee179e41818822140cbf1ab80d8e46258d3033d0e656882416a1cfac26ad648e"
+    },
     "aa3e5cd8fba103f6": {
       "at": "2026-11-19T19:31:57.404193+00:00",
       "reason": "review: AdSense の審査の期間は海外の AI の発表を自動で記事にしない（速報だけ。scripts/news_mix.py review_ai_blocks）",
@@ -25046,80 +25068,6 @@
   },
   "quality_log": [
     {
-      "accepted": true,
-      "at": "2026-11-20T06:40:09.474030+00:00",
-      "attempt": 1,
-      "id": "530b4b089766cd07dde93698087b0dc06f3395af",
-      "kind": "trend",
-      "model": "openai-api:gpt-6-luna",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 95.0,
-        "avg_sentence": 52.8,
-        "long_share": 0.556,
-        "max_paragraph": 127,
-        "paragraphs": 5,
-        "sentences": 9
-      },
-      "score": 100,
-      "source": "trends",
-      "title": "六花 亭 不正 アクセス",
-      "warnings": [
-        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "本文が見出しで始まっている（最初の段落は見出しなしで、だれに関係するか・関係しない人はどうかを書く）",
-        "読みやすさ: 文が長い（1文の平均 52.8字・60字超の文が 56% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-20T06:40:26.879465+00:00",
-      "attempt": 0,
-      "id": "530b4b089766cd07dde93698087b0dc06f3395af",
-      "kind": "trend",
-      "model": "openai-api:gpt-6-luna",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 82.2,
-        "avg_sentence": 35.2,
-        "long_share": 0.0,
-        "max_paragraph": 114,
-        "paragraphs": 6,
-        "sentences": 14
-      },
-      "score": 100,
-      "source": "trends",
-      "title": "六花 亭 不正 アクセス",
-      "warnings": [
-        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "本文が見出しで始まっている（最初の段落は見出しなしで、だれに関係するか・関係しない人はどうかを書く）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-20T06:50:12.246453+00:00",
-      "attempt": 1,
-      "id": "17f42b5b421413c8",
-      "kind": "broad",
-      "model": "openai-api:gpt-6.1-terra",
-      "problems": [
-        "確かなことと、まだ分かっていないこと（調査中・現時点では公表されていない など）を分けて書く"
-      ],
-      "readability": {
-        "avg_paragraph": 66.0,
-        "avg_sentence": 33.0,
-        "long_share": 0.0,
-        "max_paragraph": 89,
-        "paragraphs": 10,
-        "sentences": 20
-      },
-      "score": null,
-      "source": "pref-aichi",
-      "title": "土砂災害防止法に基づく土砂災害警戒区域等の基礎調査の結果の公表並びに区域指定、解除の状況について",
-      "warnings": [
-        "見出しの書き方: 発表文の題名の言い直し（「〇〇が△△を発表」）。読者にとって何が変わるか（だれの・何が・いつから・いくら）を書く"
-      ]
-    },
-    {
       "accepted": false,
       "at": "2026-11-20T06:59:34.627238+00:00",
       "attempt": 1,
@@ -32712,6 +32660,90 @@
         "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（SANSPO・EBARA・WAVE）",
         "読みやすさ: 文が長い（1文の平均 71.7字・60字超の文が 50% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-22T01:03:44.311706+00:00",
+      "attempt": 1,
+      "id": "aa231fda9c845168",
+      "kind": "broad",
+      "model": "gemini-flash-latest",
+      "problems": [
+        "「国内で戦う竹田麗央」→確認済み情報では竹田は米女子ツアー最終戦の出場者で、国内で戦っているとの記述は矛盾します。",
+        "「プレッシャーや周囲の期待が高まる中で」→元記事にない竹田の心理や状況を推測しています。",
+        "「来季に向けた調整の動向が注目」→竹田の来季の調整について、元記事に具体的な情報はありません。",
+        "「3日目もスコアを維持」→3日目の順位は確認できますが、スコアを維持したとの記述は元記事から確認できません。",
+        "「国内ツアーで大きな注目を浴びてきた竹田麗央」→元記事にない経歴・評価の説明です。",
+        "「吉田優利選手が優勝賞金6.4億円に王手」→1打差の2位で優勝争いにいることは確認できますが、「王手」は優勝に近いと強く印象づける表現です。"
+      ],
+      "readability": {
+        "avg_paragraph": 102.9,
+        "avg_sentence": 57.2,
+        "long_share": 0.389,
+        "max_paragraph": 205,
+        "paragraphs": 10,
+        "sentences": 18
+      },
+      "score": 65,
+      "source": "radar-official",
+      "title": "竹田麗央関連ニュース｜dメニューニュース（NTTドコモ）",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（CME）",
+        "要点の1つ目（「竹田麗央が悔しさを滲ませる一方、米ツアー最終戦で…」）が一番のニュースになっていない。題名・リードの1文目と同じ中心の事実（年目）を、リードとは違う言い方で1つ目に書く",
+        "読みやすさ: 文が長い（1文の平均 57.2字・60字超の文が 39% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-22T01:05:07.467915+00:00",
+      "attempt": 1,
+      "id": "aa231fda9c845168",
+      "kind": "broad",
+      "model": "openai-api:gpt-6-luna",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 77.4,
+        "avg_sentence": 51.6,
+        "long_share": 0.267,
+        "max_paragraph": 132,
+        "paragraphs": 10,
+        "sentences": 15
+      },
+      "score": 100,
+      "source": "radar-official",
+      "title": "竹田麗央関連ニュース｜dメニューニュース（NTTドコモ）",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（CME）",
+        "要点の1つ目（「竹田麗央が悔しさを滲ませる一方、米ツアー最終戦で…」）が一番のニュースになっていない。題名・リードの1文目と同じ中心の事実（年目）を、リードとは違う言い方で1つ目に書く",
+        "読みやすさ: 文が長い（1文の平均 51.6字・60字超の文が 27% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-22T01:05:47.405374+00:00",
+      "attempt": 0,
+      "id": "aa231fda9c845168",
+      "kind": "broad",
+      "model": "",
+      "problems": [
+        "読みやすさ基準外のまま受理: 書き直し後の確認に不合格: 「単独首位のキム・アリム」→元記事は首位が金阿林と伝えていますが、単独首位とは確認できず、順位を断定しています。"
+      ],
+      "readability": {
+        "avg_paragraph": 77.4,
+        "avg_sentence": 51.6,
+        "long_share": 0.267,
+        "max_paragraph": 132,
+        "paragraphs": 10,
+        "sentences": 15
+      },
+      "score": 100,
+      "source": "radar-official",
+      "title": "竹田麗央関連ニュース｜dメニューニュース（NTTドコモ）",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（CME）",
+        "要点の1つ目（「竹田麗央が悔しさを滲ませる一方、米ツアー最終戦で…」）が一番のニュースになっていない。題名・リードの1文目と同じ中心の事実（年目）を、リードとは違う言い方で1つ目に書く",
+        "読みやすさ: 文が長い（1文の平均 51.6字・60字超の文が 27% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
       ]
     }
   ],
