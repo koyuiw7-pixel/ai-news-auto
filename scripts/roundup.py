@@ -341,7 +341,7 @@ def build_record(topic: str, data: dict, members: list[dict]) -> dict:
         "body": normalize_body(data["body_markdown"]),
         # 「かんたんに読む」版（記事ページで「専門家として読む」と切り替えられる）
         "easy": normalize_body(str(data.get("easy_markdown", ""))),
-        "channel": f"{len(members)}本の記事から編集部が統合",
+        "channel": f"{len(members)}本の記事をまとめた記事",
         "channelId": "",
         "channelSlug": members[0].get("channelSlug", ""),
         "genre": genre.name if genre else members[0].get("genre", ""),

@@ -615,8 +615,8 @@ export function getChannelsByGenre(genreSlug: string): Facet[] {
   return [...map.values()].sort((a, b) => b.count - a.count);
 }
 
-/** まとめ記事の channel は「38本の記事から編集部が統合」（scripts/roundup.py）。発信元の名前ではないので一覧の名前には使わない */
-export const ROUNDUP_CHANNEL = /本の(記事|発表)から編集部が統合$/;
+/** まとめ記事の channel は「38本の記事をまとめた記事」（scripts/roundup.py。自動でまとめているので 2026-11-22 に「編集部が統合」から直した・台帳 A77）。発信元の名前ではないので一覧の名前には使わない */
+export const ROUNDUP_CHANNEL = /本の(記事|発表)(から編集部が統合|をまとめた記事)$/;
 
 export function getAllChannels(): Facet[] {
   const map = new Map<string, Facet>();
