@@ -430,6 +430,7 @@
     "2b561f968c7f07c101db36dc4adcafb812f7bc45": 2,
     "2b57e89591f7666c13a41c92e40d16e6f753a561": 2,
     "2b5f162325a417e699e5c346ee29a434b2abb8ed": 2,
+    "2b66ff5f6064b82c60de2ed96a6575790dda5736": 1,
     "2bb513d05b229f56e636d95f4aca0d998e4c267d": 2,
     "2bc72800cc9ce943649ab6abff79d2bf9e8eec08": 2,
     "2bc84d195319cbe6532cbe247a3bb6f7e6a8f09d": 2,
@@ -592,6 +593,7 @@
     "3d0d75c0162e1c58b4b2ee077709063c0fb0f3d0": 2,
     "3d7cabef33571698610aa0c29bdf352875a958e6": 2,
     "3d834388a5fcde8593f10595bed7f9d333e58f95": 2,
+    "3dea073933043c05c1fbde2d5c0d1e5ed58cfc4f": 1,
     "3e11d6fe873ec8d191aca8b12e98e1d50fb6b2cb": 2,
     "3e21a50f394fa1f3adbde51504a6199742b12e9a": 2,
     "3e400850a5ee2a01d3f5b0fc16c1fc1cb2cf554f": 2,
@@ -1066,6 +1068,7 @@
     "74bdab2ffac63bff13c58975012abb1b92d12dab": 2,
     "74ea6040d8639c2f62eecf3a448e073b005d5988": 2,
     "74eb2b4896c12e4191dea5848723f68a3e9498a2": 1,
+    "75006fe46a2f5bc4adc13b5629752bd0fd7fd34b": 1,
     "750a15d67fe1855dcbba490c406434767b524a9f": 2,
     "7526da0c00af07e30b88494b017cd6873021caf4": 2,
     "75349effd87787086a772fc5469dfdd836268a6e": 2,
@@ -1570,6 +1573,7 @@
     "ab7a869fa1b85cd3fdb3d462f783d4f88fcc7566": 2,
     "ac0040e102df9037d5f359666a94a4ba2f68e664": 2,
     "ac128a27c11f39d8ca9cb5f4b3005f56b0bddce8": 2,
+    "ac48d87ef95667af04c1cbabc60226197e281e8a": 1,
     "ac5a5cb75fb984ce669e1bc65349b5d6bf58f13f": 2,
     "ac6a7b6ba768a1effa9ba32dc676c2b9bffbb768": 2,
     "ac77078f9bb94b4c2cd8cb330a44997599296171": 2,
@@ -2026,7 +2030,7 @@
     "e3f2cded6e1aa248faf758c2176c34f77952381d": 2,
     "e40b5c08325008824ff3e906c06afd49626c3f51": 2,
     "e42747e5a4ab445ca35789fcf8822f8cdad2903b": 2,
-    "e433a2ac038fc5327030fe5d153430217d25fd78": 1,
+    "e433a2ac038fc5327030fe5d153430217d25fd78": 2,
     "e463e1292455b6f2ce0ebf181f8394f8f171b8f1": 2,
     "e48b053aabcb72e971a39a715fdc0acc21538d70": 2,
     "e491067a9eb7fc00500cb87729c07d9fa9b4bfab": 2,
@@ -2193,6 +2197,7 @@
     "f72c4ffbf7f2da55013479a8121723d24d79e4a5": 2,
     "f745aaca81ab2d82eadcfb7b7cbfd1f6e726868f": 2,
     "f75e12702f63b423391005325fb6ee997e9aa4e7": 2,
+    "f770366f155d8781419422c01445d9cec5ffd09a": 1,
     "f7c650e4943858ce5c1657998087f1208d22ef38": 2,
     "f7cd9f317550f1df9044cb9b514747acd6ab6630": 2,
     "f7eb2220bbaabeab2b0c2953a35f71bf0e7d8805": 2,
@@ -2246,7 +2251,7 @@
     "fd6b46271e34246a6e03b20cffa1f0e44bb5d06d": 2,
     "fdc0e5c5941602b59b4c3fe8b9b31280b6eca191": 2,
     "fdd3388fce3e35a2e6631cf25c90f5acf24e12a9": 2,
-    "fdef8884925aac055c45e84b70aa63bbe452ab86": 1,
+    "fdef8884925aac055c45e84b70aa63bbe452ab86": 2,
     "fdfbf9a4a30a5264b2da7ce7b98473bce09b7182": 2,
     "fe1ea34d3c49ff8186098ca6cf361006f03ccf4c": 2,
     "fe2278f9da97d590747623f9cfba97b74e09eefd": 2,
@@ -9366,6 +9371,13 @@
       "reason": "stale: 発表から431時間（記事ページの日付）",
       "skipped": true,
       "url": "https://j-net21.smrj.go.jp/news/bt5puv0000010z2u.html"
+    },
+    "340c1dfb211c101e0600200c83cbff93392da394": {
+      "at": "2026-11-22T07:02:34.028873+00:00",
+      "model": "openai-api:gpt-6.1-terra",
+      "reason": "話題に私人の水俣病患者の訃報が含まれ、関連報道も患者らに関わる公演を中心に伝えているため。",
+      "skipped": true,
+      "url": "https://news.yahoo.co.jp/articles/7afbe4e2a6674af357dbb0ce7b3b880da05fb263"
     },
     "34102c5342819934": {
       "at": "2026-11-18T02:37:34.277346+00:00",
@@ -25212,14 +25224,6 @@
       "url": "https://www.kyoukaikenpo.or.jp/benefit/childbirth/001/",
       "writer": "muse"
     },
-    "muse-f3a7d10b34": {
-      "at": "2026-11-22T07:00:34.754056+00:00",
-      "mix": "money",
-      "score": 100,
-      "slug": "december-2026-household-money",
-      "url": "https://www.docomo.ne.jp/info/news_release/2026/09/25_00.html?icid=CRP_INFO_to_CRP_INFO_news_release_2026_09_25_00",
-      "writer": "muse"
-    },
     "muse-f41e8af726": {
       "at": "2026-11-12T15:53:04.676649+00:00",
       "mix": "money",
@@ -25409,6 +25413,14 @@
       "slug": "child-allowance-application-guide-2026-matome",
       "url": "",
       "writer": "roundup"
+    },
+    "muse-f3a7d10b34": {
+      "at": "2026-11-22T07:00:34.754056+00:00",
+      "mix": "money",
+      "score": 100,
+      "slug": "december-2026-household-money",
+      "url": "https://www.docomo.ne.jp/info/news_release/2026/09/25_00.html?icid=CRP_INFO_to_CRP_INFO_news_release_2026_09_25_00",
+      "writer": "muse"
     }
   },
   "quality_log": [
