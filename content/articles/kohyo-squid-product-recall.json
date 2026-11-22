@@ -60,8 +60,9 @@
   "affiliates": [],
   "newsType": "product",
   "todayActions": [
-    "手元の「イカ切り落とし」のJANコードと賞味期限を袋で確かめる。",
-    "対象品は販売店での回収か、交洋への料金着払い・冷凍での郵送に出す。"
+    "袋の商品名、内容量、JANコード、賞味期限を対象条件と照合する。",
+    "対象品を、各販売店の店舗へ持ち込んで回収に出す。",
+    "郵送する場合は、対象品を冷凍のまま料金着払いで交洋へ送る。"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -111,5 +112,110 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/kohyo-squid-product-recall-figure-25b6a812.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "公開情報の回収理由は「食品衛生法違反のおそれ」で、詳細欄には食品衛生法第20条に該当すると記載されています。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202603015"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "食品衛生公開「公開回収事案詳細」",
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202603015",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202603015",
+      "note": "整理番号はRCL202603015です。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "袋の商品名、内容量、JANコード、賞味期限を対象条件と照合する。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202603015",
+      "steps": [
+        "商品名「イカ切り落とし」を確認",
+        "300g・袋入りか確認",
+        "JANコードと賞味期限を確認"
+      ],
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202603015"
+    },
+    {
+      "action": "対象品を、各販売店の店舗へ持ち込んで回収に出す。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202603015",
+      "steps": [
+        "対象品の表示を確認",
+        "各販売店の店舗に持ち込む"
+      ],
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202603015"
+    },
+    {
+      "action": "郵送する場合は、対象品を冷凍のまま料金着払いで交洋へ送る。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202603015",
+      "steps": [
+        "〒510-0064を確認",
+        "三重県四日市市新正五丁目4番19号を確認",
+        "株式会社交洋宛てに冷凍・料金着払いで郵送"
+      ],
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202603015"
+    }
+  ],
+  "cause": {
+    "text": "原料を製造した中国の工場で使用していた樹脂容器が破損し、破片が発生した可能性があり、対象商品に混入しているおそれがあるとして回収されています。",
+    "status": "stated",
+    "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202603015"
+  },
+  "worries": [
+    {
+      "q": "家にある袋が回収対象か、どの表示を見れば分かる？",
+      "a": "対象は商品名「イカ切り落とし」、内容量300g、袋入りで、JANコードは4907477370031、賞味期限は2027年3月31日です。これらの表示を照合できます。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202603015",
+      "action": "袋の商品名、内容量、JANコード、賞味期限を公開回収情報の対象条件と照合してください。"
+    },
+    {
+      "q": "販売店に持って行けない場合も、回収してもらえる？",
+      "a": "各販売店の店舗での回収のほか、株式会社交洋あてに料金着払い（冷凍）で郵送する方法も案内されています。送付先は三重県四日市市新正五丁目4番19号です。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202603015",
+      "action": "郵送を選ぶ場合は、対象品を冷凍し、指定住所の株式会社交洋あてに料金着払いで送ってください。"
+    },
+    {
+      "q": "回収に出した後、商品代金はどう返ってくる？",
+      "a": "回収後は、商品代金相当のクオカードが後日送られると案内されています。店頭で回収に出す場合と、指定住所へ郵送する場合のどちらも回収方法として示されています。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202603015",
+      "action": "対象品を販売店の店舗に持ち込むか、冷凍・料金着払いで交洋へ郵送してください。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "回収品は店頭と郵送のどちらに出す？",
+      "situation": "販売店の店舗に持ち込める",
+      "recommend": "販売店の店舗で回収に出す",
+      "reason": "各販売店の店舗で回収すると案内されています。郵送の場合に示されている冷凍・料金着払いの手続きは必要ありません。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202603015"
+    },
+    {
+      "question": "回収品は店頭と郵送のどちらに出す？",
+      "situation": "交洋へ郵送して回収に出す",
+      "recommend": "冷凍・料金着払いで交洋へ送る",
+      "reason": "郵送での回収方法として、指定住所あてに料金着払い（冷凍）で送る方法が案内されています。回収後は商品代金相当のクオカードが後日送られます。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202603015"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "回収情報には食品衛生法第20条の記載もある",
+    "cause": "中国の工場で樹脂容器が破損",
+    "steps": "表示の照合から回収に出すまで",
+    "desk": "交洋への郵送方法を確認",
+    "worries": "対象表示や返送後のことを確認",
+    "guide": "店頭か冷凍郵送か、回収方法を選ぶ"
+  },
+  "depthAt": "2026-11-22T06:31:44+00:00",
+  "updatedAt": "2026-11-22T06:31:44+00:00",
+  "updates": [
+    {
+      "at": "2026-11-22T06:31:44+00:00",
+      "kind": "facts",
+      "title": "公式の資料をもとに、「なるほどの要点」・「公式の窓口」・「今日やること」・「理由」・「よくある不安」・「判断の目安」を追記しました",
+      "sourceUrl": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202603015",
+      "sourceName": "厚生労働省 食品衛生申請等システム 公開回収事案詳細（RCL202603015、株式会社交洋「イカ切り落とし」）"
+    }
+  ]
 }
