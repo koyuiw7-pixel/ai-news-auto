@@ -54,13 +54,13 @@
   "videoTitle": "イズミ「肉屋の棒チキン南蛮」2026年11月回収　消費期限2026年11月20日分・ゆめマート那珂川で3個販売",
   "publishedAt": "2026-11-22T04:49:06.598667+00:00",
   "generatedAt": "2026-11-22T04:49:33.126289+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/izumi-chicken-nanban-recall-figure-0b3f86d9.jpg",
   "model": "openai-api:gpt-6.1-terra",
   "affiliates": [],
   "newsType": "product",
   "todayActions": [
-    "ゆめマート那珂川で11月17日に買った商品と、消費期限11月20日の表示を確かめる。",
-    "対象商品は食べずに、ゆめマート那珂川の092-953-0300へ連絡する。"
+    "対象か迷う商品は食べず、ゆめマート那珂川へ連絡して回収方法を確認する。",
+    "公開回収事案詳細の正誤ラベル画像と手元の商品を照らし合わせる。"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -83,5 +83,96 @@
   "summaryLine": "「肉屋の棒チキン南蛮」は、ゆめマート那珂川で販売された3個がラベル誤表示による回収対象です。",
   "relatedSlugs": [
     "fujisawa-bakery-recall-chocokorone-2026"
-  ]
+  ],
+  "insight": [
+    {
+      "text": "厚生労働省の公開回収事案詳細には、正しい「肉屋の棒チキン南蛮」のラベル画像と、誤表示の「鶏炭火焼」ラベル画像が別々に掲載されています。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602974"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "ゆめマート那珂川",
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602974",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602974",
+      "phone": "092-953-0300",
+      "note": "回収後は店頭にて返金対応とされています。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "対象か迷う商品は食べず、ゆめマート那珂川へ連絡して回収方法を確認する。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602974",
+      "steps": [
+        "ゆめマート那珂川（092-953-0300）へ連絡する",
+        "対象商品は店頭にて返金対応"
+      ],
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602974"
+    },
+    {
+      "action": "公開回収事案詳細の正誤ラベル画像と手元の商品を照らし合わせる。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602974",
+      "steps": [
+        "公開回収事案詳細を開く",
+        "正ラベルと誤ラベルの画像を確認する"
+      ],
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602974"
+    }
+  ],
+  "cause": {
+    "text": "「肉屋の棒チキン南蛮」に「鶏炭火焼」のラベルを誤って貼り付けたため、小麦・卵・乳成分などの表示が漏れました。届出では、食品表示法違反としています。",
+    "status": "stated",
+    "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602974"
+  },
+  "worries": [
+    {
+      "q": "この回収で、どんな健康被害が想定されている？",
+      "a": "届出では、皮膚、消化器、呼吸器などへのアレルギー症状を想定しています。重症の場合は、アナフィラキシーショックも想定されるとしています。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602974",
+      "action": "対象商品が手元にある場合は、ゆめマート那珂川（092-953-0300）へ連絡して回収方法を確認する。"
+    },
+    {
+      "q": "正しい商品と誤ラベルは、何が違う？",
+      "a": "正しい商品は「肉屋の棒チキン南蛮」、内容量175ｇです。誤表示のラベルは「鶏炭火焼」、内容量100gとされています。対象商品の消費期限は2026年11月20日です。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602974",
+      "action": "商品名や内容量、消費期限を公開情報と照らし、対象か判断できなければ店へ連絡する。"
+    },
+    {
+      "q": "回収対象なら、返金はどこで受けられる？",
+      "a": "届出では、問い合わせ先をゆめマート那珂川（092-953-0300）とし、回収後は店頭にて返金対応するとしています。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602974",
+      "action": "ゆめマート那珂川（092-953-0300）へ連絡し、店頭での返金対応について確認する。"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "正誤ラベルの画像も公開",
+    "cause": "別商品のラベルで表示が漏れた",
+    "steps": "対象か迷ったら店へ連絡",
+    "desk": "回収と返金の連絡先",
+    "worries": "健康被害や返金の疑問"
+  },
+  "depthAt": "2026-11-22T05:00:21+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "「肉屋の棒チキン南蛮」3個が回収対象",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-22T05:02:32+00:00"
+  },
+  "imageFocus": {
+    "x": 0.537,
+    "y": 0.414,
+    "box": [
+      0.091,
+      0.054,
+      0.984,
+      0.774
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/izumi-chicken-nanban-recall-figure-0b3f86d9.jpg"
+  }
 }

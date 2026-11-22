@@ -66,13 +66,13 @@
   "videoTitle": "物価の上昇は2.3％に拡大、10月はエネルギーと生鮮食品が押し上げた",
   "publishedAt": "2026-11-22T04:46:29.428303+00:00",
   "generatedAt": "2026-11-22T04:46:59.260377+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/japan-cpi-october-2026-muse-943-figure-e61b0b03.jpg",
   "model": "openai-api:gpt-6.1-terra",
   "affiliates": [],
   "newsType": "research",
   "todayActions": [
-    "総務省統計局の消費者物価指数ページで、10月分の全国の結果を確認する。",
-    "同ページの最新の詳細結果表から、都道府県庁所在市別の指数を確認する。"
+    "総務省統計局のページで、10月分の全国結果を確認する。",
+    "最新の詳細結果表から、都道府県庁所在市別の指数を確認する。"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -91,5 +91,88 @@
   "detectedAt": "2026-11-22T04:47:33+00:00",
   "searchTitle": "全国消費者物価指数、2026年10月は前年同月比2.3％上昇",
   "layout": "noir",
-  "summaryLine": "2026年10月の全国消費者物価指数は、総合で前年同月より**2.3％**上昇しました。"
+  "summaryLine": "2026年10月の全国消費者物価指数は、総合で前年同月より**2.3％**上昇しました。",
+  "insight": [
+    {
+      "text": "10月分の冊子はPDFですが、都道府県庁所在市別指数などの最新月の統計表はExcel形式で別に掲載されています。地域別を調べる場合は「最新の詳細結果表」へ進みます。",
+      "source": "https://www.stat.go.jp/data/cpi/sokuhou/tsuki/index-z.html"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "総務省統計局のページで、10月分の全国結果を確認する。",
+      "source": "https://www.stat.go.jp/data/cpi/sokuhou/tsuki/index-z.html",
+      "steps": [
+        "消費者物価指数（CPI）結果",
+        "全国（最新の月次結果の概要）",
+        "今月の結果（冊子）"
+      ],
+      "url": "https://www.stat.go.jp/data/cpi/sokuhou/tsuki/pdf/zenkoku.pdf"
+    },
+    {
+      "action": "最新の詳細結果表から、都道府県庁所在市別の指数を確認する。",
+      "source": "https://www.stat.go.jp/data/cpi/sokuhou/tsuki/index-z.html",
+      "steps": [
+        "消費者物価指数（CPI）結果",
+        "全国（最新の月次結果の概要）",
+        "最新の詳細結果表（月報掲載表へ）"
+      ],
+      "url": "https://www.e-stat.go.jp/stat-search/files?page=1&layout=datalist&lid=000001494870"
+    }
+  ],
+  "worries": [
+    {
+      "q": "10月の総合指数は、何年を100としているの？",
+      "a": "2025年を100とした指数で、2026年10月の総合指数は103.1です。前年同月比は2.3％の上昇として公表されています。",
+      "source": "https://www.stat.go.jp/data/cpi/sokuhou/tsuki/index-z.html",
+      "action": "総務省統計局の10月分ページで、基準年と前年同月比を確認する。"
+    },
+    {
+      "q": "生鮮食品を除くと、上昇率は総合指数と違うの？",
+      "a": "生鮮食品を除く総合指数は102.9で、前年同月比は2.2％の上昇です。総合指数は103.1、前年同月比は2.3％の上昇として公表されています。",
+      "source": "https://www.stat.go.jp/data/cpi/sokuhou/tsuki/index-z.html",
+      "action": "10月分の結果で、総合指数と生鮮食品を除く指数の両方を見比べる。"
+    },
+    {
+      "q": "生鮮食品とエネルギーを除いた指数も確認できる？",
+      "a": "生鮮食品及びエネルギーを除く総合指数は103.3で、前年同月比は2.2％の上昇です。10月分の全国結果のページに掲載されています。",
+      "source": "https://www.stat.go.jp/data/cpi/sokuhou/tsuki/index-z.html",
+      "action": "全国の10月分結果を開き、生鮮食品及びエネルギーを除く指数を確認する。"
+    },
+    {
+      "q": "住んでいる地域の指数も同じページで見られる？",
+      "a": "「最新の詳細結果表」から、政府統計の総合窓口「e-Stat」に掲載された統計表を確認できます。統計局のページは、都市階級・地方・都道府県庁所在市別指数などを案内しています。",
+      "source": "https://www.stat.go.jp/data/cpi/sokuhou/tsuki/index-z.html",
+      "action": "統計局の10月分ページから「最新の詳細結果表」を開き、地域別の表を確認する。"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "全国の冊子と地域別の表は掲載先が別",
+    "steps": "10月分の全国結果と地域別の表を確認",
+    "worries": "指数の基準年や地域別の数字を確認"
+  },
+  "depthAt": "2026-11-22T05:01:20+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "2.3％",
+    "label": "物価は前年同月比",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-22T05:03:34+00:00"
+  },
+  "imageFocus": {
+    "x": 0.459,
+    "y": 0.423,
+    "box": [
+      0.037,
+      0.042,
+      0.881,
+      0.804
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/japan-cpi-october-2026-muse-943-figure-e61b0b03.jpg"
+  }
 }

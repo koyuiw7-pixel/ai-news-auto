@@ -55,7 +55,7 @@
   "videoTitle": "ボーズ「S1 Pro System Battery Pack」2026年11月19日から廃棄・交換　対象はシリアル先頭6桁7種",
   "publishedAt": "2026-11-22T04:48:10.149521+00:00",
   "generatedAt": "2026-11-22T04:48:40.239325+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/bose-s1-battery-recall-f623e20e.jpg",
   "model": "openai-api:gpt-6.1-terra",
   "affiliates": [],
   "newsType": "product",
@@ -104,5 +104,99 @@
   "detectedAt": "2026-11-22T04:48:50+00:00",
   "searchTitle": "ボーズS1 Pro・S1 Pro+電池の対象番号は？先頭6桁7種",
   "layout": "noir",
-  "summaryLine": "ボーズのS1 ProとS1 Pro+用電池の一部が、火災のおそれで廃棄・交換の対象になりました。"
+  "summaryLine": "ボーズのS1 ProとS1 Pro+用電池の一部が、火災のおそれで廃棄・交換の対象になりました。",
+  "insight": [
+    {
+      "text": "Boseの案内では、交換のオンライン申請を利用できない地域もあります。フォームが使えない場合は、Boseに連絡して手続きの案内を受けるよう案内されています。",
+      "source": "https://support.bose.com/s1-battery-recall"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "ボーズ合同会社 お問い合わせ窓口",
+      "url": "https://support.bose.co.jp/repair-or-replacement",
+      "source": "https://www.meti.go.jp/product_safety/recall/file/261119-1.html",
+      "phone": "0120-235-250",
+      "hours": "月曜日～土曜日 9：00～18：00（日・祝日・年末年始は除く）",
+      "note": "オンライン受付フォームは24時間受け付けています。"
+    }
+  ],
+  "cause": {
+    "text": "公式発表では、バッテリーが過熱により火災に至るおそれがあるため、廃棄・交換のリコールを実施しています。",
+    "status": "stated",
+    "source": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036157&screenkbn=06"
+  },
+  "worries": [
+    {
+      "q": "対象の電池を外した後もスピーカーは使える？",
+      "a": "Boseの案内では、バッテリーを取り外した後は、バッテリーを装着せずにAC電源につないでS1 ProまたはS1 Pro+を使用できます。",
+      "source": "https://support.bose.com/s1-battery-recall",
+      "action": "対象バッテリーを外したうえで、AC電源につないで使う場合はバッテリーを装着しないでください。"
+    },
+    {
+      "q": "後から買い足したバッテリーも対象になる？",
+      "a": "Boseの案内では、対象バッテリーはスピーカーに付属していたものだけでなく、単体のアクセサリーや交換部品として販売されたものも含みます。後から買い足した場合も確認が必要です。",
+      "source": "https://support.bose.com/s1-battery-recall",
+      "action": "後付けしたバッテリーパックのラベルを見て、17桁番号の先頭6桁を対象番号と照合してください。"
+    },
+    {
+      "q": "対象バッテリーは家庭ごみや回収箱に出していい？",
+      "a": "Boseは対象品を家庭ごみ、一般のリサイクル、店頭にある使用済み電池回収箱に入れないよう案内しています。処分方法が分からない場合は自治体に確認するよう求めています。",
+      "source": "https://support.bose.com/s1-battery-recall",
+      "action": "家庭ごみや店頭の回収箱に入れず、自治体にリコール対象のリチウムイオン電池の処分方法を確認してください。"
+    },
+    {
+      "q": "対象番号ではなかったら、そのまま使い続けていい？",
+      "a": "Boseの案内では、バッテリーのシリアル番号が対象の番号列で始まらない場合、今回のリコール対象ではなく、引き続き使用できるとしています。",
+      "source": "https://support.bose.com/s1-battery-recall",
+      "action": "バッテリーパックの17桁番号を確認し、先頭6桁が対象の7つの番号列に当てはまらないか照合してください。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "交換はフォームと電話のどちらで申し込む？",
+      "situation": "オンライン受付フォームが利用できる",
+      "recommend": "フォームから申し込む",
+      "reason": "経済産業省の案内ではオンライン受付フォームは24時間利用できます。Boseはオンライン申請が利用できない地域もあるとしており、フォームが使えない場合は連絡するよう案内しています。",
+      "source": "https://www.meti.go.jp/product_safety/recall/file/261119-1.html"
+    },
+    {
+      "question": "交換はフォームと電話のどちらで申し込む？",
+      "situation": "フォームが利用できない、または不明",
+      "recommend": "電話で窓口に確認する",
+      "reason": "Boseはオンライン申請が利用できない地域もあると案内しています。日本の窓口には電話番号が掲載されており、受付時間は月曜日～土曜日の9時～18時（日・祝日・年末年始を除く）です。",
+      "source": "https://www.meti.go.jp/product_safety/recall/file/261119-1.html"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "オンライン申請が使えない地域もある",
+    "cause": "バッテリー過熱による火災のおそれ",
+    "desk": "交換の申し込み先",
+    "worries": "交換や処分、スピーカーの使用はどうなる？",
+    "guide": "交換申し込みはフォームか電話か"
+  },
+  "depthAt": "2026-11-22T05:00:51+00:00",
+  "imageCredit": {
+    "kind": "official",
+    "org": "消費者庁 リコール情報サイト 商品情報詳細（ボーズ「バッテリー（リチウムイオン、スピーカー用）：S1 Pro System Battery Pack、ほか1商品」、管理番号00000036157）",
+    "provider": "消費者庁 リコール情報サイト 商品情報詳細（ボーズ「バッテリー（リチウムイオン、スピーカー用）：S1 Pro System Battery Pack、ほか1商品」、管理番号00000036157）",
+    "sourceUrl": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036157&screenkbn=06",
+    "original": "https://www.recall.caa.go.jp/images/rci/img/product/00000036157_1.jpg",
+    "width": 500,
+    "height": 500,
+    "at": "2026-11-22T05:04:15+00:00"
+  },
+  "heroOk": true,
+  "imageFocus": {
+    "x": 0.509,
+    "y": 0.466,
+    "box": [
+      0.031,
+      0.125,
+      0.988,
+      0.806
+    ],
+    "ar": 1.0,
+    "src": "https://ai-tech-express.jp/img/bose-s1-battery-recall-f623e20e.jpg"
+  }
 }
