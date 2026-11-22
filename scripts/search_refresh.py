@@ -34,6 +34,7 @@ import json
 import os
 import re
 import sys
+import time
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
@@ -52,6 +53,10 @@ POS_MIN, POS_MAX = 4.0, 20.0  # 2026-11-22 オーナー決定: 8〜20位を1ペ�
 MIN_IMPRESSIONS = 10
 GAP_DAYS = 14
 DEFAULT_MAX = 5
+# 2026-11-22 オーナー「任せる」（台帳 A76）: Claude の月の予算を止めている間、この週1回の書き直しだけ OpenAI の API クレジットで書く。
+# ワークフローのこの段だけが SEARCH_REFRESH_OPENAI=1 を渡す。予算の守り（llm.openai_block_reason）と品質ゲートは同じ
+OPENAI_MAX = 5
+TIME_BUDGET_SEC = 1200  # ワークフローの timeout 1500 秒より前に、新しい記事を始めるのをやめる
 
 FOCUS = """# 今回の書き直しで必ず守ること（検索から来た人への答えを先に。2026-11-09 オーナー承認・台帳 A68）
 この記事は Google で「{query}」と検索されて、平均{position}位に出ています。上にいるのは公式サイトと大手のメディアです。
@@ -192,6 +197,27 @@ def stamp(new: dict, row: dict, now: datetime) -> dict:
     return new
 
 
+def use_openai(llm) -> bool:
+    """この回を OpenAI で書くか（専用の印があり、OpenAI が先頭の順番で、キーがあるときだけ）"""
+    return os.environ.get("SEARCH_REFRESH_OPENAI") == "1" and llm.provider_order("core")[:1] == ["openai"]
+
+
+def openai_allowance(want: int, llm, est_cost: float) -> tuple[int, str]:
+    """OpenAI の予算（期間の上限−余裕、今日の目安）の中で、今回何本書いてよいか。最大 OPENAI_MAX 本"""
+    s = llm.openai_ledger_summary()
+    if why := llm.openai_block_reason("core", summary=s):
+        return 0, f"OpenAI API を使えない（{why}）"
+    room = min(float(s["budget"]) - float(s["margin"]) - float(s["spent"]), float(s["daily_limit"]) - float(s["spent_today"]))
+    n = max(0, min(want, OPENAI_MAX, int(room // est_cost)))
+    return n, (f"OpenAI: 期間 ${float(s['spent']):.2f}/${float(s['budget']):.0f}（余裕 ${float(s['margin']):.0f}）・"
+               f"今日 ${float(s['spent_today']):.2f}/目安 ${float(s['daily_limit']):.2f} → {n} 本")
+
+
+def save_state(state: dict) -> None:
+    STATE.parent.mkdir(parents=True, exist_ok=True)
+    STATE.write_text(json.dumps(state, ensure_ascii=False, indent=2) + "\n", "utf-8")
+
+
 def is_monday_jst(now: datetime) -> bool:
     return now.astimezone(JST).weekday() == 0
 
@@ -230,15 +256,26 @@ def main() -> int:
         return 0
     import rewrite_types  # noqa: PLC0415 - LLM の部品を読むのは書き直すときだけ
 
-    if os.environ.get("ANTHROPIC_API_KEY"):
+    llm = rewrite_types.llm
+    writers = ("anthropic-api:claude-sonnet",)
+    if use_openai(llm):
+        allowed, why = openai_allowance(len(targets), llm, rewrite_types.EST_COST)
+        print(f"[budget] {why}")
+        targets = targets[:allowed]
+        writers = (f"{llm.OPENAI_PREFIX}{llm.openai_model_for('core')}",)
+    elif os.environ.get("ANTHROPIC_API_KEY"):
         allowed, why = rewrite_types.budget_allowance(len(targets))
         print(f"[budget] {why}")
         targets = targets[:allowed]
     done = 0
-    for slug, row in targets:
+    started = time.monotonic()
+    for index, (slug, row) in enumerate(targets):
+        if time.monotonic() - started > TIME_BUDGET_SEC:
+            print(f"[search-refresh] 時間の上限 {TIME_BUDGET_SEC} 秒に達したので、残り {len(targets) - index} 本は次の回に回します")
+            break
         try:
             title = (_read_article(ARTICLES_DIR / f"{slug}.json") or {}).get("title", "")
-            new, rep = rewrite_types.rewrite(slug, focus=focus_for(row, title))
+            new, rep = rewrite_types.rewrite(slug, focus=focus_for(row, title), writers=writers)
         except Exception as error:  # noqa: BLE001 - 1本の失敗で止めない
             new, rep = None, {"why": f"失敗: {str(error)[:200]}"}
         if new is None:
@@ -249,10 +286,10 @@ def main() -> int:
         state.setdefault("refreshed", []).append({"slug": slug, "at": new["searchRefreshedAt"], "query": row.get("query", ""),
                                                   "position": row.get("position"), "impressions": row.get("impressions"),
                                                   "checkAfter": (now + timedelta(days=14)).date().isoformat()})
+        save_state(state)  # 途中で時間切れになっても、書き直した記事と記録がずれない
         done += 1
         print(f"   [OK] {slug}: 書き直した（score {rep.get('score')}）")
-    STATE.parent.mkdir(parents=True, exist_ok=True)
-    STATE.write_text(json.dumps(state, ensure_ascii=False, indent=2) + "\n", "utf-8")
+    save_state(state)
     print(f"[search-refresh] 書き直し {done} 本 / 今の版のまま {len(targets) - done} 本")
     return 0
 

@@ -255,10 +255,12 @@ def _write_with(model: str):
 
 
 def rewrite(slug: str, attempts: int = 2, focus: str = "", *, free_first: bool = False, paid_ok: bool = True,
-            write_purpose: str = "core", accept=None) -> tuple[dict | None, dict]:
+            write_purpose: str = "core", accept=None,
+            writers: tuple[str, ...] = ("anthropic-api:claude-sonnet",)) -> tuple[dict | None, dict]:
     """(新しい記事 or None, 報告)。focus は書き直しで特に守らせる指示（scripts/search_refresh.py の「検索の答えを先に」。台帳 A68）。
     free_first: 1回目は無料モデルで書く（scripts/thicken_short.py。2026-11-12）。2回目は paid_ok なら Sonnet（write_purpose の段）、
-    そうでなければもう一度無料モデル。accept(record) は品質ゲートの前に見る追加の条件（問題の文 or None。短い記事の書き足しの「前より厚いか」）"""
+    そうでなければもう一度無料モデル。accept(record) は品質ゲートの前に見る追加の条件（問題の文 or None。短い記事の書き足しの「前より厚いか」）。
+    writers: 本文を書いてよいモデルの名前の頭（既定は Sonnet だけ。OpenAI を足すのは週1回の検索の書き直しだけ＝scripts/search_refresh.py・台帳 A76）"""
     path = ARTICLES_DIR / f"{slug}.json"
     old = json.loads(path.read_text("utf-8"))
     if slug in corrected_slugs() or CORRECTION_RE.search(old.get("body") or "") or old.get("refreshMode") == "editorial":
@@ -298,8 +300,8 @@ def rewrite(slug: str, attempts: int = 2, focus: str = "", *, free_first: bool =
             with _write_with(WRITE_MODEL):
                 data, model = llm.generate_json(system, prompt, schema, temperature=0.6, max_output_tokens=32768, tier="write",
                                                 purpose=write_purpose)
-            if not str(model or "").startswith("anthropic-api:claude-sonnet"):
-                # 書き直しは Sonnet だけで行う（無料モデルに落ちたら、今の版のまま次の回に回す）
+            if not str(model or "").startswith(tuple(writers)):
+                # 書き直しは決めたモデル（既定は Sonnet）だけで行う（無料モデルに落ちたら、今の版のまま次の回に回す）
                 if drafted:
                     break  # 無料モデルの原稿は品質ゲートに落ちた。Sonnet は次の回
                 return None, {**report, "why": f"Sonnet が使えなかった（{model}）。次の回に回す"}

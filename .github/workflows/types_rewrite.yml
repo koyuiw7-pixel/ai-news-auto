@@ -73,7 +73,10 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           # OpenAI API（ChatGPT Pro の API クレジット。2026-11-18）。キーが無ければ何も変わらない。順番は変数 LLM_PROVIDER_ORDER（既定 claude）
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          LLM_PROVIDER_ORDER: ${{ vars.LLM_PROVIDER_ORDER }}
+          # 2026-11-22（台帳 A76）: この週1回の段だけ OpenAI で本文を書く。ほかの段の順番は変えない
+          SEARCH_REFRESH_OPENAI: "1"
+          LLM_PROVIDER_ORDER: openai
+          OPENAI_API_SAFETY_MARGIN_USD: ${{ vars.OPENAI_API_SAFETY_MARGIN_USD }}
           CLAUDE_API_FALLBACK_PURPOSES: ${{ vars.CLAUDE_API_FALLBACK_PURPOSES }}
           OPENAI_API_MONTHLY_BUDGET_USD: ${{ vars.OPENAI_API_MONTHLY_BUDGET_USD }}
           OPENAI_API_CYCLE_BUDGET_USD: ${{ vars.OPENAI_API_CYCLE_BUDGET_USD }}
