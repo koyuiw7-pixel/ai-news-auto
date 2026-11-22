@@ -87,9 +87,9 @@
     }
   ],
   "todayActions": [
-    "ahamoの契約と大盛りオプションの有無を確認し、40GBの上限が自動設定される対象か確かめる。",
-    "電気・ガスの利用明細を用意し、資源エネルギー庁の特設サイトで値引き額の目安を確認する。",
-    "ふるさと納税の寄付先の数を確認し、ワンストップ特例の申請条件に当てはまるか確かめる。"
+    "ahamoの契約状況と大盛りオプションの有無を確認し、40GB上限の自動設定対象か確かめる。",
+    "電気・都市ガスの明細を見ながら、特設サイトで値引き額の目安を試算する。",
+    "自分の働き方と勤務先の企業年金を確認し、iDeCoの拠出限度額を区分に照らして調べる。"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -166,5 +166,118 @@
     ],
     "ar": 1.5,
     "src": "https://ai-tech-express.jp/img/december-2026-household-money-cb978a4c.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "2026年11月1日時点でahamoを契約し、大盛りオプションを契約していない人には、12月1日から40GB上限が自動設定されます。大盛りオプション契約者は自動設定の対象外です。",
+      "source": "https://www.docomo.ne.jp/info/news_release/2026/09/25_00.html?icid=CRP_INFO_to_CRP_INFO_news_release_2026_09_25_00"
+    },
+    {
+      "text": "電気・ガス料金支援の試算では、12月の使用量を入力すると1・2月分が自動表示されます。表示は12月より約2割多い使用量で、実際の使用量が分かれば変更できます。",
+      "source": "https://denkigas-gekihenkanwa.go.jp/"
+    },
+    {
+      "text": "iDeCoは、国民年金の被保険者でなくなった後も一定の要件を満たせば70歳になるまで掛金を拠出できます。老齢基礎年金などを受給していないことや、マッチング拠出を実施していないことが要件です。",
+      "source": "https://www.mhlw.go.jp/web_magazine/column/20261020.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "お問い合わせ窓口",
+      "url": "https://denkigas-gekihenkanwa.go.jp/",
+      "source": "https://denkigas-gekihenkanwa.go.jp/",
+      "phone": "0120-013-305",
+      "hours": "平日9:00～17:00",
+      "note": "値引きに関して個人情報や手数料を求める不審な電話・メールには対応せず、この窓口へ相談してください。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "ahamoの契約状況と大盛りオプションの有無を確認し、40GB上限の自動設定対象か確かめる。",
+      "source": "https://www.docomo.ne.jp/info/news_release/2026/09/25_00.html?icid=CRP_INFO_to_CRP_INFO_news_release_2026_09_25_00",
+      "steps": [
+        "2026年11月1日時点の契約を確認する",
+        "大盛りオプションの契約有無を確認する",
+        "対象なら12月1日からの40GB上限設定を確認する"
+      ],
+      "url": "https://www.docomo.ne.jp/charge/plan_renewal2026/"
+    },
+    {
+      "action": "電気・都市ガスの明細を見ながら、特設サイトで値引き額の目安を試算する。",
+      "source": "https://denkigas-gekihenkanwa.go.jp/",
+      "steps": [
+        "明細に記載された使用量を確認する",
+        "「月々の値引き額の計算はこちら」を開く",
+        "「2026年12月分使用量入力」に使用量を入力する",
+        "実際の使用量が分かれば1月・2月分を変更する"
+      ],
+      "url": "https://denkigas-gekihenkanwa.go.jp/"
+    },
+    {
+      "action": "自分の働き方と勤務先の企業年金を確認し、iDeCoの拠出限度額を区分に照らして調べる。",
+      "source": "https://www.mhlw.go.jp/web_magazine/column/20261020.html",
+      "steps": [
+        "自営業・フリーランスか会社員・公務員か確認する",
+        "勤務先の企業年金の有無を確認する",
+        "厚生労働省の制度改正の説明を確認する"
+      ],
+      "url": "https://www.mhlw.go.jp/web_magazine/column/20261020.html"
+    }
+  ],
+  "cause": {
+    "text": "電気・ガス料金支援は、冬の需要期を迎え、使用量が多くなる12月から2月に、国民の命と暮らしを守るため実施されます。iDeCoの見直しは、働き方やライフスタイルの多様化、高齢者の就労増加などに対応するためです。",
+    "status": "background",
+    "source": "https://denkigas-gekihenkanwa.go.jp/"
+  },
+  "worries": [
+    {
+      "q": "大盛りオプションを契約中でも40GB上限は自動で付きますか？",
+      "a": "2026年11月1日時点でahamoを契約し、大盛りオプションを契約していない人に、40GB上限のオプションが12月1日から自動設定されます。大盛りオプション契約者は対象外です。",
+      "source": "https://www.docomo.ne.jp/info/news_release/2026/09/25_00.html?icid=CRP_INFO_to_CRP_INFO_news_release_2026_09_25_00",
+      "action": "自分のahamo契約と大盛りオプションの有無を確認してください。"
+    },
+    {
+      "q": "電気・都市ガスの値引きに申請や手数料は必要ですか？",
+      "a": "一般家庭などの利用者による申請は不要で、事業者が毎月の料金から使用量に応じて値引きます。値引きのために個人情報や手数料を求めることはありません。",
+      "source": "https://denkigas-gekihenkanwa.go.jp/",
+      "action": "個人情報や手数料を求める不審な連絡には対応せず、0120-013-305へ相談してください。"
+    },
+    {
+      "q": "iDeCoの掛金上限はiDeCoだけで計算しますか？",
+      "a": "会社員や公務員などの上限は、iDeCoと企業年金などを合わせた共通の拠出限度額です。自営業者やフリーランスなども、iDeCoと国民年金基金等を合わせた限度額です。",
+      "source": "https://www.mhlw.go.jp/web_magazine/column/20261020.html",
+      "action": "勤務先の企業年金の有無と自分の働き方を確認し、該当する上限を調べてください。"
+    },
+    {
+      "q": "子どもが生まれたとき、児童手当の申請はいつまでですか？",
+      "a": "出生の日の翌日から15日以内に、現住所の市区町村へ申請が必要です。公務員の場合は勤務先に申請します。申請が遅れると、原則として遅れた月分の手当を受けられません。",
+      "source": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/annai",
+      "action": "出生の日を確認し、現住所の市区町村へ期限内に申請してください。公務員は勤務先へ申請してください。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "ahamoの上限は40GBのままでよい？",
+      "situation": "月の利用量が40GB以下",
+      "recommend": "40GB上限を選ぶ目安になる",
+      "reason": "上限設定オプションでは40GBまたは60GBを無料で設定できます。40GB以下の利用区分は税込3,135円です。実際の利用量に合うかを確認する判断材料になりますが、必要なデータ量そのものは変わりません。",
+      "source": "https://www.docomo.ne.jp/info/news_release/2026/09/25_00.html?icid=CRP_INFO_to_CRP_INFO_news_release_2026_09_25_00"
+    },
+    {
+      "question": "ahamoの上限は40GBのままでよい？",
+      "situation": "月に40GBを超え60GBまで使う",
+      "recommend": "60GB上限も検討する",
+      "reason": "上限設定オプションでは60GBも無料で設定できます。40GB超60GB以下の料金区分は税込4,125円です。上限の選択は利用可能データ量を設定するもので、料金区分や使い方は別に確認が必要です。",
+      "source": "https://www.docomo.ne.jp/info/news_release/2026/09/25_00.html?icid=CRP_INFO_to_CRP_INFO_news_release_2026_09_25_00"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "自動設定の対象外と、試算の見方に注意",
+    "cause": "冬の料金支援とiDeCo改正の背景",
+    "steps": "12月前に契約と使用量を確認",
+    "desk": "料金支援の問い合わせ先",
+    "worries": "料金や掛金、手続きの疑問",
+    "guide": "ahamoの上限を40GBか60GBで選ぶ"
+  },
+  "depthAt": "2026-11-22T07:20:13+00:00"
 }
