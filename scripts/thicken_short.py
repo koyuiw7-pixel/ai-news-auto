@@ -45,6 +45,8 @@ DEFAULT_MAX = 15
 MAX_GATE_TRIES = 2       # 品質ゲートに落ちた・厚くならなかった回数の上限
 MAX_FETCH_TRIES = 2      # 資料が読めなかった回数の上限
 FETCH_GAP = timedelta(days=2)
+# 2026-11-22: Google からの訪問が 11/21 から減った。原因を Search Console で確かめる 11/25（日本時間）まで、予約の回では記事を書き換えない
+SCHEDULED_HOLD_UNTIL = datetime(2026, 11, 25, tzinfo=timezone(timedelta(hours=9)))
 MAX_TRANSIENT_TRIES = 4  # 無料モデルが使えなかった回数の上限（モデルの都合なので多めに）
 # Sonnet で書き直す1回あたりの費用の見込み（確認・手直しを含む）。今日の予算の残りから、Sonnet に回してよい本数を出す
 EST_COST = float(os.environ.get("THICKEN_EST_COST_USD", "0.25"))
@@ -351,6 +353,9 @@ def main() -> int:
     ap.add_argument("--report", default="", help="結果の JSON（前と後の字数つき）")
     args = ap.parse_args()
     now = datetime.now(timezone.utc)
+    if args.apply and not args.slug and now < SCHEDULED_HOLD_UNTIL:
+        log("[thicken] 11/25 まで保留中（検索の減少の原因を確かめるため、記事を書き換えません）")
+        return 0
     state = load_state()
     articles = load_articles()
     if args.summary:
