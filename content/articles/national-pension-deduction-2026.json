@@ -77,7 +77,7 @@
   "videoTitle": "社会保険料（国民年金保険料）控除証明書2026年分は、年末調整にいくら書けばいいですか",
   "publishedAt": "2026-11-22T21:40:40.391502+00:00",
   "generatedAt": "2026-11-22T21:41:23.231644+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/national-pension-deduction-2026-figure-1ce72c31.jpg",
   "model": "openai-api:gpt-6.1-terra",
   "affiliates": [],
   "newsType": "policy",
@@ -88,9 +88,9 @@
     }
   ],
   "todayActions": [
-    "控除証明書の「納付済額」と「見込額」を、2026年の納付記録と見比べる。",
-    "13カ月以上前納した人は、選んだ控除方法と2026年分の証明書を確認する。",
-    "証明書を紛失した人は、「ねんきんネット」の通知書再交付申請を確認する。"
+    "届いた控除証明書で「納付済額」「見込額」「合計額」を照らし合わせる",
+    "13カ月以上前納した人は、控除方法に合う証明書を申告用にそろえる",
+    "控除証明書をなくした人は「ねんきんネット」で再交付を申請する"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -124,5 +124,139 @@
   "detectedAt": "2026-11-22T21:42:18+00:00",
   "searchTitle": "国民年金の控除額は？　2026年に実際に支払った全額が対象",
   "layout": "noir",
-  "summaryLine": "2026年分の国民年金保険料は、原則として実際に支払った全額を控除の対象にできます。"
+  "summaryLine": "2026年分の国民年金保険料は、原則として実際に支払った全額を控除の対象にできます。",
+  "insight": [
+    {
+      "text": "控除証明書が届いてから5日間程度は電話が集中しやすく、週の後半や月の後半（20日以降）、午後4時以降はつながりやすい目安です。",
+      "source": "https://www.nenkin.go.jp/section/tel/toiawase_kanyusha.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "「ねんきんネット」による通知書再交付申請",
+      "url": "https://www.nenkin.go.jp/denshibenri_kojin/n_net/utilization/reissue.html",
+      "source": "https://www.nenkin.go.jp/service/kokunen/hokenryo/koujo/R8koujo/soufu.html",
+      "note": "申請を受け付けてから発送までに1週間程度かかります。"
+    },
+    {
+      "name": "ねんきん加入者ダイヤル",
+      "url": "https://www.nenkin.go.jp/section/tel/toiawase_kanyusha.html",
+      "source": "https://www.nenkin.go.jp/section/tel/toiawase_kanyusha.html",
+      "phone": "0570-003-004（ナビダイヤル）",
+      "hours": "月曜日から金曜日午前8時30分から午後7時、第2土曜日午前9時30分から午後4時",
+      "note": "週の初日は混雑が予想され、通知書が届いてから5日間程度も電話が集中します。夕方（午後4時以降）や週の後半などはつながりやすい目安です。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "届いた控除証明書で「納付済額」「見込額」「合計額」を照らし合わせる",
+      "source": "https://www.nenkin.go.jp/service/kokunen/hokenryo/koujo/R8koujo/mikata_hagaki.html",
+      "steps": [
+        "控除証明書の「納付済額」を確認する",
+        "「見込額」と「合計額」を確認する",
+        "「納付状況の内訳」の「済」「見」を確認する"
+      ],
+      "url": "https://www.nenkin.go.jp/service/kokunen/hokenryo/koujo/R8koujo/mikata_hagaki.html"
+    },
+    {
+      "action": "13カ月以上前納した人は、控除方法に合う証明書を申告用にそろえる",
+      "source": "https://www.nenkin.go.jp/service/kokunen/hokenryo/koujo/R8koujo/soufu.html",
+      "steps": [
+        "納めた年に全額控除か、各年に分けるか確認する",
+        "全額控除なら分割された証明書を切り離さずそろえる",
+        "各年控除なら令和8年分の証明書を使う"
+      ],
+      "url": "https://www.nenkin.go.jp/service/kokunen/hokenryo/koujo/R8koujo/soufu.html"
+    },
+    {
+      "action": "控除証明書をなくした人は「ねんきんネット」で再交付を申請する",
+      "source": "https://www.nenkin.go.jp/service/kokunen/hokenryo/koujo/R8koujo/soufu.html",
+      "steps": [
+        "「ねんきんネット」を開く",
+        "「通知書の再交付申請」から申請する",
+        "発送まで1週間程度かかることを見込む"
+      ],
+      "url": "https://www.nenkin.go.jp/denshibenri_kojin/n_net/utilization/reissue.html"
+    }
+  ],
+  "cause": {
+    "text": "国民年金保険料は社会保険料控除の対象です。納税者が自分や生計を一にする配偶者・親族の負担すべき保険料を支払った場合、その年に実際に支払った金額の全額を所得控除できます。",
+    "status": "background",
+    "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1130.htm"
+  },
+  "worries": [
+    {
+      "q": "控除証明書の合計額をそのまま申告していい？",
+      "a": "社会保険料控除の金額は、その年に実際に支払った金額または給与や公的年金等から差し引かれた金額の全額です。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1130.htm",
+      "action": "納付記録と証明書の金額が異なる場合は、実際に支払った額を確かめてから勤務先や税務署に相談する。",
+      "actionSource": "https://www.nenkin.go.jp/service/kokunen/hokenryo/koujo/R8koujo/mikata_hagaki.html"
+    },
+    {
+      "q": "配偶者や親の保険料を払った場合も控除できる？",
+      "a": "自分と生計を一にする配偶者やその他の親族が負担すべき社会保険料を納税者が支払った場合、その支払額について所得控除を受けられます。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1130.htm",
+      "action": "家族の国民年金保険料を負担した人は、誰の保険料かだけでなく、誰が実際に支払ったかを確認する。"
+    },
+    {
+      "q": "13カ月以上前納した証明書は何枚使えばいい？",
+      "a": "納めた年に全額控除する方法では、分割された控除証明書をすべて使います。各年分に分けて控除する方法では、令和8年分の証明書を使います。",
+      "source": "https://www.nenkin.go.jp/service/kokunen/hokenryo/koujo/R8koujo/soufu.html",
+      "action": "前納した年と選んだ控除方法を確かめ、申告には該当する証明書を添付等する。"
+    },
+    {
+      "q": "控除証明書をなくしたら申告に間に合う？",
+      "a": "「ねんきんネット」の「通知書の再交付申請」から再発行を申請できます。申請を受け付けてから発送までに1週間程度かかります。",
+      "source": "https://www.nenkin.go.jp/service/kokunen/hokenryo/koujo/R8koujo/soufu.html",
+      "action": "なくしたことに気づいたら「ねんきんネット」の「通知書の再交付申請」から早めに申請する。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "13カ月以上前納した分はどう申告する？",
+      "situation": "納めた年に全額を控除したい",
+      "recommend": "分割された証明書をすべて使う",
+      "reason": "令和8年に13カ月以上前納し、納めた年に全額控除する方法を選ぶ場合、最大3年分3枚の証明書は切り離さず、すべて申告書に添付等します。",
+      "source": "https://www.nenkin.go.jp/service/kokunen/hokenryo/koujo/R8koujo/soufu.html"
+    },
+    {
+      "question": "13カ月以上前納した分はどう申告する？",
+      "situation": "各年分に分けて控除したい",
+      "recommend": "令和8年分の証明書を使う",
+      "reason": "各年分に分けて控除する方法では、前納した年に応じた控除証明書の令和8年分を切り離して申告書に添付等します。令和8年に前納した場合、残りの証明書は次の年以降に使うため保管します。",
+      "source": "https://www.nenkin.go.jp/service/kokunen/hokenryo/koujo/R8koujo/soufu.html"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "電話が混む日とつながりやすい時間",
+    "cause": "控除額はその年に実際に払った額が基準",
+    "steps": "証明書の見込額と前納分を照合",
+    "desk": "再発行と問い合わせ先を使い分ける",
+    "worries": "控除額や家族分、証明書の扱いは？",
+    "guide": "前納分をまとめるか年ごとに分けるか"
+  },
+  "depthAt": "2026-11-22T21:55:21+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "国民年金の控除証明書2026年分",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-22T21:57:25+00:00"
+  },
+  "imageFocus": {
+    "x": 0.534,
+    "y": 0.384,
+    "box": [
+      0.087,
+      0.036,
+      0.981,
+      0.732
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/national-pension-deduction-2026-figure-1ce72c31.jpg"
+  }
 }

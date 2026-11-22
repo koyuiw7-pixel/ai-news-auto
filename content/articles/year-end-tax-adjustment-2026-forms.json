@@ -91,9 +91,9 @@
     }
   ],
   "todayActions": [
-    "令和8年分の扶養控除等申告書を勤務先に提出済みか確かめる。",
-    "保険料控除を受ける場合は、申告書に必要な証明書類を確認する。",
-    "国税庁の「各種申告書の記載例」で、氏名や扶養親族の書き方を確認する。"
+    "給与を2か所以上から受けている人は、扶養控除等申告書の提出先が1か所か確かめる。",
+    "23歳未満の扶養親族がいる人は、生命保険料控除の計算方法と証明書類を確認する。",
+    "電子申告を考えている人は、勤務先の給与システムが申告書データの取込みに対応するか確かめる。"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -193,5 +193,124 @@
     ],
     "ar": 1.373,
     "src": "https://ai-tech-express.jp/img/year-end-tax-adjustment-2026-forms-0d7bce97.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "令和8年分は、23歳未満の扶養親族がいる場合の生命保険料控除の特例が新設され、一般の生命保険料控除額の計算方法も変わっています。",
+      "source": "https://www.nta.go.jp/users/gensen/nencho/index/shikata.htm"
+    },
+    {
+      "text": "扶養控除等申告書は、2か所以上から給与を受けていても提出できるのは1か所だけです。提出先が複数にならないよう、勤務先を確認しましょう。",
+      "source": "https://www.nta.go.jp/users/gensen/nencho_shorui/pdf/02.pdf"
+    },
+    {
+      "text": "年調ソフトで申告書データを作れても、電子データを給与システムに取り込めるかは勤務先のシステム次第です。勤務先が未対応なら電子提出できるとは限りません。",
+      "source": "https://www.nta.go.jp/users/gensen/nenmatsu/nencho_01.htm"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "令和８年分年末調整のしかた（手順などの説明）",
+      "url": "https://www.nta.go.jp/users/gensen/nencho/index/shikata.htm",
+      "source": "https://www.nta.go.jp/users/gensen/nencho/index/shikata.htm",
+      "howTo": [
+        "国税庁ホームページ",
+        "利用者別に調べる",
+        "源泉徴収義務者の方",
+        "令和８年分年末調整のしかた（手順などの説明）"
+      ]
+    },
+    {
+      "name": "令和8年分 給与所得者の扶養控除等(異動)申告書",
+      "url": "https://www.nta.go.jp/users/gensen/nencho_shorui/pdf/02.pdf",
+      "source": "https://www.nta.go.jp/users/gensen/nencho_shorui/pdf/02.pdf",
+      "note": "2か所以上から給与を受けている場合、この申告書はそのうちの1か所にしか提出できません。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "給与を2か所以上から受けている人は、扶養控除等申告書の提出先が1か所か確かめる。",
+      "source": "https://www.nta.go.jp/users/gensen/nencho_shorui/pdf/02.pdf",
+      "steps": [
+        "令和8年分の扶養控除等申告書を確認する",
+        "提出先が複数になっていないか確認する"
+      ],
+      "url": "https://www.nta.go.jp/users/gensen/nencho_shorui/pdf/02.pdf"
+    },
+    {
+      "action": "23歳未満の扶養親族がいる人は、生命保険料控除の計算方法と証明書類を確認する。",
+      "source": "https://www.nta.go.jp/users/gensen/nencho/index/shikata.htm",
+      "steps": [
+        "「保険料控除申告書の受理と内容の確認」を見る",
+        "生命保険料の区分を証明書類で確認する",
+        "勤務先に提出する証明書類を確認する"
+      ],
+      "url": "https://www.nta.go.jp/users/gensen/nencho/index/shikata.htm"
+    },
+    {
+      "action": "電子申告を考えている人は、勤務先の給与システムが申告書データの取込みに対応するか確かめる。",
+      "source": "https://www.nta.go.jp/users/gensen/nenmatsu/nencho_01.htm",
+      "steps": [
+        "勤務先の給与システムの対応状況を確認する",
+        "対応する場合は年調ソフトで申告書データを作成する"
+      ],
+      "url": "https://www.nta.go.jp/users/gensen/nenmatsu/nencho_01.htm"
+    }
+  ],
+  "cause": {
+    "text": "令和8年分は、基礎控除の引上げ、給与所得控除の最低保障額の引上げ、扶養親族等の所得要件の改正が行われています。年齢23歳未満の扶養親族がいる場合の生命保険料控除の特例も設けられ、申告内容や控除額の確認に変更があります。",
+    "status": "background",
+    "source": "https://www.nta.go.jp/users/gensen/nencho/index/shikata.htm"
+  },
+  "worries": [
+    {
+      "q": "扶養親族がいなくても申告書を出す必要がある？",
+      "a": "申告書の各欄に記載する親族がなく、本人も障害者、寡婦、ひとり親、勤労学生のいずれにも該当しない場合でも、氏名や住所などを記載して給与の支払者に提出します。",
+      "source": "https://www.nta.go.jp/users/gensen/nencho_shorui/pdf/02.pdf",
+      "action": "扶養親族がいない人も、令和8年分の様式に氏名や住所などを記入して勤務先へ提出する。"
+    },
+    {
+      "q": "給与を複数の勤務先から受けている場合はどうする？",
+      "a": "扶養控除等申告書は、2か所以上から給与の支払を受けている場合、そのうちの1か所にしか提出できません。",
+      "source": "https://www.nta.go.jp/users/gensen/nencho_shorui/pdf/02.pdf",
+      "action": "提出先にする勤務先を確認し、同じ申告書を複数の勤務先へ提出しないようにする。"
+    },
+    {
+      "q": "保険料控除の証明書類は、どの保険でも必要？",
+      "a": "旧契約の一般の生命保険料は1契約の保険料が9,000円以下なら添付等が不要です。地震保険料は支払額にかかわらず証明書類が必要で、本人が直接支払った国民年金保険料などにも証明書類が必要です。",
+      "source": "https://www.nta.go.jp/users/gensen/nencho/index/shikata.htm",
+      "action": "保険の種類と契約ごとの金額を確認し、勤務先へ出す証明書類をそろえる。"
+    },
+    {
+      "q": "控除申告書を電子データで提出できる？",
+      "a": "国税庁の年調ソフトは、控除証明書等の電子データを使って申告書データまたは書面を作成できます。電子データを給与システムに取り込むには、勤務先のシステムが対応している必要があります。",
+      "source": "https://www.nta.go.jp/users/gensen/nenmatsu/nencho_01.htm",
+      "action": "勤務先の給与システムが申告書データの取込みに対応するか確認してから、年調ソフトの利用を決める。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "申告書を電子データで提出したほうがいい？",
+      "situation": "勤務先の給与システムの対応状況が分からない",
+      "recommend": "先に勤務先の対応を確認する",
+      "reason": "年調ソフトは電子データまたは書面を作成できますが、申告書データを給与システムに取り込んで年税額を計算するには、勤務先のシステムが対応している必要があります。",
+      "source": "https://www.nta.go.jp/users/gensen/nenmatsu/nencho_01.htm"
+    },
+    {
+      "question": "保険料控除の証明書類は添付が必要？",
+      "situation": "旧契約の一般の生命保険料がある",
+      "recommend": "契約ごとの保険料額で確認する",
+      "reason": "旧契約の一般の生命保険料は、1契約の保険料が9,000円以下なら証明書類の添付等は不要です。一方、地震保険料は支払額にかかわらず証明書類が必要です。",
+      "source": "https://www.nta.go.jp/users/gensen/nencho/index/shikata.htm"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "令和8年分は生命保険料控除の計算も変わる",
+    "cause": "年末調整の確認点が変わる背景",
+    "steps": "提出先と控除書類を確かめる",
+    "desk": "様式と手順は国税庁で確認",
+    "worries": "申告先や証明書類で迷ったら",
+    "guide": "書面か電子データかを決める前に"
+  },
+  "depthAt": "2026-11-22T21:54:49+00:00"
 }

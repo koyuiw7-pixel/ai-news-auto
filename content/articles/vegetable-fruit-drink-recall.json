@@ -60,8 +60,8 @@
   "affiliates": [],
   "newsType": "product",
   "todayActions": [
-    "手元の「25種類の野菜＋果実」の容量と、賞味期限2026年11月14日の表示を確かめる。",
-    "JANコード4573525941005を確認し、対象品なら購入店舗で回収・返金について相談する。"
+    "手元の商品が回収対象の900g紙パックか、表示の4項目を照合する。",
+    "表示が対象条件に合う商品は、購入店舗で回収・返金を依頼する。"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -117,5 +117,83 @@
     ],
     "ar": 1.773,
     "src": "https://ai-tech-express.jp/img/vegetable-fruit-drink-recall-ccab77cb.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "厚生労働省の公開回収事案では危険性の程度はCLASSⅡで、回収は「実施中」です。11月5日報告時点の回収割合は0％とされています。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602848"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "布袋乳業株式会社",
+      "url": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036106&screenkbn=03",
+      "source": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036106&screenkbn=03",
+      "note": "連絡先として岡山県倉敷市西中新田297番地1が掲載されています。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "手元の商品が回収対象の900g紙パックか、表示の4項目を照合する。",
+      "source": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036106&screenkbn=03",
+      "steps": [
+        "「商品名」「内容量」「形態」を確認する",
+        "JANコードと賞味期限を確認する"
+      ],
+      "url": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036106&screenkbn=03"
+    },
+    {
+      "action": "表示が対象条件に合う商品は、購入店舗で回収・返金を依頼する。",
+      "source": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036106&screenkbn=03",
+      "steps": [
+        "対象条件と商品表示を照合する",
+        "購入店舗へ持ち込み、回収・返金を依頼する"
+      ],
+      "url": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036106&screenkbn=03"
+    }
+  ],
+  "cause": {
+    "text": "回収理由は、添加物のアセスルファムカリウムの添加量が、食品衛生法で定められている上限値を超えていたことです。",
+    "status": "stated",
+    "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602848"
+  },
+  "worries": [
+    {
+      "q": "同じ商品名なら、どの容量や賞味期限でも対象ですか？",
+      "a": "対象として示されているのは、商品名「25種類の野菜+果実」、内容量900g、紙パック、JANコード4573525941005、賞味期限2026年11月14日の商品です。",
+      "source": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036106&screenkbn=03",
+      "action": "商品名だけで判断せず、手元のパックで内容量・形態・JANコード・賞味期限を照合してください。"
+    },
+    {
+      "q": "対象品を飲んだ人に、健康被害は報告されていますか？",
+      "a": "厚生労働省の公開回収事案では、健康被害の発生状況は「なし」とされています。また、体重50kgの人では1,190gの摂取によりADIを超過する可能性があると記載されています。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602848",
+      "action": "対象品が手元に残っている場合は、表示を照合し、該当すれば購入店舗で回収・返金を依頼してください。",
+      "actionSource": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036106&screenkbn=03"
+    },
+    {
+      "q": "対象品だった場合、どこで回収や返金を受けられますか？",
+      "a": "回収は購入店舗で実施し、回収後は返金対応とされています。回収情報は販売店におけるPOPで周知すると記載されています。",
+      "source": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036106&screenkbn=03",
+      "action": "対象条件に合う商品は購入店舗へ持ち込み、回収と返金について相談してください。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "表示が対象条件に合ったら、どうすればいい？",
+      "situation": "900g紙パックで賞味期限などが一致する",
+      "recommend": "購入店舗で回収・返金を依頼する",
+      "reason": "回収方法は購入店舗で実施、回収後の対応は返金とされています。対象条件は商品名、内容量、形態、JANコード、賞味期限で示されています。",
+      "source": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036106&screenkbn=03"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "回収は実施中、危険性の程度はCLASSⅡ",
+    "cause": "添加物の量が上限を超えた",
+    "steps": "表示を照合して購入店舗へ",
+    "desk": "回収・返金の問い合わせ先",
+    "worries": "対象品や健康への影響が気になる",
+    "guide": "対象表示に合ったときの対応"
+  },
+  "depthAt": "2026-11-22T21:56:39+00:00"
 }
