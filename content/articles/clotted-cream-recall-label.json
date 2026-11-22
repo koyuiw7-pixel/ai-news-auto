@@ -54,14 +54,14 @@
   "videoTitle": "エルワールド「自家製クロテッドクリーム」2026年11月、瓶の白シール「271120」は正しい期限ですか",
   "publishedAt": "2026-11-22T04:13:11.264779+00:00",
   "generatedAt": "2026-11-22T04:13:36.981124+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/clotted-cream-recall-label-figure-a4c7cf73.jpg",
   "model": "openai-api:gpt-6.1-terra",
   "affiliates": [],
   "newsType": "product",
   "todayActions": [
-    "自家製クロテッドクリームの瓶中央を見て、白シールが「271120」か確かめる。",
-    "対象品は氏名・住所・電話番号またはメールアドレスのメモを添え、エルワールドへ着払いで返送する。",
-    "対象か分からない場合は、エルワールドの06-4708-8117に平日午前9時〜午後5時に問い合わせる。"
+    "購入店・販売期間と白シールを照合し、対象品か確かめる",
+    "対象品は、連絡先を書いたメモを添えて着払いで返送する",
+    "対象か判断できなければ、エルワールドへ電話かフォームで確認する"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -88,5 +88,107 @@
   "summaryLine": "自家製クロテッドクリームの白シール「271120」は誤表示で、22個が回収対象です。",
   "relatedSlugs": [
     "fujisawa-bakery-recall-chocokorone-2026"
-  ]
+  ],
+  "todaySteps": [
+    {
+      "action": "購入店・販売期間と白シールを照合し、対象品か確かめる",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202603003",
+      "steps": [
+        "販売期間が2026年11月8日から15日か確認する",
+        "購入店が記載のTEA ROOM KIKI 4店舗か確認する",
+        "瓶中央の白色期限シールが271120か見る"
+      ],
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202603003"
+    },
+    {
+      "action": "対象品は、連絡先を書いたメモを添えて着払いで返送する",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202603003",
+      "steps": [
+        "氏名・住所・電話番号またはメールアドレスを書く",
+        "メモを商品に同封する",
+        "記載の返送先へ着払いで送る"
+      ],
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202603003"
+    },
+    {
+      "action": "対象か判断できなければ、エルワールドへ電話かフォームで確認する",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202603003",
+      "steps": [
+        "電話は06-4708-8117",
+        "受付は平日午前9時〜午後5時",
+        "お問い合わせフォームを利用する"
+      ]
+    }
+  ],
+  "cause": {
+    "text": "本来「261120」と表示すべき賞味期限を「271120」と誤って表示して販売したことが回収理由です。厚生労働省の公開情報では、食品表示法違反とされています。",
+    "status": "stated",
+    "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202603003"
+  },
+  "worries": [
+    {
+      "q": "食べてしまったが、健康被害は出ている？",
+      "a": "11月20日現在、健康被害の届出はありません。一方、本来の賞味期限を超えて食べた場合は、下痢や腹痛などの症状が出る可能性があるとされています。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202603003",
+      "action": "残っている商品は食べず、対象品なら連絡先を書いたメモを添えて着払いで返送する。"
+    },
+    {
+      "q": "返送すれば、商品代金はどうやって返金される？",
+      "a": "返送品が対象商品であることを確認したうえで、商品代金が返金されます。振込先の確認方法は、エルワールドから個別に案内されます。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202603003",
+      "action": "氏名・住所・電話番号またはメールアドレスを書いたメモを同封し、対象商品を着払いで送る。"
+    },
+    {
+      "q": "白シールが261120でも、回収対象になる？",
+      "a": "本来表示すべき賞味期限は261120で、誤表示された対象商品のシールは271120です。261120のシールが貼られた商品は今回の誤表示品ではありません。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202603003",
+      "action": "瓶中央の白色期限シールを見て、271120か261120かを確認する。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "白シールの数字が違うとき、どうする？",
+      "situation": "白シールが271120",
+      "recommend": "食べずに着払いで返送する",
+      "reason": "271120は本来261120と表示すべきところ誤表示された対象表示です。対象品は食べず、着払いで返送すると、事業者が対象品と確認したうえで商品代金を返金します。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202603003"
+    },
+    {
+      "question": "白シールの数字が違うとき、どうする？",
+      "situation": "白シールが261120",
+      "recommend": "今回の回収対象ではない",
+      "reason": "ページでは本来の表示を261120としており、今回の回収対象表示は271120です。261120のシールなら、今回の誤表示品ではありません。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202603003"
+    }
+  ],
+  "depthHeadings": {
+    "cause": "期限シールの誤表示が回収理由",
+    "steps": "対象確認から返送・問い合わせまで",
+    "worries": "食べた場合や返金が気になる人へ",
+    "guide": "白シールの数字で対応を選ぶ"
+  },
+  "depthAt": "2026-11-22T04:30:07+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "エルワールド「自家製クロテッドクリーム」の白シール「271120」は誤表示",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-22T04:32:41+00:00"
+  },
+  "imageFocus": {
+    "x": 0.517,
+    "y": 0.405,
+    "box": [
+      0.066,
+      0.036,
+      0.969,
+      0.774
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/clotted-cream-recall-label-figure-a4c7cf73.jpg"
+  }
 }

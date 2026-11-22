@@ -54,14 +54,14 @@
   "videoTitle": "アジア開発貿易「伊藤家のごまたかな」2026年11月、賞味期限の横の「Y」が目印の35,400パック回収",
   "publishedAt": "2026-11-22T04:11:54.451220+00:00",
   "generatedAt": "2026-11-22T04:12:19.619735+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/ito-gomataka-recall-y-figure-5842cdb2.jpg",
   "model": "openai-api:gpt-6.1-terra",
   "affiliates": [],
   "newsType": "product",
   "todayActions": [
-    "手元の「伊藤家のごまたかな」の袋で、賞味期限が「2027.05.19Y」か確認する。",
-    "対象の250g袋は食べずに、店舗回収または返送の案内を確認する。",
-    "返送を希望する場合は、アジア開発貿易の案内で連絡方法と送料の扱いを確かめる。"
+    "袋の内容量と賞味期限、横の「Y」を厚労省の事案詳細と照合する。",
+    "表示が一致した商品は、食べずに販売店で店舗回収の方法を確認する。",
+    "返送を希望する人は、事業者ホームページで連絡受付による返送方法を確認する。"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -98,5 +98,118 @@
   "summaryLine": "「伊藤家のごまたかな」は、全国で販売された3万5,400パックを対象に自主回収されています。",
   "relatedSlugs": [
     "fujisawa-bakery-recall-chocokorone-2026"
-  ]
+  ],
+  "insight": [
+    {
+      "text": "回収状況は「未集計」とされており、回収がどこまで進んだかはまだ集計されていません。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602931"
+    },
+    {
+      "text": "対象品は輸入食品で、輸入国は中国です。商品名だけで判断せず、容量や賞味期限などの表示も合わせて照合してください。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602931"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "厚生労働省 食品衛生公開 公開回収事案詳細",
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602931",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602931",
+      "note": "回収後の対応は返金対応とされています。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "袋の内容量と賞味期限、横の「Y」を厚労省の事案詳細と照合する。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602931",
+      "steps": [
+        "袋の内容量が250gか確認する",
+        "賞味期限が2027.05.19Yか確認する",
+        "JANコード4968589001275も照合する"
+      ],
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602931"
+    },
+    {
+      "action": "表示が一致した商品は、食べずに販売店で店舗回収の方法を確認する。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602931",
+      "steps": [
+        "対象表示か確かめる",
+        "販売店で店舗回収を確認する"
+      ],
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602931"
+    },
+    {
+      "action": "返送を希望する人は、事業者ホームページで連絡受付による返送方法を確認する。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602931",
+      "steps": [
+        "事業者ホームページを確認する",
+        "返送の連絡方法と送料の扱いを確認する"
+      ]
+    }
+  ],
+  "cause": {
+    "text": "お客様から商品の色目と風味異常の申し出があり、食品衛生法第20条に該当するとして回収されています。",
+    "status": "stated",
+    "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602931"
+  },
+  "worries": [
+    {
+      "q": "食べてしまった場合、健康への影響はありますか？",
+      "a": "2026.11.17時点で健康被害は発生していません。一方、対象品を食べた場合、腹痛や嘔吐などの健康被害が発生する可能性があるとされています。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602931",
+      "action": "手元に残っている対象品は食べず、店舗回収か連絡受付による返送を利用してください。"
+    },
+    {
+      "q": "商品名が同じなら、どの袋も回収の対象ですか？",
+      "a": "対象として示されているのは、内容量250ｇ、袋包装、JANコード4968589001275で、賞味期限が2027.05.19Yの商品です。賞味期限の横にアルファベットの『Y』があることも条件です。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602931",
+      "action": "手元の袋で内容量、JANコード、賞味期限と横のYを照合してください。"
+    },
+    {
+      "q": "回収に出したら、代金は返してもらえますか？",
+      "a": "厚生労働省の公開回収事案詳細では、回収後の対応は返金対応とされています。回収方法として、店舗回収と連絡受付による返送が案内されています。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602931",
+      "action": "店舗回収か返送のどちらかを選び、返送の場合は事業者ホームページで連絡方法を確認してください。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "対象表示の袋は食べてもいい？",
+      "situation": "内容量250gで期限とYが一致する",
+      "recommend": "食べずに回収方法を確認する",
+      "reason": "対象品について、2026.11.17時点で健康被害は発生していませんが、食べた場合は腹痛、嘔吐などの健康被害が発生する可能性があるとされています。回収方法は店舗回収または連絡受付による返送です。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602931"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "回収状況はまだ未集計",
+    "cause": "色や風味の異常申し出がきっかけ",
+    "steps": "袋の容量と期限、Yを照合",
+    "desk": "厚労省の詳細で対象表示を確認",
+    "worries": "食べた後や返金が気になる",
+    "guide": "食べずに回収へ出すかの目安"
+  },
+  "depthAt": "2026-11-22T04:30:36+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "「伊藤家のごまたかな」自主回収",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-22T04:32:12+00:00"
+  },
+  "imageFocus": {
+    "x": 0.463,
+    "y": 0.417,
+    "box": [
+      0.034,
+      0.048,
+      0.891,
+      0.786
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/ito-gomataka-recall-y-figure-5842cdb2.jpg"
+  }
 }

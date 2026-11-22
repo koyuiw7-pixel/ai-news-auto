@@ -60,8 +60,8 @@
   "affiliates": [],
   "newsType": "general",
   "todayActions": [
-    "手元のAlphaLing W-07の製造番号が、指定された2つの番号に当てはまるか確かめる。",
-    "対象品なら、SACDOTNETの24時間受付フォームかメールで回収・交換について連絡する。"
+    "手元のAlphaLing W-07の製造番号を、対象の2つの番号と照合する。",
+    "対象番号と一致したら、オンライン受付フォームから回収・交換を問い合わせる。"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -114,5 +114,82 @@
     ],
     "ar": 1.5306,
     "src": "https://ai-tech-express.jp/img/alphaling-w07-charger-recall-7eed9eb5.jpg"
-  }
+  },
+  "officialDesk": [
+    {
+      "name": "株式会社SACDOTNET オンライン受付フォーム",
+      "url": "https://w-07.sacdot.net/form_w-07.html",
+      "source": "https://www.meti.go.jp/product_safety/recall/file/261120-1.html",
+      "howTo": [
+        "製品安全ガイド",
+        "リコール情報",
+        "製品別リコール情報",
+        "オンライン受付フォーム"
+      ],
+      "hours": "24時間",
+      "note": "受付窓口は月曜日～金曜日 8：30～17：00（土・日・祝日は除く）です。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "手元のAlphaLing W-07の製造番号を、対象の2つの番号と照合する。",
+      "source": "https://www.meti.go.jp/product_safety/recall/file/261120-1.html",
+      "steps": [
+        "リコール情報に記載の対象製造番号を確認",
+        "製品の製造番号と照合"
+      ],
+      "url": "https://www.meti.go.jp/product_safety/recall/file/261120-1.html"
+    },
+    {
+      "action": "対象番号と一致したら、オンライン受付フォームから回収・交換を問い合わせる。",
+      "source": "https://www.meti.go.jp/product_safety/recall/file/261120-1.html",
+      "steps": [
+        "オンライン受付フォームを開く",
+        "回収・交換について問い合わせる"
+      ],
+      "url": "https://w-07.sacdot.net/form_w-07.html"
+    }
+  ],
+  "cause": {
+    "text": "電池セル内部に不具合が存在する可能性が判明しています。充放電を繰り返すと内部で金属析出が生じ、異常発熱や出火に至るおそれがあるため、回収・交換が行われます。",
+    "status": "stated",
+    "source": "https://www.meti.go.jp/product_safety/recall/file/261120-1.html"
+  },
+  "worries": [
+    {
+      "q": "手元の製品が今回の回収対象か、何で見分ける？",
+      "a": "対象の製造番号はP:75765764とP:75756671です。商品名や販売期間だけでなく、手元の製品の製造番号がどちらかに一致するか確認します。",
+      "source": "https://www.meti.go.jp/product_safety/recall/file/261120-1.html",
+      "action": "製造番号を2つの対象番号と照合し、一致した場合はオンライン受付フォームから回収・交換を問い合わせてください。"
+    },
+    {
+      "q": "対象品を使い続けると、どんな危険がある？",
+      "a": "電池セル内部に不具合が存在する可能性があり、充放電の繰り返しに伴って内部で金属析出が生じ、異常発熱および出火に至るおそれがあるとされています。",
+      "source": "https://www.meti.go.jp/product_safety/recall/file/261120-1.html",
+      "action": "製造番号が対象番号と一致する場合は、オンライン受付フォームから回収・交換について問い合わせてください。"
+    },
+    {
+      "q": "平日の受付時間外でも回収・交換を相談できる？",
+      "a": "オンライン受付フォームは24時間利用できます。受付窓口の時間は月曜日～金曜日 8：30～17：00で、土・日・祝日は除かれます。",
+      "source": "https://www.meti.go.jp/product_safety/recall/file/261120-1.html",
+      "action": "受付窓口の時間外や土日祝日は、24時間利用できるオンライン受付フォームから連絡してください。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "製造番号が対象番号と一致したら？",
+      "situation": "P:75765764またはP:75756671に一致",
+      "recommend": "フォームで回収・交換について確認する",
+      "reason": "経済産業省は対象製造番号をP:75765764とP:75756671と示し、対策を回収・交換としています。番号が一致する場合は、窓口で回収・交換について確認できます。",
+      "source": "https://www.meti.go.jp/product_safety/recall/file/261120-1.html"
+    }
+  ],
+  "depthHeadings": {
+    "cause": "電池セル内部の不具合が発熱や出火につながるおそれ",
+    "steps": "番号を照合して対象ならフォームへ",
+    "desk": "24時間使える回収・交換の受付フォーム",
+    "worries": "対象番号や発熱のおそれ、問い合わせ時間は？",
+    "guide": "対象番号に一致したときの対応"
+  },
+  "depthAt": "2026-11-22T04:30:59+00:00"
 }
