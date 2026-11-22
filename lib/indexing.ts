@@ -6,6 +6,8 @@ import rules from "./index-rules.json";
 import zeroVisit from "../content/noindex_zero_visit.json";
 // 検索に出したままにする一覧ページ（2026-11-12 AdSense 監査。読まれた一覧は、記事が少なくても外さない）
 import listGuard from "../content/list_pages_protected.json";
+// 検索に実際に表示されていたので、本文が短くても short にしない記事（2026-11-22・台帳 A72 の例外。scripts/indexnow.py も同じファイルを読む）
+import shortExempt from "../content/noindex_short_exempt.json";
 
 /**
  * Google に見せる記事を選ぶ（サイトでは全記事を読める。noindex でも一覧・内部リンクには残す）。
@@ -160,6 +162,7 @@ export const NO_BODY: number = rules.noBody;
  * これより短い記事は検索に出さない。記事は消さず、公開したまま一覧・リンクに残し、広告・提携の囲みも出す
  */
 export const SHORT_BODY: number = rules.shortBody;
+const SHORT_EXEMPT = new Set<string>(shortExempt.slugs);
 
 /**
  * 検索に出さない理由（出すなら null）。scripts/indexnow.py の noindex_reason と同じ。
@@ -172,7 +175,7 @@ export function noindexReason(article: ArticleSummary): string | null {
   if (article.type === "roundup") return null;
   if ((article.bodyLength ?? 0) < NO_BODY) return "no-body";
   // 2026-11-21 オーナー承認: 空白を除いた本文が 800字未満は検索に出さない（bodyChars が無い古い索引では bodyLength で見る）
-  if ((article.bodyChars ?? article.bodyLength ?? 0) < SHORT_BODY) return "short";
+  if ((article.bodyChars ?? article.bodyLength ?? 0) < SHORT_BODY && !SHORT_EXEMPT.has(article.slug)) return "short";
   // 重複の印は記事 JSON の duplicateOf と、索引を作るときの予備の判定（lib/article-index.mjs の markDuplicates）
   if (article.duplicate || (article.duplicateOf && article.duplicateOf !== article.slug)) return "duplicate";
   // 14日間訪問0の記事（content/noindex_zero_visit.json。2026-11-10 オーナー承認。記事は消さない）

@@ -35,7 +35,7 @@ import os
 import re
 import sys
 import time
-from datetime import datetime, timedelta, timezone
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -56,6 +56,9 @@ DEFAULT_MAX = 5
 # 2026-11-22 オーナー「任せる」（台帳 A76）: Claude の月の予算を止めている間、この週1回の書き直しだけ OpenAI の API クレジットで書く。
 # ワークフローのこの段だけが SEARCH_REFRESH_OPENAI=1 を渡す。予算の守り（llm.openai_block_reason）と品質ゲートは同じ
 OPENAI_MAX = 5
+# 2026-11-22: Google からの訪問が 11/20 の約26 から 11/21 は8、11/22 は5 に減った。Search Console のデータが 11/20 までで原因が分からないので、
+# データを読めるまで検索に出ている記事を書き換えない。--weekly はこの日（日本時間）より前は何もしない。次に動けるのは月曜 11/30。--slug の手動は使える
+WEEKLY_HOLD_UNTIL = date(2026, 11, 30)
 TIME_BUDGET_SEC = 1200  # ワークフローの timeout 1500 秒より前に、新しい記事を始めるのをやめる
 
 FOCUS = """# 今回の書き直しで必ず守ること（検索から来た人への答えを先に。2026-11-09 オーナー承認・台帳 A68）
@@ -222,6 +225,11 @@ def is_monday_jst(now: datetime) -> bool:
     return now.astimezone(JST).weekday() == 0
 
 
+def weekly_held(now: datetime) -> bool:
+    """毎週の書き直しを止めている期間か（日本時間の日付で WEEKLY_HOLD_UNTIL より前）"""
+    return now.astimezone(JST).date() < WEEKLY_HOLD_UNTIL
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--apply", action="store_true")
@@ -230,6 +238,9 @@ def main() -> int:
     ap.add_argument("--slug", default="", help="カンマ区切り（順位の一覧にある記事）")
     args = ap.parse_args()
     now = datetime.now(timezone.utc)
+    if args.weekly and weekly_held(now):
+        print(f"[search-refresh] 毎週の書き直しは {WEEKLY_HOLD_UNTIL.isoformat()}（日本時間）まで止めています。今回は何もしません")
+        return 0
     if args.weekly and not is_monday_jst(now):
         print("[search-refresh] 毎週月曜（日本時間）だけ書き直します。今日は何もしません")
         return 0

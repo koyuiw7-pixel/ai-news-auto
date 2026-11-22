@@ -56,6 +56,18 @@ def _zero_visit_slugs() -> frozenset[str]:
 
 
 ZERO_VISIT = _zero_visit_slugs()
+# 検索に実際に表示されていたので、本文が短くても short の noindex にしない記事（2026-11-22・台帳 A72 の例外。lib/indexing.ts も同じファイルを読む）
+SHORT_EXEMPT_FILE = ROOT / "content" / "noindex_short_exempt.json"
+
+
+def _short_exempt_slugs() -> frozenset[str]:
+    try:
+        return frozenset(json.loads(SHORT_EXEMPT_FILE.read_text("utf-8")).get("slugs") or [])
+    except (OSError, ValueError):
+        return frozenset()
+
+
+SHORT_EXEMPT = _short_exempt_slugs()
 
 
 def site_url() -> str:
@@ -552,7 +564,8 @@ def noindex_reason(article: dict, dups: set[str] | frozenset = frozenset()) -> s
         return "no-body"
     # 2026-11-21 オーナー承認（AdSense の3回目の申請の前の準備）: 本文が 800字未満（空白を除く）の記事は検索に出さない。
     # 台帳 A61 の「本文の長さでは外さない」の例外はこの1つだけ（題名の語・主題では今までどおり外さない）。広告・提携の囲みは出す
-    if len(re.sub(r"\s", "", str(article.get("body", "")))) < SHORT_BODY:
+    # 2026-11-22: 検索に表示されていた記事（content/noindex_short_exempt.json）は short にしない
+    if len(re.sub(r"\s", "", str(article.get("body", "")))) < SHORT_BODY and article.get("slug") not in SHORT_EXEMPT:
         return "short"
     if article.get("slug") in dups or (article.get("duplicateOf") and article.get("duplicateOf") != article.get("slug")):
         return "duplicate"
