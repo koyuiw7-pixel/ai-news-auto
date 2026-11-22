@@ -472,7 +472,7 @@ class FastLaneTest(unittest.TestCase):
         self.assertTrue(web_articles.is_stale(item))
         self.assertTrue(web_articles.breaking_candidate(item))
         self.assertFalse(news_mix.review_ai_blocks({**item, "section": web_articles.major_lane(item)},
-                                                   breaking=web_articles.breaking_candidate(item), today="2026-11-14"))
+                                                   breaking=web_articles.breaking_candidate(item)))
         # SNS の【速報】にはしない（公共性の枠の決まり: 速報の投稿はミサイル・災害だけ）
         fresh = {**item, "published_at": datetime.now(timezone.utc) - timedelta(minutes=5)}
         self.assertFalse(web_articles.breaking_record(fresh))

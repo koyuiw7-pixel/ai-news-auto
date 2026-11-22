@@ -40,8 +40,9 @@ class CapTest(unittest.TestCase):
         self.assertEqual(self._count(entries), 6)
 
     def test_safety_breaking_and_ordered_are_not_counted(self):
-        entries = [{"major": True}, {"breaking": True}, {"safetyLane": True}, {"writer": "muse"}, {}, {}, {}, {}]
-        articles = {4: {"fastLane": True}, 5: {"disaster": True}, 6: {"safetyAlert": True}, 7: {"museFile": "a.md"}}
+        entries = [{"ordered": True}, {"major": True}, {"safetyLane": True}, {"writer": "muse"}, {}, {}, {}, {}]
+        articles = {1: {"title": "会員情報が流出"}, 4: {"fastLane": True, "title": "ドコモで通信障害"}, 5: {"disaster": True},
+                    6: {"safetyAlert": True}, 7: {"museFile": "a.md"}}
         self.assertEqual(self._count(entries, articles), 0)
 
     def test_safety_titles(self):

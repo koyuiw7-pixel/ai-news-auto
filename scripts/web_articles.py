@@ -392,13 +392,14 @@ def public_interest_pick(item: dict, left: int, signals: list[dict] | None = Non
     return public_interest.category(item.get("title") or "", item.get("summary") or "")
 
 
-SAFETY_CATEGORIES = ("missile", "disaster", "breach", "recall", "scam")
-
-
 def is_safety_item(item: dict) -> bool:
-    """命・安全・被害の確認にかかわる話題か（ミサイル・災害・流出・リコール・詐欺・障害）。1日30本の外（台帳 A74・S41）"""
-    title = item.get("title") or ""
-    return public_interest.category(title) in SAFETY_CATEGORIES or public_interest.wide_category(title) == "outage"
+    """読者の安全かお金に直接かかわる話題か（定義は public_interest.reader_urgent）。1日30本の外（台帳 A75・S41）"""
+    return bool(public_interest.reader_urgent(item.get("title") or ""))
+
+
+def cap_free(item: dict) -> bool:
+    """1日30本を超えても作る候補か: 読者の安全・お金の話、事故の見張り、チームが指示した fast_url（台帳 A75）"""
+    return bool(item.get("ordered") or item.get("_incident") or is_safety_item(item))
 
 
 def major_max_runs(item: dict) -> int:
@@ -445,9 +446,9 @@ def breaking_record(item: dict) -> bool:
 
 
 def breaking_candidate(item: dict) -> bool:
-    """作る前の見立て: この候補は速報の扱いか（審査の期間の門 news_mix.review_ai_blocks の外にする）。
-    速報レーン（fast）の候補は、日付の確かめが本文を読んだあとになるので、ここではいつも速報の扱いにして止めない"""
-    return bool(item.get("fast")) or breaking_record(item)
+    """海外の AI を止める門（news_mix.review_ai_blocks）の外にする候補か。読者の安全・お金の話とチームの指示だけ（台帳 A75）。
+    Worker が見つけた企業の発表（fast）や、新しい発表というだけの候補は外にしない"""
+    return cap_free(item)
 
 
 def major_lane(item: dict) -> str:
@@ -2115,6 +2116,8 @@ def build_fast_items(urls: list[str], meta_raw: str, state: dict, now: datetime)
         item["published_at"] = published or detected
         item["published_guessed"] = published is None
         item.update({"fast": True, "fast_key": key, "detected_at": detected})
+        if manual:
+            item["ordered"] = True  # fast_meta なし＝チームが URL を指定して起動した回（台帳 A75: 上限に数えず止めない）
         if incident:
             # 「自分は対象か」の形で書く・公共性の枠（情報流出・リコール）の門と書き方を当てる・SNS の【速報】にはしない
             item["_incident"] = incident
@@ -2145,6 +2148,12 @@ def build_fast_items(urls: list[str], meta_raw: str, state: dict, now: datetime)
                 **base, "outcome": "duplicate", "slug": done.get("slug") or done.get("updated") or "",
                 "reason": "通常の回などで処理済み",
             }
+        if not cap_free(item) and iid not in state["processed_web"] and pacing.routine_full(state, now):
+            # 台帳 A75: Worker が見つけた企業の発表は30本の中。見送りの印は付けない（通常の回が次の日の枠で拾う）。
+            # outcome を capped にすると Worker が毎回オーナーに通知するので skipped にする
+            log(f"[fast] 今日の30本に達しているので通常の回に任せます（安全・お金の話ではない）: {item['title'][:60]}")
+            results[key] = {**base, "title": item["title"][:200], "outcome": "skipped", "reason": "今日の30本（台帳 A75）"}
+            continue
         items.append(item)
         ok, why = fast_lane.relevant(item["title"], item["source_slug"])
         log(
@@ -2938,8 +2947,11 @@ def main() -> int:
         return action, found
 
     def _pick(cand: dict, is_ai: bool, major: bool = False, trend: bool = False):
+        if major and not cap_free(cand) and args.daily_cap and generated_today(state) >= args.daily_cap:
+            # 台帳 A75: 安全・お金の話でない大きなニュースは30本の中。上限のあとは見送りの印を付けず、次の日の枠で競う
+            return "next", "今日の30本（台帳 A75）に達した企業の発表など"
         if major and news_mix.review_ai_blocks({**cand, "section": major_lane(cand)}, breaking=breaking_candidate(cand)):
-            # 審査の期間: 大きなニュースの流れに乗る候補（リリースノートの見張り・発表から時間のたった発表）も、速報でなければ作らない。
+            # 海外の AI の発表は、大きなニュースの流れに乗る候補（速報レーン・リリースノートの見張りなど）も作らない（台帳 A75）。
             # 見張りの候補が残り続けて次の候補をふさがないよう、見送りの印を付ける
             mark(state, cand, skipped=True, reason=f"review: {news_mix.REVIEW_AI_REASON}"[:200])
             return "drop", news_mix.REVIEW_AI_REASON
@@ -3255,7 +3267,8 @@ def main() -> int:
         mark(state, item, slug=record["slug"], model=model_name, section=lane, score=record.get("qualityScore"),
              **({"offPersona": True} if item.get("_off_persona") else {}),
              **({"major": True} if major else {}), **({"breaking": True} if record.get("breaking") else {}),
-             **({"safetyLane": True} if is_safety_item(item) else {}),  # 1日30本に数えない（台帳 A74・S41）
+             **({"safetyLane": True} if is_safety_item(item) or item.get("_incident") else {}),  # 1日30本に数えない（台帳 A75・S41）
+             **({"ordered": True} if item.get("ordered") else {}),  # チームが指示した fast_url（1日30本に数えない）
              **({"publicInterest": item["_public_interest"]} if item.get("_public_interest") else {}),
              **({"foreignAi": True} if is_ai and is_foreign_ai(item) and not trend_term else {}),
              # 話題のレーンの記事は、1日の上限・種類別の配分に数えない（trendLane の印。mix を空にする）

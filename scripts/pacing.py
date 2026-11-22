@@ -7,7 +7,7 @@
    夜中に使えるのは上限の NIGHT_SHARE（既定 3割）まで。残りは 7時〜23時に少しずつ使えるようにする
    （1時間先までの分を前借りできる）。読まれる昼間と SNS の投稿枠に新しい記事が出るようにするため。
    夜中に使わなかった候補は消えずに残るので（対象は発表から48時間以内）、朝からの回で記事になる。
-   速報レーン・大きなニュースはこの配分の外（上限に達していても作る。従来どおり）。
+   読者の安全・お金の話とチームの指示の記事はこの配分の外（上限に達していても作る。台帳 A75）。
 
   python3 scripts/pacing.py          # 今日の時間ごとの本数（作った本数 / いま公開中の本数）と、いまの配分を表示
   python3 scripts/pacing.py --days 2 # 昨日の分も表示
@@ -24,6 +24,7 @@ from pathlib import Path
 import sys
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+import public_interest  # noqa: E402  1日30本の外の話題の判定（台帳 A75）
 import ramp  # noqa: E402
 
 JST = timezone(timedelta(hours=9))
@@ -65,12 +66,20 @@ def _article(slug: str, articles_dir: Path | None = None) -> dict:
 
 
 def cap_exempt(entry: dict, article: dict | None = None) -> bool:
-    """1日30本（台帳 A74）に数えない記事か。速報・大きなニュース（速報レーンの記事もこの印）・安全情報（S41）と、
-    Muse・オーナーの指示の記事。記録（processed_web）と記事の両方の印を見る"""
+    """1日30本（台帳 A74）に数えない記事か（台帳 A75 で狭めた）。読者の安全・お金に直接かかわる話（S41）と、
+    チームが指示した fast_url（ordered）・Muse の記事だけ。企業の発表・人事・新製品・決算・スポーツは、
+    major / breaking / fastLane の印があっても30本に数える"""
     article = article or {}
-    if entry.get("major") or entry.get("breaking") or entry.get("safetyLane") or entry.get("writer") == "muse":
+    if entry.get("safetyLane") or entry.get("ordered") or entry.get("writer") == "muse":
         return True
-    return any(article.get(key) for key in ("breaking", "fastLane", "disaster", "safetyAlert", "museFile"))
+    if any(article.get(key) for key in ("disaster", "safetyAlert", "museFile")):
+        return True
+    title = str(article.get("title") or entry.get("title") or "")
+    try:
+        at = datetime.fromisoformat(str(entry.get("at")))
+    except ValueError:
+        at = None
+    return bool(public_interest.reader_urgent(title, at))
 
 
 def live_today(state: dict, now: datetime | None = None, articles_dir: Path | None = None) -> int:

@@ -16,6 +16,7 @@ from unittest import mock
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 import main as m  # noqa: E402
+import ramp  # noqa: E402
 import news_mix  # noqa: E402
 import roundup  # noqa: E402
 import web_articles as w  # noqa: E402
@@ -28,18 +29,20 @@ WATCH = {"title": "Claude: Claude Meetings is rolling out in beta on Team and En
 
 class SharedGateTest(unittest.TestCase):
     def test_foreign_ai_blocked_in_review(self):
-        self.assertTrue(news_mix.review_ai_blocks({"section": "ai", "lang": "en"}, today=IN))
-        self.assertTrue(news_mix.review_ai_blocks({"genreSlug": "ai", "channelSlug": "openai"}, today=IN))
+        self.assertTrue(news_mix.review_ai_blocks({"section": "ai", "lang": "en"}))
+        self.assertTrue(news_mix.review_ai_blocks({"genreSlug": "ai", "channelSlug": "openai"}))
 
     def test_breaking_never_blocked(self):
-        self.assertFalse(news_mix.review_ai_blocks({"section": "ai", "lang": "en"}, breaking=True, today=IN))
+        self.assertFalse(news_mix.review_ai_blocks({"section": "ai", "lang": "en"}, breaking=True))
 
     def test_japanese_and_other_sections_pass(self):
-        self.assertFalse(news_mix.review_ai_blocks({"section": "ai", "lang": "ja"}, today=IN))
-        self.assertFalse(news_mix.review_ai_blocks({"section": "lifestyle", "lang": "en"}, today=IN))
+        self.assertFalse(news_mix.review_ai_blocks({"section": "ai", "lang": "ja"}))
+        self.assertFalse(news_mix.review_ai_blocks({"section": "lifestyle", "lang": "en"}))
 
-    def test_after_review_passes(self):
-        self.assertFalse(news_mix.review_ai_blocks({"section": "ai", "lang": "en"}, today=OUT))
+    def test_stays_blocked_after_review(self):
+        # 台帳 A75: 11/27 を過ぎても日付では戻らない
+        self.assertFalse(ramp.in_adsense_review(OUT))
+        self.assertTrue(news_mix.review_ai_blocks({"section": "ai", "lang": "en"}))
 
 
 class WebMajorLaneTest(unittest.TestCase):
@@ -48,27 +51,29 @@ class WebMajorLaneTest(unittest.TestCase):
     def test_watch_item_is_not_breaking_and_blocked(self):
         self.assertEqual(w.major_lane(WATCH), "ai")
         self.assertFalse(w.breaking_candidate(WATCH))
-        self.assertTrue(news_mix.review_ai_blocks({**WATCH, "section": w.major_lane(WATCH)}, breaking=w.breaking_candidate(WATCH), today=IN))
+        self.assertTrue(news_mix.review_ai_blocks({**WATCH, "section": w.major_lane(WATCH)}, breaking=w.breaking_candidate(WATCH)))
 
-    def test_fast_lane_item_stays_exempt(self):
+    def test_auto_fast_lane_item_is_blocked_but_ordered_passes(self):
+        # 台帳 A75: Worker が見つけた海外の AI の発表は止める。チームが指示した fast_url は止めない
         fast = {"title": "Introducing Gemini 4 Hydrogen", "lang": "en", "fast": True, "source_slug": "google-deepmind-blog",
                 "published_at": datetime.now(timezone.utc) - timedelta(hours=30)}
-        self.assertTrue(w.breaking_candidate(fast))
-        self.assertFalse(news_mix.review_ai_blocks({**fast, "section": "ai"}, breaking=w.breaking_candidate(fast), today=IN))
+        self.assertFalse(w.breaking_candidate(fast))
+        self.assertTrue(news_mix.review_ai_blocks({**fast, "section": "ai"}, breaking=w.breaking_candidate(fast)))
+        ordered = {**fast, "ordered": True}
+        self.assertTrue(w.breaking_candidate(ordered))
+        self.assertFalse(news_mix.review_ai_blocks({**ordered, "section": "ai"}, breaking=w.breaking_candidate(ordered)))
 
-    def test_fresh_breaking_major_stays_exempt(self):
-        item = {"title": "x", "lang": "en", "source_slug": "openai-news", "published_at": datetime.now(timezone.utc) - timedelta(hours=2)}
-        with mock.patch.object(w, "is_breaking", lambda i: True):
-            self.assertTrue(w.breaking_candidate(item))
-            old = {**item, "published_at": datetime.now(timezone.utc) - timedelta(hours=20)}
-            self.assertFalse(w.breaking_candidate(old))
-        self.assertTrue(news_mix.review_ai_blocks({**old, "section": "ai"}, breaking=False, today=IN))
+    def test_fresh_launch_is_blocked_but_user_harm_passes(self):
+        launch = {"title": "Introducing GPT-7", "lang": "en", "source_slug": "openai-news", "published_at": datetime.now(timezone.utc) - timedelta(hours=2)}
+        self.assertFalse(w.breaking_candidate(launch))
+        harm = {**launch, "title": "Security incident: data breach affecting ChatGPT users"}
+        self.assertTrue(w.breaking_candidate(harm))
 
     def test_japanese_public_interest_major_passes(self):
         item = {"title": "リコールのお知らせ", "source_slug": "not-an-ai-feed", "lang": "ja", "section": "lifestyle",
                 "published_at": datetime.now(timezone.utc) - timedelta(hours=20)}
         self.assertEqual(w.major_lane(item), "lifestyle")
-        self.assertFalse(news_mix.review_ai_blocks({**item, "section": w.major_lane(item)}, breaking=False, today=IN))
+        self.assertFalse(news_mix.review_ai_blocks({**item, "section": w.major_lane(item)}, breaking=False))
 
     def test_every_web_lane_calls_the_gate(self):
         src = (ROOT / "scripts" / "web_articles.py").read_text(encoding="utf-8")
@@ -109,8 +114,8 @@ class VideoPathTest(unittest.TestCase):
     def test_foreign_ai_video_skipped_in_review(self):
         self.assertEqual(self.collect(True), [])
 
-    def test_video_kept_after_review(self):
-        self.assertEqual([e["video_id"] for e in self.collect(False)], ["YmxpxJZvm4M"])
+    def test_video_stays_skipped_after_review(self):
+        self.assertEqual(self.collect(False), [])  # 台帳 A75: 日付では戻らない
 
     def test_all_active_ai_channels_are_gated(self):
         with mock.patch("ramp.in_adsense_review", lambda today: True):
@@ -125,15 +130,14 @@ class VideoPathTest(unittest.TestCase):
 
 
 class RoundupPathTest(unittest.TestCase):
-    def test_foreign_ai_roundup_skipped_only_in_review(self):
+    def test_foreign_ai_roundup_skipped_with_no_end_date(self):
         cluster = SimpleNamespace(key="GPT-6", slugs=["a", "b"], genre_slug="ai")
         by_slug = {"a": {"slug": "a", "genreSlug": "ai", "channelSlug": "openai"}, "b": {"slug": "b", "genreSlug": "ai", "channelSlug": "openai"}}
-        with mock.patch("ramp.in_adsense_review", lambda today: True):
+        self.assertTrue(roundup.review_skips(cluster, by_slug))
+        life = {s: {**a, "genreSlug": "lifestyle"} for s, a in by_slug.items()}
+        self.assertFalse(roundup.review_skips(SimpleNamespace(key="x", slugs=["a", "b"], genre_slug="lifestyle"), life))
+        with mock.patch("ramp.in_adsense_review", lambda today: False):  # 審査の期間が終わっても止めたまま（台帳 A75）
             self.assertTrue(roundup.review_skips(cluster, by_slug))
-            life = {s: {**a, "genreSlug": "lifestyle"} for s, a in by_slug.items()}
-            self.assertFalse(roundup.review_skips(SimpleNamespace(key="x", slugs=["a", "b"], genre_slug="lifestyle"), life))
-        with mock.patch("ramp.in_adsense_review", lambda today: False):
-            self.assertFalse(roundup.review_skips(cluster, by_slug))
 
 
 class MuseUntouchedTest(unittest.TestCase):

@@ -25,7 +25,7 @@ import json
 import os
 import re
 import unicodedata
-from datetime import datetime, timedelta, timezone
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -733,6 +733,100 @@ def wide_category(title: str, source_slug: str = "") -> str | None:
             return name
     if LAUNCH_RE.search(text) and not LAUNCH_EXCLUDE_RE.search(text) and (LAUNCH_CONTEXT_RE.search(text) or source_slug in LAUNCH_SOURCES):
         return "launch"
+    return None
+
+
+# --------------------------------------------------------------------------- #
+# 8-2. 1日30本の外で出す話題（2026-11-22 オーナー決定・台帳 A75）
+# --------------------------------------------------------------------------- #
+# 読者の安全とお金に直接かかわる話題だけを「止めない速報」にする。企業の発表・人事・新製品・決算・スポーツは30本の中で競う。
+# 題名だけで判定する（概要の一言で当たらないように。category と同じ）
+URGENT_LEAK_RE = re.compile(
+    r"(?:情報|会員|顧客|利用者|個人|メール|アドレス|件|万人|名分?|履歴|データ).{0,24}(?:流出|漏え?い|漏洩|漏れ)|"
+    r"(?:流出|漏え?い|漏洩)(?:の(?:可能性|おそれ|恐れ)|か|は|、)|顧客情報.{0,16}持ち出し|不正取引|不正利用"
+)
+# 海外の発信元は題名が英語（海外の AI を止める門でも、利用者の被害の話は止めない）
+URGENT_EN_RE = re.compile(r"data breach|security incident|unauthori[sz]ed access|service outage|\boutage\b|\brecall(?:s|ed)?\b", re.I)
+URGENT_RECALL_RE = re.compile(r"(?:を|が|の)?回収(?:・返金|の対象|へ|　|\s|$)|不具合のおそれ|火災\d+件|焼損")
+URGENT_OUTAGE_RE = re.compile(r"ログイン(?:を)?停止|(?:決済|送金|出金|入金).{0,6}(?:停止|できない)")
+URGENT_TRANSPORT_RE = re.compile(r"計画運休|運休|運転(?:を)?見合わせ|欠航|通行止")
+URGENT_WEATHER_RE = re.compile(r"特別警報|(?:大雪|暴風|波浪|高潮|洪水|大雨)警報|線状降水帯|竜巻注意")
+URGENT_HEALTH_RE = re.compile(r"食中毒|集団感染|流行警報")
+URGENT_REFUND_RE = re.compile(r"返金|払い?戻し|過払い|過徴収|過大請求|二重(?:請求|引き落とし)")
+URGENT_BENEFIT_RE = re.compile(r"給付金?|支援金|手当|還付|商品券|補助金")
+URGENT_PRICE_RE = re.compile(r"値上げ|有料化|料金改定|価格改定|(?:料金|運賃|送料|手数料|保険料)(?:を|の)?(?:一部)?引き上げ")
+URGENT_END_RE = re.compile(r"サービス(?:の)?終了|提供(?:を)?終了|サポート(?:を)?終了|(?:サービス|アプリ|プラン)(?:の)?廃止|終了のお知らせ")
+# サービス終了でも、開発者・企業向け（API・モデルの提供終了など）は読者のお金の話ではない
+URGENT_END_NOT_RE = re.compile(r"API|SDK|モデル|開発者|企業向け|法人向け|クラウド|プレビュー")
+# 事故そのものではなく、制度・方針・対策の発表（「豪雨を受けて対策を強化」「漏えいの報告義務」）
+URGENT_NOT_INCIDENT_RE = re.compile(
+    r"対策.{0,8}(?:強化|方針)|方針|報告義務|義務化|ガイドライン|制度|法案|改正案|書面査定|補正予算|"
+    r"に備える|過去最多|管理強化|応援|(?:通行止め?|運休|見合わせ).{0,6}解除"
+)
+# 告知（訓練・催し・表彰）。NOT_NEWS_RE は「求人事業者」の「人事」・「役職員」・「キャンペーン参加者」の流出まで外すので、ここでは使わない
+URGENT_NOT_NEWS_RE = re.compile(r"訓練|演習|セミナー|講演|説明会|研修|叙勲|褒章|表彰|採用情報|職員募集|入札|公募")
+# お金の話でも、読者（個人）の返金・給付ではないもの（免税の手続き・事業者向けの補助・審議の告知）
+URGENT_NOT_MONEY_RE = re.compile(r"免税|中小企業|事業者向け|企業向け|法人向け|議論|審議|YouTube配信")
+# 統計・決算の数字の記事（「電気代も前年を上回る」など）は値上げの知らせではない
+URGENT_NOT_PRICE_RE = re.compile(r"物価(?!高)|指数|統計|前年比|前年同月|決算|純利益|売上")
+URGENT_DATE_RE = re.compile(r"(?<!\d)(\d{1,2})(?:月|/)(\d{1,2})日?")
+URGENT_NEAR_WORD_RE = re.compile(r"本日|今日|明日|今週|来週|今月|来月|月末|年内")
+URGENT_NEAR_DAYS = 45  # 値上げ・給付の「日付が近い」の幅（題名の日付がこの日数以内）
+
+
+def _near_date(text: str, at: datetime | None = None) -> bool:
+    """題名に、近い日付（今日から URGENT_NEAR_DAYS 日以内）か「来月」などの語があるか"""
+    if URGENT_NEAR_WORD_RE.search(text):
+        return True
+    base = (at or datetime.now(JST)).astimezone(JST).date()
+    for month, day in URGENT_DATE_RE.findall(text):
+        for year in (base.year, base.year + 1):
+            try:
+                gap = (date(year, int(month), int(day)) - base).days
+            except ValueError:
+                continue
+            if 0 <= gap <= URGENT_NEAR_DAYS:
+                return True
+    return False
+
+
+def reader_urgent(title: str, at: datetime | None = None) -> str | None:
+    """読者の安全かお金に直接かかわる話題なら、その種類（1日30本に数えず止めない。台帳 A75・S41）。それ以外は None。
+    安全: ミサイル・災害・流出・リコール・詐欺・障害・運休欠航・気象警報・食中毒。
+    お金: 返金、期日の近い給付と値上げ、一般の人が使うサービスの終了"""
+    text = _nfkc(title)
+    if not text or URGENT_NOT_NEWS_RE.search(text) or (PRODUCT_RE.search(text) and not INCIDENT_RE.search(text)):
+        return None
+    if not URGENT_NOT_INCIDENT_RE.search(text):
+        cat = category(text)
+        if cat in ("missile", "disaster", "breach", "recall", "scam"):
+            return cat
+        if URGENT_LEAK_RE.search(text):
+            return "breach"
+        if URGENT_EN_RE.search(text):
+            return "outage" if "outage" in text.lower() else "recall" if "recall" in text.lower() else "breach"
+        if URGENT_RECALL_RE.search(text) and re.search(r"回収|リコール|不具合|火災|焼損", text):
+            return "recall"
+        if URGENT_OUTAGE_RE.search(text) or wide_category(text) == "outage":
+            return "outage"
+        if URGENT_TRANSPORT_RE.search(text):
+            return "transport"
+        if URGENT_WEATHER_RE.search(text):
+            return "weather"
+        if URGENT_HEALTH_RE.search(text):
+            return "health"
+    if URGENT_NOT_MONEY_RE.search(text):
+        return None
+    if URGENT_REFUND_RE.search(text):
+        return "refund"
+    if URGENT_NOT_PRICE_RE.search(text):
+        return None
+    if URGENT_BENEFIT_RE.search(text) and _near_date(text, at):
+        return "benefit"
+    if URGENT_PRICE_RE.search(text) and _near_date(text, at):
+        return "price"
+    if URGENT_END_RE.search(text) and not URGENT_END_NOT_RE.search(text):
+        return "service-end"
     return None
 
 

@@ -53,9 +53,14 @@ TREND_DAILY_CAP = 20
 
 # 2026-11-22 オーナー決定（台帳 A74）: ふだんの自動の記事は期限なしで1日30本まで（審査の期間が終わる 11/27 以降も続く）。
 # 11/15〜21 の456本のうち外から読まれたのは26本だけだったため。話題のレーン（trendLane）もこの30本の中で数える。
-# 数えないもの（速報・大きなニュース・速報レーン・安全情報・Muse とオーナーの指示の記事）は scripts/pacing.py の cap_exempt。
+# 数えないもの（読者の安全・お金に直接かかわる話〔台帳 A75〕・チームが指示した fast_url・Muse の記事）は scripts/pacing.py の cap_exempt。
 # 変数 WEB_DAILY_CAP_BRAKE はこれより下げるときだけ効く
 ROUTINE_DAILY_CAP = ("2026-11-22", 30)
+
+# 2026-11-22 オーナー決定（台帳 A75）: 海外の AI の発表の自動の記事は、オーナーが再開を指示するまで止める。
+# 日付で戻る仕組みはやめた（審査の期間が 11/27 に終わっても再開しない）。再開はオーナーの指示があったときだけ、ここを False にする。
+# 止めないもの: 読者の安全・お金に直接かかわる話（public_interest.reader_urgent）と、チームが指示した fast_url・Muse の記事
+FOREIGN_AI_STOPPED = True
 
 
 def in_adsense_review(today: str) -> bool:
@@ -127,10 +132,10 @@ def main() -> None:
     # 20分ごと（1日72回）に出すので、上限が大きい日は1回あたりの本数も増やす
     broad = os.environ.get("BROAD_MAX_PER_RUN_OVERRIDE") or str(broad_per_run(int(web)))
     ai = os.environ.get("AI_MAX_PER_RUN_OVERRIDE") or str(ai_per_run(int(web)))
-    foreign_ai = "1000"
+    foreign_ai = "0" if FOREIGN_AI_STOPPED else "1000"  # 台帳 A75: 期間に関係なく0本
     if in_adsense_review(today):
-        # 審査の期間: 1回2本まで・AI のレーンは止める・海外の AI の発表は0本（暮らしとお金だけ）
-        broad, ai, foreign_ai = str(min(int(broad), 2)), "0", "0"
+        # 審査の期間: 1回2本まで・AI のレーンは止める（暮らしとお金だけ）
+        broad, ai = str(min(int(broad), 2)), "0"
     lines = (f"web_daily_cap={web}\nsns_per_day={sns}\nbroad_per_run={broad}\nai_per_run={ai}\n"
              f"foreign_ai_cap={foreign_ai}\nmuse_daily_cap={MUSE_DAILY_CAP}\n"
              f"trend_per_run={TREND_PER_RUN}\ntrend_daily_cap={TREND_DAILY_CAP}\n")
