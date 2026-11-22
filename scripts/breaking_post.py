@@ -83,6 +83,18 @@ def wait_live(article: dict, timeout: int, fmt: str = "classic") -> bool:
         time.sleep(15)
 
 
+def auto_post_stopped() -> str:
+    """速報を自動で出せる SNS が1つも無いときの理由（どれかのスイッチが true なら空＝今までの判定に進む）。
+    スイッチは scripts/sns_plan.json の auto_post だけ（threads・x・bluesky・facebook・instagram・alerts）"""
+    try:
+        block = tp.sns_plan.plan().get("auto_post") or {}
+    except (OSError, ValueError):
+        block = {}
+    if any(block.get(key) is True for key in ("threads", "x", "bluesky", "facebook", "instagram", "alerts")):
+        return ""
+    return "自動投稿はすべて止めています（2026-11-10 オーナー決定「今後は全て手投稿にしよう」・台帳 S55）"
+
+
 def merge(mine_path: str) -> int:
     """手元で投稿した記録を、最新の state（他の実行が更新したもの）に足す"""
     mine = json.loads(Path(mine_path).read_text("utf-8"))
@@ -115,6 +127,10 @@ def main() -> int:
     if args.slug and live:
         log("[breaking] --slug は確認用です（--dry-run と一緒に使う）。臨時の投稿は Post now を使ってください")
         return 1
+    if live and (why := auto_post_stopped()):
+        # 2026-11-22 オーナー「任せる」（台帳 S55 の徹底）: 手投稿だけなので、対象を選ぶ前に止める。正常終了にして呼び出し元（auto_run.yml）を失敗させない
+        log(f"[breaking] 投稿しません: {why}")
+        return 0
     if args.slug:
         found =[json.loads((tp.ARTICLES_DIR / f"{args.slug}.json").read_text("utf-8"))]
     else:
