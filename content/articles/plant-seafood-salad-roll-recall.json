@@ -61,8 +61,9 @@
   "affiliates": [],
   "newsType": "pricing",
   "todayActions": [
-    "11月19日にPLANT-5横越店で買った寿司パックのラベルと消費期限を確かめる。",
-    "対象商品があれば、025-383-2711に8時から21時30分の間に連絡し、回収を申し出る。"
+    "11月19日に購入した寿司パックの消費期限とJANコードを照らし合わせる。",
+    "対象か迷う場合や自宅回収を希望する場合は、PLANT-5 横越店へ電話する。",
+    "対象商品なら、店舗へ持ち込むか自宅への訪問回収を申し出る。"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -112,5 +113,98 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/plant-seafood-salad-roll-recall-figure-6aea94d3.jpg"
-  }
+  },
+  "officialDesk": [
+    {
+      "name": "PLANT-5 横越店",
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602988",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602988",
+      "phone": "025-383-2711",
+      "hours": "8:00-21:30",
+      "note": "店舗回収またはお客様宅へお伺いして回収し、回収後は返金対応です。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "11月19日に購入した寿司パックの消費期限とJANコードを照らし合わせる。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602988",
+      "steps": [
+        "消費期限が2026年11月19日か確認する",
+        "JANコード0283259004795か確認する",
+        "該当する場合は食べずに連絡する"
+      ],
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602988"
+    },
+    {
+      "action": "対象か迷う場合や自宅回収を希望する場合は、PLANT-5 横越店へ電話する。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602988",
+      "steps": [
+        "025-383-2711へ電話する",
+        "受付時間の8:00-21:30に連絡する",
+        "対象商品か確認し、回収方法を相談する"
+      ],
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602988"
+    },
+    {
+      "action": "対象商品なら、店舗へ持ち込むか自宅への訪問回収を申し出る。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602988",
+      "steps": [
+        "店舗回収か自宅への訪問回収を選ぶ",
+        "回収後の返金対応を確認する"
+      ],
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602988"
+    }
+  ],
+  "cause": {
+    "text": "11月19日（木）に製造した「具たっぷり海鮮サラダ巻」に、誤って「海鮮巻（ハーフ）」のラベルを貼って販売したため、えび・かに・乳成分のアレルギー表示が欠落しました。",
+    "status": "stated",
+    "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602988"
+  },
+  "worries": [
+    {
+      "q": "ラベルに「海鮮巻（ハーフ）」とあれば対象外？",
+      "a": "回収情報では商品名が「具たっぷり海鮮サラダ巻」、特定情報の対象商品名が「海鮮巻（ハーフ）」です。消費期限は2026年11月19日、JANコードは0283259004795と記載されています。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602988",
+      "action": "消費期限とJANコードを確認し、対象か迷う場合は025-383-2711へ問い合わせる。"
+    },
+    {
+      "q": "アレルギーがある人が食べるとどうなる？",
+      "a": "届出には、えび・かに・乳成分に対するアレルギーがある人が食べた場合、アレルギー症状を発症する恐れがあると記載されています。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602988",
+      "action": "対象の可能性がある商品は食べず、回収方法を025-383-2711へ確認する。"
+    },
+    {
+      "q": "回収に出した後、返金される？",
+      "a": "回収後は返金対応とされています。回収方法は店舗回収または自宅への訪問回収で、問い合わせ先は025-383-2711、受付日時は8:00-21:30です。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602988",
+      "action": "025-383-2711へ連絡し、店舗への持ち込みか自宅への訪問回収を申し出る。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "店舗に持ち込むか自宅回収を頼むか？",
+      "situation": "対象商品と確認できた",
+      "recommend": "都合のよい回収方法を選ぶ",
+      "reason": "回収方法は店舗への持ち込み、またはお客様宅への訪問回収です。どちらの場合も回収後は返金対応とされています。自宅回収を希望する場合は、問い合わせ先に確認できます。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602988"
+    }
+  ],
+  "depthHeadings": {
+    "cause": "誤ったラベルでアレルギー表示が抜けた",
+    "steps": "手元の商品を確認して回収を申し出る",
+    "desk": "回収と返金の連絡先",
+    "worries": "食べた場合や回収後が心配",
+    "guide": "店舗に持ち込むか自宅回収を頼むか"
+  },
+  "depthAt": "2026-11-22T06:26:33+00:00",
+  "updatedAt": "2026-11-22T06:26:33+00:00",
+  "updates": [
+    {
+      "at": "2026-11-22T06:26:33+00:00",
+      "kind": "facts",
+      "title": "公式の資料をもとに、「公式の窓口」・「今日やること」・「理由」・「よくある不安」・「判断の目安」を追記しました",
+      "sourceUrl": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602988",
+      "sourceName": "厚生労働省 食品衛生申請等システム「公開回収事案詳細」（整理番号RCL202602988、株式会社PLANT「具たっぷり海鮮サラダ巻」）"
+    }
+  ]
 }

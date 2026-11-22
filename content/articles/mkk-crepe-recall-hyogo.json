@@ -59,9 +59,9 @@
   "affiliates": [],
   "newsType": "product",
   "todayActions": [
-    "手元のクレープがMKKグループみらい観光開発の対象5種か、商品名を確認する。",
-    "対象の商品を食べずに、自動販売機に設置された回収BOXへ入れる。",
-    "返金手続きに迷う場合は、10時〜18時に080-8352-1764へ問い合わせる。"
+    "包装の商品名を5種類と照らし、製造年月日にかかわらず対象か確認する。",
+    "対象商品は食べずに、販売場所の自動販売機にある回収BOXへ入れる。",
+    "返金方法や購入場所に迷ったら、受付時間内に回収担当へ問い合わせる。"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -122,5 +122,105 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/mkk-crepe-recall-hyogo-figure-93095991.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "届出には、回収理由として食品衛生法違反のおそれと食品表示法違反を記載し、食品衛生法第20条に該当するとあります。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602989"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "株式会社MKKグループみらい観光開発",
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602989",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602989",
+      "phone": "080(8352)1764",
+      "hours": "10:00～18:00",
+      "note": "回収後は振込、paypay等で返金対応と記載されています。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "包装の商品名を5種類と照らし、製造年月日にかかわらず対象か確認する。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602989",
+      "steps": [
+        "包装の商品名を確認する",
+        "5種類の対象商品と照らす",
+        "日付で対象外と判断しない"
+      ],
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602989"
+    },
+    {
+      "action": "対象商品は食べずに、販売場所の自動販売機にある回収BOXへ入れる。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602989",
+      "steps": [
+        "対象商品を食べない",
+        "販売場所の自動販売機を確認する",
+        "設置された回収BOXに入れる"
+      ],
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602989"
+    },
+    {
+      "action": "返金方法や購入場所に迷ったら、受付時間内に回収担当へ問い合わせる。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602989",
+      "steps": [
+        "電話番号 080(8352)1764を確認する",
+        "10:00～18:00に電話する"
+      ],
+      "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602989"
+    }
+  ],
+  "cause": {
+    "text": "食品表示に不備があり、アレルギー表示や賞味期限の記載が欠落していたため回収となりました。賞味期限がない商品を長期保管して食べた場合、健康を害するおそれも回収理由に挙げられています。",
+    "status": "stated",
+    "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602989"
+  },
+  "worries": [
+    {
+      "q": "アレルギーがなければ食べても大丈夫ですか？",
+      "a": "小麦、乳成分、卵のアレルギー反応の可能性に加え、賞味期限の記載がないため、長期保管して腐敗した商品では腹痛、嘔吐、発熱などのおそれがあるとされています。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602989",
+      "action": "対象の5種類に当たる商品は食べず、自動販売機に設置された回収BOXへ入れてください。"
+    },
+    {
+      "q": "包装の日付が古い商品も回収してもらえますか？",
+      "a": "包装に記載されているのは賞味期限ではなく製造年月日です。回収対象は製造日を問いません。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602989",
+      "action": "商品名が対象の5種類のいずれかなら、製造年月日にかかわらず回収BOXへ入れてください。"
+    },
+    {
+      "q": "返金はどの方法で受け取れますか？",
+      "a": "回収後は振込、paypay等で返金対応すると届出に記載されています。問い合わせ先は080(8352)1764で、対応時間は10:00～18:00です。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602989",
+      "action": "具体的な返金方法を確認したい場合は、10:00～18:00に080(8352)1764へ問い合わせてください。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "製造日が違えば回収対象外ですか？",
+      "situation": "包装に日付が書かれている",
+      "recommend": "製造日にかかわらず回収BOXへ",
+      "reason": "包装の日付は製造年月日で、回収対象は製造日を問いません。対象の5種類に当たる場合、日付が違っても回収対象です。",
+      "source": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602989"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "回収理由には食品衛生法第20条も",
+    "cause": "表示の不備が回収の理由",
+    "steps": "商品名を確認して回収BOXへ",
+    "desk": "返金方法は回収担当に確認",
+    "worries": "食べても大丈夫か、返金はどうなる？",
+    "guide": "製造日で対象外か迷ったら"
+  },
+  "depthAt": "2026-11-22T06:25:38+00:00",
+  "updatedAt": "2026-11-22T06:25:38+00:00",
+  "updates": [
+    {
+      "at": "2026-11-22T06:25:38+00:00",
+      "kind": "facts",
+      "title": "公式の資料をもとに、「なるほどの要点」・「公式の窓口」・「今日やること」・「理由」・「よくある不安」・「判断の目安」を追記しました",
+      "sourceUrl": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602989",
+      "sourceName": "厚生労働省 食品衛生申請等システム「公開回収事案詳細」（整理番号RCL202602989、株式会社MKKグループみらい観光開発「クレープ」）"
+    }
+  ]
 }
