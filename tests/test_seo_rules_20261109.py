@@ -247,7 +247,7 @@ class CanonicalNameTest(unittest.TestCase):
 
 
 class SearchRefreshTest(unittest.TestCase):
-    def test_pick_positions_4_to_10_with_10_impressions(self):
+    def test_pick_positions_4_to_20_with_10_impressions(self):
         tmp = tempfile.TemporaryDirectory()
         d = Path(tmp.name)
         for s in ("ok", "top3", "far", "few", "recent", "busy"):
@@ -256,7 +256,7 @@ class SearchRefreshTest(unittest.TestCase):
             "ok": {"position": 8.9, "impressions": 196, "query": "ipa 漏えい"},
             "busy": {"position": 4.0, "impressions": 300},
             "top3": {"position": 2.0, "impressions": 500},
-            "far": {"position": 14.6, "impressions": 118},
+            "far": {"position": 20.1, "impressions": 118},
             "few": {"position": 6.0, "impressions": 9},
             "recent": {"position": 7.0, "impressions": 50},
             "gone": {"position": 7.0, "impressions": 50},
@@ -298,7 +298,7 @@ class SearchRefreshTest(unittest.TestCase):
         self.assertGreaterEqual(len(pages), 40)
         for slug in pages:
             self.assertTrue((ROOT / "content" / "articles" / f"{slug}.json").exists(), slug)
-        self.assertIn("ipa-personal-data-leak-countermeasures", [s for s, _ in search_refresh.pick(pages, datetime.now(timezone.utc))])
+        self.assertIn("ipa-personal-data-leak-countermeasures", [s for s, _ in search_refresh.pick(pages, datetime.now(timezone.utc), limit=len(pages))])
 
 
 class PeoplePageTest(unittest.TestCase):

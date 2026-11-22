@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Google で4〜10位にいる記事を、毎週「検索の答えを先に」書き直す（2026-11-09 オーナー承認・台帳 A68）。
+"""Google で4〜20位にいる記事を、毎週「検索の答えを先に」書き直す（2026-11-09 オーナー承認・台帳 A68）。
 
 Search Console（2026-10-20〜11-07）では、検索語の表示の約52%が7〜10位にあった（IPA の漏えい対策・Honda RN0 の価格・
 Adobe MAX など）。題名は検索語と合っていて、上にいるのは公式サイトと大手のメディア。足りないのは「公式より分かりやすい答え」と新しさ。
-そこで毎週月曜（日本時間）、content/search_positions.json で平均4〜10位・表示10回以上の記事を選び、scripts/rewrite_types.py と
+そこで毎週月曜（日本時間）、content/search_positions.json で平均4〜20位（2026-11-22 に10位から広げた）・表示10回以上の記事を選び、scripts/rewrite_types.py と
 同じ部品で書き直す: 元の公式の資料を取り直す → 検索語への答えを本文の最初の2文に書く指示を足す → 品質ゲート（資料に無いことは
 書かない。うそだけを落とす門・台帳 A60）→ 合格したときだけ保存。URL・題名・公開日時は変えず、更新日時（updatedAt。
 構造化データの dateModified）を進める。合格しなかった記事は今の版のまま。新しい似た記事は作らない。
@@ -11,9 +11,15 @@ Adobe MAX など）。題名は検索語と合っていて、上にいるのは�
 書き直した記録は state/search_refresh.json（いつ・どの検索語・そのときの順位と表示）。14日後に同じ検索語の順位と比べる。
 同じ記事は14日あけてから選び直す。
 
+2026-11-22 オーナー決定「検索で8〜20位の記事を、新しく書くより先に厚くする」: 選ぶ範囲を平均4〜20位に広げた。
+- 一番新しい日付（"asOf"）の行を先に、その中で表示の多い順に選ぶ（古い期間の表示と混ぜて比べない）。
+- Search Console が検索語を隠した記事（query が空）は、検索語を作らず、記事の題名の疑問に答える指示にする。
+- Muse・編集部の記事（museFile・refreshMode: editorial・writer: muse）と訂正した記事は選ばない（人が確かめた中身を LLM で作り直さない）。
+- 資料の期限・受付・発売日などが今日より前なら、終わったこととして書く（これからの予定のように書かない）。
+
 順位の一覧（content/search_positions.json）の更新のしかた（Search Console・週1回）:
   1. 検索パフォーマンス → 期間「過去28日間」→「ページ」タブで、/articles/<slug> ごとの表示・クリック・平均掲載順位を見る
-  2. 「pages」の各記事に {"query": 主な検索語, "position": 平均順位, "impressions": 表示, "clicks": クリック} を書く（"updatedAt"・"window" も直す）
+  2. 「pages」の各記事に {"query": 主な検索語, "position": 平均順位, "impressions": 表示, "clicks": クリック} を書く（"asOf"〔確認した日〕・"updatedAt"・"window" も直す）
   3. 表示が1回でもあった記事は、掃除でも取り下げない・転送しない（scripts/search_protected.py が同じ一覧を読む）
 
   python3 scripts/search_refresh.py                     # 今週書き直す記事を表示するだけ
@@ -26,6 +32,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import re
 import sys
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -37,8 +44,11 @@ import updated_at  # noqa: E402
 ROOT = Path(__file__).resolve().parent.parent
 ARTICLES_DIR = ROOT / "content" / "articles"
 STATE = ROOT / "state" / "search_refresh.json"
+CORRECTIONS_PATH = ROOT / "content" / "corrections.json"
+# 訂正の注記（scripts/rewrite_types.py の CORRECTION_RE と同じ。LLM の部品を読まずに選ぶため、ここにも置く）
+CORRECTION_RE = re.compile(r"編集部訂正|【訂正】|訂正（\d{4}年")
 JST = timezone(timedelta(hours=9))
-POS_MIN, POS_MAX = 4.0, 10.0
+POS_MIN, POS_MAX = 4.0, 20.0  # 2026-11-22 オーナー決定: 8〜20位を1ページ目へ（前は10位まで）
 MIN_IMPRESSIONS = 10
 GAP_DAYS = 14
 DEFAULT_MAX = 5
@@ -50,6 +60,18 @@ FOCUS = """# 今回の書き直しで必ず守ること（検索から来た人�
 - 公式の窓口・申し込み先・確かめ方が資料にあれば、URL とたどり方まで書く。数字は資料のとおり。
 - 資料に無いことは書かない（推測・見込みの数字を足さない）。答えが資料に無い点は「公式の発表には記載がありません」と書く。
 - 題名は変えない。全体の流れ（結論→要点→詳しく）は今の型のまま。"""
+
+# 検索語が分からない記事（Search Console が隠した）の指示。検索語を作らない（2026-11-22）
+FOCUS_NO_QUERY = """# 今回の書き直しで必ず守ること（検索から来た人への答えを先に。2026-11-22 オーナー決定・台帳 A68）
+この記事は Google の検索結果に出ていますが、検索された言葉は分かっていません。言葉を推測して本文に入れないでください。
+- 本文の最初の2文で、題名「{title}」を見て開いた人が知りたいこと（何か・いつ・いくら・対象・何をすればいいか）に、資料にある事実で答える。
+- 公式の窓口・申し込み先・確かめ方が資料にあれば、URL とたどり方まで書く。数字は資料のとおり。
+- 資料に無いことは書かない（推測・見込みの数字を足さない）。答えが資料に無い点は「公式の発表には記載がありません」と書く。
+- 題名は変えない。全体の流れ（結論→要点→詳しく）は今の型のまま。"""
+
+# 古い出来事を、これからの予定のように書かない（2026-11-22）
+DATE_RULE = """- 今日は {today} です。資料にある期限・受付・発売日・支給日・開催日が今日より前なら、終わったこととして過去形で書く（「これから」「お早めに」と書かない）。今も続いているかが資料で分からないときは、その点を「公式の発表には記載がありません」と書く。
+- 文字数を増やすためだけの言い換え・繰り返しを足さない。"""
 
 
 def load_state(path: Path = STATE) -> dict:
@@ -77,29 +99,87 @@ def recently_refreshed(state: dict, now: datetime, days: int = GAP_DAYS) -> set[
     return out
 
 
+def corrected_slugs(path: Path = CORRECTIONS_PATH) -> set[str]:
+    try:
+        return {str(x.get("slug")) for x in json.loads(path.read_text("utf-8")) if isinstance(x, dict)}
+    except (OSError, ValueError):
+        return set()
+
+
+def protected_reason(article: dict, slug: str = "", corrected: set[str] | None = None) -> str:
+    """自動で書き直さない記事の理由（無ければ空）。Muse・編集部の記事と、訂正した記事（台帳 A59 と scripts/rewrite_types.py の決まり）"""
+    if article.get("museFile") or article.get("writer") == "muse":
+        return "Muse の記事"
+    if article.get("refreshMode") == "editorial":
+        return "編集部の記事"
+    if (slug or article.get("slug")) in (corrected_slugs() if corrected is None else corrected):
+        return "訂正した記事"
+    if CORRECTION_RE.search(str(article.get("body") or "")):
+        return "訂正の注記がある記事"
+    return ""
+
+
+def _read_article(path: Path) -> dict | None:
+    try:
+        data = json.loads(path.read_text("utf-8"))
+    except (OSError, ValueError):
+        return None
+    return data if isinstance(data, dict) else None
+
+
+def _in_range(row: dict) -> bool:
+    pos = row.get("position")
+    return pos is not None and POS_MIN <= float(pos) <= POS_MAX and int(row.get("impressions") or 0) >= MIN_IMPRESSIONS
+
+
+def _order(rows: list[tuple[str, dict]]) -> list[tuple[str, dict]]:
+    """一番新しい日付（asOf）の行を先に、その中で表示の多い順（違う期間の表示をそのまま比べない）"""
+    latest = max((str(r.get("asOf") or "") for _, r in rows), default="")
+    return sorted(rows, key=lambda kv: (str(kv[1].get("asOf") or "") != latest, -int(kv[1].get("impressions") or 0),
+                                        float(kv[1].get("position") or 99)))
+
+
 def pick(pages: dict[str, dict], now: datetime, state: dict | None = None, articles_dir: Path = ARTICLES_DIR,
          limit: int = DEFAULT_MAX) -> list[tuple[str, dict]]:
-    """今週書き直す記事 [(slug, 順位の行)]。平均4〜10位・表示10回以上・公開中・14日以内に書き直していない。表示の多い順"""
+    """今週書き直す記事 [(slug, 順位の行)]。平均4〜20位・表示10回以上・公開中・14日以内に書き直していない・人が確かめた記事ではない"""
     skip = recently_refreshed(state or {}, now)
+    corrected = corrected_slugs()
     rows = []
     for slug, row in pages.items():
-        pos = row.get("position")
-        if pos is None or not (POS_MIN <= float(pos) <= POS_MAX):
+        if not _in_range(row) or slug in skip:
             continue
-        if int(row.get("impressions") or 0) < MIN_IMPRESSIONS or slug in skip:
-            continue
-        if not (articles_dir / f"{slug}.json").exists():
+        article = _read_article(articles_dir / f"{slug}.json")
+        if article is None or protected_reason(article, slug, corrected):
             continue
         rows.append((slug, row))
-    rows.sort(key=lambda kv: (-int(kv[1].get("impressions") or 0), float(kv[1].get("position") or 99)))
-    return rows[:limit]
+    return _order(rows)[:limit]
 
 
-def focus_for(row: dict) -> str:
+def held_back(pages: dict[str, dict], articles_dir: Path = ARTICLES_DIR) -> list[tuple[str, dict, str]]:
+    """順位の条件には合うが、人が確かめた記事なので自動では書き直さない記事 [(slug, 順位の行, 理由)]"""
+    corrected = corrected_slugs()
+    out = []
+    for slug, row in _order([(s, r) for s, r in pages.items() if _in_range(r)]):
+        article = _read_article(articles_dir / f"{slug}.json")
+        why = protected_reason(article, slug, corrected) if article else ""
+        if why:
+            out.append((slug, row, why))
+    return out
+
+
+def focus_for(row: dict, title: str = "", today: str = "") -> str:
+    """書き直しの指示。検索語が空なら題名の疑問に答える指示にする（検索語は作らない）。題名も無ければ空"""
     query = str(row.get("query") or "").strip()
-    if not query:
+    title = str(title or "").strip()
+    if not query and not title:
         return ""
-    return FOCUS.format(query=query, position=f"{float(row.get('position')):.1f}")
+    day = today or datetime.now(JST).strftime("%Y年%-m月%-d日")
+    if query:
+        pos = row.get("position")
+        head = FOCUS.format(query=query, position=f"{float(pos):.1f}" if pos is not None else "—")
+    else:
+        head = FOCUS_NO_QUERY.format(title=title)
+    return head + "\n" + DATE_RULE.format(today=day)
 
 
 def stamp(new: dict, row: dict, now: datetime) -> dict:
@@ -132,11 +212,20 @@ def main() -> int:
     print(f"[search-refresh] 順位の一覧: {len(pages)} 本（{data.get('window', '')}・更新 {data.get('updatedAt', '')}）")
     state = load_state()
     if args.slug:
-        targets = [(s, pages.get(s, {})) for s in args.slug.split(",") if s]
+        targets = []
+        for s in (x for x in args.slug.split(",") if x):
+            why = protected_reason(_read_article(ARTICLES_DIR / f"{s}.json") or {}, s)
+            if why:
+                print(f"  [守る] {s}: {why}なので書き直しません")
+            else:
+                targets.append((s, pages.get(s, {})))
     else:
         targets = pick(pages, now, state, limit=args.max)
     for slug, row in targets:
         print(f"  {slug:55} 「{row.get('query', '')}」 {row.get('position')}位・表示 {row.get('impressions')}")
+    if not args.slug:
+        for slug, row, why in held_back(pages):
+            print(f"  [守る] {slug:50} {why}（自動では書き直さない） {row.get('position')}位・表示 {row.get('impressions')}")
     if not targets or not args.apply:
         return 0
     import rewrite_types  # noqa: PLC0415 - LLM の部品を読むのは書き直すときだけ
@@ -148,7 +237,8 @@ def main() -> int:
     done = 0
     for slug, row in targets:
         try:
-            new, rep = rewrite_types.rewrite(slug, focus=focus_for(row))
+            title = (_read_article(ARTICLES_DIR / f"{slug}.json") or {}).get("title", "")
+            new, rep = rewrite_types.rewrite(slug, focus=focus_for(row, title))
         except Exception as error:  # noqa: BLE001 - 1本の失敗で止めない
             new, rep = None, {"why": f"失敗: {str(error)[:200]}"}
         if new is None:

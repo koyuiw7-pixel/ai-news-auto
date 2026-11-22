@@ -63,7 +63,7 @@ jobs:
           SLUGS: ${{ inputs.slugs }}
         run: |
           timeout 4800 python -u scripts/rewrite_types.py --apply --max "$MAX" --slug "$SLUGS" --budget-sec 4200 --report rewrite_report.json
-      # Google で4〜10位・表示10回以上の記事を、毎週月曜に「検索の答えを先に」書き直す（scripts/search_refresh.py。台帳 A68）。
+      # Google で4〜20位・表示10回以上の記事を、毎週月曜に「検索の答えを先に」書き直す（scripts/search_refresh.py。台帳 A68）。
       # 同じ部品・同じ品質ゲート（うそだけを落とす）・同じ予算。合格したときだけ保存し、更新日時（dateModified）を進める
       - name: Search refresh (Mondays)
         continue-on-error: true
