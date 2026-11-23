@@ -86,9 +86,9 @@
     }
   ],
   "todayActions": [
-    "子の生年月日と年間の給与収入の見込みを確認する。",
-    "国税庁の2026年分の従業員向けページで、控除額の一覧表と申告書の記載例を確認する。",
-    "対象に当たる場合は、特定親族特別控除申告書を自分の勤務先に提出する。"
+    "子の生年月日を国税庁の令和8年分の対象年齢に照らして確認する",
+    "子の合計所得金額を見積もり、控除額の一覧表と照合する",
+    "対象に当たる場合は、特定親族特別控除申告書を親の勤務先に提出する"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -170,5 +170,126 @@
     ],
     "ar": 1.4151,
     "src": "https://ai-tech-express.jp/img/dependent-relative-tax-deduction-2026-2654c40c.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "令和8年分の案内では、19歳以上23歳未満に当たる生年月日を「平成16年1月2日〜平成20年1月1日生」と示しています。年齢だけで判断しにくい場合は、生年月日で確認できます。",
+      "source": "https://www.nta.go.jp/publication/pamph/gensen/nencho2026/pdf/302.pdf"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "国税庁「給与所得者（従業員）の方へ（令和８年分）」",
+      "url": "https://www.nta.go.jp/users/gensen/nencho/index/kyuyosyotokusya.htm?kyuyonet",
+      "source": "https://www.nta.go.jp/users/gensen/nencho/index/kyuyosyotokusya.htm?kyuyonet",
+      "howTo": [
+        "ホーム",
+        "利用者別に調べる",
+        "給与所得者（従業員）の方へ（令和８年分）"
+      ],
+      "note": "「特定親族特別控除申告書について」から記載例や動画を確認できます。"
+    },
+    {
+      "name": "電話相談センター",
+      "url": "https://www.nta.go.jp/taxes/shiraberu/sodan/denwa-sodan/index.htm",
+      "source": "https://www.nta.go.jp/users/gensen/2025kiso/index.htm",
+      "howTo": [
+        "令和７年度税制改正による所得税の基礎控除の見直し等について",
+        "ご相談・お問合せ窓口",
+        "電話相談センター"
+      ],
+      "phone": "0570－00－5901（ナビダイヤル）",
+      "hours": "8:30～17:00（土日祝及び12月29日～１月３日を除きます。）",
+      "note": "「050」から始まるIP電話等でナビダイヤルを利用できない場合は、所轄の税務署の代表電話番号にかけ、音声ガイダンスで「１」番を選びます。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "子の生年月日を国税庁の令和8年分の対象年齢に照らして確認する",
+      "source": "https://www.nta.go.jp/publication/pamph/gensen/nencho2026/pdf/302.pdf",
+      "steps": [
+        "「給与所得者（従業員）の方へ（令和８年分）」",
+        "「各種控除について（給与所得者用）」",
+        "特定親族の生年月日を確認"
+      ],
+      "url": "https://www.nta.go.jp/publication/pamph/gensen/nencho2026/pdf/302.pdf"
+    },
+    {
+      "action": "子の合計所得金額を見積もり、控除額の一覧表と照合する",
+      "source": "https://www.nta.go.jp/users/gensen/nencho/index/kyuyosyotokusya.htm?kyuyonet",
+      "steps": [
+        "「給与所得者（従業員）の方へ（令和８年分）」",
+        "「合計所得金額の計算について」",
+        "控除額の一覧表を確認"
+      ],
+      "url": "https://www.nta.go.jp/publication/pamph/gensen/nencho2026/pdf/205.pdf"
+    },
+    {
+      "action": "対象に当たる場合は、特定親族特別控除申告書を親の勤務先に提出する",
+      "source": "https://www.nta.go.jp/users/gensen/nencho/index/kyuyosyotokusya.htm?kyuyonet",
+      "steps": [
+        "「特定親族特別控除申告書について」",
+        "記載例を確認",
+        "勤務先に提出"
+      ],
+      "url": "https://www.nta.go.jp/users/gensen/nencho/index/kyuyosyotokusya.htm?kyuyonet"
+    }
+  ],
+  "cause": {
+    "text": "令和７年度税制改正で特定親族特別控除が創設されました。令和8年分の案内では、特定親族の合計所得金額は62万円超123万円以下とされています。",
+    "status": "background",
+    "source": "https://www.nta.go.jp/users/gensen/2025kiso/index.htm"
+  },
+  "worries": [
+    {
+      "q": "子の所得が62万円以下なら特定親族特別控除を受けられる？",
+      "a": "特定親族特別控除の対象となるのは、合計所得金額が62万円を超え123万円以下の場合です。62万円以下の場合は適用を受けられません。",
+      "source": "https://www.nta.go.jp/users/gensen/nencho/index/kyuyosyotokusya.htm?kyuyonet",
+      "action": "子の合計所得金額を確認し、62万円以下なら扶養控除の所得要件も確認してください。",
+      "actionSource": "https://www.nta.go.jp/publication/pamph/gensen/nencho2026/pdf/302.pdf"
+    },
+    {
+      "q": "子の所得が123万円を超えると控除は受けられない？",
+      "a": "特定親族の合計所得金額が123万円を超える場合、特定親族特別控除は適用されません。",
+      "source": "https://www.nta.go.jp/users/gensen/nencho/index/kyuyosyotokusya.htm?kyuyonet",
+      "action": "子の合計所得金額を見積もり、123万円以下かどうかを確認してください。"
+    },
+    {
+      "q": "子に複数の勤務先がある場合、給与はどう数える？",
+      "a": "複数の勤務先から給与を受けている場合は、すべての給与収入を合算した上で所得を求めます。合計所得金額で控除の対象か判定します。",
+      "source": "https://www.nta.go.jp/users/gensen/nencho/index/kyuyosyotokusya.htm?kyuyonet",
+      "action": "子のすべての勤務先の給与収入を集め、合算して合計所得金額を見積もってください。"
+    },
+    {
+      "q": "最大63万円はそのまま税金から差し引かれる？",
+      "a": "控除は所得者本人の所得金額の合計額から差し引くもので、特定親族1人につき最大63万円です。控除額は特定親族の合計所得金額に応じて決まります。",
+      "source": "https://www.nta.go.jp/users/gensen/nencho/index/kyuyosyotokusya.htm?kyuyonet",
+      "action": "子の所得に応じた控除額を国税庁の一覧表で確認してください。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "子の給与が136万円以下なら何を確認する？",
+      "situation": "給与収入だけで136万円以下",
+      "recommend": "扶養控除の所得要件を確認する",
+      "reason": "国税庁の令和8年分の案内では、給与所得だけの場合、給与収入136万円以下が扶養控除の所得要件です。年齢や生計など、ほかの要件もあります。",
+      "source": "https://www.nta.go.jp/publication/pamph/gensen/nencho2026/pdf/302.pdf"
+    },
+    {
+      "question": "子の給与が136万円以下なら何を確認する？",
+      "situation": "給与収入が136万円を超える",
+      "recommend": "合計所得金額を見積もり特定親族特別控除を確認する",
+      "reason": "特定親族特別控除は、合計所得金額が62万円超123万円以下の場合に対象となり、控除額は所得に応じて変わります。給与収入だけで決めず、合計所得金額で確認します。",
+      "source": "https://www.nta.go.jp/users/gensen/nencho/index/kyuyosyotokusya.htm?kyuyonet"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "対象年齢は生年月日でも確かめられる",
+    "cause": "控除が新設された背景と所得要件",
+    "steps": "子の年齢と所得を確かめて申告へ",
+    "desk": "国税庁の案内と電話相談",
+    "worries": "所得や年齢の境目で迷ったら",
+    "guide": "給与収入に応じて確認先を選ぶ"
+  },
+  "depthAt": "2026-11-23T06:47:44+00:00"
 }

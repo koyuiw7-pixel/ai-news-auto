@@ -83,9 +83,9 @@
     }
   ],
   "todayActions": [
-    "マイナポータルか資格確認書で、加入している医療保険の保険者名を確認する。",
-    "入院や手術の予定がある人は、加入先に認定証の申請が必要か受診前に確かめる。",
-    "協会けんぽの認定証を使っている人は、有効期限と継続時の申請時期を確認する。"
+    "マイナ保険証の利用登録状況に応じて、加入先の保険者名を確認する。",
+    "協会けんぽで低所得に該当する人は、マイナ保険証を使う場合も減額認定証を申請する。",
+    "入院や手術の前に、受診先でオンライン資格確認ができるか確かめる。"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -163,5 +163,119 @@
     ],
     "ar": 1.4444,
     "src": "https://ai-tech-express.jp/img/high-cost-medical-expenses-2026-00aec2f4.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "70歳未満で年収約200万円未満の区分は、年間上限41万円の対象と確認された場合、令和9年8月以降に償還払いとなります。令和8年8月からの表の年間上限だけで判断せず、適用条件を保険者に確認してください。",
+      "source": "https://www.mhlw.go.jp/content/001726232.pdf"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "高額療養費制度を利用される皆さまへ",
+      "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/iryouhoken/juuyou/kougakuiryou/index.html",
+      "source": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/iryouhoken/juuyou/kougakuiryou/index.html",
+      "howTo": [
+        "ホーム",
+        "政策について",
+        "分野別の政策一覧",
+        "健康・医療",
+        "医療保険"
+      ],
+      "note": "問い合わせ先は加入している医療保険制度で異なります。まず保険者名を確認してください。"
+    },
+    {
+      "name": "限度額適用認定証",
+      "url": "https://www.kyoukaikenpo.or.jp/benefit/high_cost_medical_expenses/001/index.html",
+      "source": "https://www.kyoukaikenpo.or.jp/benefit/high_cost_medical_expenses/001/index.html",
+      "note": "申請書受付月より前の月の認定証は交付できません。日程に余裕を持って提出してください。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "マイナ保険証の利用登録状況に応じて、加入先の保険者名を確認する。",
+      "source": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/iryouhoken/juuyou/kougakuiryou/index.html",
+      "steps": [
+        "利用登録済みならマイナポータルで確認する",
+        "未登録なら資格確認書の保険者名を見る",
+        "市区町村名なら市区町村の国民健康保険窓口へ"
+      ],
+      "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/iryouhoken/juuyou/kougakuiryou/index.html"
+    },
+    {
+      "action": "協会けんぽで低所得に該当する人は、マイナ保険証を使う場合も減額認定証を申請する。",
+      "source": "https://www.kyoukaikenpo.or.jp/benefit/high_cost_medical_expenses/001/index.html",
+      "steps": [
+        "「限度額適用・標準負担額減額認定申請書」を確認する",
+        "申請書を提出する"
+      ],
+      "url": "https://www.kyoukaikenpo.or.jp/application_form/benefit/005"
+    },
+    {
+      "action": "入院や手術の前に、受診先でオンライン資格確認ができるか確かめる。",
+      "source": "https://www.kyoukaikenpo.or.jp/benefit/high_cost_medical_expenses/001/index.html",
+      "steps": [
+        "受診先がオンライン資格確認を導入しているか確認する",
+        "導入していない場合は認定証の申請が必要か加入先に確認する",
+        "認定証が必要なら医療費を支払う前に申請する"
+      ],
+      "url": "https://www.kyoukaikenpo.or.jp/benefit/high_cost_medical_expenses/001/index.html"
+    }
+  ],
+  "cause": {
+    "text": "制度を将来にわたって維持するため、医療費の伸びや所得に応じて月の上限を見直します。一方で、低所得者に配慮し、多数回該当の金額を維持したうえで年間上限を設け、長期療養者へのセーフティネット機能を強化するとしています。",
+    "status": "background",
+    "source": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/iryouhoken/juuyou/kougakuiryou/index.html"
+  },
+  "worries": [
+    {
+      "q": "マイナ保険証を使えば、認定証の申請は必ず不要ですか？",
+      "a": "協会けんぽでは、マイナ保険証を利用する場合は原則として認定証の申請は不要です。ただし、被保険者が低所得者に該当する場合は、マイナ保険証を使う場合も「限度額適用・標準負担額減額認定証」を申請します。",
+      "source": "https://www.kyoukaikenpo.or.jp/benefit/high_cost_medical_expenses/001/index.html",
+      "action": "協会けんぽ加入で低所得に該当する場合は、減額認定申請書を確認して申請してください。"
+    },
+    {
+      "q": "受診した月の後に申請しても、その月の認定証は出ますか？",
+      "a": "協会けんぽでは、申請書受付月より前の月の限度額適用認定証は交付できません。認定証の有効期間は、申請書を受け付けた日の属する月の1日から最長で1年間の範囲です。",
+      "source": "https://www.kyoukaikenpo.or.jp/benefit/high_cost_medical_expenses/001/index.html",
+      "action": "入院や手術が決まったら、受診前に加入先へ申請の要否を確認し、必要なら日程に余裕を持って提出してください。"
+    },
+    {
+      "q": "資格確認書を使う70歳以上でも、認定証が必要ですか？",
+      "a": "協会けんぽの70歳以上75歳未満では、資格確認書等を使う現役並みⅠ・Ⅱの人は認定証が必要です。現役並みⅢと一般の人は不要です。マイナ保険証を使う場合は、各区分とも提示不要とされています。",
+      "source": "https://www.kyoukaikenpo.or.jp/benefit/high_cost_medical_expenses/001/index.html",
+      "action": "協会けんぽ加入で資格確認書等を使う場合は、自分の区分を確認して必要なら認定証を申請してください。"
+    },
+    {
+      "q": "月の上限に届かない月が続いても、年間上限の対象ですか？",
+      "a": "年間上限は8月から翌年7月までの自己負担を対象にします。月ごとの自己負担が月の上限に届かない場合でも、年間上限に達した後は、それ以上の負担は不要となり、保険者から還付を受けられます。",
+      "source": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/iryouhoken/juuyou/kougakuiryou/index.html",
+      "action": "長期の通院が続く人は、加入先の保険者に年間上限の適用と還付の扱いを確認してください。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "マイナ保険証と認定証、どちらを使う？",
+      "situation": "受診先がオンライン資格確認を導入している",
+      "recommend": "マイナ保険証の利用を検討する",
+      "reason": "協会けんぽでは、オンライン資格確認により限度額情報が医療機関等へ提供され、マイナ保険証を使う場合は原則として認定証の申請は不要です。ただし、被保険者が低所得者に該当する場合は別途申請が必要です。",
+      "source": "https://www.kyoukaikenpo.or.jp/benefit/high_cost_medical_expenses/001/index.html"
+    },
+    {
+      "question": "マイナ保険証と認定証、どちらを使う？",
+      "situation": "受診先が未導入、または協会けんぽにマイナンバー未登録",
+      "recommend": "受診前に認定証を申請する",
+      "reason": "協会けんぽでは、オンライン資格確認を導入していない医療機関等を受診する場合や、マイナンバーの登録がない場合、医療費を支払う前の認定証申請が必要です。申請書受付月より前の月の認定証は交付できません。",
+      "source": "https://www.kyoukaikenpo.or.jp/benefit/high_cost_medical_expenses/001/index.html"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "年収約200万円未満は年間上限の適用時期に注意",
+    "cause": "上限見直しで長期療養者にも配慮",
+    "steps": "受診前に確認したい加入先と認定証",
+    "desk": "申請先は加入している保険者で確認",
+    "worries": "認定証や年間上限で迷ったときの確認",
+    "guide": "マイナ保険証と認定証、どちらを使う？"
+  },
+  "depthAt": "2026-11-23T06:48:16+00:00"
 }
