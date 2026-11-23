@@ -1,6 +1,101 @@
 {
  "weeks": [
   {
+   "id": "2026-47",
+   "start": "2026-11-16",
+   "end": "2026-11-22",
+   "title": "今週のAIニュースまとめ（11月16日〜11月22日）",
+   "lede": [
+    "新モデルやAI基盤の選択肢が増え、料金や提供条件も示されました。",
+    "企業向けの導入支援に加え、安全性や脆弱性対応の運用変更も目立ちました。"
+   ],
+   "items": [
+    {
+     "slug": "gpt-6-2-astra-sol-pricing",
+     "title": "「GPT-6.2 Astra」API料金が前モデルより20%安く　日常向けSolも登場",
+     "company": "OpenAI",
+     "publishedAt": "2026-11-17T18:08:36.980438+00:00",
+     "what": "OpenAIがGPT-6.2 Astraと日常向けSolを投入しました。",
+     "why": "専門業務と日常業務でモデルを選び分けやすくなります。"
+    },
+    {
+     "slug": "nvidia-nemotron-for-science",
+     "title": "NVIDIA、化学AI向け約5万問のデータ公開　モデルも入手可能に",
+     "company": "NVIDIA",
+     "publishedAt": "2026-11-16T16:08:18.888549+00:00",
+     "what": "NVIDIAが科学向けAI基盤「Nemotron for Science」を公開しました。",
+     "why": "化学推論の評価と追加学習に使えるデータを入手できます。"
+    },
+    {
+     "slug": "openai-csam-classifier-child-safety",
+     "title": "児童性的虐待コンテンツの検出ツール、審査済み団体にAPIで無料提供　OpenAIが公開",
+     "company": "OpenAI",
+     "publishedAt": "2026-11-17T04:51:36.485018+00:00",
+     "what": "OpenAIがCSAM検出分類器を審査済み団体に無料提供します。",
+     "why": "審査済み団体は無料で使え、確認負担の軽減が見込めます。"
+    },
+    {
+     "slug": "gemini-4-neon-pricing-availability",
+     "title": "「Gemini 4 Neon」順次提供　Proは月2,900円、複雑な作業に対応",
+     "company": "Google",
+     "publishedAt": "2026-11-18T21:37:06.220257+00:00",
+     "what": "GoogleがGemini 4 Neonを順次提供し、Proは月2,900円です。",
+     "why": "最大100万トークン対応で、長い入力が必要な作業に使えます。"
+    },
+    {
+     "slug": "qwen4-max-ai-gateway",
+     "title": "Alibaba「Qwen4-Max」がAI Gatewayで利用可能に　100万トークン対応の推論モデル",
+     "company": "",
+     "publishedAt": "2026-11-16T03:14:14.400296+00:00",
+     "what": "AlibabaのQwen4-MaxがVercel AI Gatewayで使えます。",
+     "why": "画像入力と長いコンテキストに対応し、エージェント作業に使えます。"
+    },
+    {
+     "slug": "businesses-chatgpt-company-insights",
+     "title": "「Businesses in ChatGPT」で自社の紹介を確認　顧客対応AIは米国から",
+     "company": "OpenAI",
+     "publishedAt": "2026-11-18T02:11:44.503366+00:00",
+     "what": "OpenAIが「Businesses in ChatGPT」のベータ版を始めました。",
+     "why": "事業者は自社情報への言及数やサイトのクリック数を確認できます。"
+    },
+    {
+     "slug": "ntt-data-clean-modernization-cobol-java",
+     "title": "COBOL基幹システムの保守工数を約5割減へ　NTTデータが「クリーンモダナイゼーション」提供開始",
+     "company": "",
+     "publishedAt": "2026-11-17T07:41:24.050953+00:00",
+     "what": "NTTデータがCOBOL基幹システムの刷新サービスを開始しました。",
+     "why": "同社試算で保守工数約5割減、工期約4割短縮が見込まれます。"
+    },
+    {
+     "slug": "bedrock-open-weight-prompt-caching",
+     "title": "Bedrockのオープンウェイトモデルで明示的キャッシュが利用可能に　入力コスト削減",
+     "company": "",
+     "publishedAt": "2026-11-16T15:57:54.725605+00:00",
+     "what": "Bedrockのオープンウェイトモデルが明示的キャッシュに対応しました。",
+     "why": "共通部分を指定でき、変動する質問の書き込み料金を抑えられます。"
+    },
+    {
+     "slug": "admob-ask-admob-ai-agent-tools",
+     "title": "AdMobにAIアシスタント　広告の設定ミス検出や収益改善を支援",
+     "company": "Google",
+     "publishedAt": "2026-11-16T17:01:46.738203+00:00",
+     "what": "GoogleがAdMobにGemini搭載のAIアシスタントを追加しました。",
+     "why": "設定不具合や収益機会を相談でき、SDK移行の手順もAIに渡せます。"
+    },
+    {
+     "slug": "anthropic-cvd-timeline-30-days",
+     "title": "脆弱性の公開期限、90日から30日に短縮　Anthropicが2027年1月から",
+     "company": "Anthropic",
+     "publishedAt": "2026-11-17T06:08:20.236327+00:00",
+     "what": "Anthropicが脆弱性の公開期限を2027年から短縮します。",
+     "why": "高・重大は30日、その他は45日を前提に対応が必要です。"
+    }
+   ],
+   "articleCount": 42,
+   "generatedAt": "2026-11-23T02:07:16+00:00",
+   "model": "openai-api:gpt-6-luna"
+  },
+  {
    "id": "2026-46",
    "start": "2026-11-09",
    "end": "2026-11-15",
