@@ -8017,6 +8017,12 @@
       "skipped": true,
       "url": "https://news.yahoo.co.jp/articles/178e5f22c49ebd0057fa94478ba679c330141b1a"
     },
+    "1d0c151fefed0dea": {
+      "at": "2026-11-23T21:52:29.801654+00:00",
+      "reason": "review: 海外の AI の発表は自動で記事にしない（読者の安全・お金の話とチームの指示だけ。台帳 A75・scripts/news_mix.py review_ai_blocks）",
+      "skipped": true,
+      "url": "https://openai.com/index/introducing-shirudo"
+    },
     "1d1c7f92cbfd0da2": {
       "at": "2026-11-11T03:12:01.847278+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（審議会）",
@@ -12369,20 +12375,6 @@
       "reason": "prefilter: サイトの主題外（エンタメの告知・ゴシップ・キャンペーン。ビジネス・テックの目線ではない）",
       "skipped": true,
       "url": "https://www.aboutamazon.jp/news/company-news/amazon-japan-podcast-by-jasper-cheung?utm_source=rss"
-    },
-    "5d57e1aa081717ba": {
-      "at": "2026-11-09T21:52:11.044334+00:00",
-      "breaking": true,
-      "costUsd": 0.1029,
-      "foreignAi": true,
-      "intent": "breaking",
-      "major": true,
-      "mix": "other",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "score": 92,
-      "section": "ai",
-      "slug": "openai-control-room-ai-workload-stop",
-      "url": "https://openai.com/index/introducing-control-room"
     },
     "5d70a086523ce35a": {
       "at": "2026-11-16T12:26:49.595543+00:00",
@@ -23186,6 +23178,14 @@
       "url": "https://www.mhlw.go.jp/content/001768730.pdf",
       "writer": "muse"
     },
+    "muse-2d5f98354c": {
+      "at": "2026-11-23T21:40:14.277674+00:00",
+      "mix": "other",
+      "score": 100,
+      "slug": "ducati-v2-recall-japan",
+      "url": "https://www.mlit.go.jp/report/press/content/002047091.pdf",
+      "writer": "muse"
+    },
     "muse-2d9b2e9733": {
       "at": "2026-11-16T21:51:24.818507+00:00",
       "mix": "other",
@@ -25559,14 +25559,6 @@
       "slug": "child-allowance-application-guide-2026-matome",
       "url": "",
       "writer": "roundup"
-    },
-    "muse-2d5f98354c": {
-      "at": "2026-11-23T21:40:14.277674+00:00",
-      "mix": "other",
-      "score": 100,
-      "slug": "ducati-v2-recall-japan",
-      "url": "https://www.mlit.go.jp/report/press/content/002047091.pdf",
-      "writer": "muse"
     }
   },
   "quality_log": [
