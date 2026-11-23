@@ -54,8 +54,8 @@ export const GUIDE_AD_RULES: GuideRule[] = [
   // 年末調整のガイド（nencho-*・two-jobs-nencho など）: 上はふるさと納税の上限額の計算とふるさと納税のサイト、下は確定申告ソフト（2026-11-10 M4）。
   // 見出しの「年末調整」だけで当てる（相続税の「基礎控除」などで当てない）。tax より前に置き、同じ位置で当たったときに上の囲みにする
   { key: "nencho", extra: /年末調整/, only: true, internal: targetOf("furusato") },
-  // 還付申告・事業所得・雑所得は、どれも確定申告で申告する
-  { key: "tax", extra: /還付申告|事業所得|雑所得/ },
+  // 還付申告・事業所得・雑所得は、どれも確定申告で申告する。寡婦控除・ひとり親控除・勤労学生控除も確定申告で受けられる（2026-11-23 検索で見られているのに広告が無かったガイド）
+  { key: "tax", extra: /還付申告|事業所得|雑所得|寡婦控除|ひとり親控除|勤労学生控除/ },
   { key: "mobile", partners: ["bb-excite"] },
   // 児童手当のガイド: 上は子どもの学び（記事の PR でクリックがあった提携先）、下はふるさと納税のサイトと上限額の計算（12月31日まで）
   { key: "kids", extra: /児童手当/, only: true, lower: { key: "furusato", internal: targetOf("furusato") } },
