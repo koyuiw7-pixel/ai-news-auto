@@ -72,14 +72,13 @@
   "videoTitle": "医療費控除2026年分はいくらから？　10万円と所得の5％、小さい方が境目で最高200万円",
   "publishedAt": "2026-11-23T00:34:53.810214+00:00",
   "generatedAt": "2026-11-23T00:35:26.773216+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/medical-expense-deduction-2026-figure-4fae509e.jpg",
   "model": "openai-api:gpt-6.1-terra",
   "affiliates": [],
   "newsType": "policy",
   "todayActions": [
-    "2026年に支払った自分と生計を共にする家族の医療費について、領収書を集める。",
-    "入院費給付金や高額療養費など、医療費を補てんする金額が分かるものを整理する。",
-    "国税庁の確定申告書等作成コーナーで、医療費控除の明細書を確認する。"
+    "医療費通知に必要事項がそろっているかを確認して、明細書の記入を省けるか確かめる",
+    "通常の医療費控除とセルフメディケーション税制の額を比べて、申告方法を選ぶ"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -97,5 +96,127 @@
   "detectedAt": "2026-11-23T00:35:43+00:00",
   "searchTitle": "医療費控除2026年分の境目は？　所得200万円未満は5％",
   "layout": "noir",
-  "summaryLine": "2026年分の医療費控除は、保険金などを引いた額と所得に応じた境目で判定します。"
+  "summaryLine": "2026年分の医療費控除は、保険金などを引いた額と所得に応じた境目で判定します。",
+  "insight": [
+    {
+      "text": "医療費通知で明細書の記入を省けるのは、被保険者名、療養年月、受診者、医療機関名、支払額、保険者名などが記載された通知です。電子通知にも電子署名などの条件があります。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1120.htm"
+    },
+    {
+      "text": "給与所得者は源泉徴収票を申告書に添付・提示しなくてよい一方、申告書を作る際には必要です。税務署等へ行く場合は持参するよう国税庁が案内しています。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1120.htm"
+    },
+    {
+      "text": "医療費集計フォームは領収書の集計に使えますが、セルフメディケーション税制を選ぶ人は利用できません。どちらの控除を選ぶかで、集計方法も変わります。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1120.htm"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "確定申告書等作成コーナー",
+      "url": "https://www.keisan.nta.go.jp/kyoutu/ky/sm/top",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1120.htm",
+      "howTo": [
+        "タックスアンサー（よくある税の質問）",
+        "No.1120 医療費を支払ったとき（医療費控除）",
+        "確定申告書等作成コーナー"
+      ],
+      "note": "画面の案内に沿って金額等を入力すると、確定申告書等や必要な明細書を作成・提出できます。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "医療費通知に必要事項がそろっているかを確認して、明細書の記入を省けるか確かめる",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1120.htm",
+      "steps": [
+        "被保険者等の氏名を確認する",
+        "療養年月、療養を受けた者、医療機関名を確認する",
+        "支払額と保険者等の名称を確認する"
+      ],
+      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1120.htm"
+    },
+    {
+      "action": "通常の医療費控除とセルフメディケーション税制の額を比べて、申告方法を選ぶ",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1120.htm",
+      "steps": [
+        "対象医薬品の購入費と健康診断等の取組を確認する",
+        "医療費控除と特例の控除額をそれぞれ計算する",
+        "特例を選ぶ場合は医療費集計フォームを使わない"
+      ],
+      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1120.htm"
+    }
+  ],
+  "cause": {
+    "text": "医療費控除は、その年の1月1日から12月31日までに自己または生計を一にする配偶者や親族のために支払った医療費が一定額を超えた場合に、所得控除を受けられる仕組みです。未払いの医療費は、実際に支払った年の対象になります。",
+    "status": "background",
+    "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1120.htm"
+  },
+  "worries": [
+    {
+      "q": "家族の医療費なら、誰が払っても自分の控除にできる？",
+      "a": "対象になるのは、納税者が自己または自己と生計を一にする配偶者やその他の親族のために支払った医療費です。家族の医療費でも、納税者が支払ったことが要件です。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1120.htm",
+      "action": "誰の医療費かに加えて、領収書や支払記録で実際に支払った人を確認する。"
+    },
+    {
+      "q": "医療費通知があれば、領収書はすぐ捨ててもいい？",
+      "a": "医療費通知を添付した分を除き、明細書の記載内容を確認するため、確定申告期限等から5年を経過する日までの間、領収書の提示または提出を求められる場合があります。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1120.htm",
+      "action": "医療費通知を添付しない分の領収書は、確定申告期限等から5年を経過する日まで保管する。"
+    },
+    {
+      "q": "総所得金額等が200万円未満なら、境目はいくらになる？",
+      "a": "総所得金額等が200万円未満の人は、医療費から補てん額を差し引いた後に引く金額が、10万円ではなく総所得金額等の5パーセントです。控除額には最高200万円の上限があります。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1120.htm",
+      "action": "総所得金額等を確認し、その5パーセントを医療費から差し引く金額として計算する。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "通常控除の境目に届かないときはどうする？",
+      "situation": "対象の市販薬を買い、健康診断等も受けた",
+      "recommend": "特例の要件と控除額を確認する",
+      "reason": "一定の健康診断や予防接種などに取り組み、対象医薬品の購入費がある人は、補てん分を除いた購入費のうち12,000円を超える部分を最高88,000円まで控除できます。ただし通常の医療費控除とは選択適用です。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1120.htm"
+    },
+    {
+      "question": "両方の控除条件を満たすならどちらにする？",
+      "situation": "通常控除とセルフメディケーション税制の双方が候補",
+      "recommend": "それぞれの控除額を計算して比べる",
+      "reason": "通常の医療費控除とセルフメディケーション税制は、どちらかを選ぶ制度です。医療費控除は最高200万円、特例は12,000円を超える部分が最高88,000円までなので、両方の計算額を比べて選びます。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1120.htm"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "医療費通知や源泉徴収票で迷いやすい点",
+    "cause": "控除の対象になる年の考え方",
+    "steps": "支払日と通知を先に確認",
+    "desk": "申告書と明細書を作る場所",
+    "worries": "年分や書類の扱いが心配",
+    "guide": "通常控除と特例、どちらを選ぶ？"
+  },
+  "depthAt": "2026-11-23T00:51:30+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "10万円",
+    "label": "医療費控除2026年分",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-23T00:53:41+00:00"
+  },
+  "imageFocus": {
+    "x": 0.497,
+    "y": 0.414,
+    "box": [
+      0.069,
+      0.054,
+      0.925,
+      0.774
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/medical-expense-deduction-2026-figure-4fae509e.jpg"
+  }
 }

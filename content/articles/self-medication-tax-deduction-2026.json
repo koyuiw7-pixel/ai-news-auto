@@ -72,14 +72,13 @@
   "videoTitle": "セルフメディケーション税制2026年分　対象の市販薬が1万2千円を超えたら最高8万8千円、医療費控除とは選ぶ形",
   "publishedAt": "2026-11-23T00:33:06.144074+00:00",
   "generatedAt": "2026-11-23T00:33:42.584741+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/self-medication-tax-deduction-2026-figure-86aa17ab.jpg",
   "model": "openai-api:gpt-6.1-terra",
   "affiliates": [],
   "newsType": "policy",
   "todayActions": [
-    "2026年の市販薬のレシートで、セルフメディケーション税制の対象表示を確認する。",
-    "勤務先の健康診断や予防接種など、申告者本人が2026年に受けた取組の書類を探す。",
-    "国税庁タックスアンサーNo.1129で、対象条件と明細書の案内を確認する。"
+    "申告する本人の健康診断などの記録を探し、実施年と実施主体が分かるか確かめる。",
+    "申告前に通常の医療費控除とセルフメディケーション税制のどちらを使うか比べる。"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -115,5 +114,130 @@
   "detectedAt": "2026-11-23T00:34:39+00:00",
   "searchTitle": "セルフメディケーション税制　控除は1万2,000円超から",
   "layout": "noir",
-  "summaryLine": "2026年分のセルフメディケーション税制は、対象薬の購入費に応じて最高**8万8,000円**を所得から控除"
+  "summaryLine": "2026年分のセルフメディケーション税制は、対象薬の購入費に応じて最高**8万8,000円**を所得から控除",
+  "insight": [
+    {
+      "text": "税務署から取組の証明書類を求められた場合、その書類には氏名・取組を行った年・実施した保険者や事業者などの名称が記載されている必要があります。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1129.htm"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "国税庁タックスアンサー No.1129",
+      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1129.htm",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1129.htm",
+      "howTo": [
+        "ホーム",
+        "税の情報・手続・用紙",
+        "税について調べる",
+        "タックスアンサー（よくある税の質問）",
+        "No.1129 特定一般用医薬品等購入費を支払ったとき（医療"
+      ],
+      "note": "確定申告書等作成コーナーでは、画面の案内に沿って書類を作成・提出でき、必要な明細書も入力により自動作成されます。"
+    },
+    {
+      "name": "厚生労働省「対象品目一覧」",
+      "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000124853.html",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1129.htm"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "申告する本人の健康診断などの記録を探し、実施年と実施主体が分かるか確かめる。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1129.htm",
+      "steps": [
+        "氏名と取組を行った年の記載を確認する",
+        "保険者・事業者・市区町村などの名称を確認する"
+      ],
+      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1129.htm"
+    },
+    {
+      "action": "申告前に通常の医療費控除とセルフメディケーション税制のどちらを使うか比べる。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1129.htm",
+      "steps": [
+        "対象薬の購入費から控除額を確認する",
+        "通常の医療費控除の対象支出も整理する",
+        "選択後は変更できないことを確認する"
+      ],
+      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1129.htm"
+    }
+  ],
+  "cause": {
+    "text": "この制度は、健康の保持増進や疾病の予防への取組を行う人が、本人または生計を一にする配偶者その他の親族のために対象医薬品を購入した場合に、所得控除を受けられる仕組みです。",
+    "status": "background",
+    "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1129.htm"
+  },
+  "worries": [
+    {
+      "q": "家族のために買った対象薬も控除に入れられますか？",
+      "a": "自己の薬だけでなく、自己と生計を一にする配偶者その他の親族のために支払った特定一般用医薬品等購入費も対象です。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1129.htm",
+      "action": "家族の薬の領収書も集め、対象商品である旨の表示を確認してください。"
+    },
+    {
+      "q": "家族も健康診断などを受けていないと対象外ですか？",
+      "a": "一定の取組を行う必要があるのは申告する本人です。生計を一にする配偶者その他の親族が一定の取組を行っている必要はありません。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1129.htm",
+      "action": "申告者本人が対象年に行った取組の記録を確認してください。"
+    },
+    {
+      "q": "健診などの証明書類は申告時に提出しますか？",
+      "a": "令和3年分以後の申告では、一定の取組を行ったことを明らかにする書類の添付や提示は不要です。ただし、確定申告期限等から5年を経過する日までに、税務署から提示または提出を求められる場合があります。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1129.htm",
+      "action": "申告者本人の氏名・取組年・実施主体などが分かる書類を保管してください。"
+    },
+    {
+      "q": "対象薬の識別マークが包装になくても対象ですか？",
+      "a": "一部の対象医薬品には包装に識別マークがありますが、すべての商品にあるとは限りません。対象商品である旨は領収書等に表示され、具体的な品目は厚生労働省ホームページの対象品目一覧で確認できます。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1129.htm",
+      "action": "レシートの表示を確認し、判断できない商品は厚生労働省の対象品目一覧で探してください。"
+    },
+    {
+      "q": "健康診断や予防接種にかかった費用も控除に足せますか？",
+      "a": "一定の取組に要した費用は、セルフメディケーション税制による医療費控除の対象になりません。控除額の計算に含めるのは、対象となる医薬品の購入費です。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1129.htm",
+      "action": "薬の購入費と健診・予防接種などの費用を分けて集計してください。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "どちらの控除を選んで申告すればいい？",
+      "situation": "対象薬の購入費と医療費の両方がある",
+      "recommend": "申告前に両方の控除額を比べる",
+      "reason": "セルフメディケーション税制と通常の医療費控除は併用できません。いずれかを選んで申告した後は、更正の請求や修正申告によって選択を変更できないため、申告前に比較して決める必要があります。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1129.htm"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "取組の証明書類で確認したい記載",
+    "cause": "健康づくりの取組が条件",
+    "steps": "レシートと健診書類を申告前に確認",
+    "desk": "対象薬と申告方法を確認する先",
+    "worries": "家族の薬や健診書類も気になる",
+    "guide": "申告前に控除の選択を決める"
+  },
+  "depthAt": "2026-11-23T00:52:01+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "セルフメディケーション税制2026年分",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-23T00:54:19+00:00"
+  },
+  "imageFocus": {
+    "x": 0.525,
+    "y": 0.387,
+    "box": [
+      0.1,
+      0.06,
+      0.95,
+      0.714
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/self-medication-tax-deduction-2026-figure-86aa17ab.jpg"
+  }
 }

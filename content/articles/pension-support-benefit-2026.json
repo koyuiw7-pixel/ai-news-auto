@@ -72,7 +72,7 @@
   "videoTitle": "年金生活者支援給付金2026年度は月5,620円が基準額　昨年度より170円増、金額が違う理由は物価3.2％",
   "publishedAt": "2026-11-23T00:31:35.642615+00:00",
   "generatedAt": "2026-11-23T00:32:16.863402+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/pension-support-benefit-2026-figure-9212428b.jpg",
   "model": "openai-api:gpt-6.1-terra",
   "affiliates": [],
   "newsType": "policy",
@@ -83,8 +83,8 @@
     }
   ],
   "todayActions": [
-    "「年金生活者支援給付金 支給金額（改定）通知書」で、自分の支給月額を確認する。",
-    "年金証書や支給額変更通知書で、計算に使われた納付済期間と免除期間を確認する。"
+    "受け取った通知書で、令和8年4月分以降の支給月額を確かめる。",
+    "年金証書などで、計算に使われた納付済期間と免除期間を確かめる。"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -119,5 +119,101 @@
   "detectedAt": "2026-11-23T00:32:54+00:00",
   "searchTitle": "年金生活者支援給付金2026年度の基準額は月5,620円",
   "layout": "noir",
-  "summaryLine": "年金生活者支援給付金の2026年度の基準額は、前年度より引き上げられました。"
+  "summaryLine": "年金生活者支援給付金の2026年度の基準額は、前年度より引き上げられました。",
+  "insight": [
+    {
+      "text": "通知書は支給金額を証するものとして「大切に保管してください」と案内されています。紙面右の音声コードから、お知らせの内容を音声で聞けます。",
+      "source": "https://www.nenkin.go.jp/service/jukyu/tuutisyo/shienkyufukin/kaitei.files/kaitei1.pdf"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "年金生活者支援給付金を受け取っています。昨年度と金額が違うのですが、どのように計算されていますか。",
+      "url": "https://www.nenkin.go.jp/section/faq/jukyu/seido/sonota-kyufu/shienkyufukin/kaiteitsuchi/keisan.html",
+      "source": "https://www.nenkin.go.jp/section/faq/jukyu/seido/sonota-kyufu/shienkyufukin/kaiteitsuchi/keisan.html"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "受け取った通知書で、令和8年4月分以降の支給月額を確かめる。",
+      "source": "https://www.nenkin.go.jp/service/jukyu/tuutisyo/shienkyufukin/kaitei.files/kaitei1.pdf",
+      "steps": [
+        "「年金生活者支援給付金 支給金額（改定）通知書」を確認する",
+        "支給金額（月額）を見る"
+      ],
+      "url": "https://www.nenkin.go.jp/service/jukyu/tuutisyo/shienkyufukin/kaitei.files/kaitei1.pdf"
+    },
+    {
+      "action": "年金証書などで、計算に使われた納付済期間と免除期間を確かめる。",
+      "source": "https://www.nenkin.go.jp/section/faq/jukyu/seido/sonota-kyufu/shienkyufukin/kaiteitsuchi/keisan.html",
+      "steps": [
+        "年金証書または支給額変更通知書を用意する",
+        "保険料納付済期間と保険料免除期間を確認する"
+      ],
+      "url": "https://www.nenkin.go.jp/section/faq/jukyu/seido/sonota-kyufu/shienkyufukin/kaiteitsuchi/keisan.html"
+    }
+  ],
+  "cause": {
+    "text": "給付基準額は物価の変動に応じて毎年度改定されます。令和7年の物価変動率が3.2％上昇したため、令和8年度の給付基準額は3.2％引き上げられました。老齢は、免除期間がある場合に老齢基礎年金額の引き上げに伴う改定もあります。",
+    "status": "background",
+    "source": "https://www.nenkin.go.jp/section/faq/jukyu/seido/sonota-kyufu/shienkyufukin/kaiteitsuchi/keisan.html"
+  },
+  "worries": [
+    {
+      "q": "基準額が3.2％上がったなら、私の額も同じだけ増えますか？",
+      "a": "同じ増額になるとは限りません。実際の額は保険料納付済期間や保険料免除期間等に応じて算出されます。老齢では、免除期間がある場合に老齢基礎年金額の引き上げに伴う改定もあります。",
+      "source": "https://www.nenkin.go.jp/service/jukyu/tuutisyo/shienkyufukin/kaitei.files/kaitei1.pdf",
+      "action": "支給金額（改定）通知書で自分の月額を確認し、期間の内訳は年金証書などで確かめてください。",
+      "actionSource": "https://www.nenkin.go.jp/section/faq/jukyu/seido/sonota-kyufu/shienkyufukin/kaiteitsuchi/keisan.html"
+    },
+    {
+      "q": "計算に使われた納付済期間や免除期間はどこで見られますか？",
+      "a": "給付額の算出のもととなった保険料納付済期間や保険料免除期間は、手元の年金証書や支給額変更通知書などで確認できます。",
+      "source": "https://www.nenkin.go.jp/section/faq/jukyu/seido/sonota-kyufu/shienkyufukin/kaiteitsuchi/keisan.html",
+      "action": "年金証書または支給額変更通知書を手元に置き、納付済期間と免除期間を確認してください。"
+    },
+    {
+      "q": "遺族給付金を子どもが複数人で受け取ると、どう分けられますか？",
+      "a": "遺族年金生活者支援給付金の基準額は月5,620円です。2人以上の子が受け取る場合は、子の人数で割った金額がそれぞれに支払われます。",
+      "source": "https://www.nenkin.go.jp/service/jukyu/tuutisyo/shienkyufukin/kaitei.files/kaitei1.pdf",
+      "action": "通知書に記載された給付金の種類と支給金額（月額）を確認してください。"
+    },
+    {
+      "q": "障害年金生活者支援給付金は、等級で金額が違いますか？",
+      "a": "障害年金生活者支援給付金は等級に応じて基準額が異なります。令和8年度は1級が月7,025円、2級が月5,620円です。",
+      "source": "https://www.nenkin.go.jp/service/jukyu/tuutisyo/shienkyufukin/kaitei.files/kaitei1.pdf",
+      "action": "通知書の給付金の種類と支給金額（月額）を見比べて確認してください。"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "通知書は保管し、音声コードも使える",
+    "cause": "物価上昇が基準額に反映",
+    "steps": "通知書と年金証書で自分の額を確認",
+    "desk": "計算方法を確認できる日本年金機構のQ&A",
+    "worries": "自分の給付額や対象区分はどうなる？"
+  },
+  "depthAt": "2026-11-23T00:52:30+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "月5,620円",
+    "label": "年金生活者支援給付金2026年度は基準額",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-23T00:54:35+00:00"
+  },
+  "imageFocus": {
+    "x": 0.53,
+    "y": 0.52,
+    "box": [
+      0.097,
+      0.083,
+      0.963,
+      0.958
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/pension-support-benefit-2026-figure-9212428b.jpg"
+  }
 }

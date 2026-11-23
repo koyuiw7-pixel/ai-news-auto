@@ -56,13 +56,13 @@
   "videoTitle": "ダイハツ「ロッキー」トヨタ「ライズ」スバル「レックス」2026年11月リコール　17万6,683台、届出番号5901",
   "publishedAt": "2026-11-23T00:35:53.590101+00:00",
   "generatedAt": "2026-11-23T00:36:18.608029+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/rocky-raize-rex-recall-figure-79c73c11.jpg",
   "model": "openai-api:gpt-6.1-terra",
   "affiliates": [],
   "newsType": "security",
   "todayActions": [
-    "国土交通省の届出で、所有する車の型式と車台番号の範囲を確かめる。",
-    "対象の可能性がある場合は、ダイハツのお客様コールセンター0800-500-0182に問い合わせる。"
+    "届出番号5901の一覧で、車種・型式・車台番号を順に照合する",
+    "車台番号が範囲内なら、ダイハツの窓口で対象車か確認する"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -88,5 +88,113 @@
   "detectedAt": "2026-11-23T00:37:37+00:00",
   "searchTitle": "ロッキー・ライズ・レックスのリコール対象は？　17万6,683台",
   "layout": "noir",
-  "summaryLine": "「ロッキー」「ライズ」「レックス」の一部、計**17万6,683台**でリコールが始まりました。"
+  "summaryLine": "「ロッキー」「ライズ」「レックス」の一部、計**17万6,683台**でリコールが始まりました。",
+  "insight": [
+    {
+      "text": "今回のリコール届出番号は「5901」です。車種や台数が似た別の案内と取り違えないよう、届出を確認するときの手掛かりになります。",
+      "source": "https://www.mlit.go.jp/report/press/content/002045207.pdf"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "ダイハツ工業株式会社 お客様コールセンター",
+      "url": "https://www.mlit.go.jp/report/press/content/002045207.pdf",
+      "source": "https://www.mlit.go.jp/report/press/content/002045207.pdf",
+      "phone": "0800-500-0182",
+      "note": "車台番号の範囲には、対象とならない車両も含まれている場合があります。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "届出番号5901の一覧で、車種・型式・車台番号を順に照合する",
+      "source": "https://www.mlit.go.jp/report/press/content/002045207.pdf",
+      "steps": [
+        "国土交通省のリコール届出一覧表を開く",
+        "車種と型式を確認し、車台番号を範囲と照合する",
+        "ロッキーは1.2Lエンジン車の注記も確認する"
+      ],
+      "url": "https://www.mlit.go.jp/report/press/content/002045207.pdf"
+    },
+    {
+      "action": "車台番号が範囲内なら、ダイハツの窓口で対象車か確認する",
+      "source": "https://www.mlit.go.jp/report/press/content/002045207.pdf",
+      "steps": [
+        "お客様コールセンター 0800-500-0182へ連絡する",
+        "届出番号5901のリコールについて対象車か確認する"
+      ],
+      "url": "https://www.mlit.go.jp/report/press/content/002045207.pdf"
+    }
+  ],
+  "cause": {
+    "text": "エンジン始動時にかかる力に対する設計検討が不十分で、オルタネータのプーリ内部のスプリングが折れることがあります。そのまま使い続けると、発電不良や警告灯の点灯を経て、プーリがロックし、低速時にエンストするおそれがあります。",
+    "status": "stated",
+    "source": "https://www.mlit.go.jp/report/press/content/002045207.pdf"
+  },
+  "worries": [
+    {
+      "q": "車台番号が範囲に入れば、リコール対象と確定ですか？",
+      "a": "届出は、車台番号の範囲内に対象とならない車両が含まれる場合があると注意しています。車台番号の範囲だけでは対象かどうかを確定できません。",
+      "source": "https://www.mlit.go.jp/report/press/content/002045207.pdf",
+      "action": "車台番号の範囲に入っていたら、ダイハツのお客様コールセンターで対象車か確認してください。"
+    },
+    {
+      "q": "対象車だった場合、どんな改善措置を受けますか？",
+      "a": "全車両について、オルタネータのプーリを対策品に交換し、エンジン制御コンピュータのプログラムを修正すると届出に記載されています。",
+      "source": "https://www.mlit.go.jp/report/press/content/002045207.pdf",
+      "action": "対象車と確認できたら、ダイハツのお客様コールセンターに改善措置について確認してください。"
+    },
+    {
+      "q": "これまでに不具合や事故はどのくらい報告されていますか？",
+      "a": "届出時点の不具合件数は933件で、事故の有無は「なし」と記載されています。これは届出に記された件数と事故の状況です。",
+      "source": "https://www.mlit.go.jp/report/press/content/002045207.pdf",
+      "action": "自分の車が対象かどうかは、車種・型式・車台番号を届出と照合してください。"
+    },
+    {
+      "q": "この不具合では、どんな症状が起きるおそれがありますか？",
+      "a": "内部のスプリングが折れたまま使用を続けると、異音や発電不良による警告灯の点灯が起きることがあります。最悪の場合はプーリがロックし、低速時にエンストして再始動できなくなるおそれがあります。",
+      "source": "https://www.mlit.go.jp/report/press/content/002045207.pdf",
+      "action": "車台番号と型式を届出で照合し、対象車かどうかをダイハツのお客様コールセンターに確認してください。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "車台番号が範囲内なら対象と考えてよい？",
+      "situation": "届出の車台番号の範囲に入っている",
+      "recommend": "窓口や通知で対象車か確認する",
+      "reason": "届出には、車台番号の範囲内にも対象とならない車両が含まれる場合があると記されています。範囲との照合だけでは対象と確定できないため、ダイハツのお客様コールセンターや通知で確認するのが確実です。",
+      "source": "https://www.mlit.go.jp/report/press/content/002045207.pdf"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "届出番号は5901",
+    "cause": "始動時の力に対する設計が背景",
+    "steps": "型式と車台番号を照合",
+    "desk": "対象確認はダイハツの窓口へ",
+    "worries": "対象範囲や修理内容を確認",
+    "guide": "番号が範囲内なら対象を確認"
+  },
+  "depthAt": "2026-11-23T00:50:58+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "17万6,683台",
+    "label": "「ロッキー」「ライズ」「レックス」",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-23T00:52:56+00:00"
+  },
+  "imageFocus": {
+    "x": 0.531,
+    "y": 0.494,
+    "box": [
+      0.084,
+      0.065,
+      0.978,
+      0.923
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/rocky-raize-rex-recall-figure-79c73c11.jpg"
+  }
 }
