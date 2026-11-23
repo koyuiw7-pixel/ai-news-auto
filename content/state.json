@@ -937,7 +937,7 @@
     "5ffa14e47fd39a60be813b08777e3f637a84548b": 2,
     "60202a9fc79f7e57a64bab5f65ef488d6023b2ac": 2,
     "603a884ab75ae034f04e55dddb408ea5bd544cd2": 2,
-    "603b363fbaee1d26b37ee9e3140ad39a92f47d51": 1,
+    "603b363fbaee1d26b37ee9e3140ad39a92f47d51": 3,
     "603ed4a13449702c0333b4fdb5f4d1d3e62d8c2d": 2,
     "604618a84943cdbccca5fa64d5a26034a44e1119": 2,
     "605946c23454f04fde0d9f4614b26d07afdc07bb": 2,
@@ -1204,7 +1204,7 @@
     "7ac2ce0b901f65502f30048182cb7525eb6b579f": 2,
     "7ac4d739974c287296b205d5da0609cc97a1e556": 2,
     "7ad630aebbe1b91f932b6a4ce70b40089cefeb7f": 2,
-    "7b09367c5d772c51f717b74eb7a1d50803217aa8": 1,
+    "7b09367c5d772c51f717b74eb7a1d50803217aa8": 3,
     "7b3564a4406d9a860c3859285c37bbd854011c36": 2,
     "7b3c2d8f97577c84f63be769823c81e6c237e98f": 2,
     "7b6d55260ae01da3b8a4fd65c4c485e4d166c72c": 2,
@@ -1264,7 +1264,7 @@
     "80afeef7b8e1997e8e6187ed409f647a94f74e43": 2,
     "80d36cb73941d78985f857527b2fd4f7996f5dd5": 2,
     "80e3099707ad543109df14106ffca106cf37eb5f": 2,
-    "8115553914b9d7baeeccc5238cc7ba61c87ff0c1": 1,
+    "8115553914b9d7baeeccc5238cc7ba61c87ff0c1": 3,
     "8120fcbe628d766f887a2179866c2348964b2c5b": 2,
     "8126c61fc067aaadd3f81edff34f44edeacadd85": 2,
     "812ca14ab63a5f3c2c6d40b8a3ea981028a195ad": 2,
@@ -1795,7 +1795,7 @@
     "b88b82b927d17d3be0959fc15b0ddb75fb939377": 2,
     "b8901846766734f176e354719740a40c60d908d4": 2,
     "b8a07b7a03b786802cfc33472a982a460bd2f815": 1,
-    "b8af6a7a4873457e247e2bb6798448153cda74ed": 1,
+    "b8af6a7a4873457e247e2bb6798448153cda74ed": 3,
     "b8e3a8993dc3f43ce92703f492ca6f676d258db5": 2,
     "b8fa7d6bafa3b93b4f7f3edbe8d0f9a1a745ffdd": 2,
     "b90d34264e65cc34d77a9a98719a61b019b794dd": 2,
@@ -2432,6 +2432,7 @@
     "fdd3388fce3e35a2e6631cf25c90f5acf24e12a9": 2,
     "fdef8884925aac055c45e84b70aa63bbe452ab86": 2,
     "fdfbf9a4a30a5264b2da7ce7b98473bce09b7182": 2,
+    "fe034e4ebb7546d7d2bf71410c4d2e4389742dc4": 1,
     "fe1ea34d3c49ff8186098ca6cf361006f03ccf4c": 2,
     "fe2278f9da97d590747623f9cfba97b74e09eefd": 2,
     "fe240ae7c1d758b371332f816db1631262434016": 2,
@@ -8786,19 +8787,6 @@
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・暮らしの交通/天気/値上げ/障害/給付/発売・日本のスポーツのどれでもない）",
       "skipped": true,
       "url": "https://www.kantei.go.jp/jp/pages/20261111choukan_kunitotokyoto.html"
-    },
-    "28e3a79b5138651e": {
-      "at": "2026-11-09T02:06:36.581996+00:00",
-      "breaking": true,
-      "costUsd": 0.1254,
-      "intent": "breaking",
-      "major": true,
-      "mix": "other",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "score": 88,
-      "section": "ai",
-      "slug": "plamo-3-fin-open-weight",
-      "url": "https://www.preferred.jp/ja/news/pr20261109"
     },
     "28e41078ea5f72fd": {
       "at": "2026-11-21T16:23:23.169084+00:00",
@@ -19169,6 +19157,12 @@
       "reason": "prefilter: 価値の薄いお知らせ（抽選）",
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026111106"
+    },
+    "c6b152eafc9c5c1582aa0254255426d43aba10c3": {
+      "at": "2026-11-23T02:13:37.498751+00:00",
+      "reason": "trend: 重複: 同じ言葉の記事がある（emperor-cup-empress-cup-final-national-stadium）",
+      "skipped": true,
+      "url": "https://news.yahoo.co.jp/articles/4b423934d59a18f25a10a3a8773c09b045951b40"
     },
     "c6c361c53bc4ce2d": {
       "at": "2026-11-17T22:51:44.421123+00:00",
