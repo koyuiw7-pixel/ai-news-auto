@@ -82,9 +82,9 @@
   "affiliates": [],
   "newsType": "policy",
   "todayActions": [
-    "保険会社などから届いた証明書で、支払った保険料が地震保険料控除の対象か確かめる。",
-    "旧長期損害保険の契約がある場合は、契約日や保険期間などの要件を国税庁のNo.1145で確認する。",
-    "年末調整で控除を受ける場合は、保険料控除申告書を勤務先に提出する。"
+    "証明書で、保険料のうち地震等損害部分が控除対象か確かめる",
+    "旧長期損害保険の契約がある人は、3つの要件を確認する",
+    "確定申告で控除を受ける人は、控除欄と証明書類の扱いを確認する"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -128,5 +128,99 @@
     "category": "other",
     "at": "2026-11-23T09:22:35+00:00"
   },
-  "coverTries": 1
+  "coverTries": 2,
+  "insight": [
+    {
+      "text": "旧長期損害保険料が対象になるのは、平成19年分から損害保険料控除が廃止された後に設けられた経過措置です。古い契約でも、決められた要件をすべて満たす必要があります。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1145.htm"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "税についての相談窓口",
+      "url": "https://www.nta.go.jp/taxes/shiraberu/shirabekata/9200.htm",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1145.htm"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "証明書で、保険料のうち地震等損害部分が控除対象か確かめる",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1146.htm",
+      "steps": [
+        "保険会社などから届いた証明書を確認する",
+        "証明書で控除対象となる支払額を確かめる"
+      ],
+      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1146.htm"
+    },
+    {
+      "action": "旧長期損害保険の契約がある人は、3つの要件を確認する",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1145.htm",
+      "steps": [
+        "平成18年12月31日までの契約か確認する",
+        "保険期間が10年以上か確認する",
+        "平成19年1月1日以後に契約変更していないか確認する"
+      ],
+      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1145.htm"
+    },
+    {
+      "action": "確定申告で控除を受ける人は、控除欄と証明書類の扱いを確認する",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1145.htm",
+      "steps": [
+        "確定申告書の地震保険料控除欄に記入する",
+        "証明書類か電磁的記録印刷書面を添付・提示する",
+        "確定申告書等作成コーナーで作成・提出する"
+      ],
+      "url": "https://www.keisan.nta.go.jp/kyoutu/ky/sm/top"
+    }
+  ],
+  "cause": {
+    "text": "平成18年の税制改正で、平成19年分から損害保険料控除は廃止されました。そのため、旧長期損害保険については、一定の要件を満たす契約に限り、地震保険料控除の対象とする経過措置が設けられています。",
+    "status": "background",
+    "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1145.htm"
+  },
+  "worries": [
+    {
+      "q": "保険の支払総額をそのまま控除に使える？",
+      "a": "控除対象は契約の支払総額ではなく、地震等損害部分の保険料です。支払った損害保険料が対象になるかは、保険会社などから送られる証明書で確認できます。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1146.htm",
+      "action": "保険会社などから届いた証明書を見て、控除対象となる支払額を確認する。"
+    },
+    {
+      "q": "昔の長期損害保険も控除の対象になる？",
+      "a": "経過措置の対象となるには、平成18年12月31日までの契約であること、満期返戻金等があり保険期間が10年以上であること、平成19年1月1日以後に契約変更していないことのすべてが必要です。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1145.htm",
+      "action": "証明書と契約内容を照らし合わせ、3つの要件をすべて満たすか確認する。"
+    },
+    {
+      "q": "確定申告では証明書を添付しないといけない？",
+      "a": "確定申告では支払金額や控除を受けられることを証明する書類を添付するか、申告時に提示します。電磁的記録印刷書面も使えますが、年末調整で控除された場合は添付・提示は不要です。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1145.htm",
+      "action": "確定申告をする人は、証明書類か電磁的記録印刷書面を添付・提示する準備をする。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "両方の保険料があるとき、どう計算する？",
+      "situation": "同じ契約で両方の保険料を支払っている",
+      "recommend": "どちらか一方の控除額を選ぶ",
+      "reason": "同じ契約に基づいて地震保険料と旧長期損害保険料の両方を支払っている場合、両方を合算せず、いずれか一方の控除を選びます。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1145.htm"
+    },
+    {
+      "question": "両方の保険料があるとき、どう計算する？",
+      "situation": "別々の契約でそれぞれ支払っている",
+      "recommend": "それぞれ計算し、合計の上限を確認する",
+      "reason": "地震保険料と旧長期損害保険料がある場合は、それぞれの方法で計算した額を合計できます。ただし、合計額の上限は50,000円です。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1145.htm"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "旧長期契約が対象になるのは経過措置",
+    "cause": "旧長期契約に経過措置がある理由",
+    "steps": "証明書と契約条件を確かめる",
+    "desk": "契約の対象に迷ったときの相談先",
+    "worries": "証明書や古い契約で迷ったら",
+    "guide": "両方の保険料があるときの選び方"
+  },
+  "depthAt": "2026-11-23T09:44:43+00:00"
 }
