@@ -57,7 +57,7 @@
   "videoTitle": "2026年11月24日・25日は雨と強風、寒気　羽越本線と五能線に遅れや運休の可能性",
   "publishedAt": "2026-11-23T06:47:17.723616+00:00",
   "generatedAt": "2026-11-23T06:47:49.295320+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/uetsu-gono-wind-train-alert-figure-fd2baac0.jpg",
   "model": "openai-api:gpt-6.1-terra",
   "affiliates": [],
   "newsType": "general",
@@ -68,9 +68,8 @@
     }
   ],
   "todayActions": [
-    "羽越本線の酒田〜秋田駅間を使う予定なら、JR東日本の東北エリア運行情報を確認する。",
-    "五能線の東能代〜弘前駅間を25日に使う予定なら、代行輸送がない前提で移動予定を考える。",
-    "秋田・山形・青森の地域別予報で、24日から25日の雨や雪、風の見通しを確認する。"
+    "利用する路線と日付を確認し、JR東日本の運行情報で最新のお知らせを見る。",
+    "25日に北日本へ出かける人は、強風や大雪による交通への注意事項を確認する。"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -109,5 +108,124 @@
   "qualityScore": 100,
   "detectedAt": "2026-11-23T06:47:55+00:00",
   "layout": "noir",
-  "summaryLine": "羽越本線と五能線では、11月24日夕方頃から25日にかけて遅れや運休の可能性があります。"
+  "summaryLine": "羽越本線と五能線では、11月24日夕方頃から25日にかけて遅れや運休の可能性があります。",
+  "insight": [
+    {
+      "text": "JR東日本は、4時～翌2時の間に30分以上の遅れが発生または見込まれる場合に「遅延」と案内します。短い遅れまで表示する基準ではない点も踏まえ、対象路線のお知らせを確認しましょう。",
+      "source": "https://traininfo.jreast.co.jp/train_info/tohoku.aspx"
+    },
+    {
+      "text": "気象庁は25日の北日本について、強風に注意・警戒を呼びかけ、大雪による交通障害や着雪にも注意としています。列車の運行だけでなく、広く交通への影響にも注意が必要な予報です。",
+      "source": "https://www.data.jma.go.jp/yoho/data/jishin/kaisetsu_tanki_latest.pdf"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "運行情報・運休情報 東北エリア",
+      "url": "https://traininfo.jreast.co.jp/train_info/tohoku.aspx",
+      "source": "https://traininfo.jreast.co.jp/train_info/tohoku.aspx",
+      "note": "最新情報を更新していますが、実際の運行状況と本ページの情報が異なる場合があります。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "利用する路線と日付を確認し、JR東日本の運行情報で最新のお知らせを見る。",
+      "source": "https://traininfo.jreast.co.jp/train_info/tohoku.aspx",
+      "steps": [
+        "「運行情報・運休情報 東北エリア」を開く",
+        "羽越本線または五能線のお知らせを見る",
+        "出発前に表示内容を改めて確認する"
+      ],
+      "url": "https://traininfo.jreast.co.jp/train_info/tohoku.aspx"
+    },
+    {
+      "action": "25日に北日本へ出かける人は、強風や大雪による交通への注意事項を確認する。",
+      "source": "https://www.data.jma.go.jp/yoho/data/jishin/kaisetsu_tanki_latest.pdf",
+      "steps": [
+        "気象庁の「短期予報解説資料1」を開く",
+        "「防災事項を含む解説上の留意点」を確認する",
+        "25日の北日本の強風・大雪に関する記述を見る"
+      ],
+      "url": "https://www.data.jma.go.jp/yoho/data/jishin/kaisetsu_tanki_latest.pdf"
+    }
+  ],
+  "cause": {
+    "text": "気象庁は、低気圧や前線に向かう暖かく湿った空気などの影響で大気が非常に不安定となり、雷を伴う激しい雨の所があると説明しています。25日は西高東低の気圧配置や日本海の収束線の影響で、強い風が吹く所がある見込みです。",
+    "status": "background",
+    "source": "https://www.data.jma.go.jp/yoho/data/jishin/kaisetsu_tanki_latest.pdf"
+  },
+  "worries": [
+    {
+      "q": "遅れや運休は、もう決まっているのでしょうか？",
+      "a": "JR東日本の案内は、強風が見込まれるため遅れや運休が発生する可能性があるという内容です。運休が決まったという案内ではありません。",
+      "source": "https://traininfo.jreast.co.jp/train_info/tohoku.aspx",
+      "action": "出発前にJR東日本の東北エリア運行情報で、利用する路線のお知らせを確認してください。"
+    },
+    {
+      "q": "24日は何時から、25日はいつまで影響しますか？",
+      "a": "羽越本線の酒田～秋田駅間、五能線の東能代～弘前駅間は、24日は夕方頃から最終列車まで、25日は終日、遅れや運休の可能性があります。",
+      "source": "https://traininfo.jreast.co.jp/train_info/tohoku.aspx",
+      "action": "利用日と区間を照らし合わせ、JR東日本の運行情報を出発前に確認してください。"
+    },
+    {
+      "q": "運休になった場合、代行輸送を利用できますか？",
+      "a": "JR東日本は、羽越本線の対象区間と五能線の対象区間について、24日・25日とも代行輸送は行わないと案内しています。",
+      "source": "https://traininfo.jreast.co.jp/train_info/tohoku.aspx",
+      "action": "代行輸送がない前提で、別の移動手段や予定変更が可能か検討してください。"
+    },
+    {
+      "q": "雪や強風で、列車以外の交通にも影響が出ますか？",
+      "a": "気象庁は25日の北日本について、強風に注意・警戒を呼びかけ、大雪による交通障害や着雪にも注意としています。地域や状況によっては、鉄道以外の移動にも影響する天候です。",
+      "source": "https://www.data.jma.go.jp/yoho/data/jishin/kaisetsu_tanki_latest.pdf",
+      "action": "出かける地域の予報と、気象庁が示す北日本の強風・大雪への注意事項を確認してください。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "予定を変更したほうがいい？",
+      "situation": "24日の夕方頃から最終列車まで利用する",
+      "recommend": "出発前の状況を見て変更を検討する",
+      "reason": "対象区間では夕方頃から最終列車にかけて遅れや運休の可能性があり、代行輸送もありません。運休が確定した案内ではないため、最新の運行情報を確認して判断できます。",
+      "source": "https://traininfo.jreast.co.jp/train_info/tohoku.aspx"
+    },
+    {
+      "question": "予定を変更したほうがいい？",
+      "situation": "25日に対象区間を利用する",
+      "recommend": "別の移動手段や予定変更を検討する",
+      "reason": "25日は終日、遅れや運休が発生する可能性があり、代行輸送はありません。運行状況は確定ではないため、最新情報を確認しつつ、代行輸送なしで移動できるかを判断する必要があります。",
+      "source": "https://traininfo.jreast.co.jp/train_info/tohoku.aspx"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "遅延表示の基準と、25日の交通への注意",
+    "cause": "低気圧や前線、寒気が天候を荒らす",
+    "steps": "列車の運行と天気を出発前に確認",
+    "desk": "JR東日本の東北エリア運行情報",
+    "worries": "運休は確定か、代行や天気はどうなる？",
+    "guide": "代行輸送なしを前提に予定を考える"
+  },
+  "depthAt": "2026-11-23T07:09:32+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "羽越本線と五能線、11月24日・25日に遅れや運休の可能性",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-23T07:11:11+00:00"
+  },
+  "imageFocus": {
+    "x": 0.519,
+    "y": 0.381,
+    "box": [
+      0.103,
+      0.054,
+      0.934,
+      0.708
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/uetsu-gono-wind-train-alert-figure-fd2baac0.jpg"
+  }
 }
