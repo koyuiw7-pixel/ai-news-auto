@@ -75,7 +75,7 @@
   "videoTitle": "iDeCoの年末調整2026年分　掛金は全額が小規模企業共済等掛金控除、証明書の添付が条件です",
   "publishedAt": "2026-11-23T03:28:23.707565+00:00",
   "generatedAt": "2026-11-23T03:28:55.053393+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/ideco-tax-deduction-2026-figure-02fbdf53.jpg",
   "model": "openai-api:gpt-6.1-terra",
   "affiliates": [],
   "newsType": "policy",
@@ -86,9 +86,8 @@
     }
   ],
   "todayActions": [
-    "2026年に支払ったiDeCoの掛金について、証明書または電磁的記録印刷書面を用意する。",
-    "勤務先の年末調整で受ける場合は、給与所得者の保険料控除申告書に記入する。",
-    "確定申告で受ける場合は、申告書の小規模企業共済等掛金控除の欄を確認する。"
+    "年末調整を受ける人は、証明書類と保険料控除申告書の提出方法を勤務先に確認する。",
+    "e-Taxで確定申告する人は、国税庁が案内するコードNo.1904を確認する。"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -107,5 +106,120 @@
   "detectedAt": "2026-11-23T03:29:43+00:00",
   "searchTitle": "iDeCoの年末調整に必要な書類は？証明書を添付か提示",
   "layout": "noir",
-  "summaryLine": "2026年分のiDeCo掛金は、支払った全額が小規模企業共済等掛金控除の対象です。"
+  "summaryLine": "2026年分のiDeCo掛金は、支払った全額が小規模企業共済等掛金控除の対象です。",
+  "insight": [
+    {
+      "text": "e-Taxで確定申告する場合、国税庁はNo.1135の案内に加え、コードNo.1904「給与所得者と電子申告」を参照先として案内しています。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1135.htm"
+    },
+    {
+      "text": "確定申告書等作成コーナーは、金額などを入力すると必要な付表や明細書も自動作成します。明細書を使う場合、入力で作成できるのがポイントです。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1135.htm"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "確定申告書等作成コーナー",
+      "url": "https://www.keisan.nta.go.jp/kyoutu/ky/sm/top",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1135.htm",
+      "howTo": [
+        "No.1135 小規模企業共済等掛金控除",
+        "確定申告書等作成コーナー"
+      ],
+      "note": "画面の案内に沿って金額等を入力すると、必要な付表や明細書も自動的に作成されます。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "年末調整を受ける人は、証明書類と保険料控除申告書の提出方法を勤務先に確認する。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1135.htm",
+      "steps": [
+        "「給与所得者の保険料控除申告書」に記入する",
+        "掛金の証明書か電磁的記録印刷書面を添付する",
+        "申告書の提出時に提示する方法も確認する"
+      ],
+      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1135.htm"
+    },
+    {
+      "action": "e-Taxで確定申告する人は、国税庁が案内するコードNo.1904を確認する。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1135.htm",
+      "steps": [
+        "No.1135の関連リンクを開く",
+        "「コードNo.1904「給与所得者と電子申告」」を確認する"
+      ],
+      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1904.htm"
+    }
+  ],
+  "cause": {
+    "text": "小規模企業共済等掛金控除は、対象となる共済契約などの掛金を支払った場合に、その支払額について所得控除を受ける仕組みです。控除できる金額は、その年に支払った掛金の全額です。",
+    "status": "background",
+    "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1135.htm"
+  },
+  "worries": [
+    {
+      "q": "年末調整で証明書の代わりに明細書を出せる？",
+      "a": "明細書を証明書類の添付・提示に代えられるのは、令和8年分以後の所得税の確定申告書を令和9年1月1日以後に提出するときです。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1135.htm",
+      "action": "勤務先で年末調整を受ける場合は、掛金の証明書か電磁的記録印刷書面を用意し、添付または提示します。"
+    },
+    {
+      "q": "iDeCo以外の掛金も同じ控除として申告できる？",
+      "a": "企業型年金加入者掛金や、一定の心身障害者扶養共済制度の掛金も対象です。一方、小規模企業共済の旧第二種共済契約の掛金はこの控除ではなく、生命保険料控除の対象です。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1135.htm",
+      "action": "iDeCo以外の掛金も申告する場合は、契約が旧第二種共済契約に当たらないか確認します。"
+    },
+    {
+      "q": "掛金を支払っていない年も控除を受けられる？",
+      "a": "小規模企業共済等掛金控除は、対象となる掛金を支払った場合に、その支払額について所得控除を受ける仕組みです。控除できる金額は、その年に支払った掛金の全額です。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1135.htm",
+      "action": "その年に支払ったiDeCo掛金を確認し、支払額がある場合はその証明書類を申告に使います。"
+    },
+    {
+      "q": "e-Taxで申告するときも同じ手続きをすればいい？",
+      "a": "国税庁は、e-Taxで確定申告する場合について、コードNo.1904「給与所得者と電子申告」を参照するよう案内しています。No.1135の案内だけでなく、関連する案内も確認できます。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1135.htm",
+      "action": "No.1135の関連リンクから、コードNo.1904「給与所得者と電子申告」を開いて確認します。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "証明書の代わりに明細書を使える？",
+      "situation": "勤務先の年末調整で申告する",
+      "recommend": "証明書類を添付か提示する",
+      "reason": "明細書を証明書類の添付・提示に代えられるのは、令和8年分以後の所得税の確定申告書を令和9年1月1日以後に提出するときです。年末調整について同じ扱いは示されていません。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1135.htm"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "e-Taxと明細書には専用の案内がある",
+    "cause": "掛金を支払った年の全額が控除対象",
+    "steps": "年末調整と確定申告で書類を分けて準備",
+    "desk": "国税庁の作成コーナーで書類を作る",
+    "worries": "証明書や掛金の種類で迷ったら",
+    "guide": "証明書類か明細書か、提出方法を選ぶ"
+  },
+  "depthAt": "2026-11-23T03:52:58+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "iDeCoの年末調整2026年分",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-23T03:54:33+00:00"
+  },
+  "imageFocus": {
+    "x": 0.485,
+    "y": 0.411,
+    "box": [
+      0.047,
+      0.042,
+      0.922,
+      0.78
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/ideco-tax-deduction-2026-figure-02fbdf53.jpg"
+  }
 }

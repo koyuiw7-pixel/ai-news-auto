@@ -81,8 +81,9 @@
   "affiliates": [],
   "newsType": "policy",
   "todayActions": [
-    "免除や学生納付特例を受けた期間がある人は、年金事務所で追納できる月と金額を確かめる。",
-    "「国民年金保険料 追納申込書」を日本年金機構のサイトから入手し、年金事務所への提出を検討する。"
+    "追納できる月と期限、納める順序を近くの年金事務所に確認する",
+    "追納申込書を入手し、年金事務所に窓口か郵送で提出する",
+    "ねんきんネットで申込書を作成し、印刷して年金事務所へ提出する"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -137,5 +138,99 @@
     ],
     "ar": 2.56,
     "src": "https://ai-tech-express.jp/img/national-pension-back-pay-2026-496802c9.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "ねんきんネットで追納申込書を作ると、基礎年金番号などの基本情報が自動表示され、入力項目のエラーチェックも受けられます。ただし、印刷して年金事務所へ提出する必要があります。",
+      "source": "https://www.nenkin.go.jp/service/kokunen/menjo/20150331.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "お近くの年金事務所",
+      "url": "https://www.nenkin.go.jp/section/soudan/index.html",
+      "source": "https://www.nenkin.go.jp/service/kokunen/menjo/20150331.html",
+      "note": "免除の期間と納付猶予・学生納付特例の期間が両方ある場合、納付する順序を相談できます。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "追納できる月と期限、納める順序を近くの年金事務所に確認する",
+      "source": "https://www.nenkin.go.jp/service/kokunen/menjo/20150331.html",
+      "steps": [
+        "「お近くの年金事務所」を確認する",
+        "追納対象の期間と納付順序を相談する"
+      ],
+      "url": "https://www.nenkin.go.jp/section/soudan/index.html"
+    },
+    {
+      "action": "追納申込書を入手し、年金事務所に窓口か郵送で提出する",
+      "source": "https://www.nenkin.go.jp/service/kokunen/menjo/20150331.html",
+      "steps": [
+        "「ケース10」から申込書をダウンロードする",
+        "必要事項を記入する",
+        "年金事務所に窓口または郵送で提出する"
+      ],
+      "url": "https://www.nenkin.go.jp/shinsei/kokunen/nofu/tsuino.html"
+    },
+    {
+      "action": "ねんきんネットで申込書を作成し、印刷して年金事務所へ提出する",
+      "source": "https://www.nenkin.go.jp/service/kokunen/menjo/20150331.html",
+      "steps": [
+        "ねんきんネットで必要項目を入力する",
+        "印刷用ファイルをダウンロードする",
+        "届書を印刷して年金事務所へ提出する"
+      ],
+      "url": "https://www.nenkin.go.jp/denshibenri_kojin/n_net/introduction/statement.html"
+    }
+  ],
+  "cause": {
+    "text": "免除や納付猶予、学生納付特例を受けた人が、その後、経済的に納付できるようになったときなどに、本人の申し出で保険料の全部または一部を納め、将来の老齢基礎年金額を満額に近づける制度です。",
+    "status": "background",
+    "source": "https://www.nenkin.go.jp/service/kokunen/menjo/20150331.html"
+  },
+  "worries": [
+    {
+      "q": "追納期限が近い月は、申込書を出せばすぐ納められる？",
+      "a": "追納申込書を期限の直前に提出すると、期限までに追納できなくなる場合があります。追納できるのは、追納が承認された月の前10年以内の免除等期間に限られます。",
+      "source": "https://www.nenkin.go.jp/service/kokunen/menjo/20150331.html",
+      "action": "期限が近い期間がないか確認し、早めに年金事務所へ相談して申込書を提出してください。"
+    },
+    {
+      "q": "一部免除の期間で、残りの保険料を払っていなくても追納できる？",
+      "a": "一部免除を受けた期間は、納付すべき一部保険料が納付されていなければ追納できません。",
+      "source": "https://www.nenkin.go.jp/service/kokunen/menjo/20150331.html",
+      "action": "一部免除の期間がある人は、対象月の一部保険料を納めているか確認してください。"
+    },
+    {
+      "q": "ねんきんネットだけで申込書の提出まで完了できる？",
+      "a": "ねんきんネットで追納申込書を作成できますが、電子申請ではありません。必要項目を入力して印刷用ファイルをダウンロードし、印刷した届書を年金事務所へ提出します。",
+      "source": "https://www.nenkin.go.jp/service/kokunen/menjo/20150331.html",
+      "action": "ねんきんネットで申込書を作成した後、印刷して年金事務所へ提出してください。"
+    },
+    {
+      "q": "追納した保険料は口座振替やクレジットカードで払える？",
+      "a": "追納申込書を提出した後、日本年金機構から納付書が届きます。口座振替、クレジットカード、ねんきんネットを活用した「納付書によらない納付」では支払えません。",
+      "source": "https://www.nenkin.go.jp/service/kokunen/menjo/20150331.html",
+      "action": "届いた納付書を使い、金融機関・郵便局・コンビニエンスストアなどで納付してください。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "免除と猶予の両方がある場合、どちらから納める？",
+      "situation": "免除期間と納付猶予・学生納付特例の期間がある",
+      "recommend": "年金事務所に納付順序を相談する",
+      "reason": "原則は古い期間の保険料から納めますが、免除期間と納付猶予・学生納付特例の期間が両方ある人は、納付する順序について年金事務所に相談できます。",
+      "source": "https://www.nenkin.go.jp/service/kokunen/menjo/20150331.html"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "ねんきんネットの入力補助と提出方法",
+    "cause": "追納で年金額を満額に近づける",
+    "steps": "申込書の作成から提出まで",
+    "desk": "納付順序も相談できる年金事務所",
+    "worries": "期限や申請、支払いの疑問",
+    "guide": "免除と猶予の両方があるとき"
+  },
+  "depthAt": "2026-11-23T03:52:32+00:00"
 }

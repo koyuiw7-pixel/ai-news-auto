@@ -72,14 +72,14 @@
   "videoTitle": "雇用保険の失業給付2026年11月　離職の翌日から1年が期限、待期7日は理由を問わず全員にあります",
   "publishedAt": "2026-11-23T03:33:28.900414+00:00",
   "generatedAt": "2026-11-23T03:34:21.595445+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/unemployment-benefit-waiting-period-figure-6c0746ce.jpg",
   "model": "openai-api:gpt-6.1-terra",
   "affiliates": [],
   "newsType": "policy",
   "todayActions": [
-    "在職中なら、雇用保険被保険者証の有無と離職証明書の離職理由を確認する。",
-    "離職票が届いたら、住居を管轄するハローワークで求職を申し込み、離職票を提出する。",
-    "病気や育児などですぐに働けない場合は、受給期間の延長についてハローワークに相談する。"
+    "在職中に雇用保険被保険者証と離職証明書の記載を確かめる",
+    "離職票が届いたら、必要書類をそろえて管轄ハローワークへ行く",
+    "求職活動の実績に数えられる活動を確認して記録する"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -109,5 +109,139 @@
   "detectedAt": "2026-11-23T03:35:30+00:00",
   "searchTitle": "雇用保険の基本手当の期限は？　受給期間は原則1年",
   "layout": "noir",
-  "summaryLine": "雇用保険の失業給付は受給期間が原則1年で、給付日数が残っていても期限後は受け取れません。"
+  "summaryLine": "雇用保険の失業給付は受給期間が原則1年で、給付日数が残っていても期限後は受け取れません。",
+  "insight": [
+    {
+      "text": "求人情報を見ただけでは、原則として求職活動の実績に含まれません。求人への応募や職業相談、対象となるセミナーの受講など、具体的な活動が必要です。",
+      "source": "https://www.hellowork.mhlw.go.jp/insurance/insurance_procedure.html"
+    },
+    {
+      "text": "写真2枚は、手続き時と今後の支給申請ごとにマイナンバーカードを提示すれば省略できます。身元確認書類は、指定の1種類がない場合、異なる2種類が必要でコピーは使えません。",
+      "source": "https://www.hellowork.mhlw.go.jp/insurance/insurance_procedure.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "公共職業安定所（ハローワーク）",
+      "url": "https://www.hellowork.mhlw.go.jp/info/location_list.html",
+      "source": "https://www.hellowork.mhlw.go.jp/insurance/insurance_procedure.html",
+      "howTo": [
+        "雇用保険の具体的な手続き",
+        "ハローワーク等所在地情報"
+      ],
+      "hours": "月曜日～金曜日（休祝日・年末年始を除く）8時30分～17時15分",
+      "note": "求職申込みには一定の時間がかかるため、16時前までの来所が勧められています。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "在職中に雇用保険被保険者証と離職証明書の記載を確かめる",
+      "source": "https://www.hellowork.mhlw.go.jp/insurance/insurance_procedure.html",
+      "steps": [
+        "雇用保険被保険者証の有無を確認する",
+        "離職証明書の離職理由を確認する"
+      ],
+      "url": "https://www.hellowork.mhlw.go.jp/insurance/insurance_procedure.html"
+    },
+    {
+      "action": "離職票が届いたら、必要書類をそろえて管轄ハローワークへ行く",
+      "source": "https://www.hellowork.mhlw.go.jp/insurance/insurance_procedure.html",
+      "steps": [
+        "離職票（－1、2）を用意する",
+        "個人番号確認書類と身元確認書類を用意する",
+        "本人名義の預金通帳またはキャッシュカードを用意する",
+        "16時前までの来所を目安にする"
+      ],
+      "url": "https://www.hellowork.mhlw.go.jp/insurance/insurance_procedure.html"
+    },
+    {
+      "action": "求職活動の実績に数えられる活動を確認して記録する",
+      "source": "https://www.hellowork.mhlw.go.jp/insurance/insurance_procedure.html",
+      "steps": [
+        "求人への応募などを行う",
+        "職業相談や職業紹介を受ける",
+        "求人情報の閲覧だけでは実績にならないと確認する"
+      ],
+      "url": "https://www.hellowork.mhlw.go.jp/insurance/insurance_procedure.html"
+    }
+  ],
+  "cause": {
+    "text": "基本手当は、離職後の生活を心配せず再就職活動ができるよう、一定の要件を満たす人に支給されます。受給には、就職する意思と能力があり、積極的に求職活動をしていることなどが必要です。",
+    "status": "background",
+    "source": "https://www.hellowork.mhlw.go.jp/help/question05.html"
+  },
+  "worries": [
+    {
+      "q": "求人サイトを見ているだけでも求職活動の実績になりますか？",
+      "a": "単にハローワークや新聞、インターネットなどで求人情報を閲覧するだけでは、求職活動の範囲に含まれません。求人への応募や職業相談、職業紹介、対象となる講習・セミナーの受講などが例として挙げられています。",
+      "source": "https://www.hellowork.mhlw.go.jp/insurance/insurance_procedure.html",
+      "action": "求人への応募やハローワークの職業相談など、実績に含まれる活動を行い、失業認定申告書に記入できるよう記録しましょう。"
+    },
+    {
+      "q": "給付制限がなくても、初回の振込までどれくらいかかりますか？",
+      "a": "初めて現金が振り込まれるのは、給付制限がない場合でも、求職の申込みから数えて約1か月後です。初回認定日の約1週間後が目安とされています。",
+      "source": "https://www.hellowork.mhlw.go.jp/help/question05.html",
+      "action": "求職申込みの日と初回認定日を確認し、入金までの期間を見込んで資金計画を立てましょう。"
+    },
+    {
+      "q": "離職票に書かれた退職理由が実際と違う場合はどうなりますか？",
+      "a": "離職理由は、事業主と離職者それぞれの主張を確認できる客観的な資料を集めて事実関係を確認したうえで、本人の住居所を管轄するハローワークが判定します。事業主の主張だけで判定するものではありません。",
+      "source": "https://www.hellowork.mhlw.go.jp/help/question05.html",
+      "action": "離職理由に異議がある場合は、住居を管轄するハローワークに相談し、自分の主張を伝えましょう。"
+    },
+    {
+      "q": "病気ですぐ働けない間も、基本手当を受け取れますか？",
+      "a": "病気やけがのためすぐには就職できないときは、失業給付を受けることができません。基本手当の対象は、就職する意思と能力があり、積極的に求職活動を行っている失業状態の人です。",
+      "source": "https://www.hellowork.mhlw.go.jp/insurance/insurance_procedure.html",
+      "action": "すぐに働けない場合は、受給できる状態や受給期間の扱いを住居を管轄するハローワークに相談しましょう。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "今すぐハローワークで手続きを進める？",
+      "situation": "働く意思と能力があり、求職活動をしている",
+      "recommend": "住居を管轄する窓口で手続きを進める",
+      "reason": "基本手当は、就職する意思と能力があり、積極的に求職活動をしている失業状態の人が対象です。受給には所定の手続きと、被保険者期間などの要件があります。",
+      "source": "https://www.hellowork.mhlw.go.jp/help/question05.html"
+    },
+    {
+      "question": "今すぐハローワークで手続きを進める？",
+      "situation": "病気などですぐに働けない",
+      "recommend": "受給できる状態や期間を窓口に相談する",
+      "reason": "病気やけがなどですぐ就職できないときは失業給付を受けられません。一方、基本手当を受けられる期間は原則として離職の翌日から1年間で、過ぎると残日数があっても受け取れません。",
+      "source": "https://www.hellowork.mhlw.go.jp/insurance/insurance_procedure.html"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "求人情報を見るだけでは実績にならない",
+    "cause": "再就職活動を支える給付の条件",
+    "steps": "手続き前に確認する書類と活動",
+    "desk": "管轄ハローワークの受付時間",
+    "worries": "初回の入金や活動実績で迷ったら",
+    "guide": "今申請するか、まず窓口に相談するか"
+  },
+  "depthAt": "2026-11-23T03:51:17+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "雇用保険の失業給付、原則1年が期限",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-23T03:53:20+00:00"
+  },
+  "imageFocus": {
+    "x": 0.531,
+    "y": 0.419,
+    "box": [
+      0.087,
+      0.065,
+      0.975,
+      0.774
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/unemployment-benefit-waiting-period-figure-6c0746ce.jpg"
+  }
 }
