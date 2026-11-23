@@ -56,15 +56,14 @@
   "videoTitle": "JR東日本2026年11月24日朝、大雪区間は平常運転に　25日は2線区に大雪予告",
   "publishedAt": "2026-11-23T21:28:05.236580+00:00",
   "generatedAt": "2026-11-23T21:28:34.650035+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/jr-east-snow-wind-alert-figure-619e3dd5.jpg",
   "model": "openai-api:gpt-6.1-terra",
   "affiliates": [],
   "newsType": "general",
   "faq": [],
   "todayActions": [
-    "羽越本線の酒田～秋田駅間を使う場合は、24日夕方以降の運行情報を確認する。",
-    "25日朝に山形線や只見線の対象区間を使う場合は、JR東日本の東北エリア運行情報を確認する。",
-    "新幹線で出張する場合は、出発前にJR東日本の新幹線運行情報を確認する。"
+    "25日朝に山形線・只見線を使う人は、対象区間の予告を確認する",
+    "新幹線で移動する人は、新幹線の運行情報と運休情報を確認する"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -94,5 +93,111 @@
   "qualityScore": 100,
   "detectedAt": "2026-11-23T21:29:37+00:00",
   "layout": "noir",
-  "summaryLine": "11月25日朝は山形線の庭坂～米沢間と只見線の会津坂下～只見間で大雪による遅れや運休の可能性"
+  "summaryLine": "11月25日朝は山形線の庭坂～米沢間と只見線の会津坂下～只見間で大雪による遅れや運休の可能性",
+  "officialDesk": [
+    {
+      "name": "運行情報・運休情報 東北エリア",
+      "url": "https://traininfo.jreast.co.jp/train_info/tohoku.aspx",
+      "source": "https://traininfo.jreast.co.jp/train_info/tohoku.aspx",
+      "note": "実際の運行状況とページの情報が異なる場合があり、あくまで目安として利用するよう案内されています。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "25日朝に山形線・只見線を使う人は、対象区間の予告を確認する",
+      "source": "https://traininfo.jreast.co.jp/train_info/tohoku.aspx",
+      "steps": [
+        "東北エリアの運行情報を開く",
+        "山形線または只見線のお知らせで区間と時間帯を確認する"
+      ],
+      "url": "https://traininfo.jreast.co.jp/train_info/tohoku.aspx"
+    },
+    {
+      "action": "新幹線で移動する人は、新幹線の運行情報と運休情報を確認する",
+      "source": "https://traininfo.jreast.co.jp/train_info/shinkansen.aspx",
+      "steps": [
+        "新幹線の運行情報・運休情報を開く",
+        "利用する新幹線の運行情報と運休情報を確認する"
+      ],
+      "url": "https://traininfo.jreast.co.jp/train_info/shinkansen.aspx"
+    }
+  ],
+  "cause": {
+    "text": "JR東日本は、11月25日に大雪が見込まれるとして、山形線の庭坂～米沢駅間と只見線の会津坂下～只見駅間で始発から12時頃まで遅れや運休の可能性を案内しています。羽越本線と五能線は、強風が見込まれるためです。",
+    "status": "stated",
+    "source": "https://traininfo.jreast.co.jp/train_info/tohoku.aspx"
+  },
+  "worries": [
+    {
+      "q": "予告が出たら、列車はもう運休と決まったの？",
+      "a": "運休が決まったという案内ではありません。対象の時間帯に遅れや運休が発生する可能性があるという予告で、個々の列車に影響が出るか、どの程度かは確定していません。",
+      "source": "https://traininfo.jreast.co.jp/train_info/tohoku.aspx",
+      "action": "乗車予定の線区・区間と時間帯を、東北エリア運行情報で出発前に確認する。"
+    },
+    {
+      "q": "列車が運休した場合、代わりのバスは出るの？",
+      "a": "羽越本線、五能線、奥羽本線（山形線）、只見線の案内対象区間では、代行輸送は行わないとJR東日本が案内しています。",
+      "source": "https://traininfo.jreast.co.jp/train_info/tohoku.aspx",
+      "action": "対象4線区では代行輸送がないため、利用区間の最新情報を確認して移動予定を判断する。"
+    },
+    {
+      "q": "ページに平常運転とあれば、実際の運行も確実？",
+      "a": "運行情報は更新されていますが、実際の運行状況とページの情報が異なる場合があります。JR東日本は、掲載情報をあくまで目安として利用するよう案内しています。",
+      "source": "https://traininfo.jreast.co.jp/train_info/tohoku.aspx",
+      "action": "出発前に東北エリア運行情報を開き、利用線区のお知らせをもう一度確認する。"
+    },
+    {
+      "q": "大雪の影響は山形線・只見線の全区間に及ぶの？",
+      "a": "予告の対象は、山形線が庭坂～米沢駅間、只見線が会津坂下～只見駅間です。両線とも11月25日の始発から12時頃まで、遅れや運休の可能性が案内されています。",
+      "source": "https://traininfo.jreast.co.jp/train_info/tohoku.aspx",
+      "action": "自分の乗車区間が庭坂～米沢駅間または会津坂下～只見駅間に当たるか確認する。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "予定を変えられるなら、朝の移動をずらす？",
+      "situation": "始発から12時頃までの対象区間を利用し、予定変更が可能",
+      "recommend": "最新情報を見て利用時間の変更を検討",
+      "reason": "山形線の庭坂～米沢駅間と只見線の会津坂下～只見駅間は、始発から12時頃まで遅れや運休の可能性があります。運休が確定した案内ではなく、代行輸送もありません。",
+      "source": "https://traininfo.jreast.co.jp/train_info/tohoku.aspx"
+    },
+    {
+      "question": "予定を変えにくいなら、そのまま乗ってよい？",
+      "situation": "対象区間を使うが、予定変更が難しい",
+      "recommend": "出発前の運行情報を確認して判断",
+      "reason": "対象区間では遅れや運休が発生する可能性があり、代行輸送は行われません。実際の運行状況とページの情報が異なる場合もあるため、掲載内容は目安として確認できます。",
+      "source": "https://traininfo.jreast.co.jp/train_info/tohoku.aspx"
+    }
+  ],
+  "depthHeadings": {
+    "cause": "雪と強風の予告が出ている区間と時間",
+    "steps": "乗る線区ごとの予告を確認",
+    "desk": "東北エリアの運行情報はこちら",
+    "worries": "運休や代行輸送、表示の見方が心配",
+    "guide": "予定を変えるか迷ったときの判断"
+  },
+  "depthAt": "2026-11-23T21:43:41+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "JR東日本の山形線・只見線",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-23T21:45:27+00:00"
+  },
+  "imageFocus": {
+    "x": 0.446,
+    "y": 0.405,
+    "box": [
+      0.028,
+      0.036,
+      0.863,
+      0.774
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/jr-east-snow-wind-alert-figure-619e3dd5.jpg"
+  }
 }

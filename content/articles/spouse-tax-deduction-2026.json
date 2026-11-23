@@ -78,7 +78,7 @@
   "videoTitle": "配偶者控除2026年分、62万円以下で38万円　給与だけなら136万円以下",
   "publishedAt": "2026-11-23T21:33:48.337837+00:00",
   "generatedAt": "2026-11-23T21:34:38.470560+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/spouse-tax-deduction-2026-figure-3780dcff.jpg",
   "model": "openai-api:gpt-6.1-terra",
   "affiliates": [],
   "newsType": "policy",
@@ -93,9 +93,9 @@
     }
   ],
   "todayActions": [
-    "配偶者の所得が給与だけかを確認し、2026年分の収入を136万円の目安と照らす。",
-    "本人の合計所得を確認し、国税庁No.1191とNo.1195の表で控除額を確かめる。",
-    "年末調整で受ける場合は、配偶者控除等申告書と最後の給与支払日を勤務先で確認する。"
+    "配偶者に給与以外の所得がある人は、所得の合計方法と除外される所得を確認する。",
+    "本人と配偶者の合計所得を、配偶者控除・特別控除の表に当てはめる。",
+    "年末調整で控除を受ける人は、申告書の提出期限を最後の給与支払日から確認する。"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -131,5 +131,152 @@
   "detectedAt": "2026-11-23T21:34:52+00:00",
   "searchTitle": "配偶者控除の対象は？2026年分は給与136万円以下",
   "layout": "noir",
-  "summaryLine": "2026年分の配偶者控除は、配偶者の合計所得が**62万円**以下で、給与だけなら年収136万円以下が目安です。"
+  "summaryLine": "2026年分の配偶者控除は、配偶者の合計所得が**62万円**以下で、給与だけなら年収136万円以下が目安です。",
+  "insight": [
+    {
+      "text": "配偶者特別控除は所得額だけで決まるわけではありません。配偶者が源泉控除対象配偶者として源泉徴収されている場合も要件に関わりますが、年末調整や確定申告で特別控除を受けなかった場合などは例外があります。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1195.htm"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "国税庁 No.1190「配偶者の所得がいくらまでなら配偶者控除が受けられるか」",
+      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1190.htm",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1190.htm",
+      "howTo": [
+        "ホーム",
+        "税の情報・手続・用紙",
+        "税について調べる",
+        "タックスアンサー（よくある税の質問）",
+        "No.1190 配偶者の所得がいくらまでなら配偶者控除が受け"
+      ]
+    },
+    {
+      "name": "国税庁 No.1191「配偶者控除」・No.1195「配偶者特別控除」",
+      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1191.htm",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1191.htm",
+      "howTo": [
+        "ホーム",
+        "税の情報・手続・用紙",
+        "税について調べる",
+        "タックスアンサー（よくある税の質問）"
+      ],
+      "note": "配偶者特別控除の額は、本人と配偶者それぞれの合計所得金額で確認します。"
+    },
+    {
+      "name": "国税庁「税についての相談窓口」",
+      "url": "https://www.nta.go.jp/taxes/shiraberu/shirabekata/9200.htm",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1190.htm"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "配偶者に給与以外の所得がある人は、所得の合計方法と除外される所得を確認する。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1190.htm",
+      "steps": [
+        "No.1190を開く",
+        "「配偶者に給与所得以外の所得がある場合」を確認する",
+        "「合計所得金額から除かれるもの」を確認する"
+      ],
+      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1190.htm"
+    },
+    {
+      "action": "本人と配偶者の合計所得を、配偶者控除・特別控除の表に当てはめる。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1195.htm",
+      "steps": [
+        "No.1191で配偶者控除額を確認する",
+        "No.1195で配偶者特別控除額を確認する"
+      ],
+      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1191.htm"
+    },
+    {
+      "action": "年末調整で控除を受ける人は、申告書の提出期限を最後の給与支払日から確認する。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2672.htm",
+      "steps": [
+        "No.2672を開く",
+        "申告書名と提出期限を確認する",
+        "勤務先に最後の給与等の支払日を確認する"
+      ],
+      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2672.htm"
+    }
+  ],
+  "cause": {
+    "text": "新しい所得基準は令和8年12月1日に施行され、令和8年分から適用されます。施行日前の適用関係などは、国税庁が案内する令和8年度税制改正のQ＆Aで確認できます。",
+    "status": "background",
+    "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1190.htm"
+  },
+  "worries": [
+    {
+      "q": "給与年収が136万円を超えたら、控除はすぐなくなりますか？",
+      "a": "給与所得だけの場合、配偶者の給与収入が136万円を超えても、配偶者の合計所得金額が62万円超133万円以下で本人の所得などの要件を満たせば、配偶者特別控除を受けられる場合があります。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1195.htm",
+      "action": "給与以外の所得も含めた配偶者の合計所得と、本人の合計所得をNo.1195の表で確認してください。"
+    },
+    {
+      "q": "配偶者に株の利益や預貯金の利子があると合算しますか？",
+      "a": "特定口座の源泉徴収選択口座内の株式譲渡所得や、確定申告不要制度の対象となる配当などは、確定申告をしないことを選択した場合、判定する合計所得金額から除かれます。源泉分離課税の預貯金の利子も除かれます。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1190.htm",
+      "action": "該当する所得がある人は、申告するかどうかも含めてNo.1190の「合計所得金額から除かれるもの」を確認してください。"
+    },
+    {
+      "q": "本人の所得が1,000万円を超える場合も控除できますか？",
+      "a": "控除を受ける本人の合計所得金額が1,000万円を超える年は、配偶者控除も配偶者特別控除も受けられません。配偶者特別控除の本人側の要件も、合計所得金額1,000万円以下です。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1191.htm",
+      "action": "本人の合計所得金額を確認し、1,000万円以下なら配偶者の所得と合わせて控除額の表を見てください。",
+      "actionSource": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1195.htm"
+    },
+    {
+      "q": "年末調整の申告書はいつまでに勤務先へ出せばいいですか？",
+      "a": "年末調整で控除を受ける場合、「給与所得者の配偶者控除等申告書」は、その年に最後に給与等の支払いを受ける日の前日までに給与の支払者へ提出します。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2672.htm",
+      "action": "勤務先に最後の給与等の支払日を確認し、その前日までに申告書を提出してください。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "配偶者の所得が62万円を超えたら？",
+      "situation": "配偶者の所得が62万円超133万円以下",
+      "recommend": "配偶者特別控除を確認する",
+      "reason": "配偶者控除の対象外でも、本人の合計所得金額が1,000万円以下で、配偶者の所得が62万円超133万円以下なら、所得に応じた配偶者特別控除を受けられる場合があります。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1195.htm"
+    },
+    {
+      "question": "配偶者の所得が62万円を超えたら？",
+      "situation": "配偶者の所得が133万円を超える",
+      "recommend": "配偶者特別控除の対象外として確認する",
+      "reason": "配偶者特別控除の配偶者側の所得要件は62万円超133万円以下です。133万円を超えるとこの範囲から外れ、本人の所得要件などを満たしても配偶者特別控除は受けられません。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1195.htm"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "特別控除は所得以外の条件も確認",
+    "steps": "所得と提出期限を順に確認",
+    "desk": "国税庁の基準と相談先",
+    "worries": "控除がなくなる境目や申告の条件",
+    "guide": "控除の種類を選ぶときの目安"
+  },
+  "depthAt": "2026-11-23T21:41:30+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "136万円",
+    "label": "2026年分は給与",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-23T21:45:02+00:00"
+  },
+  "imageFocus": {
+    "x": 0.472,
+    "y": 0.462,
+    "box": [
+      0.062,
+      0.06,
+      0.881,
+      0.863
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/spouse-tax-deduction-2026-figure-3780dcff.jpg"
+  }
 }

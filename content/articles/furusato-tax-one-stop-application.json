@@ -76,7 +76,7 @@
   "videoTitle": "ふるさと納税2026年分、ワンストップ申請書の添付書類と出し方",
   "publishedAt": "2026-11-23T21:29:43.274900+00:00",
   "generatedAt": "2026-11-23T21:30:22.782666+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/furusato-tax-one-stop-application-figure-eba7e577.jpg",
   "model": "openai-api:gpt-6.1-terra",
   "affiliates": [],
   "newsType": "policy",
@@ -87,9 +87,9 @@
     }
   ],
   "todayActions": [
-    "2026年の寄附先を数え、ワンストップ特例の条件に当てはまるか確認する。",
-    "埼玉県への書面申請なら、本人確認書類の写しをそろえて提出期限を確認する。",
-    "寄附先の自治体に、申請書の様式とオンライン申請への対応状況を確認する。"
+    "確定申告の要否と寄附先の数から、ワンストップ特例の条件を確認する",
+    "埼玉県の申請書を用意し、個人番号と身元確認のコピーをそろえる",
+    "埼玉県への申請書を、寄附翌年1月10日必着で郵送する"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -117,5 +117,141 @@
   "detectedAt": "2026-11-23T21:30:32+00:00",
   "searchTitle": "2026年分ワンストップ特例の期限は？　埼玉県は1月10日必着",
   "layout": "noir",
-  "summaryLine": "2026年分のワンストップ申請は、埼玉県への寄附なら2027年1月10日必着です。"
+  "summaryLine": "2026年分のワンストップ申請は、埼玉県への寄附なら2027年1月10日必着です。",
+  "insight": [
+    {
+      "text": "埼玉県は、ふるさと納税専門サイト経由の寄附なら、楽天ふるさと納税、ふるなび、ふるさとチョイス、さとふる、ANAのふるさと納税でオンライン申請を利用できると案内しています。",
+      "source": "https://www.pref.saitama.lg.jp/a0209/z-furusato/z-furusatoone.html"
+    },
+    {
+      "text": "提出期日を過ぎた申請は受理されず、添付書類が不足していても受理されません。期限内に送るだけでなく、本人確認書類のコピーの組み合わせも確認が必要です。",
+      "source": "https://www.pref.saitama.lg.jp/a0209/z-furusato/z-furusatoone.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "埼玉県 寄附先の担当課",
+      "url": "https://www.pref.saitama.lg.jp/a0209/z-furusato/z-furusatoone.html",
+      "source": "https://www.pref.saitama.lg.jp/a0209/z-furusato/z-furusatoone.html",
+      "howTo": [
+        "トップページ",
+        "くらし・環境",
+        "税金",
+        "制度の概要",
+        "ふるさと納税"
+      ],
+      "note": "寄附先の担当課へ提出します。申請書送付後1か月以内に申請書受付書が届きます。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "確定申告の要否と寄附先の数から、ワンストップ特例の条件を確認する",
+      "source": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/mechanism/procedure.html",
+      "steps": [
+        "確定申告が不要な給与所得者等か確認する",
+        "寄附先の自治体数が5団体以内か数える"
+      ],
+      "url": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/mechanism/procedure.html"
+    },
+    {
+      "action": "埼玉県の申請書を用意し、個人番号と身元確認のコピーをそろえる",
+      "source": "https://www.pref.saitama.lg.jp/a0209/z-furusato/z-furusatoone.html",
+      "steps": [
+        "申請書を印刷する",
+        "個人番号が確認できる書類の写しを用意する",
+        "身元確認書類の写しを組み合わせる"
+      ],
+      "url": "https://www.pref.saitama.lg.jp/documents/171038/r3_kihukin-zeigaku-kojo_tokurei-shinsei-syo.pdf"
+    },
+    {
+      "action": "埼玉県への申請書を、寄附翌年1月10日必着で郵送する",
+      "source": "https://www.pref.saitama.lg.jp/a0209/z-furusato/z-furusatoone.html",
+      "steps": [
+        "申請書に必要事項を記入し押印する",
+        "本人確認書類のコピーを添付する",
+        "簡易書留またはレターパックで寄附先の担当課へ送る"
+      ],
+      "url": "https://www.pref.saitama.lg.jp/a0209/z-furusato/z-furusatoone.html"
+    }
+  ],
+  "cause": {
+    "text": "ワンストップ特例は、確定申告が不要な給与所得者等が、寄附先の自治体数などの条件を満たせば、確定申告をせずに寄附金控除を受けられる仕組みです。適用されると、所得税分相当額を含め翌年度の住民税から控除されます。",
+    "status": "background",
+    "source": "https://www.pref.saitama.lg.jp/a0209/z-furusato/z-furusatoone.html"
+  },
+  "worries": [
+    {
+      "q": "医療費控除で確定申告する場合も特例を使える？",
+      "a": "埼玉県は、医療費控除等で確定申告をする人はワンストップ特例の対象外と案内しています。ふるさと納税の控除を受けるには、確定申告を行う必要があります。",
+      "source": "https://www.pref.saitama.lg.jp/a0209/z-furusato/z-furusatoone.html",
+      "action": "寄附を証明する受領書を保管し、寄附した翌年の3月15日までに住所地の所轄税務署へ確定申告してください。",
+      "actionSource": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/mechanism/procedure.html"
+    },
+    {
+      "q": "寄附先が6団体以上になったら控除は受けられない？",
+      "a": "6団体以上に寄附した場合はワンストップ特例を申請できず、控除を受けるには確定申告が必要です。確定申告では、寄附を証明する受領書を添付します。",
+      "source": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/mechanism/procedure.html",
+      "action": "受領書を保管し、寄附した翌年の3月15日までに住所地の所轄税務署で確定申告してください。"
+    },
+    {
+      "q": "本人確認書類のコピーが足りないと申請は受理される？",
+      "a": "埼玉県は、添付書類が不足している場合は申請を受理できないと案内しています。個人番号を確認する書類と身元確認書類は、示された組み合わせで用意する必要があります。",
+      "source": "https://www.pref.saitama.lg.jp/a0209/z-furusato/z-furusatoone.html",
+      "action": "埼玉県の案内にある添付書類の組み合わせを確認し、必要なコピーをそろえてから提出してください。"
+    },
+    {
+      "q": "申請後に引っ越したら、変更の手続きが必要？",
+      "a": "提出済みの申請書の内容に住所変更などがあった場合、寄附した翌年の1月10日までに寄附先へ変更届出書を提出します。変更事項を確認できる書類の添付も必要です。",
+      "source": "https://www.pref.saitama.lg.jp/a0209/z-furusato/z-furusatoone.html",
+      "action": "変更届出書と変更を確認できる書類を用意し、寄附先へ翌年1月10日までに提出してください。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "ワンストップ申請で進めていいか迷う？",
+      "situation": "確定申告不要で寄附先5団体以内",
+      "recommend": "申請を進める選択肢がある",
+      "reason": "確定申告が不要な給与所得者等で、寄附先が5団体以内なら申請できます。特例が適用されると、所得税からの控除は行われず、翌年度の住民税から控除されます。",
+      "source": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/mechanism/procedure.html"
+    },
+    {
+      "question": "ワンストップ申請で進めていいか迷う？",
+      "situation": "医療費控除などで確定申告する",
+      "recommend": "確定申告で控除を申告する",
+      "reason": "医療費控除などで確定申告をする人はワンストップ特例の対象外です。寄附を証明する受領書を保管し、寄附した翌年の3月15日までに住所地の所轄税務署へ確定申告を行います。",
+      "source": "https://www.pref.saitama.lg.jp/a0209/z-furusato/z-furusatoone.html"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "サイトによってはオンライン申請もできる",
+    "cause": "ワンストップ特例が使える条件",
+    "steps": "申請書と本人確認書類を期限内にそろえる",
+    "desk": "寄附先の担当課へ書類を提出",
+    "worries": "申請や書類、引っ越し後の手続きが不安",
+    "guide": "ワンストップか確定申告か"
+  },
+  "depthAt": "2026-11-23T21:43:12+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "ふるさと納税2026年分",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-23T21:45:16+00:00"
+  },
+  "imageFocus": {
+    "x": 0.432,
+    "y": 0.42,
+    "box": [
+      0.009,
+      0.036,
+      0.856,
+      0.804
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/furusato-tax-one-stop-application-figure-eba7e577.jpg"
+  }
 }

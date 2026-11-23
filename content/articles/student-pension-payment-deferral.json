@@ -73,7 +73,7 @@
   "videoTitle": "学生納付特例2026年度、前年所得128万円が境目　親の所得は問いません",
   "publishedAt": "2026-11-23T21:30:49.542079+00:00",
   "generatedAt": "2026-11-23T21:31:44.011009+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/student-pension-payment-deferral-figure-93899bd0.jpg",
   "model": "openai-api:gpt-6.1-terra",
   "affiliates": [],
   "newsType": "policy",
@@ -84,9 +84,9 @@
     }
   ],
   "todayActions": [
-    "日本年金機構の「学生納付特例対象校一覧」で、在学先と代行事務の指定状況を確認する。",
-    "在学証明書の原本か学生証の写しを用意し、番号を確認できる書類と申請先を確かめる。",
-    "2026年度分を希望する場合は、2025年中の本人の所得と扶養親族等、控除を確認する。"
+    "学校で申請できるか、対象校一覧の指定状況欄で確かめる。",
+    "2026年度分の申請書で、前年所得と扶養親族の記入を確認する。",
+    "紙で申請する人は、在学を証明する書類と番号確認書類を用意する。"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -115,5 +115,146 @@
   "qualityScore": 100,
   "detectedAt": "2026-11-23T21:32:17+00:00",
   "layout": "noir",
-  "summaryLine": "2026年度の学生納付特例は、本人の前年所得を基準に審査し、家族の所得は問いません。"
+  "summaryLine": "2026年度の学生納付特例は、本人の前年所得を基準に審査し、家族の所得は問いません。",
+  "insight": [
+    {
+      "text": "申請書で「3.あり(128万超)」を選ぶ場合、16歳以上19歳未満の扶養親族の有無と人数も記入します。所得額だけでなく、この人数欄の記入漏れも提出前に確認できます。",
+      "source": "https://www.nenkin.go.jp/shinsei/kokunen/menjoyuyo/gakusei.files/gakutoku_selfcheck.pdf"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "学生納付特例対象校一覧",
+      "url": "https://www.nenkin.go.jp/service/kokunen/menjo/gakutokutaisyouko.html",
+      "source": "https://www.nenkin.go.jp/service/kokunen/menjo/20150514.html",
+      "howTo": [
+        "国民年金保険料の学生納付特例制度",
+        "学生納付特例対象校一覧"
+      ],
+      "note": "在学中の学校で申請できるのは、代行事務の許認可を受けている場合です。"
+    },
+    {
+      "name": "お近くの年金事務所",
+      "url": "https://www.nenkin.go.jp/section/soudan/index.html",
+      "source": "https://www.nenkin.go.jp/service/kokunen/menjo/20150514.html",
+      "howTo": [
+        "国民年金保険料の学生納付特例制度",
+        "お近くの年金事務所"
+      ],
+      "note": "必要書類は個別の事情で変わるため、迷う場合は年金事務所に確認できます。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "学校で申請できるか、対象校一覧の指定状況欄で確かめる。",
+      "source": "https://www.nenkin.go.jp/service/kokunen/menjo/20150514.html",
+      "steps": [
+        "「学生納付特例対象校一覧」を開く",
+        "在学先の学校名を探す",
+        "「学生納付特例事務法人の指定状況」欄を確認する"
+      ],
+      "url": "https://www.nenkin.go.jp/service/kokunen/menjo/gakutokutaisyouko.html"
+    },
+    {
+      "action": "2026年度分の申請書で、前年所得と扶養親族の記入を確認する。",
+      "source": "https://www.nenkin.go.jp/shinsei/kokunen/menjoyuyo/gakusei.files/gakutoku_selfcheck.pdf",
+      "steps": [
+        "セルフチェックシートを開く",
+        "2026年度分の審査対象が令和7年中所得と確認する",
+        "「前年所得」欄の該当項目を確認する",
+        "「128万超」なら16歳以上19歳未満の扶養親族欄も確認する"
+      ],
+      "url": "https://www.nenkin.go.jp/shinsei/kokunen/menjoyuyo/gakusei.files/gakutoku_selfcheck.pdf"
+    },
+    {
+      "action": "紙で申請する人は、在学を証明する書類と番号確認書類を用意する。",
+      "source": "https://www.nenkin.go.jp/service/kokunen/menjo/20150514.html",
+      "steps": [
+        "在学証明書の原本か学生証の写しを用意する",
+        "学生証に記載があれば裏面の写しも用意する",
+        "基礎年金番号かマイナンバーで手続きする書類を用意する",
+        "住民登録先の国民年金担当窓口か年金事務所などへ提出する"
+      ],
+      "url": "https://www.nenkin.go.jp/service/kokunen/menjo/20150514.html"
+    }
+  ],
+  "cause": {
+    "text": "日本国内に住む人は20歳になった時から国民年金の被保険者となり、保険料の納付が義務づけられています。一方、学生には、申請により在学中の保険料の納付が猶予される制度が設けられています。",
+    "status": "background",
+    "source": "https://www.nenkin.go.jp/service/kokunen/menjo/20150514.html"
+  },
+  "worries": [
+    {
+      "q": "親の所得が高いと、学生納付特例は受けられない？",
+      "a": "審査の対象は申請者本人の所得で、家族の所得の多寡は問いません。2026年度分の審査では2025年中の本人所得を使い、基準は「128万円＋扶養親族等の数×38万円＋社会保険料控除等」です。",
+      "source": "https://www.nenkin.go.jp/service/kokunen/menjo/20150514.html",
+      "action": "家族の所得ではなく、2025年中の本人所得と扶養親族等・控除を確認する。"
+    },
+    {
+      "q": "承認された期間は、将来の年金額に反映される？",
+      "a": "承認期間は老齢基礎年金を受け取るための資格期間には含まれますが、年金額の計算対象には入りません。承認期間の保険料は10年以内なら追納でき、承認期間の翌年度から数えて3年度目以降の追納には加算額が上乗せされます。",
+      "source": "https://www.nenkin.go.jp/service/kokunen/menjo/20150514.html",
+      "action": "追納を考える場合は、承認期間と追納できる10年以内の時期を確認する。"
+    },
+    {
+      "q": "申請が遅れても、過去の分を後から申請できる？",
+      "a": "保険料の納付期限から2年を経過していない期間は、申請時点から2年1カ月前までさかのぼって申請できます。ただし、申請が遅れると、申請日前の事故や病気による障害について障害基礎年金を受け取れない場合があります。",
+      "source": "https://www.nenkin.go.jp/service/kokunen/menjo/20150514.html",
+      "action": "過去分を含めて対象期間を確認し、申請できる期間があるなら早めに手続きする。"
+    },
+    {
+      "q": "申請書のハガキと納付書が両方届いたら、どうする？",
+      "a": "前年度に学生納付特例が承認され、次年度も在学予定の人には、申請書のハガキが3月末に送られます。そのうち前年度に所得がある人には4月に納付書も送られ、特例を利用せず納付を希望する場合は、その納付書で支払えます。",
+      "source": "https://www.nenkin.go.jp/section/faq/kokunen/seido/hokenryo/menjo/gakutokuTA.html",
+      "action": "特例を利用するか納付するかを決め、納付を希望する場合は届いた納付書で支払う。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "申請して猶予を受けるか、納付するか？",
+      "situation": "在学中の保険料を納めるのが難しい",
+      "recommend": "所得基準に該当するなら申請を検討",
+      "reason": "学生納付特例は申請して承認されると、在学中の保険料の納付が猶予されます。承認期間は老齢基礎年金の受給資格期間には入りますが、年金額の計算には入りません。",
+      "source": "https://www.nenkin.go.jp/service/kokunen/menjo/20150514.html"
+    },
+    {
+      "question": "申請して猶予を受けるか、納付するか？",
+      "situation": "保険料を納める余裕がある",
+      "recommend": "納付も選択肢として検討する",
+      "reason": "日本年金機構は、経済的に余裕がある場合は保険料を納付するほうがお得と案内しています。猶予期間は追納しなければ年金額に反映されず、承認期間の翌年度から数えて3年度目以降の追納には加算額が付きます。",
+      "source": "https://www.nenkin.go.jp/service/kokunen/menjo/20150514.html"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "所得が128万円を超えるときは扶養親族欄も確認",
+    "cause": "学生に納付猶予の制度がある理由",
+    "steps": "学校・所得・必要書類を申請前に確認",
+    "desk": "対象校一覧と年金事務所",
+    "worries": "所得や追納、申請の遅れが気になる",
+    "guide": "申請するか納付するかの考え方"
+  },
+  "depthAt": "2026-11-23T21:42:38+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "128万円",
+    "label": "本人所得",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-23T21:45:48+00:00"
+  },
+  "imageFocus": {
+    "x": 0.458,
+    "y": 0.459,
+    "box": [
+      0.037,
+      0.048,
+      0.878,
+      0.869
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/student-pension-payment-deferral-figure-93899bd0.jpg"
+  }
 }
