@@ -61,8 +61,8 @@
   "affiliates": [],
   "newsType": "product",
   "todayActions": [
-    "25日に東北や北海道へ出かける予定がある人は、地域の天気予報と警報・注意報を確認する。",
-    "北陸地方では24日から25日にかけて高波への警戒が必要なため、最新の気象情報を確認する。"
+    "福島県へ出かける人は、行き先の予報区分ごとに25日の天気を確認する。",
+    "秋田県沿岸へ行く人は、25日の波の予報が後半に高まるか確認する。"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -122,5 +122,77 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/tohoku-snow-forecast-november-25-figure-98f6e2cc.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "福島県内でも25日の降水確率は大きく異なり、0時は会津90％、浜通り10％です。行き先がどちらの予報区分か確認すると、県内の地域差が分かります。",
+      "source": "https://www.jma.go.jp/bosai/forecast/data/forecast/070000.json"
+    },
+    {
+      "text": "秋田県沿岸の波は、24日は５メートル後４メートル、25日は４メートル後５メートルの予報です。25日の後半に波が高まる見込みです。",
+      "source": "https://www.jma.go.jp/bosai/forecast/data/forecast/050000.json"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "福島県へ出かける人は、行き先の予報区分ごとに25日の天気を確認する。",
+      "source": "https://www.jma.go.jp/bosai/forecast/data/forecast/070000.json",
+      "steps": [
+        "福島地方気象台の予報を開く",
+        "25日の会津・中通り・浜通りを確認"
+      ],
+      "url": "https://www.jma.go.jp/bosai/forecast/data/forecast/070000.json"
+    },
+    {
+      "action": "秋田県沿岸へ行く人は、25日の波の予報が後半に高まるか確認する。",
+      "source": "https://www.jma.go.jp/bosai/forecast/data/forecast/050000.json",
+      "steps": [
+        "秋田地方気象台の予報を開く",
+        "沿岸の25日の波を確認"
+      ],
+      "url": "https://www.jma.go.jp/bosai/forecast/data/forecast/050000.json"
+    }
+  ],
+  "cause": {
+    "text": "25日は一時的に西高東低の気圧配置となり、下層の寒気の流入が強まる見込みです。北日本を通過する寒気を伴うトラフや日本海の収束線の影響で、強風や降雪の強まりが予想されています。",
+    "status": "stated",
+    "source": "https://www.data.jma.go.jp/yoho/data/jishin/kaisetsu_tanki_latest.pdf"
+  },
+  "worries": [
+    {
+      "q": "福島県内なら、どこも同じように雨や雪が降る？",
+      "a": "25日は会津が雪か雨で夕方からくもり、中通りはくもりで昼前から時々晴れ、所により夕方まで雪か雨、浜通りは晴れ時々くもりの予報です。",
+      "source": "https://www.jma.go.jp/bosai/forecast/data/forecast/070000.json",
+      "action": "福島地方気象台の予報で、行き先の区分（会津・中通り・浜通り）を選んで25日の天気を確認する。"
+    },
+    {
+      "q": "沿岸部へ行く場合、波は25日も高いまま？",
+      "a": "秋田県沿岸の波は、24日は５メートル後４メートル、25日は４メートル後５メートルの予報です。25日の後半に５メートルとなる見込みです。",
+      "source": "https://www.jma.go.jp/bosai/forecast/data/forecast/050000.json",
+      "action": "秋田地方気象台の予報で、沿岸の25日の波の予想を確認する。"
+    },
+    {
+      "q": "強い風だけでなく、落雷やひょうも注意が必要？",
+      "a": "25日は北日本で強風に注意・警戒が必要で、北から東日本では落雷、突風、降ひょう、急な強い雨や降雪の強まりにも注意が呼びかけられています。",
+      "source": "https://www.data.jma.go.jp/yoho/data/jishin/kaisetsu_tanki_latest.pdf",
+      "action": "気象庁の短期予報解説資料で、25日の北日本の強風や北から東日本の注意事項を確認する。"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "福島県内でも降水確率に差",
+    "cause": "寒気と気圧配置で雪や風が強まる",
+    "steps": "行き先の予報区分と波を確認",
+    "worries": "地域差や沿岸の波が気になる人へ"
+  },
+  "depthAt": "2026-11-23T22:12:40+00:00",
+  "updatedAt": "2026-11-23T22:12:40+00:00",
+  "updates": [
+    {
+      "at": "2026-11-23T22:12:40+00:00",
+      "kind": "facts",
+      "title": "公式の資料をもとに、「なるほどの要点」・「今日やること」・「理由」・「よくある不安」を追記しました",
+      "sourceUrl": "https://www.data.jma.go.jp/yoho/data/jishin/kaisetsu_tanki_latest.pdf",
+      "sourceName": "気象庁「短期予報解説資料1」（2026年11月24日3時40分発表）"
+    }
+  ]
 }
