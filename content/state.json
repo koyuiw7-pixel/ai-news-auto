@@ -254,7 +254,7 @@
     "10040062faf40e8385a0141e3744e0bff8b78fba": 2,
     "10427245ad71bfa6ae5ce1f4bd4c61341c356723": 2,
     "10674e5da6e756f28477b3dc382f447ffe28a562": 2,
-    "1070a1f65edaee3f8df9c3cd4ca28e3b5a8191c3": 1,
+    "1070a1f65edaee3f8df9c3cd4ca28e3b5a8191c3": 2,
     "1081bfc7333fb9aad54379660e77d5a1e9c77ab6": 2,
     "109ff885792201e20011ca4534cf940c4f3c59e6": 2,
     "10b92dcdfbe467b74df578e488eda20c873e8d71": 2,
@@ -721,7 +721,7 @@
     "3b1fef72cd68e8f9c2657bd426031f013873c482": 2,
     "3b2227e3b92d731d16c8620e8ecfba8e128ac4b7": 2,
     "3b26c2411d3cc88c79aad7f8a76b35b6d2faae4f": 2,
-    "3b2b4f5c7543685565426bde26405168d87be0ed": 1,
+    "3b2b4f5c7543685565426bde26405168d87be0ed": 2,
     "3b449ba5852923ff565a3fbe06e8dd253e9858f2": 2,
     "3b74a3c79daec86fa1f224b34b0a40013c917941": 2,
     "3b76f085d1e1d867b21b20612bdbef4427ba1721": 1,
@@ -1247,7 +1247,7 @@
     "6aebf04a9c320b047a84c8b400d34d93972c0c9a": 2,
     "6afb3a07350da2dbed503ab9ab7036667dcba4d6": 2,
     "6afd00006b935f551ebe14e06e89ace0676be4c6": 2,
-    "6b216c7e99b708101c33270c8dfd836942e26603": 1,
+    "6b216c7e99b708101c33270c8dfd836942e26603": 2,
     "6b3af209c9e59e8a774d2bb7fb5c7647f3f94542": 2,
     "6b5574b9bcfd2027fbc99edadd1559b9812b60bd": 3,
     "6b7c785411c4629997565a5c2ff2dd7f4620d2c5": 2,
@@ -2752,6 +2752,7 @@
     "f070572d887b625a87e6df3f3cfb2c8fdc15212b": 1,
     "f07ab4361c0a39e7093a9e9291bbe67b2da58702": 2,
     "f08c3c4cbbbb1994e4a205f13eebac5501c57947": 2,
+    "f095eaac9261f4228c86d8954a235d1238d7c656": 1,
     "f09667001c58453e444a99e31a381a2f395bb10d": 2,
     "f0a165aa150f7811cd5f7ddb8b626db271c6b37e": 1,
     "f0a4387f78d383e7ec05c8c62cc0ac51af2f8fec": 2,
@@ -2785,7 +2786,7 @@
     "f39b4043d4e5bed91d5aa421cadfc98888039a43": 2,
     "f3a7777d673e7a860c44e2f1506568fc779ac601": 2,
     "f3ea9b6f2666516e12291aa252f908fda3a9054c": 2,
-    "f416cc0078bf75014d594ea4716f284a084c2ef8": 1,
+    "f416cc0078bf75014d594ea4716f284a084c2ef8": 2,
     "f4305f491507cbc6e1ee38374d866fa780e4f6bc": 2,
     "f4708261eab089174ac60c7f091cc3851d2ba20a": 2,
     "f47124142d2d5f75d712c029119c02cacf92532f": 2,
@@ -9753,6 +9754,20 @@
       "trendKeyword": "佐川急便",
       "trendLane": true,
       "url": "https://news.yahoo.co.jp/articles/2c72bb8b8c88a622a6b774859ad2b605624ec368"
+    },
+    "33048260993c704f": {
+      "at": "2026-11-24T19:44:04.304276+00:00",
+      "costUsd": 0.0138,
+      "intent": "neutral",
+      "kind": "trend",
+      "mix": "",
+      "model": "openai-api:gpt-6-luna",
+      "score": 98,
+      "section": "tech-gadget",
+      "slug": "softbank-hawks-parade",
+      "trendKeyword": "ソフトバンク",
+      "trendLane": true,
+      "url": "https://www.softbank.jp/sbnews/entry/20261124_01"
     },
     "333e237df77aaf26ee6e1bfc396f440a805013bb": {
       "at": "2026-11-21T00:04:40.053076+00:00",
@@ -21724,6 +21739,12 @@
       "skipped": true,
       "url": "https://www.soumu.go.jp/menu_news/gyouji/hyouka_261120000193751.html"
     },
+    "f9145a2eaad522c6ee3e8d6c883ff0fc9d4e8774": {
+      "at": "2026-11-24T19:44:04.304457+00:00",
+      "reason": "trend: 公式の発表で記事にした（softbank-hawks-parade）",
+      "skipped": true,
+      "url": "https://news.yahoo.co.jp/pickup/6603822"
+    },
     "f97a761cfa2c6db3": {
       "at": "2026-11-13T04:31:56.715467+00:00",
       "breaking": true,
@@ -25068,86 +25089,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-22T18:33:00.752793+00:00",
-      "attempt": 1,
-      "id": "103fed778922e063",
-      "kind": "broad",
-      "model": "gemini-3.5-flash",
-      "problems": [
-        "「チケットの価格および一般販売開始時期はまだ発表されていません」→確認済みの情報には前売・当日5,500円、小学生以下3,500円とあり、価格が未発表という記述は矛盾します。",
-        "「東京・水道橋の『IMM THEATER』」→元情報は会場を東京・IMM THEATERとしており、「水道橋」という所在地は確認できません。",
-        "「ネタの披露ではなく“新喜劇のみ”で構成」→元情報の「吉本新喜劇のみ」は公演の構成を示すもので、「ネタの披露ではない」とは述べていません。",
-        "「普段は関西を中心に展開される」→元情報にその説明はなく、裏付けを確認できません。",
-        "「東京限定の特別公演」→東京で開催されることは確認できますが、「東京限定」とする根拠はありません。"
-      ],
-      "readability": {
-        "avg_paragraph": 125.7,
-        "avg_sentence": 47.1,
-        "long_share": 0.25,
-        "max_paragraph": 176,
-        "paragraphs": 6,
-        "sentences": 16
-      },
-      "score": 65,
-      "source": "radar-official",
-      "title": "間寛平関連ニュース｜dメニューニュース（NTTドコモ）",
-      "warnings": [
-        "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（IMM・FANY）",
-        "読みやすさ: 文が長い（1文の平均 47.1字・60字超の文が 25% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-22T18:34:03.526498+00:00",
-      "attempt": 1,
-      "id": "103fed778922e063",
-      "kind": "broad",
-      "model": "strike:判定カード",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 115.2,
-        "avg_sentence": 46.0,
-        "long_share": 0.267,
-        "max_paragraph": 161,
-        "paragraphs": 6,
-        "sentences": 15
-      },
-      "score": 97,
-      "source": "radar-official",
-      "title": "間寛平関連ニュース｜dメニューニュース（NTTドコモ）",
-      "warnings": [
-        "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（IMM・FANY）",
-        "読みやすさ: 文が長い（1文の平均 46.0字・60字超の文が 27% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-22T18:34:22.410928+00:00",
-      "attempt": 0,
-      "id": "103fed778922e063",
-      "kind": "broad",
-      "model": "openai-api:gpt-6-luna",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 119.5,
-        "avg_sentence": 32.5,
-        "long_share": 0.0,
-        "max_paragraph": 167,
-        "paragraphs": 6,
-        "sentences": 22
-      },
-      "score": 100,
-      "source": "radar-official",
-      "title": "間寛平関連ニュース｜dメニューニュース（NTTドコモ）",
-      "warnings": [
-        "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（IMM・FANY）"
-      ]
-    },
     {
       "accepted": false,
       "at": "2026-11-22T18:53:09.918174+00:00",
@@ -32796,6 +32737,74 @@
       "warnings": [
         "読みやすさ: 文が長い（1文の平均 54.4字・60字超の文が 25% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
       ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-24T19:43:24.979916+00:00",
+      "attempt": 1,
+      "id": "33048260993c704f",
+      "kind": "broad",
+      "model": "openai-api:gpt-6-luna",
+      "problems": [
+        "「開催時刻やコースの詳しい道路名、当日の交通規制などは、元資料では発表されていません」→元記事にはパレードが午前11時に出発したと記載されており、開催時刻についての記述が矛盾しています。"
+      ],
+      "readability": {
+        "avg_paragraph": 133.6,
+        "avg_sentence": 41.4,
+        "long_share": 0.069,
+        "max_paragraph": 191,
+        "paragraphs": 9,
+        "sentences": 29
+      },
+      "score": 88,
+      "source": "softbank-news",
+      "title": "リーグ3連覇＆2年連続日本一を30万人のファンと祝福！ 福岡ソフトバンクホークス優勝祝賀パレード",
+      "warnings": [
+        "読みやすさ: 段落が長い（平均 133.6字・最長 191字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-24T19:43:39.520426+00:00",
+      "attempt": 1,
+      "id": "33048260993c704f",
+      "kind": "broad",
+      "model": "openai-api:gpt-6-luna",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 133.0,
+        "avg_sentence": 41.3,
+        "long_share": 0.069,
+        "max_paragraph": 191,
+        "paragraphs": 9,
+        "sentences": 29
+      },
+      "score": 100,
+      "source": "softbank-news",
+      "title": "リーグ3連覇＆2年連続日本一を30万人のファンと祝福！ 福岡ソフトバンクホークス優勝祝賀パレード",
+      "warnings": [
+        "読みやすさ: 段落が長い（平均 133.0字・最長 191字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-24T19:44:04.284873+00:00",
+      "attempt": 0,
+      "id": "33048260993c704f",
+      "kind": "broad",
+      "model": "openai-api:gpt-6-luna",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 63.6,
+        "avg_sentence": 34.7,
+        "long_share": 0.0,
+        "max_paragraph": 100,
+        "paragraphs": 18,
+        "sentences": 33
+      },
+      "score": 98,
+      "source": "softbank-news",
+      "title": "リーグ3連覇＆2年連続日本一を30万人のファンと祝福！ 福岡ソフトバンクホークス優勝祝賀パレード"
     }
   ],
   "short_text_retry": {
