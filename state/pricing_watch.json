@@ -1,39 +1,40 @@
 {
  "products": {
   "claude": {
-   "ok": "2026-11-23",
+   "ok": "2026-11-24",
    "failures": 0
   },
   "chatgpt": {
    "ok": "2026-11-23",
-   "failures": 0
+   "failures": 1,
+   "error": "HTTPError: HTTP Error 401: Unauthorized"
   },
   "gemini": {
    "ok": "2026-11-16",
-   "failures": 7,
+   "failures": 8,
    "error": "ParseError: Gemini Enterprise の Business エディション が見つからない"
   },
   "copilot": {
    "ok": "2026-11-10",
-   "failures": 13,
-   "error": "ParseError: Microsoft 365 Personal の金額が見つからない"
+   "failures": 14,
+   "error": "HTTPError: HTTP Error 401: Unauthorized"
   },
   "perplexity": {
-   "ok": "2026-11-23",
+   "ok": "2026-11-24",
    "failures": 0
   },
   "claude-api": {
-   "ok": "2026-11-23",
+   "ok": "2026-11-24",
    "failures": 0
   },
   "openai-api": {
-   "ok": "2026-11-23",
+   "ok": "2026-11-24",
    "failures": 0
   },
   "gemini-api": {
-   "ok": "2026-11-23",
+   "ok": "2026-11-24",
    "failures": 0
   }
  },
- "lastRun": "2026-11-23T01:48:02+00:00"
+ "lastRun": "2026-11-24T05:21:29+00:00"
 }
