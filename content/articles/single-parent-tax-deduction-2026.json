@@ -89,9 +89,8 @@
     }
   ],
   "todayActions": [
-    "国税庁のタックスアンサーNo.1171で、子と本人の所得や婚姻状況の要件を確かめる。",
-    "扶養控除等申告書の記載内容を確認し、変更があれば勤務先への異動申告書の提出を確かめる。",
-    "施行日前の適用関係は、国税庁の「令和8年度税制改正に関するQ&A」で確かめる。"
+    "子と別居している場合は、養育費の負担や他の人の扶養親族かを確認する。",
+    "年の途中で家族の状況や所得要件が変わった人は、勤務先への申告状況を確認する。"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -150,5 +149,89 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/single-parent-tax-deduction-2026-figure-24074a7f.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "国税庁は、改正で新たに扶養親族を有することになった場合も異動申告書が必要とし、未提出なら早急に提出するよう案内しています。",
+      "source": "https://www.nta.go.jp/users/gensen/nencho/index/shikata.htm"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "税についての相談窓口",
+      "url": "https://www.nta.go.jp/taxes/shiraberu/shirabekata/9200.htm",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1171.htm"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "子と別居している場合は、養育費の負担や他の人の扶養親族かを確認する。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1171_qa.htm",
+      "steps": [
+        "「年少扶養親族とひとり親控除との関係」を読む",
+        "養育費等を継続して負担している人を確認する",
+        "子が他の人の扶養親族に該当するか確認する"
+      ],
+      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1171_qa.htm"
+    },
+    {
+      "action": "年の途中で家族の状況や所得要件が変わった人は、勤務先への申告状況を確認する。",
+      "source": "https://www.nta.go.jp/users/gensen/nencho/index/shikata.htm",
+      "steps": [
+        "「令和８年分年末調整のしかた」を開く",
+        "「扶養控除等（異動）申告書の受理と内容の確認」を見る",
+        "変更があれば異動申告書を提出する"
+      ],
+      "url": "https://www.nta.go.jp/users/gensen/nencho/index/shikata.htm"
+    }
+  ],
+  "cause": {
+    "text": "令和8年分から、子の所得要件は62万円以下に改められ、令和8年12月1日に施行されます。施行日前の適用関係は、国税庁が「令和8年度税制改正（所得税の基礎控除の引上げ等関係）Ｑ＆Ａ」で確認するよう案内しています。",
+    "status": "background",
+    "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1171.htm"
+  },
+  "worries": [
+    {
+      "q": "16歳未満の子でも、ひとり親控除の対象になりますか？",
+      "a": "ひとり親控除の要件となる「生計を一にする子」に年齢制限はありません。一方、16歳未満の扶養親族は扶養控除の対象になりません。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1171_qa.htm",
+      "action": "16歳未満の子も含め、他の人の扶養親族になっていないかを確認し、No.1171の要件と照合してください。"
+    },
+    {
+      "q": "子と別居中でも、ひとり親控除を受けられますか？",
+      "a": "同居の有無だけでなく、離れて暮らす場合の養育費等の継続的な負担も踏まえて判断されます。国税庁の事例では、別れた配偶者が養育費等を継続して負担し、子がその人の扶養親族に該当する場合は、扱いが変わることがあります。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1171_qa.htm",
+      "action": "国税庁の質疑応答事例を読み、養育費等を継続して負担する人と子の扶養親族該当性を確認してください。"
+    },
+    {
+      "q": "子が青色事業専従者でも、控除の対象になりますか？",
+      "a": "国税庁の事例では、専従者給与96万円でほかに収入がない娘について、親の合計所得金額が300万円など、示された要件を満たす場合にひとり親控除の対象と判断しています。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1171_qa.htm",
+      "action": "専従者給与の額だけで判断せず、子の総所得金額等や他の要件を国税庁の事例と照らしてください。"
+    },
+    {
+      "q": "改正で新たに要件を満たしたら、勤務先への届け出は必要ですか？",
+      "a": "国税庁は、所得要件の改正などで新たに扶養親族を有することになった場合も異動申告書が必要と案内しています。扶養控除等申告書に変更があった場合も、その都度提出することとされています。",
+      "source": "https://www.nta.go.jp/users/gensen/nencho/index/shikata.htm",
+      "action": "扶養控除等申告書の記載内容に変更がある場合は、勤務先に異動申告書の提出方法を確認してください。"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "改正で扶養親族が増えた場合も申告が必要",
+    "cause": "子の所得要件が変わる時期に注意",
+    "steps": "所得・別居養育費・申告書を順に確認",
+    "desk": "個別事情は国税庁の相談窓口へ",
+    "worries": "年齢や別居、専従者給与はどう見る？"
+  },
+  "depthAt": "2026-11-24T01:19:22+00:00",
+  "updatedAt": "2026-11-24T01:19:22+00:00",
+  "updates": [
+    {
+      "at": "2026-11-24T01:19:22+00:00",
+      "kind": "facts",
+      "title": "公式の資料をもとに、「なるほどの要点」・「公式の窓口」・「今日やること」・「理由」・「よくある不安」を追記しました",
+      "sourceUrl": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1171.htm",
+      "sourceName": "国税庁 タックスアンサー No.1171「ひとり親控除」"
+    }
+  ]
 }
