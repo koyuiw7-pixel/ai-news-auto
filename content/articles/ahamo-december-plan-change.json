@@ -84,9 +84,9 @@
   "affiliates": [],
   "newsType": "pricing",
   "todayActions": [
-    "ahamoの契約内容を確認し、大盛りオプションを利用中か確かめる。",
-    "ドコモの料金改定ページで、12月以降のahamoの料金と上限設定を確認する。",
-    "自動設定される40GBの上限が不要なら、ahamoアプリかMy docomoで解除する。"
+    "My docomoでahamoの契約内容を確認し、大盛りオプションの契約状況を確かめる。",
+    "公式の料金改定ページで、利用量別の料金と40GB上限の自動設定条件を確認する。",
+    "40GB上限が不要なら、ahamoアプリかMy docomoで解除し、必要ならSMS通知を申し込む。"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -121,5 +121,107 @@
     "at": "2026-11-24T09:34:46+00:00",
     "original": "https://www.docomo.ne.jp/images_osp/common/header/logo_header_ogp.png"
   },
-  "coverTries": 1
+  "coverTries": 1,
+  "insight": [
+    {
+      "text": "ステップが上がる前などのSMS通知は、「データ量到達通知サービス」を契約している場合だけ届きます。通知を希望する人は、ahamoアプリ・My docomoから申し込めます。",
+      "source": "https://www.docomo.ne.jp/charge/plan_renewal2026/"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "料金プラン内容および月額料金改定のお知らせ",
+      "url": "https://www.docomo.ne.jp/charge/plan_renewal2026/",
+      "source": "https://www.docomo.ne.jp/charge/plan_renewal2026/",
+      "note": "現在ahamoをご契約の方も改定の対象です。"
+    },
+    {
+      "name": "My docomo",
+      "url": "https://www.docomo.ne.jp/mydocomo/",
+      "source": "https://www.docomo.ne.jp/mydocomo/",
+      "note": "契約内容の確認や手続きには、パスキー設定でのログイン、またはドコモ回線接続とネットワーク暗証番号でのログインが必要です。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "My docomoでahamoの契約内容を確認し、大盛りオプションの契約状況を確かめる。",
+      "source": "https://www.docomo.ne.jp/mydocomo/",
+      "steps": [
+        "My docomoを開く",
+        "ログインする",
+        "契約内容を確認する"
+      ],
+      "url": "https://www.docomo.ne.jp/mydocomo/"
+    },
+    {
+      "action": "公式の料金改定ページで、利用量別の料金と40GB上限の自動設定条件を確認する。",
+      "source": "https://www.docomo.ne.jp/charge/plan_renewal2026/",
+      "steps": [
+        "料金プラン内容および月額料金改定のお知らせを開く",
+        "ahamoの改定内容を確認する"
+      ],
+      "url": "https://www.docomo.ne.jp/charge/plan_renewal2026/"
+    },
+    {
+      "action": "40GB上限が不要なら、ahamoアプリかMy docomoで解除し、必要ならSMS通知を申し込む。",
+      "source": "https://www.docomo.ne.jp/charge/plan_renewal2026/",
+      "steps": [
+        "ahamoアプリまたはMy docomoを開く",
+        "不要なら自動設定された40GB上限を解除する",
+        "通知が必要ならデータ量到達通知サービスを申し込む"
+      ],
+      "url": "https://www.docomo.ne.jp/charge/plan_renewal2026/"
+    }
+  ],
+  "cause": {
+    "text": "ドコモは、利用実態やデータ利用ニーズの広がりを踏まえ、ahamoを40GB・60GB・120GBの3段階制にすると説明しています。追加容量を購入する手間なく、利用状況に応じたデータ量を使えるようにする改定です。",
+    "status": "background",
+    "source": "https://www.docomo.ne.jp/info/news_release/2026/09/25_00.html"
+  },
+  "worries": [
+    {
+      "q": "40GBの上限に達したら、通信はどうなる？",
+      "a": "上限設定をした場合、指定した利用可能データ量に達した時点で通信速度は最大1Mbpsに制限されます。当月のデータ量を超過した場合も、当月末日まで送受信最大1Mbpsです。",
+      "source": "https://www.docomo.ne.jp/charge/plan_renewal2026/",
+      "action": "通常速度に戻したい場合は、1GBごとに税込550円の1GB追加オプションを申し込む方法があります。"
+    },
+    {
+      "q": "大盛りオプションを契約中でも上限が自動で付く？",
+      "a": "2026年11月1日時点の契約者に自動設定される40GB上限は、大盛りオプション契約者を除きます。大盛りオプションは12月利用分以降提供終了となり、契約中の場合は自動で廃止されます。",
+      "source": "https://www.docomo.ne.jp/charge/plan_renewal2026/",
+      "action": "My docomoで大盛りオプションの契約状況を確認し、改定後の利用量と料金を公式ページで確かめてください。",
+      "actionSource": "https://www.docomo.ne.jp/mydocomo/"
+    },
+    {
+      "q": "ステップが上がる前にSMSで知らせてもらえる？",
+      "a": "「データ量到達通知サービス」が契約中なら、各ステップアップの前など、ドコモが指定したデータ量に達した際にSMSで通知されます。未契約の場合はSMS通知されません。",
+      "source": "https://www.docomo.ne.jp/charge/plan_renewal2026/",
+      "action": "SMS通知が必要なら、ahamoアプリまたはMy docomoからデータ量到達通知サービスを申し込んでください。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "40GB上限は残したほうがいい？",
+      "situation": "40GB以内に抑えたい",
+      "recommend": "上限設定を残す選択肢がある",
+      "reason": "上限設定をすると上位ステップへ自動移行せず、指定したステップの月額料金が適用されます。ただし、上限に達すると通信速度は最大1Mbpsに制限されます。",
+      "source": "https://www.docomo.ne.jp/charge/plan_renewal2026/"
+    },
+    {
+      "question": "40GB上限は残したほうがいい？",
+      "situation": "40GBを超える月がありそう",
+      "recommend": "上限解除を検討できる",
+      "reason": "上限を解除すれば、利用量に応じて上位ステップへ移る料金体系になります。40GB超60GB以下は税込4,125円、60GB超120GB以下は税込5,115円です。",
+      "source": "https://www.docomo.ne.jp/charge/plan_renewal2026/"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "ステップアップのSMSは契約が必要",
+    "cause": "利用状況に応じた3段階制へ",
+    "steps": "自分の契約と上限設定を確認",
+    "desk": "料金改定の内容を確認する窓口",
+    "worries": "上限や追加料金で迷ったら",
+    "guide": "40GB上限を残すか解除するか"
+  },
+  "depthAt": "2026-11-24T09:43:49+00:00"
 }
