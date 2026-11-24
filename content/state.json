@@ -139,7 +139,7 @@
     "052bb0e61dcfebf9f8bf204e63ed2dbef0963f02": 2,
     "05300b4cb82f2a3a1ce4ee6989b323727d3091bc": 2,
     "054be03d5680b5ef150cff86b5ba4b2638588741": 2,
-    "054f3b9109113f6e332cdc799c58434bd5792856": 1,
+    "054f3b9109113f6e332cdc799c58434bd5792856": 2,
     "05b310adaf37dd5c16c542c981f14a22b2fe5d55": 2,
     "05b3801b3168310aadedfdc7ba07fb3c4550bb6b": 2,
     "05edaa12c4d872ab47f1f3c5f44ae1783a9d988c": 2,
@@ -1753,7 +1753,7 @@
     "a09150408af4e2b36f247ea06ee3fa9281a77e43": 2,
     "a09b90e6e9d4ed9ea02a15530826f1d21182b870": 2,
     "a0abdf09254e81c381a84184eeff648aec44b717": 2,
-    "a0c08dc8b710f42ad13bffe7de6b26cac73c5d71": 1,
+    "a0c08dc8b710f42ad13bffe7de6b26cac73c5d71": 2,
     "a0dedbe4e3866601ae52419d0c2f187eab23d7d9": 2,
     "a0fc1f302028e5b272e545afe51fc696417e166a": 2,
     "a0fd67b51b1301b8fa1a0385ad8e7c6a8b25801f": 2,
@@ -2295,7 +2295,6 @@
     "d490d6aff44d35e936d6ac09517adc3d1d395845": 2,
     "d4a0899b60be41d36953c345ce040f82c55206b3": 2,
     "d4b630c99b0c64c22d977dcdb2b41dafc0fb6b5f": 2,
-    "d4cdaa1c13c51ef071af379b9c7cdaf270a66477": 1,
     "d5020f77ed774b8bc62f60edb6c4059287868736": 2,
     "d51b33ce19ff1f9cce2c3f8c5cb1ee26c653f7bb": 2,
     "d52167341792aa6ed4b1ea69f5e07fd210f5a86b": 1,
@@ -2586,6 +2585,7 @@
     "f0a4387f78d383e7ec05c8c62cc0ac51af2f8fec": 2,
     "f0a458b9452018c623c18fb62aecaa6e0afdcd18": 2,
     "f0ac4ebf12b24d580cc0b8ab2e6880da420df5a1": 2,
+    "f0b4e589b3572eb30731693b9129033957fd16fc": 1,
     "f0c06cd43207c3debfa88183592e376683a76203": 2,
     "f0d3f701b4de53d80e871b4b91026dafbebf1fee": 2,
     "f0fd7cb64dac0a1987ba6a86b380a95e9a974595": 2,
@@ -6838,12 +6838,6 @@
       "slug": "monex-account-opening-data-leak",
       "url": "https://info.monex.co.jp/press/pdf/press2026_11_13_monex_pr.pdf"
     },
-    "0a75d9a203d884d7": {
-      "at": "2026-11-10T02:14:52.618559+00:00",
-      "reason": "dedupe: 同じ出典URL",
-      "skipped": true,
-      "url": "https://www.morinaga.co.jp/company/newsrelease/detail.php?no=3231"
-    },
     "0a78bbcddd119e15": {
       "at": "2026-11-19T03:24:06.201530+00:00",
       "costUsd": 0.0033,
@@ -9634,6 +9628,12 @@
       "slug": "mlit-small-recall-october-2026",
       "url": "http://www.mlit.go.jp/report/press/jidosha08_hh_005898.html"
     },
+    "3380adca5dad6019": {
+      "at": "2026-11-24T02:32:09.427019+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（オープン）",
+      "skipped": true,
+      "url": "https://www.netbk.co.jp/contents/company/press/2026/1124_006603.html"
+    },
     "33b15c07d95482a3": {
       "at": "2026-11-11T06:08:09.865716+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（開催について）",
@@ -11810,6 +11810,12 @@
       "slug": "consumer-agency-bird-flu-info-2026",
       "url": "https://www.caa.go.jp/notice/entry/048124/"
     },
+    "549f96c00081c326": {
+      "at": "2026-11-24T02:29:31.462798+00:00",
+      "reason": "dedupe: 固有名詞＋見出しが類似（アクセス / 0.42）: CS マーケティング株式会社「ベレッツァ」における不正アクセスによるお客様情報流",
+      "skipped": true,
+      "url": "https://www.rakuten-card.co.jp/info/news/20261124_2/"
+    },
     "54c862f450468f44": {
       "at": "2026-11-20T16:05:45.301903+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（プレゼント）",
@@ -13199,17 +13205,6 @@
       "reason": "trend: 扱わない話題: うわさ・ゴシップ/事件・被害者（関連報道2/2本に「結婚」「自殺」）",
       "skipped": true,
       "url": "https://news.yahoo.co.jp/articles/75ddd79d499e0aa0a7a10d2ac64e6799c161b67f"
-    },
-    "6bad6b4c659c8230": {
-      "at": "2026-11-10T02:33:27.449358+00:00",
-      "costUsd": 0.0077,
-      "intent": "query",
-      "mix": "life",
-      "model": "gemini-3.5-flash-lite",
-      "score": 95,
-      "section": "business",
-      "slug": "26th-japan-venture-awards-startups",
-      "url": "https://j-net21.smrj.go.jp/news/bt5puv00000113xj.html"
     },
     "6bbec5121562e5d0": {
       "at": "2026-11-22T00:29:51.809986+00:00",
@@ -15093,17 +15088,6 @@
       "slug": "jr-kyushu-kitakyushu-countdown-train",
       "url": "https://www.jrkyushu.co.jp/common/inc/news/newtopics/__icsFiles/afieldfile/2026/11/19/20261120_Kitakyushu_Countdown_Live_Special_Train.pdf"
     },
-    "8789067ee8648c4d": {
-      "at": "2026-11-10T02:14:51.980948+00:00",
-      "costUsd": 0.0091,
-      "intent": "query",
-      "mix": "money",
-      "model": "gemini-3.5-flash-lite",
-      "score": 92,
-      "section": "lifestyle",
-      "slug": "aeon-topvalu-greentea-price-cut",
-      "url": "https://www.aeon.info/news/release_115592/"
-    },
     "87fd92b614893543821f5ea11437aea83f3a70c2": {
       "at": "2026-11-20T17:22:01.342261+00:00",
       "reason": "trend: 扱わない話題: 事件・被害者（関連報道2/3本に「判決」「逮捕」）",
@@ -15554,6 +15538,12 @@
       "reason": "prefilter: 価値の薄いお知らせ（開催について）",
       "skipped": true,
       "url": "https://www.fsa.go.jp/news/r8/sonota/20261020/20261020.html"
+    },
+    "8e6c8ec5cd8bb9c9": {
+      "at": "2026-11-24T02:29:31.451971+00:00",
+      "reason": "public-interest: 資料が短い 1071字",
+      "skipped": true,
+      "url": "https://www.rakuten-card.co.jp/info/news/20261124_3/"
     },
     "8e7c2dde6ff32198": {
       "at": "2026-11-12T02:12:04.596862+00:00",
@@ -19681,6 +19671,13 @@
       "slug": "myojo-megami-sapporo-black-shoyu-2026",
       "url": "https://www.nissin.com/jp/news/13989/"
     },
+    "d4cdaa1c13c51ef071af379b9c7cdaf270a66477": {
+      "at": "2026-11-24T02:32:08.626010+00:00",
+      "model": "gemini-3.5-flash",
+      "reason": "quality: 「その後雨のピークを過ぎて一時発表の扱いとなりました」→元記事は警報が一時発表されたと伝えるだけで、雨のピーク後に一時発表の扱いになったという経緯は確認できません。; 「雨から雪へと変わる見込み」→日テレNEWSは午後から日本海側で雪が降る見込みとしていますが、雨が雪に変わるとは述べていません。; 「気温が急低下」「寒気流入」「気温が氷点下へ下がる」「ブラックアイスバーン」→元記",
+      "skipped": true,
+      "url": "https://newsdig.tbs.co.jp/articles/-/3105607"
+    },
     "d55d037944640625": {
       "at": "2026-11-20T17:50:56.781776+00:00",
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・暮らしの交通/天気/値上げ/障害/給付/発売・日本のスポーツのどれでもない）",
@@ -19982,6 +19979,17 @@
       "reason": "public-interest: 資料が短い 634字",
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026112016"
+    },
+    "db4ba555d6562369": {
+      "at": "2026-11-24T02:33:52.488731+00:00",
+      "costUsd": 0.007,
+      "intent": "query",
+      "mix": "life",
+      "model": "gemini-3.5-flash-lite",
+      "score": 98,
+      "section": "real-estate",
+      "slug": "tokyu-livable-legacia-hiyoshi-medical",
+      "url": "https://www.tokyu-fudosan-hd.co.jp/news/companies/pdf/cba1b2f84d24755c945991d8927a7ed82152896c.pdf"
     },
     "db5dbb5a2ef80ba5113364783303150450cf3282": {
       "at": "2026-11-20T21:01:40.167435+00:00",
@@ -25470,81 +25478,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-21T17:10:12.846666+00:00",
-      "attempt": 0,
-      "id": "4b0a34f4b6713c9e",
-      "kind": "broad",
-      "model": "openai-api:gpt-6-luna",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 69.3,
-        "avg_sentence": 35.9,
-        "long_share": 0.037,
-        "max_paragraph": 141,
-        "paragraphs": 14,
-        "sentences": 27
-      },
-      "score": 100,
-      "source": "tdb",
-      "title": "雇用・人材 社長の「出身大学」分析調査（2026年） 社長の出身大学 「日本大学」が首位 若手経営者で「東大」トップ",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（COSMOS）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-21T17:11:33.933389+00:00",
-      "attempt": 1,
-      "id": "38dfb07257c2059f",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "「手続きの登録完了まで申請から2カ月程度」→ 確認済みの案内は「窓口に申請されてから」としており、オンライン申請も含めた全申請に一律に当てはまるように読める表現は裏付けがありません。"
-      ],
-      "readability": {
-        "avg_paragraph": 134.1,
-        "avg_sentence": 60.4,
-        "long_share": 0.4,
-        "max_paragraph": 249,
-        "paragraphs": 9,
-        "sentences": 20
-      },
-      "score": 97,
-      "source": "mhlw",
-      "title": "令和９年 医政局所管国家試験会場（予定）一覧",
-      "warnings": [
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
-        "読みやすさ: 文が長い（1文の平均 60.4字・60字超の文が 40% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "読みやすさ: 段落が長い（平均 134.1字・最長 249字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-21T17:11:58.351730+00:00",
-      "attempt": 1,
-      "id": "38dfb07257c2059f",
-      "kind": "broad",
-      "model": "strike:本文 1 文",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 125.6,
-        "avg_sentence": 59.5,
-        "long_share": 0.368,
-        "max_paragraph": 249,
-        "paragraphs": 9,
-        "sentences": 19
-      },
-      "score": 100,
-      "source": "mhlw",
-      "title": "令和９年 医政局所管国家試験会場（予定）一覧",
-      "warnings": [
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
-        "読みやすさ: 文が長い（1文の平均 59.5字・60字超の文が 37% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "読みやすさ: 段落が長い（平均 125.6字・最長 249字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-21T17:12:27.852833+00:00",
@@ -33250,6 +33183,84 @@
         "本文に煽りの言葉（「衝撃」）。落ち着いた言葉で事実を書く",
         "要点に煽りの言葉（「衝撃」）。落ち着いた言葉で事実を書く",
         "読みやすさ: 文が長い（1文の平均 56.2字・60字超の文が 44% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-24T02:31:04.375327+00:00",
+      "attempt": 1,
+      "id": "d4cdaa1c13c51ef071af379b9c7cdaf270a66477",
+      "kind": "trend",
+      "model": "gemini-3.5-flash",
+      "problems": [
+        "「その後雨のピークを過ぎて一時発表の扱いとなりました」→元記事は警報が一時発表されたと伝えるだけで、雨のピーク後に一時発表の扱いになったという経緯は確認できません。",
+        "「雨から雪へと変わる見込み」→日テレNEWSは午後から日本海側で雪が降る見込みとしていますが、雨が雪に変わるとは述べていません。",
+        "「気温が急低下」「寒気流入」「気温が氷点下へ下がる」「ブラックアイスバーン」→元記事が伝えているのは午後から冷え込みが強まり日本海側で雪が降る見込みまでで、急低下や寒気流入、氷点下、凍結の予測は確認できません。",
+        "「レベル3は…高齢者や避難に時間を要する人が危険な場所から避難を開始するタイミング」→提示された気象庁資料はレベル3・4の発表時に情報を確認して早めの避難を心がけるよう案内していますが、この具体的な対象者や避難開始の意味までは記載していません。",
+        "「河川の増水が続いたりする危険」→元記事は河川の増水への警戒を伝えていますが、増水が続くとは述べていません。"
+      ],
+      "readability": {
+        "avg_paragraph": 89.0,
+        "avg_sentence": 55.1,
+        "long_share": 0.286,
+        "max_paragraph": 129,
+        "paragraphs": 13,
+        "sentences": 21
+      },
+      "score": 61,
+      "source": "trends",
+      "title": "大雨警報",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（TBS・NEWS・DIG）",
+        "読みやすさ: 文が長い（1文の平均 55.1字・60字超の文が 29% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-24T02:33:20.987599+00:00",
+      "attempt": 1,
+      "id": "db4ba555d6562369",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 138.9,
+        "avg_sentence": 57.2,
+        "long_share": 0.353,
+        "max_paragraph": 275,
+        "paragraphs": 7,
+        "sentences": 17
+      },
+      "score": 100,
+      "source": "tokyu-fudosan",
+      "title": "東急リバブルの不動産小口投資商品 『レガシア日吉メディカルビル』出資申込受付開始 ～シリーズ初の「医療ビル」アセットを展開、500万円（5口）からの少額投資を実",
+      "warnings": [
+        "同じ数字が多い（「500万円」が7回）",
+        "読みやすさ: 文が長い（1文の平均 57.2字・60字超の文が 35% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "読みやすさ: 段落が長い（平均 138.9字・最長 275字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-24T02:33:46.379756+00:00",
+      "attempt": 0,
+      "id": "db4ba555d6562369",
+      "kind": "broad",
+      "model": "openai-api:gpt-6-luna",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 62.9,
+        "avg_sentence": 34.9,
+        "long_share": 0.037,
+        "max_paragraph": 104,
+        "paragraphs": 15,
+        "sentences": 27
+      },
+      "score": 98,
+      "source": "tokyu-fudosan",
+      "title": "東急リバブルの不動産小口投資商品 『レガシア日吉メディカルビル』出資申込受付開始 ～シリーズ初の「医療ビル」アセットを展開、500万円（5口）からの少額投資を実",
+      "warnings": [
+        "同じ数字が多い（「500万円」が7回）"
       ]
     }
   ],
