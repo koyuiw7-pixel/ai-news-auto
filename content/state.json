@@ -11694,13 +11694,6 @@
       "slug": "nissin-line-account-data-leak",
       "url": "https://www.nissin.com/jp/news/13997/"
     },
-    "55ad37b59567413198e3ca1e8f8cf6573836958c": {
-      "at": "2026-11-24T08:58:53.393419+00:00",
-      "model": "openai-api:gpt-6-luna",
-      "reason": "quality: 「具体的な施設名や撤去日程は、公式発表を確認できていません」→元記事は4社が発表したと伝え、撤去は2027年1月から順次と明記しているため、発表の有無と日程の説明が矛盾します。; 「営業施設がないPAなどで、ごみ箱を撤去する動き」→元記事は全国280か所で順次撤去すると具体的に報じており、単なる動きとして曖昧にする一方で、対象数を示していません。; 「静岡県内の東名・新東名を使う",
-      "skipped": true,
-      "url": "https://news.yahoo.co.jp/articles/b6453df7119456d127cb2974e4268ef12f198f97"
-    },
     "55af1423e433ea11": {
       "at": "2026-11-22T17:34:50.189188+00:00",
       "costUsd": 0.0145,
@@ -11748,17 +11741,6 @@
       "reason": "prefilter: 価値の薄いお知らせ（募集）",
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026111815"
-    },
-    "5650ea6fa9d8f84c": {
-      "at": "2026-11-24T09:01:23.109866+00:00",
-      "costUsd": 0.0432,
-      "intent": "query",
-      "mix": "life",
-      "model": "openai-api:gpt-6.1-terra",
-      "score": 98,
-      "section": "business",
-      "slug": "fukushima-snow-disaster-financial-measures",
-      "url": "http://www.boj.or.jp/about/bcp/fso/fso261124a.pdf"
     },
     "568782698f4b9cb3": {
       "at": "2026-11-20T05:20:34.201948+00:00",
@@ -17187,20 +17169,6 @@
       "skipped": true,
       "url": "https://www.mext.go.jp/b_menu/shingi/chukyo/chukyo2/015/giji_list/mext_00025.html"
     },
-    "b510493e30220ef6": {
-      "at": "2026-11-24T08:57:13.440553+00:00",
-      "costUsd": 0.0066,
-      "intent": "query",
-      "major": true,
-      "mix": "alert",
-      "model": "claude:sonnet",
-      "publicInterest": "recall",
-      "safetyLane": true,
-      "score": 98,
-      "section": "lifestyle",
-      "slug": "nisseki-red-cell-class1-recall-1125",
-      "url": "https://www.pmda.go.jp/safety/info-services/drugs/calling-attention/recall-info/0002.html"
-    },
     "b5237f87fac0d4e0": {
       "at": "2026-11-12T06:17:19.227636+00:00",
       "costUsd": 0.0021,
@@ -18203,12 +18171,6 @@
       "reason": "prefilter: 価値の薄いお知らせ（委員会）",
       "skipped": true,
       "url": "https://www.gov-online.go.jp/press_conferences/prime_minister/202611/video-327576.html"
-    },
-    "c437e666c2f0ffef3b428dbf9904da8fa04be598": {
-      "at": "2026-11-24T08:57:32.744561+00:00",
-      "reason": "trend: 扱わない話題: 選挙・政党（関連報道1/2本に「選挙」）",
-      "skipped": true,
-      "url": "https://news.yahoo.co.jp/articles/13b94855cc9f0e04c92a7930af5f7502a1ddb265"
     },
     "c44c9fda14a50dab": {
       "at": "2026-11-22T16:53:50.662014+00:00",
@@ -22545,6 +22507,14 @@
       "url": "https://www.docomo.ne.jp/info/news_release/2026/09/25_00.html",
       "writer": "muse"
     },
+    "muse-353e95e363": {
+      "at": "2026-11-24T09:09:19.710540+00:00",
+      "mix": "money",
+      "score": 100,
+      "slug": "life-insurance-deduction-2026",
+      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1140.htm",
+      "writer": "muse"
+    },
     "muse-3591a9485c": {
       "at": "2026-11-13T03:40:45.823524+00:00",
       "mix": "other",
@@ -23071,6 +23041,14 @@
       "score": 100,
       "slug": "moriki-genmaicha-product-recall",
       "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202603004",
+      "writer": "muse"
+    },
+    "muse-6c5dea3dc6": {
+      "at": "2026-11-24T09:07:57.561744+00:00",
+      "mix": "money",
+      "score": 100,
+      "slug": "docomo-mobile-plan-price-changes",
+      "url": "https://www.docomo.ne.jp/info/news_release/2026/09/25_00.html",
       "writer": "muse"
     },
     "muse-6ce4b76d3f": {
@@ -24798,6 +24776,44 @@
       "slug": "child-allowance-application-guide-2026-matome",
       "url": "",
       "writer": "roundup"
+    },
+    "55ad37b59567413198e3ca1e8f8cf6573836958c": {
+      "at": "2026-11-24T08:58:53.393419+00:00",
+      "model": "openai-api:gpt-6-luna",
+      "reason": "quality: 「具体的な施設名や撤去日程は、公式発表を確認できていません」→元記事は4社が発表したと伝え、撤去は2027年1月から順次と明記しているため、発表の有無と日程の説明が矛盾します。; 「営業施設がないPAなどで、ごみ箱を撤去する動き」→元記事は全国280か所で順次撤去すると具体的に報じており、単なる動きとして曖昧にする一方で、対象数を示していません。; 「静岡県内の東名・新東名を使う",
+      "skipped": true,
+      "url": "https://news.yahoo.co.jp/articles/b6453df7119456d127cb2974e4268ef12f198f97"
+    },
+    "5650ea6fa9d8f84c": {
+      "at": "2026-11-24T09:01:23.109866+00:00",
+      "costUsd": 0.0432,
+      "intent": "query",
+      "mix": "life",
+      "model": "openai-api:gpt-6.1-terra",
+      "score": 98,
+      "section": "business",
+      "slug": "fukushima-snow-disaster-financial-measures",
+      "url": "http://www.boj.or.jp/about/bcp/fso/fso261124a.pdf"
+    },
+    "b510493e30220ef6": {
+      "at": "2026-11-24T08:57:13.440553+00:00",
+      "costUsd": 0.0066,
+      "intent": "query",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "recall",
+      "safetyLane": true,
+      "score": 98,
+      "section": "lifestyle",
+      "slug": "nisseki-red-cell-class1-recall-1125",
+      "url": "https://www.pmda.go.jp/safety/info-services/drugs/calling-attention/recall-info/0002.html"
+    },
+    "c437e666c2f0ffef3b428dbf9904da8fa04be598": {
+      "at": "2026-11-24T08:57:32.744561+00:00",
+      "reason": "trend: 扱わない話題: 選挙・政党（関連報道1/2本に「選挙」）",
+      "skipped": true,
+      "url": "https://news.yahoo.co.jp/articles/13b94855cc9f0e04c92a7930af5f7502a1ddb265"
     }
   },
   "quality_log": [
