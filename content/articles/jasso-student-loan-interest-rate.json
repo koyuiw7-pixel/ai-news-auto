@@ -82,9 +82,9 @@
   "affiliates": [],
   "newsType": "pricing",
   "todayActions": [
-    "スカラネット・パーソナルの「詳細情報」で、第二種奨学金の利率の算定方法を確認する。",
-    "方式の変更を考えている人は、学校の奨学金窓口で提出期限を確かめる。",
-    "貸与が終わった人は、JASSOの返還条件等通知で適用利率と返還月額を確認する。"
+    "貸与中の人はスカラネット・パーソナルで第二種の利率算定方法を確認する。",
+    "貸与終了前に方式変更を考えている人は、学校の奨学金窓口に提出期限を確認する。",
+    "貸与が終わった人は、JASSOから届いた通知で自分の適用利率と割賦金額を確認する。"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -157,5 +157,112 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/jasso-student-loan-interest-rate-figure-bbbee027.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "増額部分は基本月額の利率に0.2％を上乗せするのが原則ですが、基本利率が年2.9％を超え年3.1％以下なら年3.1％、年3.1％を超える場合は財政融資資金の利率が適用されます。",
+      "source": "https://www.jasso.go.jp/shogakukin/about/taiyo/taiyo_2shu/riritsu_santei.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "奨学金相談センター",
+      "url": "https://www.jasso.go.jp/about/toiawase/index.html",
+      "source": "https://www.jasso.go.jp/about/toiawase/index.html",
+      "howTo": [
+        "1.奨学金に関するお問い合わせ",
+        "奨学金相談センター"
+      ],
+      "phone": "0570-666-301",
+      "hours": "9時00分～20時00分（土日祝日・年末年始を除く）",
+      "note": "11時から17時の間が比較的繋がりやすく、通話料は本人負担です。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "貸与中の人はスカラネット・パーソナルで第二種の利率算定方法を確認する。",
+      "source": "https://www.jasso.go.jp/news/mankihenkou202611.html",
+      "steps": [
+        "スカラネット・パーソナルにログイン",
+        "「詳細情報」タブを開く",
+        "「奨学生番号ごとの詳細情報」で第二種の番号を押す"
+      ],
+      "url": "https://scholar-ps.sas.jasso.go.jp/mypage/"
+    },
+    {
+      "action": "貸与終了前に方式変更を考えている人は、学校の奨学金窓口に提出期限を確認する。",
+      "source": "https://www.jasso.go.jp/news/mankihenkou202611.html",
+      "steps": [
+        "在学する学校の奨学金窓口へ申し出る",
+        "学校への提出期限を確認する"
+      ],
+      "url": "https://www.jasso.go.jp/news/mankihenkou202611.html"
+    },
+    {
+      "action": "貸与が終わった人は、JASSOから届いた通知で自分の適用利率と割賦金額を確認する。",
+      "source": "https://www.jasso.go.jp/shogakukin/about/taiyo/taiyo_2shu/riritsu_santei.html",
+      "steps": [
+        "「第二種奨学金の返還条件等通知及び口座振替（リレー口座）加入通知」を確認",
+        "適用利率と割賦金額を確認"
+      ],
+      "url": "https://www.jasso.go.jp/shogakukin/about/taiyo/taiyo_2shu/riritsu_santei.html"
+    }
+  ],
+  "cause": {
+    "text": "JASSOは奨学金交付のために借りた資金を貸与終了時に財政融資資金に借り換えます。そのため、貸与終了月ごとの利率は、借り換え時の財政融資資金の利率によって決まります。",
+    "status": "background",
+    "source": "https://www.jasso.go.jp/shogakukin/about/taiyo/taiyo_2shu/riritsu_santei.html"
+  },
+  "worries": [
+    {
+      "q": "すでに返還している人にも年3.000%が適用される？",
+      "a": "利率は貸与終了月に決まり、固定方式は貸与終了時の利率が返還完了まで適用されます。今回の一覧の利率が、すでに返還中の人にそのまま適用される仕組みではありません。",
+      "source": "https://www.jasso.go.jp/shogakukin/about/taiyo/taiyo_2shu/riritsu_santei.html",
+      "action": "返還中の人は「第二種奨学金の返還条件等通知及び口座振替（リレー口座）加入通知」で自分の適用利率を確認する。"
+    },
+    {
+      "q": "入学時特別増額などを借りた人も年3.000%になる？",
+      "a": "増額部分は基本月額と異なる利率で、基本月額の利率と増額部分の利率を借用金額により加重平均して決まります。増額部分の利率が年3.000%を超えても、その数字が全額にそのまま適用されるわけではありません。",
+      "source": "https://www.jasso.go.jp/shogakukin/about/taiyo/taiyo_2shu/riritsu_santei.html",
+      "action": "自分の返還条件等通知で適用利率を確認し、増額部分を含む借入額の内訳と照らし合わせる。"
+    },
+    {
+      "q": "貸与が終わった後でも利率の方式を変更できる？",
+      "a": "選択した利率の算定方法は、貸与期間が終了する年度の一定時期まで変更できますが、貸与終了後は変更できません。変更を希望する場合は、学校への提出期限を確認する必要があります。",
+      "source": "https://www.jasso.go.jp/shogakukin/about/taiyo/taiyo_2shu/riritsu_santei.html",
+      "action": "まだ貸与中で方式変更を考えている人は、早めに学校の奨学金窓口へ提出期限を確認する。",
+      "actionSource": "https://www.jasso.go.jp/news/mankihenkou202611.html"
+    },
+    {
+      "q": "返還が難しくなったら、月々の負担を減らせる？",
+      "a": "経済困難、傷病、災害などで返還が困難な場合、減額返還や返還期限猶予の制度があります。どちらも願い出と審査が必要で、第二種奨学金の減額返還では利息は増えず、猶予期間中は無利息です。",
+      "source": "https://www.jasso.go.jp/shogakukin/henkan/houhou/index.html",
+      "action": "返還が難しい人は、減額返還制度や返還期限猶予の案内を確認して願い出の手続きを進める。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "利率固定方式と見直し方式、どちらが合う？",
+      "situation": "返還額を一定にしたい",
+      "recommend": "固定方式を検討する",
+      "reason": "固定方式は貸与終了時に決まった利率が返還完了まで続き、市場金利が変わっても利率は変わりません。金利が下がった場合も返還利率は下がらない点は残ります。",
+      "source": "https://www.jasso.go.jp/shogakukin/about/taiyo/taiyo_2shu/riritsu_santei.html"
+    },
+    {
+      "question": "利率固定方式と見直し方式、どちらが合う？",
+      "situation": "金利変動に応じた見直しを受け入れられる",
+      "recommend": "見直し方式も比較する",
+      "reason": "見直し方式はおおむね5年ごとに利率が変わり、市場金利が上がれば貸与終了時より高く、下がれば低くなることがあります。返還額が増減する可能性があります。",
+      "source": "https://www.jasso.go.jp/shogakukin/about/taiyo/taiyo_2shu/riritsu_santei.html"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "増額分は基本月額と別の利率計算",
+    "cause": "貸与終了月で利率が決まる仕組み",
+    "steps": "自分の方式と返還条件を確かめる",
+    "desk": "期限や手続きは学校とJASSOへ",
+    "worries": "自分の利率や返還額はどうなる？",
+    "guide": "固定と見直し、どちらを選ぶ？"
+  },
+  "depthAt": "2026-11-24T01:37:34+00:00"
 }
