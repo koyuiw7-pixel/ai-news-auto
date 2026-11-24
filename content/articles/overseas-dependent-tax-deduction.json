@@ -76,14 +76,14 @@
   "videoTitle": "国外扶養2026年分、30歳以上は送金38万円以上が境目",
   "publishedAt": "2026-11-24T00:25:26.210197+00:00",
   "generatedAt": "2026-11-24T00:26:05.224978+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/overseas-dependent-tax-deduction-figure-cf73c591.jpg",
   "model": "openai-api:gpt-6.1-terra",
   "affiliates": [],
   "newsType": "policy",
   "todayActions": [
-    "海外に住む親族の年齢と、留学・障害者の区分に当てはまるかを確認する。",
-    "外国送金依頼書の控えや家族カードの利用明細を、親族ごとに確認する。",
-    "年末調整で既に提出・提示した書類と、外国語の書類の翻訳文を確認する。"
+    "30歳以上70歳未満の親族ごとに、留学・障害者・38万円のどれに当たるか確認する。",
+    "支払い記録を親族ごと・利用年ごとに分け、送金書類として使えるか確かめる。",
+    "確定申告で使う書類を、年末調整で提出済みのものや外国語書類の翻訳文と照合する。"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -117,5 +117,127 @@
   "detectedAt": "2026-11-24T00:26:31+00:00",
   "searchTitle": "国外扶養の2026年分　30歳以上70歳未満は38万円以上など",
   "layout": "noir",
-  "summaryLine": "2026年分の国外扶養は、30歳以上70歳未満だと留学や障害者、年**38万円**以上の支払が条件"
+  "summaryLine": "2026年分の国外扶養は、30歳以上70歳未満だと留学や障害者、年**38万円**以上の支払が条件",
+  "insight": [
+    {
+      "text": "16歳未満の国外居住親族は扶養控除の対象外ですが、障害者控除を受ける場合は親族関係書類と送金関係書類の提出または提示が必要です。",
+      "source": "https://www.keisan.nta.go.jp/r7yokuaru_sp/socat1/scid0178.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "国外居住親族に係る扶養控除等を受ける場合にどのような書類が必要ですか？",
+      "url": "https://www.keisan.nta.go.jp/r7yokuaru_sp/socat1/scid0178.html",
+      "source": "https://www.keisan.nta.go.jp/r7yokuaru_sp/socat1/scid0178.html"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "30歳以上70歳未満の親族ごとに、留学・障害者・38万円のどれに当たるか確認する。",
+      "source": "https://www.keisan.nta.go.jp/r7yokuaru_sp/socat1/scid0178.html",
+      "steps": [
+        "親族の年齢を確認する",
+        "留学により国内に住所及び居所を有しなくなったか確認する",
+        "障害者または年38万円以上の支払の区分を確認する"
+      ],
+      "url": "https://www.keisan.nta.go.jp/r7yokuaru_sp/socat1/scid0178.html"
+    },
+    {
+      "action": "支払い記録を親族ごと・利用年ごとに分け、送金書類として使えるか確かめる。",
+      "source": "https://www.keisan.nta.go.jp/r7yokuaru_sp/socat1/scid0178.html",
+      "steps": [
+        "外国送金依頼書の控えを親族ごとに分ける",
+        "家族カードは利用日の年分で整理する",
+        "電子決済手段の移転を示す事業者の書類も確認する"
+      ],
+      "url": "https://www.keisan.nta.go.jp/r7yokuaru_sp/socat1/scid0178.html"
+    },
+    {
+      "action": "確定申告で使う書類を、年末調整で提出済みのものや外国語書類の翻訳文と照合する。",
+      "source": "https://www.keisan.nta.go.jp/r7yokuaru_sp/socat1/scid0178.html",
+      "steps": [
+        "年末調整で提出・提示した書類を確認する",
+        "外国語の書類には日本語の翻訳文を用意する",
+        "未提出の書類を確定申告書に添付または提出時に提示する"
+      ],
+      "url": "https://www.keisan.nta.go.jp/r7yokuaru_sp/socat1/scid0178.html"
+    }
+  ],
+  "worries": [
+    {
+      "q": "親族が複数いる場合、送金額は合算してよい？",
+      "a": "38万円の判定は親族全員分を合算せず、納税者から国外居住親族それぞれへのその年の支払合計で見ます。扶養控除等を受ける親族ごとに送金関係書類が必要で、その年の送金等の書類を添付または提示します。",
+      "source": "https://www.keisan.nta.go.jp/r7yokuaru_sp/socat1/scid0178.html",
+      "action": "親族ごとに年間の送金記録を分け、各人分の書類をそろえて合計額を確認してください。"
+    },
+    {
+      "q": "年末調整で出した書類を確定申告でも出す？",
+      "a": "給与等の源泉徴収や年末調整の際に、源泉徴収義務者へ提出または提示した書類は、確定申告書に改めて添付・提示する必要はありません。",
+      "source": "https://www.keisan.nta.go.jp/r7yokuaru_sp/socat1/scid0178.html",
+      "action": "年末調整時に提出・提示した書類を確認し、確定申告で再提出が不要なものと未提出分を分けてください。"
+    },
+    {
+      "q": "海外発行の書類が外国語でも、そのまま出せる？",
+      "a": "外国語で作成された親族関係書類、送金関係書類、留学ビザ等書類や38万円送金書類には翻訳文が必要です。外国政府等が発行した親族関係書類は、原本が必要とされています。",
+      "source": "https://www.keisan.nta.go.jp/r7yokuaru_sp/socat1/scid0178.html",
+      "action": "外国語の書類ごとに日本語訳を添え、外国政府等が発行した親族関係書類は原本か確認してください。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "30歳以上70歳未満でも扶養控除を受けられる？",
+      "situation": "留学・障害者・38万円以上のいずれかに該当",
+      "recommend": "該当区分の書類をそろえる",
+      "reason": "令和5年分以後は、留学により国内に住所及び居所を有しなくなった人、障害者、その年に生活費か教育費として38万円以上を受けた人が区分の対象です。必要書類は区分ごとに異なります。",
+      "source": "https://www.keisan.nta.go.jp/r7yokuaru_sp/socat1/scid0178.html"
+    },
+    {
+      "question": "30歳以上70歳未満でも扶養控除を受けられる？",
+      "situation": "3つの区分のいずれにも該当しない",
+      "recommend": "扶養控除の対象外と確認する",
+      "reason": "留学、障害者、その年に生活費か教育費として38万円以上を受けた人のいずれにも該当しない30歳以上70歳未満の国外居住親族は、扶養控除の適用がありません。",
+      "source": "https://www.keisan.nta.go.jp/r7yokuaru_sp/socat1/scid0178.html"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "16歳未満でも障害者控除は別確認",
+    "steps": "親族ごとに年分と書類を整理",
+    "desk": "国税庁の書類案内を確認",
+    "worries": "誰の書類をどこまで出す？",
+    "guide": "扶養控除の対象になるか区分で確認"
+  },
+  "depthAt": "2026-11-24T01:07:46+00:00",
+  "updatedAt": "2026-11-24T01:07:46+00:00",
+  "updates": [
+    {
+      "at": "2026-11-24T01:07:46+00:00",
+      "kind": "facts",
+      "title": "公式の資料をもとに、「なるほどの要点」・「公式の窓口」・「今日やること」・「よくある不安」・「判断の目安」を追記しました",
+      "sourceUrl": "https://www.keisan.nta.go.jp/r7yokuaru_sp/socat1/scid0178.html",
+      "sourceName": "国税庁 確定申告書等作成コーナー「国外居住親族に係る扶養控除等を受ける場合にどのような書類が必要ですか？」"
+    }
+  ],
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "国外扶養2026年分",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-24T01:10:56+00:00"
+  },
+  "imageFocus": {
+    "x": 0.478,
+    "y": 0.425,
+    "box": [
+      0.019,
+      0.03,
+      0.938,
+      0.821
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/overseas-dependent-tax-deduction-figure-cf73c591.jpg"
+  }
 }

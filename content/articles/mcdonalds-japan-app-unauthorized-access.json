@@ -81,9 +81,9 @@
     }
   ],
   "todayActions": [
-    "公式のお知らせで、対象の4種類の情報と対象外の情報を確認する",
-    "不明点は日本マクドナルドのアプリに関するお問い合わせフォームに連絡する",
-    "お知らせは随時更新されるため、日本マクドナルド公式サイトで続報を確かめる"
+    "公式のお知らせで、対象になった情報と含まれない情報をそれぞれ確かめる。",
+    "不明点があれば、日本マクドナルドのアプリに関するお問い合わせフォームで確認する。",
+    "新しい情報が出ていないか、公式のお知らせを再確認する。"
   ],
   "publicInterest": "breach",
   "incident": {
@@ -139,5 +139,99 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/mcdonalds-japan-app-unauthorized-access-figure-44aab10e.jpg"
-  }
+  },
+  "officialDesk": [
+    {
+      "name": "日本マクドナルド株式会社アプリに関するお問い合わせフォーム",
+      "url": "https://appcs.mcdonalds.co.jp/hc/ja/articles/360003963216--79kPPWz",
+      "source": "https://www.mcdonalds.co.jp/company/info/261120a/",
+      "howTo": [
+        "マクドナルド公式アプリのデータベースへの不正アクセスに関する",
+        "本件についてのお問い合わせ先",
+        "日本マクドナルド株式会社アプリに関するお問い合わせフォーム"
+      ]
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "公式のお知らせで、対象になった情報と含まれない情報をそれぞれ確かめる。",
+      "source": "https://www.mcdonalds.co.jp/company/info/261120a/",
+      "steps": [
+        "「不正アクセスの対象となった情報」を確認",
+        "氏名などが含まれないとの記載を確認"
+      ],
+      "url": "https://www.mcdonalds.co.jp/company/info/261120a/"
+    },
+    {
+      "action": "不明点があれば、日本マクドナルドのアプリに関するお問い合わせフォームで確認する。",
+      "source": "https://www.mcdonalds.co.jp/company/info/261120a/",
+      "steps": [
+        "お知らせの「本件についてのお問い合わせ先」を見る",
+        "「日本マクドナルド株式会社アプリに関するお問い合わせフォーム」を開く"
+      ],
+      "url": "https://appcs.mcdonalds.co.jp/hc/ja/articles/360003963216--79kPPWz"
+    },
+    {
+      "action": "新しい情報が出ていないか、公式のお知らせを再確認する。",
+      "source": "https://www.mcdonalds.co.jp/company/info/261120a/",
+      "steps": [
+        "不正アクセスに関するお知らせを開く",
+        "更新された内容がないか確認する"
+      ],
+      "url": "https://www.mcdonalds.co.jp/company/info/261120a/"
+    }
+  ],
+  "cause": {
+    "text": "当社が管理する公式アプリのデータベース内のお客様に関連する情報の一部に、第三者による不正アクセスが確認されました。会社は関連システムの調査を進めています。",
+    "status": "investigating",
+    "source": "https://www.mcdonalds.co.jp/company/info/261120a/"
+  },
+  "worries": [
+    {
+      "q": "クレジットカード番号や住所まで対象になったの？",
+      "a": "発表では、氏名、メールアドレス、電話番号、住所、クレジットカード情報などは含まれないとしています。対象は商品購入履歴、システム上の顧客管理用ID、IPアドレス、携帯端末の位置情報です。",
+      "source": "https://www.mcdonalds.co.jp/company/info/261120a/",
+      "action": "発表のお知らせで「不正アクセスの対象となった情報」と、含まれない情報の記載を確認する。"
+    },
+    {
+      "q": "アプリを勝手に使われたり、注文されたりしていない？",
+      "a": "会社は、本件に起因する公式アプリ・サービスの不正利用は確認されていないとしています。今後、新たに知らせる情報が判明した場合は、お知らせを随時更新するとしています。",
+      "source": "https://www.mcdonalds.co.jp/company/info/261120a/",
+      "action": "公式のお知らせを開き、新しい情報が更新されていないか確認する。"
+    },
+    {
+      "q": "不正アクセスの知らせを装ったメールやSMSが心配",
+      "a": "警察庁は、実在する企業をかたる偽メールやSMSで偽サイトへ誘導し、IDやパスワードなどを盗む手口を説明しています。送信元の名称やメールアドレスだけでは、真偽の判断が困難としています。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "action": "メールやSMS内のリンクは開かず、公式サイトや公式アプリから正しいページにアクセスする。",
+      "general": true
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "パスワードを今すぐ変えたほうがいい？",
+      "situation": "会社から個別の案内は届いていない",
+      "recommend": "現時点では急いで変更しなくてよい",
+      "reason": "会社は現時点でパスワード変更などの特別な手続きを求めておらず、本件に起因する公式アプリ・サービスの不正利用も確認されていません。新しい情報が判明した場合は、お知らせを随時更新するとしています。",
+      "source": "https://www.mcdonalds.co.jp/company/info/261120a/"
+    }
+  ],
+  "depthHeadings": {
+    "cause": "不正アクセスの経緯は調査中",
+    "steps": "お知らせと問い合わせ先を確認",
+    "desk": "不明点はアプリの問い合わせフォームへ",
+    "worries": "カード情報やアプリの利用は大丈夫？",
+    "guide": "パスワードを変えるか迷ったら"
+  },
+  "depthAt": "2026-11-24T01:06:03+00:00",
+  "updatedAt": "2026-11-24T01:06:03+00:00",
+  "updates": [
+    {
+      "at": "2026-11-24T01:06:03+00:00",
+      "kind": "facts",
+      "title": "公式の資料をもとに、「公式の窓口」・「今日やること」・「理由」・「よくある不安」・「判断の目安」を追記しました",
+      "sourceUrl": "https://www.mcdonalds.co.jp/company/info/261120a/",
+      "sourceName": "日本マクドナルド"
+    }
+  ]
 }

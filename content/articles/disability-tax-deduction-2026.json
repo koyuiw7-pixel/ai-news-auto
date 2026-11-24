@@ -83,9 +83,9 @@
     }
   ],
   "todayActions": [
-    "本人や家族の手帳の種類と等級を確認し、障害者控除の区分を調べる。",
-    "勤務先に提出した扶養控除等申告書を確認し、記載内容に変更があれば異動申告書を提出する。",
-    "国税庁の2026年分年末調整の案内で、家族の所得や別居時の生計の条件を確認する。"
+    "勤務先に出した扶養控除等申告書を見直し、記載に変更があれば異動申告書を提出する。",
+    "別居の家族は、所得金額と生活費等の送金状況を年末調整の確認項目に照らす。",
+    "国外に住む親族を申告する場合、提出する書類とその時期を確認する。"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -140,5 +140,90 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/disability-tax-deduction-2026-figure-30853ad5.jpg"
-  }
+  },
+  "officialDesk": [
+    {
+      "name": "税についての相談窓口",
+      "url": "https://www.nta.go.jp/taxes/shiraberu/shirabekata/9200.htm",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1160_qa.htm"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "勤務先に出した扶養控除等申告書を見直し、記載に変更があれば異動申告書を提出する。",
+      "source": "https://www.nta.go.jp/users/gensen/nencho/index/shikata.htm",
+      "steps": [
+        "扶養控除等申告書の記載内容を確認する",
+        "変更があれば異動申告書を提出する"
+      ],
+      "url": "https://www.nta.go.jp/users/gensen/nencho/index/shikata.htm"
+    },
+    {
+      "action": "別居の家族は、所得金額と生活費等の送金状況を年末調整の確認項目に照らす。",
+      "source": "https://www.nta.go.jp/users/gensen/nencho/index/shikata.htm",
+      "steps": [
+        "合計所得金額が62万円以下か確認する",
+        "別居なら生活費等を送金しているか確認する"
+      ],
+      "url": "https://www.nta.go.jp/users/gensen/nencho/index/shikata.htm"
+    },
+    {
+      "action": "国外に住む親族を申告する場合、提出する書類とその時期を確認する。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1160_qa.htm",
+      "steps": [
+        "申告書の提出時に親族関係書類を提出または提示する",
+        "年末調整までに送金関係書類を提出または提示する"
+      ],
+      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1160_qa.htm"
+    }
+  ],
+  "cause": {
+    "text": "令和8年分の年末調整では、基礎控除の引上げなどの改正があり、扶養親族等の所得要件も改正されています。国税庁は、扶養控除等申告書の情報から障害者控除などの額を確認するとしています。",
+    "status": "background",
+    "source": "https://www.nta.go.jp/users/gensen/nencho/index/shikata.htm"
+  },
+  "worries": [
+    {
+      "q": "16歳未満の子は扶養控除がなくても対象になる？",
+      "a": "扶養控除の適用がない16歳未満の扶養親族でも、所得税法上の障害者に当てはまれば障害者控除の対象です。年齢だけで対象外にはなりません。",
+      "source": "https://www.keisan.nta.go.jp/r7yokuaru/cat2/cat22/cat229/cid200.html",
+      "action": "勤務先に出した扶養控除等申告書で該当する家族の記載を確認し、変更があれば異動申告書を提出してください。",
+      "actionSource": "https://www.nta.go.jp/users/gensen/nencho/index/shikata.htm"
+    },
+    {
+      "q": "別居している家族も障害者控除の対象になる？",
+      "a": "令和8年分の年末調整の確認項目では、対象となる同一生計配偶者などの合計所得金額が62万円以下かを確認します。別居の場合は、生活費等を常に送金するなど、生計を一にする事実も確認対象です。",
+      "source": "https://www.nta.go.jp/users/gensen/nencho/index/shikata.htm",
+      "action": "家族の合計所得金額と、生活費等を送金している事実を扶養控除等申告書の確認時に照らしてください。"
+    },
+    {
+      "q": "国外に住む16歳未満の子には何の書類が必要？",
+      "a": "国外居住親族について年末調整で障害者控除を受けるには、扶養控除等申告書の提出時に親族関係書類を、年末調整を行うときまでに送金関係書類を提出または提示する必要があります。医師の診断書などは確認を勧められていますが、法令上の要件ではありません。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1160_qa.htm",
+      "action": "親族関係書類は申告書の提出時に、送金関係書類は年末調整までに提出または提示してください。"
+    },
+    {
+      "q": "手帳がなくても障害者控除を受けられる？",
+      "a": "手帳が交付されない7級相当の手の障害の事例では、満65歳以上で、市町村長等や福祉事務所長から障害者に準ずる認定を受けていないと控除を受けられないと国税庁は説明しています。これは手帳のない人全員への一律の判定ではありません。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1160_qa.htm",
+      "action": "手の障害が7級相当で手帳がない人は、認定の有無を確認し、国税庁のQ&Aで自分に近い事例を確かめてください。"
+    }
+  ],
+  "depthHeadings": {
+    "cause": "令和8年分の年末調整で変わった点",
+    "steps": "申告書と家族の条件を確認",
+    "desk": "障害者控除を相談する窓口",
+    "worries": "家族の年齢や手帳、書類は大丈夫？"
+  },
+  "depthAt": "2026-11-24T01:06:38+00:00",
+  "updatedAt": "2026-11-24T01:06:38+00:00",
+  "updates": [
+    {
+      "at": "2026-11-24T01:06:38+00:00",
+      "kind": "facts",
+      "title": "公式の資料をもとに、「公式の窓口」・「今日やること」・「理由」・「よくある不安」を追記しました",
+      "sourceUrl": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1160_qa.htm",
+      "sourceName": "国税庁 タックスアンサー No.1160「障害者控除」"
+    }
+  ]
 }
