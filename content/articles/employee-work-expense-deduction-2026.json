@@ -92,9 +92,9 @@
     }
   ],
   "todayActions": [
-    "国税庁のNo.1415で、通勤費や研修費など自分の支出が対象に当たるか確認する。",
-    "源泉徴収票の支払金額を確認し、No.1410で給与所得控除額の区分を確かめる。",
-    "対象になりそうな支出の書類を集め、給与の支払者などに証明を依頼できるか確認する。"
+    "対象になりそうな支出から、補てんや給付金の対象分を分ける",
+    "申告に添付する明細書や証明書と、支出額を示す書類をそろえる",
+    "確定申告書等作成コーナーで金額を入力し、必要書類を作成する"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -153,5 +153,111 @@
     "provider": "Cloudflare Workers AI",
     "relevant": true,
     "at": "2026-11-24T08:21:55+00:00"
-  }
+  },
+  "insight": [
+    {
+      "text": "給与等の収入金額が69万1,000円以上74万1,000円未満の場合、給与所得の金額は「なし」とされます。220万円未満では通常の給与所得控除額の表だけで計算できない区分があります。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1410.htm"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "確定申告書等作成コーナー",
+      "url": "https://www.keisan.nta.go.jp/kyoutu/ky/sm/top",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1415.htm",
+      "howTo": [
+        "No.1415 給与所得者の特定支出控除",
+        "確定申告書等作成コーナー"
+      ],
+      "note": "画面の案内に沿って金額等を入力すると、必要な付表や明細書も自動的に作成されます。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "対象になりそうな支出から、補てんや給付金の対象分を分ける",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1415.htm",
+      "steps": [
+        "No.1415で特定支出の種類を確認する",
+        "給与の支払者から補てんされ、所得税が課税されない部分を分ける",
+        "教育訓練給付金などが支給される部分も分ける"
+      ],
+      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1415.htm"
+    },
+    {
+      "action": "申告に添付する明細書や証明書と、支出額を示す書類をそろえる",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1415.htm",
+      "steps": [
+        "No.1415の「各種様式」を開く",
+        "「給与所得者の特定支出に関する明細書」を確認する",
+        "証明書と支出の事実・金額を証する書類を用意する"
+      ],
+      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1415.htm"
+    },
+    {
+      "action": "確定申告書等作成コーナーで金額を入力し、必要書類を作成する",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1415.htm",
+      "steps": [
+        "確定申告書等作成コーナーを開く",
+        "画面の案内に沿って金額等を入力する",
+        "必要な付表や明細書が自動作成される"
+      ],
+      "url": "https://www.keisan.nta.go.jp/kyoutu/ky/sm/top"
+    }
+  ],
+  "cause": {
+    "text": "給与所得者の特定支出控除は、対象となる特定支出の合計額が給与所得控除額の2分の1相当額を超えるとき、確定申告で超えた部分を給与所得控除後の所得金額から差し引ける制度です。",
+    "status": "background",
+    "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1415.htm"
+  },
+  "worries": [
+    {
+      "q": "仕事で買った本や服は、どれでも対象になりますか？",
+      "a": "図書費は職務に関連する書籍など、衣服費は勤務場所で着用することが必要な衣服の購入費が対象です。勤務必要経費に含まれる図書費、衣服費、交際費等の合計は65万円までです。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1415.htm",
+      "action": "購入した本や衣服が職務に関連するか、勤務場所で着用が必要かを確認し、支出額を示す書類を整理する。"
+    },
+    {
+      "q": "会社から補てんされた費用や給付金も合計できますか？",
+      "a": "給与の支払者から補てんされ、その部分に所得税が課税されていない金額は特定支出に含まれません。教育訓練給付金や母子（父子）家庭自立支援教育訓練給付金が支給される部分も対象外です。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1415.htm",
+      "action": "支出ごとに補てんや給付金の金額を分け、控除対象の支出額に含めない部分を確認する。"
+    },
+    {
+      "q": "支出の証明は、勤務先以外にも頼めますか？",
+      "a": "特定支出は、職務の遂行に直接必要であることなどについて証明がされたものに限られます。キャリアコンサルタントの証明で対象となるのは、令和5年分以後の研修費または資格取得費のうち、教育訓練に係る部分です。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1415.htm",
+      "action": "まず給与の支払者に証明を依頼できるか確認し、対象となる研修費・資格取得費なら証明手続も確かめる。"
+    },
+    {
+      "q": "確定申告では、どの書類を一緒に出しますか？",
+      "a": "特定支出に関する明細書と給与の支払者またはキャリアコンサルタントの証明書を申告書に添付します。支出の事実と金額を証する書類も添付するか、申告書を提出する際に提示します。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1415.htm",
+      "action": "明細書、証明書、支出の事実と金額を示す書類をそろえ、添付または提出時に提示できる状態にする。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "この支出で特定支出控除を申告する？",
+      "situation": "特定支出の合計が給与所得控除額の半分を超える",
+      "recommend": "証明書類を確認して申告を検討する",
+      "reason": "超えた部分は確定申告で給与所得控除後の所得金額から差し引けます。ただし、支出が職務の遂行に直接必要であることなどの証明と、支出の事実・金額を示す書類が必要です。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1415.htm"
+    },
+    {
+      "question": "この支出で特定支出控除を申告する？",
+      "situation": "特定支出の合計が給与所得控除額の半分以下",
+      "recommend": "この制度での控除は受けられない",
+      "reason": "特定支出の合計額が給与所得控除額の2分の1相当額を超えた場合に、その超える部分を差し引ける制度です。基準額以下では、特定支出控除による差し引きはできません。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1415.htm"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "給与収入が220万円未満なら計算表を確認",
+    "cause": "控除の対象になる仕組み",
+    "steps": "支出の区分と証明書類を準備",
+    "desk": "申告書類を作成する公式ページ",
+    "worries": "支出や証明書で迷いやすい点",
+    "guide": "申告に進むか迷ったときの目安"
+  },
+  "depthAt": "2026-11-24T08:37:13+00:00"
 }
