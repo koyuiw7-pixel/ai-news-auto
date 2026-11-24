@@ -78,9 +78,8 @@
   "affiliates": [],
   "newsType": "policy",
   "todayActions": [
-    "損害の原因と資産の種類を、国税庁タックスアンサーNo.1110の対象条件と照らし合わせる。",
-    "損害額と受け取った保険金を確認し、災害等に関連した支出の領収書を用意する。",
-    "同じ生計の親族の資産なら、2026年分の所得条件と施行日前の扱いを確認する。"
+    "住宅・家財・車両の損害額を国税庁の計算方法で確認する",
+    "損害額や関連支出を入力し、確定申告書を作成する"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -123,5 +122,82 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/casualty-loss-deduction-2026-figure-f1018e71.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "住宅・家財・車両の損害額は「合理的な計算方法」で計算できます。減価償却資産は、取得価額から非業務用資産として計算した減価償却費累積額相当額を控除する方法もあります。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1110.htm"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "税についての相談窓口",
+      "url": "https://www.nta.go.jp/taxes/shiraberu/shirabekata/9200.htm",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1110.htm"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "住宅・家財・車両の損害額を国税庁の計算方法で確認する",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1110.htm",
+      "steps": [
+        "タックスアンサー No.1110",
+        "「合理的な計算方法」で計算する案内を開く"
+      ],
+      "url": "https://www.nta.go.jp/taxes/shiraberu/saigai/h30/0018008-045/01-2.htm"
+    },
+    {
+      "action": "損害額や関連支出を入力し、確定申告書を作成する",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1110.htm",
+      "steps": [
+        "「確定申告書等作成コーナー」を開く",
+        "画面の案内に沿って金額等を入力する",
+        "必要な付表や明細書を入力して作成する"
+      ],
+      "url": "https://www.keisan.nta.go.jp/kyoutu/ky/sm/top"
+    }
+  ],
+  "worries": [
+    {
+      "q": "詐欺でだまし取られた損害も雑損控除の対象？",
+      "a": "国税庁が挙げる対象原因は、自然現象による災害、人為や生物による異常な災害、盗難、横領です。詐欺や恐喝の場合には、雑損控除は受けられません。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1110.htm",
+      "action": "被害の原因を整理し、詐欺や恐喝に当たるか判断に迷う場合は税についての相談窓口で確認する。"
+    },
+    {
+      "q": "受け取った保険金が損害額を超えたらどう計算する？",
+      "a": "保険金や損害賠償金などは、まず損害金額から差し引きます。保険金等が損害金額を超える場合は、超えた分を災害等関連支出の金額から差し引くと国税庁は説明しています。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1110.htm",
+      "action": "受け取った保険金等と損害金額、災害等関連支出をそれぞれ分けて確認し、差し引く順序に沿って計算する。"
+    },
+    {
+      "q": "災害に関連した支出の領収書は提出が必要？",
+      "a": "確定申告書に雑損控除に関する事項を記載し、災害等に関連したやむを得ない支出の金額を証明する書類は、申告書に添付するか、提出時に提示します。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1110.htm",
+      "action": "災害等に関連したやむを得ない支出の領収書をまとめ、確定申告書に添付するか提出時に提示できるようにする。"
+    },
+    {
+      "q": "給与所得の源泉徴収票も確定申告書と一緒に出す？",
+      "a": "給与所得の源泉徴収票は、確定申告書への添付や提出時の提示は不要です。ただし、確定申告書を作成する際には必要なため、税務署等へ行く場合は忘れずに持参するよう国税庁は案内しています。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1110.htm",
+      "action": "源泉徴収票を申告書に添付する必要はありませんが、申告書の作成に使えるよう手元に用意する。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "災害減免法と雑損控除、どちらを選ぶ？",
+      "situation": "災害にあい、その年の所得金額の合計が1,000万円以下",
+      "recommend": "両方を計算して有利な方を選ぶ",
+      "reason": "その年の所得金額の合計額が1,000万円以下の人が災害にあった場合、災害減免法による所得税の軽減免除もあります。国税庁は、納税者が雑損控除とどちらか有利な方法を選べると案内しています。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1110.htm"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "損害額の計算には別の方法もある",
+    "steps": "損害額の確認から申告書作成まで",
+    "desk": "個別の扱いを税務署に相談する",
+    "worries": "控除の対象や申告書類が気になる",
+    "guide": "災害減免法と比べる場合の考え方"
+  },
+  "depthAt": "2026-11-24T06:42:41+00:00"
 }

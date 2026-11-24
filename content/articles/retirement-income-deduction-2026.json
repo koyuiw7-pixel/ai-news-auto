@@ -68,14 +68,14 @@
   "videoTitle": "退職所得控除2026年分、勤続30年で1,500万円になる計算式",
   "publishedAt": "2026-11-24T06:12:49.817161+00:00",
   "generatedAt": "2026-11-24T06:14:21.363988+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/retirement-income-deduction-2026-figure-79307c85.jpg",
   "model": "openai-api:gpt-6.1-terra",
   "affiliates": [],
   "newsType": "policy",
   "todayActions": [
-    "勤続期間に1年未満の端数がないか確かめ、国税庁の式で控除額を確認する。",
-    "退職所得の受給に関する申告書を、退職金の支払者へ提出したか確かめる。",
-    "別の退職金がある場合は、国税相談専用ダイヤル0570-00-5901で相談する。"
+    "前年以前や同じ年に別の退職金がある人は、電話相談センターで控除額を相談する。",
+    "退職所得の受給に関する申告書を、支払者に提出したか確かめる。",
+    "勤続期間に端数がある人は、切り上げた年数で控除額を計算する。"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -105,5 +105,141 @@
   "detectedAt": "2026-11-24T06:16:20+00:00",
   "searchTitle": "退職所得控除は勤続30年でいくら？　控除額は1,500万円",
   "layout": "noir",
-  "summaryLine": "退職所得控除は、国税庁が示す勤続30年の計算例では**1,500万円**になります。"
+  "summaryLine": "退職所得控除は、国税庁が示す勤続30年の計算例では**1,500万円**になります。",
+  "insight": [
+    {
+      "text": "確定申告書等作成コーナーは、一時勤務しなかった期間があるなど、特殊な勤続年数・控除額の計算をしている人には対応していません。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1420.htm"
+    },
+    {
+      "text": "電話相談センターは連休明けや月曜日に特に混み合います。相談中に国税庁ホームページを案内されることがあるため、スマートフォンなどを手元に用意しておくとよいでしょう。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/sodan/denwa-sodan/index.htm"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "電話相談センター",
+      "url": "https://www.nta.go.jp/taxes/shiraberu/sodan/denwa-sodan/index.htm",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/sodan/denwa-sodan/index.htm",
+      "howTo": [
+        "電話で相談する（電話相談センターのご案内）",
+        "国税相談専用ダイヤル"
+      ],
+      "phone": "0570-00-5901",
+      "hours": "8時30分〜17時00分（土日祝日及び12月29日〜1月3日を除きます。）",
+      "note": "連休明けや月曜日は特に混み合っています。相談時にホームページを案内されることがあるため、スマートフォン・パソコン・タブレット等を手元に用意してください。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "前年以前や同じ年に別の退職金がある人は、電話相談センターで控除額を相談する。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/sodan/denwa-sodan/index.htm",
+      "steps": [
+        "0570-00-5901に電話する",
+        "音声ガイダンスで「１」所得税を選ぶ",
+        "退職金を受け取った時期と支払先を伝える"
+      ],
+      "url": "https://www.nta.go.jp/taxes/shiraberu/sodan/denwa-sodan/index.htm"
+    },
+    {
+      "action": "退職所得の受給に関する申告書を、支払者に提出したか確かめる。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1420.htm",
+      "steps": [
+        "支払者に提出状況を確認する",
+        "国税庁の「退職所得申告」を確認する"
+      ],
+      "url": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/gensen/annai/1648_37.htm"
+    },
+    {
+      "action": "勤続期間に端数がある人は、切り上げた年数で控除額を計算する。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1420.htm",
+      "steps": [
+        "勤続期間の年数と月数を確認する",
+        "「退職所得控除額の計算方法」を見る",
+        "1年未満の端数を1年に切り上げる"
+      ],
+      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1420.htm"
+    }
+  ],
+  "cause": {
+    "text": "退職手当などは退職所得として扱われ、原則、ほかの所得と分けて所得税額を計算します。控除額は勤続年数に応じて決まり、1年未満の端数は1年に切り上げて計算します。",
+    "status": "background",
+    "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1420.htm"
+  },
+  "worries": [
+    {
+      "q": "申告書を出していないと、税金はどうなりますか？",
+      "a": "申告書を提出していない場合、退職金の支払金額の20.42パーセントが所得税額および復興特別所得税額として源泉徴収されます。その後、受給者本人が確定申告を行い、税額を精算します。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1420.htm",
+      "action": "支払者に申告書の提出状況を確認し、未提出なら確定申告で精算する方法を確認してください。"
+    },
+    {
+      "q": "同じ年に別の退職金を受け取ると控除は変わりますか？",
+      "a": "同一年中に2か所以上から退職金を受け取るときなどは、退職所得控除額の計算が異なることがあります。勤続年数だけで通常の計算式を当てはめられない場合があります。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1420.htm",
+      "action": "退職金を受け取った時期や支払先を確認し、国税相談専用ダイヤルで相談してください。",
+      "actionSource": "https://www.nta.go.jp/taxes/shiraberu/sodan/denwa-sodan/index.htm"
+    },
+    {
+      "q": "医療費控除などで確定申告すると退職金も書きますか？",
+      "a": "退職所得の受給に関する申告書を提出済みでも、医療費控除や寄附金控除の適用を受けるなどの理由で確定申告書を提出する場合は、退職所得の金額を記載する必要があります。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1420.htm",
+      "action": "確定申告をする場合は、退職所得の金額を申告書に記載してください。"
+    },
+    {
+      "q": "勤続年数が短い役員でも、退職所得は半分で計算できますか？",
+      "a": "役員等勤続年数が5年以下の人が受ける特定役員退職手当等には、退職金から控除額を差し引いた後の2分の1計算は適用されません。短期退職手当等も、控除後の額のうち300万円を超える部分は2分の1計算の対象外です。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1420.htm",
+      "action": "役員等としての勤続期間や退職金の区分を確認し、計算に迷う場合は国税相談専用ダイヤルに相談してください。",
+      "actionSource": "https://www.nta.go.jp/taxes/shiraberu/sodan/denwa-sodan/index.htm"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "退職金の確定申告は必要？",
+      "situation": "申告書を支払者に提出した",
+      "recommend": "原則として確定申告は不要",
+      "reason": "申告書を提出していれば、支払者が所得税額などを計算して源泉徴収するため、原則として確定申告は必要ありません。ただし、医療費控除や寄附金控除などで申告する場合は退職所得の金額も記載します。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1420.htm"
+    },
+    {
+      "question": "退職金の確定申告は必要？",
+      "situation": "申告書を支払者に提出していない",
+      "recommend": "確定申告で税額を精算する",
+      "reason": "申告書を提出していない場合、退職金の支払金額の20.42パーセントが源泉徴収されます。受給者本人が確定申告を行い、所得税額および復興特別所得税額を精算します。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1420.htm"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "申告書作成コーナーの対象外になる場合も",
+    "cause": "退職所得は勤続年数などで計算",
+    "steps": "退職金の受け取り方と申告状況を確認",
+    "desk": "所得税の電話相談は混む時間に注意",
+    "worries": "申告や控除の計算で迷ったら",
+    "guide": "確定申告が必要か迷ったときの目安"
+  },
+  "depthAt": "2026-11-24T06:43:03+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "1,500万円",
+    "label": "勤続30年",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-24T06:43:44+00:00"
+  },
+  "imageFocus": {
+    "x": 0.534,
+    "y": 0.417,
+    "box": [
+      0.078,
+      0.048,
+      0.991,
+      0.786
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/retirement-income-deduction-2026-figure-79307c85.jpg"
+  }
 }

@@ -75,7 +75,7 @@
   "videoTitle": "寄附金税額控除2026年分、所得控除と選べる3つの寄附",
   "publishedAt": "2026-11-24T06:11:15.409442+00:00",
   "generatedAt": "2026-11-24T06:12:09.053106+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/donation-tax-deduction-2026-muse-e86-figure-5115e0f4.jpg",
   "model": "openai-api:gpt-6.1-terra",
   "affiliates": [],
   "newsType": "policy",
@@ -90,9 +90,9 @@
     }
   ],
   "todayActions": [
-    "2026年の寄附先が認定NPO法人等か、内閣府NPO法人ホームページの一覧で調べる。",
-    "寄附先から届いた受領証や証明書を確認し、国税庁の計算明細書と照らして必要書類を整理する。",
-    "国税庁のタックスアンサーで寄附先の区分を確かめ、所得控除と税額控除の両方を比べる。"
+    "認定NPO法人等への寄附は、内閣府の一覧で寄附先が認定対象か確認する。",
+    "公益社団法人等への寄附は、寄附先の区分に合うサイトで対象法人か調べる。",
+    "寄附額を確定申告書等作成コーナーに入力し、明細書を作成する。"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -148,5 +148,158 @@
   "detectedAt": "2026-11-24T06:12:28+00:00",
   "searchTitle": "寄附金税額控除2026年分　寄附先で率は30％か40％",
   "layout": "noir",
-  "summaryLine": "2026年分の寄附金税額控除は、政党等・認定NPO法人等・公益社団法人等への一定の寄附で選べます。"
+  "summaryLine": "2026年分の寄附金税額控除は、政党等・認定NPO法人等・公益社団法人等への一定の寄附で選べます。",
+  "insight": [
+    {
+      "text": "公益社団法人等の寄附では、対象法人の証明書類の発行時期にも条件があります。主たる目的の業務に関連する寄附は支出日以前5年以内、学生支援・研究助成などの寄附は支出年の1月1日発行の書類が必要です。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1266.htm"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "内閣府NPO法人ホームページ",
+      "url": "https://www.npo-homepage.go.jp",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1263.htm",
+      "howTo": [
+        "内閣府NPO法人ホームページ",
+        "認定NPO法人等の一覧"
+      ]
+    },
+    {
+      "name": "国・都道府県公式公益法人行政総合サイト「公益法人information」",
+      "url": "https://www.koeki-info.go.jp/",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1266.htm",
+      "howTo": [
+        "公益社団法人等寄附金特別控除の対象となる公益社団法人等",
+        "公益社団法人および公益財団法人"
+      ]
+    },
+    {
+      "name": "確定申告書等作成コーナー",
+      "url": "https://www.keisan.nta.go.jp/kyoutu/ky/sm/top",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1263.htm",
+      "note": "画面の案内に沿って金額等を入力すると、必要な付表や明細書も自動的に作成されます。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "認定NPO法人等への寄附は、内閣府の一覧で寄附先が認定対象か確認する。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1263.htm",
+      "steps": [
+        "国税庁 No.1263を開く",
+        "内閣府NPO法人ホームページへ進む",
+        "認定NPO法人等の一覧を確認する"
+      ],
+      "url": "https://www.npo-homepage.go.jp"
+    },
+    {
+      "action": "公益社団法人等への寄附は、寄附先の区分に合うサイトで対象法人か調べる。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1266.htm",
+      "steps": [
+        "国税庁 No.1266を開く",
+        "公益社団法人等の区分を確認する",
+        "該当する所轄官庁等のサイトで調べる"
+      ],
+      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1266.htm"
+    },
+    {
+      "action": "寄附額を確定申告書等作成コーナーに入力し、明細書を作成する。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1263.htm",
+      "steps": [
+        "確定申告書等作成コーナーを開く",
+        "画面の案内に沿って金額等を入力する",
+        "作成された必要な付表や明細書を確認する"
+      ],
+      "url": "https://www.keisan.nta.go.jp/kyoutu/ky/sm/top"
+    }
+  ],
+  "cause": {
+    "text": "対象となる寄附では、所得控除として寄附金控除を受ける方法と、税額控除を受ける方法のどちらかを選択できます。税額控除の率や上限は寄附先の区分に応じて定められています。",
+    "status": "background",
+    "source": "https://www.nta.go.jp/publication/pamph/koho/kurashi/html/04_3.htm"
+  },
+  "worries": [
+    {
+      "q": "税額控除の計算結果が、そのまま全額差し引けるの？",
+      "a": "税額控除には所得税額の25％相当額という上限があります。認定NPO法人等と公益社団法人等の控除を受ける場合は、両方の特別控除額の合計が上限の対象です。上限額の100円未満は切り捨てます。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1263.htm",
+      "action": "寄附先の区分を確認し、確定申告書等作成コーナーで金額を入力して計算を確かめる。"
+    },
+    {
+      "q": "NPO法人に寄附すれば、40％の税額控除を選べる？",
+      "a": "対象は所轄庁の認定または特例認定を受けた認定NPO法人等への一定の寄附です。認定等の有効期間内に支払い、特定非営利活動に係る事業に関連する寄附であることなどの要件があります。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1263.htm",
+      "action": "内閣府NPO法人ホームページの認定NPO法人等の一覧で、寄附先を確認する。"
+    },
+    {
+      "q": "公益法人への寄附は、受領証だけあれば申告できる？",
+      "a": "税額控除には計算明細書のほか、寄附額・受領日などを証する書類が必要です。さらに、寄附先の区分に応じて、対象法人であることや寄附の使途を証する書類の写しも添付します。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1266.htm",
+      "action": "寄附先から受け取った書類を確認し、区分に応じた証明書類がそろっているか照らし合わせる。"
+    },
+    {
+      "q": "政党寄附の確認書が申告に間に合わないときは？",
+      "a": "申告書を提出するときに確認印のある「寄附金（税額）控除のための書類」が間に合わない場合は、寄附金の領収書の写しを添付して申告できます。書類が届いた後、速やかに税務署長へ提出します。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1260.htm",
+      "action": "領収書の写しを添えて申告し、確認書が届いたら速やかに所轄税務署へ提出する。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "所得控除と税額控除、どちらを選べばいい？",
+      "situation": "政党等への対象寄附がある",
+      "recommend": "両方を試算して比べる",
+      "reason": "政党等の税額控除は、寄附額から2千円を引いた額に30％を掛け、100円未満を切り捨てます。ただし控除額は所得税額の25％相当額が限度です。所得控除との有利不利は所得や税額によって変わります。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1260.htm"
+    },
+    {
+      "question": "寄附が複数の種類にまたがるときは？",
+      "situation": "認定NPO法人等と公益社団法人等に寄附",
+      "recommend": "合計の上限も含めて比較する",
+      "reason": "認定NPO法人等と公益社団法人等の税額控除は、各寄附の計算後、両方の控除額の合計が所得税額の25％相当額を上限とします。率はどちらも40％ですが、計算した額を全額控除できるとは限りません。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1263.htm"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "公益法人は証明書の発行時期も確認",
+    "cause": "寄附先で控除の率や上限が変わる",
+    "steps": "寄附先の確認から申告書作成まで",
+    "desk": "寄附先や申告内容を確かめる公式ページ",
+    "worries": "控除額や必要書類で迷ったら",
+    "guide": "所得控除と税額控除、どちらを選ぶ？"
+  },
+  "depthAt": "2026-11-24T06:43:31+00:00",
+  "updatedAt": "2026-11-24T06:43:31+00:00",
+  "updates": [
+    {
+      "at": "2026-11-24T06:43:31+00:00",
+      "kind": "facts",
+      "title": "公式の資料をもとに、「なるほどの要点」・「公式の窓口」・「今日やること」・「理由」・「よくある不安」・「判断の目安」を追記しました",
+      "sourceUrl": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1260.htm",
+      "sourceName": "国税庁 タックスアンサー No.1260 政党等寄附金特別控除制度"
+    }
+  ],
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "寄附金税額控除2026年分",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-24T06:44:46+00:00"
+  },
+  "imageFocus": {
+    "x": 0.515,
+    "y": 0.414,
+    "box": [
+      0.056,
+      0.042,
+      0.975,
+      0.786
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/donation-tax-deduction-2026-muse-e86-figure-5115e0f4.jpg"
+  }
 }
