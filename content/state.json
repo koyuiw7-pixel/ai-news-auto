@@ -20654,6 +20654,20 @@
       "skipped": true,
       "url": "https://news.yahoo.co.jp/articles/b0f5c4197a922b52d99f80653b1588d77e52928b"
     },
+    "e3d029944469284c": {
+      "at": "2026-11-24T03:07:00.196599+00:00",
+      "costUsd": 0.0059,
+      "intent": "breaking",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "safetyLane": true,
+      "score": 96,
+      "section": "public",
+      "slug": "mos-net-order-data-leak",
+      "url": "https://www.mos.jp/topics/past/20261120_1/"
+    },
     "e3f22c7d1c20ac96": {
       "at": "2026-11-17T22:41:18.253013+00:00",
       "costUsd": 0.0065,
@@ -25348,56 +25362,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-21T17:12:27.852833+00:00",
-      "attempt": 0,
-      "id": "38dfb07257c2059f",
-      "kind": "broad",
-      "model": "openai-api:gpt-6-luna",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 73.5,
-        "avg_sentence": 35.6,
-        "long_share": 0.03,
-        "max_paragraph": 104,
-        "paragraphs": 16,
-        "sentences": 33
-      },
-      "score": 99,
-      "source": "mhlw",
-      "title": "令和９年 医政局所管国家試験会場（予定）一覧",
-      "warnings": [
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-21T17:24:25.684539+00:00",
-      "attempt": 1,
-      "id": "999898a8f30c952f",
-      "kind": "broad",
-      "model": "gemini-3.5-flash",
-      "problems": [
-        "easy_markdown に本文がありません"
-      ],
-      "readability": {
-        "avg_paragraph": 126.8,
-        "avg_sentence": 52.8,
-        "long_share": 0.333,
-        "max_paragraph": 172,
-        "paragraphs": 5,
-        "sentences": 12
-      },
-      "score": null,
-      "source": "radar-official",
-      "title": "ユーチューバー関連ニュース｜dメニューニュース（NTTドコモ）",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（SANSPO）",
-        "読みやすさ: 文が長い（1文の平均 52.8字・60字超の文が 33% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "読みやすさ: 段落が長い（平均 126.8字・最長 172字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": false,
       "at": "2026-11-21T17:27:41.177332+00:00",
@@ -33131,6 +33095,58 @@
       "title": "東急リバブルの不動産小口投資商品 『レガシア日吉メディカルビル』出資申込受付開始 ～シリーズ初の「医療ビル」アセットを展開、500万円（5口）からの少額投資を実",
       "warnings": [
         "同じ数字が多い（「500万円」が7回）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-24T03:06:12.327980+00:00",
+      "attempt": 1,
+      "id": "e3d029944469284c",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "要点・かんたん版の「注文情報が最大10万件漏れた可能性」→最大10万件は2026年10月11日以降に管理画面上で表示されたデータの総数で、正規の業務利用分や同一顧客の重複分を含みます。漏洩した件数として示すのは誤りです。",
+        "今日やることの「注文履歴で思い出して確認する」→元記事は注文履歴からの確認方法を案内しておらず、利用履歴を確認できる機能があるかのような記述は裏付けられていません。",
+        "リードの「2025年4月以降の利用者の注文情報が外部に漏れた痕跡」→元記事が漏洩した痕跡があるとしているのは一部顧客の個人情報です。利用者の注文情報全般が漏れたと読める表現は対象を広げています。"
+      ],
+      "readability": {
+        "avg_paragraph": 89.2,
+        "avg_sentence": 38.2,
+        "long_share": 0.048,
+        "max_paragraph": 137,
+        "paragraphs": 9,
+        "sentences": 21
+      },
+      "score": 86,
+      "source": "fast",
+      "title": "【重要】「モスのネット注文」管理システムへの不正アクセスによるお客さま情報の漏洩に関するお知らせとお詫び | モスバーガー公式サイト",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（SMS）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-24T03:06:51.541906+00:00",
+      "attempt": 1,
+      "id": "e3d029944469284c",
+      "kind": "broad",
+      "model": "openai-api:gpt-6-luna",
+      "problems": [
+        "「不正アクセスの原因と、再発防止策の具体的な内容はまだ決まっていません」→ 元記事は調査結果を踏まえて対策を実施するとしていますが、具体策が未決定だとは明記しておらず、決定状況を断定しています。"
+      ],
+      "readability": {
+        "avg_paragraph": 86.0,
+        "avg_sentence": 38.7,
+        "long_share": 0.05,
+        "max_paragraph": 137,
+        "paragraphs": 9,
+        "sentences": 20
+      },
+      "score": 96,
+      "source": "fast",
+      "title": "【重要】「モスのネット注文」管理システムへの不正アクセスによるお客さま情報の漏洩に関するお知らせとお詫び | モスバーガー公式サイト",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（SMS）"
       ]
     }
   ],
