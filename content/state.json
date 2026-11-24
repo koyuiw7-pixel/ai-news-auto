@@ -2833,7 +2833,9 @@
       "url": "https://www.fsa.go.jp/access/index.html"
     }
   },
-  "major_tries": {},
+  "major_tries": {
+    "f4667f9251a5088f": 1
+  },
   "pi_reopened": {
     "009f6a0d6eedbb24": "2026-11-21T17:20:55.701553+00:00",
     "08479a0194d913a5": "2026-11-23T16:31:02.544288+00:00",
@@ -8126,6 +8128,20 @@
       "skipped": true,
       "url": "https://www.env.go.jp/press/press_05859.html"
     },
+    "1e6d93b051d2e897": {
+      "at": "2026-11-24T00:35:44.290124+00:00",
+      "costUsd": 0.004,
+      "intent": "breaking",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "safetyLane": true,
+      "score": 96,
+      "section": "public",
+      "slug": "mcdonalds-japan-app-unauthorized-access",
+      "url": "https://www.mcdonalds.co.jp/company/info/261120a/"
+    },
     "1e7766d97ea58921": {
       "at": "2026-11-17T07:00:06.321751+00:00",
       "costUsd": 0.0072,
@@ -9484,12 +9500,6 @@
       "reason": "followup quality: 要点の「前年同期の277億円の赤字から転じ」→ 277億円は元記事にない数字で、「800億円−1,077億円」の計算結果だが、計算であることが明記されていない（数値自体は正しい）; 「中国を除く市場では、小売販売台数が前年同期比4.1％増になると見込んでいます」→ 元記事では下期の見込みだが、記事では時期が示されておらず、上期の実績と混同されやすい; 「日産自動",
       "skipped": true,
       "url": "http://global.nissannews.com/ja-JP/releases/261113-00-j"
-    },
-    "311efa190498b7d5": {
-      "at": "2026-11-10T00:27:50.261696+00:00",
-      "reason": "dedupe: 固有名詞が一致（8tx・max・tpu）: google-tpu-8tx-8i-max",
-      "skipped": true,
-      "url": "https://cloud.google.com/blog/ja/topics/ai-infrastructure/tpu-8tx-and-tpu-8i-max/"
     },
     "314350e7562ca227": {
       "at": "2026-11-21T18:01:27.756084+00:00",
@@ -12408,12 +12418,6 @@
       "section": "public",
       "slug": "kose-maison-reservation-data-leak",
       "url": "https://koseholdings.co.jp/ja/kose/urgent/10275/"
-    },
-    "5da3efca3ab35d22": {
-      "at": "2026-11-10T00:29:25.912402+00:00",
-      "reason": "prefilter: 告知・お知らせ系",
-      "skipped": true,
-      "url": "https://aws.amazon.com/jp/blogs/news/why-policy-in-amazon-bedrock-agentcore-chose-cedar-for-securing-agentic-workflows/"
     },
     "5db4de6fc2f0e561": {
       "at": "2026-11-12T02:30:25.858717+00:00",
@@ -17950,17 +17954,6 @@
       "slug": "gemini-intelligence-japan-pixel-10",
       "url": "https://blog.google/products-and-platforms/platforms/android/gemini-intelligence-november-features-devices/"
     },
-    "b73537a5f0ed2718": {
-      "at": "2026-11-10T00:29:25.320338+00:00",
-      "costUsd": 0.016,
-      "intent": "neutral",
-      "mix": "other",
-      "model": "gemini-3.5-flash",
-      "score": 74,
-      "section": "ai",
-      "slug": "amazon-bedrock-trust-and-safety-guide",
-      "url": "https://aws.amazon.com/jp/blogs/news/designing-trust-and-safety-into-amazon-bedrock-powered-applications/"
-    },
     "b7480f5f44dfec76": {
       "at": "2026-11-12T02:13:19.012585+00:00",
       "reason": "dedupe: 同じ出典URL",
@@ -18453,6 +18446,12 @@
       "reason": "trend: 重複: 固有名詞が一致（mon・pok）: pokemon-future-ishihara-app-store",
       "skipped": true,
       "url": "https://www.pokemon.com/fr/actualites/mise-a-jour-de-reequilibrage-de-pokemon-champions-de-decembre-2026"
+    },
+    "be9c8fb91e885ef9": {
+      "at": "2026-11-24T00:19:47.851805+00:00",
+      "reason": "review: 海外の AI の発表は自動で記事にしない（読者の安全・お金の話とチームの指示だけ。台帳 A75・scripts/news_mix.py review_ai_blocks）",
+      "skipped": true,
+      "url": "https://nvidianews.nvidia.com/news/nvidia-board-reinstates-jensen-huang-as-president-ceo-and-board-director"
     },
     "beb2119f672bdd81": {
       "at": "2026-11-15T16:14:31.240063+00:00",
@@ -22735,14 +22734,6 @@
       "url": "https://www.mhlw.go.jp/content/12500000/001597573.pdf",
       "writer": "muse"
     },
-    "muse-048b8460f0": {
-      "at": "2026-11-24T00:24:03.484823+00:00",
-      "mix": "money",
-      "score": 100,
-      "slug": "single-parent-tax-deduction-2026",
-      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1171.htm",
-      "writer": "muse"
-    },
     "muse-051687f3d7": {
       "at": "2026-11-17T01:00:35.218861+00:00",
       "mix": "other",
@@ -23559,14 +23550,6 @@
       "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602974",
       "writer": "muse"
     },
-    "muse-5305f070cf": {
-      "at": "2026-11-24T00:29:51.271212+00:00",
-      "mix": "alert",
-      "score": 98,
-      "slug": "disability-tax-deduction-2026",
-      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1160_qa.htm",
-      "writer": "muse"
-    },
     "muse-53a0e108c5": {
       "at": "2026-11-10T10:09:41.680764+00:00",
       "mix": "money",
@@ -23879,14 +23862,6 @@
       "url": "https://www.mcdonalds.co.jp/campaign/winter-nuggets/",
       "writer": "muse"
     },
-    "muse-6e5ecddf6e": {
-      "at": "2026-11-24T00:28:54.546802+00:00",
-      "mix": "money",
-      "score": 98,
-      "slug": "donation-tax-deduction-2026",
-      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1150.htm",
-      "writer": "muse"
-    },
     "muse-6e6100ffef": {
       "at": "2026-11-16T21:37:53.989899+00:00",
       "mix": "life",
@@ -23941,14 +23916,6 @@
       "score": 90,
       "slug": "mcdonalds-nuggets-15pc-490yen-dec2026",
       "url": "https://www.mcdonalds.co.jp/company/news/2026/1111a/",
-      "writer": "muse"
-    },
-    "muse-757856ef62": {
-      "at": "2026-11-24T00:26:44.708258+00:00",
-      "mix": "other",
-      "score": 98,
-      "slug": "overseas-dependent-tax-deduction",
-      "url": "https://www.keisan.nta.go.jp/r7yokuaru_sp/socat1/scid0178.html",
       "writer": "muse"
     },
     "muse-761118e248": {
@@ -24685,14 +24652,6 @@
       "score": 88,
       "slug": "morinaga-in-bar-price-increase-2026-09",
       "url": "https://www.morinaga.co.jp/public/newsrelease/web/fix/file6a586a996c207.pdf",
-      "writer": "muse"
-    },
-    "muse-b2b41acb87": {
-      "at": "2026-11-24T00:25:23.611419+00:00",
-      "mix": "money",
-      "score": 100,
-      "slug": "working-student-tax-deduction-2026",
-      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1175.htm",
       "writer": "muse"
     },
     "muse-b36367139e": {
@@ -25605,89 +25564,48 @@
       "url": "",
       "writer": "roundup"
     },
-    "be9c8fb91e885ef9": {
-      "at": "2026-11-24T00:19:47.851805+00:00",
-      "reason": "review: 海外の AI の発表は自動で記事にしない（読者の安全・お金の話とチームの指示だけ。台帳 A75・scripts/news_mix.py review_ai_blocks）",
-      "skipped": true,
-      "url": "https://nvidianews.nvidia.com/news/nvidia-board-reinstates-jensen-huang-as-president-ceo-and-board-director"
+    "muse-048b8460f0": {
+      "at": "2026-11-24T00:24:03.484823+00:00",
+      "mix": "money",
+      "score": 100,
+      "slug": "single-parent-tax-deduction-2026",
+      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1171.htm",
+      "writer": "muse"
+    },
+    "muse-5305f070cf": {
+      "at": "2026-11-24T00:29:51.271212+00:00",
+      "mix": "alert",
+      "score": 98,
+      "slug": "disability-tax-deduction-2026",
+      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1160_qa.htm",
+      "writer": "muse"
+    },
+    "muse-6e5ecddf6e": {
+      "at": "2026-11-24T00:28:54.546802+00:00",
+      "mix": "money",
+      "score": 98,
+      "slug": "donation-tax-deduction-2026",
+      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1150.htm",
+      "writer": "muse"
+    },
+    "muse-757856ef62": {
+      "at": "2026-11-24T00:26:44.708258+00:00",
+      "mix": "other",
+      "score": 98,
+      "slug": "overseas-dependent-tax-deduction",
+      "url": "https://www.keisan.nta.go.jp/r7yokuaru_sp/socat1/scid0178.html",
+      "writer": "muse"
+    },
+    "muse-b2b41acb87": {
+      "at": "2026-11-24T00:25:23.611419+00:00",
+      "mix": "money",
+      "score": 100,
+      "slug": "working-student-tax-deduction-2026",
+      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1175.htm",
+      "writer": "muse"
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-21T16:56:16.466519+00:00",
-      "attempt": 1,
-      "id": "bf682ba949cf73ec",
-      "kind": "broad",
-      "model": "gemini-3.5-flash",
-      "problems": [
-        "「社内独自の専門性やノウハウをAIに学習させ」→元記事が説明しているのはナレッジを整理・構造化してAIが活用できるようにすることです。AIに学習させる機能があるとは確認できません。",
-        "「社内情報検索や類似案件の探索にかかる業務時間を削減」→元記事は検索や探索などの活用例を挙げていますが、業務時間を削減する効果までは示していません。",
-        "「判定: …価格=価格は要問合せ」→元記事に価格や、価格を問い合わせる必要があるとの記載はありません。価格が未発表という本文の記述を超えています。"
-      ],
-      "readability": {
-        "avg_paragraph": 103.1,
-        "avg_sentence": 61.9,
-        "long_share": 0.533,
-        "max_paragraph": 164,
-        "paragraphs": 9,
-        "sentences": 15
-      },
-      "score": 78,
-      "source": "ntt-news",
-      "title": "SPARK第2弾「AI-era Knowledge Management」を提供開始 ～組織知をつなぎ、AIエージェントで業務を高度化～",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（AKM・SPARK）",
-        "読みやすさ: 文が長い（1文の平均 61.9字・60字超の文が 53% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-21T16:56:58.257092+00:00",
-      "attempt": 1,
-      "id": "bf682ba949cf73ec",
-      "kind": "broad",
-      "model": "strike:要点 1 個・仕事・お金の欄",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 96.1,
-        "avg_sentence": 61.8,
-        "long_share": 0.5,
-        "max_paragraph": 164,
-        "paragraphs": 9,
-        "sentences": 14
-      },
-      "score": 100,
-      "source": "ntt-news",
-      "title": "SPARK第2弾「AI-era Knowledge Management」を提供開始 ～組織知をつなぎ、AIエージェントで業務を高度化～",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（AKM・SPARK）",
-        "読みやすさ: 文が長い（1文の平均 61.8字・60字超の文が 50% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-21T16:57:22.078999+00:00",
-      "attempt": 0,
-      "id": "bf682ba949cf73ec",
-      "kind": "broad",
-      "model": "openai-api:gpt-6-luna",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 69.2,
-        "avg_sentence": 42.8,
-        "long_share": 0.143,
-        "max_paragraph": 114,
-        "paragraphs": 13,
-        "sentences": 21
-      },
-      "score": 98,
-      "source": "ntt-news",
-      "title": "SPARK第2弾「AI-era Knowledge Management」を提供開始 ～組織知をつなぎ、AIエージェントで業務を高度化～",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（AKM・SPARK）"
-      ]
-    },
     {
       "accepted": false,
       "at": "2026-11-21T17:05:03.663634+00:00",
@@ -33401,6 +33319,88 @@
         "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（AERA）",
         "中身のない章「APECでの具体的な対応を知りたい人は、見出しだけでは判断できません」（答えになっていない）。章ごと消し、大事な未定事項は「## まだ分からないこと」に1行で書く"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-24T00:32:23.519323+00:00",
+      "attempt": 1,
+      "id": "f4667f9251a5088f",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "「確認は0120-651-042で受け付けています」→ 元記事は問い合わせ窓口の電話番号を示していますが、対象かどうかの確認を受け付けるとは書いていません。",
+        "「教育情報アプリ（成績や入塾状況などを扱うアプリ）などのシステムで管理」→ 元記事は成績・入塾状況を漏えいの可能性がある情報として挙げていますが、それらをアプリが扱う、または同アプリで管理するとまでは説明していません。",
+        "「カード情報がない分、不正な決済は起きにくいとみられます」→ カード情報が含まれないことは発表されていますが、不正決済の起きやすさについての見通しは元記事にありません。",
+        "「ベストコを名乗るメール・SMS・電話は無視し」→ 元記事は不審な連絡への警戒と、心当たりのないURLへのアクセス・個人情報入力をしないよう求めていますが、連絡を一律に無視するようには求めていません。"
+      ],
+      "readability": {
+        "avg_paragraph": 65.1,
+        "avg_sentence": 35.8,
+        "long_share": 0.1,
+        "max_paragraph": 141,
+        "paragraphs": 11,
+        "sentences": 20
+      },
+      "score": 78,
+      "source": "fast",
+      "title": "【お詫びとご報告】不正アクセスによる個人情報漏洩の可能性について｜ニュース | 株式会社ベストコ",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（SMS）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-24T00:34:48.488807+00:00",
+      "attempt": 1,
+      "id": "1e6d93b051d2e897",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "タイトル「パスワード変更は不要」→ 元記事は「現時点で」特別な手続きを求めないとしており、時点の条件が抜けています。",
+        "「公式アプリの利用は、これまでどおり続けられる内容」→ 元記事はパスワード変更などを求めないとしていますが、アプリの利用継続やサービス提供状況までは説明していません。",
+        "「システム上の管理用の番号」→ 元記事は顧客管理用の「ID」と説明しており、それが数字の番号であるとは確認できません。"
+      ],
+      "readability": {
+        "avg_paragraph": 73.4,
+        "avg_sentence": 40.8,
+        "long_share": 0.111,
+        "max_paragraph": 152,
+        "paragraphs": 10,
+        "sentences": 18
+      },
+      "score": 91,
+      "source": "fast",
+      "title": "マクドナルド公式アプリのデータベースへの不正アクセスに関するお知らせとお詫び | マクドナルド公式",
+      "warnings": [
+        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（SMS）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-24T00:35:14.976323+00:00",
+      "attempt": 1,
+      "id": "1e6d93b051d2e897",
+      "kind": "broad",
+      "model": "openai-api:gpt-6-luna",
+      "problems": [
+        "「アプリ利用時の端末の位置情報」→元記事は「サービスご提供時に利用した携帯端末の位置情報」としており、アプリ利用時全般と読める表現は対象範囲をやや広げています。"
+      ],
+      "readability": {
+        "avg_paragraph": 70.7,
+        "avg_sentence": 41.6,
+        "long_share": 0.118,
+        "max_paragraph": 152,
+        "paragraphs": 10,
+        "sentences": 17
+      },
+      "score": 96,
+      "source": "fast",
+      "title": "マクドナルド公式アプリのデータベースへの不正アクセスに関するお知らせとお詫び | マクドナルド公式",
+      "warnings": [
+        "見出しが46字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（SMS）"
       ]
     }
   ],
