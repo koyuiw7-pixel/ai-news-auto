@@ -73,14 +73,14 @@
   "videoTitle": "子がいない離婚・死別の境目は？寡婦控除2026年分は27万円",
   "publishedAt": "2026-11-24T03:16:02.042660+00:00",
   "generatedAt": "2026-11-24T03:16:41.183673+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/widow-tax-deduction-2026-figure-114ed597.jpg",
   "model": "openai-api:gpt-6.1-terra",
   "affiliates": [],
   "newsType": "policy",
   "todayActions": [
-    "国税庁のNo.1170で、離婚・死別の別と扶養親族の条件を確認する。",
-    "生計を一にする子がいる場合は、No.1171でひとり親控除の所得条件を確認する。",
-    "家族が事業に従事している場合は、No.1170の青色事業専従者の事例を読む。"
+    "離婚後か死別後かを分け、No.1170で寡婦控除の対象条件を確認する。",
+    "生計を一にする子がいる人は、No.1171でひとり親控除の要件を照合する。",
+    "家族が事業に従事している人は、専従者の事例で扶養親族に当たるか確認する。"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -112,5 +112,122 @@
   "detectedAt": "2026-11-24T03:16:53+00:00",
   "searchTitle": "寡婦控除の条件は？離婚と死別で扶養親族が異なる",
   "layout": "noir",
-  "summaryLine": "2026年分の寡婦控除は所得から**27万円**を差し引く制度で、離婚と死別では扶養親族の条件が異なります。"
+  "summaryLine": "2026年分の寡婦控除は所得から**27万円**を差し引く制度で、離婚と死別では扶養親族の条件が異なります。",
+  "officialDesk": [
+    {
+      "name": "税についての相談窓口",
+      "url": "https://www.nta.go.jp/taxes/shiraberu/shirabekata/9200.htm",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1170.htm"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "離婚後か死別後かを分け、No.1170で寡婦控除の対象条件を確認する。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1170.htm",
+      "steps": [
+        "No.1170「寡婦控除」を開く",
+        "「対象者または対象物」を見る",
+        "離婚・死別それぞれの条件を確認する"
+      ],
+      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1170.htm"
+    },
+    {
+      "action": "生計を一にする子がいる人は、No.1171でひとり親控除の要件を照合する。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1171.htm",
+      "steps": [
+        "No.1171「ひとり親控除」を開く",
+        "子の所得に関する注記を確認する",
+        "3つの要件を確認する"
+      ],
+      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1171.htm"
+    },
+    {
+      "action": "家族が事業に従事している人は、専従者の事例で扶養親族に当たるか確認する。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1170_qa.htm",
+      "steps": [
+        "「事業専従者である妹がいる場合の寡婦」を開く",
+        "事例の結論と自分の状況を照らし合わせる"
+      ],
+      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1170_qa.htm"
+    }
+  ],
+  "worries": [
+    {
+      "q": "離婚後、所得が500万円以下でも扶養親族がいないと対象外？",
+      "a": "寡婦控除の離婚後の要件は、夫と離婚後に婚姻しておらず、扶養親族がいて、合計所得金額が500万円以下であることです。所得条件を満たしても、扶養親族がいなければこの要件には当てはまりません。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1170.htm",
+      "action": "国税庁No.1170の対象者欄で、離婚後の扶養親族要件と合計所得金額の条件を照合してください。"
+    },
+    {
+      "q": "夫と死別した後、扶養親族がいなくても対象になる？",
+      "a": "死別後に婚姻していない人などは、扶養親族の要件なしで寡婦控除の対象となる場合があります。合計所得金額が500万円以下であることなどの条件があり、事実上婚姻関係と同様の事情にある人がいる場合は対象となりません。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1170.htm",
+      "action": "No.1170で死別後の条件を読み、合計所得金額や婚姻状況などを自分の状況と照らしてください。"
+    },
+    {
+      "q": "青色事業専従者の家族は、扶養親族に数えられる？",
+      "a": "国税庁の事例では、離婚後の人が青色事業専従者としている妹は扶養親族に該当せず、寡婦控除の要件を満たさないとしています。事例では妹への専従者給与は96万円、本人の合計所得金額は300万円です。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1170_qa.htm",
+      "action": "家族が事業に従事している場合は、No.1170の質疑応答事例を開き、自分の状況と比べてください。"
+    },
+    {
+      "q": "子の所得が基準を超えると、ひとり親控除は受けられない？",
+      "a": "ひとり親控除の対象となる子は、その年分の総所得金額等が基準以下で、他の人の同一生計配偶者や扶養親族になっていない人です。国税庁は、令和8年分から適用される基準を62万円以下と案内しています。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1171.htm",
+      "action": "No.1171の子の所得に関する注記を読み、対象年分の基準と他の人の扶養親族等になっていないかを確認してください。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "子がいる場合、どの控除から確認する？",
+      "situation": "生計を一にする子がいる",
+      "recommend": "まずNo.1171を確認する",
+      "reason": "ひとり親控除は、生計を一にする子がいることに加え、合計所得金額が500万円以下など3つの要件があります。ひとり親に該当する人は寡婦控除の対象ではありません。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1171.htm"
+    },
+    {
+      "question": "子がいない場合、寡婦控除の条件は？",
+      "situation": "夫と離婚後、婚姻していない",
+      "recommend": "扶養親族の要件を確認する",
+      "reason": "離婚後の寡婦控除には扶養親族が必要で、合計所得金額は500万円以下が条件です。扶養親族がいない場合は、離婚後の要件を満たしません。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1170.htm"
+    },
+    {
+      "question": "子がいない場合、寡婦控除の条件は？",
+      "situation": "夫と死別後、婚姻していない",
+      "recommend": "扶養親族より所得などを確認する",
+      "reason": "死別後は扶養親族の要件がありません。ただし、合計所得金額が500万円以下であることなどが条件で、事実上婚姻関係と同様の事情にある人がいる場合は対象外です。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1170.htm"
+    }
+  ],
+  "depthHeadings": {
+    "steps": "控除の条件を自分の状況に照らして確認",
+    "desk": "個別の判定に迷ったときの相談先",
+    "worries": "離婚・死別や子の条件で迷ったら",
+    "guide": "どの控除から確かめるか"
+  },
+  "depthAt": "2026-11-24T03:40:34+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "27万円",
+    "label": "寡婦控除",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-24T03:45:45+00:00"
+  },
+  "imageFocus": {
+    "x": 0.438,
+    "y": 0.423,
+    "box": [
+      0.016,
+      0.036,
+      0.859,
+      0.81
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/widow-tax-deduction-2026-figure-114ed597.jpg"
+  }
 }

@@ -74,7 +74,7 @@
   "videoTitle": "扶養控除2026年分は38万円から63万円、所得の境目は62万円以下",
   "publishedAt": "2026-11-24T03:17:03.597342+00:00",
   "generatedAt": "2026-11-24T03:17:46.426432+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/dependent-deduction-2026-income-limit-figure-d32ca267.jpg",
   "model": "openai-api:gpt-6.1-terra",
   "affiliates": [],
   "newsType": "policy",
@@ -85,9 +85,8 @@
     }
   ],
   "todayActions": [
-    "扶養する親族の2026年12月31日時点の年齢と、年間の所得見込みを確認する。",
-    "給与だけの親族は、年間の給与収入が136万円以下か確認する。",
-    "新たに対象となる親族がいる場合は、扶養控除等申告書の提出時期を勤務先に確認する。"
+    "給与以外の所得や非課税の遺族年金がある親族は、合計所得金額への算入を確認する。",
+    "新たに対象となる親族がいる会社員は、申告書の記載欄と提出時期を確認して勤務先へ提出する。"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -129,5 +128,128 @@
   "detectedAt": "2026-11-24T03:18:17+00:00",
   "searchTitle": "扶養控除2026年分は所得62万円以下　給与収入136万円以下",
   "layout": "noir",
-  "summaryLine": "扶養控除の対象となる親族の所得要件が改められ、2026年分は合計所得金額が**62万円**以下となります。"
+  "summaryLine": "扶養控除の対象となる親族の所得要件が改められ、2026年分は合計所得金額が**62万円**以下となります。",
+  "insight": [
+    {
+      "text": "改正後の申告書は12月1日より前に提出しても差し支えありません。原則の提出期限を過ぎても、年末調整を行う時までに提出すれば、その申告に基づいて年末調整できます。",
+      "source": "https://www.nta.go.jp/users/gensen/2026kiso/pdf/0026005-024.pdf"
+    },
+    {
+      "text": "11月30日以前に支払う給与の源泉徴収税額表では、改正で新たに対象になる親族を「扶養親族等の数」に含めません。11月までの月々の源泉徴収には改正が反映されません。",
+      "source": "https://www.nta.go.jp/users/gensen/2026kiso/pdf/0026005-024.pdf"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "No.1180 扶養控除",
+      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1180_qa.htm",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1180_qa.htm",
+      "howTo": [
+        "ホーム",
+        "税の情報・手続・用紙",
+        "税について調べる",
+        "タックスアンサー（よくある税の質問）",
+        "No.1180 扶養控除"
+      ]
+    },
+    {
+      "name": "税についての相談窓口",
+      "url": "https://www.nta.go.jp/taxes/shiraberu/shirabekata/9200.htm",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1180.htm"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "給与以外の所得や非課税の遺族年金がある親族は、合計所得金額への算入を確認する。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1180_qa.htm",
+      "steps": [
+        "国税庁の扶養控除Q&Aを開く",
+        "非課税所得（遺族厚生年金）と扶養控除を確認する",
+        "給与以外の所得も含めて合計所得金額を確認する"
+      ],
+      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1180_qa.htm"
+    },
+    {
+      "action": "新たに対象となる親族がいる会社員は、申告書の記載欄と提出時期を確認して勤務先へ提出する。",
+      "source": "https://www.nta.go.jp/users/gensen/2026kiso/pdf/0026005-024.pdf",
+      "steps": [
+        "税制改正Q&Aの「Q2-1 扶養控除等申告書の記載事項」を確認する",
+        "「異動月日及び事由」欄に改正について記載する",
+        "原則の提出期限か、年末調整を行う時までに勤務先へ提出する"
+      ],
+      "url": "https://www.nta.go.jp/users/gensen/2026kiso/pdf/0026005-024.pdf"
+    }
+  ],
+  "cause": {
+    "text": "令和8年度税制改正により、基礎控除の引上げ、給与所得控除の最低保障額の引上げとともに、扶養親族等の所得要件も改正されました。この所得要件の改正は令和8年12月1日に施行され、令和8年分以後の所得税に適用されます。",
+    "status": "background",
+    "source": "https://www.nta.go.jp/users/gensen/2026kiso/pdf/0026005-024.pdf"
+  },
+  "worries": [
+    {
+      "q": "申告書を最初の給与日前日までに出せなかったら、もう間に合わない？",
+      "a": "原則は、12月1日以後に最初に給与を受ける日の前日までに提出します。ただし、年末調整を行う時までに提出があれば、その申告に基づいて年末調整できます。",
+      "source": "https://www.nta.go.jp/users/gensen/2026kiso/pdf/0026005-024.pdf",
+      "action": "勤務先に扶養控除等申告書を提出し、年末調整で申告内容を反映できるか確認する。"
+    },
+    {
+      "q": "遺族年金を受け取る親は、所得要件に影響する？",
+      "a": "遺族厚生年金や遺族基礎年金などの非課税所得は、扶養親族の合計所得金額に含まれません。ただし、ほかの所得や年齢などの要件も確認が必要です。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1180_qa.htm",
+      "action": "親の給与やほかの所得を確認し、遺族年金以外の所得で合計所得金額を判定する。"
+    },
+    {
+      "q": "きょうだいで親に仕送りする場合、全員が扶養控除を申告できる？",
+      "a": "同じ親を扶養控除の対象にできるのは兄弟のうち1人だけです。送金額が均等でも、兄弟がそれぞれ重複して控除を受けることはできません。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1180_qa.htm",
+      "action": "きょうだい間で申告者を1人に決め、重複して申告しないよう確認する。"
+    },
+    {
+      "q": "国外に住む親族を申告する際、どんな書類が必要？",
+      "a": "国外居住親族が16歳以上30歳未満または70歳以上の場合、扶養控除には「親族関係書類」と「送金関係書類」が必要です。30歳以上70歳未満は、留学や障害などの条件により必要書類が異なります。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1180_qa.htm",
+      "action": "親族の年齢や条件を確認し、該当する親族関係書類・送金関係書類などを準備する。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "親への仕送り、誰が扶養控除を申告する？",
+      "situation": "兄弟で同じ親に生活費を送っている",
+      "recommend": "兄弟のうち1人に申告者を決める",
+      "reason": "兄弟が均等に送金していても、扶養控除の対象にできるのは1人だけです。申告者を決めても、親族の所得などほかの要件を満たすかは別に確認が必要です。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1180_qa.htm"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "申告書は期限後も間に合う場合がある",
+    "cause": "所得要件の改正は12月1日施行",
+    "steps": "所得の種類と申告欄を確認",
+    "desk": "扶養控除の案内と相談先",
+    "worries": "仕送りや国外親族の書類も確認",
+    "guide": "兄弟のうち誰が申告するか"
+  },
+  "depthAt": "2026-11-24T03:40:00+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "38万円",
+    "label": "扶養控除2026年分",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-24T03:43:59+00:00"
+  },
+  "imageFocus": {
+    "x": 0.431,
+    "y": 0.465,
+    "box": [
+      0.044,
+      0.06,
+      0.819,
+      0.869
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/dependent-deduction-2026-income-limit-figure-d32ca267.jpg"
+  }
 }

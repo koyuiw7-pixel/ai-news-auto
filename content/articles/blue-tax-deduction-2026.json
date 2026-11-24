@@ -77,7 +77,7 @@
   "videoTitle": "青色申告特別控除2026年分、65万円はe-Taxか優良な電子帳簿保存で決まる",
   "publishedAt": "2026-11-24T03:19:33.656843+00:00",
   "generatedAt": "2026-11-24T03:20:12.644212+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/blue-tax-deduction-2026-figure-8cf6993c.jpg",
   "model": "openai-api:gpt-6.1-terra",
   "affiliates": [],
   "newsType": "policy",
@@ -88,9 +88,9 @@
     }
   ],
   "todayActions": [
-    "2026年分の帳簿が複式簿記になっているか、記帳内容を確認する。",
-    "65万円の控除を希望する場合は、e-Tax送信か電子帳簿保存の要件を確かめる。",
-    "青色申告を始める場合は、国税庁の承認申請手続で自分の提出期限を確認する。"
+    "65万円控除を目指す人は、e-Tax送信か優良な電子帳簿保存かを要件と照らし合わせる",
+    "優良な電子帳簿で65万円控除を受ける人は、届出が必要か確認する",
+    "新たに青色申告を始める人は、開始時期に合う期限を確認して承認申請書を提出する"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -122,5 +122,159 @@
   "detectedAt": "2026-11-24T03:20:22+00:00",
   "searchTitle": "青色申告特別控除2026年分はいくら？　65万円の条件",
   "layout": "noir",
-  "summaryLine": "2026年分の青色申告特別控除は、要件に応じて所得から最高**65万円**を差し引けます。"
+  "summaryLine": "2026年分の青色申告特別控除は、要件に応じて所得から最高**65万円**を差し引けます。",
+  "insight": [
+    {
+      "text": "e-Taxで65万円控除を受ける場合、確定申告書や貸借対照表、損益計算書等をイメージデータで送信することはできません。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2072.htm"
+    },
+    {
+      "text": "優良な電子帳簿の要件を満たして65万円控除を受ける場合は届出が必要です。ただし、すでに要件を満たして控除を受け、令和4年分以後も継続して要件を満たす人は、届出書の提出が不要です。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2072.htm"
+    },
+    {
+      "text": "青色申告の帳簿・書類は原則7年間保存ですが、請求書、見積書、納品書、送り状などは5年間でよいものもあります。書類の種類によって保存期間が異なります。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2070.htm"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "No.2072 青色申告特別控除",
+      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2072.htm",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2072.htm",
+      "howTo": [
+        "ホーム",
+        "税の情報・手続・用紙",
+        "税について調べる",
+        "タックスアンサー（よくある税の質問）",
+        "No.2072 青色申告特別控除"
+      ],
+      "note": "55万円・65万円・10万円の控除要件を確認できます。"
+    },
+    {
+      "name": "A1-8 所得税の青色申告承認申請手続",
+      "url": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/shinkoku/annai/09.htm",
+      "source": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/shinkoku/annai/09.htm",
+      "howTo": [
+        "ホーム",
+        "申告手続・用紙",
+        "申告・申請・届出等、用紙（手続の案内・様式）",
+        "税務手続の案内（税目別一覧）",
+        "申告所得税関係"
+      ],
+      "hours": "税務署の受付時間：９時から15時まで",
+      "note": "書面で申請書を作成し、持参または送付して提出することもできます。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "65万円控除を目指す人は、e-Tax送信か優良な電子帳簿保存かを要件と照らし合わせる",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2072.htm",
+      "steps": [
+        "「No.2072 青色申告特別控除」を開く",
+        "55万円の要件を満たすか確認する",
+        "e-Tax送信または電子帳簿保存の要件を確認する"
+      ],
+      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2072.htm"
+    },
+    {
+      "action": "優良な電子帳簿で65万円控除を受ける人は、届出が必要か確認する",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2072.htm",
+      "steps": [
+        "令和4年分以後も要件を満たしているか確認する",
+        "届出が必要なら手続ページを開く",
+        "届出書の提出方法を確認する"
+      ],
+      "url": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/shinkoku/annai/09_2.htm"
+    },
+    {
+      "action": "新たに青色申告を始める人は、開始時期に合う期限を確認して承認申請書を提出する",
+      "source": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/shinkoku/annai/09.htm",
+      "steps": [
+        "「所得税の青色申告承認申請手続」を開く",
+        "業務の開始時期に応じた提出期限を確認する",
+        "e-Taxソフト（WEB版）の「マイページ」から申請する"
+      ],
+      "url": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/shinkoku/annai/09.htm"
+    }
+  ],
+  "cause": {
+    "text": "所得税は、納税者が税法に従って所得金額と税額を計算し、納税する申告納税制度です。日々の取引を帳簿に記録し、一定水準の記帳に基づいて正しく申告する人には、所得金額の計算などで有利な取扱いをする青色申告制度があります。",
+    "status": "background",
+    "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2070.htm"
+  },
+  "worries": [
+    {
+      "q": "紙で申告すると、65万円の控除は受けられない？",
+      "a": "65万円の要件の一つは、期限までに申告書・貸借対照表・損益計算書等をe-Taxで送信することです。紙で提出し、優良な電子帳簿の要件も満たさない場合は、ほかの要件を満たしても控除の上限は55万円です。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2072.htm",
+      "action": "紙で提出する予定なら、優良な電子帳簿の要件と届出の要否を確認し、65万円控除の要件を満たせるか見直す。"
+    },
+    {
+      "q": "電子帳簿はデータで保存するだけで65万円控除になる？",
+      "a": "データ保存だけでは足りず、その年分の事業の仕訳帳と総勘定元帳について優良な電子帳簿の要件を満たす必要があります。一定の事項を記載した届出書も必要ですが、令和4年分以後も要件を満たしている人は提出不要です。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2072.htm",
+      "action": "電子帳簿保存を選ぶ人は、仕訳帳・総勘定元帳の要件と、届出の提出が必要かを確認する。"
+    },
+    {
+      "q": "還付申告なら、期限を過ぎても65万円控除を受けられる？",
+      "a": "還付申告書を提出する場合でも、55万円または65万円の青色申告特別控除を受けるには、その年分の確定申告期限までに申告書を提出する必要があります。還付申告であることだけでは期限の要件はなくなりません。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2072.htm",
+      "action": "還付申告になる人も、青色申告特別控除を受ける場合は、その年分の確定申告期限までの提出を予定に入れる。"
+    },
+    {
+      "q": "新しく青色申告を始める場合、申請期限はいつ？",
+      "a": "原則は青色申告をしようとする年の3月15日までです。その年の1月16日以後に新たに事業を開始したり不動産の貸付けをした場合は、開始等の日から2月以内に提出します。期限が土・日曜日・祝日等なら、その翌日が期限です。",
+      "source": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/shinkoku/annai/09.htm",
+      "action": "青色申告を始める人は、業務開始日を確認し、該当する提出期限と申請方法を国税庁の手続ページで確認する。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "65万円控除、どちらの方法で要件を満たす？",
+      "situation": "申告書などを期限までにe-Tax送信できる",
+      "recommend": "e-Tax送信を選択肢にする",
+      "reason": "65万円には55万円の要件に加え、期限までのe-Tax送信または優良な電子帳簿保存が必要です。e-Tax送信は追加要件の一方ですが、55万円側の記帳・添付・期限の要件も必要です。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2072.htm"
+    },
+    {
+      "question": "65万円控除、どちらの方法で要件を満たす？",
+      "situation": "優良な電子帳簿の要件に沿って保存している",
+      "recommend": "届出の要否を確認する",
+      "reason": "電子帳簿保存の方法では、仕訳帳と総勘定元帳が優良な電子帳簿の要件を満たすことと、届出が必要な場合の提出が要件です。令和4年分以後も要件を満たしている人は届出不要ですが、55万円側の要件は別途必要です。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2072.htm"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "イメージデータ送信は不可、電子帳簿の届出にも例外",
+    "cause": "正しい記帳と申告を促す青色申告制度",
+    "steps": "控除方法と申請期限を確認する",
+    "desk": "控除要件と申請方法を確認する窓口",
+    "worries": "紙申告や還付申告でも控除は受けられる？",
+    "guide": "e-Taxか電子帳簿か、選ぶときの確認点"
+  },
+  "depthAt": "2026-11-24T03:38:46+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "青色申告特別控除2026年分",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-24T03:41:43+00:00"
+  },
+  "imageFocus": {
+    "x": 0.48,
+    "y": 0.402,
+    "box": [
+      0.053,
+      0.042,
+      0.906,
+      0.762
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/blue-tax-deduction-2026-figure-8cf6993c.jpg"
+  }
 }
