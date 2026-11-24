@@ -77,7 +77,7 @@
   "videoTitle": "年末調整の還付金はいつ戻る　2026年分はその年最後の給与で精算",
   "publishedAt": "2026-11-24T12:52:19.006482+00:00",
   "generatedAt": "2026-11-24T12:53:04.043391+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/year-end-tax-refund-2026-figure-5f7a2166.jpg",
   "model": "openai-api:gpt-6.1-terra",
   "affiliates": [],
   "newsType": "policy",
@@ -92,15 +92,14 @@
     }
   ],
   "todayActions": [
-    "扶養控除等（異動）申告書を、年末調整を行う日までに提出しているか確かめる。",
-    "還付額や受け取る時期が分からない場合は、勤務先の給与担当に精算結果を確かめる。",
-    "年末調整を受けずに税金を納め過ぎた場合は、国税庁の還付申告の案内で対象か確認する。"
+    "年の途中で転職した人は、前職の源泉徴収票を勤務先に提出し、年末調整への反映を確認する。",
+    "年末調整を受けず税金を納め過ぎた人は、還付申告の対象と提出期間を確認する。",
+    "不足額の徴収で手取りが平均月額の70％未満になる人は、繰延申請の期限を確認する。"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
   "museFile": "20261124-お金-年末調整の還付金はいつ戻る.md",
   "sectionsPolishedAt": "2026-11-24T12:53:04+00:00",
-  "museDepthNotes": "なるほど: 不足額が大きく、その月の税引手取りが「1月から前月までの税引手取給与の平均月額の70％未満」になる人は、「年末調整による不足額徴収繰延承認申請書」を所轄税務署へ出して承認を受けると、不足額を翌年1月と2月に繰り延べて徴収してもらえます（https://www.nta.go.jp/users/gensen/nencho/index/shikata.htm の「不足額の徴収、納付」）\n窓口: 精算額と順次還付の見込みは勤務先（給与の支払者）の給与担当。国税庁タックスアンサー No.2675（https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2675.htm）。一般的な税の相談は国税相談専用ダイヤル 0570-00-5901\nすぐにできること: 12月の給与明細で年末調整の還付・徴収の欄を確かめる。還付が入っていなければ、勤務先に「還付しきれず順次還付になっていないか」を聞く\n原因: 毎月の源泉徴収は見込みの額で行われ、生命保険料控除などは年末調整で初めて差し引かれるため、1年分の税額との差が年末にまとめて出ます（https://www.nta.go.jp/users/gensen/nencho/index/shikata.htm の「過不足額の精算」）",
   "museSources": [
     {
       "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2675.htm",
@@ -143,5 +142,146 @@
   "detectedAt": "2026-11-24T12:53:43+00:00",
   "searchTitle": "年末調整の還付金はいつ？　通常12月分から差し引き",
   "layout": "noir",
-  "summaryLine": "2026年分の年末調整で納め過ぎた税金は、通常12月分の納付税額から差し引いて還付されます。"
+  "summaryLine": "2026年分の年末調整で納め過ぎた税金は、通常12月分の納付税額から差し引いて還付されます。",
+  "insight": [
+    {
+      "text": "納期の特例の承認を受けている勤務先では、還付額を差し引く対象は通常の12月分ではなく、その年7月から12月までの分として納付する税額です。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2675.htm"
+    },
+    {
+      "text": "年末調整の対象給与は、1月1日から12月31日までに支払いが確定した分です。未払いでも対象ですが、前年に未払いだった給与を今年支払っても、今年分には含まれません。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2668.htm"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "確定申告書等作成コーナー",
+      "url": "https://www.keisan.nta.go.jp/kyoutu/ky/sm/top",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2030.htm",
+      "howTo": [
+        "No.2030 還付申告",
+        "確定申告書等作成コーナー"
+      ],
+      "note": "画面の案内に沿って金額等を入力すると、申告書を作成・提出できます。"
+    },
+    {
+      "name": "年末調整による不足額徴収繰延承認申請書",
+      "url": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/gensen/annai/1648_17.htm",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2675.htm",
+      "howTo": [
+        "No.2675 年末調整の過不足額の精算",
+        "年末調整による不足額徴収繰延の承認申請"
+      ]
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "年の途中で転職した人は、前職の源泉徴収票を勤務先に提出し、年末調整への反映を確認する。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2668.htm",
+      "steps": [
+        "前の勤務先の源泉徴収票を用意する",
+        "現在の勤務先に提出する",
+        "前職分を含めて年末調整できるか確認する"
+      ],
+      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2668.htm"
+    },
+    {
+      "action": "年末調整を受けず税金を納め過ぎた人は、還付申告の対象と提出期間を確認する。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2030.htm",
+      "steps": [
+        "還付申告の対象例を確認する",
+        "作成コーナーで金額を入力する"
+      ],
+      "url": "https://www.keisan.nta.go.jp/kyoutu/ky/sm/top"
+    },
+    {
+      "action": "不足額の徴収で手取りが平均月額の70％未満になる人は、繰延申請の期限を確認する。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2675.htm",
+      "steps": [
+        "賞与がある場合は税引手取額も含めて判定する",
+        "申請書を用意する",
+        "最後に給与等を受ける日の前日までに所轄税務署長へ提出する"
+      ],
+      "url": "https://www.nta.go.jp/taxes/tetsuzuki/shinsei/annai/gensen/annai/1648_17.htm"
+    }
+  ],
+  "cause": {
+    "text": "給与の支払者は、1年間に源泉徴収した所得税と復興特別所得税の合計額を、年末調整で計算した1年分の税額と比べます。差があれば、その過不足額を還付または徴収して精算する仕組みです。",
+    "status": "background",
+    "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2675.htm"
+  },
+  "worries": [
+    {
+      "q": "年末調整を受けず退職したら、還付申告できる？",
+      "a": "年の途中で退職し、年末調整を受けずに源泉徴収税額が納め過ぎとなっている場合は、原則として還付申告ができます。その年の翌年1月1日から5年間提出できます。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2030.htm",
+      "action": "退職した年の源泉徴収票を確認し、還付申告の対象なら作成コーナーで申告書を作成する。"
+    },
+    {
+      "q": "申告すれば、納めた税金が必ず戻ってくる？",
+      "a": "所得税の還付は、源泉徴収や予定納税ですでに所得税を納付している場合に発生します。納付した所得税額がない場合は、申告しても還付される所得税額はありません。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2030.htm",
+      "action": "源泉徴収票の源泉徴収税額など、すでに納めた所得税があるか確認する。"
+    },
+    {
+      "q": "転職前の給与も、今の勤務先で精算される？",
+      "a": "年の途中で就職した人は、前の会社に扶養控除等申告書を提出していた場合、前職の給与を含めて年末調整します。前職の給与額や源泉徴収税額を源泉徴収票で確認できないと、年末調整はできません。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2668.htm",
+      "action": "前職の源泉徴収票を現在の勤務先に提出し、前職分を含めて精算できるか確認する。"
+    },
+    {
+      "q": "不足額で手取りが大きく減るとき、繰り延べられる？",
+      "a": "不足額を徴収すると税引手取りが平均月額の70％未満になる人は、最後に給与等を受ける日の前日までに申請し、承認を受けると翌年1月と2月に繰り延べられます。通常の税額は繰延べの対象外です。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2675.htm",
+      "action": "賞与がある場合は税引手取額も含めて判定し、期限までに申請書を所轄税務署長へ提出する。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "年末調整を受けなかったら申告する？",
+      "situation": "退職などで年末調整がなく、源泉徴収税額が納め過ぎ",
+      "recommend": "還付申告の対象か確認する",
+      "reason": "源泉徴収された所得税額が年間の所得から計算した税額より多ければ還付申告で還付を受けられます。原則、翌年1月1日から5年間提出できますが、すでに納めた所得税がなければ還付はありません。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2030.htm"
+    },
+    {
+      "question": "不足額を一度に徴収されるのを避けられる？",
+      "situation": "徴収後の税引手取りが平均月額の70％未満になる",
+      "recommend": "期限までに繰延申請を検討する",
+      "reason": "所轄税務署長の承認を受けると、不足額を翌年1月と2月に繰り延べて徴収できます。ただし、その月の給与や賞与にかかる通常の税額は繰延べの対象ではありません。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2675.htm"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "12月分以外から戻るケースと、前職給与の扱い",
+    "cause": "1年分の税額と先に引かれた額を比べる",
+    "steps": "転職・退職や不足額に応じた手続き",
+    "desk": "申告や繰延申請の公式ページ",
+    "worries": "還付申告や前職給与の扱いが気になる人へ",
+    "guide": "還付申告と徴収繰延を選ぶ目安"
+  },
+  "depthAt": "2026-11-24T13:19:50+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "年末調整の還付金はいつ戻る",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-24T13:22:17+00:00"
+  },
+  "imageFocus": {
+    "x": 0.503,
+    "y": 0.524,
+    "box": [
+      0.056,
+      0.048,
+      0.95,
+      1.0
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/year-end-tax-refund-2026-figure-5f7a2166.jpg"
+  }
 }
