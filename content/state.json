@@ -13884,6 +13884,13 @@
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026111819"
     },
+    "727e4f34cedcc5a7": {
+      "at": "2026-11-24T23:24:10.016429+00:00",
+      "model": "openai-api:gpt-6.1-terra",
+      "reason": "followup style: 推測で書かない（「と思われ」）。公式の発表にあることだけを書き、分からないことは分からないと書く",
+      "skipped": true,
+      "url": "https://www.osaki.co.jp/ja/notice/20261120.html"
+    },
     "72aca1194f7131bf856fddb6914f90ab005e668f": {
       "at": "2026-11-20T22:40:22.099396+00:00",
       "kind": "trend",
@@ -25300,31 +25307,6 @@
   "quality_log": [
     {
       "accepted": true,
-      "at": "2026-11-22T23:31:56.343004+00:00",
-      "attempt": 1,
-      "id": "4b020d4f55050ba0",
-      "kind": "broad",
-      "model": "openai-api:gpt-6-luna",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 171.0,
-        "avg_sentence": 48.9,
-        "long_share": 0.179,
-        "max_paragraph": 219,
-        "paragraphs": 8,
-        "sentences": 28
-      },
-      "score": 98,
-      "source": "radar-official",
-      "title": "連続テレビ小説関連ニュース｜dメニューニュース（NTTドコモ）",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（CP）",
-        "work_money（「仕事・お金にどう活かせる？」欄）が無い",
-        "読みやすさ: 文が長い（1文の平均 48.9字・60字超の文が 18% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
       "at": "2026-11-22T23:32:24.998632+00:00",
       "attempt": 0,
       "id": "4b020d4f55050ba0",
@@ -32990,6 +32972,18 @@
       "warnings": [
         "初めて出たところで言い換えていない略語（WEB・WTL・HENARE）"
       ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-24T23:24:10.003129+00:00",
+      "attempt": 1,
+      "id": "727e4f34cedcc5a7",
+      "kind": "update",
+      "model": "openai-api:gpt-6.1-terra",
+      "problems": [],
+      "score": 100,
+      "source": "fast",
+      "title": "大崎電気工業の情報流出に関するお知らせ"
     }
   ],
   "short_text_retry": {
