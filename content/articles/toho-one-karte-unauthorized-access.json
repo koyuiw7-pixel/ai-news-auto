@@ -68,9 +68,9 @@
   "affiliates": [],
   "newsType": "security",
   "todayActions": [
-    "TOHO-ONEにログインしたことがあるなら、東宝やTOHO-ONEを名乗るメール・SMS・電話は応じずに確認する",
-    "不安があれば、TOHO-ONE事務局（03-4221-0490、全日10時〜18時）に問い合わせる",
-    "電話が難しい場合は、公式FAQのお問い合わせフォームから連絡する"
+    "東宝などを名乗るメールやSMSのリンクは開かず、公式サイトや公式アプリから確認する。",
+    "不審な連絡について確認したい場合は、TOHO-ONE事務局のお問い合わせフォームから連絡する。",
+    "フィッシングサイトにIDやパスワードを入力した場合は、使っている全サービスのパスワードを変更する。"
   ],
   "publicInterest": "breach",
   "incident": {
@@ -91,7 +91,8 @@
       1
     ],
     "repaired": false,
-    "repairLater": true
+    "repairLater": true,
+    "laterTriedAt": "2026-11-24T21:22:29+00:00"
   },
   "qualityScore": 100,
   "late": true,
@@ -123,5 +124,72 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/toho-one-karte-unauthorized-access-figure-13bf355c.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "東宝は再発防止に向け、外部サービス利用時の安全管理措置と委託先管理を一層強化するとしています。利用者への対応だけでなく、委託先の管理も見直す方針です。",
+      "source": "https://www.toho.co.jp/company/2026/1117-pr-1.pdf"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "東宝などを名乗るメールやSMSのリンクは開かず、公式サイトや公式アプリから確認する。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "steps": [
+        "メールやSMS内のリンクはクリックしない",
+        "公式サイトをお気に入りから開くか、公式アプリを使う"
+      ],
+      "url": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html"
+    },
+    {
+      "action": "不審な連絡について確認したい場合は、TOHO-ONE事務局のお問い合わせフォームから連絡する。",
+      "source": "https://www.toho.co.jp/company/2026/1117-pr-1.pdf",
+      "steps": [
+        "TOHO-ONE事務局のお問い合わせフォームを開く",
+        "必要事項を入力して問い合わせる"
+      ]
+    },
+    {
+      "action": "フィッシングサイトにIDやパスワードを入力した場合は、使っている全サービスのパスワードを変更する。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "steps": [
+        "入力したIDやパスワードを使うサービスを確認する",
+        "該当する全サービスのパスワードを速やかに変更する"
+      ],
+      "url": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html"
+    }
+  ],
+  "cause": {
+    "text": "東宝が「TOHO-ONE」で利用する、株式会社プレイド提供の「KARTE」に第三者が不正アクセスしました。東宝は、KARTEに連携していたデータの一部が外部に流出した疑いがあるとの報告を受けています。",
+    "status": "stated",
+    "source": "https://www.toho.co.jp/company/2026/1117-pr-1.pdf"
+  },
+  "worries": [
+    {
+      "q": "流出した情報だけでTOHO-ONEにログインされる？",
+      "a": "東宝は、流出の可能性がある情報のみを用いて「TOHO-ONE」にログインすることはできないとしています。また、本件に起因する二次被害は現時点で確認されていません。",
+      "source": "https://www.toho.co.jp/company/2026/1117-pr-1.pdf",
+      "action": "東宝やTOHO-ONEを名乗る不審なメール、SMS、電話に注意し、不安があればTOHO-ONE事務局に確認する。"
+    },
+    {
+      "q": "ログインパスワードやカード情報も流出したの？",
+      "a": "東宝の発表では、ログインパスワードとクレジットカード情報は流出の可能性がないとされています。流出の疑いがある情報として挙げられているのは、会員番号、年代、都道府県、性別です。",
+      "source": "https://www.toho.co.jp/company/2026/1117-pr-1.pdf",
+      "action": "東宝などを名乗る不審なメール、SMS、電話に注意し、心配な連絡はTOHO-ONE事務局に確認する。"
+    },
+    {
+      "q": "偽サイトにIDやパスワードを入力してしまったら？",
+      "a": "フィッシングサイトなどに普段使っているIDやパスワードを入力した場合、警察庁は、そのIDやパスワードを利用しているすべてのサービスで速やかに変更するよう案内しています。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "action": "入力したIDやパスワードを使っているすべてのサービスで、パスワードを速やかに変更する。",
+      "general": true
+    }
+  ],
+  "depthHeadings": {
+    "insight": "再発防止では委託先管理も強化",
+    "cause": "KARTEへの不正アクセスで何が起きた？",
+    "steps": "不審な連絡を受けたときの確認方法",
+    "worries": "会員情報やパスワードは大丈夫？"
+  },
+  "depthAt": "2026-11-24T21:22:29+00:00"
 }
