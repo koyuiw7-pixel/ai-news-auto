@@ -18988,6 +18988,20 @@
       "skipped": true,
       "url": "https://openai.com/chatgpt/pricing/#entry-2026-11-20-2cf63d"
     },
+    "d1776909d1fb5ce8": {
+      "at": "2026-11-24T12:24:14.770948+00:00",
+      "costUsd": 0.0079,
+      "intent": "breaking",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "safetyLane": true,
+      "score": 98,
+      "section": "public",
+      "slug": "weleda-online-shop-data-leak",
+      "url": "https://weleda-notice-static-apne1.s3.ap-northeast-1.amazonaws.com/news/20261116.html"
+    },
     "d22b4177a9f35506ff40a2414e979ee0a9760cdd": {
       "at": "2026-11-15T00:42:40.332508+00:00",
       "reason": "trend: 扱わない話題: 選挙・政党（関連報道2/3本に「自民」）",
@@ -24816,54 +24830,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-22T07:36:16.738941+00:00",
-      "attempt": 1,
-      "id": "8a13bd26669509b7",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "タイトル「明治ブルガリアヨーグルトの紙カップ回収」→対象は「LB81（400g）」シリーズ4種であり、商品全般が対象と読める表現です。",
-        "「価格=無料」→元記事に回収の費用や無料であるとの記載はありません。"
-      ],
-      "readability": {
-        "avg_paragraph": 114.0,
-        "avg_sentence": 65.1,
-        "long_share": 0.5,
-        "max_paragraph": 279,
-        "paragraphs": 8,
-        "sentences": 14
-      },
-      "score": 84,
-      "source": "meiji",
-      "title": "明治、TOPPAN、「明治ブルガリアヨーグルト」紙カップの回収を実施 横浜市内のイオン・イオンスタイル・イオンフードスタイルの計13店舗にて回収 2026年10",
-      "warnings": [
-        "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（TOPPAN・BOX・LB）",
-        "読みやすさ: 文が長い（1文の平均 65.1字・60字超の文が 50% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-22T07:52:06.845642+00:00",
-      "attempt": 1,
-      "id": "4f5982462a22b0f7",
-      "kind": "broad",
-      "model": "openai-api:gpt-6.1-terra",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 68.2,
-        "avg_sentence": 32.1,
-        "long_share": 0.029,
-        "max_paragraph": 98,
-        "paragraphs": 16,
-        "sentences": 34
-      },
-      "score": 99,
-      "source": "nli-research",
-      "title": "マレーシアGDP（2026年7-9月期）～5％台半ばの成長維持、AI関連輸出と民間投資が下支え"
-    },
     {
       "accepted": false,
       "at": "2026-11-22T07:53:27.631502+00:00",
@@ -32562,6 +32528,55 @@
         "見出しが51字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（VI）",
         "読みやすさ: 文が長い（1文の平均 47.2字・60字超の文が 18% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-24T12:23:05.791119+00:00",
+      "attempt": 1,
+      "id": "d1776909d1fb5ce8",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "「ショップは2027年3月頃まで使えない」→公式発表は2027年3月頃の再開を目指すとしており、時期が前後する可能性も明記しています。「まで使えない」と断定するのは強すぎます。",
+        "「買い物をした人は、個人情報やカード情報が漏れた可能性があります」→カード情報の対象は期間中にカード決済をした人です。買い物をした人全員がカード情報の対象と誤解されないよう条件を添える必要があります。"
+      ],
+      "readability": {
+        "avg_paragraph": 83.0,
+        "avg_sentence": 40.3,
+        "long_share": 0.171,
+        "max_paragraph": 158,
+        "paragraphs": 17,
+        "sentences": 35
+      },
+      "score": 94,
+      "source": "fast",
+      "title": "化粧品ブランドの情報流出に関するお知らせ",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（SMS・OFF）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-24T12:24:01.534772+00:00",
+      "attempt": 1,
+      "id": "d1776909d1fb5ce8",
+      "kind": "broad",
+      "model": "strike:本文 1 文",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 75.5,
+        "avg_sentence": 38.9,
+        "long_share": 0.152,
+        "max_paragraph": 148,
+        "paragraphs": 17,
+        "sentences": 33
+      },
+      "score": 98,
+      "source": "fast",
+      "title": "化粧品ブランドの情報流出に関するお知らせ",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（SMS・OFF）"
       ]
     }
   ],
