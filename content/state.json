@@ -10605,6 +10605,20 @@
       "slug": "yamato-fake-delivery-email-warning",
       "url": "https://www.yamato-hd.co.jp/important/info_181212.html"
     },
+    "44270e50f97e225c": {
+      "at": "2026-11-24T06:53:43.259911+00:00",
+      "costUsd": 0.0015,
+      "intent": "breaking",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "safetyLane": true,
+      "score": 99,
+      "section": "public",
+      "slug": "kaunet-karte-leak-second-report",
+      "url": "https://www.kokuyo.com/news/important/20261124/"
+    },
     "449487e8b42ed81b": {
       "at": "2026-11-19T22:49:40.969342+00:00",
       "costUsd": 0.0078,
@@ -18794,14 +18808,6 @@
       "slug": "mlit-approval-system-data-leak",
       "url": "http://www.mlit.go.jp/report/press/house05_hh_001376.html"
     },
-    "c767bc354b23d887": {
-      "at": "2026-11-10T06:51:37.688170+00:00",
-      "costUsd": 0.0821,
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "reason": "元の資料は、決算関連資料の一覧ページ（過去の決算説明会資料・決算短信へのリンク集とサイト編集用の注記）の抜粋だけで、2027年3月期 第2四半期の売上高・利益・通期見通しなど決算の中身の数字が含まれていない。数字や経営陣の説明を書けないため、決算記事として成立しない。",
-      "skipped": true,
-      "url": "https://global.honda/jp/news/2026/c261110a.html"
-    },
     "c7b24ccda724f3a3": {
       "at": "2026-11-21T09:34:55.565650+00:00",
       "costUsd": 0.0178,
@@ -25266,30 +25272,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-21T19:53:45.925261+00:00",
-      "attempt": 1,
-      "id": "5907c8d694b32e40b551e50d406fc8f5d8a6ccb1",
-      "kind": "trend",
-      "model": "gemini-3.6-flash",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 94.1,
-        "avg_sentence": 60.5,
-        "long_share": 0.5,
-        "max_paragraph": 165,
-        "paragraphs": 9,
-        "sentences": 14
-      },
-      "score": 100,
-      "source": "trends",
-      "title": "前橋市",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（NEWS・TBS・DIG）",
-        "読みやすさ: 文が長い（1文の平均 60.5字・60字超の文が 50% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-21T19:54:27.670990+00:00",
@@ -33033,6 +33015,29 @@
       "title": "「金融商品取引業者等向けの総合的な監督指針」の一部改正について公表しました。",
       "warnings": [
         "初めて出たところで言い換えていない略語（IP）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-24T06:53:35.619513+00:00",
+      "attempt": 1,
+      "id": "44270e50f97e225c",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 69.3,
+        "avg_sentence": 37.8,
+        "long_share": 0.045,
+        "max_paragraph": 171,
+        "paragraphs": 12,
+        "sentences": 22
+      },
+      "score": 99,
+      "source": "fast",
+      "title": "【カウネット】株式会社プレイドで発生した不正アクセスに伴うメールアドレス等の漏えいについて（第2報）",
+      "warnings": [
+        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す"
       ]
     }
   ],
