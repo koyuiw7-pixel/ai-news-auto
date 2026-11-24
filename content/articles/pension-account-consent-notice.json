@@ -75,7 +75,7 @@
   "videoTitle": "年金の意向確認書、返送しないと45日で同意扱いに　対象は65歳以上の受給者",
   "publishedAt": "2026-11-24T09:56:49.769085+00:00",
   "generatedAt": "2026-11-24T09:58:00.283950+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/pension-account-consent-notice-figure-181ddf7f.jpg",
   "model": "openai-api:gpt-6.1-terra",
   "affiliates": [],
   "newsType": "policy",
@@ -86,15 +86,14 @@
     }
   ],
   "todayActions": [
-    "意向確認書が届いている場合は、記載された年金振込口座と返送期限の目安を確認する。",
-    "記載口座の登録を希望しない場合は、不同意申出書を受け取ってから45日以内に返送する。",
-    "書類を紛失した場合は、意向確認書照会専用フリーダイヤル「0120-74-0011」に相談する。"
+    "口座登録を望まない人は、不同意申出書を期限前に返送する",
+    "別口座を登録したい人は、不同意申出書を返送後、別口座の登録手続きをする",
+    "記載口座が古いなど認識と違う人は、照会番号を用意して専用窓口へ電話する"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
   "museFile": "20261124-手続き-年金意向確認書45日同意扱い.md",
   "sectionsPolishedAt": "2026-11-24T09:58:00+00:00",
-  "museDepthNotes": "なるほど: 不在などで意向確認書を受け取れなかった場合は、意向確認が行えなかったものとして取り扱われ、年金振込口座は公金受取口座として登録されない。45日は「受け取ってから」の日数（https://www.nenkin.go.jp/tokusetsu/ikokakunin.html）\nなるほど: 意向確認書照会専用フリーダイヤルに電話する際は、意向確認書に記載された「照会番号」が必要（https://www.digital.go.jp/policies/account_registration/pension）\n窓口: 意向確認書照会専用フリーダイヤル 0120-74-0011（月曜8時30分〜19時、火〜金8時30分〜17時15分、第2土曜9時30分〜16時）。市区町村の窓口や年金事務所では対応していない（https://www.nenkin.go.jp/tokusetsu/ikokakunin.html）\nすぐにできること: 届いたら開封して口座を確認し、登録したくない人だけ45日以内に不同意申出書を切り離し、目隠しシールを貼って裏面の差出人欄を書いて返送する",
   "museSources": [
     {
       "url": "https://www.nenkin.go.jp/tokusetsu/ikokakunin.html",
@@ -122,5 +121,141 @@
   "qualityScore": 100,
   "detectedAt": "2026-11-24T09:58:30+00:00",
   "layout": "noir",
-  "summaryLine": "年金の意向確認書を受け取った人は、不同意の返送が45日以内にないと登録に同意した扱いになります。"
+  "summaryLine": "年金の意向確認書を受け取った人は、不同意の返送が45日以内にないと登録に同意した扱いになります。",
+  "insight": [
+    {
+      "text": "意向確認書や不同意申出書について専用窓口へ問い合わせる際は、書類に記載された「照会番号」が必要です。書類を手元に用意して電話します。",
+      "source": "https://www.digital.go.jp/policies/account_registration/pension"
+    },
+    {
+      "text": "登録完了までは、意向確認書の到着から約3から4か月かかります。完了通知はマイナポータルのお知らせか、はがきで届きます。",
+      "source": "https://www.digital.go.jp/policies/account_registration/pension"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "意向確認書照会専用フリーダイヤル",
+      "url": "https://www.nenkin.go.jp/tokusetsu/ikokakunin.html",
+      "source": "https://www.nenkin.go.jp/tokusetsu/ikokakunin.html",
+      "phone": "0120-74-0011（フリーダイヤルがご利用できない場合：050-3524-7372）",
+      "hours": "月曜日午前8時30分から午後7時、火曜日から金曜日午前8時30分から午後5時15分、第2土曜日午前9時30分から午後4時",
+      "note": "電話の際は意向確認書に記載された照会番号を用意してください。市区町村の窓口や年金事務所の窓口では対応していません。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "口座登録を望まない人は、不同意申出書を期限前に返送する",
+      "source": "https://www.nenkin.go.jp/tokusetsu/ikokakunin.html",
+      "steps": [
+        "意向確認書の記載口座と返送期限を確認する",
+        "下部の「公金受取口座登録不同意申出書」を切り離す",
+        "目隠しシールを貼り、差出人欄を記入して返送する"
+      ],
+      "url": "https://www.nenkin.go.jp/tokusetsu/ikokakunin.html"
+    },
+    {
+      "action": "別口座を登録したい人は、不同意申出書を返送後、別口座の登録手続きをする",
+      "source": "https://www.digital.go.jp/policies/account_registration/pension",
+      "steps": [
+        "不同意申出書を返送する",
+        "マイナポータルまたは金融機関で別口座を登録する"
+      ],
+      "url": "https://www.digital.go.jp/policies/account_registration/pension"
+    },
+    {
+      "action": "記載口座が古いなど認識と違う人は、照会番号を用意して専用窓口へ電話する",
+      "source": "https://www.digital.go.jp/policies/account_registration/faq-registration/pension-confirm",
+      "steps": [
+        "意向確認書に記載された照会番号を確認する",
+        "意向確認書照会専用フリーダイヤルへ電話する"
+      ],
+      "url": "https://www.nenkin.go.jp/tokusetsu/ikokakunin.html"
+    }
+  ],
+  "cause": {
+    "text": "マイナポータルでの手続きに不慣れな人や、金融機関へ出向くことが難しい人も簡単に登録できるよう設けられた特例制度です。給付を迅速かつ確実に行うという公金受取口座登録制度の目的も背景にあります。",
+    "status": "background",
+    "source": "https://www.digital.go.jp/policies/account_registration/faq-registration/pension-confirm"
+  },
+  "worries": [
+    {
+      "q": "口座残高や年金額まで国に知られてしまう？",
+      "a": "登録に必要な口座情報などが連携されますが、口座残高や年金受給額などの情報をデジタル庁が取得することはありません。国が預貯金を引き出すこともありません。",
+      "source": "https://www.digital.go.jp/policies/account_registration/faq-registration/pension-confirm",
+      "action": "不審な電話やSMS、メールで暗証番号や口座情報を求められても回答せず、公式案内の注意事項を確認してください。"
+    },
+    {
+      "q": "書留を受け取れなかったら、年金口座は登録される？",
+      "a": "簡易書留を受け取れず意向を確認できなかった場合、この特例による登録の対象にはなりません。登録を希望する場合は、マイナポータルまたは金融機関で別途手続きできます。",
+      "source": "https://www.digital.go.jp/policies/account_registration/faq-registration/pension-confirm",
+      "action": "登録を希望する人は、マイナポータルまたは金融機関で公金受取口座の登録手続きを確認してください。"
+    },
+    {
+      "q": "45日を過ぎてから不同意申出書を送っても間に合う？",
+      "a": "意向確認期間を過ぎてから送った不同意申出書は受理されず、同意として扱われます。登録完了通知が届いた後、マイナポータルまたは金融機関等で登録抹消の手続きを行えます。",
+      "source": "https://www.digital.go.jp/policies/account_registration/faq-registration/pension-confirm",
+      "action": "登録完了通知が届いたら、マイナポータルまたは金融機関等で公金受取口座の登録抹消手続きをしてください。"
+    },
+    {
+      "q": "年金振込口座ではなく別の口座を登録できる？",
+      "a": "年金振込口座の登録を希望しない場合は不同意申出書を返送し、その後、マイナポータルまたは金融機関で別口座の登録手続きを行えます。",
+      "source": "https://www.digital.go.jp/policies/account_registration/pension",
+      "action": "別口座を希望する人は、まず不同意申出書を期限内に返送し、続けて別口座の登録を進めてください。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "記載された年金口座を登録してよいか迷う？",
+      "situation": "記載口座で給付金等を受け取りたい",
+      "recommend": "同意するなら、返送せず待つ",
+      "reason": "登録を希望する場合は手続き不要です。登録完了までは意向確認書の到着から約3から4か月かかり、完了通知が届いてから利用できます。",
+      "source": "https://www.digital.go.jp/policies/account_registration/pension"
+    },
+    {
+      "question": "記載された口座を登録したくないときは？",
+      "situation": "年金振込口座の登録を希望しない",
+      "recommend": "到着から45日以内に不同意申出書を返送する",
+      "reason": "期限内に返送しないと、年金振込口座が公金受取口座として登録されます。期限を過ぎた場合は不同意申出書が受理されず、登録完了通知後に登録抹消の手続きが必要です。",
+      "source": "https://www.digital.go.jp/policies/account_registration/faq-registration/pension-confirm"
+    },
+    {
+      "question": "年金振込口座ではなく別口座を登録したい？",
+      "situation": "給付金等の受取先を別口座にしたい",
+      "recommend": "不同意申出書を返送し、別口座を登録する",
+      "reason": "年金振込口座の登録を希望しない場合は不同意申出書を返送します。そのうえで、別口座はマイナポータルまたは金融機関で登録する手続きが必要です。",
+      "source": "https://www.digital.go.jp/policies/account_registration/pension"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "受け取れない場合は登録されず、登録完了にも時間がかかる",
+    "cause": "手続きに不慣れな人にも配慮した特例制度",
+    "steps": "登録したくない口座なら期限前に返送",
+    "desk": "照会番号を手元に専用窓口へ",
+    "worries": "残高や期限後の扱いを確認",
+    "guide": "登録する口座に迷ったときの選び方"
+  },
+  "depthAt": "2026-11-24T10:14:36+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "年金の意向確認書、受取後45日で同意扱いに",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-24T10:16:33+00:00"
+  },
+  "imageFocus": {
+    "x": 0.495,
+    "y": 0.416,
+    "box": [
+      0.087,
+      0.071,
+      0.903,
+      0.762
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/pension-account-consent-notice-figure-181ddf7f.jpg"
+  }
 }
