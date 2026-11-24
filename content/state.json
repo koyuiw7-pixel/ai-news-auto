@@ -9954,12 +9954,6 @@
       "skipped": true,
       "url": "https://sportiva.shueisha.co.jp/clm/football/jfootball/2026/11/16/u21pk/?page=2"
     },
-    "37ed2f5037e2e327": {
-      "at": "2026-11-10T01:23:39.775519+00:00",
-      "reason": "dedupe: 固有名詞が一致（nintendo・switch）: nintendo-fy2027-interim-results",
-      "skipped": true,
-      "url": "https://www.nintendo.com/jp/topics/article/31e57164-941c-4103-bd30-f04744073cc3"
-    },
     "38163cfd29236a0da29e04c6ea3807facc0607a6": {
       "at": "2026-11-13T12:51:06.631356+00:00",
       "kind": "trend",
@@ -13129,6 +13123,12 @@
       "section": "investment",
       "slug": "recruit-holdings-fy2027-interim-results",
       "url": "https://www.release.tdnet.info/inbs/140120261106568174.pdf"
+    },
+    "695d675c2bcbcf308d3bf59aa06a1c0448100a87": {
+      "at": "2026-11-24T01:01:50.264192+00:00",
+      "reason": "trend: 重複: 報道の見出しと同じ話題の記事がある（固有名詞が一致（ceo・フアン）: nvidia-huang-ceo-return-intent）",
+      "skipped": true,
+      "url": "https://news.yahoo.co.jp/pickup/6603764"
     },
     "6973d1c309d9eb2e": {
       "at": "2026-11-23T10:14:07.951414+00:00",
@@ -19765,12 +19765,6 @@
       "skipped": true,
       "url": "https://www.mext.go.jp/b_menu/shingi/chukyo/chukyo4/siryo/mext_00016.html"
     },
-    "d4ab52be6b0650e1": {
-      "at": "2026-11-10T01:24:31.466551+00:00",
-      "reason": "prefilter: 価値の薄いお知らせ（周年）",
-      "skipped": true,
-      "url": "http://global.nissannews.com/ja-JP/releases/261110-01-j"
-    },
     "d4b3ee08ae116dc2": {
       "at": "2026-11-11T06:27:23.524945+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（贈呈）",
@@ -21399,17 +21393,6 @@
       "skipped": true,
       "url": "https://www.fsa.go.jp/news/r8/singi/20261118.html"
     },
-    "ec57642124ecc1d6": {
-      "at": "2026-11-10T01:24:30.703808+00:00",
-      "costUsd": 0.0064,
-      "intent": "query",
-      "mix": "other",
-      "model": "gemini-3.5-flash-lite",
-      "score": 88,
-      "section": "business",
-      "slug": "curry-rice-price-index-sep-2026",
-      "url": "https://www.tdb.co.jp/report/economic/20261110-curry2609/"
-    },
     "ec6d062f66bba753": {
       "at": "2026-11-18T22:53:01.975540+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（募集）",
@@ -21878,6 +21861,20 @@
       "reason": "prefilter: 価値の薄いお知らせ（受賞）",
       "skipped": true,
       "url": "http://global.nissannews.com/ja-JP/releases/261112-01-j"
+    },
+    "f4667f9251a5088f": {
+      "at": "2026-11-24T01:24:31.897387+00:00",
+      "costUsd": 0.0047,
+      "intent": "breaking",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "safetyLane": true,
+      "score": 98,
+      "section": "public",
+      "slug": "bestco-unauthorized-access-data-leak",
+      "url": "https://bestco.jp/news/74/"
     },
     "f47fa2b38a05e5b6": {
       "at": "2026-11-16T23:46:52.760949+00:00",
@@ -25588,63 +25585,9 @@
       "slug": "child-allowance-application-guide-2026-matome",
       "url": "",
       "writer": "roundup"
-    },
-    "695d675c2bcbcf308d3bf59aa06a1c0448100a87": {
-      "at": "2026-11-24T01:01:50.264192+00:00",
-      "reason": "trend: 重複: 報道の見出しと同じ話題の記事がある（固有名詞が一致（ceo・フアン）: nvidia-huang-ceo-return-intent）",
-      "skipped": true,
-      "url": "https://news.yahoo.co.jp/pickup/6603764"
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-21T17:05:23.854706+00:00",
-      "attempt": 1,
-      "id": "c17996f07e53acba",
-      "kind": "broad",
-      "model": "openai-api:gpt-6-luna",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 214.8,
-        "avg_sentence": 53.7,
-        "long_share": 0.292,
-        "max_paragraph": 254,
-        "paragraphs": 6,
-        "sentences": 24
-      },
-      "score": 100,
-      "source": "radar-official",
-      "title": "伏見寅威関連ニュース｜dメニューニュース（NTTドコモ）",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（FA）",
-        "読みやすさ: 文が長い（1文の平均 53.7字・60字超の文が 29% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "読みやすさ: 段落が長い（平均 214.8字・最長 254字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-21T17:05:51.525227+00:00",
-      "attempt": 0,
-      "id": "c17996f07e53acba",
-      "kind": "broad",
-      "model": "openai-api:gpt-6-luna",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 83.6,
-        "avg_sentence": 39.3,
-        "long_share": 0.059,
-        "max_paragraph": 134,
-        "paragraphs": 16,
-        "sentences": 34
-      },
-      "score": 100,
-      "source": "radar-official",
-      "title": "伏見寅威関連ニュース｜dメニューニュース（NTTドコモ）",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（FA）"
-      ]
-    },
     {
       "accepted": false,
       "at": "2026-11-21T17:08:39.463201+00:00",
@@ -33387,6 +33330,55 @@
       "warnings": [
         "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（CROSS・MALL・POINT）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-24T01:23:55.422650+00:00",
+      "attempt": 1,
+      "id": "f4667f9251a5088f",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "「管理部の窓口（0120-651-042）に確認できます」→ 元記事は本件の問い合わせ先を示していますが、窓口で個人が対象かどうかを確認できるとは明記していません。",
+        "「自分が対象か問い合わせる」→ 問い合わせを勧めること自体は一般的な助言ですが、対象者かどうかを窓口で確認できるかは元記事から分かりません。"
+      ],
+      "readability": {
+        "avg_paragraph": 83.4,
+        "avg_sentence": 39.7,
+        "long_share": 0.143,
+        "max_paragraph": 151,
+        "paragraphs": 10,
+        "sentences": 21
+      },
+      "score": 93,
+      "source": "fast",
+      "title": "【お詫びとご報告】不正アクセスによる個人情報漏洩の可能性について｜ニュース | 株式会社ベストコ",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（SMS）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-24T01:24:25.437418+00:00",
+      "attempt": 1,
+      "id": "f4667f9251a5088f",
+      "kind": "broad",
+      "model": "openai-api:gpt-6-luna",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 83.6,
+        "avg_sentence": 39.8,
+        "long_share": 0.143,
+        "max_paragraph": 151,
+        "paragraphs": 10,
+        "sentences": 21
+      },
+      "score": 98,
+      "source": "fast",
+      "title": "【お詫びとご報告】不正アクセスによる個人情報漏洩の可能性について｜ニュース | 株式会社ベストコ",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（SMS）"
       ]
     }
   ],
