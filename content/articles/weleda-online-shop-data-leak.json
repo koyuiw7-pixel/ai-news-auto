@@ -69,9 +69,9 @@
     }
   ],
   "todayActions": [
-    "2021年10月〜2026年6月のカード明細を見て、身に覚えのない請求がないか確認する",
-    "ヴェレダからのメールが届かないときは、「@weleda.jp」を受信できる設定か確認する",
-    "不審な請求があれば、カード裏面のカード会社に、ヴェレダの情報流出の案内を受けたと伝えて相談する"
+    "対象か確認したい人は、登録氏名と電話番号を添えて専用窓口へメールする。",
+    "期間中にカード決済した人は明細を確認し、覚えのない請求があればカード会社へ連絡する。",
+    "メールが届かない人は「@weleda.jp」からのメールを受信できる設定か確認する。"
   ],
   "publicInterest": "breach",
   "incident": {
@@ -122,5 +122,105 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/weleda-online-shop-data-leak-figure-2253190e.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "ヴェレダ直営店の店頭でカード決済しただけなら、今回の情報流出の対象ではありません。オンラインショップとは別のシステムを使っているとFAQにあります。",
+      "source": "https://weleda-notice-static-apne1.s3.ap-northeast-1.amazonaws.com/news/202611_faq.html"
+    },
+    {
+      "text": "ヴェレダ公式アプリは、情報流出が判明したオンラインショップとは別の環境で、顧客情報も保有していないと説明されています。FAQでは、脆弱性診断も実施済みとしています。",
+      "source": "https://weleda-notice-static-apne1.s3.ap-northeast-1.amazonaws.com/news/202611_faq.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "ヴェレダ 公式オンラインショップ 不正アクセス専用お客様相談窓口",
+      "url": "https://weleda-notice-static-apne1.s3.ap-northeast-1.amazonaws.com/news/202611_faq.html",
+      "source": "https://weleda-notice-static-apne1.s3.ap-northeast-1.amazonaws.com/news/202611_faq.html",
+      "phone": "0120-085-565",
+      "hours": "10:00 ～ 12:00 / 13:00 ～ 17:00（年末年始土日祝除く）",
+      "note": "メールは24時間受付ですが、登録した氏名と電話番号の記載が必要です。問い合わせが多く、回答まで数日程度かかる場合があります。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "対象か確認したい人は、登録氏名と電話番号を添えて専用窓口へメールする。",
+      "source": "https://weleda-notice-static-apne1.s3.ap-northeast-1.amazonaws.com/news/202611_faq.html",
+      "steps": [
+        "メールに登録した氏名と電話番号を書く",
+        "wjcs@weleda.jpへ送る",
+        "回答まで数日程度かかる場合がある"
+      ],
+      "url": "https://weleda-notice-static-apne1.s3.ap-northeast-1.amazonaws.com/news/202611_faq.html"
+    },
+    {
+      "action": "期間中にカード決済した人は明細を確認し、覚えのない請求があればカード会社へ連絡する。",
+      "source": "https://weleda-notice-static-apne1.s3.ap-northeast-1.amazonaws.com/news/202611_faq.html",
+      "steps": [
+        "2021年10月1日～2026年6月30日の利用明細を見る",
+        "身に覚えのない請求がないか確認する",
+        "あればカード裏面のカード会社へ相談する"
+      ]
+    },
+    {
+      "action": "メールが届かない人は「@weleda.jp」からのメールを受信できる設定か確認する。",
+      "source": "https://weleda-notice-static-apne1.s3.ap-northeast-1.amazonaws.com/news/20261116.html",
+      "steps": [
+        "ドメイン指定受信や迷惑メールフィルターの設定を確認する",
+        "「@weleda.jp」を受信できるよう設定する"
+      ],
+      "url": "https://weleda-notice-static-apne1.s3.ap-northeast-1.amazonaws.com/news/20261116.html"
+    }
+  ],
+  "cause": {
+    "text": "ヴェレダによると、公式オンラインショップのシステムの一部にある脆弱性を第三者に突かれ、不正アクセスを受けて改ざんが行われました。",
+    "status": "stated",
+    "source": "https://weleda-notice-static-apne1.s3.ap-northeast-1.amazonaws.com/news/20261116.html"
+  },
+  "worries": [
+    {
+      "q": "直営店でカード決済した分も対象になりますか？",
+      "a": "対象ではありません。ヴェレダは、直営店の店頭決済にはオンラインショップとは全く異なるシステムを採用していると説明しています。",
+      "source": "https://weleda-notice-static-apne1.s3.ap-northeast-1.amazonaws.com/news/202611_faq.html",
+      "action": "直営店の店頭決済だけなら、今回の対象期間にオンラインショップでカード決済したかを分けて確認してください。"
+    },
+    {
+      "q": "明細に知らない請求があったら、まずどこへ連絡しますか？",
+      "a": "カードの利用日や金額を確認し、覚えのない利用履歴があればカード裏面に記載されたカード会社へ相談するよう、ヴェレダは案内しています。不正利用の有無の判断はヴェレダ側ではできないとしています。",
+      "source": "https://weleda-notice-static-apne1.s3.ap-northeast-1.amazonaws.com/news/202611_faq.html",
+      "action": "カード明細の利用日と金額を確認し、不審な請求があればカード裏面のカード会社へ早急に連絡してください。"
+    },
+    {
+      "q": "カードを再発行すると、手数料を自分で払いますか？",
+      "a": "ヴェレダは、今回漏えいの可能性があるカードの再発行手数料について、利用者の負担にならないようカード会社に依頼していると説明しています。再発行の手続き自体は、カード会社へ直接連絡する必要があります。",
+      "source": "https://weleda-notice-static-apne1.s3.ap-northeast-1.amazonaws.com/news/202611_faq.html",
+      "action": "再発行を希望する場合は、カード裏面のカード会社へ連絡し、手続きと手数料の扱いを相談してください。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "案内が届かないとき、問い合わせる？",
+      "situation": "メール変更や転居で案内が届かない心配がある",
+      "recommend": "対象確認を専用窓口に問い合わせる",
+      "reason": "ヴェレダは、直接連絡がない場合は原則として対象外とする一方、メールアドレスの変更や転居で案内が届いていない可能性もあると説明しています。氏名と登録電話番号を添えて問い合わせれば対象の有無を確認できますが、回答まで数日程度かかります。",
+      "source": "https://weleda-notice-static-apne1.s3.ap-northeast-1.amazonaws.com/news/202611_faq.html"
+    },
+    {
+      "question": "カードを再発行したほうがいい？",
+      "situation": "カード情報の漏えい対象と案内された",
+      "recommend": "カード会社に相談して判断する",
+      "reason": "ヴェレダは、状況によって再発行が必要になる場合があるとし、手数料を本人負担にしないようカード会社に依頼しています。再発行の手続きはヴェレダでは代行できないため、カード裏面の連絡先に相談してください。",
+      "source": "https://weleda-notice-static-apne1.s3.ap-northeast-1.amazonaws.com/news/202611_faq.html"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "直営店や公式アプリは今回の対象外",
+    "cause": "システムの弱い部分を突かれた",
+    "steps": "対象確認とカード明細の見方",
+    "desk": "対象確認は専用窓口へ",
+    "worries": "直営店やカード再発行はどうなる？",
+    "guide": "問い合わせるか、カードを再発行するか"
+  },
+  "depthAt": "2026-11-24T12:43:57+00:00"
 }
