@@ -7327,12 +7327,6 @@
       "skipped": true,
       "url": "https://www.nikkei.com/article/DGXZQOUB05BSK0V01C26A1000000/"
     },
-    "10c1fdb7d2aa5689": {
-      "at": "2026-11-10T06:25:17.520140+00:00",
-      "reason": "prefilter: 価値の薄いお知らせ（講座）",
-      "skipped": true,
-      "url": "https://www.stat.go.jp/info/guide/public/houdou/pdf/ho261110.pdf"
-    },
     "11135976c38db824": {
       "at": "2026-11-20T17:30:27.524559+00:00",
       "costUsd": 0.0155,
@@ -12156,6 +12150,12 @@
       "slug": "caa-ethical-consumption-survey-2026",
       "url": "https://www.caa.go.jp/notice/entry/048089/"
     },
+    "5ace9de0dfdb0aed": {
+      "at": "2026-11-24T06:27:17.356477+00:00",
+      "reason": "review: 海外の AI の発表は自動で記事にしない（読者の安全・お金の話とチームの指示だけ。台帳 A75・scripts/news_mix.py review_ai_blocks）",
+      "skipped": true,
+      "url": "https://about.fb.com/news/2026/11/introducing-muse-in-the-uk-a-personal-ai-agent-you-control/"
+    },
     "5b061eec48c6e775": {
       "at": "2026-11-18T18:58:23.861003+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（会議）",
@@ -13303,17 +13303,6 @@
       "reason": "prefilter: 価値の薄いお知らせ（募集）",
       "skipped": true,
       "url": "https://j-net21.smrj.go.jp/news/bt5puv0000011b27.html"
-    },
-    "6e1f66fc71d340a9": {
-      "at": "2026-11-10T06:25:16.955508+00:00",
-      "costUsd": 0.0062,
-      "intent": "query",
-      "mix": "other",
-      "model": "openrouter:nvidia/nemotron-3.5-super-vl:free",
-      "score": 93,
-      "section": "business",
-      "slug": "construction-orders-september",
-      "url": "http://www.mlit.go.jp/report/press/joho04_hh_001401.html"
     },
     "6e2f8f0c530fd3db": {
       "at": "2026-11-13T17:14:18.580307+00:00",
@@ -22753,6 +22742,14 @@
       "url": "https://subway.co.jp/news/20261108-01/",
       "writer": "muse"
     },
+    "muse-24bc23a2d5": {
+      "at": "2026-11-24T06:18:02.940430+00:00",
+      "mix": "money",
+      "score": 100,
+      "slug": "casualty-loss-deduction-2026",
+      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1110.htm",
+      "writer": "muse"
+    },
     "muse-2549e2b7e3": {
       "at": "2026-11-19T06:17:00.043621+00:00",
       "mix": "other",
@@ -22975,6 +22972,14 @@
       "score": 100,
       "slug": "kumamoto-child-allowance-december-payment",
       "url": "https://www.city.kumamoto.jp/kiji0031996/index.html",
+      "writer": "muse"
+    },
+    "muse-33719fadd8": {
+      "at": "2026-11-24T06:16:26.742429+00:00",
+      "mix": "money",
+      "score": 100,
+      "slug": "retirement-income-deduction-2026",
+      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1420.htm",
       "writer": "muse"
     },
     "muse-34fe6764d5": {
@@ -24953,6 +24958,14 @@
       "url": "https://www.jfa.jp/samuraiblue/20261117/tv.html",
       "writer": "muse"
     },
+    "muse-e86463fe9c": {
+      "at": "2026-11-24T06:12:45.699853+00:00",
+      "mix": "money",
+      "score": 98,
+      "slug": "donation-tax-deduction-2026-muse-e86",
+      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1260.htm",
+      "writer": "muse"
+    },
     "muse-e96ed645bb": {
       "at": "2026-11-17T12:27:35.937667+00:00",
       "mix": "other",
@@ -25238,30 +25251,6 @@
       "slug": "child-allowance-application-guide-2026-matome",
       "url": "",
       "writer": "roundup"
-    },
-    "muse-24bc23a2d5": {
-      "at": "2026-11-24T06:18:02.940430+00:00",
-      "mix": "money",
-      "score": 100,
-      "slug": "casualty-loss-deduction-2026",
-      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1110.htm",
-      "writer": "muse"
-    },
-    "muse-33719fadd8": {
-      "at": "2026-11-24T06:16:26.742429+00:00",
-      "mix": "money",
-      "score": 100,
-      "slug": "retirement-income-deduction-2026",
-      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1420.htm",
-      "writer": "muse"
-    },
-    "muse-e86463fe9c": {
-      "at": "2026-11-24T06:12:45.699853+00:00",
-      "mix": "money",
-      "score": 98,
-      "slug": "donation-tax-deduction-2026-muse-e86",
-      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1260.htm",
-      "writer": "muse"
     }
   },
   "quality_log": [
