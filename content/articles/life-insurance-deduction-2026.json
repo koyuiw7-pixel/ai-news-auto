@@ -92,9 +92,9 @@
     }
   ],
   "todayActions": [
-    "生命保険料控除証明書で、契約が新契約か旧契約か、年間の支払額はいくらかを確認する。",
-    "23歳未満の扶養親族がいる場合は、国税庁のNo.1140で新生命保険料の計算式を確認する。",
-    "確定申告をする人は、控除証明書の添付・提示が必要か、年末調整での控除状況も含めて確かめる。"
+    "新旧の契約がある人は、旧生命保険料の年間支払額が6万円を超えるか確認する",
+    "23歳未満の扶養親族がいる人は、新生命保険料の専用計算式を確認する",
+    "確定申告をする人は、控除欄と証明書類の提出・提示条件を確認する"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -161,5 +161,113 @@
     "provider": "Cloudflare Workers AI",
     "relevant": true,
     "at": "2026-11-24T09:11:32+00:00"
-  }
+  },
+  "insight": [
+    {
+      "text": "保険期間が5年未満の生命保険などには、控除の対象とならないものもあります。契約日の新旧区分を確かめるだけでなく、短期の保険は控除対象かも確認が必要です。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1140.htm"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "タックスアンサー No.1140 生命保険料控除",
+      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1140.htm",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1140.htm",
+      "howTo": [
+        "ホーム",
+        "税の情報・手続・用紙",
+        "税について調べる",
+        "タックスアンサー（よくある税の質問）",
+        "No.1140 生命保険料控除"
+      ]
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "新旧の契約がある人は、旧生命保険料の年間支払額が6万円を超えるか確認する",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1140.htm",
+      "steps": [
+        "その年の支払額から剰余金や割戻金を差し引く",
+        "旧生命保険料の年間支払保険料等を確認する",
+        "6万円超か以下かで一般枠の計算方法を分ける"
+      ],
+      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1140.htm"
+    },
+    {
+      "action": "23歳未満の扶養親族がいる人は、新生命保険料の専用計算式を確認する",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1140.htm",
+      "steps": [
+        "国税庁の「No.1140 生命保険料控除」を開く",
+        "令和8年分以降の申告の計算表を見る",
+        "新生命保険料の年間支払額を当てはめる"
+      ],
+      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1140.htm"
+    },
+    {
+      "action": "確定申告をする人は、控除欄と証明書類の提出・提示条件を確認する",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1140.htm",
+      "steps": [
+        "確定申告書の生命保険料控除欄に記入する",
+        "支払額などを証明する書類を添付するか提出時に提示する",
+        "旧契約で年間9,000円以下などの例外を確認する"
+      ],
+      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1140.htm"
+    }
+  ],
+  "cause": {
+    "text": "令和8年分以降の申告では、23歳未満の扶養親族がいる場合、新契約の新生命保険料に専用の控除計算式が適用されます。",
+    "status": "background",
+    "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1140.htm"
+  },
+  "worries": [
+    {
+      "q": "生命保険料控除は、税金がそのまま減る制度なの？",
+      "a": "生命保険料控除は、支払った保険料に応じた一定額を所得から差し引く所得控除です。控除額そのものが、所得税からそのまま差し引かれる額ではありません。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1140.htm",
+      "action": "No.1140の概要で所得控除の仕組みを確かめ、控除額と所得税額を混同しないようにする。"
+    },
+    {
+      "q": "介護医療保険料にも、一般枠の6万円の計算式を使える？",
+      "a": "令和8年分以降の申告で特別な計算式が示されているのは、新契約に基づく新生命保険料です。介護医療保険料と個人年金保険料には、この計算式を使いません。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1140.htm",
+      "action": "保険料を一般・介護医療・個人年金の区分に分け、一般枠以外には通常の計算式を当てはめる。"
+    },
+    {
+      "q": "古い医療保険の保険料は、介護医療の区分で計算するの？",
+      "a": "平成23年12月31日以前に締結した旧契約の医療保険や介護保険の保険料は、旧生命保険料に含まれます。新契約のように介護医療保険料の区分として計算する扱いではありません。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1140.htm",
+      "action": "契約日が平成23年12月31日以前なら、医療・介護保険の保険料も旧生命保険料として確認する。"
+    },
+    {
+      "q": "確定申告では、控除の証明書類を必ず添付するの？",
+      "a": "支払金額などを証明する書類は、確定申告書への添付または提出時の提示が必要です。ただし、旧契約で年間保険料が9,000円以下のものと、年末調整で控除を受けたものは不要です。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1140.htm",
+      "action": "申告する契約が旧契約で年間9,000円以下か、年末調整で控除済みかを確認してから書類を用意する。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "新旧両方の契約があるとき、どの計算式？",
+      "situation": "旧生命保険料の年間支払額が6万円を超える",
+      "recommend": "旧契約の計算式で一般枠を計算する",
+      "reason": "旧生命保険料の年間支払保険料等が6万円を超える場合、旧契約の計算式を使います。令和8年以降に23歳未満の扶養親族がいて新生命保険料を払った場合、控除額の上限は6万円です。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1140.htm"
+    },
+    {
+      "question": "新旧両方の契約があるとき、どの計算式？",
+      "situation": "旧生命保険料の年間支払額が6万円以下",
+      "recommend": "新旧それぞれを計算して合算する",
+      "reason": "旧生命保険料の年間支払保険料等が6万円以下なら、新旧それぞれの控除額を計算して合計します。令和8年以降に23歳未満の扶養親族がいて新生命保険料を払った場合、一般枠の合計上限は6万円です。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1140.htm"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "旧契約の医療保険は一般枠に入る場合も",
+    "cause": "令和8年分以降に変わる計算式",
+    "steps": "契約の新旧と支払額から計算方法を確認",
+    "desk": "国税庁の計算方法と申告手続きを見る",
+    "worries": "控除の区分や申告書類で迷ったら",
+    "guide": "新旧契約があるときの計算方法の選び方"
+  },
+  "depthAt": "2026-11-24T09:34:03+00:00"
 }

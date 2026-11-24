@@ -83,9 +83,9 @@
   "affiliates": [],
   "newsType": "pricing",
   "todayActions": [
-    "契約中のプラン名を確かめ、ドコモの料金改定案内ページで改定前後の基本料金を見る。",
-    "ahamoの利用者は、自分が40GBの上限自動設定の対象か確認する。",
-    "大盛りオプションを契約している場合は、11月30日の提供終了後の料金を確認する。"
+    "契約中のプランを選び、11月利用分までと12月利用分以降の基本料金を見比べる。",
+    "ahamo利用者は、40GB上限が自動設定される条件に自分が当てはまるか確かめる。",
+    "ahamoの40GB上限が不要なら、アプリかMy docomoで上限設定を確認する。"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -147,5 +147,121 @@
     "original": "https://www.docomo.ne.jp/images_osp/common/header/logo_header_ogp.png",
     "at": "2026-11-24T09:10:41+00:00",
     "reused": true
-  }
+  },
+  "insight": [
+    {
+      "text": "料金改定の対象となるahamoには「JALモバイル powered by ahamo」も含まれます。サービス名だけで対象外と判断せず、契約内容を確認しましょう。",
+      "source": "https://www.docomo.ne.jp/charge/plan_renewal2026/"
+    },
+    {
+      "text": "ahamoの「上限設定オプション」は無料で、40GBまたは60GBを上限に設定できます。40GBの自動設定を解除するだけでなく、60GBを上限にする選択肢もあります。",
+      "source": "https://www.docomo.ne.jp/info/news_release/2026/09/25_00.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "料金プラン内容および月額料金改定のお知らせ",
+      "url": "https://www.docomo.ne.jp/charge/plan_renewal2026/",
+      "source": "https://www.docomo.ne.jp/charge/plan_renewal2026/",
+      "howTo": [
+        "料金プラン内容および月額料金改定のお知らせ",
+        "ご自身のプランの改定額を調べる",
+        "ご自身の料金プランを調べる"
+      ],
+      "note": "プラン名を選ぶと、2026年11月利用分までと12月利用分以降の基本料金を確認できます。"
+    },
+    {
+      "name": "My docomo",
+      "url": "https://www.docomo.ne.jp/mydocomo/",
+      "source": "https://www.docomo.ne.jp/mydocomo/",
+      "howTo": [
+        "My docomo",
+        "ご契約内容"
+      ],
+      "note": "ご契約内容の確認や手続きには、パスキー設定でのログイン、またはドコモ回線接続とネットワーク暗証番号でのログインが必要です。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "契約中のプランを選び、11月利用分までと12月利用分以降の基本料金を見比べる。",
+      "source": "https://www.docomo.ne.jp/charge/plan_renewal2026/",
+      "steps": [
+        "料金改定案内ページを開く",
+        "「ご自身のプランの改定額を調べる」を確認",
+        "料金プラン名を選ぶ",
+        "改定前後の基本料金を見る"
+      ],
+      "url": "https://www.docomo.ne.jp/charge/plan_renewal2026/"
+    },
+    {
+      "action": "ahamo利用者は、40GB上限が自動設定される条件に自分が当てはまるか確かめる。",
+      "source": "https://www.docomo.ne.jp/charge/plan_renewal2026/",
+      "steps": [
+        "料金改定案内ページを開く",
+        "2026年11月1日時点の契約条件を読む",
+        "大盛りオプション契約者は対象外か確認する"
+      ],
+      "url": "https://www.docomo.ne.jp/charge/plan_renewal2026/"
+    },
+    {
+      "action": "ahamoの40GB上限が不要なら、アプリかMy docomoで上限設定を確認する。",
+      "source": "https://www.docomo.ne.jp/charge/plan_renewal2026/",
+      "steps": [
+        "ahamoアプリまたはMy docomoを開く",
+        "自動設定された40GB上限を確認する",
+        "不要な場合は上限設定を解除する"
+      ],
+      "url": "https://www.docomo.ne.jp/charge/plan_renewal2026/"
+    }
+  ],
+  "cause": {
+    "text": "ドコモは、物価や人件費の上昇など事業環境が変化する中で、安定したサービスを継続して提供するため、一部料金プランの月額料金を改定すると説明しています。",
+    "status": "background",
+    "source": "https://www.docomo.ne.jp/info/news_release/2026/09/25_00.html"
+  },
+  "worries": [
+    {
+      "q": "ahamoの40GB上限は全員に自動で設定される？",
+      "a": "2026年11月1日時点でahamoを契約中で、大盛りオプションを契約していない人には、12月1日に40GB上限が自動設定されます。大盛りオプションの契約者は対象外です。",
+      "source": "https://www.docomo.ne.jp/charge/plan_renewal2026/",
+      "action": "料金改定案内ページで自動設定の条件を読み、自分の契約が当てはまるか確認しましょう。"
+    },
+    {
+      "q": "40GB上限に達したら、料金や通信速度はどうなる？",
+      "a": "上限を設定すると上位ステップへ自動移行せず、指定したステップの月額料金が適用されます。上限に達すると通信速度は最大1Mbpsに制限されます。",
+      "source": "https://www.docomo.ne.jp/charge/plan_renewal2026/",
+      "action": "40GBを超えて使う可能性がある人は、ahamoアプリやMy docomoで上限設定の解除を確認しましょう。"
+    },
+    {
+      "q": "大盛りオプションの料金は12月以降も請求される？",
+      "a": "大盛りオプションは11月30日で提供終了となり、契約中の場合も自動で廃止されます。12月利用分以降のahamoは、利用量に応じた段階制の料金になります。",
+      "source": "https://www.docomo.ne.jp/charge/plan_renewal2026/",
+      "action": "料金改定案内ページで、12月利用分以降のahamoの料金とデータ量の段階を確認しましょう。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "ahamoの40GB上限は残す？",
+      "situation": "40GBを超えて使う月がある",
+      "recommend": "上限解除や60GB設定を検討する",
+      "reason": "40GB上限を設定すると上位ステップへ自動移行せず、上限到達後は通信速度が最大1Mbpsに制限されます。上限設定オプションでは60GBを選ぶこともできます。",
+      "source": "https://www.docomo.ne.jp/charge/plan_renewal2026/"
+    },
+    {
+      "question": "ahamoの40GB上限は残す？",
+      "situation": "40GB以下で使う月が多い",
+      "recommend": "40GB上限を残す選択肢がある",
+      "reason": "上限を設定すると、利用量が増えても上位ステップへ自動移行しません。ただし、40GBの上限に達した時点で通信速度は最大1Mbpsに制限されるため、利用量の見込みとあわせて判断できます。",
+      "source": "https://www.docomo.ne.jp/charge/plan_renewal2026/"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "ahamoには60GB上限やJALモバイルも関係",
+    "cause": "物価や人件費の上昇が改定の背景",
+    "steps": "自分の料金と40GB上限を確かめる",
+    "desk": "プラン別の改定額と契約内容を確認",
+    "worries": "自動設定や大盛り終了で困らない？",
+    "guide": "ahamoの40GB上限を残すか考える"
+  },
+  "depthAt": "2026-11-24T09:34:34+00:00"
 }
