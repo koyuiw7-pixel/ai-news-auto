@@ -74,9 +74,9 @@
     }
   ],
   "todayActions": [
-    "カウネットを名乗るメールが届いたら、リンクや添付を開かず、いつもの公式サイトから確認する",
-    "個別連絡の有無が不安なら、コクヨお客様相談室（0120-201-594、平日9:00〜16:00）に問い合わせる",
-    "メールでパスワードやカード情報を求める連絡は、カウネットからではないと考えて無視する"
+    "対象か気になる利用者は、コクヨお客様相談室へ電話で問い合わせる",
+    "カウネットを名乗るメールのリンクは開かず、公式サイトや公式アプリで確認する",
+    "メールでパスワードやカード情報を求められても、カウネットには応じない"
   ],
   "publicInterest": "breach",
   "incident": {
@@ -121,5 +121,84 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/kaunet-karte-leak-second-report-figure-cef20c28.jpg"
-  }
+  },
+  "officialDesk": [
+    {
+      "name": "コクヨお客様相談室",
+      "url": "https://www.kokuyo.com/news/important/20261124/",
+      "source": "https://www.kokuyo.com/news/important/20261124/",
+      "phone": "0120-201-594",
+      "hours": "9:00～16:00（土・日・祝日・会社休業日を除く）",
+      "note": "お問い合わせ内容を正確に承るため、通話は録音されます。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "対象か気になる利用者は、コクヨお客様相談室へ電話で問い合わせる",
+      "source": "https://www.kokuyo.com/news/important/20261124/",
+      "steps": [
+        "第2報の「対象となるお客様」を確認する",
+        "コクヨお客様相談室 0120-201-594へ電話する"
+      ],
+      "url": "https://www.kokuyo.com/news/important/20261124/"
+    },
+    {
+      "action": "カウネットを名乗るメールのリンクは開かず、公式サイトや公式アプリで確認する",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "steps": [
+        "メールやSMS内のリンクをクリックしない",
+        "登録済みの公式サイトまたは公式アプリで確認する"
+      ],
+      "url": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html"
+    },
+    {
+      "action": "メールでパスワードやカード情報を求められても、カウネットには応じない",
+      "source": "https://www.kokuyo.com/news/important/20261124/",
+      "steps": [
+        "メールで情報を尋ねる連絡に応じない",
+        "不審なリンクや添付ファイルを開かない"
+      ],
+      "url": "https://www.kokuyo.com/news/important/20261124/"
+    }
+  ],
+  "cause": {
+    "text": "プレイド社が提供するサービス「KARTE」が、第三者による不正アクセスを受けました。プレイド社の調査とカウネットでの確認により、外部に漏えいした情報の件数と範囲が判明したと発表されています。",
+    "status": "stated",
+    "source": "https://www.kokuyo.com/news/important/20261124/"
+  },
+  "worries": [
+    {
+      "q": "カード番号やログインパスワードも漏れたのでしょうか？",
+      "a": "第2報では、メールアドレス、顧客番号、電話番号が漏えいした情報として挙げられています。クレジットカード番号・有効期限・ログイン時のパスワードは、漏えいの可能性はないとしています。",
+      "source": "https://www.kokuyo.com/news/important/20261124/",
+      "action": "カウネットを名乗る不審なメールを受け取ったら、リンクや添付を開かず、情報を求められても応じないでください。"
+    },
+    {
+      "q": "自分も対象か、どうやって分かりますか？",
+      "a": "対象サービスは「カウネット」と「おうちカウネット」です。対象となるお客様には、電子メールその他の適切な方法で個別に連絡するとしています。",
+      "source": "https://www.kokuyo.com/news/important/20261124/",
+      "action": "対象か気になる場合は、コクヨお客様相談室（0120-201-594）へ電話で問い合わせてください。"
+    },
+    {
+      "q": "送信元がカウネットなら本物と判断できますか？",
+      "a": "警察庁によると、メールは送信元名称や送信元メールアドレスを変更して実在企業になりすますことができます。そのため、表示された送信元だけで真偽を判断することは困難です。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "action": "メール内のリンクは開かず、あらかじめ登録した公式サイトや公式アプリから確認してください。",
+      "general": true
+    },
+    {
+      "q": "リンク先にIDやパスワードを入力してしまったら？",
+      "a": "警察庁は、フィッシングサイトなどに普段使うIDやパスワードを入力した場合、それらを利用しているすべてのサービスで、パスワードなどを速やかに変更するよう案内しています。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "action": "入力したIDやパスワードを使っているすべてのサービスで、パスワードを速やかに変更してください。",
+      "general": true
+    }
+  ],
+  "depthHeadings": {
+    "cause": "KARTEへの第三者アクセスが発端",
+    "steps": "対象確認と不審メールへの対応",
+    "desk": "不安なときの問い合わせ先",
+    "worries": "漏れた情報と偽メールが心配"
+  },
+  "depthAt": "2026-11-24T07:08:33+00:00"
 }
