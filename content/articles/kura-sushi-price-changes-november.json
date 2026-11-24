@@ -83,8 +83,8 @@
   "affiliates": [],
   "newsType": "pricing",
   "todayActions": [
-    "くら寿司の「価格改定のお知らせ」で、いつも注文する寿司が値上げ対象か確認する。",
-    "純赤だしやくらポテトなど、普段頼むサイドメニューが値下げ対象か確認する。"
+    "いつもの寿司が値上げ対象の22商品に入っているか確かめる。",
+    "汁物や飲み物など、普段頼む品が値下げ対象か確認する。"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -165,5 +165,81 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/kura-sushi-price-changes-november-figure-b25d26bd.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "値下げ対象には「特製ガリ」や「ツナサラダ」も含まれます。追加で頼む品も、34商品の一覧で照合できます。",
+      "source": "https://www.kurasushi.co.jp/upload/261124release.pdf"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "価格改定のお知らせ",
+      "url": "https://www.kurasushi.co.jp/upload/261124release.pdf",
+      "source": "https://www.kurasushi.co.jp/upload/261124release.pdf"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "いつもの寿司が値上げ対象の22商品に入っているか確かめる。",
+      "source": "https://www.kurasushi.co.jp/upload/261124release.pdf",
+      "steps": [
+        "「価格改定のお知らせ」を開く",
+        "値上げ対象商品の一覧で商品名を確認する"
+      ],
+      "url": "https://www.kurasushi.co.jp/upload/261124release.pdf"
+    },
+    {
+      "action": "汁物や飲み物など、普段頼む品が値下げ対象か確認する。",
+      "source": "https://www.kurasushi.co.jp/upload/261124release.pdf",
+      "steps": [
+        "「価格改定のお知らせ」を開く",
+        "値下げ対象商品の一覧で商品名を確認する"
+      ],
+      "url": "https://www.kurasushi.co.jp/upload/261124release.pdf"
+    }
+  ],
+  "cause": {
+    "text": "原材料費や人件費、エネルギーコストの高騰などで、現行価格の維持が困難な状況が続いているためです。品質を保ち、安定的に商品を届けることを理由に挙げる一方、手頃な価格での提供を考えて一部商品を値下げします。",
+    "status": "background",
+    "source": "https://www.kurasushi.co.jp/upload/261124release.pdf"
+  },
+  "worries": [
+    {
+      "q": "自分がよく頼む寿司は、値上げ対象に入っていますか？",
+      "a": "値上げ対象は22商品で、熟成まぐろ、サーモン、えびアボカド、真いわしなどが掲載されています。全対象品は公式のお知らせの一覧で確認できます。",
+      "source": "https://www.kurasushi.co.jp/upload/261124release.pdf",
+      "action": "注文前に、いつもの寿司の商品名を公式のお知らせの値上げ対象一覧と照らしてください。"
+    },
+    {
+      "q": "汁物や飲み物にも値下げ対象はありますか？",
+      "a": "値下げ対象には純赤だし、純味噌汁のほか、りんご（ドリンク）、オレンジ（ドリンク）、宇治抹茶入り緑茶などが含まれます。値下げ幅は10〜70円です。",
+      "source": "https://www.kurasushi.co.jp/upload/261124release.pdf",
+      "action": "普段頼む汁物や飲み物の商品名を、公式のお知らせの値下げ対象一覧で確かめてください。"
+    },
+    {
+      "q": "価格改定はいつからで、値上げ幅はいくらですか？",
+      "a": "価格改定は11月27日（金）より実施されます。値上げ対象は22商品で、値上げ幅は10〜30円と案内されています。",
+      "source": "https://www.kurasushi.co.jp/upload/261124release.pdf",
+      "action": "11月27日以降に利用する前に、公式のお知らせで対象商品と改定日を確認してください。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "いつもの寿司が値上げ対象ならどうする？",
+      "situation": "よく頼む品が22商品の一覧にある",
+      "recommend": "改定後の注文前に価格を見直す",
+      "reason": "値上げ対象は22商品で、値上げ幅は10〜30円です。商品名を一覧で照合すれば、いつもの品が対象か確認できます。",
+      "source": "https://www.kurasushi.co.jp/upload/261124release.pdf"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "値下げは飲み物やガリにも",
+    "cause": "原材料費などの高騰が改定の背景",
+    "steps": "いつもの品が対象か一覧で確認",
+    "desk": "改定対象を公式一覧で見る",
+    "worries": "自分の注文に値上げはある？",
+    "guide": "注文前に値上げ品を見直す"
+  },
+  "depthAt": "2026-11-24T21:45:00+00:00"
 }

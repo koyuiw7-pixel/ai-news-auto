@@ -57,14 +57,14 @@
   "videoTitle": "楽天証券の情報漏えい続報　2026年11月、個人情報は約441万件",
   "publishedAt": "2026-11-24T21:15:59.633081+00:00",
   "generatedAt": "2026-11-24T21:16:34.043322+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/rakuten-securities-data-leak-update-figure-045ae53f.jpg",
   "model": "openai-api:gpt-6.1-terra",
   "affiliates": [],
   "newsType": "security",
   "todayActions": [
-    "楽天証券のパスキーが未設定なら、公式の操作ガイドで設定手順を確認する。",
-    "不安な場合は、楽天証券カスタマーサポートセンターの0120-862-274に相談する。",
-    "楽天証券を名乗る不審な連絡は、リンクを開かず、公式サイトやアプリから内容を確かめる。"
+    "Windowsパソコンでパスキーを作る人は、保存先を確かめてから設定する",
+    "取引や出金を一時的に止めたい人は、ログイン後に利用停止を設定する",
+    "問い合わせたい人は、受付時間内に楽天証券の本件窓口へ電話する"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -112,5 +112,135 @@
   "detectedAt": "2026-11-24T21:16:39+00:00",
   "searchTitle": "楽天証券の漏えい対象は？　口座未開設も含む約441万件",
   "layout": "noir",
-  "summaryLine": "楽天証券の氏名や住所などの個人情報は**約441万件**が漏えいし、口座未開設の人の情報も含まれます。"
+  "summaryLine": "楽天証券の氏名や住所などの個人情報は**約441万件**が漏えいし、口座未開設の人の情報も含まれます。",
+  "insight": [
+    {
+      "text": "Windowsパソコンで設定する場合、画面に「Microsoftパスワードマネージャー」と表示されたら注意が必要です。楽天証券は、登録後にログインできなくなるなどの事例があるとして、Windows Helloへの保存手順を案内しています。",
+      "source": "https://www.rakuten-sec.co.jp/web/security/passkey/guide/"
+    },
+    {
+      "text": "スマートフォンで作ったパスキーは、パソコンへのログインにも使えます。パスキーを作る端末を選ぶときは、スマートフォンだけでなくパソコンでの利用も含めて考えられます。",
+      "source": "https://www.rakuten-sec.co.jp/web/security/passkey/guide/"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "楽天証券カスタマーサポートセンター",
+      "url": "https://www.rakuten-sec.co.jp/web/info/info20261117-02.html",
+      "source": "https://www.rakuten-sec.co.jp/web/info/info20261117-02.html",
+      "howTo": [
+        "ホーム",
+        "お知らせ",
+        "当社お客様の情報漏えいの可能性に関するお詫びとお知らせ"
+      ],
+      "phone": "0120-862-274",
+      "hours": "平日8：30～17：00 土日9：00～17：00",
+      "note": "影響が確認されたお客様には個別に報告すると案内されています。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "Windowsパソコンでパスキーを作る人は、保存先を確かめてから設定する",
+      "source": "https://www.rakuten-sec.co.jp/web/security/passkey/guide/",
+      "steps": [
+        "「パスキー認証（FIDO2）操作ガイド」を開く",
+        "「Windowsパソコンにパスキーを作成する」を確認",
+        "Microsoftパスワードマネージャーの表示があれば「別の方法で保存する」を選ぶ",
+        "「Windows Helloまたは外部セキュリティキー」を選ぶ"
+      ],
+      "url": "https://www.rakuten-sec.co.jp/web/security/passkey/guide/"
+    },
+    {
+      "action": "取引や出金を一時的に止めたい人は、ログイン後に利用停止を設定する",
+      "source": "https://www.rakuten-sec.co.jp/web/info/info20261117-02.html",
+      "steps": [
+        "楽天証券ウェブサイトにログインする",
+        "セキュリティ設定ページを開く",
+        "取引やサービスの一時的な利用停止を設定する"
+      ],
+      "url": "https://www.rakuten-sec.co.jp/web/security/account_lock/"
+    },
+    {
+      "action": "問い合わせたい人は、受付時間内に楽天証券の本件窓口へ電話する",
+      "source": "https://www.rakuten-sec.co.jp/web/info/info20261117-02.html",
+      "steps": [
+        "0120-862-274に電話する",
+        "平日8：30～17：00、土日9：00～17：00に問い合わせる"
+      ],
+      "url": "https://www.rakuten-sec.co.jp/web/info/info20261117-02.html"
+    }
+  ],
+  "cause": {
+    "text": "楽天証券は2026年11月16日に一部システムへの第三者による不正アクセスの可能性を検知し、アクセス遮断と修正を実施しました。調査では11月11日にテスト環境の情報が漏えいしたおそれを確認しましたが、原因や詳しい経緯は引き続き調査中です。",
+    "status": "investigating",
+    "source": "https://www.rakuten-sec.co.jp/web/info/info20261117-02.html"
+  },
+  "worries": [
+    {
+      "q": "口座のログイン用パスワードや暗証番号も漏れたの？",
+      "a": "楽天証券は、11月24日時点でログインに必要なパスワードや暗証番号を含む、取引に必要な各種情報の漏えいは確認していないとしています。また、本件に起因すると考えられる不正アクセスや不正取引も確認されていません。",
+      "source": "https://www.rakuten-sec.co.jp/web/info/info20261124-04.html",
+      "action": "不安が残る場合は、楽天証券の本件窓口に電話して確認する。",
+      "actionSource": "https://www.rakuten-sec.co.jp/web/info/info20261117-02.html"
+    },
+    {
+      "q": "保有銘柄や取引履歴まで外部に出たの？",
+      "a": "商品別資産情報には各商品や預り資産の残高情報が含まれますが、保有銘柄や取引情報、「マネーブリッジ」の残高は含まれないと楽天証券は説明しています。",
+      "source": "https://www.rakuten-sec.co.jp/web/info/info20261124-04.html",
+      "action": "情報の範囲を確かめたい場合は、第2報の「外部に持ち出された情報について」を確認する。"
+    },
+    {
+      "q": "口座を作っていない私にも影響する可能性はある？",
+      "a": "口座未開設の人の情報も約119万件含まれ、口座開設の申込時に提供された内容とされています。申込を途中でやめて改めて申し込んだ場合など、情報が重複している可能性もあります。",
+      "source": "https://www.rakuten-sec.co.jp/web/info/info20261124-04.html",
+      "action": "過去に口座開設を申し込んだ人は、楽天証券からの個別報告を確認する。"
+    },
+    {
+      "q": "偽サイトにログイン情報を入力したら何をすればいい？",
+      "a": "警察庁は、普段使っているIDやパスワードをフィッシングサイトに入力した場合、それらを使っているすべてのサービスで速やかに変更するよう案内しています。被害に遭ったサービスの提供会社への相談も呼びかけています。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "action": "入力したIDやパスワードを使うすべてのサービスで変更し、被害に遭ったサービスの提供会社へ相談する。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "取引や出金を一時停止したほうがいい？",
+      "situation": "取引や出金を止めたいと感じている",
+      "recommend": "不安があれば設定を検討する",
+      "reason": "楽天証券は、ログイン後にセキュリティ設定ページから取引やサービスの一時的な利用停止を設定できると案内しています。これは取引などを一時的に止める設定です。",
+      "source": "https://www.rakuten-sec.co.jp/web/info/info20261117-02.html"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "Windowsでパスキーを作るときの保存先",
+    "cause": "不正アクセスの原因と経緯は調査中",
+    "steps": "パスキー設定と利用停止の進め方",
+    "desk": "問い合わせるなら受付時間を確認",
+    "worries": "口座情報やログイン情報は大丈夫？",
+    "guide": "取引を一時停止するか迷ったら"
+  },
+  "depthAt": "2026-11-24T21:45:33+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "楽天証券の情報漏えい続報",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-24T21:47:16+00:00"
+  },
+  "imageFocus": {
+    "x": 0.441,
+    "y": 0.408,
+    "box": [
+      0.009,
+      0.042,
+      0.872,
+      0.774
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/rakuten-securities-data-leak-update-figure-045ae53f.jpg"
+  }
 }
