@@ -49,10 +49,10 @@ PARTNERS: dict[str, dict] = {
     "s00000018520001": {"key": "video-editor", "name": "Movavi Video Editor", "label": "動画編集を始めたい人へ", "note": "動画のカットや字幕付けなどを行う編集ソフト。対応機能と料金を確認できます。", "shop": "Movavi公式"},
     "s00000016141002": {"key": "bandicut", "name": "Bandicut", "label": "無劣化カット", "note": "撮った動画を劣化させずに、速く切って結合できるソフト", "shop": "Bandicam Company"},
     "s00000021455001": {"key": "movie-school", "name": "クリエイターズジャパン", "label": "動画編集を学ぶ", "note": "動画編集のオンライン講座。講座内容や費用を確認できます。", "shop": "クリエイターズジャパン"},
-    "s00000021268001": {"key": "skillhacks", "name": "SkillHacks", "label": "動画で学ぶプログラミング", "note": "未経験からWebアプリを作れるまで。買い切りの動画講座", "shop": "SkillHacks公式"},
+    # s00000021268001 SkillHacks：A8で2026-11-30にプログラム終了予定（11/24確認）。出さない
     # 文章・仕事効率化
     "s00000017376003": {"key": "bunken", "name": "文賢", "label": "文章を見直す", "note": "文章の推敲や校閲を支援するツール。機能と料金を確認できます。", "shop": "ウェブライダー"},
-    "s00000027324001": {"key": "doraverse", "name": "Doraverse", "label": "複数のAIをまとめて", "note": "複数のAIモデルを選べる別サービス。利用できる機能や料金はプランによります。", "shop": "Doraverse公式"},
+    # s00000027324001 Doraverse：A8で2026-11-30にプログラム終了予定（11/24確認）。出さない
     "s00000012624009": {"key": "coconala", "name": "ココナラ", "label": "プロに頼む", "note": "AIで作りきれない部分は、デザインや動画のプロに依頼できるスキルマーケット", "shop": "ココナラ"},
     # 英語・翻訳
     "s00000012026001": {"key": "idiy", "name": "英語添削アイディー", "label": "英作文を添削", "note": "英作文の添削サービス。利用できる添削方法と料金を確認。", "shop": "アイディー公式"},
@@ -257,12 +257,12 @@ ADD_TO_TOPIC = {
     "semis": ["silicon-power", "mdl"],
     "image": ["mdl", "coconala"],
     "writing": ["bunken"],
-    "business": ["doraverse", "coconala"],
-    "chatgpt": ["doraverse"],
-    "gemini": ["doraverse"],
-    "claude": ["doraverse"],
-    "coding": ["skillhacks", "xserver-vps"],
-    "agent": ["xserver-vps", "doraverse"],
+    "business": ["value-ai-writer", "coconala"],
+    "chatgpt": ["value-ai-writer", "coconala"],
+    "gemini": ["value-ai-writer", "coconala"],
+    "claude": ["value-ai-writer", "coconala"],
+    "coding": ["xserver-vps", "conoha-vps"],
+    "agent": ["xserver-vps", "conoha-vps"],
     "llm": ["xserver-vps", "minisforum"],
     "video": ["gomcam", "coloso"],
     "image": ["coloso"],

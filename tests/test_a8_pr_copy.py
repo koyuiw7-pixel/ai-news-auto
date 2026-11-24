@@ -17,7 +17,7 @@ class PrCopyTest(unittest.TestCase):
     def test_importer_and_live_offer_copy_match(self):
         offers = json.loads((ROOT / 'content/offers.json').read_text(encoding='utf-8'))['partners']
         items = {item['key']: item for item in a8_import.PARTNERS.values()}
-        for key in ('xserver', 'silicon-power', 'video-editor', 'virusbuster', 'aio-diagnosis', 'xserver-vps', 'conoha-vps', 'movie-school', 'lancul', 'doraverse', 'surfshark'):
+        for key in ('xserver', 'silicon-power', 'video-editor', 'virusbuster', 'aio-diagnosis', 'xserver-vps', 'conoha-vps', 'movie-school', 'lancul', 'surfshark'):
             with self.subTest(key=key):
                 self.assertEqual(items[key]['label'], offers[key]['label'])
                 self.assertEqual(items[key]['note'], offers[key]['note'])

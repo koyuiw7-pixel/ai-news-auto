@@ -223,7 +223,7 @@ test("法人・企業向けの記事（ネットワーク・ゼロトラスト�
   }
   const zeroTrust = offerPlanForArticle(article({ title: "NTT西日本、企業向けゼロトラストの導入・運用支援サービスを開始", genreSlug: "business" }));
   assert.equal(zeroTrust.offer.topic, "fallback-b2b");
-  assert.ok(keys(zeroTrust.rail).includes("doraverse"));
+  assert.ok(keys(zeroTrust.rail).includes("value-ai-writer"));
   // 話題がサーバー・セルフホストそのものなら、法人向けでもサーバーを出す
   const dify = offerPlanForArticle(article({ title: "企業向けにDifyのセルフホスト導入支援を開始、VPSで社内AIを構築", genreSlug: "ai" }));
   assert.ok([...keys(dify.rail), ...keys(dify.inline)].some((key) => HOSTING.has(key)));

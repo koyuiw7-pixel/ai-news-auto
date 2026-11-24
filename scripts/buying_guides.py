@@ -177,15 +177,14 @@ GUIDES: list[dict] = [
     {
         "slug": "ai-writing-tools",
         "short": "AI文章ツール",
-        "title": "AI文章チェック・文章作成ツール比較【2026年版】文賢とDoraverse",
-        "queries": ["AI 文章校正 ツール", "文章チェック ツール おすすめ", "文賢 料金", "複数のAI まとめて使える"],
+        "title": "AI文章チェックツールの選び方【2026年版】文賢の機能と確かめること",
+        "queries": ["AI 文章校正 ツール", "文章チェック ツール おすすめ", "文賢 料金"],
         "topics": ["writing"],
         "theme": "AIで書いた文章を整えたい・仕事の文章をAIで速く正確に書きたい人",
         "columns": ["できること", "使うAI", "向いている人"],
         "related": r"文章|ライティング|校正|記事作成|執筆|ChatGPT|Claude|Gemini",
         "products": [
             {"partner": "bunken", "urls": ["https://rider-store.jp/bun-ken/"]},
-            {"partner": "doraverse", "urls": ["https://doraverse.com/ja/pricing", "https://doraverse.com/"]},
         ],
     },
     {
