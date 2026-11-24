@@ -1,0 +1,199 @@
+{
+  "slug": "jaxa-unauthorized-access-data-leak",
+  "sourceType": "web",
+  "sourceUrl": "https://www.nikkei.com/article/DGXZQOSG244FZ0U6A121C2000000/",
+  "sourceName": "日本経済新聞・NHK ほか",
+  "title": "JAXAの観測データシステムで約2,000人分情報流出か　不正アクセスで停止と報道",
+  "seoTitle": "JAXA不正アクセスで2,000人流出か：システム停止と報道",
+  "threadsPost": "JAXAの地球観測データや気象データを利用している人に、知っておいてほしい話です。\n\nJAXAのデータ公開システムが不正アクセスを受け、約2,000人分のアカウント名などが流出したと報じられました。\n11月18日からシステムは停止しており、再開のめどはまだ立っていません。\n\n仕事や個人で、宇宙や気象のデータを扱う機会はありますか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "plain",
+      "question": "仕事や個人で、宇宙や気象のデータを扱う機会はありますか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "explainer",
+  "lede": "JAXA（宇宙航空研究開発機構）の地球観測衛星データを公開するシステムが外部からの不正アクセスを受け、利用者約2,000人分のアカウント情報が流出したと報道されました。日本経済新聞や朝日新聞によると、11月18日に異常を検知してシステムを停止しており、システム内部には侵入用の「バックドア（裏口）」も設置されていました。観測データ自体の改ざんや閲覧被害は確認されていませんが、サービスの再開時期はまだ決まっていません。",
+  "description": "JAXAの地球観測データ公開システムが不正アクセスを受け、約2,000人分のアカウント情報が流出したと日本経済新聞などが報じました。システム内部にバックドアが設けられており、11月18日よりシステム停止が続いています。再開時期は未定です。",
+  "keywords": [
+    "JAXA",
+    "不正アクセス",
+    "情報流出",
+    "地球観測衛星",
+    "サイバー攻撃",
+    "バックドア",
+    "アカウント情報",
+    "セキュリティ"
+  ],
+  "tags": [
+    "JAXA",
+    "不正アクセス",
+    "サイバー攻撃",
+    "情報セキュリティ"
+  ],
+  "highlights": [
+    "JAXAの地球観測データ公開システムが不正アクセスを受け、約2,000人分のアカウント情報が流出と報道。",
+    "11月18日にシステムを停止し内部に「裏口」が発見されるも、観測データの閲覧被害や防災影響は未確認。",
+    "システム再開のめどは立っておらず、JAXAは攻撃の詳細や影響範囲について調査を進めています。"
+  ],
+  "timetable": [],
+  "verdict": null,
+  "workMoney": {
+    "relevance": "medium",
+    "points": [
+      "JAXAの地球観測データを業務や研究、防災ビジネスで使っている人は、同一パスワードを他サービスで使い回していないか自衛が必要です。",
+      "現時点で気象データなどの観測データそのものへの不正アクセスや改ざんは報告されておらず、一次データへの直ちの影響は出ていません。"
+    ]
+  },
+  "body": "対象となるシステムは、地球観測研究センターなどが運用し、気象機関や研究者のほか、洪水や気象のデータをビジネスに使う一般向けにデータを届ける仕組みです。同じアカウント情報をほかのWebサイトやサービスでも使い回している人は、安全のためにパスワードの変更を検討するとよいでしょう。\n\n## 不正アクセスの経緯と見つかった侵入の裏口\n\n朝日新聞などの報道によると、攻撃者はWeb上のプログラムが持つ脆弱性（安全上の不具合）を突いて侵入しました。システム内には後から再び侵入するための「バックドア（裏口）」が設置されており、内部を探索された形跡が確認されています。\n\nJAXAは11月18日に異変を検知し、同日16時30分から該当システムを停止しました。人工衛星が観測したデータ自体は広く一般に公開されているものであり、データ改ざんなどの被害や、停止による防災・研究への影響は報告されていません。\n\n## 日本の利用者が受ける影響と今すべきこと\n\n流出した情報は約2,000人分のアカウント名と暗号化されたパスワードです。朝日新聞の報道によれば、アカウント名単体で氏名や所属先まで特定することは難しく、暗号化されたパスワードが解読される危険性も低いと分析されています。\n\nただし、外部サービスで同じパスワードを使い回している場合、二次被害につながる恐れがあります。該当するシステムを利用していた人は、関連するほかのサービスでパスワードを変更することが推奨されます。\n\nJAXAは2023年10月にも不正アクセスによる情報漏洩が発生しており、システムの監視体制を強めていました。今回の事案について「巧妙化するサイバー攻撃を防ぎきれなかった」とし、攻撃の詳細や影響範囲について詳しく調べています。\n\n## サイソクの見方：約2,000人分の流出、まずパスワードの使い回しを確認\n\n利用者約2,000人分のアカウント情報が流出し、地球観測データ公開システムは11月18日から停止しているため、利用者はまず自分の利用状況を確かめるのが先決とみられます。該当システムのパスワードをほかのサービスでも使い回しているなら、そのサービスでの変更を検討し、使い回していないならJAXAの調査結果を待つのが判断の目安と考えられます。\n\n## まだ分からないこと\n\n- 不正アクセスを行った攻撃者の特定や侵入経路の詳細はまだ発表されていません。\n- 停止している地球観測データ公開システムの再開時期はまだ決まっていません。\n",
+  "easy": "## ひとことで言うと\n\nJAXAが運用する地球観測データの公開システムが不正アクセスを受け、約2,000人分のアカウント名や暗号化されたパスワードが漏れたと報じられました。\n\n## なにが起きたの？\n\n2026年11月18日にシステムで異常が見つかり、JAXAは安全のためサービスを止めました。攻撃者はシステムの弱点を突いて侵入し、再び入るための「裏口」を作っていたとのことです。\n\n## 私たちへの影響は？\n\n流出したアカウント名だけでは特定の個人を突き止めることは難しく、暗号化されたパスワードが解読される可能性も低いとされています。ただし、同じパスワードをほかのサイトでも使っている場合は注意が必要です。",
+  "channel": "話題のニュース",
+  "channelId": "",
+  "channelSlug": "trends",
+  "genre": "社会・行政",
+  "genreSlug": "public",
+  "disclaimer": "本記事は複数の報道（日本経済新聞・NHK・朝日新聞）をもとにAIが要約して自動生成したものです。公式の発表はまだ確認できていません。発表が出たら内容を更新します。正確な情報は元の報道と、今後の公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "jaxa",
+  "publishedAt": "2026-11-24T08:50:00+00:00",
+  "generatedAt": "2026-11-24T09:12:19.442294+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/jaxa-unauthorized-access-data-leak-1d667571.jpg",
+  "model": "gemini-3.5-flash",
+  "affiliates": [],
+  "newsType": "security",
+  "trendKeyword": "jaxa",
+  "sources": [
+    {
+      "title": "JAXAに不正アクセス、地球観測データの利用者2000人の情報が漏洩",
+      "url": "https://www.nikkei.com/article/DGXZQOSG244FZ0U6A121C2000000/",
+      "source": "日本経済新聞"
+    },
+    {
+      "title": "JAXAのシステムに不正アクセス 一部アカウント名など漏えい",
+      "url": "https://news.web.nhk/newsweb/na/nd-20261124de80645",
+      "source": "NHK"
+    },
+    {
+      "title": "JAXAに不正アクセス、2千人分情報流出　衛星データ公開システム",
+      "url": "http://www.asahi.com/articles/ASVCS2CC8VCSUTFL00PM.html?ref=rss",
+      "source": "朝日新聞"
+    }
+  ],
+  "pressReport": true,
+  "awaitingOfficial": true,
+  "factStatus": "報道ベース・公式発表は未確認",
+  "pressCheckedAt": "2026-11-24T09:12:19.443136+00:00",
+  "factSources": [
+    {
+      "label": "公式の資料",
+      "name": "JAXAウェブサイト(移動ページ）：宇宙政策 - 内閣府",
+      "url": "https://www8.cao.go.jp/space/link/jaxa_link.html",
+      "checkedAt": "2026-11-24"
+    }
+  ],
+  "todayActions": [
+    "同じパスワードを使ったサービスをすべて確認し、それぞれ別のものに変更する",
+    "銀行やネット通販で、ワンタイムパスワードや生体認証を利用できるか確認する"
+  ],
+  "ownViewAdded": true,
+  "qualityBar": {
+    "score": 8,
+    "missing": [],
+    "notes": {},
+    "checkedAt": "2026-11-24T09:13:04+00:00",
+    "before": [],
+    "repaired": false
+  },
+  "qualityScore": 96,
+  "sourcePublishedAt": "2026-11-24T08:50:00+00:00",
+  "detectedAt": "2026-11-24T09:10:55+00:00",
+  "speedMinutes": 27,
+  "searchTitle": "JAXAのアカウント情報流出は約2,000人分　再開時期は未定",
+  "layout": "noir",
+  "summaryLine": "JAXAの地球観測データ公開システムが不正アクセスを受け、**約2,000人**分のアカウント情報が流出と報道。",
+  "todaySteps": [
+    {
+      "action": "同じパスワードを使ったサービスをすべて確認し、それぞれ別のものに変更する",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "steps": [
+        "同じID・パスワードを使っているサービスを洗い出す",
+        "該当する各サービスのパスワードを速やかに変更する",
+        "サービスごとに異なるパスワードを登録する"
+      ],
+      "url": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html"
+    },
+    {
+      "action": "銀行やネット通販で、ワンタイムパスワードや生体認証を利用できるか確認する",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "steps": [
+        "銀行やインターネット通信販売サービスで提供状況を確認する",
+        "利用できる場合はワンタイムパスワードサービスを活用する",
+        "指紋や顔認証などの認証方法も活用する"
+      ],
+      "url": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html"
+    }
+  ],
+  "worries": [
+    {
+      "q": "同じパスワードの別サービスも乗っ取られる？",
+      "a": "警察庁は、複数のサイトで同じID・パスワードを使っていると、ひとつでも盗まれた場合に銀行やSNS、通販サービスなどが乗っ取られる被害に遭う可能性があると説明しています。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "action": "同じID・パスワードを使うサービスを洗い出し、各サービスのパスワードを速やかに変更してください。",
+      "general": true
+    },
+    {
+      "q": "サービスごとに違うパスワードを覚えられないときは？",
+      "a": "警察庁は、IDやパスワードを覚えられない場合には、パスワード管理アプリなどを活用するよう案内しています。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "action": "覚えるのが難しい場合は、パスワード管理アプリなどの活用を検討してください。",
+      "general": true
+    },
+    {
+      "q": "パスワード以外に追加できるログイン対策はある？",
+      "a": "警察庁によると、銀行やインターネット通信販売サービスには、パスワードに加えてメールやSMSのワンタイムパスワードを求めるサービスがあります。指紋や顔認証なども活用できます。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "action": "利用している銀行やネット通販で、ワンタイムパスワードサービスや指紋・顔認証を利用できるか確認してください。",
+      "general": true
+    }
+  ],
+  "depthHeadings": {
+    "steps": "使い回しの確認後にできる対策",
+    "worries": "ほかのサービスへの影響や対策が心配"
+  },
+  "depthAt": "2026-11-24T09:14:17+00:00",
+  "imageCredit": {
+    "kind": "ai",
+    "model": "flux-2-klein-4b",
+    "prompt": "A padlock lying on a laptop keyboard in a dim office.",
+    "provider": "Cloudflare Workers AI",
+    "relevant": true,
+    "original": "https://article-image-ix.nikkei.com/https%3A%2F%2Fimgix-proxy.n8s.jp%2FDSXZQO3923736024112026000000-2.jpg?auto=compress&bg=FFFF&crop=focalpoint&fit=crop&fm=jpg&h=630&w=1200&s=1fd1a12c8e6eca51c4e0a194b92cfe4e",
+    "at": "2026-11-24T09:15:10+00:00"
+  },
+  "imageFocus": {
+    "x": 0.392,
+    "y": 0.434,
+    "box": [
+      0.0,
+      0.0,
+      0.784,
+      0.869
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/jaxa-unauthorized-access-data-leak-1d667571.jpg"
+  },
+  "coverImage": "https://ai-tech-express.jp/img/jaxa-unauthorized-access-data-leak-1d667571.jpg",
+  "coverCredit": {
+    "kind": "ai",
+    "model": "flux-2-klein-4b",
+    "prompt": "A padlock lying on a laptop keyboard in a dim office.",
+    "provider": "Cloudflare Workers AI",
+    "relevant": true,
+    "original": "https://article-image-ix.nikkei.com/https%3A%2F%2Fimgix-proxy.n8s.jp%2FDSXZQO3923736024112026000000-2.jpg?auto=compress&bg=FFFF&crop=focalpoint&fit=crop&fm=jpg&h=630&w=1200&s=1fd1a12c8e6eca51c4e0a194b92cfe4e",
+    "at": "2026-11-24T09:15:10+00:00",
+    "reused": true
+  }
+}

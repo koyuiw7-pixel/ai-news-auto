@@ -691,6 +691,7 @@
     "3a800fd121e9c80c928043d95cf022081a4c54e7": 2,
     "3a9ec507f846ddafa18b7257bb96a815b99347ba": 2,
     "3ac816f425cce45927002e596391e34fc286a67e": 2,
+    "3aeb8cea8c411fd8cf993b54510111c54d5b2655": 1,
     "3b1882b02cd810f5d2b12ccf960355b57b4e4a9f": 2,
     "3b1fef72cd68e8f9c2657bd426031f013873c482": 2,
     "3b2227e3b92d731d16c8620e8ecfba8e128ac4b7": 2,
@@ -1223,6 +1224,7 @@
     "6e12c360a9a0525d4ab996ef922375b6ba53340c": 2,
     "6e1820da18187a8959e96c49c0d26f711bde0a26": 2,
     "6e32a6ded9f72c28cd9adc142c8744dba99bff54": 2,
+    "6e6fb76cdf0492403b563a2e6eb99ad93bccc4b5": 1,
     "6e710b7e385b08a141ac6af24e1321f128c07634": 2,
     "6e97e1b2c5b3fa1fcbd8763ff672e5363957d108": 2,
     "6e9ac8bd6cf7a8f2f3b73dd19dbc6730f14d04e5": 2,
@@ -1657,6 +1659,7 @@
     "94d128c45597baf713b25659404df5d68eadc44b": 2,
     "94d5f2ddf284c56bd70c4e8cffd9350cebaf995a": 2,
     "94e93a518ff4a85bccfb0dc9e9fb354d783755de": 2,
+    "94ea286affc9bb9e37b0695b79b52cddd60c9190": 1,
     "94eed6ff6c3495680ed25a58f9e91b4f7d880e07": 2,
     "9542856dd453603603c991b6dfc262df353463fd": 2,
     "95430257fbc73b69d542543596656221fa9155c4": 2,
@@ -2161,7 +2164,7 @@
     "c39f7b65dd5e9d6c9b48c9937fc98a359e739001": 2,
     "c3bf1240611c575f8b33d6f74a1191b0d8ee5456": 2,
     "c3c65de1b4d8d06888dc550a6e0dc50d353750db": 2,
-    "c40df32811c0191e8225ecba1d425b135d0c20ee": 1,
+    "c40df32811c0191e8225ecba1d425b135d0c20ee": 2,
     "c40e2faea6089dfe63d0ea7873cdc570dd87337d": 3,
     "c417d1aa3f11d3c1229e3ff05ae188a2cc02c5d2": 2,
     "c422d91c60b65fde04871a1877c270397e521573": 2,
@@ -2361,6 +2364,7 @@
     "d4876ec734a9ba7bf6af801b013c826559ec36fa": 2,
     "d490d6aff44d35e936d6ac09517adc3d1d395845": 2,
     "d4a0899b60be41d36953c345ce040f82c55206b3": 2,
+    "d4b2ed759abbe76facf63fcf9974373ed23a8dbd": 1,
     "d4b630c99b0c64c22d977dcdb2b41dafc0fb6b5f": 2,
     "d5020f77ed774b8bc62f60edb6c4059287868736": 2,
     "d51b33ce19ff1f9cce2c3f8c5cb1ee26c653f7bb": 2,
@@ -2689,7 +2693,7 @@
     "f397fa8c0c29627c2e13e8488b9537ee48a1ec09": 2,
     "f39b4043d4e5bed91d5aa421cadfc98888039a43": 2,
     "f3a7777d673e7a860c44e2f1506568fc779ac601": 2,
-    "f3ea9b6f2666516e12291aa252f908fda3a9054c": 1,
+    "f3ea9b6f2666516e12291aa252f908fda3a9054c": 2,
     "f4305f491507cbc6e1ee38374d866fa780e4f6bc": 2,
     "f4708261eab089174ac60c7f091cc3851d2ba20a": 2,
     "f47124142d2d5f75d712c029119c02cacf92532f": 2,
@@ -9681,17 +9685,6 @@
       "trendLane": true,
       "url": "https://newsdig.tbs.co.jp/articles/-/3104679"
     },
-    "35867efb094da2f9": {
-      "at": "2026-11-10T09:07:04.060418+00:00",
-      "costUsd": 0.0131,
-      "intent": "query",
-      "mix": "other",
-      "model": "gemini-3.5-flash-lite",
-      "score": 92,
-      "section": "sports",
-      "slug": "u17-womens-world-cup-2026-morocco-2",
-      "url": "https://www.jfa.jp/news/00037008/"
-    },
     "3588ceed41552e46": {
       "at": "2026-11-10T15:33:37.677440+00:00",
       "costUsd": 0.0129,
@@ -11694,6 +11687,13 @@
       "slug": "nissin-line-account-data-leak",
       "url": "https://www.nissin.com/jp/news/13997/"
     },
+    "55ad37b59567413198e3ca1e8f8cf6573836958c": {
+      "at": "2026-11-24T08:58:53.393419+00:00",
+      "model": "openai-api:gpt-6-luna",
+      "reason": "quality: 「具体的な施設名や撤去日程は、公式発表を確認できていません」→元記事は4社が発表したと伝え、撤去は2027年1月から順次と明記しているため、発表の有無と日程の説明が矛盾します。; 「営業施設がないPAなどで、ごみ箱を撤去する動き」→元記事は全国280か所で順次撤去すると具体的に報じており、単なる動きとして曖昧にする一方で、対象数を示していません。; 「静岡県内の東名・新東名を使う",
+      "skipped": true,
+      "url": "https://news.yahoo.co.jp/articles/b6453df7119456d127cb2974e4268ef12f198f97"
+    },
     "55af1423e433ea11": {
       "at": "2026-11-22T17:34:50.189188+00:00",
       "costUsd": 0.0145,
@@ -11741,6 +11741,17 @@
       "reason": "prefilter: 価値の薄いお知らせ（募集）",
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026111815"
+    },
+    "5650ea6fa9d8f84c": {
+      "at": "2026-11-24T09:01:23.109866+00:00",
+      "costUsd": 0.0432,
+      "intent": "query",
+      "mix": "life",
+      "model": "openai-api:gpt-6.1-terra",
+      "score": 98,
+      "section": "business",
+      "slug": "fukushima-snow-disaster-financial-measures",
+      "url": "http://www.boj.or.jp/about/bcp/fso/fso261124a.pdf"
     },
     "568782698f4b9cb3": {
       "at": "2026-11-20T05:20:34.201948+00:00",
@@ -12505,12 +12516,6 @@
       "trendKeyword": "黒柳徹子",
       "trendLane": true,
       "url": "https://topics.smt.docomo.ne.jp/latestnews/keywords/151d9e6a41898128643ebeeff96d9da95508f353984909e6196990ad34b49a49"
-    },
-    "63b25ab6cf34c929": {
-      "at": "2026-11-10T09:05:35.030902+00:00",
-      "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・暮らしの交通/天気/値上げ/障害/給付/発売・日本のスポーツのどれでもない）",
-      "skipped": true,
-      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026111012"
     },
     "641d65c32658e107": {
       "at": "2026-11-17T15:11:15.827092+00:00",
@@ -13585,23 +13590,11 @@
       "skipped": true,
       "url": "https://news.yahoo.co.jp/articles/9ac30b834d028469dcc9f107062663fa0da908f4"
     },
-    "74bc77e289b0d220": {
-      "at": "2026-11-10T09:05:35.030695+00:00",
-      "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・暮らしの交通/天気/値上げ/障害/給付/発売・日本のスポーツのどれでもない）",
-      "skipped": true,
-      "url": "https://www.mhlw.go.jp/stf/houdou/0000212707_00059.html"
-    },
     "74dbbdaca9c95faea4876bd3061a6407aea9864c": {
       "at": "2026-11-16T02:26:30.023593+00:00",
       "reason": "trend: 扱わない話題: 事件・被害者/選挙・政党（関連報道2/3本に「事件」「選挙」）",
       "skipped": true,
       "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTFBsTFVRUFFObkwxaU5pNG9YVGNIUEl5SkQtQVpYbDFUNXRGcUxOZjZ3V0p2T09GckxfZWlTRkZ5U3d1bUltY0kxMjFXOA?oc=5"
-    },
-    "74fc8c4286ab6c41": {
-      "at": "2026-11-10T09:05:35.031062+00:00",
-      "reason": "prefilter: 価値の薄いお知らせ（審議会）",
-      "skipped": true,
-      "url": "https://www.soumu.go.jp/main_sosiki/joho_tsusin/policyreports/joho_tsusin/kaisai/02kiban14_04001379.html"
     },
     "7500efee6703d509cc21c5eae0369570b42907ca": {
       "at": "2026-11-22T04:21:53.508779+00:00",
@@ -16918,12 +16911,6 @@
       "skipped": true,
       "url": "https://www.cyberagent.co.jp/news/detail/id=34023"
     },
-    "b19a37afd7007bab": {
-      "at": "2026-11-10T09:05:35.030931+00:00",
-      "reason": "prefilter: 価値の薄いお知らせ（ビデオメッセージ）",
-      "skipped": true,
-      "url": "https://www.kantei.go.jp/jp/105/discourse/20261110message.html"
-    },
     "b1bd51c47a04c90f": {
       "at": "2026-11-16T18:32:42.657564+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（キャンペーン）",
@@ -17168,6 +17155,20 @@
       "reason": "prefilter: 価値の薄いお知らせ（審議会）",
       "skipped": true,
       "url": "https://www.mext.go.jp/b_menu/shingi/chukyo/chukyo2/015/giji_list/mext_00025.html"
+    },
+    "b510493e30220ef6": {
+      "at": "2026-11-24T08:57:13.440553+00:00",
+      "costUsd": 0.0066,
+      "intent": "query",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "recall",
+      "safetyLane": true,
+      "score": 98,
+      "section": "lifestyle",
+      "slug": "nisseki-red-cell-class1-recall-1125",
+      "url": "https://www.pmda.go.jp/safety/info-services/drugs/calling-attention/recall-info/0002.html"
     },
     "b5237f87fac0d4e0": {
       "at": "2026-11-12T06:17:19.227636+00:00",
@@ -17924,17 +17925,6 @@
       "trendLane": true,
       "url": "https://news.yahoo.co.jp/articles/ab9fd6f13ddc0db0a715a6af73c08fdffa405fff"
     },
-    "c12d4d8a91c1ade2": {
-      "at": "2026-11-10T09:07:56.914145+00:00",
-      "costUsd": 0.008,
-      "intent": "neutral",
-      "mix": "other",
-      "model": "gemini-3.5-flash-lite",
-      "score": 92,
-      "section": "sports",
-      "slug": "emperors-cup-2026-semifinal-schedule",
-      "url": "https://www.jfa.jp/news/00037007/"
-    },
     "c1558f6b53760f76": {
       "at": "2026-11-12T02:59:04.416823+00:00",
       "costUsd": 0.0044,
@@ -18171,6 +18161,12 @@
       "reason": "prefilter: 価値の薄いお知らせ（委員会）",
       "skipped": true,
       "url": "https://www.gov-online.go.jp/press_conferences/prime_minister/202611/video-327576.html"
+    },
+    "c437e666c2f0ffef3b428dbf9904da8fa04be598": {
+      "at": "2026-11-24T08:57:32.744561+00:00",
+      "reason": "trend: 扱わない話題: 選挙・政党（関連報道1/2本に「選挙」）",
+      "skipped": true,
+      "url": "https://news.yahoo.co.jp/articles/13b94855cc9f0e04c92a7930af5f7502a1ddb265"
     },
     "c44c9fda14a50dab": {
       "at": "2026-11-22T16:53:50.662014+00:00",
@@ -20056,6 +20052,17 @@
       "trendLane": true,
       "url": "https://news.web.nhk/newsweb/na/nd-20261116de76402"
     },
+    "e2535db75b6bcb3f6f4113f631f8385eeac48317": {
+      "at": "2026-11-24T09:13:12.553242+00:00",
+      "kind": "trend",
+      "model": "gemini-3.5-flash",
+      "pressReport": true,
+      "score": 96,
+      "slug": "jaxa-unauthorized-access-data-leak",
+      "trendKeyword": "jaxa",
+      "trendLane": true,
+      "url": "https://www.nikkei.com/article/DGXZQOSG244FZ0U6A121C2000000/"
+    },
     "e277391e1ad36281": {
       "at": "2026-11-23T20:11:59.775090+00:00",
       "reason": "review: 海外の AI の発表は自動で記事にしない（読者の安全・お金の話とチームの指示だけ。台帳 A75・scripts/news_mix.py review_ai_blocks）",
@@ -21016,12 +21023,6 @@
       "slug": "andst-data-leak-2740000-hotline",
       "url": "https://www.andst-hd.co.jp/news/notice/entry-17245/"
     },
-    "f3a3fc028a84123e": {
-      "at": "2026-11-10T09:07:57.676452+00:00",
-      "reason": "prefilter: 価値の薄いお知らせ（会議）",
-      "skipped": true,
-      "url": "https://www.mext.go.jp/b_menu/shingi/chousa/shotou/213/1418128_00001.html"
-    },
     "f3c0e879b850e85c7755ba814ba497c59f5c713f": {
       "at": "2026-11-19T15:22:13.541191+00:00",
       "reason": "trend: 重複: 同じ言葉の記事がある（atp-finals-2026-alcaraz-opening-win）",
@@ -21845,12 +21846,6 @@
       "slug": "meta-direct-messaging-app",
       "url": "https://about.fb.com/news/2026/11/introducing-direct-an-app-just-for-messaging/"
     },
-    "ffe0526a36b01e3d": {
-      "at": "2026-11-10T09:05:35.031168+00:00",
-      "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・暮らしの交通/天気/値上げ/障害/給付/発売・日本のスポーツのどれでもない）",
-      "skipped": true,
-      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026111002"
-    },
     "muse-01421cd9d4": {
       "at": "2026-11-14T06:25:05.114910+00:00",
       "mix": "other",
@@ -22507,14 +22502,6 @@
       "url": "https://www.docomo.ne.jp/info/news_release/2026/09/25_00.html",
       "writer": "muse"
     },
-    "muse-353e95e363": {
-      "at": "2026-11-24T09:09:19.710540+00:00",
-      "mix": "money",
-      "score": 100,
-      "slug": "life-insurance-deduction-2026",
-      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1140.htm",
-      "writer": "muse"
-    },
     "muse-3591a9485c": {
       "at": "2026-11-13T03:40:45.823524+00:00",
       "mix": "other",
@@ -22795,14 +22782,6 @@
       "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/iryouhoken/juuyou/kougakuiryou/index.html?hl=ja-JP",
       "writer": "muse"
     },
-    "muse-5771210477": {
-      "at": "2026-11-10T09:03:57.934315+00:00",
-      "mix": "other",
-      "score": 90,
-      "slug": "bicycle-blue-ticket-rules-2026",
-      "url": "https://www.npa.go.jp/bureau/traffic/bicycle/portal/system.html/index.html",
-      "writer": "muse"
-    },
     "muse-57ace8630a": {
       "at": "2026-11-12T01:54:22.388901+00:00",
       "mix": "other",
@@ -23041,14 +23020,6 @@
       "score": 100,
       "slug": "moriki-genmaicha-product-recall",
       "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202603004",
-      "writer": "muse"
-    },
-    "muse-6c5dea3dc6": {
-      "at": "2026-11-24T09:07:57.561744+00:00",
-      "mix": "money",
-      "score": 100,
-      "slug": "docomo-mobile-plan-price-changes",
-      "url": "https://www.docomo.ne.jp/info/news_release/2026/09/25_00.html",
       "writer": "muse"
     },
     "muse-6ce4b76d3f": {
@@ -24011,14 +23982,6 @@
       "url": "https://www.nisshin.com/release/details/20261021150415.html",
       "writer": "muse"
     },
-    "muse-bda1431dd3": {
-      "at": "2026-11-10T09:07:26.253170+00:00",
-      "mix": "other",
-      "score": 88,
-      "slug": "water-server-price-compare-3-brands",
-      "url": "https://faq.premium-water.net/answer/654085ac6468790b3d3ba189/",
-      "writer": "muse"
-    },
     "muse-be956f2047": {
       "at": "2026-11-17T21:19:30.683405+00:00",
       "mix": "other",
@@ -24777,104 +24740,24 @@
       "url": "",
       "writer": "roundup"
     },
-    "55ad37b59567413198e3ca1e8f8cf6573836958c": {
-      "at": "2026-11-24T08:58:53.393419+00:00",
-      "model": "openai-api:gpt-6-luna",
-      "reason": "quality: 「具体的な施設名や撤去日程は、公式発表を確認できていません」→元記事は4社が発表したと伝え、撤去は2027年1月から順次と明記しているため、発表の有無と日程の説明が矛盾します。; 「営業施設がないPAなどで、ごみ箱を撤去する動き」→元記事は全国280か所で順次撤去すると具体的に報じており、単なる動きとして曖昧にする一方で、対象数を示していません。; 「静岡県内の東名・新東名を使う",
-      "skipped": true,
-      "url": "https://news.yahoo.co.jp/articles/b6453df7119456d127cb2974e4268ef12f198f97"
+    "muse-353e95e363": {
+      "at": "2026-11-24T09:09:19.710540+00:00",
+      "mix": "money",
+      "score": 100,
+      "slug": "life-insurance-deduction-2026",
+      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1140.htm",
+      "writer": "muse"
     },
-    "5650ea6fa9d8f84c": {
-      "at": "2026-11-24T09:01:23.109866+00:00",
-      "costUsd": 0.0432,
-      "intent": "query",
-      "mix": "life",
-      "model": "openai-api:gpt-6.1-terra",
-      "score": 98,
-      "section": "business",
-      "slug": "fukushima-snow-disaster-financial-measures",
-      "url": "http://www.boj.or.jp/about/bcp/fso/fso261124a.pdf"
-    },
-    "b510493e30220ef6": {
-      "at": "2026-11-24T08:57:13.440553+00:00",
-      "costUsd": 0.0066,
-      "intent": "query",
-      "major": true,
-      "mix": "alert",
-      "model": "claude:sonnet",
-      "publicInterest": "recall",
-      "safetyLane": true,
-      "score": 98,
-      "section": "lifestyle",
-      "slug": "nisseki-red-cell-class1-recall-1125",
-      "url": "https://www.pmda.go.jp/safety/info-services/drugs/calling-attention/recall-info/0002.html"
-    },
-    "c437e666c2f0ffef3b428dbf9904da8fa04be598": {
-      "at": "2026-11-24T08:57:32.744561+00:00",
-      "reason": "trend: 扱わない話題: 選挙・政党（関連報道1/2本に「選挙」）",
-      "skipped": true,
-      "url": "https://news.yahoo.co.jp/articles/13b94855cc9f0e04c92a7930af5f7502a1ddb265"
+    "muse-6c5dea3dc6": {
+      "at": "2026-11-24T09:07:57.561744+00:00",
+      "mix": "money",
+      "score": 100,
+      "slug": "docomo-mobile-plan-price-changes",
+      "url": "https://www.docomo.ne.jp/info/news_release/2026/09/25_00.html",
+      "writer": "muse"
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-22T00:17:17.163262+00:00",
-      "attempt": 1,
-      "id": "eb5b98011db3b8a8",
-      "kind": "broad",
-      "model": "gemini-3.5-flash",
-      "problems": [
-        "「日本国内で流通している対象製品」→ 元情報は回収・交換情報の掲載を示すだけで、国内での流通状況までは確認できません。",
-        "「型番が『AlphaLing W-07』と表記されているものが対象」「本体やパッケージに印字」→ 型番は掲載情報で確認できますが、本体やパッケージのどこに印字されているか、そこを確認すれば対象と判定できるかは元情報にありません。",
-        "「充電作業や持ち運びを行わず」「対象製品の充電を行わない」「他の電子機器への給電に使用しない」→ これらを公式が指定した対応方法として裏付ける情報はありません。",
-        "「すぐに電源コードを抜き」→ 電源コードを抜くという具体的な手順は元情報にありません。",
-        "「リチウムイオン電池を搭載」「火災などの事故につながる恐れ」→ 元情報はリチウム電池内蔵充電器と示すのみで、電池の種類や当該製品の危険性・事故のおそれは確認できません。"
-      ],
-      "readability": {
-        "avg_paragraph": 74.2,
-        "avg_sentence": 55.6,
-        "long_share": 0.375,
-        "max_paragraph": 125,
-        "paragraphs": 6,
-        "sentences": 8
-      },
-      "score": 52,
-      "source": "caa-recall",
-      "title": "家電製品 SACDOTNET「リチウム電池内蔵充電器：AlphaLing W-07」 - 交換／回収",
-      "warnings": [
-        "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "読みやすさ: 文が長い（1文の平均 55.6字・60字超の文が 38% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-22T00:18:42.758114+00:00",
-      "attempt": 1,
-      "id": "124133ada9bd8f31",
-      "kind": "broad",
-      "model": "gemini-3.6-flash",
-      "problems": [
-        "タイトル「迂回で最大22分増」、要点・本文の「約22分」「約11分」「10時間」→いずれも元記事の所要時間や時刻から算出した数字ですが、記事内で計算と明記していません。",
-        "本文「下り線（水戸・潮来方面）は通常通り通行できます」→元記事は上り線の通行止めを告知していますが、下り線が通常通り通行できるとは明記していません。"
-      ],
-      "readability": {
-        "avg_paragraph": 109.3,
-        "avg_sentence": 54.6,
-        "long_share": 0.429,
-        "max_paragraph": 224,
-        "paragraphs": 7,
-        "sentences": 14
-      },
-      "score": 82,
-      "source": "e-nexco",
-      "title": "関東支社 【E51】東関東自動車道 上り線 潮来IC⇒佐原香取IC間 夜間通行止めのお知らせ",
-      "warnings": [
-        "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（IC・NEXCO・ETC）",
-        "読みやすさ: 文が長い（1文の平均 54.6字・60字超の文が 43% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-22T00:19:35.830007+00:00",
@@ -32583,6 +32466,58 @@
       "title": "令和8年11月20日からの大雪に係る災害等に対する金融上の措置について（福島県）",
       "warnings": [
         "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-24T09:12:43.977257+00:00",
+      "attempt": 1,
+      "id": "e2535db75b6bcb3f6f4113f631f8385eeac48317",
+      "kind": "trend",
+      "model": "gemini-3.5-flash",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 121.6,
+        "avg_sentence": 60.8,
+        "long_share": 0.429,
+        "max_paragraph": 168,
+        "paragraphs": 7,
+        "sentences": 14
+      },
+      "score": 96,
+      "source": "trends",
+      "title": "jaxa",
+      "warnings": [
+        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（JAXA）",
+        "読みやすさ: 文が長い（1文の平均 60.8字・60字超の文が 43% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-24T09:13:04.876841+00:00",
+      "attempt": 0,
+      "id": "e2535db75b6bcb3f6f4113f631f8385eeac48317",
+      "kind": "trend",
+      "model": "",
+      "problems": [
+        "読みやすさ基準外のまま受理: 書き直し後の確認に不合格: 「観測データ自体の改ざん」「一次データへの直ちの影響は出ていません」→元記事はデータにアクセスされた形跡がないことや防災・研究への影響が確認されていないことを伝えていますが、改ざんの有無や一次データへの影響までは明記していません。"
+      ],
+      "readability": {
+        "avg_paragraph": 121.6,
+        "avg_sentence": 60.8,
+        "long_share": 0.429,
+        "max_paragraph": 168,
+        "paragraphs": 7,
+        "sentences": 14
+      },
+      "score": 96,
+      "source": "trends",
+      "title": "jaxa",
+      "warnings": [
+        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（JAXA）",
+        "読みやすさ: 文が長い（1文の平均 60.8字・60字超の文が 43% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
       ]
     }
   ],
