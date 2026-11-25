@@ -1,0 +1,159 @@
+{
+  "slug": "jetbrains-mellum-2-1-instruct",
+  "sourceType": "web",
+  "sourceUrl": "https://blog.jetbrains.com/ai/2026/11/mellum2-1-instruct-is-out-bringing-faster-answers-for-coding-agents/",
+  "sourceName": "JetBrains公式ブログ",
+  "title": "応答は最大1.8倍速い無料AIモデル「Mellum2.1 Instruct」をJetBrainsが公開",
+  "seoTitle": "Mellum2.1 Instructとは？無料で使える料金と使い方",
+  "threadsPost": "AIコーディングの仕組みを作る人に、知っておいてほしい話です。\n\nJetBrainsが無料のAIモデル「Mellum2.1 Instruct」を公開しました。\n10月に出したモデルより短く答え、生成は最大1.8倍速くなります。\n\nAIモデルを自分で動かすとき、速さと精度のどちらを優先しますか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "ab",
+      "question": "AIモデルを自分で動かすとき、速さと精度のどちらを優先しますか？"
+    },
+    {
+      "pattern": "count",
+      "question": "ふだん手元のPCで動かすAIは、1日どのくらいの時間ですか？"
+    },
+    {
+      "pattern": "plain",
+      "question": "コーディングを手伝うAI、ふだん使っていますか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "explainer",
+  "lede": "AIにコードを書かせる仕組みを自作する開発者向けに、JetBrainsは11月25日、AIモデル「Mellum2.1 Instruct」を公開しました。コーディングエージェントの作業では、Thinking版の約半分のトークンで応答し、付属の高速化用ヘッドを使うと生成速度は最大1.8倍になります。Hugging FaceでApache 2.0ライセンスの下で公開され、手元のパソコンで動かすための形式も用意されています。",
+  "description": "JetBrainsが無料のAIモデル「Mellum2.1 Instruct」を公開しました。10月の「Mellum2.1 Thinking」と同じ土台で、考えの過程を省いて短く答える版です。SWE-bench Verifiedは前版の2倍、生成は最大1.8倍速く、Hugging Faceから誰でも動かせます。",
+  "keywords": [
+    "Mellum2.1 Instruct",
+    "JetBrains",
+    "Mellum2.1 Thinking",
+    "コーディングエージェント",
+    "オープンソース",
+    "AIモデル",
+    "Hugging Face",
+    "SWE-bench Verified",
+    "GGUF",
+    "ローカルAI",
+    "生成AI",
+    "Qwen3.5 9B"
+  ],
+  "tags": [
+    "生成AI",
+    "LLM",
+    "オープンソース",
+    "開発ツール"
+  ],
+  "highlights": [
+    "JetBrainsが無料のAIモデル「Mellum2.1 Instruct」を公開、コーディングエージェント向け",
+    "10月に公開した「Thinking」と同じ土台で、考えの過程を残さず短く答える版です",
+    "SWE-bench Verifiedの点は前版の2倍、コード生成では比較した4モデルで最も高くなりました"
+  ],
+  "timetable": [],
+  "verdict": {
+    "status": "available",
+    "japan": "ok",
+    "price": "無料",
+    "free": true,
+    "audience": "開発者",
+    "take": "AIコーディングの仕組みを作る人は、Hugging Faceで無料版を試すとよいでしょう。",
+    "judgedAt": "2026-11-25T17:05:48.662824+00:00"
+  },
+  "workMoney": {
+    "relevance": "medium",
+    "points": [
+      "コーディングエージェントを自作する開発者は、無料の「Mellum2.1 Instruct」を自社の環境で試せます。",
+      "GGUF版は手元のPCで動かせます。クラウドに頼らずAIコーディングの仕組みを検証できます。"
+    ]
+  },
+  "body": "ふだんコーディング支援ツールを使うだけで、モデルを自分で動かさない人には、すぐには関係しません。\n\nMellum2.1 Instructは、JetBrainsがコードを扱うAI向けに公開したオープンソース（無料で公開され、改変や再配布ができる）のモデルです。\n\n## 10月の「Thinking」に、短く答える版を追加\n\nJetBrainsの公式ブログによると、同社は10月にコーディングエージェント向けのモデル「Mellum2.1 Thinking」を出していました。11月25日に公開した「Mellum2.1 Instruct」は、これと同じ設計で同じように訓練したモデルです。違いは、答えるときに考えの過程を残さず、結論だけを短く返す点です。\n\n推論モデル（考えてから答えるAI）のThinkingは、失敗したテストの原因を突き止めるような、手順を踏む作業に向いています。一方、コードの小さな修正や、実行するコマンドの確認、コードへの質問は、そこまで深く考える必要がありません。JetBrainsは、こうした作業では推論に時間と計算資源を使うだけで、答えの質は上がらないと説明します。\n\nエージェントとしてコードを進める作業では、InstructはThinkingの約半分のトークン（AIが文字を数える単位）で答え、SWE-bench Verifiedではほぼ同じ精度を出します。ただしLiveCodeBenchやAIME（数学の難問を含む評価名）のような難しいアルゴリズムや数学の問題では、考える時間そのものが精度を左右します。そのため、こうした用途ではThinkingのほうが向いています。\n\n## 前版の2倍の点数、Qwen3.5 9Bより速い\n\nJetBrainsはInstructを、前の版「Mellum2 Instruct」と、同じ規模の2つのオープンなモデル「Qwen3.5 9B」「Gemma 4 E4B」と比べました。いずれも推論をオフにした状態での比較です。\n\n最も伸びたのは、コーディングエージェントの性能を測る評価指標「SWE-bench Verified」で、前のInstruct版から点が2倍になりました。コード生成では、Instructが比較した4モデルの中で最も高い点を出しました。複数ステップのツール操作では、Qwen3.5 9Bと同じ水準です。\n\nQwen3.5 9BはSWE-bench Verifiedの点はInstructより高いものの、Instructは1トークンあたり2.5Bのパラメーター（AIの規模を表す数）しか動かしません。その結果、1回の要求ではQwen3.5 9Bの約1.4倍、負荷がかかった状態では約1.8倍速くトークンを出せます。\n\n## 実物のリポジトリで学習、NVIDIAのNeMoで構築\n\n2つの版は、Thinkingと同じ2段階の強化学習（試行錯誤で報酬を頼りに学ぶ手法）で作られています。まずコードや数学、ツール操作、指示に従う課題を単独で解けるようになります。次に実際のリポジトリで、シェルやファイルのツールを使いながらエージェントとして動くことを学びます。隠されたテストに通ったときだけ報酬が与えられます。\n\nInstructでは2点を調整しました。考えずに答えるモデルに合わせて、答えが長くなりすぎないようにしました。生成と学習のずれも小さくして、学習を安定させています。\n\n学習にはNVIDIAのオープンな学習ライブラリNeMoを使っています。公開された研究や枠組みの上に作っているため、Mellum2.1は誰でも改良できる形で公開されています。\n\n## Hugging Faceで公開、手元で動かす形式と高速化用ヘッドも\n\nMellum2.1の2つの版は、いずれもHugging FaceでApache 2.0として公開されています。Apache 2.0は、無料で使い、改変し、再配布できる条件です。誰でもダウンロードして、自分の環境で動かせます。\n\n各モデルには、さらに2つの形式があります。1つはGGUF（自分のパソコンで動かすためのモデル形式）です。もう1つはMTP（multi-token prediction、複数のトークンを先読みする仕組み）ヘッドで、生成を最大1.8倍速くします。Instructは、このMTPヘッドとセットで公開されました。\n\n## 小さな修正ならInstruct、難しい問題ならThinking\n\n- 小さなコード修正やコマンドの確認、コードへの質問に使う人は、短く答えるInstructが候補です。エージェント型のコーディング作業では、Thinking版の約半分のトークンで応答します。\n- 難しいアルゴリズムや数学の問題に使う人は、Thinkingのほうが向いています。\n- Mellum2.1 Instructを試す人は、Hugging Faceで公開モデルを確認できます。自分のパソコンで動かす場合は、Hugging Faceで配布されているGGUF形式が用意されています。発表に入手期限の記載はありません。\n\n## サイソクの見方：手元で使うならInstruct、難問はThinking\n\nJetBrainsは10月にThinking、11月25日にInstructと、2つの版を順に公開しました。InstructはSWE-bench Verifiedの点が前版の2倍になり、生成も最大1.8倍速くなっています。一方でLiveCodeBenchやAIMEのような難問ではThinkingが優位とされ、用途で使い分けるのが現実的です。\n\nふだんの小さな修正やコードへの質問を手元で任せたいならInstruct、失敗の原因調査や難しいアルゴリズムにはThinking、と分けるとよいでしょう。両版ともApache 2.0で無料なので、まずHugging Faceで試してから判断できます。\n\n## まだ分からないこと\n\n- SWE-bench Verifiedの具体的な点数は公表されていません。示されているのは前版の2倍という比較だけです。\n- 商用のホスティングやAPIでの提供は、まだ発表されていません。",
+  "easy": "## ひとことで言うと\n\nJetBrainsが11月25日、無料のAIモデル「Mellum2.1 Instruct」を公開しました。AIにコードを書かせる仕組み向けで、短く速く答えるのが特徴です。\n\n## 何が変わるのか\n\n10月に公開した「Mellum2.1 Thinking」と同じ土台のモデルです。違いは、考えの過程を残さず、結論だけを短く返すことです。小さなコードの修正や、コードへの質問のような作業に向いています。\n\nSWE-bench Verified（コーディングの性能を測るテスト）では、前の版から点が2倍になりました。生成は最大1.8倍速くなります。\n\n## 無料で手に入る\n\nHugging Faceから、無料で改変や再配布ができる条件（Apache 2.0）で公開されています。手元のPCで動かす版と、生成を最大1.8倍速くする仕組みも用意されています。難しい問題を解く用途には、じっくり考える版の「Thinking」のほうが向いています。",
+  "channel": "JetBrains公式ブログ",
+  "channelId": "",
+  "channelSlug": "jetbrains-blog",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "Mellum2.1 Instruct Is Out, Bringing Faster Answers for Coding Agents",
+  "publishedAt": "2026-11-25T11:00:00+00:00",
+  "generatedAt": "2026-11-25T17:05:48.662811+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/jetbrains-mellum-2-1-instruct-4d539e04.jpg",
+  "model": "openrouter:baidu/ernie-5.5-flash-preview:free",
+  "affiliates": [
+    {
+      "name": "OZ GAMING",
+      "label": "OZ GAMING（GPU搭載のBTOパソコン）",
+      "url": "https://px.a8.net/svt/ejp?a8mat=4BELTP+BOXHGY+5U1O+5YJRM",
+      "note": "ローカルLLMや画像生成AIを手元で試すためのGPU搭載PCを、構成から選べるBTOショップ",
+      "pixel": "https://www14.a8.net/0.gif?a8mat=4BELTP+BOXHGY+5U1O+5YJRM"
+    }
+  ],
+  "newsType": "product",
+  "faq": [
+    {
+      "q": "Mellum2.1は前の「Mellum2」と何が違いますか？",
+      "a": "実際のリポジトリで大規模な強化学習を行った点が違いです。NVIDIAのオープンな学習ライブラリNeMoを使い、実環境の課題で訓練しています。"
+    }
+  ],
+  "todayActions": [
+    "Hugging Faceで「Mellum2.1 Instruct」をダウンロードし、Apache 2.0の条件を確認する。",
+    "手元のPCで動かすならGGUF版、生成を速くするならMTPヘッドを選ぶ。",
+    "失敗の原因調査など難問には「Mellum2.1 Thinking」の併用を検討する。"
+  ],
+  "searchTrend": "is",
+  "trendKeyword": "is",
+  "qualityBar": {
+    "score": 5,
+    "missing": [
+      1,
+      5,
+      6
+    ],
+    "notes": {
+      "1": "最初の3行にだれにが無い",
+      "5": "することは書いてあるが、どこで（窓口・ページ）・いつまでが無い",
+      "6": "言い換えの無い略語（SWE）"
+    },
+    "checkedAt": "2026-11-25T17:07:13+00:00",
+    "before": [
+      1,
+      3,
+      5,
+      6
+    ],
+    "repaired": true
+  },
+  "qualityScore": 98,
+  "sourcePublishedAt": "2026-11-25T11:00:00+00:00",
+  "detectedAt": "2026-11-25T17:01:14+00:00",
+  "layout": "noir",
+  "summaryLine": "JetBrainsが無料のAIモデル「Mellum2.1 Instruct」を公開、コーディングエージェント向け",
+  "depthAt": "2026-11-25T17:12:23+00:00",
+  "imageCredit": {
+    "kind": "official",
+    "org": "JetBrains",
+    "provider": "JetBrains公式ブログ",
+    "sourceUrl": "https://blog.jetbrains.com/ai/2026/11/mellum2-1-instruct-is-out-bringing-faster-answers-for-coding-agents/",
+    "original": "https://blog.jetbrains.com/wp-content/uploads/2026/11/mellum2.1-instruct-cover-2560x1440-jetbrains-nvidia-1.png",
+    "width": 1200,
+    "height": 675,
+    "at": "2026-11-25T17:13:46+00:00",
+    "imageKind": "hero"
+  },
+  "heroOk": false,
+  "imageFocus": {
+    "x": 0.539,
+    "y": 0.505,
+    "box": [
+      0.078,
+      0.011,
+      1.0,
+      1.0
+    ],
+    "ar": 1.7778,
+    "src": "https://ai-tech-express.jp/img/jetbrains-mellum-2-1-instruct-4d539e04.jpg"
+  }
+}
