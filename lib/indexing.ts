@@ -164,6 +164,44 @@ export const NO_BODY: number = rules.noBody;
 export const SHORT_BODY: number = rules.shortBody;
 const SHORT_EXEMPT = new Set<string>(shortExempt.slugs);
 
+/** 報道機関・ニュースの集約サイトのホスト（scripts/indexnow.py の PRESS_SOURCE_HOSTS） */
+const PRESS_HOSTS: string[] = rules.pressHosts;
+
+function hostOf(url?: string | null): string {
+  try {
+    return new URL((url ?? "").trim()).hostname.toLowerCase().replace(/^www\./, "");
+  } catch {
+    return "";
+  }
+}
+
+/** 出典の URL が報道機関・ニュースの集約サイトか（scripts/indexnow.py の press_host と同じ） */
+export function isPressHost(url?: string | null): boolean {
+  const host = hostOf(url);
+  return Boolean(host) && PRESS_HOSTS.some((base) => host === base || host.endsWith(`.${base}`));
+}
+
+/**
+ * 報道（ニュース媒体・集約サイト）を出典にした記事か（scripts/indexnow.py の press_sourced と同じ）。
+ * 2026-11-25 AdSense の点検: 他の媒体の記事をAIで書き直したページに見えるので検索に出さない（記事は消さない）。
+ * 報道から作り、あとで公式の発表で確かめ直した記事（officialSourceUrl）は外す
+ */
+export function isPressSourced(
+  article: Pick<ArticleSummary, "pressOnly" | "awaitingOfficial" | "pressReport" | "officialSourceUrl" | "channelSlug" | "sourceUrl">,
+): boolean {
+  if (article.pressOnly === true || article.awaitingOfficial === true) return true;
+  if (article.pressReport === true && !article.officialSourceUrl) return true;
+  const slug = article.channelSlug ?? "";
+  if (slug.startsWith("radar-") && slug !== "radar-official") return true;
+  return isPressHost(article.sourceUrl);
+}
+
+/** 動画（YouTube）だけから作った記事か（scripts/indexnow.py の video_only と同じ。まとめ記事は外す） */
+export function isVideoOnly(article: Pick<ArticleSummary, "type" | "sourceType" | "videoId">): boolean {
+  if (article.type === "roundup") return false;
+  return article.sourceType !== "web" && Boolean(article.videoId);
+}
+
 /**
  * 検索に出さない理由（出すなら null）。scripts/indexnow.py の noindex_reason と同じ。
  * 2026-11-13 オーナー「とにかく数字」（台帳 A61）: 公開した記事は検索に出す。出さないのは 手動の指定（indexable: false）・
@@ -180,6 +218,9 @@ export function noindexReason(article: ArticleSummary): string | null {
   if (article.duplicate || (article.duplicateOf && article.duplicateOf !== article.slug)) return "duplicate";
   // 14日間訪問0の記事（content/noindex_zero_visit.json。2026-11-10 オーナー承認。記事は消さない）
   if (isZeroVisit(article.slug)) return "zero-visit";
+  // 2026-11-25 AdSense の点検: 報道を出典にした記事（press）・動画だけから作った記事（video-only）は検索に出さない（記事は消さない）
+  if (isPressSourced(article)) return "press";
+  if (isVideoOnly(article)) return "video-only";
   // 2026-11-13 オーナー「とにかく数字」: 公開した記事は検索に出す。題名の語（lifeLink）・主題（isFocus）では外さない
   // （紅白の出場歌手一覧・年賀状の引受日の記事が、題名に軸の語が無いだけで検索から外れていた）。
   // 軸から外れた話題は公開前の門（scripts/indexnow.py の publish_block_reason）で止める

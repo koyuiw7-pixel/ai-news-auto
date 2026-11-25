@@ -223,7 +223,8 @@ class EveryPathGateTest(unittest.TestCase):
 
     def test_only_the_muse_lane_sets_the_mark(self):
         for path in (ROOT / "scripts").glob("*.py"):
-            if path.name in ("muse_articles.py", "public_interest.py"):
+            # indexnow.py は印を読むだけ（報道が出典の記事を検索に出さない press。2026-11-25 AdSense の点検）
+            if path.name in ("muse_articles.py", "public_interest.py", "indexnow.py"):
                 continue
             source = path.read_text("utf-8")
             self.assertNotIn('"pressOnly"', source, path.name)
@@ -343,13 +344,14 @@ class BuildArticleTest(unittest.TestCase):
         self.assertIn("title・lede・threads_post には必ず報道機関の名前を入れる", prompt)
 
     def test_press_only_article_is_indexable_like_the_trend_lane(self):
-        """2026-11-13: 報道だけの Muse の記事も検索に出す・サイトマップに入る（話題のレーンと同じ）。札と印は残す"""
+        """2026-11-13: 報道だけの Muse の記事も公開する（話題のレーンと同じ）。札と印は残す。
+        2026-11-25 AdSense の点検から、報道が出典の記事は公開したまま検索には出さない（noindex の理由 press。記事は消さない）"""
         long_body = GOOD["body"] + "\n## 家計への影響\n\n" + "NHKによると、輸入品の値段に影響が出る見通しです。" * 30
         (status, rec), _ = run_build(PRESS_ONLY, [{**GOOD, "body": long_body}])
         self.assertEqual(status, "ok", rec)
         self.assertNotIn("indexable", rec)
-        self.assertIsNone(indexnow.noindex_reason(rec))
-        self.assertTrue(indexnow.is_indexable(rec))
+        self.assertEqual(indexnow.noindex_reason(rec), "press")
+        self.assertFalse(indexnow.is_indexable(rec))
         self.assertIsNone(indexnow.publish_block_reason(rec))  # 印で素通りではなく、ほかの Muse の記事と同じ門を通る
         self.assertEqual((rec["pressOnly"], rec["officialPending"]), (True, True))
         self.assertTrue(rec["channelSlug"].startswith("radar-"))  # 読者への札は「出典（報道）」のまま

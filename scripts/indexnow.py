@@ -496,6 +496,69 @@ NO_BODY = 200  # これより短い本文は「本文が無い」として検索
 # 厚くできなかった記事と、話題のまとめの記事（trendKeyword）が当たる。11/18〜11/21 の検索などからの訪問は 137本で3（ほかは344）だった
 SHORT_BODY = 800
 
+# 2026-11-25 AdSense の申請の前の点検（30ページ）: 報道機関・ニュースの集約サイトの記事を出典にした記事は検索に出さない（noindex・理由 press）。
+# 他の媒体の記事をAIで書き直したページに見え、「2次情報を使うのはうそ」（2026-11-25 オーナー）の方針とも合わないため。記事は消さず、公開したまま一覧・リンクに残す。
+# 当てはまるのは: 報道の印（pressOnly・awaitingOfficial、公式の発表で確かめ直していない pressReport）、出典の URL が下の報道機関・集約サイト、
+# 発信元が話題の見張りの報道機関（radar-<報道機関のホスト>。radar-official は公式まで確かめた記事なので外す）。
+# 調査会社（東京商工リサーチ・帝国データバンクなど）は自社の調査の一次の発表なので含めない
+PRESS_SOURCE_HOSTS = frozenset({
+    # 通信社・全国紙・ブロック紙・経済紙
+    "www3.nhk.or.jp", "news.web.nhk", "47news.jp", "nordot.app", "kyodonews.jp", "jiji.com", "nikkei.com", "asahi.com", "yomiuri.co.jp",
+    "mainichi.jp", "sankei.com", "chunichi.co.jp", "tokyo-np.co.jp", "hokkaido-np.co.jp", "nishinippon.co.jp", "kahoku.co.jp",
+    # テレビ局のニュース
+    "newsdig.tbs.co.jp", "news.tv-asahi.co.jp", "news.ntv.co.jp", "fnn.jp", "news.tbs.co.jp",
+    # スポーツ紙・夕刊紙
+    "nikkansports.com", "sponichi.co.jp", "hochi.news", "sanspo.com", "daily.co.jp", "tokyo-sports.co.jp", "zakzak.co.jp", "nikkan-gendai.com",
+    # ニュースの集約サイト（dメニューニュース・Yahoo!ニュース など）
+    "topics.smt.docomo.ne.jp", "news.yahoo.co.jp", "finance.yahoo.co.jp", "news.livedoor.com", "news.goo.ne.jp", "news.biglobe.ne.jp",
+    "news.nifty.com", "news.infoseek.co.jp", "news.excite.co.jp",
+    # 雑誌・ネットの報道
+    "toyokeizai.net", "president.jp", "diamond.jp", "bunshun.jp", "itmedia.co.jp", "watch.impress.co.jp", "news.mynavi.jp", "japan.cnet.com",
+    "oricon.co.jp", "modelpress.jp", "natalie.mu", "gori.me",
+    # 海外の報道
+    "reuters.com", "bloomberg.com", "bloomberg.co.jp", "apnews.com", "cnbc.com", "axios.com", "techcrunch.com", "theverge.com", "wired.com",
+    "engadget.com", "arstechnica.com", "macrumors.com", "9to5mac.com", "9to5google.com", "wsj.com", "ft.com", "theinformation.com",
+    "endpoints.news", "nytimes.com", "bbc.com", "bbc.co.uk", "cnn.com",
+})
+
+
+def _host_of(url: str) -> str:
+    from urllib.parse import urlsplit  # noqa: PLC0415
+
+    try:
+        return urlsplit(str(url or "").strip()).netloc.lower().split(":")[0]
+    except ValueError:
+        return ""
+
+
+def press_host(url: str) -> bool:
+    """出典の URL が報道機関・ニュースの集約サイトか（PRESS_SOURCE_HOSTS。サブドメインも含む）"""
+    host = _host_of(url)
+    if host.startswith("www."):
+        host = host[4:]
+    return bool(host) and any(host == base or host.endswith("." + base) for base in PRESS_SOURCE_HOSTS)
+
+
+def press_sourced(article: dict) -> bool:
+    """報道（ニュース媒体・集約サイト）を出典にした記事か。lib/indexing.ts の isPressSourced と同じ"""
+    if article.get("pressOnly") is True or article.get("awaitingOfficial") is True:
+        return True
+    # 報道から作り、あとで公式の発表で確かめ直した記事（officialSourceUrl。scripts/trend_lane.py の mark_official_found）は外す
+    if article.get("pressReport") is True and not article.get("officialSourceUrl"):
+        return True
+    slug = str(article.get("channelSlug") or "")
+    if slug.startswith("radar-") and slug != "radar-official":
+        return True
+    return press_host(str(article.get("sourceUrl") or ""))
+
+
+def video_only(article: dict) -> bool:
+    """動画（YouTube）だけから作った記事か（公式の文章の出典が無い）。lib/indexing.ts の isVideoOnly と同じ。
+    2026-11-25 AdSense の点検: 古い型の見出し（発表の内容・日本からの使い方・仕事への影響・まとめ）の動画の紹介で、検索に出す中身が薄い"""
+    if article.get("type") == "roundup":
+        return False
+    return article.get("sourceType") != "web" and bool(article.get("videoId"))
+
 # 2026-11-08 オーナー決定（台帳 A61）: サイトの軸は「暮らしとお金の『自分ごと』ニュース」（あなたのお金と暮らしに、何が変わる？）。
 # 公開前の門（on_axis）・取り下げた記事を戻すの基準は「お金か暮らしにつながる話題か」を題名で見る（検索に出す基準では 2026-11-13 から見ない）。（エンタメ・ゲーム・スポーツも、値段・料金・
 # 発売日・チケット・サブスク・サービスの話なら出す）。出さないのは、お金にも暮らしにもつながらない話題（ゴシップだけ・ゲームの物語や
@@ -555,7 +618,7 @@ def trend_topic(article: dict) -> bool:
 def noindex_reason(article: dict, dups: set[str] | frozenset = frozenset()) -> str | None:
     """検索に出さない理由（出すなら None）。サイトの lib/indexing.ts の noindexReason と同じ。
     出さないのは 手動の指定（manual）・本文が無い（no-body）・本文が短い（short。800字未満・2026-11-21 オーナー承認）・
-    本当の重複（duplicate）・14日間訪問0の一覧（zero-visit）だけ"""
+    本当の重複（duplicate）・14日間訪問0の一覧（zero-visit）・報道が出典（press）・動画だけから作った記事（video-only。2026-11-25）だけ"""
     if isinstance(article.get("indexable"), bool):
         return None if article["indexable"] else "manual"
     if article.get("type") == "roundup":
@@ -572,6 +635,11 @@ def noindex_reason(article: dict, dups: set[str] | frozenset = frozenset()) -> s
     # 14日間訪問0の記事（content/noindex_zero_visit.json。2026-11-10 オーナー承認。公開したまま・広告なし）
     if article.get("slug") in ZERO_VISIT:
         return "zero-visit"
+    # 2026-11-25 AdSense の点検: 報道を出典にした記事（press）・動画だけから作った記事（video-only）は検索に出さない。記事は消さない
+    if press_sourced(article):
+        return "press"
+    if video_only(article):
+        return "video-only"
     # 2026-11-13 オーナー「とにかく数字」: 公開した記事は検索に出す。題名の語（life_link）・主題（is_focus）では外さない（本文の長さは上の short だけ）
     # （紅白の出場歌手一覧・年賀状の引受日の記事が、題名に軸の語が無いだけで検索から外れていた）。
     # 軸から外れた話題は公開前の門（publish_block_reason の off-focus）で止める。公開した後に検索からだけ外すことはしない
@@ -584,6 +652,8 @@ NOINDEX_LABELS = {
     "short": f"本文が短い（空白を除いて{SHORT_BODY}字未満。2026-11-21 オーナー承認）",
     "duplicate": "同じ出来事・同じ切り口の記事の重複（代表の記事を検索に出す）",
     "zero-visit": "14日間訪問0の一覧",
+    "press": "報道機関・ニュースの集約サイトを出典にした記事（2026-11-25 AdSense の点検）",
+    "video-only": "動画だけから作った記事（2026-11-25 AdSense の点検）",
 }
 
 
@@ -746,6 +816,8 @@ def index_rules() -> dict:
         "launchSources": list(public_interest.LAUNCH_SOURCES),
         # 答えの欄に出さない「書かれていません」「載っていません」の文（scripts/nonanswer.py。lib/nonanswer.ts が読む。SEO A4・LLMO-A4）
         "notStated": _js_regex(nonanswer.NOT_STATED_RE),
+        # 報道機関・ニュースの集約サイトのホスト（noindex の理由 press。lib/indexing.ts の isPressSourced が読む）
+        "pressHosts": sorted(PRESS_SOURCE_HOSTS),
     }
 
 

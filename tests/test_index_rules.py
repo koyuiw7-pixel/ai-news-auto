@@ -71,7 +71,9 @@ SAMPLES = [
 
 def _summary(article: dict, body_length: int, japan_value: bool, body=None) -> dict:
     keys = ("slug", "type", "title", "seoTitle", "tags", "genreSlug", "channelSlug", "sourceType", "indexable", "verdict", "breaking", "newsType",
-            "trendKeyword")
+            "trendKeyword",
+            # 報道・動画だけの記事の判定（2026-11-25 AdSense の点検。lib/article-index.mjs の summarize と同じ項目）
+            "videoId", "sourceUrl", "pressReport", "awaitingOfficial", "pressOnly", "officialSourceUrl")
     out = {k: article.get(k) for k in keys if article.get(k) is not None}
     out.setdefault("tags", [])
     out.setdefault("title", "")

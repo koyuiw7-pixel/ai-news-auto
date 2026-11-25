@@ -207,6 +207,12 @@ export type Article = {
   late?: boolean;
   /** 話題のレーンの記事の急上昇の言葉（scripts/trend_lane.py。分野で検索から外さない） */
   trendKeyword?: string;
+  /** 報道をもとにした記事の印（scripts/trend_lane.py の pressReport・awaitingOfficial、scripts/muse_articles.py の pressOnly）。lib/indexing.ts の isPressSourced が見る */
+  pressReport?: boolean;
+  awaitingOfficial?: boolean;
+  pressOnly?: boolean;
+  /** 報道から作ったあと、公式の発表で確かめ直したページ（scripts/trend_lane.py の mark_official_found） */
+  officialSourceUrl?: string;
   /** 公開前の事実確認の点数（100点満点） */
   qualityScore?: number;
   /** 続報の履歴（古い順） */
@@ -321,6 +327,10 @@ export type ArticleSummary = Pick<
   | "angleOf"
   | "late"
   | "trendKeyword"
+  | "pressReport"
+  | "awaitingOfficial"
+  | "pressOnly"
+  | "officialSourceUrl"
   | "writer"
   | "videoId"
   | "videoUrl"
