@@ -334,7 +334,7 @@ class CapsAndExemptionTest(unittest.TestCase):
             self.assertEqual(tl.done_today(state), 2)
 
     def test_pipeline_wiring(self):
-        self.assertTrue(w.TREND_LANE and w.TREND_FROM_PRESS)
+        self.assertTrue(w.TREND_LANE and not w.TREND_FROM_PRESS)  # 2026-11-25 方向転換: 報道だけの話題は既定で作らない
         self.assertIn("max(0, min(args.trends, ramp.TREND_DAILY_CAP - trend_done))", SRC)
         loop = SRC[SRC.index("        for q in queue:"):SRC.index("        # 公式フィード（AI）と幅広い話題を、レーンごとに1本ずつ交互に処理する")]
         # 上限は話題のレーンだけで数える（1日の上限 remaining を見ない）

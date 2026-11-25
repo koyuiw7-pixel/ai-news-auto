@@ -36,7 +36,7 @@ class TrendFromPressOffTest(unittest.TestCase):
         import indexnow
         import public_interest as pi
 
-        self.assertTrue(web_articles.TREND_FROM_PRESS)
+        self.assertFalse(web_articles.TREND_FROM_PRESS)  # 2026-11-25 方向転換: 報道だけの話題は既定で作らない
         base = {"title": "ドコモで通信障害とNHKなど報道", "lede": "NHKなどが報じた。", "body": "## 何が報じられたか\n\nNHKによると、障害が起きた。",
                 "genreSlug": "public", "channelSlug": "trends", "trendKeyword": "ドコモ 障害", "pressReport": True,
                 "sourceUrl": "https://news.web.nhk/newsweb/na/nd-1"}

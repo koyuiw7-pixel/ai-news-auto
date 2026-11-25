@@ -68,6 +68,13 @@ class FakeArchive:
 
 
 class TrendLaneRunTest(unittest.TestCase):
+    # 2026-11-25 方向転換で TREND_FROM_PRESS の既定は 0（報道だけの話題は作らない）。
+    # ここでは「動かしたときの報道の道」の決まり（2社以上・事実の言い切りは出さない・検索の切り替え）を確かめるため 1 にして試す。
+    def setUp(self):
+        patcher = mock.patch.object(w, "TREND_FROM_PRESS", True)
+        patcher.start()
+        self.addCleanup(patcher.stop)
+
     def run_main(self, queue, pool=(), generated=None, argv=("--trends", "3")):
         state = {"processed_web": {}, "failed_web": {}, "major_tries": {}}
         written, removed, prompts = [], [], []

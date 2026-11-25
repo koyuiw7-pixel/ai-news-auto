@@ -728,7 +728,8 @@ def broad_prefilter(item: dict) -> str | None:
 TREND_LANE = os.environ.get("TREND_LANE", "1") != "0"
 # 公式の発表が無い話題を、主要な報道機関（public_interest.TREND_PRESS_OUTLETS）の独立した2社以上の報道で短い記事にするか。
 # W31 の例外はこの形だけ（2026-11-04〜11-12 は 0＝話題の記事を作らない、だった）
-TREND_FROM_PRESS = os.environ.get("TREND_FROM_PRESS", "1") == "1"
+# 2026-11-25 オーナー「2次情報を使うのはうそ」・方向転換（公式から一番早く）。報道だけの話題は既定で作らない（編集方針どおり）。
+TREND_FROM_PRESS = os.environ.get("TREND_FROM_PRESS", "0") == "1"
 # 報道が出典の話題の記事を検索に出さないようにする切り替え（既定は出す＝急上昇の言葉で検索から読者を呼ぶのが目的）。
 # Muse の道の「報道だけの記事」（scripts/muse_articles.py の pressOnly）も 2026-11-13 から同じく検索に出す。止めるときだけ TREND_PRESS_NOINDEX=1
 TREND_PRESS_NOINDEX = os.environ.get("TREND_PRESS_NOINDEX", "0") == "1"

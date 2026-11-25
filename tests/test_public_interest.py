@@ -284,7 +284,7 @@ class PressSourceGateTest(unittest.TestCase):
         import web_articles as w
 
         self.assertTrue(w.TREND_LANE)
-        self.assertTrue(w.TREND_FROM_PRESS)
+        self.assertFalse(w.TREND_FROM_PRESS)  # 2026-11-25 方向転換: 報道だけの話題は既定で作らない
         self.assertTrue(pi.press_source_problems(self.rec(channelSlug="trends", sourceUrl="https://www3.nhk.or.jp/news/x")))
 
 
