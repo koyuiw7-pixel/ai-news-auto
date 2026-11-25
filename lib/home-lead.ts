@@ -43,6 +43,15 @@ export function homeFeatureable(a: Pick<ArticleSummary, "bodyChars" | "bodyLengt
   return (a.bodyChars ?? a.bodyLength ?? 0) >= SHORT_BODY;
 }
 
+/**
+ * トップの主役で写真を出すか（2026-11-25 AdSense の3回目の申請の前の点検）。
+ * AI のイメージ（サーバー室などの一般的な絵になりやすい）や写真の無い記事は、最初の画面で大きな絵を出さず、
+ * 上の「自分のお金と暮らしの数字」の入口（components/HomeMoneyEntry.tsx）を目印にする。別の素材写真には替えない
+ */
+export function heroShowsPhoto(a: Pick<ArticleSummary, "photo">): boolean {
+  return Boolean(a.photo) && !a.photo?.ai;
+}
+
 /** 長い記事だけで枠を作る。1本も無ければ、枠を空にしないよう全部の記事から作る */
 export function preferFeatured<T>(all: ArticleSummary[], pick: (pool: ArticleSummary[]) => T[]): T[] {
   const got = pick(all.filter(homeFeatureable));

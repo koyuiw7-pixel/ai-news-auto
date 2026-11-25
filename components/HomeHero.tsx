@@ -18,7 +18,7 @@ import { liveLabel } from "@/lib/live-line";
  * 人は文字より画像を強く記憶する（画像優位性効果）ので、左に大きな写真、右に見出しを置く。
  * 強調は「何本を統合したか」の黒いバッジと、見出しの蛍光ペンの2か所だけに絞る。
  */
-export default function HomeHero({ lead, popular = false }: { lead: ArticleSummary; popular?: boolean }) {
+export default function HomeHero({ lead, popular = false, showPhoto = true }: { lead: ArticleSummary; popular?: boolean; showPhoto?: boolean }) {
   const isRoundup = lead.type === "roundup";
   // 時刻は載せた時刻（下の一覧・記事の「公開」と同じ）。24時間を過ぎた主役は「最新」ではなく、読まれていれば「よく読まれています」（2026-11-11 読者目線レビュー 11位）
   const postedAt = lead.generatedAt || lead.publishedAt;
@@ -37,8 +37,10 @@ export default function HomeHero({ lead, popular = false }: { lead: ArticleSumma
     <section
       aria-label="注目の記事"
       // 2026-11-10 オーナー「ホームは玄関」: 写真は見出しの上端にそろえる（縦の真ん中にそろえると写真の上に大きな空白ができていた）
-      className="grid items-start gap-3 sm:gap-6 lg:grid-cols-[1.12fr_1fr] lg:gap-12"
+      // 写真を出さないとき（AI のイメージ・写真なし。2026-11-25 AdSense の点検）は見出しの列だけ
+      className={showPhoto ? "grid items-start gap-3 sm:gap-6 lg:grid-cols-[1.12fr_1fr] lg:gap-12" : "grid items-start gap-3 sm:gap-6"}
     >
+      {showPhoto && (
       <div className="min-w-0">
       <Link
         href={href}
@@ -92,6 +94,7 @@ export default function HomeHero({ lead, popular = false }: { lead: ArticleSumma
         </div>
       )}
       </div>
+      )}
 
       <div className="flex min-w-0 flex-col gap-2 sm:gap-4">
         <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-meta">

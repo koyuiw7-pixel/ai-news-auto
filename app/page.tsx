@@ -2,6 +2,7 @@ import { articleTitle } from "@/lib/headline";
 import Link from "next/link";
 import CompanyMark from "@/components/CompanyMark";
 import HomeHero from "@/components/HomeHero";
+import HomeMoneyEntry from "@/components/HomeMoneyEntry";
 import HomeHeadlines from "@/components/HomeHeadlines";
 import HomeTrendingStrip from "@/components/HomeTrendingStrip";
 import HomeAssets from "@/components/HomeAssets";
@@ -22,7 +23,7 @@ import { siteConfig } from "@/site.config";
 import { pageShareImage } from "@/lib/page-share";
 import { coverPath } from "@/lib/cover-path";
 import { containPhoto } from "@/lib/photo-fit";
-import { featuredBundles, homeFeatureable, pickHomeHeadlines, pickHomeLead, pickLifeMoney, pickTrendingStrip, preferFeatured, STRIP_VISIBLE, viewsOf } from "@/lib/home-lead";
+import { featuredBundles, heroShowsPhoto, homeFeatureable, pickHomeHeadlines, pickHomeLead, pickLifeMoney, pickTrendingStrip, preferFeatured, STRIP_VISIBLE, viewsOf } from "@/lib/home-lead";
 import { alsoCoveredSentence } from "@/lib/coverage";
 import { guideShortName, lifeCompareGuide, type LifeCompareSlug } from "@/lib/buying-guides";
 
@@ -125,7 +126,10 @@ export default function HomePage() {
       {/* ページの主見出し（検索エンジンと読み上げ用。見た目はロゴと主役の記事が担う） */}
       <h1 className="sr-only">{siteConfig.siteName} 暮らしとお金の新しい動きが最速でわかる</h1>
       <div className="mx-auto max-w-[1240px] px-5 pb-8 pt-4 sm:px-8 sm:pt-10">
-        <HomeHero lead={lead} popular={viewsOf(lead.slug) > 0} />
+        {/* 最初の画面はサイトの軸「自分のお金と暮らしの数字」の入口から（2026-11-25 AdSense の点検。components/HomeMoneyEntry.tsx） */}
+        <HomeMoneyEntry />
+        {/* 主役の写真が AI のイメージ・写真なしのときは、別の素材の写真に替えず写真を出さない（上の入口が最初の画面の目印になる） */}
+        <HomeHero lead={lead} popular={viewsOf(lead.slug) > 0} showPhoto={heroShowsPhoto(lead)} />
         {/* 見出しの名前はいつも「暮らしとお金の主なニュース」。すぐ下に「いま話題」の欄があるので、名前に「いま話題」を重ねない（2026-11-14） */}
         <HomeHeadlines articles={headlines} />
         <HomeTrendingStrip articles={trendingStrip} />
