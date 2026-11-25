@@ -1,0 +1,269 @@
+{
+  "slug": "workspace-mcp-servers-agent-gateway",
+  "sourceType": "web",
+  "sourceUrl": "https://cloud.google.com/blog/products/identity-security/deploying-agents-safely-in-your-enterprise/",
+  "sourceName": "Google Cloud公式ブログ",
+  "title": "Trustを掲げるGoogle、AIエージェントはWorkspaceのREST API禁止へ　2027年2月1日から",
+  "seoTitle": "Workspace MCPサーバーとは？使い方と提供状況",
+  "threadsPost": "AIエージェントを業務に入れる担当の人に、押さえておきたい話です。\n\nGoogleが、Workspace MCPサーバーとWorkspace CLIを一般提供にしました。\nAIエージェントは2027年2月1日から、従来のREST APIが使えなくなります。\n\n自社のAI連携、移行の準備は進んでいますか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "count",
+      "question": "自社のAI連携、移行が必要な仕組みはいくつありますか？"
+    },
+    {
+      "pattern": "tradeoff",
+      "question": "AIの自動化と人の承認、どこまで手間を許せますか？"
+    },
+    {
+      "pattern": "line",
+      "question": "AIに任せる作業は、どこまでなら許せますか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "senpai",
+  "lede": "GmailやGoogleドライブを操作するAIエージェントは、2027年2月1日から従来のREST API（アプリ同士をつなぐ従来の窓口）が使えなくなります。代わりにWorkspace MCPサーバーかWorkspace CLIの利用が必須になり、両方とも今回一般提供が始まりました。自社でAI連携を作っている開発者や管理者は、期限までの移行が必要です。",
+  "description": "GoogleがWorkspace MCPサーバーとWorkspace CLIを一般提供し、Agent Gatewayも公開。AIエージェントは2027年2月1日からREST API不可に。開発者と管理者がすることを整理します。",
+  "keywords": [
+    "Workspace MCPサーバー",
+    "Workspace CLI",
+    "Agent Gateway",
+    "AIエージェント セキュリティ",
+    "Google Workspace",
+    "MCP",
+    "REST API 移行",
+    "Model Armor",
+    "Workspace AI Tools Addendum",
+    "DLP"
+  ],
+  "tags": [
+    "Google Workspace",
+    "Google Cloud",
+    "AIエージェント",
+    "MCP",
+    "セキュリティ"
+  ],
+  "highlights": [
+    "Workspace MCPサーバーとCLIが一般提供に。AIエージェントは2027年2月1日から従来のREST APIを使えなくなる",
+    "MCPサーバーはGmail・ドライブ・Docsなど8サービス向け。権限とDLPの確認、人の承認が組み込み済み",
+    "エージェント専用のOAuthクライアントIDが必須に。利用上限の課金は2027年4月1日から始まる"
+  ],
+  "timetable": [],
+  "verdict": {
+    "status": "available",
+    "japan": "unknown",
+    "price": "不明",
+    "free": null,
+    "audience": "開発者・管理者",
+    "take": "AI連携を自作しているなら、2027年2月1日までにMCPサーバーかCLIへ移行する計画を立てるとよいでしょう。",
+    "judgedAt": "2026-11-25T06:22:46.600683+00:00"
+  },
+  "workMoney": {
+    "relevance": "high",
+    "points": [
+      "自社でGmailやドライブにAIを連携させている開発者は、2027年2月1日までにMCPサーバーかCLIへ移行する必要があります。",
+      "管理者は管理コンソールで接続済みのアプリとエージェントを確認し、DLPの設定を見直せます。",
+      "エージェントの利用上限（クォータ）は2027年4月1日から課金が始まります。料金額はまだ発表されていません。"
+    ]
+  },
+  "body": "一般の利用者の画面は、今日すぐには変わりません。影響を受けるのは、GmailやGoogleドライブにAIエージェントをつなぐ仕組みを作っている開発者と、その管理者です。\n\nGoogle Cloud公式ブログによると、AIエージェントは2027年2月1日から、従来のREST API（アプリ同士をつなぐ従来の窓口）ではなく、Workspace MCPサーバーかWorkspace CLIを使う必要があります。MCPは、AIが外部のツールやデータにつながるための共通ルールです。Workspaceは日本で使えます。日本向けの料金ページもあります（当サイト確認 2026-11-03）。ただし、今回の新機能の日本での提供範囲はまだ発表されていません。\n\n## 一般提供になった3つの入り口\n\n今回、次の3つが使えるようになりました。\n\n- Workspace MCPサーバー（一般提供）: Gmail、ドライブ、Docs、Sheets、Slides、Calendar、Chat、Tasks向けの専用サーバーです。権限とDLP（情報漏えい防止）の確認、重要な操作での人の承認が組み込まれています。\n- Workspace CLI（一般提供）: ローカルのエージェントや自動化向けです。結果は構造化されたJSONで返り、OAuthのログイン範囲も絞れます。\n- Cloud Agent Gateway: Google Cloud上で、LLM、MCP、エージェント同士の通信（A2A）を検査する入り口です。エージェントの身元をAgent Registryで確認し、IAMの権限と外向き通信の原則禁止を適用します。\n\nMCPサーバーは、エージェント以外のOAuthクライアントを拒否します。AIへの不正な指示を調べるModel Armorとも連携します。従来のアプリは、これまでどおりREST APIで動きます。\n\n## 2027年2月1日と4月1日の期限\n\nGoogleは新しい「Workspace AI Tools Addendum」を設け、AIエージェントにMCPサーバーかCLIの利用を求めます。技術的な強制は2027年2月1日からです。すべての呼び出しは、組織のWorkspace権限、DLPルール、分類ラベルと照らし合わされます。\n\nエージェントは専用のOAuthクライアントIDが必要で、最小限の権限範囲と組み合わせます。期間限定の承認は近日提供です。利用上限（クォータ）の課金は2027年4月1日に始まります。\n\n同追補は、生データの恒久保存、モデルの学習への利用、派生データの長期保持、APIスクレイピングを認めません。派生データとユーザーデータは、一定期間内と、ユーザーが接続を解除したときに削除されます。\n\n## 人の承認と取り消し\n\n下書き作成や文書の要約は、エージェントが自動で進めます。メール送信、Driveの共有権限の変更、一括編集は、MCPサーバーとCLIがユーザーの明示的な確認を求めます。\n\nGoogle Cloud側では、機密性の高いCloud Storageバケットの読み取りやIAM権限の変更、本番環境の変更の前に、多要素認証や人の承認を求める設定ができます。\n\n管理者は管理コンソールで、AIエージェントを確認、監査、取り消しできます。ユーザー自身が活動を見て、メールやファイルへのアクセスを取り消せる機能は近日提供です。Cloud Agent IdentityやOAuthの許可を取り消すと、アクセスは直ちに止まります。\n\n近日提供のAI access restrictionsでは、Gmailのメッセージや特定のDriveのファイル、フォルダーへのエージェントのアクセスを遮断できます。\n\n## サイソクの見方：2027年2月1日が実質的な移行期限\n\nエージェントにREST APIの利用を認めなくなる点が、今回の最大の変更とみられます。GmailやDriveにAIを連携している社内ツールは、2027年2月1日までに接続方法を見直す必要があると考えられます。\n\n判断の目安は次のとおりです。\n\n- 自作のエージェントがREST APIを使っているなら、MCPサーバーかCLIへの移行を先に計画する。\n- 管理者なら、まず管理コンソールで接続済みのアプリとエージェントを棚卸しする。\n- 従来のアプリだけなら、REST APIのまま動くため、急ぎの変更は不要とみられる。\n\n## まだ分からないこと\n\n- 利用上限（クォータ）の課金額は、まだ発表されていません。\n- 期間限定の承認、ユーザー向けの活動確認、AI access restrictionsの提供時期は、「近日」とされるだけです。\n- 日本での提供範囲は、まだ発表されていません。\n\n## 開発者・管理者・Google Cloud利用企業がすること\n\n開発者は、Workspace MCPとCLIの構成ガイドに沿って構築し、MCP経由のユーザー確認とModel Armorなどの防御を実装します。Workspace AI Tools Addendumも確認が必要です。\n\nGoogleの開発者向けページによると、ユーザー委任のOAuthクライアントIDは、Google Auth Platformのクライアント設定で「このクライアントを AI 搭載エージェントに使用する」を選ぶ必要があります（Google for Developersのページ、11/25確認）。既存のクライアントで変更できないときは、AIエージェント用に新しく作ります。\n\nWorkspace管理者は、接続済みのアプリとエージェントを確認し、ユーザー向けのDLPポリシーを設定して、OAuthの活動ログを監視します。\n\nGoogle Cloudの利用企業は、Agent RegistryにAgent Identityを登録し、エージェントとMCPサーバーの前にAgent GatewayとModel Armorを置きます。機密操作にはMFAか人の承認を設定し、IAM、VPC Service Controls、クォータの上限を見直します。",
+  "easy": "## ひとことで言うと\n\nGoogleがAIエージェント向けの新しい接続方法を一般提供にしました。2027年2月1日からは、AIエージェントが従来の方法でGmailやドライブを操作できなくなります。\n\n## 何が変わるのか\n\nAIエージェントとは、自分で手順を進めるAIのことです。これまではアプリ向けの窓口（REST API）を通じてメールや文書を操作できました。\n\n今後は、Workspace MCPサーバーかWorkspace CLIを使う必要があります。メールの送信や共有設定の変更では、人の確認が求められます。\n\n## 管理者と開発者がすること\n\n開発者は、エージェント専用のOAuthクライアントID（認証用の識別番号）を使います。移行の期限は2027年2月1日です。\n\n管理者は、管理コンソールで接続済みのエージェントを確認し、不要なものは接続を取り消せます。\n\n利用上限の課金は2027年4月1日からです。日本での提供範囲や料金額はまだ発表されていません。",
+  "channel": "Google Cloud公式ブログ",
+  "channelId": "",
+  "channelSlug": "google-cloud-blog",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "Built for trust and control: Powering the next wave of AI agents across Google Workspace and Google Cloud",
+  "publishedAt": "2026-11-24T17:00:00+00:00",
+  "generatedAt": "2026-11-25T06:22:46.600671+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/workspace-mcp-servers-agent-gateway-4116deb9.jpg",
+  "model": "claude:sonnet",
+  "affiliates": [],
+  "newsType": "product",
+  "faq": [
+    {
+      "q": "Workspace MCPサーバーをClaudeで使うのに必要なプランは？",
+      "a": "Claude.aiかClaude Desktopで使うには、Claude Enterprise、Pro、Max、Teamのいずれかのプランが必要です（Google for Developersのページ、11/25確認）。"
+    },
+    {
+      "q": "Workspace CLIでChatのメッセージ送信は個人アカウントで使える？",
+      "a": "gwscli chat send_messageは、Google Workspaceアカウントが必要です。個人のGoogleアカウントでは対応していません（Google for Developersのページ、11/25確認）。"
+    }
+  ],
+  "todayActions": [
+    "開発者はWorkspace MCPとCLIの構成ガイドを確認し、移行に使う接続方法を検討する。",
+    "管理者は管理コンソールで接続済みアプリとエージェントを確認する。",
+    "開発者と管理者はWorkspace AI Tools Addendumを確認し、利用条件を把握する。"
+  ],
+  "searchTrend": "trust",
+  "trendKeyword": "trust",
+  "qualityBar": {
+    "score": 7,
+    "missing": [
+      6
+    ],
+    "notes": {
+      "6": "言い換えの無い略語（CLI・JSON・LLM）"
+    },
+    "checkedAt": "2026-11-25T06:23:34+00:00",
+    "before": [
+      6
+    ],
+    "repaired": false
+  },
+  "qualityScore": 100,
+  "sourcePublishedAt": "2026-11-24T17:00:00+00:00",
+  "detectedAt": "2026-11-25T06:21:01+00:00",
+  "layout": "noir",
+  "summaryLine": "Workspace MCPサーバーとCLIが一般提供に。AIエージェントは2027年2月1日から従来のREST APIを使えなくなる",
+  "insight": [
+    {
+      "text": "Workspace MCPサーバーは、AIエージェント用ではないOAuthクライアントを拒否します。既存の連携で使うクライアントIDをそのまま流用できるとは限らず、エージェント専用のIDが必要です。",
+      "source": "https://cloud.google.com/blog/products/identity-security/deploying-agents-safely-in-your-enterprise/"
+    },
+    {
+      "text": "メール送信、Driveの共有権限変更、一括編集は、MCPサーバーとCLIがユーザーの明示的な確認を求めます。下書き作成や文書の要約とは、確認が必要な操作が分かれています。",
+      "source": "https://cloud.google.com/blog/products/identity-security/deploying-agents-safely-in-your-enterprise/"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "Workspace MCP servers",
+      "url": "https://developers.google.com/workspace/guides/configure-mcp-servers",
+      "source": "https://cloud.google.com/blog/products/identity-security/deploying-agents-safely-in-your-enterprise/"
+    },
+    {
+      "name": "OAuth client IDs",
+      "url": "https://support.google.com/cloud/answer/15549257",
+      "source": "https://cloud.google.com/blog/products/identity-security/deploying-agents-safely-in-your-enterprise/"
+    },
+    {
+      "name": "admin console",
+      "url": "https://support.google.com/a/answer/7281227",
+      "source": "https://cloud.google.com/blog/products/identity-security/deploying-agents-safely-in-your-enterprise/"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "開発者はWorkspace MCPとCLIの構成ガイドを確認し、移行に使う接続方法を検討する。",
+      "source": "https://cloud.google.com/blog/products/identity-security/deploying-agents-safely-in-your-enterprise/",
+      "steps": [
+        "Google Cloud Blogの「Getting started」を確認",
+        "「Workspace MCP servers」または「Workspace CLI」を開く",
+        "構成ガイドを確認する"
+      ],
+      "url": "https://developers.google.com/workspace/guides/configure-mcp-servers"
+    },
+    {
+      "action": "管理者は管理コンソールで接続済みアプリとエージェントを確認する。",
+      "source": "https://cloud.google.com/blog/products/identity-security/deploying-agents-safely-in-your-enterprise/",
+      "steps": [
+        "「admin console」を開く",
+        "接続済みのアプリとエージェントを確認する",
+        "OAuthの活動ログを監視する"
+      ],
+      "url": "https://support.google.com/a/answer/7281227"
+    },
+    {
+      "action": "開発者と管理者はWorkspace AI Tools Addendumを確認し、利用条件を把握する。",
+      "source": "https://cloud.google.com/blog/products/identity-security/deploying-agents-safely-in-your-enterprise/",
+      "steps": [
+        "Google Cloud Blogの「Getting started」を確認",
+        "「Workspace AI Tools Addendum」を開く",
+        "データの保存や利用に関する条件を確認する"
+      ],
+      "url": "https://workspace.google.com/terms/ai-tools"
+    }
+  ],
+  "cause": {
+    "text": "従来のREST APIは、人が使う速さのアプリを想定し、有効なOAuthトークンがあれば本人の意図があるとみなしていました。AIエージェントは機械の速さで自律的に動くため、リクエストの段階で権限やデータ境界を確認し、人の承認を得る必要があるとGoogleは説明しています。",
+    "status": "stated",
+    "source": "https://cloud.google.com/blog/products/identity-security/deploying-agents-safely-in-your-enterprise/"
+  },
+  "worries": [
+    {
+      "q": "AIエージェント以外のアプリもREST APIを使えなくなる？",
+      "a": "Googleは、従来のアプリはこれまでどおり既存のREST APIで動くと説明しています。Workspace MCPサーバーまたはCLIを使う要件はAIエージェントに適用されます。",
+      "source": "https://cloud.google.com/blog/products/identity-security/deploying-agents-safely-in-your-enterprise/",
+      "action": "管理コンソールで接続済みのアプリとエージェントを確認し、AIエージェントと従来のアプリを区別する。"
+    },
+    {
+      "q": "エージェントがメール送信や共有設定を勝手に変えない？",
+      "a": "Workspaceでは、エージェントがメールを送信したり、Driveの共有権限を変更したり、一括編集したりする前に、MCPサーバーとCLIがユーザーの明示的な確認を求めます。",
+      "source": "https://cloud.google.com/blog/products/identity-security/deploying-agents-safely-in-your-enterprise/",
+      "action": "利用するエージェントの操作がMCPサーバーまたはCLI経由か、構成ガイドで確認する。"
+    },
+    {
+      "q": "利用上限の課金はいつから始まる？",
+      "a": "Workspaceのエージェント利用上限（クォータ）の課金は、2027年4月1日に始まります。Googleは、エージェントに専用のOAuthクライアントIDと最小限の権限範囲を求めています。",
+      "source": "https://cloud.google.com/blog/products/identity-security/deploying-agents-safely-in-your-enterprise/",
+      "action": "「usage quotas」の案内を開き、利用上限に関する情報を確認する。"
+    },
+    {
+      "q": "エージェントが使ったデータは学習や保存に回る？",
+      "a": "Workspace AI Tools Addendumは、生データの恒久保存、モデルの学習への利用、派生データの長期保持、APIスクレイピングを認めていません。派生データとユーザーデータは一定期間内と、ユーザーが接続を解除したときに削除されます。",
+      "source": "https://cloud.google.com/blog/products/identity-security/deploying-agents-safely-in-your-enterprise/",
+      "action": "Workspace AI Tools Addendumを確認し、データの保存・利用と接続解除時の扱いを把握する。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "Workspaceへの接続に何を使えばいい？",
+      "situation": "ローカルで動くエージェントや自動化を使う",
+      "recommend": "Workspace CLIを候補にする",
+      "reason": "Workspace CLIはローカルのエージェント、ターミナルの作業、自動化向けとされています。構造化されたJSON出力と、範囲を絞ったOAuthログインを提供します。",
+      "source": "https://cloud.google.com/blog/products/identity-security/deploying-agents-safely-in-your-enterprise/"
+    },
+    {
+      "question": "Workspaceへの接続に何を使えばいい？",
+      "situation": "Workspace各サービス向けの専用接続を作る",
+      "recommend": "Workspace MCPサーバーを候補にする",
+      "reason": "Workspace MCPサーバーはGmail、Drive、Docsなど向けの専用サーバーです。権限やDLPの確認が組み込まれ、重要な操作では人の確認を求めます。",
+      "source": "https://cloud.google.com/blog/products/identity-security/deploying-agents-safely-in-your-enterprise/"
+    },
+    {
+      "question": "従来のREST APIをすぐ変更するべき？",
+      "situation": "AIエージェントではなく従来のアプリだけを使う",
+      "recommend": "急いで変更する必要はありません",
+      "reason": "Googleは、従来のアプリは既存のREST APIで引き続き動くとしています。今回の要件はAIエージェントに向けたもので、従来アプリの接続方法を直ちに変えるものではありません。",
+      "source": "https://cloud.google.com/blog/products/identity-security/deploying-agents-safely-in-your-enterprise/"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "エージェント用IDと確認が必要な操作",
+    "cause": "REST APIの前提がAIの動きに合わなくなった",
+    "steps": "移行前に構成ガイドと利用条件を確認",
+    "desk": "構成・管理の公式ページはこちら",
+    "worries": "従来アプリやデータの扱いはどうなる？",
+    "guide": "エージェントの接続方法をどう選ぶ？"
+  },
+  "depthAt": "2026-11-25T06:24:23+00:00",
+  "imageCredit": {
+    "kind": "official",
+    "org": "Google Cloud",
+    "provider": "Google Cloud公式ブログ",
+    "sourceUrl": "https://cloud.google.com/blog/products/identity-security/deploying-agents-safely-in-your-enterprise/",
+    "original": "https://storage.googleapis.com/gweb-cloudblog-publish/images/Security__Identity.max-2500x2500.jpg",
+    "width": 1200,
+    "height": 591,
+    "at": "2026-11-25T06:24:27+00:00",
+    "imageKind": "hero"
+  },
+  "heroOk": true,
+  "imageFocus": {
+    "x": 0.408,
+    "y": 0.586,
+    "box": [
+      0.0,
+      0.171,
+      0.816,
+      1.0
+    ],
+    "ar": 2.0305,
+    "src": "https://ai-tech-express.jp/img/workspace-mcp-servers-agent-gateway-4116deb9.jpg"
+  }
+}
