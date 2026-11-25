@@ -10800,6 +10800,20 @@
       "skipped": true,
       "url": "https://blog.ja.playstation.com/2026/11/24/20261124-gtavi-launch-highlights-o/"
     },
+    "3cd974f7b1e48a65": {
+      "at": "2026-11-25T23:56:39.889766+00:00",
+      "costUsd": 0.0013,
+      "intent": "breaking",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "safetyLane": true,
+      "score": 98,
+      "section": "public",
+      "slug": "infonet-infocms-unauthorized-access",
+      "url": "https://e-infonet.jp/news/detail.html?dispmid=594&itemid=1067"
+    },
     "3d0746f18dd0551b": {
       "at": "2026-11-24T15:56:37.460590+00:00",
       "reason": "prefilter: サイトの主題外（エンタメのビジネス・テックの話題ではない。料金・決算・販売本数・AI・規約などがない）",
@@ -24981,34 +24995,6 @@
   "quality_log": [
     {
       "accepted": false,
-      "at": "2026-11-24T00:32:23.519323+00:00",
-      "attempt": 1,
-      "id": "f4667f9251a5088f",
-      "kind": "broad",
-      "model": "claude:sonnet",
-      "problems": [
-        "「確認は0120-651-042で受け付けています」→ 元記事は問い合わせ窓口の電話番号を示していますが、対象かどうかの確認を受け付けるとは書いていません。",
-        "「教育情報アプリ（成績や入塾状況などを扱うアプリ）などのシステムで管理」→ 元記事は成績・入塾状況を漏えいの可能性がある情報として挙げていますが、それらをアプリが扱う、または同アプリで管理するとまでは説明していません。",
-        "「カード情報がない分、不正な決済は起きにくいとみられます」→ カード情報が含まれないことは発表されていますが、不正決済の起きやすさについての見通しは元記事にありません。",
-        "「ベストコを名乗るメール・SMS・電話は無視し」→ 元記事は不審な連絡への警戒と、心当たりのないURLへのアクセス・個人情報入力をしないよう求めていますが、連絡を一律に無視するようには求めていません。"
-      ],
-      "readability": {
-        "avg_paragraph": 65.1,
-        "avg_sentence": 35.8,
-        "long_share": 0.1,
-        "max_paragraph": 141,
-        "paragraphs": 11,
-        "sentences": 20
-      },
-      "score": 78,
-      "source": "fast",
-      "title": "【お詫びとご報告】不正アクセスによる個人情報漏洩の可能性について｜ニュース | 株式会社ベストコ",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（SMS）"
-      ]
-    },
-    {
-      "accepted": false,
       "at": "2026-11-24T00:34:48.488807+00:00",
       "attempt": 1,
       "id": "1e6d93b051d2e897",
@@ -32509,6 +32495,29 @@
       "warnings": [
         "読みやすさ: 文が長い（1文の平均 54.5字・60字超の文が 25% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
         "読みやすさ: 段落が長い（平均 163.5字・最長 212字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-25T23:56:33.127035+00:00",
+      "attempt": 1,
+      "id": "3cd974f7b1e48a65",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 92.4,
+        "avg_sentence": 38.9,
+        "long_share": 0.105,
+        "max_paragraph": 131,
+        "paragraphs": 8,
+        "sentences": 19
+      },
+      "score": 98,
+      "source": "fast",
+      "title": "当社運用サーバーへの不正アクセスおよびお客様Webサイトの一時停止に関するお知らせとお詫び ｜NEWS&TOPICS｜株式会社インフォネット",
+      "warnings": [
+        "見出しが46字（目安40字以内）。一覧・カードでは前半だけを出す"
       ]
     }
   ],
