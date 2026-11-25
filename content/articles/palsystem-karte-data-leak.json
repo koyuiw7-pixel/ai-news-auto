@@ -66,9 +66,9 @@
     }
   ],
   "todayActions": [
-    "パルシステムを名乗る電話・SMS・メールが来たら、URLや添付ファイルを開かない",
-    "暗証番号やカード情報を尋ねる連絡は、パルシステムが行わないと知っておく",
-    "不安があれば0120-744-200（月〜金9:30〜17:00、土9:30〜13:30）に問い合わせる"
+    "注文や配達への影響と、今回必要な手続きがあるかを公式発表で確認する",
+    "不安が残る組合員はログイン後の問い合わせフォームから確認する",
+    "不審な連絡が届いたら、記載のリンクを使わず公式窓口に確認する"
   ],
   "publicInterest": "breach",
   "incident": {
@@ -122,5 +122,99 @@
     "provider": "Cloudflare Workers AI",
     "relevant": true,
     "at": "2026-11-25T08:13:10+00:00"
-  }
+  },
+  "officialDesk": [
+    {
+      "name": "パルシステム お問い合わせ先（組合員の方）",
+      "url": "https://web2.mm.pal-system.co.jp/form/pub/jigyou/inquiry",
+      "source": "https://information.pal-system.co.jp/press/20261125-incident/",
+      "howTo": [
+        "ログイン後",
+        "お問い合わせフォーム（組合員のみ）",
+        "インターネットでの注文方法・操作など"
+      ],
+      "phone": "0120-744-200",
+      "hours": "月～金 9:30～17:00、土 9:30～13:30",
+      "note": "組合員はログイン後、「インターネットでの注文方法・操作など」を選択してお問い合わせください。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "注文や配達への影響と、今回必要な手続きがあるかを公式発表で確認する",
+      "source": "https://information.pal-system.co.jp/press/20261125-incident/",
+      "steps": [
+        "パルシステムの公式発表を開く",
+        "「商品のご注文・配達には影響ありません」を確認する",
+        "「皆さまへのお願い」を確認する"
+      ],
+      "url": "https://information.pal-system.co.jp/press/20261125-incident/"
+    },
+    {
+      "action": "不安が残る組合員はログイン後の問い合わせフォームから確認する",
+      "source": "https://information.pal-system.co.jp/press/20261125-incident/",
+      "steps": [
+        "お問い合わせフォーム（組合員のみ）を開く",
+        "ログイン後、「インターネットでの注文方法・操作など」を選ぶ"
+      ],
+      "url": "https://web2.mm.pal-system.co.jp/form/pub/jigyou/inquiry"
+    },
+    {
+      "action": "不審な連絡が届いたら、記載のリンクを使わず公式窓口に確認する",
+      "source": "https://information.pal-system.co.jp/press/20261125-incident/",
+      "steps": [
+        "心当たりのないURLや添付ファイルは開かない",
+        "必要なら0120-744-200へ問い合わせる"
+      ],
+      "url": "https://information.pal-system.co.jp/press/20261125-incident/"
+    }
+  ],
+  "cause": {
+    "text": "委託先の株式会社プレイドが提供する「KARTE（カルテ）」に第三者から不正アクセスがあり、情報が外部へ漏えいしました。詳しい侵入経路や対象件数・影響範囲の詳細は、プレイドと調査・確認中です。",
+    "status": "investigating",
+    "source": "https://information.pal-system.co.jp/press/20261125-incident/"
+  },
+  "worries": [
+    {
+      "q": "氏名や住所、カード情報まで漏れたの？",
+      "a": "パルシステムによると、氏名・住所・電話番号・メールアドレス、クレジットカード情報、銀行口座情報、ログインパスワードは本システムに連携していないため、今回の漏えい対象には含まれていません。",
+      "source": "https://information.pal-system.co.jp/press/20261125-incident/",
+      "action": "漏えい対象として公表された情報を確認し、不安が残る場合はパルシステムの窓口に問い合わせる。"
+    },
+    {
+      "q": "注文や配達を止めたり、手続きをしたりする必要はある？",
+      "a": "パルシステムは、インターネット注文や商品の配達処理そのものへの影響はなく、通常どおり利用できるとしています。また、利用者自身で行う対応はないと案内しています。",
+      "source": "https://information.pal-system.co.jp/press/20261125-incident/",
+      "action": "公式発表の「商品のご注文・配達には影響ありません」と「皆さまへのお願い」を確認する。"
+    },
+    {
+      "q": "パルシステムを名乗るSMSが来たらどうすればいい？",
+      "a": "パルシステムは、公表に便乗した不審な電話・SMS・メールが届く可能性があるとしています。心当たりのないURLや添付ファイルは開かないよう案内し、暗証番号やカード情報を直接尋ねることは絶対にないとしています。",
+      "source": "https://information.pal-system.co.jp/press/20261125-incident/",
+      "action": "心当たりのないURLや添付ファイルは開かず、不安があれば0120-744-200へ問い合わせる。"
+    },
+    {
+      "q": "リンク先に普段使うIDやパスワードを入れてしまったら？",
+      "a": "警察庁は、フィッシングサイトなどに普段使っているIDやパスワードを入力した場合、それらを利用しているすべてのサービスで、パスワードなどを速やかに変更するよう案内しています。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "action": "入力したIDやパスワードを使っているすべてのサービスで、パスワードなどを速やかに変更する。",
+      "general": true
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "今回の件でパスワードを変えるべき？",
+      "situation": "今回の漏えいについて心配している",
+      "recommend": "今回の件だけなら急がなくてよい",
+      "reason": "パルシステムは、ログインパスワードはシステムに連携しておらず漏えい対象に含まれないこと、本人が行う対応はないことを案内しています。この発表だけを理由に変更する必要はないとされています。",
+      "source": "https://information.pal-system.co.jp/press/20261125-incident/"
+    }
+  ],
+  "depthHeadings": {
+    "cause": "不正アクセスの詳細は調査中",
+    "steps": "注文や配達への影響と問い合わせ先",
+    "desk": "パルシステムに確認する方法",
+    "worries": "情報や注文への影響が気になるとき",
+    "guide": "今回の件でパスワードを変えるべき？"
+  },
+  "depthAt": "2026-11-25T08:17:39+00:00"
 }
