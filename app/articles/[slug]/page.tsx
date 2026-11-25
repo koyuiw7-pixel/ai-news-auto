@@ -102,6 +102,7 @@ import { authorJsonLd, publisherJsonLd, editorInCharge } from "@/lib/publisher";
 import { faqPageJsonLd, playableVideoJsonLd, sourceJsonLd } from "@/lib/structured-data";
 import { stripListNumber } from "@/lib/list-number";
 import { isNoir } from "@/lib/noir";
+import { addsNothing, leadRefs } from "@/lib/repeat-filter";
 import { noirArticlePage } from "@/components/noir/noirArticlePage";
 import { compareOffersFor, funnelForArticle, insertCompareSlot } from "@/lib/comparison";
 import CompareOffers from "@/components/CompareOffers";
@@ -228,7 +229,10 @@ export default async function ArticlePage({ params }: Props) {
   // 要点のすぐ下の「自分は対象か確かめる」（話題 → お金のページの表 lib/money-pages.ts。自分自身へは出さない。2026-11-10 M2）
   const moneyLink = moneyLinkFor(article);
   // 答えが「書かれていません」の問いは、見える欄にも FAQPage にも出さない（lib/nonanswer.ts。SEO A4・LLMO-A4）
-  const articleFaq = answeredOnly((article.faq ?? []).map((row) => ({ ...row, a: cleanTake(row.a ?? "") })).filter((row) => row.q && row.a));
+  // 答えがリード・要点の言い直しだけの問い・短すぎる答えも出さない（データは消さない。lib/repeat-filter.ts。2026-11-25 AdSense の点検）
+  const articleFaq = answeredOnly(
+    (article.faq ?? []).map((row) => ({ ...row, a: cleanTake(row.a ?? "") })).filter((row) => row.q && row.a && !addsNothing(row.a, leadRefs(article))),
+  );
   // 読者がすることの無い発表（面会・式典など）には出さない・意味の無い行動は外す（lib/reader-urgency.ts。2026-11-11 読者目線レビュー 6位）
   const todayActions = readerActions(article.title, article.todayActions ?? [], (x) => x);
   const depth = depthOf(article);

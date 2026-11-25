@@ -4,6 +4,7 @@
  */
 import { answeredOnly } from "@/lib/nonanswer";
 import { noReaderAction, readerActions } from "@/lib/reader-urgency";
+import { addsNothing, leadRefs } from "@/lib/repeat-filter";
 
 export type InsightItem = { text: string; source: string };
 export type DeskEntry = { name: string; url: string; source?: string; howTo?: string[]; phone?: string; hours?: string; note?: string };
@@ -25,6 +26,10 @@ export type DepthFields = {
   todaySteps?: StepItem[];
   cause?: Cause | null;
   worries?: WorryItem[];
+  /** 記事の結論（リード・1文の要約・要点）。欄の文がこれの言い直しだけなら出さない（lib/repeat-filter.ts。2026-11-25） */
+  lede?: string;
+  summaryLine?: string;
+  highlights?: string[];
 };
 
 const okUrl = (u: unknown): u is string => typeof u === "string" && /^https?:\/\/[^\s"<>]+$/.test(u);
@@ -32,7 +37,9 @@ const str = (s: unknown): s is string => typeof s === "string" && s.trim().lengt
 
 /** 記事の JSON から、画面に出せる形の欄だけを取り出す（壊れた項目は外す） */
 export function depthOf(a: DepthFields) {
-  const insight = (a.insight ?? []).filter((x) => str(x?.text) && okUrl(x?.source)).slice(0, 3);
+  // 記事の結論（リード・要点）の言い直しだけの文・短すぎる文は、欄に出さない（データは消さない。lib/repeat-filter.ts。2026-11-25 AdSense の点検）
+  const refs = leadRefs(a);
+  const insight = (a.insight ?? []).filter((x) => str(x?.text) && okUrl(x?.source) && !addsNothing(x.text, refs)).slice(0, 3);
   // 読者がすることの無い発表（面会・式典など）には「すぐにできること」と問い合わせ先を出さない。意味の無い行動（記事の中身を問い合わせるだけ）は外す
   // （2026-11-11 読者目線レビュー 6位: 財務大臣の面会に「財務省国際局地域協力課に電話で問い合わせる」）
   const noAction = noReaderAction(a.title);
@@ -46,12 +53,12 @@ export function depthOf(a: DepthFields) {
     .slice(0, 3);
   const cause = a.cause && str(a.cause.text) && okUrl(a.cause.source) ? a.cause : null;
   // 答えが「書かれていません」の不安は出さない（2文目以降のその文は外す。lib/nonanswer.ts。SEO A4・LLMO-A4）。2つ未満なら欄ごと出さない
-  const worries = answeredOnly((a.worries ?? []).filter((w) => str(w?.q) && str(w?.a) && okUrl(w?.source)))
+  const worries = answeredOnly((a.worries ?? []).filter((w) => str(w?.q) && str(w?.a) && okUrl(w?.source) && !addsNothing(w.a, refs)))
     .map((w) => ({ ...w, actionSource: okUrl(w.actionSource) ? w.actionSource : undefined }))
     .slice(0, 5);
   // 判断ガイド: 問いごとにまとめる（同じ問いの状況違いの行を並べる）
   const guide: { question: string; rows: GuideRow[] }[] = [];
-  for (const r of (a.decisionGuide ?? []).filter((x) => str(x?.question) && str(x?.situation) && str(x?.recommend) && str(x?.reason) && okUrl(x?.source)).slice(0, 6)) {
+  for (const r of (a.decisionGuide ?? []).filter((x) => str(x?.question) && str(x?.situation) && str(x?.recommend) && str(x?.reason) && okUrl(x?.source) && !addsNothing(x.reason, refs)).slice(0, 6)) {
     const group = guide.find((g) => g.question === r.question);
     if (group) group.rows.push(r);
     else guide.push({ question: r.question, rows: [r] });

@@ -31,9 +31,9 @@ let n = 0;
 const art = (fields) => ({ ...base, slug: `a${n++}`, ...fields });
 
 // 監査で見つかった組み合わせ（Appleの決算・年金月間・フットサル・リフォーム会社）と、同じジャンルの無関係な記事
-const apple = art({ slug: "apple-q4", title: "Apple、7〜9月期の売上高が12％増の1145億ドル", genreSlug: "tech-gadget", tags: ["Apple", "決算", "スマートフォン", "業績", "ビジネス"], keywords: ["Apple", "決算", "iPhone Duo", "配当"] });
+const apple = art({ slug: "apple-q4", title: "Apple、7〜9月期の売上高が12％増の1145億ドル", genreSlug: "tech-gadget", tags: ["Apple", "決算", "スマートフォン", "業績", "ビジネス"], keywords: ["Apple", "決算", "iPhone Duo", "配当"], sourceType: "web", sourceUrl: "https://www.apple.com/jp/newsroom/2026/10/q4/" });
 const appleDuo = art({ slug: "apple-duo", title: "Apple、折りたたみ型「iPhone Duo」向け最適化アプリを発表", genreSlug: "tech-gadget", tags: ["スマートフォン", "Apple", "ガジェット"], keywords: ["iPhone Duo", "Apple", "Netflix"] });
-const appleMac = art({ slug: "apple-mac", title: "Appleが「M6」搭載の14インチMacBook Proを発表", genreSlug: "tech-gadget", tags: ["PC", "家電"], keywords: ["MacBook Pro", "M6", "Apple"], publishedAt: "2026-10-20T00:00:00Z" });
+const appleMac = art({ slug: "apple-mac", title: "Appleが「M6」搭載の14インチMacBook Proを発表", genreSlug: "tech-gadget", tags: ["PC", "家電"], keywords: ["MacBook Pro", "M6", "Apple"], publishedAt: "2026-10-20T00:00:00Z", sourceType: "web", sourceUrl: "https://www.apple.com/jp/newsroom/2026/10/macbook-pro/" });
 const samsung = art({ slug: "samsung-yog", title: "サムスン、ユース五輪ダカール大会に「Galaxy S26 Ultra」を提供", genreSlug: "tech-gadget", tags: ["スマートフォン", "通信", "家電"], keywords: ["サムスン", "Galaxy S26 Ultra"] });
 const ipa = art({ slug: "ipa-dx", title: "IPA、DX認定制度で118件を公表", genreSlug: "tech-gadget", tags: ["ビジネス", "セキュリティ", "アプリ", "通信"], keywords: ["IPA", "DX認定"] });
 const nenkin = art({ slug: "nenkin", title: "厚労省、11月30日の「年金の日」と11月の「ねんきん月間」で啓発", genreSlug: "public", tags: ["年金", "社会・行政", "ライフプラン"], keywords: ["厚生労働省", "日本年金機構", "ねんきんネット"] });
@@ -88,6 +88,28 @@ test("「同じ話題の記事」の札は語が2つ以上重なる記事だけ�
   assert.equal(reason["apple-duo"], "同じ話題の記事");
   assert.equal(reason["apple-mac"], "同じ企業の発表");
   assert.ok(!("samsung-yog" in reason) && !("ipa-dx" in reason));
+});
+
+test("「同じ企業の発表」は同じ発表元（出典のホストが同じ公式の発表）の記事だけ。報道・まとめサイト・別のホストは付けない（2026-11-25）", () => {
+  const { samePublisher } = load(path.join(root, "lib/related.ts"));
+  const official = { sourceType: "web", sourceUrl: "https://www.apple.com/jp/newsroom/a/", channelSlug: "apple" };
+  assert.equal(samePublisher(official, { sourceType: "web", sourceUrl: "https://apple.com/jp/newsroom/b/", channelSlug: "apple" }), true);
+  // 報道（話題のまとめ・報道機関の発信元）は同じ企業の名前でも「発表」ではない
+  assert.equal(samePublisher(official, { sourceType: "web", sourceUrl: "https://www.apple.com/jp/newsroom/c/", channelSlug: "trends" }), false);
+  assert.equal(samePublisher(official, { sourceType: "web", sourceUrl: "https://www.itmedia.co.jp/x", channelSlug: "radar-itmedia.co.jp" }), false);
+  // ニュースを集めるサイトどうしは同じホストでも同じ発表元ではない
+  const agg = { sourceType: "web", sourceUrl: "https://topics.smt.docomo.ne.jp/article/a", channelSlug: "radar-official" };
+  assert.equal(samePublisher(agg, { ...agg, sourceUrl: "https://topics.smt.docomo.ne.jp/article/b" }), false);
+  // 別のホスト・動画・URL なし
+  assert.equal(samePublisher(official, { sourceType: "web", sourceUrl: "https://www.sony.jp/x", channelSlug: "" }), false);
+  assert.equal(samePublisher(official, { sourceType: "video", sourceUrl: "https://www.apple.com/x", channelSlug: "" }), false);
+  assert.equal(samePublisher({ sourceType: "web", sourceUrl: "", channelSlug: "" }, { sourceType: "web", sourceUrl: "", channelSlug: "" }), false);
+
+  // 同じ企業でも、報道をもとにした記事は「同じ企業の発表」に並べない
+  const press = art({ slug: "apple-mac-press", title: "Appleが「M6」搭載のMacBook Airを発表と報道", genreSlug: "tech-gadget", tags: ["PC"], keywords: ["MacBook Air", "M6", "Apple"], channelSlug: "trends", sourceType: "web", sourceUrl: "https://www.nikkei.com/article/x" });
+  const next = nextReads(apple, [...all, press], company, 5, now);
+  const reason = Object.fromEntries(next.map((x) => [x.article.slug, x.reason]));
+  assert.notEqual(reason["apple-mac-press"], "同じ企業の発表");
 });
 
 test("実データ: 関連記事は話題の基準を満たすものだけ・地震と混ぜない・自分と重複を出さない", () => {

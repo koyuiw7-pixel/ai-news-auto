@@ -1,4 +1,5 @@
 import type { ArticleSummary } from "@/lib/articles";
+import { isNewsOutletChannel } from "@/lib/news-outlets";
 
 /**
  * 記事ページの「関連記事」「次に読むならこれ」（同じ話題の記事・同じ企業の発表）の選び方（2026-11-03 オーナー判断・台帳 W19）。
@@ -364,6 +365,31 @@ export function topicCluster(article: ArticleSummary, candidates: ArticleSummary
     .map((x) => x.item);
 }
 
+/** 発表元のホスト（www. は外す）。URL でなければ空 */
+function sourceHost(a: Pick<ArticleSummary, "sourceUrl">): string {
+  try {
+    return new URL(String(a.sourceUrl ?? "")).hostname.toLowerCase().replace(/^www\./, "");
+  } catch {
+    return "";
+  }
+}
+
+/** ニュースを集めて載せるサイト（記事の発表元ではない） */
+const AGGREGATOR_HOSTS = new Set(["topics.smt.docomo.ne.jp", "news.yahoo.co.jp", "news.google.com", "news.livedoor.com", "news.goo.ne.jp"]);
+
+/**
+ * 同じ発表元の記事か（「同じ企業の発表」の札。2026-11-25 AdSense の点検）。
+ * 企業の分類（companyOf）や題名の名前が同じでも、報道・まとめサイトの記事や別の会社の発表は「同じ企業の発表」と呼ばない。
+ * 両方が公式の web の発表で、出典のホストが同じときだけ
+ */
+export function samePublisher(a: Pick<ArticleSummary, "sourceType" | "sourceUrl" | "channelSlug">, b: Pick<ArticleSummary, "sourceType" | "sourceUrl" | "channelSlug">): boolean {
+  if (a.sourceType !== "web" || b.sourceType !== "web") return false;
+  if (isNewsOutletChannel(a.channelSlug) || isNewsOutletChannel(b.channelSlug)) return false;
+  const ha = sourceHost(a);
+  if (!ha || AGGREGATOR_HOSTS.has(ha)) return false;
+  return ha === sourceHost(b);
+}
+
 /**
  * 「次に読むならこれ」。1. 同じ話題のまとめ記事（全体像） 2. 同じ話題の記事（具体的な語が2つ以上重なる） 3. 同じ企業の発表（同じ企業・同じ名前） の順。
  * 「同じ話題の記事」の札は、同じ企業か同じ製品・話題の語が重なる記事にだけ付ける（ジャンルや「社会・行政」のような分野の語だけでは付けない）。
@@ -392,8 +418,9 @@ export function nextReads(article: ArticleSummary, candidates: ArticleSummary[],
     .filter((x) => x.sim.shared.length >= 2)
     .sort((a, b) => b.sim.score * freshness(b.item, now) - a.sim.score * freshness(a.item, now));
   for (const { item } of topical) add(item, "同じ話題の記事");
+  // 「同じ企業の発表」は、同じ発表元（出典のホストが同じ公式の発表）の記事だけ（samePublisher。2026-11-25）
   const sameCompany = sims
-    .filter((x) => x.sim.strong && (x.sim.sameCompany || x.sim.sameName))
+    .filter((x) => x.sim.strong && (x.sim.sameCompany || x.sim.sameName) && samePublisher(article, x.item))
     .sort((a, b) => Date.parse(b.item.publishedAt) - Date.parse(a.item.publishedAt));
   for (const { item } of sameCompany) add(item, "同じ企業の発表");
   return picked;
