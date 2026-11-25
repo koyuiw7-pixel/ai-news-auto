@@ -77,14 +77,14 @@
   "videoTitle": "年末年始の手続きと窓口　還付申告は翌年1月1日から5年間、行政機関は12月29日から休み",
   "publishedAt": "2026-11-25T07:07:18.516449+00:00",
   "generatedAt": "2026-11-25T07:08:00.768410+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/tax-refund-year-end-guide-figure-3a13806f.jpg",
   "model": "openai-api:gpt-6.1-terra",
   "affiliates": [],
   "newsType": "policy",
   "todayActions": [
-    "源泉徴収票で所得税が引かれているかを確認し、還付申告の対象になるか調べる。",
-    "ふるさと納税の寄附先ごとに、ワンストップ特例の申請条件と提出期限を確認する。",
-    "年金の相談が必要なら、基礎年金番号を用意してねんきんダイヤルの受付日を確認する。"
+    "源泉徴収票で所得税が源泉徴収されているかを確かめ、申告の入口を見極める。",
+    "自宅で申告書を作る人は、確定申告書等作成コーナーで金額を入力する。",
+    "申告書を郵送する人は、信書便か第一種郵便物で送り、提出日の扱いを確認する。"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -140,5 +140,142 @@
   "detectedAt": "2026-11-25T07:08:36+00:00",
   "searchTitle": "還付申告はいつまで？翌年1月1日から5年間",
   "layout": "noir",
-  "summaryLine": "還付申告は通常の確定申告期間に限らず、対象年の翌年1月1日から5年間提出できる。"
+  "summaryLine": "還付申告は通常の確定申告期間に限らず、対象年の翌年1月1日から5年間提出できる。",
+  "insight": [
+    {
+      "text": "給与の源泉徴収票で所得税の源泉徴収額が「0」の場合、申告しても所得税は戻りません。還付申告には、源泉徴収や予定納税ですでに納めた所得税があることが前提です。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2030.htm"
+    },
+    {
+      "text": "預貯金の利子など、源泉分離課税とされる所得は、確定申告をしても還付を受けられない例として国税庁が挙げています。医療費や寄附の支出だけで判断せず、所得の種類も確認しましょう。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2030.htm"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "確定申告書等作成コーナー",
+      "url": "https://www.keisan.nta.go.jp/kyoutu/ky/sm/top",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2030.htm",
+      "note": "画面の案内に沿って金額を入力すると、必要な付表や明細書も自動的に作成されます。"
+    },
+    {
+      "name": "ねんきんダイヤル",
+      "url": "https://www.nenkin.go.jp/section/tel/toiawase_ippan.html",
+      "source": "https://www.nenkin.go.jp/section/tel/toiawase_ippan.html",
+      "phone": "0570-05-1165",
+      "hours": "月曜日午前8時30分から午後7時、火曜日から金曜日午前8時30分から午後5時15分、第2土曜日午前9時30分から午後4時",
+      "note": "12月29日から1月3日は利用できません。相談時は基礎年金番号または照会番号がわかるものを用意してください。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "源泉徴収票で所得税が源泉徴収されているかを確かめ、申告の入口を見極める。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2030.htm",
+      "steps": [
+        "給与の源泉徴収票を手元に用意する",
+        "源泉徴収された所得税額を確認する",
+        "「0」なら所得税の還付はないことを確認する"
+      ],
+      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2030.htm"
+    },
+    {
+      "action": "自宅で申告書を作る人は、確定申告書等作成コーナーで金額を入力する。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2030.htm",
+      "steps": [
+        "「確定申告書等作成コーナー」を開く",
+        "画面の案内に沿って金額を入力する",
+        "作成した申告書を提出する"
+      ],
+      "url": "https://www.keisan.nta.go.jp/kyoutu/ky/sm/top"
+    },
+    {
+      "action": "申告書を郵送する人は、信書便か第一種郵便物で送り、提出日の扱いを確認する。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2036.htm",
+      "steps": [
+        "申告書は第一種郵便物か信書便で送る",
+        "荷物扱いでは送らない",
+        "郵便物の通信日付印が提出日とみなされることを確認する"
+      ],
+      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2036.htm"
+    }
+  ],
+  "cause": {
+    "text": "国の行政機関は、土曜日・日曜日と12月29日から翌年1月3日までが休日で、執務は原則として行わないと法律で定められています。ただし、休日に行政機関が所掌事務を行うこと自体は禁止されていません。",
+    "status": "background",
+    "source": "https://laws.e-gov.go.jp/law/363AC0000000091?occasion_date=20240703"
+  },
+  "worries": [
+    {
+      "q": "源泉徴収票の所得税額が0でも、申告すれば還付される？",
+      "a": "源泉徴収や予定納税で納めた所得税がない場合は、申告しても還付される所得税額はありません。国税庁は、給与の源泉徴収票の記載が「0」の人を例に挙げています。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2030.htm",
+      "action": "源泉徴収票で所得税額を確認し、「0」の場合は還付申告で所得税が戻らないことを踏まえて手続きを検討しましょう。"
+    },
+    {
+      "q": "ふるさと納税先が5団体以内なら特例を使える？",
+      "a": "自治体数が5団体以内であることに加え、確定申告が不要な給与所得者等であることが条件です。ワンストップ特例を申請した場合、所得税からの控除は行われず、その分も含めて翌年度の住民税から控除されます。",
+      "source": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/mechanism/deduction.html?scid=wi_mny_topic_article_2103_00032_36700_01",
+      "action": "自治体数だけでなく確定申告が不要な条件にも当てはまるか、総務省の制度説明で確認しましょう。"
+    },
+    {
+      "q": "申告書を宅配便などの荷物扱いで送ってもいい？",
+      "a": "申告書は信書に当たるため、税務署への送付には第一種郵便物または信書便物を利用する必要があります。郵便・信書便以外の方法では、税務署に申告書が到達した日が提出日となります。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2036.htm",
+      "action": "郵送する場合は第一種郵便物か信書便を選び、荷物扱いで送らないようにしましょう。"
+    },
+    {
+      "q": "年末年始に年金の一般相談を電話でできる？",
+      "a": "ねんきんダイヤルは12月29日から1月3日まで利用できません。通常の受付は月曜日が午後7時まで、火曜日から金曜日が午後5時15分までで、第2土曜日も受け付けています。",
+      "source": "https://www.nenkin.go.jp/section/tel/toiawase_ippan.html",
+      "action": "相談が必要なら受付日を確認し、基礎年金番号または照会番号がわかるものを用意して電話しましょう。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "申告書は自宅で作るか郵送するか迷う？",
+      "situation": "自宅で作成して提出したい",
+      "recommend": "作成コーナーの利用を検討する",
+      "reason": "画面の案内に沿って金額を入力し、自宅などで申告書を作成・提出できます。必要な付表や明細書も入力により自動作成されます。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2030.htm"
+    },
+    {
+      "question": "申告書は自宅で作るか郵送するか迷う？",
+      "situation": "申告書を郵送して提出したい",
+      "recommend": "第一種郵便物か信書便で送る",
+      "reason": "申告書は信書に当たるため、荷物扱いでは送れません。郵便・信書便なら通信日付印の日が提出日とみなされ、それ以外の方法は税務署への到達日が提出日です。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2036.htm"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "戻る税金がない場合と還付対象外の所得",
+    "cause": "年末年始の行政機関が休みになる期間",
+    "steps": "申告前に確認したい3つのこと",
+    "desk": "申告書作成と年金相談の窓口",
+    "worries": "還付や提出方法、相談日の不安",
+    "guide": "自宅で作るか郵送するか"
+  },
+  "depthAt": "2026-11-25T07:29:36+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "還付申告は翌年1月1日から5年間",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-25T07:30:29+00:00"
+  },
+  "imageFocus": {
+    "x": 0.455,
+    "y": 0.42,
+    "box": [
+      0.05,
+      0.06,
+      0.859,
+      0.78
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/tax-refund-year-end-guide-figure-3a13806f.jpg"
+  }
 }

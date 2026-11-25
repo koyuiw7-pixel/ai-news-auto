@@ -90,9 +90,9 @@
     }
   ],
   "todayActions": [
-    "ケンタ福袋を希望する人は、KFCモバイルオーダーに会員登録し、11月26日までに専用サイトから応募する。",
-    "スターバックスの応募者は、My Starbucksの抽選販売申込履歴で抽選結果を確認する。",
-    "マクドナルドの福袋を希望する人は、公式アプリから12月9日23時59分までに応募する。"
+    "ケンタ福袋に応募する人は、会員登録を済ませて専用特設サイトから申し込む。",
+    "スターバックスに応募済みの人は、抽選結果を確認し、当選なら購入期限を確かめる。",
+    "マクドナルドの福袋を希望する人は、公式アプリから12月9日23:59までに応募する。"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -201,5 +201,116 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/lucky-bags-2027-deadlines-fe3b4e55.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "スターバックス福袋は店舗販売も先着販売もなく、オンラインストアの抽選販売のみです。当選しても、2026年12月2日23:59までに購入手続きを終えないと当選は無効になります。",
+      "source": "https://www.starbucks.co.jp/youkou/luckybag/"
+    },
+    {
+      "text": "カルディの食品福袋は、当選した店舗以外では受け取れません。受取期間を過ぎるとキャンセル扱いになり、後日受け取りにも対応していません。",
+      "source": "https://www.kaldi.co.jp/news/pickup/fukubukuro.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "ケンタ福袋 専用特設サイト",
+      "url": "https://www.kfc-fukubukuro2027.com/",
+      "source": "https://japan.kfc.co.jp/news_release/8190",
+      "note": "事前抽選販売の応募は専用特設サイトのみで、店頭では受け付けていません。"
+    },
+    {
+      "name": "スターバックス福袋2027 抽選結果照会",
+      "url": "https://cart.starbucks.co.jp/mystore/lottery",
+      "source": "https://www.starbucks.co.jp/youkou/luckybag/",
+      "howTo": [
+        "My Starbucks [マイページ]",
+        "オンラインストア",
+        "抽選販売申込履歴"
+      ],
+      "note": "当選発表後、抽選販売申込履歴でも抽選結果を確認できます。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "ケンタ福袋に応募する人は、会員登録を済ませて専用特設サイトから申し込む。",
+      "source": "https://japan.kfc.co.jp/news_release/8190",
+      "steps": [
+        "KFCモバイルオーダー会員に登録する",
+        "専用特設サイトを開く",
+        "11月26日までに応募する"
+      ],
+      "url": "https://www.kfc-fukubukuro2027.com/"
+    },
+    {
+      "action": "スターバックスに応募済みの人は、抽選結果を確認し、当選なら購入期限を確かめる。",
+      "source": "https://www.starbucks.co.jp/youkou/luckybag/",
+      "steps": [
+        "My Starbucksにログインする",
+        "マイページからオンラインストアを開く",
+        "抽選販売申込履歴で結果を確認する"
+      ],
+      "url": "https://cart.starbucks.co.jp/mystore/lottery"
+    },
+    {
+      "action": "マクドナルドの福袋を希望する人は、公式アプリから12月9日23:59までに応募する。",
+      "source": "https://www.mcdonalds.co.jp/campaign/lb-2027-fgvi2-faq/",
+      "steps": [
+        "マクドナルド公式アプリをダウンロードする",
+        "アプリにログインする",
+        "事前抽選販売 応募フォームから申し込む"
+      ],
+      "url": "https://www.mcdonalds.co.jp/campaign/lb-2027-fgvi2-faq/"
+    }
+  ],
+  "worries": [
+    {
+      "q": "ケンタ福袋に当選したのに購入を忘れたらどうなる？",
+      "a": "事前購入期間内に購入しない場合、当選は無効になります。事前購入期間は12月7日以降から12月16日までです。",
+      "source": "https://japan.kfc.co.jp/news_release/8190",
+      "action": "当選通知を確認したら、12月16日までに事前購入を済ませ、当選画面に記載された店舗と受取期間も確認してください。"
+    },
+    {
+      "q": "スターバックスの当選メールが見当たらないときは？",
+      "a": "当選者にはMy Starbucksに登録したメールアドレスへ当選通知が届きます。抽選結果は、当選発表後にMy Starbucksの「抽選販売申込履歴」でも確認できます。",
+      "source": "https://www.starbucks.co.jp/youkou/luckybag/",
+      "action": "My Starbucksにログインし、マイページのオンラインストアから抽選販売申込履歴を確認してください。"
+    },
+    {
+      "q": "マクドナルドの抽選結果がアプリで確認できないのはなぜ？",
+      "a": "抽選結果は応募時にログインしていたアカウントでのみ確認できます。別のアカウントでログインしている可能性があるため、応募時のアカウントでログインするよう案内されています。",
+      "source": "https://www.mcdonalds.co.jp/campaign/lb-2027-fgvi2-faq/",
+      "action": "応募時に使ったアカウントでマクドナルド公式アプリにログインし、抽選結果を確認してください。"
+    },
+    {
+      "q": "カルディ食品福袋は当選した店舗以外でも受け取れる？",
+      "a": "当選した店舗以外での受け取りはできません。受取期間外の受け取りもできず、期間内に購入されなかった場合はキャンセル扱いになります。",
+      "source": "https://www.kaldi.co.jp/news/pickup/fukubukuro.html",
+      "action": "応募時に受取希望店舗を選び、当選後は公式アプリでその店舗の受取期間を確認してください。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "カルディ食品福袋はどちらで応募する？",
+      "situation": "当選後に店舗で受け取りたい",
+      "recommend": "公式アプリから希望店舗を選ぶ",
+      "reason": "公式アプリでは受取希望店舗を選んで申し込み、当選した店舗で購入・受け取りをします。当選店舗以外での受け取りや配送はできず、受取期間外はキャンセル扱いです。",
+      "source": "https://www.kaldi.co.jp/news/pickup/fukubukuro.html"
+    },
+    {
+      "question": "カルディ食品福袋はどちらで応募する？",
+      "situation": "自宅への配送を希望する",
+      "recommend": "公式オンラインストアから申し込む",
+      "reason": "公式オンラインストア分も事前抽選販売で、当選後に購入手続きをします。公式アプリ分は当選店舗での購入・受け取りとなり、配送はできません。両方に申し込むこともできますが、それぞれ会員登録が必要です。",
+      "source": "https://www.kaldi.co.jp/news/pickup/fukubukuro.html"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "店舗販売なしの福袋と受け取り条件",
+    "steps": "応募先と期限を間違えずに進める",
+    "desk": "応募・抽選結果を確認する公式ページ",
+    "worries": "当選後の確認や受け取りで困らない？",
+    "guide": "カルディ食品福袋は受け取り方で選ぶ"
+  },
+  "depthAt": "2026-11-25T07:29:01+00:00"
 }
