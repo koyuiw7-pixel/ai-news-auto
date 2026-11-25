@@ -83,9 +83,9 @@
     }
   ],
   "todayActions": [
-    "サツドラの案内メールまたはLINEが届いていないか、迷惑メールフォルダも含めて確認する",
-    "サツドラ名義でURLや添付ファイル付きのメールが届いても開かない。公式のメールにはどちらも付かない",
-    "連絡が届かないときは、フリーダイヤル0120-049-904（毎日9時〜18時）に問い合わせる"
+    "対象期間に登録した可能性がある人は、メールとLINEの案内を確認する",
+    "対象期間に登録した可能性があり連絡がない人は、窓口へ電話する",
+    "サツドラ名義のメールにURLや添付ファイルがあれば開かない"
   ],
   "publicInterest": "breach",
   "incident": {
@@ -137,5 +137,114 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/satudora-personal-data-leak-line-b059b29f.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "対象情報は2025年7月15日時点の登録情報です。それ以降に登録情報を変更していても、変更後の内容は含まれません。",
+      "source": "https://satudora.co.jp/news/ps_information_1125"
+    },
+    {
+      "text": "店舗での購入情報は合計額のみで、商品名や品目は含まれていません。購入履歴の明細まで流出したわけではありません。",
+      "source": "https://satudora.co.jp/news/ps_information_1125"
+    },
+    {
+      "text": "EZOCA番号だけではEZOポイントを利用できず、EZOCAのPIN番号は流出した情報に含まれていません。PIN番号は他人に教えないよう呼びかけています。",
+      "source": "https://satudora.co.jp/news/ps_information_1125"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "サツドラ 個人情報に関するお問い合わせ窓口",
+      "url": "https://satudora.co.jp/news/ps_information_1125",
+      "source": "https://satudora.co.jp/news/ps_information_1125",
+      "howTo": [
+        "お知らせ",
+        "個人情報の流出に関するお詫びとお知らせ",
+        "9. 本件に関するお問い合わせ窓口"
+      ],
+      "phone": "0120-049-904（フリーダイヤル）",
+      "hours": "9時〜18時（土日祝日を含む毎日）",
+      "note": "対象期間に登録した可能性があるのに連絡が届かない場合は、迷惑メールフォルダも確認してから連絡してください。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "対象期間に登録した可能性がある人は、メールとLINEの案内を確認する",
+      "source": "https://satudora.co.jp/news/ps_information_1125",
+      "steps": [
+        "登録したメールアドレスの受信箱を見る",
+        "迷惑メールフォルダも確認する",
+        "LINE公式アカウントからのメッセージも確認する"
+      ],
+      "url": "https://satudora.co.jp/news/ps_information_1125"
+    },
+    {
+      "action": "対象期間に登録した可能性があり連絡がない人は、窓口へ電話する",
+      "source": "https://satudora.co.jp/news/ps_information_1125",
+      "steps": [
+        "迷惑メールフォルダを確認する",
+        "サツドラ 個人情報に関するお問い合わせ窓口へ電話する"
+      ],
+      "url": "https://satudora.co.jp/news/ps_information_1125"
+    },
+    {
+      "action": "サツドラ名義のメールにURLや添付ファイルがあれば開かない",
+      "source": "https://satudora.co.jp/news/ps_information_1125",
+      "steps": [
+        "メールにURLや添付ファイルがあるか確認する",
+        "心当たりのないURLや添付ファイルは開かない",
+        "個人情報やパスワードを入力しない"
+      ],
+      "url": "https://satudora.co.jp/news/ps_information_1125"
+    }
+  ],
+  "cause": {
+    "text": "アプリのシステム移行作業で、本来は非公開の保管領域に置くファイルを、開発環境の公開設定の保管領域に誤って配置したことが原因です。公開設定を定期点検する仕組みも十分でなく、長期間気づけませんでした。",
+    "status": "stated",
+    "source": "https://satudora.co.jp/news/ps_information_1125"
+  },
+  "worries": [
+    {
+      "q": "対象期間に登録したのに、メールもLINEも届かない場合は？",
+      "a": "対象者には登録メールアドレスへのメールか、LINE公式アカウントからのメッセージで順次連絡されます。メールの不達やLINE公式アカウントのブロックなどで連絡が届かない場合もあります。",
+      "source": "https://satudora.co.jp/news/ps_information_1125",
+      "action": "迷惑メールフォルダも確認し、それでも届かない場合は窓口へ電話してください。"
+    },
+    {
+      "q": "サツドラ名義のメールにURLや添付ファイルは付く？",
+      "a": "サツドラは、メールにURLや添付ファイルを記載しないと案内しています。また、パスワード、EZOCAのPIN番号、クレジットカード情報などを尋ねることはないとしています。",
+      "source": "https://satudora.co.jp/news/ps_information_1125",
+      "action": "URLや添付ファイルがあるメールは開かず、個人情報やパスワードを入力しないでください。"
+    },
+    {
+      "q": "住所やクレジットカード情報、パスワードも漏れた？",
+      "a": "サツドラの発表では、姓、住所、電話番号、EZOCAのPIN番号、クレジットカード情報、パスワードは流出した情報に含まれていません。人によっては、流出した項目の一部が含まれていない場合もあります。",
+      "source": "https://satudora.co.jp/news/ps_information_1125",
+      "action": "メールでパスワードやPIN番号、カード情報を尋ねられても答えず、不審なURLや添付ファイルは開かないでください。"
+    },
+    {
+      "q": "EZOCA番号だけで、EZOポイントを使われる？",
+      "a": "サツドラは、EZOCA番号だけではEZOポイントを利用できないと案内しています。EZOCAのPIN番号は流出した情報に含まれていませんが、他人に教えないよう呼びかけています。",
+      "source": "https://satudora.co.jp/news/ps_information_1125",
+      "action": "EZOCAのPIN番号は他人に教えず、尋ねられても伝えないでください。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "対象期間に登録した可能性があるが連絡がない？",
+      "situation": "期間内に登録した可能性があり未連絡",
+      "recommend": "迷惑メールを確認し、窓口へ連絡",
+      "reason": "サツドラは対象期間に登録した可能性があるのに個別連絡が届かない場合、問い合わせるよう案内しています。メールの不達やLINE公式アカウントのブロックが理由となる場合もあります。",
+      "source": "https://satudora.co.jp/news/ps_information_1125"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "購入情報は合計額のみ、商品名は含まず",
+    "cause": "委託先の移行作業で公開設定を誤った",
+    "steps": "登録時期と受信箱を確かめて次の一手へ",
+    "desk": "対象期間に登録した人の問い合わせ先",
+    "worries": "何が漏れ、どんな連絡に注意する？",
+    "guide": "連絡がないとき、問い合わせる目安"
+  },
+  "depthAt": "2026-11-25T23:38:39+00:00"
 }
