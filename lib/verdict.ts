@@ -145,8 +145,10 @@ export function japanLabel(verdict: Verdict): string {
     if (verdict.japan === "unknown") return "日本は未確認";
     return "提供前";
   }
+  // 研究・デモ段階（社内の仕組み・研究の発表など）は、提供の予定そのものが発表されていない。
+  // japan が ok でも「日本でも提供予定」とは言えない（2026-11-25 AdSense の点検: 社内の監視の仕組みの記事に「日本でも提供予定」と出ていた）
   if (verdict.status === "demo") {
-    return verdict.japan === "ok" ? "日本でも提供予定" : verdict.japan === "unknown" ? "日本は未確認" : "提供前";
+    return verdict.japan === "unknown" ? "日本は未確認" : verdict.japan === "no" ? "提供前" : "提供の予定は未発表";
   }
   return JAPAN_LABEL[verdict.japan];
 }
@@ -170,7 +172,8 @@ export const NON_PRODUCT_PATTERN =
   "表彰|受賞|選出|アワード|Awards?|" +
   "統計(?!的)|倒産|件数|調査結果|決算|業績|自社株買い|株主還元|配当|物価|雇用統計|失業率|景気|口座数|契約数|販売台数|出荷台数|上方修正|下方修正|前年同月比|前年比|突破|有効求人倍率|短観";
 const NON_PRODUCT_RE = new RegExp(NON_PRODUCT_PATTERN);
-const NOT_PRODUCT_TAKE_RE = /製品(?:の)?発表ではな|新製品ではな|サービスの発表ではな|(?:使える)?(?:サービス|製品|ツール)ではな(?:い|く)|方針の発表|発表はな(?:い|く)/;
+// 「社内の事例」: 会社の中だけで使う仕組みの紹介（OpenAI の社内の監視の仕組みなど。2026-11-25）。読者が使える製品の判定にならない
+const NOT_PRODUCT_TAKE_RE = /製品(?:の)?発表ではな|新製品ではな|サービスの発表ではな|(?:使える)?(?:サービス|製品|ツール)ではな(?:い|く)|方針の発表|発表はな(?:い|く)|社内の(?:事例|仕組み|取り組み)/;
 
 /**
  * お知らせ・告知・統計の転載の記事か（2026-11-03 オーナー決定・台帳 A26）。

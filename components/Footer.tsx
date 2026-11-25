@@ -2,7 +2,7 @@ import Link from "next/link";
 import CompanyMark from "@/components/CompanyMark";
 import NewsletterSignup from "@/components/NewsletterSignup";
 import { guideShortName, LIFE_COMPARE_SLUGS, lifeCompareGuide } from "@/lib/buying-guides";
-import { ROUNDUP_CHANNEL, getAllArticles, getAllChannels, getAllTags } from "@/lib/articles";
+import { ROUNDUP_CHANNEL, getAllArticles, getAllChannels } from "@/lib/articles";
 import { companyCounts } from "@/lib/companies";
 import { CREATOR_CHANNELS, WIRE_SOURCES } from "@/lib/indexing";
 import { hasChannelLabel } from "@/lib/channel-labels";
@@ -67,7 +67,6 @@ export default function Footer() {
     .slice(0, 24);
   const genres = genreNav();
   const companies = companyCounts(ai).slice(0, 8);
-  const tags = getAllTags(true).slice(0, 16);
 
   return (
     <footer data-funnel-pos="footer" className="mt-24 border-t-2 border-ink bg-surface">
@@ -178,23 +177,8 @@ export default function Footer() {
             </div>
           </div>
 
-          {tags.length > 0 && (
-            <div className="ft-ai">
-              <p className="eyebrow">TOPICS</p>
-              <ul className="mt-4 flex flex-wrap gap-2">
-                {tags.map((tag) => (
-                  <li key={tag.slug}>
-                    <Link
-                      href={`/tags/${encodeURIComponent(tag.slug)}`}
-                      className="inline-block border border-line px-2.5 py-1 text-meta text-muted hover:border-accent hover:text-accent"
-                    >
-                      {tag.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
+          {/* 2026-11-25 AdSense の点検: 足もとの「TOPICS」（記事の多いタグ＝生成AI・LLM・OpenAI…AWS）は、暮らしとお金の記事を含む全ページに
+              AIの話題の札を並べ、サイトの軸と違って見えていたので出さない。タグは各記事の下（その記事のタグだけ）と /tags から見られる */}
         </div>
       </div>
 
