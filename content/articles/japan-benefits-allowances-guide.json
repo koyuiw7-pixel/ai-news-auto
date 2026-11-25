@@ -74,7 +74,7 @@
   "videoTitle": "給付と手当の早見表　児童手当は月3万円の区分も、金額と窓口を一覧に",
   "publishedAt": "2026-11-25T00:39:00.269211+00:00",
   "generatedAt": "2026-11-25T00:40:07.601427+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/japan-benefits-allowances-guide-figure-3b938921.jpg",
   "model": "openai-api:gpt-6.1-terra",
   "affiliates": [],
   "newsType": "policy",
@@ -89,15 +89,14 @@
     }
   ],
   "todayActions": [
-    "子どもの出生や転入があった場合は、翌日から15日以内の児童手当の申請先を確かめる。",
-    "年金生活者支援給付金の対象が分からない場合は、給付金専用ダイヤル0570-05-4092に相談する。",
-    "学生納付特例を希望する場合は、学生証の写しや在学証明書を用意し、国民年金担当窓口を確認する。"
+    "出生・転入があった人は、現住所の市区町村への児童手当申請期限を確認する。",
+    "年金生活者支援給付金の条件や請求先を、専用ダイヤルで確認する。",
+    "第3子以降の額を確かめるため、兄姉等の数え方と条件を確認する。"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
   "museFile": "20261125-早見表-給付と手当の早見表.md",
   "sectionsPolishedAt": "2026-11-25T00:40:07+00:00",
-  "museDepthNotes": "窓口: 年金生活者支援給付金の専用ダイヤル 0570-05-4092（https://www.nenkin.go.jp/service/jukyu/tetsuduki/sonota-kyufu/shienkyufukin/seikyu/roureikiso.files/leaflet1.pdf）\nなるほど: 児童手当は、出生の日の翌日から15日以内に今の住所の市区町村へ申請が必要（https://www.cfa.go.jp/policies/kokoseido/jidouteate/annai）\nなるほど: 育児休業給付金は非課税で、育児休業中は社会保険料の免除もある（https://www.mhlw.go.jp/content/11909000/001578392.pdf）",
   "museSources": [
     {
       "url": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/annai",
@@ -140,5 +139,139 @@
   "detectedAt": "2026-11-25T00:40:20+00:00",
   "searchTitle": "児童手当の第3子以降はいくら？　月3万円、申請先は市区町村",
   "layout": "noir",
-  "summaryLine": "児童手当は高校生年代までが対象で、第3子以降は子ども**1人**あたり月3万円です。"
+  "summaryLine": "児童手当は高校生年代までが対象で、第3子以降は子ども**1人**あたり月3万円です。",
+  "insight": [
+    {
+      "text": "第3子以降の人数には、18歳年度末を過ぎて22歳年度末までの兄姉等も含まれます。ただし、その子の世話に加え、生計費を負担していることが条件です。",
+      "source": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/annai"
+    },
+    {
+      "text": "出生や転入が月末に近ければ、申請が翌月になっても異動日の翌日から15日以内なら申請月分から支給されます。15日を過ぎて申請が遅れると、原則、遅れた月分は受け取れません。",
+      "source": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/annai"
+    },
+    {
+      "text": "年金生活者支援給付金の所得判定では、障害年金・遺族年金などの非課税収入は含まれません。給付額や基準額は生年月日などでも異なるため、所得だけで自己判断しないことが大切です。",
+      "source": "https://www.nenkin.go.jp/service/jukyu/tetsuduki/sonota-kyufu/shienkyufukin/seikyu/roureikiso.files/leaflet1.pdf"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "お住まいの市区町村",
+      "url": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/annai",
+      "source": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/annai",
+      "note": "出生や転入の場合は、現住所の市区町村へ申請します。公務員は勤務先に申請します。"
+    },
+    {
+      "name": "給付金専用ダイヤル",
+      "url": "https://www.nenkin.go.jp/service/jukyu/tetsuduki/sonota-kyufu/shienkyufukin/seikyu/roureikiso.files/leaflet1.pdf",
+      "source": "https://www.nenkin.go.jp/service/jukyu/tetsuduki/sonota-kyufu/shienkyufukin/seikyu/roureikiso.files/leaflet1.pdf",
+      "phone": "0570-05-4092",
+      "hours": "月曜日 8:30～19:00、火～金曜日 8:30～17:15、第2土曜日 9:30～16:00",
+      "note": "電話がつながりやすいのは週の後半・月の後半・第2土曜日です。お問い合わせの際は、基礎年金番号またはマイナンバーがわかるものをご用意ください。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "出生・転入があった人は、現住所の市区町村への児童手当申請期限を確認する。",
+      "source": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/annai",
+      "steps": [
+        "こども家庭庁「児童手当制度のご案内」を開く",
+        "「はじめに行うこと」を確認する",
+        "出生・転入日の翌日から15日以内に申請する"
+      ],
+      "url": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/annai"
+    },
+    {
+      "action": "年金生活者支援給付金の条件や請求先を、専用ダイヤルで確認する。",
+      "source": "https://www.nenkin.go.jp/service/jukyu/tetsuduki/sonota-kyufu/shienkyufukin/seikyu/roureikiso.files/leaflet1.pdf",
+      "steps": [
+        "基礎年金番号またはマイナンバーがわかるものを用意する",
+        "給付金専用ダイヤル0570-05-4092へ電話する"
+      ],
+      "url": "https://www.nenkin.go.jp/service/jukyu/tetsuduki/sonota-kyufu/shienkyufukin/seikyu/roureikiso.files/leaflet1.pdf"
+    },
+    {
+      "action": "第3子以降の額を確かめるため、兄姉等の数え方と条件を確認する。",
+      "source": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/annai",
+      "steps": [
+        "児童手当制度のご案内を開く",
+        "「第3子以降」のカウント方法はこちら（PDF／377KB）を開く",
+        "兄姉等の年齢と生計費負担の条件を確かめる"
+      ],
+      "url": "https://www.cfa.go.jp/assets/contents/node/basic_page/field_ref_resources/c9d07fdc-1873-4b62-ba35-b38a62a471a6/9f5267a3/20250213_policies_kokoseido_jidouteate_annai_05.pdf"
+    }
+  ],
+  "cause": {
+    "text": "年金生活者支援給付金は、公的年金等の収入金額やその他の所得が一定基準額以下の年金受給者の生活を支えるため、年金に上乗せして支給されます。",
+    "status": "background",
+    "source": "https://www.nenkin.go.jp/service/jukyu/tetsuduki/sonota-kyufu/shienkyufukin/seikyu/roureikiso.files/leaflet1.pdf"
+  },
+  "worries": [
+    {
+      "q": "出生や転入の申請が15日を過ぎたら、手当はどうなりますか？",
+      "a": "申請が遅れると、原則として遅れた月分の手当は受けられません。ただし、出生や転入が月末に近く、異動日の翌日から15日以内に翌月申請した場合は、申請月分から支給されます。",
+      "source": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/annai",
+      "action": "出生・転入日を確認し、期限内に現住所の市区町村へ申請してください。"
+    },
+    {
+      "q": "年金生活者支援給付金の申請に、添付書類は必要ですか？",
+      "a": "市町村から提供を受ける所得情報などで支給要件を判定するため、原則として添付書類は必要ありません。ただし、所得情報などを確認できない場合は、提出を求められることがあります。",
+      "source": "https://www.nenkin.go.jp/service/jukyu/tetsuduki/sonota-kyufu/shienkyufukin/seikyu/roureikiso.files/leaflet1.pdf",
+      "action": "給付金専用ダイヤルへ確認するときは、基礎年金番号またはマイナンバーがわかるものを用意してください。"
+    },
+    {
+      "q": "年金生活者支援給付金は、請求したらいつから受け取れますか？",
+      "a": "原則として請求した月の翌月分から受け取れます。年金と同じ口座に、年金とは別に、原則として偶数月の15日に前月までの2カ月分が振り込まれます。",
+      "source": "https://www.nenkin.go.jp/service/jukyu/tetsuduki/sonota-kyufu/shienkyufukin/seikyu/roureikiso.files/leaflet1.pdf",
+      "action": "給付金専用ダイヤルに問い合わせ、請求手続きと支給要件を確認してください。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "児童手当はどこに申請すればいい？",
+      "situation": "公務員として勤務している",
+      "recommend": "勤務先に申請する",
+      "reason": "こども家庭庁の案内では、公務員の場合は勤務先に申請し、手当も勤務先から支給されます。公務員以外は現住所の市区町村が申請先です。",
+      "source": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/annai"
+    },
+    {
+      "question": "児童手当はどこに申請すればいい？",
+      "situation": "公務員ではない",
+      "recommend": "現住所の市区町村に申請する",
+      "reason": "出生や他の市区町村からの転入では、現住所の市区町村へ認定請求書を提出します。申請が遅れると、原則、遅れた月分の手当を受けられなくなります。",
+      "source": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/annai"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "第3子の数え方と申請の15日ルール",
+    "cause": "年金に給付金が上乗せされる理由",
+    "steps": "申請期限と所得条件を確かめる",
+    "desk": "児童手当と年金給付の相談先",
+    "worries": "申請期限や給付金の条件が気になる",
+    "guide": "児童手当の申請先をどう選ぶ？"
+  },
+  "depthAt": "2026-11-25T01:01:12+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "給付と手当の早見表",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-25T01:02:29+00:00"
+  },
+  "imageFocus": {
+    "x": 0.505,
+    "y": 0.422,
+    "box": [
+      0.044,
+      0.03,
+      0.966,
+      0.815
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/japan-benefits-allowances-guide-figure-3b938921.jpg"
+  }
 }
