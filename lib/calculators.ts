@@ -14,8 +14,10 @@ import type { ArticleChart } from "@/lib/charts";
  * 総務省が2025年10月まで載せていた目安表と同じ前提で計算し、表の年収300万〜900万円と一致することを tests/test_furusato_easy.cjs で確かめている。
  * 2026-11-25: 児童手当の支給額（/tools/child-allowance）を追加。子どもの生まれた年月か年齢の区分から、第何子・月額・12月の支給（10月・11月分）・1年分を
  * こども家庭庁の案内（令和6年10月分からの制度）で出す（式は lib/child-allowance.ts、テストは tests/test_child_allowance.cjs）。
+ * 2026-11-26: 年金生活者支援給付金（/tools/pension-support-benefit）を追加。老齢・障害・遺族の別、世帯の住民税、前年の収入、納めた月数から、
+ * 対象かどうかの目安と令和8年度の月額・1回の支払い（2か月分）・1年分を日本年金機構の案内で出す（式は lib/pension-support-benefit.ts、テストは tests/test_pension_support_benefit.cjs）。
  */
-export type CalculatorKind = "defense-tax" | "furusato-limit" | "child-allowance";
+export type CalculatorKind = "defense-tax" | "furusato-limit" | "child-allowance" | "pension-support-benefit";
 
 export type ArticleCalculator = {
   kind: CalculatorKind;
@@ -45,6 +47,12 @@ export const CALCULATORS: Record<CalculatorKind, { href: string; title: string; 
     title: "児童手当の支給額の計算",
     description: "子どもの生まれた年月か年齢の区分から、第何子になるか・1か月の児童手当・12月の支給額（10月・11月分）・1年分を計算します。所得制限はありません。",
     checked: "2026-11-25",
+  },
+  "pension-support-benefit": {
+    href: "/tools/pension-support-benefit",
+    title: "年金生活者支援給付金の計算",
+    description: "老齢・障害・遺族の別と前年の収入、保険料を納めた月数から、年金生活者支援給付金の対象かどうかの目安と、令和8年度の月額・1回の支払い（2か月分）・1年分を計算します。",
+    checked: "2026-11-26",
   },
 };
 
@@ -97,6 +105,7 @@ type ArticleLike = {
 const TAX_WORDS = /防衛特別所得税|防衛増税|防衛税|復興特別所得税/;
 const FURUSATO_WORDS = /ふるさと納税/;
 const CHILD_ALLOWANCE_WORDS = /児童手当/;
+const PENSION_SUPPORT_WORDS = /年金生活者支援給付金/;
 
 /**
  * AIの有料プランの費用計算（/tools/ai-plan-cost）は 2026-11-03 に終了した（「12か月で16,800円」「Plusの0.5個分」のような
@@ -118,6 +127,10 @@ export function calculatorForArticle(article: ArticleLike): ArticleCalculator | 
   if (CHILD_ALLOWANCE_WORDS.test(title)) {
     return { kind: "child-allowance", heading: /いくら|金額|支給額|月額|第3子|計算|振込|支給日/ };
   }
+  // 年金生活者支援給付金の記事（見出しに「年金生活者支援給付金」がある記事だけ。2026-11-26）
+  if (PENSION_SUPPORT_WORDS.test(title)) {
+    return { kind: "pension-support-benefit", heading: /いくら|金額|給付額|月額|計算|対象|基準|所得/ };
+  }
   return null;
 }
 
@@ -129,5 +142,7 @@ export function calculatorForGuide(guide: { tool?: string; title: string; seoTit
   if (guide.tool === "furusato" || /ふるさと納税|ワンストップ特例/.test(`${guide.title} ${guide.seoTitle ?? ""}`)) return "furusato-limit";
   // 児童手当のガイド（/guides/jidou-teate など）からは、児童手当の支給額の計算へ（2026-11-25）
   if (/児童手当/.test(`${guide.title} ${guide.seoTitle ?? ""}`)) return "child-allowance";
+  // 年金生活者支援給付金のガイドからは、年金生活者支援給付金の計算へ（2026-11-26）
+  if (PENSION_SUPPORT_WORDS.test(`${guide.title} ${guide.seoTitle ?? ""}`)) return "pension-support-benefit";
   return null;
 }

@@ -38,6 +38,9 @@ export const MONEY_PAGES: MoneyPage[] = [
     label: "年金生活者支援給付金の対象を確かめる",
     // 「年金」の1語で当たる年金の確定申告・年金の税金のガイドは、この話題には出さない
     guide: null,
+    // 計算ツール（2026-11-26）。記事の「自分は対象か確かめる」の行き先は変えない
+    tool: "/tools/pension-support-benefit",
+    articles: ["pension-support-benefit-old-age-check", "pension-support-old-age-amount-table", "pension-support-benefit-2026", "pension-support-benefit-old-age-eligibility"],
   },
   {
     key: "childbirth",

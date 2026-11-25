@@ -139,6 +139,6 @@ test("計算機の登録：CALCULATORS・記事とガイドからの案内・関
   // 記事の「自分は対象か確かめる」の行き先は変えない
   assert.equal(money.moneyLinkFor({ title: "児童手当の振込日" }).href, "/articles/child-allowance-eligibility-check");
   assert.match(read("components/calc/CalculatorBox.tsx"), /calc\.kind === "child-allowance"\) return <ChildAllowanceCalc \/>/);
-  assert.match(read("lib/sitemap.ts"), /"\/tools\/child-allowance"\]\.map\(fixed\)/);
+  assert.match(read("lib/sitemap.ts"), /"\/tools\/child-allowance"[^\]]*\]\.map\(fixed\)/);
   assert.ok(fs.existsSync(path.join(root, "components/calc/ChildAllowanceCalc.tsx")));
 });
