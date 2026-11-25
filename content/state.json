@@ -9964,6 +9964,20 @@
       "skipped": true,
       "url": "https://news.ntv.co.jp/n/knb/category/sports/kn16aac514b9a24cfe96d109cee4c45686"
     },
+    "30104cce5dee7c96": {
+      "at": "2026-11-25T23:22:13.076733+00:00",
+      "costUsd": 0.0013,
+      "intent": "breaking",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "safetyLane": true,
+      "score": 99,
+      "section": "public",
+      "slug": "satudora-personal-data-leak-line",
+      "url": "https://satudora.co.jp/news/ps_information_1125"
+    },
     "302b35d831362718": {
       "at": "2026-11-14T17:08:08.573235+00:00",
       "costUsd": 0.0042,
@@ -24963,29 +24977,6 @@
   },
   "quality_log": [
     {
-      "accepted": true,
-      "at": "2026-11-23T23:36:33.613128+00:00",
-      "attempt": 1,
-      "id": "794ad7639551fb41",
-      "kind": "broad",
-      "model": "openai-api:gpt-6-luna",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 76.8,
-        "avg_sentence": 44.5,
-        "long_share": 0.158,
-        "max_paragraph": 149,
-        "paragraphs": 11,
-        "sentences": 19
-      },
-      "score": 97,
-      "source": "fast",
-      "title": "当社が提供する「TONARIWA」における不正アクセスに伴う個人情報漏えいの可能性に関するお詫びとご報告 | 電通デジタル",
-      "warnings": [
-        "見出しが48字（目安40字以内）。一覧・カードでは前半だけを出す"
-      ]
-    },
-    {
       "accepted": false,
       "at": "2026-11-23T23:47:18.101381+00:00",
       "attempt": 1,
@@ -32503,6 +32494,29 @@
       "title": "第76回中央最低賃金審議会 資料",
       "warnings": [
         "読みやすさ: 文が長い（1文の平均 56.8字・60字超の文が 40% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-25T23:22:00.478133+00:00",
+      "attempt": 1,
+      "id": "30104cce5dee7c96",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 69.8,
+        "avg_sentence": 38.3,
+        "long_share": 0.097,
+        "max_paragraph": 129,
+        "paragraphs": 17,
+        "sentences": 31
+      },
+      "score": 99,
+      "source": "fast",
+      "title": "個人情報の流出に関するお詫びとお知らせ - サツドラ",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（EZOCA・PIN）"
       ]
     }
   ],
