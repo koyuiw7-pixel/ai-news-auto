@@ -88,13 +88,14 @@
     }
   ],
   "todayActions": [
-    "My Starbucksの「抽選販売申込履歴」で、福袋2027の抽選結果を確かめる。",
-    "当選して購入を希望する場合は、12月2日23時59分までにオンラインストアで手続きを完了する。",
-    "購入前に、変更できない配送日と届け先を確認する。"
+    "メールが見つからない人は抽選販売申込履歴で結果を確認する",
+    "当選して購入する人は期限までにオンラインストアで手続きを終える",
+    "購入を確定する前に配送日と届け先を確認する"
   ],
   "angleOf": "starbucks-fukubukuro-2027-lottery-result",
   "deepDive": "check",
   "relatedSlugs": [
+    "starbucks-lucky-bag-lottery-questions",
     "starbucks-fukubukuro-2027-lottery-result"
   ],
   "ownViewExpanded": true,
@@ -154,5 +155,111 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/starbucks-lucky-bag-result-check-fe3b4e55.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "福袋のチケットは有効期間が同じではありません。コーヒー豆チケットは2027年1月4日（月）～7月2日（金）、ドリンクチケットとフードトライアルチケットは2027年1月1日（金）～6月27日（日）です。",
+      "source": "https://www.starbucks.co.jp/youkou/luckybag/"
+    },
+    {
+      "text": "エントリー締切時点でゴールド会員だった人は、1回のエントリーにつき2口分として抽選対象でした。ただし、複数口分でも当選は1人1点までです。",
+      "source": "https://www.starbucks.co.jp/youkou/luckybag/"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "スターバックス福袋2027 抽選結果照会",
+      "url": "https://cart.starbucks.co.jp/mystore/lottery",
+      "source": "https://www.starbucks.co.jp/youkou/luckybag/",
+      "howTo": [
+        "My Starbucks [マイページ]",
+        "オンラインストア",
+        "抽選販売申込履歴"
+      ],
+      "note": "抽選結果のお問い合わせには回答できません。"
+    },
+    {
+      "name": "スターバックス オンラインストア カスタマーセンター",
+      "url": "https://www.starbucks.co.jp/youkou/luckybag/",
+      "source": "https://www.starbucks.co.jp/youkou/luckybag/",
+      "howTo": [
+        "スターバックス福袋2027",
+        "お問い合わせ先",
+        "商品/配送について"
+      ],
+      "phone": "0120-123-680",
+      "hours": "10:00～18:00 年中無休",
+      "note": "初期不具合があった場合の問い合わせ先です。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "メールが見つからない人は抽選販売申込履歴で結果を確認する",
+      "source": "https://www.starbucks.co.jp/youkou/luckybag/",
+      "steps": [
+        "My Starbucksにログイン",
+        "マイページから「オンラインストア」を選ぶ",
+        "「抽選販売申込履歴」を開く"
+      ],
+      "url": "https://cart.starbucks.co.jp/mystore/lottery"
+    },
+    {
+      "action": "当選して購入する人は期限までにオンラインストアで手続きを終える",
+      "source": "https://www.starbucks.co.jp/youkou/luckybag/",
+      "steps": [
+        "当選の案内メールの記載を確認",
+        "オンラインストアの購入ページへ進む",
+        "2026年12月2日（水）23:59までに購入手続きを完了"
+      ],
+      "url": "https://www.starbucks.co.jp/youkou/luckybag/"
+    },
+    {
+      "action": "購入を確定する前に配送日と届け先を確認する",
+      "source": "https://www.starbucks.co.jp/youkou/luckybag/",
+      "steps": [
+        "配送日を2027年1月1日（金）～1月7日（木）から選ぶ",
+        "届け先を確認して購入手続きを完了"
+      ],
+      "url": "https://www.starbucks.co.jp/youkou/luckybag/"
+    }
+  ],
+  "cause": {
+    "text": "この福袋はオンラインストアでの抽選販売です。当選者だけに購入案内が届き、期限までに購入されなかった当選無効分は繰り上げ抽選に回ります。再販売は行われません。",
+    "status": "background",
+    "source": "https://www.starbucks.co.jp/youkou/luckybag/"
+  },
+  "worries": [
+    {
+      "q": "当選メールが見つからなくても当選結果を確認できますか？",
+      "a": "当選者には登録メールアドレスへ案内が送られますが、My Starbucksの「抽選販売申込履歴」でも結果を確認できます。公式アプリを使っている場合は、Inbox（Message）にも案内が届きます。",
+      "source": "https://www.starbucks.co.jp/youkou/luckybag/",
+      "action": "My Starbucksにログインし、「オンラインストア」から「抽選販売申込履歴」を開いてください。"
+    },
+    {
+      "q": "当選メールが届かないと当選は取り消されますか？",
+      "a": "登録メールアドレスの不備で案内を送れない場合、当選が無効となることがあります。当選メールは再送されず、抽選結果の問い合わせにも回答できません。",
+      "source": "https://www.starbucks.co.jp/youkou/luckybag/",
+      "action": "抽選販売申込履歴で結果を確認し、メール受信制限がある場合は指定のドメインを受信許可してください。"
+    },
+    {
+      "q": "購入手続き後に配送日や届け先を変更できますか？",
+      "a": "購入手続き後は、指定した届け先と配送日の変更はできません。長期不在や受取拒否などで返送された場合も、再発送は行われません。",
+      "source": "https://www.starbucks.co.jp/youkou/luckybag/",
+      "action": "購入を確定する前に、選んだ配送日と届け先に誤りがないか確認してください。"
+    },
+    {
+      "q": "購入期限を過ぎた当選分はどうなりますか？",
+      "a": "2026年12月2日（水）23:59までに購入手続きを完了できない場合、当選は無効となります。購入されなかった当選無効分は繰り上げ抽選に回り、福袋の再販売はありません。",
+      "source": "https://www.starbucks.co.jp/youkou/luckybag/",
+      "action": "購入する場合は、期限前にオンラインストアで手続きを完了してください。"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "チケットごとに有効期間が違う",
+    "cause": "抽選販売と繰り上げ抽選の仕組み",
+    "steps": "結果確認から購入までにすること",
+    "desk": "結果確認と商品・配送の問い合わせ先",
+    "worries": "メールや購入期限、配送の心配"
+  },
+  "depthAt": "2026-11-25T22:54:31+00:00"
 }

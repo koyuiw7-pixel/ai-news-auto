@@ -93,13 +93,15 @@
     }
   ],
   "todayActions": [
-    "応募した人は、My Starbucksの抽選販売申込履歴で結果を確認する。",
-    "当選者は、12月2日23時59分までにオンラインストアで購入手続きを完了する。",
-    "購入前に、2027年1月1日〜7日から選ぶ配送日と届け先を確認する。"
+    "応募者は申込履歴とアプリの受信箱で当選結果を確認する。",
+    "当選者は配送日と届け先を確かめ、期限までに購入手続きを終える。",
+    "当選メールが見当たらない人は、指定受信の設定を確認する。"
   ],
   "angleOf": "starbucks-fukubukuro-2027-lottery-result",
   "deepDive": "qa",
   "relatedSlugs": [
+    "lucky-bags-2027-deadlines",
+    "starbucks-lucky-bag-result-check",
     "starbucks-fukubukuro-2027-lottery-result"
   ],
   "qualityBar": {
@@ -158,5 +160,107 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/starbucks-lucky-bag-lottery-questions-fe3b4e55.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "当選メールの受信設定では、「mx.starbucks.co.jp」と「starbucks.smp.ne.jp」からのメールを受信できるようにする案内があります。",
+      "source": "https://www.starbucks.co.jp/youkou/luckybag/"
+    },
+    {
+      "text": "税込9,500円の支払いでSTARBUCKS® REWARDSのStarが付くのは、Web登録済みのスターバックス カードを使った場合のみです。付与は商品発送日からおよそ2週間程度後です。",
+      "source": "https://www.starbucks.co.jp/youkou/luckybag/"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "スターバックス オンラインストア カスタマーセンター",
+      "url": "https://www.starbucks.co.jp/youkou/luckybag/",
+      "source": "https://www.starbucks.co.jp/youkou/luckybag/",
+      "howTo": [
+        "スターバックス福袋2027",
+        "お問い合わせ先",
+        "商品/配送について"
+      ],
+      "phone": "0120-123-680",
+      "hours": "10:00～18:00 年中無休",
+      "note": "初期不具合があった場合の問い合わせ先です。フリーダイヤルが利用できない場合は03-4233-0785（有料）です。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "応募者は申込履歴とアプリの受信箱で当選結果を確認する。",
+      "source": "https://www.starbucks.co.jp/youkou/luckybag/",
+      "steps": [
+        "My Starbucksにログイン",
+        "「マイページ」から「オンラインストア」へ",
+        "「抽選販売申込履歴」を開く",
+        "公式アプリのInbox（Message）も確認"
+      ],
+      "url": "https://cart.starbucks.co.jp/mystore/lottery"
+    },
+    {
+      "action": "当選者は配送日と届け先を確かめ、期限までに購入手続きを終える。",
+      "source": "https://www.starbucks.co.jp/youkou/luckybag/",
+      "steps": [
+        "配送日を2027年1月1日～7日から選ぶ",
+        "届け先住所を確認する",
+        "オンラインストア購入ページで手続き",
+        "2026年12月2日（水）23:59までに完了"
+      ],
+      "url": "https://www.starbucks.co.jp/youkou/luckybag/"
+    },
+    {
+      "action": "当選メールが見当たらない人は、指定受信の設定を確認する。",
+      "source": "https://www.starbucks.co.jp/youkou/luckybag/",
+      "steps": [
+        "メールの受信設定を開く",
+        "mx.starbucks.co.jpを受信許可",
+        "starbucks.smp.ne.jpを受信許可"
+      ],
+      "url": "https://www.starbucks.co.jp/youkou/luckybag/"
+    }
+  ],
+  "cause": {
+    "text": "決済期限までに購入されなかった当選分は当選無効となり、その分について繰り上げ抽選が行われます。再販売は行われません。",
+    "status": "background",
+    "source": "https://www.starbucks.co.jp/youkou/luckybag/"
+  },
+  "worries": [
+    {
+      "q": "当選メールが届かなければ、落選と考えていい？",
+      "a": "当選者のみに登録メールアドレスへ通知されますが、メール設定によって届かない場合もあります。My Starbucksの「抽選販売申込履歴」や、公式アプリのInbox（Message）でも結果を確認できます。",
+      "source": "https://www.starbucks.co.jp/youkou/luckybag/",
+      "action": "My Starbucksの抽選販売申込履歴を開き、公式アプリを使っている人はInbox（Message）も確認しましょう。"
+    },
+    {
+      "q": "購入期限を過ぎても、当選を有効にしてもらえる？",
+      "a": "決済期限までに購入手続きを完了できない場合、当選は無効になります。期限までに購入されなかった当選無効分は繰り上げ抽選の対象となり、再販売は行われません。",
+      "source": "https://www.starbucks.co.jp/youkou/luckybag/",
+      "action": "当選して購入する場合は、オンラインストアで2026年12月2日（水）23:59までに手続きを完了しましょう。"
+    },
+    {
+      "q": "購入後に配送日や届け先を間違えたら変更できる？",
+      "a": "配送日は2027年1月1日～7日から選べますが、購入手続き後は配送日も届け先も変更できません。購入者都合による返品・交換も受け付けていません。",
+      "source": "https://www.starbucks.co.jp/youkou/luckybag/",
+      "action": "購入手続きに進む前に、選ぶ配送日と指定する住所を見直してください。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "当選したら、すぐ購入してよい？",
+      "situation": "配送日や届け先をまだ確認していない",
+      "recommend": "配送日と届け先を確かめてから購入する",
+      "reason": "配送日は2027年1月1日～7日から選べますが、購入手続き後は配送日も届け先も変更できません。購入手続きは2026年12月2日（水）23:59までに完了しないと当選が無効になります。",
+      "source": "https://www.starbucks.co.jp/youkou/luckybag/"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "メール受信設定とStar付与の条件",
+    "cause": "買われなかった当選分は繰り上げ抽選へ",
+    "steps": "当選確認から購入までにすること",
+    "desk": "不具合があったときの問い合わせ先",
+    "worries": "メールがない、期限を過ぎた、配送先が心配",
+    "guide": "購入前に配送日と届け先を確認"
+  },
+  "depthAt": "2026-11-25T22:54:15+00:00"
 }
