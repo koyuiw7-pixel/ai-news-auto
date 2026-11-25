@@ -509,7 +509,7 @@
     "246d8e49adf02c6392a00bd5174a28cac2fc925c": 2,
     "2473dfd09f002200ec7d9d0527be803e76774c22": 2,
     "248aeb703fc0e7584a7919f7f82bc27c55d831a5": 2,
-    "249027e20af049ffb93b72d307334e0a5985c979": 1,
+    "249027e20af049ffb93b72d307334e0a5985c979": 2,
     "24dd15fbc84760f95513acf07bd2fb394942d225": 2,
     "24f013846e59582ead9ca5d23dac9ab64077eb22": 2,
     "24f726544a5d99b28fcd4ac7a9c21aad4027d76a": 2,
@@ -1943,6 +1943,7 @@
     "9b460311f77caab4cb19340eef637d5c2668f5f1": 2,
     "9b4cece44f8c7083b250803cae45b99c32179609": 2,
     "9b55d7020a1cedf2271c60003a021323c4a76977": 2,
+    "9b5d2d9acc356ca3ac92ec47bd1dd761bc73d4f4": 1,
     "9b6a166534e5596592a46ca2999c61a5c0d43b3a": 2,
     "9b79f4e5bb8a46f3dbc34e57be6a2908c7f72b49": 3,
     "9b7a9994d023c4549f7129ee7f36537cba785818": 2,
@@ -2795,7 +2796,7 @@
     "e1d0c98c62bf38b1761e175048525de81d55c227": 2,
     "e21b3065f5b1cd6810ad6fb59eeaa6c2bd99699d": 2,
     "e2291dca9f3931073012679943187f3c6c4ef590": 2,
-    "e2548a46e0a4631366e43a69a8942f03cd87b61c": 1,
+    "e2548a46e0a4631366e43a69a8942f03cd87b61c": 2,
     "e25ca5021a767b2d1e6bcfcabb7112f87bc5ca50": 2,
     "e27cc2f7704d2179a05e07e214a231d308807845": 2,
     "e27d7b1161de2be905578f3e6c04eaba76f3b7a4": 2,
@@ -2915,6 +2916,7 @@
     "ebf8d7dc60eb500ad100651605878759e6ee66a8": 2,
     "ebf90d8abadfee32b6f4c5ec516f8960a3a4f14a": 2,
     "ec25804b5493224ced6bafbc34afbfafae3e1026": 2,
+    "ec35f6ca9bb6fb8d2def69d84ceae7913a6b2ab7": 1,
     "ec67ae32827ee7c8f70797f3164b3de6c0ee57ce": 2,
     "ec6cb21af6b9b631fa0e245330419d89a03bdaa1": 2,
     "ec77948a0193d98cea1dbb6d50e0420ee35a5c42": 2,
@@ -8446,6 +8448,14 @@
       "reason": "stale: 発表から166時間（記事ページの日付）",
       "skipped": true,
       "url": "https://newsroom.amd.com/news/neysa-scales-ai-infrastructure-india/"
+    },
+    "1dffba5b9a262b38": {
+      "at": "2026-11-25T11:27:07.366519+00:00",
+      "costUsd": 0.0078,
+      "model": "gemini-3.5-flash",
+      "reason": "quality: タイトルの「Jリーグ順位を左右する」→移籍情報が順位を左右するという因果・影響は元記事に示されておらず、本文も順位への影響を断定できないとしています。; 要点の「J1経験者や大学球界からの新加入選手が多数」→元記事は選手の移籍記録を掲載するのみで、J1経験の有無や「多数」という評価を裏付けていません。; タイトルが約束する順位への影響について具体的な説明がなく、移籍情報の一覧とし",
+      "skipped": true,
+      "url": "https://www.jleague.jp/j2/special/transfer/"
     },
     "1e009b8894c0103c": {
       "at": "2026-11-25T09:53:45.544842+00:00",
@@ -17074,14 +17084,6 @@
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026111221"
     },
-    "b2f355d4f86e33ca": {
-      "at": "2026-11-11T11:26:48.930444+00:00",
-      "costUsd": 0.0068,
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: タイトル「防災や健康分野で導入広がる」→ 元記事は防災・健康分野を事例として紹介しているだけで、これらの分野で導入が広がっているという傾向や件数は示していない。; 本文「都市インフラの維持管理、環境やエネルギー分野の対策」→ 元記事の「都市・インフラ、環境・エネルギー分野における取組」を超えて「維持管理」「対策」という具体的な内容を補っている。; 本文「行政運営の効率化につながる",
-      "skipped": true,
-      "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026111103"
-    },
     "b30631af032c4cad": {
       "at": "2026-11-19T23:16:25.070018+00:00",
       "costUsd": 0.0152,
@@ -19591,16 +19593,6 @@
       "url": "https://stories.starbucks.co.jp/press/2026/pr-2026-1111/",
       "writer": "deep_dive"
     },
-    "deep-8aa3827d1c": {
-      "angleOf": "kyoukai-kenpo-childbirth-allowance",
-      "at": "2026-11-11T11:20:57.054541+00:00",
-      "deepDive": "procedure",
-      "mix": "money",
-      "score": 92,
-      "slug": "kyoukai-kenpo-childbirth-allowance-application",
-      "url": "https://www.kyoukaikenpo.or.jp/benefit/childbirth/001/",
-      "writer": "deep_dive"
-    },
     "deep-8e89f56031": {
       "angleOf": "rakuten-sec-data-leak-447",
       "at": "2026-11-17T17:01:15.195212+00:00",
@@ -19619,16 +19611,6 @@
       "score": 93,
       "slug": "benesse-earphone-recall-eligibility",
       "url": "https://company.benesse.co.jp/notice/004.html",
-      "writer": "deep_dive"
-    },
-    "deep-a4077a6e4e": {
-      "angleOf": "child-allowance-december-payment",
-      "at": "2026-11-11T11:24:29.252158+00:00",
-      "deepDive": "procedure",
-      "mix": "money",
-      "score": 92,
-      "slug": "child-allowance-application-steps",
-      "url": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/annai",
       "writer": "deep_dive"
     },
     "deep-b8bb7791e2": {
@@ -24469,35 +24451,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-23T11:00:41.639522+00:00",
-      "attempt": 1,
-      "id": "d83ba0b20e4d74b6",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "「FSA Analytical Notes―金融庁データ分析事例集―」→ 元資料の表記は「FSA Analytical Notes －金融庁分析事例集－」で、「データ」を含む名称として紹介するのは誤りです。",
-        "「などが幅広く議論されています」→ 元資料が確認できるのは金融庁が提起した論点であり、各テーマが幅広く議論されたとまでは確認できません。",
-        "「報道発表資料および『業界団体との意見交換会において金融庁が提起した主な論点』のページで確認できます」→ 元資料が案内しているのは論点の掲載ページであり、報道発表資料でも確認できるとの案内は裏付けられていません。"
-      ],
-      "readability": {
-        "avg_paragraph": 210.1,
-        "avg_sentence": 67.2,
-        "long_share": 0.64,
-        "max_paragraph": 309,
-        "paragraphs": 8,
-        "sentences": 25
-      },
-      "score": 91,
-      "source": "fsa",
-      "title": "その他,令和８年９月に開催された業界団体との意見交換会において、金融庁が提起した主な論点を公表しました。",
-      "warnings": [
-        "見出しの書き方: 発表文の題名の言い直し（「〇〇が△△を発表」）。読者にとって何が変わるか（だれの・何が・いつから・いくら）を書く",
-        "見出しが46字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-23T11:02:02.064893+00:00",
@@ -32085,6 +32038,35 @@
         "初めて出たところで言い換えていない略語（FOOD・ISETAN・OFUNA）",
         "読みやすさ: 文が長い（1文の平均 50.2字・60字超の文が 25% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
         "読みやすさ: 段落が長い（平均 74.1字・最長 238字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-25T11:27:07.366402+00:00",
+      "attempt": 1,
+      "id": "1dffba5b9a262b38",
+      "kind": "broad",
+      "model": "gemini-3.5-flash",
+      "problems": [
+        "タイトルの「Jリーグ順位を左右する」→移籍情報が順位を左右するという因果・影響は元記事に示されておらず、本文も順位への影響を断定できないとしています。",
+        "要点の「J1経験者や大学球界からの新加入選手が多数」→元記事は選手の移籍記録を掲載するのみで、J1経験の有無や「多数」という評価を裏付けていません。",
+        "タイトルが約束する順位への影響について具体的な説明がなく、移籍情報の一覧としては有用ですが、タイトルの問いには答えていません。"
+      ],
+      "readability": {
+        "avg_paragraph": 170.0,
+        "avg_sentence": 54.8,
+        "long_share": 0.258,
+        "max_paragraph": 251,
+        "paragraphs": 10,
+        "sentences": 31
+      },
+      "score": 68,
+      "source": "radar-official",
+      "title": "【公式】Ｊ２リーグ移籍情報まとめページ ２０２６/２７ | Ｊリーグ公式サイト",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（IN・OUT・SK）",
+        "読みやすさ: 文が長い（1文の平均 54.8字・60字超の文が 26% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "読みやすさ: 段落が長い（平均 170.0字・最長 251字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
       ]
     }
   ],
