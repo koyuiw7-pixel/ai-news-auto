@@ -14838,6 +14838,20 @@
       "slug": "nissan-pineapple-fiber-car-parts",
       "url": "http://global.nissannews.com/ja-JP/releases/261117-01-j"
     },
+    "80db0f77d097a56a": {
+      "at": "2026-11-25T22:18:41.287439+00:00",
+      "costUsd": 0.0083,
+      "intent": "breaking",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "safetyLane": true,
+      "score": 98,
+      "section": "public",
+      "slug": "iica-jcb-karte-unauthorized-access",
+      "url": "https://www.fukuibank.co.jp/info/docs/jcb_info_20261125.html"
+    },
     "810ba2334f6ba2ed4c667850571d3ad4e940b13f": {
       "at": "2026-11-19T07:00:05.833061+00:00",
       "kind": "trend",
@@ -18052,18 +18066,6 @@
       "reason": "trend: 公式の発表で記事にした（lemino-champions-league-2026-27）",
       "skipped": true,
       "url": "https://www.dazn.com/ja-JP/news/%E3%82%B5%E3%83%83%E3%82%AB%E3%83%BC/uefa-champions-league-2026-27-arsenal-vs-bdortmund-20261125/1tlprpbk6jy8p1ey7mpc5umqwo"
-    },
-    "bbcbea15fb37790d": {
-      "at": "2026-11-11T22:16:56.919837+00:00",
-      "costUsd": 0.0206,
-      "foreignAi": true,
-      "intent": "neutral",
-      "mix": "other",
-      "model": "gemini-3.5-flash",
-      "score": 88,
-      "section": "ai",
-      "slug": "elevenlabs-voice-cloning-workflow-guide",
-      "url": "https://elevenlabs.io/blog/voice-cloning-for-content-creators"
     },
     "bc11dd74f5077eadcf08a0b4e50f34754d6b00fc": {
       "at": "2026-11-19T06:19:49.805342+00:00",
@@ -24915,54 +24917,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-23T21:13:46.714518+00:00",
-      "attempt": 2,
-      "id": "53d419810f574ac46f1a5c2c40b673fc61fba9a9",
-      "kind": "trend",
-      "model": "openai-api:gpt-6-luna",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 156.3,
-        "avg_sentence": 49.4,
-        "long_share": 0.158,
-        "max_paragraph": 213,
-        "paragraphs": 6,
-        "sentences": 19
-      },
-      "score": 100,
-      "source": "trends",
-      "title": "東京湾アクアライン",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（NEXCO）",
-        "読みやすさ: 文が長い（1文の平均 49.4字・60字超の文が 16% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "読みやすさ: 段落が長い（平均 156.3字・最長 213字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-23T21:14:08.244793+00:00",
-      "attempt": 0,
-      "id": "53d419810f574ac46f1a5c2c40b673fc61fba9a9",
-      "kind": "trend",
-      "model": "openai-api:gpt-6-luna",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 58.9,
-        "avg_sentence": 37.7,
-        "long_share": 0.0,
-        "max_paragraph": 95,
-        "paragraphs": 16,
-        "sentences": 25
-      },
-      "score": 100,
-      "source": "trends",
-      "title": "東京湾アクアライン",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（NEXCO）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-23T21:26:36.862454+00:00",
@@ -32465,6 +32419,56 @@
       "warnings": [
         "読みやすさ: 文が長い（1文の平均 59.5字・60字超の文が 42% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
         "読みやすさ: 段落が長い（平均 153.8字・最長 246字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-25T22:17:33.309514+00:00",
+      "attempt": 1,
+      "id": "80db0f77d097a56a",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "「利用のたびにリアルタイムで知らせを受け取れます」→JCB公式情報では利用状況や通知設定により対象外・遅延の場合もあるため、毎回リアルタイムに通知されるように読める表現は強すぎます。"
+      ],
+      "readability": {
+        "avg_paragraph": 92.6,
+        "avg_sentence": 43.0,
+        "long_share": 0.107,
+        "max_paragraph": 187,
+        "paragraphs": 13,
+        "sentences": 28
+      },
+      "score": 94,
+      "source": "fast",
+      "title": "株式会社ジェーシービーが利用する外部システム「KARTE」への不正アクセスによる個人情報漏えいの可能性について ｜ お知らせ一覧 ｜ 福井銀行",
+      "warnings": [
+        "見出しが48字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（JCB・SMS）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-25T22:18:28.871512+00:00",
+      "attempt": 1,
+      "id": "80db0f77d097a56a",
+      "kind": "broad",
+      "model": "openai-api:gpt-6-luna",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 98.3,
+        "avg_sentence": 42.6,
+        "long_share": 0.067,
+        "max_paragraph": 187,
+        "paragraphs": 13,
+        "sentences": 30
+      },
+      "score": 98,
+      "source": "fast",
+      "title": "株式会社ジェーシービーが利用する外部システム「KARTE」への不正アクセスによる個人情報漏えいの可能性について ｜ お知らせ一覧 ｜ 福井銀行",
+      "warnings": [
+        "見出しが48字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（JCB・KARTE・SMS）"
       ]
     }
   ],
