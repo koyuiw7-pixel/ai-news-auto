@@ -298,6 +298,7 @@
     "126fc8b122020b0154707e4d51e99fd1a7087ec2": 2,
     "1270ad7e13e27746eaead51cbec650e2caea0111": 2,
     "12a9d5c0f1fa21916becfbf7c5277738e914df01": 2,
+    "12c2e2a5bce34ab7089dadf0dc7541626f3d9a7f": 1,
     "12cc701e486be5fd8196ba08f6e27096f285b352": 2,
     "12e8d22ff24616e4234ae890e6ff85aa5161d80f": 2,
     "12f7a0e33d457b8b4edfe70b801e84e021c9ea0a": 2,
@@ -2672,6 +2673,7 @@
     "dd5e3debe29701f81319781e753bdfdf10be8c96": 2,
     "dd67a023606607173e5f5d6accf9048036ce3b48": 1,
     "dd8ba016f77f9e422b888274d4c9f2c1890072b6": 2,
+    "dd9fc85554e35984b5d28419ac07c362e8626cf7": 1,
     "ddab3032552d8e2eaea58fd2590ac93d76448f9d": 2,
     "ddaec7cebd999bd38809eaff011f7d74332ac23c": 2,
     "ddd9c9f4fb43aee24975d3b2de9df5b44eebc719": 3,
@@ -7411,14 +7413,6 @@
       "skipped": true,
       "url": "https://www.softbank.jp/sbnews/entry/2026/11/10/000000"
     },
-    "0dd3ee9e34670eac": {
-      "at": "2026-11-11T05:21:49.404067+00:00",
-      "kind": "update",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "score": 90,
-      "updated": "ntt-hibiya-light-city-room-2027",
-      "url": "https://www.nttud.co.jp/news_pdf/news_261111_001.pdf"
-    },
     "0dda930357170276": {
       "at": "2026-11-15T17:37:31.434927+00:00",
       "costUsd": 0.0221,
@@ -10497,17 +10491,6 @@
       "trendLane": true,
       "url": "https://www.family.co.jp/company/news_releases/2026/20261113_02.html"
     },
-    "3c32b51ee61f5260": {
-      "at": "2026-11-11T05:21:22.836933+00:00",
-      "costUsd": 0.0192,
-      "intent": "query",
-      "mix": "money",
-      "model": "gemini-3.7-flash",
-      "score": 84,
-      "section": "business",
-      "slug": "customs-post-clearance-audit-results",
-      "url": "https://www.mof.go.jp/policy/customs_tariff/trade/collection/ka20261111.html"
-    },
     "3c6728c1bfd19879": {
       "at": "2026-11-24T21:25:48.997088+00:00",
       "reason": "review: 海外の AI の発表は自動で記事にしない（読者の安全・お金の話とチームの指示だけ。台帳 A75・scripts/news_mix.py review_ai_blocks）",
@@ -11475,6 +11458,13 @@
       "reason": "trend: 公式の発表で記事にした（honda-all-new-avancier-suv-reveal）",
       "skipped": true,
       "url": "https://mainichi.jp/english/articles/20261120/p2g/00m/0bu/037000c"
+    },
+    "4c4838bd1b5ebf7ab6290f280cb264a50521c4f1": {
+      "at": "2026-11-25T05:34:52.955855+00:00",
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 投資・マネーの記事に短い免責文（「投資助言ではありません」）がない",
+      "skipped": true,
+      "url": "https://news.yahoo.co.jp/articles/7d2bc87f15d6c4387d7b66572b79d624e84fe282"
     },
     "4c66ceea359c156e": {
       "at": "2026-11-11T06:07:30.137249+00:00",
@@ -18077,19 +18067,6 @@
       "reason": "trend: 公式の発表で記事にした（kansai-kanto-university-rugby-2026-results）",
       "skipped": true,
       "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20261122-0216"
-    },
-    "bd9342f2217520d0": {
-      "at": "2026-11-11T05:30:41.859731+00:00",
-      "costUsd": 0.1188,
-      "foreignAi": true,
-      "intent": "breaking",
-      "major": true,
-      "mix": "enterprise_dev",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "score": 88,
-      "section": "ai",
-      "slug": "daikin-d60-w-ai-factory-cooling",
-      "url": "https://www.daikin.co.jp/press/2026/20261111"
     },
     "bda15b3a1d5a269c": {
       "at": "2026-11-12T06:24:20.958296+00:00",
@@ -25011,36 +24988,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-23T07:07:00.063334+00:00",
-      "attempt": 1,
-      "id": "01b39e7d37e22f31",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "タイトル「65品が値上げへ　2027年1月から」→65品すべてが1月から改定されるように読めますが、レトルトカレー6品は2月1日出荷分から、アイス1品は1月下旬以降の改定です。",
-        "リード「2027年1月出荷分から…計65品目の価格を…引き上げ」→1月出荷分から改定される品数は65品すべてではなく、カレー6品は2月、アイス1品は1月下旬以降です。",
-        "リード「現在の在庫や購入方法が急に変わることはありません」→在庫や購入方法が変わらないという情報は元記事にありません。",
-        "かんたん版「スーパーやコンビニで買える市販品」→市販品であることは確認できますが、スーパーやコンビニで買えるとの販売場所の情報は元記事にありません。"
-      ],
-      "readability": {
-        "avg_paragraph": 149.4,
-        "avg_sentence": 53.8,
-        "long_share": 0.36,
-        "max_paragraph": 243,
-        "paragraphs": 9,
-        "sentences": 25
-      },
-      "score": 70,
-      "source": "meiji",
-      "title": "価格改定および内容量変更のお知らせ | 2026年 | プレスリリース・お知らせ | 株式会社 明治 - Meiji Co., Ltd.",
-      "warnings": [
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
-        "読みやすさ: 文が長い（1文の平均 53.8字・60字超の文が 36% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "読みやすさ: 段落が長い（平均 149.4字・最長 243字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-23T07:07:45.263496+00:00",
@@ -32667,6 +32614,33 @@
       "title": "リコールの届出について（日野 日野デュトロ 他）",
       "warnings": [
         "初めて出たところで言い換えていない略語（TEL）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-25T05:34:25.400773+00:00",
+      "attempt": 1,
+      "id": "4c4838bd1b5ebf7ab6290f280cb264a50521c4f1",
+      "kind": "trend",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "投資・マネーの記事に短い免責文（「投資助言ではありません」）がない"
+      ],
+      "readability": {
+        "avg_paragraph": 170.2,
+        "avg_sentence": 60.1,
+        "long_share": 0.471,
+        "max_paragraph": 260,
+        "paragraphs": 12,
+        "sentences": 34
+      },
+      "score": null,
+      "source": "trends",
+      "title": "楽天 証券 漏洩",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（TBS・NEWS・DIG）",
+        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
+        "読みやすさ: 文が長い（1文の平均 60.1字・60字超の文が 47% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
       ]
     }
   ],
