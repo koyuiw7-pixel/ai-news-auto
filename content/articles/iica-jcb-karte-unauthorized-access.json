@@ -76,9 +76,8 @@
     }
   ],
   "todayActions": [
-    "福井銀行 お客さま相談室（0120-291-011、平日9〜17時）の番号を控えておく",
-    "JCBからのメールが届いたら、リンクを開く前にJCB公式の発表PDFと内容を照らし合わせる",
-    "MyJCBの利用明細で、身に覚えのない取引がないかを確認する"
+    "iica JCBカードの利用明細を見て、身に覚えのない取引がないか確かめる。",
+    "不審なメールやSMSのリンクは開かず、公式サイトや公式アプリから確認する。"
   ],
   "publicInterest": "breach",
   "incident": {
@@ -125,5 +124,76 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/iica-jcb-karte-unauthorized-access-figure-2b6a1a53.jpg"
-  }
+  },
+  "officialDesk": [
+    {
+      "name": "株式会社福井銀行 お客さま相談室",
+      "url": "https://www.fukuibank.co.jp/info/docs/jcb_info_20261125.html",
+      "source": "https://www.fukuibank.co.jp/info/docs/jcb_info_20261125.html",
+      "phone": "0120-291-011",
+      "hours": "平日9：00～17：00（銀行休業日を除く）"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "iica JCBカードの利用明細を見て、身に覚えのない取引がないか確かめる。",
+      "source": "https://www.fukuibank.co.jp/info/docs/jcb_info_20261125.html",
+      "steps": [
+        "利用明細を確認する",
+        "身に覚えのない取引がないか見る"
+      ]
+    },
+    {
+      "action": "不審なメールやSMSのリンクは開かず、公式サイトや公式アプリから確認する。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "steps": [
+        "メールやSMSのリンクを安易にクリックしない",
+        "公式サイトをブックマークから開く、または公式アプリを使う"
+      ],
+      "url": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html"
+    }
+  ],
+  "cause": {
+    "text": "11月13日にKARTEへの第三者による不正アクセスが発生しました。不正アクセスの詳しい内容については、プレイド社、JCB社の発表を確認するよう案内されています。",
+    "status": "investigating",
+    "source": "https://www.fukuibank.co.jp/info/docs/jcb_info_20261125.html"
+  },
+  "worries": [
+    {
+      "q": "カード番号や氏名なども漏れた可能性がある？",
+      "a": "福井銀行によると、漏えいの可能性がある情報はJCB社内で利用する管理コード値です。カード番号、氏名、住所、電話番号、Eメールアドレスは含まれていないとしています。",
+      "source": "https://www.fukuibank.co.jp/info/docs/jcb_info_20261125.html",
+      "action": "利用明細を確認し、身に覚えのない取引がないか確かめる。"
+    },
+    {
+      "q": "管理コード値から自分だと特定されるの？",
+      "a": "福井銀行によると、この管理コード値からお客さまを特定することや、連絡先を直接確認することはできません。漏えいの可能性がある人には、JCB社からメール等で個別に連絡するとしています。",
+      "source": "https://www.fukuibank.co.jp/info/docs/jcb_info_20261125.html",
+      "action": "個別連絡を装う不審なメールやSMSに注意し、利用明細も確認する。"
+    },
+    {
+      "q": "JCBからのメールは送信元の名前で本物と判断できる？",
+      "a": "警察庁によると、メールは送信元名称や送信元メールアドレスを変更してなりすますことが可能です。表示された送信元だけを見て、メールの真偽を判断するのは困難としています。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "action": "メール内のリンクは開かず、ブックマークした公式サイトや公式アプリから確認する。",
+      "general": true
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "個別連絡が来る前に何か手続きする？",
+      "situation": "JCBから個別連絡がまだ届いていない",
+      "recommend": "まず明細を確認し、個別連絡を待つ",
+      "reason": "福井銀行は、現時点で本件によるカードの不正利用やMyJCBへの不正ログインは確認されていないとし、漏えいの可能性がある人にはJCBから個別に連絡するとしています。利用明細の確認も呼びかけています。",
+      "source": "https://www.fukuibank.co.jp/info/docs/jcb_info_20261125.html"
+    }
+  ],
+  "depthHeadings": {
+    "cause": "不正アクセスの詳しい経緯は発表待ち",
+    "steps": "明細確認と不審な連絡への備え",
+    "desk": "福井銀行に問い合わせるとき",
+    "worries": "漏れた情報や届く連絡が心配",
+    "guide": "個別連絡を待つ間にできること"
+  },
+  "depthAt": "2026-11-25T22:34:47+00:00"
 }
