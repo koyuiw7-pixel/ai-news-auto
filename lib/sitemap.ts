@@ -53,6 +53,7 @@ export const STATIC_LASTMOD: Record<string, string> = {
   "/newsletter": "2026-11-10",
   "/tools/defense-tax": "2026-11-10",
   "/tools/furusato-limit": "2026-11-10",
+  "/tools/child-allowance": "2026-11-25",
 };
 
 const toDate = (value: string | undefined | null): Date | undefined => {
@@ -136,8 +137,8 @@ export function sitemapEntries(): SitemapEntry[] {
     { url: `${base}/usable`, lastModified: newestOf(articles.filter((a) => a.genreSlug === "ai")) },
     // 料金早見表・週まとめ・イベント（被リンクとブックマークを狙う定番ページ）
     { url: `${base}/ai-pricing`, lastModified: toDate(getPricing().updatedAt) },
-    // 計算ツールは防衛特別所得税と、ふるさと納税の上限額（2026-11-10 追加）。AIプランの費用計算・ドル建てサブスクの円換算は 2026-11-03 に終了・410。/tools は転送
-    ...["/tools/defense-tax", "/tools/furusato-limit"].map(fixed),
+    // 計算ツールは防衛特別所得税と、ふるさと納税の上限額（2026-11-10 追加）、児童手当の支給額（2026-11-25 追加）。AIプランの費用計算・ドル建てサブスクの円換算は 2026-11-03 に終了・410。/tools は転送
+    ...["/tools/defense-tax", "/tools/furusato-limit", "/tools/child-allowance"].map(fixed),
     // 選び方ガイド（回線・転職など。公式情報で比べた常設ページ）
     ...getAllChooseGuides().map((guide) => ({
       url: `${base}/choose/${guide.slug}`,

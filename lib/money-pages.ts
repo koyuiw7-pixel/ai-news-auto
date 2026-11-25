@@ -19,6 +19,11 @@ export type MoneyPage = MoneyTarget & {
    * 書かなければ、今までどおりガイドの match で選ぶ（lib/howto.ts・lib/guide-links.ts）
    */
   guide?: string | null;
+  /**
+   * この話題の計算ツール（/tools/*）。行き先（href）が記事のままの話題で、ツールのページから同じ話題の記事とガイドを出すときに使う
+   * （記事の「自分は対象か確かめる」の行き先は変えない。2026-11-25 児童手当）
+   */
+  tool?: string;
   /** 計算ツールのページ（/tools/*）に出す関連のガイド（content/howto の slug） */
   guides?: string[];
   /** 計算ツールのページに出す関連の記事（見出しで当たる記事に加えて、本文で扱う記事。content/articles の slug） */
@@ -48,6 +53,9 @@ export const MONEY_PAGES: MoneyPage[] = [
     label: "児童手当の対象を確かめる",
     second: { href: "/guides/jidou-teate", label: "児童手当の金額と対象を確かめる" },
     guide: "jidou-teate",
+    tool: "/tools/child-allowance",
+    guides: ["jidou-teate"],
+    articles: ["child-allowance-eligibility-check", "child-allowance-third-child-monthly-30000"],
   },
   {
     key: "kogaku-ryoyohi",
@@ -98,7 +106,7 @@ export function moneyLinkFor(article: ArticleLike, rows: MoneyPage[] = MONEY_PAG
 
 /** 計算ツールのページ（href は /tools/*）の行（無ければ undefined） */
 export function moneyRowsForTool(toolHref: string, rows: MoneyPage[] = MONEY_PAGES): MoneyPage[] {
-  return rows.filter((row) => row.href === toolHref);
+  return rows.filter((row) => row.href === toolHref || row.tool === toolHref);
 }
 
 /**

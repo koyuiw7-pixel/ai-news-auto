@@ -12,8 +12,10 @@ import type { ArticleChart } from "@/lib/charts";
  * 総務省の計算式で「自己負担2,000円で済む寄附額の目安」を出す（式は lib/calc-math.ts）。
  * 2026-11-11: 通知書を持っていない人が多いため、年収と家族構成からの「かんたん」を既定にした（lib/furusato-easy.ts）。
  * 総務省が2025年10月まで載せていた目安表と同じ前提で計算し、表の年収300万〜900万円と一致することを tests/test_furusato_easy.cjs で確かめている。
+ * 2026-11-25: 児童手当の支給額（/tools/child-allowance）を追加。子どもの生まれた年月か年齢の区分から、第何子・月額・12月の支給（10月・11月分）・1年分を
+ * こども家庭庁の案内（令和6年10月分からの制度）で出す（式は lib/child-allowance.ts、テストは tests/test_child_allowance.cjs）。
  */
-export type CalculatorKind = "defense-tax" | "furusato-limit";
+export type CalculatorKind = "defense-tax" | "furusato-limit" | "child-allowance";
 
 export type ArticleCalculator = {
   kind: CalculatorKind;
@@ -37,6 +39,12 @@ export const CALCULATORS: Record<CalculatorKind, { href: string; title: string; 
     title: "ふるさと納税の上限額の計算",
     description: "年収と家族構成から、自己負担2,000円で済むふるさと納税の寄附額の目安を計算します。住民税決定通知書の所得割額からの計算もできます。",
     checked: "2026-11-11",
+  },
+  "child-allowance": {
+    href: "/tools/child-allowance",
+    title: "児童手当の支給額の計算",
+    description: "子どもの生まれた年月か年齢の区分から、第何子になるか・1か月の児童手当・12月の支給額（10月・11月分）・1年分を計算します。所得制限はありません。",
+    checked: "2026-11-25",
   },
 };
 
@@ -88,6 +96,7 @@ type ArticleLike = {
 
 const TAX_WORDS = /防衛特別所得税|防衛増税|防衛税|復興特別所得税/;
 const FURUSATO_WORDS = /ふるさと納税/;
+const CHILD_ALLOWANCE_WORDS = /児童手当/;
 
 /**
  * AIの有料プランの費用計算（/tools/ai-plan-cost）は 2026-11-03 に終了した（「12か月で16,800円」「Plusの0.5個分」のような
@@ -105,14 +114,20 @@ export function calculatorForArticle(article: ArticleLike): ArticleCalculator | 
   if (FURUSATO_WORDS.test(title)) {
     return { kind: "furusato-limit", heading: /上限|限度|いくら|控除|計算|目安|仕組み/ };
   }
+  // 児童手当の記事（見出しに「児童手当」がある記事だけ。2026-11-25）
+  if (CHILD_ALLOWANCE_WORDS.test(title)) {
+    return { kind: "child-allowance", heading: /いくら|金額|支給額|月額|第3子|計算|振込|支給日/ };
+  }
   return null;
 }
 
 /**
- * 手続きガイド（/guides/*）から案内する計算ツール。ふるさと納税のガイド（tool: "furusato"、または見出しに「ふるさと納税」「ワンストップ特例」）だけ。
+ * 手続きガイド（/guides/*）から案内する計算ツール。ふるさと納税のガイド（tool: "furusato"、または見出しに「ふるさと納税」「ワンストップ特例」）と、見出しに「児童手当」があるガイド。
  * ガイドには計算機そのものは置かず、ツールのページへの案内を1つ出す（components/HowtoGuideView.tsx）
  */
 export function calculatorForGuide(guide: { tool?: string; title: string; seoTitle?: string }): CalculatorKind | null {
   if (guide.tool === "furusato" || /ふるさと納税|ワンストップ特例/.test(`${guide.title} ${guide.seoTitle ?? ""}`)) return "furusato-limit";
+  // 児童手当のガイド（/guides/jidou-teate など）からは、児童手当の支給額の計算へ（2026-11-25）
+  if (/児童手当/.test(`${guide.title} ${guide.seoTitle ?? ""}`)) return "child-allowance";
   return null;
 }

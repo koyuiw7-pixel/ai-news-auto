@@ -29,6 +29,7 @@ const REFERENCE_LINKS = [
   // お金のページ（計算・比較・手続き）。AI の選び方ガイド（/choose/*）は一覧ページ /choose から見られる（2026-11-10 M6）
   { href: "/tools/furusato-limit", label: "ふるさと納税の上限額の計算" },
   { href: "/tools/defense-tax", label: "防衛特別所得税の計算" },
+  { href: "/tools/child-allowance", label: "児童手当の支給額の計算" },
   ...LIFE_COMPARE_SLUGS.flatMap((slug) => {
     const found = lifeCompareGuide(slug);
     return found ? [{ href: found.href, label: `${guideShortName(found.guide)}の比較` }] : [];
