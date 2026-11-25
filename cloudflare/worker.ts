@@ -295,8 +295,10 @@ function retiredPageResponse(request: Request, url: URL): Response | null {
 /** wrangler.jsonc の triggers.crons と同じ文字列（UTC 22:00 = 日本時間 7:00） */
 const PUSH_MORNING_CRON = "0 22 * * *";
 
-// /cover/<slug>/photo は表紙の写真の共有画像（app/cover/[slug]/photo/route.tsx。2026-11-10 Discover の準備）。同じく記事の JSON を先に読む
-const ARTICLE = /^\/(?:articles|cover|card)\/([^/]+?)(?:\.rsc|\/photo)?\/?$/;
+// /cover/<slug>/photo は表紙の写真の共有画像（app/cover/[slug]/photo/route.tsx。2026-11-10 Discover の準備）。同じく記事の JSON を先に読む。
+// /api/easy/<slug>（と /noir）は記事の要約版（app/api/easy/[slug]/route.ts）。ふだんはビルド時に作ったものを返すが、
+// ビルドに無いものを描くときに記事 JSON が要る（2026-11-26: 先読みしていなかったため本番で 404 だった）
+const ARTICLE = /^\/(?:articles|cover|card|api\/easy)\/([^/]+?)(?:\.rsc|\/photo|\/noir)?\/?$/;
 
 type Ctx = { waitUntil(promise: Promise<unknown>): void };
 

@@ -9,7 +9,7 @@ type Load = "idle" | "loading" | "done" | "error";
 /**
  * 「要約版で読む／詳細版で読む」の切り替え。サイソクの売りの1つ。
  * 2026-11-25 AdSense の点検: 記事ページの HTML には詳細版だけを入れる（両方を入れると同じ文がくり返されていた）。
- * 要約版は、読者が選んだときに /api/easy/<slug> から読み込み、#article-flow の [data-easy-body] に入れてから
+ * 要約版は、読者が選んだときに /api/easy/<slug>（新しい見た目の記事は /api/easy/<slug>/noir。ビルド時に静的に作る）から読み込み、#article-flow の [data-easy-body] に入れてから
  * data-read-mode を切り替える（lib/easy-version.ts）。選んだ読み方は覚えておき、次の記事でも同じ読み方で開く。
  * 読み込めなかったときは詳細版のままにし、その旨を短く出す。
  */
@@ -34,7 +34,7 @@ export default function ReadingMode({
     if (!slot) return false;
     setLoad("loading");
     try {
-      const res = await fetch(`/api/easy/${encodeURIComponent(slug)}${noir ? "?v=noir" : ""}`, { headers: { accept: "application/json" } });
+      const res = await fetch(`/api/easy/${encodeURIComponent(slug)}${noir ? "/noir" : ""}`, { headers: { accept: "application/json" } });
       const data = (await res.json()) as { html?: string };
       if (!res.ok || !data.html) throw new Error(`easy ${res.status}`);
       slot.innerHTML = data.html;

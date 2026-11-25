@@ -35,13 +35,25 @@ test("記事ページの HTML には要約版の本文を入れず、読者が�
   const mode = read("components/ReadingMode.tsx");
   assert.match(mode, /fetch\(`\/api\/easy\/\$\{encodeURIComponent\(slug\)\}/);
   assert.match(mode, /\[data-easy-body\]/);
-  const route = read("app/api/easy/[slug]/route.ts");
-  assert.match(route, /easyHtmlOf\(article, noir\)/);
-  assert.match(route, /"X-Robots-Tag": "noindex/);
+  assert.match(mode, /noir \? "\/noir" : ""/);
+  // 要約版はビルド時に静的に作る（2026-11-26: 実行時に描く作りでは Cloudflare で記事 JSON が読めず本番で 404 だった）
+  const api = read("lib/easy-api.ts");
+  assert.match(api, /easyHtmlOf\(article, noir\)/);
+  assert.match(api, /"X-Robots-Tag": "noindex/);
+  for (const [file, noir] of [["app/api/easy/[slug]/route.ts", "false"], ["app/api/easy/[slug]/noir/route.ts", "true"]]) {
+    const route = read(file);
+    assert.match(route, /export const dynamic = "force-static"/, file);
+    assert.doesNotMatch(route, /force-dynamic/, file);
+    assert.match(route, new RegExp(`easyStaticParams\\(${noir}\\)`), file);
+    assert.match(route, new RegExp(`easyResponse\\(slug, ${noir}\\)`), file);
+  }
+  // ビルドに無い slug を描くときのため、Worker は /api/easy/<slug> でも記事 JSON を先読みする
+  assert.match(read("cloudflare/worker.ts"), /const ARTICLE = .*api\\\/easy/);
   // /api/ は巡回させない
   assert.match(read("app/robots.ts"), /BLOCKED_PATHS = \["\/api\/"/);
   // 本番のサーバー関数に記事の JSON を同梱する
   assert.match(read("next.config.ts"), /"\/api\/easy\/\\\\\[slug\\\\\]": \["\.\/content\/articles\/\*\*\/\*\.json"\]/);
+  assert.match(read("next.config.ts"), /"\/api\/easy\/\\\\\[slug\\\\\]\/noir": \["\.\/content\/articles\/\*\*\/\*\.json"\]/);
 });
 
 test("報道が出典の記事と動画だけの記事は検索に出さない（理由 press・video-only）", () => {
