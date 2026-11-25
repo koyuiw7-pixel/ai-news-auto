@@ -99,6 +99,8 @@ const nextConfig: NextConfig = {
     "/cover/**": ["./content/articles/**/*.json", "./assets/fonts/**/*"],
     "/card/**": ["./content/articles/**/*.json", "./assets/fonts/**/*"],
     "/api/v1/articles": ["./content/articles/**/*.json"],
+    // 記事の要約版（components/ReadingMode.tsx が読む。2026-11-25）
+    "/api/easy/\\[slug\\]": ["./content/articles/**/*.json"],
   },
   experimental: {
     optimizePackageImports: ["marked"],

@@ -67,7 +67,8 @@ export type NoirPageContext = {
   article: FullArticle;
   jsonLd: Record<string, unknown>[];
   bodyHtml: string;
-  easyHtml: string;
+  /** 要約版があるか（中身は components/ReadingMode.tsx が /api/easy から読み込む。2026-11-25） */
+  hasEasy: boolean;
   easyMinutes: number;
   readMinutes: number;
   company: Company;
@@ -147,7 +148,7 @@ export function shortOrg(org: string): string {
 
 export function noirArticlePage(ctx: NoirPageContext) {
   const {
-    article, jsonLd, bodyHtml, easyHtml, easyMinutes, readMinutes, company, sourceUrl, sourceName, showAds,
+    article, jsonLd, bodyHtml, hasEasy, easyMinutes, readMinutes, company, sourceUrl, sourceName, showAds,
     shopLink, buyingGuide, chooseGuide, readNextInline, readNextRail, inlineRead, mainArticle,
     guideLinks, moneyLink, calc, calcInline, calcBox, priceBox, workMoney, verdict, cardKind, todayActions, articleFaq,
     howto, guide, product, nextReads, crumbs, reviewedLabel, ChooseGuideNote, CompareLink, actionAd,
@@ -316,11 +317,12 @@ export function noirArticlePage(ctx: NoirPageContext) {
           </>
         ),
         adTop: showAds ? <AdSlot position="article-top" className="my-6" /> : null,
-        readingMode: easyHtml ? <ReadingMode easyMinutes={easyMinutes} expertMinutes={readMinutes} /> : null,
-        easy: easyHtml ? (
+        readingMode: hasEasy ? <ReadingMode slug={article.slug} noir easyMinutes={easyMinutes} expertMinutes={readMinutes} /> : null,
+        easy: hasEasy ? (
           <div className="read-easy">
             <p className="mt-8 text-note font-bold text-ink-soft">要約版：専門用語を控えて説明しています</p>
-            <article className="prose nr-prose mt-5" dangerouslySetInnerHTML={{ __html: noirBodyHtml(easyHtml, {}) }} />
+            {/* 中身は読者が「要約版で読む」を選んだときに components/ReadingMode.tsx が入れる（HTML に同じ文を重ねない） */}
+            <article className="prose nr-prose mt-5" data-easy-body="" />
           </div>
         ) : null,
         adMid: showAds ? <AdSlot position="article-middle" className="my-10" /> : null,

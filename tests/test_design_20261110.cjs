@@ -49,7 +49,8 @@ test("[W37] 見出しの「出典」は目次の行き先なので残し、一�
 test("[W37] 記事ページ（今までの見た目・ノワール）の本文とかんたん版に出典のたたみを通す", () => {
   const page = read("app/articles/[slug]/page.tsx");
   assert.match(page, /const bodyHtmlRaw = foldSourceLists\(/);
-  assert.match(page, /const easyHtml = easy \? foldSourceLists\(/);
+  // 要約版は lib/easy-version.ts で組み立てる（2026-11-25: 読者が選んだときに /api/easy から読み込む）
+  assert.match(read("lib/easy-version.ts"), /const html = foldSourceLists\(/);
 });
 
 test("[W37] 記事末の「出典と更新履歴」は小さな閉じた「出典を見る」（中身は HTML に残す）", () => {

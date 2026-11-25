@@ -88,7 +88,8 @@ import {
   splitBeforeHeading,
 } from "@/lib/markdown";
 import { siteConfig } from "@/site.config";
-import { cleanSections, cleanTake, dropOverviewSections, dropSummarySections, retitleHtml, stripSummaryOpener, titleSlugLinks, tocOf } from "@/lib/article-sections";
+import { cleanSections, cleanTake, dropOverviewSections, retitleHtml, stripSummaryOpener, titleSlugLinks, tocOf } from "@/lib/article-sections";
+import { easyMarkdownOf, easyMinutesOf } from "@/lib/easy-version";
 import ArticleProse from "@/components/ArticleProse";
 import CalculatorBox from "@/components/calc/CalculatorBox";
 import { CALC_SLOT, insertFigures, markCalculatorSlot, renderChart, type ChartFigure } from "@/lib/charts";
@@ -297,17 +298,12 @@ export default async function ArticlePage({ params }: Props) {
   const editor = editorInCharge(article.genreSlug);
   // 題名の下の署名の行に出す公開・更新の日時（lib/byline.ts）
   const dates = bylineDates(article);
-  // 「かんたんに読む」版（ある記事だけ、読み方を切り替えられる）
-  // 中身なしの章・つなぎの文を除き（lib/article-sections.ts。scripts/section_gate.py と同じ規則）、
-  // 決まった型の見出しは記事ごとの見出し（sectionTitles）か普通の見出しに言い換えて出す
-  // 要約版の最初の「ひとことで言うと（要点）」は、上の「この記事のポイント」と同じ役目なので出さない（台帳 A28）
-  // 頭の「要約すると、」はリードの言い直しなので外す（台帳 A19。新しい記事は書き出す前に scripts/article_style.py が外す）
-  const easyClean = article.easy?.trim()
-    ? cleanSections(stripSummaryOpener(article.easy.trim(), article.lede ?? ""), article.sectionTitles?.easy).markdown
-    : "";
-  const easy = article.highlights.length > 0 ? dropSummarySections(easyClean) : easyClean;
-  const easyMinutes = Math.max(1, Math.round(easy.length / 500));
-  const easyHtml = easy ? foldSourceLists(retitleHtml(await renderMarkdown(easy, affiliates.map((a) => a.url), isLiveArticleSlug), "easy", article.sectionTitles, "easy")) : "";
+  // 「かんたんに読む」版（要約版。ある記事だけ、読み方を切り替えられる。lib/easy-version.ts）。
+  // 2026-11-25 AdSense の点検: ページの HTML には詳細版だけを入れ、要約版は読者が選んだときに /api/easy/<slug> から読み込む
+  // （両方を HTML に入れると同じ文がくり返され、30ページ中20ページで3文以上が重なっていた。components/ReadingMode.tsx）
+  const easy = easyMarkdownOf(article);
+  const easyMinutes = easyMinutesOf(easy);
+  const hasEasy = Boolean(easy);
   // 古い記事の「## 概要」の章は、リードと「この記事のポイント」のくり返しなので出さない（台帳 A19。新しい記事は門で作らせない）
   // リンクの文字が slug のままの記事へのリンクは、リンク先の題名にする（台帳 A36）
   const bodyOpened = stripSummaryOpener(titleSlugLinks(article.body, (s) => getArticleSummary(s)?.title), article.lede ?? "");
@@ -469,7 +465,7 @@ export default async function ArticlePage({ params }: Props) {
   // 2026-11-07 以降の新しい記事（layout: "noir"）だけ、新しい見た目で出す。印の無い今までの記事は下の今までの見た目のまま（台帳 W36）
   if (isNoir(article) && !isRoundup && web) {
     return noirArticlePage({
-      article, jsonLd, bodyHtml, easyHtml, easyMinutes, readMinutes, company, sourceUrl, sourceName, showAds,
+      article, jsonLd, bodyHtml, hasEasy, easyMinutes, readMinutes, company, sourceUrl, sourceName, showAds,
       inlineOffer, shopLink, buyingGuide, chooseGuide, readNextInline, readNextRail, offer, inlineRead, mainArticle,
       guideLinks, moneyLink, calc, calcInline, calcBox, priceBox, workMoney, verdict, cardKind, todayActions, articleFaq,
       howto, guide, product, nextReads, related, crumbs, reviewedLabel, ChooseGuideNote, CompareLink, actionAd,
@@ -647,7 +643,7 @@ export default async function ArticlePage({ params }: Props) {
           <AssetLinks article={article} />
 
           {/* 読み方の切り替え（かんたん／専門家）。選んだ読み方は次の記事でも引き継ぐ */}
-          {easyHtml && <ReadingMode easyMinutes={easyMinutes} expertMinutes={readMinutes} />}
+          {hasEasy && <ReadingMode slug={article.slug} easyMinutes={easyMinutes} expertMinutes={readMinutes} />}
 
           {/* 製品のまとめページへの案内（「〇〇とは」「料金」を知りたい読者の受け皿）。目立たせず1行だけ */}
           {product ? (
@@ -859,12 +855,13 @@ export default async function ArticlePage({ params }: Props) {
             </nav>
           )}
           </div>
-          {easyHtml && (
+          {hasEasy && (
             <div className="read-easy">
               <p className="mt-8 inline-flex items-center gap-2 rounded-sm bg-go-soft px-3 py-1 text-badge font-bold text-go">
                 要約版：専門用語を控えて説明しています
               </p>
-              <article className="prose mt-5 max-w-[40em]" dangerouslySetInnerHTML={{ __html: easyHtml }} />
+              {/* 中身は読者が「要約版で読む」を選んだときに components/ReadingMode.tsx が入れる（HTML に同じ文を重ねない） */}
+              <article className="prose mt-5 max-w-[40em]" data-easy-body="" />
             </div>
           )}
 

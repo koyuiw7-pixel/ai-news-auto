@@ -35,7 +35,9 @@ test("目次は本文（要約版・詳細版）の前、章が3つ以下の記�
   const body = page.indexOf("本文（前半）");
   assert.ok(flow > 0 && flow < toc && toc < easy && easy < body, "目次が本文の前にない");
   assert.match(page, /headings\.length > 3 &&/);
-  assert.match(page, /dropSummarySections\(/);
+  // 要約版の組み立ては lib/easy-version.ts（2026-11-25: 要約版は読者が選んだときに /api/easy から読み込む）
+  assert.match(page, /easyMarkdownOf\(article\)/);
+  assert.match(fs.readFileSync(path.join(__dirname, "../lib/easy-version.ts"), "utf8"), /dropSummarySections\(/);
 });
 
 test("「仕事とお金への影響」は記事ごとの中身（数字・名前）がある点だけ。一般論・要点のくり返し・影響が小さい記事は出さない", () => {
