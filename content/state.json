@@ -9185,17 +9185,6 @@
       "trendLane": true,
       "url": "https://news.yahoo.co.jp/articles/e4e59a1173172d02c4ff179a97ca11d80f63cff6"
     },
-    "2a3ac4983c49b69f": {
-      "at": "2026-11-11T08:00:32.215905+00:00",
-      "costUsd": 0.0056,
-      "intent": "neutral",
-      "mix": "other",
-      "model": "gemini-3.1-flash-lite",
-      "score": 86,
-      "section": "ai",
-      "slug": "sakana-ai-appoints-advisors-rogers-moran",
-      "url": "https://sakana.ai/michael-tom/"
-    },
     "2a482213d8f28f288e2b6c0aa8568c45c0dabced": {
       "at": "2026-11-16T20:04:27.777869+00:00",
       "kind": "trend",
@@ -15009,6 +14998,20 @@
       "reason": "prefilter: お知らせ・統計の転載（campaign）",
       "skipped": true,
       "url": "https://www.metro.tokyo.lg.jp/information/press/2026/11/2026111210"
+    },
+    "89af87fabb223589": {
+      "at": "2026-11-25T08:11:44.296486+00:00",
+      "costUsd": 0.0047,
+      "intent": "breaking",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "safetyLane": true,
+      "score": 95,
+      "section": "public",
+      "slug": "palsystem-karte-data-leak",
+      "url": "https://information.pal-system.co.jp/press/20261125-incident/"
     },
     "89d9c40f384de464": {
       "at": "2026-11-12T16:32:02.836070+00:00",
@@ -24577,59 +24580,6 @@
   "quality_log": [
     {
       "accepted": true,
-      "at": "2026-11-23T07:54:39.233441+00:00",
-      "attempt": 0,
-      "id": "3572311aa897d67eae01e04ad0333fe1bc7ac288",
-      "kind": "trend",
-      "model": "openai-api:gpt-6-luna",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 76.2,
-        "avg_sentence": 47.6,
-        "long_share": 0.062,
-        "max_paragraph": 177,
-        "paragraphs": 10,
-        "sentences": 16
-      },
-      "score": 96,
-      "source": "trends",
-      "title": "高速道路 渋滞",
-      "warnings": [
-        "見出しの書き方: 区切りの全角空白が2つ以上（補足は1つだけ）",
-        "初めて出たところで言い換えていない略語（NEWS・TBS・DIG）",
-        "読みやすさ: 文が長い（1文の平均 47.6字・60字超の文が 6% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-23T07:56:29.713084+00:00",
-      "attempt": 1,
-      "id": "82eae4a57852bd58",
-      "kind": "broad",
-      "model": "gemini-3.6-flash",
-      "problems": [
-        "「決勝は2027年1月10日13時30分から…行われます」→ 元記事が示すのは決勝の日程と放送開始時刻で、試合開始が13時30分とは確認できません。",
-        "「全試合入場無料で事前申し込みも不要」→ 入場無料は確認できますが、事前申し込みが不要との記載はありません。",
-        "「当日に会場を訪れる形で観戦が可能」→ 当日そのまま入場できるという条件は元記事に記載されていません。",
-        "「11月25日（水）16時からは、YouTubeで組み合わせ抽選」→ 元記事は16時頃からの生配信予定としており、開始時刻を確定した表現になっています。"
-      ],
-      "readability": {
-        "avg_paragraph": 71.2,
-        "avg_sentence": 42.8,
-        "long_share": 0.1,
-        "max_paragraph": 174,
-        "paragraphs": 12,
-        "sentences": 20
-      },
-      "score": 76,
-      "source": "jfa",
-      "title": "決勝のテレビ放送が決定 組み合わせ抽選は11月25日(水)に実施 第35回全日本高等学校女子サッカー選手権大会 #jfa #nadeshiko #みんななでしこ",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（JFA・TBS・WE）"
-      ]
-    },
-    {
-      "accepted": true,
       "at": "2026-11-23T07:57:36.646653+00:00",
       "attempt": 1,
       "id": "82eae4a57852bd58",
@@ -32220,6 +32170,59 @@
       "warnings": [
         "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（GENKAI・LOVE・CM）",
+        "work_money（「仕事・お金にどう活かせる？」欄）が無い"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-25T08:11:06.895179+00:00",
+      "attempt": 1,
+      "id": "89af87fabb223589",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "「対象でない人に変わることはなく」→今後、対象範囲が変わらないとする説明は元記事にありません。",
+        "「KARTEは、サイトやアプリの利用者に合わせて案内を出すためのサービス」→KARTEの具体的な機能説明は元記事に記載されていません。",
+        "「直接の金銭的な影響は小さく」→金銭的影響の程度は元記事から確認できず、被害が小さいと評価する根拠も示されていません。"
+      ],
+      "readability": {
+        "avg_paragraph": 89.8,
+        "avg_sentence": 43.0,
+        "long_share": 0.13,
+        "max_paragraph": 178,
+        "paragraphs": 11,
+        "sentences": 23
+      },
+      "score": 82,
+      "source": "fast",
+      "title": "当会委託先が提供するサービスへの不正アクセスに伴う一部情報の漏えいについて | お知らせ | 生協の宅配パルシステム",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（SMS）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-25T08:11:36.597274+00:00",
+      "attempt": 1,
+      "id": "89af87fabb223589",
+      "kind": "broad",
+      "model": "openai-api:gpt-6-luna",
+      "problems": [
+        "「続報はパルシステム公式サイトに掲載される予定です」→元記事は、新たな事実が判明した場合に改めて報告するとしており、続報が予定されているとまでは述べていません。"
+      ],
+      "readability": {
+        "avg_paragraph": 80.8,
+        "avg_sentence": 42.3,
+        "long_share": 0.143,
+        "max_paragraph": 133,
+        "paragraphs": 11,
+        "sentences": 21
+      },
+      "score": 95,
+      "source": "fast",
+      "title": "当会委託先が提供するサービスへの不正アクセスに伴う一部情報の漏えいについて | お知らせ | 生協の宅配パルシステム",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（SMS）",
         "work_money（「仕事・お金にどう活かせる？」欄）が無い"
       ]
     }
