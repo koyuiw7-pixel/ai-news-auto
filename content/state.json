@@ -844,7 +844,7 @@
     "4059fc787bfa865134086f884b73ace7c12a8de0": 2,
     "40b7efcd2b6d96d00b1eaddc6c5376ec4a3f1f36": 2,
     "40d8927f63497271d82a6ce325204ce6638ae99e": 2,
-    "40dde82f4977eef35a1440a2a1e3aa174c124f7d": 1,
+    "40dde82f4977eef35a1440a2a1e3aa174c124f7d": 2,
     "41141cebe7252fdd2ed69767737fd8ea56b15a3c": 2,
     "412dcbd1085390dc5e11fc4669077fa1137b177a": 2,
     "414e6943f243d9de505ab67c9ac99f648c0acd84": 2,
@@ -1419,6 +1419,7 @@
     "712497f56b1bef2d288de4003528b36058dc4438": 2,
     "71293246945c51fbbaf19a6fb0adfa406f633294": 2,
     "712f96f68ce9c9c65293f146e3521ac29eea0c16": 2,
+    "713c03341ab23eaea5d68f6c1808910eeccbe99f": 1,
     "716051453c929e79b1936f86229189e09d068077": 2,
     "7170f1e50103605f5c013dbce8c7c17110dcf92d": 2,
     "719affd7298aa7750a308378d69aa98a336217c9": 2,
@@ -1794,6 +1795,7 @@
     "8fb0193e8b07752348fec137c6c7c6ff98235b41": 2,
     "8fbc2f706640e3e14e04195c85b14c71d7a1597b": 2,
     "8fbd2a429e1da454b032ae7ada2ec257a1c97d15": 2,
+    "8fe5c4e2efa8707ad77fbc5609629a95e5b22faa": 1,
     "8ff31ec9640a6ede07c9fe204aba294e122d1402": 2,
     "900313aa4a26a7ac6801a7b2a831795e93f93cd7": 2,
     "900ab45316cc1be0b4ef6e3eb8dd5ec34a2c0f0e": 2,
@@ -2733,7 +2735,7 @@
     "dc8c4472c136586f2946cb9c3a1820279b02e147": 2,
     "dc94bbe9b264bc3616817643a539d59675d38ae7": 2,
     "dcbf931b4e0998f186a5dd7822ce9b76f8b74d09": 2,
-    "dcca000e0454fbcd1e686b441bb602d7f5b1e954": 1,
+    "dcca000e0454fbcd1e686b441bb602d7f5b1e954": 2,
     "dccbca55dbc9f0362db489a86773f6fdb84120f8": 2,
     "dce9d43265ce6f91edec7e0197d7a316286ae3a8": 2,
     "dcf71508ce298aedf9ca22525215c36871e9f409": 2,
@@ -3176,14 +3178,6 @@
       "title": "メダルのその先へ：Samsungがユース オリンピック競技大会 （ダカール2026）で若き選手の未来探求をサポート",
       "tries": 1,
       "url": "https://news.samsung.com/jp/young-olympians-at-dakar-20261102?utm_source=rss&utm_medium=direct"
-    },
-    "175fb8bb701ba384": {
-      "first": "2026-11-25T09:55:03.036477+00:00",
-      "next": "2026-11-25T12:55:03.036477+00:00",
-      "reason": "題名で料金・価格を約束しているのに、本文に金額（円・ドル・無料など）が無い。元記事の金額を書くか、題名から料金の話を外す",
-      "title": "11 月の主要建設資材の需給動向は全ての調査対象資材において均衡～主要建設資材需給・価格動向調査（令 和 8 年 11 月 1～5 日現在）の結果～",
-      "tries": 1,
-      "url": "http://www.mlit.go.jp/report/press/tochi_fudousan_kensetsugyo14_hh_000001_00388.html"
     },
     "1e009b8894c0103c": {
       "first": "2026-11-25T05:04:24.688132+00:00",
@@ -8015,6 +8009,17 @@
       "skipped": true,
       "url": "https://www.mof.go.jp/outside_link/20261117114843.html"
     },
+    "175fb8bb701ba384": {
+      "at": "2026-11-25T13:03:39.266557+00:00",
+      "costUsd": 0.0434,
+      "intent": "query",
+      "mix": "other",
+      "model": "openai-api:gpt-6.1-terra",
+      "score": 100,
+      "section": "business",
+      "slug": "construction-materials-supply-november-survey",
+      "url": "http://www.mlit.go.jp/report/press/tochi_fudousan_kensetsugyo14_hh_000001_00388.html"
+    },
     "176bbd5bd3503561": {
       "at": "2026-11-12T01:19:45.544991+00:00",
       "reason": "prefilter: サイトの主題外（エンタメのビジネス・テックの話題ではない。料金・決算・販売本数・AI・規約などがない）",
@@ -9697,6 +9702,12 @@
       "reason": "prefilter: サイトの主題外（エンタメのビジネス・テックの話題ではない。料金・決算・販売本数・AI・規約などがない）",
       "skipped": true,
       "url": "https://aja.gr.jp/info/2800"
+    },
+    "2fe8d5897428b2a3": {
+      "at": "2026-11-25T13:02:07.799614+00:00",
+      "reason": "prefilter: お知らせ・統計の転載（statistics）",
+      "skipped": true,
+      "url": "http://www.boj.or.jp/statistics/pi/cspi_release/sppi2610.pdf"
     },
     "3005b23a7b196db677edbd8213e8d10fe1226e57": {
       "at": "2026-11-15T08:36:37.390170+00:00",
@@ -15923,12 +15934,6 @@
       "skipped": true,
       "url": "https://www.tokyu-fudosan-hd.co.jp/news/companies/pdf/25ab0a84572dbc496f24fe386c9b69d2b260d3ba.pdf"
     },
-    "9a01c56979821d82": {
-      "at": "2026-11-11T12:51:51.636513+00:00",
-      "reason": "prefilter: 価値の薄いお知らせ（会議）",
-      "skipped": true,
-      "url": "https://www.kantei.go.jp/jp/105/actions/202611/11taikai.html"
-    },
     "9a1bddb218827ae43a6733fec9a295fc83e34ad2": {
       "at": "2026-11-24T20:01:37.856917+00:00",
       "reason": "trend: 重複: 同じ言葉の記事がある（bear-warnings-maebashi-kyoto-japan-safety）",
@@ -17918,6 +17923,14 @@
       "trendKeyword": "フェリー",
       "trendLane": true,
       "url": "https://news.yahoo.co.jp/articles/ab9fd6f13ddc0db0a715a6af73c08fdffa405fff"
+    },
+    "c0dca950b172d7ab": {
+      "at": "2026-11-25T13:02:07.789131+00:00",
+      "costUsd": 0.0339,
+      "model": "openai-api:gpt-6.1-terra",
+      "reason": "民間企業による不動産投資家の意識調査であり、対象とする公的な不動産統計や住宅ローン金利の改定などには当たりません。",
+      "skipped": true,
+      "url": "https://lifull.com/news/51332/"
     },
     "c0efcf3b3b100b20": {
       "at": "2026-11-25T02:40:40.435753+00:00",
@@ -24462,56 +24475,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-23T11:02:02.064893+00:00",
-      "attempt": 1,
-      "id": "d83ba0b20e4d74b6",
-      "kind": "broad",
-      "model": "openai-api:gpt-6-luna",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 210.1,
-        "avg_sentence": 67.2,
-        "long_share": 0.64,
-        "max_paragraph": 306,
-        "paragraphs": 8,
-        "sentences": 25
-      },
-      "score": 100,
-      "source": "fsa",
-      "title": "その他,令和８年９月に開催された業界団体との意見交換会において、金融庁が提起した主な論点を公表しました。",
-      "warnings": [
-        "見出しの書き方: 発表文の題名の言い直し（「〇〇が△△を発表」）。読者にとって何が変わるか（だれの・何が・いつから・いくら）を書く",
-        "見出しが46字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-23T11:02:48.240604+00:00",
-      "attempt": 0,
-      "id": "d83ba0b20e4d74b6",
-      "kind": "broad",
-      "model": "openai-api:gpt-6-luna",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 81.7,
-        "avg_sentence": 42.9,
-        "long_share": 0.125,
-        "max_paragraph": 132,
-        "paragraphs": 21,
-        "sentences": 40
-      },
-      "score": 94,
-      "source": "fsa",
-      "title": "その他,令和８年９月に開催された業界団体との意見交換会において、金融庁が提起した主な論点を公表しました。",
-      "warnings": [
-        "見出しの書き方: 発表文の題名の言い直し（「〇〇が△△を発表」）。読者にとって何が変わるか（だれの・何が・いつから・いくら）を書く",
-        "見出しが46字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-23T11:11:44.669710+00:00",
@@ -32079,6 +32042,50 @@
         "読みやすさ: 文が長い（1文の平均 54.8字・60字超の文が 26% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
         "読みやすさ: 段落が長い（平均 170.0字・最長 251字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
       ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-25T13:03:17.659319+00:00",
+      "attempt": 1,
+      "id": "175fb8bb701ba384",
+      "kind": "broad",
+      "model": "openai-api:gpt-6.1-terra",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 172.6,
+        "avg_sentence": 46.5,
+        "long_share": 0.115,
+        "max_paragraph": 215,
+        "paragraphs": 7,
+        "sentences": 26
+      },
+      "score": 100,
+      "source": "mlit-press",
+      "title": "11 月の主要建設資材の需給動向は全ての調査対象資材において均衡～主要建設資材需給・価格動向調査（令 和 8 年 11 月 1～5 日現在）の結果～",
+      "warnings": [
+        "読みやすさ: 文が長い（1文の平均 46.5字・60字超の文が 12% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "読みやすさ: 段落が長い（平均 172.6字・最長 215字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-25T13:03:39.235496+00:00",
+      "attempt": 0,
+      "id": "175fb8bb701ba384",
+      "kind": "broad",
+      "model": "openai-api:gpt-6-luna",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 58.5,
+        "avg_sentence": 34.1,
+        "long_share": 0.028,
+        "max_paragraph": 92,
+        "paragraphs": 21,
+        "sentences": 36
+      },
+      "score": 100,
+      "source": "mlit-press",
+      "title": "11 月の主要建設資材の需給動向は全ての調査対象資材において均衡～主要建設資材需給・価格動向調査（令 和 8 年 11 月 1～5 日現在）の結果～"
     }
   ],
   "short_text_retry": {
