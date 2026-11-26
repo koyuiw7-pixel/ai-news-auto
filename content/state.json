@@ -17029,6 +17029,20 @@
       "skipped": true,
       "url": "https://news.yahoo.co.jp/articles/0dc17020d965bcfd46aacc3e269c5dda975cb573"
     },
+    "acca23342f06bd06": {
+      "at": "2026-11-26T21:40:30.791987+00:00",
+      "costUsd": 0.0048,
+      "intent": "breaking",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "safetyLane": true,
+      "score": 100,
+      "section": "public",
+      "slug": "gdo-unauthorized-login-1001",
+      "url": "https://company.golfdigest.co.jp/brand/news/2026112501.html"
+    },
     "ad164dc0fe3e8602452a8681aeeabe82ec3f6dc3": {
       "at": "2026-11-18T17:54:50.760018+00:00",
       "reason": "trend: 重複: 同じ言葉の記事がある（kumamoto-earthquake-reconstruction-fund-52000m）",
@@ -24203,61 +24217,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-24T17:13:00.642096+00:00",
-      "attempt": 1,
-      "id": "a2ca518e8b1a1b06",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "読めなかった開示資料（https://www.morinagamilk.co.jp/assets/release/261110 4P_recycle.pdf）があるのに「発表されていません」と書いている。資料を確かめられていないことは「未発表」と言い切らない（その文を消すか、「発表の本文では触れていません」のように確か"
-      ],
-      "readability": {
-        "avg_paragraph": 158.1,
-        "avg_sentence": 50.3,
-        "long_share": 0.273,
-        "max_paragraph": 216,
-        "paragraphs": 7,
-        "sentences": 22
-      },
-      "score": null,
-      "source": "morinaga-milk",
-      "title": "4個パックヨーグルト容器の資源循環に向けた回収実証実験を12月1日（火）よりヤオコー東大和店にて開始",
-      "warnings": [
-        "読みやすさ: 文が長い（1文の平均 50.3字・60字超の文が 27% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "読みやすさ: 段落が長い（平均 158.1字・最長 216字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-24T17:20:27.329410+00:00",
-      "attempt": 1,
-      "id": "7dd4324b7b3c07e6",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "「テストは2026年11月20～22日に行われ」→ 元記事は水曜日のレースシミュレーションと金曜日の午前セッションに言及し、20日にテスト終了を発表したとしており、日付は11月18～20日と整合します。20～22日は誤りです。",
-        "「テスト前には開発上の遅れや課題があったと、…トマソ・ヴォルペは説明」→ ヴォルペの発言は開発の一部遅れに触れていますが、「課題」もヴォルペが説明したという記述は元記事にありません。",
-        "「2027シーズンに向けた開発が順調です」→ 元記事は着実な前進を伝える一方、開発の一部遅れや開幕までに改善すべき点にも触れており、順調と言い切るのは強めの要約です。"
-      ],
-      "readability": {
-        "avg_paragraph": 186.7,
-        "avg_sentence": 51.4,
-        "long_share": 0.3,
-        "max_paragraph": 315,
-        "paragraphs": 11,
-        "sentences": 40
-      },
-      "score": 78,
-      "source": "nissan",
-      "title": "日産フォーミュラEチーム、GEN4プレシーズンテストで最速タイムを記録",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（GEN・ABB・FIA）",
-        "読みやすさ: 文が長い（1文の平均 51.4字・60字超の文が 30% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "読みやすさ: 段落が長い（平均 186.7字・最長 315字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-24T17:21:01.640895+00:00",
@@ -31693,6 +31652,57 @@
       "score": 100,
       "source": "radar-official",
       "title": "張本美和関連ニュース｜dメニューニュース（NTTドコモ）"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-26T21:40:07.822311+00:00",
+      "attempt": 1,
+      "id": "acca23342f06bd06",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "「連絡が来ていない人のアカウントは、今回の対象として確認されていません」→対象者への連絡は順次行う予定とされているだけで、未連絡なら対象外とは確認できず、読者に誤った判断を促します。",
+        "「会員1,001件のアカウントに第三者が不正にログイン」→元記事が示す1,001件は閲覧された可能性がある件数で、不正ログインされたアカウント数が1,001件と明記しているわけではありません。",
+        "「ゴルフ用品の通販やゴルフ場の予約などを提供する会員制サービス」→サービス内容は元記事にも確認済みの文脈にも記載がなく、この記事の根拠からは確認できません。"
+      ],
+      "readability": {
+        "avg_paragraph": 74.1,
+        "avg_sentence": 37.0,
+        "long_share": 0.05,
+        "max_paragraph": 125,
+        "paragraphs": 10,
+        "sentences": 20
+      },
+      "score": 76,
+      "source": "fast",
+      "title": "不正ログインによるお客様情報の流出に関するお詫びとお知らせ | ゴルフダイジェスト・オンライン",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（GDO・SMS）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-26T21:40:30.760596+00:00",
+      "attempt": 1,
+      "id": "acca23342f06bd06",
+      "kind": "broad",
+      "model": "openai-api:gpt-6-luna",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 65.1,
+        "avg_sentence": 36.2,
+        "long_share": 0.056,
+        "max_paragraph": 106,
+        "paragraphs": 10,
+        "sentences": 18
+      },
+      "score": 100,
+      "source": "fast",
+      "title": "不正ログインによるお客様情報の流出に関するお詫びとお知らせ | ゴルフダイジェスト・オンライン",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（GDO・SMS）",
+        "要点の1つ目がリードの文の写し。一番のニュースを、リードとは違う言い方で書く"
+      ]
     }
   ],
   "short_text_retry": {
