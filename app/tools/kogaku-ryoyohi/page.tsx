@@ -62,7 +62,7 @@ export default function KogakuRyoyohiPage() {
     <ToolPage
       kind="kogaku-ryoyohi"
       lead={`年齢と年収の区分を選ぶと、1か月の医療費の自己負担がいくらまでで済むか（高額療養費の上限額）がすぐに出ます。${KOGAKU_PERIOD.from}から${KOGAKU_PERIOD.to}までの額です。入院の前で総医療費が分からないときは、総医療費100万円のときの上限を出します。`}
-      afterCalc={ad ? <ActionAd ad={ad} pos={GUIDE_AD_POS.tool} className="mt-8" /> : null}
+      afterCalc={ad ? <ActionAd ad={ad} pos={GUIDE_AD_POS.tool} tool="kogaku-ryoyohi" className="mt-8" /> : null}
     >
       <ToolSection id="what" title="高額療養費とは">
         <p>同じ月の中で病院や薬局で払った医療費が上限額を超えたとき、超えた分が健康保険から戻る仕組みです。上限額は年齢と所得で決まります。</p>

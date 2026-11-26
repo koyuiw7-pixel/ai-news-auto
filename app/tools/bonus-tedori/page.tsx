@@ -80,7 +80,7 @@ export default function BonusTedoriPage() {
     <ToolPage
       kind="bonus-tedori"
       lead={`冬のボーナスが額面${yenJa(BONUS_EXAMPLE.bonus)}なら、手取りは${yenJa(ex.takeHome)}です（前月の給与が社会保険料を引いて${yenJa(BONUS_EXAMPLE.prevNet)}、扶養0人、東京都の協会けんぽ、40歳未満の場合）。ボーナスの額・前月の給与・扶養の数・年齢・都道府県を入れると、あなたの場合の手取りと、引かれる社会保険料と所得税の内訳が出ます。`}
-      afterCalc={ad ? <ActionAd ad={ad} pos={GUIDE_AD_POS.tool} className="mt-8" /> : null}
+      afterCalc={ad ? <ActionAd ad={ad} pos={GUIDE_AD_POS.tool} tool="bonus-tedori" className="mt-8" /> : null}
     >
       <ToolSection id="what" title="ボーナスから引かれるもの">
         <p>ボーナス（賞与）からは、社会保険料（健康保険料・介護保険料・子ども・子育て支援金・厚生年金保険料・雇用保険料）と所得税が引かれます。住民税は引かれません。</p>

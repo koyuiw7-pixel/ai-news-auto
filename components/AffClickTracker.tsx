@@ -3,6 +3,21 @@
 import { useEffect } from "react";
 import { programOf } from "@/lib/aff-program";
 import { BOT_UA } from "@/lib/revenue-funnel";
+import { INTERNAL_PARAM, INTERNAL_STORAGE_KEY } from "@/lib/inflow";
+
+/**
+ * 「見た数」（components/AdSeenTracker.tsx）を数えないブラウザ（Do Not Track / GPC・自社のテスト）か。
+ * そのクリックはクリック数には入れたまま、押した割合（lib/ad-seen.ts）の分子から外す印（i: 1）を付ける
+ */
+function quietBrowser(): boolean {
+  try {
+    if (navigator.doNotTrack === "1" || (navigator as Navigator & { globalPrivacyControl?: boolean }).globalPrivacyControl) return true;
+    if (new URLSearchParams(location.search).get(INTERNAL_PARAM) === "1") return true;
+    return localStorage.getItem(INTERNAL_STORAGE_KEY) === "1";
+  } catch {
+    return false;
+  }
+}
 
 /**
  * 提携リンク（rel に sponsored を含む a）の「人による」クリックを自前で数える。
@@ -31,6 +46,7 @@ export default function AffClickTracker() {
         pos: rank ? `${pos}-${rank}` : pos,
         ...(variant === "a" || variant === "b" ? { ab: variant } : {}),
         ...(arm === "1" || arm === "2" ? { arm } : {}),
+        ...(quietBrowser() ? { i: 1 } : {}),
       });
       navigator.sendBeacon("/api/aff/click", body);
     };

@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import { withPageShare } from "@/lib/page-share";
+import { actionAdWithBenefits } from "@/lib/ad-benefits";
+import ActionAd from "@/components/ActionAd";
+import { GUIDE_AD_POS, toolAd } from "@/lib/guide-ads";
 import ToolPage, { ToolSection } from "@/components/calc/ToolPage";
 import { CALCULATORS, checkedDateJa } from "@/lib/calculators";
 import { DEFENSE_TAX_DEFAULT_BASE, DEFENSE_TAX_PERIODS, defenseTaxExampleSentence, surtax, yen, type Surtax } from "@/lib/calc-math";
@@ -26,8 +29,14 @@ function exampleLine(row: { label: string; now: Surtax; before: Surtax }): strin
 export default function DefenseTaxPage() {
   // 例の税額は、計算機と同じ surtax() でビルドのときに出す（手で書かない）
   const rows = DEFENSE_TAX_PERIODS.map((period) => ({ ...period, now: surtax(EXAMPLE_BASE, period.year), before: surtax(EXAMPLE_BASE, period.year, true) }));
+  // 結果の下の PR: 所得税を確かめた人へ、所得税と住民税から控除されるふるさと納税（2026-11-27。lib/tool-ad.ts）
+  const ad = actionAdWithBenefits(toolAd("furusato"), "");
   return (
-    <ToolPage kind="defense-tax" lead="2027年分から始まる防衛特別所得税と、税率が変わる復興特別所得税を、所得税額から年ごとに計算します。">
+    <ToolPage
+      kind="defense-tax"
+      lead="2027年分から始まる防衛特別所得税と、税率が変わる復興特別所得税を、所得税額から年ごとに計算します。"
+      afterCalc={ad ? <ActionAd ad={ad} pos={GUIDE_AD_POS.tool} tool="defense-tax" className="mt-8" /> : null}
+    >
       <ToolSection id="what" title="防衛特別所得税とは">
         <p>防衛特別所得税は、防衛力の強化の財源にするため、2027年（令和9年）分の所得税から始まる国の税です。税額は、その年の基準所得税額の1%です。</p>
       </ToolSection>

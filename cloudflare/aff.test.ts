@@ -177,4 +177,58 @@ await test("dates do not join previous-day article readers to today's clicks", a
   const a = (await stats()).funnel.articleMeasurement.byArticle[0];
   assert.equal(a.viewVisitors, 0); assert.equal(a.clickVisitorsWithoutObservedView, 1); assert.equal(a.observedReaderClickRate, null);
 });
+
+// 広告の押した割合（2026-11-27。lib/ad-seen.ts）: 見た記録 /api/aff/seen と、人のクリックを同じ日・同じ置き場所で突き合わせる
+const seenEvent = { path: "/tools/child-allowance", pos: "tool-result", ab: "b" };
+await test("ad seen: cross-origin, GET, bots, DNT/GPC and internal tests write nothing", async () => {
+  reset();
+  assert.equal((await call("/api/aff/seen", seenEvent, { origin: "https://evil.invalid" })).status, 403);
+  assert.equal((await call("/api/aff/seen", undefined, {}, "GET")).status, 405);
+  for (const h of [{ "user-agent": "Googlebot" }, { "user-agent": "HeadlessChrome" }, { dnt: "1" }, { "sec-gpc": "1" }, { "x-saisoku-internal": "1" }]) await call("/api/aff/seen", seenEvent, h);
+  assert.equal(records.size, 0);
+});
+await test("ad seen: query strings, bad positions and unknown variants rejected", async () => {
+  reset();
+  for (const change of [{ path: "/tools/child-allowance?email=private" }, { path: "https://evil.invalid/" }, { pos: "bad space" }, { ab: "c" }, { arm: "3" }]) assert.equal((await call("/api/aff/seen", { ...seenEvent, ...change })).status, 400);
+  assert.equal(records.size, 0);
+});
+await test("ad seen: one key per visitor, page and box per day; bounded metadata; 90 days", async () => {
+  reset();
+  for (let i = 0; i < 3; i++) assert.equal((await call("/api/aff/seen", seenEvent)).status, 204);
+  assert.equal(records.size, 1);
+  const [key, item] = [...records][0];
+  assert.match(key, /^s:\d{4}-\d{2}-\d{2}:[a-f0-9]{16}:[a-f0-9]{12}$/);
+  assert.equal(item.expirationTtl, 90 * 86400);
+  const saved = JSON.stringify(item); assert(!saved.includes("192.0.2.1")); assert(!saved.includes("Mozilla")); assert(!saved.includes(env.AFF_STATS_TOKEN));
+  assert.deepEqual(item.metadata, { path: "/tools/child-allowance", pos: "tool-result", ab: "b", v: (item.metadata as { v: string }).v });
+  await call("/api/aff/seen", { ...seenEvent, pos: "guide-top" });
+  assert.equal(records.size, 2);
+});
+await test("ad rate: clickers / seen per box, variant and tool page; DNT and internal clicks counted but kept out of the rate", async () => {
+  reset();
+  const ipB = { "cf-connecting-ip": "192.0.2.2" }, ipA = { "cf-connecting-ip": "192.0.2.3" }, ipA2 = { "cf-connecting-ip": "192.0.2.4" };
+  await call("/api/aff/seen", seenEvent);
+  await call("/api/aff/seen", seenEvent, ipB);
+  await call("/api/aff/seen", { ...seenEvent, ab: "a", arm: "1" }, ipA);
+  await call("/api/aff/seen", { ...seenEvent, ab: "a", arm: "1" }, ipA2);
+  await call("/api/aff/click", { p: "A+B+C", path: "/tools/child-allowance", pos: "tool-result-1", ab: "b" });
+  await call("/api/aff/click", { p: "A+B+C", path: "/tools/child-allowance", pos: "tool-result-1", ab: "a", arm: "1", i: 1 }, ipA);
+  await call("/api/aff/click", { p: "D+E+F", path: "/tools/child-allowance", pos: "tool-result-1", ab: "a" }, { dnt: "1", "cf-connecting-ip": "192.0.2.9" });
+  const result = await stats();
+  assert.equal(result.clicks, 3, "クリック数は今までどおり全部");
+  const rate = result.adRate;
+  assert.deepEqual(rate.total, { seen: 4, clicks: 1, clickers: 1, seenClickers: 1, rate: 0.25 });
+  assert.deepEqual(rate.byPos, [{ pos: "tool-result", seen: 4, clicks: 1, clickers: 1, seenClickers: 1, rate: 0.25 }]);
+  const b = rate.byVariant.find((r: { ab: string }) => r.ab === "b"), a = rate.byVariant.find((r: { ab: string }) => r.ab === "a");
+  assert.equal(b.rate, 0.5); assert.equal(a.rate, 0); assert.equal(a.seen, 2);
+  assert.deepEqual(rate.byArm, [{ pos: "tool-result", arm: "1", seen: 2, clicks: 0, clickers: 0, seenClickers: 0, rate: 0 }]);
+  assert.deepEqual(rate.byToolPath.map((r: { path: string; ab: string; rate: number }) => `${r.path}|${r.ab}|${r.rate}`).sort(), ["/tools/child-allowance|a|0", "/tools/child-allowance|b|0.5"]);
+  assert.equal(rate.truncated, false);
+});
+await test("ad rate: no seen records gives a null rate, never a fake 0%", async () => {
+  reset();
+  await call("/api/aff/click", { p: "A+B+C", path: "/articles/x", pos: "action-ad-1" });
+  const rate = (await stats()).adRate;
+  assert.equal(rate.total.rate, null); assert.equal(rate.byPos[0].rate, null); assert.equal(rate.byPos[0].clickers, 1);
+});
 console.log(`${passed} measurement checks passed; no external requests.`);

@@ -3,12 +3,15 @@
  * ASP（A8 など）のクリック数にはクローラーや自動ブラウザが混ざるので、実数と見比べるために数える。
  *
  *   POST /api/aff/click                   1クリックを記録（画面 components/AffClickTracker.tsx から。同じオリジンだけ）
+ *   POST /api/aff/seen                    広告の囲みを人が見た記録（半分以上が1秒。components/AdSeenTracker.tsx。lib/ad-seen.ts）
  *   GET  /api/aff/stats?date=YYYY-MM-DD   その日（日本時間）の集計（Bearer AFF_STATS_TOKEN。scripts/aff_stats.py が読む）
  *   POST /api/aff/view・GET /api/aff/inflow   記事に外から来た人の数（cloudflare/inflow.ts。scripts/inflow_report.py が読む）
  *   POST /api/aff/read・GET /api/aff/reading  記事をどこまで読んだか・次にどこを押したか（cloudflare/reading.ts。scripts/reading_report.py が読む）
  *
  * 保存先は Workers KV の AFF_KV（saisoku-aff）:
  *   c:<日付>:<提携先ID>:<時分秒><乱数>   1クリック = 1キー（同時に押されても数がずれない）。値は空で metadata にパス・置き場所・訪問者の短いハッシュ。400日で消える
+ *   s:<日付>:<訪問者>:<パスと置き場所のハッシュ>   広告の囲みを見た記録。同じ人・同じページ・同じ置き場所・同じ日は1キー（上書き）。
+ *                                       metadata にパス・置き場所・A/B の組・訪問者の短いハッシュ（クリックの v と同じ作り方で突き合わせられる）。90日で消える
  *   t:<日付>:<提携先ID>:<時分秒><乱数>   自己点検（x-aff-selftest に AFF_STATS_TOKEN を付けた POST）。本物と同じ確認をすべて通ったときだけ書き、2日で消える。
  *                                       集計の clicks には入れず、stats の selftest に数だけ出す（2026-11-09: 「0回」が本当に0か、計測の穴かを確かめるため）
  * IP アドレスは保存しない。訪問者のハッシュは「秘密の値 + 日付 + IP + UA」の SHA-256 先頭8桁で、日をまたいで同じ人をたどれない。
@@ -18,6 +21,7 @@ import { json, readJson, safeEqual, sameOrigin, sha256Hex, type KvNamespace } fr
 import { handleInflow, isInternal } from "./inflow";
 import { handleReading } from "./reading";
 import { ARTICLE_MEASUREMENT_VERSION, ARTICLE_PATHS, BOT_UA, FUNNEL, SOURCES, STAGES, isMeasuredArticle, validFunnelEvent } from "../lib/revenue-funnel";
+import { adRateTable, parseAdSeen } from "../lib/ad-seen";
 
 export type AffEnv = {
   AFF_KV?: KvNamespace;
@@ -25,7 +29,8 @@ export type AffEnv = {
 };
 
 type Ctx = { waitUntil(promise: Promise<unknown>): void };
-type Meta = { path?: string; pos?: string; v?: string; ab?: string; arm?: string };
+/** q: Do Not Track / GPC・自社のテスト（?_internal=1）のブラウザのクリック。クリック数には入れ、押した割合（lib/ad-seen.ts）の分子には入れない */
+type Meta = { path?: string; pos?: string; v?: string; ab?: string; arm?: string; q?: number };
 type FunnelMeta = Meta & { stage?: string; source?: string; choice?: string; articleMeasurement?: number };
 
 const PROGRAM = /^[A-Za-z0-9+._-]{1,60}$/;
@@ -79,7 +84,7 @@ async function click(request: Request, url: URL, env: AffEnv, ctx: Ctx): Promise
   // 機械のアクセス・設定が無いときは黙って捨てる（画面には何も返さなくてよい）
   if (!ua || BOT_UA.test(ua) || isInternal(request) || !env.AFF_KV || !env.AFF_STATS_TOKEN) return noContent();
 
-  const body = await readJson<{ p?: unknown; path?: unknown; pos?: unknown; ab?: unknown; arm?: unknown }>(request, 1024);
+  const body = await readJson<{ p?: unknown; path?: unknown; pos?: unknown; ab?: unknown; arm?: unknown; i?: unknown }>(request, 1024);
   const program = typeof body?.p === "string" ? body.p : "";
   const path = typeof body?.path === "string" ? body.path : "";
   const pos = typeof body?.pos === "string" ? body.pos : "other";
@@ -97,13 +102,68 @@ async function click(request: Request, url: URL, env: AffEnv, ctx: Ctx): Promise
   if (!selftest && (await limited(url.origin, visitor, `${program}|${path}`))) return noContent();
 
   const rand = crypto.getRandomValues(new Uint32Array(1))[0].toString(36);
-  const meta: Meta = { path, pos, v: visitor.slice(0, 8), ...(ab ? { ab } : {}), ...(arm ? { arm } : {}) };
+  // 見た数（/api/aff/seen）は Do Not Track / GPC・自社のテストを数えないので、そのクリックには印を付ける（押した割合の分子から外す）
+  const quiet = request.headers.get("dnt") === "1" || request.headers.get("sec-gpc") === "1" || body?.i === 1;
+  const meta: Meta = { path, pos, v: visitor.slice(0, 8), ...(ab ? { ab } : {}), ...(arm ? { arm } : {}), ...(quiet ? { q: 1 } : {}) };
   ctx.waitUntil(
     env.AFF_KV.put(`${selftest ? "t" : "c"}:${date}:${program}:${jstTime(now)}${rand}`, "", { expirationTtl: (selftest ? 2 : KEEP_DAYS) * 86400, metadata: meta }).catch((error) =>
       console.error("[aff] put failed", String(error)),
     ),
   );
   return noContent();
+}
+
+/** 広告の囲みを人が見た記録（lib/ad-seen.ts）。同じ人・同じページ・同じ置き場所は1日1キー（送り直しは上書き） */
+async function seen(request: Request, url: URL, env: AffEnv, ctx: Ctx): Promise<Response> {
+  if (request.method !== "POST") return json({ error: "method" }, 405);
+  const site = request.headers.get("sec-fetch-site");
+  if (!sameOrigin(request) || (site && site !== "same-origin")) return json({ error: "origin" }, 403);
+  const ua = request.headers.get("user-agent") ?? "";
+  if (!ua || BOT_UA.test(ua) || isInternal(request) || request.headers.get("dnt") === "1" || request.headers.get("sec-gpc") === "1" || !env.AFF_KV || !env.AFF_STATS_TOKEN) return noContent();
+  const event = parseAdSeen(await readJson<Record<string, unknown>>(request, 1024));
+  if (!event) return json({ error: "invalid" }, 400);
+  const date = jstDate();
+  // クリック（click）と同じ作り方の訪問者のハッシュ。先頭8桁を metadata の v にして、押した人と突き合わせる
+  const visitor = (await sha256Hex(`${env.AFF_STATS_TOKEN}|${date}|${request.headers.get("cf-connecting-ip") ?? ""}|${ua}`)).slice(0, 16);
+  if (await burstSeen(url.origin, visitor)) return noContent();
+  const where = (await sha256Hex(`${event.path}|${event.pos}`)).slice(0, 12);
+  ctx.waitUntil(env.AFF_KV.put(`s:${date}:${visitor}:${where}`, "", { expirationTtl: SEEN_KEEP_DAYS * 86400, metadata: { ...event, v: visitor.slice(0, 8) } }).catch((error) =>
+    console.error("[seen] put failed", String(error)),
+  ));
+  return noContent();
+}
+
+const SEEN_KEEP_DAYS = 90;
+/** 同じ人の見た記録はこの回数まで（10分で戻る）。機械的な連投で KV の書き込みを使い切らないため */
+const SEEN_BURST_MAX = 60;
+async function burstSeen(origin: string, visitor: string): Promise<boolean> {
+  try {
+    const cache = (caches as unknown as { default: Cache }).default;
+    const counter = new Request(`${origin}/api/aff/_rl/s/${visitor}`);
+    const hit = await cache.match(counter);
+    const n = hit ? Number(await hit.text()) || 0 : 0;
+    if (n >= SEEN_BURST_MAX) return true;
+    await cache.put(counter, new Response(String(n + 1), { headers: { "Cache-Control": `max-age=${BURST_SEC}` } }));
+    return false;
+  } catch {
+    return false;
+  }
+}
+
+/** その日の広告の押した割合（lib/ad-seen.ts の adRateTable）。見た記録（s:）とクリック（c:）から */
+async function adRate(date: string, kv: KvNamespace, clicks: Meta[]) {
+  const seenRows: { path?: string; pos?: string; ab?: string; arm?: string; v?: string }[] = [];
+  let cursor: string | undefined;
+  do {
+    const page = await kv.list({ prefix: `s:${date}:`, cursor, limit: 1000 });
+    for (const key of page.keys) seenRows.push((key.metadata ?? {}) as Meta);
+    cursor = page.list_complete ? undefined : page.cursor;
+  } while (cursor && seenRows.length < 200_000);
+  return {
+    definition: "rate = clickers / seen per JST day. seen = distinct daily visitor hashes whose browser kept the ad box (data-aff-pos) at least 50% on screen for 1 second (bots, webdriver, DNT/GPC and internal test browsers excluded). clickers = distinct daily visitor hashes with a counted human click in the same group, excluding DNT/GPC/internal clicks. Measured from 2026-11-27; do not sum visitors across days.",
+    truncated: Boolean(cursor),
+    ...adRateTable(seenRows, clicks),
+  };
 }
 
 /** 新導線の表示・遷移。旧クリック(c:)と分離し、既存の集計値を変えない。 */
@@ -228,6 +288,7 @@ async function stats(request: Request, url: URL, env: AffEnv): Promise<Response>
   // 得のカードの A/B（置き場所 × arm）。表示の数は /api/aff/reading の abSeen（cloudflare/reading.ts）。scripts/aff_stats.py がクリック率にする
   const arms = new Map<string, Row>();
   const visitors = new Set<string>();
+  const clickMetas: Meta[] = [];
   let total = 0;
   let cursor: string | undefined;
   do {
@@ -237,6 +298,7 @@ async function stats(request: Request, url: URL, env: AffEnv): Promise<Response>
       const meta = (key.metadata ?? {}) as Meta;
       const visitor = meta.v ?? "";
       total++;
+      clickMetas.push(meta);
       if (visitor) visitors.add(visitor);
       bump(programs, program, visitor);
       bump(pages, meta.path ?? "?", visitor);
@@ -273,11 +335,13 @@ async function stats(request: Request, url: URL, env: AffEnv): Promise<Response>
     }),
     byHour: sorted(hours, "hour").sort((a, b) => String(a.hour).localeCompare(String(b.hour))),
     funnel: await funnelStats(date, env.AFF_KV),
+    adRate: await adRate(date, env.AFF_KV, clickMetas),
   });
 }
 
 export async function handleAff(request: Request, url: URL, env: AffEnv, ctx: Ctx): Promise<Response> {
   if (url.pathname === "/api/aff/click") return click(request, url, env, ctx);
+  if (url.pathname === "/api/aff/seen") return seen(request, url, env, ctx);
   if (url.pathname === "/api/aff/event") return funnelEvent(request, url, env, ctx);
   if (url.pathname === "/api/aff/stats") return stats(request, url, env);
   // 記事に外から来た人の数（流入元 × 記事 × utm）。cloudflare/inflow.ts

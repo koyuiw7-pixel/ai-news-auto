@@ -25,15 +25,19 @@ export default function ToolPage({ kind, lead, afterCalc, children }: { kind: Ca
         <h1 className="t-h1 text-ink"><Phrases text={meta.title} /></h1>
         <p className="t-lead mt-3">{lead}</p>
       </header>
-      <section aria-label="計算" className="mt-7 rounded-2xl border border-line-strong p-5 sm:p-6">
-        <Calculator calc={{ kind }} />
-      </section>
-      <p className="mt-4 max-w-[40em] text-note leading-[1.75] text-ink-soft">{CALC_NOTES[kind]}</p>
-      <p className="mt-2 max-w-[40em] text-note leading-[1.75] text-ink-soft">入力した数字は、この画面の中の計算だけに使います。送信・保存はしません。</p>
-      <p className="mt-2 max-w-[40em] text-note leading-[1.75] text-ink-soft">
-        出典の公式ページを確かめた日：<time dateTime={meta.checked}>{checkedDateJa(meta.checked)}</time>
-      </p>
-      {afterCalc}
+      {/* 計算・注記・afterCalc を1つの縦の並びにする。広告の見た目 B（<html data-adv="b">。components/ToolAdCard.tsx の .tad-b）は、
+          CSS の order で計算の結果のすぐ下（注記より前）に出す（app/globals.css の .tool-flow。2026-11-27 オーナー「配置と見た目が魅力０」） */}
+      <div className="tool-flow flex flex-col">
+        <section aria-label="計算" className="mt-7 rounded-2xl border border-line-strong p-5 sm:p-6">
+          <Calculator calc={{ kind }} />
+        </section>
+        <p className="mt-4 max-w-[40em] text-note leading-[1.75] text-ink-soft">{CALC_NOTES[kind]}</p>
+        <p className="mt-2 max-w-[40em] text-note leading-[1.75] text-ink-soft">入力した数字は、この画面の中の計算だけに使います。送信・保存はしません。</p>
+        <p className="mt-2 max-w-[40em] text-note leading-[1.75] text-ink-soft">
+          出典の公式ページを確かめた日：<time dateTime={meta.checked}>{checkedDateJa(meta.checked)}</time>
+        </p>
+        {afterCalc}
+      </div>
       <OtherCalcs kind={kind} />
       {children ? <div className="mt-12 max-w-[40em]">{children}</div> : null}
       <ToolRelated href={meta.href} />

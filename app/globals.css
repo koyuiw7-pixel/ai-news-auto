@@ -1266,3 +1266,108 @@ mark {
   bottom: 3px;
   padding: 0 4px;
 }
+
+/*
+ * 計算ツールの結果の下の PR の A/B（2026-11-27。components/ActionAd.tsx・components/ToolAdCard.tsx・lib/tool-ad.ts）。
+ * <html data-adv="a|b">（app/layout.tsx の最初のスクリプト。訪問者ごとに半々）: a = 今までの囲み（.tad-a）、b = 新しい見た目（.tad-b）。
+ * 決まっていないとき（スクリプトなし）は a。隠した側は display:none なので、見た数（components/AdSeenTracker.tsx）にも入らず、小さな画像も読み込まない（loading=lazy）。
+ * b は計算の結果のすぐ下（注記より前）に並べ替える（components/calc/ToolPage.tsx の .tool-flow）。
+ */
+:root[data-adv="b"] .tad-a,
+:root:not([data-adv="b"]) .tad-b {
+  display: none !important;
+}
+:root[data-adv="b"] .tool-flow > section[aria-label="計算"] {
+  order: -2;
+}
+:root[data-adv="b"] .tool-flow > .tad-b {
+  order: -1;
+}
+.tad-link {
+  display: block;
+  padding: 14px 16px 16px;
+  color: inherit;
+  text-decoration: none;
+}
+.tad-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.tad-sponsor {
+  min-width: 0;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--ink-soft);
+}
+.tad-body {
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr);
+  align-items: center;
+  gap: 14px;
+  margin-top: 10px;
+}
+.tad-thumb {
+  width: 96px;
+}
+.tad-head {
+  display: block;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.45;
+  color: var(--ink);
+  text-wrap: pretty;
+}
+.tad-link:hover .tad-head {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.tad-line {
+  display: block;
+  margin-top: 6px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  text-wrap: pretty;
+}
+.tad-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  margin-top: 14px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.35;
+  text-align: center;
+}
+.tad-link:hover .tad-cta {
+  filter: brightness(1.1);
+}
+.tad-link:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+@media (min-width: 640px) {
+  .tad-link {
+    padding: 18px 22px 20px;
+  }
+  .tad-body {
+    grid-template-columns: 132px minmax(0, 1fr);
+    gap: 18px;
+  }
+  .tad-thumb {
+    width: 132px;
+  }
+  .tad-head {
+    font-size: 20px;
+  }
+  .tad-cta {
+    width: fit-content;
+    min-width: 20em;
+  }
+}

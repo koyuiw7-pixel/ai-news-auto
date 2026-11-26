@@ -65,7 +65,7 @@ export default function FurusatoLimitPage() {
     <ToolPage
       kind="furusato-limit"
       lead="年収と家族構成を選ぶだけで、自己負担2,000円で済むふるさと納税の寄附額の目安が出ます。住民税の決定通知書がある人は、通知書の「所得割額」からも計算できます。2026年（令和8年）の寄附が対象です。"
-      afterCalc={ad ? <ActionAd ad={ad} pos={GUIDE_AD_POS.tool} className="mt-8" /> : null}
+      afterCalc={ad ? <ActionAd ad={ad} pos={GUIDE_AD_POS.tool} tool="furusato-limit" className="mt-8" /> : null}
     >
       <ToolSection id="what" title="ふるさと納税の上限額とは">
         <p>

@@ -24,6 +24,15 @@ try {
     },
   }] });
   await import(pathToFileURL(readingClientOutfile).href);
+  const adSeenOutfile = join(dir, "ad-seen-client-test.mjs");
+  await build({ entryPoints: ["components/AdSeenTracker.test.ts"], outfile: adSeenOutfile, bundle: true, platform: "node", format: "esm", logLevel: "warning", plugins: [{
+    name: "unused-react-hooks-for-ad-seen-unit-test",
+    setup(build) {
+      build.onResolve({ filter: /^(react|next\/navigation)$/ }, args => ({ path: args.path, namespace: "test-hooks" }));
+      build.onLoad({ filter: /.*/, namespace: "test-hooks" }, () => ({ contents: "export const useEffect=()=>{}; export const usePathname=()=>null;", loader: "js" }));
+    },
+  }] });
+  await import(pathToFileURL(adSeenOutfile).href);
   const reviewOutfile = join(dir, "review-test.mjs");
   await build({ entryPoints: ["cloudflare/review.test.ts"], outfile: reviewOutfile, bundle: true, platform: "node", format: "esm", logLevel: "warning" });
   await import(pathToFileURL(reviewOutfile).href);

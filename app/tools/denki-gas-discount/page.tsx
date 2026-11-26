@@ -47,7 +47,7 @@ export default function DenkiGasDiscountPage() {
     <ToolPage
       kind="denki-gas-discount"
       lead={`検針票の12月の電気（kWh）と都市ガス（㎥）の使用量を入れると、国の電気・ガス料金支援で${dec.label}から${feb.label}までの3か月に、いくら安くなるかの目安が出ます。1月・2月の使用量は12月の${WINTER_RATIO}倍が初期値で、書き換えられます。`}
-      afterCalc={ad ? <ActionAd ad={ad} pos={GUIDE_AD_POS.tool} className="mt-8" /> : null}
+      afterCalc={ad ? <ActionAd ad={ad} pos={GUIDE_AD_POS.tool} tool="denki-gas-discount" className="mt-8" /> : null}
     >
       <ToolSection id="what" title="電気・ガス料金支援とは">
         <p>{`経済産業省 資源エネルギー庁が行う、冬の電気代・都市ガス代の値引きです。対象は${dec.label}から${feb.label}まで。値引き額は「値引き単価×月々の使用量」で、使った量が多いほど値引きも大きくなります。`}</p>

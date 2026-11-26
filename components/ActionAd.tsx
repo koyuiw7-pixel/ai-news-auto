@@ -4,6 +4,8 @@ import InternalMoneyCard from "@/components/InternalMoneyCard";
 import Link from "next/link";
 import { abCardFor } from "@/lib/ad-ab";
 import AbBox from "@/components/rail/AbBox";
+import ToolAdCard from "@/components/ToolAdCard";
+import { toolAdCopy, toolKindFor, type ToolKind } from "@/lib/tool-ad";
 
 /**
  * 「すぐにできること」のすぐ下に置く、編集部の言葉で書いた PR の囲み（1記事に1つ。lib/action-ad.ts）。
@@ -27,8 +29,11 @@ import AbBox from "@/components/rail/AbBox";
  * 2026-11-10 M6: 電気・ガス、家計、スマホ、引っ越し、ふるさと納税、年末調整の囲みは、すぐ下に1行「料金と条件を比べる：比較ページ」（ad.compare）を出す。
  *   囲みの外に置くサイト内リンク（rel=sponsored なし、data-money-link で読まれ方の記録に money として数える）。囲みの中身と位置は変えない。
  *   矢印の印は付けない（2026-11-09 オーナー「→みたいな印はいらない」。tests/test_action_ads.py）
+ * 2026-11-27 計算ツールの結果の下（pos "tool-result"）は A/B（<html data-adv="a|b"> で半々）: A = この囲みのまま（.tad-a）、
+ *   B = 同じ提携先の新しい見た目（components/ToolAdCard.tsx・lib/tool-ad.ts。結果のすぐ下に並べ替える）。
+ *   オーナー「配置と見た目が魅力０だった」。押した割合（人のクリック ÷ 見た人。lib/ad-seen.ts）を A と B で比べる
  */
-export default function ActionAd({ ad, className = "mt-4", pos = "action-ad" }: { ad: ActionAdData; className?: string; pos?: string }) {
+export default function ActionAd({ ad, className = "mt-4", pos = "action-ad", tool }: { ad: ActionAdData; className?: string; pos?: string; tool?: ToolKind }) {
   const internal = ad.internal ?? [];
   if (ad.items.length === 0 && internal.length === 0) return null;
   const [first, ...rest] = ad.items;
@@ -70,8 +75,7 @@ export default function ActionAd({ ad, className = "mt-4", pos = "action-ad" }: 
       <Pixels pixels={ad.items.map(({ pixel }) => pixel).filter((p): p is string => Boolean(p))} />
     </aside>
   );
-  if (!ad.compare) return box;
-  return (
+  const withCompare = !ad.compare ? box : (
     <>
       {box}
       <p data-compare-link="" className="mt-2 max-w-[40em] text-note">
@@ -79,6 +83,16 @@ export default function ActionAd({ ad, className = "mt-4", pos = "action-ad" }: 
           料金と条件を比べる：{ad.compare.label}
         </Link>
       </p>
+    </>
+  );
+  // 計算ツールの結果の下: A（今までの囲み）と B（新しい見た目）を両方 HTML に入れ、CSS で片方だけ見せる（描画前に決まるので画面がずれない）
+  const kind = pos === "tool-result" ? toolKindFor(tool, ad.key) : undefined;
+  const copy = kind && first ? toolAdCopy(kind, first.item) : undefined;
+  if (!copy || !first) return withCompare;
+  return (
+    <>
+      <div className="tad-a" data-tool-ad="a">{withCompare}</div>
+      <ToolAdCard item={first.item} copy={copy} pos={pos} tool={kind} pixels={first.pixel ? [first.pixel] : []} />
     </>
   );
 }

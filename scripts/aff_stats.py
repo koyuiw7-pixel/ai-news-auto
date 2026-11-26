@@ -8,6 +8,7 @@
   python3 scripts/aff_stats.py --date 2026-10-27
   python3 scripts/aff_stats.py --days 7        # 7日分（週の報告用）
   python3 scripts/aff_stats.py --json          # 生の JSON
+  python3 scripts/aff_stats.py --rate          # 押した割合だけ（会議の数字用。人のクリック ÷ 広告を見た人。目標 15%）
 
 鍵 AFF_STATS_TOKEN は環境変数か .env.local（メインのフォルダ）から読む。中身は表示しない。
 数えるのは Worker（cloudflare/aff.ts）。画面側は components/AffClickTracker.tsx（既知の機械・自動ブラウザを除外）
@@ -141,6 +142,42 @@ def arm_summary(clicks_rows: list[dict], seen: dict | None) -> list[str]:
     return lines
 
 
+RATE_GOAL = 0.15
+VARIANT_LABELS = {"a": "A 今までの囲み", "b": "B 新しい見た目"}
+
+
+def _pct(rate) -> str:
+    return "見た人なし" if rate is None else f"{rate * 100:.1f}%"
+
+
+def ad_rate_lines(rate: dict | None) -> list[str]:
+    """広告の押した割合（cloudflare/aff.ts の adRate。lib/ad-seen.ts）。1行目は会議の数字:
+    「広告クリック（人） N ／ 広告を見た人 M ／ 押した割合 X%」。続けて置き場所ごと、計算ツールの結果の下の A/B、計算ツールのページごと。
+    見た = 囲みが半分以上・1秒見えた人（2026-11-27 から計測）。押した = 人のクリック（DNT・自社テストを除く）。日をまたいで足さない"""
+    if not rate or not rate.get("total"):
+        return ["広告クリック（人） 数えられませんでした（押した割合の計測がまだありません）"]
+    t = rate["total"]
+    mark = "" if t.get("rate") is None else ("（目標15%に届いています）" if t["rate"] >= RATE_GOAL else "（目標15%に届いていません）")
+    lines = [f"広告クリック（人） {t['clickers']} ／ 広告を見た人 {t['seen']} ／ 押した割合 {_pct(t.get('rate'))}{mark}"]
+    for row in rate.get("byPos") or []:
+        label = POSITION_LABELS.get(row["pos"], row["pos"])
+        lines.append(f"  {label}（{row['pos']}）: 押した人 {row['clickers']} ／ 見た人 {row['seen']} ／ {_pct(row.get('rate'))}")
+    tool = [r for r in rate.get("byVariant") or [] if r.get("pos") == "tool-result"]
+    if tool:
+        lines.append("  計算ツールの結果の下の A/B（訪問者ごとに半々）:")
+        for row in sorted(tool, key=lambda r: r.get("ab", "")):
+            lines.append(f"    {VARIANT_LABELS.get(row['ab'], row['ab'])}: 押した人 {row['clickers']} ／ 見た人 {row['seen']} ／ {_pct(row.get('rate'))}")
+    pages = [r for r in rate.get("byToolPath") or [] if r.get("pos") == "tool-result"]
+    if pages:
+        lines.append("  計算ツールのページごと（結果の下の PR）:")
+        for row in sorted(pages, key=lambda r: (r["path"], r.get("ab", ""))):
+            ab = f" {row['ab'].upper()}" if row.get("ab") else ""
+            lines.append(f"    {row['path']}{ab}: 押した人 {row['clickers']} ／ 見た人 {row['seen']} ／ {_pct(row.get('rate'))}")
+    if rate.get("truncated"):
+        lines.append("  注意: 集計の上限に達しました。全件ではありません。")
+    return lines
+
+
 def fetch_reading(token: str, date: str) -> dict:
     """記事の読まれ方（cloudflare/reading.ts）。A/B の表示の数（abSeen）に使う。取れなければ空"""
     req = urllib.request.Request(
@@ -213,6 +250,8 @@ def show(data: dict, names: dict[str, str]) -> None:
             print("    注意: 導入日途中・送信欠測・日跨ぎの影響あり。観測0は全訪問0の証明ではありません。")
         if funnel.get("truncated"):
             print("    注意: 集計上限に達しました。全件集計ではありません。")
+    for line in ad_rate_lines(data.get("adRate")):
+        print(f"  {line}")
     if not data["clicks"] and not data.get("_abSeen"):
         return
     print("  提携先別:")
@@ -267,6 +306,7 @@ def main() -> int:
     parser.add_argument("--yesterday", action="store_true")
     parser.add_argument("--days", type=int, default=1, help="--date（既定は今日）までの日数")
     parser.add_argument("--json", action="store_true")
+    parser.add_argument("--rate", action="store_true", help="押した割合（人のクリック ÷ 広告を見た人）だけを出す")
     parser.add_argument("--selftest", action="store_true", help="受け口に自己点検のクリックを1回送り、記録されたか確かめる（集計には入らない）")
     args = parser.parse_args()
 
@@ -294,6 +334,12 @@ def main() -> int:
         print(f"[aff] 取得に失敗しました: {error}", file=sys.stderr)
         return 1
 
+    if args.rate:
+        for data in results:
+            print(f"■ {data['date']}")
+            for line in ad_rate_lines(data.get("adRate")):
+                print(line)
+        return 0
     if args.json:
         print(json.dumps(results[0] if len(results) == 1 else results, ensure_ascii=False, indent=2))
         return 0
