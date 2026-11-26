@@ -18,8 +18,10 @@ import type { ArticleChart } from "@/lib/charts";
  * 対象かどうかの目安と令和8年度の月額・1回の支払い（2か月分）・1年分を日本年金機構の案内で出す（式は lib/pension-support-benefit.ts、テストは tests/test_pension_support_benefit.cjs）。
  * 2026-11-26: 冬の電気・ガス料金支援（/tools/denki-gas-discount）を追加。12月の電気・都市ガスの使用量（1月・2月は12月の1.2倍が初期値）から、
  * 2026年12月〜2027年2月使用分の月ごとの値引き額と3か月の合計を、資源エネルギー庁の特設サイトの単価で出す（式は lib/denki-gas-discount.ts、テストは tests/test_denki_gas_discount.cjs）。
+ * 2026-11-26: 高額療養費（/tools/kogaku-ryoyohi）を追加。年齢と年収の区分から、2026年8月〜2027年7月診療分の1か月の自己負担の上限（総医療費を入れなければ100万円のとき）、
+ * 4か月目からの額、年間の上限を、厚生労働省の資料と協会けんぽの案内で出す（式は lib/kogaku-ryoyohi.ts、テストは tests/test_kogaku_ryoyohi.cjs）。
  */
-export type CalculatorKind = "defense-tax" | "furusato-limit" | "child-allowance" | "pension-support-benefit" | "denki-gas-discount";
+export type CalculatorKind = "defense-tax" | "furusato-limit" | "child-allowance" | "pension-support-benefit" | "denki-gas-discount" | "kogaku-ryoyohi";
 
 export type ArticleCalculator = {
   kind: CalculatorKind;
@@ -60,6 +62,12 @@ export const CALCULATORS: Record<CalculatorKind, { href: string; title: string; 
     href: "/tools/denki-gas-discount",
     title: "冬の電気代・ガス代の値引き額の計算",
     description: "12月の電気と都市ガスの使用量から、国の電気・ガス料金支援で2026年12月〜2027年2月使用分がいくら安くなるかを月ごとと3か月の合計で計算します。申請は不要です。",
+    checked: "2026-11-26",
+  },
+  "kogaku-ryoyohi": {
+    href: "/tools/kogaku-ryoyohi",
+    title: "高額療養費の自己負担の上限額の計算",
+    description: "年齢と年収の区分から、医療費が高額になった月の自己負担がいくらまでで済むか（高額療養費の上限額）を、2026年8月〜2027年7月診療分の額で計算します。4か月目からの額と年間の上限も出ます。",
     checked: "2026-11-26",
   },
 };
@@ -114,6 +122,7 @@ const TAX_WORDS = /防衛特別所得税|防衛増税|防衛税|復興特別所�
 const FURUSATO_WORDS = /ふるさと納税/;
 const CHILD_ALLOWANCE_WORDS = /児童手当/;
 const PENSION_SUPPORT_WORDS = /年金生活者支援給付金/;
+const KOGAKU_WORDS = /高額療養費/;
 const DENKI_GAS_WORDS = /電気・ガス料金(の)?支援|電気・ガス(料金|代)の?(補助|値引き)|電気代.{0,30}(値引き|円引き|補助|支援)|ガス代.{0,30}(値引き|円引き|補助|支援)/;
 
 /**
@@ -144,6 +153,10 @@ export function calculatorForArticle(article: ArticleLike): ArticleCalculator | 
   if (DENKI_GAS_WORDS.test(title)) {
     return { kind: "denki-gas-discount", heading: /いくら|値引き|単価|金額|計算|安く|kWh/ };
   }
+  // 高額療養費の記事（見出しに「高額療養費」がある記事だけ。2026-11-26）
+  if (KOGAKU_WORDS.test(title)) {
+    return { kind: "kogaku-ryoyohi", heading: /上限|限度額|いくら|自己負担|計算|区分|多数回/ };
+  }
   return null;
 }
 
@@ -159,5 +172,7 @@ export function calculatorForGuide(guide: { tool?: string; title: string; seoTit
   if (PENSION_SUPPORT_WORDS.test(`${guide.title} ${guide.seoTitle ?? ""}`)) return "pension-support-benefit";
   // 電気・ガス料金支援のガイドからは、冬の電気代・ガス代の値引き額の計算へ（2026-11-26）
   if (DENKI_GAS_WORDS.test(`${guide.title} ${guide.seoTitle ?? ""}`)) return "denki-gas-discount";
+  // 高額療養費のガイド（/guides/kogaku-ryoyohi）からは、高額療養費の上限額の計算へ（2026-11-26）
+  if (KOGAKU_WORDS.test(`${guide.title} ${guide.seoTitle ?? ""}`)) return "kogaku-ryoyohi";
   return null;
 }

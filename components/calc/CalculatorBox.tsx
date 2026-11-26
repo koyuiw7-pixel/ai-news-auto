@@ -8,6 +8,7 @@ const FurusatoLimitCalc = dynamic(() => import("@/components/calc/FurusatoLimitC
 const ChildAllowanceCalc = dynamic(() => import("@/components/calc/ChildAllowanceCalc"));
 const PensionSupportCalc = dynamic(() => import("@/components/calc/PensionSupportCalc"));
 const DenkiGasDiscountCalc = dynamic(() => import("@/components/calc/DenkiGasDiscountCalc"));
+const KogakuRyoyohiCalc = dynamic(() => import("@/components/calc/KogakuRyoyohiCalc"));
 
 /** 計算機ごとの注意書き（数字の前提。必ず表示する） */
 export const CALC_NOTES: Record<ArticleCalculator["kind"], string> = {
@@ -21,6 +22,8 @@ export const CALC_NOTES: Record<ArticleCalculator["kind"], string> = {
     "日本年金機構の案内（令和8年度の額、令和8年10月分から令和9年9月分までの判定）で計算した目安です。判定には令和7年の収入・所得を使い、障害年金・遺族年金は収入に入れません。原則、偶数月の中旬に2か月分が年金と同じ口座に、年金とは別に振り込まれます。実際に受け取れるか・金額は、届いた請求書や日本年金機構の通知で確かめてください。",
   "denki-gas-discount":
     "経済産業省 資源エネルギー庁「電気・ガス料金支援」特設サイトの値引き単価（2026年12月使用分〜2027年2月使用分、家庭の電気＝低圧と都市ガス）で計算した目安です。値引き額は値引き単価×月々の使用量で、1月・2月の使用量の初期値は12月の1.2倍です。申請は不要で、参加している電力・ガス会社の請求で値引きされます。プロパンガス（LPガス）は対象外です。実際の額は検針票や請求の明細で確かめてください。",
+  "kogaku-ryoyohi":
+    "厚生労働省「高額療養費制度の見直しについて（令和８年８月診療分から）」と協会けんぽの案内の、2026年8月診療分から2027年7月診療分までの上限額で計算した目安です。総医療費は保険がきく医療費の全額（10割）で、入れなければ100万円で計算します。入院中の食事代や差額ベッド代などは含みません。区分は年収ではなく標準報酬月額（会社の健康保険）や所得（国民健康保険）で決まるため、実際の額は加入している健康保険で確かめてください。",
 };
 
 /** 記事の中に置く計算機（本文の章の下、または本文の終わり） */
@@ -51,5 +54,6 @@ export function Calculator({ calc }: { calc: Pick<ArticleCalculator, "kind"> }) 
   if (calc.kind === "child-allowance") return <ChildAllowanceCalc />;
   if (calc.kind === "pension-support-benefit") return <PensionSupportCalc />;
   if (calc.kind === "denki-gas-discount") return <DenkiGasDiscountCalc />;
+  if (calc.kind === "kogaku-ryoyohi") return <KogakuRyoyohiCalc />;
   return <DefenseTaxCalc />;
 }

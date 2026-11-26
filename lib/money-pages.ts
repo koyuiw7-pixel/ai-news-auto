@@ -67,6 +67,10 @@ export const MONEY_PAGES: MoneyPage[] = [
     label: "高額療養費の上限額を確かめる",
     second: { href: "/guides/iryohi-kojo", label: "医療費控除の対象を確かめる" },
     guide: "kogaku-ryoyohi",
+    // 計算ツール（2026-11-26）。記事の「自分は対象か確かめる」の行き先（ガイド）は変えない
+    tool: "/tools/kogaku-ryoyohi",
+    guides: ["kogaku-ryoyohi", "iryohi-kojo"],
+    articles: ["kogaku-ryoyohi-2026-08-limit", "kogaku-ryoyohi-2026-tasukai-kaisu"],
   },
   {
     key: "defense-tax",

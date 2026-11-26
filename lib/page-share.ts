@@ -19,6 +19,7 @@ export type PageShare = {
 
 export const PAGE_SHARE = {
   "defense-tax": { heading: "防衛特別所得税", lines: ["2027年から始まる新しい税", "自分の場合の税額を年ごとに計算"], footer: "サイソクの計算ツール" },
+  "kogaku-ryoyohi": { heading: "医療費は月いくらまで", lines: ["高額療養費の自己負担の上限を", "年齢と年収の区分から計算"], footer: "サイソクの計算ツール" },
   "denki-gas-discount": { heading: "冬の電気代・ガス代", lines: ["国の支援でいくら安くなるか", "12月〜2月使用分を使用量から計算"], footer: "サイソクの計算ツール" },
   "pension-support-benefit": { heading: "年金生活者支援給付金", lines: ["もらえるか・いくらかを", "前年の収入と納めた年数から計算"], footer: "サイソクの計算ツール" },
   "child-allowance": { heading: "児童手当はいくら", lines: ["子どもの年齢と人数から", "12月の支給額と1年分を計算"], footer: "サイソクの計算ツール" },
