@@ -107,11 +107,14 @@ class PromptTest(unittest.TestCase):
         self.assertIn("手続き", nt.prompt_block("policy"))
 
     def test_non_verdict_types_need_a_japan_heading(self):
-        # 判定カードを出さない種類は、公開前の門（no-japan-value）に合う見出しを必ず1つ書かせる
+        # 判定カードを出さない種類は、海外の発表なら日本の読者に関係する章の見出しを書かせる。
+        # 2026-11-26（台帳 A78）: no-japan-value は 2026-11-08 から公開も検索も止めないので「必須」をやめ、国内の話題には求めない
         for key, t in nt.TYPES.items():
             block = nt.prompt_block(key)
             if not t.verdict:
-                self.assertIn("見出しの少なくとも1つは日本の読者に関係する章", block, key)
+                self.assertIn("海外の発表なら、日本の読者に関係する章を1つ置き", block, key)
+                self.assertIn("国内の話題では入れなくてよい", block, key)
+                self.assertNotIn("（必須。例", block, key)
 
     def test_easy_rule_has_no_template_questions(self):
         self.assertIn("## ひとことで言うと", nt.EASY_RULE)

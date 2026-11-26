@@ -220,6 +220,9 @@ def prompt_block(recent: list[str] | None = None) -> str:
     """生成プロンプトに足す「書き出しの型」の説明"""
     recent = recent if recent is not None else recent_hooks()
     lines = [
+        # 2026-11-26: 記事を書く段のプロンプトの末尾に入る。SNS の決まり（呼びかけ・問いかけ）が題名・リード・本文に混ざらないよう区切る
+        "# ここから下は SNS の欄（threads_post・threads_hook・threads_questions）だけの決まり。title・lede・本文・FAQ には当てはめない。",
+        "",
         POST_RULES,
         "",
         persona.SNS_BLOCK,
@@ -232,7 +235,8 @@ def prompt_block(recent: list[str] | None = None) -> str:
     ]
     if recent:
         names = "、".join(h["name"] for h in HOOKS if h["key"] in recent)
-        lines.append(f"直近の投稿で {names} を使ったので、今回はそれ以外から選ぶ（同じ型が続くと読み飛ばされるため）。")
+        # 1行目は呼びかけの形に決まっているので、「それ以外から選ぶ」のは伝える中身の型（下の一覧）だけ（2026-11-26 食い違いの解消）
+        lines.append(f"直近の投稿で {names} を使ったので、伝える中身の型（下の一覧）は今回それ以外から選ぶ（1行目は呼びかけの形のまま。同じ中身の型が続くと読み飛ばされるため）。")
     weak = weak_hooks()
     if weak:
         names = "、".join(h["name"] for h in HOOKS if h["key"] in weak)
