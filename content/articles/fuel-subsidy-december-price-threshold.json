@@ -78,8 +78,8 @@
     }
   ],
   "todayActions": [
-    "普段の給油量を確かめ、12月17日からの基準価格の差を燃料代の目安に当てはめる。",
-    "資源エネルギー庁の公式サイトで、燃料油の支給単価と全国平均価格を確認する。"
+    "自分の給油量に基準価格の差を当てはめ、燃料代の目安を計算する。",
+    "支給単価と全国平均価格を、公式サイトの掲載日とあわせて確認する。"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -146,5 +146,76 @@
     "provider": "Cloudflare Workers AI",
     "relevant": true,
     "at": "2026-11-26T09:46:12+00:00"
-  }
+  },
+  "insight": [
+    {
+      "text": "公式サイトでは、2026年11月26日以降の支給単価をガソリン・軽油・灯油・重油ともに27.3円/Lと掲載しています。これは基準価格の引き上げ幅とは別の数字です。",
+      "source": "https://nenryo-teigakuhikisage.go.jp/"
+    },
+    {
+      "text": "冬季の灯油は、供給の偏りや流通の目詰まりを防ぐため、石油精製業者などに前年同月比同量を基本とした供給継続や注文が要請されています。",
+      "source": "https://nenryo-teigakuhikisage.go.jp/assets/pdf/261106_%E5%9F%BA%E6%BA%96%E4%BE%A1%E6%A0%BC%E3%81%AE%E6%AE%B5%E9%9A%8E%E7%9A%84%E3%81%AA%E5%BC%95%E4%B8%8A%E3%81%92%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%EF%BC%88%E8%A3%9C%E5%8A%A9%E4%BA%8B%E6%A5%AD%E8%80%85%EF%BC%89.pdf"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "制度全般に関する問合せ先",
+      "url": "https://nenryo-teigakuhikisage.go.jp/",
+      "source": "https://nenryo-teigakuhikisage.go.jp/",
+      "howTo": [
+        "お問い合わせ",
+        "お問合せはこちら"
+      ],
+      "note": "メールで問い合わせる際は件名（題名）に必ず【質問】と付けてください。返信には数日かかります。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "自分の給油量に基準価格の差を当てはめ、燃料代の目安を計算する。",
+      "source": "https://nenryo-teigakuhikisage.go.jp/assets/pdf/261106_%E5%9F%BA%E6%BA%96%E4%BE%A1%E6%A0%BC%E3%81%AE%E6%AE%B5%E9%9A%8E%E7%9A%84%E3%81%AA%E5%BC%95%E4%B8%8A%E3%81%92%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%EF%BC%88%E8%A3%9C%E5%8A%A9%E4%BA%8B%E6%A5%AD%E8%80%85%EF%BC%89.pdf",
+      "steps": [
+        "給油量を確認する",
+        "12月17日の基準価格175円と現在の170円の差を確認する",
+        "差額に給油量を掛け、あくまで目安として見る"
+      ],
+      "url": "https://nenryo-teigakuhikisage.go.jp/assets/pdf/261106_%E5%9F%BA%E6%BA%96%E4%BE%A1%E6%A0%BC%E3%81%AE%E6%AE%B5%E9%9A%8E%E7%9A%84%E3%81%AA%E5%BC%95%E4%B8%8A%E3%81%92%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%EF%BC%88%E8%A3%9C%E5%8A%A9%E4%BA%8B%E6%A5%AD%E8%80%85%EF%BC%89.pdf"
+    },
+    {
+      "action": "支給単価と全国平均価格を、公式サイトの掲載日とあわせて確認する。",
+      "source": "https://nenryo-teigakuhikisage.go.jp/",
+      "steps": [
+        "資源エネルギー庁の公式サイトを開く",
+        "「2026年11月26日以降の支給単価」を確認する",
+        "「石油製品価格について」から価格情報を確認する"
+      ],
+      "url": "https://nenryo-teigakuhikisage.go.jp/"
+    }
+  ],
+  "worries": [
+    {
+      "q": "補助金を受けるために自分で申請するの？",
+      "a": "補助金は石油元売・輸入事業者に支給され、卸価格を抑えることで小売価格の抑制を図る仕組みです。燃料を買う人が直接申請する制度ではありません。",
+      "source": "https://nenryo-teigakuhikisage.go.jp/",
+      "action": "補助金の申請手続きはせず、給油量や灯油の購入量に応じて家計への影響を確認する。"
+    },
+    {
+      "q": "全国どこでも同じ幅で店頭価格が上がるの？",
+      "a": "ガソリン価格には輸送コストなどによる地域差があります。全国一律なのは発動価格であり、地域や店舗ごとの店頭価格が同じになるということではありません。",
+      "source": "https://nenryo-teigakuhikisage.go.jp/",
+      "action": "「石油製品価格について」で公表されている価格を確認し、全国一律の基準価格と分けて見る。"
+    },
+    {
+      "q": "冬に灯油が足りなくならないよう対策されている？",
+      "a": "冬季の供給の偏りや流通の目詰まりを防ぐため、石油精製業者などに前年同月比同量を基本とする供給継続や注文が要請されています。事業者への要請であり、供給量の保証ではありません。",
+      "source": "https://nenryo-teigakuhikisage.go.jp/assets/pdf/261106_%E5%9F%BA%E6%BA%96%E4%BE%A1%E6%A0%BC%E3%81%AE%E6%AE%B5%E9%9A%8E%E7%9A%84%E3%81%AA%E5%BC%95%E4%B8%8A%E3%81%92%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%EF%BC%88%E8%A3%9C%E5%8A%A9%E4%BA%8B%E6%A5%AD%E8%80%85%EF%BC%89.pdf",
+      "action": "公式資料で、灯油の供給継続と注文に関する要請内容を確認する。"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "灯油には輸入分への追加支援も",
+    "steps": "給油量と公式の価格情報を確認",
+    "desk": "制度の問い合わせはメールで",
+    "worries": "申請や店頭価格、灯油供給の疑問"
+  },
+  "depthAt": "2026-11-26T09:52:42+00:00"
 }
