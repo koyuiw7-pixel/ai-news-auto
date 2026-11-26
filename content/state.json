@@ -11021,6 +11021,20 @@
       "skipped": true,
       "url": "http://www.boj.or.jp/finsys/intlact_fs/kisei/kis261116a.htm"
     },
+    "44bdd0b48b6c9d07": {
+      "at": "2026-11-26T07:00:01.431296+00:00",
+      "costUsd": 0.0042,
+      "intent": "breaking",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "safetyLane": true,
+      "score": 100,
+      "section": "public",
+      "slug": "world-karte-unauthorized-access-leak",
+      "url": "https://corp.world.co.jp/news/company/2026/15602/"
+    },
     "44d231d9ee488f2d": {
       "at": "2026-11-20T03:06:43.874229+00:00",
       "costUsd": 0.0108,
@@ -24206,56 +24220,6 @@
   },
   "quality_log": [
     {
-      "accepted": true,
-      "at": "2026-11-24T09:30:41.810916+00:00",
-      "attempt": 1,
-      "id": "05c03308bd299ec2",
-      "kind": "broad",
-      "model": "openai-api:gpt-6-luna",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 172.2,
-        "avg_sentence": 62.0,
-        "long_share": 0.56,
-        "max_paragraph": 236,
-        "paragraphs": 9,
-        "sentences": 25
-      },
-      "score": 99,
-      "source": "nli-research",
-      "title": "インドにおける保険販売手数料・事業費規制等の見直し－規制緩和から再規制への転換－",
-      "warnings": [
-        "見出しの書き方: 発表文の題名の言い直し（「〇〇が△△を発表」）。読者にとって何が変わるか（だれの・何が・いつから・いくら）を書く",
-        "初めて出たところで言い換えていない略語（IRDAI・IDE・IDP）",
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-24T09:31:08.972224+00:00",
-      "attempt": 0,
-      "id": "05c03308bd299ec2",
-      "kind": "broad",
-      "model": "openai-api:gpt-6-luna",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 123.5,
-        "avg_sentence": 41.2,
-        "long_share": 0.077,
-        "max_paragraph": 216,
-        "paragraphs": 13,
-        "sentences": 39
-      },
-      "score": 97,
-      "source": "nli-research",
-      "title": "インドにおける保険販売手数料・事業費規制等の見直し－規制緩和から再規制への転換－",
-      "warnings": [
-        "見出しの書き方: 発表文の題名の言い直し（「〇〇が△△を発表」）。読者にとって何が変わるか（だれの・何が・いつから・いくら）を書く",
-        "初めて出たところで言い換えていない略語（IRDAI・IDE・IDP）",
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
-      ]
-    },
-    {
       "accepted": false,
       "at": "2026-11-24T09:32:24.120889+00:00",
       "attempt": 1,
@@ -31680,6 +31644,57 @@
       "title": "返金手数料無料で新免税制度のリファンド申請に対応 「SHOP SMART, SAVE MORE」 便利に買って、もっとお得に ～11月1日（日）より全国のPPI",
       "warnings": [
         "初めて出たところで言い換えていない略語（PPIH）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-26T06:59:31.764789+00:00",
+      "attempt": 1,
+      "id": "44bdd0b48b6c9d07",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "「自分のメールアドレスが含まれるかは、今後の連絡で確認することになるとみられます」→ 会員への連絡方法や時期は発表されておらず、今後の連絡で確認できるとの見通しは裏付けられていません。",
+        "「メールアドレスや電話番号が含まれる可能性がある」→ 会員全体への注意としては理解できますが、ワールドオンラインストア分では電話番号は含まれず、電話番号が対象となるのはティンパンアレイ分です。"
+      ],
+      "readability": {
+        "avg_paragraph": 94.6,
+        "avg_sentence": 38.4,
+        "long_share": 0.125,
+        "max_paragraph": 215,
+        "paragraphs": 13,
+        "sentences": 32
+      },
+      "score": 96,
+      "source": "fast",
+      "title": "当社グループが利用する「KARTE」への不正アクセスに伴う情報漏えいに関するお知らせ ※11月26日情報更新 | ニュースリリース| WORLDコーポレートサイ",
+      "warnings": [
+        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（KARTE・SMS）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-26T06:59:51.958231+00:00",
+      "attempt": 1,
+      "id": "44bdd0b48b6c9d07",
+      "kind": "broad",
+      "model": "openai-api:gpt-6-luna",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 92.1,
+        "avg_sentence": 38.6,
+        "long_share": 0.129,
+        "max_paragraph": 165,
+        "paragraphs": 13,
+        "sentences": 31
+      },
+      "score": 100,
+      "source": "fast",
+      "title": "当社グループが利用する「KARTE」への不正アクセスに伴う情報漏えいに関するお知らせ ※11月26日情報更新 | ニュースリリース| WORLDコーポレートサイ",
+      "warnings": [
+        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（KARTE・SMS）"
       ]
     }
   ],
