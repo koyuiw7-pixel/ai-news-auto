@@ -69,9 +69,8 @@
     }
   ],
   "todayActions": [
-    "ピーチ・プレイド社を名乗るメールやSMSは、URLを開かず添付も開かない",
-    "連絡の真偽に迷ったら、ピーチのコンタクトセンター0570-001-292（9:00〜18:00）で確かめる",
-    "2019年〜2023年頃にピーチを使ったか、予約時の登録内容を思い出しておく"
+    "ピーチから個別案内が届いたら、連絡内のURLや添付を開かず電話で確かめる",
+    "2019年〜2023年頃の利用データが対象期間に当たるか確認する"
   ],
   "relatedSlugs": [
     "peach-ymirlink-cuenote-leak"
@@ -119,5 +118,93 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/peach-karte-data-leak-figure-917873c1.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "KARTEの利用契約期間は2019年8月1日から2025年8月31日までですが、流出対象データの期間は2019年〜2023年頃です。サービスの利用期間と対象データの期間は同じではありません。",
+      "source": "https://www.flypeach.com/application/files/2417/9567/2811/20261126_INFO_JP.pdf"
+    },
+    {
+      "text": "プレイド社はサービス再開に向けた検証終了後に残存データを削除する予定です。一方、ピーチはバックアップやログを含む完全消去と、消去証明書の提出を求めています。",
+      "source": "https://www.flypeach.com/application/files/2417/9567/2811/20261126_INFO_JP.pdf"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "コンタクトセンター",
+      "url": "https://www.flypeach.com/application/files/2417/9567/2811/20261126_INFO_JP.pdf",
+      "source": "https://www.flypeach.com/application/files/2417/9567/2811/20261126_INFO_JP.pdf",
+      "phone": "0570-001-292",
+      "hours": "9:00〜18:00"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "ピーチから個別案内が届いたら、連絡内のURLや添付を開かず電話で確かめる",
+      "source": "https://www.flypeach.com/application/files/2417/9567/2811/20261126_INFO_JP.pdf",
+      "steps": [
+        "URLへのアクセスや添付ファイルの開封をしない",
+        "折り返し連絡や情報提供をしない",
+        "コンタクトセンター 0570-001-292へ電話する"
+      ],
+      "url": "https://www.flypeach.com/application/files/2417/9567/2811/20261126_INFO_JP.pdf"
+    },
+    {
+      "action": "2019年〜2023年頃の利用データが対象期間に当たるか確認する",
+      "source": "https://www.flypeach.com/application/files/2417/9567/2811/20261126_INFO_JP.pdf",
+      "steps": [
+        "特定された対象者には順次届く個別案内を確認する"
+      ],
+      "url": "https://www.flypeach.com/application/files/2417/9567/2811/20261126_INFO_JP.pdf"
+    }
+  ],
+  "cause": {
+    "text": "第三者がプレイド社サーバーの脆弱性を悪用し、システムやデータベースの接続用認証情報を盗んで、データベースなどから情報を読み出しました。契約終了後も顧客情報が残っていたのは、プレイド社の人的オペレーションと管理の不備によるものと発表されています。",
+    "status": "stated",
+    "source": "https://www.flypeach.com/application/files/2417/9567/2811/20261126_INFO_JP.pdf"
+  },
+  "worries": [
+    {
+      "q": "クレジットカード番号やパスポート情報も漏れたの？",
+      "a": "ピーチは、クレジットカード情報やパスポート情報などの重要情報は漏えい対象に一切含まれていないと発表しています。",
+      "source": "https://www.flypeach.com/application/files/2417/9567/2811/20261126_INFO_JP.pdf",
+      "action": "不審な連絡でカード情報などを求められても伝えず、URLや添付を開かないでください。"
+    },
+    {
+      "q": "銀行口座やログイン情報まで流出したの？",
+      "a": "発表された対象情報は、氏名、生年月日、郵便番号、住所、電話番号、メールアドレスです。銀行口座やログイン情報は対象情報として列挙されていません。",
+      "source": "https://www.flypeach.com/application/files/2417/9567/2811/20261126_INFO_JP.pdf",
+      "action": "不審な連絡で追加の個人情報を求められたら、情報を提供せず、コンタクトセンターに確認してください。"
+    },
+    {
+      "q": "今回の情報が使われた不正利用はもう起きている？",
+      "a": "ピーチの発表時点では、本件に係る個人情報の不正利用や二次被害の発生は確認されていません。",
+      "source": "https://www.flypeach.com/application/files/2417/9567/2811/20261126_INFO_JP.pdf",
+      "action": "ピーチやプレイド社を名乗る不審な連絡には応じず、確認が必要なら公表された窓口へ電話してください。"
+    },
+    {
+      "q": "自分が対象か、案内はいつ届くの？",
+      "a": "特定された対象のお客さまには、順次メールなどで個別に案内とお詫びを進めると発表されています。",
+      "source": "https://www.flypeach.com/application/files/2417/9567/2811/20261126_INFO_JP.pdf",
+      "action": "ピーチからの個別案内を確認し、連絡の真偽に迷ったら0570-001-292へ電話してください。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "届いた案内メールに返信してもいい？",
+      "situation": "ピーチやプレイド社を名乗る連絡が届いた",
+      "recommend": "返信せず、電話で確認する",
+      "reason": "ピーチは不審なメールやSMS、電話に対し、URLへのアクセスや添付の開封、折り返し、情報提供をしないよう求めています。本件の問い合わせ先として電話番号も公表しています。",
+      "source": "https://www.flypeach.com/application/files/2417/9567/2811/20261126_INFO_JP.pdf"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "利用期間と流出対象データの期間は別",
+    "cause": "契約終了後に情報が残った経緯",
+    "steps": "個別案内が来たら電話で確認",
+    "desk": "本件の問い合わせ先",
+    "worries": "カード情報や自分の対象 여부が心配",
+    "guide": "案内メールに返信するか迷ったら"
+  },
+  "depthAt": "2026-11-26T06:28:10+00:00"
 }
