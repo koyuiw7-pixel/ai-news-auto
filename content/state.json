@@ -12912,6 +12912,19 @@
       "skipped": true,
       "url": "https://lifull.com/news/51238/"
     },
+    "5ef2810d583da888": {
+      "at": "2026-11-26T00:42:10.978253+00:00",
+      "breaking": true,
+      "costUsd": 0.0417,
+      "intent": "breaking",
+      "major": true,
+      "mix": "brand",
+      "model": "openai-api:gpt-6.1-terra",
+      "score": 100,
+      "section": "tech-gadget",
+      "slug": "galaxy-buds4-watch-accessories",
+      "url": "https://news.samsung.com/jp/wearable-accessory-onsale2611?utm_source=rss&utm_medium=direct"
+    },
     "5f1facd9f4ade54a": {
       "at": "2026-11-24T18:11:32.259391+00:00",
       "reason": "review: 海外の AI の発表は自動で記事にしない（読者の安全・お金の話とチームの指示だけ。台帳 A75・scripts/news_mix.py review_ai_blocks）",
@@ -19523,12 +19536,6 @@
       "skipped": true,
       "url": "https://gemini.google/us/release-notes/?hl=en#entry-2026-11-17"
     },
-    "d4a519ceb606885a": {
-      "at": "2026-11-12T00:31:19.960870+00:00",
-      "reason": "prefilter: 価値の薄いお知らせ（審議会）",
-      "skipped": true,
-      "url": "https://www.mext.go.jp/b_menu/shingi/chukyo/chukyo4/siryo/mext_00016.html"
-    },
     "d4cdaa1c13c51ef071af379b9c7cdaf270a66477": {
       "at": "2026-11-24T02:32:08.626010+00:00",
       "model": "gemini-3.5-flash",
@@ -24954,56 +24961,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-24T00:46:31.323604+00:00",
-      "attempt": 1,
-      "id": "b83c789d7d3faa92",
-      "kind": "broad",
-      "model": "claude:sonnet",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 92.1,
-        "avg_sentence": 41.5,
-        "long_share": 0.1,
-        "max_paragraph": 126,
-        "paragraphs": 9,
-        "sentences": 20
-      },
-      "score": 98,
-      "source": "fast",
-      "title": "当社SaaS系サービスの検証環境への不正アクセスによる情報漏えいに関するお詫びとお知らせ | 株式会社アイル（東証プライム：3854）",
-      "warnings": [
-        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（CROSS・MALL・POINT）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-24T01:23:55.422650+00:00",
-      "attempt": 1,
-      "id": "f4667f9251a5088f",
-      "kind": "broad",
-      "model": "claude:sonnet",
-      "problems": [
-        "「管理部の窓口（0120-651-042）に確認できます」→ 元記事は本件の問い合わせ先を示していますが、窓口で個人が対象かどうかを確認できるとは明記していません。",
-        "「自分が対象か問い合わせる」→ 問い合わせを勧めること自体は一般的な助言ですが、対象者かどうかを窓口で確認できるかは元記事から分かりません。"
-      ],
-      "readability": {
-        "avg_paragraph": 83.4,
-        "avg_sentence": 39.7,
-        "long_share": 0.143,
-        "max_paragraph": 151,
-        "paragraphs": 10,
-        "sentences": 21
-      },
-      "score": 93,
-      "source": "fast",
-      "title": "【お詫びとご報告】不正アクセスによる個人情報漏洩の可能性について｜ニュース | 株式会社ベストコ",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（SMS）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-24T01:24:25.437418+00:00",
@@ -32477,6 +32434,53 @@
         "見出しが45字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（KARTE・SMS）",
         "読みやすさ: 文が長い（1文の平均 46.2字・60字超の文が 29% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-26T00:41:56.421792+00:00",
+      "attempt": 1,
+      "id": "5ef2810d583da888",
+      "kind": "broad",
+      "model": "openai-api:gpt-6.1-terra",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 83.6,
+        "avg_sentence": 39.6,
+        "long_share": 0.211,
+        "max_paragraph": 113,
+        "paragraphs": 9,
+        "sentences": 19
+      },
+      "score": 100,
+      "source": "samsung-jp",
+      "title": "「Samsung Galaxy Buds4シリーズ」と「Samsung Galaxy Watch」の 専用アクセサリーが本日より販売開始",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（CRT・EP・OL）",
+        "読みやすさ: 文が長い（1文の平均 39.6字・60字超の文が 21% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-26T00:42:10.948432+00:00",
+      "attempt": 0,
+      "id": "5ef2810d583da888",
+      "kind": "broad",
+      "model": "openai-api:gpt-6-luna",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 72.0,
+        "avg_sentence": 31.3,
+        "long_share": 0.043,
+        "max_paragraph": 124,
+        "paragraphs": 10,
+        "sentences": 23
+      },
+      "score": 100,
+      "source": "samsung-jp",
+      "title": "「Samsung Galaxy Buds4シリーズ」と「Samsung Galaxy Watch」の 専用アクセサリーが本日より販売開始",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（CRT・EP・OL）"
       ]
     }
   ],
