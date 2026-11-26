@@ -8251,12 +8251,6 @@
       "slug": "construction-materials-supply-november-survey",
       "url": "http://www.mlit.go.jp/report/press/tochi_fudousan_kensetsugyo14_hh_000001_00388.html"
     },
-    "176bbd5bd3503561": {
-      "at": "2026-11-12T01:19:45.544991+00:00",
-      "reason": "prefilter: サイトの主題外（エンタメのビジネス・テックの話題ではない。料金・決算・販売本数・AI・規約などがない）",
-      "skipped": true,
-      "url": "https://www.nintendo.com/jp/topics/article/ca36364e-5117-4881-9688-ea2d023a7b45"
-    },
     "1797980fa3e7a238": {
       "at": "2026-11-24T16:47:13.532001+00:00",
       "costUsd": 0.0225,
@@ -9345,17 +9339,6 @@
       "reason": "quality: 「復興シンポジウム」→ 元記事は大規模災害への備えを考えるシンポジウムとしており、復興を主題とする催しとは確認できません。; 「平常時からの声掛けが緊急時の避難行動に生かされたことを確認」→ 関連ニュースの見出しは声掛けが火事の時にも生かせたとしていますが、避難行動に生かされたことを訓練で確認したとは示されていません。; 「一人ひとりに合わせた生活再建支援の重要性が共有された」→",
       "skipped": true,
       "url": "https://news.yahoo.co.jp/articles/b1631fdec8bf77fdc9096b5aa12e1daf236d4fec"
-    },
-    "2853afcf73ff129e": {
-      "at": "2026-11-12T01:19:44.982949+00:00",
-      "costUsd": 0.0092,
-      "intent": "neutral",
-      "mix": "brand",
-      "model": "gemini-3.6-flash",
-      "score": 88,
-      "section": "investment",
-      "slug": "suntory-kinmugi-hojun-sales-plan-raised",
-      "url": "https://www.suntory.co.jp/news/article/2026/15173.html?rss=0000000029"
     },
     "286ca196787f477a": {
       "at": "2026-11-17T21:54:55.649994+00:00",
@@ -10647,12 +10630,6 @@
       "reason": "trend: 扱わない話題: うわさ・ゴシップ/事件・被害者（関連報道3/3本に「不倫」「事件」「送検」）",
       "skipped": true,
       "url": "https://abcnews.com/International/wireStory/police-bangladesh-clash-garment-workers-demanding-higher-minimum-138243349"
-    },
-    "3aad7e5fc8e70fed": {
-      "at": "2026-11-12T01:19:45.544841+00:00",
-      "reason": "prefilter: サイトの主題外（エンタメの告知・ゴシップ・キャンペーン。ビジネス・テックの目線ではない）",
-      "skipped": true,
-      "url": "https://www.nintendo.com/jp/topics/article/13827716-39ef-4435-911e-ab6583921da4"
     },
     "3aade37b1aa0f0d8": {
       "at": "2026-11-24T16:02:01.188582+00:00",
@@ -12173,18 +12150,6 @@
       "trendKeyword": "東京湾アクアライン",
       "trendLane": true,
       "url": "https://news.yahoo.co.jp/articles/a868477973ff5204890a1111be23a3c081a8050a"
-    },
-    "53fc3b14416d46a3": {
-      "at": "2026-11-12T01:18:31.481376+00:00",
-      "costUsd": 0.1149,
-      "intent": "neutral",
-      "major": true,
-      "mix": "other",
-      "model": "anthropic-api:claude-sonnet-5-5",
-      "score": 93,
-      "section": "business",
-      "slug": "amazon-black-friday-2026-pitari-gai",
-      "url": "https://www.aboutamazon.jp/news/retail/3-steps-for-amazon-black-friday-2026?utm_source=rss"
     },
     "542298a56295d2fe": {
       "at": "2026-11-24T18:25:26.988491+00:00",
@@ -16481,12 +16446,6 @@
       "skipped": true,
       "url": "https://www.soumu.go.jp/menu_news/s-news/01cyber01_02000001_00312.html"
     },
-    "9cf2df41fd31b5a9": {
-      "at": "2026-11-12T01:19:45.544867+00:00",
-      "reason": "prefilter: 価値の薄いお知らせ（プレゼント）",
-      "skipped": true,
-      "url": "https://www.nintendo.com/jp/topics/article/680e0eda-8dd6-4533-9f42-ef26376f111f"
-    },
     "9cf2ffeb53ad0330": {
       "at": "2026-11-19T20:51:50.054078+00:00",
       "reason": "review: AdSense の審査の期間は海外の AI の発表を自動で記事にしない（速報だけ。scripts/news_mix.py review_ai_blocks）",
@@ -20646,6 +20605,20 @@
       "reason": "trend: 扱わない話題: うわさ・ゴシップ/事件・被害者（関連報道2/3本に「窃盗」「謝罪」）",
       "skipped": true,
       "url": "https://news.yahoo.co.jp/articles/4f33cef2d5ab4a601185153e8b8f70e43e4cbc85"
+    },
+    "e600b07a454ebffa": {
+      "at": "2026-11-26T01:21:35.714134+00:00",
+      "costUsd": 0.0066,
+      "intent": "breaking",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "safetyLane": true,
+      "score": 98,
+      "section": "public",
+      "slug": "mjs-mna-partners-unauthorized-access",
+      "url": "https://mmap.co.jp/news/news_20261124/"
     },
     "e605622d02690a89": {
       "at": "2026-11-16T19:45:07.935927+00:00",
@@ -24917,81 +24890,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-24T03:06:51.541906+00:00",
-      "attempt": 1,
-      "id": "e3d029944469284c",
-      "kind": "broad",
-      "model": "openai-api:gpt-6-luna",
-      "problems": [
-        "「不正アクセスの原因と、再発防止策の具体的な内容はまだ決まっていません」→ 元記事は調査結果を踏まえて対策を実施するとしていますが、具体策が未決定だとは明記しておらず、決定状況を断定しています。"
-      ],
-      "readability": {
-        "avg_paragraph": 86.0,
-        "avg_sentence": 38.7,
-        "long_share": 0.05,
-        "max_paragraph": 137,
-        "paragraphs": 9,
-        "sentences": 20
-      },
-      "score": 96,
-      "source": "fast",
-      "title": "【重要】「モスのネット注文」管理システムへの不正アクセスによるお客さま情報の漏洩に関するお知らせとお詫び | モスバーガー公式サイト",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（SMS）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-24T03:21:47.178987+00:00",
-      "attempt": 1,
-      "id": "652f5af68e5dbdbc",
-      "kind": "broad",
-      "model": "gemini-3.5-flash",
-      "problems": [
-        "「厚生労働省が把握する非公表を含む不正受給は約1,153億円」→ 元記事の約1,153億円は不正受給の件数ではなく、支給決定取消額です。不正受給は2026年3月末で4,640件とされています。",
-        "「個人で働く人に直接の手続き変更はありません」→ 元記事に個人への手続き変更の有無は記載されておらず、根拠のない断定です。",
-        "「取引停止や融資引き揚げが重なる」→ 元記事は取引先や金融機関から信用を失うと述べていますが、取引停止や融資引き揚げが起きたとは確認できません。"
-      ],
-      "readability": {
-        "avg_paragraph": 89.4,
-        "avg_sentence": 48.2,
-        "long_share": 0.192,
-        "max_paragraph": 155,
-        "paragraphs": 14,
-        "sentences": 26
-      },
-      "score": 74,
-      "source": "tsr",
-      "title": "「雇用調整助成金」等の不正受給 累計2,027件に 不正受給の倒産発生率は7.6%、通常の27.4倍",
-      "warnings": [
-        "読みやすさ: 文が長い（1文の平均 48.2字・60字超の文が 19% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-24T03:23:46.902740+00:00",
-      "attempt": 1,
-      "id": "652f5af68e5dbdbc",
-      "kind": "broad",
-      "model": "strike:本文 2 文",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 84.7,
-        "avg_sentence": 47.9,
-        "long_share": 0.217,
-        "max_paragraph": 151,
-        "paragraphs": 13,
-        "sentences": 23
-      },
-      "score": 98,
-      "source": "tsr",
-      "title": "「雇用調整助成金」等の不正受給 累計2,027件に 不正受給の倒産発生率は7.6%、通常の27.4倍",
-      "warnings": [
-        "読みやすさ: 文が長い（1文の平均 47.9字・60字超の文が 22% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-24T03:24:27.351693+00:00",
@@ -32446,6 +32344,79 @@
         "初めて出たところで言い換えていない略語（PPA・TAK）",
         "読みやすさ: 文が長い（1文の平均 54.8字・60字超の文が 35% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
         "読みやすさ: 段落が長い（平均 157.6字・最長 254字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-26T01:20:41.744095+00:00",
+      "attempt": 1,
+      "id": "e600b07a454ebffa",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "「M&Aの仲介などを行う」→ 元記事はM&Aの検討・支援などを記していますが、仲介業務を行うとは明記していません。",
+        "「漏れた可能性があるのは氏名と連絡先で」→ 漏えいの可能性がある情報には、役員・従業員・株主の個人情報やM&A関連資料、社内資料も含まれます。"
+      ],
+      "readability": {
+        "avg_paragraph": 101.7,
+        "avg_sentence": 40.0,
+        "long_share": 0.107,
+        "max_paragraph": 219,
+        "paragraphs": 11,
+        "sentences": 28
+      },
+      "score": 84,
+      "source": "fast",
+      "title": "中小企業の事業承継・事業再生を支援 | MJS M&Aパートナーズ（mmap）",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（MJS）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-26T01:21:03.062740+00:00",
+      "attempt": 1,
+      "id": "e600b07a454ebffa",
+      "kind": "broad",
+      "model": "openai-api:gpt-6-luna",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 105.4,
+        "avg_sentence": 40.0,
+        "long_share": 0.103,
+        "max_paragraph": 259,
+        "paragraphs": 11,
+        "sentences": 29
+      },
+      "score": 99,
+      "source": "fast",
+      "title": "中小企業の事業承継・事業再生を支援 | MJS M&Aパートナーズ（mmap）",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（MJS）",
+        "読みやすさ: 段落が長い（平均 105.4字・最長 259字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-26T01:21:22.522252+00:00",
+      "attempt": 0,
+      "id": "e600b07a454ebffa",
+      "kind": "broad",
+      "model": "openai-api:gpt-6-luna",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 52.3,
+        "avg_sentence": 31.7,
+        "long_share": 0.0,
+        "max_paragraph": 105,
+        "paragraphs": 23,
+        "sentences": 38
+      },
+      "score": 98,
+      "source": "fast",
+      "title": "中小企業の事業承継・事業再生を支援 | MJS M&Aパートナーズ（mmap）",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（MJS）"
       ]
     }
   ],
