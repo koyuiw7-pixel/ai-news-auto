@@ -75,9 +75,8 @@
     }
   ],
   "todayActions": [
-    "政府調達に登録している事業者は、文部科学省を名乗るメールの送信元を確認してから開く",
-    "問い合わせは文部科学省の大臣官房会計課が窓口になる。連絡先は同省のお知らせページで確認する",
-    "社内で、対象になりうるメールアドレス登録者に今回の件を共有する"
+    "文部科学省の発表を開き、対象情報と現在の状況を確認する",
+    "メール内のリンク先にIDやパスワードを入力した場合、使い回している全サービスのパスワードを変更する"
   ],
   "publicInterest": "breach",
   "incident": {
@@ -121,5 +120,72 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/mext-procurement-system-unauthorized-access-figure-120a19e6.jpg"
-  }
+  },
+  "officialDesk": [
+    {
+      "name": "大臣官房会計課",
+      "url": "https://www.mext.go.jp/a_menu/mext_00012.html",
+      "source": "https://www.mext.go.jp/a_menu/mext_00012.html",
+      "howTo": [
+        "文部科学省ホームページトップ",
+        "その他",
+        "不正アクセスによる情報漏えいの可能性に関するお詫びとお知らせ"
+      ]
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "文部科学省の発表を開き、対象情報と現在の状況を確認する",
+      "source": "https://www.mext.go.jp/a_menu/mext_00012.html",
+      "steps": [
+        "文部科学省ホームページトップ",
+        "その他",
+        "不正アクセスによる情報漏えいの可能性に関するお詫びとお知らせ（令和8年11月）"
+      ],
+      "url": "https://www.mext.go.jp/a_menu/mext_00012.html"
+    },
+    {
+      "action": "メール内のリンク先にIDやパスワードを入力した場合、使い回している全サービスのパスワードを変更する",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "steps": [
+        "入力したIDやパスワードを使うサービスを確認する",
+        "該当する各サービスでパスワードを変更する"
+      ],
+      "url": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html"
+    }
+  ],
+  "cause": {
+    "text": "令和8年10月1日に、政府調達情報システムのサーバーへの第三者による不正アクセスが検知されました。外部専門機関と連携した調査でデータベース内の情報が漏えいした可能性が判明し、文部科学省は原因究明を続けています。",
+    "status": "investigating",
+    "source": "https://www.mext.go.jp/a_menu/mext_00012.html"
+  },
+  "worries": [
+    {
+      "q": "今回の情報は、すでに誰でも見られる状態なのでしょうか？",
+      "a": "文部科学省は、漏えいした可能性のある情報が不特定多数に公開された事実や、不正利用された事実などの被害は、現時点で確認されていないとしています。",
+      "source": "https://www.mext.go.jp/a_menu/mext_00012.html",
+      "action": "文部科学省の発表ページで、現在の状況や今後の対応に更新がないか確認してください。"
+    },
+    {
+      "q": "文部科学省を名乗るメールは、送信元の表示で本物と分かりますか？",
+      "a": "メールは、受信者から見える送信元名称や送信元メールアドレスを変更しやすく、それだけで真偽を判断するのは困難です。スマートフォンでは表示項目が少ない場合もあります。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "action": "メール内のリンクを使わず、あらかじめ登録した公式サイトや公式アプリから正しいサイトに接続してください。",
+      "general": true
+    },
+    {
+      "q": "不審なメールにパスワードを入力してしまったらどうすればいいですか？",
+      "a": "フィッシングサイトなどに普段使っているIDやパスワードを入力した場合、警察庁は、それらを使っているすべてのサービスでパスワードなどを速やかに変更するよう案内しています。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "action": "入力したIDやパスワードを使っているサービスを洗い出し、それぞれのパスワードを速やかに変更してください。",
+      "general": true
+    }
+  ],
+  "depthHeadings": {
+    "cause": "不正アクセスの原因は調査中",
+    "steps": "発表の確認と、入力してしまった場合の対応",
+    "desk": "問い合わせ先は大臣官房会計課",
+    "worries": "メールや登録情報が心配なとき"
+  },
+  "depthAt": "2026-11-26T04:45:44+00:00"
 }
