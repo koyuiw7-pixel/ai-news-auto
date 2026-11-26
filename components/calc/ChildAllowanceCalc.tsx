@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useId, useState } from "react";
 import {
   CHILD_ALLOWANCE_NEXT_PAYMENT,
@@ -187,6 +188,13 @@ export default function ChildAllowanceCalc() {
               {mode === "birth"
                 ? "年齢が上がると、その月から額が変わる分も入れています（3歳の誕生月の翌月から10,000円、18歳の年度末の3月分まで）。支給日の日にちは市区町村で違います。"
                 : "区分が1年間変わらないとして計算しています。年齢で額が変わる月まで入れるなら「生まれた年月で」を選んでください。支給日の日にちは市区町村で違います。"}
+            </p>
+            <p className="mt-3 border-t border-line pt-3 text-note leading-[1.7]" data-child-allowance-next>
+              <span className="font-bold text-ink">12月にもう1つ：</span>
+              <Link href="/tools/furusato-limit" className="font-bold text-accent underline underline-offset-2">
+                うちのふるさと納税の上限を計算する
+              </Link>
+              <span className="text-ink-soft">（今年の分は12月31日の寄附まで）</span>
             </p>
           </>
         ) : (
