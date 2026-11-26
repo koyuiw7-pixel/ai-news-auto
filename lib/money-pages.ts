@@ -101,6 +101,15 @@ export const MONEY_PAGES: MoneyPage[] = [
     guide: null,
     articles: ["winter-electricity-gas-subsidy-2026", "electricity-gas-support-phone-warning", "electricity-gas-bill-subsidy-japan-2027-matome"],
   },
+  {
+    // ボーナス（賞与）の手取り。計算ツールは 2026-11-26 追加
+    key: "bonus-tedori",
+    match: /ボーナス|賞与/,
+    href: "/tools/bonus-tedori",
+    label: "ボーナスの手取りを計算する",
+    guide: null,
+    articles: ["winter-bonus-take-home-pay-calculation", "bonus-social-insurance-standard-cap", "employment-insurance-rate-fy2026", "civil-servant-winter-bonus-date-2026"],
+  },
 ];
 
 type ArticleLike = { slug?: string; title: string; seoTitle?: string; tags?: string[] };

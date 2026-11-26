@@ -9,6 +9,7 @@ const ChildAllowanceCalc = dynamic(() => import("@/components/calc/ChildAllowanc
 const PensionSupportCalc = dynamic(() => import("@/components/calc/PensionSupportCalc"));
 const DenkiGasDiscountCalc = dynamic(() => import("@/components/calc/DenkiGasDiscountCalc"));
 const KogakuRyoyohiCalc = dynamic(() => import("@/components/calc/KogakuRyoyohiCalc"));
+const BonusTedoriCalc = dynamic(() => import("@/components/calc/BonusTedoriCalc"));
 
 /** 計算機ごとの注意書き（数字の前提。必ず表示する） */
 export const CALC_NOTES: Record<ArticleCalculator["kind"], string> = {
@@ -24,6 +25,8 @@ export const CALC_NOTES: Record<ArticleCalculator["kind"], string> = {
     "経済産業省 資源エネルギー庁「電気・ガス料金支援」特設サイトの値引き単価（2026年12月使用分〜2027年2月使用分、家庭の電気＝低圧と都市ガス）で計算した目安です。値引き額は値引き単価×月々の使用量で、1月・2月の使用量の初期値は12月の1.2倍です。申請は不要で、参加している電力・ガス会社の請求で値引きされます。プロパンガス（LPガス）は対象外です。実際の額は検針票や請求の明細で確かめてください。",
   "kogaku-ryoyohi":
     "厚生労働省「高額療養費制度の見直しについて（令和８年８月診療分から）」と協会けんぽの案内の、2026年8月診療分から2027年7月診療分までの上限額で計算した目安です。総医療費は保険がきく医療費の全額（10割）で、入れなければ100万円で計算します。入院中の食事代や差額ベッド代などは含みません。区分は年収ではなく標準報酬月額（会社の健康保険）や所得（国民健康保険）で決まるため、実際の額は加入している健康保険で確かめてください。",
+  "bonus-tedori":
+    "協会けんぽの令和8年度の健康保険料率・介護保険料率（令和8年3月分から）と子ども・子育て支援金率（令和8年4月分から）、厚生年金保険料率18.3%、厚生労働省の2026年度の雇用保険料率（一般の事業）、国税庁「賞与に対する源泉徴収税額の算出率の表（令和8年分）」の甲欄で計算した目安です。本人負担分の1円未満は50銭以下を切り捨て、所得税は1円未満を切り捨てています。健康保険組合の人は、組合の率を入れてください。実際の額はボーナスの明細で確かめてください。",
 };
 
 /** 記事の中に置く計算機（本文の章の下、または本文の終わり） */
@@ -55,5 +58,6 @@ export function Calculator({ calc }: { calc: Pick<ArticleCalculator, "kind"> }) 
   if (calc.kind === "pension-support-benefit") return <PensionSupportCalc />;
   if (calc.kind === "denki-gas-discount") return <DenkiGasDiscountCalc />;
   if (calc.kind === "kogaku-ryoyohi") return <KogakuRyoyohiCalc />;
+  if (calc.kind === "bonus-tedori") return <BonusTedoriCalc />;
   return <DefenseTaxCalc />;
 }

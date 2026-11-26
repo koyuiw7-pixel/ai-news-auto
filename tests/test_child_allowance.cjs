@@ -132,7 +132,7 @@ test("計算機の登録：CALCULATORS・記事とガイドからの案内・関
   assert.equal(meta.checked, "2026-11-25");
   const base = { title: "", tags: [], genreSlug: "public" };
   assert.equal(calculatorForArticle({ ...base, title: "児童手当、12月の支給日は？" }).kind, "child-allowance");
-  assert.equal(calculatorForArticle({ ...base, title: "冬のボーナス", tags: ["児童手当"] }), null);
+  assert.equal(calculatorForArticle({ ...base, title: "冬の家計の見直し", tags: ["児童手当"] }), null);
   assert.equal(calculatorForGuide({ tool: "kosodate", title: "児童手当はいくら？月1万円・1万5千円、高校生年代まで" }), "child-allowance");
   const money = load("lib/money-pages.ts");
   assert.ok(money.moneyRowsForTool("/tools/child-allowance").some((row) => row.key === "child-allowance"));

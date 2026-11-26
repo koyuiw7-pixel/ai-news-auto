@@ -20,8 +20,10 @@ import type { ArticleChart } from "@/lib/charts";
  * 2026年12月〜2027年2月使用分の月ごとの値引き額と3か月の合計を、資源エネルギー庁の特設サイトの単価で出す（式は lib/denki-gas-discount.ts、テストは tests/test_denki_gas_discount.cjs）。
  * 2026-11-26: 高額療養費（/tools/kogaku-ryoyohi）を追加。年齢と年収の区分から、2026年8月〜2027年7月診療分の1か月の自己負担の上限（総医療費を入れなければ100万円のとき）、
  * 4か月目からの額、年間の上限を、厚生労働省の資料と協会けんぽの案内で出す（式は lib/kogaku-ryoyohi.ts、テストは tests/test_kogaku_ryoyohi.cjs）。
+ * 2026-11-26: 冬のボーナスの手取り（/tools/bonus-tedori）を追加。額面・前月の給与（社会保険料を引いた額）・扶養の数・年齢・都道府県から、
+ * 協会けんぽの令和8年度の料率・2026年度の雇用保険料率・国税庁の賞与の算出率の表（令和8年分）で手取りと内訳を出す（式は lib/bonus-tedori.ts、テストは tests/test_bonus_tedori.cjs）。
  */
-export type CalculatorKind = "defense-tax" | "furusato-limit" | "child-allowance" | "pension-support-benefit" | "denki-gas-discount" | "kogaku-ryoyohi";
+export type CalculatorKind = "defense-tax" | "furusato-limit" | "child-allowance" | "pension-support-benefit" | "denki-gas-discount" | "kogaku-ryoyohi" | "bonus-tedori";
 
 export type ArticleCalculator = {
   kind: CalculatorKind;
@@ -68,6 +70,12 @@ export const CALCULATORS: Record<CalculatorKind, { href: string; title: string; 
     href: "/tools/kogaku-ryoyohi",
     title: "高額療養費の自己負担の上限額の計算",
     description: "年齢と年収の区分から、医療費が高額になった月の自己負担がいくらまでで済むか（高額療養費の上限額）を、2026年8月〜2027年7月診療分の額で計算します。4か月目からの額と年間の上限も出ます。",
+    checked: "2026-11-26",
+  },
+  "bonus-tedori": {
+    href: "/tools/bonus-tedori",
+    title: "冬のボーナスの手取りの計算",
+    description: "ボーナスの額面と前月の給与、扶養の数、年齢、都道府県から、健康保険料・介護保険料・子ども・子育て支援金・厚生年金保険料・雇用保険料・所得税を引いた手取りを計算します。2026年度の料率と令和8年分の国税庁の表で出します。",
     checked: "2026-11-26",
   },
 };
@@ -123,6 +131,7 @@ const FURUSATO_WORDS = /ふるさと納税/;
 const CHILD_ALLOWANCE_WORDS = /児童手当/;
 const PENSION_SUPPORT_WORDS = /年金生活者支援給付金/;
 const KOGAKU_WORDS = /高額療養費/;
+const BONUS_WORDS = /ボーナス|賞与/;
 const DENKI_GAS_WORDS = /電気・ガス料金(の)?支援|電気・ガス(料金|代)の?(補助|値引き)|電気代.{0,30}(値引き|円引き|補助|支援)|ガス代.{0,30}(値引き|円引き|補助|支援)/;
 
 /**
@@ -156,6 +165,10 @@ export function calculatorForArticle(article: ArticleLike): ArticleCalculator | 
   // 高額療養費の記事（見出しに「高額療養費」がある記事だけ。2026-11-26）
   if (KOGAKU_WORDS.test(title)) {
     return { kind: "kogaku-ryoyohi", heading: /上限|限度額|いくら|自己負担|計算|区分|多数回/ };
+  }
+  // ボーナス（賞与）の記事（見出しに「ボーナス」「賞与」がある記事だけ。2026-11-26）
+  if (BONUS_WORDS.test(title)) {
+    return { kind: "bonus-tedori", heading: /手取り|いくら|引かれる|社会保険料|所得税|計算|内訳/ };
   }
   return null;
 }
