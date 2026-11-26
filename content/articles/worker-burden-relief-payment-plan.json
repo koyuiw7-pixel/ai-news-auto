@@ -77,19 +77,18 @@
   "videoTitle": "就業者負担軽減支援金、最大27万円は案の段階　決まっているのは2027年4月開始の枠組み",
   "publishedAt": "2026-11-26T00:56:41.951126+00:00",
   "generatedAt": "2026-11-26T00:58:34.430330+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/worker-burden-relief-payment-plan-figure-7d444428.jpg",
   "model": "openai-api:gpt-6.1-terra",
   "affiliates": [],
   "newsType": "policy",
   "todayActions": [
-    "内閣官房・財務省の法律案の概要で、勤労所得や扶養親族に関する支給要件を確認する。",
-    "財務省の閣議後記者会見で、支援金の先行導入と2029年からの本格導入の説明を読む。"
+    "法案の概要で、対象要件と所得基準を決める際の考慮事項を確認する。",
+    "財務相会見で、支援金の先行導入と本格導入の時期を読み比べる。"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
   "museFile": "20261126-お金-支援金最大27万円は案の段階.md",
   "sectionsPolishedAt": "2026-11-26T00:58:34+00:00",
-  "museDepthNotes": "なるほど: 法案の対象要件は4つとも金額の境目が「政令で定める額」で、法律案の概要に金額の数字は1つも書かれていない（https://www.cas.go.jp/jp/seisaku/kokuminkaigi/contents/20261009/siryou1.pdf）\n窓口: 申請の受付は始まっていない。法案では支給の認定は市区町村長が行う仕組みで、公金受取口座の登録者は職権による認定が可能とされている（同じ法律案の概要）",
   "museSources": [
     {
       "url": "https://www.cas.go.jp/jp/seisaku/kokuminkaigi/contents/20261009/siryou1.pdf",
@@ -154,5 +153,111 @@
   "detectedAt": "2026-11-26T01:00:02+00:00",
   "searchTitle": "就業者負担軽減支援金はいつから？　2027年度から先行導入",
   "layout": "noir",
-  "summaryLine": "朝日新聞によると、就業者負担軽減支援金の最大年**27万円**は一部世帯を対象とする検討案です。"
+  "summaryLine": "朝日新聞によると、就業者負担軽減支援金の最大年**27万円**は一部世帯を対象とする検討案です。",
+  "insight": [
+    {
+      "text": "所得などの境目は、税制や社会保険制度の状況、就業促進の効果、純負担率の状況などを考慮して政令で定める案です。今後の制度設計で見る材料も示されています。",
+      "source": "https://www.cas.go.jp/jp/seisaku/kokuminkaigi/contents/20261009/siryou1.pdf"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "法案の概要で、対象要件と所得基準を決める際の考慮事項を確認する。",
+      "source": "https://www.cas.go.jp/jp/seisaku/kokuminkaigi/contents/20261009/siryou1.pdf",
+      "steps": [
+        "法律案の概要を開く",
+        "「(2) 就業者負担軽減支援金の支給」を読む",
+        "要件と政令で定める額の注記を確認する"
+      ],
+      "url": "https://www.cas.go.jp/jp/seisaku/kokuminkaigi/contents/20261009/siryou1.pdf"
+    },
+    {
+      "action": "財務相会見で、支援金の先行導入と本格導入の時期を読み比べる。",
+      "source": "https://www.mof.go.jp/public_relations/conference/my20261009.html",
+      "steps": [
+        "会見概要を開く",
+        "冒頭発言の「消費税・支援金法案」の説明を読む",
+        "令和9年4月と令和11年4月の説明を確認する"
+      ],
+      "url": "https://www.mof.go.jp/public_relations/conference/my20261009.html"
+    }
+  ],
+  "cause": {
+    "text": "財務相は、公的機関が保有する所得情報などを使えば令和9年度から先行導入できる一方、公平できめ細かな給付には時間がかかると説明しています。そのため、飲食料品の消費税率引下げと支援金を先行させ、令和11年4月から本格導入する計画です。",
+    "status": "background",
+    "source": "https://www.mof.go.jp/public_relations/conference/my20261009.html"
+  },
+  "worries": [
+    {
+      "q": "所得の基準が決まっていないのに、対象か見当をつけられる？",
+      "a": "対象要件の金額は政令で定める案です。法案概要は、勤労所得、合計所得金額、税・社会保険料負担額などの要件を示していますが、金額の境目は記していません。",
+      "source": "https://www.cas.go.jp/jp/seisaku/kokuminkaigi/contents/20261009/siryou1.pdf",
+      "action": "法案概要で4つの要件を確認し、具体的な金額と照らした判断は基準が示されてから行う。"
+    },
+    {
+      "q": "公金受取口座を登録していれば、申請しなくても受け取れる？",
+      "a": "法案概要では、公金受取口座の登録者は市区町村長の職権による支給認定を可能とする案です。登録者全員への支給や、認定後の具体的な手続きまでは記されていません。",
+      "source": "https://www.cas.go.jp/jp/seisaku/kokuminkaigi/contents/20261009/siryou1.pdf",
+      "action": "口座登録だけで受給が決まるとは考えず、法案概要の職権認定の説明を確認する。"
+    },
+    {
+      "q": "配偶者の所得があると、2027年度から対象外になる？",
+      "a": "配偶者の合計所得金額に関する要件は、令和9・10年度の支給には適用しない案です。それ以降の支給では要件に含まれますが、金額の境目は政令で定めるとされています。",
+      "source": "https://www.cas.go.jp/jp/seisaku/kokuminkaigi/contents/20261009/siryou1.pdf",
+      "action": "自分の年度に応じて配偶者要件の適用有無を確認し、金額は政令で定める基準を待つ。"
+    },
+    {
+      "q": "支援金はいつから始まり、いつ本格導入される？",
+      "a": "財務相の会見では、令和9年4月から飲食料品の消費税1％相当分の範囲で支援金を先行導入し、令和11年4月から本格導入する計画と説明しています。",
+      "source": "https://www.mof.go.jp/public_relations/conference/my20261009.html",
+      "action": "財務相会見で先行導入と本格導入の時期を確認し、正式な実施には法案の成立が必要と踏まえる。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "今の情報だけで自分が対象か判断できる？",
+      "situation": "所得などの正式な基準額が気になる",
+      "recommend": "基準が示されるまで判断を急がない",
+      "reason": "法案概要では対象要件の金額を政令で定めるとしており、所得基準や支援額の具体的な数字は示されていません。概要だけでは自分が対象か確定できません。",
+      "source": "https://www.cas.go.jp/jp/seisaku/kokuminkaigi/contents/20261009/siryou1.pdf"
+    },
+    {
+      "question": "公金受取口座があれば受給できると考えてよい？",
+      "situation": "公金受取口座を登録している",
+      "recommend": "口座登録だけで受給が決まるとは考えない",
+      "reason": "法案概要は、公金受取口座の登録者について市区町村長が職権で支給認定できるとしています。認定を可能にする仕組みであり、口座登録だけで支給対象になるとは書かれていません。",
+      "source": "https://www.cas.go.jp/jp/seisaku/kokuminkaigi/contents/20261009/siryou1.pdf"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "所得基準を決めるときに考慮されること",
+    "cause": "なぜ段階的に導入するのか",
+    "steps": "条件と導入時期を公式資料で確認",
+    "worries": "対象や口座登録で気になること",
+    "guide": "対象か判断するのは、基準が決まってから"
+  },
+  "depthAt": "2026-11-26T01:16:35+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "就業者負担軽減支援金",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-26T01:17:51+00:00"
+  },
+  "imageFocus": {
+    "x": 0.509,
+    "y": 0.411,
+    "box": [
+      0.062,
+      0.042,
+      0.956,
+      0.78
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/worker-burden-relief-payment-plan-figure-7d444428.jpg"
+  }
 }

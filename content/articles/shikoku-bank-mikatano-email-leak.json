@@ -82,9 +82,9 @@
     }
   ],
   "todayActions": [
-    "四国銀行や関係会社を装うメールは、URLを開かず添付も開かずに削除する",
-    "マネーフォワードエックスからの個別メールが届いたか、受信箱を確認する",
-    "Mikatanoの管理者は、社内の利用者に不審メールへの注意を共有する"
+    "対象かどうかは、四国銀行のお知らせからリンクされた発表で確認する",
+    "不審なメールの差出人表示だけで判断せず、公式サイトから確認する",
+    "メールにIDやパスワードを入力した場合は、同じ情報を使う全サービスで変更する"
   ],
   "publicInterest": "breach",
   "incident": {
@@ -130,5 +130,81 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/shikoku-bank-mikatano-email-leak-figure-fc92e995.jpg"
-  }
+  },
+  "officialDesk": [
+    {
+      "name": "マネーフォワードエックス株式会社 お問い合わせフォーム",
+      "url": "https://docs.google.com/forms/d/e/1FAIpQLSfZN9Y1-nu3ndloNNkWkygdFj8G0wjTybcc2jFmKGv4aWd7mg/viewform",
+      "source": "https://www.shikokubank.co.jp/info/post_208.html"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "対象かどうかは、四国銀行のお知らせからリンクされた発表で確認する",
+      "source": "https://www.shikokubank.co.jp/info/post_208.html",
+      "steps": [
+        "四国銀行のお知らせを開く",
+        "「マネーフォワードエックス社の発表」の「こちら」を開く"
+      ],
+      "url": "https://corp.moneyforward.com/news/info/20261120-mf-press-1/"
+    },
+    {
+      "action": "不審なメールの差出人表示だけで判断せず、公式サイトから確認する",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "steps": [
+        "メール内のリンクは開かない",
+        "公式サイトをブックマークから開いて確認する"
+      ],
+      "url": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html"
+    },
+    {
+      "action": "メールにIDやパスワードを入力した場合は、同じ情報を使う全サービスで変更する",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "steps": [
+        "入力したID・パスワードを確認する",
+        "利用する全サービスで速やかに変更する"
+      ],
+      "url": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html"
+    }
+  ],
+  "cause": {
+    "text": "画面上でお知らせ等を表示するために利用していた、株式会社プレイドのサービス「KARTE」が第三者による不正アクセスを受け、メールアドレスなどが流出しました。四国銀行と「Mikatano」サービスのシステムが不正アクセスを受けたものではないと発表されています。",
+    "status": "stated",
+    "source": "https://www.shikokubank.co.jp/info/post_208.html"
+  },
+  "worries": [
+    {
+      "q": "今回、パスワードや口座情報まで流出したのでしょうか？",
+      "a": "四国銀行の発表で流出した情報として挙げているのは、メールアドレスとシステム上の固有識別子です。また、当行および「Mikatano」サービスのシステムが不正アクセスを受けたものではないとしています。",
+      "source": "https://www.shikokubank.co.jp/info/post_208.html",
+      "action": "対象者への個別メールを待ちながら、四国銀行のお知らせに追加発表がないか確認してください。"
+    },
+    {
+      "q": "届いたメールは、差出人の名前やアドレスで本物と判断できますか？",
+      "a": "警察庁によると、メールの送信元名称や送信元メールアドレスは変更が容易で、実在の企業になりすますことができます。その表示だけで真偽を判断するのは困難です。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "action": "メール内のリンクは開かず、公式サイトをブックマークから開いて確認してください。",
+      "general": true
+    },
+    {
+      "q": "メールのリンク先にIDやパスワードを入力してしまったら？",
+      "a": "フィッシングサイトなどに普段使っているIDやパスワードを入力した場合、警察庁は、その情報を利用しているすべてのサービスで速やかに変更するよう案内しています。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "action": "入力したIDやパスワードを使っているサービスを確認し、それぞれで速やかに変更してください。",
+      "general": true
+    },
+    {
+      "q": "暗証番号を尋ねるメールが届いたら、返信してよいのでしょうか？",
+      "a": "四国銀行は、メールなどでお客さまの暗証番号等を尋ねることはないとしています。不審なメールを受け取った場合、本文中のURLへのアクセスや、個人情報・口座情報・暗証番号等の入力をしないよう呼びかけています。",
+      "source": "https://www.shikokubank.co.jp/info/post_208.html",
+      "action": "返信や入力はせず、メール内のURLにもアクセスせずに、四国銀行のお知らせを確認してください。"
+    }
+  ],
+  "depthHeadings": {
+    "cause": "外部サービスへの不正アクセスで流出",
+    "steps": "個別連絡と公式発表を確認",
+    "desk": "問い合わせはフォームから",
+    "worries": "流出後のメールや情報が心配"
+  },
+  "depthAt": "2026-11-26T01:15:44+00:00"
 }

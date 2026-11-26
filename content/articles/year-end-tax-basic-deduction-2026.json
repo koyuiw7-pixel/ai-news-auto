@@ -75,14 +75,14 @@
   "videoTitle": "年末調整でいくら戻る？ 改正で増える分は年収600万円で7万3,500円",
   "publishedAt": "2026-11-26T00:55:30.256461+00:00",
   "generatedAt": "2026-11-26T00:56:08.815501+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/year-end-tax-basic-deduction-2026-figure-4ab385d8.jpg",
   "model": "openai-api:gpt-6.1-terra",
   "affiliates": [],
   "newsType": "policy",
   "todayActions": [
-    "基礎控除申告書の提出状況と、合計所得金額の見積額を確認する。",
-    "扶養親族に変更があった人は、扶養控除等（異動）申告書の提出状況を確認する。",
-    "保険料控除を受ける人は、保険料控除申告書と必要な証明書類を確認する。"
+    "勤務先に基礎控除申告書の提出状況と、合計所得金額の見積額を確認する。",
+    "給与所得の源泉徴収票が複数ある人は、支払金額を合計して所得を確認する。",
+    "扶養親族の就職や所得要件の改正で変更があれば、異動申告書の提出状況を確認する。"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -132,5 +132,130 @@
   "detectedAt": "2026-11-26T00:56:30+00:00",
   "searchTitle": "2026年分の基礎控除は最大104万円　対象と申告書",
   "layout": "noir",
-  "summaryLine": "2026年分の基礎控除は、合計所得金額**489万円**以下なら104万円になります。"
+  "summaryLine": "2026年分の基礎控除は、合計所得金額**489万円**以下なら104万円になります。",
+  "insight": [
+    {
+      "text": "令和8年11月30日以前に死亡・出国に伴う準確定申告書を提出した場合は、改正前の基礎控除が適用されます。令和8年12月1日以後、更正の請求で改正後の額を適用できます。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1199.htm"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "令和８年分年末調整のしかた（手順などの説明）｜国税庁",
+      "url": "https://www.nta.go.jp/users/gensen/nencho/index/shikata.htm",
+      "source": "https://www.nta.go.jp/users/gensen/nencho/index/shikata.htm",
+      "howTo": [
+        "利用者別に調べる",
+        "源泉徴収義務者の方",
+        "令和８年分年末調整のしかた（手順などの説明）"
+      ],
+      "note": "年末調整で基礎控除を適用するには、基礎控除申告書の提出が必要です。"
+    },
+    {
+      "name": "No.1410 給与所得控除｜国税庁",
+      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1410.htm",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1410.htm",
+      "howTo": [
+        "税の情報・手続・用紙",
+        "税について調べる",
+        "タックスアンサー（よくある税の質問）",
+        "No.1410 給与所得控除"
+      ],
+      "note": "給与所得の源泉徴収票が2枚以上ある場合は、支払金額の合計額で表を適用します。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "勤務先に基礎控除申告書の提出状況と、合計所得金額の見積額を確認する。",
+      "source": "https://www.nta.go.jp/users/gensen/nencho/index/shikata.htm",
+      "steps": [
+        "「令和８年分年末調整のしかた」を開く",
+        "「基礎控除申告書の受理と内容の確認」を見る",
+        "申告書の提出状況と見積額を確認する"
+      ],
+      "url": "https://www.nta.go.jp/users/gensen/nencho/index/shikata.htm"
+    },
+    {
+      "action": "給与所得の源泉徴収票が複数ある人は、支払金額を合計して所得を確認する。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1410.htm",
+      "steps": [
+        "各源泉徴収票の支払金額を確認する",
+        "複数枚ある場合は支払金額を合計する",
+        "給与所得控除の案内で給与所得を確認する"
+      ],
+      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1410.htm"
+    },
+    {
+      "action": "扶養親族の就職や所得要件の改正で変更があれば、異動申告書の提出状況を確認する。",
+      "source": "https://www.nta.go.jp/users/gensen/nencho/index/shikata.htm",
+      "steps": [
+        "扶養控除等申告書の記載内容を確認する",
+        "扶養親族等に変更がないか確認する",
+        "変更があれば勤務先へ異動申告書を提出する"
+      ],
+      "url": "https://www.nta.go.jp/users/gensen/nencho/index/shikata.htm"
+    }
+  ],
+  "cause": {
+    "text": "令和8年分の年末調整では基礎控除の引上げなどの改正があり、基礎控除の令和8年分の規定は令和8年12月1日に施行されます。",
+    "status": "background",
+    "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1199.htm"
+  },
+  "worries": [
+    {
+      "q": "基礎控除申告書を出し忘れたら、控除は受けられない？",
+      "a": "国税庁は、年末調整で基礎控除を適用するには給与所得者から基礎控除申告書を提出する必要があると案内しています。提出漏れがないか確認してください。",
+      "source": "https://www.nta.go.jp/users/gensen/nencho/index/shikata.htm",
+      "action": "勤務先に基礎控除申告書の提出状況を確認し、未提出なら提出方法を尋ねる。"
+    },
+    {
+      "q": "複数の会社から給与を受けた場合、所得はどう計算する？",
+      "a": "同じ年分の給与所得の源泉徴収票が2枚以上ある場合、給与所得控除は支払金額の合計額により適用します。また、給与等の収入金額が660万円未満の場合は、原則として法令の別表で給与所得の金額を求めます。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1410.htm",
+      "action": "同じ年分の源泉徴収票をそろえ、支払金額の合計で給与所得を確認する。"
+    },
+    {
+      "q": "給与の総額が2,000万円を超えても年末調整される？",
+      "a": "12月に行う年末調整は、1年間に支払うべきことが確定した給与の総額が2,000万円を超える人は対象外です。災害減免法による源泉徴収の徴収猶予や還付を受けた人も除かれます。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2665.htm",
+      "action": "年間の給与総額が2,000万円を超える場合は、勤務先に年末調整の対象か確認する。"
+    },
+    {
+      "q": "基礎控除が増えた分、そのまま還付されるの？",
+      "a": "還付されるのは、源泉徴収された所得税および復興特別所得税の合計額が年調年税額を上回る場合の差額です。還付しきれない額は、給与の支払者がその後に納付する源泉徴収税額から順次差し引いて還付します。",
+      "source": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2675.htm",
+      "action": "年末調整後の差額と、還付が複数回に分かれる可能性を勤務先に確認する。"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "準確定申告は提出日で控除の扱いが変わる",
+    "cause": "令和8年分の年末調整で変わる控除",
+    "steps": "所得の見積もりと申告書を確認",
+    "desk": "国税庁の年末調整資料で確かめる",
+    "worries": "控除額と還付額は同じではない？"
+  },
+  "depthAt": "2026-11-26T01:17:05+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "最大104万円",
+    "label": "年末調整の基礎控除",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-26T01:18:05+00:00"
+  },
+  "imageFocus": {
+    "x": 0.503,
+    "y": 0.405,
+    "box": [
+      0.062,
+      0.042,
+      0.944,
+      0.768
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/year-end-tax-basic-deduction-2026-figure-4ab385d8.jpg"
+  }
 }
