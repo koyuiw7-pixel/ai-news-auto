@@ -14058,6 +14058,20 @@
       "skipped": true,
       "url": "https://www.nikkei.com/article/DGXZQOUA2327W0T21C26A1000000/"
     },
+    "72f480a0e11594bd": {
+      "at": "2026-11-26T00:31:09.742542+00:00",
+      "costUsd": 0.0035,
+      "intent": "breaking",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "safetyLane": true,
+      "score": 100,
+      "section": "public",
+      "slug": "mrmax-karte-data-leak",
+      "url": "https://www.mrmaxhd.co.jp/release/upload/20261125_release.pdf"
+    },
     "72fd17b8c2fe84d6a6b86c60f6ef414bd20883b7": {
       "at": "2026-11-23T15:22:20.333526+00:00",
       "reason": "trend: 重複: 同じ言葉の記事がある（lambda-nvidia-photonics-cpo-ai-factory）",
@@ -24941,60 +24955,6 @@
   },
   "quality_log": [
     {
-      "accepted": false,
-      "at": "2026-11-24T00:34:48.488807+00:00",
-      "attempt": 1,
-      "id": "1e6d93b051d2e897",
-      "kind": "broad",
-      "model": "claude:sonnet",
-      "problems": [
-        "タイトル「パスワード変更は不要」→ 元記事は「現時点で」特別な手続きを求めないとしており、時点の条件が抜けています。",
-        "「公式アプリの利用は、これまでどおり続けられる内容」→ 元記事はパスワード変更などを求めないとしていますが、アプリの利用継続やサービス提供状況までは説明していません。",
-        "「システム上の管理用の番号」→ 元記事は顧客管理用の「ID」と説明しており、それが数字の番号であるとは確認できません。"
-      ],
-      "readability": {
-        "avg_paragraph": 73.4,
-        "avg_sentence": 40.8,
-        "long_share": 0.111,
-        "max_paragraph": 152,
-        "paragraphs": 10,
-        "sentences": 18
-      },
-      "score": 91,
-      "source": "fast",
-      "title": "マクドナルド公式アプリのデータベースへの不正アクセスに関するお知らせとお詫び | マクドナルド公式",
-      "warnings": [
-        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（SMS）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-24T00:35:14.976323+00:00",
-      "attempt": 1,
-      "id": "1e6d93b051d2e897",
-      "kind": "broad",
-      "model": "openai-api:gpt-6-luna",
-      "problems": [
-        "「アプリ利用時の端末の位置情報」→元記事は「サービスご提供時に利用した携帯端末の位置情報」としており、アプリ利用時全般と読める表現は対象範囲をやや広げています。"
-      ],
-      "readability": {
-        "avg_paragraph": 70.7,
-        "avg_sentence": 41.6,
-        "long_share": 0.118,
-        "max_paragraph": 152,
-        "paragraphs": 10,
-        "sentences": 17
-      },
-      "score": 96,
-      "source": "fast",
-      "title": "マクドナルド公式アプリのデータベースへの不正アクセスに関するお知らせとお詫び | マクドナルド公式",
-      "warnings": [
-        "見出しが46字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（SMS）"
-      ]
-    },
-    {
       "accepted": true,
       "at": "2026-11-24T00:46:31.323604+00:00",
       "attempt": 1,
@@ -32465,6 +32425,58 @@
       "title": "当社運用サーバーへの不正アクセスおよびお客様Webサイトの一時停止に関するお知らせとお詫び ｜NEWS&TOPICS｜株式会社インフォネット",
       "warnings": [
         "見出しが46字（目安40字以内）。一覧・カードでは前半だけを出す"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-26T00:30:37.836700+00:00",
+      "attempt": 1,
+      "id": "72f480a0e11594bd",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 112.3,
+        "avg_sentence": 46.2,
+        "long_share": 0.294,
+        "max_paragraph": 212,
+        "paragraphs": 7,
+        "sentences": 17
+      },
+      "score": 100,
+      "source": "fast",
+      "title": "ミスターマックスの情報流出に関するお知らせ",
+      "warnings": [
+        "見出しが45字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（KARTE・SMS）",
+        "読みやすさ: 文が長い（1文の平均 46.2字・60字超の文が 29% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-26T00:31:00.280645+00:00",
+      "attempt": 0,
+      "id": "72f480a0e11594bd",
+      "kind": "broad",
+      "model": "",
+      "problems": [
+        "読みやすさ基準外のまま受理: 書き直し後の確認に不合格: 「ミスターマックスは、流出した情報をもとに」→ 元記事が述べているのは情報が流出した可能性であり、実際に流出したと確定した表現になっています。"
+      ],
+      "readability": {
+        "avg_paragraph": 112.3,
+        "avg_sentence": 46.2,
+        "long_share": 0.294,
+        "max_paragraph": 212,
+        "paragraphs": 7,
+        "sentences": 17
+      },
+      "score": 100,
+      "source": "fast",
+      "title": "ミスターマックスの情報流出に関するお知らせ",
+      "warnings": [
+        "見出しが45字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（KARTE・SMS）",
+        "読みやすさ: 文が長い（1文の平均 46.2字・60字超の文が 29% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
       ]
     }
   ],
