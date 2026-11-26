@@ -60,6 +60,25 @@ function Source({ source }: { source: { href: string; label: string } }) {
   );
 }
 
+// 11/26: 児童手当を計算した人の2ページ目がほぼ0。子育ての家が12月に確かめたいお金へ、理由つきでつなぐ
+function NextForFamilies() {
+  return (
+    <nav aria-label="12月に確かめたいお金" className="mt-8 max-w-[40em] rounded-xl border-2 border-accent px-4 py-4" data-next-families>
+      <p className="text-note font-bold text-ink">児童手当の次に、12月に確かめておきたいお金</p>
+      <ul className="mt-2 grid gap-2 text-desc">
+        <li>
+          <Link href="/tools/furusato-limit" className="font-bold text-accent underline underline-offset-4">ふるさと納税の上限を計算する</Link>
+          <span className="block text-note text-ink-soft">今年の分は12月31日までの寄附。年収と家族の人数で上限が変わります。</span>
+        </li>
+        <li>
+          <Link href="/articles/december-2026-money-calendar" className="font-bold text-accent underline underline-offset-4">12月のお金の予定を見る</Link>
+          <span className="block text-note text-ink-soft">児童手当・年金の支給、電気とガスの値引き、iDeCoの上限の変更をまとめています。</span>
+        </li>
+      </ul>
+    </nav>
+  );
+}
+
 export default function ChildAllowancePage() {
   const ad = actionAdWithBenefits(toolAd("kids"), "");
   // 「よくある家族の例」と例の文の数字は、すべて計算機と同じ childAllowance() でビルドのときに出す（手で書かない）
@@ -73,7 +92,12 @@ export default function ChildAllowancePage() {
     <ToolPage
       kind="child-allowance"
       lead={`子どもの生まれた年月（または年齢の区分）を入れると、第何子になるか、1か月の児童手当、${ymJa(pay)}の支給額（${months[0].month}月・${months[1].month}月分）、1年分が出ます。所得制限はなく、高校生年代まで受け取れます。`}
-      afterCalc={ad ? <ActionAd ad={ad} pos={GUIDE_AD_POS.tool} className="mt-8" /> : null}
+      afterCalc={
+        <>
+          {ad ? <ActionAd ad={ad} pos={GUIDE_AD_POS.tool} className="mt-8" /> : null}
+          <NextForFamilies />
+        </>
+      }
     >
       <ToolSection id="what" title="児童手当の月額">
         <p>
