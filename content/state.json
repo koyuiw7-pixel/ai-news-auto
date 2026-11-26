@@ -406,6 +406,7 @@
     "195869d32144ca4bfa02e8252584b3c28baa58ac": 2,
     "19890e354fe0407743c36e77ea3ecc9a9950967a": 2,
     "1993e2e5cc1d381f7284d0e35a77aef39e28fbdc": 2,
+    "19a71c13baffd4e1ed15100396c44dd4fcc52079": 1,
     "19e585f7b9913c54bda7fb93219d4560851c3194": 2,
     "19f5edc936cec2bdb2dfbe8c2672c886d91f70fb": 2,
     "1a027b7b17ac64464598f481904f90cc2bb70954": 2,
@@ -521,7 +522,7 @@
     "21f1e2667c66190861803aa3bba6b91998db7142": 2,
     "221f0215b22e00bc8b9d78ef3800ab47a261dd7c": 2,
     "222d20daf44a6a56ee9caf81adb78e7c97e7e2d8": 2,
-    "224b2b28e9fad5bc764b7cad155c1faf7db2d999": 1,
+    "224b2b28e9fad5bc764b7cad155c1faf7db2d999": 2,
     "225b8bd80e2b7a5c3cd6462994d7a9cce16b23ba": 2,
     "227fbe1edd00e06111096194cf24715e106b5671": 2,
     "2282d141426691e27466f979a666075d17fa9232": 2,
@@ -825,6 +826,7 @@
     "38d2a93810e436a759e1e2d613359275ad77515b": 2,
     "38ede509872c1c9abb07be4e1ce988b45872b747": 2,
     "38efae026b5db776e75ed3f122c2078d6e7f0655": 2,
+    "38fdd895ffae5bf4369bf8380cca65c91ac447c8": 1,
     "3920a6576cb920429e8eafca55c596acd392a612": 2,
     "3922c43f7a104ca4be5f7e8c2ea070f334552fd0": 2,
     "3933c3798c083bc0b41e78e0d957ef5eb7658810": 2,
@@ -1196,7 +1198,7 @@
     "568052d018fd3fccdb61965611285daa8c41373e": 2,
     "56875e0d09d1e9e8da1c5ceb78c1976901ed043a": 2,
     "568e743d16a4a47ae1a686922ed442f501662dbb": 2,
-    "568ea191fdb7fdcd2cf2805642e273a92c15c493": 1,
+    "568ea191fdb7fdcd2cf2805642e273a92c15c493": 2,
     "56bde1ebb3bf332706496b5599b6acc499df2f86": 2,
     "56ccfdb2e14dcf348a693aad905060161c039b75": 2,
     "56dd76da05fa7ff5bec48b5a305b3735856e5bcc": 2,
@@ -1542,6 +1544,7 @@
     "719affd7298aa7750a308378d69aa98a336217c9": 2,
     "719caafc4141324fa84dcff0777e317a8c05fc44": 2,
     "71a3c280b4f47aa4b5c21959a7b895743af67626": 2,
+    "71d0ff5a7a52d61ef638d7ed1123606f5e287f02": 1,
     "71d916a43fb25d5b7b2de66cd65d71febcc905f9": 2,
     "71e180a31ae500d3bece6cbbc2d32ba9db58ea49": 2,
     "720575831ba1e9e73b79517e036cfa4ef7de2d24": 2,
@@ -3606,9 +3609,7 @@
       "url": "https://www.fsa.go.jp/access/index.html"
     }
   },
-  "major_tries": {
-    "35d24dd011b65a60": 1
-  },
+  "major_tries": {},
   "pi_reopened": {
     "08479a0194d913a5": "2026-11-23T16:31:02.544288+00:00",
     "0b8e52361dcdff71": "2026-11-25T10:05:36.080578+00:00",
@@ -10056,12 +10057,6 @@
       "skipped": true,
       "url": "https://www.asahi.com/articles/ASVCP3F7KVCPUTQP014M.html"
     },
-    "32ba5952e956378c": {
-      "at": "2026-11-12T06:35:06.570726+00:00",
-      "reason": "prefilter: 価値の薄いお知らせ（開催について）",
-      "skipped": true,
-      "url": "https://www.fsc.go.jp/senmon/nouyaku/annai/nouyaku_annai_dai4_senmon_53.html"
-    },
     "33028b6e1cec4171bbe232d65363111b1f09ad34": {
       "at": "2026-11-20T19:43:45.699123+00:00",
       "kind": "trend",
@@ -10239,6 +10234,20 @@
       "skipped": true,
       "url": "https://topics.smt.docomo.ne.jp/latestnews/keywords/389b50b3d46258edca62be5e52bc814812ae9abafa04b1d777df127a485dc7ad"
     },
+    "35d24dd011b65a60": {
+      "at": "2026-11-26T06:43:06.233391+00:00",
+      "costUsd": 0.0065,
+      "intent": "query",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "safetyLane": true,
+      "score": 98,
+      "section": "lifestyle",
+      "slug": "yonden-concierge-leak-850k",
+      "url": "https://www.yonden.co.jp/press/2026/__icsFiles/afieldfile/2026/11/26/pr006_1.pdf"
+    },
     "35d4f809f712f3e2": {
       "at": "2026-11-13T09:55:16.082736+00:00",
       "costUsd": 0.0086,
@@ -10252,17 +10261,6 @@
       "trendKeyword": "サッカー日本代表",
       "trendLane": true,
       "url": "https://www.jfa.jp/registration/"
-    },
-    "35e11534fa72e5dc": {
-      "at": "2026-11-12T06:33:23.051953+00:00",
-      "costUsd": 0.0048,
-      "intent": "query",
-      "mix": "other",
-      "model": "gemini-3.1-flash-lite",
-      "score": 92,
-      "section": "sports",
-      "slug": "national-training-center-u14-3rd-members",
-      "url": "https://www.jfa.jp/news/00037018/"
     },
     "35f5fb6f9c8e4aab2095bcec9081eb476f7c75b4": {
       "at": "2026-11-19T11:22:07.931194+00:00",
@@ -11100,12 +11098,6 @@
       "reason": "trend: 重複: 固有名詞＋見出しが類似（グランド・セフト・オート / 0.38）: gta-6-ps5-preload-start",
       "skipped": true,
       "url": "https://news.yahoo.co.jp/articles/0013fa5facd6b71d5671edd89a30ad69a9b8f04e"
-    },
-    "45a6e48ed855bb12": {
-      "at": "2026-11-12T06:35:06.579356+00:00",
-      "reason": "prefilter: 価値の薄いお知らせ（開催について）",
-      "skipped": true,
-      "url": "https://www.fsc.go.jp/senmon/nouyaku/annai/nouyaku_annai_dai1_senmon_55.html"
     },
     "45ae53ab63f6e7e35ea9572c0e37382f2a897250": {
       "at": "2026-11-14T05:33:58.165785+00:00",
@@ -12779,12 +12771,6 @@
       "reason": "第79回補装具評価検討会の開催案内のみで、会議の日程・場所・議題・ライブ配信の告知にとどまります。議題は「令和9年度補装具告示等改正に向けた主な改正（案）についての検討」で、改正内容はまだ検討段階の案であり、読者が使える制度・給付・手続きの具体的中身（金額・開始日・申請方法など）は示されていません。対象範囲の「会議の開催案内は対象外」に該当するため、記事化しません。",
       "skipped": true,
       "url": "https://www.mhlw.go.jp/stf/74hosougu_00005.html"
-    },
-    "621d58bdc107e931": {
-      "at": "2026-11-12T06:35:06.562077+00:00",
-      "reason": "prefilter: 価値の薄いお知らせ（を掲載しました）",
-      "skipped": true,
-      "url": "https://www.digital.go.jp/policies/mynumber_resources"
     },
     "6240e944da7df6d5": {
       "at": "2026-11-21T07:45:45.202611+00:00",
@@ -15814,12 +15800,6 @@
       "skipped": true,
       "url": "http://www.boj.or.jp/finsys/intlact_fs/kisei/kis261112a.htm"
     },
-    "95c783b64c689124": {
-      "at": "2026-11-12T06:35:06.575069+00:00",
-      "reason": "prefilter: 価値の薄いお知らせ（開催について）",
-      "skipped": true,
-      "url": "https://www.fsc.go.jp/senmon/kiguyouki/annai/kigu_youki_annai_61.html"
-    },
     "95fed726ad5a12d22fa8291f35d2428d52d7dbf6": {
       "at": "2026-11-15T02:40:09.080900+00:00",
       "model": "gemini-3.5-flash",
@@ -16547,6 +16527,17 @@
       "slug": "fsa-requests-financial-support-for-businesses",
       "url": "https://www.fsa.go.jp/news/r8/ginkou/20261119-2/20261119-2.html"
     },
+    "a69cdb2fc7dee248": {
+      "at": "2026-11-26T06:44:52.936980+00:00",
+      "costUsd": 0.0443,
+      "intent": "query",
+      "mix": "money",
+      "model": "openai-api:gpt-6.1-terra",
+      "score": 99,
+      "section": "investment",
+      "slug": "ppih-tax-free-refund-fees",
+      "url": "https://ppih.co.jp/news/pdf/news_261005_refund.pdf"
+    },
     "a6a63618a7df787c": {
       "at": "2026-11-25T17:21:41.737836+00:00",
       "reason": "review: 海外の AI の発表は自動で記事にしない（読者の安全・お金の話とチームの指示だけ。台帳 A75・scripts/news_mix.py review_ai_blocks）",
@@ -17228,17 +17219,6 @@
       "reason": "trend: 重複: 固有名詞＋見出しが類似（iphone / 0.42）: iphone-15-refurbished-apple-japan",
       "skipped": true,
       "url": "https://news.yahoo.co.jp/articles/baeaedf35cd36ff5a3792635e9600cfc76d541e5?page=2"
-    },
-    "b3d13c098f5d2ea9": {
-      "at": "2026-11-12T06:32:38.474886+00:00",
-      "costUsd": 0.0061,
-      "intent": "neutral",
-      "mix": "other",
-      "model": "gemini-3.5-flash-lite",
-      "score": 82,
-      "section": "ai",
-      "slug": "ntt-ai-credit-screening-tech",
-      "url": "https://group.ntt/jp/newsrelease/2026/11/12/261112c.html"
     },
     "b40cf48c547eba0a": {
       "at": "2026-11-21T06:25:45.502492+00:00",
@@ -18036,17 +18016,6 @@
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・暮らしの交通/天気/値上げ/障害/給付/発売・日本のスポーツのどれでもない）",
       "skipped": true,
       "url": "https://www.hiroshima-u.ac.jp/news/101376"
-    },
-    "c208eb772580a4fe": {
-      "at": "2026-11-12T06:35:06.135717+00:00",
-      "costUsd": 0.0135,
-      "intent": "query",
-      "mix": "other",
-      "model": "gemini-3.1-flash-lite",
-      "score": 91,
-      "section": "lifestyle",
-      "slug": "jr-central-shinkansen-inspection-system",
-      "url": "https://jr-central.co.jp/news/release/nws000001_00650.html"
     },
     "c223500561e618535582211efae6681778d7d95f": {
       "at": "2026-11-20T21:36:49.693909+00:00",
@@ -21217,12 +21186,6 @@
       "skipped": true,
       "url": "http://www.mlit.go.jp/report/press/kanbo08_hh_001373.html"
     },
-    "f83fff95f0c2c78f": {
-      "at": "2026-11-12T06:35:06.566406+00:00",
-      "reason": "prefilter: 価値の薄いお知らせ（委員会）",
-      "skipped": true,
-      "url": "https://www.fsc.go.jp/iinkai_annai/annai/annai1042.html"
-    },
     "f8662c1e6213f3c82565de0104e518157ad6419e": {
       "at": "2026-11-14T05:52:53.028390+00:00",
       "kind": "trend",
@@ -21933,14 +21896,6 @@
       "score": 90,
       "slug": "housing-loan-deduction-nencho-2026",
       "url": "https://www.nta.go.jp/users/gensen/nencho/index.htm",
-      "writer": "muse"
-    },
-    "muse-173ba89d5c": {
-      "at": "2026-11-12T06:40:47.354622+00:00",
-      "mix": "money",
-      "score": 92,
-      "slug": "mynumber-electronic-certificate-renewal",
-      "url": "https://www.digital.go.jp/policies/mynumber/expiration-date",
       "writer": "muse"
     },
     "muse-17f4f7f583": {
@@ -22703,14 +22658,6 @@
       "url": "https://toyota.jp/recall/2026/1112_3.html",
       "writer": "muse"
     },
-    "muse-6369ec604c": {
-      "at": "2026-11-12T06:36:08.367351+00:00",
-      "mix": "other",
-      "score": 90,
-      "slug": "kenko-hoken-fuyo-income-limit-2025",
-      "url": "https://www.nenkin.go.jp/service/kounen/tekiyo/hihokensha1/20141202.html",
-      "writer": "muse"
-    },
     "muse-63700f599c": {
       "at": "2026-11-17T00:54:50.958954+00:00",
       "mix": "other",
@@ -22885,14 +22832,6 @@
       "score": 90,
       "slug": "nenga-2027-acceptance-dec-20",
       "url": "https://files.japanpost.jp/assets/34d9d11432734cfaa759e78fe395b688/c8522c2928d44bdfaab8446822ec6348/20260831_02_01.pdf",
-      "writer": "muse"
-    },
-    "muse-7788ab3f6a": {
-      "at": "2026-11-12T06:31:08.534704+00:00",
-      "mix": "money",
-      "score": 88,
-      "slug": "saishushoku-teate-upper-limit-2026",
-      "url": "https://www.hellowork.mhlw.go.jp/insurance/insurance_stepup.html",
       "writer": "muse"
     },
     "muse-78dab4766c": {
@@ -23471,14 +23410,6 @@
       "url": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036081&screenkbn=01",
       "writer": "muse"
     },
-    "muse-a778433ac4": {
-      "at": "2026-11-12T06:33:41.701188+00:00",
-      "mix": "money",
-      "score": 90,
-      "slug": "retirement-income-deduction-calculation",
-      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1420.htm",
-      "writer": "muse"
-    },
     "muse-a9007715c8": {
       "at": "2026-11-22T04:15:27.916306+00:00",
       "mix": "other",
@@ -23669,14 +23600,6 @@
       "score": 100,
       "slug": "kuradashi-snack-subscription",
       "url": "https://kuradashi.jp/products/15519839453333",
-      "writer": "muse"
-    },
-    "muse-b9ca90c72c": {
-      "at": "2026-11-12T06:38:38.851327+00:00",
-      "mix": "money",
-      "score": 92,
-      "slug": "dependent-deduction-income-limit-62",
-      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1180.htm",
       "writer": "muse"
     },
     "muse-ba484da6ff": {
@@ -24079,14 +24002,6 @@
       "url": "https://www.city.kagoshima.lg.jp/soumu/soumu/soumu/documents/roueikouhyou35.pdf",
       "writer": "muse"
     },
-    "muse-e2e3127f1d": {
-      "at": "2026-11-12T06:28:41.301149+00:00",
-      "mix": "money",
-      "score": 88,
-      "slug": "national-pension-supplement-400-yen",
-      "url": "https://www.nenkin.go.jp/service/kokunen/hokenryo/fukanofu.html",
-      "writer": "muse"
-    },
     "muse-e4322ecc44": {
       "at": "2026-11-16T10:14:17.152508+00:00",
       "mix": "life",
@@ -24391,109 +24306,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-24T09:01:23.090577+00:00",
-      "attempt": 1,
-      "id": "5650ea6fa9d8f84c",
-      "kind": "broad",
-      "model": "openai-api:gpt-6.1-terra",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 80.1,
-        "avg_sentence": 42.9,
-        "long_share": 0.071,
-        "max_paragraph": 105,
-        "paragraphs": 15,
-        "sentences": 28
-      },
-      "score": 98,
-      "source": "boj",
-      "title": "令和8年11月20日からの大雪に係る災害等に対する金融上の措置について（福島県）",
-      "warnings": [
-        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-24T09:12:43.977257+00:00",
-      "attempt": 1,
-      "id": "e2535db75b6bcb3f6f4113f631f8385eeac48317",
-      "kind": "trend",
-      "model": "gemini-3.5-flash",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 121.6,
-        "avg_sentence": 60.8,
-        "long_share": 0.429,
-        "max_paragraph": 168,
-        "paragraphs": 7,
-        "sentences": 14
-      },
-      "score": 96,
-      "source": "trends",
-      "title": "jaxa",
-      "warnings": [
-        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（JAXA）",
-        "読みやすさ: 文が長い（1文の平均 60.8字・60字超の文が 43% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-24T09:13:04.876841+00:00",
-      "attempt": 0,
-      "id": "e2535db75b6bcb3f6f4113f631f8385eeac48317",
-      "kind": "trend",
-      "model": "",
-      "problems": [
-        "読みやすさ基準外のまま受理: 書き直し後の確認に不合格: 「観測データ自体の改ざん」「一次データへの直ちの影響は出ていません」→元記事はデータにアクセスされた形跡がないことや防災・研究への影響が確認されていないことを伝えていますが、改ざんの有無や一次データへの影響までは明記していません。"
-      ],
-      "readability": {
-        "avg_paragraph": 121.6,
-        "avg_sentence": 60.8,
-        "long_share": 0.429,
-        "max_paragraph": 168,
-        "paragraphs": 7,
-        "sentences": 14
-      },
-      "score": 96,
-      "source": "trends",
-      "title": "jaxa",
-      "warnings": [
-        "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（JAXA）",
-        "読みやすさ: 文が長い（1文の平均 60.8字・60字超の文が 43% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-24T09:30:00.151929+00:00",
-      "attempt": 1,
-      "id": "05c03308bd299ec2",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "リード「意見募集を経て詳細な制度設計が進められています」→ジェトロが確認できるのは意見募集後に具体化を進める予定という点で、実際に進行中とまでは確認できません。",
-        "かんたん版「各社に任せたところ、かえって販売にかかるコストが大きくなってしまいました」→規制緩和後にコストが上昇したことは確認できますが、規制緩和が上昇の原因だったと断定する根拠は示されていません。"
-      ],
-      "readability": {
-        "avg_paragraph": 172.0,
-        "avg_sentence": 61.9,
-        "long_share": 0.56,
-        "max_paragraph": 236,
-        "paragraphs": 9,
-        "sentences": 25
-      },
-      "score": 94,
-      "source": "nli-research",
-      "title": "インドにおける保険販売手数料・事業費規制等の見直し－規制緩和から再規制への転換－",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（IRDAI・IDE・IDP）",
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く",
-        "読みやすさ: 文が長い（1文の平均 61.9字・60字超の文が 56% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-24T09:30:41.810916+00:00",
@@ -31892,6 +31704,84 @@
       "score": 91,
       "source": "yonden",
       "title": "当社委託先のサービスへの不正アクセスによる「よんでんコンシェルジュ」のお客さま情報流出について(続報)"
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-26T06:41:48.816259+00:00",
+      "attempt": 1,
+      "id": "35d24dd011b65a60",
+      "kind": "update",
+      "model": "openai-api:gpt-6.1-terra",
+      "problems": [],
+      "score": 100,
+      "source": "yonden",
+      "title": "当社委託先のサービスへの不正アクセスによる「よんでんコンシェルジュ」のお客さま情報流出について(続報)"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-26T06:42:26.705000+00:00",
+      "attempt": 1,
+      "id": "35d24dd011b65a60",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "「退会時に四国電力側で削除したデータ」→元記事は利用目的の終了に伴ってデータを削除したとしており、削除が退会時だったとは述べていません。",
+        "「対象かどうかは窓口で確かめられると考えられます」→問い合わせ先は示されていますが、窓口で対象者か確認できるとは元記事にありません。"
+      ],
+      "readability": {
+        "avg_paragraph": 77.2,
+        "avg_sentence": 37.0,
+        "long_share": 0.08,
+        "max_paragraph": 207,
+        "paragraphs": 12,
+        "sentences": 25
+      },
+      "score": 87,
+      "source": "yonden",
+      "title": "当社委託先のサービスへの不正アクセスによる「よんでんコンシェルジュ」のお客さま情報流出について(続報)"
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-26T06:43:01.638379+00:00",
+      "attempt": 1,
+      "id": "35d24dd011b65a60",
+      "kind": "broad",
+      "model": "openai-api:gpt-6-luna",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 73.7,
+        "avg_sentence": 36.8,
+        "long_share": 0.083,
+        "max_paragraph": 165,
+        "paragraphs": 12,
+        "sentences": 24
+      },
+      "score": 98,
+      "source": "yonden",
+      "title": "当社委託先のサービスへの不正アクセスによる「よんでんコンシェルジュ」のお客さま情報流出について(続報)"
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-26T06:44:43.065814+00:00",
+      "attempt": 1,
+      "id": "a69cdb2fc7dee248",
+      "kind": "broad",
+      "model": "openai-api:gpt-6.1-terra",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 77.3,
+        "avg_sentence": 37.0,
+        "long_share": 0.0,
+        "max_paragraph": 105,
+        "paragraphs": 11,
+        "sentences": 23
+      },
+      "score": 99,
+      "source": "ppih",
+      "title": "返金手数料無料で新免税制度のリファンド申請に対応 「SHOP SMART, SAVE MORE」 便利に買って、もっとお得に ～11月1日（日）より全国のPPI",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（PPIH）"
+      ]
     }
   ],
   "short_text_retry": {
