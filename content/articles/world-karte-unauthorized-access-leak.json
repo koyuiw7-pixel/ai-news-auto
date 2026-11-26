@@ -81,9 +81,9 @@
     }
   ],
   "todayActions": [
-    "ワールドオンラインストアの登録メール宛てに届く不審なメールは、リンクを開かずに削除する",
-    "ラグタグの会員は、ラグタグサイトの「KARTEへの不正アクセスのお詫びとお知らせ」を読む",
-    "ワールドのお知らせが更新されていないか、公式サイトで確認する"
+    "ワールド オンラインストア会員は、公式発表で対象項目と件数を照らし合わせる",
+    "ラグタグ会員は、ティンパンアレイ分の案内で対象情報を確認する",
+    "KARTEの調査状況に続報が出ていないか、プレイドのニュースページを見る"
   ],
   "publicInterest": "breach",
   "incident": {
@@ -140,5 +140,130 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/world-karte-unauthorized-access-leak-figure-026e85fa.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "最大932万件は上限で、項目ごとの対象数は同じではありません。メールアドレスは約131万件、識別用の内容と購入情報は約61万件です。",
+      "source": "https://corp.world.co.jp/news/company/2026/15602/"
+    },
+    {
+      "text": "プレイドは委託を受けて情報を預かる立場で、個人ごとの対象情報や影響範囲には回答できないと説明しています。対象範囲や連絡の判断は利用企業側です。",
+      "source": "https://plaid.co.jp/notice/202611-faq/"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "当社グループが利用する「KARTE」への不正アクセスに伴う情報漏えいに関するお知らせ ※11月26日",
+      "url": "https://corp.world.co.jp/news/company/2026/15602/",
+      "source": "https://corp.world.co.jp/news/company/2026/15602/"
+    },
+    {
+      "name": "KARTE（株式会社プレイド提供）への不正アクセスによる、個人情報の漏えいのお詫びとお知らせ",
+      "url": "https://www.ragtag.jp/info/261120-karte/",
+      "source": "https://corp.world.co.jp/news/company/2026/15602/"
+    },
+    {
+      "name": "不正アクセスに関するお問い合わせ",
+      "url": "https://plaid.formstack.com/forms/202611_faq",
+      "source": "https://plaid.co.jp/notice/202611-faq/",
+      "howTo": [
+        "当社サービスへの不正アクセスについて（KARTEをご利用いた",
+        "よくあるご質問で解決されない場合",
+        "不正アクセスに関するお問い合わせ"
+      ],
+      "hours": "24時間受け付け。回答は平日10:00〜17:00の間に受付順。",
+      "note": "個人ごとの対象情報や企業サービスの利用・変更・解約手続きには回答できず、問い合わせが集中しているため返信に時間がかかる場合があります。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "ワールド オンラインストア会員は、公式発表で対象項目と件数を照らし合わせる",
+      "source": "https://corp.world.co.jp/news/company/2026/15602/",
+      "steps": [
+        "ワールドの発表を開く",
+        "「漏えいした可能性のある情報」を確認する",
+        "自分の会員サービスと対象項目を照らし合わせる"
+      ],
+      "url": "https://corp.world.co.jp/news/company/2026/15602/"
+    },
+    {
+      "action": "ラグタグ会員は、ティンパンアレイ分の案内で対象情報を確認する",
+      "source": "https://corp.world.co.jp/news/company/2026/15602/",
+      "steps": [
+        "ラグタグの案内を開く",
+        "「漏えいのお詫びとお知らせ」を読む"
+      ],
+      "url": "https://www.ragtag.jp/info/261120-karte/"
+    },
+    {
+      "action": "KARTEの調査状況に続報が出ていないか、プレイドのニュースページを見る",
+      "source": "https://plaid.co.jp/notice/202611-faq/",
+      "steps": [
+        "プレイドのニュースページを開く",
+        "不正アクセスに関する新しいお知らせを確認する"
+      ],
+      "url": "https://plaid.co.jp/news/"
+    }
+  ],
+  "cause": {
+    "text": "2026年11月13日未明、第三者がプレイドのサーバーの脆弱性を悪用し、接続用の認証情報を窃取してデータを外部に読み出しました。影響範囲は引き続き調査中で、第三者機関による検証も行うとしています。",
+    "status": "stated",
+    "source": "https://plaid.co.jp/notice/202611-faq/"
+  },
+  "worries": [
+    {
+      "q": "クレジットカード番号やパスワードまで漏れた？",
+      "a": "ワールド オンラインストア分は、氏名、住所、電話番号、パスワード、クレジットカード情報は含まれないと発表されています。ティンパンアレイ分も、氏名、住所、パスワード、クレジットカード情報は含まれないとしています。",
+      "source": "https://corp.world.co.jp/news/company/2026/15602/",
+      "action": "カード明細に身に覚えのない請求があれば、カード発行会社へ相談してください。",
+      "actionSource": "https://plaid.co.jp/notice/202611-faq/"
+    },
+    {
+      "q": "自分の情報が対象か、個別に確認できる？",
+      "a": "プレイドは個人ごとの対象情報や影響範囲について回答できないとしています。対象となる場合の連絡の要否・方法・時期は、利用中の企業が判断すると説明しています。",
+      "source": "https://plaid.co.jp/notice/202611-faq/",
+      "action": "ワールド会員はワールドの発表、ラグタグ会員はラグタグの案内を確認してください。",
+      "actionSource": "https://corp.world.co.jp/news/company/2026/15602/"
+    },
+    {
+      "q": "不審なメールやSMSは今回の漏えいと関係ある？",
+      "a": "プレイドは、個別の連絡が今回の件に起因するかは判断できないとしています。また、警察庁は送信元名称やメールアドレスだけで真偽を判断するのは困難と案内しています。",
+      "source": "https://plaid.co.jp/notice/202611-faq/",
+      "action": "メールやSMS内のリンクは開かず、公式サイトや公式アプリから正しいサイトを確認してください。",
+      "actionSource": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "actionGeneral": true
+    },
+    {
+      "q": "最大932万件なら、全会員の情報が漏れたの？",
+      "a": "最大932万件はワールド オンラインストア分の上限です。メールアドレスは約131万件、システム内の識別用情報と購入情報は約61万件で、項目によって対象件数が異なります。",
+      "source": "https://corp.world.co.jp/news/company/2026/15602/",
+      "action": "ワールドの発表で、自分が利用するサービスと対象項目を確認してください。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "パスワードは今すぐ変えるべき？",
+      "situation": "ワールドやラグタグの発表だけを見ている",
+      "recommend": "発表された漏えい情報だけなら急がなくてよい",
+      "reason": "両社の発表では、パスワードは漏えいした可能性のある情報に含まれないとされています。ただし、別の経路で入力した場合や不正利用の有無までは、この発表だけでは判断できません。",
+      "source": "https://corp.world.co.jp/news/company/2026/15602/"
+    },
+    {
+      "question": "パスワードは今すぐ変えるべき？",
+      "situation": "不審なリンク先にIDやパスワードを入力した",
+      "recommend": "その情報を使うサービスのパスワードを速やかに変更する",
+      "reason": "警察庁は、フィッシングサイトなどに普段使うIDやパスワードを入力した場合、その情報を使っているすべてのサービスで速やかに変更するよう案内しています。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "general": true
+    }
+  ],
+  "depthHeadings": {
+    "insight": "932万件すべての項目が対象ではない",
+    "cause": "KARTEのサーバーの弱点が悪用された",
+    "steps": "会員サービス別に対象項目を確認",
+    "desk": "公式発表と問い合わせ先を確認する",
+    "worries": "カードやメール、個人の対象範囲は？",
+    "guide": "パスワードを変えるか迷ったら"
+  },
+  "depthAt": "2026-11-26T07:15:36+00:00"
 }

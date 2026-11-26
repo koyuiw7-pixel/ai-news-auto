@@ -406,7 +406,7 @@
     "195869d32144ca4bfa02e8252584b3c28baa58ac": 2,
     "19890e354fe0407743c36e77ea3ecc9a9950967a": 2,
     "1993e2e5cc1d381f7284d0e35a77aef39e28fbdc": 2,
-    "19a71c13baffd4e1ed15100396c44dd4fcc52079": 1,
+    "19a71c13baffd4e1ed15100396c44dd4fcc52079": 2,
     "19e585f7b9913c54bda7fb93219d4560851c3194": 2,
     "19f5edc936cec2bdb2dfbe8c2672c886d91f70fb": 2,
     "1a027b7b17ac64464598f481904f90cc2bb70954": 2,
@@ -7065,17 +7065,6 @@
       "skipped": true,
       "url": "https://www.reuters.com/business/openai-google-anthropic-hit-with-lawsuit-seeking-halt-frontier-ai-development-2026-11-12/"
     },
-    "03bdda997e0c3453": {
-      "at": "2026-11-12T07:14:20.436011+00:00",
-      "costUsd": 0.0137,
-      "intent": "neutral",
-      "mix": "other",
-      "model": "gemini-3.1-flash-lite",
-      "score": 92,
-      "section": "sports",
-      "slug": "samurai-blue-brazil-match-preview",
-      "url": "https://www.jfa.jp/news/00037021/"
-    },
     "03c0677b0d3fbc62": {
       "at": "2026-11-25T04:14:58.782083+00:00",
       "costUsd": 0.0061,
@@ -7270,12 +7259,6 @@
       "section": "public",
       "slug": "osaka-online-system-email-leak",
       "url": "https://www.pref.osaka.lg.jp/hodo/fumin/o050180/prs_00002.html"
-    },
-    "08240fc4c5190e1e": {
-      "at": "2026-11-12T07:12:52.082903+00:00",
-      "reason": "prefilter: 価値の薄いお知らせ（入札）",
-      "skipped": true,
-      "url": "https://www.soumu.go.jp/main_sosiki/singi/kanmin/02shingi06_02001104.html"
     },
     "08409882ff1191ac": {
       "at": "2026-11-21T19:54:34.066290+00:00",
@@ -8684,12 +8667,6 @@
       "reason": "prefilter: タイトルが短すぎる（一覧リンク等）",
       "skipped": true,
       "url": "https://global.toyota/jp/newsroom/toyota/44987379.html"
-    },
-    "1e57c86e91dfb664": {
-      "at": "2026-11-12T07:12:52.082865+00:00",
-      "reason": "prefilter: 価値の薄いお知らせ（募集）",
-      "skipped": true,
-      "url": "https://www.env.go.jp/press/press_05859.html"
     },
     "1e6d93b051d2e897": {
       "at": "2026-11-24T00:35:44.290124+00:00",
@@ -10490,12 +10467,6 @@
       "reason": "trend: 公式の発表で記事にした（keisei-fare-increase-application-mlit）",
       "skipped": true,
       "url": "https://www.sanyonews.jp/article/2024057"
-    },
-    "3a3130eb48f37d53": {
-      "at": "2026-11-12T07:12:52.082769+00:00",
-      "reason": "prefilter: 価値の薄いお知らせ（入札）",
-      "skipped": true,
-      "url": "https://www.soumu.go.jp/main_sosiki/singi/kanmin/02shingi06_02001106.html"
     },
     "3a334d7dcc1464f7": {
       "at": "2026-11-20T21:39:59.550306+00:00",
@@ -12612,6 +12583,12 @@
       "slug": "galaxy-buds4-watch-accessories",
       "url": "https://news.samsung.com/jp/wearable-accessory-onsale2611?utm_source=rss&utm_medium=direct"
     },
+    "5f01a5a96533960d": {
+      "at": "2026-11-26T07:14:59.474293+00:00",
+      "reason": "dedupe: 見出しが類似（1.00）: Lemino(レミノ) - 映画・ドラマ・アニメや音楽・ライブが見放題",
+      "skipped": true,
+      "url": "https://lemino.docomo.ne.jp/mylist/favorite"
+    },
     "5f1facd9f4ade54a": {
       "at": "2026-11-24T18:11:32.259391+00:00",
       "reason": "review: 海外の AI の発表は自動で記事にしない（読者の安全・お金の話とチームの指示だけ。台帳 A75・scripts/news_mix.py review_ai_blocks）",
@@ -14141,12 +14118,6 @@
       "reason": "followup: 新しい事実なし（hino-dutro-airbag-recall-2026）",
       "skipped": true,
       "url": "http://www.mlit.go.jp/report/press/jidosha08_hh_005899.html"
-    },
-    "79164e476618c322": {
-      "at": "2026-11-12T07:12:51.328321+00:00",
-      "reason": "major gave up x5: reject: サイソクが自分で試したように読める書き方がある（「筆者」）。サイソクは試していない。元記事の書き手が試した結果なら「〇〇（媒体名）の記者が試したところ」と誰が試したかを書く; 題名で料金・価格を約束しているのに、本文に金額（円・ドル・無料など）が無い。元記事の金額を書くか、題名から料金の話を外す",
-      "skipped": true,
-      "url": "https://www.aboutamazon.com/news/aws/how-autonomous-ai-agents-built-aws-emulator?utm_source=rss"
     },
     "792921d5450edb0931afd1cd72e3186bf1c5cddd": {
       "at": "2026-11-19T13:05:01.940227+00:00",
@@ -15740,6 +15711,12 @@
       "reason": "short text 252",
       "skipped": true,
       "url": "https://www.post.japanpost.jp/newsrelease/pressrelease/2287124462.html"
+    },
+    "9579961fceb34c21": {
+      "at": "2026-11-26T07:14:48.519837+00:00",
+      "reason": "dedupe: 見出しが類似（0.93）: Lemino(レミノ) - 映画・ドラマ・アニメや音楽・ライブが見放題",
+      "skipped": true,
+      "url": "https://lemino.docomo.ne.jp/search"
     },
     "9593273301d3619e": {
       "at": "2026-11-12T15:05:59.511462+00:00",
@@ -19099,12 +19076,6 @@
       "trendLane": true,
       "url": "https://topics.smt.docomo.ne.jp/latestnews/keywords/3f1d1f5e15469d0ddf43142027252cbd893f0996f04e0987f52fa791e85a31a7"
     },
-    "da38c64b9638bb2b": {
-      "at": "2026-11-12T07:12:52.071097+00:00",
-      "reason": "prefilter: サイトの主題外（エンタメのビジネス・テックの話題ではない。料金・決算・販売本数・AI・規約などがない）",
-      "skipped": true,
-      "url": "http://www.ntt-west.co.jp/news/2611/261112a.html"
-    },
     "da77736715e04673": {
       "at": "2026-11-16T16:37:51.771537+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（講演）",
@@ -21266,6 +21237,14 @@
       "skipped": true,
       "url": "https://www.stat.go.jp/data/cpi/sokuhou/tsuki/index-z.html"
     },
+    "fbed6c70ecb7509b": {
+      "at": "2026-11-26T07:14:47.594927+00:00",
+      "costUsd": 0.0064,
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 題名で使い方・手順を約束しているのに、本文に手順（番号つきの手順や「使い方」の章）が無い。手順を書くか、題名から外す",
+      "skipped": true,
+      "url": "https://lemino.docomo.ne.jp/home/emoteline"
+    },
     "fbf868dceb4c0759": {
       "at": "2026-11-19T01:47:33.874879+00:00",
       "costUsd": 0.013,
@@ -21913,14 +21892,6 @@
       "score": 96,
       "slug": "jasso-student-loan-interest-rate",
       "url": "https://www.jasso.go.jp/shogakukin/about/taiyo/taiyo_2shu/riritsu/2007ikou.html",
-      "writer": "muse"
-    },
-    "muse-22cf041b89": {
-      "at": "2026-11-26T07:13:02.997625+00:00",
-      "mix": "money",
-      "score": 100,
-      "slug": "furusato-tax-deduction-limit",
-      "url": "https://www.soumu.go.jp/main_content/000816463.pdf",
       "writer": "muse"
     },
     "muse-23980da94c": {
@@ -24224,36 +24195,17 @@
       "slug": "child-allowance-application-guide-2026-matome",
       "url": "",
       "writer": "roundup"
+    },
+    "muse-22cf041b89": {
+      "at": "2026-11-26T07:13:02.997625+00:00",
+      "mix": "money",
+      "score": 100,
+      "slug": "furusato-tax-deduction-limit",
+      "url": "https://www.soumu.go.jp/main_content/000816463.pdf",
+      "writer": "muse"
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-24T09:32:24.120889+00:00",
-      "attempt": 1,
-      "id": "8cb30255c3dd96f9",
-      "kind": "broad",
-      "model": "gemini-3.5-flash-lite",
-      "problems": [
-        "かんたん版の「誓約条項の適用停止などを盛り込んだ変更案」→ 元記事は、一定条件下で誓約条項の適用を停止する規定を削除する案としており、内容が逆になっています。"
-      ],
-      "readability": {
-        "avg_paragraph": 170.6,
-        "avg_sentence": 59.3,
-        "long_share": 0.435,
-        "max_paragraph": 246,
-        "paragraphs": 8,
-        "sentences": 23
-      },
-      "score": 92,
-      "source": "rakuten",
-      "title": "2029年満期6.00%シニア債に関するコンセント・ソリシテーション（同意勧誘）の開始に関するお知らせ",
-      "warnings": [
-        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（CUSIP・AL・ISIN）",
-        "リードの1文目が「〇〇は×日、…を発表しました」の発表の言い直し。1文目は読者にとって何が変わるか（だれの・何が・いつから・いくら）、2文目にいちばん大事な数字か条件、3文目に今やることかまだ決まっていないことを書く"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-24T09:32:46.458382+00:00",
@@ -31704,14 +31656,40 @@
         "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（KARTE・SMS）"
       ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-26T07:14:29.794413+00:00",
+      "attempt": 1,
+      "id": "fbed6c70ecb7509b",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "題名で使い方・手順を約束しているのに、本文に手順（番号つきの手順や「使い方」の章）が無い。手順を書くか、題名から外す"
+      ],
+      "readability": {
+        "avg_paragraph": 172.4,
+        "avg_sentence": 49.2,
+        "long_share": 0.214,
+        "max_paragraph": 316,
+        "paragraphs": 8,
+        "sentences": 28
+      },
+      "score": null,
+      "source": "radar-official",
+      "title": "Lemino(レミノ) - 映画・ドラマ・アニメや音楽・ライブが見放題",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（MAX）",
+        "読みやすさ: 文が長い（1文の平均 49.2字・60字超の文が 21% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "読みやすさ: 段落が長い（平均 172.4字・最長 316字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
     }
   ],
   "short_text_retry": {
     "44f6579ffb22f8a6": "2026-11-23T09:31:04.508820+00:00",
     "7431954942286936": "2026-11-23T10:25:08.280658+00:00",
     "ad54ab711b168101": "2026-11-25T17:33:41.782766+00:00",
-    "bbb9b1e66fb1ba9c": "2026-11-23T10:14:08.544089+00:00",
-    "e2254b2ec7d522a5": "2026-11-23T07:06:11.507835+00:00"
+    "bbb9b1e66fb1ba9c": "2026-11-23T10:14:08.544089+00:00"
   },
   "undated_first_seen": {
     "google-developers-blog": {
