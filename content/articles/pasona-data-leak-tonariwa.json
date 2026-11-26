@@ -82,9 +82,9 @@
     }
   ],
   "todayActions": [
-    "パソナの利用歴がある人は、同社をかたるメール、SMS、電話に応じず内容を確かめる",
-    "自分が対象か不安なときは、CS担当窓口（contact-pcareer@pasona.co.jp）にメールで問い合わせる",
-    "生年月日や電話番号を聞き出そうとする連絡は、折り返さずに記録しておく"
+    "再就職支援の利用歴がある人は、パソナの発表ページで対象情報と更新を確認する",
+    "対象かどうか確認したい人は、案内されたCS担当窓口へメールで問い合わせる",
+    "パソナ名義のメールやSMSは、本文のリンクを開かず公式ページから確認する"
   ],
   "publicInterest": "breach",
   "incident": {
@@ -138,5 +138,99 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/pasona-data-leak-tonariwa-figure-6c34da05.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "公式発表では、不正アクセスがあった外部システム「TONARIWA」は現在停止しています。停止の発表は、漏えいした情報の範囲や対象者への連絡時期を示すものではありません。",
+      "source": "https://www.pasonacareer.com/20261120/"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "株式会社パソナ CS担当窓口",
+      "url": "https://www.pasonacareer.com/20261120/",
+      "source": "https://www.pasonacareer.com/20261120/"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "再就職支援の利用歴がある人は、パソナの発表ページで対象情報と更新を確認する",
+      "source": "https://www.pasonacareer.com/20261120/",
+      "steps": [
+        "パソナの発表ページを開く",
+        "漏えいした情報の項目を確認する",
+        "新たなお知らせがないか確認する"
+      ],
+      "url": "https://www.pasonacareer.com/20261120/"
+    },
+    {
+      "action": "対象かどうか確認したい人は、案内されたCS担当窓口へメールで問い合わせる",
+      "source": "https://www.pasonacareer.com/20261120/",
+      "steps": [
+        "発表ページの「ご利用者様のお問い合わせ先」を開く",
+        "contact-pcareer@pasona.co.jpへメールする"
+      ],
+      "url": "https://www.pasonacareer.com/20261120/"
+    },
+    {
+      "action": "パソナ名義のメールやSMSは、本文のリンクを開かず公式ページから確認する",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "steps": [
+        "メールやSMS内のリンクはクリックしない",
+        "公式ページを開いて内容を確かめる"
+      ],
+      "url": "https://www.pasonacareer.com/20261120/"
+    }
+  ],
+  "cause": {
+    "text": "株式会社電通デジタルが提供する外部システム「TONARIWA」で、第三者による不正アクセスが発生しました。具体的な原因や手口は示されておらず、パソナは電通デジタルと連携して調査を続けています。",
+    "status": "investigating",
+    "source": "https://www.pasonacareer.com/20261120/"
+  },
+  "worries": [
+    {
+      "q": "自分の情報はどの項目まで漏れた可能性がある？",
+      "a": "確認された項目は氏名（フリガナ）、電話番号、生年月日、顧客IDです。ただし、対象者によって情報項目は異なると発表されています。",
+      "source": "https://www.pasonacareer.com/20261120/",
+      "action": "自分が対象か確認したい場合は、発表ページに案内されたCS担当窓口へメールで問い合わせてください。"
+    },
+    {
+      "q": "パソナの求職者管理システムにも不正アクセスがあった？",
+      "a": "パソナは、確認した範囲では自社の求職者管理システム等への不正アクセスは確認されていないとしています。不正アクセスが発生したのは、電通デジタル提供の外部システム「TONARIWA」です。",
+      "source": "https://www.pasonacareer.com/20261120/",
+      "action": "確認したい場合は、パソナの発表ページで対象システムと調査状況を確認してください。"
+    },
+    {
+      "q": "対象かもしれないのに、個別連絡がまだ来ないときは？",
+      "a": "パソナは対象者への個別連絡に向けて準備を進めています。対象となる方の詳細確認も進めていると発表しており、利用者向けの問い合わせ先としてCS担当窓口を案内しています。",
+      "source": "https://www.pasonacareer.com/20261120/",
+      "action": "自分が対象か不安な場合は、発表ページに記載されたCS担当窓口へメールで確認してください。"
+    },
+    {
+      "q": "不審なリンクにIDやパスワードを入力してしまったら？",
+      "a": "フィッシングサイトに普段使っているIDやパスワードを入力した場合、警察庁は、その情報を利用しているすべてのサービスでパスワード等を速やかに変更するよう案内しています。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "action": "入力したIDやパスワードを使っているサービスを確認し、それぞれのパスワード等を速やかに変更してください。",
+      "general": true
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "メール内のリンクから内容を確認する？",
+      "situation": "パソナを名乗るメールやSMSが届いた",
+      "recommend": "リンクは開かず、公式ページから確認する",
+      "reason": "メールやSMSのリンクは偽装されることがあり、正規サイトに似たドメインも使われます。見た目で真偽を判断するのは困難なため、公式サイトをブックマークなどから開いて確認する方法が案内されています。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "general": true
+    }
+  ],
+  "depthHeadings": {
+    "insight": "不正アクセスのあった外部システムは現在停止",
+    "cause": "不正アクセスの原因と手口は調査中",
+    "steps": "発表ページの確認と問い合わせ先",
+    "desk": "利用者向けの問い合わせ先",
+    "worries": "漏れた情報と対象者への連絡が気になる",
+    "guide": "メール内のリンクから確認するか迷ったら"
+  },
+  "depthAt": "2026-11-26T23:05:10+00:00"
 }
