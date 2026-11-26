@@ -76,9 +76,9 @@
     }
   ],
   "todayActions": [
-    "登録メールアドレスに、エーエフシーからの個別連絡が届いていないか受信箱を確認する",
-    "エーエフシーを装うメール・SMS・電話は、URLを開かず応答しない",
-    "不明な点は0120-705-077（9時〜17時、土日祝含む）に問い合わせる"
+    "登録メールアドレスで、エーエフシーからの個別連絡が届いているか確認する",
+    "カード番号などを求める連絡には応じず、必要なら公式窓口へ問い合わせる",
+    "不審なSMSを減らすため、迷惑メッセージブロック機能を確認する"
   ],
   "publicInterest": "breach",
   "incident": {
@@ -129,5 +129,85 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/afc-online-shop-data-leak-figure-a6cdba2f.jpg"
+  },
+  "officialDesk": [
+    {
+      "name": "株式会社エーエフシーお問い合わせ窓口",
+      "url": "https://464981.com/shop/contact/draft",
+      "source": "https://464981.com/shop/pages/important-notice-20261126",
+      "phone": "0120-705-077",
+      "hours": "9時～17時（土日祝含）"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "登録メールアドレスで、エーエフシーからの個別連絡が届いているか確認する",
+      "source": "https://464981.com/shop/pages/important-notice-20261126",
+      "steps": [
+        "登録しているメールアドレスの受信箱を開く",
+        "エーエフシーからの個別連絡を確認する"
+      ]
+    },
+    {
+      "action": "カード番号などを求める連絡には応じず、必要なら公式窓口へ問い合わせる",
+      "source": "https://464981.com/shop/pages/important-notice-20261126",
+      "steps": [
+        "心当たりのない連絡には応答しない",
+        "お問い合わせフォームから問い合わせる"
+      ],
+      "url": "https://464981.com/shop/contact/draft"
+    },
+    {
+      "action": "不審なSMSを減らすため、迷惑メッセージブロック機能を確認する",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "steps": [
+        "携帯電話会社などが提供する機能を確認する",
+        "不審なSMSが届きづらい設定にする"
+      ],
+      "url": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html"
+    }
+  ],
+  "cause": {
+    "text": "2026年11月22日、第三者が管理用アカウントで不正にログインし、お客様情報を閲覧するとともに、情報を含むデータをダウンロードしました。11月23日に不審なアクセスが確認され、該当アカウントは利用できない状態になりました。",
+    "status": "stated",
+    "source": "https://464981.com/shop/pages/important-notice-20261126"
+  },
+  "worries": [
+    {
+      "q": "カード番号やログインパスワードも漏れたの？",
+      "a": "エーエフシーは、漏えいしたデータにクレジットカード番号、セキュリティコード、ECサイトのログインパスワードは含まれていないことを確認したとしています。",
+      "source": "https://464981.com/shop/pages/important-notice-20261126",
+      "action": "本件への対応を理由にカード番号などを求める連絡には応じず、必要なら公式窓口へ問い合わせる。"
+    },
+    {
+      "q": "会員全員の情報が同じように漏れたの？",
+      "a": "漏えいした可能性があるのは現時点で302,580名ですが、すべての情報が全員分漏えいしたわけではなく、登録状況等で対象情報は異なります。対象者には登録メールアドレス宛に順次連絡するとしています。",
+      "source": "https://464981.com/shop/pages/important-notice-20261126",
+      "action": "登録メールアドレスの受信箱を確認し、エーエフシーからの個別連絡があれば内容を確かめる。"
+    },
+    {
+      "q": "届いたメールが本当にエーエフシーからか見分けられる？",
+      "a": "メールの送信元名称や送信元メールアドレスは偽装が容易で、それだけで真偽を判断するのは困難です。警察庁は、メールやSMS内のリンクを安易にクリックしないよう案内しています。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "action": "メール内のリンクは開かず、エーエフシーのお問い合わせフォームから確認する。",
+      "actionSource": "https://464981.com/shop/pages/important-notice-20261126",
+      "general": true
+    }
+  ],
+  "depthHeadings": {
+    "cause": "管理用アカウントへの不正ログインで何が起きた？",
+    "steps": "個別連絡と不審な連絡への備え",
+    "desk": "エーエフシーへの問い合わせ先",
+    "worries": "漏えい情報や届いた連絡への不安"
+  },
+  "depthAt": "2026-11-26T08:04:37+00:00",
+  "coverImage": "https://ai-tech-express.jp/img/afc-online-shop-data-leak-cover-be6a30a9.jpg",
+  "coverCredit": {
+    "kind": "ai",
+    "model": "flux-2-klein-4b",
+    "prompt": "A modest office space with rows of server racks and a customer‑service desk where a headset lies beside a phone, representing the AFC online shop’s backend and support center.",
+    "provider": "Cloudflare Workers AI",
+    "relevant": true,
+    "at": "2026-11-26T08:05:06+00:00"
   }
 }
