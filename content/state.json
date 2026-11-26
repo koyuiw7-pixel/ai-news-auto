@@ -12311,6 +12311,20 @@
       "trendLane": true,
       "url": "https://topics.smt.docomo.ne.jp/latestnews/keywords/0429df568921b4e2cbfe041064afc40b0da20119fe2c8e7a12cbe4c9c58662e1"
     },
+    "57528dd49da299b2": {
+      "at": "2026-11-26T21:10:33.938320+00:00",
+      "costUsd": 0.0013,
+      "intent": "breaking",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "safetyLane": true,
+      "score": 98,
+      "section": "public",
+      "slug": "kurashi-to-seikyo-sagawa-leak",
+      "url": "https://information.pal-system.co.jp/press/20261126-incident/"
+    },
     "5771e542ddf05152": {
       "at": "2026-11-19T18:02:04.165597+00:00",
       "reason": "review: AdSense の審査の期間は海外の AI の発表を自動で記事にしない（速報だけ。scripts/news_mix.py review_ai_blocks）",
@@ -24156,34 +24170,6 @@
   },
   "quality_log": [
     {
-      "accepted": false,
-      "at": "2026-11-24T16:31:28.059161+00:00",
-      "attempt": 1,
-      "id": "e40d3a772e2dfa78",
-      "kind": "broad",
-      "model": "cloudflare:@cf/openai/gpt-oss-120b",
-      "problems": [
-        "「郵送または電波利用ポータルからの電子申請で行い」→元資料は申請様式の入手先としてポータルを案内しているだけで、この申請を同ポータルから電子提出できるとは明記していません。",
-        "「免許取得で新たなエリアカバーが可能です」→免許取得後に新たなエリアをカバーできるという効果は、元資料から確認できません。"
-      ],
-      "readability": {
-        "avg_paragraph": 150.1,
-        "avg_sentence": 52.0,
-        "long_share": 0.385,
-        "max_paragraph": 181,
-        "paragraphs": 9,
-        "sentences": 26
-      },
-      "score": 82,
-      "source": "soumu",
-      "title": "超短波放送（FM放送）を行う中継局の免許の申請の受付",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（FM）",
-        "本文が見出しで始まっている（最初の段落は見出しなしで、だれに関係するか・関係しない人はどうかを書く）",
-        "本文の最初の文がリードのくり返し。本文はリードに無い新しい事実から始める"
-      ]
-    },
-    {
       "accepted": true,
       "at": "2026-11-24T16:32:51.447034+00:00",
       "attempt": 1,
@@ -31643,6 +31629,30 @@
       "warnings": [
         "読みやすさ: 文が長い（1文の平均 51.2字・60字超の文が 22% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
         "読みやすさ: 段落が長い（平均 153.7字・最長 262字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-26T21:10:19.981694+00:00",
+      "attempt": 1,
+      "id": "57528dd49da299b2",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 79.4,
+        "avg_sentence": 41.6,
+        "long_share": 0.19,
+        "max_paragraph": 142,
+        "paragraphs": 11,
+        "sentences": 21
+      },
+      "score": 98,
+      "source": "fast",
+      "title": "「くらしと生協」配送委託先（佐川急便）への不正アクセスに伴う個人情報流出の可能性について | お知らせ | 生協の宅配パルシステム",
+      "warnings": [
+        "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（SMS）"
       ]
     }
   ],
