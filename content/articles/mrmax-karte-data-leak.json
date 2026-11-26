@@ -77,9 +77,9 @@
     }
   ],
   "todayActions": [
-    "プレイドの問い合わせフォームで、自分が対象かどうかを確認する",
-    "MrMaxを名乗るメールやSMSのURLは開かず、個人情報も入力しない",
-    "不審な連絡が届いたら、privacy_desk@mrmax.co.jp に相談する"
+    "2026年11月13日時点で会員だった人は、プレイドのフォームで対象か確認する。",
+    "偽サイトに普段使うIDやパスワードを入力した人は、使い回している全サービスのパスワードを変更する。",
+    "不審なメールやSMSを受け取りやすい人は、携帯電話会社の迷惑メッセージブロック機能を活用する。"
   ],
   "publicInterest": "breach",
   "incident": {
@@ -123,5 +123,101 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/mrmax-karte-data-leak-figure-e523ce45.jpg"
-  }
+  },
+  "officialDesk": [
+    {
+      "name": "株式会社ミスターマックス・ホールディングス",
+      "url": "https://www.mrmaxhd.co.jp/release/upload/20261125_release.pdf",
+      "source": "https://www.mrmaxhd.co.jp/release/upload/20261125_release.pdf",
+      "note": "不審な連絡についての問い合わせ先は privacy_desk@mrmax.co.jp です。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "2026年11月13日時点で会員だった人は、プレイドのフォームで対象か確認する。",
+      "source": "https://www.mrmaxhd.co.jp/release/upload/20261125_release.pdf",
+      "steps": [
+        "プレイドのお客様向けフォームを開く",
+        "自分が対象かどうかを確認する"
+      ]
+    },
+    {
+      "action": "偽サイトに普段使うIDやパスワードを入力した人は、使い回している全サービスのパスワードを変更する。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "steps": [
+        "入力したID・パスワードを確認する",
+        "同じID・パスワードを使う全サービスで変更する"
+      ],
+      "url": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html"
+    },
+    {
+      "action": "不審なメールやSMSを受け取りやすい人は、携帯電話会社の迷惑メッセージブロック機能を活用する。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "steps": [
+        "携帯電話会社が提供する機能を確認する",
+        "迷惑メッセージブロック機能を活用する"
+      ],
+      "url": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html"
+    }
+  ],
+  "cause": {
+    "text": "不正アクセスは2026年11月13日に検知されました。発生原因は公表されておらず、ミスターマックスは原因・調査状況の問い合わせ先としてプレイドのフォームを案内しています。",
+    "status": "investigating",
+    "source": "https://www.mrmaxhd.co.jp/release/upload/20261125_release.pdf"
+  },
+  "worries": [
+    {
+      "q": "自分の会員情報が流出対象か、どう確かめればいい？",
+      "a": "対象はMrMaxアプリ会員とオンラインストア会員で、2026年11月13日時点の会員が最大1,806,330件です。実際に対象となる情報は登録状況によって異なるため、プレイドのフォームで確認できます。",
+      "source": "https://www.mrmaxhd.co.jp/release/upload/20261125_release.pdf",
+      "action": "プレイドのお客様向けフォームから、自分が対象かどうかを確認する。"
+    },
+    {
+      "q": "クレジットカードやパスワードも流出したの？",
+      "a": "ミスターマックスは、クレジットカード情報とパスワードは「KARTE」上に保持していないため、流出はないと説明しています。流出の可能性がある情報は会員ID、氏名、メールアドレス、電話番号、住所です。",
+      "source": "https://www.mrmaxhd.co.jp/release/upload/20261125_release.pdf",
+      "action": "偽サイトにカード情報などを入力した場合は、利用しているサービスの提供会社に相談する。",
+      "actionSource": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "actionGeneral": true
+    },
+    {
+      "q": "メールの送信元表示がMrMaxなら本物と考えていい？",
+      "a": "警察庁は、メールの送信元名称やメールアドレスは変更が容易で、それだけで真偽を判断するのは困難と説明しています。スマートフォンでは表示項目が少ない場合もあり、判断がさらに難しくなります。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "action": "メールやSMSのリンクは開かず、あらかじめ登録した公式サイトや公式アプリから確認する。",
+      "general": true
+    },
+    {
+      "q": "偽サイトにパスワードを入力してしまったらどうする？",
+      "a": "警察庁は、フィッシングサイトに普段使うIDやパスワードを入力した場合、そのIDやパスワードを利用している全てのサービスで速やかに変更するよう案内しています。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "action": "同じIDやパスワードを使っている全てのサービスで、パスワードを速やかに変更する。",
+      "general": true
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "MrMaxのパスワードを今すぐ変えるべき？",
+      "situation": "今回の不正アクセスだけが心配",
+      "recommend": "今回の流出対策として急ぐ必要はない",
+      "reason": "ミスターマックスは、パスワードは「KARTE」上に保持していないため流出はないと説明しています。ただし、これは今回の不正アクセスについての説明です。",
+      "source": "https://www.mrmaxhd.co.jp/release/upload/20261125_release.pdf"
+    },
+    {
+      "question": "MrMaxのパスワードを今すぐ変えるべき？",
+      "situation": "偽サイトにパスワードを入力した",
+      "recommend": "同じパスワードを使う全サービスで変更する",
+      "reason": "フィッシングサイトに普段使うIDやパスワードを入力した場合、警察庁は、そのIDやパスワードを利用している全てのサービスで速やかに変更するよう案内しています。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "general": true
+    }
+  ],
+  "depthHeadings": {
+    "cause": "不正アクセスの原因はまだ公表されていない",
+    "steps": "対象確認と、もし入力してしまったときの対応",
+    "desk": "対象確認と不審な連絡の問い合わせ先",
+    "worries": "カードや住所、パスワードはどうなる？",
+    "guide": "パスワードを変えるか迷ったら"
+  },
+  "depthAt": "2026-11-26T00:58:18+00:00"
 }

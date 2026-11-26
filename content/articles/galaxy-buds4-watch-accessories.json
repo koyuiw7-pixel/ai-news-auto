@@ -88,8 +88,8 @@
     }
   ],
   "todayActions": [
-    "Galaxy Watchの機種名を確かめ、充電器の対応一覧と急速充電の条件を照らし合わせる。",
-    "Samsungオンラインショップや購入予定の販売店で、ケースの取扱商品と価格を確認する。"
+    "充電器を買う前に、対応機種と急速充電の対象をアクセサリー詳細で照合する。",
+    "購入予定の販売先で、ケースや充電器の取り扱いと価格を確認する。"
   ],
   "qualityBar": {
     "score": 6,
@@ -158,5 +158,95 @@
     ],
     "ar": 1.7762,
     "src": "https://ai-tech-express.jp/img/galaxy-buds4-watch-accessories-947bbb76.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "価格表示は2026年11月26日時点のSamsungオンラインショップ価格です。ほかの販売店では価格が異なる場合があるため、購入先ごとに確認が必要です。",
+      "source": "https://news.samsung.com/jp/wearable-accessory-onsale2611?utm_source=rss&utm_medium=direct"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "Samsungオンラインショップ",
+      "url": "https://www.samsung.com/jp/offer/",
+      "source": "https://news.samsung.com/jp/wearable-accessory-onsale2611?utm_source=rss&utm_medium=direct",
+      "note": "取り扱い製品および販売開始時刻は販路によって異なります。価格はほかの販売店で異なる場合があります。"
+    },
+    {
+      "name": "Samsungカスタマーサポートセンター",
+      "url": "https://www.samsung.com/jp/support",
+      "source": "https://news.samsung.com/jp/wearable-accessory-onsale2611?utm_source=rss&utm_medium=direct"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "充電器を買う前に、対応機種と急速充電の対象をアクセサリー詳細で照合する。",
+      "source": "https://news.samsung.com/jp/wearable-accessory-onsale2611?utm_source=rss&utm_medium=direct",
+      "steps": [
+        "Samsung Newsroomの販売開始ページを開く",
+        "「各アクセサリー詳細」を開く",
+        "対応機種と急速充電の対象を確認する"
+      ],
+      "url": "https://www.samsung.com/jp/mobile-accessories/all-mobile-accessories/?charging-machine+buds-accessories"
+    },
+    {
+      "action": "購入予定の販売先で、ケースや充電器の取り扱いと価格を確認する。",
+      "source": "https://news.samsung.com/jp/wearable-accessory-onsale2611?utm_source=rss&utm_medium=direct",
+      "steps": [
+        "Samsungオンラインショップを開く",
+        "購入予定の商品と価格を確認する"
+      ],
+      "url": "https://www.samsung.com/jp/offer/"
+    }
+  ],
+  "worries": [
+    {
+      "q": "自分のGalaxy Watchでもこの充電器を使えますか？",
+      "a": "対応機種はGalaxy Watch5、6、7、8、9の各シリーズとGalaxy Watch Ultra、Galaxy Watch Ultra2です。今後、対応モデルが追加される可能性もあります。",
+      "source": "https://news.samsung.com/jp/wearable-accessory-onsale2611?utm_source=rss&utm_medium=direct",
+      "action": "時計の機種名を確認し、公式のアクセサリー詳細で対応機種と照らし合わせてください。"
+    },
+    {
+      "q": "Ultra2以外の時計でも急速充電できますか？",
+      "a": "急速充電機能がサポートされているのはSamsung Galaxy Watch Ultra2のみです。今後、対応モデルが追加される可能性があります。",
+      "source": "https://news.samsung.com/jp/wearable-accessory-onsale2611?utm_source=rss&utm_medium=direct",
+      "action": "急速充電を重視する場合は、購入前に自分の時計がUltra2か確認してください。"
+    },
+    {
+      "q": "30分で必ず40%まで充電できるのでしょうか？",
+      "a": "Ultra2では30分で最大40%まで充電できます。ただし、充電速度は利用する端末や使用環境、充電環境、その他の外部要因により異なる場合があります。",
+      "source": "https://news.samsung.com/jp/wearable-accessory-onsale2611?utm_source=rss&utm_medium=direct",
+      "action": "充電時間を見積もるときは、最大40%という表示を目安として確認してください。"
+    },
+    {
+      "q": "購入予定の店でもオンラインショップと同じ価格ですか？",
+      "a": "表示価格は2026年11月26日時点のSamsungオンラインショップの価格です。その他の販売店では価格が異なる場合があり、取り扱い製品や販売開始時刻も販路によって異なります。",
+      "source": "https://news.samsung.com/jp/wearable-accessory-onsale2611?utm_source=rss&utm_medium=direct",
+      "action": "購入する販売店やECサイトで、取り扱い商品と価格、販売開始時刻を確認してください。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "この充電器を自分の時計用に選んでよい？",
+      "situation": "機種名が対応一覧にある",
+      "recommend": "対応機種として候補にできる",
+      "reason": "対応機種はGalaxy Watch5、6、7、8、9の各シリーズとGalaxy Watch Ultra、Galaxy Watch Ultra2です。一覧にある機種は対応対象ですが、充電速度は端末や使用・充電環境などによって異なる場合があります。",
+      "source": "https://news.samsung.com/jp/wearable-accessory-onsale2611?utm_source=rss&utm_medium=direct"
+    },
+    {
+      "question": "急速充電を重視して選ぶべき？",
+      "situation": "使っている時計がUltra2",
+      "recommend": "急速充電の対象として検討できる",
+      "reason": "急速充電機能に対応するのはSamsung Galaxy Watch Ultra2のみで、30分で最大40%まで充電できます。ただし、充電速度は端末や使用・充電環境などによって異なります。",
+      "source": "https://news.samsung.com/jp/wearable-accessory-onsale2611?utm_source=rss&utm_medium=direct"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "表示価格は販売店ごとに異なることも",
+    "steps": "買う前に対応機種と販売価格を確認",
+    "desk": "購入先と問い合わせ先",
+    "worries": "自分の時計で使えるか、価格はいくらか",
+    "guide": "対応機種や急速充電を重視するなら"
+  },
+  "depthAt": "2026-11-26T00:57:53+00:00"
 }
