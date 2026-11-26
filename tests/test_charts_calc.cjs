@@ -137,7 +137,7 @@ test("記事に合う計算機は1つだけ", () => {
   assert.equal(calculatorForGuide({ tool: "furusato", title: "寄附金控除の対象は特定寄附金" }), "furusato-limit");
   assert.equal(calculatorForGuide({ tool: "calendar", title: "年末までのお金の手続き　年末調整・ふるさと納税・NISAの期限" }), "furusato-limit");
   assert.equal(calculatorForGuide({ tool: "nencho", title: "年末調整のやり方" }), null);
-  assert.deepEqual(Object.keys(CALCULATORS).sort(), ["child-allowance", "defense-tax", "furusato-limit", "pension-support-benefit"]);
+  assert.deepEqual(Object.keys(CALCULATORS).sort(), ["child-allowance", "defense-tax", "denki-gas-discount", "furusato-limit", "pension-support-benefit"]);
 });
 
 test("ふるさと納税の上限額の目安は総務省の式（所得割額×20%÷（90%−税率×1.021）＋2,000円）", () => {

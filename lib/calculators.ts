@@ -16,8 +16,10 @@ import type { ArticleChart } from "@/lib/charts";
  * こども家庭庁の案内（令和6年10月分からの制度）で出す（式は lib/child-allowance.ts、テストは tests/test_child_allowance.cjs）。
  * 2026-11-26: 年金生活者支援給付金（/tools/pension-support-benefit）を追加。老齢・障害・遺族の別、世帯の住民税、前年の収入、納めた月数から、
  * 対象かどうかの目安と令和8年度の月額・1回の支払い（2か月分）・1年分を日本年金機構の案内で出す（式は lib/pension-support-benefit.ts、テストは tests/test_pension_support_benefit.cjs）。
+ * 2026-11-26: 冬の電気・ガス料金支援（/tools/denki-gas-discount）を追加。12月の電気・都市ガスの使用量（1月・2月は12月の1.2倍が初期値）から、
+ * 2026年12月〜2027年2月使用分の月ごとの値引き額と3か月の合計を、資源エネルギー庁の特設サイトの単価で出す（式は lib/denki-gas-discount.ts、テストは tests/test_denki_gas_discount.cjs）。
  */
-export type CalculatorKind = "defense-tax" | "furusato-limit" | "child-allowance" | "pension-support-benefit";
+export type CalculatorKind = "defense-tax" | "furusato-limit" | "child-allowance" | "pension-support-benefit" | "denki-gas-discount";
 
 export type ArticleCalculator = {
   kind: CalculatorKind;
@@ -52,6 +54,12 @@ export const CALCULATORS: Record<CalculatorKind, { href: string; title: string; 
     href: "/tools/pension-support-benefit",
     title: "年金生活者支援給付金の計算",
     description: "老齢・障害・遺族の別と前年の収入、保険料を納めた月数から、年金生活者支援給付金の対象かどうかの目安と、令和8年度の月額・1回の支払い（2か月分）・1年分を計算します。",
+    checked: "2026-11-26",
+  },
+  "denki-gas-discount": {
+    href: "/tools/denki-gas-discount",
+    title: "冬の電気代・ガス代の値引き額の計算",
+    description: "12月の電気と都市ガスの使用量から、国の電気・ガス料金支援で2026年12月〜2027年2月使用分がいくら安くなるかを月ごとと3か月の合計で計算します。申請は不要です。",
     checked: "2026-11-26",
   },
 };
@@ -106,6 +114,7 @@ const TAX_WORDS = /防衛特別所得税|防衛増税|防衛税|復興特別所�
 const FURUSATO_WORDS = /ふるさと納税/;
 const CHILD_ALLOWANCE_WORDS = /児童手当/;
 const PENSION_SUPPORT_WORDS = /年金生活者支援給付金/;
+const DENKI_GAS_WORDS = /電気・ガス料金(の)?支援|電気・ガス(料金|代)の?(補助|値引き)|電気代.{0,30}(値引き|円引き|補助|支援)|ガス代.{0,30}(値引き|円引き|補助|支援)/;
 
 /**
  * AIの有料プランの費用計算（/tools/ai-plan-cost）は 2026-11-03 に終了した（「12か月で16,800円」「Plusの0.5個分」のような
@@ -131,6 +140,10 @@ export function calculatorForArticle(article: ArticleLike): ArticleCalculator | 
   if (PENSION_SUPPORT_WORDS.test(title)) {
     return { kind: "pension-support-benefit", heading: /いくら|金額|給付額|月額|計算|対象|基準|所得/ };
   }
+  // 冬の電気・ガス料金支援の記事（見出しに「電気・ガス料金支援」や「電気代…値引き」がある記事だけ。2026-11-26）
+  if (DENKI_GAS_WORDS.test(title)) {
+    return { kind: "denki-gas-discount", heading: /いくら|値引き|単価|金額|計算|安く|kWh/ };
+  }
   return null;
 }
 
@@ -144,5 +157,7 @@ export function calculatorForGuide(guide: { tool?: string; title: string; seoTit
   if (/児童手当/.test(`${guide.title} ${guide.seoTitle ?? ""}`)) return "child-allowance";
   // 年金生活者支援給付金のガイドからは、年金生活者支援給付金の計算へ（2026-11-26）
   if (PENSION_SUPPORT_WORDS.test(`${guide.title} ${guide.seoTitle ?? ""}`)) return "pension-support-benefit";
+  // 電気・ガス料金支援のガイドからは、冬の電気代・ガス代の値引き額の計算へ（2026-11-26）
+  if (DENKI_GAS_WORDS.test(`${guide.title} ${guide.seoTitle ?? ""}`)) return "denki-gas-discount";
   return null;
 }

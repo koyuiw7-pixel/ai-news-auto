@@ -31,6 +31,7 @@ const REFERENCE_LINKS = [
   { href: "/tools/defense-tax", label: "防衛特別所得税の計算" },
   { href: "/tools/child-allowance", label: "児童手当の支給額の計算" },
   { href: "/tools/pension-support-benefit", label: "年金生活者支援給付金の計算" },
+  { href: "/tools/denki-gas-discount", label: "冬の電気代・ガス代の値引き額の計算" },
   ...LIFE_COMPARE_SLUGS.flatMap((slug) => {
     const found = lifeCompareGuide(slug);
     return found ? [{ href: found.href, label: `${guideShortName(found.guide)}の比較` }] : [];

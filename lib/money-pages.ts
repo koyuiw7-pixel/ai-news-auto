@@ -88,6 +88,15 @@ export const MONEY_PAGES: MoneyPage[] = [
     href: "/guides/nencho-target",
     label: "年末調整の対象かを確かめる",
   },
+  {
+    // 冬の電気・ガス料金支援（2026年12月〜2027年2月使用分）。計算ツールは 2026-11-26 追加
+    key: "denki-gas-discount",
+    match: /電気・ガス料金(の)?支援|電気・ガス(料金|代)の?(補助|値引き)|電気代.{0,30}(値引き|円引き|補助|支援)|ガス代.{0,30}(値引き|円引き|補助|支援)/,
+    href: "/tools/denki-gas-discount",
+    label: "冬の電気代・ガス代がいくら安くなるか計算する",
+    guide: null,
+    articles: ["winter-electricity-gas-subsidy-2026", "electricity-gas-support-phone-warning", "electricity-gas-bill-subsidy-japan-2027-matome"],
+  },
 ];
 
 type ArticleLike = { slug?: string; title: string; seoTitle?: string; tags?: string[] };

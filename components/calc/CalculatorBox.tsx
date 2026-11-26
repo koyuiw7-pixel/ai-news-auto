@@ -7,6 +7,7 @@ const DefenseTaxCalc = dynamic(() => import("@/components/calc/DefenseTaxCalc"))
 const FurusatoLimitCalc = dynamic(() => import("@/components/calc/FurusatoLimitCalc"));
 const ChildAllowanceCalc = dynamic(() => import("@/components/calc/ChildAllowanceCalc"));
 const PensionSupportCalc = dynamic(() => import("@/components/calc/PensionSupportCalc"));
+const DenkiGasDiscountCalc = dynamic(() => import("@/components/calc/DenkiGasDiscountCalc"));
 
 /** 計算機ごとの注意書き（数字の前提。必ず表示する） */
 export const CALC_NOTES: Record<ArticleCalculator["kind"], string> = {
@@ -18,6 +19,8 @@ export const CALC_NOTES: Record<ArticleCalculator["kind"], string> = {
     "こども家庭庁の案内（令和6年10月分からの制度）の月額で計算しています。生まれた月の分は出ず、申請した月の翌月分から支給されます。18歳の年度末を過ぎた子は、親が生活費を負担しているときだけ第3子の数え方に入ります。支給日の日にちと実際の金額は、お住まいの市区町村（公務員は勤務先）で確かめてください。",
   "pension-support-benefit":
     "日本年金機構の案内（令和8年度の額、令和8年10月分から令和9年9月分までの判定）で計算した目安です。判定には令和7年の収入・所得を使い、障害年金・遺族年金は収入に入れません。原則、偶数月の中旬に2か月分が年金と同じ口座に、年金とは別に振り込まれます。実際に受け取れるか・金額は、届いた請求書や日本年金機構の通知で確かめてください。",
+  "denki-gas-discount":
+    "経済産業省 資源エネルギー庁「電気・ガス料金支援」特設サイトの値引き単価（2026年12月使用分〜2027年2月使用分、家庭の電気＝低圧と都市ガス）で計算した目安です。値引き額は値引き単価×月々の使用量で、1月・2月の使用量の初期値は12月の1.2倍です。申請は不要で、参加している電力・ガス会社の請求で値引きされます。プロパンガス（LPガス）は対象外です。実際の額は検針票や請求の明細で確かめてください。",
 };
 
 /** 記事の中に置く計算機（本文の章の下、または本文の終わり） */
@@ -47,5 +50,6 @@ export function Calculator({ calc }: { calc: Pick<ArticleCalculator, "kind"> }) 
   if (calc.kind === "furusato-limit") return <FurusatoLimitCalc />;
   if (calc.kind === "child-allowance") return <ChildAllowanceCalc />;
   if (calc.kind === "pension-support-benefit") return <PensionSupportCalc />;
+  if (calc.kind === "denki-gas-discount") return <DenkiGasDiscountCalc />;
   return <DefenseTaxCalc />;
 }

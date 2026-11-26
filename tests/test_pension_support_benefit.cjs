@@ -144,7 +144,7 @@ test("計算機の登録：CALCULATORS・記事とガイドからの案内・関
     assert.ok(fs.existsSync(path.join(root, "content/articles", `${slug}.json`)), slug);
   }
   assert.match(read("components/calc/CalculatorBox.tsx"), /calc\.kind === "pension-support-benefit"\) return <PensionSupportCalc \/>/);
-  assert.match(read("lib/sitemap.ts"), /"\/tools\/pension-support-benefit"\]\.map\(fixed\)/);
+  assert.match(read("lib/sitemap.ts"), /"\/tools\/pension-support-benefit"[^\]]*\]\.map\(fixed\)/);
   assert.match(read("components/Footer.tsx"), /\/tools\/pension-support-benefit/);
   assert.match(read("app/choose/page.tsx"), /CALCULATORS\["pension-support-benefit"\]/);
   assert.match(read("lib/page-share.ts"), /"pension-support-benefit": \{ heading:/);
