@@ -78,9 +78,9 @@
     }
   ],
   "todayActions": [
-    "ロックされた人は、次回ログインの前にGDOお問い合わせフォームから連絡する",
-    "「通常使うカード」を設定していた人は、カードの利用明細を確認する",
-    "他社と同じパスワードを使っている人は、GDOで別のものに再設定する"
+    "ログイン制限が出た人は、次回ログイン前にGDOお問い合わせフォームへ連絡する",
+    "「通常使うカード」を設定していた人は、カード利用明細を確認する",
+    "不安がある人はGDOのパスワードを再設定し、他社と別のものにする"
   ],
   "publicInterest": "breach",
   "incident": {
@@ -125,5 +125,98 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/gdo-unauthorized-login-1001-figure-b9bb19e5.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "「通常使うカード」の一部情報は、決済代行企業から読み込まれて会員情報変更画面に表示される仕組みです。",
+      "source": "https://company.golfdigest.co.jp/brand/news/2026112501.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "GDOお問い合わせフォーム",
+      "url": "https://cs.golfdigest.co.jp/pc/inquiry/category-selection",
+      "source": "https://company.golfdigest.co.jp/brand/news/2026112501.html",
+      "note": "ログインロックを確認した場合、次回ログインする際に連絡するよう案内されています。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "ログイン制限が出た人は、次回ログイン前にGDOお問い合わせフォームへ連絡する",
+      "source": "https://company.golfdigest.co.jp/brand/news/2026112501.html",
+      "steps": [
+        "GDOのお知らせを開く",
+        "「GDOお問い合わせフォーム」を開く",
+        "次回ログイン前に連絡する"
+      ],
+      "url": "https://cs.golfdigest.co.jp/pc/inquiry/category-selection"
+    },
+    {
+      "action": "「通常使うカード」を設定していた人は、カード利用明細を確認する",
+      "source": "https://company.golfdigest.co.jp/brand/news/2026112501.html",
+      "steps": [
+        "クレジットカードの利用明細を確認する",
+        "身に覚えのない請求があればカード会社へ相談する"
+      ]
+    },
+    {
+      "action": "不安がある人はGDOのパスワードを再設定し、他社と別のものにする",
+      "source": "https://company.golfdigest.co.jp/brand/news/2026112501.html",
+      "steps": [
+        "GDOの登録パスワードを再設定する",
+        "他社サービスと同じものや推測されやすいものを避ける"
+      ]
+    }
+  ],
+  "cause": {
+    "text": "GDOは、他サービスから入手したIDとパスワードの組み合わせでログインを試みる「リスト型攻撃」の可能性が高いとしています。現時点で、GDOから流出したログインID・パスワードが使われた事実は確認されていません。",
+    "status": "stated",
+    "source": "https://company.golfdigest.co.jp/brand/news/2026112501.html"
+  },
+  "worries": [
+    {
+      "q": "カード番号やセキュリティコードまで見られた？",
+      "a": "「通常使うカード」に設定していた場合、カード番号の先頭4桁・末尾4桁、有効期限、カード名義人が表示される可能性があります。全桁とセキュリティコードは画面に表示されず、閲覧されていません。",
+      "source": "https://company.golfdigest.co.jp/brand/news/2026112501.html",
+      "action": "利用明細に身に覚えのない請求がないか確認し、不審な点があれば利用しているカード会社へ相談してください。"
+    },
+    {
+      "q": "GDOのログインIDやパスワードも流出した？",
+      "a": "GDOはリスト型攻撃の可能性が高いとしていますが、GDOから流出したログインID・パスワードが使われた事実は現時点で確認されていません。",
+      "source": "https://company.golfdigest.co.jp/brand/news/2026112501.html",
+      "action": "不安があればGDOの登録パスワードを再設定し、他社で使っているものや推測されやすいものは避けてください。"
+    },
+    {
+      "q": "ロック解除を促すGDOのSMSに応じていい？",
+      "a": "GDOは、同社を装った不審なメール、SMS、電話に注意するよう呼びかけています。また、パスワードやクレジットカード情報を尋ねることはないとしています。",
+      "source": "https://company.golfdigest.co.jp/brand/news/2026112501.html",
+      "action": "パスワードやカード情報を尋ねる連絡には応じず、個人情報を伝えないでください。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "ロックされたら、ログイン前に何をする？",
+      "situation": "ログイン制限を確認した",
+      "recommend": "次回ログイン前にフォームへ連絡",
+      "reason": "GDOは、不正ログインが確認されたアカウントを11月23日にロックし、ログインロックを確認した人には次回ログイン時に問い合わせ先へ連絡するよう案内しています。",
+      "source": "https://company.golfdigest.co.jp/brand/news/2026112501.html"
+    },
+    {
+      "question": "他社と同じパスワードも変える？",
+      "situation": "GDOと他社で同じものを使用",
+      "recommend": "使い回し先も別のものにする",
+      "reason": "警察庁は、複数サイトで同じID・パスワードを登録すると、一つでも盗まれた場合に他サービスも乗っ取られるおそれがあるとして、サイトごとに異なるものを登録するよう案内しています。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "general": true
+    }
+  ],
+  "depthHeadings": {
+    "insight": "カード情報は決済代行企業から画面に表示",
+    "cause": "不正ログインの原因として考えられている手口",
+    "steps": "ロックやカード、パスワードを確かめる",
+    "desk": "ロックされた人が連絡する窓口",
+    "worries": "カードやパスワード、怪しい連絡が心配",
+    "guide": "連絡するか、パスワードを変えるか"
+  },
+  "depthAt": "2026-11-26T21:57:25+00:00"
 }
