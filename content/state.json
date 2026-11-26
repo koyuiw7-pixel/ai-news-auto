@@ -434,6 +434,7 @@
     "1a721d60e4b09c7f187a5acb89e7fb2dfef6495c": 2,
     "1a75cf1168a711a54374e853a1fe1e45a2256b7e": 2,
     "1a7642219fa60314d3cd99e2c303429a8b953875": 2,
+    "1a77d2b4625b8eacbb9e6d25555eacec416249fb": 1,
     "1a810451680b4668f8ff7bdf86469a9f76f3bc6e": 2,
     "1a841d06f5c094bf0db9fa6157717fdbb5812636": 2,
     "1a8dc75e0b4fd9010ff3286d3c89fe4a593caf3c": 3,
@@ -619,6 +620,7 @@
     "27f1e2b5711284d8e8079b53af8dca82f6c4bc92": 2,
     "280dc517a0c011e711ffa98c1ddabc5a7a92aaa8": 2,
     "2822203eaae0b1d5499748b858d3f07d205929cf": 2,
+    "2865aeb4e227f7657c9f8c2aa3f71c1a9d2b947e": 1,
     "286ea6493bbde652a31eb0197ea37944e3623a3f": 2,
     "286fa6e83a62bef87d923ab45572050880e34855": 2,
     "28ad462be142daaa171f5b17da33f5e20b9bf105": 2,
@@ -1538,6 +1540,7 @@
     "6d249e60b687e1166c00101800c482fa7710b155": 2,
     "6d40a2c35fd0bcad640299a1d4f936281b5778a7": 2,
     "6d509dcafaeef8d3bee4b2b09a04814f7e8215b6": 2,
+    "6d6c73c2cce08132237a4ae0d9620ac0edbd85c5": 1,
     "6d6e04a46c8d72d5b70da94c74e278903d571c38": 2,
     "6d813eb4eea7a25112bf1dea21dc5f889e3b53f5": 2,
     "6d8ecc3a27600b27": 1,
@@ -19019,6 +19022,17 @@
       "skipped": true,
       "url": "https://diamond.jp/articles/-/403932"
     },
+    "d6daa3f826324727": {
+      "at": "2026-11-26T19:13:14.912150+00:00",
+      "costUsd": 0.0514,
+      "intent": "query",
+      "mix": "other",
+      "model": "openai-api:gpt-6.1-terra",
+      "score": 96,
+      "section": "business",
+      "slug": "boj-repo-statistics-october-2026",
+      "url": "http://www.boj.or.jp/statistics/bis/repo/index.htm"
+    },
     "d6f665dadab227e134ac5892418bd6cc82ee1919": {
       "at": "2026-11-14T04:14:54.253017+00:00",
       "reason": "trend: 公式の発表で記事にした（kobe-bussan-dates-bar-recall）",
@@ -24120,54 +24134,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-24T16:09:22.236604+00:00",
-      "attempt": 1,
-      "id": "a2b8f573ee5bd4ae",
-      "kind": "broad",
-      "model": "gemini-flash-lite-latest",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 152.0,
-        "avg_sentence": 52.4,
-        "long_share": 0.207,
-        "max_paragraph": 278,
-        "paragraphs": 10,
-        "sentences": 29
-      },
-      "score": 100,
-      "source": "soumu",
-      "title": "「でんわんセンター」における国際電話発着信の利用休止受付の開始",
-      "warnings": [
-        "見出しが45字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "読みやすさ: 文が長い（1文の平均 52.4字・60字超の文が 21% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "読みやすさ: 段落が長い（平均 152.0字・最長 278字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-24T16:09:40.913088+00:00",
-      "attempt": 0,
-      "id": "a2b8f573ee5bd4ae",
-      "kind": "broad",
-      "model": "openai-api:gpt-6-luna",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 91.2,
-        "avg_sentence": 40.8,
-        "long_share": 0.079,
-        "max_paragraph": 150,
-        "paragraphs": 17,
-        "sentences": 38
-      },
-      "score": 99,
-      "source": "soumu",
-      "title": "「でんわんセンター」における国際電話発着信の利用休止受付の開始",
-      "warnings": [
-        "見出しが45字（目安40字以内）。一覧・カードでは前半だけを出す"
-      ]
-    },
     {
       "accepted": false,
       "at": "2026-11-24T16:25:22.679117+00:00",
@@ -31612,6 +31578,54 @@
       "score": 100,
       "source": "tokyo-metro",
       "title": "産業廃棄物の積替・保管施設をお持ちの事業者の皆様へ 産業廃棄物収集運搬車両への配車管理システムの導入を、都が支援します（配車管理システムの導入補助事業）"
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-26T19:12:53.715801+00:00",
+      "attempt": 1,
+      "id": "d6daa3f826324727",
+      "kind": "broad",
+      "model": "openai-api:gpt-6.1-terra",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 190.0,
+        "avg_sentence": 45.2,
+        "long_share": 0.214,
+        "max_paragraph": 270,
+        "paragraphs": 10,
+        "sentences": 42
+      },
+      "score": 100,
+      "source": "boj",
+      "title": "FSBレポ統計の日本分集計結果",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（FSB・CCP）",
+        "読みやすさ: 文が長い（1文の平均 45.2字・60字超の文が 21% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "読みやすさ: 段落が長い（平均 190.0字・最長 270字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-26T19:13:14.871627+00:00",
+      "attempt": 0,
+      "id": "d6daa3f826324727",
+      "kind": "broad",
+      "model": "openai-api:gpt-6-luna",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 92.2,
+        "avg_sentence": 33.4,
+        "long_share": 0.034,
+        "max_paragraph": 123,
+        "paragraphs": 21,
+        "sentences": 58
+      },
+      "score": 96,
+      "source": "boj",
+      "title": "FSBレポ統計の日本分集計結果",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（FSB・CCP）"
+      ]
     }
   ],
   "short_text_retry": {
