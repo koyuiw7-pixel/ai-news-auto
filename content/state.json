@@ -17595,6 +17595,20 @@
       "skipped": true,
       "url": "https://deepmind.google/blog/introducing-gemini-4-neon/"
     },
+    "b8ce8677beb6d99f": {
+      "at": "2026-11-26T06:11:56.852859+00:00",
+      "costUsd": 0.0036,
+      "intent": "breaking",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "safetyLane": true,
+      "score": 100,
+      "section": "public",
+      "slug": "peach-karte-data-leak",
+      "url": "https://www.flypeach.com/application/files/2417/9567/2811/20261126_INFO_JP.pdf"
+    },
     "b8eca9083b033818": {
       "at": "2026-11-25T16:24:45.988778+00:00",
       "reason": "followup: 新しい事実なし（boj-jgb-holdings-nov-2026）",
@@ -24440,59 +24454,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-24T08:57:07.183663+00:00",
-      "attempt": 1,
-      "id": "b510493e30220ef6",
-      "kind": "broad",
-      "model": "openai-api:gpt-6-luna",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 79.4,
-        "avg_sentence": 38.1,
-        "long_share": 0.08,
-        "max_paragraph": 177,
-        "paragraphs": 12,
-        "sentences": 25
-      },
-      "score": 98,
-      "source": "pmda-safety",
-      "title": "[医薬]クラスI回収 該当回収品目 照射赤血球液-LR「日赤」",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（LR・II・III）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-24T08:58:53.393331+00:00",
-      "attempt": 1,
-      "id": "55ad37b59567413198e3ca1e8f8cf6573836958c",
-      "kind": "trend",
-      "model": "openai-api:gpt-6-luna",
-      "problems": [
-        "「具体的な施設名や撤去日程は、公式発表を確認できていません」→元記事は4社が発表したと伝え、撤去は2027年1月から順次と明記しているため、発表の有無と日程の説明が矛盾します。",
-        "「営業施設がないPAなどで、ごみ箱を撤去する動き」→元記事は全国280か所で順次撤去すると具体的に報じており、単なる動きとして曖昧にする一方で、対象数を示していません。",
-        "「静岡県内の東名・新東名を使う人は、県内3施設が対象と報じられた」→本文では県内3施設の情報が利用者に伝わらず、具体的な対象や撤去時期も説明されていません。",
-        "「ごみ箱を撤去する動きがあると2社が報じました」→TBS NEWS DIGの記事では、4社が撤去を発表したという重要な内容が抜けています。"
-      ],
-      "readability": {
-        "avg_paragraph": 122.7,
-        "avg_sentence": 61.3,
-        "long_share": 0.417,
-        "max_paragraph": 173,
-        "paragraphs": 6,
-        "sentences": 12
-      },
-      "score": 35,
-      "source": "trends",
-      "title": "ごみ箱",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（TBS・NEWS・DIG）",
-        "要点の1つ目がリードの文の写し。一番のニュースを、リードとは違う言い方で書く",
-        "読みやすさ: 文が長い（1文の平均 61.3字・60字超の文が 42% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-24T09:00:20.448012+00:00",
@@ -31952,6 +31913,56 @@
         "見出しの書き方: 区切りの全角空白が2つ以上（補足は1つだけ）",
         "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（DA・KFKK）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-26T06:11:29.086474+00:00",
+      "attempt": 1,
+      "id": "b8ce8677beb6d99f",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "「被害拡大を防いだ」→ 元記事が確認しているのは認証情報の無効化や通信遮断などの対応を実施したことまでで、被害拡大を防げたという結果までは明記していません。"
+      ],
+      "readability": {
+        "avg_paragraph": 71.5,
+        "avg_sentence": 37.2,
+        "long_share": 0.04,
+        "max_paragraph": 115,
+        "paragraphs": 13,
+        "sentences": 25
+      },
+      "score": 97,
+      "source": "fast",
+      "title": "ピーチの情報流出に関するお知らせ",
+      "warnings": [
+        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（KARTE・SMS・PPC）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-26T06:11:47.735421+00:00",
+      "attempt": 1,
+      "id": "b8ce8677beb6d99f",
+      "kind": "broad",
+      "model": "openai-api:gpt-6-luna",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 71.5,
+        "avg_sentence": 37.2,
+        "long_share": 0.04,
+        "max_paragraph": 116,
+        "paragraphs": 13,
+        "sentences": 25
+      },
+      "score": 100,
+      "source": "fast",
+      "title": "ピーチの情報流出に関するお知らせ",
+      "warnings": [
+        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（KARTE・SMS・PPC）"
       ]
     }
   ],
