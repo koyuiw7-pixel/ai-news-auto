@@ -81,9 +81,9 @@
   "affiliates": [],
   "newsType": "pricing",
   "todayActions": [
-    "総務省の目安表で、自分の給与収入と家族構成に近い年間上限額を調べる。",
-    "ほかに受ける控除も踏まえた上限の計算について、住んでいる市区町村に問い合わせる。",
-    "ワンストップ特例を使う場合は、寄附先の申請期限とオンライン申請への対応を確かめる。"
+    "総務省の目安表で、給与収入と家族構成に近い年間上限額を確認する。",
+    "ほかの控除もある人は、住んでいる市区町村に上限額の計算を相談する。",
+    "埼玉県への寄附で特例を使う人は、提出期限と必要書類を確認する。"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -156,5 +156,133 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/furusato-tax-deduction-limit-figure-1a56ac8a.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "埼玉県への寄附でワンストップ特例を使う場合、申請書に個人番号と身元確認の書類のコピーを添付します。郵送は簡易書留またはレターパックを利用するよう案内されています。",
+      "source": "https://www.pref.saitama.lg.jp/a0209/z-furusato/z-furusatoone.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "総務省｜ふるさと納税のしくみ｜税金の控除について",
+      "url": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/mechanism/deduction.html",
+      "source": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/mechanism/deduction.html",
+      "howTo": [
+        "総務省トップ",
+        "自治税務局",
+        "ふるさと納税ポータルサイト",
+        "ふるさと納税のしくみ",
+        "税金の控除について"
+      ],
+      "note": "具体的な計算は住んでいる市区町村に問い合わせるよう案内されていますが、自治体によっては上限額を回答できない場合があります。"
+    },
+    {
+      "name": "ふるさと納税ワンストップ特例制度（寄附金税額控除に係る申告の特例）について",
+      "url": "https://www.pref.saitama.lg.jp/a0209/z-furusato/z-furusatoone.html",
+      "source": "https://www.pref.saitama.lg.jp/a0209/z-furusato/z-furusatoone.html",
+      "howTo": [
+        "トップページ",
+        "くらし・環境",
+        "税金",
+        "制度の概要",
+        "ふるさと納税ワンストップ特例制度（寄附金税額控除に係る申告の"
+      ],
+      "note": "埼玉県への申請書は寄附をした年の翌年1月10日必着で、添付書類が不足している場合は受理されません。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "総務省の目安表で、給与収入と家族構成に近い年間上限額を確認する。",
+      "source": "https://www.soumu.go.jp/main_content/000816463.pdf",
+      "steps": [
+        "総務省「ふるさと納税制度とは」を開く",
+        "給与収入と家族構成に近い行を見る"
+      ],
+      "url": "https://www.soumu.go.jp/main_content/000816463.pdf"
+    },
+    {
+      "action": "ほかの控除もある人は、住んでいる市区町村に上限額の計算を相談する。",
+      "source": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/mechanism/deduction.html",
+      "steps": [
+        "総務省の「税金の控除について」を開く",
+        "具体的な計算を住んでいる市区町村に問い合わせる"
+      ],
+      "url": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/mechanism/deduction.html"
+    },
+    {
+      "action": "埼玉県への寄附で特例を使う人は、提出期限と必要書類を確認する。",
+      "source": "https://www.pref.saitama.lg.jp/a0209/z-furusato/z-furusatoone.html",
+      "steps": [
+        "埼玉県のワンストップ特例制度の案内を開く",
+        "申請期限と添付書類を確認する"
+      ],
+      "url": "https://www.pref.saitama.lg.jp/a0209/z-furusato/z-furusatoone.html"
+    }
+  ],
+  "cause": {
+    "text": "総務省は、ふるさと納税には地域社会の活性化や人口減少対策などの意義があると評価し、それをさらに生かして「地方創生」を進めるため、平成27年度税制改正で制度を拡充したと説明しています。",
+    "status": "background",
+    "source": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/topics/20150401.html"
+  },
+  "worries": [
+    {
+      "q": "目安表に載った金額なら、必ず自己負担は2,000円ですか？",
+      "a": "表の金額は目安です。実際の上限は本人の収入やほかに受ける控除によって変わり、上限を超えると寄附額から2,000円を引いた全額は控除されず、実質負担額が2,000円を超える場合があります。",
+      "source": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/mechanism/deduction.html",
+      "action": "寄附額を決める前に、ほかの控除も踏まえた計算を住んでいる市区町村に問い合わせてください。"
+    },
+    {
+      "q": "医療費控除を申告する場合も、ワンストップ特例を使えますか？",
+      "a": "医療費控除などで確定申告をする人は、ワンストップ特例の対象になりません。ふるさと納税の寄附金控除も、確定申告で受けることになります。",
+      "source": "https://www.pref.saitama.lg.jp/a0209/z-furusato/z-furusatoone.html",
+      "action": "確定申告をする際に、寄附先が発行した証明書や受領書などを用意してください。",
+      "actionSource": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/mechanism/deduction.html"
+    },
+    {
+      "q": "ワンストップ特例の申請が期限に遅れたり書類不足だとどうなりますか？",
+      "a": "埼玉県への申請書は寄附をした年の翌年1月10日必着です。期日を過ぎた申請や、添付書類が不足している申請は受理されません。",
+      "source": "https://www.pref.saitama.lg.jp/a0209/z-furusato/z-furusatoone.html",
+      "action": "埼玉県への寄附なら、申請書と添付書類を確認し、翌年1月10日必着で寄附先へ提出してください。"
+    },
+    {
+      "q": "ワンストップ特例を使うと、控除はいつどの税金に反映されますか？",
+      "a": "ワンストップ特例では所得税からの控除は行われず、その分も含めた控除額の全額が翌年度の住民税から控除されます。埼玉県の案内では、申請書受付書は送付後1か月以内に届くとしています。",
+      "source": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/mechanism/deduction.html",
+      "action": "特例申請後は、寄附先から届く申請書受付書を確認し、翌年度の住民税への反映を確かめてください。",
+      "actionSource": "https://www.pref.saitama.lg.jp/a0209/z-furusato/z-furusatoone.html"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "目安表の額を自分の上限としてよい？",
+      "situation": "ほかの控除があり、自分の上限が不明",
+      "recommend": "市区町村に具体的な計算を問い合わせる",
+      "reason": "総務省の表は目安で、実際の上限は収入やほかの控除によって変わります。市区町村に具体的な計算を問い合わせられますが、自治体によっては上限額を回答できない場合があります。",
+      "source": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/mechanism/deduction.html"
+    },
+    {
+      "question": "ワンストップ特例と確定申告、どちらにする？",
+      "situation": "確定申告が不要で、寄附先が5団体以内",
+      "recommend": "ワンストップ特例を選択肢にする",
+      "reason": "確定申告が不要な給与所得者等で寄附先が5団体以内なら、各自治体に申請して確定申告を不要にできます。所得税からの控除はなく、その分も含め翌年度の住民税から控除されます。",
+      "source": "https://www.soumu.go.jp/main_sosiki/jichi_zeisei/czaisei/czaisei_seido/furusato/mechanism/deduction.html"
+    },
+    {
+      "question": "ワンストップ特例と確定申告、どちらにする？",
+      "situation": "医療費控除などで確定申告をする",
+      "recommend": "ふるさと納税分も確定申告にまとめる",
+      "reason": "医療費控除などで確定申告をする人は、ワンストップ特例の対象外です。ふるさと納税の寄附金控除も確定申告で受ける必要があります。",
+      "source": "https://www.pref.saitama.lg.jp/a0209/z-furusato/z-furusatoone.html"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "申請書には番号と本人確認の書類も必要",
+    "cause": "制度が拡充された背景",
+    "steps": "寄附額を決める前に確かめること",
+    "desk": "計算と申請を確認する公式ページ",
+    "worries": "上限や申請方法で迷ったら",
+    "guide": "申告方法を選ぶときの目安"
+  },
+  "depthAt": "2026-11-26T07:33:15+00:00"
 }
