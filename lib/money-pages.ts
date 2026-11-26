@@ -110,6 +110,15 @@ export const MONEY_PAGES: MoneyPage[] = [
     guide: null,
     articles: ["winter-bonus-take-home-pay-calculation", "bonus-social-insurance-standard-cap", "employment-insurance-rate-fy2026", "civil-servant-winter-bonus-date-2026"],
   },
+  {
+    // 育児休業給付金・出生後休業支援給付金。計算ツールは 2026-11-26 追加
+    key: "ikukyu-kyufu",
+    match: /育児休業給付|育休給付|出生後休業支援給付金|出生時育児休業給付金/,
+    href: "/tools/ikukyu-kyufu",
+    label: "育休中にもらえるお金を計算する",
+    guide: null,
+    articles: ["childcare-leave-benefit-rates", "childcare-leave-benefit-50-percent-day181", "kokumin-nenkin-ikuji-menjo-2026"],
+  },
 ];
 
 type ArticleLike = { slug?: string; title: string; seoTitle?: string; tags?: string[] };

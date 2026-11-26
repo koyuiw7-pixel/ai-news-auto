@@ -34,6 +34,7 @@ const REFERENCE_LINKS = [
   { href: "/tools/denki-gas-discount", label: "冬の電気代・ガス代の値引き額の計算" },
   { href: "/tools/kogaku-ryoyohi", label: "高額療養費の自己負担の上限額の計算" },
   { href: "/tools/bonus-tedori", label: "冬のボーナスの手取りの計算" },
+  { href: "/tools/ikukyu-kyufu", label: "育休中にもらえるお金の計算" },
   ...LIFE_COMPARE_SLUGS.flatMap((slug) => {
     const found = lifeCompareGuide(slug);
     return found ? [{ href: found.href, label: `${guideShortName(found.guide)}の比較` }] : [];

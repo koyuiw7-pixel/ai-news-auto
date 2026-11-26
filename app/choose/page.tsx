@@ -33,7 +33,7 @@ export default function ChooseIndexPage() {
     return found ? [{ href: found.href, title: `${guideShortName(found.guide)}の比較`, note: found.guide.description }] : [];
   });
   // お金の計算ツール（ヘッダーの「比較・計算」の入口。2026-11-11 読者目線レビュー 14位）。10〜12月はふるさと納税を先に
-  const tools = [CALCULATORS["furusato-limit"], CALCULATORS["bonus-tedori"], CALCULATORS["child-allowance"], CALCULATORS["pension-support-benefit"], CALCULATORS["denki-gas-discount"], CALCULATORS["kogaku-ryoyohi"], CALCULATORS["defense-tax"]].map((t) => ({ href: t.href, title: t.title, note: t.description }));
+  const tools = [CALCULATORS["furusato-limit"], CALCULATORS["bonus-tedori"], CALCULATORS["child-allowance"], CALCULATORS["ikukyu-kyufu"], CALCULATORS["pension-support-benefit"], CALCULATORS["denki-gas-discount"], CALCULATORS["kogaku-ryoyohi"], CALCULATORS["defense-tax"]].map((t) => ({ href: t.href, title: t.title, note: t.description }));
   const chooses = getAllChooseGuides().map((guide) => ({ href: `/choose/${guide.slug}`, title: guide.articleLabel, note: guide.articleNote }));
 
   return (

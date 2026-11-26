@@ -22,8 +22,10 @@ import type { ArticleChart } from "@/lib/charts";
  * 4か月目からの額、年間の上限を、厚生労働省の資料と協会けんぽの案内で出す（式は lib/kogaku-ryoyohi.ts、テストは tests/test_kogaku_ryoyohi.cjs）。
  * 2026-11-26: 冬のボーナスの手取り（/tools/bonus-tedori）を追加。額面・前月の給与（社会保険料を引いた額）・扶養の数・年齢・都道府県から、
  * 協会けんぽの令和8年度の料率・2026年度の雇用保険料率・国税庁の賞与の算出率の表（令和8年分）で手取りと内訳を出す（式は lib/bonus-tedori.ts、テストは tests/test_bonus_tedori.cjs）。
+ * 2026-11-26: 育休中にもらえるお金（/tools/ikukyu-kyufu）を追加。月給と育休の長さから、育児休業給付金（最初の180日67%・以後50%）と出生後休業支援給付金（13%・28日まで）を、
+ * 厚生労働省の2026年8月1日改訂版の上限額・下限額で出す（式は lib/ikukyu-kyufu.ts、テストは tests/test_ikukyu_kyufu.cjs）。
  */
-export type CalculatorKind = "defense-tax" | "furusato-limit" | "child-allowance" | "pension-support-benefit" | "denki-gas-discount" | "kogaku-ryoyohi" | "bonus-tedori";
+export type CalculatorKind = "defense-tax" | "furusato-limit" | "child-allowance" | "pension-support-benefit" | "denki-gas-discount" | "kogaku-ryoyohi" | "bonus-tedori" | "ikukyu-kyufu";
 
 export type ArticleCalculator = {
   kind: CalculatorKind;
@@ -76,6 +78,12 @@ export const CALCULATORS: Record<CalculatorKind, { href: string; title: string; 
     href: "/tools/bonus-tedori",
     title: "冬のボーナスの手取りの計算",
     description: "ボーナスの額面と前月の給与、扶養の数、年齢、都道府県から、健康保険料・介護保険料・子ども・子育て支援金・厚生年金保険料・雇用保険料・所得税を引いた手取りを計算します。2026年度の料率と令和8年分の国税庁の表で出します。",
+    checked: "2026-11-26",
+  },
+  "ikukyu-kyufu": {
+    href: "/tools/ikukyu-kyufu",
+    title: "育休中にもらえるお金の計算",
+    description: "育休の前の月給と育休の長さから、育児休業給付金（最初の6か月は67%、7か月目から50%）と出生後休業支援給付金（13%の上乗せ・28日分まで）の1か月あたりの額と合計を、2026年8月1日からの上限額で計算します。",
     checked: "2026-11-26",
   },
 };
@@ -132,6 +140,7 @@ const CHILD_ALLOWANCE_WORDS = /児童手当/;
 const PENSION_SUPPORT_WORDS = /年金生活者支援給付金/;
 const KOGAKU_WORDS = /高額療養費/;
 const BONUS_WORDS = /ボーナス|賞与/;
+const IKUKYU_WORDS = /育児休業給付|育休給付|出生後休業支援給付金|出生時育児休業給付金/;
 const DENKI_GAS_WORDS = /電気・ガス料金(の)?支援|電気・ガス(料金|代)の?(補助|値引き)|電気代.{0,30}(値引き|円引き|補助|支援)|ガス代.{0,30}(値引き|円引き|補助|支援)/;
 
 /**
@@ -166,6 +175,10 @@ export function calculatorForArticle(article: ArticleLike): ArticleCalculator | 
   if (KOGAKU_WORDS.test(title)) {
     return { kind: "kogaku-ryoyohi", heading: /上限|限度額|いくら|自己負担|計算|区分|多数回/ };
   }
+  // 育児休業給付金・出生後休業支援給付金の記事（見出しに「育児休業給付」「育休給付」などがある記事だけ。2026-11-26）
+  if (IKUKYU_WORDS.test(title)) {
+    return { kind: "ikukyu-kyufu", heading: /いくら|金額|支給額|67|50|13|上乗せ|計算|181日目|境目|手取り/ };
+  }
   // ボーナス（賞与）の記事（見出しに「ボーナス」「賞与」がある記事だけ。2026-11-26）
   if (BONUS_WORDS.test(title)) {
     return { kind: "bonus-tedori", heading: /手取り|いくら|引かれる|社会保険料|所得税|計算|内訳/ };
@@ -187,5 +200,7 @@ export function calculatorForGuide(guide: { tool?: string; title: string; seoTit
   if (DENKI_GAS_WORDS.test(`${guide.title} ${guide.seoTitle ?? ""}`)) return "denki-gas-discount";
   // 高額療養費のガイド（/guides/kogaku-ryoyohi）からは、高額療養費の上限額の計算へ（2026-11-26）
   if (KOGAKU_WORDS.test(`${guide.title} ${guide.seoTitle ?? ""}`)) return "kogaku-ryoyohi";
+  // 育児休業給付のガイドからは、育休中にもらえるお金の計算へ（2026-11-26）
+  if (IKUKYU_WORDS.test(`${guide.title} ${guide.seoTitle ?? ""}`)) return "ikukyu-kyufu";
   return null;
 }

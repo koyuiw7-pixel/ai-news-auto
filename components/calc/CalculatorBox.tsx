@@ -10,6 +10,7 @@ const PensionSupportCalc = dynamic(() => import("@/components/calc/PensionSuppor
 const DenkiGasDiscountCalc = dynamic(() => import("@/components/calc/DenkiGasDiscountCalc"));
 const KogakuRyoyohiCalc = dynamic(() => import("@/components/calc/KogakuRyoyohiCalc"));
 const BonusTedoriCalc = dynamic(() => import("@/components/calc/BonusTedoriCalc"));
+const IkukyuKyufuCalc = dynamic(() => import("@/components/calc/IkukyuKyufuCalc"));
 
 /** 計算機ごとの注意書き（数字の前提。必ず表示する） */
 export const CALC_NOTES: Record<ArticleCalculator["kind"], string> = {
@@ -27,6 +28,8 @@ export const CALC_NOTES: Record<ArticleCalculator["kind"], string> = {
     "厚生労働省「高額療養費制度の見直しについて（令和８年８月診療分から）」と協会けんぽの案内の、2026年8月診療分から2027年7月診療分までの上限額で計算した目安です。総医療費は保険がきく医療費の全額（10割）で、入れなければ100万円で計算します。入院中の食事代や差額ベッド代などは含みません。区分は年収ではなく標準報酬月額（会社の健康保険）や所得（国民健康保険）で決まるため、実際の額は加入している健康保険で確かめてください。",
   "bonus-tedori":
     "協会けんぽの令和8年度の健康保険料率・介護保険料率（令和8年3月分から）と子ども・子育て支援金率（令和8年4月分から）、厚生年金保険料率18.3%、厚生労働省の2026年度の雇用保険料率（一般の事業）、国税庁「賞与に対する源泉徴収税額の算出率の表（令和8年分）」の甲欄で計算した目安です。本人負担分の1円未満は50銭以下を切り捨て、所得税は1円未満を切り捨てています。健康保険組合の人は、組合の率を入れてください。実際の額はボーナスの明細で確かめてください。",
+  "ikukyu-kyufu":
+    "厚生労働省「育児休業等給付の内容と支給申請手続」（2026年8月1日改訂版）の式と、2026年8月1日から2027年7月31日までの上限額・下限額（休業開始時賃金日額16,540円・3,203円）で計算した目安です。休業開始時賃金日額は月給×6÷180、1か月は30日、休業中に会社から給与が出ない場合として、1円未満は切り捨てています。実際の額は、会社が出す賃金の証明をもとにハローワークが決めます。",
 };
 
 /** 記事の中に置く計算機（本文の章の下、または本文の終わり） */
@@ -59,5 +62,6 @@ export function Calculator({ calc }: { calc: Pick<ArticleCalculator, "kind"> }) 
   if (calc.kind === "denki-gas-discount") return <DenkiGasDiscountCalc />;
   if (calc.kind === "kogaku-ryoyohi") return <KogakuRyoyohiCalc />;
   if (calc.kind === "bonus-tedori") return <BonusTedoriCalc />;
+  if (calc.kind === "ikukyu-kyufu") return <IkukyuKyufuCalc />;
   return <DefenseTaxCalc />;
 }
