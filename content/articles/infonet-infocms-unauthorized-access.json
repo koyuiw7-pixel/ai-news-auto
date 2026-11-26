@@ -76,9 +76,8 @@
     }
   ],
   "todayActions": [
-    "自社サイトがinfoCMSの共用サーバー上にあるか、cs_support@infonet.jp に確認する",
-    "公開停止中のサイトに代わる連絡手段を、お客様向けに用意する",
-    "インフォネットのNEWS&TOPICSで、再開や調査結果の続報を見る"
+    "契約企業の担当者は、サポートデスクに自社サイトが対象か確認する",
+    "NEWS&TOPICS一覧で、影響調査やサイト公開再開の続報を確認する"
   ],
   "publicInterest": "breach",
   "incident": {
@@ -123,5 +122,65 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/infonet-infocms-unauthorized-access-figure-aaa94570.jpg"
-  }
+  },
+  "officialDesk": [
+    {
+      "name": "株式会社インフォネット サポートデスク",
+      "url": "https://e-infonet.jp/news/detail.html?dispmid=594&itemid=1067",
+      "source": "https://e-infonet.jp/news/detail.html?dispmid=594&itemid=1067",
+      "note": "メール：cs_support@infonet.jp"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "契約企業の担当者は、サポートデスクに自社サイトが対象か確認する",
+      "source": "https://e-infonet.jp/news/detail.html?dispmid=594&itemid=1067",
+      "steps": [
+        "発表本文の「本件に関するお問い合わせ」を確認",
+        "cs_support@infonet.jp へ問い合わせる"
+      ],
+      "url": "https://e-infonet.jp/news/detail.html?dispmid=594&itemid=1067"
+    },
+    {
+      "action": "NEWS&TOPICS一覧で、影響調査やサイト公開再開の続報を確認する",
+      "source": "https://e-infonet.jp/news/detail.html?dispmid=594&itemid=1067",
+      "steps": [
+        "「NEWS&TOPICS一覧」を開く",
+        "新しいお知らせを確認する"
+      ],
+      "url": "https://e-infonet.jp/news/"
+    }
+  ],
+  "cause": {
+    "text": "インフォネットは、infoCMSの共用サーバーの一部で外部からの不正アクセスを確認しました。顧客のWebサイトとデータの安全を確保する予防措置として、2026年11月21日20時頃に対象サーバー上のサイト公開を停止し、影響範囲を調査中です。",
+    "status": "stated",
+    "source": "https://e-infonet.jp/news/detail.html?dispmid=594&itemid=1067"
+  },
+  "worries": [
+    {
+      "q": "対象サイトの公開停止は、何のために実施されたの？",
+      "a": "インフォネットは、お客様のWebサイトとデータの安全を確保するための予防措置として、対象サーバー上のWebサイトを一時停止したと説明しています。",
+      "source": "https://e-infonet.jp/news/detail.html?dispmid=594&itemid=1067",
+      "action": "発表本文の「今後の対応」を確認し、安全確保や公開再開に向けた対応を見守る。"
+    },
+    {
+      "q": "不正アクセスの影響範囲は、もう特定されている？",
+      "a": "発表時点では、専門チームが詳細な調査を行い、影響範囲の特定を進めている段階です。影響の確認・調査と安全確保を最優先に対応するとしています。",
+      "source": "https://e-infonet.jp/news/detail.html?dispmid=594&itemid=1067",
+      "action": "NEWS&TOPICS一覧を開き、影響範囲に関する新しい発表が出ていないか確認する。"
+    },
+    {
+      "q": "サイトの公開再開に向けて、会社は何を進めている？",
+      "a": "インフォネットは、不正アクセスによる影響の確認・調査に加え、安全な状態の確保とWebサイトの公開再開に向けた対応を進めていると発表しています。",
+      "source": "https://e-infonet.jp/news/detail.html?dispmid=594&itemid=1067",
+      "action": "NEWS&TOPICS一覧で、公開再開に関する続報が掲載されていないか確認する。"
+    }
+  ],
+  "depthHeadings": {
+    "cause": "公開停止は安全確保のための予防措置",
+    "steps": "対象確認と続報チェックをする",
+    "desk": "インフォネットへの問い合わせ先",
+    "worries": "停止の理由や調査の進み具合が気になる"
+  },
+  "depthAt": "2026-11-26T00:17:14+00:00"
 }
