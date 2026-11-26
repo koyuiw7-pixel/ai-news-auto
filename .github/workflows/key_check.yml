@@ -1,0 +1,18 @@
+name: Key check
+# Anthropic の鍵（secrets.ANTHROPIC_API_KEY）が使えるかだけを確かめる。鍵の値は表示しない。
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Anthropic key
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          code=$(curl -s -o /dev/null -w '%{http_code}' https://api.anthropic.com/v1/models \
+            -H "x-api-key: $ANTHROPIC_API_KEY" -H "anthropic-version: 2023-06-01")
+          echo "anthropic_status=$code"
+          test "$code" = "200"
