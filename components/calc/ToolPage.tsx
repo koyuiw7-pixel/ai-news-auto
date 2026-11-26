@@ -34,9 +34,33 @@ export default function ToolPage({ kind, lead, afterCalc, children }: { kind: Ca
         出典の公式ページを確かめた日：<time dateTime={meta.checked}>{checkedDateJa(meta.checked)}</time>
       </p>
       {afterCalc}
+      <OtherCalcs kind={kind} />
       {children ? <div className="mt-12 max-w-[40em]">{children}</div> : null}
       <ToolRelated href={meta.href} />
     </AssetShell>
+  );
+}
+
+/**
+ * 結果と広告のすぐ下に、ほかの「自分の場合」の計算へのリンク（2026-11-26）。
+ * 11/26 は児童手当のページに1日290人が来ても、2ページ目へ進んだ人がほぼ0だった。関連のリンクがページのいちばん下にしか無かったため
+ */
+function OtherCalcs({ kind }: { kind: CalculatorKind }) {
+  const others = (Object.keys(CALCULATORS) as CalculatorKind[]).filter((k) => k !== kind);
+  if (others.length === 0) return null;
+  return (
+    <nav aria-label="ほかの計算" className="mt-8 max-w-[40em] rounded-xl border border-line-strong px-4 py-4" data-other-calcs>
+      <p className="text-note font-bold text-ink">ほかにも「自分の場合」を計算できます</p>
+      <ul className="mt-2 grid gap-1.5 text-desc">
+        {others.map((k) => (
+          <li key={k}>
+            <Link href={CALCULATORS[k].href} className="text-accent underline underline-offset-4">
+              {CALCULATORS[k].title}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </nav>
   );
 }
 
