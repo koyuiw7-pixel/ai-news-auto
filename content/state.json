@@ -8792,6 +8792,20 @@
       "skipped": true,
       "url": "https://kabutan.jp/news/marketnews/?b=n202611160190"
     },
+    "1ff7cf9448e3aaa3": {
+      "at": "2026-11-26T08:13:01.456006+00:00",
+      "costUsd": 0.0046,
+      "intent": "breaking",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "safetyLane": true,
+      "score": 92,
+      "section": "public",
+      "slug": "new-balance-japan-karte-data-leak",
+      "url": "https://company.newbalance.jp/press/2026/p-74134"
+    },
     "200b45c3ad861410": {
       "at": "2026-11-12T16:11:44.178668+00:00",
       "reason": "prefilter: 価値の薄いお知らせ（委員会）",
@@ -24198,53 +24212,6 @@
   },
   "quality_log": [
     {
-      "accepted": true,
-      "at": "2026-11-24T09:58:42.871550+00:00",
-      "attempt": 1,
-      "id": "0ef3a10f6977050fcab96f369f04869d4d7ef700",
-      "kind": "trend",
-      "model": "claude:sonnet",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 125.7,
-        "avg_sentence": 41.9,
-        "long_share": 0.048,
-        "max_paragraph": 162,
-        "paragraphs": 7,
-        "sentences": 21
-      },
-      "score": 100,
-      "source": "trends",
-      "title": "山川 背 番号",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（TBS・NEWS・DIG）",
-        "読みやすさ: 段落が長い（平均 125.7字・最長 162字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-24T09:59:04.735935+00:00",
-      "attempt": 0,
-      "id": "0ef3a10f6977050fcab96f369f04869d4d7ef700",
-      "kind": "trend",
-      "model": "openai-api:gpt-6-luna",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 58.6,
-        "avg_sentence": 31.5,
-        "long_share": 0.0,
-        "max_paragraph": 97,
-        "paragraphs": 14,
-        "sentences": 26
-      },
-      "score": 94,
-      "source": "trends",
-      "title": "山川 背 番号",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（TBS・NEWS・DIG）"
-      ]
-    },
-    {
       "accepted": false,
       "at": "2026-11-24T10:47:57.530757+00:00",
       "attempt": 1,
@@ -31671,6 +31638,61 @@
       "title": "不正アクセスによるお客様情報漏えいに関するお詫びとお知らせ｜エーエフシー（AFC）公式オンラインショップ-健康食品と化粧品のエーエフシー公式オンラインショップ",
       "warnings": [
         "初めて出たところで言い換えていない略語（AFC・SMS・EC）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-26T08:12:25.408991+00:00",
+      "attempt": 1,
+      "id": "1ff7cf9448e3aaa3",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "「KARTE（…顧客データを使った接客・分析のサービス）」→元記事はKARTEの提供元と不正アクセスを記していますが、サービスの機能は説明していません。",
+        "「正確な影響範囲は調査中で、件数が変わる可能性があります」→元記事は現時点で影響を受けた情報を示していますが、調査継続中や件数が変わる可能性は明記していません。",
+        "「ニューバランス公式オンラインストアの会員が対象です」→影響を受けた情報が会員の情報であることは確認できますが、会員全員が対象であるかのようにも読める表現です。"
+      ],
+      "readability": {
+        "avg_paragraph": 72.0,
+        "avg_sentence": 38.4,
+        "long_share": 0.133,
+        "max_paragraph": 111,
+        "paragraphs": 8,
+        "sentences": 15
+      },
+      "score": 88,
+      "source": "fast",
+      "title": "NB公式 - ニュースリリース - 外部サービスにおける不正アクセスによる個人情報漏えいに関するお詫びとお知らせ New Balance【公式通販】",
+      "warnings": [
+        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（SMS）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-26T08:12:54.376914+00:00",
+      "attempt": 1,
+      "id": "1ff7cf9448e3aaa3",
+      "kind": "broad",
+      "model": "openai-api:gpt-6-luna",
+      "problems": [
+        "かんたん版「会社が電話やメールでパスワードやカード情報を聞くことはありません」→ 元記事の説明は「本件に関連して」電話・メール・SMSなどで尋ねないという内容で、会社全般の対応に広げています。",
+        "サイソクの見方「本文の差出人と窓口が上の公式窓口と一致するか確認」→ 元記事は不審な連絡への注意を促していますが、差出人と電話・フォームの窓口が一致するか確認するよう求めてはいません。照合方法としても分かりにくい表現です。"
+      ],
+      "readability": {
+        "avg_paragraph": 72.8,
+        "avg_sentence": 38.8,
+        "long_share": 0.067,
+        "max_paragraph": 124,
+        "paragraphs": 8,
+        "sentences": 15
+      },
+      "score": 92,
+      "source": "fast",
+      "title": "NB公式 - ニュースリリース - 外部サービスにおける不正アクセスによる個人情報漏えいに関するお詫びとお知らせ New Balance【公式通販】",
+      "warnings": [
+        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（SMS）"
       ]
     }
   ],
