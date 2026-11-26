@@ -8971,6 +8971,13 @@
       "trendLane": true,
       "url": "https://www.uniqlo.com/jp/ja/contents/corp/press-release/2026/11/_b_2027_utme.html"
     },
+    "1fce25e5f1796c62": {
+      "at": "2026-11-26T22:46:40.459670+00:00",
+      "model": "openai-api:gpt-6.1-terra",
+      "reason": "followup quality: 「件数はのべ数です」→ 元記事と確認済みの文脈に、ピーチの件数が延べ数だとの記載はありません。; 「ファンケル傘下のアテニア」→ 元記事はアテニアとファンケルの関係を説明しておらず、確認済みの文脈にもこの関係の裏付けがありません。",
+      "skipped": true,
+      "url": "https://www.fancl.jp/news/pdf/20261126_2.pdf"
+    },
     "1fce99d3ec8f3611ac0c5f9e48b8111941e1b849": {
       "at": "2026-11-16T05:06:31.793182+00:00",
       "reason": "trend: 重複: 見出しが類似（0.59）: yamaguchi-fg-ehime-bank-partnership",
@@ -24317,30 +24324,6 @@
   },
   "quality_log": [
     {
-      "accepted": true,
-      "at": "2026-11-24T18:23:49.510113+00:00",
-      "attempt": 0,
-      "id": "09920a322bf39bf9",
-      "kind": "broad",
-      "model": "openai-api:gpt-6-luna",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 86.8,
-        "avg_sentence": 39.2,
-        "long_share": 0.097,
-        "max_paragraph": 147,
-        "paragraphs": 14,
-        "sentences": 31
-      },
-      "score": 100,
-      "source": "tepco",
-      "title": "東京電力ホールディングス株式会社 柏崎刈羽原子力発電所の保安規定変更認可申請の補正書の提出について",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（LCO）",
-        "work_money（「仕事・お金にどう活かせる？」欄）が無い"
-      ]
-    },
-    {
       "accepted": false,
       "at": "2026-11-24T18:31:29.353793+00:00",
       "attempt": 1,
@@ -31814,6 +31797,21 @@
         "見出しが56字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（TOP）"
       ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-26T22:46:40.459519+00:00",
+      "attempt": 1,
+      "id": "1fce25e5f1796c62",
+      "kind": "update",
+      "model": "openai-api:gpt-6.1-terra",
+      "problems": [
+        "「件数はのべ数です」→ 元記事と確認済みの文脈に、ピーチの件数が延べ数だとの記載はありません。",
+        "「ファンケル傘下のアテニア」→ 元記事はアテニアとファンケルの関係を説明しておらず、確認済みの文脈にもこの関係の裏付けがありません。"
+      ],
+      "score": 84,
+      "source": "fast",
+      "title": "ファンケルの情報流出に関するお知らせ"
     }
   ],
   "short_text_retry": {
