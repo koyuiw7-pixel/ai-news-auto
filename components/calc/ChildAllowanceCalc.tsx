@@ -11,9 +11,10 @@ import {
   ymJa,
   type ChildCategory,
   type ChildInput,
+  CHILD_ALLOWANCE_RECEIVE,
 } from "@/lib/child-allowance";
 import { yen } from "@/lib/calc-math";
-import { INPUT_CLASS, ResultRow, Segmented } from "@/components/calc/parts";
+import { INPUT_CLASS, ReceiveSteps, ResultRow, Segmented } from "@/components/calc/parts";
 
 /**
  * 児童手当の「自分の場合」（/tools/child-allowance と、児童手当の記事の中）。式は lib/child-allowance.ts。
@@ -201,6 +202,7 @@ export default function ChildAllowanceCalc() {
           <p className="text-note leading-[1.7] text-ink-soft">子どもの生まれた年と月を選ぶと、ここに金額が出ます。</p>
         )}
       </div>
+      <ReceiveSteps guide={CHILD_ALLOWANCE_RECEIVE} className="mt-4" />
     </div>
   );
 }

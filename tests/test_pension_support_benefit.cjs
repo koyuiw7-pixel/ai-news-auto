@@ -149,3 +149,18 @@ test("計算機の登録：CALCULATORS・記事とガイドからの案内・関
   assert.match(read("app/choose/page.tsx"), /CALCULATORS\["pension-support-benefit"\]/);
   assert.match(read("lib/page-share.ts"), /"pension-support-benefit": \{ heading:/);
 });
+
+test("受け取るまでの流れ：はがきを出す・令和9年1月4日・受給中は原則手続き不要・偶数月に年金と同じ口座（日本年金機構 2026-11-27 確認）", () => {
+  const g = ps.PENSION_SUPPORT_RECEIVE;
+  assert.deepEqual(g.steps.map((s) => s.label), ["誰が", "どこへ", "いつまでに", "いつ入る"]);
+  const all = g.steps.map((s) => s.text).join("");
+  for (const fact of ["請求書（はがき型）", "緑の封筒", "毎年の手続きは原則いりません", "切手", "電子申請", "年金の請求書と一緒に", "令和9年（2027年）1月4日（月曜）", "令和8年10月分から", "偶数月の中旬", "年金と同じ口座"]) {
+    assert.ok(all.includes(fact), fact);
+  }
+  assert.doesNotMatch(all + g.title, /｜|ざっくり|人へ|→/);
+  for (const s of g.sources) assert.match(s.href, /^https:\/\/www\.nenkin\.go\.jp\//);
+  assert.ok(g.sources.some((s) => s.href.endsWith("/hagaki/kigen.html")));
+  assert.equal(g.checked, "2026-11-27");
+  const calc = read("components/calc/PensionSupportCalc.tsx");
+  assert.match(calc, /data-pension-support-result[\s\S]*次にすること[\s\S]*<ReceiveSteps guide=\{PENSION_SUPPORT_RECEIVE\} \/>/);
+});

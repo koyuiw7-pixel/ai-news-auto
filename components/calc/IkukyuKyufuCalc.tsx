@@ -13,8 +13,9 @@ import {
   daysJa,
   ikukyuKyufu,
   yenJa,
+  IKUKYU_RECEIVE,
 } from "@/lib/ikukyu-kyufu";
-import { Field, INPUT_CLASS, ResultRow, Segmented, toNumber } from "@/components/calc/parts";
+import { Field, INPUT_CLASS, ReceiveSteps, ResultRow, Segmented, toNumber } from "@/components/calc/parts";
 
 /**
  * 育児休業給付金と出生後休業支援給付金の目安（/tools/ikukyu-kyufu と、見出しに「育児休業給付」「育休」がある記事の中）。式は lib/ikukyu-kyufu.ts。
@@ -120,6 +121,7 @@ export default function IkukyuKyufuCalc() {
           <p className="text-note leading-[1.7] text-ink-soft">月給と育休の長さを入れると、ここに金額が出ます。</p>
         )}
       </div>
+      <ReceiveSteps guide={IKUKYU_RECEIVE} />
     </div>
   );
 }

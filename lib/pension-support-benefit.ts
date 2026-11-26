@@ -23,6 +23,8 @@
  * これは令和8年9月分までの判定の数字で、令和8年10月分からは制度の案内ページ（rourei.html、2026年10月1日更新）の 926,500円・924,100円を使う。
  */
 
+import type { ReceiveGuide } from "@/lib/receive-steps";
+
 export type PensionKind = "old" | "disability" | "survivor";
 export type Answer = "yes" | "no" | "unknown";
 /** 生年月日の区分。after＝昭和31年（1956年）4月2日以後、before＝昭和16年4月2日〜昭和31年4月1日、veryOld＝昭和16年（1941年）4月1日以前 */
@@ -288,3 +290,43 @@ export function nextSteps(input: PensionSupportInput, result: PensionSupportResu
     call,
   ];
 }
+
+/**
+ * 受け取るまでの流れ（計算機の結果のすぐ下に出す）。2026-11-27 に次の日本年金機構のページを開いて確かめた。
+ *  - 「年金生活者支援給付金請求書（はがき型）が届いた方へ」 https://www.nenkin.go.jp/service/jukyu/tetsuduki/sonota-kyufu/shienkyufukin/seikyu/ta.html
+ *    新たに受け取れる方に、はがき型の請求書が入った「緑の封筒」が届く。目隠しシールと切手を貼って投函、または電子申請。
+ *  - 年金Q&A「手続きが遅れると…」 https://www.nenkin.go.jp/section/faq/jukyu/seido/sonota-kyufu/shienkyufukin/hagaki/kigen.html
+ *    令和9年1月4日（月曜）までに日本年金機構へ届けば令和8年10月分から。届かなければ請求した月の翌月分から。
+ *  - 年金Q&A「毎年、手続きが必要ですか」 https://www.nenkin.go.jp/section/faq/jukyu/seido/sonota-kyufu/shienkyufukin/tetsuduki/tetsuduki03.html
+ *    引き続き支給要件を満たしている場合、翌年以降の手続きは原則不要。いったん止まった後に再び対象になったときは改めて請求。
+ *  - 「年金生活者支援給付金制度について」 https://www.nenkin.go.jp/service/jukyu/seido/sonota-kyufu/shienkyufukin/20190805.html
+ *    請求書の提出から1〜2カ月後に支給決定通知書。原則、偶数月の中旬に2カ月分（前月・前々月）を年金と同じ受取口座に年金とは別に支払う。
+ *  - 新しく年金を請求する方は、年金の請求書と一緒に給付金の請求書を出す（roureikiso.html・syougaiizoku.html）。
+ */
+export const PENSION_SUPPORT_RECEIVE: ReceiveGuide = {
+  title: "年金生活者支援給付金を受け取るまでの流れ",
+  steps: [
+    {
+      label: "誰が",
+      text: "すでに年金を受けていて新しく対象になった人に、日本年金機構から請求書（はがき型）の入った緑の封筒が届きます。届いた本人が出します。すでに給付金を受け取っている人は、続けて対象なら毎年の手続きは原則いりません。",
+    },
+    {
+      label: "どこへ",
+      text: "はがきに名前などを書き、目隠しシールと切手を貼ってポストへ（電子申請もできます）。これから年金を請求する人は、年金の請求書と一緒に給付金の請求書を年金事務所へ出します。",
+    },
+    {
+      label: "いつまでに",
+      text: `${PENSION_SUPPORT_HAGAKI_DEADLINE}までに日本年金機構に届けば、令和8年10月分からさかのぼって受け取れます。過ぎても出せますが、出した月の次の月の分からになります。`,
+    },
+    {
+      label: "いつ入る",
+      text: "出してから1〜2か月ほどで支給決定通知書が届きます。お金は偶数月の中旬に、前の2か月分が年金と同じ口座に、年金とは別に振り込まれます。",
+    },
+  ],
+  sources: [
+    { href: "https://www.nenkin.go.jp/service/jukyu/tetsuduki/sonota-kyufu/shienkyufukin/seikyu/ta.html", label: "日本年金機構「年金生活者支援給付金請求書（はがき型）が届いた方へ」" },
+    { href: "https://www.nenkin.go.jp/section/faq/jukyu/seido/sonota-kyufu/shienkyufukin/hagaki/kigen.html", label: "日本年金機構 年金Q&A（手続きが遅れたとき）" },
+    { href: "https://www.nenkin.go.jp/section/faq/jukyu/seido/sonota-kyufu/shienkyufukin/tetsuduki/tetsuduki03.html", label: "日本年金機構 年金Q&A（毎年の手続き）" },
+  ],
+  checked: "2026-11-27",
+};

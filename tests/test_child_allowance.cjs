@@ -142,3 +142,20 @@ test("計算機の登録：CALCULATORS・記事とガイドからの案内・関
   assert.match(read("lib/sitemap.ts"), /"\/tools\/child-allowance"[^\]]*\]\.map\(fixed\)/);
   assert.ok(fs.existsSync(path.join(root, "components/calc/ChildAllowanceCalc.tsx")));
 });
+
+test("受け取るまでの流れ：結果のすぐ下に①誰が②どこへ③いつまでに④いつ入る、公式の案内つき（こども家庭庁 2026-11-27 確認）", () => {
+  const g = ca.CHILD_ALLOWANCE_RECEIVE;
+  assert.deepEqual(g.steps.map((s) => s.label), ["誰が", "どこへ", "いつまでに", "いつ入る"]);
+  const all = g.steps.map((s) => s.text).join("");
+  for (const fact of ["認定請求書", "額改定認定請求書", "市区町村", "公務員は勤務先", "15日以内", "申請した月の分から", "名義の口座", "健康保険", "現況届は原則いりません", "2月・4月・6月・8月・10月・12月"]) {
+    assert.ok(all.includes(fact), fact);
+  }
+  assert.doesNotMatch(all + g.title, /｜|ざっくり|人へ|→/);
+  assert.ok(g.sources.some((s) => s.href === "https://www.cfa.go.jp/policies/kokoseido/jidouteate/annai"));
+  for (const s of g.sources) assert.match(s.href, /^https:\/\/www\.cfa\.go\.jp\//);
+  assert.equal(g.checked, "2026-11-27");
+  const calc = read("components/calc/ChildAllowanceCalc.tsx");
+  // 結果の欄（data-child-allowance-result）のすぐ後ろに置く。次の一手の行はそのまま
+  assert.match(calc, /data-child-allowance-result[\s\S]*data-child-allowance-next[\s\S]*<ReceiveSteps guide=\{CHILD_ALLOWANCE_RECEIVE\}/);
+  assert.match(read("components/calc/parts.tsx"), /data-receive-steps/);
+});

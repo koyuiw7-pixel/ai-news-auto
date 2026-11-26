@@ -1,4 +1,6 @@
 import type { ReactNode } from "react";
+import { checkedDateJa } from "@/lib/calculators";
+import type { ReceiveGuide } from "@/lib/receive-steps";
 
 /** 計算機の共通部品（サーバー・クライアントどちらからも使える見た目だけの部品） */
 
@@ -70,4 +72,38 @@ export function toNumber(text: string): number | null {
   if (normalized === "") return null;
   const value = Number(normalized);
   return Number.isFinite(value) && value >= 0 ? value : null;
+}
+
+const STEP_MARKS = ["①", "②", "③", "④"];
+
+/** 結果のすぐ下に出す「受け取るまでの流れ」（①誰が ②どこへ ③いつまでに ④いつ入る）。中身は制度ごとの lib に公式ページどおりに書く */
+export function ReceiveSteps({ guide, className = "" }: { guide: ReceiveGuide; className?: string }) {
+  return (
+    <section aria-label={guide.title} className={`rounded-xl border border-line-strong bg-paper px-4 py-4 ${className}`} data-receive-steps>
+      <h3 className="text-desc font-bold text-ink">{guide.title}</h3>
+      <ol className="mt-2 grid gap-2.5">
+        {guide.steps.map((step, i) => (
+          <li key={step.label} className="grid grid-cols-[auto_1fr] gap-x-2 text-note leading-[1.7]">
+            <span className="font-bold text-accent" aria-hidden="true">{STEP_MARKS[i]}</span>
+            <p>
+              <span className="font-bold text-ink">{step.label}</span>
+              <span className="mt-0.5 block text-ink-soft">{step.text}</span>
+            </p>
+          </li>
+        ))}
+      </ol>
+      <p className="mt-3 border-t border-line pt-3 text-meta leading-[1.7] text-ink-soft">
+        {"公式の案内："}
+        {guide.sources.map((source, i) => (
+          <span key={source.href}>
+            {i > 0 ? "、" : null}
+            <a href={source.href} target="_blank" rel="noopener" className="text-accent underline underline-offset-2">
+              {source.label}
+            </a>
+          </span>
+        ))}
+        {`（${checkedDateJa(guide.checked)}確認）`}
+      </p>
+    </section>
+  );
 }

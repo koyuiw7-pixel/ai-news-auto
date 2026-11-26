@@ -5,6 +5,7 @@ import {
   PENSION_SUPPORT,
   PENSION_SUPPORT_NEXT_PAYMENT,
   PENSION_SUPPORT_PERIOD,
+  PENSION_SUPPORT_RECEIVE,
   VERDICT_LABELS,
   nextSteps,
   pensionSupport,
@@ -16,7 +17,7 @@ import {
   type PensionSupportInput,
 } from "@/lib/pension-support-benefit";
 import { yen } from "@/lib/calc-math";
-import { Field, INPUT_CLASS, ResultRow, Segmented, toNumber } from "@/components/calc/parts";
+import { Field, INPUT_CLASS, ReceiveSteps, ResultRow, Segmented, toNumber } from "@/components/calc/parts";
 
 /**
  * 年金生活者支援給付金の「自分の場合」（/tools/pension-support-benefit と、年金生活者支援給付金の記事の中）。式は lib/pension-support-benefit.ts。
@@ -229,6 +230,7 @@ export default function PensionSupportCalc() {
           ))}
         </ul>
       </div>
+      <ReceiveSteps guide={PENSION_SUPPORT_RECEIVE} />
     </div>
   );
 }

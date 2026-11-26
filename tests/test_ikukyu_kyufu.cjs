@@ -122,3 +122,18 @@ test("計算機の登録：CALCULATORS・記事とガイドからの案内・関
   assert.match(read("app/choose/page.tsx"), /CALCULATORS\["ikukyu-kyufu"\]/);
   assert.match(read("lib/page-share.ts"), /"ikukyu-kyufu": \{ heading:/);
 });
+
+test("受け取るまでの流れ：会社がハローワークへ・4か月の期限・約1週間（厚生労働省の手引 2026-11-27 確認）", () => {
+  const g = k.IKUKYU_RECEIVE;
+  assert.deepEqual(g.steps.map((s) => s.label), ["誰が", "どこへ", "いつまでに", "いつ入る"]);
+  const all = g.steps.map((s) => s.text).join("");
+  for (const fact of ["会社が申請", "自分で出す", "ハローワーク", "母子健康手帳の写し", "口座", "出生後休業支援給付金", "同じ申請書", "4か月を過ぎる日がある月の末日", "11月30日", "58日目", "2か月に1回", "約1週間"]) {
+    assert.ok(all.includes(fact), fact);
+  }
+  assert.doesNotMatch(all + g.title, /｜|ざっくり|人へ|→/);
+  assert.deepEqual(g.sources, [k.IKUKYU_SOURCES.pamphlet]);
+  assert.equal(g.checked, "2026-11-27");
+  const calc = read("components/calc/IkukyuKyufuCalc.tsx");
+  assert.match(calc, /data-ikukyu-result[\s\S]*data-ikukyu-next[\s\S]*<ReceiveSteps guide=\{IKUKYU_RECEIVE\} \/>/);
+  assert.match(read("app/tools/ikukyu-kyufu/page.tsx"), /q: "最初の申請はいつまでですか"/);
+});
