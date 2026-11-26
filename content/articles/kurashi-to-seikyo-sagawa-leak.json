@@ -75,9 +75,9 @@
     }
   ],
   "todayActions": [
-    "6月21日〜9月30日に佐川急便で「くらしと生協」を受け取ったか、配送の履歴で確かめる",
-    "不安があれば佐川急便の専用コールセンター（0120-28-3449、午前9時〜午後5時）に問い合わせる",
-    "パルシステムを名乗る電話・SMSで暗証番号やカード情報を聞かれても答えず、URLも開かない"
+    "対象期間に佐川急便で受け取ったか、配送履歴を確認する",
+    "対象か判断できない場合は、佐川急便の専用窓口に問い合わせる",
+    "不審なSMSを受け取りたくない場合は、迷惑メッセージブロック機能を活用する"
   ],
   "publicInterest": "breach",
   "incident": {
@@ -127,5 +127,113 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/kurashi-to-seikyo-sagawa-leak-figure-c839660e.jpg"
-  }
+  },
+  "officialDesk": [
+    {
+      "name": "佐川急便 専用コールセンター",
+      "url": "https://information.pal-system.co.jp/press/20261126-incident/",
+      "source": "https://information.pal-system.co.jp/press/20261126-incident/",
+      "phone": "0120-28-3449",
+      "hours": "午前9時～午後5時（土日・祝日を含む）"
+    },
+    {
+      "name": "よくあるご質問（FAQ）「お荷物問い合わせサービス」への不正アクセスについて",
+      "url": "https://www2.sagawa-exp.co.jp/information/detail/425/",
+      "source": "https://information.pal-system.co.jp/press/20261126-incident/",
+      "howTo": [
+        "佐川急便ホームページ",
+        "よくあるご質問（FAQ）"
+      ]
+    },
+    {
+      "name": "パルシステム問い合わせ",
+      "url": "https://support.pal-system.co.jp/contact/",
+      "source": "https://information.pal-system.co.jp/press/20261126-incident/"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "対象期間に佐川急便で受け取ったか、配送履歴を確認する",
+      "source": "https://information.pal-system.co.jp/press/20261126-incident/",
+      "steps": [
+        "2026年6月21日～9月30日の配送を確認する",
+        "配送会社が佐川急便か照らし合わせる"
+      ]
+    },
+    {
+      "action": "対象か判断できない場合は、佐川急便の専用窓口に問い合わせる",
+      "source": "https://information.pal-system.co.jp/press/20261126-incident/",
+      "steps": [
+        "0120-28-3449に電話する",
+        "午前9時～午後5時に問い合わせる（土日・祝日も受付）"
+      ],
+      "url": "https://information.pal-system.co.jp/press/20261126-incident/"
+    },
+    {
+      "action": "不審なSMSを受け取りたくない場合は、迷惑メッセージブロック機能を活用する",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "steps": [
+        "携帯電話会社などが提供する設定を確認する",
+        "迷惑メッセージブロック機能を活用する"
+      ],
+      "url": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html"
+    }
+  ],
+  "cause": {
+    "text": "佐川急便の「お荷物問い合わせサービス」で第三者による不正アクセスが発生し、同社が取り扱った荷物に関する個人情報の一部が外部へ流出した可能性が公表されました。今回の対象は、同サービスを利用した「くらしと生協」の配送分です。",
+    "status": "stated",
+    "source": "https://information.pal-system.co.jp/press/20261126-incident/"
+  },
+  "worries": [
+    {
+      "q": "対象者数に入っていたら、私の情報も流出したの？",
+      "a": "118,806人は該当期間中に佐川急便を利用したのべ利用者数で、実際に個人情報の流出が確認された人数ではありません。対象情報として届け先の氏名、住所、電話番号が挙げられています。",
+      "source": "https://information.pal-system.co.jp/press/20261126-incident/",
+      "action": "2026年6月21日～9月30日に佐川急便で受け取ったか確認し、判断に迷えば専用コールセンターへ問い合わせてください。"
+    },
+    {
+      "q": "クレジットカード情報やパスワードも漏れたの？",
+      "a": "パルシステムの発表では、該当する組合員のメールアドレス、クレジットカード情報およびパスワードは含まれていないとされています。現時点で、本件に関連する個人情報の不正利用などの二次被害も確認されていません。",
+      "source": "https://information.pal-system.co.jp/press/20261126-incident/",
+      "action": "パルシステムを名乗る連絡で暗証番号やカード情報を尋ねられても答えず、心当たりのないリンクは開かないでください。"
+    },
+    {
+      "q": "パルシステムを名乗るメールなら本物と見分けられる？",
+      "a": "警察庁は、メールの送信元名称や送信元メールアドレスは偽装が容易で、表示だけを見て真偽を判断することは困難と説明しています。見た目だけで本物と決めないことが大切です。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "action": "メールやSMSのリンクを開かず、公式サイトをブックマークから開くか、公式アプリを使って正しいサイトに接続してください。",
+      "general": true
+    },
+    {
+      "q": "不審な連絡に情報を入力してしまったらどうすればいい？",
+      "a": "警察庁は、フィッシングサイトなどに普段使うIDやパスワードを入力した場合、そのIDやパスワードを使っているすべてのサービスで速やかに変更するよう案内しています。被害に遭ったサービスの提供会社への相談も示しています。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "action": "入力したIDやパスワードを使うサービスのパスワードを速やかに変更し、被害に遭ったサービスの提供会社に相談してください。",
+      "general": true
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "自分が対象か分からないとき、どこに聞く？",
+      "situation": "対象期間の配送か判断できない",
+      "recommend": "専用コールセンターに確認する",
+      "reason": "パルシステムは本件の問い合わせ先として佐川急便の専用コールセンターを案内しています。対象条件は、2026年6月21日～9月30日に佐川急便で商品を受け取った組合員です。",
+      "source": "https://information.pal-system.co.jp/press/20261126-incident/"
+    },
+    {
+      "question": "公表内容を確認するとき、電話とFAQどちら？",
+      "situation": "まず案内内容を自分で読みたい",
+      "recommend": "佐川急便のFAQを確認する",
+      "reason": "パルシステムは本件の問い合わせ先として、佐川急便ホームページのFAQにある「お荷物問い合わせサービス」への不正アクセスについてを案内しています。個別に確認したい場合は専用コールセンターも示されています。",
+      "source": "https://information.pal-system.co.jp/press/20261126-incident/"
+    }
+  ],
+  "depthHeadings": {
+    "cause": "今回の流出可能性が公表された経緯",
+    "steps": "対象か確かめ、必要なら窓口へ",
+    "desk": "佐川急便とパルシステムの問い合わせ先",
+    "worries": "自分やカード情報は大丈夫？",
+    "guide": "電話とFAQ、どちらに確認する？"
+  },
+  "depthAt": "2026-11-26T21:28:19+00:00"
 }
