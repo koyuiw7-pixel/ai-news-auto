@@ -56,6 +56,18 @@ def _zero_visit_slugs() -> frozenset[str]:
 
 
 ZERO_VISIT = _zero_visit_slugs()
+# 読まれていない記事を検索から外す一覧（2026-11-28 オーナー承認。作り直しは scripts/prune_noindex.py。lib/indexing.ts も同じファイルを読む）
+PRUNED_FILE = ROOT / "content" / "noindex_pruned.json"
+
+
+def _pruned_slugs() -> frozenset[str]:
+    try:
+        return frozenset(json.loads(PRUNED_FILE.read_text("utf-8")).get("slugs") or [])
+    except (OSError, ValueError):
+        return frozenset()
+
+
+PRUNED = _pruned_slugs()
 # 検索に実際に表示されていたので、本文が短くても short の noindex にしない記事（2026-11-22・台帳 A72 の例外。lib/indexing.ts も同じファイルを読む）
 SHORT_EXEMPT_FILE = ROOT / "content" / "noindex_short_exempt.json"
 
@@ -635,6 +647,9 @@ def noindex_reason(article: dict, dups: set[str] | frozenset = frozenset()) -> s
     # 14日間訪問0の記事（content/noindex_zero_visit.json。2026-11-10 オーナー承認。公開したまま・広告なし）
     if article.get("slug") in ZERO_VISIT:
         return "zero-visit"
+    # 読まれていない記事（content/noindex_pruned.json。2026-11-28 オーナー承認。公開したまま・広告は出す）
+    if article.get("slug") in PRUNED:
+        return "pruned"
     # 2026-11-25 AdSense の点検: 報道を出典にした記事（press）・動画だけから作った記事（video-only）は検索に出さない。記事は消さない
     if press_sourced(article):
         return "press"
@@ -652,6 +667,7 @@ NOINDEX_LABELS = {
     "short": f"本文が短い（空白を除いて{SHORT_BODY}字未満。2026-11-21 オーナー承認）",
     "duplicate": "同じ出来事・同じ切り口の記事の重複（代表の記事を検索に出す）",
     "zero-visit": "14日間訪問0の一覧",
+    "pruned": "読まれていない記事の一覧（2026-11-28 オーナー承認。content/noindex_pruned.json）",
     "press": "報道機関・ニュースの集約サイトを出典にした記事（2026-11-25 AdSense の点検）",
     "video-only": "動画だけから作った記事（2026-11-25 AdSense の点検）",
 }

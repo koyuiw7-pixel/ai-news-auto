@@ -220,6 +220,7 @@ PROSE_WRITERS = {
 }
 # 文章を作らない（決まった欄だけ直す・記録だけ足す・読むだけで別のファイルに書く）もの。理由つき
 NON_PROSE = {
+    "prune_noindex.py": "記事は書かない。記事の一覧と訪問の数を読み、検索から外す一覧（content/noindex_pruned.json）と控えの CSV を書くだけ（2026-11-28 オーナー承認）",
     "md_markers.py": "文を足さない。読者の欄から表示されない太字の記号（**・__）を消すだけ（文字はそのまま。--apply のときだけ今ある記事を書き戻す。2026-11-27 台帳 W50）",
     "deploy_hold.py": "記事は書かない。git add 済みの記事（content/articles）の名前を読み、デプロイを保留した記事の控え（state/deploy_held.json）を書くだけ（2026-11-17）",
     "incident_watch.py": "記事は書かない。記事の一覧を読んで同じ事故の記事があるかを見るだけ。書くのは見張りの記録（state/incident_watch.json）で、記事は速報レーン（web_articles.py）が同じ門を通して作る（台帳 W44）",

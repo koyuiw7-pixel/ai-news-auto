@@ -16,8 +16,8 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    // 強み（最速・日本語・使えるかの判定）が伝わる題名。区切りの縦棒は使わない
-    default: `${siteConfig.siteName} 暮らしとお金の新しい動きが最速でわかる`,
+    // 強み（あなたの家の数字が分かる）が伝わる題名。区切りの縦棒は使わない（2026-11-28 「最速」をやめた）
+    default: `${siteConfig.siteName} ${siteConfig.tagline}`,
     template: `%s - ${siteConfig.name}`,
   },
   description: siteConfig.description,

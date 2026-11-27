@@ -413,7 +413,8 @@ export default async function ArticlePage({ params }: Props) {
     {
       "@context": "https://schema.org",
       "@type": "NewsArticle",
-      headline: articleTitle(article),
+      // Google の記事の構造化データは見出し110字まで（Google ニュース・Discover の準備。2026-11-28）
+      headline: articleTitle(article).slice(0, 110),
       description: article.description,
       // サイトで配信する写真（/img/、幅 1200px の JPEG）があれば先頭に置く（Google Discover の大きな画像。robots は max-image-preview:large）。
       // 写真が無い・外部の画像の記事は従来どおり見出し入りのカバーが先

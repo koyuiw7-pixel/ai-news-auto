@@ -58,7 +58,7 @@ export function GET() {
   const text = [
     `# ${siteConfig.name}\n`,
     `> ${siteConfig.description}\n`,
-    `${siteConfig.name}は、企業・官公庁の公式ブログ・ニュースリリース・発表を常時監視し、日本語の記事にする速報メディアです。公式の資料が無い話題は報道機関の記事を出典にし、その旨を記事に明記しています。運営：${siteConfig.operator.name}（${siteConfig.operator.email}）\n`,
+    `${siteConfig.name}は、企業・官公庁の公式ブログ・ニュースリリース・発表を常時監視し、日本語の記事にするニュースサイトです。制度や料金が変わったとき、読者の家の金額・期限・やることを公式の数字で伝えます。公式の資料が無い話題は報道機関の記事を出典にし、その旨を記事に明記しています。運営：${siteConfig.operator.name}（${siteConfig.operator.email}）\n`,
     section("このサイトについて", about),
     section("手続きとお金のガイド", moneyGuides.map((g) => line(g.title, `${base}/guides/${g.slug}`, g.description))),
     section("計算ツール", Object.values(CALCULATORS).map((c) => line(c.title, `${base}${c.href}`, c.description))),

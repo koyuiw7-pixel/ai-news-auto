@@ -245,10 +245,11 @@ def _load_json(name: str):
 
 
 def excluded_slugs() -> set[str]:
-    """検索に出さない記事（content/noindex_zero_visit.json）と、取り下げた記事（content/retired.json）"""
+    """検索に出さない記事（content/noindex_zero_visit.json・noindex_pruned.json）と、取り下げた記事（content/retired.json）"""
     noindex = _load_json("noindex_zero_visit.json").get("slugs") or []
+    pruned = _load_json("noindex_pruned.json").get("slugs") or []
     retired = _load_json("retired.json").get("articles") or {}
-    return set(noindex) | set(retired)
+    return set(noindex) | set(pruned) | set(retired)
 
 
 def wide_rank(record: dict, views: dict) -> tuple:

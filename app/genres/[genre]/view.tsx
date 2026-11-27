@@ -15,7 +15,7 @@ import { pageHref, pageSuffix, paginate } from "@/lib/paginate";
 import { broadGenresWithArticles, broadSection } from "@/lib/sections";
 
 const GENRE_COPY: Record<string, string> = {
-  ai: "OpenAI・Google・Anthropic など世界のAI企業の公式ブログ・発表動画を、公開から最短数分で日本語にまとめます。新機能・料金・日本で使えるか・仕事にどう活かせるかまで整理しています。",
+  ai: "OpenAI・Google・Anthropic など世界のAI企業の公式ブログ・発表動画を、日本語にまとめます。新機能・料金・日本で使えるか・仕事にどう活かせるかまで整理しています。",
   // 投資・マネーと不動産の説明は lib/sections.ts の BROAD_SECTIONS（/news・トップと同じ文）
 };
 

@@ -4,6 +4,8 @@ import type { ArticleSummary } from "@/lib/articles";
 import rules from "./index-rules.json";
 // 14日間訪問0の記事の一覧（2026-11-10 オーナー承認。正本は content/noindex_zero_visit.json。scripts/indexnow.py も同じファイルを読む）
 import zeroVisit from "../content/noindex_zero_visit.json";
+// 読まれていない記事を検索から外す一覧（2026-11-28 オーナー承認。正本は content/noindex_pruned.json。作り直しは scripts/prune_noindex.py）
+import pruned from "../content/noindex_pruned.json";
 // 検索に出したままにする一覧ページ（2026-11-12 AdSense 監査。読まれた一覧は、記事が少なくても外さない）
 import listGuard from "../content/list_pages_protected.json";
 // 検索に実際に表示されていたので、本文が短くても short にしない記事（2026-11-22・台帳 A72 の例外。scripts/indexnow.py も同じファイルを読む）
@@ -155,6 +157,13 @@ export function isZeroVisit(slug: string | undefined | null): boolean {
   return Boolean(slug) && ZERO_VISIT.has(slug as string);
 }
 
+/** 読まれていない記事（content/noindex_pruned.json）。公開したまま・広告も出す。検索・サイトマップからだけ外す */
+const PRUNED = new Set<string>(pruned.slugs);
+
+export function isPruned(slug: string | undefined | null): boolean {
+  return Boolean(slug) && PRUNED.has(slug as string);
+}
+
 /** 本文が無いとみなす字数（scripts/indexnow.py の NO_BODY） */
 export const NO_BODY: number = rules.noBody;
 /**
@@ -218,6 +227,8 @@ export function noindexReason(article: ArticleSummary): string | null {
   if (article.duplicate || (article.duplicateOf && article.duplicateOf !== article.slug)) return "duplicate";
   // 14日間訪問0の記事（content/noindex_zero_visit.json。2026-11-10 オーナー承認。記事は消さない）
   if (isZeroVisit(article.slug)) return "zero-visit";
+  // 読まれていない記事（content/noindex_pruned.json。2026-11-28 オーナー承認。記事は消さない・広告は出す）
+  if (isPruned(article.slug)) return "pruned";
   // 2026-11-25 AdSense の点検: 報道を出典にした記事（press）・動画だけから作った記事（video-only）は検索に出さない（記事は消さない）
   if (isPressSourced(article)) return "press";
   if (isVideoOnly(article)) return "video-only";
