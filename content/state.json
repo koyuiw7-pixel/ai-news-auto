@@ -3800,7 +3800,7 @@
     }
   },
   "major_tries": {
-    "18617d487eac5605": 1
+    "18617d487eac5605": 2
   },
   "pi_reopened": {
     "08479a0194d913a5": "2026-11-23T16:31:02.544288+00:00",
@@ -24414,31 +24414,6 @@
   "quality_log": [
     {
       "accepted": true,
-      "at": "2026-11-24T21:21:36.120586+00:00",
-      "attempt": 1,
-      "id": "af9601834632851214f33f23d219e5ff29d238da",
-      "kind": "trend",
-      "model": "openai-api:gpt-6-luna",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 131.4,
-        "avg_sentence": 57.5,
-        "long_share": 0.5,
-        "max_paragraph": 206,
-        "paragraphs": 7,
-        "sentences": 16
-      },
-      "score": 100,
-      "source": "trends",
-      "title": "住宅",
-      "warnings": [
-        "見出しが45字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（TBS・NEWS・DIG）",
-        "読みやすさ: 文が長い（1文の平均 57.5字・60字超の文が 50% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
       "at": "2026-11-24T21:21:56.774626+00:00",
       "attempt": 0,
       "id": "af9601834632851214f33f23d219e5ff29d238da",
@@ -31888,6 +31863,31 @@
         "max_paragraph": 113,
         "paragraphs": 15,
         "sentences": 27
+      },
+      "score": null,
+      "source": "maff",
+      "title": "令和8年5月23日から9月30日までの間の豪雨及び暴風雨による災害についての激甚災害及びこれに対し適用すべき措置の指定に関する政令について",
+      "warnings": [
+        "同じ数字が多い（「50％」が5回）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-27T02:02:26.933677+00:00",
+      "attempt": 1,
+      "id": "18617d487eac5605",
+      "kind": "broad",
+      "model": "openai-api:gpt-6.1-terra",
+      "problems": [
+        "確かなことと、まだ分かっていないこと（調査中・現時点では公表されていない など）を分けて書く"
+      ],
+      "readability": {
+        "avg_paragraph": 66.0,
+        "avg_sentence": 37.0,
+        "long_share": 0.04,
+        "max_paragraph": 102,
+        "paragraphs": 14,
+        "sentences": 25
       },
       "score": null,
       "source": "maff",

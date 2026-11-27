@@ -1,13 +1,19 @@
 {
-  "candidates": 2,
-  "consecutive_zero": 1,
-  "last_zero_at": "2026-11-27T01:46:59+00:00",
+  "candidates": 484,
+  "consecutive_zero": 2,
+  "last_zero_at": "2026-11-27T02:02:48+00:00",
   "llmo_access": {
     "recovered_at": "2026-11-25T08:53:50+00:00",
     "status": "ok"
   },
   "reason": "品質ゲート不合格: 確かなことと、まだ分かっていないこと（調査中・現時点では公表されていない など）を分けて書く",
   "recovered_at": "2026-11-26T19:13:14+00:00",
-  "rescue_failed": 0,
-  "status": "rescue"
+  "rescue_failed": 1,
+  "status": "rescue",
+  "tried": [
+    "最初から Claude（有料の AI）の段で書いた",
+    "候補を 1 件試した（生成 1 回・上限 6 回）",
+    "短い原稿は元記事の事実だけで書き足し（Haiku）→ だめなら書き直し（Sonnet）",
+    "候補を広げた（同じ発信元 4 本・配信 3 本・一般の話題 5 本まで）"
+  ]
 }
