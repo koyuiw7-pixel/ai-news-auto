@@ -6,16 +6,17 @@
   "companyName": "Salesforce",
   "category": "アプリ・サービス",
   "overview": {
-    "text": "Agentforceは、Salesforceが提供するAIエージェントの基盤です。既存のCRMデータやセキュリティ権限をそのまま引き継ぎ、自律的に業務を進めることができます。2026年10月下旬から11月にかけて機能拡充や関連発表が行われました。",
+    "text": "Agentforceは、CRMデータをもとにAIが自律的に業務を進めるプラットフォームです。Salesforceが提供しており、2026年11月までに機能拡充や企業買収が発表されました。",
     "sources": [
       "salesforce-agentforce-coworker-summary-matome",
-      "salesforce-agentforce-idc-marketscape-leader"
+      "salesforce-agentforce-coworker-growth-features",
+      "hinode-salesforce-agentforce-roleplay"
     ]
   },
   "facts": [
     {
       "label": "料金",
-      "value": "月額50ドルオプション",
+      "value": "1ユーザー月額50ドルの新オプション",
       "sources": [
         "salesforce-agentforce-coworker-summary-matome",
         "salesforce-agentforce-coworker-growth-features"
@@ -23,7 +24,7 @@
     },
     {
       "label": "提供開始",
-      "value": "2026年11月一般提供予定",
+      "value": "2026年11月に一般提供予定",
       "sources": [
         "salesforce-agentforce-coworker-summary-matome",
         "salesforce-agentforce-coworker-growth-features"
@@ -32,20 +33,20 @@
   ],
   "capabilities": [
     {
-      "text": "Microsoft TeamsやSlack、Claudeから業務指示を出して商談レビューなどを依頼できます。",
+      "text": "Microsoft TeamsやiOS向けアプリなどから業務を指示できます。",
       "sources": [
         "salesforce-agentforce-coworker-summary-matome",
         "salesforce-agentforce-coworker-growth-features"
       ]
     },
     {
-      "text": "営業担当者がAI相手に商談の練習をするロールプレイ機能を利用できます。",
+      "text": "AIが商談の相手役を務める営業ロールプレイを実施できます。",
       "sources": [
         "hinode-salesforce-agentforce-roleplay"
       ]
     },
     {
-      "text": "Data 360などと連携し、保険契約や顧客情報を提案活動に生かせます。",
+      "text": "UCCジャパンでは営業用スクリプトの作成時間を40分から40秒に短縮しました。",
       "sources": [
         "salesforce-idc-marketscape-japan-ai-2026"
       ]
@@ -53,37 +54,24 @@
   ],
   "pricing": [
     {
-      "text": "Agentforce Coworkerに1ユーザーあたり月額50ドルの新オプションが追加されました。",
+      "text": "1ユーザーあたり月額50ドルの新オプションが追加されました。",
       "sources": [
-        "salesforce-agentforce-coworker-summary-matome",
         "salesforce-agentforce-coworker-growth-features"
       ]
     }
   ],
-  "japan": [
-    {
-      "text": "アフラック生命保険やUCCジャパンなどの国内企業で活用されています。",
-      "sources": [
-        "salesforce-idc-marketscape-japan-ai-2026"
-      ]
-    },
-    {
-      "text": "日野出が営業ロールプレイに導入し、新規商談件数を伸ばしています。",
-      "sources": [
-        "hinode-salesforce-agentforce-roleplay"
-      ]
-    }
-  ],
+  "japan": [],
   "howto": [
     {
-      "text": "Salesforceのお客様は設定画面からAgentforce Coworkerを有効化できます。",
+      "text": "Salesforceの設定画面から有効化できます。",
       "sources": [
         "salesforce-agentforce-coworker-growth-features"
       ]
     },
     {
-      "text": "利用には対象ライセンスに加えて権限セットの割り当てが必要です。",
+      "text": "Microsoft TeamsやSlack、Claudeなどから利用できます。",
       "sources": [
+        "salesforce-idc-marketscape-japan-ai-2026",
         "salesforce-agentforce-coworker-growth-features"
       ]
     }
@@ -91,25 +79,32 @@
   "differences": [],
   "faq": [
     {
-      "q": "いつから使える？",
-      "a": "Teams連携やモバイル対応などは2026年11月に一般提供される予定です。",
+      "q": "誰でもすぐに使えますか？",
+      "a": "Salesforceのお客様は設定画面から有効化できます。",
       "sources": [
-        "salesforce-agentforce-coworker-summary-matome",
         "salesforce-agentforce-coworker-growth-features"
       ]
     },
     {
-      "q": "誰に向いている？",
-      "a": "Salesforceを利用中、または導入を検討している企業の管理者や実務担当者に向いています。",
+      "q": "どんなツールから指示を出せますか？",
+      "a": "Microsoft TeamsやSlack、iOS向けアプリなどから利用できます。",
       "sources": [
-        "salesforce-agentforce-coworker-summary-matome"
+        "salesforce-idc-marketscape-japan-ai-2026",
+        "salesforce-agentforce-coworker-growth-features"
       ]
     },
     {
-      "q": "データはどう引き継がれる？",
-      "a": "既存のCRMデータやセキュリティ権限をそのまま引き継いで動作します。",
+      "q": "営業活動にはどのように役立ちますか？",
+      "a": "AIが商談の相手役を務めるロールプレイや、スクリプト作成に活用できます。",
       "sources": [
-        "salesforce-agentforce-coworker-summary-matome",
+        "salesforce-idc-marketscape-japan-ai-2026",
+        "hinode-salesforce-agentforce-roleplay"
+      ]
+    },
+    {
+      "q": "利用者は増えていますか？",
+      "a": "ユーザー数は18万5,000人を超え、直近3カ月で21倍に拡大しました。",
+      "sources": [
         "salesforce-agentforce-coworker-growth-features"
       ]
     }
@@ -123,7 +118,7 @@
     {
       "date": "2026-11-10",
       "slug": "hinode-salesforce-agentforce-roleplay",
-      "event": "日野出が営業ロールプレイに導入して成果"
+      "event": "日野出が営業ロールプレイに導入し新規商談件数127%"
     }
   ],
   "related": [
@@ -142,9 +137,9 @@
     "hinode-salesforce-agentforce-roleplay",
     "salesforce-agentforce-idc-marketscape-leader"
   ],
-  "signature": "71e04f33f0899ad7",
-  "primarySignature": "fa4ca4a60bafc276",
+  "signature": "dcde9db43721fbdb",
+  "primarySignature": "06b3d0377adb081e",
   "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-11-11T07:45:17+00:00",
-  "updatedAt": "2026-11-14T12:03:03+00:00"
+  "updatedAt": "2026-11-27T10:34:38+00:00"
 }
