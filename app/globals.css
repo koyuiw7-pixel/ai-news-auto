@@ -1270,17 +1270,28 @@ mark {
 /*
  * 計算ツールの結果の下の PR の A/B（2026-11-27。components/ActionAd.tsx・components/ToolAdCard.tsx・lib/tool-ad.ts）。
  * <html data-adv="a|b">（app/layout.tsx の最初のスクリプト。訪問者ごとに半々）: a = 今までの囲み（.tad-a）、b = 新しい見た目（.tad-b）。
- * 決まっていないとき（スクリプトなし）は a。隠した側は display:none なので、見た数（components/AdSeenTracker.tsx）にも入らず、小さな画像も読み込まない（loading=lazy）。
+ * 決まっていないとき（スクリプトなし）は a。A と B は両方 HTML に入れない（components/ToolAdSlot.tsx が選ばれた方だけを描く。オーナーのルール W10「同じ広告の枠は1ページに1つまで」）。
+ * サーバーの HTML は空の枠（.tool-ad-slot）だけなので、描くまでの高さを A・B ごとに先に取る（本番で測った高さ。2026-11-27。375px 幅: A 約270〜330・B 約250〜300、640px 以上: A 約270〜295・B 約262）。
  * b は計算の結果のすぐ下（注記より前）に並べ替える（components/calc/ToolPage.tsx の .tool-flow）。
  */
-:root[data-adv="b"] .tad-a,
-:root:not([data-adv="b"]) .tad-b {
-  display: none !important;
+.tool-ad-slot:empty {
+  min-height: 300px;
+}
+:root[data-adv="b"] .tool-ad-slot:empty {
+  min-height: 274px;
+}
+@media (min-width: 640px) {
+  .tool-ad-slot:empty {
+    min-height: 294px;
+  }
+  :root[data-adv="b"] .tool-ad-slot:empty {
+    min-height: 262px;
+  }
 }
 :root[data-adv="b"] .tool-flow > section[aria-label="計算"] {
   order: -2;
 }
-:root[data-adv="b"] .tool-flow > .tad-b {
+:root[data-adv="b"] .tool-flow > .tool-ad-slot {
   order: -1;
 }
 .tad-link {

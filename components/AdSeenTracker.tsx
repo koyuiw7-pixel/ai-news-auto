@@ -4,14 +4,14 @@ import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { BOT_UA } from "@/lib/revenue-funnel";
 import { INTERNAL_PARAM, INTERNAL_STORAGE_KEY } from "@/lib/inflow";
-import { AD_SEEN_MS, AD_SEEN_RATIO, adSeenBody } from "@/lib/ad-seen";
+import { AD_SEEN_MS, AD_SEEN_RATIO, AD_SLOT_EVENT, adSeenBody } from "@/lib/ad-seen";
 
 /**
  * 広告の囲み（data-aff-pos のある枠）を「人が見た」数を数える（2026-11-27。広告の押した割合＝人のクリック ÷ 見た人。lib/ad-seen.ts）。
  * 枠が画面に半分以上入った状態が1秒続いたら、そのページの表示につき枠ごとに1回だけ POST /api/aff/seen（cloudflare/aff.ts）。
  * 送るのは ページのパス（クエリ文字列なし）・置き場所・A/B の組（data-adv・data-abc）だけ。識別子は送らない。
  * 送らないもの: 自動ブラウザ・ロボット、Do Not Track / GPC のブラウザ、?_internal=1 で開いたブラウザ（components/ReadingBeacon.tsx と同じ）。
- * CSS で隠した側の A/B の枠（display:none）は画面に入らないので数えない。画面の見た目は何も変えない。
+ * 計算ツールの結果の下の A/B は、選ばれた方の枠だけがページにある（components/ToolAdSlot.tsx）。画面の見た目は何も変えない。
  */
 export default function AdSeenTracker() {
   const pathname = usePathname();
@@ -91,11 +91,15 @@ export function installAdSeen(pathname: string, send = (body: string) => navigat
   observe();
   // 後から描かれる枠（遅れて出る PR）も拾う
   const late = setTimeout(observe, 3000);
+  // 計算ツールの結果の下の PR（components/ToolAdSlot.tsx）は描いたときに合図が来る
+  const win = typeof window !== "undefined" ? window : undefined;
+  win?.addEventListener(AD_SLOT_EVENT, observe);
   document.addEventListener("visibilitychange", onVisibility);
   return () => {
     clearTimeout(late);
     for (const el of [...timers.keys()]) disarm(el);
     io?.disconnect();
+    win?.removeEventListener(AD_SLOT_EVENT, observe);
     document.removeEventListener("visibilitychange", onVisibility);
   };
 }

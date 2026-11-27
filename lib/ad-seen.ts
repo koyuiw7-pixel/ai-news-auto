@@ -97,3 +97,6 @@ export function adRateTable(seen: Seen[], clicks: Click[]) {
     byToolPath: list(tables.tool, (key) => { const [path, pos, ab] = key.split("|"); return { path, pos, ab }; }),
   };
 }
+
+/** 後から描いた広告の枠（components/ToolAdSlot.tsx）を、見た数の計測（components/AdSeenTracker.tsx）にすぐ知らせる合図 */
+export const AD_SLOT_EVENT = "saisoku:ad-slot";

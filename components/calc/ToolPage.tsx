@@ -26,7 +26,7 @@ export default function ToolPage({ kind, lead, afterCalc, children }: { kind: Ca
         <p className="t-lead mt-3">{lead}</p>
       </header>
       {/* 計算・注記・afterCalc を1つの縦の並びにする。広告の見た目 B（<html data-adv="b">。components/ToolAdCard.tsx の .tad-b）は、
-          CSS の order で計算の結果のすぐ下（注記より前）に出す（app/globals.css の .tool-flow。2026-11-27 オーナー「配置と見た目が魅力０」） */}
+          CSS の order で計算の結果のすぐ下（注記より前）に出す（app/globals.css の .tool-flow > .tool-ad-slot。A か B の片方だけを描く。2026-11-27 オーナー「配置と見た目が魅力０」） */}
       <div className="tool-flow flex flex-col">
         <section aria-label="計算" className="mt-7 rounded-2xl border border-line-strong p-5 sm:p-6">
           <Calculator calc={{ kind }} />

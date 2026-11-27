@@ -93,12 +93,53 @@ test("B の囲み: 小さな「PR」の札・rel=sponsored・ボタン1つ・出
   assert.match(card, /data-ad-ab=""/);
   assert.doesNotMatch(card, /sourceLine|出典|OtherSites/);
   const css = read("app/globals.css");
-  assert.match(css, /:root\[data-adv="b"\] \.tad-a,\s*:root:not\(\[data-adv="b"\]\) \.tad-b \{\s*display: none !important;/);
-  assert.match(css, /:root\[data-adv="b"\] \.tool-flow > \.tad-b \{\s*order: -1;/);
+  assert.match(css, /:root\[data-adv="b"\] \.tool-flow > \.tool-ad-slot \{\s*order: -1;/);
   assert.doesNotMatch(css.slice(css.indexOf(".tad-link")), /#f[0-9a-f]{2}[0-9a-f]{0,3}0\b|yellow|#ff[cd]/i, "黄色を使わない");
   const page = read("components/calc/ToolPage.tsx");
   assert.match(page, /className="tool-flow flex flex-col"/);
   const action = read("components/ActionAd.tsx");
-  assert.match(action, /className="tad-a" data-tool-ad="a"/);
+  assert.match(action, /a=\{<div className="tad-a" data-tool-ad="a">/);
   assert.match(read("app/layout.tsx"), /<AdSeenTracker \/>/);
+});
+
+// オーナーのルール W10（2026-11-03）「同じ広告の枠は1ページに1つまで（見えていない方も数える）」。
+// 2026-11-27: A と B を両方 HTML に入れて CSS で隠したら、計算ツールの全8ページで tool-result の枠が2つになった（scripts/ui_check.mjs 6b）
+test("結果の下の PR は A か B の片方だけを描く（同じ枠は1ページに1つ。隠した方を HTML に入れない）", () => {
+  const action = read("components/ActionAd.tsx");
+  const tail = action.slice(action.indexOf('const kind = pos === "tool-result"'));
+  assert.match(tail, /<ToolAdSlot\s+a=\{/);
+  assert.doesNotMatch(tail.replace(/<ToolAdSlot[\s\S]*?\/>\s*\);/, ""), /<ToolAdCard|tad-a/, "ToolAdSlot の外に A・B を置かない");
+  const slot = read("components/ToolAdSlot.tsx");
+  assert.match(slot, /^"use client";/);
+  assert.match(slot, /variant === "b" \? b : variant === "a" \? a : null/, "選ばれた方だけ（決まる前は空）");
+  assert.match(slot, /useSyncExternalStore\(noop, clientVariant, serverVariant\)/);
+  assert.doesNotMatch(slot, /data-aff-pos=/, "空の枠には置き場所の印を付けない");
+  const css = read("app/globals.css");
+  assert.doesNotMatch(css, /\.tad-[ab][^{]*\{\s*display: none/, "CSS で隠す方式に戻さない");
+  assert.match(css, /\.tool-ad-slot:empty \{\s*min-height: \d+px;/, "描くまでの高さを先に取る（画面のずれ）");
+  assert.match(css, /:root\[data-adv="b"\] \.tool-ad-slot:empty \{\s*min-height: \d+px;/);
+});
+
+test("描き分けの部品: A でも B でも tool-result の枠は1つだけ描き、サーバーの HTML（決まる前）は空の枠だけ", () => {
+  const { renderToStaticMarkup } = require("react-dom/server");
+  // 描き分けの部品を、A・B それぞれに固定して描く（ブラウザの <html data-adv> の代わり）
+  const React = require("react");
+  for (const adv of ["a", "b"]) {
+    const slotSrc = ts.transpileModule(read("components/ToolAdSlot.tsx"), { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022, jsx: ts.JsxEmit.ReactJSX } }).outputText;
+    const mod = { exports: {} };
+    const fakeReact = { ...React, useSyncExternalStore: () => adv, useEffect: () => {} };
+    new Function("module", "exports", "require", slotSrc)(mod, mod.exports, (n) => (n === "react" ? fakeReact : n === "@/lib/ad-seen" ? { AD_SLOT_EVENT: "x" } : require(n)));
+    const Slot = mod.exports.default;
+    const a = React.createElement("div", { className: "tad-a" }, React.createElement("aside", { "data-aff-pos": "tool-result" }));
+    const b = React.createElement("aside", { "data-aff-pos": "tool-result", className: "tad-b" });
+    const html = renderToStaticMarkup(React.createElement(Slot, { a, b }));
+    assert.equal((html.match(/data-aff-pos="tool-result"/g) ?? []).length, 1, adv);
+    assert.match(html, adv === "a" ? /tad-a/ : /tad-b/);
+  }
+  // サーバーの HTML（決まる前）は空の枠だけ
+  const slotSrc = ts.transpileModule(read("components/ToolAdSlot.tsx"), { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022, jsx: ts.JsxEmit.ReactJSX } }).outputText;
+  const mod = { exports: {} };
+  new Function("module", "exports", "require", slotSrc)(mod, mod.exports, (n) => (n === "@/lib/ad-seen" ? { AD_SLOT_EVENT: "x" } : require(n)));
+  const html = renderToStaticMarkup(React.createElement(mod.exports.default, { a: React.createElement("aside", { "data-aff-pos": "tool-result" }), b: React.createElement("aside", { "data-aff-pos": "tool-result" }) }));
+  assert.equal(html, '<div class="tool-ad-slot" data-tool-ad-slot=""></div>');
 });

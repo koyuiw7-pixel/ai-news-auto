@@ -103,4 +103,21 @@ test("後から描かれた枠も拾う（同じ枠を2回見張らない）", (
   assert.deepEqual(observed, [first, late]);
 });
 
+test("計算ツールの結果の下の PR（components/ToolAdSlot.tsx）を描いた合図で、すぐ見張りに足す。後片付けで外す", () => {
+  const win = new MockDocument();
+  replace("window", win);
+  try {
+    doc.els = [];
+    const clean = installAdSeen("/tools/bonus-tedori", send);
+    const slot = box("tool-result", { ab: true });
+    doc.els = [slot];
+    win.emit("saisoku:ad-slot");
+    assert.deepEqual(observed, [slot]);
+    clean();
+    assert.equal(win.count(), 0);
+  } finally {
+    replace("window", undefined);
+  }
+});
+
 console.log(`ad-seen client tests: ${passed} passed`);

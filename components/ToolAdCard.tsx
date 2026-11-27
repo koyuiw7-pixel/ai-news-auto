@@ -4,7 +4,7 @@ import type { ToolAdCopy } from "@/lib/tool-ad";
 import { AdThumb, Pixels, PrTag } from "@/components/rail/parts";
 
 /**
- * 計算ツールの結果のすぐ下の PR、見た目 B（lib/tool-ad.ts。A/B は <html data-adv="b"> の人だけに見せる。app/globals.css の .tad-b）。
+ * 計算ツールの結果のすぐ下の PR、見た目 B（lib/tool-ad.ts。A/B は <html data-adv="b"> の人だけに描く。components/ToolAdSlot.tsx）。
  * 囲みは今までと同じ白地に黒の細い枠・右上の小さな「PR」の札（ステマ規制の表示）。リンクは rel="sponsored"。
  * 中身: 提携先の名前（小さく）、小さなバナー（6:5）と見出し・1行、ボタン1つ。囲み全体が1つのリンク（ボタンは1つ）。
  * 出典の行・2つ目の提携先の行は出さない（数字の出典は lib/tool-ad.ts と content/ad_benefits.json に残す）。

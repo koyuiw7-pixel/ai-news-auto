@@ -5,6 +5,7 @@ import Link from "next/link";
 import { abCardFor } from "@/lib/ad-ab";
 import AbBox from "@/components/rail/AbBox";
 import ToolAdCard from "@/components/ToolAdCard";
+import ToolAdSlot from "@/components/ToolAdSlot";
 import { toolAdCopy, toolKindFor, type ToolKind } from "@/lib/tool-ad";
 
 /**
@@ -30,7 +31,7 @@ import { toolAdCopy, toolKindFor, type ToolKind } from "@/lib/tool-ad";
  *   囲みの外に置くサイト内リンク（rel=sponsored なし、data-money-link で読まれ方の記録に money として数える）。囲みの中身と位置は変えない。
  *   矢印の印は付けない（2026-11-09 オーナー「→みたいな印はいらない」。tests/test_action_ads.py）
  * 2026-11-27 計算ツールの結果の下（pos "tool-result"）は A/B（<html data-adv="a|b"> で半々）: A = この囲みのまま（.tad-a）、
- *   B = 同じ提携先の新しい見た目（components/ToolAdCard.tsx・lib/tool-ad.ts。結果のすぐ下に並べ替える）。
+ *   B = 同じ提携先の新しい見た目（components/ToolAdCard.tsx・lib/tool-ad.ts。結果のすぐ下に並べ替える）。選ばれた方だけを描く（components/ToolAdSlot.tsx）。
  *   オーナー「配置と見た目が魅力０だった」。押した割合（人のクリック ÷ 見た人。lib/ad-seen.ts）を A と B で比べる
  */
 export default function ActionAd({ ad, className = "mt-4", pos = "action-ad", tool }: { ad: ActionAdData; className?: string; pos?: string; tool?: ToolKind }) {
@@ -85,14 +86,15 @@ export default function ActionAd({ ad, className = "mt-4", pos = "action-ad", to
       </p>
     </>
   );
-  // 計算ツールの結果の下: A（今までの囲み）と B（新しい見た目）を両方 HTML に入れ、CSS で片方だけ見せる（描画前に決まるので画面がずれない）
+  // 計算ツールの結果の下: A（今までの囲み）か B（新しい見た目）の、選ばれた方だけを描く（components/ToolAdSlot.tsx）。
+  // 両方を HTML に入れて CSS で隠すと、同じ枠が1ページに2つになる（オーナーのルール W10「見えていない方も数える」）。表示の画像も2回読まれる
   const kind = pos === "tool-result" ? toolKindFor(tool, ad.key) : undefined;
   const copy = kind && first ? toolAdCopy(kind, first.item) : undefined;
   if (!copy || !first) return withCompare;
   return (
-    <>
-      <div className="tad-a" data-tool-ad="a">{withCompare}</div>
-      <ToolAdCard item={first.item} copy={copy} pos={pos} tool={kind} pixels={first.pixel ? [first.pixel] : []} />
-    </>
+    <ToolAdSlot
+      a={<div className="tad-a" data-tool-ad="a">{withCompare}</div>}
+      b={<ToolAdCard item={first.item} copy={copy} pos={pos} tool={kind} pixels={first.pixel ? [first.pixel] : []} />}
+    />
   );
 }
