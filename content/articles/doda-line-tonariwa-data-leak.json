@@ -72,9 +72,9 @@
     }
   ],
   "todayActions": [
-    "dodaのLINEとdoda IDを連携した覚えがあれば、登録メールにパーソルキャリアの連絡が届いていないか確認する",
-    "勤務先や取引先、パーソルキャリアを名乗るSMS・電話のリンクは開かず、個人情報も入力しない",
-    "不明点は平日・土曜10:00〜18:00のdodaカスタマーセンターに問い合わせる"
+    "LINE連携の条件に当てはまる人は、登録メールアドレスに個別連絡が届いていないか確認する。",
+    "勤務先やパーソルキャリアを名乗るSMS・電話は、送信元と内容を確認してから扱う。",
+    "対象か分からない人は、発表ページからdodaカスタマーセンターへ問い合わせる。"
   ],
   "publicInterest": "breach",
   "incident": {
@@ -119,5 +119,102 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/doda-line-tonariwa-data-leak-figure-8503beeb.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "11月10日深夜、TONARIWAの停止やアクセス経路の遮断、システム隔離に加え、当社LINE公式アカウントとの連携リセットも実施されました。",
+      "source": "https://www.persol-career.co.jp/newsroom/news/information/2026/20261126_2388/"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "パーソルキャリア dodaカスタマーセンター",
+      "url": "https://doda.jp/otoiawase/otoiawase.html",
+      "source": "https://www.persol-career.co.jp/newsroom/news/information/2026/20261126_2388/",
+      "howTo": [
+        "外部委託先への不正アクセスによるお客様情報漏えいについてのお",
+        "本件に関するお問合せ窓口",
+        "パーソルキャリア dodaカスタマーセンター"
+      ],
+      "hours": "平日と土曜日の10:00～18:00",
+      "note": "内容や問い合わせた時間によって回答まで時間がかかる場合があります。本件専用の電話窓口は準備中です。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "LINE連携の条件に当てはまる人は、登録メールアドレスに個別連絡が届いていないか確認する。",
+      "source": "https://www.persol-career.co.jp/newsroom/news/information/2026/20261126_2388/",
+      "steps": [
+        "dodaエージェントサービスの利用歴を確認する",
+        "キャリアアドバイザーのLINE公式アカウントと友だち登録したか確認する",
+        "doda IDとの連携が完了していたか思い出す",
+        "登録したメールアドレスの受信箱を確認する"
+      ],
+      "url": "https://www.persol-career.co.jp/newsroom/news/information/2026/20261126_2388/"
+    },
+    {
+      "action": "勤務先やパーソルキャリアを名乗るSMS・電話は、送信元と内容を確認してから扱う。",
+      "source": "https://www.persol-career.co.jp/newsroom/news/information/2026/20261126_2388/",
+      "steps": [
+        "心当たりのない連絡に記載されたリンクへアクセスしない",
+        "個人情報やパスワードを入力しない"
+      ],
+      "url": "https://www.persol-career.co.jp/newsroom/news/information/2026/20261126_2388/"
+    },
+    {
+      "action": "対象か分からない人は、発表ページからdodaカスタマーセンターへ問い合わせる。",
+      "source": "https://www.persol-career.co.jp/newsroom/news/information/2026/20261126_2388/",
+      "steps": [
+        "発表ページの「本件に関するお問合せ窓口」を開く",
+        "「パーソルキャリア dodaカスタマーセンター」を選ぶ"
+      ],
+      "url": "https://doda.jp/otoiawase/otoiawase.html"
+    }
+  ],
+  "cause": {
+    "text": "11月10日、「TONARIWA」上で当社情報を保持していた領域に第三者による不正アクセスのログが確認され、その後の電通デジタルの社内調査で漏えいが判明しました。外部セキュリティ会社の調査と原因究明は続いています。",
+    "status": "investigating",
+    "source": "https://www.persol-career.co.jp/newsroom/news/information/2026/20261126_2388/"
+  },
+  "worries": [
+    {
+      "q": "LINE連携した覚えがあれば、漏えい対象なの？",
+      "a": "対象は、dodaエージェントサービスを利用し、キャリアアドバイザーのLINE公式アカウントを友だち登録したうえで、doda IDとの連携が完了している人です。対象者には登録メールアドレス宛てに個別連絡があります。",
+      "source": "https://www.persol-career.co.jp/newsroom/news/information/2026/20261126_2388/",
+      "action": "利用歴とLINE・doda IDの連携状況を思い出し、登録メールアドレス宛ての個別連絡を確認してください。"
+    },
+    {
+      "q": "勤務先や電話番号を使った詐欺が来るの？",
+      "a": "パーソルキャリアは、同社や利用者の勤務先・取引先を装ったSMSや電話によるフィッシング詐欺などが行われるおそれがあるとしています。送信元や内容を確認するよう呼びかけています。",
+      "source": "https://www.persol-career.co.jp/newsroom/news/information/2026/20261126_2388/",
+      "action": "心当たりのないSMSや電話はリンクを開かず、個人情報やパスワードを入力しないでください。"
+    },
+    {
+      "q": "漏えいした情報はもう悪用されているの？",
+      "a": "発表時点で、漏えいした情報の不正利用・拡散など、この不正アクセスに起因する二次被害は確認されていません。パーソルキャリアはシステムの調査と影響の監視を続けるとしています。",
+      "source": "https://www.persol-career.co.jp/newsroom/news/information/2026/20261126_2388/",
+      "action": "不審な連絡が届いた場合は、記載されたリンクを開かず、発表ページにある問い合わせ窓口で確認してください。"
+    },
+    {
+      "q": "dodaを退会済みでも個人情報が漏れたの？",
+      "a": "既にdodaを退会した人については、社内システム上のお客様管理番号のみが漏えいした場合があります。氏名など、個人を識別できる情報はないと説明されています。",
+      "source": "https://www.persol-career.co.jp/newsroom/news/information/2026/20261126_2388/",
+      "action": "退会済みで自身の状況が分からない場合は、発表ページにあるdodaカスタマーセンターへ確認してください。"
+    },
+    {
+      "q": "リンクを開いてパスワードを入力してしまったら？",
+      "a": "警察庁は、フィッシングサイトなどに普段使っているIDやパスワードを入力した場合、それらを使っているすべてのサービスでパスワードを速やかに変更するよう案内しています。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "action": "入力したIDやパスワードを使っているすべてのサービスで、パスワードを速やかに変更してください。",
+      "general": true
+    }
+  ],
+  "depthHeadings": {
+    "insight": "連携リセットも実施された",
+    "cause": "不正アクセス後も調査が続く",
+    "steps": "登録メールと不審な連絡を確認",
+    "desk": "問い合わせ先と受付時間",
+    "worries": "対象者や二次被害が気になる人へ"
+  },
+  "depthAt": "2026-11-27T05:24:35+00:00"
 }
