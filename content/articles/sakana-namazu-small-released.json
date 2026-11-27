@@ -1,0 +1,209 @@
+{
+  "slug": "sakana-namazu-small-released",
+  "sourceType": "web",
+  "sourceUrl": "https://sakana.ai/namazu-small/",
+  "sourceName": "Sakana AI公式ブログ",
+  "title": "Sakana AI、300億パラメータの小型AI「Sakana Namazu Small」発表　大手モデルを上回るベンチマーク性能を達成",
+  "seoTitle": "Sakana Namazu Smallとは？ベンチマークや日本での提供状況",
+  "threadsPost": "手元の環境で動かせるサイズの中型AIを探している人に、知っておいてほしい話です。\n\nSakana AIが300億パラメータの「Sakana Namazu Small」を発表しました。\nWeb検索や長文読解のベンチマークで、約4倍の規模を持つモデルを上回るスコアを記録しています。\n\n仕事の資料読み込みやWeb調査にAIを使うとき、処理速度やコストで何を重視しますか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "ab",
+      "question": "仕事の資料読み込みやWeb調査にAIを使うとき、処理速度と回答の正確さのどちらを重視しますか？"
+    },
+    {
+      "pattern": "count",
+      "question": "仕事で長い社内文書や報告書を読むとき、1日に何ページくらい目を通しますか？"
+    },
+    {
+      "pattern": "plain",
+      "question": "手元の環境でAIを動かすとしたら、どのような業務で試してみたいですか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "senpai",
+  "lede": "企業や開発者が自社環境での利用を検討できる、300億パラメータの大規模言語モデル「Sakana Namazu Small」を、Sakana AIが2026年11月25日に発表しました。Web検索や長文読解など25種類の性能試験では、同規模モデルだけでなく約4倍の規模のモデルも平均スコアで上回ったとしています。自社設備内で運用するオンプレミス提供の詳細は、12月前半に公表する予定です。",
+  "description": "Sakana AIが300億パラメータの新モデル「Sakana Namazu Small」を発表。Web検索や長文読解のベンチマークで上位モデルを上回った性能や、オンプレミス提供の予定を解説します。",
+  "keywords": [
+    "Sakana AI",
+    "Sakana Namazu Small",
+    "大規模言語モデル",
+    "LLM",
+    "GENIAC",
+    "オンプレミス",
+    "ベンチマーク",
+    "長文読解"
+  ],
+  "tags": [
+    "生成AI",
+    "LLM",
+    "Sakana AI",
+    "オープンモデル"
+  ],
+  "highlights": [
+    "Sakana AIが300億パラメータのモデル「Sakana Namazu Small」を2026年11月25日に発表しました。",
+    "Web検索や長文読解など25のベンチマーク平均で、約4倍の規模を持つ「Nemotron 3 Super」を上回りました。",
+    "企業が自社の計算基盤で運用できるオンプレミスでの提供を予定しており、詳細は12月前半に発表されます。"
+  ],
+  "timetable": [],
+  "verdict": null,
+  "workMoney": {
+    "relevance": "high",
+    "points": [
+      "社内文書の読み込みやWeb検索を伴う調査業務で、根拠を示した回答を得るために活用できます。",
+      "300億パラメータという規模により、企業のオンプレミス環境での運用が視野に入ります。",
+      "12月前半に予定されているオンプレミス提供の詳細発表を待ち、導入計画を確認するとよいでしょう。"
+    ]
+  },
+  "body": "### 300億パラメータのモデルを自社で開発\nSakana Namazu Smallは、NVIDIAのオープンモデル「NVIDIA Nemotron 3 Nano」のベースモデル（事前学習モデル）を土台としています。継続事前学習から事後学習までの工程を、Sakana AIが自社で一貫して行いました。\n\n同社が展開する「Sakana Namazu」の系譜に連なる小型モデルです。日常的な対話、Web検索を活用した調査、長い文書の読解といった業務を得意としています。\n\nまた、複雑な質問やタスクに対し、必要な情報を整理しながら推論を重ねる「推論モデル」として開発された点も特徴です。\n\n### 4倍の規模を持つモデルを上回ったベンチマーク結果\n性能の検証には、合計25種類のベンチマーク（性能を測る試験）が用いられました。対象はWeb検索、指示追従、長文理解、一般知識や専門知識です。\n\n比較対象は、次の2つの事後学習済みモデルです。\n\n- 同規模の「NVIDIA Nemotron 3 Nano（30B-A3B）」\n- 総パラメータ数が約4倍の「NVIDIA Nemotron 3 Super（120B-A12B）」\n\nその結果、Sakana Namazu Smallは、25のベンチマークの平均スコアで同規模のNanoを上回りました。約4倍の規模を持つSuperも上回りました。\n\n特に、Web検索を活用した調査や、長い文書を理解して根拠に基づき回答するタスクで高い性能を示しています。一方、外部情報を使わず、モデル内の知識だけで答えるタスクでは性能の伸びが小さく、今後の改善課題として挙げられています。\n\n本研究開発は、経済産業省とNEDOの支援を受けて行われました。NEDOは、経済産業省とともにGENIACを実施する機関です。\n\n### オンプレミス提供と今後の展開\nSakana Namazu Smallは、企業が自社の計算基盤で運用することを視野に入れ、300億パラメータの規模で設計されています。手元の環境で動かせるオンプレミスでの提供が予定されていますが、日本での提供時期は明らかにされていません。\n\n提供に関する詳細は、2026年12月前半にお知らせされる予定です。\n\n## まだ分からないこと\n\n- オンプレミス版の具体的な料金体系や利用ライセンスの詳細はまだ発表されていません。\n- 一般ユーザー向けのAPI提供や、クラウド経由で利用する場合の提供時期はまだ発表されていません。\n\n## Web検索・長文読解の評価では同規模モデルを上回る\n\n**公表された個別スコアでは、Web検索と長文理解の2項目で上回っています。Sakana Namazu Smallが比較対象を上回りました。**\n\n| 評価項目・ベンチマーク | Nemotron 3 Nano（30B-A3B） | Nemotron 3 Super（120B-A12B） | Sakana Namazu Small |\n|---|---:|---:|---:|\n| Web検索・BrowseComp | 29.3 | 36.1 | 73.5 |\n| 長文理解・LLM-jp LongBench | 67.0 | 60.0 | 86.0 |\n\nスコアは公式発表に掲載された値です。オンプレミス版の利用を検討する企業は、詳細が公表される予定の時期に確認してください。\n\n詳細は2026年12月前半に公表される予定です。その時期に、[Sakana AI公式ブログ](https://sakana.ai/namazu-small/)を確認してください。\n\n## サイソクの見方：小型モデルでも調査と長文読解を重視する企業に注目\n\n特に、Web検索を伴う調査や長い文書の読み込みに強みがあります。社内資料の分析やリサーチ業務の効率化を考えている組織にとって、選択肢の一つになり得ます。\n\n導入を検討している企業は、12月前半に予定されているオンプレミス提供の詳細発表を待つとよいでしょう。自社の計算基盤のスペックと照らし合わせることもできます。",
+  "easy": "## ひとことで言うと\n\nSakana AIが発表した「Sakana Namazu Small」は、手元の環境で動かせる300億パラメータのAIモデルで、検索や長文の読解で高い性能を発揮します。\n\n## 実際の業務でどう使えるの？\n\n日常的な対話に加えて、長い社内文書を読み込んで根拠を示しながら答える仕事や、Web検索を何度も繰り返して最新情報を集める調査業務に向いています。\n\n## 性能と今後の予定\n\n同規模のモデルだけでなく、約4倍の規模を持つモデルよりもベンチマークの平均スコアが高くなりました。手元の環境で動かせるオンプレミスでの提供が予定されており、詳しい情報は12月前半に発表されます。",
+  "channel": "Sakana AI公式ブログ",
+  "channelId": "",
+  "channelSlug": "sakana-ai",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "Sakana Namazu Small",
+  "publishedAt": "2026-11-24T15:00:00+00:00",
+  "generatedAt": "2026-11-27T15:45:54.567252+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/sakana-namazu-small-released-figure-8d23193f.jpg",
+  "model": "gemini-3.5-flash-lite",
+  "affiliates": [],
+  "newsType": "research",
+  "faq": [
+    {
+      "q": "Sakana Namazu Smallのモデルの規模はどのくらいですか？",
+      "a": "300億パラメータの規模を持つ大規模言語モデルとして開発されています。"
+    }
+  ],
+  "todayActions": [
+    "導入を検討する担当者は、12月前半に公式ページでオンプレミス提供の詳細を確認する。",
+    "社内文書の読解やWeb調査で、AIに任せたい業務を想定用途に沿って整理する。"
+  ],
+  "relatedSlugs": [
+    "sakana-ai-symposium-2026-sawara"
+  ],
+  "qualityBar": {
+    "score": 6,
+    "missing": [
+      5,
+      6
+    ],
+    "notes": {
+      "5": "することは書いてあるが、どこで（窓口・ページ）・いつまでが無い",
+      "6": "言い換えの無い略語（NEDO）"
+    },
+    "checkedAt": "2026-11-27T15:47:15+00:00",
+    "before": [
+      1,
+      3,
+      5,
+      6
+    ],
+    "repaired": true
+  },
+  "qualityScore": 98,
+  "late": true,
+  "sourcePublishedAt": "2026-11-24T15:00:00+00:00",
+  "detectedAt": "2026-11-27T15:40:59+00:00",
+  "layout": "noir",
+  "summaryLine": "Sakana AIが300億パラメータのモデル「Sakana Namazu Small」を2026年11月25日に発表しました。",
+  "insight": [
+    {
+      "text": "ベンチマーク評価では、Sakana Namazu Smallを推論モード、コンテキスト長262,144 token、最大出力長32,768 tokenで動かしています。Nemotron各モデルは、それぞれの推奨設定で評価されています。",
+      "source": "https://sakana.ai/namazu-small/"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "Sakana AI公式ページ「Sakana Namazu Small」",
+      "url": "https://sakana.ai/namazu-small/",
+      "source": "https://sakana.ai/namazu-small/",
+      "note": "オンプレミス提供の詳細は2026年12月前半にお知らせする予定です。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "導入を検討する担当者は、12月前半に公式ページでオンプレミス提供の詳細を確認する。",
+      "source": "https://sakana.ai/namazu-small/",
+      "steps": [
+        "Sakana Namazu Smallの公式ページを開く",
+        "「今後の展開」を確認する"
+      ],
+      "url": "https://sakana.ai/namazu-small/"
+    },
+    {
+      "action": "社内文書の読解やWeb調査で、AIに任せたい業務を想定用途に沿って整理する。",
+      "source": "https://sakana.ai/namazu-small/",
+      "steps": [
+        "「ユースケース」の内容を確認する",
+        "社内文書・報告書を読む業務を洗い出す",
+        "複数の情報源を調べる業務を洗い出す"
+      ],
+      "url": "https://sakana.ai/namazu-small/"
+    }
+  ],
+  "worries": [
+    {
+      "q": "社内文書の読解やWeb調査に使える性能なの？",
+      "a": "Sakana AIは、社内文書や報告書を読んで質問に答える用途や、複数の情報源を横断するWeb調査を想定しています。評価では、長文理解やWeb検索のベンチマークを含む25種類を使ったとしています。",
+      "source": "https://sakana.ai/namazu-small/",
+      "action": "自社で試したい社内文書の読解やWeb調査を整理し、提供詳細の発表後に確認する。"
+    },
+    {
+      "q": "Web検索を使わずモデル内の知識だけで答える場合も強い？",
+      "a": "公式ページでは、Web検索などの外部情報に頼らずモデルの内部知識だけで回答するタスクでは、性能が大きく伸びていないと説明しています。知識に関する能力は今後の改善課題として挙げられています。",
+      "source": "https://sakana.ai/namazu-small/",
+      "action": "社内業務で外部情報を使わない回答が必要か、使いたい業務と分けて整理する。"
+    },
+    {
+      "q": "オンプレミスで使えるようになる時期は分かっている？",
+      "a": "Sakana AIはオンプレミスでの提供を予定し、詳細を2026年12月前半にお知らせするとしています。",
+      "source": "https://sakana.ai/namazu-small/",
+      "action": "2026年12月前半に、Sakana AI公式ページでオンプレミス提供の詳細を確認する。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "オンプレミス版の導入を今決めるべき？",
+      "situation": "料金や利用条件を確認してから決めたい",
+      "recommend": "詳細発表を待ってから判断する",
+      "reason": "オンプレミスでの提供詳細は2026年12月前半にお知らせする予定です。詳細を確認すれば提供内容を踏まえて検討できますが、現時点では具体的な料金や利用条件を判断材料にできません。",
+      "source": "https://sakana.ai/namazu-small/"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "評価時のモデル設定も公表されている",
+    "steps": "提供詳細の確認と、社内業務の洗い出し",
+    "desk": "オンプレミス提供の詳細を確認するページ",
+    "worries": "社内文書や調査業務に使える？",
+    "guide": "詳細発表を待ってから導入を判断する"
+  },
+  "depthAt": "2026-11-27T15:47:37+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "300億",
+    "label": "Sakana AI",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-27T15:48:56+00:00"
+  },
+  "imageFocus": {
+    "x": 0.461,
+    "y": 0.408,
+    "box": [
+      0.013,
+      0.036,
+      0.909,
+      0.78
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/sakana-namazu-small-released-figure-8d23193f.jpg"
+  }
+}
