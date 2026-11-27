@@ -1,0 +1,211 @@
+{
+  "slug": "informatica-microsoft-copilot-foundry-integration",
+  "sourceType": "web",
+  "sourceUrl": "https://www.salesforce.com/jp/news/stories/informatica-trusted-enterprise-data-microsoft-collaboration/",
+  "sourceName": "Salesforce ニュース（日本）",
+  "title": "Copilotで企業のデータ活用を支援　InformaticaがMicrosoft連携を強化",
+  "seoTitle": "InformaticaのMicrosoft連携とは？CopilotやFoundryとの統合範囲",
+  "threadsPost": "社内のAI活用やデータ管理を担当している人に、押さえておきたい話です。\n\nInformaticaがMicrosoft CopilotやFoundryとの統合機能を一般提供しました。\n企業のデータ品質やアクセス権限の定義を、AIエージェントに直接読み込ませることができます。\n\n社内のAI開発で、データの安全管理やアクセス権限の設定に苦労した経験はありますか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "tradeoff",
+      "question": "AIの利便性を高めることと、データアクセスの管理を厳しくすること、社内ではどちらを優先したいですか？"
+    },
+    {
+      "pattern": "expert",
+      "question": "社内のAIエージェント開発で、データガバナンスの設定を手に感じたことはありますか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "honest",
+  "lede": "Salesforce傘下のInformaticaは、Microsoft CopilotやMicrosoft Foundry、Microsoft Fabricとの連携を強化しました。CopilotとFoundry向けの統合は一般提供中で、Fabric向けの拡張スキャン機能は一般提供されます。企業内のデータ定義やガバナンス情報を、CopilotやAIエージェントに直接連携できる仕組みです。利用条件やMACC充当の詳細は公式窓口などで確認できます。",
+  "description": "Salesforce傘下のInformaticaがMicrosoft CopilotやMicrosoft Foundry、Fabricとの統合機能を拡張。エンタープライズデータの定義やガバナンスをAIエージェントに直接提供可能になりました。",
+  "keywords": [
+    "Informatica",
+    "Microsoft Copilot",
+    "Microsoft Foundry",
+    "Microsoft Fabric",
+    "データガバナンス",
+    "AIエージェント",
+    "Model Context Protocol",
+    "MCP"
+  ],
+  "tags": [
+    "生成AI",
+    "Microsoft Copilot",
+    "Informatica",
+    "データガバナンス",
+    "AIエージェント"
+  ],
+  "highlights": [
+    "InformaticaがMicrosoft CopilotやFoundryとの連携機能を拡張しました。CopilotとFoundry向けの統合は一般提供中です。",
+    "Microsoft Fabric向けの拡張スキャン機能は、ノートブックやデータパイプラインのリネージュ追跡に対応し、一般提供されます。",
+    "Microsoft Marketplace経由で購入した場合、税引前金額の100%をAzure利用コミットメント（MACC）に充当可能です。"
+  ],
+  "timetable": [],
+  "verdict": {
+    "status": "available",
+    "japan": "unknown",
+    "price": "法人向け",
+    "free": false,
+    "audience": "企業のIT担当者",
+    "take": "AIエージェントに自社データの定義や権限を安全に読み込ませたい企業は、自社の契約に合わせて導入を検討するとよいでしょう。",
+    "judgedAt": "2026-11-27T10:00:53.042408+00:00"
+  },
+  "workMoney": {
+    "relevance": "high",
+    "points": [
+      "標準化されたMCPインターフェースを通じてInformaticaのデータ管理機能を利用し、個別連携を一から作り込む手間を抑えられる",
+      "Microsoft Marketplace経由で購入することで、Azureの利用コミットメント（MACC）に100%充当できる可能性がある"
+    ]
+  },
+  "body": "Salesforce傘下のInformaticaは、MicrosoftのAIおよびアナリティクス製品との連携を強化しました。\n\n今回の統合により、企業が持つデータの定義や品質、アクセス制限のルールを、Microsoft CopilotやAIエージェントが直接理解できるようになります。\n\n## CopilotとFoundryへ信頼できるデータを提供\n\nInformaticaは、自社のデータ管理基盤「Informatica Headless」を通じて、Microsoft CopilotやMicrosoft Teamsへの機能提供を開始しました。\n\nビジネスユーザーは、Copilotとの会話を通じてデータの意味や出所、信頼性を確認できるようになります。たとえばマーケティング担当者が顧客データを扱う際、個人情報のアクセス制御ルールを守りながら最適なデータを選べます。\n\nまた、AIエージェント開発基盤であるMicrosoft Foundry（[「Microsoft Foundry」の使い方と無料枠](/articles/microsoft-foundry-agent-tutorial-azure)）との連携も拡大しました。標準化された接続規格であるModel Context Protocol（MCP）を介して、データガバナンスやID認証の機能をAIエージェントに組み込めます。\n\n## Fabricへのスキャン対応とAzure拠点の拡大\n\nデータ分析基盤であるMicrosoft Fabric（[MicrosoftがDB管理AI機能「Database Agent」を発表](/articles/microsoft-fabric-database-agent-preview)）向けには、スキャン機能を強化しました。\n\n従来の保管データに加えて、ノートブックやデータパイプラインでのデータ移動や変換プロセスも追跡できるようになります。これにより、データの移動経路（リネージュ）を追跡しやすくなります。\n\nさらに、インフラ面では米国東海岸に新たな提供拠点（Azure U.S. East POD）を開設しました。データ所在地に関する要件を持つ企業に対応します。\n\n## サイソクの見方：自社構築の手間を省きAIエージェントの安全運用を加速\n\n企業のAI導入において、85%の組織がAIエージェントのカスタマイズを計画している一方、エージェント型AIの導入を計画している組織のうち、成熟したエージェントのガバナンスモデルを持つと回答したのは21%にとどまるという調査データ（Deloitteの2026年調査）があります。\n\nFoundryの開発者は、標準化されたMCPインターフェースを通じて、個別の連携を一から作り込むことなく、Informaticaのデータ管理機能を利用できます。一方、すでに独自のガバナンスルールを運用している企業は、既存のインフラとMCP経由での制御が合致するかを確認してから導入を判断するとよいでしょう。\n\n## まだ分からないこと\n\n- 日本のリージョン（提供拠点）における個別対応の開始時期はまだ発表されていません。\n- 各企業のシステム構成における個別カスタマイズの追加費用についてはまだ発表されていません。\n\n## InformaticaやMicrosoftの法人サービスを利用中の企業へ\n\nMicrosoft Copilotとの統合とMicrosoft FoundryのInformatica Headless MCPサーバーとの統合は一般提供中です。Microsoft Fabric向けの拡張スキャン機能は一般提供されます。\n\nMicrosoft Marketplace経由でInformaticaのサービスを購入する場合、条件を満たせば税引前金額の100%を「Microsoft Azure Consumption Commitment（MACC）」の消費枠に充当できます。Azureの年間利用コミットメント契約を結んでいる企業は、調達窓口や担当部署へ条件を確認するとよいでしょう。",
+  "easy": "## ひとことで言うと\n\nInformatica（インフォマティカ）とMicrosoftのAIツールが直接つながるようになりました。社内のデータ定義やガバナンス情報をMicrosoft CopilotやAIエージェントに連携し、データの意味やアクセス制御を支援します。\n\n## 何が変わるの？\n\n社内のAIを使うとき、これまでは「そのデータが本当に正しいか」「見ていいデータか」を調べるのに手間がかかっていました。\n\n今回の連携により、データのリネージュ（出所や移動の履歴）やアクセス権限のルールがAIに共有されます。社内のAIアシスタントやエージェントが、会社の決まりを守りながら正しい情報をもとに動けるようになります。",
+  "channel": "Salesforce ニュース（日本）",
+  "channelId": "",
+  "channelSlug": "salesforce-jp",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "Salesforce傘下のInformatica、信頼できるエンタープライズデータを「Microsoft Copilot」「Microsoft Foundry」「Microsoft Fabric」に提供し、AIとアナリティクスを加速",
+  "publishedAt": "2026-11-27T02:00:00+00:00",
+  "generatedAt": "2026-11-27T10:00:53.042396+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/informatica-microsoft-copilot-foundry-integration-5994b52c.jpg",
+  "model": "gemini-3.5-flash",
+  "affiliates": [],
+  "newsType": "product",
+  "faq": [],
+  "todayActions": [
+    "Marketplace経由での購入を検討する前に、MACC充当の適格要件を調達担当に確認する",
+    "Foundryの開発担当と、MCP連携で適用するアクセス制御と追跡方法を確認する"
+  ],
+  "relatedSlugs": [
+    "microsoft-foundry-agent-tutorial-azure",
+    "microsoft-fabric-database-agent-preview"
+  ],
+  "qualityBar": {
+    "score": 5,
+    "missing": [
+      1,
+      5,
+      6
+    ],
+    "notes": {
+      "1": "最初の3行にどのくらい・いつからが無い",
+      "5": "することは書いてあるが、どこで（窓口・ページ）・いつまでが無い",
+      "6": "言い換えの無い略語（POD）"
+    },
+    "checkedAt": "2026-11-27T10:02:42+00:00",
+    "before": [
+      5,
+      6
+    ],
+    "repaired": false
+  },
+  "qualityScore": 96,
+  "sourcePublishedAt": "2026-11-27T02:00:00+00:00",
+  "detectedAt": "2026-11-27T09:58:59+00:00",
+  "layout": "noir",
+  "summaryLine": "InformaticaがMicrosoft CopilotやFoundryとの連携機能を拡張しました。CopilotとFoundry向けの統合は一般提供中です。",
+  "insight": [
+    {
+      "text": "Foundry向けのMCP連携では、エージェントとデータ管理サービスのやり取りを制御・追跡する管理機能も加わります。データを渡すだけでなく、利用状況の監査にも関わる拡張です。",
+      "source": "https://www.salesforce.com/jp/news/stories/informatica-trusted-enterprise-data-microsoft-collaboration/"
+    },
+    {
+      "text": "Fabricの拡張スキャンは、複数ステップのパイプラインオーケストレーションを含むデータ移動・変換のワークフロー全体で、リネージュを見えるようにします。スキャンサービスは統合されたインターフェースで管理できます。",
+      "source": "https://www.salesforce.com/jp/news/stories/informatica-trusted-enterprise-data-microsoft-collaboration/"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "Marketplace経由での購入を検討する前に、MACC充当の適格要件を調達担当に確認する",
+      "source": "https://www.salesforce.com/jp/news/stories/informatica-trusted-enterprise-data-microsoft-collaboration/",
+      "steps": [
+        "Microsoft Marketplace経由の購入か確認する",
+        "Microsoftの適格要件を満たすか担当部署に確認する",
+        "税引前金額の充当条件を確認する"
+      ],
+      "url": "https://www.salesforce.com/jp/news/stories/informatica-trusted-enterprise-data-microsoft-collaboration/"
+    },
+    {
+      "action": "Foundryの開発担当と、MCP連携で適用するアクセス制御と追跡方法を確認する",
+      "source": "https://www.salesforce.com/jp/news/stories/informatica-trusted-enterprise-data-microsoft-collaboration/",
+      "steps": [
+        "エージェントに適用するID管理を確認する",
+        "アクセス制御と管理制御を確認する",
+        "エージェントとデータ管理サービス間のやり取りを追跡できるか確認する"
+      ],
+      "url": "https://www.salesforce.com/jp/news/stories/informatica-trusted-enterprise-data-microsoft-collaboration/"
+    }
+  ],
+  "cause": {
+    "text": "企業のAIエージェントには、データへのアクセスだけでなく、ビジネス上の定義や信頼できる情報源を理解し、データ品質を評価し、アクセスポリシーの範囲内で動作することが求められています。今回の連携は、そうした企業データのコンテキストをAI体験に届ける取り組みです。",
+    "status": "background",
+    "source": "https://www.salesforce.com/jp/news/stories/informatica-trusted-enterprise-data-microsoft-collaboration/"
+  },
+  "worries": [
+    {
+      "q": "Marketplaceで買えば、必ずMACCに充当できますか？",
+      "a": "必ずではありません。Microsoftの適格要件を満たす場合に、Microsoft Marketplace経由で購入したInformatica製品・サービスの税引前金額の100%をMACCに充当できます。",
+      "source": "https://www.salesforce.com/jp/news/stories/informatica-trusted-enterprise-data-microsoft-collaboration/",
+      "action": "購入経路を決める前に、調達担当へMicrosoftの適格要件と自社の契約条件を確認してください。"
+    },
+    {
+      "q": "Foundryのエージェントに社内データを渡すとき、制御できますか？",
+      "a": "Foundry向けの統合には、ID管理、アクセス制御、管理制御を適用し、エージェントの活動を企業ポリシーの範囲内に保つ機能があります。エージェントとデータ管理サービスとのやり取りを制御・追跡する管理機能も説明されています。",
+      "source": "https://www.salesforce.com/jp/news/stories/informatica-trusted-enterprise-data-microsoft-collaboration/",
+      "action": "システム担当者と、エージェントに適用するID管理・アクセス制御・やり取りの追跡方法を確認してください。"
+    },
+    {
+      "q": "Fabricでは、ノートブックやパイプラインのデータ移動も追えますか？",
+      "a": "拡張スキャン機能はノートブックとデータパイプラインに対応し、データの移動や変換を追跡できます。複数ステップのパイプラインオーケストレーションを含むワークフロー全体で、より広範なリネージュの可視性を提供すると説明されています。",
+      "source": "https://www.salesforce.com/jp/news/stories/informatica-trusted-enterprise-data-microsoft-collaboration/",
+      "action": "Fabricの担当者に、拡張スキャンの対象となるノートブックやパイプラインを確認してください。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "MACC充当を見込んで購入経路を選ぶ？",
+      "situation": "Marketplace経由でInformatica製品を検討中",
+      "recommend": "適格要件を確認してから選ぶ",
+      "reason": "Microsoftの適格要件を満たす場合、Microsoft Marketplace経由で購入した製品・サービスの税引前金額の100%をMACCに充当できます。要件を満たすかを確認することで、充当を見込めるか判断できます。",
+      "source": "https://www.salesforce.com/jp/news/stories/informatica-trusted-enterprise-data-microsoft-collaboration/"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "MCPの追跡機能とFabricスキャンの範囲",
+    "cause": "AIに企業のデータ背景が必要な理由",
+    "steps": "MACC条件とMCPの管理機能を確認",
+    "worries": "購入条件やAIのアクセス制御はどうなる？",
+    "guide": "MACC充当を見込むなら購入経路を確認"
+  },
+  "depthAt": "2026-11-27T10:03:55+00:00",
+  "imageCredit": {
+    "kind": "official",
+    "org": "Salesforce",
+    "provider": "Salesforce ニュース（日本）",
+    "sourceUrl": "https://www.salesforce.com/jp/news/stories/informatica-trusted-enterprise-data-microsoft-collaboration/",
+    "original": "https://www.salesforce.com/jp/news/wp-content/uploads/sites/21/2026/11/Informatica-Salesforce.png",
+    "width": 1200,
+    "height": 675,
+    "at": "2026-11-27T10:04:01+00:00",
+    "imageKind": "hero"
+  },
+  "heroOk": true,
+  "imageFocus": {
+    "x": 0.508,
+    "y": 0.494,
+    "box": [
+      0.066,
+      0.144,
+      0.95,
+      0.844
+    ],
+    "ar": 1.7778,
+    "src": "https://ai-tech-express.jp/img/informatica-microsoft-copilot-foundry-integration-5994b52c.jpg"
+  }
+}
