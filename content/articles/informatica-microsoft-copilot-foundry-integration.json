@@ -3,8 +3,8 @@
   "sourceType": "web",
   "sourceUrl": "https://www.salesforce.com/jp/news/stories/informatica-trusted-enterprise-data-microsoft-collaboration/",
   "sourceName": "Salesforce ニュース（日本）",
-  "title": "Copilotで企業のデータ活用を支援　InformaticaがMicrosoft連携を強化",
-  "seoTitle": "InformaticaのMicrosoft連携とは？CopilotやFoundryとの統合範囲",
+  "title": "Copilotで社内データの意味や品質を確認　InformaticaがMicrosoft連携を強化",
+  "seoTitle": "InformaticaがCopilot・Foundryとの連携強化",
   "threadsPost": "社内のAI活用やデータ管理を担当している人に、押さえておきたい話です。\n\nInformaticaがMicrosoft CopilotやFoundryとの統合機能を一般提供しました。\n企業のデータ品質やアクセス権限の定義を、AIエージェントに直接読み込ませることができます。\n\n社内のAI開発で、データの安全管理やアクセス権限の設定に苦労した経験はありますか？",
   "threadsHook": "callout",
   "threadsQuestions": [
@@ -19,8 +19,8 @@
   ],
   "threadsStyle": 3,
   "writingVoice": "honest",
-  "lede": "Salesforce傘下のInformaticaは、Microsoft CopilotやMicrosoft Foundry、Microsoft Fabricとの連携を強化しました。CopilotとFoundry向けの統合は一般提供中で、Fabric向けの拡張スキャン機能は一般提供されます。企業内のデータ定義やガバナンス情報を、CopilotやAIエージェントに直接連携できる仕組みです。利用条件やMACC充当の詳細は公式窓口などで確認できます。",
-  "description": "Salesforce傘下のInformaticaがMicrosoft CopilotやMicrosoft Foundry、Fabricとの統合機能を拡張。エンタープライズデータの定義やガバナンスをAIエージェントに直接提供可能になりました。",
+  "lede": "InformaticaとMicrosoft Copilotの統合が一般提供され、企業の担当者は対話を通じて社内データの意味や品質、来歴などを確認できるようになります。AIエージェント開発向けのMicrosoft Foundryとの統合も一般提供中です。Microsoft Fabric向けには、ノートブックやパイプラインに対応した拡張スキャン機能が一般提供されます。",
+  "description": "Salesforce傘下のInformaticaがMicrosoftとの連携を強化。Copilotで企業データの定義や品質を確認できるほか、Foundry向けのガバナンス機能も拡充します。Fabricの拡張スキャン機能も一般提供されます。",
   "keywords": [
     "Informatica",
     "Microsoft Copilot",
@@ -60,7 +60,7 @@
       "Microsoft Marketplace経由で購入することで、Azureの利用コミットメント（MACC）に100%充当できる可能性がある"
     ]
   },
-  "body": "Salesforce傘下のInformaticaは、MicrosoftのAIおよびアナリティクス製品との連携を強化しました。\n\n今回の統合により、企業が持つデータの定義や品質、アクセス制限のルールを、Microsoft CopilotやAIエージェントが直接理解できるようになります。\n\n## CopilotとFoundryへ信頼できるデータを提供\n\nInformaticaは、自社のデータ管理基盤「Informatica Headless」を通じて、Microsoft CopilotやMicrosoft Teamsへの機能提供を開始しました。\n\nビジネスユーザーは、Copilotとの会話を通じてデータの意味や出所、信頼性を確認できるようになります。たとえばマーケティング担当者が顧客データを扱う際、個人情報のアクセス制御ルールを守りながら最適なデータを選べます。\n\nまた、AIエージェント開発基盤であるMicrosoft Foundry（[「Microsoft Foundry」の使い方と無料枠](/articles/microsoft-foundry-agent-tutorial-azure)）との連携も拡大しました。標準化された接続規格であるModel Context Protocol（MCP）を介して、データガバナンスやID認証の機能をAIエージェントに組み込めます。\n\n## Fabricへのスキャン対応とAzure拠点の拡大\n\nデータ分析基盤であるMicrosoft Fabric（[MicrosoftがDB管理AI機能「Database Agent」を発表](/articles/microsoft-fabric-database-agent-preview)）向けには、スキャン機能を強化しました。\n\n従来の保管データに加えて、ノートブックやデータパイプラインでのデータ移動や変換プロセスも追跡できるようになります。これにより、データの移動経路（リネージュ）を追跡しやすくなります。\n\nさらに、インフラ面では米国東海岸に新たな提供拠点（Azure U.S. East POD）を開設しました。データ所在地に関する要件を持つ企業に対応します。\n\n## サイソクの見方：自社構築の手間を省きAIエージェントの安全運用を加速\n\n企業のAI導入において、85%の組織がAIエージェントのカスタマイズを計画している一方、エージェント型AIの導入を計画している組織のうち、成熟したエージェントのガバナンスモデルを持つと回答したのは21%にとどまるという調査データ（Deloitteの2026年調査）があります。\n\nFoundryの開発者は、標準化されたMCPインターフェースを通じて、個別の連携を一から作り込むことなく、Informaticaのデータ管理機能を利用できます。一方、すでに独自のガバナンスルールを運用している企業は、既存のインフラとMCP経由での制御が合致するかを確認してから導入を判断するとよいでしょう。\n\n## まだ分からないこと\n\n- 日本のリージョン（提供拠点）における個別対応の開始時期はまだ発表されていません。\n- 各企業のシステム構成における個別カスタマイズの追加費用についてはまだ発表されていません。\n\n## InformaticaやMicrosoftの法人サービスを利用中の企業へ\n\nMicrosoft Copilotとの統合とMicrosoft FoundryのInformatica Headless MCPサーバーとの統合は一般提供中です。Microsoft Fabric向けの拡張スキャン機能は一般提供されます。\n\nMicrosoft Marketplace経由でInformaticaのサービスを購入する場合、条件を満たせば税引前金額の100%を「Microsoft Azure Consumption Commitment（MACC）」の消費枠に充当できます。Azureの年間利用コミットメント契約を結んでいる企業は、調達窓口や担当部署へ条件を確認するとよいでしょう。",
+  "body": "Salesforce傘下のInformaticaは、MicrosoftのAI・分析製品との連携を強化しました。\n\n企業の担当者は、Copilotを通じてデータの定義や品質、ガバナンスに関する情報を確認できます。開発者は、こうした情報を活用するAIエージェントを構築できます。\n\n## Copilotでデータの意味や品質を確認\n\nInformaticaは、自社のデータ管理基盤「Informatica Headless」の機能を通じて、Microsoft CopilotやMicrosoft Teamsに企業データの情報を提供します。\n\nビジネスユーザーは、自然言語でのやり取りを通じて、データの意味や出所、信頼性を確認できるようになります。たとえばマーケティング担当者は、顧客データの品質や機密情報へのアクセス制御を確認し、信頼できるデータを選ぶ際に役立てられます。\n\nまた、AIエージェント開発基盤であるMicrosoft Foundry（[「Microsoft Foundry」の使い方と無料枠](/articles/microsoft-foundry-agent-tutorial-azure)）との連携も拡大しました。標準化された接続規格のModel Context Protocol（MCP）を介して、データガバナンスやID認証、運用管理の機能を利用できます。\n\n## Fabricのデータ追跡を拡張　米東海岸にAzure拠点\n\nデータ分析基盤のMicrosoft Fabric（[MicrosoftがDB管理AI機能「Database Agent」を発表](/articles/microsoft-fabric-database-agent-preview)）向けには、スキャン機能を強化します。\n\n保管データに加えて、ノートブックやデータパイプラインでのデータ移動や変換プロセスも追跡できるようになります。データの移動経路や来歴を示す「リネージュ」を把握しやすくなります。\n\nインフラ面では、米国東海岸のAzureに新たな提供拠点を設けました。データ所在地などの要件を持つ企業にとって、導入先の選択肢が広がります。\n\n## AIエージェントの開発とガバナンスを支援\n\nDeloitteの2026年調査では、85%の組織がAIエージェントのカスタマイズを計画しています。一方、エージェント型AIの導入を計画している組織のうち、成熟したエージェントのガバナンスモデルを持つと回答したのは21%でした。\n\nFoundryの開発者は、標準化されたMCPインターフェースを通じて、個別の連携を一から作り込むことなくInformaticaのデータ管理機能を利用できます。すでに独自のガバナンスルールを運用している企業は、既存のインフラとMCP経由での制御が合致するかを確認してから導入を判断するとよいでしょう。\n\n## 提供状況とMACCへの充当条件\n\nMicrosoft Copilotとの統合と、Microsoft FoundryのInformatica Headless MCPサーバーとの統合は一般提供中です。Microsoft Fabric向けの拡張スキャン機能は一般提供されます。\n\nMicrosoft Marketplace経由でInformaticaの製品・サービスを購入する場合、Microsoftの適格要件を満たせば税引前金額の100%を「Microsoft Azure Consumption Commitment（MACC）」に充当できます。Azureの利用コミットメント契約を結んでいる企業は、調達窓口や担当部署へ条件を確認するとよいでしょう。",
   "easy": "## ひとことで言うと\n\nInformatica（インフォマティカ）とMicrosoftのAIツールが直接つながるようになりました。社内のデータ定義やガバナンス情報をMicrosoft CopilotやAIエージェントに連携し、データの意味やアクセス制御を支援します。\n\n## 何が変わるの？\n\n社内のAIを使うとき、これまでは「そのデータが本当に正しいか」「見ていいデータか」を調べるのに手間がかかっていました。\n\n今回の連携により、データのリネージュ（出所や移動の履歴）やアクセス権限のルールがAIに共有されます。社内のAIアシスタントやエージェントが、会社の決まりを守りながら正しい情報をもとに動けるようになります。",
   "channel": "Salesforce ニュース（日本）",
   "channelId": "",
@@ -207,5 +207,28 @@
     ],
     "ar": 1.7778,
     "src": "https://ai-tech-express.jp/img/informatica-microsoft-copilot-foundry-integration-5994b52c.jpg"
+  },
+  "gptReview": {
+    "reviewedBy": "gpt-6.1-terra",
+    "reviewedAt": "2026-11-27T10:24:53+00:00",
+    "changed": [
+      "body",
+      "description",
+      "lede",
+      "seoTitle",
+      "title"
+    ],
+    "before": {
+      "title": "Copilotで企業のデータ活用を支援　InformaticaがMicrosoft連携を強化",
+      "lede": "Salesforce傘下のInformaticaは、Microsoft CopilotやMicrosoft Foundry、Microsoft Fabricとの連携を強化しました。CopilotとFoundry向けの統合は一般提供中で、Fabric向けの拡張スキャン機能は一般提供されます。企業内のデータ定義やガバナンス情報を、CopilotやAIエージェントに直接連携できる仕組みです。利用条件やMACC充当の詳細は公式窓口などで確認できます。"
+    },
+    "fixes": [
+      {
+        "before": "企業が持つデータの定義や品質、アクセス制限のルールを、Microsoft CopilotやAIエージェントが直接理解できるようになります。",
+        "after": "企業の担当者は、Copilotを通じてデータの定義や品質、ガバナンスに関する情報を確認できます。開発者は、こうした情報を活用するAIエージェントを構築できます。",
+        "evidence": "「ビジネスユーザーや経営層は、自然言語でのやり取りを通じて」「インサイトを活用できます」"
+      }
+    ],
+    "notes": "Copilotで企業の担当者ができることをリードの冒頭に移し、見出しを具体化しました。AIがアクセス制限のルールを直接理解できるという表現を資料に沿って修正し、資料から確認できない未発表事項の記述を削除しました。"
   }
 }
