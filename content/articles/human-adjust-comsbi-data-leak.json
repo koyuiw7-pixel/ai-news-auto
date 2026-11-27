@@ -73,9 +73,9 @@
     }
   ],
   "todayActions": [
-    "LINE公式アカウントに、ヒューマンアジャストからの個別案内が届いていないか確認する",
-    "心当たりのないメールや通知は、リンクを開かず情報も入力しない",
-    "不明点はofficial@human-adjust.co.jpへメールで問い合わせる"
+    "LINE公式アカウントで、ヒューマンアジャストからの個別案内を確認する",
+    "心当たりのないメールや通知は、リンクを開いたり情報を入力したりしない",
+    "問い合わせが必要なら、発表に記載されたメールアドレスへ連絡する"
   ],
   "relatedSlugs": [
     "mtg-style-shop-line-data-leak"
@@ -143,5 +143,77 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/human-adjust-comsbi-data-leak-figure-bb2dcf69.jpg"
-  }
+  },
+  "officialDesk": [
+    {
+      "name": "株式会社ヒューマンアジャスト お問合せ窓口",
+      "url": "https://www.fse.or.jp/files/lis_tkj/261125249A0.pdf",
+      "source": "https://www.fse.or.jp/files/lis_tkj/261125249A0.pdf",
+      "howTo": [
+        "当社委託先のクラウドサービスへの不正アクセスによる個人情報漏",
+        "本件に関するお問い合わせ窓口"
+      ],
+      "note": "下記メールアドレスよりお問い合わせください。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "LINE公式アカウントで、ヒューマンアジャストからの個別案内を確認する",
+      "source": "https://www.fse.or.jp/files/lis_tkj/261125249A0.pdf",
+      "steps": [
+        "LINE公式アカウントを開く",
+        "ヒューマンアジャストからの個別案内を確認する"
+      ]
+    },
+    {
+      "action": "心当たりのないメールや通知は、リンクを開いたり情報を入力したりしない",
+      "source": "https://www.fse.or.jp/files/lis_tkj/261125249A0.pdf",
+      "steps": [
+        "届いた電子メールや通知を確認する",
+        "送信元や内容に心当たりがなければ、リンクにアクセスせず情報も入力しない"
+      ]
+    },
+    {
+      "action": "問い合わせが必要なら、発表に記載されたメールアドレスへ連絡する",
+      "source": "https://www.fse.or.jp/files/lis_tkj/261125249A0.pdf",
+      "steps": [
+        "メールを作成する",
+        "official@human-adjust.co.jp宛てに問い合わせる"
+      ],
+      "url": "https://www.fse.or.jp/files/lis_tkj/261125249A0.pdf"
+    }
+  ],
+  "cause": {
+    "text": "委託先の社内用アカウントの認証情報が第三者に不正取得されました。第三者はそのアカウントで管理画面にログインし、データ取得用APIの「お客様検索」機能を経由して情報を取得したと発表されています。",
+    "status": "stated",
+    "source": "https://www.fse.or.jp/files/lis_tkj/261125249A0.pdf"
+  },
+  "worries": [
+    {
+      "q": "クレジットカード情報も漏れたのでしょうか？",
+      "a": "発表では、本サービスにおいてクレジットカード情報は保持していないとしています。漏えいした利用者情報として挙げられているのは、氏名、電話番号、メールアドレス、住所、生年月日、性別のいずれかです。",
+      "source": "https://www.fse.or.jp/files/lis_tkj/261125249A0.pdf",
+      "action": "対象の案内をLINE公式アカウントで確認し、不審な連絡にはリンクから情報を入力しないでください。"
+    },
+    {
+      "q": "自分で設定したLINE IDも漏れたのでしょうか？",
+      "a": "漏えい項目として示されたのは、LINEシステムが自動で発行するLINEユーザーIDです。利用者が任意で設定できるLINE IDとは別のものだと発表されています。",
+      "source": "https://www.fse.or.jp/files/lis_tkj/261125249A0.pdf",
+      "action": "LINE公式アカウントからの個別案内を確認し、心当たりのない通知はリンクを開かず情報を入力しないでください。"
+    },
+    {
+      "q": "不審なリンク先にパスワードを入力してしまったら？",
+      "a": "フィッシングサイトなどに普段使っているIDやパスワードを入力した場合、警察庁は、それらを利用しているすべてのサービスでパスワードなどを速やかに変更するよう案内しています。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "action": "入力したIDやパスワードを使っているすべてのサービスで、パスワードなどを速やかに変更してください。",
+      "general": true
+    }
+  ],
+  "depthHeadings": {
+    "cause": "認証情報が不正取得され、検索機能から情報流出",
+    "steps": "LINEの個別案内と不審な連絡を確認",
+    "desk": "問い合わせはメール窓口へ",
+    "worries": "カード情報やLINE IDも対象なの？"
+  },
+  "depthAt": "2026-11-27T03:10:44+00:00"
 }
