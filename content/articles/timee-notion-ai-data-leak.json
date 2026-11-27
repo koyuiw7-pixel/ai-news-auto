@@ -108,5 +108,107 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/timee-notion-ai-data-leak-figure-312cc8b8.jpg"
+  },
+  "officialDesk": [
+    {
+      "name": "株式会社タイミー カスタマーサポート",
+      "url": "https://taimee.zendesk.com/hc/ja/requests/new",
+      "source": "https://corp.timee.co.jp/news/detail-7478/",
+      "note": "本事案に関する質問や不明な点を問い合わせできます。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "対象か気になる人は、タイミーの問い合わせフォームから確認する。",
+      "source": "https://corp.timee.co.jp/news/detail-7478/",
+      "steps": [
+        "株式会社タイミー カスタマーサポートのリンクを開く",
+        "本事案に関する質問や不明な点を送る"
+      ],
+      "url": "https://taimee.zendesk.com/hc/ja/requests/new"
+    },
+    {
+      "action": "不審なサイトにIDやパスワードを入力した人は、利用中の各サービスで変更する。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "steps": [
+        "「フィッシングの被害に遭ったら」を確認する",
+        "「パスワード等を変更する」を確認する",
+        "同じIDやパスワードを使う全サービスで変更する"
+      ],
+      "url": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html"
+    }
+  ],
+  "cause": {
+    "text": "公表された原因は、Notion社の委託先であるFireworks AI社への第三者による不正アクセスです。タイミー本体のシステムが不正アクセスを受けたものではないと説明しています。",
+    "status": "stated",
+    "source": "https://corp.timee.co.jp/news/detail-7478/"
+  },
+  "worries": [
+    {
+      "q": "ワーカーの登録情報やサービス利用に影響はある？",
+      "a": "タイミーは、ワーカーの登録情報（姓名、電話番号、本人確認書類、口座情報など）の流出は現時点で確認されておらず、提供サービスやワーカーへの影響もないとしています。",
+      "source": "https://corp.timee.co.jp/news/detail-7478/",
+      "action": "タイミーから不審な連絡が来た場合は、リンクを開かず問い合わせフォームで確認する。"
+    },
+    {
+      "q": "取引先担当者のどの情報が漏れた可能性がある？",
+      "a": "求人事業者、協業先、業務委託先の担当者について、姓名、メールアドレス334件、電話番号410件が公表されています。電話番号は求人事業者の情報のみです。",
+      "source": "https://corp.timee.co.jp/news/detail-7478/",
+      "action": "対象となる人への連絡を待ち、個別に確認したい場合は問い合わせフォームを利用する。"
+    },
+    {
+      "q": "漏えいした情報の不正利用や二次被害は出ている？",
+      "a": "タイミーは、発表時点で本事案に起因する情報の不正利用や二次被害の発生は確認されていないとしています。",
+      "source": "https://corp.timee.co.jp/news/detail-7478/",
+      "action": "身に覚えのない不正利用に気づいた場合は、そのサービスを提供する会社に相談する。",
+      "actionSource": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "actionGeneral": true
+    },
+    {
+      "q": "タイミーを名乗るメールの送信元表示は信じていい？",
+      "a": "警察庁によると、メールの送信元名称やメールアドレスは変更が容易で、表示だけで真偽を判断するのは困難です。スマートフォンでは表示項目が少ない場合もあります。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "action": "メールやSMSのリンクは開かず、公式サイトや公式アプリから正しい接続先を確認する。",
+      "general": true
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "不審な連絡を受けたら、どうする？",
+      "situation": "メールやSMSのリンクをまだ開いていない",
+      "recommend": "リンクを開かず、公式サイトから確認する",
+      "reason": "メールやSMSのリンクは偽装されることがあり、見た目で真偽を判断するのは困難です。警察庁はリンクを安易にクリックせず、公式サイトや公式アプリを使うよう案内しています。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "general": true
+    },
+    {
+      "question": "不審な連絡を受けたら、どうする？",
+      "situation": "IDやパスワードを入力してしまった",
+      "recommend": "同じ情報を使う全サービスのパスワードを変更する",
+      "reason": "フィッシングサイトに普段使うIDやパスワードを入力した場合、警察庁は、それらを利用している全てのサービスで速やかに変更するよう案内しています。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "general": true
+    }
+  ],
+  "depthHeadings": {
+    "cause": "不正アクセスは委託先で発生",
+    "steps": "対象か気になる人の確認先",
+    "desk": "タイミーへの問い合わせ先",
+    "worries": "漏えい情報や不審な連絡が心配",
+    "guide": "不審な連絡を受けたときの対応"
+  },
+  "todayActions": [
+    "対象か気になる人は、タイミーの問い合わせフォームから確認する。",
+    "不審なサイトにIDやパスワードを入力した人は、利用中の各サービスで変更する。"
+  ],
+  "depthAt": "2026-11-27T08:07:02+00:00",
+  "coverImage": "https://ai-tech-express.jp/img/timee-notion-ai-data-leak-cover-fa1666f9.jpg",
+  "coverCredit": {
+    "kind": "ai",
+    "model": "flux-2-klein-4b",
+    "prompt": "A data center aisle lined with rows of server racks under cool lighting, showing a technician from behind inspecting a blinking rack unit",
+    "provider": "Cloudflare Workers AI",
+    "relevant": true,
+    "at": "2026-11-27T08:07:34+00:00"
   }
 }
