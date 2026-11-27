@@ -4,6 +4,7 @@ import { getAllEvents, getEvent, localDateRange } from "@/lib/events";
 import { getProduct, listedProducts } from "@/lib/products";
 import { getAllChooseGuides, getChooseGuide } from "@/lib/choose";
 import { currentAnswer, getAllMoneyDates, getMoneyDate } from "@/lib/money-dates";
+import { FLAGSHIP_STORIES, getFlagship } from "@/lib/flagship";
 import { PAGE_SHARE, PAGE_SHARE_KEYS, type PageShare, type PageShareKey } from "@/lib/page-share";
 
 /**
@@ -11,7 +12,7 @@ import { PAGE_SHARE, PAGE_SHARE_KEYS, type PageShare, type PageShareKey } from "
  * 形は lib/page-share.ts の固定ページと同じ（app/og/[key]/route.tsx がビルド時に描く。Workers では描かない）。
  * キーは「guide-<slug>」「event-<slug>」「product-<slug>」「choose-<slug>」「date-<slug>」。
  */
-const PREFIX = { guide: "guide-", event: "event-", product: "product-", choose: "choose-", date: "date-" } as const;
+const PREFIX = { guide: "guide-", event: "event-", product: "product-", choose: "choose-", date: "date-", story: "story-" } as const;
 export type ItemKind = keyof typeof PREFIX;
 
 /** 題名を「大きな見出し」と「下の1行」に分ける（？・全角の空白・、で。分けられなければ全部を見出しに） */
@@ -88,6 +89,11 @@ function dateShare(slug: string): PageShare | undefined {
   };
 }
 
+/** 特集（/stories/<slug>。lib/flagship.ts）。画像の文は特集の JSON の share */
+function storyShare(slug: string): PageShare | undefined {
+  return getFlagship(slug)?.share;
+}
+
 /** キー → 画像の中身（固定ページ・1ページずつのどちらも） */
 export function shareFor(key: string): PageShare | undefined {
   if (key in PAGE_SHARE) return PAGE_SHARE[key as PageShareKey];
@@ -96,6 +102,7 @@ export function shareFor(key: string): PageShare | undefined {
   if (key.startsWith(PREFIX.product)) return productShare(key.slice(PREFIX.product.length));
   if (key.startsWith(PREFIX.choose)) return chooseShare(key.slice(PREFIX.choose.length));
   if (key.startsWith(PREFIX.date)) return dateShare(key.slice(PREFIX.date.length));
+  if (key.startsWith(PREFIX.story)) return storyShare(key.slice(PREFIX.story.length));
   return undefined;
 }
 
@@ -108,6 +115,7 @@ export function allShareKeys(): string[] {
     ...listedProducts().map((p) => `${PREFIX.product}${p.slug}`),
     ...getAllChooseGuides().map((g) => `${PREFIX.choose}${g.slug}`),
     ...getAllMoneyDates().map((d) => `${PREFIX.date}${d.slug}`),
+    ...FLAGSHIP_STORIES.map((s) => `${PREFIX.story}${s.slug}`),
   ];
 }
 

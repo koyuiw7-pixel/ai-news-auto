@@ -31,6 +31,8 @@ import type { FunnelCard as FunnelCardData } from "@/lib/comparison";
 import FunnelCard from "@/components/FunnelCard";
 import ShareButtons from "@/components/ShareButtons";
 import MoneyCheckLink from "@/components/MoneyCheckLink";
+import FlagshipLink from "@/components/flagship/FlagshipLink";
+import { flagshipForArticle } from "@/lib/flagship";
 import TopicListMembership from "@/components/TopicListMembership";
 import type { MoneyTarget } from "@/lib/money-pages";
 import ThreadsFollow from "@/components/ThreadsFollow";
@@ -154,6 +156,7 @@ export function noirArticlePage(ctx: NoirPageContext) {
     howto, guide, product, nextReads, crumbs, reviewedLabel, ChooseGuideNote, CompareLink, actionAd,
     funnel, compareInline, compareEnd, storyReads = [], clusterReads = [],
   } = ctx;
+  const flagship = flagshipForArticle(article.slug);
   // 記事に合う PR だけ出す（2026-11-10 オーナー承認）。話題が当たらずジャンルの既定の広告（fallback-*）になった商品枠は、ノワールの記事では出さない
   // （年金生活者支援給付金の記事に証券会社が出ていた）。合う話題は scripts/a8_import.py の ACTION_ADS（life-*）で足す
   // 2026-11-17 オーナー「広告がないのはやめてほしい」: 合わない既定の広告は出さないまま、記事の品物・場面に合う話題（offers.json の shop-* など）を足した。
@@ -268,8 +271,10 @@ export function noirArticlePage(ctx: NoirPageContext) {
         genreLine: <GenreLine genre={article.genre} item={genreLatest} />,
         // 要点のすぐ下（「すぐにできること」・1つ目の PR より上）に「自分は対象か確かめる」の1行（2026-11-10 M2。PR の数と位置は変えない）
         quick:
-          moneyLink || quickList.length > 0 || (funnelMid && depth.guide.length === 0) ? (
+          flagship || moneyLink || quickList.length > 0 || (funnelMid && depth.guide.length === 0) ? (
             <>
+              {/* 計算つきの特集がある記事は、要点のすぐ下に案内（lib/flagship.ts。2026-11-28） */}
+              <FlagshipLink target={flagship} className="mb-4" />
               <MoneyCheckLink target={moneyLink} className="mb-6" />
               {quickList.length > 0 && <QuickActions actions={quickList} detailed={stepItems.length > 0} />}
               {depth.guide.length === 0 && funnelMid}

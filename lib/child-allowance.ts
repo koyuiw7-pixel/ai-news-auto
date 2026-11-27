@@ -242,3 +242,67 @@ export const CHILD_ALLOWANCE_RECEIVE: ReceiveGuide = {
   ],
   checked: "2026-11-27",
 };
+
+/**
+ * その月から見た「次の支給」の月（偶数月）。偶数月はその月の支給（2か月分）、奇数月は翌月の支給。
+ * 支給日の日にちは市区町村ごとに違うので、偶数月の中で「もう入ったか」は決めない（特集 /stories/third-child-1000man の計算）
+ */
+export function nextPaymentMonth(ym: YearMonth): YearMonth {
+  return ym.month % 2 === 0 ? { year: ym.year, month: ym.month } : fromIndex(index(ym) + 1);
+}
+
+/** 日本時間の今日の年月（ブラウザ・サーバーの時刻帯に左右されない） */
+export function tokyoYearMonth(date: Date = new Date()): YearMonth {
+  const jst = new Date(date.getTime() + 9 * 3600 * 1000);
+  return { year: jst.getUTCFullYear(), month: jst.getUTCMonth() + 1 };
+}
+
+/**
+ * from の月から、手当が出なくなるまでの合計（今の制度が変わらず、生活費の負担なども変わらない場合）。
+ * 最後に手当が出る月（last）も返す。まだ生まれていない子（出産予定の月を入れた子）も、生まれた月の翌月から数える。
+ * maxMonths は上限（既定 25 年）
+ */
+export function remainingTotal(children: ChildInput[], from: YearMonth, maxMonths = 300): { total: number; last: YearMonth | null; months: number } {
+  const start = index(from);
+  let total = 0;
+  let last: YearMonth | null = null;
+  let months = 0;
+  for (let k = 0; k < maxMonths; k++) {
+    const ym = fromIndex(start + k);
+    const amount = monthTotal(children, ym);
+    if (amount > 0) {
+      total += amount;
+      last = ym;
+      months += 1;
+    }
+  }
+  return { total, last, months };
+}
+
+/**
+ * 生まれた年月の子が「ずっと第3子以降」だった場合に、高校生年代の終わり（18歳の年度末の3月分）までに受け取る児童手当。
+ * 上の2人がその間ずっと数に入る（22歳の年度末まで・生活費を負担）とした、いちばん多い場合。実際は上の子が数から外れると減る
+ */
+export function thirdChildMaxTotal(birth: YearMonth): { total: number; months: number; last: YearMonth | null } {
+  const family: ChildInput[] = [
+    { kind: "category", category: "olderSupported" },
+    { kind: "category", category: "olderSupported" },
+    { kind: "birth", year: birth.year, month: birth.month },
+  ];
+  // 上の2人は手当なしで数に入るだけなので、合計はこの子の分だけ
+  return remainingTotal(family, fromIndex(index(birth) + 1), 12 * 20);
+}
+
+/** 家族の数（シェアの画像に出すのは数だけ。生まれた年月は出さない） */
+export function familyCounts(children: ChildInput[], ym: YearMonth): { children: number; expected: number; paid: number; counted: number; thirdOrLater: number } {
+  const rows = allowanceForMonth(children, ym);
+  // 出産予定の月を入れた子（その月にはまだ生まれていない子）は「子ども〇人」に入れず、予定として別に数える
+  const expected = children.filter((child, i) => rows[i].status === "notBorn" && child.kind === "birth").length;
+  return {
+    children: children.length - expected,
+    expected,
+    paid: rows.filter((r) => r.amount > 0).length,
+    counted: rows.filter((r) => r.rank !== null).length,
+    thirdOrLater: rows.filter((r) => r.rank !== null && r.rank >= 3 && r.amount > 0).length,
+  };
+}

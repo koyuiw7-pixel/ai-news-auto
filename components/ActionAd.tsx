@@ -7,6 +7,7 @@ import AbBox from "@/components/rail/AbBox";
 import ToolAdCard from "@/components/ToolAdCard";
 import ToolAdSlot from "@/components/ToolAdSlot";
 import { toolAdCopy, toolKindFor, type ToolKind } from "@/lib/tool-ad";
+import { FLAGSHIP_AD_POS } from "@/lib/flagship-pos";
 
 /**
  * 「すぐにできること」のすぐ下に置く、編集部の言葉で書いた PR の囲み（1記事に1つ。lib/action-ad.ts）。
@@ -88,7 +89,8 @@ export default function ActionAd({ ad, className = "mt-4", pos = "action-ad", to
   );
   // 計算ツールの結果の下: A（今までの囲み）か B（新しい見た目）の、選ばれた方だけを描く（components/ToolAdSlot.tsx）。
   // 両方を HTML に入れて CSS で隠すと、同じ枠が1ページに2つになる（オーナーのルール W10「見えていない方も数える」）。表示の画像も2回読まれる
-  const kind = pos === "tool-result" ? toolKindFor(tool, ad.key) : undefined;
+  // 特集（/stories/*）の結果の下（pos "flagship-result"。lib/flagship.ts）も、計算ツールと同じ A/B の描き分け（2026-11-28）
+  const kind = pos === "tool-result" || pos === FLAGSHIP_AD_POS ? toolKindFor(tool, ad.key) : undefined;
   const copy = kind && first ? toolAdCopy(kind, first.item) : undefined;
   if (!copy || !first) return withCompare;
   return (

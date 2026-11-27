@@ -1,0 +1,83 @@
+{
+  "slug": "third-child-1000man",
+  "title": "第3子に1000万円は決まった？ うちの子どものお金を今の制度で計算",
+  "description": "第3子以降に1000万円規模の支援は、自民党の人口戦略本部が2026年11月27日にまとめた提言案で、制度としては決まっていません。今の児童手当は第3子以降が1人月3万円です。子どもの年齢を入れると、うちの月額・次の支給・1年分がその場で分かります。",
+  "kicker": "子育てとお金",
+  "genre": { "label": "社会・行政", "href": "/genres/public" },
+  "publishedAt": "2026-11-28T08:20:00+09:00",
+  "updatedAt": "2026-11-28T08:20:00+09:00",
+  "asOf": "2026-11-28",
+  "keywords": ["第3子 1000万円", "第3子 1000万円 いつから", "第3子 1000万円 決まった", "児童手当 第3子 月額", "児童手当 計算", "児童手当 12月 支給", "人口戦略本部 提言案"],
+  "answer": {
+    "lead": "決まっていません。第3子以降に1000万円規模の給付やサービスを出す話は、自民党の人口戦略本部が2026年11月27日にまとめた政府への提言案です。",
+    "sub": "今受け取れるのは児童手当で、第3子以降は年齢に関係なく1人月3万円です。下で子どもの年齢を入れると、うちの月額と次の支給がその場で分かります。",
+    "sources": ["jiji", "kyodo", "cfa-annai"]
+  },
+  "status": {
+    "decided": [
+      { "label": "児童手当の第3子以降は月3万円", "detail": "今の制度です。所得制限はなく、3歳未満でも高校生年代でも同じ額です。", "sources": ["cfa-annai", "cfa-gaiyou"] },
+      { "label": "自民党の本部が提言案をまとめた", "detail": "11月27日の会合で、提言案の取りまとめを下村博文本部長に一任しました。", "sources": ["jiji"] },
+      { "label": "政府は年末を目途に人口総合戦略をつくる", "detail": "提言は、この戦略に向けた党からの案です。", "sources": ["jimin", "kyodo"] }
+    ],
+    "undecided": [
+      { "label": "1000万円を制度にするか", "detail": "提言案の段階で、法律や予算は決まっていません。", "sources": ["jiji", "tbs"] },
+      { "label": "現金か、サービスか", "detail": "共同通信は「給付やサービス」を出す案と伝えています。内訳は示されていません。", "sources": ["kyodo"] },
+      { "label": "いつから・誰が対象か", "detail": "始まる時期、すでに生まれた子が対象になるか、第3子の数え方や所得の条件は示されていません。", "sources": ["jiji", "kyodo"] }
+    ]
+  },
+  "calculator": "child-allowance",
+  "proposal": {
+    "title": "もし案が通ったら",
+    "badge": "まだ決まっていません",
+    "lead": "報道で分かっているのは、案の中身の大まかな形だけです。金額の内訳や受け取り方は示されていないため、ここでは計算しません。",
+    "known": [
+      { "text": "第3子以降の出産に、1000万円規模の給付やサービスを出す。", "sources": ["kyodo", "jiji"] },
+      { "text": "出産・子育てへの大胆な減税、保育料の無償化の拡大、不妊治療の支援の拡大も入っている。", "sources": ["jiji", "kyodo"] },
+      { "text": "政策のまとめ役として「人口戦略庁（仮称）」をつくる。", "sources": ["jiji", "kyodo"] }
+    ],
+    "watch": [
+      { "when": "近く", "what": "提言を高市早苗首相に出す", "detail": "共同通信は「近く」、TBS NEWS DIG は「来週にも」政府に申し入れると伝えています。日にちは示されていません。", "sources": ["kyodo", "tbs"] },
+      { "when": "年末", "what": "政府が人口総合戦略をつくる", "detail": "提言がどこまで戦略に入るかが、最初の分かれ目です。", "sources": ["jimin", "jiji"] },
+      { "when": "来年", "what": "骨太の方針に入るか", "detail": "下村本部長は、具体的な施策を来年の骨太の方針（政府の経済と財政の基本方針）に反映させたい考えです。", "sources": ["jiji"] }
+    ],
+    "insight": "今の児童手当でも、第3子は0歳から高校生年代の終わりまで毎月3万円です。2026年12月に生まれた第3子なら、上の2人がずっと数に入る場合、2045年3月分までの合計は{max}になります（サイソク編集部の計算）。上の子が22歳の年度末を過ぎたり、生活費の負担がなくなったりすると、順番が繰り上がって減ります。",
+    "insightBirth": { "year": 2026, "month": 12 },
+    "insightSources": ["cfa-annai", "cfa-count", "law"]
+  },
+  "checklist": [
+    { "id": "apply-birth", "title": "生まれたら、認定請求書を出す", "deadline": "出生日の次の日から15日以内", "detail": "現住所の市区町村に出します（公務員は勤務先）。申請した月の次の月の分から出ます。15日以内なら、申請が次の月になっても申請した月の分から出ます。", "sources": ["cfa-annai"], "birthDeadline": true },
+    { "id": "kaitei", "title": "すでに受け取っていて子が増えたら、額改定認定請求書を出す", "deadline": "子が増えたらすぐ", "detail": "遅れると、遅れた月の分は原則として受け取れません。", "sources": ["cfa-faq"] },
+    { "id": "older", "title": "大学生年代の上の子を数えるなら、確認書を出す", "deadline": "市区町村の案内で確かめる", "detail": "18歳の年度末を過ぎた上の子を第3子の数え方に入れるには、「監護相当・生計費の負担についての確認書」などを出します。", "sources": ["cfa-count", "cfa-annai"] },
+    { "id": "account", "title": "受け取る人の名義の口座を用意する", "deadline": "申請のとき", "detail": "振込先は、手当を受け取る人の名義の口座です。", "sources": ["cfa-faq", "cfa-annai"] },
+    { "id": "insurance", "title": "会社員などは、健康保険の資格が分かるものを用意する", "deadline": "申請のとき", "detail": "健康保険証の利用登録をしたマイナンバーカード、健康保険の資格証明書などです。", "sources": ["cfa-annai"] },
+    { "id": "move", "title": "引っ越したら、転入先で申請する", "deadline": "転入した日（転出予定日）の次の日から15日以内", "detail": "ほかの市区町村へ引っ越したときは、転入先の市区町村に出し直します。", "sources": ["cfa-annai"] },
+    { "id": "genkyo", "title": "現況届は、原則いらない", "deadline": "市区町村から求められたときだけ", "detail": "令和4年6月分から、毎年の現況届は原則として出さなくてよくなりました。", "sources": ["cfa-annai"] }
+  ],
+  "faq": [
+    { "q": "第3子に1000万円はもう決まったのですか", "a": "決まっていません。自民党の人口戦略本部が2026年11月27日にまとめた政府への提言案に入っている内容で、制度にするかどうか、始まる時期、対象の条件は示されていません。" },
+    { "q": "1000万円は現金でもらえるのですか", "a": "分かっていません。共同通信は、第3子以降の出産に1000万円規模の給付やサービスを出す案と伝えています。現金とサービスの内訳は示されていません。" },
+    { "q": "今の児童手当では、第3子はいくらですか", "a": "年齢に関係なく1人月3万円です。第1子・第2子は3歳未満が月1万5,000円、3歳から高校生年代までが月1万円です。所得制限はありません。" },
+    { "q": "第3子はどう数えますか", "a": "手当を受ける子と、その上の子を、年齢が上の子から数えて3人目以降です。上の子は、18歳の年度末を過ぎてから22歳の年度末までで、親などが生活費を負担している子も数に入ります。" },
+    { "q": "次の児童手当はいつ入りますか", "a": "2月・4月・6月・8月・10月・12月に、前の月までの2か月分が入ります。2026年12月の支給は10月分と11月分です。日にちは市区町村ごとに違います。" }
+  ],
+  "next": [
+    { "href": "/tools/ikukyu-kyufu", "label": "育休中にもらえるお金を計算する", "why": "これから生まれる子や0歳の子がいる家は、育児休業給付金と13%の上乗せも確かめておけます。", "when": "newborn" },
+    { "href": "/tools/furusato-limit", "label": "うちのふるさと納税の上限を計算する", "why": "今年の分は12月31日の寄附までです。扶養する家族の数で上限が変わります。", "when": "always" },
+    { "href": "/articles/december-2026-money-calendar", "label": "12月のお金の予定を見る", "why": "児童手当・年金の支給、電気とガスの値引き、iDeCoの上限の変更をまとめています。", "when": "always" }
+  ],
+  "ad": { "rule": "kids", "tool": "child-allowance" },
+  "article": "third-child-benefit-proposal",
+  "tool": "/tools/child-allowance",
+  "share": { "heading": "第3子に1000万円は決まった？", "lines": ["決まったこと、決まっていないこと", "うちの児童手当を今の制度で計算"], "footer": "サイソクの特集" },
+  "sources": [
+    { "id": "cfa-annai", "kind": "official", "org": "こども家庭庁", "title": "児童手当制度のご案内", "url": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/annai", "checked": "2026-11-28" },
+    { "id": "cfa-gaiyou", "kind": "official", "org": "こども家庭庁", "title": "児童手当制度の概要（PDF）", "url": "https://www.cfa.go.jp/assets/contents/node/basic_page/field_ref_resources/6a83b8eb-4e0e-4754-b96d-c83e66a6ac81/e935b433/20240809_policies_kokoseido_jidouteate_mottoouen_04.pdf", "checked": "2026-11-25" },
+    { "id": "cfa-count", "kind": "official", "org": "こども家庭庁", "title": "「第3子以降」のカウント方法について（PDF）", "url": "https://www.cfa.go.jp/assets/contents/node/basic_page/field_ref_resources/6a83b8eb-4e0e-4754-b96d-c83e66a6ac81/ef950131/20240809_policies_kokoseido_jidouteate_mottoouen_05.pdf", "checked": "2026-11-25" },
+    { "id": "cfa-faq", "kind": "official", "org": "こども家庭庁", "title": "児童手当の基本的な取扱いについて（Q&A）", "url": "https://www.cfa.go.jp/policies/kokoseido/jidouteate/faq/ippan", "checked": "2026-11-27" },
+    { "id": "law", "kind": "official", "org": "e-Gov 法令検索", "title": "児童手当法（第6条・第8条・第9条）", "url": "https://laws.e-gov.go.jp/law/346AC0000000073", "checked": "2026-11-25" },
+    { "id": "jimin", "kind": "official", "org": "自由民主党", "title": "人口戦略本部が初会合 12テーマについて議論スタート（2026年10月16日）", "url": "https://www.jimin.jp/news/information/214390.html", "checked": "2026-11-28" },
+    { "id": "jiji", "kind": "report", "org": "時事通信", "title": "第3子以降に1000万円 自民、人口戦略策定へ提言案（2026年11月27日 16:17）", "url": "https://www.jiji.com/jc/article?k=2026112700732&g=eco", "checked": "2026-11-28" },
+    { "id": "kyodo", "kind": "report", "org": "共同通信（神戸新聞NEXT）", "title": "第3子以降に1千万円給付 人口庁創設も、自民提言（2026年11月27日 17:10）", "url": "https://www.kobe-np.co.jp/news/zenkoku/compact/202611/0021079684.shtml", "checked": "2026-11-28" },
+    { "id": "tbs", "kind": "report", "org": "TBS NEWS DIG", "title": "「第3子以降に1000万円給付を」 自民党人口戦略本部が提言案まとめる 政府に来週にも申し入れへ（2026年11月27日 20:40）", "url": "https://newsdig.tbs.co.jp/articles/-/3118656", "checked": "2026-11-28" }
+  ]
+}

@@ -4,6 +4,8 @@ import Link from "next/link";
 import { withPageShare } from "@/lib/page-share";
 import ToolPage, { ToolSection } from "@/components/calc/ToolPage";
 import ActionAd from "@/components/ActionAd";
+import FlagshipLink from "@/components/flagship/FlagshipLink";
+import { flagshipForTool } from "@/lib/flagship";
 import { CALCULATORS, checkedDateJa } from "@/lib/calculators";
 import { yen } from "@/lib/calc-math";
 import { GUIDE_AD_POS, toolAd } from "@/lib/guide-ads";
@@ -92,6 +94,7 @@ export default function ChildAllowancePage() {
     <ToolPage
       kind="child-allowance"
       lead={`子どもの生まれた年月（または年齢の区分）を入れると、第何子になるか、1か月の児童手当、${ymJa(pay)}の支給額（${months[0].month}月・${months[1].month}月分）、1年分が出ます。所得制限はなく、高校生年代まで受け取れます。`}
+      intro={<FlagshipLink target={flagshipForTool(meta.href)} note="第3子に1000万円の案で、決まったこと・決まっていないことと、うちの次の6回の支給を1ページで見られます。" className="mt-4" />}
       afterCalc={
         <>
           {ad ? <ActionAd ad={ad} pos={GUIDE_AD_POS.tool} className="mt-8" /> : null}

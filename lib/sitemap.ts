@@ -29,6 +29,7 @@ import { isBroadGenre } from "@/lib/sections";
 import { isThinSourceChannel } from "@/lib/news-outlets";
 import { canonicalChannel, hasChannelLabel } from "@/lib/channel-labels";
 import { siteConfig } from "@/site.config";
+import { FLAGSHIP_STORIES, flagshipHref } from "@/lib/flagship";
 
 /**
  * サイトマップの1行。lastmod は「中身が本当に変わった日時」だけ（SEO A16）。分からないページは書かない。
@@ -144,6 +145,8 @@ export function sitemapEntries(): SitemapEntry[] {
     { url: `${base}/ai-pricing`, lastModified: toDate(getPricing().updatedAt) },
     // 計算ツールは防衛特別所得税と、ふるさと納税の上限額（2026-11-10 追加）、児童手当の支給額（2026-11-25 追加）、年金生活者支援給付金・冬の電気・ガス料金支援（2026-11-26 追加）。AIプランの費用計算・ドル建てサブスクの円換算は 2026-11-03 に終了・410。/tools は転送
     ...["/tools/defense-tax", "/tools/furusato-limit", "/tools/child-allowance", "/tools/pension-support-benefit", "/tools/denki-gas-discount", "/tools/kogaku-ryoyohi", "/tools/bonus-tedori", "/tools/ikukyu-kyufu"].map(fixed),
+    // 特集（計算つきの記事。/stories/<slug>。lib/flagship.ts。2026-11-28）
+    ...FLAGSHIP_STORIES.map((story) => ({ url: `${base}${flagshipHref(story.slug)}`, lastModified: toDate(story.updatedAt) })),
     // 選び方ガイド（回線・転職など。公式情報で比べた常設ページ）
     ...getAllChooseGuides().map((guide) => ({
       url: `${base}/choose/${guide.slug}`,

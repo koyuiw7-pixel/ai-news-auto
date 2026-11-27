@@ -49,6 +49,8 @@ import ActionAd from "@/components/ActionAd";
 import { actionAdForArticle } from "@/lib/action-ad";
 import ShareButtons from "@/components/ShareButtons";
 import MoneyCheckLink from "@/components/MoneyCheckLink";
+import FlagshipLink from "@/components/flagship/FlagshipLink";
+import { flagshipForArticle } from "@/lib/flagship";
 import { moneyLinkFor } from "@/lib/money-pages";
 import ThreadsFollow from "@/components/ThreadsFollow";
 import { afterBodyOffer, offerPlanForArticle, relevantPlan } from "@/lib/offers";
@@ -600,6 +602,8 @@ export default async function ArticlePage({ params }: Props) {
             </section>
           )}
           {/* 自分は対象か確かめる（お金の話題の記事だけ。囲みは作らない1行。広告の枠と位置は変えない） */}
+          {/* 計算つきの特集がある記事は、その案内（lib/flagship.ts。2026-11-28） */}
+          <FlagshipLink target={flagshipForArticle(article.slug)} className="mt-4" />
           <MoneyCheckLink target={moneyLink} className="mt-4" />
           {/* シェア（要点を読んだ直後。小さく1行） */}
           <ShareButtons url={`${siteConfig.url}/articles/${article.slug}`} title={articleTitle(article)} className="mt-4" />

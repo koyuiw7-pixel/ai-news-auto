@@ -14,7 +14,7 @@ import { articleTitle } from "@/lib/headline";
  * 計算機の単独ページ（/tools/*）の共通の枠。一覧（/tools）は無く、/tools は next.config.ts で転送する（2026-11-03）。
  * afterCalc は、計算の結果のすぐ下に置くもの（ふるさと納税の上限額のページの PR の囲みなど。2026-11-10）
  */
-export default function ToolPage({ kind, lead, afterCalc, children }: { kind: CalculatorKind; lead: string; afterCalc?: ReactNode; children?: ReactNode }) {
+export default function ToolPage({ kind, lead, intro, afterCalc, children }: { kind: CalculatorKind; lead: string; intro?: ReactNode; afterCalc?: ReactNode; children?: ReactNode }) {
   const meta = CALCULATORS[kind];
   const jsonLd = toolPageJsonLd(kind, siteConfig);
   return (
@@ -24,6 +24,8 @@ export default function ToolPage({ kind, lead, afterCalc, children }: { kind: Ca
       <header className="mt-5">
         <h1 className="t-h1 text-ink"><Phrases text={meta.title} /></h1>
         <p className="t-lead mt-3">{lead}</p>
+        {/* 題名のすぐ下の案内（計算つきの特集へ。components/flagship/FlagshipLink.tsx。2026-11-28） */}
+        {intro}
       </header>
       {/* 計算・注記・afterCalc を1つの縦の並びにする。広告の見た目 B（<html data-adv="b">。components/ToolAdCard.tsx の .tad-b）は、
           CSS の order で計算の結果のすぐ下（注記より前）に出す（app/globals.css の .tool-flow > .tool-ad-slot。A か B の片方だけを描く。2026-11-27 オーナー「配置と見た目が魅力０」） */}
