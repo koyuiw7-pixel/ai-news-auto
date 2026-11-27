@@ -10034,6 +10034,20 @@
       "skipped": true,
       "url": "https://www.mext.go.jp/a_menu/mext_00009.html"
     },
+    "2ca6f41429d50e4d": {
+      "at": "2026-11-27T05:08:23.602392+00:00",
+      "costUsd": 0.0045,
+      "intent": "breaking",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "safetyLane": true,
+      "score": 97,
+      "section": "public",
+      "slug": "doda-line-tonariwa-data-leak",
+      "url": "https://www.persol-career.co.jp/newsroom/news/information/2026/20261126_2388/"
+    },
     "2cbde6e244b65f7c": {
       "at": "2026-11-27T02:50:01.367653+00:00",
       "reason": "dedupe: 見出しが類似（0.62）: 松岡昌宏関連ニュース｜dメニューニュース（NTTドコモ）",
@@ -24475,55 +24489,6 @@
   },
   "quality_log": [
     {
-      "accepted": true,
-      "at": "2026-11-24T22:52:52.518336+00:00",
-      "attempt": 2,
-      "id": "164e5088ffed7e66c06034ce4586321f5020aa09",
-      "kind": "trend",
-      "model": "openai-api:gpt-6.1-terra",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 147.9,
-        "avg_sentence": 53.8,
-        "long_share": 0.318,
-        "max_paragraph": 197,
-        "paragraphs": 8,
-        "sentences": 22
-      },
-      "score": 98,
-      "source": "trends",
-      "title": "輸入",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（HV・PHV）",
-        "読みやすさ: 文が長い（1文の平均 53.8字・60字超の文が 32% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "読みやすさ: 段落が長い（平均 147.9字・最長 197字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-24T22:53:12.139207+00:00",
-      "attempt": 0,
-      "id": "164e5088ffed7e66c06034ce4586321f5020aa09",
-      "kind": "trend",
-      "model": "openai-api:gpt-6-luna",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 120.9,
-        "avg_sentence": 36.6,
-        "long_share": 0.03,
-        "max_paragraph": 188,
-        "paragraphs": 10,
-        "sentences": 33
-      },
-      "score": 100,
-      "source": "trends",
-      "title": "輸入",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（HV・PHV）",
-        "読みやすさ: 段落が長い（平均 120.9字・最長 188字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
       "accepted": false,
       "at": "2026-11-24T23:07:15.284547+00:00",
       "attempt": 1,
@@ -31957,6 +31922,57 @@
       "warnings": [
         "見出しが46字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（CES・HDR・UFS）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-27T05:07:47.474844+00:00",
+      "attempt": 1,
+      "id": "2ca6f41429d50e4d",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "「担当アドバイザーとやり取りしていた人のうち、616,329件の個人情報が漏れた」→ かんたん版では、対象に必要な「LINE公式アカウントを友だち登録し、doda IDとの連携が完了している」という条件が抜けています。",
+        "「氏名、電話番号、勤務先がそろって漏れている」→ 元記事は漏えいした情報の項目を列挙していますが、各対象者についてこれら3項目がそろって漏れたとは明記していません。"
+      ],
+      "readability": {
+        "avg_paragraph": 101.1,
+        "avg_sentence": 42.6,
+        "long_share": 0.158,
+        "max_paragraph": 211,
+        "paragraphs": 8,
+        "sentences": 19
+      },
+      "score": 91,
+      "source": "fast",
+      "title": "外部委託先への不正アクセスによるお客様情報漏えいについてのお詫びとお知らせ（第二報） | パーソルキャリア - PERSOL CAREER",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（SMS）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-27T05:08:13.139250+00:00",
+      "attempt": 1,
+      "id": "2ca6f41429d50e4d",
+      "kind": "broad",
+      "model": "openai-api:gpt-6-luna",
+      "problems": [
+        "「不正に使われたという報告は出ていない」→ 元記事が示すのは二次被害が「確認されていない」ことです。「報告が出ていない」とまでは明記されていません。"
+      ],
+      "readability": {
+        "avg_paragraph": 100.0,
+        "avg_sentence": 40.0,
+        "long_share": 0.15,
+        "max_paragraph": 197,
+        "paragraphs": 8,
+        "sentences": 20
+      },
+      "score": 97,
+      "source": "fast",
+      "title": "外部委託先への不正アクセスによるお客様情報漏えいについてのお詫びとお知らせ（第二報） | パーソルキャリア - PERSOL CAREER",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（SMS）"
       ]
     }
   ],
