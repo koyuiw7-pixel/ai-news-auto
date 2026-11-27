@@ -67,9 +67,8 @@
     }
   ],
   "todayActions": [
-    "ジャンプキャラクターズストアの会員は、不安があれば電話03-3262-6751（10:00〜12:00、13:00〜17:00、土日祝を除く）に問い合わせる",
-    "集英社やプレイド社をかたるメールのURLと添付ファイルは開かない",
-    "パスワードやカード情報の入力を求める連絡は、集英社からは来ないと知っておく"
+    "ジャンプキャラクターズストアの利用者は、専用窓口で今回の件を確認する",
+    "不審なサイトにIDやパスワードを入力した人は、利用中の全サービスで変更する"
   ],
   "publicInterest": "breach",
   "incident": {
@@ -115,5 +114,93 @@
     ],
     "ar": 1.9048,
     "src": "https://ai-tech-express.jp/img/shueisha-karte-data-leak-figure-2a21e2f1.jpg"
-  }
+  },
+  "insight": [
+    {
+      "text": "集英社は「KARTE」へのお客様情報の連携を停止したままとし、今後も適切に対応するとしています。KARTEの段階的な再開目標とは別に、情報連携は停止中です。",
+      "source": "https://www.shueisha.co.jp/wp-content/uploads/2026/11/20261126.pdf"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "ジャンプキャラクターズストアの利用者は、専用窓口で今回の件を確認する",
+      "source": "https://www.shueisha.co.jp/wp-content/uploads/2026/11/20261126.pdf",
+      "steps": [
+        "ジャンプキャラクターズストアのお問い合わせフォームを開く",
+        "または受付時間内に03-3262-6751へ電話する"
+      ]
+    },
+    {
+      "action": "不審なサイトにIDやパスワードを入力した人は、利用中の全サービスで変更する",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "steps": [
+        "入力したIDやパスワードを確認する",
+        "同じ情報を使う全てのサービスで速やかに変更する"
+      ],
+      "url": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html"
+    }
+  ],
+  "cause": {
+    "text": "集英社によると、株式会社プレイドが提供するサービス「KARTE」に、第三者による不正アクセスが発生しました。",
+    "status": "stated",
+    "source": "https://www.shueisha.co.jp/wp-content/uploads/2026/11/20261126.pdf"
+  },
+  "worries": [
+    {
+      "q": "生年月日と性別は、管理用符号と結び付いている？",
+      "a": "ジャンプキャラクターズストアの生年月日・性別とシステム内部の管理用符号は、別々のデータとして漏れており、相互に紐づいていない状態です。",
+      "source": "https://www.shueisha.co.jp/wp-content/uploads/2026/11/20261126.pdf",
+      "action": "ジャンプキャラクターズストアの利用者は、専用フォームか受付時間内の電話で問い合わせる。"
+    },
+    {
+      "q": "クレジットカード番号やパスワードも漏れてしまった？",
+      "a": "集英社は、漏洩した情報に氏名、住所、電話番号、メールアドレス、パスワード、クレジットカード情報等は含まれていないとしています。",
+      "source": "https://www.shueisha.co.jp/wp-content/uploads/2026/11/20261126.pdf",
+      "action": "集英社を名乗る連絡でパスワードやカード情報の入力を求められても応じない。"
+    },
+    {
+      "q": "少年ジャンプ+以外の集英社サービスも対象なの？",
+      "a": "対象として発表されたのはジャンプキャラクターズストア、集英社 HAPPY PLUS、少年ジャンプ+の3サービスです。これ以外の集英社が運営するサービスでは、情報漏洩は確認されていないとしています。",
+      "source": "https://www.shueisha.co.jp/wp-content/uploads/2026/11/20261126.pdf",
+      "action": "対象サービスや新たなお知らせは、集英社の公表内容で確認する。"
+    },
+    {
+      "q": "不審なサイトにパスワードを入力してしまったら？",
+      "a": "警察庁は、フィッシングサイトなどに普段使っているIDやパスワードを入力した場合、その情報を利用している全てのサービスで速やかに変更するよう案内しています。",
+      "source": "https://www.npa.go.jp/bureau/cyber/countermeasures/phishing.html",
+      "action": "入力したIDやパスワードを使っている全てのサービスで、速やかに変更する。",
+      "general": true
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "問い合わせはどの窓口にすればいい？",
+      "situation": "ジャンプキャラクターズストアを利用している",
+      "recommend": "専用カスタマーセンターへ連絡する",
+      "reason": "集英社は、本件の問い合わせを利用サービスごとの窓口で受け付けています。ジャンプキャラクターズストアには専用フォームがあり、電話は10:00~12:00、13:00~17:00です。土・日・祝日、年末年始は除かれます。",
+      "source": "https://www.shueisha.co.jp/wp-content/uploads/2026/11/20261126.pdf"
+    },
+    {
+      "question": "問い合わせはどの窓口にすればいい？",
+      "situation": "集英社 HAPPY PLUSを利用している",
+      "recommend": "HAPPY PLUSの案内窓口を使う",
+      "reason": "本件の問い合わせ先として、集英社 HAPPY PLUS コンタクトセンターの案内ページが示されています。電話は0570-008010で、通話料はお客様負担です。",
+      "source": "https://www.shueisha.co.jp/wp-content/uploads/2026/11/20261126.pdf"
+    },
+    {
+      "question": "問い合わせはどの窓口にすればいい？",
+      "situation": "少年ジャンプ+を利用している",
+      "recommend": "少年ジャンプ+のフォームを使う",
+      "reason": "本件の問い合わせ先として、少年ジャンプ+のお問い合わせフォームが案内されています。受付時間は平日10時~18時で、年末年始・祝祭日を除きます。",
+      "source": "https://www.shueisha.co.jp/wp-content/uploads/2026/11/20261126.pdf"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "KARTEへの情報連携は停止したまま",
+    "cause": "不正アクセスが起きたサービス",
+    "steps": "問い合わせ先と入力後の対応を確認",
+    "worries": "漏れた情報と不審な連絡が心配",
+    "guide": "利用サービスごとに窓口を選ぶ"
+  },
+  "depthAt": "2026-11-27T07:35:01+00:00"
 }
