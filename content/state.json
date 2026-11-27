@@ -11786,6 +11786,20 @@
       "skipped": true,
       "url": "https://topics.smt.docomo.ne.jp/latestnews/keywords/4633738dabc9c54ff4db6817e45a8d727b4d1cc8a195590ce2b17856d81a0eab"
     },
+    "4bf4b36ac68aa091": {
+      "at": "2026-11-27T02:53:22.110263+00:00",
+      "costUsd": 0.0041,
+      "intent": "breaking",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "safetyLane": true,
+      "score": 98,
+      "section": "public",
+      "slug": "human-adjust-comsbi-data-leak",
+      "url": "https://www.fse.or.jp/files/lis_tkj/261125249A0.pdf"
+    },
     "4c01a330e30c5e3a": {
       "at": "2026-11-19T16:28:52.394623+00:00",
       "costUsd": 0.0098,
@@ -24452,54 +24466,6 @@
   },
   "quality_log": [
     {
-      "accepted": true,
-      "at": "2026-11-24T21:44:14.483736+00:00",
-      "attempt": 1,
-      "id": "7064c4b17fae9721",
-      "kind": "broad",
-      "model": "openai-api:gpt-6-luna",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 149.2,
-        "avg_sentence": 55.9,
-        "long_share": 0.312,
-        "max_paragraph": 205,
-        "paragraphs": 6,
-        "sentences": 16
-      },
-      "score": 97,
-      "source": "radar-official",
-      "title": "航空自衛隊 新田原基地",
-      "warnings": [
-        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "読みやすさ: 文が長い（1文の平均 55.9字・60字超の文が 31% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "読みやすさ: 段落が長い（平均 149.2字・最長 205字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-24T21:44:27.360111+00:00",
-      "attempt": 0,
-      "id": "7064c4b17fae9721",
-      "kind": "broad",
-      "model": "openai-api:gpt-6-luna",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 82.5,
-        "avg_sentence": 41.3,
-        "long_share": 0.091,
-        "max_paragraph": 117,
-        "paragraphs": 11,
-        "sentences": 22
-      },
-      "score": 100,
-      "source": "radar-official",
-      "title": "航空自衛隊 新田原基地",
-      "warnings": [
-        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す"
-      ]
-    },
-    {
       "accepted": false,
       "at": "2026-11-24T22:36:28.088630+00:00",
       "attempt": 2,
@@ -31926,6 +31892,56 @@
       "title": "貿易統計(令和8年11月上旬分速報)【税関ホームページ】",
       "warnings": [
         "初めて出たところで言い換えていない略語（XML）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-27T02:52:50.742686+00:00",
+      "attempt": 1,
+      "id": "4bf4b36ac68aa091",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "「電話窓口は、この発表には示されていません」「電話での問い合わせ窓口は、まだ発表されていません」→ 元記事の冒頭には問合せ先の電話番号（03-6258-1291）が記載されています。消費者向け窓口かは明記されていませんが、電話番号自体が発表にないとするのは不正確です。"
+      ],
+      "readability": {
+        "avg_paragraph": 94.9,
+        "avg_sentence": 39.1,
+        "long_share": 0.088,
+        "max_paragraph": 143,
+        "paragraphs": 14,
+        "sentences": 34
+      },
+      "score": 91,
+      "source": "fast",
+      "title": "(コード:249A TOKYO PRO Market、Fukuoka PRO Market)",
+      "warnings": [
+        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（IP・SMS・MTG）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-27T02:53:08.914178+00:00",
+      "attempt": 1,
+      "id": "4bf4b36ac68aa091",
+      "kind": "broad",
+      "model": "openai-api:gpt-6-luna",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 97.5,
+        "avg_sentence": 40.1,
+        "long_share": 0.088,
+        "max_paragraph": 143,
+        "paragraphs": 14,
+        "sentences": 34
+      },
+      "score": 98,
+      "source": "fast",
+      "title": "(コード:249A TOKYO PRO Market、Fukuoka PRO Market)",
+      "warnings": [
+        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（IP・SMS・MTG）"
       ]
     }
   ],
