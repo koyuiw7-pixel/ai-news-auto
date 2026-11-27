@@ -18756,6 +18756,20 @@
       "skipped": true,
       "url": "https://www.jleague.jp/j1/match/"
     },
+    "c9d10105a98ba326": {
+      "at": "2026-11-27T07:39:03.435244+00:00",
+      "costUsd": 0.0131,
+      "intent": "breaking",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "safetyLane": true,
+      "score": 96,
+      "section": "public",
+      "slug": "lolipop-unauthorized-access-leak",
+      "url": "https://wordpress.lolipop.jp/info/news/8279/"
+    },
     "c9d5109078926a4e": {
       "at": "2026-11-23T16:18:24.651884+00:00",
       "reason": "prefilter: サイトの主題外（AI・お金・制度のお金の話・暮らしの交通/天気/値上げ/障害/給付/発売・日本のスポーツのどれでもない）",
@@ -22737,14 +22751,6 @@
       "url": "https://i2fas.mhlw.go.jp/faspub/_link.do?i=IO_S020502&p=RCL202602931",
       "writer": "muse"
     },
-    "muse-4edc37ba5c": {
-      "at": "2026-11-13T07:36:06.344311+00:00",
-      "mix": "other",
-      "score": 80,
-      "slug": "kohaku-2026-singers-changes-list",
-      "url": "https://www.perfume-web.jp/news/detail.php?id=4262",
-      "writer": "muse"
-    },
     "muse-52eab06733": {
       "at": "2026-11-22T04:50:43.318172+00:00",
       "mix": "other",
@@ -24321,57 +24327,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-25T01:00:25.548125+00:00",
-      "attempt": 0,
-      "id": "75da85c129184b1f",
-      "kind": "broad",
-      "model": "openai-api:gpt-6-luna",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 79.2,
-        "avg_sentence": 49.5,
-        "long_share": 0.25,
-        "max_paragraph": 116,
-        "paragraphs": 10,
-        "sentences": 16
-      },
-      "score": 96,
-      "source": "mhlw",
-      "title": "第２回「国民年金第３号被保険者制度等に関する検討会」資料",
-      "warnings": [
-        "work_money（「仕事・お金にどう活かせる？」欄）が無い",
-        "読みやすさ: 文が長い（1文の平均 49.5字・60字超の文が 25% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-25T01:15:45.909138+00:00",
-      "attempt": 1,
-      "id": "34daef006eba9744",
-      "kind": "broad",
-      "model": "openai-api:gpt-6-luna",
-      "problems": [
-        "リード・本文・かんたん版の「家庭や他社の電気契約に変更はありません」→ 元記事が説明するのは竹中グループの4棟への供給であり、家庭や他社の契約への影響がないとは確認できません。"
-      ],
-      "readability": {
-        "avg_paragraph": 157.1,
-        "avg_sentence": 57.1,
-        "long_share": 0.273,
-        "max_paragraph": 285,
-        "paragraphs": 8,
-        "sentences": 22
-      },
-      "score": 87,
-      "source": "tepco-ep",
-      "title": "竹中グループ×東京電力エナジーパートナーオフサイトフィジカルコーポレートPPA締結 ～竹中グループの太陽光発電所の電力を自社拠点に供給開始～",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（PPA・TAK）",
-        "読みやすさ: 文が長い（1文の平均 57.1字・60字超の文が 27% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "読みやすさ: 段落が長い（平均 157.1字・最長 285字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-25T01:16:04.182661+00:00",
@@ -31812,6 +31767,61 @@
       "title": "アテニアの情報流出に関するお知らせ",
       "warnings": [
         "初めて出たところで言い換えていない略語（SMS）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-27T07:37:48.540020+00:00",
+      "attempt": 1,
+      "id": "c9d10105a98ba326",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "「個人情報の削除や解約も、この窓口かユーザー専用ページで受け付けています」→個人情報の削除は問い合わせ窓口への連絡とされており、ユーザー専用ページで受け付けるとは元記事にありません。",
+        "「公開前のページやクライアント向けページを守る設定として使われていたとみられます」→アクセス制限の用途として特定の人だけが閲覧できるページを作れることは確認できますが、これらのページに使われていたという説明は元記事にありません。"
+      ],
+      "readability": {
+        "avg_paragraph": 99.1,
+        "avg_sentence": 35.0,
+        "long_share": 0.02,
+        "max_paragraph": 179,
+        "paragraphs": 18,
+        "sentences": 51
+      },
+      "score": 92,
+      "source": "fast",
+      "title": "「ロリポップ！レンタルサーバー」および関連サービスに対する不正アクセスによるお客様情報の漏えいについて - ロリポップ！レンタルサーバー",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（GMO・FTP・SMS）",
+        "要点の1つ目がリードの文の写し。一番のニュースを、リードとは違う言い方で書く",
+        "感嘆符（！）が多い。感嘆符は使わない"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-27T07:38:54.938127+00:00",
+      "attempt": 1,
+      "id": "c9d10105a98ba326",
+      "kind": "broad",
+      "model": "openai-api:gpt-6-luna",
+      "problems": [
+        "「パスワードをリセットした人には通知メールが届きます」→ 元記事が確認しているのは通知メールの送信であり、メールアドレスの変更などで届かない場合もあるため、到着を断定できません。"
+      ],
+      "readability": {
+        "avg_paragraph": 98.4,
+        "avg_sentence": 35.4,
+        "long_share": 0.04,
+        "max_paragraph": 184,
+        "paragraphs": 18,
+        "sentences": 50
+      },
+      "score": 96,
+      "source": "fast",
+      "title": "「ロリポップ！レンタルサーバー」および関連サービスに対する不正アクセスによるお客様情報の漏えいについて - ロリポップ！レンタルサーバー",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（GMO・FTP・SMS）",
+        "要点の1つ目がリードの文の写し。一番のニュースを、リードとは違う言い方で書く",
+        "感嘆符（！）が多い。感嘆符は使わない"
       ]
     }
   ],
