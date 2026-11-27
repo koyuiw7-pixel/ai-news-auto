@@ -8,7 +8,7 @@
   "companyName": "Google",
   "category": "AIモデル",
   "overview": {
-    "text": "Gemma 4は、Google DeepMindが発表したオープンなマルチモーダルAIモデルファミリーです。2026年9月に公開され、スマートフォンからクラウドまで幅広い環境で利用できます。",
+    "text": "Gemma 4は、Google DeepMindが2026年9月に発表したオープンなマルチモーダル大規模言語モデルです。テキストだけでなく、音声や画像をネイティブに処理できる5つのモデルサイズで構成されています。",
     "sources": [
       "google-deepmind-gemma-4-family-explained"
     ]
@@ -31,65 +31,48 @@
     },
     {
       "label": "日本での提供",
-      "value": "利用できる",
-      "sources": [
-        "gemma-4-ple-architecture-explained-matome",
-        "google-deepmind-gemma-4-family-explained"
-      ]
-    },
-    {
-      "label": "使える場所",
-      "value": "Hugging Faceなど",
+      "value": "日本から利用できる",
       "sources": [
         "google-deepmind-gemma-4-family-explained"
       ]
     },
     {
       "label": "向いている人",
-      "value": "開発者や研究者",
+      "value": "開発者",
       "sources": [
-        "gemma-4-ple-architecture-explained-matome",
         "google-deepmind-gemma-4-family-explained"
       ]
     }
   ],
   "capabilities": [
     {
-      "text": "テキスト、画像、音声をネイティブに処理するマルチモーダル機能を備えています。",
+      "text": "テキスト、音声、画像といった複数のモダリティをネイティブに処理できます。",
       "sources": [
         "google-deepmind-gemma-4-family-explained"
       ]
     },
     {
-      "text": "宇宙の試作衛星で地上からのプロンプトに対し、俳句やリメリックを生成できました。",
+      "text": "12Bモデルでは専用の音声・画像エンコーダーを排除したエンコーダーフリー設計を採用しています。",
       "sources": [
-        "google-project-suncatcher-satellite-response"
-      ]
-    },
-    {
-      "text": "宇宙空間で搭載機器の状態を報告させるテレメトリの処理も実行できました。",
-      "sources": [
-        "google-project-suncatcher-satellite-response"
-      ]
-    },
-    {
-      "text": "E2BやE4BではPLE技術により、スマートフォンなどのオンデバイス環境での効率的な動作を実現します。",
-      "sources": [
-        "gemma-4-ple-architecture-explained-matome",
         "google-deepmind-gemma-4-family-explained"
+      ]
+    },
+    {
+      "text": "宇宙の試験衛星において、地上からの指示で俳句や機器の状態を報告する処理を行いました。",
+      "sources": [
+        "google-project-suncatcher-satellite-response"
+      ]
+    },
+    {
+      "text": "Tunixを用いたゲーム実験で、追加学習によりゲームの勝率が約95%へ向上しました。",
+      "sources": [
+        "gemma-tunix-multi-turn-learning"
       ]
     }
   ],
   "pricing": [
     {
-      "text": "モデルの重みは無料でダウンロードして利用できます。",
-      "sources": [
-        "gemma-4-ple-architecture-explained-matome",
-        "google-deepmind-gemma-4-family-explained"
-      ]
-    },
-    {
-      "text": "商用利用も可能となっています。",
+      "text": "モデルの重みがオープンモデルとして公開されており、無料でダウンロードして利用できます。",
       "sources": [
         "gemma-4-ple-architecture-explained-matome",
         "google-deepmind-gemma-4-family-explained"
@@ -98,7 +81,7 @@
   ],
   "japan": [
     {
-      "text": "特別なリージョン制限はなく、日本国内から即座にアクセス可能です。",
+      "text": "特別なリージョン制限はなく、日本国内からでも即座にアクセス可能です。",
       "sources": [
         "google-deepmind-gemma-4-family-explained"
       ]
@@ -112,13 +95,7 @@
       ]
     },
     {
-      "text": "GoogleのGemma利用規約に同意してアクセス権を申請します。",
-      "sources": [
-        "google-deepmind-gemma-4-family-explained"
-      ]
-    },
-    {
-      "text": "Google公式のGitHubリポジトリから推論やファインチューニングのコードを取得できます。",
+      "text": "GoogleのGemma利用規約に同意し、アクセス権を申請します。",
       "sources": [
         "google-deepmind-gemma-4-family-explained"
       ]
@@ -126,13 +103,7 @@
   ],
   "differences": [
     {
-      "text": "前世代と異なり、テキストだけでなく音声や画像をネイティブに処理可能です。",
-      "sources": [
-        "google-deepmind-gemma-4-family-explained"
-      ]
-    },
-    {
-      "text": "12Bモデルでは専用エンコーダーを完全に排除した設計を採用しています。",
+      "text": "テキストだけでなく音声や画像をネイティブに処理できるよう進化しています。",
       "sources": [
         "google-deepmind-gemma-4-family-explained"
       ]
@@ -140,32 +111,32 @@
   ],
   "faq": [
     {
-      "q": "無料で使えますか？",
-      "a": "オープンモデルとして重みが公開されており、無料でダウンロードして利用できます。",
+      "q": "無料で使える？",
+      "a": "モデルの重みが無料で公開されており、ライセンス規約に従えば無料で利用できます。",
       "sources": [
         "gemma-4-ple-architecture-explained-matome",
         "google-deepmind-gemma-4-family-explained"
       ]
     },
     {
-      "q": "商用利用は可能ですか？",
-      "a": "Apache 2.0ライセンスなどで公開されており、商用利用が可能です。",
+      "q": "いつから使える？",
+      "a": "2026年9月の発表時点で、すでにHugging Faceなどの外部プラットフォームを通じて提供が開始されています。",
       "sources": [
-        "gemma-4-ple-architecture-explained-matome",
         "google-deepmind-gemma-4-family-explained"
       ]
     },
     {
-      "q": "宇宙でも使えますか？",
-      "a": "試作衛星でのAI応答テストに成功しており、宇宙空間での処理研究が進められています。",
+      "q": "宇宙空間でも動く？",
+      "a": "試験衛星に搭載され、軌道上のTPUによるAI応答や俳句の生成に成功しています。",
       "sources": [
         "google-project-suncatcher-satellite-response"
       ]
     },
     {
-      "q": "どこからダウンロードできますか？",
-      "a": "Hugging Faceなどの外部プラットフォームから取得できます。",
+      "q": "誰に向いている？",
+      "a": "スマートフォンやパソコンでAIを動かしたい開発者に向いています。",
       "sources": [
+        "gemma-4-ple-architecture-explained-matome",
         "google-deepmind-gemma-4-family-explained"
       ]
     }
@@ -174,17 +145,17 @@
     {
       "date": "2026-09-22",
       "slug": "google-deepmind-gemma-4-family-explained",
-      "event": "Gemma 4ファミリーを公開"
-    },
-    {
-      "date": "2026-09-26",
-      "slug": "gemma-4-ple-architecture-explained-matome",
-      "event": "Gemma 4のPLE技術を解説"
+      "event": "Gemma 4を公開"
     },
     {
       "date": "2026-10-31",
       "slug": "google-project-suncatcher-satellite-response",
-      "event": "試験衛星でGemma 4がAI応答に成功"
+      "event": "宇宙の試作衛星でGemma 4が詩を生成"
+    },
+    {
+      "date": "2026-11-19",
+      "slug": "gemma-tunix-multi-turn-learning",
+      "event": "Gemma 4とTunixを使ったゲーム実験の結果を公開"
     }
   ],
   "related": [
@@ -206,9 +177,9 @@
     "gemma-4-ple-architecture-explained-matome",
     "google-deepmind-gemma-4-family-explained"
   ],
-  "signature": "4a0099c6fca6941a",
-  "primarySignature": "d1635fca9b2a101f",
+  "signature": "10a965c9e8d6f4c5",
+  "primarySignature": "5902b9f451bad164",
   "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-10-27T10:44:10+00:00",
-  "updatedAt": "2026-11-12T13:42:31+00:00"
+  "updatedAt": "2026-11-27T17:09:34+00:00"
 }
