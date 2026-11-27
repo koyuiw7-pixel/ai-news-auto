@@ -42,6 +42,7 @@ import noir_layout  # noqa: E402  新しい記事の見た目（台帳 W36）
 import md_markers  # noqa: E402  表示されない太字の記号を消す（2026-11-27）
 import own_view  # noqa: E402  サイソクの見方の章と中身の下限（2026-11-12 オーナー）
 import quality_bar  # noqa: E402  記事の8つの基準（2026-11-12 オーナー）
+import your_number  # noqa: E402  あなたの数字の門（2026-11-28 見直し。話題の門）
 
 # --------------------------------------------------------------------------- #
 # 設定
@@ -1156,6 +1157,13 @@ def main() -> int:
             break
 
         video_id = entry["video_id"]
+        # 話題の門（2026-11-28 見直し。scripts/your_number.py）: 家計のお金・制度・注意・安全の話の動画だけ記事にする（解析の前に題名で見る）
+        if why := your_number.topic_block({"title": entry["title"], "summary": entry.get("description") or "",
+                                           "section": getattr(getattr(entry["channel"], "genre", None), "slug", "") or "",
+                                           "lang": "ja" if re.search(r"[ぁ-んァ-ヶ一-龥]", entry["title"]) else "en"}, log=log):
+            log(f"\n[{index}/{len(targets)}] [skip] {why[:60]}: {entry['title'][:60]}")
+            state["processed"][video_id] = {"skipped": True, "reason": f"axis: {why}"[:200], "at": datetime.now(timezone.utc).isoformat()}
+            continue
         same = same_story.match(entry["title"], video_id=video_id, published=entry.get("published_at"),
                                 extra_titles=[entry["title"]], channel_slug=entry["channel"].slug)
         if same:

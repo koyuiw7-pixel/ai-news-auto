@@ -40,6 +40,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import own_view  # noqa: E402
+import your_number  # noqa: E402  あなたの数字の門（2026-11-28 見直し。数字・期限・窓口・公式の出典）
 
 ROOT = Path(__file__).resolve().parent.parent
 ARTICLES_DIR = ROOT / "content" / "articles"
@@ -72,9 +73,10 @@ PROMPT_RULE = """
 """
 
 
-def prompt_block() -> str:
-    """記事を書くプロンプトに足す決まり（4 の「サイソクの見方」は own_view.prompt_block、2 は事実の束と事実確認の決まりにある）"""
-    return PROMPT_RULE
+def prompt_block(title: str = "") -> str:
+    """記事を書くプロンプトに足す決まり（4 の「サイソクの見方」は own_view.prompt_block、2 は事実の束と事実確認の決まりにある）。
+    あなたの数字の決まり（scripts/your_number.py。題名に合う計算ページがあれば、その案内）も足す"""
+    return PROMPT_RULE + your_number.prompt_block(title)
 
 
 # --------------------------------------------------------------------------- #
@@ -686,7 +688,7 @@ def urgent_record(record: dict) -> bool:
 
 
 def ensure(record: dict, source_text: str, context: str = "", *, urgent: bool = False, related: list[dict] | None = None,
-           log=print, generate=None) -> dict:
+           log=print, generate=None, number_generate=None) -> dict:
     """点検して、足りない点があれば1回だけ手直しする（record をその場で書き換える）。結果（check の形）を返し、qualityBar を記事に残す。
     急ぐ記事（速報・大きなニュース・速報レーン）は LLM の手直しをしない（速報を遅らせない。repairLater を付けてあとで直す）。
     このあとふつうの事実確認（quality.evaluate）を通す。generate は llm.generate_json と同じ形（テスト用に差し替える）"""
@@ -734,6 +736,13 @@ def ensure(record: dict, source_text: str, context: str = "", *, urgent: bool = 
                 notes.append(f"足りない点（{'・'.join(map(str, todo))}）を公式の資料の事実で手直しした（{model}）")
         except Exception as error:  # noqa: BLE001 - 直せなくても、このあとの門（hold_reason）で決める
             notes.append(f"手直しに失敗（{str(error)[:100]}）")
+    for note in notes:
+        log(f"   [bar] {note}")
+    notes = []
+    # あなたの数字の門（scripts/your_number.py）: 表・計算・計算ページ／期限／窓口と公式の URL が足りなければ、公式の資料の事実で1回だけ足す
+    # （テストで generate だけを差し替えたときは、あなたの数字の LLM の手直しはしない＝本物の LLM を呼ばない）
+    your_number.ensure(record, source_text, context, urgent=urgent, log=log,
+                       generate=number_generate if number_generate is not None else ("skip" if generate is not None else None))
     result = check(record, at_publish=True)
     later = bool(urgent and any(p in result["missing"] for p in (*HOLD_POINTS, 8)) and applies(record))
     stamp(record, result, before=before["missing"], repaired=repaired, **({"repairLater": True} if later else {}))
@@ -748,7 +757,12 @@ def hold_reason(record: dict, *, urgent: bool = False, verdict: dict | None = No
     暮らしとお金の記事で、手直しのあとも 1・3・5 のどれかが足りなければ出さない。速報・大きなニュース・速報レーン・災害は止めない"""
     result = check(record, verdict, at_publish=True)
     stamp(record, result, **{k: v for k, v in (record.get("qualityBar") or {}).items() if k in ("before", "repaired", "repairLater")})
-    if urgent or urgent_record(record) or not life(record) or not applies(record):
+    if urgent or urgent_record(record):
+        return None
+    # あなたの数字の門（scripts/your_number.py）: 軸の記事（家計のお金・注意の話）はジャンルにかかわらず、4つがそろわなければ出さない
+    if number := your_number.hold_reason(record):
+        return number
+    if not life(record) or not applies(record):
         return None
     if missing := [p for p in HOLD_POINTS if p in result["missing"]]:
         return ("記事の基準に足りない（自動で手直ししても残った）: "

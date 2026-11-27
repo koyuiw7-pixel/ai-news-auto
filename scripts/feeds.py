@@ -437,6 +437,14 @@ BROAD_FEEDS: list[dict] = [
     {"slug": "tepco-pg", "name": "東京電力パワーグリッド プレスリリース", "url": "https://www.tepco.co.jp/pg/company/press-information/press/index-j.html",
      "type": "html", "section": "lifestyle", "kind": "company", "priority": 3,
      "include_re": "料金|停電|託送|支援|補助|約款|障害|流出|漏え?い|不正アクセス|詐欺|なりすまし"},
+    # 2026-11-28 見直し「あなたの数字のニュース」: 軸（家計のお金・制度・注意）の発信元を広げる。2026-11-28 に一覧から日付つきの項目が読めることを確かめた
+    # 東邦ガス（東海の家庭のガス料金の原料費調整・料金支援の値引き。毎月の単価のお知らせ）
+    {"slug": "tohogas", "name": "東邦ガス プレスリリース", "url": "https://www.tohogas.co.jp/corporate-n/press/", "type": "html",
+     "link_re": r"tohogas\.co\.jp/corporate-n/press/\d+_\d+\.html", "section": "lifestyle", "kind": "company", "priority": 2,
+     "include_re": "料金|原料費|値引き|値上げ|値下げ|支援|補助|約款|障害|流出|漏え?い|不正アクセス|詐欺|なりすまし|誤り"},
+    # 中小企業庁（補助金の公募・採択と、補助金をかたる詐欺の注意。個人事業主・小さな会社のお金）
+    {"slug": "chusho", "name": "中小企業庁", "url": "https://www.chusho.meti.go.jp/index.html", "type": "html",
+     "link_re": r"chusho\.meti\.go\.jp/(?:koukai|soudan|keiei|zaimu|shogyo)/", "section": "business", "kind": "gov", "priority": 2},
     # 銀行（預金金利・手数料の改定・詐欺の注意）。ローン・融資・法人向けは扱わない
     {"slug": "netbk", "name": "ドコモSMTBネット銀行 プレスリリース", "url": "https://www.netbk.co.jp/contents/company/press/", "type": "html",
      "link_re": r"netbk\.co\.jp/contents/company/press/20", "section": "investment", "kind": "company", "priority": 3,

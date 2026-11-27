@@ -69,6 +69,12 @@ jobs:
           if [ "${{ github.event.inputs.force }}" = "true" ]; then ARGS="$ARGS --force"; fi
           python scripts/weekly.py $ARGS
 
+      # 記事の質の抜き取り（2026-11-28 見直し）: 直近7日の10本を8つの基準＋あなたの数字の4つで点検し、会議で読むレポートを
+      # state/quality_weekly/YYYY-MM-DD.md に書く（LLM は使わない。失敗しても週のまとめは止めない）
+      - name: Weekly quality sample
+        continue-on-error: true
+        run: python scripts/weekly_quality_sample.py > /dev/null && ls state/quality_weekly | tail -1
+
       - name: Commit & push
         id: commit
         run: |
@@ -77,6 +83,7 @@ jobs:
           git checkout -- content/llm_usage.json 2>/dev/null || true
           git add state/claude_api_usage_weekly.json 2>/dev/null || true
           git add state/llm_usage_weekly.json 2>/dev/null || true
+          git add state/quality_weekly 2>/dev/null || true
           if [ -z "$(git status --porcelain content/weekly.json)" ] && git diff --cached --quiet; then
             echo "変更なし"
             exit 0
@@ -84,6 +91,7 @@ jobs:
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           MSG="chore(llm): Claude API の使用量を記録（週のまとめ）"
+          if ! git diff --cached --quiet -- state/quality_weekly; then MSG="chore(quality): 週の記事の質の抜き取り"; fi
           if [ -n "$(git status --porcelain content/weekly.json)" ]; then MSG="chore(weekly): 今週のAIニュースまとめを追加"; fi
           git add content/weekly.json
           git commit -m "$MSG"

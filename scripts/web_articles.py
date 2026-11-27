@@ -56,6 +56,7 @@ import facts_bundle  # noqa: E402
 import fast_lane  # noqa: E402
 import own_view  # noqa: E402
 import quality_bar  # noqa: E402  記事の8つの基準（2026-11-12 オーナー「量を超える最高の記事」）
+import your_number  # noqa: E402  あなたの数字の門（2026-11-28 見直し。話題の門はこの下の _pick）
 import rank_intent  # noqa: E402  検索で上位に出やすい話題を先に（台帳 A54）
 import pipeline_health  # noqa: E402
 import feeds  # noqa: E402
@@ -646,7 +647,7 @@ def build_broad_prompt(item: dict, text: str, genre, context: str = "", outline:
     return (prompt + context + extra_fields_block(genre.slug) + "\n\n" + persona.WORK_MONEY_FIELD
             + public_interest.alcohol_prompt_note(item["title"])  # お酒の新商品の書き方（A56）
             + own_view.prompt_block()  # サイソクの見方の章（2026-11-12 オーナー。scripts/own_view.py）
-            + quality_bar.prompt_block()  # 記事の8つの基準（scripts/quality_bar.py）
+            + quality_bar.prompt_block(item.get("title") or "")  # 記事の8つの基準とあなたの数字（scripts/quality_bar.py・your_number.py）
             + "\n\n" + m.threads_hooks.prompt_block())
 
 
@@ -1196,7 +1197,7 @@ def build_trend_prompt(item: dict, fetched: list[dict], genre, context: str = ""
     )
     return (prompt + context + extra_fields_block(genre.slug) + "\n\n" + persona.WORK_MONEY_FIELD
             + own_view.prompt_block()  # サイソクの見方の章（2026-11-12 オーナー。scripts/own_view.py）
-            + quality_bar.prompt_block()  # 記事の8つの基準（scripts/quality_bar.py）
+            + quality_bar.prompt_block(item.get("title") or "")  # 記事の8つの基準とあなたの数字（scripts/quality_bar.py・your_number.py）
             + "\n\n" + m.threads_hooks.prompt_block())
 
 
@@ -1252,7 +1253,7 @@ def build_prompt(item: dict, text: str, context: str = "", outline: str | None =
     )
     return (prompt + context + extra_fields_block(genre.slug) + "\n\n" + persona.WORK_MONEY_FIELD
             + own_view.prompt_block()  # サイソクの見方の章（2026-11-12 オーナー。scripts/own_view.py）
-            + quality_bar.prompt_block()  # 記事の8つの基準（scripts/quality_bar.py）
+            + quality_bar.prompt_block(item.get("title") or "")  # 記事の8つの基準とあなたの数字（scripts/quality_bar.py・your_number.py）
             + "\n\n" + m.threads_hooks.prompt_block())
 
 
@@ -2954,6 +2955,14 @@ def main() -> int:
         return action, found
 
     def _pick(cand: dict, is_ai: bool, major: bool = False, trend: bool = False):
+        # 話題の門（2026-11-28 見直し「あなたの数字のニュース」。scripts/your_number.py）: 家計のお金・制度・注意（リコール・流出・障害）・
+        # 安全（災害）の話だけ自動の記事にする。大きなニュース・速報の候補も、安全・注意・お金の話でなければ作らない（戻すときは AXIS_GATE_BREAKING=0）。
+        # 止めるのは GitHub の変数 AXIS_TOPIC_GATE=1 のときだけ。既定（log）は止めずに記録する（2026-11-28 オーナー「本数を減らさない」）
+        if why := your_number.topic_block(cand, breaking=major or bool(cand.get("fast")) or breaking_candidate(cand), log=log):
+            if not trend:  # 話題のレーンの候補は印を付けない（ふつうのレーンの判定に任せる）
+                mark(state, cand, skipped=True, reason=f"axis: {why}"[:200])
+                return "drop", why
+            return "next", f"話題のレーン: {why}"
         if major and not cap_free(cand) and args.daily_cap and generated_today(state) >= args.daily_cap:
             # 台帳 A75: 安全・お金の話でない大きなニュースは30本の中。上限のあとは見送りの印を付けず、次の日の枠で競う
             return "next", "今日の30本（台帳 A75）に達した企業の発表など"
@@ -3218,7 +3227,7 @@ def main() -> int:
         log(f"   [llm] 段: {purpose}（Claude API の配分 → {'Claude CLI → ' if purpose in llm.API_CLI_PURPOSES else ''}無料モデル）")
         try:
             status, record, model_name, info = gated(
-                item, kind, system, prompt, schema, f"{source_header(item)}\n\n{text}", build, check_context,
+                item, kind, system, prompt, schema, f"{source_header(item)}\n\n{text}{your_number.links_block(page)}", build, check_context,
                 tier=major_tier() if major else None, attempts=MAJOR_ATTEMPTS if major else 2, purpose=purpose,
             )
         finally:

@@ -309,6 +309,12 @@ class RepairTest(unittest.TestCase):
 
 
 class HoldTest(unittest.TestCase):
+    # ここでは8つの基準の保留だけを確かめる（あなたの数字の4つの保留は tests/test_your_number_20261128.py）
+    def setUp(self):
+        patcher = mock.patch.object(qb.your_number, "hold_reason", return_value=None)
+        patcher.start()
+        self.addCleanup(patcher.stop)
+
     def test_life_article_missing_1_3_or_5_is_held(self):
         no_action = NO_CASE_BODY.replace("手続きは不要です。日本年金機構から届く通知で、12月15日の振込額を確かめてください。問い合わせ先は、ねんきんダイヤル（0570-05-1165）です。",
                                          "給付金の額は物価に合わせて決まります。").replace("## 手続きは不要、通知はがきで確かめる", "## 額は物価に合わせて決まる")

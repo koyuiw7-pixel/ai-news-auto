@@ -94,6 +94,7 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           # 未設定なら scripts/main.py の MODEL_CANDIDATES が自動で選択する
           GEMINI_MODEL: ${{ vars.GEMINI_MODEL }}
+          AXIS_TOPIC_GATE: ${{ vars.AXIS_TOPIC_GATE || 'log' }}  # あなたの数字の話題の門（scripts/your_number.py）
         run: |
           python scripts/main.py \
             --max "${{ github.event.inputs.max_articles || '2' }}" \
@@ -142,6 +143,11 @@ jobs:
         continue-on-error: true
         env:
           LLM_WORKFLOW: ${{ (inputs.fast_url || '') != '' && 'breaking' || 'articles' }}  # 無料枠の取り分を数えるジョブ名（scripts/llm.py）
+          # あなたの数字の門（2026-11-28 見直し。scripts/your_number.py）。話題の門 AXIS_TOPIC_GATE: 1＝軸の外を止める / log＝止めずに記録（既定。
+          # オーナー「本数を減らさない」）/ 0＝使わない。AXIS_GATE_BREAKING=0 で速報の候補は止めない。AXIS_CONTENT_GATE=0 で中身の門の保留をやめる（記録は残す）
+          AXIS_TOPIC_GATE: ${{ vars.AXIS_TOPIC_GATE || 'log' }}
+          AXIS_GATE_BREAKING: ${{ vars.AXIS_GATE_BREAKING }}
+          AXIS_CONTENT_GATE: ${{ vars.AXIS_CONTENT_GATE }}
           FAST_URL: ${{ inputs.fast_url }}
           FAST_META: ${{ inputs.fast_meta }}
           FAST_LANE_GH_TOKEN: ${{ github.token }}
