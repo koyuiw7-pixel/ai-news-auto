@@ -17178,6 +17178,20 @@
       "skipped": true,
       "url": "https://www.jp-bank.japanpost.jp/aboutus/press/2026/abt_prs_id002146.html"
     },
+    "abaef02a43b8eb11": {
+      "at": "2026-11-27T07:17:21.960946+00:00",
+      "costUsd": 0.0077,
+      "intent": "breaking",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "safetyLane": true,
+      "score": 98,
+      "section": "public",
+      "slug": "shueisha-karte-data-leak",
+      "url": "https://www.shueisha.co.jp/wp-content/uploads/2026/11/20261126.pdf"
+    },
     "abe03c170f0b92ca": {
       "at": "2026-11-18T18:53:04.531997+00:00",
       "costUsd": 0.0428,
@@ -18054,6 +18068,20 @@
       "reason": "trend: 公式の発表で記事にした（kansai-kanto-university-rugby-2026-results）",
       "skipped": true,
       "url": "https://topics.smt.docomo.ne.jp/article/sponichi/sports/sponichi-spngoo-20261122-0216"
+    },
+    "bd7396104518b615": {
+      "at": "2026-11-27T07:18:27.329475+00:00",
+      "costUsd": 0.0039,
+      "intent": "breaking",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "safetyLane": true,
+      "score": 100,
+      "section": "public",
+      "slug": "attenir-karte-data-leak",
+      "url": "https://www.attenir.co.jp/news/pdf/news_20261126.pdf"
     },
     "bde4dc6b0406ce69": {
       "at": "2026-11-17T01:32:06.425226+00:00",
@@ -24318,109 +24346,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-25T00:26:58.949711+00:00",
-      "attempt": 2,
-      "id": "a0ef1027f959d1da11f24d6c77639810301bc53f",
-      "kind": "trend",
-      "model": "openai-api:gpt-6.1-terra",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 151.6,
-        "avg_sentence": 48.2,
-        "long_share": 0.227,
-        "max_paragraph": 203,
-        "paragraphs": 7,
-        "sentences": 22
-      },
-      "score": 100,
-      "source": "trends",
-      "title": "ウォークマン",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（NW・WM・ZM）",
-        "読みやすさ: 文が長い（1文の平均 48.2字・60字超の文が 23% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "読みやすさ: 段落が長い（平均 151.6字・最長 203字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-25T00:27:14.035263+00:00",
-      "attempt": 0,
-      "id": "a0ef1027f959d1da11f24d6c77639810301bc53f",
-      "kind": "trend",
-      "model": "openai-api:gpt-6-luna",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 85.8,
-        "avg_sentence": 32.2,
-        "long_share": 0.0,
-        "max_paragraph": 132,
-        "paragraphs": 12,
-        "sentences": 32
-      },
-      "score": 100,
-      "source": "trends",
-      "title": "ウォークマン",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（NW・WM・ZM）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-25T00:58:48.862733+00:00",
-      "attempt": 1,
-      "id": "75da85c129184b1f",
-      "kind": "broad",
-      "model": "gemini-3.5-flash",
-      "problems": [
-        "「厚生労働省が2026年11月25日に開催した第2回検討会では…制度を段階的に縮小していく基本方針が示されています」→資料は過去の議論や取組をまとめたもので、この検討会で新たな基本方針が示されたとまでは確認できません。",
-        "「令和7年（2025年）改正の議論でも…基本方針として確認されています」→確認できる資料は過去の議論を整理していますが、令和7年改正の議論でこの方針が確認されたとの記述は裏付けられていません。",
-        "「厚生年金に切り替わると…傷病手当金などの保障も手厚くなります」→傷病手当金は厚生年金の給付ではなく、この資料にも加入で受けられるとの記載はありません。",
-        "「将来受給できる老齢厚生年金が増える」→加入後の年金額への影響は資料に記載がなく、効果を断定しています。",
-        "「国民年金保険料が免除される『第3号被保険者』制度」→第3号被保険者は本人が保険料を納めない仕組みですが、「免除」と表現すると保険料免除制度と誤解されるおそれがあります。"
-      ],
-      "readability": {
-        "avg_paragraph": 169.7,
-        "avg_sentence": 63.6,
-        "long_share": 0.562,
-        "max_paragraph": 225,
-        "paragraphs": 6,
-        "sentences": 16
-      },
-      "score": 68,
-      "source": "mhlw",
-      "title": "第２回「国民年金第３号被保険者制度等に関する検討会」資料",
-      "warnings": [
-        "読みやすさ: 文が長い（1文の平均 63.6字・60字超の文が 56% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "読みやすさ: 段落が長い（平均 169.7字・最長 225字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-25T01:00:09.856648+00:00",
-      "attempt": 1,
-      "id": "75da85c129184b1f",
-      "kind": "broad",
-      "model": "strike:かんたん版 1 文",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 132.5,
-        "avg_sentence": 61.2,
-        "long_share": 0.538,
-        "max_paragraph": 215,
-        "paragraphs": 6,
-        "sentences": 13
-      },
-      "score": 96,
-      "source": "mhlw",
-      "title": "第２回「国民年金第３号被保険者制度等に関する検討会」資料",
-      "warnings": [
-        "work_money（「仕事・お金にどう活かせる？」欄）が無い",
-        "読みやすさ: 文が長い（1文の平均 61.2字・60字超の文が 54% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "読みやすさ: 段落が長い（平均 132.5字・最長 215字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-25T01:00:25.548125+00:00",
@@ -31815,6 +31740,103 @@
       "title": "『エコめがね』への不正アクセス調査状況について（第4報）",
       "warnings": [
         "初めて出たところで言い換えていない略語（PPA）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-27T07:16:17.424935+00:00",
+      "attempt": 1,
+      "id": "abaef02a43b8eb11",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "元記事の文をそのまま書き写している（2文。例「- ジャンプキャラクターズストア：集英社通販サービス係・ジャンプキャラクターズストア カスタマーセン」）。自分の言葉で要約する"
+      ],
+      "readability": {
+        "avg_paragraph": 90.9,
+        "avg_sentence": 41.7,
+        "long_share": 0.042,
+        "max_paragraph": 170,
+        "paragraphs": 11,
+        "sentences": 24
+      },
+      "score": null,
+      "source": "fast",
+      "title": "情報漏洩に関するお詫びとお知らせ",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（HAPPY・STORE・KARTE）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-27T07:17:15.491090+00:00",
+      "attempt": 1,
+      "id": "abaef02a43b8eb11",
+      "kind": "broad",
+      "model": "strike:本文 1 文・かんたん版 1 文",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 87.0,
+        "avg_sentence": 43.5,
+        "long_share": 0.091,
+        "max_paragraph": 171,
+        "paragraphs": 11,
+        "sentences": 22
+      },
+      "score": 98,
+      "source": "fast",
+      "title": "情報漏洩に関するお詫びとお知らせ",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（HAPPY・STORE・KARTE）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-27T07:18:01.823082+00:00",
+      "attempt": 1,
+      "id": "bd7396104518b615",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "「KARTEに残っていたお客様情報」→ 元記事は漏えいした情報がKARTEに「残っていた」とは述べておらず、保管状況を付け加えています。",
+        "「サイトやアプリの利用者情報を管理・活用するサービス」→ KARTEの機能説明は元記事に記載がなく、裏付けのない具体的な説明です。"
+      ],
+      "readability": {
+        "avg_paragraph": 60.7,
+        "avg_sentence": 36.4,
+        "long_share": 0.15,
+        "max_paragraph": 130,
+        "paragraphs": 12,
+        "sentences": 20
+      },
+      "score": 84,
+      "source": "fast",
+      "title": "アテニアの情報流出に関するお知らせ",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（SMS）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-27T07:18:21.061735+00:00",
+      "attempt": 1,
+      "id": "bd7396104518b615",
+      "kind": "broad",
+      "model": "openai-api:gpt-6-luna",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 62.0,
+        "avg_sentence": 35.9,
+        "long_share": 0.158,
+        "max_paragraph": 135,
+        "paragraphs": 11,
+        "sentences": 19
+      },
+      "score": 100,
+      "source": "fast",
+      "title": "アテニアの情報流出に関するお知らせ",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（SMS）"
       ]
     }
   ],
