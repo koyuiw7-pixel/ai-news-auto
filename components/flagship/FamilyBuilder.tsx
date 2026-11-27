@@ -90,13 +90,27 @@ export default function FamilyBuilder({
     if (ymIndex(now) > ymIndex(asOf)) setToday(now);
   }, [asOf]);
 
-  // スマホの下の小さな合計: 結果の欄が画面に無いときだけ出す（位置は固定なので、ほかの部分を押し下げない）
+  // スマホの下の小さな合計: 結果の欄を通り過ぎた（画面より上に行った）ときだけ出す。位置は固定なので、ほかの部分を押し下げない（CLS）。
+  // IntersectionObserver は一気に飛ぶスクロール（目次のリンクなど）で「見えた」を通らず変化を拾えないので、スクロールのたびに位置で決める
   useEffect(() => {
     const el = resultRef.current;
-    if (!el || typeof IntersectionObserver === "undefined") return;
-    const io = new IntersectionObserver(([entry]) => setResultSeen(entry.isIntersecting || entry.boundingClientRect.top > window.innerHeight), { threshold: 0.05 });
-    io.observe(el);
-    return () => io.disconnect();
+    if (!el) return;
+    let raf = 0;
+    const check = () => {
+      raf = 0;
+      setResultSeen(el.getBoundingClientRect().bottom > 72);
+    };
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(check);
+    };
+    check();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      if (raf) cancelAnimationFrame(raf);
+    };
   }, []);
 
   const shown = kids.filter((kid) => (mode === "category" ? kid.kind === "category" : kid.kind === "birth"));
