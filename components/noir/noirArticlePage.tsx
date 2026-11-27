@@ -480,7 +480,7 @@ export function noirArticlePage(ctx: NoirPageContext) {
             </span>
             {editor && (
               <span data-editor-in-charge>
-                編集責任者：<Link href="/about">{editor.name}</Link>
+                編集責任者：<Link href="/about#editor">{editor.name}</Link>
               </span>
             )}
             <Link href="/editorial-policy">編集方針・AI利用と事実確認</Link>

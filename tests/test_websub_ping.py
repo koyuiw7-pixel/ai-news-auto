@@ -10,7 +10,7 @@ import websub_ping  # noqa: E402
 
 class WebSubTest(unittest.TestCase):
     def test_feeds_declare_hub(self):
-        for f in ["app/feed.xml/route.ts", "app/feeds/news.xml/route.ts"]:
+        for f in ["app/feed.xml/route.ts", "lib/partner-xml.ts"]:  # /feeds/news.xml と /feeds/partner.xml の中身
             s = (ROOT / f).read_text()
             self.assertIn('rel="hub"', s, f)
             self.assertIn(websub_ping.HUB, s, f)

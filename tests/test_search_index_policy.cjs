@@ -158,5 +158,9 @@ test('RSS・配信用のフィードには、重複の印が付いた記事を�
   const read = (rel) => fs.readFileSync(path.join(__dirname, '..', rel), 'utf8');
   assert.match(read('lib/indexing.ts'), /export function isDuplicateArticle\([^)]*\)[^{]*\{\s*return Boolean\(article\.duplicate\) \|\| Boolean\(article\.duplicateOf && article\.duplicateOf !== article\.slug\);/);
   assert.match(read('app/feed.xml/route.ts'), /getAllArticles\(\)\s*\.filter\(\(article\) => !isDuplicateArticle\(article\)\)\s*\.slice\(0, 50\)/);
-  assert.match(read('lib/feeds.ts'), /\.filter\(isDistributionEligible\)[\s\S]{0,80}\.filter\(\(a\) => !isDuplicateArticle\(a\)\)/);
+  // 2026-11-28: 配信用のフィードの記事選びは lib/partner-feed.ts に集めた（重複は外し、従来の配信基準も見る）
+  assert.match(read('lib/feeds.ts'), /return pickPartnerArticles\(/);
+  const partner = read('lib/partner-feed.ts');
+  assert.match(partner, /if \(isDuplicateArticle\(a\)\) return "duplicate";/);
+  assert.match(partner, /if \(!isDistributionEligible\(a\)\) return "distribution";/);
 });

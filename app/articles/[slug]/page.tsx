@@ -550,7 +550,7 @@ export default async function ArticlePage({ params }: Props) {
             </span>
             {editor && (
               <span data-editor-in-charge>
-                編集責任者：<Link href="/about" className="font-semibold underline decoration-line-strong underline-offset-4 hover:text-accent">{editor.name}</Link>
+                編集責任者：<Link href="/about#editor" className="font-semibold underline decoration-line-strong underline-offset-4 hover:text-accent">{editor.name}</Link>
               </span>
             )}
             {/* 署名の行の公開・更新の日時（構造化データの datePublished・dateModified と同じ時刻。lib/byline.ts） */}

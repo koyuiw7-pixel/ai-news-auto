@@ -47,7 +47,7 @@ export default function AboutPage() {
       eyebrow="ABOUT"
       title="運営者情報・編集方針"
       lead={`${siteConfig.siteName}（略称：${siteConfig.nickname}）は、暮らしとお金の「自分ごと」ニュースを、公式発表をもとに日本語で伝えるニュースメディアです。値段の変更・手続き・給付・税・障害・リコール・新製品などを、「自分は対象か・いくらか・何をすればいいか」に答える形でまとめます。記事の多くは生成AIが下書きし、自動の確認を経て公開しています。情報源と確認方法、人が確認している範囲を開示しています。`}
-      updatedAt="2026年11月12日"
+      updatedAt="2026年11月28日"
     >
       <script type="application/ld+json" suppressHydrationWarning dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <h2>運営者情報</h2>
@@ -99,6 +99,34 @@ export default function AboutPage() {
         旧URL「ai-news-auto.vercel.app」から、現在の公式サイト「ai-tech-express.jp」へ移転しました。サイソクの記事・運営情報は、この公式サイトで公開しています。
       </p>
 
+      <h2 id="editor">編集責任者</h2>
+      <table>
+        <tbody>
+          <tr>
+            <th>氏名</th>
+            <td>{operator.representative}</td>
+          </tr>
+          <tr>
+            <th>役目</th>
+            <td>{siteConfig.siteName}の運営・編集責任者</td>
+          </tr>
+          <tr>
+            <th>責任を持つこと</th>
+            <td>記事の作り方と公開の基準を決めること、誤りのご指摘への対応と訂正、取り下げの判断</td>
+          </tr>
+          <tr>
+            <th>連絡先</th>
+            <td>
+              <a href={`mailto:${operator.email}`}>{operator.email}</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <p>
+        暮らしとお金の記事（社会・行政、暮らし・生活、投資・マネー、不動産）には「編集責任者：{operator.representative}」と表示し、このページにつないでいます。
+        記事はすべて編集責任者が読んでから公開しているわけではありません。編集責任者が読んで確認した記事にだけ「編集部が確認済み（日付）」と表示します（下の「記事の制作方法」）。
+      </p>
+
       <h2>このサイトが提供するもの</h2>
       <p>
         {siteConfig.tagline}
@@ -137,7 +165,7 @@ export default function AboutPage() {
         <thead>
           <tr>
             <th>発表・記事</th>
-            <th>公式発表 → 公開確認</th>
+            <th>公式発表と公開確認の時刻</th>
             <th>所要時間</th>
           </tr>
         </thead>
@@ -150,7 +178,7 @@ export default function AboutPage() {
             </td>
             <td>
               <time dateTime="2026-10-28T17:00:00+00:00">10月29日 02:00:00</time>
-              <br />→ <time dateTime="2026-10-28T17:05:17+00:00">02:05:17</time>
+              <br />公開確認 <time dateTime="2026-10-28T17:05:17+00:00">02:05:17</time>
             </td>
             <td>5分17秒</td>
           </tr>
@@ -162,7 +190,7 @@ export default function AboutPage() {
             </td>
             <td>
               <time dateTime="2026-10-29T16:00:00+00:00">10月30日 01:00:00</time>
-              <br />→ <time dateTime="2026-10-29T16:07:24+00:00">01:07:24</time>
+              <br />公開確認 <time dateTime="2026-10-29T16:07:24+00:00">01:07:24</time>
             </td>
             <td>7分24秒</td>
           </tr>
@@ -174,7 +202,7 @@ export default function AboutPage() {
             </td>
             <td>
               <time dateTime="2026-10-29T16:15:00+00:00">10月30日 01:15:00</time>
-              <br />→ <time dateTime="2026-10-29T16:23:20+00:00">01:23:20</time>
+              <br />公開確認 <time dateTime="2026-10-29T16:23:20+00:00">01:23:20</time>
             </td>
             <td>8分20秒</td>
           </tr>
@@ -233,6 +261,12 @@ export default function AboutPage() {
         からご連絡ください。確認のうえ、訂正または記事の取り下げを行います。
         これまでの訂正は<a href="/corrections">訂正履歴</a>で公開しています。
         権利者の方からの削除・修正のご要望にも同様に対応します。
+      </p>
+
+      <h2>ニュースアプリへの配信について</h2>
+      <p>
+        ニュースアプリなどの配信先へ送る記事のデータ（フィード）には、暮らしとお金の記事だけを載せています。配信先へ送る本文には、広告・アフィリエイトのリンク・「PR」の枠・計測用の画像・会員登録への誘導を入れません。
+        各記事の最後に出典へのリンクと、「生成AIで下書きを作成し、元の発表と自動で照合してから公開している」ことの説明を付けています。
       </p>
 
       <h2>収益について</h2>

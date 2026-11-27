@@ -25,6 +25,8 @@
 
 ## 1. 用意したフィード
 
+> 2026-11-28: 配信用のフィード（smartnews・gunosy・partner・news）は暮らしとお金の記事だけに絞った（`lib/partner-feed.ts`）。AI・海外・スポーツ・芸能・比較ページ・noindex の記事は載せない。本文に広告・紹介リンク・PR・計測の画像が残った記事は外す（`lib/feeds.ts` の `feedProblems`）。汎用は `/feeds/partner.xml`（`/feeds/news.xml` も同じ中身）。最新の申し込みメモは `out/strategy_20261128/partner_application_ja.md`。
+
 | URL | 用途 | 中身 |
 |---|---|---|
 | https://ai-tech-express.jp/feeds/smartnews.xml | スマートニュース（SmartFormat） | 2026-11-07 に申請前チェックリストに合わせて作り直し（lib/smartnews-feed.ts）。検索対象の記事だけ（まとめ・重複は除く）・全文（記事の写真と本文の公式の写真つき。AI のイメージには「画像はイメージ（AI生成）」）・本文のリンクは外部の出典だけ（自サイトへの誘導・広告は外す）・`media:thumbnail`（共有カードと同じ写真の順）・`media:status`・`snf:logo`／`snf:darkModeLogo`（透明 PNG 410×100）。直近14日・最大50本・1MB以内 |

@@ -18,7 +18,7 @@ import urllib.request
 
 HUB = "https://pubsubhubbub.appspot.com/"
 SITE = "https://ai-tech-express.jp"
-FEEDS = ["/feed.xml", "/feeds/news.xml"]
+FEEDS = ["/feed.xml", "/feeds/news.xml", "/feeds/partner.xml"]
 
 
 def build_request(feed_url: str) -> urllib.request.Request:

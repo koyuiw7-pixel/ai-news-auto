@@ -1,12 +1,7 @@
 import { articleTitle } from "@/lib/headline";
-import { getAllArticles, getArticle, getArticleSummary, sourceHref, sourceLabel, type ArticleSummary, type FullArticle } from "@/lib/articles";
-import { cleanSections, dropOverviewSections, retitleHtml, stripSummaryOpener, titleSlugLinks } from "@/lib/article-sections";
-import { insertBodyImages } from "@/lib/body-images";
-import { isAffiliateUrl } from "@/lib/affiliate";
-import { isDistributionEligible, isIndexable } from "@/lib/indexing";
-import { renderMarkdown } from "@/lib/markdown";
-import { isLiveArticleSlug } from "@/lib/retired";
-import { buildItems, articleUrl, cdata, coverUrl, escapeXml, publishedOf, rfc822 } from "@/lib/feeds";
+import { sourceHref, sourceLabel, type ArticleSummary, type FullArticle } from "@/lib/articles";
+import { isPartnerArticle, pickPartnerArticles } from "@/lib/partner-feed";
+import { AI_DISCLOSURE, adLinkFilter, articleBodyHtml, buildItems, articleUrl, cdata, coverUrl, escapeXml, publishedOf, rfc822 } from "@/lib/feeds";
 import { feedPhoto, photoFigure, smartnewsBody } from "@/lib/smartformat";
 import { siteConfig } from "@/site.config";
 
@@ -14,8 +9,8 @@ import { siteConfig } from "@/site.config";
  * スマートニュース（SmartFormat / RSS 2.0）のフィードの中身（/feeds/smartnews.xml）。
  * 仕様: publishers.smartnews.com/hc/ja の「SmartFormat仕様書（RSS2.0準拠）」と「SmartFormat申請前のチェックリスト」。
  *
- * - 載せる記事: 検索に出している記事（lib/indexing.ts の isIndexable）で、従来の外部配信の基準も満たすもの。
- *   まとめ（他の記事へのリンクの一覧）・重複・未来の日時の記事は載せない。2週間より古い記事は取り込まれないので載せない。
+ * - 載せる記事: 暮らしとお金の記事だけ（lib/partner-feed.ts。2026-11-28 の新しい方向）。検索に出している記事で、従来の外部配信の基準も満たすもの。
+ *   まとめ（他の記事へのリンクの一覧）・重複・比較ページ・未来の日時の記事は載せない。2週間より古い記事は取り込まれないので載せない。
  *   新しい順に最大50本・1MB以内。2週間で5本に届かないときだけ、古い記事で5本まで埋める（チェックリスト「常に5本以上」）
  * - 本文（content:encoded）: 記事ページと同じ全文（リード・要点・本文・本文の公式の写真・出典・AI利用の開示）。
  *   広告・PR・アフィリエイト・自サイトへの誘導リンク・ボタン・スクリプトは入れない（lib/smartformat.ts）
@@ -29,34 +24,19 @@ export const SMARTNEWS_MIN_ITEMS = 5;
 export const SMARTNEWS_MAX_AGE_DAYS = 14;
 export const SMARTNEWS_MAX_BYTES = 950_000;
 
-/** スマートニュースに載せてよい記事か（検索対象・まとめでない・重複でない） */
+/** スマートニュースに載せてよい記事か（暮らしとお金の記事・検索対象・まとめでない・重複でない） */
 export function smartnewsEligible(a: ArticleSummary): boolean {
-  if (a.type === "roundup") return false;
-  if (a.duplicate || (a.duplicateOf && a.duplicateOf !== a.slug)) return false;
-  return isIndexable(a) && isDistributionEligible(a);
+  return isPartnerArticle(a);
 }
 
 export function pickSmartnewsArticles(now = Date.now()): FullArticle[] {
-  const published = getAllArticles()
-    .filter(smartnewsEligible)
-    .filter((a) => {
-      const at = Date.parse(publishedOf(a));
-      return Number.isFinite(at) && at <= now;
-    });
-  const fresh = published.filter((a) => now - Date.parse(publishedOf(a)) < SMARTNEWS_MAX_AGE_DAYS * 86_400_000);
-  const chosen = (fresh.length >= SMARTNEWS_MIN_ITEMS ? fresh : published.slice(0, SMARTNEWS_MIN_ITEMS)).slice(0, SMARTNEWS_MAX_ITEMS);
-  return chosen.map((a) => getArticle(a.slug)).filter((a): a is FullArticle => Boolean(a));
+  return pickPartnerArticles({ limit: SMARTNEWS_MAX_ITEMS, maxAgeDays: SMARTNEWS_MAX_AGE_DAYS, minItems: SMARTNEWS_MIN_ITEMS, now });
 }
 
 /** 記事の全文 HTML（SmartFormat 向け） */
 export async function smartnewsHtml(article: FullArticle): Promise<string> {
-  const affiliateUrls = new Set((article.affiliates ?? []).map((a) => a.url));
-  const isAd = (href: string) => affiliateUrls.has(href) || isAffiliateUrl(href, affiliateUrls) || /\/api\/aff\//.test(href);
-  // 記事ページと同じ下ごしらえ（app/articles/[slug]/page.tsx）: 要約の書き出し・概要の章を除き、空の章を隠す
-  const opened = stripSummaryOpener(titleSlugLinks(article.body, (s) => getArticleSummary(s)?.title), article.lede ?? "");
-  const body = cleanSections(article.lede && article.highlights.length > 0 ? dropOverviewSections(opened) : opened, article.sectionTitles?.body).markdown;
-  const rendered = await renderMarkdown(body, [...affiliateUrls], isLiveArticleSlug);
-  const withImages = retitleHtml(insertBodyImages(rendered, article.bodyImages ?? [], article.title), "body", article.sectionTitles);
+  const isAd = adLinkFilter(article);
+  const withImages = await articleBodyHtml(article);
 
   const title = articleTitle(article);
   const parts: string[] = [];
@@ -72,7 +52,7 @@ export async function smartnewsHtml(article: FullArticle): Promise<string> {
   const src = sourceHref(article);
   if (src && /^https?:\/\//.test(src)) parts.push(`<p>出典：<a href="${escapeXml(src)}">${escapeXml(sourceLabel(article))}</a></p>`);
   parts.push(
-    `<p>この記事は生成AIを使って作成し、元の発表と照合してから公開しています。制作方法と事実確認の手順は<a href="${siteConfig.url}/editorial-policy">${escapeXml(siteConfig.siteName)}の編集方針</a>をご覧ください。</p>`,
+    `<p>${AI_DISCLOSURE}制作方法と事実確認の手順は<a href="${siteConfig.url}/editorial-policy">${escapeXml(siteConfig.siteName)}の編集方針</a>をご覧ください。</p>`,
   );
   return parts.join("\n");
 }
@@ -91,7 +71,7 @@ async function smartnewsItem(a: FullArticle): Promise<string> {
       <pubDate>${rfc822(publishedOf(a))}</pubDate>
       <category>${escapeXml(categories)}</category>
       <dc:creator>${escapeXml(siteConfig.author)}</dc:creator>
-      <media:thumbnail url="${escapeXml(smartnewsThumbnail(a))}" />
+      <media:thumbnail url="${escapeXml(smartnewsThumbnail(a))}">${escapeXml(smartnewsThumbnail(a))}</media:thumbnail>
       <media:status>active</media:status>
       <content:encoded>${cdata(await smartnewsHtml(a))}</content:encoded>
     </item>`;

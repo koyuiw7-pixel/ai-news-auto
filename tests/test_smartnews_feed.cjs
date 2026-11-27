@@ -49,14 +49,15 @@ test("写真: 公式の写真は出典、AI のイメージは「画像はイメ
   assert.equal(feedPhoto({ slug: "f", thumbnail: `${IMG}f-4444dddd.jpg`, imageCredit: { kind: "official", org: "X" }, noPhoto: true }), null);
 });
 
-test("載せる記事: まとめ・重複・検索に出さない記事は載せない", async () => {
+test("載せる記事: まとめ・重複・検索に出さない記事・暮らしとお金でない記事は載せない", async () => {
   const { smartnewsEligible } = await load("lib/smartnews-feed.ts");
-  const base = { slug: "x", type: "article", sourceType: "web", channelSlug: "openai", bodyLength: 4000, indexable: true };
+  const base = { slug: "x", type: "article", sourceType: "web", channelSlug: "mhlw", genreSlug: "public", title: "児童手当の支給日は12月10日　申請の期限に注意", tags: [], bodyLength: 4000, indexable: true };
   assert.equal(smartnewsEligible(base), true);
   assert.equal(smartnewsEligible({ ...base, type: "roundup" }), false);
   assert.equal(smartnewsEligible({ ...base, duplicateOf: "y" }), false);
   assert.equal(smartnewsEligible({ ...base, duplicate: true, indexable: undefined }), false);
   assert.equal(smartnewsEligible({ ...base, indexable: false }), false);
+  assert.equal(smartnewsEligible({ ...base, genreSlug: "ai", title: "ChatGPTの新プランは月額20ドル" }), false);
 });
 
 test("実際の記事で作ったフィード: 必須の要素・5本以上・未来の日時なし・絶対URL・二重エスケープなし", async () => {
@@ -79,7 +80,7 @@ test("実際の記事で作ったフィード: 必須の要素・5本以上・�
     const pub = Date.parse(/<pubDate>([^<]*)<\/pubDate>/.exec(item)?.[1] ?? "");
     assert.ok(Number.isFinite(pub) && pub <= now, `未来の日時は載せない: ${title}`);
     assert.match(item, /<pubDate>\w{3}, \d{2} \w{3} \d{4} \d{2}:\d{2}:\d{2} \+0000<\/pubDate>/);
-    assert.match(item, /<media:thumbnail url="https:\/\/ai-tech-express\.jp\/[^"]+" \/>/);
+    assert.match(item, /<media:thumbnail url="(https:\/\/ai-tech-express\.jp\/[^"]+)">\1<\/media:thumbnail>/);
     assert.ok(item.includes("<media:status>active</media:status>"));
     const body = /<content:encoded><!\[CDATA\[([\s\S]*?)\]\]><\/content:encoded>/.exec(item)?.[1] ?? "";
     assert.ok(body.length > 500, `本文は全文: ${title}`);

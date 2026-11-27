@@ -23,7 +23,7 @@ export default function EditorialPolicyPage() {
       eyebrow="EDITORIAL POLICY"
       title="編集方針・AI利用と事実確認について"
       lead={`${siteConfig.name}は、公式発表などの一次情報をもとに、「何が起きたか」だけでなく「自分に関係あるか」「仕事・お金にどう活かせるか」「今すぐ使えるか」まで、誰にでもわかる日本語で伝えるメディアです。記事の多くは、生成AIが下書きし、プログラムとAIによる自動の確認を経て公開しています。その方法と、品質を守るためのルール、人が確認している範囲を、実際の運用のとおりにここで開示します。`}
-      updatedAt="2026年11月12日"
+      updatedAt="2026年11月28日"
     >
       <h2>私たちが目指すこと</h2>
       <p>
@@ -137,10 +137,13 @@ export default function EditorialPolicyPage() {
         サイトには、アフィリエイト（成果報酬型広告）を含む広告を掲載しています。広告には「PR」と表示し、記事本文とは区別しています。
         広告主が記事の内容や評価に関わることはありません。詳しくは<Link href="/disclaimer">免責事項・広告について</Link>をご覧ください。
       </p>
+      <p>
+        ニュースアプリなどの配信先へ送る記事（フィード）には、広告・アフィリエイトのリンク・「PR」の枠・会員登録への誘導を入れません。送るのは暮らしとお金の記事の本文と出典、AI利用の説明だけです。
+      </p>
 
       <h2>責任者</h2>
       <p>
-        {operator.name}（代表・編集責任者: {operator.representative}、{operator.location}）が、このサイトの記事と運営に責任を持ちます。運営者の情報は<Link href="/about">運営者情報</Link>をご覧ください。
+        {operator.name}（代表・編集責任者: {operator.representative}、{operator.location}）が、このサイトの記事と運営に責任を持ちます。編集責任者の役目は<Link href="/about#editor">編集責任者</Link>、運営者の情報は<Link href="/about">運営者情報</Link>をご覧ください。
       </p>
     </LegalPage>
   );
