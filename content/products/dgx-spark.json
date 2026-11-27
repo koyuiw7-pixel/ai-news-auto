@@ -6,7 +6,7 @@
   "companyName": "NVIDIA",
   "category": "ガジェット",
   "overview": {
-    "text": "DGX SparkはAIモデルを手元で動かすための小型の開発機です。NVIDIAがGTC BerlinやSC26で発表しました。",
+    "text": "DGX Sparkは、AIモデルを手元で動かすための小型開発機です。NVIDIAが2026年10月のGTC Berlinなどで発表しました。",
     "sources": [
       "dgx-spark-hpc-developer-kit-sc26",
       "nvidia-local-ai-gtc-berlin-spark-station"
@@ -15,14 +15,14 @@
   "facts": [
     {
       "label": "提供開始",
-      "value": "10月23日から順次発売",
+      "value": "2026年10月23日",
       "sources": [
         "nvidia-local-ai-gtc-berlin-spark-station"
       ]
     },
     {
       "label": "向いている人",
-      "value": "開発者と企業のチーム",
+      "value": "開発者や企業のチーム",
       "sources": [
         "nvidia-local-ai-gtc-berlin-spark-station"
       ]
@@ -30,33 +30,21 @@
   ],
   "capabilities": [
     {
-      "text": "GB10 Grace Blackwell Superchipを中核に備えています。",
+      "text": "1台に1,200億パラメーター級のモデルを収めて追加学習を実施できます。",
       "sources": [
-        "dgx-spark-hpc-developer-kit-sc26"
+        "dgx-spark-research-use-cases"
       ]
     },
     {
-      "text": "4台のDGX Sparkをスイッチ不要で直結し、合計512GBメモリと20TBのNVMeを利用できます。",
+      "text": "4台構成で最大7,000億パラメーターのモデルを手元に配置できます。",
       "sources": [
-        "dgx-spark-hpc-developer-kit-sc26"
+        "dgx-spark-research-use-cases"
       ]
     },
     {
-      "text": "手動構成で最大8台のクラスターに対応し、1TBの統合メモリで大型モデルを動かせます。",
+      "text": "複数台の接続で最大8台のクラスターに対応し、1TBの統合メモリを利用できます。",
       "sources": [
         "nvidia-local-ai-gtc-berlin-spark-station"
-      ]
-    },
-    {
-      "text": "TensorRT Edge-LLMを使い、数コマンドでAIモデルの対話やAPIサーバーの構築が行えます。",
-      "sources": [
-        "nvidia-tensorrt-edge-llm-edge-ai"
-      ]
-    },
-    {
-      "text": "メモリ128GBのDGX Sparkで、Nemotron 3.5 Super VLなどのモデルをローカルに動かせます。",
-      "sources": [
-        "nvidia-nemotron-for-science"
       ]
     }
   ],
@@ -64,13 +52,13 @@
   "japan": [],
   "howto": [
     {
-      "text": "製品とケーブルは、OEMパートナーとNVIDIA Marketplaceで購入できます。",
+      "text": "NVIDIA Marketplaceや主要な製造・販売パートナーから入手できます。",
       "sources": [
-        "dgx-spark-hpc-developer-kit-sc26"
+        "dgx-spark-research-use-cases"
       ]
     },
     {
-      "text": "TensorRT Edge-LLMをpipでインストールし、コマンドラインツールで環境を構築して始められます。",
+      "text": "TensorRT Edge-LLMを使い、コマンドラインツールで環境を構築して対話を始められます。",
       "sources": [
         "nvidia-tensorrt-edge-llm-edge-ai"
       ]
@@ -79,32 +67,31 @@
   "differences": [],
   "faq": [
     {
-      "q": "いつから使える？",
-      "a": "DGX Spark 64GBは10月23日から順次発売されています。",
+      "q": "いつから使えますか？",
+      "a": "DGX Spark 64GBは2026年10月23日から順次発売されています。",
       "sources": [
         "nvidia-local-ai-gtc-berlin-spark-station"
       ]
     },
     {
-      "q": "誰に向いている？",
-      "a": "AIアプリを手元の機器で作りたい開発者に向いています。",
+      "q": "誰に向いていますか？",
+      "a": "AIアプリを手元の機器で作りたい開発者や企業のチームに向いています。",
       "sources": [
         "nvidia-local-ai-gtc-berlin-spark-station"
       ]
     },
     {
-      "q": "何台までクラスターを組める？",
-      "a": "手動構成で最大8台までクラスターに対応しています。",
+      "q": "どこで買えますか？",
+      "a": "NVIDIA MarketplaceやAcer、ASUSなどのパートナーから入手可能です。",
       "sources": [
-        "nvidia-local-ai-gtc-berlin-spark-station"
+        "dgx-spark-research-use-cases"
       ]
     },
     {
-      "q": "どこで買える？",
-      "a": "AcerやASUSなどのOEMパートナーやNVIDIA Marketplaceで買えます。",
+      "q": "4台構成のメリットは何ですか？",
+      "a": "スイッチ不要で直結でき、NVFP4で最大700Bのモデルを実行できます。",
       "sources": [
-        "dgx-spark-hpc-developer-kit-sc26",
-        "nvidia-local-ai-gtc-berlin-spark-station"
+        "dgx-spark-hpc-developer-kit-sc26"
       ]
     }
   ],
@@ -117,7 +104,12 @@
     {
       "date": "2026-11-17",
       "slug": "dgx-spark-hpc-developer-kit-sc26",
-      "event": "4台のクラスター開発キットを発表"
+      "event": "4台クラスター開発キットを販売開始"
+    },
+    {
+      "date": "2026-11-25",
+      "slug": "dgx-spark-research-use-cases",
+      "event": "1台で1,200億パラメーターのAIを実行"
     }
   ],
   "related": [
@@ -127,6 +119,7 @@
     "vera-rubin"
   ],
   "articles": [
+    "dgx-spark-research-use-cases",
     "dgx-spark-hpc-developer-kit-sc26",
     "nvidia-nemotron-for-science",
     "nvidia-nemotron-35-transcribe-agent-ecosystem-summary-matome",
@@ -134,12 +127,13 @@
     "nvidia-local-ai-gtc-berlin-spark-station"
   ],
   "linkFrom": [
+    "dgx-spark-research-use-cases",
     "dgx-spark-hpc-developer-kit-sc26",
     "nvidia-local-ai-gtc-berlin-spark-station"
   ],
-  "signature": "b75d95f028f278fe",
-  "primarySignature": "9131ce34e4ca5c48",
+  "signature": "a54e2e4c168991ab",
+  "primarySignature": "31d46fe2c72c250d",
   "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-11-17T04:09:10+00:00",
-  "updatedAt": "2026-11-17T04:09:10+00:00"
+  "updatedAt": "2026-11-27T15:28:28+00:00"
 }

@@ -1,0 +1,243 @@
+{
+  "slug": "dgx-spark-research-use-cases",
+  "sourceType": "web",
+  "sourceUrl": "https://blogs.nvidia.co.jp/blog/dgx-spark-hpc-developer-kit-sc26/",
+  "sourceName": "NVIDIA日本版ブログ",
+  "title": "「DGX Spark」1台で1,200億パラメーターのAIを実行　研究室の追加学習事例",
+  "seoTitle": "DGX Sparkの使い方と容量：研究室の活用事例",
+  "threadsPost": "科学計算やAI開発に携わる人へ。\n\nNVIDIAが、DGX Sparkの研究室での活用例を紹介しました。\n1台で1,200億パラメーター級のAIを動かし、追加学習にも利用しています。\n\n計算環境を選ぶとき、手元で動かせることと処理能力のどちらを重視しますか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "ab",
+      "question": "計算環境を選ぶとき、手元で動かせることと処理能力のどちらを重視しますか？"
+    },
+    {
+      "pattern": "count",
+      "question": "仕事の計算環境が使えるまで、普段どれくらい待ちますか？"
+    },
+    {
+      "pattern": "expert",
+      "question": "研究用の計算機を選ぶとき、最初に確かめる仕様は何ですか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "honest",
+  "lede": "「DGX Spark」では、研究室が1台で1,200億パラメーター級のAIモデルを手元で動かし、追加学習に使った事例が紹介されています。NVIDIAの2026年11月25日の発表では、4台の開発キットの保存容量は合計16TBとされました。開発キットは販売が始まっていますが、価格はまだ発表されていません。",
+  "description": "NVIDIAがDGX Sparkの研究活用例を紹介。1台で1,200億パラメーター級のAIを実行した事例や、4台構成の保存容量が過去記事と異なる点、販売状況を整理します。",
+  "keywords": [
+    "DGX Spark",
+    "DGX Spark HPC Developer Kit",
+    "DGX Spark 価格",
+    "DGX Spark 容量",
+    "DGX Spark 4台",
+    "DGX Spark 研究",
+    "DGX Spark ファインチューニング",
+    "NVIDIA HPC SDK",
+    "DGX Spark ローカルAI",
+    "DGX Spark 衛星画像"
+  ],
+  "tags": [
+    "NVIDIA",
+    "DGX Spark",
+    "生成AI",
+    "科学技術計算",
+    "AI開発"
+  ],
+  "highlights": [
+    "DGX Sparkの研究事例では、1台に1,200億パラメーター級のモデルを収めて追加学習を実施",
+    "CYRAN AIはPixelFluxを使い、衛星画像のJPEG 2000デコードを高速化",
+    "HPC SDKの導入用プレイブックは近日公開予定で、複数台にまたがる開発を支援"
+  ],
+  "timetable": [],
+  "verdict": {
+    "status": "available",
+    "japan": "unknown",
+    "price": "不明",
+    "free": null,
+    "audience": "研究者・開発者",
+    "take": "科学計算の開発者は販売先と必要な構成を確認し、HPC SDKの公開予定にも注意してください。",
+    "judgedAt": "2026-11-27T15:27:35.154929+00:00"
+  },
+  "workMoney": {
+    "relevance": "medium",
+    "points": [
+      "研究者や開発者は、共用設備の順番を待たずに手元で開発や検証を進める用途を検討できます。",
+      "導入を考える人は、DGX Sparkとケーブルの販売先に加え、必要な構成と価格を確かめられます。"
+    ]
+  },
+  "body": "研究者や開発者向けの「DGX Spark HPC Developer Kit」は、DGX Sparkを4台つないだ計算環境です。NVIDIAは2026年11月25日の発表で、販売開始と研究での活用事例を紹介しました。\n\n複数の計算機を連携させ、科学技術計算やAIの開発を手元で進めるための製品です。共用設備の利用を待たず、開発や動作確認に使えます。\n\n## 1台で1,200億パラメーター級のAIを追加学習\n\nカリフォルニア大学バークレー校のHartwig Groupは、DGX Sparkで化学分野の機械学習に取り組んでいます。\n\n同研究室は「Nemotron 3 Super 120B-A12B」を、LoRAという手法でファインチューニング（追加学習）しました。実験値を使い、予測を出す部分の学習も行っています。\n\nAIの数値を小さい形式で扱うNVFP4を使い、1,200億パラメーター級のモデルを1台に収めました。パラメーターは、AIの規模を表す数です。\n\n同研究室によると、共用クラスター（複数の計算機を連携させた設備）の数日間の順番待ちを避けられました。8〜24時間の学習を連続して実行できたとしています。\n\n## 衛星画像の読み込みや材料シミュレーションにも\n\nインド工科大学デリー校発のCYRAN AIは、DGX Sparkと自社のPixelFluxを使っています。衛星画像のJPEG 2000デコード（画像データを読み出せる形に戻す処理）を高速化し、手元での地理空間分析に役立てています。\n\n4台構成では、材料シミュレーションのLAMMPSと、分子の動きを計算するNAMDの動作も実証されました。LAMMPSでは、計算処理を扱うKokkosを使用しています。\n\n別の事例として、バークレー校のRubin LabはDGX SparkとNVIDIA Evo 2を使いました。ゲノム配列から細菌の性質を予測しました。同研究室は、共用設備の11時間の順番待ちがなくなったとしています。結果を得るまでの時間は15分の1になったともしています。これは同研究室の事例であり、開発キット全般の性能比較ではありません。\n\n## 4台の保存容量は今回16TB、過去記事では20TB\n\n今回のNVIDIA日本版ブログでは、4台構成のメモリは合計512GBです。保存容量はNVMe（高速な記憶装置）で合計16TBとされています。\n\n一方、[サイソクの過去記事](/articles/dgx-spark-hpc-developer-kit-sc26)では、保存容量を合計20TBと紹介していました（サイソクの過去記事、11/27確認）。両方の記載だけでは、構成が異なるのか、表記が変わったのかは分かりません。\n\n各DGX Sparkは、NVIDIA ConnectX-7を使って隣の2台に直接接続します。輪の形でつなぐため、ネットワークを中継するスイッチの購入や設定は不要です。\n\nNVFP4を使う場合、4台全体で最大7,000億パラメーターのモデルを手元に配置できます。NVIDIAは対象例としてDeepSeek V4.1を挙げています。\n\n## HPC SDKの導入手順は近日公開予定\n\nNVIDIA HPC SDKは、科学技術計算向けのソフトウェア開発キットです。DGX Sparkクラスターに導入するためのプレイブック（導入手順をまとめたもの）は、近日公開予定です。\n\n公開後は、C、C++、Fortran向けの開発ツールを利用できます。計算機同士でデータをやり取りするためのツールも使えます。大規模なシステムで実行する前に、複数台にまたがるアプリケーションを構築できます。通信の問題も調べられます。\n\n## サイソクの見方：4台の導入前に保存容量を確かめる\n\n化学分野のAIを手元で追加学習したい場合は、Hartwig Groupの1台での事例が参考になります。一方、複数台に分けた科学計算を開発したい場合は、4台構成とHPC SDK用プレイブックの公開状況が判断の分かれ目です。\n\n保存容量を重視する場合は、今回の16TBと過去記事の20TBが一致しません。購入先に対象構成の容量を確認する必要があります。\n\n## まだ分からないこと\n\n- 開発キットの価格と日本での販売条件はまだ発表されていません。\n- 今回の16TBと過去記事の20TBの違いが、構成の差によるものかは明らかになっていません。\n\n## NVIDIA Marketplaceなどで販売開始\n\nDGX Spark製品とケーブルは、NVIDIA Marketplaceや主要な製造・販売パートナーから入手できます。NVIDIAはAcer、ASUS、Dell Technologiesなどをパートナーとして挙げています。",
+  "easy": "## ひとことで言うと\n\nNVIDIAは、研究用の計算機「DGX Spark」の活用例を紹介しました。1台で大きなAIモデルを動かし、化学研究向けに追加学習した事例があります。\n\n## 衛星画像の分析にも活用\n\nCYRAN AIは、衛星画像を読み込む処理の高速化にDGX Sparkを使っています。カリフォルニア大学バークレー校の研究室では、共用の計算設備を待たずにAIの学習を続けられたとしています。\n\n## 4台の容量は発表ごとに異なる\n\n今回の発表では、4台をつないだ開発キットの保存容量は合計16TBです。サイソクの過去記事では20TBと紹介しており、構成の違いは明らかになっていません。\n\n開発キットは販売が始まっています。価格と日本での販売条件はまだ発表されていません。",
+  "channel": "NVIDIA日本版ブログ",
+  "channelId": "",
+  "channelSlug": "nvidia-japan-blog",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "NVIDIA DGX Spark 開発キットがデスクをスーパーコンピューティングの研究室に変える",
+  "publishedAt": "2026-11-25T01:18:04+00:00",
+  "generatedAt": "2026-11-27T15:27:35.154915+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/dgx-spark-research-use-cases-147cd437.jpg",
+  "model": "openai-api:gpt-6.1-terra",
+  "affiliates": [
+    {
+      "name": "OZ GAMING",
+      "label": "OZ GAMING（GPU搭載のBTOパソコン）",
+      "url": "https://px.a8.net/svt/ejp?a8mat=4BELTP+BOXHGY+5U1O+5YJRM",
+      "note": "ローカルLLMや画像生成AIを手元で試すためのGPU搭載PCを、構成から選べるBTOショップ",
+      "pixel": "https://www14.a8.net/0.gif?a8mat=4BELTP+BOXHGY+5U1O+5YJRM"
+    }
+  ],
+  "newsType": "product",
+  "faq": [
+    {
+      "q": "DGX Sparkは量子化学の計算にも使われていますか？",
+      "a": "Kvantifyは、単一のDGX Sparkで量子化学回路をシミュレーションしたと報告しています。最大70量子ビット、975ゲートの回路が対象です。"
+    }
+  ],
+  "todayActions": [
+    "購入を検討する構成のNVMe容量を、公式発表の16TBと照合する。",
+    "複数台で科学計算を開発する人は、HPC SDK用プレイブックの公開状況を確認する。"
+  ],
+  "relatedSlugs": [
+    "dgx-spark-hpc-developer-kit-sc26"
+  ],
+  "qualityBar": {
+    "score": 5,
+    "missing": [
+      1,
+      5,
+      6
+    ],
+    "notes": {
+      "1": "最初の3行にだれにが無い",
+      "5": "することは書いてあるが、どこで（窓口・ページ）・いつまでが無い",
+      "6": "言い換えの無い略語（HPC・NVFP・JPEG）"
+    },
+    "checkedAt": "2026-11-27T15:28:17+00:00",
+    "before": [
+      1,
+      5,
+      6
+    ],
+    "repaired": false
+  },
+  "qualityScore": 100,
+  "followupOf": "dgx-spark-hpc-developer-kit-sc26",
+  "late": true,
+  "factSources": [
+    {
+      "label": "過去記事",
+      "name": "サイソクの過去記事",
+      "url": "",
+      "checkedAt": "2026-11-27"
+    }
+  ],
+  "sourcePublishedAt": "2026-11-25T01:18:04+00:00",
+  "detectedAt": "2026-11-27T15:21:00+00:00",
+  "layout": "noir",
+  "summaryLine": "DGX Sparkの研究事例では、**1台**に1,200億パラメーター級のモデルを収めて追加学習を実施",
+  "insight": [
+    {
+      "text": "NVIDIAは、未発表の研究結果や独自のデータセットをオンプレミスに保持しながら、チームが手元で開発・デバッグできる点も挙げています。導入判断では、計算性能だけでなくデータを置く場所も確認材料になります。",
+      "source": "https://blogs.nvidia.co.jp/blog/dgx-spark-hpc-developer-kit-sc26/"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "NVIDIA Marketplace",
+      "url": "https://marketplace.nvidia.com/en-us/enterprise/personal-ai-supercomputers/?limit=15&manufacturer=NVIDIA&page=1&superchip=GB10",
+      "source": "https://blogs.nvidia.co.jp/blog/dgx-spark-hpc-developer-kit-sc26/",
+      "note": "DGX Spark製品とケーブルは、NVIDIA Marketplaceでも入手できます。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "購入を検討する構成のNVMe容量を、公式発表の16TBと照合する。",
+      "source": "https://blogs.nvidia.co.jp/blog/dgx-spark-hpc-developer-kit-sc26/",
+      "steps": [
+        "NVIDIA Marketplaceを開く",
+        "DGX Spark製品の掲載内容を確認する",
+        "検討する構成のNVMe容量を公式発表の16TBと照合する"
+      ],
+      "url": "https://marketplace.nvidia.com/en-us/enterprise/personal-ai-supercomputers/?limit=15&manufacturer=NVIDIA&page=1&superchip=GB10"
+    },
+    {
+      "action": "複数台で科学計算を開発する人は、HPC SDK用プレイブックの公開状況を確認する。",
+      "source": "https://blogs.nvidia.co.jp/blog/dgx-spark-hpc-developer-kit-sc26/",
+      "steps": [
+        "NVIDIAの発表を開く",
+        "NVIDIA HPC SDK用プレイブックの公開状況を確認する"
+      ],
+      "url": "https://blogs.nvidia.co.jp/blog/dgx-spark-hpc-developer-kit-sc26/"
+    }
+  ],
+  "cause": {
+    "text": "研究者が共用GPUクラスターの利用時間を待たずに、マルチノードの科学技術ワークロードやAIモデルを自分のデスクで実行できるようにする狙いです。手元で開発・デバッグし、本番実行時にはサーバーの利用時間を確保する使い方も示されています。",
+    "status": "background",
+    "source": "https://blogs.nvidia.co.jp/blog/dgx-spark-hpc-developer-kit-sc26/"
+  },
+  "worries": [
+    {
+      "q": "4台構成では、保存容量は何TBありますか？",
+      "a": "NVIDIAの発表では、4ノード構成のNVMeストレージは合計16TBです。販売ページで確認する構成と照らし合わせる際の基準になります。",
+      "source": "https://blogs.nvidia.co.jp/blog/dgx-spark-hpc-developer-kit-sc26/",
+      "action": "検討中の販売構成を確認し、NVMe容量を公式発表の合計16TBと照合する。"
+    },
+    {
+      "q": "4台をつなぐのにネットワークスイッチは必要ですか？",
+      "a": "各ノードは隣接する2台に直接接続してリング状のネットワークを形成します。NVIDIAは、ネットワークスイッチを購入・設定する必要はないと説明しています。",
+      "source": "https://blogs.nvidia.co.jp/blog/dgx-spark-hpc-developer-kit-sc26/",
+      "action": "4ノード構成を検討する際、直接接続とスイッチ不要の記載を公式発表で確認する。"
+    },
+    {
+      "q": "NVIDIA HPC SDKはすぐに導入できますか？",
+      "a": "NVIDIA HPC SDKのインストール用プレイブックは近日公開予定です。公開後は、GPUで高速化されたC、C++、Fortranのコンパイラ、ライブラリ、メッセージパッシングインターフェースのツールを利用できるとしています。",
+      "source": "https://blogs.nvidia.co.jp/blog/dgx-spark-hpc-developer-kit-sc26/",
+      "action": "科学技術計算でHPC SDKを使う予定なら、発表ページでプレイブックの公開状況を確認する。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "1台で始めるか、4台構成にするか？",
+      "situation": "単一ノードで使うか、複数台の計算環境が必要か迷う",
+      "recommend": "必要な計算規模に合わせてノード数を検討する",
+      "reason": "NVIDIAは1ノードから4ノードまで拡張できると説明しています。4ノード構成では合計512GBのメモリと16TBのNVMeストレージを備え、モデルや科学技術ワークロードをクラスター全体に分散できます。",
+      "source": "https://blogs.nvidia.co.jp/blog/dgx-spark-hpc-developer-kit-sc26/"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "研究データを手元に置いて開発できる",
+    "cause": "共用GPUの順番待ちを避けるためのキット",
+    "steps": "容量とプレイブックの公開状況を確認",
+    "desk": "販売ページで構成を確かめる",
+    "worries": "容量・接続・SDKの準備で迷ったら",
+    "guide": "1台か4台か、使う規模で選ぶ"
+  },
+  "depthAt": "2026-11-27T15:28:59+00:00",
+  "imageCredit": {
+    "kind": "official",
+    "org": "NVIDIA",
+    "provider": "NVIDIA日本版ブログ",
+    "sourceUrl": "https://blogs.nvidia.co.jp/blog/dgx-spark-hpc-developer-kit-sc26/",
+    "original": "https://blogs.nvidia.co.jp/wp-content/uploads/sites/11/2026/11/nv-blog-1280x680-1.jpg",
+    "width": 1200,
+    "height": 638,
+    "at": "2026-11-27T15:29:18+00:00"
+  },
+  "heroOk": true,
+  "imageFocus": {
+    "x": 0.589,
+    "y": 0.526,
+    "box": [
+      0.178,
+      0.053,
+      1.0,
+      1.0
+    ],
+    "ar": 1.8809,
+    "src": "https://ai-tech-express.jp/img/dgx-spark-research-use-cases-147cd437.jpg"
+  }
+}
