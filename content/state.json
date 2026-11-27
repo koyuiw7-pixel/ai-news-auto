@@ -895,7 +895,7 @@
     "3b449ba5852923ff565a3fbe06e8dd253e9858f2": 2,
     "3b74a3c79daec86fa1f224b34b0a40013c917941": 2,
     "3b76f085d1e1d867b21b20612bdbef4427ba1721": 1,
-    "3b84d33a60787dc9743ec50858d3d287f524316b": 1,
+    "3b84d33a60787dc9743ec50858d3d287f524316b": 2,
     "3b9326b30454d871152e9d136794a0f4ea65f4c9": 2,
     "3baede2d6a12911bebd7db4e8fe5b080b597a6c9": 2,
     "3bd2e7e21a7d1045dc937fed75f4367bfca1b410": 2,
@@ -1406,7 +1406,7 @@
     "605946c23454f04fde0d9f4614b26d07afdc07bb": 2,
     "6060fa448f723fb67da924ff9c261725b7877e21": 2,
     "607760514f7d88a670149d21a59367b0b01a9bd1": 2,
-    "607ccd31ffff75a14ca4ad5b5d7f5678f228c1af": 1,
+    "607ccd31ffff75a14ca4ad5b5d7f5678f228c1af": 2,
     "6098a0d4db7c5bd7c0d2f7832ed632c5937d32d1": 2,
     "60a1864504587ed7fa3b0835df3ab85966ddb4fd": 2,
     "60ac03aad0674399809c9c9c2654b45f09e5a769": 2,
@@ -2052,7 +2052,7 @@
     "8ec19bb85d0d395338e359060a2c1e76a75b9058": 2,
     "8ec6dddf21efb77106821c68a8a15bd93fbb1a01": 2,
     "8ed40d757588994496e8c84eac097a6419262fb3": 2,
-    "8ef67d09ad825ce3308ee0f441acf9e4e4c79b35": 1,
+    "8ef67d09ad825ce3308ee0f441acf9e4e4c79b35": 2,
     "8f0391ffa9193aed979c541debe40e6422405658": 2,
     "8f0dcd4f10bb0e30089b67116a55971ae207945b": 2,
     "8f2410192b523766b2ccd0febe0519d6cb914d1b": 2,
@@ -3629,7 +3629,7 @@
     "ffc92dbb8ee1d6233302e4c69e070bb5308512e5": 2,
     "ffdea4c6bcb92f85a12aa2701d50928093bbecf5": 1,
     "ffe75dc6667b06688100f003238bd17503ee4832": 2,
-    "ffe8156294c9de2add593523c8132061e99a411a": 1
+    "ffe8156294c9de2add593523c8132061e99a411a": 2
   },
   "gate_retry": {
     "02021ae234238f28": {
@@ -7237,6 +7237,14 @@
       "slug": "rakuten-mobile-heavy-snow-support-2026",
       "url": "https://network.mobile.rakuten.co.jp/information/news/other/4007/"
     },
+    "02a13995946cfe96": {
+      "at": "2026-11-27T00:42:57.587299+00:00",
+      "costUsd": 0.0097,
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 記事の基準に足りない（自動で手直ししても残った）: 5.読者がすること（何を・どこで・期限）（することは書いてあるが、どこで（窓口・ページ）・いつまでが無い）",
+      "skipped": true,
+      "url": "https://topics.smt.docomo.ne.jp/latestnews/keywords/d710c46fceb88287e036b2e3f5a75fecd4b1a73c374cb2b0879c0ccb9eec6519"
+    },
     "02bf0b535c199b2694d87b2f7d161e0e0dffb73a": {
       "at": "2026-11-25T02:01:31.087436+00:00",
       "reason": "trend: 重複: 固有名詞が一致（ウクライナ・ロシア）: poland-missile-incident",
@@ -10426,6 +10434,12 @@
       "reason": "review: AdSense の審査の期間は海外の AI の発表を自動で記事にしない（速報だけ。scripts/news_mix.py review_ai_blocks）",
       "skipped": true,
       "url": "https://learn.microsoft.com/en-us/microsoft-365/copilot/release-notes?tabs=all#entry-2026-11-17"
+    },
+    "3550033015f4d08bb57fa1dff89fa07d9111f809": {
+      "at": "2026-11-27T00:57:25.868575+00:00",
+      "reason": "trend: 重複: 同じ言葉の記事がある（iga-municipal-housing-ordinance-amendment）",
+      "skipped": true,
+      "url": "https://news.yahoo.co.jp/articles/9d4beb0ddeabf476dddb36ccba3daf65b7d8567f"
     },
     "3566fc8826508637": {
       "at": "2026-11-14T16:45:40.142338+00:00",
@@ -13833,6 +13847,12 @@
       "skipped": true,
       "url": "https://www.tokyo-np.co.jp/article/530728"
     },
+    "70184bffae1e99cd": {
+      "at": "2026-11-27T00:42:58.534645+00:00",
+      "reason": "dedupe: 見出しが類似（0.65）: シエンタ関連ニュース｜dメニューニュース（NTTドコモ）",
+      "skipped": true,
+      "url": "https://topics.smt.docomo.ne.jp/latestnews/keywords/5a150caaa5490c9436211bd778af550b0fb2d99590b80ef691f5cac55849f34f"
+    },
     "7028993a1660b45d": {
       "at": "2026-11-21T18:04:48.184643+00:00",
       "costUsd": 0.0176,
@@ -14879,6 +14899,12 @@
       "reason": "prefilter: 価値の薄いお知らせ（を掲載しました）",
       "skipped": true,
       "url": "https://www.caa.go.jp/notice/entry/048175/"
+    },
+    "81b4d2593962c5d1": {
+      "at": "2026-11-27T00:42:58.027324+00:00",
+      "reason": "dedupe: 見出しが類似（0.65）: シエンタ関連ニュース｜dメニューニュース（NTTドコモ）",
+      "skipped": true,
+      "url": "https://topics.smt.docomo.ne.jp/latestnews/keywords/04e079b14fea0f262e3238255225403954b413b1c7b38a4cb48809aaaf67b834"
     },
     "81bc37a7defdb281": {
       "at": "2026-11-19T06:18:17.331291+00:00",
@@ -24394,26 +24420,6 @@
       "slug": "child-allowance-application-guide-2026-matome",
       "url": "",
       "writer": "roundup"
-    },
-    "02a13995946cfe96": {
-      "at": "2026-11-27T00:42:57.587299+00:00",
-      "costUsd": 0.0097,
-      "model": "gemini-3.5-flash-lite",
-      "reason": "quality: 記事の基準に足りない（自動で手直ししても残った）: 5.読者がすること（何を・どこで・期限）（することは書いてあるが、どこで（窓口・ページ）・いつまでが無い）",
-      "skipped": true,
-      "url": "https://topics.smt.docomo.ne.jp/latestnews/keywords/d710c46fceb88287e036b2e3f5a75fecd4b1a73c374cb2b0879c0ccb9eec6519"
-    },
-    "70184bffae1e99cd": {
-      "at": "2026-11-27T00:42:58.534645+00:00",
-      "reason": "dedupe: 見出しが類似（0.65）: シエンタ関連ニュース｜dメニューニュース（NTTドコモ）",
-      "skipped": true,
-      "url": "https://topics.smt.docomo.ne.jp/latestnews/keywords/5a150caaa5490c9436211bd778af550b0fb2d99590b80ef691f5cac55849f34f"
-    },
-    "81b4d2593962c5d1": {
-      "at": "2026-11-27T00:42:58.027324+00:00",
-      "reason": "dedupe: 見出しが類似（0.65）: シエンタ関連ニュース｜dメニューニュース（NTTドコモ）",
-      "skipped": true,
-      "url": "https://topics.smt.docomo.ne.jp/latestnews/keywords/04e079b14fea0f262e3238255225403954b413b1c7b38a4cb48809aaaf67b834"
     }
   },
   "quality_log": [
