@@ -23,8 +23,8 @@ export function Field({ id, label, help, children }: { id: string; label: string
 export function ResultRow({ label, value, strong = false, sub }: { label: string; value: string; strong?: boolean; sub?: string }) {
   return (
     <div className={`flex items-baseline justify-between gap-4 py-2.5 ${strong ? "" : "border-b border-line"}`}>
-      <dt className={`shrink-0 text-note ${strong ? "font-bold text-ink" : "text-ink-soft"}`}>{label}</dt>
-      <dd className="text-right">
+      <dt className={`min-w-0 text-note ${strong ? "font-bold text-ink" : "text-ink-soft"}`}>{label}</dt>
+      <dd className="shrink-0 text-right">
         <span className={`font-bold tabular-nums text-ink ${strong ? "text-[1.375rem] leading-tight" : "text-desc"}`}>{value}</span>
         {sub ? <span className="mt-0.5 block text-meta text-ink-soft">{sub}</span> : null}
       </dd>
