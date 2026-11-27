@@ -19760,6 +19760,20 @@
       "skipped": true,
       "url": "https://www.urawa-reds.co.jp/clubinfo/9030156.html"
     },
+    "dee7ae9ef103a6b7": {
+      "at": "2026-11-27T07:57:31.574929+00:00",
+      "costUsd": 0.0091,
+      "intent": "breaking",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "safetyLane": true,
+      "score": 100,
+      "section": "public",
+      "slug": "timee-notion-ai-data-leak",
+      "url": "https://corp.timee.co.jp/news/detail-7478/"
+    },
     "deeb29ee11b7670cabc3b8a1c6d11b875166900b": {
       "at": "2026-11-14T02:25:13.266298+00:00",
       "reason": "trend: 重複: 固有名詞が一致（ポケモン・ワイルドエリア）: pokemon-go-sendai-event-850k",
@@ -23476,14 +23490,6 @@
       "url": "https://www.meti.go.jp/product_safety/recall/file/261120-1.html",
       "writer": "muse"
     },
-    "muse-a103763a1f": {
-      "at": "2026-11-13T07:57:29.351143+00:00",
-      "mix": "money",
-      "score": 86,
-      "slug": "food-consumption-tax-1-percent-2027",
-      "url": "https://www.cas.go.jp/jp/seisaku/shouhizei_zeigakukoujo/index.html",
-      "writer": "muse"
-    },
     "muse-a15733c73d": {
       "at": "2026-11-16T09:44:34.658797+00:00",
       "mix": "other",
@@ -24340,53 +24346,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-25T01:17:57.963086+00:00",
-      "attempt": 1,
-      "id": "d5a91d5321b93069",
-      "kind": "broad",
-      "model": "openai-api:gpt-6-luna",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 126.2,
-        "avg_sentence": 43.4,
-        "long_share": 0.125,
-        "max_paragraph": 212,
-        "paragraphs": 11,
-        "sentences": 32
-      },
-      "score": 100,
-      "source": "netbk",
-      "title": "ドコモSMTBネット銀行、円定期預金１年もの金利を改定～円定期預金１年ものが年1.85%（税引後 年1.47%）～",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（JAL・SMTB・SBI）",
-        "読みやすさ: 段落が長い（平均 126.2字・最長 212字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-25T01:18:16.492334+00:00",
-      "attempt": 0,
-      "id": "d5a91d5321b93069",
-      "kind": "broad",
-      "model": "openai-api:gpt-6-luna",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 99.1,
-        "avg_sentence": 32.3,
-        "long_share": 0.0,
-        "max_paragraph": 143,
-        "paragraphs": 14,
-        "sentences": 43
-      },
-      "score": 100,
-      "source": "netbk",
-      "title": "ドコモSMTBネット銀行、円定期預金１年もの金利を改定～円定期預金１年ものが年1.85%（税引後 年1.47%）～",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（JAL・SMTB・SBI）"
-      ]
-    },
     {
       "accepted": false,
       "at": "2026-11-25T02:18:05.250027+00:00",
@@ -31842,6 +31801,56 @@
         "見出しの書き方: 区切りの全角空白が2つ以上（補足は1つだけ）",
         "見出しが52字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（ASUS・MSI・RTX）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-27T07:56:16.659880+00:00",
+      "attempt": 1,
+      "id": "dee7ae9ef103a6b7",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "タイトル「取引先の氏名など最大4,124件」とリード「取引先担当者の氏名は…最大4,124件」→元記事の日本語表記最大4,124件は取引先担当者と従業員を合わせた件数で、取引先担当者だけの件数とは確認できません。",
+        "「Notionは文書作成ツール」「Notion AIは…組み込まれたAI機能」→元記事はNotionを業務ツール、Notion AIを利用サービスとして記載していますが、この具体的な説明は元記事にありません。"
+      ],
+      "readability": {
+        "avg_paragraph": 76.7,
+        "avg_sentence": 40.0,
+        "long_share": 0.087,
+        "max_paragraph": 123,
+        "paragraphs": 12,
+        "sentences": 23
+      },
+      "score": 78,
+      "source": "fast",
+      "title": "当社が利用するクラウドサービスの委託先への不正アクセスに伴うお取引先と当社従業員の一部情報漏えいについて｜ニュース｜株式会社タイミー(Timee,Inc.)",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（SMS）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-27T07:57:26.309985+00:00",
+      "attempt": 1,
+      "id": "dee7ae9ef103a6b7",
+      "kind": "broad",
+      "model": "strike:今日やること",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 77.2,
+        "avg_sentence": 42.1,
+        "long_share": 0.091,
+        "max_paragraph": 123,
+        "paragraphs": 12,
+        "sentences": 22
+      },
+      "score": 100,
+      "source": "fast",
+      "title": "当社が利用するクラウドサービスの委託先への不正アクセスに伴うお取引先と当社従業員の一部情報漏えいについて｜ニュース｜株式会社タイミー(Timee,Inc.)",
+      "warnings": [
+        "見出しが47字（目安40字以内）。一覧・カードでは前半だけを出す",
+        "初めて出たところで言い換えていない略語（SMS）"
       ]
     }
   ],
