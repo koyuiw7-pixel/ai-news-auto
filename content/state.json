@@ -735,7 +735,7 @@
     "2d79acd18e074aeb338094aad75940525fc86bca": 2,
     "2d80179a340d54607ae4ad966f015b2a2c969cb9": 2,
     "2d898b7feb79236818a8e7f8b976b6886d913c02": 2,
-    "2d89ffa8cf2e16615da6752e6718c306928877f2": 1,
+    "2d89ffa8cf2e16615da6752e6718c306928877f2": 2,
     "2d918ec754596e1305b755cdb94b1554c63a49e6": 2,
     "2d92179c67e1284c0fa1dfaa2a6eddf07b8240a3": 2,
     "2d9708042247ca3f7ad8fdea2c36fc14d6463fa1": 2,
@@ -2180,7 +2180,7 @@
     "90315ed77c2a1cc3b3470387a830145d212cea7f": 2,
     "903689c5cd5220ada2a8eb670e06798e5fc5164b": 2,
     "903baea9bedfc4265a39610d9f19831c34ecb402": 2,
-    "903c995d87d5325946c7c5915d52142f5f33a708": 1,
+    "903c995d87d5325946c7c5915d52142f5f33a708": 2,
     "904401d028f150cf6fbe46fe752d847aad3c281d": 2,
     "904a35080e235989dd1897b392204d717689a8e7": 2,
     "9052d836205a324f878cdda16ced2cbbd67a7956": 2,
@@ -2955,6 +2955,7 @@
     "c6a90feafb415b2a056c49aca9632890665bfce0": 2,
     "c6c5ce54120a4b6eb3e480815fde8864bfd48f95": 2,
     "c6d5ab6a7a02b562a3611a256470cec8324a6774": 2,
+    "c6ed378290386bea8683ba6431aaf161cbd97cc3": 1,
     "c6f7ce041d508bd64530f8a866da59baaa1f4e29": 2,
     "c70e00c88fbd0bfee852e9c8047f5e5e5ce8ae95": 2,
     "c71c39659f6d695e4ec367bb9c8c077804fe5f15": 2,
@@ -3966,6 +3967,14 @@
       "title": "消費者物価のコア指標",
       "tries": 1,
       "url": "https://www.boj.or.jp/research/research_data/cpi/index.htm"
+    },
+    "f798678edab8fc82": {
+      "first": "2026-11-27T18:03:19.185197+00:00",
+      "next": "2026-11-27T21:03:19.185197+00:00",
+      "reason": "記事の基準に足りない（自動で手直ししても残った）: 5.読者がすること（何を・どこで・期限）（することは書いてあるが、どこで（窓口・ページ）・いつまでが無い）",
+      "title": "COP31から考える、持続可能な消費を支える条件～４年間の消費者調査でみる、価格・品質・環境配慮意識の推移",
+      "tries": 1,
+      "url": "https://www.nli-research.co.jp/topics_detail1/id=87429?site=nli"
     }
   },
   "major_tries": {},
@@ -10514,6 +10523,12 @@
       "skipped": true,
       "url": "https://topics.smt.docomo.ne.jp/latestnews/keywords/389b50b3d46258edca62be5e52bc814812ae9abafa04b1d777df127a485dc7ad"
     },
+    "35a33f7692a32370": {
+      "at": "2026-11-27T18:01:38.627703+00:00",
+      "reason": "prefilter: 価値の薄いお知らせ（募集）",
+      "skipped": true,
+      "url": "http://www.mlit.go.jp/report/press/house04_hh_001378.html"
+    },
     "35d24dd011b65a60": {
       "at": "2026-11-26T06:43:06.233391+00:00",
       "costUsd": 0.0065,
@@ -11649,6 +11664,17 @@
       "reason": "dedupe: 見出しが類似（0.62）: イケメン関連ニュース｜dメニューニュース（NTTドコモ）",
       "skipped": true,
       "url": "https://topics.smt.docomo.ne.jp/latestnews/keywords/beb5afb11a33c64c5e208355662e260e8711c8856a3160a01673fc4a38019ae9"
+    },
+    "4bb8cbaf80befd84": {
+      "at": "2026-11-27T18:04:42.345441+00:00",
+      "costUsd": 0.0479,
+      "intent": "query",
+      "mix": "other",
+      "model": "openai-api:gpt-6.1-terra",
+      "score": 100,
+      "section": "business",
+      "slug": "hokkaido-shinkansen-cost-opening-outlook",
+      "url": "http://www.mlit.go.jp/report/press/tetsudo09_hh_000268.html"
     },
     "4bd7f32a11416e744adea1d222faab9bf67a1832": {
       "at": "2026-11-24T15:16:54.872411+00:00",
@@ -17081,6 +17107,12 @@
       "reason": "trend: 重複: 同じ言葉の記事がある（kumamoto-earthquake-reconstruction-fund-52000m）",
       "skipped": true,
       "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBraGVYMmh1NHZMenFILXJhM0RVZnhUVTlBXzJTNDhpN2l5eTlLRGpFa215S1p1Y3hOcjEwU3BiRDdqOFVERV9LY0hhWUVmRlR2dlVHMW01RDhmNmhUYVFWVkMyYWJoMkplSGhIbVlLOEfSAXZBVV95cUxNWjl3SUprX1dUWFYxT0NIZDZnQjhwdFVJYWIyc1kyOVc1Yl9nNkVtWG5KaEtXMFRUQzFndDVfd3dVS1FCNnFveTRRRm85aFJtZ0paN1FSUUIzcHYxS1Q1ZFBIS3ZmcmdpeGMtTlZidHRieVhxR3ZB?oc=5"
+    },
+    "ad1fce8f16568d23": {
+      "at": "2026-11-27T18:01:30.364435+00:00",
+      "reason": "review: 海外の AI の発表は自動で記事にしない（読者の安全・お金の話とチームの指示だけ。台帳 A75・scripts/news_mix.py review_ai_blocks）",
+      "skipped": true,
+      "url": "https://gemini.google/us/subscriptions/?hl=en#entry-2026-11-28-404216"
     },
     "ad2b87faf8cff32ad33695fd5afed8020d787b86": {
       "at": "2026-11-23T23:52:29.454001+00:00",
@@ -24093,88 +24125,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-25T17:29:14.416746+00:00",
-      "attempt": 0,
-      "id": "b7c197d7ff733965",
-      "kind": "broad",
-      "model": "openai-api:gpt-6-luna",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 82.5,
-        "avg_sentence": 36.9,
-        "long_share": 0.105,
-        "max_paragraph": 133,
-        "paragraphs": 17,
-        "sentences": 38
-      },
-      "score": 100,
-      "source": "about-amazon-jp",
-      "title": "Amazon Music、「FUJI ROCK FESTIVAL ’26 Limited Program」を 12月13日、一夜限りで限定配信",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（FUJI・ROCK・ASIAN）",
-        "同じ数字が多い（「2人」が5回）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-25T17:32:27.161478+00:00",
-      "attempt": 1,
-      "id": "f12393cc19a769c0",
-      "kind": "broad",
-      "model": "openrouter:particle-ai/particle-1:free",
-      "problems": [
-        "タイトル「年商10億はニッチトップ、100億はライセンス」→元記事が示すのは年商10億円規模と、10億円から100億円へ成長する段階の戦略であり、「100億円の段階」とする表現はずれています。",
-        "「『100億宣言』企業の経営者が集まる会合」→対象を宣言済み企業に限るように読めますが、確認済みの情報では宣言を検討中の経営者も対象です。",
-        "「年商10億円以下なら、先行特許の少ない市場」→元記事が示すのは年商10億円規模での戦略で、「10億円以下」全体に条件を広げる根拠はありません。",
-        "「宣言や補助金の相談は100億企業実行事務局（電話03-4446-4494）」→確認済み情報ではこの番号は100億宣言の問い合わせ先で、補助金の問い合わせ先は別番号です。",
-        "「参加する層が経営者と知財担当に寄ったとみられます」→参加者の構成は元記事に記載がなく、会場人数の差から参加層を推測しています。"
-      ],
-      "readability": {
-        "avg_paragraph": 112.8,
-        "avg_sentence": 51.0,
-        "long_share": 0.286,
-        "max_paragraph": 193,
-        "paragraphs": 19,
-        "sentences": 42
-      },
-      "score": 78,
-      "source": "jnet21",
-      "title": "経営者らがイノベーションと知財経営を議論 100億企業創出経営者ネットワークを福岡市で開催",
-      "warnings": [
-        "同じ数字が多い（「100億円」が5回）",
-        "読みやすさ: 文が長い（1文の平均 51.0字・60字超の文が 29% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-25T17:35:15.221023+00:00",
-      "attempt": 1,
-      "id": "c7b7f420d07e3a6f",
-      "kind": "broad",
-      "model": "gemini-flash-lite-latest",
-      "problems": [
-        "タイトルの「9者を掲載」→一覧に載るのは9つの認定認証業務であり、事業者は重複を除くと9者ではありません。",
-        "リードの「利用者は現在の契約をそのまま継続でき、新たな手続きは不要」および本文・FAQの同趣旨の説明→元記事は一覧資料の更新を知らせるもので、契約継続や利用者側の手続き要否には触れていません。",
-        "リードの「電子入札や電子申請に用いられる証明書の基準を満たしています」→元記事が述べているのは一定の基準を満たす認証業務を認定する制度であり、証明書自体が基準を満たすという説明ではありません。"
-      ],
-      "readability": {
-        "avg_paragraph": 103.7,
-        "avg_sentence": 51.8,
-        "long_share": 0.389,
-        "max_paragraph": 206,
-        "paragraphs": 9,
-        "sentences": 18
-      },
-      "score": 58,
-      "source": "digital-agency",
-      "title": "電子署名に係る「電子署名法に基づく認定認証業務一覧」の資料を更新しました",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（PS・JIPDEC）",
-        "読みやすさ: 文が長い（1文の平均 51.8字・60字超の文が 39% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": false,
       "at": "2026-11-25T17:38:10.644078+00:00",
@@ -31644,6 +31594,77 @@
         "見出しが47字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（YORKYS・BRUNCH・PIECE）",
         "本文の最初の段落（読者個人への影響）に企業向けの手続き（「取引先」）。企業向けは最後の章に分ける"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-27T18:02:58.694036+00:00",
+      "attempt": 1,
+      "id": "f798678edab8fc82",
+      "kind": "broad",
+      "model": "openai-api:gpt-6.1-terra",
+      "problems": [
+        "タイトル「環境配慮の費用、企業が負担すべきは42.5％」→42.5％は「お金がかかっても企業等は環境や社会に配慮した行動を取るべきだ」という回答の割合で、費用を企業が負担すべきだと答えた割合とは確認できません。"
+      ],
+      "readability": {
+        "avg_paragraph": 74.4,
+        "avg_sentence": 40.8,
+        "long_share": 0.167,
+        "max_paragraph": 110,
+        "paragraphs": 23,
+        "sentences": 42
+      },
+      "score": 88,
+      "source": "nli-research",
+      "title": "COP31から考える、持続可能な消費を支える条件～４年間の消費者調査でみる、価格・品質・環境配慮意識の推移",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（COP）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-27T18:03:19.180799+00:00",
+      "attempt": 1,
+      "id": "f798678edab8fc82",
+      "kind": "broad",
+      "model": "openai-api:gpt-6-luna",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 74.4,
+        "avg_sentence": 40.8,
+        "long_share": 0.167,
+        "max_paragraph": 110,
+        "paragraphs": 23,
+        "sentences": 42
+      },
+      "score": 100,
+      "source": "nli-research",
+      "title": "COP31から考える、持続可能な消費を支える条件～４年間の消費者調査でみる、価格・品質・環境配慮意識の推移",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（COP）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-27T18:04:42.288510+00:00",
+      "attempt": 1,
+      "id": "4bb8cbaf80befd84",
+      "kind": "broad",
+      "model": "openai-api:gpt-6.1-terra",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 80.1,
+        "avg_sentence": 44.5,
+        "long_share": 0.0,
+        "max_paragraph": 119,
+        "paragraphs": 10,
+        "sentences": 18
+      },
+      "score": 100,
+      "source": "mlit-press",
+      "title": "「北海道新幹線（新函館北斗・札幌間）の整備に関する報告書（令和８年報告）」の公表について",
+      "warnings": [
+        "本文の最初の文がリードのくり返し。本文はリードに無い新しい事実から始める"
       ]
     }
   ],
