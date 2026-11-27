@@ -1966,7 +1966,7 @@
     "81599a4e1ce665a7b20d23b6af9e967f140801b0": 2,
     "81693ebd801217552a7527b4565e8c3cbc4abaf4": 2,
     "816a1950cf8437fd2b6d8fd5dffc5a939e71cd0c": 2,
-    "816c9e609abde187b55b5722774025d8315a5d0d": 1,
+    "816c9e609abde187b55b5722774025d8315a5d0d": 2,
     "816ead81e296c7ffd15424c07e146f69b0db9d98": 2,
     "8182e7956ef6b13c3430ef04b629676e667d5e31": 2,
     "818c33d47c64f198d10082907e6f3b3d9852b3d6": 2,
@@ -2232,7 +2232,7 @@
     "937d6448b3a2f5a42760e744b8ef6fac909a2f83": 2,
     "939a0b2c0ea5ce50988ed73dd64dbc7760f38f21": 2,
     "93acde11792d8945d4f8f5028a269cf2abed2eaa": 2,
-    "93b41ce87f724456a3490f04a8dfceed99c51902": 1,
+    "93b41ce87f724456a3490f04a8dfceed99c51902": 2,
     "93e37b3825e7ebd1f11ba870091ea841f182803b": 2,
     "93e557c210194ea1d50a3da7561c7f5d18ed057e": 2,
     "940278b9583b1f64a2b2da67154ee6c57ef7b478": 2,
@@ -3035,6 +3035,7 @@
     "cb93c845393a8d2016c8fe34f4d281b96688af01": 2,
     "cb9af42cac6dd8f4fce301e9d5d2398da2f8ad3d": 2,
     "cb9f2a8de0c25bcb1a0952f6300251ad85a874b2": 2,
+    "cba5e2298eda3e74674dd98b274ba90835270803": 1,
     "cbae8abfa72ec1be21b3ebbfadfea18d0ccaee13": 2,
     "cbb169022d31d39cd3b46a6e4d90091939f863cb": 2,
     "cbbafc7f230c30467136cea1f183e83244917e67": 2,
@@ -3872,14 +3873,6 @@
       "tries": 1,
       "url": "https://corporate.jp.sharp/news/261126-a.html"
     },
-    "8795808eeb4391ee": {
-      "first": "2026-11-24T19:22:49.878530+00:00",
-      "next": "2026-11-24T22:22:49.878530+00:00",
-      "reason": "タイトルの「ウェファースなど3種」とリードの「福岡県産あまおう苺を使った…3商品」→3つ目の「ルック（ア・ラ・モード）」はあまおう苺商品ではなく、期間限定パッケージの発売です。; 「今回の新商品は全3種」→元記事が新商品として紹介するのは苺商品2品で、「ルック（ア・ラ・モード）」は限定パッケージの発売と区別されています。",
-      "title": "ニュースリリース あまおう苺の味わいを愉しめる期間限定商品 「プレミアムルック（あまおう苺ショコラ）パウチ」「ショコラウェファース（あまおう苺）」発売！",
-      "tries": 1,
-      "url": "https://www.fujiya-peko.co.jp/assets/pdf/press20261124_1.pdf"
-    },
     "9c3ab2ea003ec0fa": {
       "first": "2026-11-25T15:44:35.709940+00:00",
       "next": "2026-11-25T18:44:35.709940+00:00",
@@ -3988,7 +3981,6 @@
     "535560fbd4c6c3f4": "2026-11-24T15:51:19.214768+00:00",
     "630a3f6a9496e705": "2026-11-26T15:31:02.313701+00:00",
     "8204d27fb76b6040": "2026-11-25T10:05:36.080578+00:00",
-    "e5bbd88eda178a27": "2026-11-23T19:20:59.687410+00:00",
     "e6c217ca9ae527fa": "2026-11-24T18:41:07.803652+00:00",
     "f1e3d00799468fb3": "2026-11-24T18:41:07.803652+00:00",
     "fca632aee5ee533a": "2026-11-26T15:31:02.313701+00:00"
@@ -11072,12 +11064,6 @@
       "skipped": true,
       "url": "https://news.yahoo.co.jp/articles/68f3915e69551e910d5caf4f802bae6a364ef48f"
     },
-    "4042ce7dce07eff3": {
-      "at": "2026-11-13T19:31:53.467282+00:00",
-      "reason": "review: AdSense の審査の期間は海外の AI の発表を自動で記事にしない（速報だけ。scripts/news_mix.py review_ai_blocks）",
-      "skipped": true,
-      "url": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes#entry-2026-11-13"
-    },
     "4046be760ecc3e44": {
       "at": "2026-11-21T08:30:32.044220+00:00",
       "costUsd": 0.0418,
@@ -11791,14 +11777,6 @@
       "reason": "quality: 記事の基準に足りない（自動で手直ししても残った）: 5.読者がすること（何を・どこで・期限）（することは書いてあるが、どこで（窓口・ページ）・いつまでが無い）",
       "skipped": true,
       "url": "https://www.tsr-net.co.jp/news/tsr/detail/1203536_1521.html"
-    },
-    "4d525ab74f95595e": {
-      "at": "2026-11-13T19:35:10.379982+00:00",
-      "costUsd": 0.0047,
-      "model": "anthropic-api:claude-haiku-5-5",
-      "reason": "街区のイベント開催報告（エリアマネジメントの地域交流イベント）で、読者が使う・買う・申し込む制度や製品ではなく、本文も事実の範囲が限られるため対象外。",
-      "skipped": true,
-      "url": "https://www.nomura-re-hd.co.jp/news/007779.html"
     },
     "4d7309fc0345cad7fa1120c013f7d127874e0cc4": {
       "at": "2026-11-26T22:19:24.136873+00:00",
@@ -13194,17 +13172,6 @@
       "skipped": true,
       "url": "https://www.e-nexco.co.jp/corp/"
     },
-    "6689488fd7587d8d": {
-      "at": "2026-11-13T19:39:22.327351+00:00",
-      "costUsd": 0.0172,
-      "intent": "query",
-      "mix": "alert",
-      "model": "gemini-3.5-flash-lite",
-      "score": 90,
-      "section": "public",
-      "slug": "yokohama-denshishinsei-leak-2026",
-      "url": "https://www.city.yokohama.lg.jp/city-info/koho-kocho/press/somu/2026/1113denshishinsei.html"
-    },
     "66b5586e571b3dd7": {
       "at": "2026-11-26T15:55:04.326467+00:00",
       "costUsd": 0.0112,
@@ -14545,14 +14512,6 @@
       "reason": "review: AdSense の審査の期間は海外の AI の発表を自動で記事にしない（速報だけ。scripts/news_mix.py review_ai_blocks）",
       "skipped": true,
       "url": "https://azure.microsoft.com/en-us/blog/microsoft-ignite-2026-whats-new-in-azure-the-platform-purpose-built-for-ai/"
-    },
-    "7cb67bbacaae3980": {
-      "at": "2026-11-13T19:36:18.050794+00:00",
-      "costUsd": 0.0043,
-      "model": "anthropic-api:claude-haiku-5-5",
-      "reason": "船員法等の違反で処分を受けた船舶所有者の一覧を公表する行政の発表で、中身は個別事業者の処分の列挙が中心です。一般の働く人や家計の判断に直接つながる情報が少ないため対象外としました。",
-      "skipped": true,
-      "url": "http://www.mlit.go.jp/report/press/kaiji06_hh_000408.html"
     },
     "7ce02dfe019021c0c393c711bba12e378e5c2936": {
       "at": "2026-11-19T23:16:25.070222+00:00",
@@ -16933,14 +16892,6 @@
       "reason": "review: AdSense の審査の期間は海外の AI の発表を自動で記事にしない（速報だけ。scripts/news_mix.py review_ai_blocks）",
       "skipped": true,
       "url": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes#entry-2026-11-19"
-    },
-    "aa687843ef0bc998": {
-      "at": "2026-11-13T19:35:54.803150+00:00",
-      "costUsd": 0.0125,
-      "model": "anthropic-api:claude-haiku-5-5",
-      "reason": "quality: 記事の基準に足りない（自動で手直ししても残った）: 3.自分の場合（早見の表・計算・判断の目安）（早見の表・式つきの計算・「〜の人は〜」の判断の目安が無い）",
-      "skipped": true,
-      "url": "https://www.nli-research.co.jp/topics_detail1/id=87343?site=nli"
     },
     "aae15da4e1fbc3b550746a3086fe245d338f996e": {
       "at": "2026-11-19T14:40:19.490412+00:00",
