@@ -6,51 +6,51 @@
   "companyName": "NVIDIA",
   "category": "ガジェット",
   "overview": {
-    "text": "RTX Sparkは、NVIDIAとMediaTekが共同開発した次世代PC向けの統合プロセッサです。Blackwell GPUとGrace CPUを搭載し、モバイル環境でのAI処理と高画質ゲームを両立します。10月に発表されました。",
+    "text": "RTX Sparkは、NVIDIAが発表した新しい個人向けAI端末のカテゴリーです。MediaTekと共同開発したプロセッサを搭載し、ローカル環境でのAI実行を可能にします。",
     "sources": [
-      "nvidia-gtc-berlin-2026-keynote-highlights",
-      "nvidia-rtx-spark-announcement"
+      "nvidia-rtx-spark-announcement",
+      "nvidia-gtc-berlin-2026-keynote-highlights"
     ]
   },
   "facts": [
     {
-      "label": "提供開始",
-      "value": "10月16日に発売されました",
+      "label": "日本での提供",
+      "value": "未確認",
       "sources": [
-        "nvidia-local-ai-gtc-berlin-spark-station"
+        "nvidia-rtx-spark-compact-desktop-available"
       ]
     },
     {
-      "label": "使える場所",
-      "value": "Windows PC",
+      "label": "向いている人",
+      "value": "開発者、クリエイター、AI愛好家",
       "sources": [
-        "nvidia-gtc-berlin-2026-keynote-highlights"
+        "nvidia-rtx-spark-compact-desktop-available"
       ]
     }
   ],
   "capabilities": [
     {
-      "text": "FP4精度で1 petaFLOPのAI処理性能を持ちます。",
+      "text": "1,200億パラメータの大規模言語モデルを手元のPCでローカル実行できます。",
+      "sources": [
+        "nvidia-rtx-spark-compact-desktop-available"
+      ]
+    },
+    {
+      "text": "AI処理性能は最大1ペタフロップスに達し、学習や推論を加速します。",
       "sources": [
         "nvidia-rtx-spark-announcement"
       ]
     },
     {
-      "text": "128GBのLPDDR5Xユニファイドメモリを搭載しています。",
+      "text": "90GBを超える3Dシーンのリアルタイムレンダリングが可能です。",
       "sources": [
-        "nvidia-rtx-spark-announcement"
+        "nvidia-rtx-spark-compact-desktop-available"
       ]
     },
     {
-      "text": "4Kレンダリングと100fps超のゲームを同時に処理できます。",
+      "text": "ホグワーツ・レガシーなどのゲームや最新のドライバーに対応しています。",
       "sources": [
-        "nvidia-rtx-spark-announcement"
-      ]
-    },
-    {
-      "text": "Premiere ProのAI機能や映像編集を高速化します。",
-      "sources": [
-        "adobe-premiere-nvidia-rtx-spark"
+        "nvidia-game-ready-driver-621-14-wow-forever"
       ]
     }
   ],
@@ -60,32 +60,31 @@
   "differences": [],
   "faq": [
     {
+      "q": "いつ発表されましたか？",
+      "a": "2026年10月に発表されました。",
+      "sources": [
+        "nvidia-rtx-spark-announcement"
+      ]
+    },
+    {
       "q": "誰に向いている製品ですか？",
-      "a": "手元でAIモデルを動かしたい開発者やクリエイターに向いています。",
+      "a": "開発者やクリエイター、AI愛好家に向いています。",
       "sources": [
-        "nvidia-local-ai-gtc-berlin-spark-station",
-        "nvidia-gtc-berlin-2026-keynote-highlights"
+        "nvidia-rtx-spark-compact-desktop-available"
       ]
     },
     {
-      "q": "どのメーカーから販売されていますか？",
-      "a": "ASUSやHPなどのノートPCが販売中です。",
+      "q": "どのようなメーカーから発売されていますか？",
+      "a": "ASUSやDell、MSIなどから発売されています。",
       "sources": [
-        "nvidia-local-ai-gtc-berlin-spark-station"
+        "nvidia-rtx-spark-compact-desktop-available"
       ]
     },
     {
-      "q": "CPUは何が使われていますか？",
-      "a": "MediaTekと共同開発した20コアのGrace CPUが使われています。",
+      "q": "AI性能はどのくらいですか？",
+      "a": "最大1ペタフロップスのAI性能を備えています。",
       "sources": [
-        "nvidia-rtx-spark-announcement"
-      ]
-    },
-    {
-      "q": "CPUとGPUはどう接続されていますか？",
-      "a": "NVLink C2Cという独自伝送技術で接続されています。",
-      "sources": [
-        "nvidia-rtx-spark-announcement"
+        "nvidia-rtx-spark-compact-desktop-available"
       ]
     }
   ],
@@ -96,9 +95,9 @@
       "event": "RTX Sparkを発表"
     },
     {
-      "date": "2026-10-26",
-      "slug": "nvidia-gtc-berlin-2026-keynote-highlights",
-      "event": "GTC BerlinでRTX Sparkを披露"
+      "date": "2026-11-27",
+      "slug": "nvidia-rtx-spark-compact-desktop-available",
+      "event": "コンパクト デスクトップが発売"
     }
   ],
   "related": [
@@ -108,6 +107,7 @@
     "dgx-spark"
   ],
   "articles": [
+    "nvidia-rtx-spark-compact-desktop-available",
     "geforce-8800-gtx-20-years-steam-demo",
     "nvidia-game-ready-driver-621-14-wow-forever",
     "intelligent-terminal-local-120b-llm",
@@ -119,12 +119,13 @@
     "adobe-premiere-nvidia-rtx-spark"
   ],
   "linkFrom": [
+    "nvidia-rtx-spark-compact-desktop-available",
     "nvidia-gtc-berlin-2026-keynote-highlights",
     "adobe-premiere-nvidia-rtx-spark"
   ],
-  "signature": "8d31d793edfee8bc",
-  "primarySignature": "21614c5aa3d7a06e",
+  "signature": "84ea76c341fb0f9a",
+  "primarySignature": "460bccf61c847fb6",
   "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-10-27T10:43:40+00:00",
-  "updatedAt": "2026-11-15T11:22:05+00:00"
+  "updatedAt": "2026-11-27T07:52:39+00:00"
 }

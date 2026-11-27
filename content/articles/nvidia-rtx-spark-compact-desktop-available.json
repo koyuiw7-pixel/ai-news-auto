@@ -1,0 +1,261 @@
+{
+  "slug": "nvidia-rtx-spark-compact-desktop-available",
+  "sourceType": "web",
+  "sourceUrl": "https://blogs.nvidia.co.jp/blog/rtx-spark-desktop-local-ai-available-now/",
+  "sourceName": "NVIDIA日本版ブログ",
+  "title": "RTX Sparkのコンパクト　デスクトップが発売　最大128GBで1,200億パラメータをローカル実行",
+  "seoTitle": "RTX Spark デスクトップとは？発売済みの機種と仕様",
+  "threadsPost": "AIエージェントを自分のPCで動かしたい開発者の人、押さえておきたい話です。\n\nASUS、Dell、MSIのRTX Sparkコンパクト デスクトップが発売されました。\n最大128GBの統合メモリで、1,200億パラメータのモデルをローカルで動かせます。\n\n専用機を1台置くなら、いくらまで出せますか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "price",
+      "question": "AI専用のPCを自分で買うなら、いくらまで出せますか？"
+    },
+    {
+      "pattern": "tradeoff",
+      "question": "クラウドの手軽さと手元で完結する安心、どちらを取りますか？"
+    },
+    {
+      "pattern": "expert",
+      "question": "ローカルでAIを動かしている人、いちばん困るのは何ですか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "honest",
+  "lede": "NVIDIA「RTX Spark」を載せたコンパクト デスクトップが、ASUS、Dell、MSIから発売されました。最大128GBの統合メモリを備え、1,200億パラメータの大規模言語モデルをローカルで動かせるとされています。価格と日本での販売状況はまだ発表されておらず、Acer、GIGABYTE、HPの機種は近日中に登場する予定です。",
+  "description": "RTX Sparkコンパクト デスクトップがASUS、Dell、MSIから発売。最大128GB統合メモリで1,200億パラメータのモデルをローカル実行。仕様と対応ソフト、未発表の価格・日本での販売を整理します。",
+  "keywords": [
+    "RTX Spark",
+    "RTX Spark デスクトップ",
+    "ローカルAI",
+    "AIエージェント",
+    "ミニPC",
+    "ASUS ProArt GR1X",
+    "MSI EdgeMesa",
+    "128GB 統合メモリ",
+    "Windows on Arm",
+    "Hermes Agent",
+    "NemoClaw",
+    "ファインチューニング"
+  ],
+  "tags": [
+    "NVIDIA",
+    "RTX Spark",
+    "ローカルAI",
+    "ミニPC",
+    "AIエージェント"
+  ],
+  "highlights": [
+    "ASUS、Dell、MSIのRTX Sparkコンパクト デスクトップが発売。ローカルAI専用のWindows PCとして使える",
+    "20コアGrace CPUと6,144基のCUDAコア、最大128GB統合メモリで最大1ペタフロップスのAI性能",
+    "Acer、GIGABYTE、HPのミニPCとMicrosoft Surface RTX Spark Dev Boxは近日中に登場予定"
+  ],
+  "timetable": [],
+  "verdict": {
+    "status": "available",
+    "japan": "unknown",
+    "price": "不明",
+    "free": false,
+    "audience": "開発者・クリエイター",
+    "take": "価格と日本での販売が未発表のため、まず各社の製品ページで取り扱いと価格を確かめる段階です。",
+    "judgedAt": "2026-11-27T07:51:01.452401+00:00"
+  },
+  "workMoney": {
+    "relevance": "medium",
+    "points": [
+      "クラウドAPIのトークン課金を避けたい開発者は、ローカル実行できるモデルの範囲を確かめる材料になります。",
+      "動画編集者や3Dアーティストは、Adobe各アプリやBlender 5.3の対応状況が作業環境の選択に関わります。"
+    ]
+  },
+  "body": "NVIDIAの日本版ブログによると、ASUS、Dell、MSIのRTX Sparkコンパクト デスクトップが発売されました。日本での取り扱いと価格はまだ発表されていません。すでに出ているRTX SparkのノートPCに、小型のデスクトップ機が加わった形です。\n\nRTX Sparkのコンパクト デスクトップは、ローカルAI（クラウドを使わず手元のPCで動かすAI）のための専用Windows PCです。開発者、クリエイター、AI愛好家が対象で、画像と動画の生成、モデルのファインチューニング（追加学習）、開発ツールを1台にまとめます。\n\n## 20コアCPUと最大128GBメモリ、AI性能は最大1ペタフロップス\n\nRTX Spark デスクトップの主な仕様は次のとおりです。\n\n- 20コアのNVIDIA Grace CPU\n- 6,144基のCUDAコアを備えたNVIDIA Blackwell RTX GPU\n- 最大128GBの統合メモリ\n- 最大1ペタフロップスのAI性能\n- 10ギガビット イーサネット接続\n\nNVIDIAは、1,200億パラメータの大規模言語モデルのローカル実行、90GBを超える3Dシーンのリアルタイム レンダリング、4:2:2動画のリアルタイム編集ができるとしています。\n\n製品の例として、ASUS ProArt GR1X ミニPCとMSI EdgeMesa N AI+シリーズが紹介されています。ProArt GR1Xのようなモデルは、パーソナルAIエージェントを24時間365日動かせる設計です。\n\nAcer、GIGABYTE、HPのミニPCは近日中に登場します。Microsoft Surface RTX Spark Dev Boxも同じ予定です。\n\n## ローカル実行でクラウド料金を避ける仕組み\n\n対応するモデルをローカルで動かせば、処理するコードやファイルをPC内に置けます。クラウドAPIのトークン（AIが文字を数える単位）ごとの料金も避けられます。\n\nさらに、専用デスクトップがあれば、ノートPCを持ち出している間もエージェントやスケジュール設定したタスクを走らせ続けられます。\n\n開発者向けには、CUDAのネイティブ対応とWindows Subsystem for Linux経由のLinux開発ツールが用意されています。Hermes AgentまたはNVIDIA NemoClawブループリントでエージェントをセットアップでき、Unslothで対応モデルをファインチューニングできます。\n\nNVIDIA Switchyardは、Hermesで使えるようになりました。エージェントのタスクをローカルモデルとクラウドモデルに自動で振り分けます。日常的な作業は端末内で処理し、高度な推論はクラウドに回す形で、クラウドコストの管理を助けます。\n\n## Adobe、Blender、ComfyUIの対応\n\nクリエイター向けでは、Hermes Agentを通じてPhotoshopとComfyUIをつなぐワークフローが紹介されました。自然言語の指示でスケッチをレンダリング画像やアニメーションに変えられ、画像のアニメーション化もすべて端末上で行えます。\n\nComfyUIではRTX Videoフレーム生成とRTX Video HDRが使えます。クリップを毎秒60フレームに増やし、HDRに変換する処理を、RTX Spark上の1つのComfyUIワークフローで完結できます。\n\nAdobe側の主な対応は次のとおりです。\n\n- Premiere: TensorRT-RTXで「スピーチを強調」「オブジェクトマスク」「オートリフレーム」などのAI編集機能を高速化\n- Film Impact: トランジション／エフェクトのプラグインでGPUアクセラレーションに対応\n- Photoshop: 削除ツールの高速化と、Arm上でネイティブ動作するCamera Rawに対応\n- Substance 3D Painter 12.2: パブリックベータ版で初めてArmをネイティブ対応\n- Illustrator、InDesign: Windows on Armネイティブ版を提供。Illustratorはエミュレーション版より最大30%高性能\n\nBlender 5.3は、CyclesのビューポートにDLSS 4.5レイ再構成を統合しました。ノイズの多いプレビューを待たず、最終的な仕上がりに近い品質でライティングやマテリアルを確認できます。利用にはBlender 5.3と、最新のGame ReadyドライバーまたはNVIDIA Studioドライバーが必要です。\n\n## サイソクの見方：ローカル実行の元が取れるかは、トークン課金の使い方次第\n\nNVIDIAは、トークン単位のクラウド料金を避けられる点を利点に挙げています。ただし本体価格はまだ分かりません。クラウドAPIを日常的に多用している人ほど、専用機の比較対象が見えやすくなると考えられます。\n\n- クラウドAPIの利用が少なく、画像生成や動画編集が中心の人は、価格が出てから既存のPCと性能を比べる\n- 常時稼働のエージェントを動かしたい人は、Switchyardのようなローカルとクラウドの振り分け機能の対応状況を見る\n- 1,200億パラメータ級を動かしたい人は、最大128GBメモリの構成かどうかを確認する\n\nRTX Sparkの発表は10月19日にサイソクが報じています（[NVIDIA、MediaTek共同開発CPUとBlackwell GPUを統合した「RTX Spark」を発表](/articles/nvidia-rtx-spark-announcement)）。当時は価格が未発表で、今回もまだ分かっていません。\n\n## まだ分からないこと\n\n- ASUS、Dell、MSIの各機種の価格はまだ発表されていません\n- 日本での販売時期と取り扱い店はまだ発表されていません\n- Acer、GIGABYTE、HP、Surface RTX Spark Dev Boxの発売日は「近日中」とされ、日付は決まっていません\n\n## 開発者向けの更新\n\nNVIDIA DGX Station for Windowsは、Windows Server 2028のサポートを追加する予定です。Windows MLでは、Hugging FaceのGGUFモデルをllama.cppバックエンドで実行できるようになりました。DxCGCバックエンドは試験的リリースとして提供されています。",
+  "easy": "## ひとことで言うと\n\nNVIDIAの新しいコンパクトデスクトップ「RTX Spark」が、ASUS、Dell、MSIから発売されました。クラウドを使わず、手元のPCでAIを動かすための専用機です。\n\n## 何ができる機械か\n\nメモリは最大128GBで、1,200億パラメータの大規模言語モデルを手元で動かせます。AIの規模を表す数がパラメーターです。\n\n対応モデルを使い、コードやファイルをローカルで処理する場合は、PC内に保持できます。その作業でかかるクラウドAPIのトークンごとの料金も避けられます。\n\n1台を置いておけば、ノートPCを持ち出している間も、AIエージェント（自分で手順を進めるAI）を動かし続けられます。",
+  "channel": "NVIDIA日本版ブログ",
+  "channelId": "",
+  "channelSlug": "nvidia-japan-blog",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "NVIDIA RTX Spark コンパクト デスクトップが発売",
+  "publishedAt": "2026-11-27T03:20:46+00:00",
+  "generatedAt": "2026-11-27T07:51:01.452388+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/nvidia-rtx-spark-compact-desktop-available-ea7aa7f3.jpg",
+  "model": "claude:sonnet",
+  "affiliates": [
+    {
+      "name": "OZ GAMING",
+      "label": "OZ GAMING（GPU搭載のBTOパソコン）",
+      "url": "https://px.a8.net/svt/ejp?a8mat=4BELTP+BOXHGY+5U1O+5YJRM",
+      "note": "ローカルLLMや画像生成AIを手元で試すためのGPU搭載PCを、構成から選べるBTOショップ",
+      "pixel": "https://www14.a8.net/0.gif?a8mat=4BELTP+BOXHGY+5U1O+5YJRM"
+    }
+  ],
+  "newsType": "product",
+  "faq": [
+    {
+      "q": "RTX Sparkの対応ソフトを開発する企業はどれくらいありますか？",
+      "a": "NVIDIAは、RTX Spark向けプラットフォームをすでに採用している100社以上のソフトウェア プロバイダーがあるとしています（NVIDIA公式サイト、11/27確認）。"
+    }
+  ],
+  "todayActions": [
+    "NVIDIAの製品ページでRTX Sparkの製品情報を確認する",
+    "使いたいモデルと推論バックエンドを、NVIDIAの手順に沿って絞り込む",
+    "Blender 5.3でDLSS 4.5レイ再構成を使う人は、NVIDIAアプリでドライバー通知を受け取る"
+  ],
+  "relatedSlugs": [
+    "nvidia-rtx-spark-announcement"
+  ],
+  "qualityBar": {
+    "score": 6,
+    "missing": [
+      1,
+      6
+    ],
+    "notes": {
+      "1": "最初の3行にだれにが無い",
+      "6": "言い換えの無い略語（ASUS・MSI・CUDA）"
+    },
+    "checkedAt": "2026-11-27T07:52:22+00:00",
+    "before": [
+      1,
+      6
+    ],
+    "repaired": false
+  },
+  "qualityScore": 100,
+  "factSources": [
+    {
+      "label": "調べた公式情報",
+      "name": "公式サイト（nvidia.com）「NVIDIA Local AI: お使いのGPU 上で AI を構築および実行する」",
+      "url": "https://developer.nvidia.com/ja-jp/topics/ai/local-ai",
+      "checkedAt": "2026-11-27"
+    }
+  ],
+  "sourcePublishedAt": "2026-11-27T03:20:46+00:00",
+  "detectedAt": "2026-11-27T07:49:17+00:00",
+  "layout": "noir",
+  "summaryLine": "ASUS、Dell、MSIのRTX Sparkコンパクト デスクトップが発売。ローカルAI専用のWindows PCとして使える",
+  "insight": [
+    {
+      "text": "NVIDIAの開発者向け案内では、RTX Sparkは最大120Bパラメータに加え、100万トークンのコンテキストを含むAIモデルやエージェントをローカルで構築・実行できるとしています。",
+      "source": "https://developer.nvidia.com/ja-jp/topics/ai/local-ai"
+    },
+    {
+      "text": "同じ比較表では、RTX Sparkの拡張性は「非対応」、DGX Sparkは「最大 4x」です。複数台への拡張を考えるなら、製品名ごとの仕様を確認する材料になります。",
+      "source": "https://developer.nvidia.com/ja-jp/topics/ai/local-ai"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "NVIDIA RTX Spark コンパクト デスクトップ",
+      "url": "https://www.nvidia.com/ja-jp/products/rtx-spark/",
+      "source": "https://blogs.nvidia.co.jp/blog/rtx-spark-desktop-local-ai-available-now/"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "NVIDIAの製品ページでRTX Sparkの製品情報を確認する",
+      "source": "https://blogs.nvidia.co.jp/blog/rtx-spark-desktop-local-ai-available-now/",
+      "steps": [
+        "NVIDIA RTX Spark コンパクト デスクトップを開く",
+        "掲載されている製品情報を確認する"
+      ],
+      "url": "https://www.nvidia.com/ja-jp/products/rtx-spark/"
+    },
+    {
+      "action": "使いたいモデルと推論バックエンドを、NVIDIAの手順に沿って絞り込む",
+      "source": "https://developer.nvidia.com/ja-jp/topics/ai/local-ai",
+      "steps": [
+        "目標とするVRAMと性能要件を決める",
+        "推奨レシピや公開ベンチマークで候補を絞る",
+        "カスタム評価データセットで評価する"
+      ],
+      "url": "https://developer.nvidia.com/ja-jp/topics/ai/local-ai"
+    },
+    {
+      "action": "Blender 5.3でDLSS 4.5レイ再構成を使う人は、NVIDIAアプリでドライバー通知を受け取る",
+      "source": "https://blogs.nvidia.co.jp/blog/rtx-spark-desktop-local-ai-available-now/",
+      "steps": [
+        "NVIDIA アプリをダウンロードする",
+        "最新ドライバーの提供開始時に自動通知を受け取る"
+      ],
+      "url": "https://www.nvidia.com/ja-jp/software/nvidia-app/"
+    }
+  ],
+  "cause": {
+    "text": "AIモデルやエージェントをワークフローに組み込む動きがあり、画像などの生成や時間のかかるレンダリング、スケジュール設定したタスクを、編集作業をしていない間も続けられるようになっていることを背景に、専用のWindows PCとして設計したと説明しています。",
+    "status": "background",
+    "source": "https://blogs.nvidia.co.jp/blog/rtx-spark-desktop-local-ai-available-now/"
+  },
+  "worries": [
+    {
+      "q": "ローカル実行なら処理するファイルは外に出ない？",
+      "a": "NVIDIAは、対応モデルをローカルで実行すれば、ローカルで処理するコードやファイルをPC内に保持できると説明しています。",
+      "source": "https://blogs.nvidia.co.jp/blog/rtx-spark-desktop-local-ai-available-now/",
+      "action": "ローカルで処理したいコードやファイルを決め、対応するモデルをローカル実行する前提で確認しましょう。"
+    },
+    {
+      "q": "ローカルにすればクラウドAPI料金はゼロになる？",
+      "a": "対応モデルをローカル実行したタスクのAPIトークン単位の料金は回避できます。一方、Switchyardは日常的なタスクをローカル、高度な推論をクラウドモデルに振り分けます。",
+      "source": "https://blogs.nvidia.co.jp/blog/rtx-spark-desktop-local-ai-available-now/",
+      "action": "ローカルとクラウドの使い分けを確認し、NVIDIA NeMo Switchyardの説明を読みましょう。",
+      "actionSource": "https://developer.nvidia.com/ja-jp/topics/ai/local-ai"
+    },
+    {
+      "q": "使いたいモデルがRTX Sparkで動くか判断できる？",
+      "a": "NVIDIAの案内では、RTX Sparkは最大120Bパラメータのモデルに対応します。モデル選びではVRAMと性能要件を決め、候補を絞ったうえでユースケース向けの評価を行う手順が示されています。",
+      "source": "https://developer.nvidia.com/ja-jp/topics/ai/local-ai",
+      "action": "目標とするVRAMと性能要件を決め、候補モデルをカスタム評価データセットで確認しましょう。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "クラウドAPIからローカルに移すべき？",
+      "situation": "日常的な作業をローカルで処理したい",
+      "recommend": "まず移せる作業を絞って検討する",
+      "reason": "対応するモデルをローカルで実行すれば、そのタスクのAPIトークン単位の料金を回避できます。一方、NVIDIA Switchyardは高度な推論をクラウドモデルに振り分けるため、すべての処理がローカルになるわけではありません。",
+      "source": "https://blogs.nvidia.co.jp/blog/rtx-spark-desktop-local-ai-available-now/"
+    },
+    {
+      "question": "120Bを超えるモデルも手元で動かしたい？",
+      "situation": "RTX Sparkの最大容量を超えるモデルを想定",
+      "recommend": "必要なモデル規模に合う機種を比較する",
+      "reason": "NVIDIAの比較表ではRTX Sparkは最大120B、DGX Sparkはデバイスあたり最大200Bの推論に対応するとされています。想定するモデルが上限を超える場合、RTX Sparkの仕様だけでは要件に合いません。",
+      "source": "https://developer.nvidia.com/ja-jp/topics/ai/local-ai"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "モデル容量と拡張性も比較材料",
+    "cause": "作業中でなくても動かす専用機",
+    "steps": "モデル選びとドライバー確認を進める",
+    "desk": "NVIDIAの製品情報を確認",
+    "worries": "データやクラウド料金はどうなる？",
+    "guide": "必要なモデル規模で選ぶ"
+  },
+  "depthAt": "2026-11-27T07:53:04+00:00",
+  "imageCredit": {
+    "kind": "official",
+    "org": "NVIDIA",
+    "provider": "NVIDIA日本版ブログ",
+    "sourceUrl": "https://blogs.nvidia.co.jp/blog/rtx-spark-desktop-local-ai-available-now/",
+    "original": "https://blogs.nvidia.co.jp/wp-content/uploads/sites/11/2026/11/nv-blog-1280x680-2-1.jpg",
+    "width": 1200,
+    "height": 638,
+    "at": "2026-11-27T07:53:33+00:00"
+  },
+  "heroOk": true,
+  "imageFocus": {
+    "x": 0.542,
+    "y": 0.532,
+    "box": [
+      0.084,
+      0.065,
+      1.0,
+      1.0
+    ],
+    "ar": 1.8809,
+    "src": "https://ai-tech-express.jp/img/nvidia-rtx-spark-compact-desktop-available-ea7aa7f3.jpg"
+  }
+}
