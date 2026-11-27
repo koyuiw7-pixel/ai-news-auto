@@ -1565,6 +1565,7 @@
     "6b7c785411c4629997565a5c2ff2dd7f4620d2c5": 2,
     "6b899d97adece17e485c0caa9e1976d030906000": 2,
     "6b8b4b620e5ac14bedc99c0914f3a6b03596a749": 2,
+    "6bbc4d8f13e3bc86103dac79a938e85712010a87": 1,
     "6bf47a1f74be45c51748534ad33e9f4a1ddf97e2": 2,
     "6c306bf3fb03e5bb4fa63ac5b63e97ecaa2a28db": 2,
     "6c4ab56dfc38e75499c45e44a8a9dff39c70cff3": 2,
@@ -1741,9 +1742,10 @@
     "77601a125a76d8562d75d2e5e2e953ffc4ff2946": 2,
     "7762c491c0375ec5d84b14afd3609199b7361d12": 2,
     "776cf0d305f64204898bdcf9ff6c198de15e657d": 2,
-    "7779ec0f659042e3eb4f6a7bb4941121e03d8d47": 1,
+    "7779ec0f659042e3eb4f6a7bb4941121e03d8d47": 2,
     "77886d89508e73618f3255451019fa3e1ce908f4": 2,
     "778a31dd13ba7136a5db5f97a2122fc1fce20f46": 2,
+    "7799094c7a31c394f5a362f71bc612544939b20d": 1,
     "779d942a6da5152092ec58720e17bfe07f45783e": 2,
     "77a12203adceb4b44ad276d466206305b4bc0d37": 2,
     "77b36a8fda3ac45819f3bb6602a1d2d823da1339": 2,
@@ -2519,7 +2521,7 @@
     "ae7938c86c00f562b837701fe2f385604e8efd2e": 2,
     "ae7b4a8189ebf8d282fc13db5682445786b79c9d": 2,
     "ae8270087bf75be72feb5b7109f24d549cfc4b13": 2,
-    "ae9c6bed0c6af76fbdb3cbe75f5fde7c545e12c4": 1,
+    "ae9c6bed0c6af76fbdb3cbe75f5fde7c545e12c4": 2,
     "ae9f574f4e92d40f79dc76fbf60ac377a15baf8c": 2,
     "aeaefb6cbb988309b4f9ecc20b3bdc68ad258856": 2,
     "aec7dc9330613a92f78558ca6f1ec22d9186bdb5": 2,
@@ -7055,6 +7057,20 @@
       "trendKeyword": "森田駿哉",
       "trendLane": true,
       "url": "https://news.yahoo.co.jp/articles/8b9dbeaf73082a6bb479b3314c622c6afba9c2a6"
+    },
+    "0036503557eb41b3": {
+      "at": "2026-11-27T00:27:41.983401+00:00",
+      "costUsd": 0.0147,
+      "intent": "neutral",
+      "kind": "trend",
+      "mix": "",
+      "model": "gemini-3.5-flash-lite",
+      "score": 100,
+      "section": "sports",
+      "slug": "kaneda-kumiko-news-summary",
+      "trendKeyword": "金田久美子",
+      "trendLane": true,
+      "url": "https://topics.smt.docomo.ne.jp/latestnews/keywords/2f59b84f717a257b13b18a4c05f9f0992493462e14765b04d7449fe37cacc3f1"
     },
     "009f6a0d6eedbb24": {
       "at": "2026-11-21T17:49:17.531864+00:00",
@@ -19390,6 +19406,12 @@
       "skipped": true,
       "url": "https://www.mof.go.jp/about_mof/councils/fiscal_system_council/sub-of_fiscal_system/proceedings/material/20261113zaiseia.html"
     },
+    "d89c6ab87f5e72ec2ea23f1beb760343d06d75a9": {
+      "at": "2026-11-27T00:27:41.983636+00:00",
+      "reason": "trend: 公式の発表で記事にした（kaneda-kumiko-news-summary）",
+      "skipped": true,
+      "url": "https://news.yahoo.co.jp/articles/38b85711c7155d2bc72732a1c50b5947891de78d"
+    },
     "d8c8d359d48e2a0f": {
       "at": "2026-11-18T04:11:17.897640+00:00",
       "costUsd": 0.0038,
@@ -23243,14 +23265,6 @@
       "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1120.htm",
       "writer": "muse"
     },
-    "muse-8fa03b9861": {
-      "at": "2026-11-13T00:27:35.671477+00:00",
-      "mix": "money",
-      "score": 88,
-      "slug": "winter-electricity-gas-subsidy-2026",
-      "url": "https://denkigas-gekihenkanwa.go.jp/",
-      "writer": "muse"
-    },
     "muse-8fc6a5f72f": {
       "at": "2026-11-15T21:42:45.035187+00:00",
       "mix": "enterprise_dev",
@@ -24379,74 +24393,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-24T19:43:24.979916+00:00",
-      "attempt": 1,
-      "id": "33048260993c704f",
-      "kind": "broad",
-      "model": "openai-api:gpt-6-luna",
-      "problems": [
-        "「開催時刻やコースの詳しい道路名、当日の交通規制などは、元資料では発表されていません」→元記事にはパレードが午前11時に出発したと記載されており、開催時刻についての記述が矛盾しています。"
-      ],
-      "readability": {
-        "avg_paragraph": 133.6,
-        "avg_sentence": 41.4,
-        "long_share": 0.069,
-        "max_paragraph": 191,
-        "paragraphs": 9,
-        "sentences": 29
-      },
-      "score": 88,
-      "source": "softbank-news",
-      "title": "リーグ3連覇＆2年連続日本一を30万人のファンと祝福！ 福岡ソフトバンクホークス優勝祝賀パレード",
-      "warnings": [
-        "読みやすさ: 段落が長い（平均 133.6字・最長 191字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-24T19:43:39.520426+00:00",
-      "attempt": 1,
-      "id": "33048260993c704f",
-      "kind": "broad",
-      "model": "openai-api:gpt-6-luna",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 133.0,
-        "avg_sentence": 41.3,
-        "long_share": 0.069,
-        "max_paragraph": 191,
-        "paragraphs": 9,
-        "sentences": 29
-      },
-      "score": 100,
-      "source": "softbank-news",
-      "title": "リーグ3連覇＆2年連続日本一を30万人のファンと祝福！ 福岡ソフトバンクホークス優勝祝賀パレード",
-      "warnings": [
-        "読みやすさ: 段落が長い（平均 133.0字・最長 191字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-24T19:44:04.284873+00:00",
-      "attempt": 0,
-      "id": "33048260993c704f",
-      "kind": "broad",
-      "model": "openai-api:gpt-6-luna",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 63.6,
-        "avg_sentence": 34.7,
-        "long_share": 0.0,
-        "max_paragraph": 100,
-        "paragraphs": 18,
-        "sentences": 33
-      },
-      "score": 98,
-      "source": "softbank-news",
-      "title": "リーグ3連覇＆2年連続日本一を30万人のファンと祝福！ 福岡ソフトバンクホークス優勝祝賀パレード"
-    },
     {
       "accepted": false,
       "at": "2026-11-24T20:03:35.509491+00:00",
@@ -31860,6 +31806,85 @@
       "warnings": [
         "見出しが41字（目安40字以内）。一覧・カードでは前半だけを出す",
         "初めて出たところで言い換えていない略語（KARTE・CRM）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-27T00:26:34.778952+00:00",
+      "attempt": 1,
+      "id": "0036503557eb41b3",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "「ファンや関係者から多くの反響が寄せられました」→愛犬との別れの記事について、元記事の見出しには反響の有無や規模が示されていません。"
+      ],
+      "readability": {
+        "avg_paragraph": 155.5,
+        "avg_sentence": 50.2,
+        "long_share": 0.226,
+        "max_paragraph": 230,
+        "paragraphs": 10,
+        "sentences": 31
+      },
+      "score": 93,
+      "source": "radar-official",
+      "title": "金田久美子関連ニュース｜dメニューニュース（NTTドコモ）",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（ALBA・QT・NOBUTA）",
+        "読みやすさ: 文が長い（1文の平均 50.2字・60字超の文が 23% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "読みやすさ: 段落が長い（平均 155.5字・最長 230字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-27T00:27:15.054259+00:00",
+      "attempt": 1,
+      "id": "0036503557eb41b3",
+      "kind": "broad",
+      "model": "openai-api:gpt-6-luna",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 155.5,
+        "avg_sentence": 50.2,
+        "long_share": 0.226,
+        "max_paragraph": 230,
+        "paragraphs": 10,
+        "sentences": 31
+      },
+      "score": 100,
+      "source": "radar-official",
+      "title": "金田久美子関連ニュース｜dメニューニュース（NTTドコモ）",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（ALBA・QT・NOBUTA）",
+        "読みやすさ: 文が長い（1文の平均 50.2字・60字超の文が 23% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "読みやすさ: 段落が長い（平均 155.5字・最長 230字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-27T00:27:36.708547+00:00",
+      "attempt": 0,
+      "id": "0036503557eb41b3",
+      "kind": "broad",
+      "model": "",
+      "problems": [
+        "読みやすさ基準外のまま受理: 書き直し後の確認に不合格: タイトル「金田久美子の女子プロテスト」→元記事では金田のQT出場が報じられている一方、プロテスト合格組として挙げられているのは戸高玲奈と清水心結で、金田が女子プロテストを受験したとは確認できません。"
+      ],
+      "readability": {
+        "avg_paragraph": 155.5,
+        "avg_sentence": 50.2,
+        "long_share": 0.226,
+        "max_paragraph": 230,
+        "paragraphs": 10,
+        "sentences": 31
+      },
+      "score": 100,
+      "source": "radar-official",
+      "title": "金田久美子関連ニュース｜dメニューニュース（NTTドコモ）",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（ALBA・QT・NOBUTA）",
+        "読みやすさ: 文が長い（1文の平均 50.2字・60字超の文が 23% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
+        "読みやすさ: 段落が長い（平均 155.5字・最長 230字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
       ]
     }
   ],
