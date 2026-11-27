@@ -56,14 +56,14 @@
   "videoTitle": "13.51人、5週連続増のインフルエンザ第47週、北海道は34.59人",
   "publishedAt": "2026-11-27T22:13:29.713303+00:00",
   "generatedAt": "2026-11-27T22:14:06.794667+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/influenza-week-47-japan-figure-a099cb96.jpg",
   "model": "openai-api:gpt-6.1-terra",
   "affiliates": [],
   "newsType": "general",
   "todayActions": [
-    "厚生労働省の第47週の公表資料で、住んでいる都道府県の報告数を確認する。",
-    "子どもの学校や園が休業した場合の預け先と仕事の調整を、家族で話し合う。",
-    "予防接種について相談があれば、感染症・予防接種相談窓口の0120-995-956に電話する。"
+    "厚生労働省の第47週資料で、住む都道府県の定点当たり報告数を確認する",
+    "第48週分の公表予定日である12月4日(金)に、新しい報告数を確認する",
+    "定期接種の対象に当てはまるか確認し、予防接種について相談する"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -106,5 +106,121 @@
   "detectedAt": "2026-11-27T22:14:56+00:00",
   "searchTitle": "インフルエンザ第47週、全国13.51人　北海道34.59人",
   "layout": "noir",
-  "summaryLine": "インフルエンザの第47週の報告は全国の定点当たり**13.51人**となり、前週を上回りました。"
+  "summaryLine": "インフルエンザの第47週の報告は全国の定点当たり**13.51人**となり、前週を上回りました。",
+  "insight": [
+    {
+      "text": "令和8年8月時点の今季のインフルエンザワクチン供給見込みは約5,190万回分で、定期接種用は約5,010万回分です。これは供給量の見込みで、個々の接種先の在庫を示す数字ではありません。",
+      "source": "https://www.mhlw.go.jp/stf/index2026.html"
+    },
+    {
+      "text": "インフルエンザワクチンと新型コロナワクチンは、同じ日に接種できます。両方の定期接種対象に当てはまる人は、接種先に日程を相談できます。",
+      "source": "https://www.mhlw.go.jp/stf/index2026.html"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "感染症・予防接種相談窓口",
+      "url": "https://www.mhlw.go.jp/content/001772881.pdf",
+      "source": "https://www.mhlw.go.jp/content/001772881.pdf",
+      "phone": "0120-995-956",
+      "hours": "9:00~17:00"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "厚生労働省の第47週資料で、住む都道府県の定点当たり報告数を確認する",
+      "source": "https://www.mhlw.go.jp/content/001772881.pdf",
+      "steps": [
+        "第47週の公表資料を開く",
+        "都道府県別の表で自分の地域を見る"
+      ],
+      "url": "https://www.mhlw.go.jp/content/001772881.pdf"
+    },
+    {
+      "action": "第48週分の公表予定日である12月4日(金)に、新しい報告数を確認する",
+      "source": "https://www.mhlw.go.jp/content/001772881.pdf",
+      "steps": [
+        "厚生労働省の公表資料を開く",
+        "第48週分の都道府県別の表を見る"
+      ],
+      "url": "https://www.mhlw.go.jp/content/001772881.pdf"
+    },
+    {
+      "action": "定期接種の対象に当てはまるか確認し、予防接種について相談する",
+      "source": "https://www.mhlw.go.jp/stf/index2026.html",
+      "steps": [
+        "「令和８年度 今冬の急性呼吸器感染症（ARI）総合対策」を開く",
+        "「２．予防接種」で対象者を確認する",
+        "必要なら感染症・予防接種相談窓口へ電話する"
+      ],
+      "url": "https://www.mhlw.go.jp/stf/index2026.html"
+    }
+  ],
+  "cause": {
+    "text": "第47週の定点当たり報告数は前週から増えましたが、増加した原因は公表資料に示されていません。",
+    "status": "investigating",
+    "source": "https://id-info.jihs.go.jp/surveillance/idwr/article/influenza/flu2026and27/47week/2026_47_flu_epi.pdf"
+  },
+  "worries": [
+    {
+      "q": "警報が出ていないなら、住む地域は流行していないの？",
+      "a": "インフルエンザの報告定点数が2025年第15週から変更され、保健所ごとのデータの連続性が担保されないため、インフルエンザレベルマップや警報・注意報システムの情報提供は当面停止されています。",
+      "source": "https://id-info.jihs.go.jp/surveillance/idwr/article/influenza/article.html",
+      "action": "警報の有無ではなく、JIHSのインフルエンザ疫学情報速報で最新週の地域別報告を確認する。"
+    },
+    {
+      "q": "2歳未満の子どもにも外出時はマスクを着けさせる？",
+      "a": "厚生労働省は、特に2歳未満の子どもにはマスクの着用を勧めていません。乳幼児は自分で外すことが難しく、窒息や熱中症のリスクが高まるため注意が必要としています。",
+      "source": "https://www.mhlw.go.jp/stf/index2026.html",
+      "action": "2歳未満の子どもにはマスクを着けさせず、手洗いなどマスク以外の感染対策を行う。"
+    },
+    {
+      "q": "自分がインフルエンザの定期接種対象か、判断できる？",
+      "a": "対象は65歳以上の人です。60～64歳では、心臓・腎臓・呼吸器の機能に障害があり生活が極度に制限される人や、HIVによる免疫機能の障害で日常生活がほとんど不可能な人も対象です。",
+      "source": "https://www.mhlw.go.jp/stf/index2026.html",
+      "action": "年齢と対象条件を確認し、迷う場合は感染症・予防接種相談窓口に電話する。",
+      "actionSource": "https://www.mhlw.go.jp/content/001772881.pdf"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "定期接種の対象なら受けるか相談する？",
+      "situation": "対象年齢や条件に当てはまる",
+      "recommend": "接種を検討し、接種先に確認する",
+      "reason": "インフルエンザの定期接種対象は65歳以上の人と、条件を満たす60～64歳の人です。予防接種には発症をある程度抑えたり、重症化を予防したりする効果があるとされています。",
+      "source": "https://www.mhlw.go.jp/stf/index2026.html"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "ワクチンの供給見込みと同日接種",
+    "cause": "患者報告が増えた理由は分かっている？",
+    "steps": "地域の数字と次の公表日を確認",
+    "desk": "予防接種や流行状況を相談する窓口",
+    "worries": "警報や子どものマスク、接種対象が気になる",
+    "guide": "定期接種の対象なら、接種を相談する？"
+  },
+  "depthAt": "2026-11-27T22:25:59+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "13.51人",
+    "label": "インフルエンザ全国",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-27T22:27:51+00:00"
+  },
+  "imageFocus": {
+    "x": 0.485,
+    "y": 0.422,
+    "box": [
+      0.044,
+      0.03,
+      0.925,
+      0.815
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/influenza-week-47-japan-figure-a099cb96.jpg"
+  }
 }
