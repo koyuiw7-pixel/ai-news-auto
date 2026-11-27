@@ -816,6 +816,7 @@
     "33240bf652716fd2a306c43dbf346974934768ad": 2,
     "332698f17534e8a35224d0293b5f1ed10c19f5f8": 2,
     "33337b3dcb2eeac70cbb3b94c0115e866a66dcb3": 2,
+    "3340ee3c8bc7afb026e5078cdea60c47324d3236": 1,
     "335daba797052f646ce51bef230910f54a755909": 2,
     "33741f2b154c882c8dfcf923a60906456acd57fe": 2,
     "3377af5064e6f6f9c9e1e77ecc468f4c3f8ca75a": 2,
@@ -1963,7 +1964,7 @@
     "8144d6f8f5bec96659cf92ef739eabb738b2bf55": 2,
     "8154aac9c5c9f7b76af4e6b3edaabad8c2a04c23": 2,
     "81599a4e1ce665a7b20d23b6af9e967f140801b0": 2,
-    "81693ebd801217552a7527b4565e8c3cbc4abaf4": 1,
+    "81693ebd801217552a7527b4565e8c3cbc4abaf4": 2,
     "816a1950cf8437fd2b6d8fd5dffc5a939e71cd0c": 2,
     "816ead81e296c7ffd15424c07e146f69b0db9d98": 2,
     "8182e7956ef6b13c3430ef04b629676e667d5e31": 2,
@@ -2854,6 +2855,7 @@
     "bede5a134991b3a34084941b0d18639be042e311": 2,
     "bf19f2b315ab51ca5b54ba393896df579643408a": 2,
     "bf80d9d03a94e4598b82cda4956dec401506049e": 2,
+    "bf93ba5f31b7f50726804696f203bf9d99b52198": 1,
     "bfee52cba2d93fa62bef4da6506493b04bd5e137": 2,
     "bfef71a81c011384825731c2cb715d02b67cdceb": 2,
     "c00a803bf1f46836ca29487b01b366b3c7a95f60": 1,
@@ -3592,7 +3594,7 @@
     "f0b4e589b3572eb30731693b9129033957fd16fc": 2,
     "f0c06cd43207c3debfa88183592e376683a76203": 2,
     "f0d3f701b4de53d80e871b4b91026dafbebf1fee": 2,
-    "f0e0bc6478169db1f9e8516f021fe0c7aedea1e5": 1,
+    "f0e0bc6478169db1f9e8516f021fe0c7aedea1e5": 2,
     "f0e2cc8630332d6da83ced95c7ca52ec6ad9aaec": 2,
     "f0e447eab9c95fc6984866fa4eb5b8d2b3e59dc7": 2,
     "f0f442b7e7e2e9584b93314b3f0486da82403d15": 2,
@@ -12572,6 +12574,17 @@
       "skipped": true,
       "url": "https://blog.ja.playstation.com/2026/11/26/20261126-psplus-freeplay-o/"
     },
+    "5a6f42421eca20e2": {
+      "at": "2026-11-27T19:04:45.169788+00:00",
+      "costUsd": 0.0505,
+      "intent": "neutral",
+      "mix": "money",
+      "model": "openai-api:gpt-6.1-terra",
+      "score": 100,
+      "section": "business",
+      "slug": "bisphenol-a-antidumping-duty",
+      "url": "https://www.mof.go.jp/policy/customs_tariff/trade/plan/futou/ka20261127-2.html"
+    },
     "5ace9de0dfdb0aed": {
       "at": "2026-11-24T06:27:17.356477+00:00",
       "reason": "review: 海外の AI の発表は自動で記事にしない（読者の安全・お金の話とチームの指示だけ。台帳 A75・scripts/news_mix.py review_ai_blocks）",
@@ -18353,6 +18366,14 @@
       "skipped": true,
       "url": "https://carview.yahoo.co.jp/news/detail/f33d375b19307897e802d758bd04a98240a3566a/"
     },
+    "c4f362a32f54da32": {
+      "at": "2026-11-27T19:03:01.072083+00:00",
+      "kind": "update",
+      "model": "openai-api:gpt-6.1-terra",
+      "score": 100,
+      "updated": "potassium-hydroxide-tariff-extension-2026",
+      "url": "https://www.mof.go.jp/policy/customs_tariff/trade/plan/futou/ka20261127-3.html"
+    },
     "c50fe3cca0e79d36": {
       "at": "2026-11-23T18:41:36.066687+00:00",
       "reason": "public-interest: 資料が短い 628字",
@@ -21072,6 +21093,14 @@
       "reason": "prefilter: 価値の薄いお知らせ（セミナー）",
       "skipped": true,
       "url": "https://www.env.go.jp/press/press_05838.html"
+    },
+    "f372102bfc80bf34": {
+      "at": "2026-11-27T19:02:36.087774+00:00",
+      "costUsd": 0.0346,
+      "model": "openai-api:gpt-6.1-terra",
+      "reason": "都道府県の決算統計の公表であり、投資・マネージャンルの対象となる制度変更や金融商品の情報ではないため。",
+      "skipped": true,
+      "url": "https://www.soumu.go.jp/menu_news/s-news/01zaisei07_02000462.html"
     },
     "f3935d1d01ced953": {
       "at": "2026-11-19T23:34:56.541569+00:00",
@@ -24123,86 +24152,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-25T17:38:10.644078+00:00",
-      "attempt": 1,
-      "id": "572ea3fea71f0c44",
-      "kind": "broad",
-      "model": "openrouter:particle-ai/particle-1:free",
-      "problems": [
-        "「povo2.0・他社回線」の条件を「専用プラン」か「専用プラン＋」への加入としていますが、確認済みの公式情報では、povo2.0・他社回線での利用には「専用プラン＋」への加入が必要です。",
-        "「対応アプリはこれまで『auカーナビ』…『ヤマレコ』でした」は対応アプリをこの4つに限定したように読めますが、元記事は「など」としており、網羅的な列挙ではありません。"
-      ],
-      "readability": {
-        "avg_paragraph": 125.6,
-        "avg_sentence": 45.1,
-        "long_share": 0.282,
-        "max_paragraph": 227,
-        "paragraphs": 14,
-        "sentences": 39
-      },
-      "score": 88,
-      "source": "kddi-topics",
-      "title": "「My au」がau Starlink Direct SOSに対応",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（SOS・UQ・RCS）",
-        "読みやすさ: 文が長い（1文の平均 45.1字・60字超の文が 28% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "読みやすさ: 段落が長い（平均 125.6字・最長 227字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-25T17:38:39.060280+00:00",
-      "attempt": 1,
-      "id": "572ea3fea71f0c44",
-      "kind": "broad",
-      "model": "openai-api:gpt-6-luna",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 123.9,
-        "avg_sentence": 44.5,
-        "long_share": 0.282,
-        "max_paragraph": 202,
-        "paragraphs": 14,
-        "sentences": 39
-      },
-      "score": 100,
-      "source": "kddi-topics",
-      "title": "「My au」がau Starlink Direct SOSに対応",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（SOS・UQ・RCS）",
-        "読みやすさ: 文が長い（1文の平均 44.5字・60字超の文が 28% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "読みやすさ: 段落が長い（平均 123.9字・最長 202字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
-    {
-      "accepted": true,
-      "at": "2026-11-25T17:39:11.908921+00:00",
-      "attempt": 0,
-      "id": "572ea3fea71f0c44",
-      "kind": "broad",
-      "model": "",
-      "problems": [
-        "読みやすさ基準外のまま受理: 書き直し後の確認に不合格: 「悪質な場合は回線からの利用が止められることがあります」→元記事の提供条件では、虚偽通報やいたずらをした場合に利用停止措置を取ることがあるとしており、「悪質な場合」に限定していません。; 「料金確認で毎月開くMy au」→元記事は料金などの確認で日常的に利用され"
-      ],
-      "readability": {
-        "avg_paragraph": 123.9,
-        "avg_sentence": 44.5,
-        "long_share": 0.282,
-        "max_paragraph": 202,
-        "paragraphs": 14,
-        "sentences": 39
-      },
-      "score": 100,
-      "source": "kddi-topics",
-      "title": "「My au」がau Starlink Direct SOSに対応",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（SOS・UQ・RCS）",
-        "読みやすさ: 文が長い（1文の平均 44.5字・60字超の文が 28% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
-        "読みやすさ: 段落が長い（平均 123.9字・最長 202字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": false,
       "at": "2026-11-25T18:02:42.352800+00:00",
@@ -31663,6 +31612,66 @@
       "title": "「北海道新幹線（新函館北斗・札幌間）の整備に関する報告書（令和８年報告）」の公表について",
       "warnings": [
         "本文の最初の文がリードのくり返し。本文はリードに無い新しい事実から始める"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-27T19:03:01.053218+00:00",
+      "attempt": 1,
+      "id": "c4f362a32f54da32",
+      "kind": "update",
+      "model": "openai-api:gpt-6.1-terra",
+      "problems": [],
+      "score": 100,
+      "source": "mof",
+      "title": "大韓民国産及び中華人民共和国産水酸化カリウムに対する 不当廉売関税の課税期間の延長を決定しました"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-27T19:04:20.025346+00:00",
+      "attempt": 1,
+      "id": "5a6f42421eca20e2",
+      "kind": "broad",
+      "model": "openai-api:gpt-6.1-terra",
+      "problems": [
+        "元記事・確認済みの事実の束・計算済みの数字のどれにも無い数字がある（「計算に使う本邦輸入価格が100万円」、「 100万円×2.4%=2万4,000円」）。元記事か束の数字に直すか、その文を削る。簡単な計算（かけ算・足し算など）をするなら、確かめた数字だけを使って式を書き「（サイソク編集部の計算）」と添える"
+      ],
+      "readability": {
+        "avg_paragraph": 71.6,
+        "avg_sentence": 35.8,
+        "long_share": 0.077,
+        "max_paragraph": 116,
+        "paragraphs": 13,
+        "sentences": 26
+      },
+      "score": null,
+      "source": "mof",
+      "title": "大韓民国産並びに台湾、澎湖諸島、金門及び馬祖から成る独立の関税地域産ビスフェノールＡに対する不当廉売関税の課税を決定しました",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（LG・CHEM・LTD）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-27T19:04:37.927179+00:00",
+      "attempt": 1,
+      "id": "5a6f42421eca20e2",
+      "kind": "broad",
+      "model": "openai-api:gpt-6-luna",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 69.5,
+        "avg_sentence": 36.3,
+        "long_share": 0.087,
+        "max_paragraph": 116,
+        "paragraphs": 12,
+        "sentences": 23
+      },
+      "score": 100,
+      "source": "mof",
+      "title": "大韓民国産並びに台湾、澎湖諸島、金門及び馬祖から成る独立の関税地域産ビスフェノールＡに対する不当廉売関税の課税を決定しました",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（LG・CHEM・LTD）"
       ]
     }
   ],
