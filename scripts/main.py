@@ -39,6 +39,7 @@ import article_style  # noqa: E402
 import pacing  # noqa: E402  1日30本の数え方（台帳 A74）
 import public_interest  # noqa: E402  ミサイル・災害の記事の公式の安全情報のリンク（台帳 A39）
 import noir_layout  # noqa: E402  新しい記事の見た目（台帳 W36）
+import md_markers  # noqa: E402  表示されない太字の記号を消す（2026-11-27）
 import own_view  # noqa: E402  サイソクの見方の章と中身の下限（2026-11-12 オーナー）
 import quality_bar  # noqa: E402  記事の8つの基準（2026-11-12 オーナー）
 
@@ -958,6 +959,10 @@ def write_article(record: dict) -> Path:
     if not path.exists():
         for change in noir_layout.attach(record):
             log(f"   [layout] {change}")
+    # 表示されない太字の記号（「**」だけの段落・閉じていない「**」・太字にならない欄の「**」「__」）を消す。
+    # どの経路の記事も（Muse の原稿も）書き出す直前にここを通る（2026-11-27 ガソリン補助の記事で生の「**」が本番に出た。scripts/md_markers.py）
+    for change in md_markers.apply(record):
+        log(f"   [markdown] {change}")
     path.write_text(
         json.dumps(record, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )

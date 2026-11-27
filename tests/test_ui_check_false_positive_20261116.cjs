@@ -41,7 +41,7 @@ test("表のセルの伏せ字はそのまま出て、太字は太字になる",
 
 test("ふつうの太字・斜体・区切り線は変えない", () => {
   for (const t of ["月**30,000円**です", "***強調***", "***", "- **A**-**B**", "a * b * c"]) assert.equal(protectMaskStars(t), t, t);
-  assert.match(fs.readFileSync(path.resolve(__dirname, "..", "lib/markdown.ts"), "utf8"), /marked\.parse\(protectMaskStars\(tidy\)\)/);
+  assert.match(fs.readFileSync(path.resolve(__dirname, "..", "lib/markdown.ts"), "utf8"), /marked\.parse\(protectMaskStars\(boldToHtml\(tidy\)\)\)/);
 });
 
 test("閉じた開け閉めの欄の中は空の箱と数えない", () => {

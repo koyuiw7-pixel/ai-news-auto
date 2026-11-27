@@ -2921,6 +2921,9 @@ def main() -> int:
         import section_gate  # noqa: PLC0415
 
         section_gate.apply(record)
+        import md_markers  # noqa: PLC0415 - 続報の書き足しにも、表示されない太字の記号を残さない（2026-11-27）
+
+        md_markers.apply(record)
         if added := quality.added_problems(article, record):
             log(f"   [gate] 続報の書き足しが門に落ちたので書き込みません: {' | '.join(added[:3])[:300]}")
             if fallback_new("; ".join(added), check["summary_of_new_facts"]):
