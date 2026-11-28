@@ -1,0 +1,246 @@
+{
+  "slug": "japanese-typo-detector-modernbert",
+  "sourceType": "web",
+  "sourceUrl": "https://www.sbintuitions.co.jp/blog/entry/2026/11/25/170000",
+  "sourceName": "SB Intuitions テックブログ",
+  "title": "日本語の誤字脱字を検出するAIを4種類公開　学習データの品質評価に",
+  "seoTitle": "日本語誤字脱字検出モデルの使い方と精度",
+  "threadsPost": "AIの学習データを扱う人に、知っておきたい話です。\n\nSB Intuitionsが日本語の誤字脱字を検出するモデルを4種類公開しました。\n複数の誤りを含む文章では、検出精度の向上が課題として残っています。\n\n文章の誤りを探すとき、普段は何を使っていますか？",
+  "threadsHook": "callout",
+  "threadsQuestions": [
+    {
+      "pattern": "plain",
+      "question": "文章の誤りを探すとき、普段は何を使っていますか？"
+    },
+    {
+      "pattern": "ab",
+      "question": "文章を見直すとき、まず誤字と内容のどちらを確認しますか？"
+    }
+  ],
+  "threadsStyle": 3,
+  "writingVoice": "explainer",
+  "lede": "日本語の文章に含まれる誤字脱字を検出するAIモデルが、4種類公開されました。SB Intuitionsが学習データの品質評価を目的に開発し、文章中の誤りの位置や種類を調べられます。Hugging Faceの各モデルページには、利用するためのコード例が掲載されています。",
+  "description": "SB Intuitionsが日本語ModernBERTを基に、誤字脱字を検出するAIモデルを4種類公開しました。リクルートのモデルとの比較条件や、複数の誤りを含む文章で残る課題、Hugging Faceでの使い方を解説します。",
+  "keywords": [
+    "日本語誤字脱字検出",
+    "SB Intuitions",
+    "日本語ModernBERT",
+    "誤字脱字検出モデル",
+    "Hugging Face",
+    "日本語AI",
+    "学習データ 品質評価",
+    "誤字脱字 AI",
+    "リクルート 誤字脱字検出",
+    "MITライセンス"
+  ],
+  "tags": [
+    "日本語ModernBERT",
+    "生成AI",
+    "自然言語処理",
+    "SB Intuitions",
+    "Hugging Face"
+  ],
+  "highlights": [
+    "日本語の誤字脱字を検出するモデルを、SB Intuitionsが4種類公開しました。",
+    "約5,400件のテストでは、リクルートのモデルより転字の検出が苦手でした。",
+    "複数の誤りを含むデータで学習したモデルも、全体的な検出精度の向上が課題です。"
+  ],
+  "timetable": [],
+  "verdict": null,
+  "workMoney": {
+    "relevance": "medium",
+    "points": [
+      "AIの学習データを扱う開発者は、文章中の誤りを品質評価に使う方法を検討できます。",
+      "文章を個別に修正する用途では、指摘範囲の広さや見落としを考慮して比較できます。"
+    ]
+  },
+  "body": "AIの学習データを扱う開発者は、日本語の誤字脱字を検出する4種類のモデルを利用できます。SB Intuitionsが2026年11月25日に開発内容を発表しました。\n\nこのモデルは、文章の誤りの位置と種類を調べるものです。文章を自動で書き直すモデルではありません。\n\n## 日本語ModernBERTを基に4サイズを公開\n\nSB Intuitionsのテックブログによると、モデルはHugging Faceで公開されています。利用条件はMITライセンス（利用条件を定めたライセンス）です。各モデルのページには使い方のコード例があります。\n\nサイズは、パラメーター（AIの規模を表す数）で区分されています。\n\n- 30M：ja-typo-detector-modernbert-ja-base-30m\n- 70M：ja-typo-detector-modernbert-ja-base-70m\n- 130M：ja-typo-detector-modernbert-ja-base-130m\n- 310M：ja-typo-detector-modernbert-ja-base-310m\n\n開発者は[SB Intuitionsの発表ページ](https://www.sbintuitions.co.jp/blog/entry/2026/11/25/170000)で、各モデルの名前と開発・評価の内容を確認できます。\n\n## 文字の抜けや漢字の誤変換を分類\n\n検出対象には、文字の抜けや余分な文字のほか、漢字の誤変換や隣り合う文字の順序違いが含まれます。モデルは文章を区切った単位ごとに、誤りの種類を示します。\n\nSB Intuitionsは、文章全体の文字列を分母、誤字脱字の数を分子とする割合を、品質の一側面を測る指標として考えました。生成AI「Sarashina」の学習データを評価することが開発の目的です。\n\n学習には、京都大学の「日本語Wikipedia入力誤りデータセット（v2）」を使いました。誤検出を抑えるため、修正前の誤りを含む文と修正後の正しい文を、それぞれ半分ずつ含めています。\n\n## リクルートのモデルとの比較には条件がある\n\nSB Intuitionsは、リクルートが公開する誤字脱字検出モデルと比較しました。評価には約5,400件のテストデータを使っています。\n\n規模の近い70Mと130Mのモデルでは、誤りの位置と種類を正しく指摘する割合が、リクルートのモデルを上回りました。誤りのない文章を誤って指摘する割合は、いずれも下回りました。\n\n一方、隣り合う文字の順序が入れ替わる「転字」の検出では、今回の全モデルがリクルートのモデルを下回りました。\n\nこの比較は厳密に公平ではありません。リクルートのモデルが文字単位で判定するのに対し、今回のモデルは単語の一部分など、より広い単位で判定するためです。\n\n評価では、指摘範囲に正解の箇所が含まれ、種類も一致すれば正解としました。SB Intuitionsは、範囲の広い判定が有利になる可能性を指摘しています。個々の誤りを探して修正する用途では、文字単位のモデルのほうが場所を見つけやすいとも説明しています。\n\n## 複数の誤りを学習させても見落としが残る\n\n当初の学習データは、1つの文章に誤りが1つだけ含まれるものがほとんどでした。そのモデルでは、複数の誤りがある文章でも1つしか検出できない例が多く見られました。\n\nそこでSB Intuitionsは、誤りを含む文を結合したデータを作り、改めて学習させました。複数の誤りを含むデータの割合は、元の2.42%から51.68%になりました。\n\n310Mのモデルで比較すると、複数誤りのテストでは、脱字と転字を除く種類で再学習後のモデルが同等以上の結果でした。ただし、転字のテストは2例と少数です。\n\n全テストと比べ、複数誤りのテストでは約20ポイント低い指標も複数ありました。例文でも誤りを見落とすケースがあり、全体的な検出精度の向上が課題として残っています。\n\n## Qwen3.8-27Bとの比較は7例の検証\n\nSB Intuitionsは、大規模言語モデル（大量の文章を学んだAI）のQwen3.8-27Bとも比較しました。同じ例文で、誤りの位置と種類を正しく指摘できるかを調べています。\n\n7例のうち、単一誤りのデータで学習したモデルは6例、複数誤りのデータで学習したモデルは5例で正解しました。Qwenの正解は1例でした。（SB Intuitionsテックブログ、11/28確認）\n\nこれは限られた例文と指示文での比較です。SB Intuitionsは、指示文やモデルごとの得意・不得意が結果に影響した可能性も挙げています。（SB Intuitionsテックブログ、11/28確認）\n\n## サイソクの見方：品質評価と個別の修正で選び分ける\n\n学習データ全体の品質を調べたいなら、公開された日本語ModernBERTベースのモデルを候補にできます。一方、個々の誤りを見つけて修正したいなら、指摘範囲が狭いリクルートのモデルも比較対象になります。\n\n複数の誤りを含む文章を扱う場合は、再学習後の310Mモデルでも見落としが残りました。自分が扱う文章に近いデータで、検出結果を確かめる必要があると考えられます。",
+  "easy": "## ひとことで言うと\n\nSB Intuitionsは、日本語の誤字脱字を見つけるAIモデルを4種類公開しました。AIの学習に使う文章の品質を調べるためのモデルです。\n\n## 誤りの種類も調べられる\n\n文字の抜けや余分な文字、漢字の変換ミスなどを検出します。ただし、誤りを自動で正しい文章に直すためのモデルではありません。\n\n文章に複数の誤りがある場合は、見落とすこともありました。誤った場所の表示が広くなる場合もあります。\n\n## 公開ページにコード例\n\nモデルはHugging Faceで公開されています。各ページには、使い方のコード例があります。",
+  "channel": "SB Intuitions テックブログ",
+  "channelId": "",
+  "channelSlug": "sbintuitions-blog",
+  "genre": "AI・テクノロジー",
+  "genreSlug": "ai",
+  "disclaimer": "本記事は公式発表の文章をもとにAIが要約・解説して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
+  "videoId": "",
+  "videoUrl": "",
+  "videoTitle": "日本語ModernBERTをベースモデルとした日本語誤字脱字検出モデルの開発",
+  "publishedAt": "2026-11-25T08:00:00+00:00",
+  "generatedAt": "2026-11-28T10:30:43.676791+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/japanese-typo-detector-modernbert-acd4d8b8.jpg",
+  "model": "openai-api:gpt-6.1-terra",
+  "affiliates": [],
+  "newsType": "research",
+  "faq": [
+    {
+      "q": "日本語誤字脱字検出モデルは何を基に学習していますか？",
+      "a": "京都大学が公開する「日本語Wikipedia入力誤りデータセット（v2）」を使っています。日本語版Wikipediaの編集前後の履歴に基づくデータです。"
+    }
+  ],
+  "todayActions": [
+    "SB Intuitionsの発表ページで4サイズのモデル名と利用条件を確認する。",
+    "使いたいサイズのモデルページを開き、掲載されたコード例を確認する。"
+  ],
+  "qualityBar": {
+    "score": 5,
+    "missing": [
+      1,
+      6,
+      7
+    ],
+    "notes": {
+      "1": "最初の3行にだれに・どのくらい・いつからが無い",
+      "6": "言い換えの無い略語（MIT）",
+      "7": "内部リンクが1本（2本以上）"
+    },
+    "checkedAt": "2026-11-28T10:31:06+00:00",
+    "before": [
+      1,
+      6,
+      7
+    ],
+    "repaired": false
+  },
+  "qualityScore": 99,
+  "late": true,
+  "sourcePublishedAt": "2026-11-25T08:00:00+00:00",
+  "detectedAt": "2026-11-28T10:28:51+00:00",
+  "layout": "noir",
+  "summaryLine": "日本語の誤字脱字を検出するモデルを、SB Intuitionsが4種類公開しました。",
+  "insight": [
+    {
+      "text": "学習データの「日本語Wikipedia入力誤りデータセット(v2)」は、trainが約70万件の日本語ペアデータです。モデルの学習元の規模を把握したいときの手がかりになります。",
+      "source": "https://www.sbintuitions.co.jp/blog/entry/2026/11/25/170000"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "日本語ModernBERTをベースモデルとした日本語誤字脱字検出モデルの開発",
+      "url": "https://www.sbintuitions.co.jp/blog/entry/2026/11/25/170000",
+      "source": "https://www.sbintuitions.co.jp/blog/entry/2026/11/25/170000",
+      "note": "各モデルのページに、使い方のコード例が掲載されています。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "SB Intuitionsの発表ページで4サイズのモデル名と利用条件を確認する。",
+      "source": "https://www.sbintuitions.co.jp/blog/entry/2026/11/25/170000",
+      "steps": [
+        "発表ページを開く",
+        "公開モデル名とサイズを確認する",
+        "MITライセンスの記載を確認する"
+      ],
+      "url": "https://www.sbintuitions.co.jp/blog/entry/2026/11/25/170000"
+    },
+    {
+      "action": "使いたいサイズのモデルページを開き、掲載されたコード例を確認する。",
+      "source": "https://www.sbintuitions.co.jp/blog/entry/2026/11/25/170000",
+      "steps": [
+        "発表ページのモデル名を確認する",
+        "対応するHugging Faceページを開く",
+        "使い方のコード例を確認する"
+      ],
+      "url": "https://www.sbintuitions.co.jp/blog/entry/2026/11/25/170000"
+    }
+  ],
+  "cause": {
+    "text": "大規模言語モデルの学習では、データを闇雲に使うのではなく、品質を定量化して分析やフィルタリングを行うことが重要だとSB Intuitionsは考えています。誤字脱字を含むかどうかを品質の一側面として測るため、検出モデルを開発しました。",
+    "status": "background",
+    "source": "https://www.sbintuitions.co.jp/blog/entry/2026/11/25/170000"
+  },
+  "worries": [
+    {
+      "q": "このモデルは誤字を見つけたあと、自動で書き直す？",
+      "a": "モデルが行うのは、文章中の誤りの位置や種類を検出することです。文章全体の文字列を書き直すモデルではありません。",
+      "source": "https://www.sbintuitions.co.jp/blog/entry/2026/11/25/170000",
+      "action": "Hugging Faceの使いたいモデルページで、コード例が行う処理を確認する。"
+    },
+    {
+      "q": "複数の誤りがある文章でも全部見つけられる？",
+      "a": "複数の誤りを含むデータを増やして学習させた後も、複数誤りのテストでは全テストより約20ポイント低い指標が複数あり、例文でも見落としがありました。",
+      "source": "https://www.sbintuitions.co.jp/blog/entry/2026/11/25/170000",
+      "action": "コード例を使い、複数の誤りを含む自分の文章で検出結果を照合する。"
+    },
+    {
+      "q": "誤りを指摘された場所は文字単位で分かる？",
+      "a": "今回のモデルはsubword単位で推論するため、指摘箇所の範囲が広めになることがあります。個々の誤りを探して修正する用途では、文字単位のモデルのほうが場所を見つけやすいと説明されています。",
+      "source": "https://www.sbintuitions.co.jp/blog/entry/2026/11/25/170000",
+      "action": "リクルートのモデルページも開き、文字単位での検出方法を確認する。"
+    },
+    {
+      "q": "隣り合う文字の順序違いも得意なモデル？",
+      "a": "隣接する2文字間の転置である転字の検出は、今回の全モデルがリクルートのモデルを下回りました。SB Intuitionsは、転字は文字レベルで着目する必要があるタスクと考えています。",
+      "source": "https://www.sbintuitions.co.jp/blog/entry/2026/11/25/170000",
+      "action": "転字を含む文章で使う場合は、リクルートのモデルとの検出結果を比べる。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "品質評価用と個別修正用、どちらで使う？",
+      "situation": "学習データ全体の品質を見たい",
+      "recommend": "今回のモデルを候補にできる",
+      "reason": "開発の目的はSarashinaの学習データを評価することです。誤字脱字の割合を品質の一側面として測る一方、個々の誤りを見つけて修正する用途では、文字単位のリクルートのモデルのほうが場所を見つけやすいと説明されています。",
+      "source": "https://www.sbintuitions.co.jp/blog/entry/2026/11/25/170000"
+    },
+    {
+      "question": "品質評価用と個別修正用、どちらで使う？",
+      "situation": "個々の誤りを見つけて直したい",
+      "recommend": "文字単位のモデルも比較する",
+      "reason": "今回のモデルはsubword単位で推論するため、指摘箇所が広めになる場合があります。個々の誤りを探して修正する用途では、文字単位のリクルートのモデルのほうが場所を見つけやすいとSB Intuitionsは説明しています。",
+      "source": "https://www.sbintuitions.co.jp/blog/entry/2026/11/25/170000"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "学習データは約70万件の日本語ペア",
+    "cause": "学習データの品質を測るための開発",
+    "steps": "モデル名とコード例を確かめる",
+    "desk": "公開モデルとコード例はこちら",
+    "worries": "検出範囲や見落としはどの程度？",
+    "guide": "品質評価か個別修正かで選ぶ"
+  },
+  "depthAt": "2026-11-28T10:31:36+00:00",
+  "bodyImages": [
+    {
+      "src": "https://ai-tech-express.jp/img/japanese-typo-detector-modernbert-fig1-33ef03b2.jpg",
+      "width": 1200,
+      "height": 418,
+      "kind": "dense",
+      "credit": "SB Intuitions テック",
+      "sourceUrl": "https://www.sbintuitions.co.jp/blog/entry/2026/11/25/170000",
+      "original": "https://cdn-ak.f.st-hatena.com/images/fotolife/k/kmXHIaXnr8/20261112/20261112211628.png"
+    },
+    {
+      "src": "https://ai-tech-express.jp/img/japanese-typo-detector-modernbert-fig2-361c9075.jpg",
+      "width": 1200,
+      "height": 420,
+      "kind": "dense",
+      "credit": "SB Intuitions テック",
+      "sourceUrl": "https://www.sbintuitions.co.jp/blog/entry/2026/11/25/170000",
+      "original": "https://cdn-ak.f.st-hatena.com/images/fotolife/k/kmXHIaXnr8/20261112/20261112211714.png"
+    }
+  ],
+  "imageCredit": {
+    "kind": "official",
+    "org": "SB Intuitions テック",
+    "provider": "SB Intuitions テックブログ",
+    "sourceUrl": "https://www.sbintuitions.co.jp/blog/entry/2026/11/25/170000",
+    "original": "https://ogimage.blog.st-hatena.com/6801883189074249850/14729835035337450815/1795593602",
+    "width": 1200,
+    "height": 630,
+    "at": "2026-11-28T10:31:45+00:00",
+    "imageKind": "banner"
+  },
+  "heroOk": false,
+  "imageFocus": {
+    "x": 0.489,
+    "y": 0.611,
+    "box": [
+      0.113,
+      0.286,
+      0.866,
+      0.935
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/japanese-typo-detector-modernbert-acd4d8b8.jpg"
+  }
+}

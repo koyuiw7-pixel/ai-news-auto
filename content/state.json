@@ -122,6 +122,7 @@
     "025d844ef7a68350ade6ac8953885d99e684a38e": 2,
     "0269f82fdb77239e929f5e757e09d832210990a5": 2,
     "026bd7fa34ab5e506b3cb0c019d15e816245ea2d": 2,
+    "027d0b01126b96c077304e137e5c81feaf851516": 1,
     "029ad6f8729d083724721e0d2fdade990ac6af34": 2,
     "02bc035d8a71618758fab26f378ccac52ee9cfcf": 2,
     "02bff326fe79ae54c87d597667efc49fc786a169": 2,
@@ -311,6 +312,7 @@
     "0eb283380dbdfbf3b8e73a01fe1060a6a01aec11": 2,
     "0ec02a40ea6f4f704835a325824e38bbd943c45f": 2,
     "0f1b83d0b20f4c797f9c34683fc36504f658152e": 2,
+    "0f5057347dfbea66aea543c36d9d862ca908f997": 1,
     "0f548cba7f68da2553757eff3298e70ae1d3282e": 2,
     "0f621ee064a591c92c35995045b702e6c337fdd2": 2,
     "0f8b6c8f5f19405901180378cb95430343d581dd": 2,
@@ -1647,6 +1649,7 @@
     "642dc4f9aadff0d9debaf3223515333963285a39": 2,
     "644ffac7bb9612564d40e0deda228341c9bccb78": 2,
     "64582c06a385d09b32e4331269e212bb2f1e8a11": 2,
+    "64665456c001fb59e7300a68fb8f11cb6898b9f8": 1,
     "647aa47fa7c926aef7de2b73a4a953bb9f8ccbdf": 2,
     "64a4e4d8931ffc41481db0b599e5669bc2f76977": 2,
     "64bd12785a6212c09840727800add1f883b2ce59": 2,
@@ -1715,6 +1718,7 @@
     "6933ec87a3f23457cb6327b27043e24d59444a78": 2,
     "69362f10563db0cfe2b90fcd272d48b61b6c8d64": 2,
     "694236a615a34ad8e274aace00e615cb383f10b6": 2,
+    "694e04e068e4d8d206ff828b803dfd641ffaa67f": 1,
     "696d9285c57512124021673dadc36299b04b25a5": 2,
     "6983f5ea638d0ac131fd1a38678dcfe9bb96995a": 2,
     "6984aa792db09b4691bd76e22f76b0ff21092f6a": 2,
@@ -1767,6 +1771,7 @@
     "6d6e04a46c8d72d5b70da94c74e278903d571c38": 2,
     "6d813eb4eea7a25112bf1dea21dc5f889e3b53f5": 2,
     "6d8ecc3a27600b27": 1,
+    "6dafee34557d206efcfbbad4c03933680001c8d4": 1,
     "6db11776644a7962e4618265ca3d04d3b7891618": 2,
     "6dcbc13a853090832cab829710397453f5ea2771": 2,
     "6dd1c31c99d11188c17064fd11c599c97d169920": 2,
@@ -3850,7 +3855,7 @@
     "f2a6f5bb8a634ca095a8b9df31ce89d75a3c6376": 1,
     "f2a8ceb957e527dd7cd6ad837fde7509cb1e4d18": 2,
     "f2ead669337bb81dc3e11391d0bd79e06ac73211": 2,
-    "f2f3fee16a5e160fbb9cb5680ea9f22dc409a4e5": 1,
+    "f2f3fee16a5e160fbb9cb5680ea9f22dc409a4e5": 2,
     "f2fe19a11a97379189ae86a5aa5b0e464c14d518": 2,
     "f30fac905c3098ff197f133e3652f24f5d0a06fe": 2,
     "f321b6f7aa997e05a0a643030ac4157e1b963542": 2,
@@ -11993,6 +11998,17 @@
       "skipped": true,
       "url": "https://www.mhlw.go.jp/stf/newpage_77277.html"
     },
+    "4ad4a0bddb7ada5f": {
+      "at": "2026-11-28T10:31:06.518935+00:00",
+      "costUsd": 0.0554,
+      "intent": "neutral",
+      "mix": "other",
+      "model": "openai-api:gpt-6.1-terra",
+      "score": 99,
+      "section": "ai",
+      "slug": "japanese-typo-detector-modernbert",
+      "url": "https://www.sbintuitions.co.jp/blog/entry/2026/11/25/170000"
+    },
     "4ad820713e45fc6a5e227aec55f7de8d41be41cf": {
       "at": "2026-11-21T06:24:05.962223+00:00",
       "reason": "trend: 公式の発表で記事にした（next-generation-fighter-gcap）",
@@ -14198,6 +14214,12 @@
       "reason": "trend: 重複: 同じ言葉の記事がある（emperor-cup-empress-cup-final-national-stadium）",
       "skipped": true,
       "url": "https://www.tokyo-np.co.jp/article/530728"
+    },
+    "6fe57476f3a60feb": {
+      "at": "2026-11-28T10:30:04.385530+00:00",
+      "reason": "prefilter: 告知・お知らせ系",
+      "skipped": true,
+      "url": "https://www.brainpad.co.jp/news/2026/11/26/26225"
     },
     "70184bffae1e99cd": {
       "at": "2026-11-27T00:42:58.534645+00:00",
@@ -24408,30 +24430,6 @@
   "quality_log": [
     {
       "accepted": true,
-      "at": "2026-11-27T02:53:08.914178+00:00",
-      "attempt": 1,
-      "id": "4bf4b36ac68aa091",
-      "kind": "broad",
-      "model": "openai-api:gpt-6-luna",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 97.5,
-        "avg_sentence": 40.1,
-        "long_share": 0.088,
-        "max_paragraph": 143,
-        "paragraphs": 14,
-        "sentences": 34
-      },
-      "score": 98,
-      "source": "fast",
-      "title": "(コード:249A TOKYO PRO Market、Fukuoka PRO Market)",
-      "warnings": [
-        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（IP・SMS・MTG）"
-      ]
-    },
-    {
-      "accepted": true,
       "at": "2026-11-27T03:08:17.155708+00:00",
       "attempt": 1,
       "id": "f50187d0efe19920",
@@ -32015,6 +32013,29 @@
       "warnings": [
         "初めて出たところで言い換えていない略語（LNG・LPG）",
         "読みやすさ: 文が長い（1文の平均 48.3字・60字超の文が 23% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-28T10:31:06.480792+00:00",
+      "attempt": 1,
+      "id": "4ad4a0bddb7ada5f",
+      "kind": "ai",
+      "model": "openai-api:gpt-6.1-terra",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 80.0,
+        "avg_sentence": 39.1,
+        "long_share": 0.022,
+        "max_paragraph": 124,
+        "paragraphs": 22,
+        "sentences": 45
+      },
+      "score": 99,
+      "source": "sbintuitions-blog",
+      "title": "日本語ModernBERTをベースモデルとした日本語誤字脱字検出モデルの開発",
+      "warnings": [
+        "初めて出たところで言い換えていない略語（SB・MIT）"
       ]
     }
   ],
