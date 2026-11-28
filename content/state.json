@@ -222,6 +222,7 @@
     "0989b7a3051e21d4cd1b3629f25518d3d2edd7bc": 2,
     "09b5eefa59b4f3cab2936c5cc281afa836cfeb72": 2,
     "09c9fcfd0ad99892bec958d09835cb1f7a4ecdf6": 2,
+    "09cb6733ef558b61109328de3ee947d95b6c28a3": 1,
     "09da9da10b2f9537cfa0d364aca476b50e6f8e16": 2,
     "09edc6e45fcb15af9463bcd962599011b5586244": 2,
     "0a029f61cf7b81ca51c31e369554bb1fac6f3278": 2,
@@ -595,7 +596,7 @@
     "2160a2b050672bd9d99287175d9d0901d5c9f002": 2,
     "21ae1da8670590f47f68cd36a515c734c9e4c720": 2,
     "21b4aee42fc0df413f7d5661e7d509dc4a994848": 2,
-    "21b5cf2adca133782258936337d0a330926161dc": 1,
+    "21b5cf2adca133782258936337d0a330926161dc": 2,
     "21c89ccf4bd67c5d55256aa52af3e9f96cacfe09": 1,
     "21c8a1907f44f1f1d5d5693ce71a4e7b1146048f": 2,
     "21d2b3c7091647879a630aa18cf89bff71006594": 2,
@@ -1948,7 +1949,7 @@
     "7893b1b870bfdf95f770971a1875d1451e64254e": 2,
     "78e8ee66c1355ff26134e34e765165d1523b34de": 2,
     "78f206f0e8b425ad08f2d49a2a6819d5cdc137cf": 2,
-    "793e6999cfa6d1ef06d00578fdb48aff5a79813a": 1,
+    "793e6999cfa6d1ef06d00578fdb48aff5a79813a": 2,
     "793e8fe9eb53b18a10a3061b7ceb33caaf9ba33c": 2,
     "79401496c03bd55e3eee2e546bdf5141b41ed658": 2,
     "794478b45dc9fa6af97e4c99f1100dcd2c204a18": 2,
@@ -2769,6 +2770,7 @@
     "acc82e21338a4d87334b36c0d9c34d2c63bf3917": 2,
     "accb4dd16487e85387fe6b02fdca3d1bc3d2978b": 2,
     "acd952cb6ed56ba4f9c9bdf216af5de36f9486a6": 2,
+    "acf5c0da88e7c052b09c199d29fe615f47a29fda": 1,
     "ad0dc3edb9096471e7e4c0676d882643bb8b4777": 1,
     "ad18784b566e5ae49abf730a3a6c2f8c5500b5a1": 2,
     "ad18be4303602d804d343966356598330467d06d": 2,
@@ -4159,14 +4161,6 @@
       "title": "東京電力エナジーパートナー株式会社 2027年1月分電気料金の燃料費調整等について",
       "tries": 1,
       "url": "https://www.tepco.co.jp/ep/notice/pressrelease/2026/pdf/261127j0201.pdf"
-    },
-    "e60dc1d4f6c40f72": {
-      "first": "2026-11-28T04:26:10.017422+00:00",
-      "next": "2026-11-28T07:26:10.017422+00:00",
-      "reason": "題名で料金・価格を約束しているのに、本文に金額（円・ドル・無料など）が無い。元記事の金額を書くか、題名から料金の話を外す",
-      "title": "野菜の生育状況及び価格見通し（令和8年12月）について",
-      "tries": 1,
-      "url": "https://www.maff.go.jp/j/press/nousan/engei/261127.html"
     },
     "e8756f7410724999": {
       "first": "2026-11-26T17:14:51.240829+00:00",
@@ -20867,6 +20861,14 @@
       "trendLane": true,
       "url": "https://www.apple.com/jp/shop/refurbished/iphone"
     },
+    "e60dc1d4f6c40f72": {
+      "at": "2026-11-28T07:49:44.927373+00:00",
+      "costUsd": 0.0088,
+      "model": "gemini-3.5-flash-lite",
+      "reason": "quality: 題名で料金・価格を約束しているのに、本文に金額（円・ドル・無料など）が無い。元記事の金額を書くか、題名から料金の話を外す",
+      "skipped": true,
+      "url": "https://www.maff.go.jp/j/press/nousan/engei/261127.html"
+    },
     "e65aea8e9b4dcfe2": {
       "at": "2026-11-20T17:04:08.269829+00:00",
       "costUsd": 0.048,
@@ -24432,28 +24434,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": false,
-      "at": "2026-11-27T02:18:10.383064+00:00",
-      "attempt": 1,
-      "id": "18617d487eac5605",
-      "kind": "broad",
-      "model": "openai-api:gpt-6.1-terra",
-      "problems": [
-        "確かなことと、まだ分かっていないこと（調査中・現時点では公表されていない など）を分けて書く"
-      ],
-      "readability": {
-        "avg_paragraph": 71.2,
-        "avg_sentence": 37.3,
-        "long_share": 0.048,
-        "max_paragraph": 109,
-        "paragraphs": 11,
-        "sentences": 21
-      },
-      "score": null,
-      "source": "maff",
-      "title": "令和8年5月23日から9月30日までの間の豪雨及び暴風雨による災害についての激甚災害及びこれに対し適用すべき措置の指定に関する政令について"
-    },
     {
       "accepted": true,
       "at": "2026-11-27T02:20:47.371787+00:00",
@@ -32032,6 +32012,32 @@
       "score": 98,
       "source": "caa",
       "title": "CSF(豚熱)に関する情報(2026年11月24日更新)"
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-28T07:49:12.327315+00:00",
+      "attempt": 1,
+      "id": "e60dc1d4f6c40f72",
+      "kind": "broad",
+      "model": "gemini-3.5-flash-lite",
+      "problems": [
+        "題名で料金・価格を約束しているのに、本文に金額（円・ドル・無料など）が無い。元記事の金額を書くか、題名から料金の話を外す"
+      ],
+      "readability": {
+        "avg_paragraph": 92.5,
+        "avg_sentence": 56.3,
+        "long_share": 0.391,
+        "max_paragraph": 146,
+        "paragraphs": 14,
+        "sentences": 23
+      },
+      "score": null,
+      "source": "maff",
+      "title": "野菜の生育状況及び価格見通し（令和8年12月）について",
+      "warnings": [
+        "見出しの書き方: 発表文の題名の言い直し（「〇〇が△△を発表」）。読者にとって何が変わるか（だれの・何が・いつから・いくら）を書く",
+        "読みやすさ: 文が長い（1文の平均 56.3字・60字超の文が 39% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
+      ]
     }
   ],
   "short_text_retry": {
