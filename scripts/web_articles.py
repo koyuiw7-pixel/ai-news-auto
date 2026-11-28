@@ -403,6 +403,24 @@ def cap_free(item: dict) -> bool:
     return bool(item.get("ordered") or item.get("_incident") or is_safety_item(item))
 
 
+def axis_pass(record: dict) -> bool:
+    """あなたの数字の軸の記事で、中身の門（scripts/your_number.py の a〜d）を全部満たすか。満たす記事は1日30本に数えない
+    （2026-11-28 オーナー承認「それでいいよ」・台帳 A79。軸の外は30本のまま）"""
+    try:
+        result = your_number.check(record)
+    except Exception:  # noqa: BLE001 - 判定できなければ数える側（30本の中）にする
+        return False
+    return bool(result.get("applies") and result.get("kind") and not result.get("missing"))
+
+
+def axis_item(item: dict) -> bool:
+    """候補が軸の話題か（暮らしのお金・制度・注意・安全。LLM なしの題名の判定）。上限のあとも残す候補（台帳 A79）"""
+    try:
+        return bool(your_number.item_kind(item))
+    except Exception:  # noqa: BLE001
+        return False
+
+
 def major_max_runs(item: dict) -> int:
     """大きなニュースを何回の実行まで再挑戦するか（本家・公式の発表は長めに粘る）"""
     return MAJOR_MAX_RUNS_TOP if feeds.source_rank(item) <= 1 else MAJOR_MAX_RUNS
@@ -2284,7 +2302,17 @@ def main() -> int:
     trend_done = trend_lane.done_today(state)
     trend_limit = 0 if (fast_mode or not TREND_LANE or args.only or args.source) else max(0, min(args.trends, ramp.TREND_DAILY_CAP - trend_done))
     # 2026-11-22（台帳 A74）: 話題のレーンも1日30本の中。時刻ごとの配分は見ない（話題は鮮度が命）が、1日の残りは超えない
-    trend_limit = min(trend_limit, max(by_cap, 0))
+    # 2026-11-28（台帳 A79）: 30本の残りを超える枠は、暮らし・お金・安全の言葉（axis_rank 0）だけに使う（1日の安全上限 AXIS_DAILY_CEILING まで）
+    axis_room = pacing.axis_room(state)
+    if not axis_room:
+        log(f"[cap] 今日の公開の合計 {pacing.total_today(state)} 本が1日の安全上限（AXIS_DAILY_CEILING={pacing.axis_ceiling()}）に達したので、"
+            "30本の外の軸の記事の上乗せは止めます（安全・お金の急ぎの話と速報は止めない。台帳 A79）")
+    trend_routine_slots = min(trend_limit, max(by_cap, 0)) if args.daily_cap else trend_limit
+    if not axis_room:
+        trend_limit = trend_routine_slots
+    if args.trends > 0 and not fast_mode and trend_limit > trend_routine_slots:
+        log(f"[cap] 話題のレーン: 30本の残り {trend_routine_slots} 本を超える {trend_limit - trend_routine_slots} 本は、暮らし・お金・安全の言葉で"
+            "中身の門を通った記事だけ（軸の外は30本のまま。台帳 A79）")
     if args.trends > 0 and not fast_mode:
         log(f"[trend] 話題のレーン: 今日 {trend_done} 本 / 1日の上限 {ramp.TREND_DAILY_CAP} 本 → この回 {trend_limit} 本まで"
             f"{'' if TREND_FROM_PRESS else '（報道だけの話題は作らない設定）'}")
@@ -2493,11 +2521,16 @@ def main() -> int:
     if not broad_limit:
         # 2026-11-22（台帳 A74・S41）: 上限に達しても、安全の話題（流出・リコール・詐欺・災害・障害）は止めない。この回はそれだけ作る
         safety_items = [i for i in broad_items if is_safety_item(i)] if cap_reached and not fast_mode and args.section in ("broad", "all") else []
-        broad_items = safety_items
-        if safety_items:
+        # 2026-11-28（台帳 A79）: 軸の話題（暮らしのお金・制度・注意）も残す。中身の門を全部通った記事だけ公開し30本に数えない。
+        # 通らなかった記事は公開しない（本数を埋めるために出さない）。1日の安全上限（AXIS_DAILY_CEILING）に達したら安全の話題だけ
+        axis_items = [i for i in broad_items if i not in safety_items and axis_item(i)] \
+            if cap_reached and axis_room and not fast_mode and args.section in ("broad", "all") else []
+        broad_items = safety_items + axis_items
+        if broad_items:
             broad_limit = max(args.max_broad, 1)
             remaining = broad_limit + trend_limit
-            log(f"[cap] 今日の上限の外で作る安全の話題 {len(safety_items)} 件（この回 {broad_limit} 本まで）")
+            log(f"[cap] 今日の上限の外で作る安全の話題 {len(safety_items)} 件・軸の話題 {len(axis_items)} 件（この回 {broad_limit} 本まで。"
+                "軸の話題は中身の門を通った記事だけ公開）")
     lanes = build_lanes(
         [i for i in ai_items if i["id"] not in major_ids], [i for i in broad_items if i["id"] not in major_ids], args.section
     )
@@ -2626,6 +2659,19 @@ def main() -> int:
     wire_attempts = [0]
     used_queue_ids: set[str] = set()
     run_started = time.time()
+
+    cap_stats = {"held": 0, "axis_pass": 0}
+
+    def over_cap_hold(item: dict, record: dict) -> str | None:
+        """30本（台帳 A74）に達したあとに公開してよいか。安全・お金の急ぎの話（cap_free）と、軸の記事で中身の門を全部通ったもの
+        （axis_pass・1日の安全上限 AXIS_DAILY_CEILING まで）だけ。それ以外は出さない理由（2026-11-28 オーナー承認・台帳 A79）"""
+        if not args.daily_cap or cap_free(item) or generated_today(state) < args.daily_cap:
+            return None
+        if not axis_pass(record):
+            return "今日の30本に達したあとは、軸の記事で中身の門を全部通ったものだけ出す（軸の外・門の足りない記事は出さない）"
+        if not pacing.axis_room(state):
+            return f"今日の公開が1日の安全上限（AXIS_DAILY_CEILING={pacing.axis_ceiling()} 本）に達した"
+        return None
 
     def total_created() -> int:
         return sum(created.values())
@@ -3283,6 +3329,13 @@ def main() -> int:
         attach_charts(record)
         attach_rivals(record, fast_mode, time_left())
         stamp_times(record, item, run_detected_at)
+        if hold := over_cap_hold(item, record):
+            log(f"   [cap] 出しません: {hold}")
+            mark(state, item, skipped=True, reason=f"cap: {hold}"[:200], model=model_name)
+            run_status[item["id"]] = ("failed", feeds.source_rank(item))
+            cap_stats["held"] += 1
+            return
+        passed = axis_pass(record)
         path = m.write_article(record)
         recent.add(record["title"], record["sourceUrl"], record.get("keywords"))
         story_recent.add(record)
@@ -3292,6 +3345,7 @@ def main() -> int:
              **({"offPersona": True} if item.get("_off_persona") else {}),
              **({"major": True} if major else {}), **({"breaking": True} if record.get("breaking") else {}),
              **({"safetyLane": True} if is_safety_item(item) or item.get("_incident") else {}),  # 1日30本に数えない（台帳 A75・S41）
+             **({"axisPass": True} if passed else {}),  # 軸の記事で中身の門を全部通った: 1日30本に数えない（台帳 A79）
              **({"ordered": True} if item.get("ordered") else {}),  # チームが指示した fast_url（1日30本に数えない）
              **({"publicInterest": item["_public_interest"]} if item.get("_public_interest") else {}),
              **({"foreignAi": True} if is_ai and is_foreign_ai(item) and not trend_term else {}),
@@ -3420,6 +3474,9 @@ def main() -> int:
             if trend_stats["considered"] >= trend_limit * trend_lane.CONSIDER_PER_SLOT:
                 break
             if llm.all_exhausted(args.tier):
+                break
+            if created["trend"] >= trend_routine_slots and trend_lane.axis_rank(q) > 0:
+                log(f"\n[cap] 話題のレーン: 30本の残り（{trend_routine_slots} 本）を使い切ったので、軸の外の言葉はここで止めます（台帳 A79）")
                 break
             if TREND_AXIS_FIRST and not fallback_logged and trend_lane.axis_rank(q) > 0:
                 fallback_logged = True
@@ -3562,6 +3619,13 @@ def main() -> int:
                 record["indexable"] = False  # 門を全部通ったあとに付ける（indexable の印は公開前の門を素通りさせるため）
                 record["noindexNote"] = "TREND_PRESS_NOINDEX=1（報道が出典の話題の記事を検索に出さない切り替え）"
             stamp_times(record, q, run_detected_at)
+            if hold := over_cap_hold(q, record):
+                log(f"   [cap] 出しません: {hold}")
+                mark(state, q, skipped=True, reason=f"cap: {hold}"[:200], model=model_name)
+                run_status[q["id"]] = ("failed", 2)
+                cap_stats["held"] += 1
+                continue
+            passed = axis_pass(record)
             path = m.write_article(record)
             recent.add(record["title"], record["sourceUrl"], record.get("keywords"))
             trend_recent.add(record["title"], record["sourceUrl"], record.get("keywords"))
@@ -3570,7 +3634,7 @@ def main() -> int:
             run_status[q["id"]] = ("article", record["slug"])
             covered[trend_lane.norm(term)] = record["slug"]
             mark(state, q, slug=record["slug"], model=model_name, kind="trend", trendLane=True, pressReport=True, trendKeyword=term,
-                 score=record.get("qualityScore"))
+                 score=record.get("qualityScore"), **({"axisPass": True} if passed else {}))
             created["trend"] += 1
             trend_stats["press"] += 1
             trend_made.append(f"報道（{'・'.join(s_['source'] for s_ in chosen)}）: {record['slug']}「{record['title'][:50]}」")
@@ -3721,6 +3785,10 @@ def main() -> int:
         f" / 配信の生成 {wire_attempts[0]} 本（上限 {args.max_wire}）"
         f" / 品質ゲート不合格 {rejected} 本 / ジャンル別 {per_section or '-'} / 今日の使用回数 {llm.usage_today()}"
     )
+    cap_stats["axis_pass"] = sum(1 for v in state["processed_web"].values()
+                                 if isinstance(v, dict) and v.get("axisPass") and str(v.get("at") or "") >= run_detected_at.isoformat())
+    log(f"[cap] この回: 軸の記事で中身の門を全部通った（30本に数えない） {cap_stats['axis_pass']} 本 / 30本のあとで出さなかった {cap_stats['held']} 本"
+        f" / 今日の30本に数える公開 {generated_today(state)} 本 / 今日の公開の合計 {pacing.total_today(state)} 本（安全上限 {pacing.axis_ceiling()}）")
     return 0
 
 

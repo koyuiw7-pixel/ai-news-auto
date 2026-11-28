@@ -72,6 +72,8 @@ def cap_exempt(entry: dict, article: dict | None = None) -> bool:
     article = article or {}
     if entry.get("safetyLane") or entry.get("ordered") or entry.get("writer") == "muse":
         return True
+    if entry.get("axisPass"):
+        return True  # 2026-11-28 オーナー承認（台帳 A79）: 軸の記事で中身の門（scripts/your_number.py の a〜d）を全部通ったもの
     if any(article.get(key) for key in ("disaster", "safetyAlert", "museFile")):
         return True
     title = str(article.get("title") or entry.get("title") or "")
@@ -88,6 +90,30 @@ def live_today(state: dict, now: datetime | None = None, articles_dir: Path | No
     now = now or datetime.now(JST)
     return sum(1 for _, v in _today_entries(state, now)
                if is_live(v["slug"], articles_dir) and not cap_exempt(v, _article(v["slug"], articles_dir)))
+
+
+# 2026-11-28 オーナー承認（台帳 A79）: 30本に数えない軸の記事（axisPass）が増えすぎないよう、1日の公開の合計の安全上限。
+# 合計は今日作っていま公開中の自動の記事すべて（30本の中・軸の記事・安全の話。Muse は別の上限なので数えない）。
+# 上限に達したら軸の記事の上乗せだけ止める（安全・お金の急ぎの話〔cap_free〕と速報は今までどおり止めない）
+AXIS_DAILY_CEILING_DEFAULT = 80
+
+
+def axis_ceiling() -> int:
+    try:
+        return max(0, int(os.environ.get("AXIS_DAILY_CEILING") or AXIS_DAILY_CEILING_DEFAULT))
+    except ValueError:
+        return AXIS_DAILY_CEILING_DEFAULT
+
+
+def total_today(state: dict, now: datetime | None = None, articles_dir: Path | None = None) -> int:
+    """今日作っていま公開中の自動の記事の合計（Muse は数えない）"""
+    now = now or datetime.now(JST)
+    return sum(1 for _, v in _today_entries(state, now) if v.get("writer") != "muse" and is_live(v["slug"], articles_dir))
+
+
+def axis_room(state: dict, now: datetime | None = None, articles_dir: Path | None = None) -> bool:
+    """軸の記事を30本の外に上乗せしてよいか（1日の安全上限 AXIS_DAILY_CEILING の手前か）"""
+    return total_today(state, now, articles_dir) < axis_ceiling()
 
 
 def routine_full(state: dict, now: datetime | None = None, articles_dir: Path | None = None) -> bool:

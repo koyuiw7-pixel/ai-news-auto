@@ -148,6 +148,8 @@ jobs:
           AXIS_TOPIC_GATE: ${{ vars.AXIS_TOPIC_GATE || 'log' }}
           AXIS_GATE_BREAKING: ${{ vars.AXIS_GATE_BREAKING }}
           AXIS_CONTENT_GATE: ${{ vars.AXIS_CONTENT_GATE }}
+          # 30本に数えない軸の記事（中身の門を全部通ったもの・台帳 A79）を足した1日の公開の合計の安全上限（未設定なら 80）
+          AXIS_DAILY_CEILING: ${{ vars.AXIS_DAILY_CEILING }}
           FAST_URL: ${{ inputs.fast_url }}
           FAST_META: ${{ inputs.fast_meta }}
           FAST_LANE_GH_TOKEN: ${{ github.token }}

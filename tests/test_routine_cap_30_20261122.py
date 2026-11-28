@@ -52,7 +52,8 @@ class CapTest(unittest.TestCase):
 
     def test_every_path_is_wired(self):
         web = (ROOT / "scripts" / "web_articles.py").read_text("utf-8")
-        self.assertIn("trend_limit = min(trend_limit, max(by_cap, 0))", web)
+        # 2026-11-28（台帳 A79）: 30本の残りを超える話題の枠は、軸の言葉で中身の門を通った記事だけ（tests/test_axis_cap_20261128.py）
+        self.assertIn("trend_routine_slots = min(trend_limit, max(by_cap, 0))", web)
         self.assertIn('return created["ai"] + created["broad"] + created["trend"] + created_off[0]', web)
         self.assertIn("safety_items = [i for i in broad_items if is_safety_item(i)]", web)
         self.assertIn("pacing.routine_full(state)", (ROOT / "scripts" / "main.py").read_text("utf-8"))
