@@ -1,18 +1,30 @@
 {
- "checkedAt": "2026-11-28T17:08:13+09:00",
+ "checkedAt": "2026-11-28T19:18:01+09:00",
  "ok": false,
  "alerts": [
+  {
+   "kind": "no_article",
+   "message": "新しい記事が 131 分出ていません（最後の記事 11/28 17:06・基準 90 分）"
+  },
   {
    "kind": "tests_failed",
    "message": "main のテスト（All tests） の最新の回が失敗しています（11/28 10:06 開始・failure）: https://github.com/koyuiw7-pixel/ai-news-auto/actions/runs/46091396199"
   },
   {
+   "kind": "sns_missed_threads",
+   "message": "threads の枠 17:00・18:45 を30分以上過ぎても投稿がありません"
+  },
+  {
+   "kind": "sns_missed_bluesky",
+   "message": "bluesky の枠 17:00・18:45 を30分以上過ぎても投稿がありません"
+  },
+  {
    "kind": "sns_missed_x",
-   "message": "x の枠 15:00 を30分以上過ぎても投稿がありません"
+   "message": "x の枠 17:30・18:30 を30分以上過ぎても投稿がありません"
   },
   {
    "kind": "sns_missed_facebook",
-   "message": "facebook の枠 15:00・16:15 を30分以上過ぎても投稿がありません"
+   "message": "facebook の枠 17:30・18:30 を30分以上過ぎても投稿がありません"
   }
  ],
  "log": [
@@ -1200,6 +1212,25 @@
     "main のテスト（All tests） の最新の回が失敗しています（11/28 10:06 開始・failure）: https://github.com/koyuiw7-pixel/ai-news-auto/actions/runs/46091396199",
     "x の枠 15:00 を30分以上過ぎても投稿がありません",
     "facebook の枠 15:00・16:15 を30分以上過ぎても投稿がありません"
+   ]
+  },
+  {
+   "at": "2026-11-28T19:18:01+09:00",
+   "kinds": [
+    "no_article",
+    "sns_missed_bluesky",
+    "sns_missed_facebook",
+    "sns_missed_threads",
+    "sns_missed_x",
+    "tests_failed"
+   ],
+   "messages": [
+    "新しい記事が 131 分出ていません（最後の記事 11/28 17:06・基準 90 分）",
+    "main のテスト（All tests） の最新の回が失敗しています（11/28 10:06 開始・failure）: https://github.com/koyuiw7-pixel/ai-news-auto/actions/runs/46091396199",
+    "threads の枠 17:00・18:45 を30分以上過ぎても投稿がありません",
+    "bluesky の枠 17:00・18:45 を30分以上過ぎても投稿がありません",
+    "x の枠 17:30・18:30 を30分以上過ぎても投稿がありません",
+    "facebook の枠 17:30・18:30 を30分以上過ぎても投稿がありません"
    ]
   }
  ]
