@@ -4142,7 +4142,9 @@
       "url": "https://www.boj.or.jp/research/research_data/cpi/index.htm"
     }
   },
-  "major_tries": {},
+  "major_tries": {
+    "348193d90e16552e": 1
+  },
   "pi_reopened": {
     "0a7af0aaaf03eb86": "2026-11-27T16:00:57.403846+00:00",
     "0b8e52361dcdff71": "2026-11-25T10:05:36.080578+00:00",
@@ -24334,29 +24336,6 @@
   },
   "quality_log": [
     {
-      "accepted": true,
-      "at": "2026-11-26T04:30:54.289897+00:00",
-      "attempt": 1,
-      "id": "9246f2fdbc8f317e",
-      "kind": "broad",
-      "model": "openai-api:gpt-6-luna",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 77.6,
-        "avg_sentence": 43.1,
-        "long_share": 0.167,
-        "max_paragraph": 128,
-        "paragraphs": 10,
-        "sentences": 18
-      },
-      "score": 100,
-      "source": "fast",
-      "title": "不正アクセスによる情報漏えいの可能性に関するお詫びとお知らせ（令和8年11月）：文部科学省",
-      "warnings": [
-        "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す"
-      ]
-    },
-    {
       "accepted": false,
       "at": "2026-11-26T05:14:22.143886+00:00",
       "attempt": 1,
@@ -31851,6 +31830,31 @@
         "見出しが44字（目安40字以内）。一覧・カードでは前半だけを出す",
         "読みやすさ: 文が長い（1文の平均 62.6字・60字超の文が 56% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
         "読みやすさ: 段落が長い（平均 195.8字・最長 259字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-28T02:05:14.095388+00:00",
+      "attempt": 1,
+      "id": "348193d90e16552e",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "推測で書かない（「と思われ」）。公式の発表にあることだけを書き、分からないことは分からないと書く"
+      ],
+      "readability": {
+        "avg_paragraph": 100.3,
+        "avg_sentence": 40.6,
+        "long_share": 0.108,
+        "max_paragraph": 180,
+        "paragraphs": 15,
+        "sentences": 37
+      },
+      "score": null,
+      "source": "fast",
+      "title": "【重要】アララ株式会社への不正アクセスに伴うメールアドレス漏洩に関するお詫びとお知らせ - 日本秘湯を守る会 公式Webサイト",
+      "warnings": [
+        "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す"
       ]
     }
   ],
