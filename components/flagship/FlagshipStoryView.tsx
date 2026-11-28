@@ -93,6 +93,9 @@ export default function FlagshipStoryView({ story, adSlot }: { story: FlagshipSt
           <h1 className="fs-h1">{story.title}</h1>
           <p className="fs-answer">{story.answer.lead}</p>
           <p className="fs-answer-sub">{story.answer.sub}</p>
+          <a href="#calc" className="fs-jump" data-fs-jump="">
+            うちの額をいま計算する
+          </a>
 
           <div className="fs-status" id="status">
             <section className="fs-col" data-kind="decided" aria-labelledby="fs-decided">

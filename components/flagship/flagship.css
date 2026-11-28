@@ -1305,3 +1305,20 @@
     transition: none !important;
   }
 }
+
+/* 冒頭から計算へすぐ移れるボタン（2026-11-28。計算が画面の2枚目以降にあり、冒頭で止まる人が多いと見たため） */
+.fs-jump {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1rem;
+  min-height: 3rem;
+  padding: 0 1.5rem;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #13284b;
+  font-weight: 800;
+  text-decoration: none;
+  box-shadow: 0 6px 20px rgb(0 0 0 / 0.25);
+}
+.fs-jump:hover { background: #eef2f8; }
