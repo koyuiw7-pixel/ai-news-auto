@@ -10700,6 +10700,21 @@
       "trendLane": true,
       "url": "https://www.jfa.jp/news/00037030/"
     },
+    "348193d90e16552e": {
+      "at": "2026-11-28T03:44:45.866764+00:00",
+      "axisPass": true,
+      "costUsd": 0.01,
+      "intent": "breaking",
+      "major": true,
+      "mix": "alert",
+      "model": "claude:sonnet",
+      "publicInterest": "breach",
+      "safetyLane": true,
+      "score": 99,
+      "section": "public",
+      "slug": "hitou-arara-email-leak",
+      "url": "https://www.hitou.or.jp/static/security_incident_20261127"
+    },
     "34931c1895dbefce048d855c0e9efc10d73f3585": {
       "at": "2026-11-17T17:26:09.731317+00:00",
       "reason": "trend: 公式の発表で記事にした（argentina-national-team-ticket-issue）",
@@ -19416,12 +19431,6 @@
       "slug": "tokyo-personal-data-hdd-loss",
       "url": "https://www.waterworks.metro.tokyo.lg.jp/information/press/r8/11/2026111601"
     },
-    "d326b64a95705476": {
-      "at": "2026-11-14T03:44:38.627071+00:00",
-      "reason": "dedupe: 見出しが類似（0.58）: オーストラリア関連ニュース｜dメニューニュース（NTTドコモ）",
-      "skipped": true,
-      "url": "https://topics.smt.docomo.ne.jp/latestnews/keywords/cdfed2ba3709c3a0d88cb688bd959ddb0a9918a80c109949fd9f9e66fe90fedd"
-    },
     "d355628847b8fd37": {
       "at": "2026-11-18T06:21:16.052393+00:00",
       "costUsd": 0.006,
@@ -20600,13 +20609,6 @@
       "reason": "dedupe: 同じ出典URL",
       "skipped": true,
       "url": "https://www.mof.go.jp/about_mof/councils/study_on_chain/index.html"
-    },
-    "e49140af174970e6": {
-      "at": "2026-11-14T03:44:37.833506+00:00",
-      "model": "anthropic-api:claude-haiku-5-5",
-      "reason": "followup quality: 本文「topics.smt.docomo.ne.jpは11月14日、オーストラリア関連のニュースで…伝えました」→ 元記事にも確認済みの文脈にもないニュースサイトの報道を出典として挙げており、創作された情報源の帰属である。; 本文「当初は、決勝進出の条件や組み合わせは発表されていないとお伝えしていましたが」→ 元記事にない、記事自身の過去の報道内容や訂正の経緯を",
-      "skipped": true,
-      "url": "https://topics.smt.docomo.ne.jp/latestnews/keywords/23d678706afded831cef3e03eaf7bf8b41aab481817bd3a3ea6eb2ac11b9555c"
     },
     "e4a40575edcc7f2a": {
       "at": "2026-11-15T17:52:28.299334+00:00",
@@ -24421,56 +24423,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-26T06:44:43.065814+00:00",
-      "attempt": 1,
-      "id": "a69cdb2fc7dee248",
-      "kind": "broad",
-      "model": "openai-api:gpt-6.1-terra",
-      "problems": [],
-      "readability": {
-        "avg_paragraph": 77.3,
-        "avg_sentence": 37.0,
-        "long_share": 0.0,
-        "max_paragraph": 105,
-        "paragraphs": 11,
-        "sentences": 23
-      },
-      "score": 99,
-      "source": "ppih",
-      "title": "返金手数料無料で新免税制度のリファンド申請に対応 「SHOP SMART, SAVE MORE」 便利に買って、もっとお得に ～11月1日（日）より全国のPPI",
-      "warnings": [
-        "初めて出たところで言い換えていない略語（PPIH）"
-      ]
-    },
-    {
-      "accepted": false,
-      "at": "2026-11-26T06:59:31.764789+00:00",
-      "attempt": 1,
-      "id": "44bdd0b48b6c9d07",
-      "kind": "broad",
-      "model": "claude:sonnet",
-      "problems": [
-        "「自分のメールアドレスが含まれるかは、今後の連絡で確認することになるとみられます」→ 会員への連絡方法や時期は発表されておらず、今後の連絡で確認できるとの見通しは裏付けられていません。",
-        "「メールアドレスや電話番号が含まれる可能性がある」→ 会員全体への注意としては理解できますが、ワールドオンラインストア分では電話番号は含まれず、電話番号が対象となるのはティンパンアレイ分です。"
-      ],
-      "readability": {
-        "avg_paragraph": 94.6,
-        "avg_sentence": 38.4,
-        "long_share": 0.125,
-        "max_paragraph": 215,
-        "paragraphs": 13,
-        "sentences": 32
-      },
-      "score": 96,
-      "source": "fast",
-      "title": "当社グループが利用する「KARTE」への不正アクセスに伴う情報漏えいに関するお知らせ ※11月26日情報更新 | ニュースリリース| WORLDコーポレートサイ",
-      "warnings": [
-        "見出しが42字（目安40字以内）。一覧・カードでは前半だけを出す",
-        "初めて出たところで言い換えていない略語（KARTE・SMS）"
-      ]
-    },
     {
       "accepted": true,
       "at": "2026-11-26T06:59:51.958231+00:00",
@@ -32000,6 +31952,48 @@
         "読みやすさ: 文が長い（1文の平均 70.9字・60字超の文が 56% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）",
         "読みやすさ: 段落が長い（平均 159.6字・最長 327字 / 基準 平均120字以下・最長220字以下）。1段落は1〜3文にし、数字が3つ以上並ぶところは箇条書きにする（内容と文字数は減らさない）"
       ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-28T03:43:25.087635+00:00",
+      "attempt": 1,
+      "id": "348193d90e16552e",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "推測で書かない（「と思われ」）。公式の発表にあることだけを書き、分からないことは分からないと書く"
+      ],
+      "readability": {
+        "avg_paragraph": 83.6,
+        "avg_sentence": 39.7,
+        "long_share": 0.125,
+        "max_paragraph": 136,
+        "paragraphs": 19,
+        "sentences": 40
+      },
+      "score": null,
+      "source": "fast",
+      "title": "【重要】アララ株式会社への不正アクセスに伴うメールアドレス漏洩に関するお詫びとお知らせ - 日本秘湯を守る会 公式Webサイト"
+    },
+    {
+      "accepted": true,
+      "at": "2026-11-28T03:44:36.994352+00:00",
+      "attempt": 1,
+      "id": "348193d90e16552e",
+      "kind": "broad",
+      "model": "strike:本文 3 文",
+      "problems": [],
+      "readability": {
+        "avg_paragraph": 75.6,
+        "avg_sentence": 40.0,
+        "long_share": 0.118,
+        "max_paragraph": 136,
+        "paragraphs": 18,
+        "sentences": 34
+      },
+      "score": 99,
+      "source": "fast",
+      "title": "【重要】アララ株式会社への不正アクセスに伴うメールアドレス漏洩に関するお詫びとお知らせ - 日本秘湯を守る会 公式Webサイト"
     }
   ],
   "short_text_retry": {
