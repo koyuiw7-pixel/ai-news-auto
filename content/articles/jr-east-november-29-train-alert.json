@@ -57,14 +57,14 @@
   "videoTitle": "11月29日のJR東日本はどこが止まる？　大雪と強風で10路線に遅れや運休の可能性、代行輸送なし",
   "publishedAt": "2026-11-28T03:14:20.111065+00:00",
   "generatedAt": "2026-11-28T03:14:55.617083+00:00",
-  "thumbnail": "",
+  "thumbnail": "https://ai-tech-express.jp/img/jr-east-november-29-train-alert-figure-5761aa39.jpg",
   "model": "openai-api:gpt-6.1-terra",
   "affiliates": [],
   "newsType": "general",
   "todayActions": [
-    "11月29日に使う路線が対象か、JR東日本の東北エリア運行情報で区間と時間帯を確認する。",
-    "対象区間を利用する場合は、今回の天候に関する案内では代行輸送がないことを踏まえて移動予定を考える。",
-    "出発前にJR東日本の運行情報をもう一度開き、当日の遅れや運休を確認する。"
+    "11月29日に乗る路線と区間を、東北エリアの運行情報で照らし合わせる。",
+    "対象区間を使う予定なら、代行輸送がないことを踏まえて移動方法を考える。",
+    "出発前に東北エリアの運行情報を再確認し、最新の状況を確かめる。"
   ],
   "writer": "muse",
   "refreshMode": "editorial",
@@ -82,5 +82,128 @@
   "detectedAt": "2026-11-28T03:15:00+00:00",
   "searchTitle": "JR東日本の11月29日　対象区間と時間帯",
   "layout": "noir",
-  "summaryLine": "11月29日は大雪と強風の予報により、JR東日本の東北エリアの一部で遅れや運休の可能性があります。"
+  "summaryLine": "11月29日は大雪と強風の予報により、JR東日本の東北エリアの一部で遅れや運休の可能性があります。",
+  "insight": [
+    {
+      "text": "JR東日本の「遅延」は、4時～翌2時にJR東日本管内で30分以上の遅れが発生または見込まれる場合の表示です。運行情報の「遅延」が示す基準を知っておくと、表示を判断しやすくなります。",
+      "source": "https://traininfo.jreast.co.jp/train_info/tohoku.aspx"
+    },
+    {
+      "text": "JR東日本は情報を更新している一方、実際の運行状況とページの情報が異なる場合もあるとして、あくまで目安として利用するよう案内しています。確認時刻だけでなく、出発前にも見直すのが大切です。",
+      "source": "https://traininfo.jreast.co.jp/train_info/tohoku.aspx"
+    }
+  ],
+  "officialDesk": [
+    {
+      "name": "運行情報・運休情報 東北エリア",
+      "url": "https://traininfo.jreast.co.jp/train_info/tohoku.aspx",
+      "source": "https://traininfo.jreast.co.jp/train_info/tohoku.aspx",
+      "note": "最新情報を更新していますが、実際の運行状況と異なる場合があり、あくまで目安として利用するよう案内されています。"
+    }
+  ],
+  "todaySteps": [
+    {
+      "action": "11月29日に乗る路線と区間を、東北エリアの運行情報で照らし合わせる。",
+      "source": "https://traininfo.jreast.co.jp/train_info/tohoku.aspx",
+      "steps": [
+        "「運行情報・運休情報 東北エリア」を開く",
+        "利用する路線のお知らせを確認する",
+        "対象区間と影響が見込まれる時間を照らし合わせる"
+      ],
+      "url": "https://traininfo.jreast.co.jp/train_info/tohoku.aspx"
+    },
+    {
+      "action": "対象区間を使う予定なら、代行輸送がないことを踏まえて移動方法を考える。",
+      "source": "https://traininfo.jreast.co.jp/train_info/tohoku.aspx",
+      "steps": [
+        "利用する路線のお知らせを開く",
+        "「代行輸送は行いません」の記載を確認する",
+        "対象区間と影響時間に合わせて予定を検討する"
+      ],
+      "url": "https://traininfo.jreast.co.jp/train_info/tohoku.aspx"
+    },
+    {
+      "action": "出発前に東北エリアの運行情報を再確認し、最新の状況を確かめる。",
+      "source": "https://traininfo.jreast.co.jp/train_info/tohoku.aspx",
+      "steps": [
+        "「運行情報・運休情報 東北エリア」を開く",
+        "利用する路線のお知らせを確認する",
+        "ページの更新時刻と運行状況を確かめる"
+      ],
+      "url": "https://traininfo.jreast.co.jp/train_info/tohoku.aspx"
+    }
+  ],
+  "cause": {
+    "text": "11月29日は対象区間で大雪や強風が見込まれており、JR東日本はその影響で遅れや運休が発生する可能性を案内しています。運休が決定したという発表ではありません。",
+    "status": "stated",
+    "source": "https://traininfo.jreast.co.jp/train_info/tohoku.aspx"
+  },
+  "worries": [
+    {
+      "q": "11月29日の対象区間は、運休がもう決まっているのでしょうか？",
+      "a": "今回の案内は、遅れや運休が発生する可能性を知らせるものです。運休が決まったという案内ではなく、当日の運行状況は公式ページで確認できます。",
+      "source": "https://traininfo.jreast.co.jp/train_info/tohoku.aspx",
+      "action": "利用する路線のお知らせを開き、出発前に当日の運行状況をもう一度確認してください。"
+    },
+    {
+      "q": "天候で運休した場合、代行バスなどは利用できますか？",
+      "a": "今回の天候に関する案内では、対象区間はいずれも代行輸送を行わないとされています。長期に運転を見合わせている別の区間には代行バスが運行されているところもありますが、今回の案内とは別です。",
+      "source": "https://traininfo.jreast.co.jp/train_info/tohoku.aspx",
+      "action": "利用する区間のお知らせで代行輸送の有無を確かめ、移動予定を検討してください。"
+    },
+    {
+      "q": "出発前に見た情報が、実際の運行状況と違うことはありますか？",
+      "a": "JR東日本は情報を更新していますが、実際の運行状況とページの情報が異なる場合があると案内しています。ページの情報はあくまで目安として利用するよう記載されています。",
+      "source": "https://traininfo.jreast.co.jp/train_info/tohoku.aspx",
+      "action": "乗車前にも東北エリアの運行情報を開き、利用する路線の最新状況を確認してください。"
+    }
+  ],
+  "decisionGuide": [
+    {
+      "question": "予定を組み替える必要がある？",
+      "situation": "終日影響の可能性がある区間を利用",
+      "recommend": "別の移動手段も含めて検討する",
+      "reason": "対象区間では終日、遅れや運休の可能性が案内され、代行輸送は行われません。ただし運休が決まったわけではないため、出発前に最新の運行情報を確認して判断してください。",
+      "source": "https://traininfo.jreast.co.jp/train_info/tohoku.aspx"
+    },
+    {
+      "question": "予定を組み替える必要がある？",
+      "situation": "影響時間の一部だけ利用する",
+      "recommend": "移動時刻が影響時間に重なるか確認する",
+      "reason": "常磐線や東北本線などは、遅れや運休の可能性が示された時間帯が限られています。時間帯外なら影響がないと断定はできないため、出発前にも最新の運行状況を確かめてください。",
+      "source": "https://traininfo.jreast.co.jp/train_info/tohoku.aspx"
+    }
+  ],
+  "depthHeadings": {
+    "insight": "遅延表示の基準と情報の見方",
+    "cause": "大雪や強風で遅れ・運休の可能性",
+    "steps": "区間と時間を照らして出発前に再確認",
+    "desk": "東北エリアの運行情報を確認",
+    "worries": "運休や代行輸送はどうなる？",
+    "guide": "予定を変えるか迷ったときの見方"
+  },
+  "depthAt": "2026-11-28T03:29:12+00:00",
+  "imageCredit": {
+    "kind": "figure",
+    "imageKind": "cover",
+    "number": "",
+    "label": "11月29日のJR東日本はどこで運休の可能性？",
+    "provider": "サイソクニュース",
+    "width": 1200,
+    "height": 630,
+    "aiCapped": true,
+    "at": "2026-11-28T03:29:36+00:00"
+  },
+  "imageFocus": {
+    "x": 0.497,
+    "y": 0.419,
+    "box": [
+      0.091,
+      0.071,
+      0.903,
+      0.768
+    ],
+    "ar": 1.9048,
+    "src": "https://ai-tech-express.jp/img/jr-east-november-29-train-alert-figure-5761aa39.jpg"
+  }
 }
