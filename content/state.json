@@ -4163,7 +4163,9 @@
       "url": "https://www.boj.or.jp/research/research_data/cpi/index.htm"
     }
   },
-  "major_tries": {},
+  "major_tries": {
+    "348193d90e16552e": 1
+  },
   "pi_reopened": {
     "0a7af0aaaf03eb86": "2026-11-27T16:00:57.403846+00:00",
     "0b8e52361dcdff71": "2026-11-25T10:05:36.080578+00:00",
@@ -23509,14 +23511,6 @@
       "url": "https://www.recall.caa.go.jp/result/detail.php?rcl=00000036091&screenkbn=01",
       "writer": "muse"
     },
-    "muse-9bda88152d": {
-      "at": "2026-11-14T02:55:57.242799+00:00",
-      "mix": "alert",
-      "score": 88,
-      "slug": "subaru-roadservice-data-leak-2026",
-      "url": "https://www.subaru.co.jp/pdf/info/2026_1106_2026-11-06-135049.pdf",
-      "writer": "muse"
-    },
     "muse-9c9bbc836a": {
       "at": "2026-11-17T06:23:02.523287+00:00",
       "mix": "money",
@@ -24387,31 +24381,6 @@
     }
   },
   "quality_log": [
-    {
-      "accepted": true,
-      "at": "2026-11-26T05:21:43.216357+00:00",
-      "attempt": 0,
-      "id": "093109fd87e43fb6",
-      "kind": "broad",
-      "model": "",
-      "problems": [
-        "読みやすさ基準外のまま受理: 書き直し後の確認に不合格: 「国が管理の全部または一部を継続する要件を明確化します」→ 元記事は提言として要件を明確化すべきとしており、実施が決定したように書くのは不正確です。"
-      ],
-      "readability": {
-        "avg_paragraph": 105.0,
-        "avg_sentence": 70.0,
-        "long_share": 0.583,
-        "max_paragraph": 215,
-        "paragraphs": 8,
-        "sentences": 12
-      },
-      "score": 98,
-      "source": "mlit-press",
-      "title": "「今後の土砂災害対策のあり方検討会」提言がとりまとめられました",
-      "warnings": [
-        "読みやすさ: 文が長い（1文の平均 70.0字・60字超の文が 58% / 基準 平均45字以下・60字超20%以下）。1文は50字以内を目安に2文に分け、1文に言いたいことは1つにする（内容と文字数は減らさない）"
-      ]
-    },
     {
       "accepted": false,
       "at": "2026-11-26T05:30:16.703445+00:00",
@@ -31908,6 +31877,31 @@
         "見出しの書き方: 記号: かっこの直後に「、」",
         "初めて出たところで言い換えていない略語（SRI・OLB）",
         "要点の1つ目がリードの文の写し。一番のニュースを、リードとは違う言い方で書く"
+      ]
+    },
+    {
+      "accepted": false,
+      "at": "2026-11-28T02:58:47.180244+00:00",
+      "attempt": 1,
+      "id": "348193d90e16552e",
+      "kind": "broad",
+      "model": "claude:sonnet",
+      "problems": [
+        "推測で書かない（「と思われ」）。公式の発表にあることだけを書き、分からないことは分からないと書く"
+      ],
+      "readability": {
+        "avg_paragraph": 115.6,
+        "avg_sentence": 41.3,
+        "long_share": 0.095,
+        "max_paragraph": 177,
+        "paragraphs": 15,
+        "sentences": 42
+      },
+      "score": null,
+      "source": "fast",
+      "title": "【重要】アララ株式会社への不正アクセスに伴うメールアドレス漏洩に関するお詫びとお知らせ - 日本秘湯を守る会 公式Webサイト",
+      "warnings": [
+        "見出しが43字（目安40字以内）。一覧・カードでは前半だけを出す"
       ]
     }
   ],
