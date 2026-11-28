@@ -3,8 +3,17 @@
   "consecutive_zero": 1,
   "last_zero_at": "2026-11-28T07:49:45+00:00",
   "llmo_access": {
-    "recovered_at": "2026-11-25T08:53:50+00:00",
-    "status": "ok"
+    "failures": [
+      "(b) OAI-SearchBot で /articles/vissel-kobe-26-27-replica-uniform の中に本文の最初の一文（販売されているのは「26/27【レプリカ】ユニフォーム（1s）がない",
+      "(b) ChatGPT-User で /articles/vissel-kobe-26-27-replica-uniform の中に本文の最初の一文（販売されているのは「26/27【レプリカ】ユニフォーム（1s）がない",
+      "(b) PerplexityBot で /articles/vissel-kobe-26-27-replica-uniform の中に本文の最初の一文（販売されているのは「26/27【レプリカ】ユニフォーム（1s）がない",
+      "(b) Claude-SearchBot で /articles/vissel-kobe-26-27-replica-uniform の中に本文の最初の一文（販売されているのは「26/27【レプリカ】ユニフォーム（1s）がない",
+      "(b) bingbot で /articles/vissel-kobe-26-27-replica-uniform の中に本文の最初の一文（販売されているのは「26/27【レプリカ】ユニフォーム（1s）がない",
+      "(b) Googlebot で /articles/vissel-kobe-26-27-replica-uniform の中に本文の最初の一文（販売されているのは「26/27【レプリカ】ユニフォーム（1s）がない"
+    ],
+    "note": "確認は GitHub の実行環境から行っていて、本物の巡回とは IP が違います。本物の AI 巡回が通っているかは、Cloudflare の画面（AI Crawl Control）が正しい情報です。",
+    "since": "2026-11-28T08:08:27+00:00",
+    "status": "failed"
   },
   "reason": "品質ゲート不合格: 題名で料金・価格を約束しているのに、本文に金額（円・ドル・無料など）が無い。元記事の金額を書くか、題名から料金の話を外す",
   "recovered_at": "2026-11-28T06:58:55+00:00",
