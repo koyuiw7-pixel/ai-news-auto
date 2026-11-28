@@ -6,106 +6,127 @@
   "companyName": "Salesforce",
   "category": "アプリ・サービス",
   "overview": {
-    "text": "Agentforceは、CRMデータをもとにAIが自律的に業務を進めるプラットフォームです。Salesforceが提供しており、2026年11月までに機能拡充や企業買収が発表されました。",
+    "text": "Agentforceは、企業の仕事を自律的に進めるAIエージェントの基盤です。Salesforceが提供しています。2026年6月に中屋薬局での導入などが発表されています。",
     "sources": [
-      "salesforce-agentforce-coworker-summary-matome",
-      "salesforce-agentforce-coworker-growth-features",
-      "hinode-salesforce-agentforce-roleplay"
+      "nakaya-pharmacy-agentforce-sales-support",
+      "salesforce-agentforce-coworker-summary-matome"
     ]
   },
   "facts": [
     {
       "label": "料金",
-      "value": "1ユーザー月額50ドルの新オプション",
+      "value": "月額50ドル（Coworker）",
       "sources": [
-        "salesforce-agentforce-coworker-summary-matome",
         "salesforce-agentforce-coworker-growth-features"
       ]
     },
     {
-      "label": "提供開始",
-      "value": "2026年11月に一般提供予定",
+      "label": "向いている人",
+      "value": "販売担当者",
       "sources": [
-        "salesforce-agentforce-coworker-summary-matome",
-        "salesforce-agentforce-coworker-growth-features"
+        "nakaya-pharmacy-agentforce-sales-support"
       ]
     }
   ],
   "capabilities": [
     {
-      "text": "Microsoft TeamsやiOS向けアプリなどから業務を指示できます。",
+      "text": "顧客カルテの情報を基に、AIが化粧品の提案候補を示します。",
       "sources": [
-        "salesforce-agentforce-coworker-summary-matome",
-        "salesforce-agentforce-coworker-growth-features"
+        "nakaya-pharmacy-agentforce-sales-support"
       ]
     },
     {
-      "text": "AIが商談の相手役を務める営業ロールプレイを実施できます。",
+      "text": "美容部員が接客前に対話用のトーク例を確認できます。",
+      "sources": [
+        "nakaya-pharmacy-agentforce-sales-support"
+      ]
+    },
+    {
+      "text": "サンプルを渡した顧客へ、3日後にLINEのメッセージを自動送信します。",
+      "sources": [
+        "nakaya-pharmacy-agentforce-sales-support"
+      ]
+    },
+    {
+      "text": "全営業担当者がAIを相手に商談のロールプレイを実施できます。",
       "sources": [
         "hinode-salesforce-agentforce-roleplay"
-      ]
-    },
-    {
-      "text": "UCCジャパンでは営業用スクリプトの作成時間を40分から40秒に短縮しました。",
-      "sources": [
-        "salesforce-idc-marketscape-japan-ai-2026"
       ]
     }
   ],
   "pricing": [
     {
-      "text": "1ユーザーあたり月額50ドルの新オプションが追加されました。",
+      "text": "Agentforce Coworkerでは、1ユーザーあたり月額50ドルの新オプションが追加されています。",
       "sources": [
         "salesforce-agentforce-coworker-growth-features"
       ]
     }
   ],
-  "japan": [],
-  "howto": [
+  "japan": [
     {
-      "text": "Salesforceの設定画面から有効化できます。",
+      "text": "国内企業では、アフラック生命保険やUCCジャパン、LINEヤフーなどが導入しています。",
       "sources": [
-        "salesforce-agentforce-coworker-growth-features"
+        "salesforce-idc-marketscape-japan-ai-2026"
       ]
     },
     {
-      "text": "Microsoft TeamsやSlack、Claudeなどから利用できます。",
+      "text": "九州の卸売企業である日野出が営業部門に導入しています。",
       "sources": [
-        "salesforce-idc-marketscape-japan-ai-2026",
-        "salesforce-agentforce-coworker-growth-features"
-      ]
-    }
-  ],
-  "differences": [],
-  "faq": [
-    {
-      "q": "誰でもすぐに使えますか？",
-      "a": "Salesforceのお客様は設定画面から有効化できます。",
-      "sources": [
-        "salesforce-agentforce-coworker-growth-features"
-      ]
-    },
-    {
-      "q": "どんなツールから指示を出せますか？",
-      "a": "Microsoft TeamsやSlack、iOS向けアプリなどから利用できます。",
-      "sources": [
-        "salesforce-idc-marketscape-japan-ai-2026",
-        "salesforce-agentforce-coworker-growth-features"
-      ]
-    },
-    {
-      "q": "営業活動にはどのように役立ちますか？",
-      "a": "AIが商談の相手役を務めるロールプレイや、スクリプト作成に活用できます。",
-      "sources": [
-        "salesforce-idc-marketscape-japan-ai-2026",
         "hinode-salesforce-agentforce-roleplay"
       ]
-    },
+    }
+  ],
+  "howto": [
     {
-      "q": "利用者は増えていますか？",
-      "a": "ユーザー数は18万5,000人を超え、直近3カ月で21倍に拡大しました。",
+      "text": "Salesforceのお客様は設定画面からAgentforce Coworkerを有効化できます。",
       "sources": [
         "salesforce-agentforce-coworker-growth-features"
+      ]
+    },
+    {
+      "text": "SlackやMicrosoft Teams、Claudeなどから利用できます。",
+      "sources": [
+        "salesforce-idc-marketscape-japan-ai-2026",
+        "salesforce-agentforce-coworker-summary-matome"
+      ]
+    }
+  ],
+  "differences": [
+    {
+      "text": "25年超のCRM業務ロジックにAgentforceを直結させ、正確な応答とアクション実行を実現しています。",
+      "sources": [
+        "salesforce-idc-marketscape-japan-ai-2026"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "誰に向いている？",
+      "a": "商品提案の偏りを減らしたい販売担当者に向いています。",
+      "sources": [
+        "nakaya-pharmacy-agentforce-sales-support"
+      ]
+    },
+    {
+      "q": "オプションの費用は？",
+      "a": "Agentforce Coworkerには1ユーザーあたり月額50ドルの新オプションがあります。",
+      "sources": [
+        "salesforce-agentforce-coworker-growth-features"
+      ]
+    },
+    {
+      "q": "どこから利用できる？",
+      "a": "SlackやMicrosoft Teams、Claudeなどから利用できます。",
+      "sources": [
+        "salesforce-idc-marketscape-japan-ai-2026"
+      ]
+    },
+    {
+      "q": "どのような企業で使われている？",
+      "a": "中屋薬局や日野出などの国内企業で活用されています。",
+      "sources": [
+        "nakaya-pharmacy-agentforce-sales-support",
+        "hinode-salesforce-agentforce-roleplay"
       ]
     }
   ],
@@ -113,18 +134,19 @@
     {
       "date": "2026-11-09",
       "slug": "salesforce-agentforce-idc-marketscape-leader",
-      "event": "IDC調査のAIエージェント基盤でリーダーに選出"
+      "event": "Worldwide Agentic AI Platformsでリーダーに"
     },
     {
       "date": "2026-11-10",
       "slug": "hinode-salesforce-agentforce-roleplay",
-      "event": "日野出が営業ロールプレイに導入し新規商談件数127%"
+      "event": "日野出が営業ロールプレイに導入"
     }
   ],
   "related": [
     "decisions-api"
   ],
   "articles": [
+    "nakaya-pharmacy-agentforce-sales-support",
     "salesforce-idc-marketscape-japan-ai-2026",
     "salesforce-agentforce-coworker-summary-matome",
     "salesforce-agentforce-coworker-growth-features",
@@ -134,12 +156,13 @@
     "salesforce-acquires-cresta-voice-ai"
   ],
   "linkFrom": [
+    "nakaya-pharmacy-agentforce-sales-support",
     "hinode-salesforce-agentforce-roleplay",
     "salesforce-agentforce-idc-marketscape-leader"
   ],
-  "signature": "dcde9db43721fbdb",
-  "primarySignature": "06b3d0377adb081e",
+  "signature": "64d36fa681668af0",
+  "primarySignature": "4a59f916d8ee81f5",
   "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-11-11T07:45:17+00:00",
-  "updatedAt": "2026-11-27T10:34:38+00:00"
+  "updatedAt": "2026-11-28T08:06:37+00:00"
 }
