@@ -8,65 +8,63 @@
   "companyName": "Microsoft",
   "category": "アプリ・サービス",
   "overview": {
-    "text": "Azure SQLは、Microsoftのクラウドで提供されるリレーショナルデータベースです。2026年10月にはベクトルインデックスの一般提供などが発表されました。",
+    "text": "Azure SQLは、Microsoftが提供するクラウド向けのリレーショナルデータベースサービスです。AI連携機能や大規模データを高速に処理する分散アーキテクチャを備え、開発を支援する機能などが発表されています。",
     "sources": [
       "azure-sql-ai-agent-skills-guide",
-      "azure-sql-vector-index-diskann-ga"
+      "azure-sql-vector-index-diskann-ga",
+      "azure-sql-hyperscale-developers-guide"
     ]
   },
   "facts": [
     {
       "label": "提供開始",
-      "value": "2026年10月（DiskANNなど）",
+      "value": "2026年10月より順次展開",
       "sources": [
-        "azure-sql-vector-index-diskann-ga"
+        "microsoft-fabric-database-agent-preview",
+        "azure-sql-vector-index-diskann-ga",
+        "azure-savings-plan-for-databases"
       ]
     },
     {
       "label": "日本での提供",
       "value": "日本からも利用可能",
       "sources": [
-        "microsoft-fabric-database-agent-preview"
-      ]
-    },
-    {
-      "label": "使える場所",
-      "value": "Microsoft Fabricなど",
-      "sources": [
         "microsoft-fabric-database-agent-preview",
+        "azure-savings-plan-for-databases",
         "azure-sql-vector-index-diskann-ga"
       ]
     },
     {
       "label": "向いている人",
-      "value": "開発者、DB管理エンジニア",
+      "value": "DBA・開発者・企業のIT部門",
       "sources": [
         "microsoft-fabric-database-agent-preview",
-        "azure-sql-ai-agent-skills-guide"
+        "azure-sql-ai-agent-skills-guide",
+        "azure-savings-plan-for-databases"
       ]
     }
   ],
   "capabilities": [
     {
-      "text": "10億行のベクトルデータを32ミリ秒で検索できます。",
+      "text": "10億行のベクトルデータに対する類似性検索において、1秒未満の応答速度を達成しています。",
       "sources": [
         "azure-sql-vector-index-diskann-ga"
       ]
     },
     {
-      "text": "AIがデータベースを24時間監視し、高負荷を自動検知します。",
+      "text": "AIがデータベースを常時監視し、処理のブロックや高負荷を最短15分で自動検知します。",
       "sources": [
         "microsoft-fabric-database-agent-preview"
       ]
     },
     {
-      "text": "T-SQLから外部AIモデルを直接呼び出すことができます。",
+      "text": "分散構成により、40TBのデータをわずか7分でリストア可能です。",
       "sources": [
         "azure-sql-hyperscale-developers-guide"
       ]
     },
     {
-      "text": "変更データをMicrosoft Fabricへリアルタイム転送できます。",
+      "text": "Change Event Streamingで変更データをMicrosoft Fabricへリアルタイム転送できます。",
       "sources": [
         "azure-sql-fabric-data-anomaly-detection"
       ]
@@ -74,15 +72,9 @@
   ],
   "pricing": [
     {
-      "text": "新しい割引プランにより、従量課金と比較して最大35%削減できます。",
+      "text": "時間あたり一定額をコミットすることで、対象データベースの料金が最大35%割引になります。",
       "sources": [
         "azure-savings-plan-for-databases"
-      ]
-    },
-    {
-      "text": "無料枠が用意されています。",
-      "sources": [
-        "azure-sql-ai-agent-skills-guide"
       ]
     }
   ],
@@ -90,84 +82,71 @@
     {
       "text": "日本からも利用可能です。",
       "sources": [
-        "microsoft-fabric-database-agent-preview"
+        "microsoft-fabric-database-agent-preview",
+        "azure-savings-plan-for-databases",
+        "azure-sql-vector-index-diskann-ga"
       ]
     }
   ],
   "howto": [
     {
-      "text": "ポータルサイトからプロジェクトを作成して試すことができます。",
-      "sources": [
-        "microsoft-foundry-complete-agent-platform-guide-matome"
-      ]
-    },
-    {
-      "text": "開発者向けのサイトから、無料枠やローカルコンテナでの始め方を選べます。",
+      "text": "Azure SQL Developer Hubから、クラウドの無料枠での始め方を選べます。",
       "sources": [
         "azure-sql-ai-agent-skills-guide"
       ]
     }
   ],
-  "differences": [
-    {
-      "text": "障害発生後の受動的な運用から、AIが問題を教える運用へ変わります。",
-      "sources": [
-        "microsoft-fabric-database-agent-preview"
-      ]
-    },
-    {
-      "text": "手動で再構築する必要がなくなり、バックグラウンドで自動更新されます。",
-      "sources": [
-        "mssql-vector-indexing-updates"
-      ]
-    }
-  ],
+  "differences": [],
   "faq": [
     {
       "q": "無料で使える？",
-      "a": "Azure SQL Databaseの無料枠を使う構成が用意されています。",
+      "a": "Azure SQL Databaseの無料枠を利用した構成が用意されています。",
       "sources": [
         "azure-sql-ai-agent-skills-guide"
       ]
     },
     {
-      "q": "管理の負担はどう変わる？",
-      "a": "AIが24時間監視し、高負荷や処理の詰まりを自動で検知します。",
+      "q": "どのようなコスト削減プランがある？",
+      "a": "対象のデータベースサービスが最大35%割引になる支出ベースのSavings Planが利用できます。",
       "sources": [
-        "microsoft-fabric-database-agent-preview"
+        "azure-savings-plan-for-databases"
       ]
     },
     {
-      "q": "誰に向いている？",
-      "a": "アプリケーションを開発するエンジニアやデータベース管理者に向いています。",
-      "sources": [
-        "microsoft-foundry-complete-agent-platform-guide-matome",
-        "microsoft-fabric-database-agent-preview"
-      ]
-    },
-    {
-      "q": "検索速度はどれくらい？",
-      "a": "10億行のベクトルデータを32ミリ秒で検索できます。",
+      "q": "ベクトル検索の性能は？",
+      "a": "DiskANNベクトルインデックスにより、10億行のデータから1秒未満で検索できます。",
       "sources": [
         "azure-sql-vector-index-diskann-ga"
+      ]
+    },
+    {
+      "q": "障害の検知機能は？",
+      "a": "AIがデータベースを常時監視し、処理のブロックや高負荷を最短15分で自動検知します。",
+      "sources": [
+        "microsoft-fabric-database-agent-preview"
       ]
     }
   ],
   "timeline": [
     {
+      "date": "2026-07-29",
+      "slug": "azure-sql-fabric-data-anomaly-detection",
+      "event": "リアルタイム異常検知の実装手法を解説"
+    },
+    {
       "date": "2026-08-20",
       "slug": "azure-sql-hyperscale-developers-guide",
-      "event": "Azure SQL HyperscaleのAI連携と分散構成を解説"
+      "event": "HyperscaleのAI連携と分散構成を解説"
     },
     {
       "date": "2026-10-02",
       "slug": "azure-sql-vector-index-diskann-ga",
-      "event": "Azure SQL DatabaseでDiskANNベクトルインデックスを一般提供"
+      "event": "DiskANNベクトルインデックスを一般提供"
     },
     {
       "date": "2026-10-23",
       "slug": "azure-sql-ai-agent-skills-guide",
-      "event": "Azure SQL開発を支援するSQL Agent Skillsを公開"
+      "event": "AIエージェント支援のスキル集を公開"
     }
   ],
   "related": [
@@ -192,9 +171,9 @@
     "azure-sql-hyperscale-developers-guide",
     "azure-sql-fabric-data-anomaly-detection"
   ],
-  "signature": "f5bbd3c1fc933015",
+  "signature": "aff3ef7546cf8351",
   "primarySignature": "2bd21c90af4e99f8",
   "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-10-27T10:44:29+00:00",
-  "updatedAt": "2026-11-13T19:40:46+00:00"
+  "updatedAt": "2026-11-28T00:18:59+00:00"
 }

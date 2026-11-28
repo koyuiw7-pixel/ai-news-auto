@@ -3,8 +3,14 @@
   "type": "roundup",
   "newsType": "event",
   "roundupKey": "Foundry",
-  "membersHash": "68c62bfb3da0b9b3",
+  "membersHash": "fb356c9c47f7bf2e",
   "sources": [
+    {
+      "slug": "informatica-microsoft-copilot-foundry-integration",
+      "title": "Copilotで社内データの意味や品質を確認　InformaticaがMicrosoft連携を強化",
+      "publishedAt": "2026-11-27T02:00:00+00:00",
+      "channel": "Salesforce ニュース（日本）"
+    },
     {
       "slug": "novo-nordisk-clinical-data-agent-microsoft-foundry",
       "title": "ノボの臨床データ分析AIがFoundryへ移行　数千人の研究者を支援",
@@ -186,91 +192,90 @@
       "channel": "Microsoft Developer"
     }
   ],
-  "title": "Microsoft Foundryの全機能まとめ　30本の発表から見えたAIエージェント開発基盤の全貌",
-  "seoTitle": "Microsoft Foundry機能まとめ：30の発表で見えた全貌",
-  "threadsPost": "AIエージェントの開発を進める人に、押さえておきたい話です。\n\nMicrosoft Foundryを中心に、開発を自動化する機能が拡充されました。\nインフラ準備不要の実行基盤や最適化ツールが揃い、開発の手間を大幅に削減できます。\n\n仕事で使う生成AI、自社ツールと連携させて動かしていますか？",
+  "title": "Microsoft Foundry機能まとめ：31本の公式発表から見えたAIエージェント基盤の全貌",
+  "seoTitle": "Microsoft Foundryまとめ：AIエージェント構築の最新全機能",
+  "threadsPost": "AIエージェントを自社に導入したい人に、知っておいてほしい話です。\n\nMicrosoftがAIエージェント開発基盤「Foundry」の機能を一挙に拡充しました。\nモデルの自動選択や安全制御、データベース接続まで1つのポータルで一括管理できます。\n\n社内の定型業務をAIに任せられるなら、どの作業から頼んでみたいですか？",
   "threadsHook": "callout",
   "threadsQuestions": [
     {
       "pattern": "plain",
-      "question": "仕事で使う生成AI、自社ツールと連携させて動かしていますか？"
+      "question": "社内の定型業務をAIに任せられるなら、どの作業から頼んでみたいですか？"
     },
     {
-      "pattern": "ab",
-      "question": "AIに頼む作業、テキストで指示するのとボタン操作、どちらが扱いやすいですか？"
+      "pattern": "count",
+      "question": "日々の開発作業で、手作業の確認にどれくらい時間をかけていますか？"
     },
     {
-      "pattern": "future",
-      "question": "社内の定型作業、AIが先回りして済ませてくれる未来は近いと思いますか？"
+      "pattern": "tradeoff",
+      "question": "AIの回答速度を優先するか、回答の正確さを優先するか、どちらを選びますか？"
     }
   ],
   "threadsStyle": 3,
-  "lede": "Microsoft Foundryを中心に、自律型AIエージェントの構築と運用を自動化する最新機能が30本発表されました。インフラ構築が不要な実行基盤やモデルの自動選択機能により、開発にかかる時間と運用コストを大きく削減できます。既存環境が自動で切り替わることはなく、ポータルサイト（ai.azure.com）から無料枠を使ってテストを開始できます。",
-  "description": "Microsoft Foundryに関する30本の発表を統合解説。Copilot harnessによるインフラ不要のエージェント開発、Model RouterやAgent Optimizerでの費用最適化、SQLやGitHub Copilotとの連携など、最新のAIエージェント基盤を網羅して伝えます。",
+  "lede": "Microsoftは、AIエージェントの開発と運用を支えるプラットフォーム「Microsoft Foundry」を中心に、データベース連携や開発ツールを網羅する31件の新発表を行いました。ポータルからの初回登録時には200ドル分の無料枠が付与され、モデルの自動振り分けや安全制御を画面上で一括設定できます。まずは公式ポータルにサインインし、自社のAzure契約で利用できるモデルや連携機能の範囲を確かめておきましょう。",
+  "description": "Microsoft Foundryを中心とする31本の公式発表を統合しました。AIエージェントの作成手順からModel Routerによるコスト最適化、Guardrailsによる安全対策、SQLや.NETとの連携まで、開発者と管理者が把握すべき全機能を分かりやすく解説します。",
   "keywords": [
     "Microsoft Foundry",
-    "Copilot harness",
-    "Model Router",
-    "Agent Optimizer",
     "AIエージェント",
-    "GitHub Copilot",
+    "Model Router",
+    "Guardrails",
+    "Copilot harness",
+    "Agent Skills",
+    "Model Context Protocol",
     "Azure SQL",
-    "MCP",
-    "DiskANN",
-    "Guardrails"
+    "GitHub Copilot",
+    "Agent Optimizer"
   ],
   "tags": [
     "Microsoft Foundry",
     "AIエージェント",
-    "GitHub Copilot",
     "Azure",
-    "生成AI"
+    "GitHub Copilot",
+    "データ基盤"
   ],
   "highlights": [
-    "Microsoft Foundryを中心とする機能拡張が30本発表され、自律型エージェント構築の全貌が判明しました。",
-    "Copilot harnessを使えばコンテナの準備なしで、チェック操作のみでエージェントを稼働できます。",
-    "Model RouterとAgent Optimizerの組み合わせにより、精度を保ちつつ運用費用を抑えられます。"
+    "Microsoft Foundryを中心に、AIエージェントの開発・制御・評価を一元管理できる機能群が一挙に拡充されました。",
+    "Model RouterとAgent Optimizerにより、応答品質を維持したままAPI運用コストを約37%削減可能です。",
+    "MCP接続規格の採用で、Azure SQLや外部SaaSなどの社内データを安全にAIへ接続できます。"
   ],
   "timetable": [],
-  "body": "今回の発表は、Azure環境やGitHub Copilotを活用して業務アプリケーションの開発や社内自動化を進めているエンジニア、ならびにIT管理者に直接関係するものです。既存のAzure契約やWindows開発環境が勝手に更新されたり課金体系が変更されたりすることはありません。必要な機能だけを選択し、ポータルサイト（ai.azure.com）からプロジェクトを作成して試すことができます。\n\n30本の技術発表を通して明確になったのは、AIエージェントの開発と運用における最大の障壁であった「インフラ構築の手間」「トークン消費に伴うコスト肥大化」「セキュリティの確保」「社内データとの接続」という4つの課題に対する統合的な回答です。従来はコンテナ構築や認証処理、個別のモデル切り替えロジックを開発者が自前で記述する必要がありました。今回のアップデートにより、これらすべてのレイヤーがMicrosoft Foundryとその周辺プラットフォーム側で自動化・抽象化されました。\n\nエージェント構築の現場では、基盤モデル単体の性能向上に頼るフェーズから、モデルの周りを支える「ハーネス（オーケストレーション基盤）」や「動的ルーティング」をいかに活用するかへと焦点が移っています。インフラを自前で組むことなく、画面上の設定ファイル（azure.yaml）やGUI操作のみで、安全かつ低コストにエージェントを本番運用できる体制が整いました。\n\n## 主要機能と要素技術の統合比較\n\n複数のアナウンスに跨って発表された新機能やツール群の役割と対応状況を、以下の表にまとめました。\n\n| 機能・ツール名 | 概要と主な役割 | 対象レイヤー | 主な特徴と数値指標 | 発表元・ソース |\n|---|---|---|---|---|\n| Copilot harness | エージェントの実行基盤と制御の全自動化 | 実行インフラ | コンテナ構築不要、Rust移植による起動高速化 | Microsoft Developer / 公式ブログ |\n| Model Router | 入力内容に応じたモデルの自動振り分け | コスト・性能最適化 | 37.7%の費用削減実証、3つの制御モード | The Azure Essentials Show / Developer |\n| Agent Optimizer | 会話ログに基づくプロンプトと構成の自動改善 | 継続的品質向上 | 精度スコア自動評価（0.753→0.832へ向上例） | Microsoft Developer |\n| Guardrails | PII漏洩や脱獄攻撃をブロックする安全フレームワーク | ガバナンス・セキュリティ | 4種の有害フィルタ、Task drift防止 | Microsoft Developer |\n| SQL MCP Server | データベースとAIエージェントの安全な接続 | データ連携 | Data API builder基盤、SQLインジェクション排除 | Visual Studio Live! / Developer |\n| DiskANN (Azure SQL) | 大規模ベクトル検索の超高速インデックス | データベース検索 | 10億行を32msで検索、構築速度6倍向上 | Microsoft Developer |\n| Copilot Cowork & Scout | 5段階のタスク委任と先回り型自律エージェント | 業務自動化 | 処理工数88.2%削減、Teams/Outlook連携 | Fly with Copilot / Windows ブログ |\n| GitHub Copilot SDK | 自作アプリへのエージェント組み込み用ツール | アプリケーション拡張 | 6言語対応、MXC Sandboxによる隔離実行 | Visual Studio Live! / Developer |\n\n## エージェント基盤の進化と公開の時系列\n\n2026年8月から11月にかけて公開された主要なアップデートの経緯は以下の通りです。基盤技術の提供から運用ツール、最終的な実務エージェントへの応用へと段階的に拡張されています。\n\n- **2026年8月7日**：Visual Studio July Updateにて新AIエージェントおよび「MCP C# SDK 2.0」が発表。\n- **2026年8月14日**：GitHub Copilotに「Kimi K3」が追加。SQLのベクトルインデックス（DiskANN）が6倍高速化し自動更新に対応。\n- **2026年8月17日**：SQLデータベースとエージェントを接続する「SQL MCP Server」がオープンソースで公開。\n- **2026年8月18日**：自作アプリにエージェントを組込める「GitHub Copilot SDK」が一般提供を開始。\n- **2026年8月19日**：「Azure SQL Hyperscale」のAI連携と新負荷テストツール「Sqlsim」が公開。\n- **2026年8月21日**：GitHub Copilotの「Agent Skills」および「SKILL.md」による手順再利用手法が解説。\n- **2026年9月7日**：「.NET Aspire」とGitHub Copilotの連携強化が発表。\n- **2026年9月11日**：デスクトップ上で直接動作するスタンドアロン型「GitHub Copilotアプリ」が一般提供。\n- **2026年9月24日**：SQLエンジン内部から直接AIモデルを呼び出す「Agentic RAG」の実装手法が公開。\n- **2026年9月25日**：Microsoft Foundryの「Model Router」が更新されマルチベンダー切り替えに対応。\n- **2026年9月30日**：「Copilot Cowork」と24時間常時稼働エージェント「Microsoft Scout」が発表。\n- **2026年10月1日**：Azure SQLのDiskANNが一般提供を開始。「Model Router Auto Evaluation」がオープンソース公開。\n- **2026年10月20日**：「The Azure Essentials Show」にてトークノミクスとAgent Optimizerが実演解説。\n- **2026年10月26日**：Microsoft Foundryの「Guardrails」詳細およびCopilotの「Cowork」新スキルが公開。Copilotで「GPT-6.1 Terra」が利用可能に。\n- **2026年10月28日**：エージェント実行基盤「Copilot harness」およびGitHubのプラグイン管理機能が公開・一般提供。\n- **2026年10月29日**：Microsoft Foundryにてコンテナ不要の「Copilot harness」エージェント構築がプレビュー公開。\n- **2026年10月30日**：オフラインで1220億パラメータモデルを動かす「Intelligent Terminal」が公開。\n- **2026年11月10日**：Microsoft Foundryの「Playground」動作検証手順と200ドル無料枠のガイドが公開。\n- **2026年11月11日**：ノボ ノルディスクの臨床データ分析AIがFoundryホステッドエージェントへ移行完了。\n\n## 統合解析から見えた運用設計の力点と未発表の論点\n\n一連の発表を横断すると、開発の主軸が「単一のモデルを選ぶこと」から「モデルを支えるハーネスやルーティングをどう整えるか」へ移ったことが分かります。プロンプトの修正だけで精度を上げようとすると、トークン数が増えてトータルの費用が悪化するケースがあります。「Model Router」でリアルタイムに軽量モデルへ振り分け、「Agent Optimizer」で本番ログ（Traces）から最適な指示文を生成させる2重の最適化ループが欠かせません。実効性能の具体的な数値と、限定的な提供状況の対比も見られます。Azure SQL DatabaseのDiskANNインデックスは、10億行のベクトル検索をわずか32ミリ秒で処理する実証データが示されました。一方で、Copilot harnessのRust移植による詳細な測定数値や、一部の最新モデル（gpt-6-lunaなど）の具体的な従量課金単価は、まだ提示されていません。セキュリティ面では、AIに完全に任せるのではなく、人間の承認を挟む「Human-in-the-loop」が徹底されています。Copilot SDKにおけるPermission Prompt、Copilot Coworkでの承認ステップ、SQL MCP Serverでの行レベルセキュリティ（RLS）連動など、安全なガバナンスと自動化の両立が標準設計となっています。\n\n## 主な発表のポイントと技術詳細\n\n**臨床データ分析AIのFoundry移行**\nノボ ノルディスクとマイクロソフトのチームは、研究者を支援する臨床データ分析AIをFoundryのホステッドエージェント環境へ移行しました。インフラのスケーリングやセッション隔離をプラットフォーム側に任せることで、研究データの探索とネットワーク制御を安全に両立させています。\n詳細: [ノボの臨床データ分析AIがFoundryへ移行　数千人の研究者を支援](/articles/novo-nordisk-clinical-data-agent-microsoft-foundry)\n\n**Playgroundでの事前テスト手順**\nMicrosoft Foundryポータル上の「Playground」では、本番公開前にコードを書かずにGUI操作のみでエージェントの挙動を調整できます。基盤モデルの切り替え、指示文の自動改善、Web検索などのツール連携をテストチャット画面で確認できます。\n詳細: [Microsoft FoundryでAIエージェントの事前テストが可能に　Playgroundの操作手順](/articles/microsoft-foundry-agent-playground-test)\n\n**Foundryの使い方と200ドル無料枠**\nポータルサイト（ai.azure.com）からサブスクリプションを連携することで、200ドル（約3万円）分の初期無料クレジットを使ってエージェント構築を開始できます。ZapierなどのMCP連携機能やAzure SDKコードの出力にも対応しています。\n詳細: [「Microsoft Foundry」の使い方と無料枠　200ドル分のテストが可能に](/articles/microsoft-foundry-agent-tutorial-azure)\n\n**Foundry Agent Serviceへの機能追加**\nエージェントの長時間処理やサンドボックス環境でのループ制御を管理する「Copilot harness」がプレビュー追加されました。同時にDirectXのGPU障害解析ダンプやRust向けCosmos DB SDK 1.0.0などの開発ツール群も更新されています。\n詳細: [「Foundry Agent Service」にAIエージェント実行基盤を追加　Microsoftが開発者向け最新情報を公開](/articles/microsoft-foundry-agent-service-copilot-harness)\n\n**オフラインで動作するIntelligent Terminal**\n1220億パラメータのモデル（Qwen 3.5 122B）を手元の端末内のみで実行し、コマンド操作からAIに作業を委任できる開発者ツールが公開されました。社外にコードを出せない環境でも安全にAIアシスタントを活用できます。\n詳細: [Microsoftが「Intelligent Terminal」を公開　AIをオフラインで実行](/articles/intelligent-terminal-local-120b-llm)\n\n**コンテナ不要のエージェント構築機能**\nCopilot harnessを利用することで、Dockerコンテナや状態管理のコードを書くことなくエージェントを作成できます。画面上のチェックボックスを入れるだけで、ファイル操作やWeb検索、サブエージェント呼び出し機能が有効化されます。\n詳細: [Microsoft、AIエージェント構築機能「Copilot harness」を発表　コンテナ不要](/articles/microsoft-copilot-harness-foundry-agent-builder)\n\n**GitHub開発のエージェント実行基盤**\nGitHub社内で実績を積んだオーケストレーション基盤「Copilot harness」がFoundryユーザー向けに開放されました。実行環境がRustに移植されたことで起動負荷が抑えられ、20以上のモデルへ動的に振り分ける機能を備えています。\n詳細: [Microsoft、GitHub製のエージェント実行基盤「Copilot harness」を「Microsoft Foundry」で提供](/articles/microsoft-copilot-harness-foundry)\n\n**GitHub Copilotのプラグイン一括制御**\n組織管理者がCopilotの必須プラグインを指定し、全開発者の環境へ自動インストール・有効化できる機能が一般提供されました。リポジトリごとの標準設定の共有も可能になり、セキュリティポリシー遵守が容易になります。\n詳細: [GitHub、Copilotのプラグイン管理機能を一般提供　組織の標準プラグインを自動導入](/articles/github-copilot-plugin-controls-ga)\n\n**Guardrailsによるセキュリティ強化**\nプロンプトインジェクションによる脱獄（Jailbreak）や、個人識別情報（PII）の流出、タスク外の雑談（Task drift）を自動遮断する包括的セキュリティ機能が実演されました。GUI操作で保護レベルを設定できます。\n詳細: [Microsoftが「Foundry」のガードレール機能を実演　AIエージェントの脱獄や情報漏えいを防止](/articles/microsoft-foundry-agent-guardrails-security)\n\n**Copilot Coworkの職種別スキル追加**\n営業、カスタマーサービス、教育、法務の4職種に向けたロールベーススキルが「Cowork」に追加されました。定型業務のワークフローがパッケージ化され、外部アプリやイベントをトリガーにした業務自動化に対応します。\n詳細: [Microsoft、AIエージェント「Cowork」に営業・法務など4職種向けスキルを追加](/articles/microsoft-copilot-cowork-new-skills)\n\n**GitHub CopilotでのGPT-6.1 Terra利用**\n日常的なエージェント型コーディングやターミナル作業に向けた軽量・高速モデル「GPT-6.1 Terra」がCopilotのモデル選択肢に追加されました。従来モデルより低コストで実務タスクを処理できます。\n詳細: [GitHub Copilotで「GPT-6.1 Terra」を使うには　対象は5つのプラン](/articles/gpt-6-1-terra-github-copilot-guide)\n\n**Azure SQL開発を支援するSQL Agent Skills**\nAIエージェントに対してAzure SQLのスキーマ移行や接続設定、診断などの専門知識を与えるスキル集と、初心者向け「Developer Hub」が公開されました。T-SQLを書かずにアプリ構築を進められます。\n詳細: [Microsoft、Azure SQL開発をAIエージェントで支援する「SQL Agent Skills」を公開](/articles/azure-sql-ai-agent-skills-guide)\n\n**Azure Cosmos DBのローカル開発手順**\nDocker上のエミュレーターと「Agent Kit」「MCP Toolkit」を組み合わせ、クラウド契約なしでデータ構造設計からベクター検索クエリの生成までをAIに支援させる手順が公開されました。\n詳細: [Microsoft、Azure Cosmos DBのAI支援開発手順を公開　ローカル環境で構築](/articles/azure-cosmos-db-ai-assisted-development)\n\n**Agent Optimizerによる構成の自己改善**\n指示文の変更やモデル選定を手作業で行うのではなく、本番ログから評価データを作成し、採点モデルにテストさせることで点数の高い設定を自動探索する「Agent Optimizer」が解説されました。\n詳細: [Microsoftが「Foundry」のAIエージェント最適化機能「Agent Optimizer」を解説](/articles/microsoft-foundry-agent-optimizer-guide)\n\n**トークノミクスと運用コストの最適化**\nAIエージェントのトークン消費構造を整理し、リアルタイムにモデルを自動選択する「Model Router」と、中長期的にプロンプトを自動改修する「Agent Optimizer」によるコスト制御手法が提示されました。\n詳細: [Microsoftが「Foundry」でAIエージェントの費用を抑える2機能を解説](/articles/microsoft-foundry-ai-agent-cost-optimization)\n\n**Model Router事前評価ツールのオープンソース化**\n自社業務のプロンプト群を入力し、Model Routerを導入した場合の費用削減率や品質スコア、応答速度を事前検証できる「Model Router Auto Evaluation」がGitHubで公開されました。デモでは37.7%のコスト削減が実証されています。\n詳細: [Microsoft、Foundryで「Model Router」の効果を事前検証できる評価ツールを公開](/articles/microsoft-foundry-model-router-auto-evaluation)\n\n**DiskANNベクトルインデックスの一般提供**\nAzure SQL Databaseにおいて、グラフベースのベクトルインデックス「DiskANN」が一般提供となりました。SSDストレージを活用し、10億行のデータをわずか32ミリ秒で検索できる超高速性を誇ります。\n詳細: [Azure SQL Database、DiskANNベクトルインデックスを一般提供　10億行を1秒未満で検索](/articles/azure-sql-vector-index-diskann-ga)\n\n**Copilot Coworkと自律型エージェントScout**\n業務の目的を渡して丸ごと委任する5段階のワークフロー「Cowork」と、24時間体制でメールやTeamsを監視し先回り提案を行う自律型エージェント「Scout」が発表されました。週34時間の工数を4時間に削減した実証値が示されています。\n詳細: [Microsoftが「Copilot Cowork」と自律型エージェント「Microsoft Scout」を発表](/articles/microsoft-copilot-cowork-scout-agentic-workflow)\n\n**開発運用とAIエージェントの分離制御**\nC#によるメモリダンプ自動生成パターンやPostgreSQLからの移行指針に加え、Foundryにおけるユーザー分離・セッション隔離、LangChain向けAzure Blob Storage耐久性ワークスペースが公開されました。\n詳細: [Microsoft、.NETのメモリダンプ自動生成手法とAIエージェント向け「永続メモリ」を公開](/articles/dotnet-memory-dumps-database-time-migration-ai-agent-memory)\n\n**Model Routerの機能更新と複数LLM対応**\nFoundryのModel Routerが機能拡張され、OpenAIだけでなくClaudeやGrok、DeepSeekなどのモデル群へ単一エンドポイントから自動選択・ルーティングできるようになりました。\n詳細: [Microsoft Foundry、複数LLMを自動で振り分ける「Model Router」を更新](/articles/microsoft-foundry-model-router-update)\n\n**SQLエンジン内部からのAgentic RAG実装**\nストアドプロシージャ `sp_invoke_external_rest_endpoint` と `VECTOR_SEARCH` を組み合わせ、SQLエンジンの内部から直接AIモデルを呼び出して評価を行うAgentic RAGの構築手法が公開されました。\n詳細: [Microsoft、SQLエンジン内部からAIモデルを呼び出す「Agentic RAG」の実装手法を公開](/articles/agentic-rag-microsoft-sql-engine)\n\n**デスクトップで動くGitHub Copilotアプリ**\nIDEを立ち上げることなく、WindowsやmacOSのデスクトップ上で直接動作する「GitHub Copilotアプリ」が一般提供されました。タスク単位でバグ修正やテスト作成を自動化できます。\n詳細: [GitHub、Windows・Mac向け「GitHub Copilotアプリ」を一般提供　エディタなしで利用可能](/articles/github-copilot-native-app-released)\n\n**.NET AspireとGitHub Copilotの統合**\n`aspire agent init` コマンドを実行するだけで、AIエージェントにマルチコンテナの立ち上げやデバッグ、一元化されたログ監視、デプロイを実行させる専用スキルを導入できます。\n詳細: [Microsoftが「.NET Aspire」とGitHub Copilotの連携を強化　AIがコンテナ起動やログ監視を実行](/articles/dotnet-aspire-github-copilot-integration)\n\n**Agent Skillsによる自動化手順の再利用**\nマークダウン形式の `SKILL.md` に一連の作業ステップを定義し、新規セッションやチーム内でAIワークフローを完全に再利用・共有する構築手法が解説されました。\n詳細: [Microsoft、GitHub Copilotの「Agent Skills」で作業を再利用する手法を解説](/articles/github-copilot-reusable-agent-skills-guide)\n\n**Azure SQL HyperscaleのAI連携**\nコンピュートとストレージを完全に分離したHyperscaleにおいて、最大30個まで追加できる「Named Replicas」へベクトル検索をオフロードし、本番処理に干渉させない設計が提示されました。\n詳細: [Microsoftが「Azure SQL Hyperscale」のAI連携と分散構成を解説　最大128TBに対応](/articles/azure-sql-hyperscale-developers-guide)\n\n**GitHub Copilot SDKの一般提供**\n6つのプログラミング言語に対応し、自作のアプリケーションやツール内部にCopilotのエージェント制御機構（ハーネス）を組み込めるSDKが一般提供となりました。軽量コンテナ「MXC Sandbox」もプレビュー提供されています。\n詳細: [GitHubが「GitHub Copilot SDK」を一般提供　自作アプリにAIエージェントを組み込み可能に](/articles/github-copilot-sdk-general-availability)\n\n**SQL MCP Serverのオープンソース発表**\n自然言語からSQLへの直接変換が抱えるセキュリティリスクを解消するため、Data API builderを基盤とし、MCPプロトコル経由で安全にデータを露出させる「SQL MCP Server」が公開されました。\n詳細: [Microsoft、AIエージェントとデータベースを安全に接続する「SQL MCP Server」を発表](/articles/microsoft-sql-mcp-server-announcement)\n\n**Kimi K3追加とマルチエージェント設計**\nMoonshot AIの「Kimi K3」がCopilotの選択肢に追加されました。あわせて複数エージェントを協調させる設計ガイドと、Azure上で26種のオープンモデルを利用できる「Fireworks AI」統合が発表されました。\n詳細: [GitHub Copilotに「Kimi K3」を追加　複数のAIを使い分ける機能も強化](/articles/github-copilot-kimi-k3-multi-agent)\n\n**SQLベクトルインデックスの性能向上**\nDiskANNの量子化技術により、インデックス構築速度が約6倍に向上しました。データの自動更新（DML追従）やFloat16サポート、イテレーティブフィルタリングに対応しています。\n詳細: [Microsoft、SQLのベクトルインデックスを強化　構築速度は約6倍、自動更新にも対応](/articles/mssql-vector-indexing-updates)\n\n**Visual Studioへの新エージェント搭載とMCP C# SDK 2.0**\nVisual StudioのJuly Updateにて、自律型AIエージェントのプレビュー版が搭載されました。さらにステートレス通信に対応した「MCP C# SDK 2.0」が正式リリースされています。\n詳細: [MicrosoftがVisual Studioに新AIエージェント　MCP C# SDK 2.0も発表](/articles/visual-studio-ai-agents-mcp-sdk)\n\n## まだ分からないこと\n\n- Copilot harnessの正式提供（GA）の具体的な時期と、利用に伴う追加料金の体系は発表されていません。\n- Intelligent Terminalでデモ利用された「Surface RTX Spark Dev Box」および「Surface Laptop Ultra」の販売価格や日本での発売日は明らかにされていません。\n- Agent OptimizerおよびModel Routerにおいて、プレビュー環境で示された最新モデルの具体的なトークン単価や全リージョンでの提供計画は確認されていません。\n\n## 開発者とIT管理者が今確認すべきステップ\n\n自社システムへの導入やAIエージェント構築を検討しているチームは、まずポータルサイト（ai.azure.com）にアクセスし、Azureサブスクリプションの管理者権限を確認してください。新規アカウント作成時に付与される200ドル分の無料クレジットを利用して、Playgroundでのプロンプト検証や「Model Router」の動作テストを行えます。\n\n社内システムや既存データベースとエージェントを連携させる場合は、MCP（Model Context Protocol）経由で許可するアクセス権限（読み取り専用、下書き作成のみなど）の運用方針をあらかじめ定めておくことが安全です。日常的に繰り返し行っている定型業務については、手順を「SKILL.md」形式のマークダウンファイルに分解して整理しておくことで、将来的なエージェント化をスムーズに進められます。",
-  "easy": "## ひとことで言うと\n\nMicrosoftが、AIエージェント（特定の仕事を自律的に進めるAI）を簡単に作成して運用するための最新機能をまとめて公開しました。面倒なサーバーの準備をせずに指示文とツールを選ぶだけでAIが動き出し、トークンの使いすぎを防ぐ自動調整の仕組みも用意されています。\n\n## サーバーの準備やインフラ管理が不要に\n\nこれまでAIエージェントを動かすには、専用のサーバーやコンテナ（アプリの隔離環境）を自前で構築する必要がありました。新しく提供された機能を使えば、画面上の設定やチェックボックス操作だけでエージェントを立ち上げられます。Web検索やファイル操作などの標準ツールも、チェックを入れるだけで安全に組み込めます。\n\n## 最適なモデルの自動選択でコストを節約\n\n簡単な問い合わせには軽量で安価なモデル、複雑な推論には高性能なモデルというように、依頼内容に応じてAIを自動で切り替える機能が追加されました。また、本番環境の会話データをもとにAIがプロンプト（指示文）を自己改善し、回答精度を維持しながら通信コストを削減する仕組みも利用できます。\n\n## 安全対策と社内データベースへの接続\n\nAIが悪意ある命令に騙されたり個人情報を漏らしたりしないよう、画面上で安全基準（ガードレール）を細かく設定できます。さらに、既存の社内データベースとAIエージェントを安全に接続する共通規格も整備され、企業データを守りながら自動化を進められます。",
-  "channel": "30本の記事をまとめた記事",
+  "body": "Microsoftが提供する「Microsoft Foundry」を中心としたエコシステムは、AIモデルの単体性能を競う段階から、複数のAIエージェントを安全かつ効率的に制御するプラットフォームへと大きく前進しました。\n\n従来、AIエージェントを自社ツールに組み込む際は、インフラの準備や認証の仕組み、会話状態の維持コードを手作業で構築する必要がありました。今回の機能群の拡充により、設定ファイル（azure.yaml）や管理画面（ポータル）の操作だけで、外部ツールの接続規格であるModel Context Protocol（MCP）や安全対策を組み込めるようになっています。\n\nさらに、エンタープライズ領域で最大の課題となるコスト管理についても、リアルタイムにモデルを振り分ける「Model Router」や、本番ログから構成を自己改善する「Agent Optimizer」によって自動化が進んでいます。\n\n## エージェント作成から安全管理までを網羅する主要機能\n\nMicrosoft Foundryおよび周辺ツールで提供される主な機能と役割を整理しました。これらは独立して動くのではなく、単一のAzureポータルや統合開発環境（IDE）を通じて相互に連携します。\n\n| 機能名 | 主な役割と特徴 | 連携対象・接続標準 | 主なメリット | 公開記事 |\n|---|---|---|---|---|\n| Copilot harness | エージェントの実行環境（サンドボックス）とループ制御を自動提供 | MCP, GitHub Copilot | コンテナ構築不要で自動化タスクを即時作成 | Copilotで社内データの意味や品質を確認 InformaticaがMicrosoft連携を強化 / Microsoft、AIエージェント構築機能「Copilot harness」を発表 コンテナ不要 |\n| Model Router | プロンプトの難易度に応じて適切なAIモデルへリアルタイム振分 | OpenAI, Claude, Grok, DeepSeek等 | 応答精度を保ちながらAPIコストを約37%削減 | Microsoft Foundry、複数LLMを自動で振り分ける「Model Router」を更新 / Microsoft、Foundryで「Model Router」の効果を事前検証できる評価ツールを公開 |\n| Agent Optimizer | 本番会話ログからプロンプトやモデル構成を自動改善 | Foundry Playground, Evaluatorモデル | 評価データの手動作成なしで精度向上と費用抑制を両立 | Microsoftが「Foundry」のAIエージェント最適化機能「Agent Optimizer」を解説 |\n| Guardrails | 脱獄（Jailbreak）やPII（個人情報）漏洩、タスク乖離を遮断 | Azure AI Content Safety | GUI操作のみでセキュリティ基準を強制適用 | Microsoftが「Foundry」のガードレール機能を実演 AIエージェントの脱獄や情報漏えいを防止 |\n| SQL MCP Server | データベースとAIを安全につなぐ標準APIミドルウェア | Data API builder, MCP | NL to SQLのリスクを避け安全なデータアクセスを実現 | Microsoft、AIエージェントとデータベースを安全に接続する「SQL MCP Server」を発表 |\n| GitHub Copilot SDK | 自作アプリに Copilot の自律エージェント機能を組み込み | TypeScript, Python, C#, Go, Java, Rust | 6言語対応で自社ツール専用のエージェントを構築 | GitHubが「GitHub Copilot SDK」を一般提供 自作アプリにAIエージェントを組み込み可能に |\n\n## 2026年8月から11月にかけた機能更新のあゆみ\n\nここ数カ月で公開された主要な発表を時系列順に整理しました。開発基盤のプレビュー公開から、オープンソース化、一般提供（GA）へと段階的に機能が拡充されていることが分かります。\n\n- **2026年8月07日**：Visual Studio（July Update）に新型AIエージェントプレビュー搭載、MCP C# SDK 2.0リリース（詳細: [MicrosoftがVisual Studioに新AIエージェント MCP C# SDK 2.0も発表](/articles/visual-studio-ai-agents-mcp-sdk)）\n- **2026年8月14日**：Microsoft SQLのベクトルインデックス更新（構築速度6倍、Float16対応）（詳細: [Microsoft、SQLのベクトルインデックスを強化 構築速度は約6倍、自動更新にも対応](/articles/mssql-vector-indexing-updates)）\n- **2026年8月14日**：GitHub Copilotに「Kimi K3」追加、マルチエージェント設計ガイド公開（詳細: [GitHub Copilotに「Kimi K3」を追加 複数のAIを使い分ける機能も強化](/articles/github-copilot-kimi-k3-multi-agent)）\n- **2026年8月17日**：Data API builderベースの「SQL MCP Server」オープンソース公開（詳細: [Microsoft、AIエージェントとデータベースを安全に接続する「SQL MCP Server」を発表](/articles/microsoft-sql-mcp-server-announcement)）\n- **2026年8月18日**：6言語対応の「GitHub Copilot SDK」一般提供（GA）開始（詳細: [GitHubが「GitHub Copilot SDK」を一般提供 自作アプリにAIエージェントを組み込み可能に](/articles/github-copilot-sdk-general-availability)）\n- **2026年8月19日**：Azure SQL HyperscaleのAI連携および新負荷テストツール「Sqlsim」公開（詳細: [Microsoftが「Azure SQL Hyperscale」のAI連携と分散構成を解説 最大128TBに対応](/articles/azure-sql-hyperscale-developers-guide)）\n- **2026年8月21日**：GitHub Copilotの「Agent Skills」および「SKILL.md」活用法を解説（詳細: [Microsoft、GitHub Copilotの「Agent Skills」で作業を再利用する手法を解説](/articles/github-copilot-reusable-agent-skills-guide)）\n- **2026年9月07日**：.NET AspireとGitHub Copilotの連携機能「aspire agent init」発表（詳細: [Microsoftが「.NET Aspire」とGitHub Copilotの連携を強化 AIがコンテナ起動やログ監視を実行](/articles/dotnet-aspire-github-copilot-integration)）\n- **2026年9月11日**：OS上で直接動く「GitHub Copilotアプリ（Windows/Mac）」一般提供（詳細: [GitHub、Windows・Mac向け「GitHub Copilotアプリ」を一般提供 エディタなしで利用可能](/articles/github-copilot-native-app-released)）\n- **2026年9月24日**：SQLエンジン内からREST APIを叩く「Agentic RAG」とLedgerテーブル監査を実演（詳細: [Microsoft、SQLエンジン内部からAIモデルを呼び出す「Agentic RAG」の実装手法を公開](/articles/agentic-rag-microsoft-sql-engine)）\n- **2026年9月25日**：Microsoft Foundryの「Model Router」更新（複数モデル振り分け制御）（詳細: [Microsoft Foundry、複数LLMを自動で振り分ける「Model Router」を更新](/articles/microsoft-foundry-model-router-update)）\n- **2026年9月26日**：.NETのメモリダンプ自動生成パターンおよびFoundry分離制御を公開（詳細: [Microsoft、.NETのメモリダンプ自動生成手法とAIエージェント向け「永続メモリ」を公開](/articles/dotnet-memory-dumps-database-time-migration-ai-agent-memory)）\n- **2026年9月30日**：タスク委任型の「Copilot Cowork」と24時間常時稼働「Microsoft Scout」を発表（詳細: [Microsoftが「Copilot Cowork」と自律型エージェント「Microsoft Scout」を発表](/articles/microsoft-copilot-cowork-scout-agentic-workflow)）\n- **2026年10月01日**：Azure SQL DatabaseのDiskANNベクトルインデックス一般提供（10億行を32ms検索）（詳細: [Azure SQL Database、DiskANNベクトルインデックスを一般提供 10億行を1秒未満で検索](/articles/azure-sql-vector-index-diskann-ga)）\n- **2026年10月01日**：「Model Router Auto Evaluation」ツールをGitHubで無料公開（詳細: [Microsoft、Foundryで「Model Router」の効果を事前検証できる評価ツールを公開](/articles/microsoft-foundry-model-router-auto-evaluation)）\n- **2026年10月20日**：Foundryの「トークノミクス」最適化（Model Router×Agent Optimizer）を解説（詳細: [Microsoftが「Foundry」でAIエージェントの費用を抑える2機能を解説](/articles/microsoft-foundry-ai-agent-cost-optimization)）\n- **2026年10月22日**：Azure Cosmos DBのAI支援開発手順およびMCP Toolkitを公開（詳細: [Microsoft、Azure Cosmos DBのAI支援開発手順を公開 ローカル環境で構築](/articles/azure-cosmos-db-ai-assisted-development)）\n- **2026年10月22日**：Azure SQL開発を支援する「SQL Agent Skills」およびDeveloper Hubを公開（詳細: [Microsoft、Azure SQL開発をAIエージェントで支援する「SQL Agent Skills」を公開](/articles/azure-sql-ai-agent-skills-guide)）\n- **2026年10月26日**：Foundryの「Guardrails」安全制御（PII遮断・Jailbreak防御）を実演（詳細: [Microsoftが「Foundry」のガードレール機能を実演 AIエージェントの脱獄や情報漏えいを防止](/articles/microsoft-foundry-agent-guardrails-security)）\n- **2026年10月26日**：Copilot Coworkに営業・法務など4職種向け専門スキルを追加（詳細: [Microsoft、AIエージェント「Cowork」に営業・法務など4職種向けスキルを追加](/articles/microsoft-copilot-cowork-new-skills)）\n- **2026年10月26日**：GitHub Copilotで「GPT-6.1 Terra」モデル選択を一般提供（詳細: [GitHub Copilotで「GPT-6.1 Terra」を使うには 対象は5つのプラン](/articles/gpt-6-1-terra-github-copilot-guide)）\n- **2026年10月28日**：GitHub製の制御基盤「Copilot harness」をMicrosoft Foundryに開放（詳細: [Microsoft、GitHub製のエージェント実行基盤「Copilot harness」を「Microsoft Foundry」で提供](/articles/microsoft-copilot-harness-foundry)）\n- **2026年10月28日**：GitHub Copilotのプラグイン管理機能を組織向けに一般提供（詳細: [GitHub、Copilotのプラグイン管理機能を一般提供 組織の標準プラグインを自動導入](/articles/github-copilot-plugin-controls-ga)）\n- **2026年10月29日**：Microsoft Foundryで「Copilot harness」プレビュー版を発表（詳細: [Microsoft、AIエージェント構築機能「Copilot harness」を発表 コンテナ不要](/articles/microsoft-copilot-harness-foundry-agent-builder)）\n- **2026年10月30日**：ローカルPCで1220億パラメータモデルを動かす「Intelligent Terminal」公開（詳細: [Microsoftが「Intelligent Terminal」を公開 AIをオフラインで実行](/articles/intelligent-terminal-local-120b-llm)）\n- **2026年11月06日**：Foundry Agent Serviceに「Copilot harness」のパブリックプレビューを追加（詳細: [「Foundry Agent Service」にAIエージェント実行基盤を追加 Microsoftが開発者向け最新情報を公開](/articles/microsoft-foundry-agent-service-copilot-harness)）\n- **2026年11月10日**：Foundryの実験環境「Playground」での挙動調整手順を公開（詳細: [Microsoft FoundryでAIエージェントの事前テストが可能に Playgroundの操作手順](/articles/microsoft-foundry-agent-playground-test)）\n- **2026年11月10日**：Microsoft Foundryの使い方と200ドル無料枠の適用ルールを解説（詳細: [「Microsoft Foundry」の使い方と無料枠 200ドル分のテストが可能に](/articles/microsoft-foundry-agent-tutorial-azure)）\n- **2026年11月11日**：ノボ ノルディスクが臨床分析エージェントをFoundryホステッド環境へ移行（詳細: [ノボの臨床データ分析AIがFoundryへ移行 数千人の研究者を支援](/articles/novo-nordisk-clinical-data-agent-microsoft-foundry)）\n- **2026年11月27日**：InformaticaがMicrosoft連携を強化（Informatica Headless MCP）（詳細: [Copilotで社内データの意味や品質を確認 InformaticaがMicrosoft連携を強化](/articles/informatica-microsoft-copilot-foundry-integration)）\n\n## コスト削減とセキュリティ確保を両立する現実的な設計\n\n一連の記事を横断して分析すると、Microsoftが推進する「AIエージェント基盤」の共通した設計思想が浮かび上がってきます。\n\n**トークノミクスによるコスト最適化**\nAIエージェントは自律的にツール呼び出しや思考のループを繰り返すため、1回のリクエストで大量のトークンを消費します。単にプロンプトを短くするだけでは推論精度が落ち、結果としてやり直しが発生して総コストが悪化します。Foundryでは「Model Router」で簡単な質問を軽量モデルへ振り分けつつ、「Agent Optimizer」で本番ログ（Traces）からプロンプトの構成差分（Diff）を比較採点し、精度と費用の損益分岐点を自動調整する仕組みを提供しています。\n\n**エンタープライズ領域におけるセキュリティと隔離**\nエージェントを本番運用する際、社内データの漏洩やネットワーク侵入が大きな懸念点となります。ノボ ノルディスクの事例や.NET解説記事にある通り、Foundryホステッドエージェントではセッションごとに仮想マシン（VM）で環境が隔離されます。ネットワーク設計においては本番環境に/24サブネット（小規模なら/27）の確保が推奨されています。また、データの変更履歴は改ざん不可能な「Ledger（台帳）テーブル」に自動記録され、AIがどのような判断を下したかを後から完全監査できる構成が用意されています。\n\n**標準プロトコル（MCP）によるベンダーロックインの回避**\n外部ツールやデータベースとの連携にあたっては、「Model Context Protocol（MCP）」が全面採用されています。Data API builderを用いた「SQL MCP Server」や、Informatica Headlessのガバナンス管理もすべてMCP経由で実行されます。これにより、特定の開発言語やサービスに依存することなく、社内資産を安全にAIエージェントへ提供できます。\n\n## 主要な発表の要点整理\n\n各発表のコアとなる仕組みと実務での活用例を整理しました。\n\n**Copilot harnessによるインフラレス開発**\nGitHubのエンジニアリングチームが開発した制御層をFoundryに開放しました。Dockerコンテナの作成や認証コードの記述を行わずに、`azure.yaml` ファイルで指示とツールを指定するだけでエージェントを稼働できます。内部ランタイムがRustに移植されたことで、起動遅延の低減が図られています。詳細: [Microsoft、AIエージェント構築機能「Copilot harness」を発表 コンテナ不要](/articles/microsoft-copilot-harness-foundry-agent-builder)\n\n**Model RouterとAgent Optimizer**\n100万トークン規模のコンテキストに対応した単一エンドポイントとして機能し、ユーザーの入力を解析して最適なモデル（GPT-4o、Claude、Grok、DeepSeek等）へ即座に割り振ります。実用テストでは、モデル単体の運用と比較して37.7%のコスト削減を達成しながら、回答品質の低下を僅差に抑えたデータが示されています。詳細: [Microsoft Foundry、複数LLMを自動で振り分ける「Model Router」を更新](/articles/microsoft-foundry-model-router-update)\n\n**Foundry Guardrailsでの脅威遮断**\nプロンプトインジェクション攻撃や、外部サイトに潜む悪意ある指示（間接的プロンプトインジェクション）をブロックします。さらに氏名、電話番号、メールアドレスなどの個人情報（PII）の検出・マスク機能や、雑談に脱線するのを防ぐタスク維持（Task Adherence）機能をポータルのスライダー操作のみで設定できます。詳細: [Microsoftが「Foundry」のガードレール機能を実演 AIエージェントの脱獄や情報漏えいを防止](/articles/microsoft-foundry-agent-guardrails-security)\n\n**SQL MCP ServerおよびAgentic RAG**\n自然言語からSQLを直接生成する既存手法の脆弱性を排除するため、型定義された「Data API builder（DAB）」を介してデータベースを露出します。T-SQLのストアドプロシージャ内から外部LLMを安全に呼び出し、判定結果を改ざん不可なLedgerテーブルに記録する「Agentic RAG」の構築パターンが提示されています。詳細: [Microsoft、AIエージェントとデータベースを安全に接続する「SQL MCP Server」を発表](/articles/microsoft-sql-mcp-server-announcement)\n\n**GitHub Copilot SDKとCopilotアプリ**\nPython、TypeScript、C#、Go、Java、Rustの6言語に対応したSDKが一般提供されました。軽量コンテナ「MXC Sandbox」環境下でコマンドやファイル操作を安全に実行させることが可能です。また、エディタを立ち上げずにデスクトップから直接タスクを指示できる「GitHub Copilotアプリ」もOS向けに無償配布されています。詳細: [GitHubが「GitHub Copilot SDK」を一般提供 自作アプリにAIエージェントを組み込み可能に](/articles/github-copilot-sdk-general-availability)\n\n**Azure SQL DatabaseのDiskANNベクトルインデックス**\n10億行規模の超巨大ベクトルデータであっても、応答時間32ミリ秒で近似最近傍検索を実行できる「DiskANN」が一般提供となりました。SSDストレージを効率活用するアーキテクチャによりメモリ消費量を抑えつつ、リレーショナルな検索条件で絞り込みながら探索する「反復フィルタリング」をサポートします。詳細: [Azure SQL Database、DiskANNベクトルインデックスを一般提供 10億行を1秒未満で検索](/articles/azure-sql-vector-index-diskann-ga)\n\n## まだ分からないこと\n\n今回の統合発表の中で、将来のアップデートや運用にあたりまだ発表されていない項目は以下の通りです。\n\n- Copilot harnessおよびAgent Optimizerの正式提供（GA）時期と追加利用料金はまだ発表されていません。\n- 128GB統合メモリを搭載したIntelligent Terminal開発用端末（Surface RTX Spark Dev Boxなど）の価格と日本での発売時期はまだ発表されていません。\n- Azure SQL Databaseのローカルコンテナ開発機能の一般公開時期はまだ発表されていません。\n- Model Routerで使用できる各モデルの最新利用単価や最新提供リージョン一覧は、ポータル上の画面で随時確認する必要があります。\n\n## 導入に向けた推奨ステップ\n\n自社環境でMicrosoft Foundryおよびエージェント基盤の評価を始める場合、以下の手順で進めることが推奨されます。\n\n1. **ポータルサイトへのアクセスと管理権限確認**\n`ai.azure.com` にアクセスし、手持ちのGitHubアカウント等でサインインします。Azureサブスクリプションの管理者権限を確認し、200ドル分の無料初期クレジットを有効化します。\n2. **MCPサーバーおよび外部連携の精査**\n自社で利用しているデータベース（Azure SQLやCosmos DB）または外部SaaSがMCPに対応可能かを確認します。「Data API builder」のJSON構成ファイル（dab-config.json）を作成し、ローカル環境で安全なAPI露出のテストを実施します。\n3. **エージェントプロトタイプの作成とGuardrails適用**\nFoundryポータル上で「Build an agent」を実行し、プロンプトと連携ツールの設定を行います。「Guardrails」セクションからPII保護およびJailbreakブロックをオンにし、Playground上で攻撃テストを実施して挙動を評価します。\n4. **Model Routerの導入によるコスト試算**\n本番展開の前に、GitHubでオープンソース公開されている「Model Router Auto Evaluation」ツールキットをクローンし、自社のプロンプトデータセット（JSONL形式）を流し込んで費用削減率と応答遅延の対比データを確認してください。",
+  "easy": "## ひとことで言うと\n\nMicrosoft Foundry（マイクロソフト・ファウンドリ）は、特定の作業を自動でこなす「AIエージェント」を作り、安全に動かすための開発基盤です。\n\n### なぜ注目されているのか\nAIを業務で使うとき、利用料金の膨らみや意図しない挙動への不安が課題になります。\nMicrosoft Foundryを使うと、簡単な質問には低価格なAIを、難しい計算には高機能なAIを自動で割り当てて費用を抑えられます。\nまた、社内のデータベースや外部サービスと安全につなぎ、勝手なデータ変更や個人情報の流出を防ぐ仕組みも用意されています。\n\n### 試してみる手順\n公式ポータルサイト（ai.azure.com）から、手持ちのアカウントでログインできます。\n登録時にテスト用の無料クレジットが200ドル（約3万円）分付与されるため、費用をかけずに試せます。",
+  "channel": "31本の記事をまとめた記事",
   "channelId": "",
-  "channelSlug": "microsoft-source",
+  "channelSlug": "salesforce-jp",
   "genre": "AI・テクノロジー",
   "genreSlug": "ai",
   "disclaimer": "本記事は元動画の映像・音声をAIが解析して自動生成したものです。誤りが含まれる可能性があるため、正確な仕様・料金は公式発表をご確認ください。",
   "videoId": "",
   "videoUrl": "",
-  "videoTitle": "Foundry 関連の30本",
-  "publishedAt": "2026-11-11T15:07:19+00:00",
-  "generatedAt": "2026-11-13T19:40:26.802408+00:00",
-  "thumbnail": "https://ai-tech-express.jp/img/novo-nordisk-clinical-data-agent-microsoft-foundry-05bd2c8c.jpg",
+  "videoTitle": "Foundry 関連の31本",
+  "publishedAt": "2026-11-27T02:00:00+00:00",
+  "generatedAt": "2026-11-28T00:18:31.184342+00:00",
+  "thumbnail": "https://ai-tech-express.jp/img/informatica-microsoft-copilot-foundry-integration-5994b52c.jpg",
   "model": "gemini-3.5-flash",
   "affiliates": [],
-  "depthAt": "2026-11-13T19:40:48+00:00",
+  "depthAt": "2026-11-28T00:19:01+00:00",
   "imageCredit": {
     "kind": "official",
-    "org": "Microsoft",
-    "provider": "Microsoft Source（ニュースルーム）",
-    "sourceUrl": "https://commandline.microsoft.com/from-custom-infrastructure-to-hosted-agents/",
-    "original": "https://commandline.microsoft.com/wp-content/uploads/2026/11/from-custom-infrastructure-to-hosted-agents-hero.png",
+    "org": "Salesforce",
+    "provider": "Salesforce ニュース（日本）",
+    "sourceUrl": "https://www.salesforce.com/jp/news/stories/informatica-trusted-enterprise-data-microsoft-collaboration/",
+    "original": "https://www.salesforce.com/jp/news/wp-content/uploads/sites/21/2026/11/Informatica-Salesforce.png",
     "width": 1200,
-    "height": 600,
-    "at": "2026-11-11T22:00:59+00:00",
+    "height": 675,
+    "at": "2026-11-27T10:04:01+00:00",
     "imageKind": "hero"
   },
   "imageFocus": {
-    "x": 0.483,
-    "y": 0.472,
+    "x": 0.508,
+    "y": 0.494,
     "box": [
-      0.0,
-      0.019,
-      0.966,
-      0.925
+      0.066,
+      0.144,
+      0.95,
+      0.844
     ],
-    "ar": 2.0,
-    "src": "https://ai-tech-express.jp/img/novo-nordisk-clinical-data-agent-microsoft-foundry-05bd2c8c.jpg"
-  },
-  "sectionsPolishedAt": "2026-11-13T19:49:07+00:00"
+    "ar": 1.7778,
+    "src": "https://ai-tech-express.jp/img/informatica-microsoft-copilot-foundry-integration-5994b52c.jpg"
+  }
 }

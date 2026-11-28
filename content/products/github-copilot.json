@@ -10,18 +10,19 @@
   "companyName": "Microsoft",
   "category": "開発ツール",
   "overview": {
-    "text": "GitHub Copilotは、プログラムの補完や作業の代行をするAIの開発支援サービスです。MicrosoftおよびGitHubが提供しています。2026年8月にモデル選択肢の追加などの更新が発表されました。",
+    "text": "GitHub Copilotは、プログラムの補完や作業の代行をするAIの開発支援サービスです。Microsoftが提供しており、各種機能やモデルの追加が発表されています。",
     "sources": [
-      "github-copilot-kimi-k3-multi-agent",
-      "github-copilot-weekly-releases-nov-2"
+      "github-copilot-weekly-releases-nov-2",
+      "gpt-6-1-terra-github-copilot-guide"
     ]
   },
   "facts": [
     {
-      "label": "提供開始",
-      "value": "2026年8月頃から順次",
+      "label": "料金",
+      "value": "プラン別（Free、Pro月10ドルなど）",
       "sources": [
-        "github-copilot-kimi-k3-multi-agent"
+        "github-copilot-code-review-api-settings",
+        "github-copilot-security-extension"
       ]
     },
     {
@@ -29,92 +30,115 @@
       "value": "日本で利用できる",
       "sources": [
         "github-copilot-code-review-api-settings",
-        "github-copilot-kimi-k3-multi-agent"
+        "copilot-impact-dashboard-chat-vscode-agent"
       ]
     },
     {
-      "label": "向いている人",
-      "value": "開発者および開発チームの管理者",
+      "label": "使える場所",
+      "value": "VS Code、Xcode、JetBrainsなど",
       "sources": [
-        "github-copilot-code-review-api-settings",
-        "github-copilot-weekly-releases-nov-2"
+        "github-copilot-weekly-releases-nov-2",
+        "gpt-6-1-terra-github-copilot-guide"
       ]
     }
   ],
   "capabilities": [
     {
-      "text": "REST APIやGraphQL APIを使って企業から各リポジトリまでコードレビューの設定を変更できます。",
+      "text": "REST APIやGraphQL APIからコードレビューの設定を変更できます。",
       "sources": [
         "github-copilot-code-review-api-settings"
       ]
     },
     {
-      "text": "Xcode 27.3 betaの標準コーディングアシスタントとして利用できます。",
+      "text": "OpenAIの新しいAIモデル「GPT-6.1 Terra」を選んで利用できます。",
       "sources": [
-        "github-copilot-weekly-releases-nov-2"
+        "gpt-6-1-terra-github-copilot-guide"
       ]
     },
     {
-      "text": "JetBrains Air上やクラウド環境で複数のエージェント作業を進められます。",
+      "text": "Copilotアプリ内でcode scanningアラートを確認し、説明や修正を依頼できます。",
       "sources": [
-        "github-copilot-jetbrains-air",
-        "github-copilot-weekly-releases-nov-2"
+        "github-copilot-security-extension"
       ]
     },
     {
-      "text": "AIによるデスクトップアプリの自動操作機能を利用できます。",
+      "text": "JetBrains Air上でも既存のCopilot契約でコードの作業を任せられます。",
       "sources": [
-        "github-copilot-app-projects-computer-use"
+        "github-copilot-jetbrains-air"
       ]
     }
   ],
-  "pricing": [],
-  "japan": [
+  "pricing": [
     {
-      "text": "GitHub Copilot自体は日本で利用できます。公式ドキュメントは日本語で公開されています。",
+      "text": "対象プランはPro、Pro+、Max、Business、Enterpriseです。Freeプランは対象外の機能があります。",
       "sources": [
         "github-copilot-code-review-api-settings",
-        "github-copilot-kimi-k3-multi-agent"
+        "github-copilot-security-extension"
+      ]
+    },
+    {
+      "text": "個人向けプランの価格は、Proが月10ドル、Pro+が月39ドル、Maxが月100ドルとなっています。",
+      "sources": [
+        "github-copilot-security-extension"
+      ]
+    }
+  ],
+  "japan": [
+    {
+      "text": "GitHub Copilot自体は日本で使えます。公式ドキュメントは日本語で公開されています。",
+      "sources": [
+        "copilot-impact-dashboard-chat-vscode-agent",
+        "github-copilot-jetbrains-air"
       ]
     }
   ],
   "howto": [
     {
-      "text": "対応するエディタやIDEの拡張機能を通じて利用できます。",
+      "text": "対応するエディタやCopilotアプリのモデル選択メニューから利用したいモデルを選びます。",
       "sources": [
-        "github-copilot-kimi-k3-multi-agent",
+        "gpt-6-1-terra-github-copilot-guide",
+        "github-copilot-kimi-k3-multi-agent"
+      ]
+    },
+    {
+      "text": "セキュリティ拡張機能は、ターミナルでプラグインをインストールするかアプリで検索して追加できます。",
+      "sources": [
+        "github-copilot-security-extension"
+      ]
+    }
+  ],
+  "differences": [
+    {
+      "text": "コードレビューの設定をREST APIやGraphQL APIから変更できるようになりました。",
+      "sources": [
+        "github-copilot-code-review-api-settings"
+      ]
+    },
+    {
+      "text": "影響ダッシュボードの採用グラフにチャットとVS Codeのエージェント画面が加わり、9機能を確認できるようになりました。",
+      "sources": [
+        "copilot-impact-dashboard-chat-vscode-agent"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Freeプランでも使えますか？",
+      "a": "コードレビューの設定APIなどの今回の新しい機能では、Freeプランは対象外となっています。",
+      "sources": [
+        "github-copilot-code-review-api-settings"
+      ]
+    },
+    {
+      "q": "Xcodeで使えますか？",
+      "a": "Xcode 27.3 betaの標準コーディングアシスタントで公開プレビューとして利用できます。",
+      "sources": [
         "github-copilot-weekly-releases-nov-2"
       ]
     },
     {
-      "text": "チャット画面のモデル選択メニューから好みのAIモデルに切り替えられます。",
-      "sources": [
-        "gpt-6-1-terra-github-copilot-guide",
-        "github-copilot-kimi-k3-multi-agent"
-      ]
-    }
-  ],
-  "differences": [],
-  "faq": [
-    {
-      "q": "いつから使えますか？",
-      "a": "すでに主要な機能やモデルの提供が始まっています。一部の機能は段階的な展開となっています。",
-      "sources": [
-        "gpt-6-1-terra-github-copilot-guide",
-        "github-copilot-kimi-k3-multi-agent"
-      ]
-    },
-    {
-      "q": "どのプランが対象ですか？",
-      "a": "機能やモデルにより異なりますが、ProやBusinessなどのプランが対象となります。",
-      "sources": [
-        "github-copilot-code-review-api-settings",
-        "gpt-6-1-terra-github-copilot-guide"
-      ]
-    },
-    {
-      "q": "セキュリティ機能はありますか？",
-      "a": "アプリ内のセキュリティ拡張でコードスキャン等の確認や修正依頼を行えます。",
+      "q": "セキュリティ拡張機能の導入には何が必要ですか？",
+      "a": "リポジトリでcode scanningが有効な場合などに利用でき、アプリからインストールできます。",
       "sources": [
         "github-copilot-security-extension"
       ]
@@ -134,12 +158,17 @@
     {
       "date": "2026-10-29",
       "slug": "github-copilot-app-projects-computer-use",
-      "event": "Copilotアプリにプロジェクト機能を追加"
+      "event": "アプリにプロジェクト機能とPC操作を追加"
     },
     {
       "date": "2026-10-29",
       "slug": "github-copilot-security-extension",
       "event": "Copilotアプリにセキュリティ拡張を追加"
+    },
+    {
+      "date": "2026-11-04",
+      "slug": "github-copilot-jetbrains-air",
+      "event": "JetBrainsのAirにCopilotを提供"
     },
     {
       "date": "2026-11-07",
@@ -202,9 +231,9 @@
     "github-copilot-reusable-agent-skills-guide",
     "github-copilot-kimi-k3-multi-agent"
   ],
-  "signature": "914b7200ad982e2e",
+  "signature": "1ef9bad528517655",
   "primarySignature": "1df75fafa54bdcd9",
   "model": "gemini-3.5-flash-lite",
   "createdAt": "2026-10-27T10:43:48+00:00",
-  "updatedAt": "2026-11-15T10:51:39+00:00"
+  "updatedAt": "2026-11-28T00:18:52+00:00"
 }
