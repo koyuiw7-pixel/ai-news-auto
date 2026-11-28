@@ -730,6 +730,8 @@ def broad_prefilter(item: dict) -> str | None:
 # 急上昇の言葉ごとに 公式のフィードの候補 → 報道の記事の中の公式のリンク → 主要な報道機関2社以上 の順で出典を探して記事にする。
 # 止めるときは TREND_LANE=0（レーンごと）か TREND_FROM_PRESS=0（公式の出典がある話題だけ作り、報道だけの話題は作らない）
 TREND_LANE = os.environ.get("TREND_LANE", "1") != "0"
+# 話題のレーンで暮らし・お金・安全の言葉を先に回す（2026-11-28。scripts/trend_lane.py の axis_order）。戻すときは TREND_AXIS_FIRST=0
+TREND_AXIS_FIRST = os.environ.get("TREND_AXIS_FIRST", "1") != "0"
 # 公式の発表が無い話題を、主要な報道機関（public_interest.TREND_PRESS_OUTLETS）の独立した2社以上の報道で短い記事にするか。
 # W31 の例外はこの形だけ（2026-11-04〜11-12 は 0＝話題の記事を作らない、だった）
 # 2026-11-25 オーナー「2次情報を使うのはうそ」・方向転換（公式から一番早く）。報道だけの話題は既定で作らない（編集方針どおり）。
@@ -2391,6 +2393,12 @@ def main() -> int:
         ]
         queue.sort(key=lambda q: q.get("traffic", 0), reverse=True)
         log(f"[info] 話題キュー {len(queue)} 件 / 上限 {trend_limit} 本")
+        if TREND_AXIS_FIRST:
+            # 2026-11-28（あなたの数字の軸・オーナー「本数を減らさない」）: 1回の本数はそのまま、暮らし・お金・安全の言葉を先に。
+            # スポーツ・芸能・有名人の言葉は後ろ（軸の言葉で枠が埋まらなかったときだけ、今までどおり急上昇の大きい順で埋める）
+            queue = trend_lane.axis_order(queue)
+            counts = trend_lane.axis_counts(queue)
+            log(f"[trend] 暮らし・お金・安全の言葉を先に: 軸 {counts[0]} 語 / どちらでもない {counts[1]} 語 / スポーツ・芸能 {counts[2]} 語")
 
     # --- 公式フィード（AI）と幅広い話題 ---
     major_ids: set[str] = set()
@@ -3405,6 +3413,7 @@ def main() -> int:
                     trend_stats["refreshed"] += 1
                     log(f"   [trend] 公式の発表で更新し、待ちの印を外しました: {path.stem}")
 
+        fallback_logged = False
         for q in queue:
             if created["trend"] >= trend_limit or time_up():
                 break
@@ -3412,6 +3421,10 @@ def main() -> int:
                 break
             if llm.all_exhausted(args.tier):
                 break
+            if TREND_AXIS_FIRST and not fallback_logged and trend_lane.axis_rank(q) > 0:
+                fallback_logged = True
+                log(f"\n[trend] 暮らし・お金・安全の言葉では枠が埋まりませんでした（記事 {created['trend']} / {trend_limit} 本）。"
+                    "残りの枠は今までの選び方（急上昇の大きい順・軸の外の言葉も）で埋めます")
             term = q["title"]
             trend_stats["considered"] += 1
             log(f"\n[trend] {term}（{q.get('genre')} / traffic {q.get('traffic', 0):,}）")

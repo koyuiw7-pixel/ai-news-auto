@@ -333,10 +333,12 @@ BROAD_FEEDS: list[dict] = [
     {"slug": "e-nexco", "name": "NEXCO東日本", "url": "https://www.e-nexco.co.jp/pressroom/", "type": "html", "section": "lifestyle", "kind": "company", "priority": 3,
      "include_re": "料金|通行止|渋滞|割引|ETC|値上げ|障害|雪"},
     # 安全・リコール
-    # 食品の回収は小さな店・催しの品が大半（多くの人が読むニュースにならない）なので外し、家電・車・日用品・子ども用品・医薬品などの製品だけ
-    {"slug": "caa-recall", "name": "消費者庁 リコール情報サイト", "url": "https://www.recall.caa.go.jp/", "type": "html", "section": "lifestyle", "kind": "gov", "priority": 1,
-     "include_re": "^(?:家電|電気|自動車|乗り物|子供用品|子ども用品|日用品|保健衛生品|家具|スポーツ|玩具|おもちゃ|情報通信|住宅|衣類|医薬品)"},
-    # ↑ 一覧には分類つきと分類なしの同じ項目が並ぶので、分類つき（食料品以外）だけを取る
+    # 2026-11-28: 新規登録情報の一覧（全分類）を scripts/caa_recall.py で読む。食品の回収も、売った範囲が広いもの（全国・通販・
+    #   2都道府県以上・5店舗以上・500個以上・全国で知られた名前）は候補にする（1つの店で少しだけ売った品・業務用は見送る）。
+    #   詳しいページの本文（連絡先・対応方法・対象の特定情報）は Quill の script の中にあるので、それを読み出して資料にする。
+    #   前の html の読み方は、一覧の商品の画像（.jpg）の URL を記事の出典にしていた。車・バイクは国土交通省の発表から作る
+    {"slug": "caa-recall", "name": "消費者庁 リコール情報サイト", "url": "https://www.recall.caa.go.jp/result/index.php?screenkbn=03",
+     "type": "caa_recall", "section": "lifestyle", "kind": "gov", "priority": 1},
     {"slug": "pmda-safety", "name": "PMDA（医薬品・医療機器の安全情報）", "url": "https://www.pmda.go.jp/rss_018.xml", "section": "lifestyle", "kind": "gov", "priority": 2,
      "include_re": "医薬\\]|\\[医薬", "exclude_re": "イベント|研修|説明会"},  # 医薬品の安全情報だけ（医療機器の専門的な回収は外す）
     # 製品と発売（コンビニ・家電・車・テーマパーク）
@@ -868,6 +870,10 @@ def parse_feed(feed: dict) -> list[dict]:
         return parse_html_list(feed)
     if feed.get("type") == "jma_press":
         return parse_jma_press(feed)
+    if feed.get("type") == "caa_recall":
+        import caa_recall  # noqa: PLC0415  消費者庁 リコール情報サイトの新着（詳しいページの Quill の文字まで読む。scripts/caa_recall.py）
+
+        return caa_recall.parse_feed(feed)
     data, _ = fetch(feed["url"], accept="application/rss+xml, application/atom+xml, application/xml;q=0.9, */*;q=0.8")
     data = data.lstrip()  # XML 宣言の前に改行がある WordPress（イオン等）
     try:
@@ -1583,7 +1589,7 @@ def _fetch_direct(url: str, timeout: int = 25) -> dict:
             "text": pdf[:TEXT_CAP], "full_text": pdf[:400_000] if len(pdf) > TEXT_CAP else "", "image": None,
             "title": pdf_title(pdf), "description": "", "final_url": final_url, "published": "", "links": [],
         }
-    decoded = _decode(data)
+    decoded = expand_quill(_decode(data))  # 本文が Quill の script の中にあるページ（消費者庁のリコール情報）
     parser, text = _extract_html(decoded)
     if len(text) < FORM_RETRY_CHARS and re.search(r"<form\b", decoded, re.I):
         # 本文がほとんど取れず、ページに <form> がある: 本文が form の中にある作りのページ（i2fas の食品リコールなど）。
@@ -1608,6 +1614,53 @@ def _fetch_direct(url: str, timeout: int = 25) -> dict:
 
 
 FORM_RETRY_CHARS = 300
+
+
+_QUILL_RE = re.compile(
+    r"<span\b([^>]*\bid=[\"']([\w-]+)[\"'][^>]*)>\s*</span>\s*<script\b[^>]*>\s*(?:<!--)?\s*"
+    r"contentsText\s*=\s*'((?:[^'\\]|\\.)*)'\s*;.*?</script>", re.S)
+_JS_ESCAPE_RE = re.compile(r"\\(u[0-9a-fA-F]{4}|.)", re.S)
+
+
+def _js_unescape(value: str) -> str:
+    def one(m: re.Match) -> str:
+        c = m.group(1)
+        if c.startswith("u") and len(c) == 5:
+            return chr(int(c[1:], 16))
+        return {"n": "\n", "t": "\t", "r": "\r"}.get(c, c)
+    return _JS_ESCAPE_RE.sub(one, value)
+
+
+def quill_text(raw: str) -> str:
+    """Quill の中身（JavaScript の文字列に入った {"ops": [...]}）→ ふつうの文字。リンクは文字のあとに（URL）で残す"""
+    try:
+        ops = json.loads(_js_unescape(raw), strict=False).get("ops") or []
+    except (ValueError, AttributeError):
+        return ""
+    parts = []
+    for op in ops:
+        text = op.get("insert") if isinstance(op, dict) else None
+        if not isinstance(text, str):
+            continue
+        link = ((op.get("attributes") or {}).get("link") or "") if isinstance(op.get("attributes"), dict) else ""
+        parts.append(f"{text}（{link}）" if link and link not in text else text)
+    return "".join(parts)
+
+
+def expand_quill(decoded: str) -> str:
+    """本文を JavaScript（Quill エディタ）で描くページ（2026-11-28 消費者庁のリコール情報サイトの詳しいページ。連絡先・対応方法・
+    対象の特定情報がすべて script の中の文字にあり、script を読み飛ばすと商品名と日付しか残らなかった）。
+    空の <span id=…> と、その中身を入れる script の組を、中身の文字の入った <span> に置き換える（ほかのページは変えない）"""
+    if "new Quill(" not in decoded or "contentsText" not in decoded:
+        return decoded
+
+    def repl(m: re.Match) -> str:
+        text = quill_text(m.group(3))
+        if not text:
+            return m.group(0)
+        body = "<br>".join(html.escape(line) for line in text.split("\n"))
+        return f"<span{m.group(1)}>{body}</span>"
+    return _QUILL_RE.sub(repl, decoded)
 
 
 def _extract_html(decoded: str, keep_form: bool = False) -> tuple[_Extractor, str]:

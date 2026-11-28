@@ -579,6 +579,8 @@ jobs:
           if [ -f state/muse_images.json ]; then git add state/muse_images.json; fi
           if [ -f state/trend_signals.json ]; then git add state/trend_signals.json; fi
           if [ -f state/trend_queue.json ]; then git add state/trend_queue.json; fi
+          # 消費者庁のリコール情報の読んだ項目の記録（scripts/caa_recall.py。同じ詳しいページを毎回読み直さない）
+          if [ -f state/caa_recall.json ]; then git add state/caa_recall.json; fi
           git commit -m "$MSG"
           # 実行中に main が進んでいても、この回の記事を落とさずに載せ直して push する（scripts/git_safe_push.py）。
           # 別のジョブが同じ記事 JSON を直していたら項目ごとにマージする（この回が変えた項目だけこの回の値）。新しい記事は必ず残す

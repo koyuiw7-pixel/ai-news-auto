@@ -46,6 +46,8 @@ STOP_ENTITIES = {
     # 発表の定型語（「Introducing GPT-7」と「Introducing GPT-6」を同じ話題にしない）
     "introducing", "introduces", "introduce", "announcing", "announces", "announced", "launch", "launches", "launching",
     "launched", "available", "today", "meet", "update", "updates", "release", "released", "releases",
+    # 回収の種類の言葉（2026-11-28。消費者庁のリコール情報の別の商品どうしが「リコール・返金回収」の一致で重複にされた）
+    "リコール", "返金回収", "交換返金", "交換回収", "回収", "返金", "交換", "修理", "回収命令", "自主回収", "無償修理", "点検修理",
 }
 BRACKET_RE = re.compile(r"[「『【\[(（]([^」』】\])）]{2,30})[」』】\])）]")
 KATAKANA_RE = re.compile(r"[ァ-ヴー・]{3,}")
@@ -138,11 +140,21 @@ class Index:
         return (best[1], best[2]) if best else None
 
 
+# クエリで1件が決まるページ（2026-11-28）。クエリを落とすと、消費者庁のリコール情報の詳しいページ（detail.php?rcl=…）が
+# 全部「同じ出典URL」になり、別の商品の回収が重複として落ちていた。ここに挙げたホストの、挙げたクエリだけは残す
+KEEP_QUERY = {"www.recall.caa.go.jp": ("rcl",), "i2fas.mhlw.go.jp": ("p",)}
+
+
 def _norm_url(url: str) -> str:
-    """クエリ・末尾の / を落とす。#entry-…（page_watch.py が付けるリリースノートの1項目）だけは残す"""
+    """クエリ・末尾の / を落とす。#entry-…（page_watch.py が付けるリリースノートの1項目）と、KEEP_QUERY のクエリだけは残す"""
     url = url.strip().lower()
     frag = url.split("#", 1)[1] if "#entry-" in url else ""
-    return re.sub(r"[?#].*$", "", url).rstrip("/") + (f"#{frag}" if frag else "")
+    keep = ""
+    host = re.sub(r"^[a-z]+://", "", url).split("/", 1)[0]
+    if host in KEEP_QUERY and "?" in url:
+        params = dict(p.split("=", 1) for p in url.split("?", 1)[1].split("#", 1)[0].split("&") if "=" in p)
+        keep = "&".join(f"{k}={params[k]}" for k in KEEP_QUERY[host] if params.get(k))
+    return re.sub(r"[?#].*$", "", url).rstrip("/") + (f"?{keep}" if keep else "") + (f"#{frag}" if frag else "")
 
 
 def _article_time(data: dict) -> datetime | None:

@@ -84,6 +84,72 @@ def term_in(term: str, text: str) -> bool:
 
 
 # --------------------------------------------------------------------------- #
+# 暮らし・お金・安全の言葉を先に（2026-11-28。あなたの数字の軸・scripts/your_number.py）
+# --------------------------------------------------------------------------- #
+# オーナー「本数を減らさない」: 話題のレーンの1回の本数はそのままに、急上昇の言葉のうち暮らし・お金・安全の言葉から先に記事にする。
+# スポーツ・芸能・有名人の言葉は後ろに回し、軸の言葉で枠が埋まらなかった回だけ、残りの枠を今までの選び方（急上昇の大きい順）で埋める。
+# 判定は言葉と関連報道の見出し（はじめの3本）。LLM は使わない。キューのジャンル（genre）は当てにならない（芸能人が sports・public になる）ので、
+# スポーツ・エンタメのジャンルは「軸の外」の手がかりの1つにだけ使う
+AXIS_TERM_RE = re.compile(
+    r"給付|手当|値上げ|値下げ|料金|運賃|税|年金|保険|リコール|回収|障害|流出|漏え?い|漏洩|期限|申請|支給|振込|振り込|補助|助成|還付|控除|"
+    r"最低賃金|物価|ガソリン|灯油|電気代|ガス代|水道代|光熱費|ふるさと納税|NISA|iDeCo|マイナ|ポイント還元|詐欺|フィッシング|不正(?:利用|アクセス|ログイン)|"
+    r"運休|欠航|運転見合わせ|通行止め|停電|断水|大雪|大雨|台風|地震|津波|警報|食中毒|インフルエンザ|感染|ワクチン|"
+    r"受信料|手数料|金利|住宅ローン|家賃|医療費|介護|出産|育休|児童|子育て|奨学金|授業料|無償化|生活保護|失業|雇用保険|"
+    r"使用(?:を)?中止|自主回収|返金|無償修理|サービス(?:の)?終了|提供(?:を)?終了|改定|締め?切|受付|当選|抽選")
+# セール・初売りなどは、値段（円・％・割引）の情報があるときだけ軸の話（暮らしのお金）にする
+SALE_RE = re.compile(r"セール|ブラックフライデー|サイバーマンデー|福袋|初売り|半額|値引|割引|特売|大売り出し|ポイント(?:\d+)?倍|ポイント祭")
+PRICE_RE = re.compile(r"\d[\d,]*\s*円|\d+\s*[%％]|\d+\s*割(?:引|オフ)|半額|値引|割引|価格")
+SPORTS_RE = re.compile(
+    r"試合|監督|選手|球団|FA(?:権|宣言)?|移籍|補強|代表(?:戦|メンバー|入り)?|リーグ|優勝|決勝|準決勝|GS|U-?\d{2}|プレミア|五輪|オリンピック|"
+    r"W杯|ワールドカップ|勝利|敗れ|得点|ゴール|ホームラン|打者|投手|ドラフト|契約合意|引退|開幕|首位|順位|vs\.?|対\s*日本|日本代表|"
+    r"プロ野球|Jリーグ|NPB|MLB|NBA|ドジャース|大谷|相撲|場所|横綱|大関|ボクシング|格闘|マラソン|駅伝|競馬|競輪|競艇")
+CELEB_RE = re.compile(
+    r"俳優|女優|歌手|アイドル|芸人|タレント|主演|出演|共演|ドラマ|映画|月9|紅白|ライブ|コンサート|公演|アルバム|シングル|MV|"
+    r"結婚|離婚|熱愛|交際|妊娠|第\d子|インスタ|ショット|顔出し|告白|ファン(?:が|の|から)|反響|Mステ|ミュージックステーション|"
+    r"メンバー|デビュー|周年|番組|放送|配信ドラマ|声優|アニメ|お笑い|バラエティ|司会|元(?:モー娘|光GENJI|AKB|SMAP|ジャニーズ)|"
+    r"夫人|王室|皇室|さん死去|訃報|ゲーム(?:紹介|実況)|攻略")
+OFF_GENRES = {"sports", "entertainment"}
+
+
+def _axis_texts(q: dict, n_titles: int = 3) -> tuple[str, list[str]]:
+    term = unicodedata.normalize("NFKC", str(q.get("title") or ""))
+    titles = [unicodedata.normalize("NFKC", str(s.get("title") or "")) for s in (q.get("sources") or [])[:n_titles] if isinstance(s, dict)]
+    return term, [t for t in titles if t]
+
+
+def axis_rank(q: dict) -> int:
+    """話題のレーンで先に回す順: 0＝暮らし・お金・安全の言葉 / 1＝どちらでもない（天気・社会など）/ 2＝スポーツ・芸能・有名人"""
+    import your_number  # noqa: PLC0415  あなたの数字の軸の判定（題名の語だけ・LLM なし）
+
+    term, titles = _axis_texts(q)
+    household = bool(your_number.HOUSEHOLD_STRONG_RE.search(term) or AXIS_TERM_RE.search(term))
+    near = " ".join([term, *titles[:1]])  # スポーツ・芸能の手がかりは言葉と1本目の見出しだけ（後ろの見出しには別の話題が混ざる）
+    off = str(q.get("genre") or "") in OFF_GENRES or bool(SPORTS_RE.search(near) or CELEB_RE.search(near))
+    on_titles = [bool(your_number.topic_kind(t)) for t in titles]
+    first_on = bool(on_titles and on_titles[0]) and not (SPORTS_RE.search(titles[0]) or CELEB_RE.search(titles[0]))
+    # 見出しで決めるときは、2本以上が軸の話か、1本目が軸の話（スポーツ・芸能の語なし）のとき（1本だけ混ざった話題に引っぱられない）
+    on = household or bool(your_number.topic_kind(term)) or sum(on_titles) >= 2 or first_on \
+        or bool(SALE_RE.search(near) and PRICE_RE.search(near))
+    if on and (not off or household):
+        return 0  # 言葉そのものが暮らしのお金・注意の語なら、スポーツ・芸能の見出しが混ざっていても軸（例: 「チケット 値上げ」）
+    if off:
+        return 2
+    return 1
+
+
+def axis_order(queue: list[dict]) -> list[dict]:
+    """暮らし・お金・安全の言葉を先に。同じ順位の中は今までどおり急上昇の大きい順（並べ替えだけで、言葉は減らさない）"""
+    return sorted(queue, key=lambda q: (axis_rank(q), -int(q.get("traffic") or 0)))
+
+
+def axis_counts(queue: list[dict]) -> dict[int, int]:
+    counts = {0: 0, 1: 0, 2: 0}
+    for q in queue:
+        counts[axis_rank(q)] += 1
+    return counts
+
+
+# --------------------------------------------------------------------------- #
 # 主要な報道機関の RSS
 # --------------------------------------------------------------------------- #
 def _local(tag: str) -> str:
